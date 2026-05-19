@@ -27,7 +27,7 @@ Use this file to identify the folder boundary, the likely verification path, and
 
 | Metric | Value |
 |---|---:|
-| Code files | 20 |
+| Code files | 21 |
 | README scope | Direct files in this folder |
 | Audit context | Internal validation notes |
 | v1.2.0 additions | `fts_index.py`, `fusion.py`, `reranker.py` (opt-in retrieval-quality modules) |
@@ -69,6 +69,7 @@ Load this folder through the owning skill workflow or MCP server entrypoint.
 | Verification handoff | Records the expected owner and audit packet for follow-up work. |
 | Hybrid retrieval (v1.2.0) | `fts_index.py` + `fusion.py` add SQLite FTS5 + RRF fusion (opt-in via `COCOINDEX_HYBRID=1`). |
 | Cross-encoder rerank (v1.2.0) | `reranker.py` adds a local GTE multilingual rerank pass (opt-in via `COCOINDEX_RERANK=1`). |
+| Mirror-aware dedup (v1.2.1) | `path_utils.py` + `query.py` collapse runtime mirror aliases before rerank, preferring the canonical mirror copy. |
 
 <!-- /ANCHOR:features -->
 
@@ -90,6 +91,7 @@ Load this folder through the owning skill workflow or MCP server entrypoint.
 | `fusion.py` | **v1.2.0.** Reciprocal Rank Fusion (RRF) for combining vector + FTS5 rankings. |
 | `indexer.py` | Per-project indexing pipeline: discovery, chunking, embedding, storage. |
 | `observability.py` | Structured logging and metrics helpers. |
+| `path_utils.py` | Pure helpers for mirror-prefix detection, path-stem extraction, and canonical mirror selection. |
 | `project.py` | Per-project state and lifecycle (`ProjectRegistry`). |
 | `protocol.py` | Msgpack IPC protocol shared by daemon + client. |
 | `query.py` | Search execution: vector query, optional hybrid fusion, optional rerank. |
@@ -111,6 +113,12 @@ Load this folder through the owning skill workflow or MCP server entrypoint.
 |---|---|---|
 | sk-code surface | OPENCODE | Applies OpenCode TypeScript, JavaScript, Python, Shell, and config conventions. |
 | README scope | Direct folder | This file documents this folder, not sibling folders. |
+| `COCOINDEX_CANONICAL_MIRROR` | `.opencode` | Preferred runtime mirror representative when duplicate mirror chunks compete. |
+| `COCOINDEX_MIRROR_PREFIXES` | `[".opencode/", ".codex/", ".gemini/", ".claude/"]` | JSON list of runtime mirror prefixes. Set to `[]` to disable mirror collapse. |
+
+### Mirror Dedup Behavior
+
+Hybrid query results run a mirror-collapse pass before the existing source-realpath/content-hash dedup. When several runtime mirror paths represent the same chunk, the query keeps the configured canonical mirror copy, defaulting to `.opencode/`. If the canonical copy is absent, the first ranked mirror copy is kept. Non-mirror same-stem files are preserved, and the existing line-range dedup still runs afterward.
 
 <!-- /ANCHOR:configuration -->
 

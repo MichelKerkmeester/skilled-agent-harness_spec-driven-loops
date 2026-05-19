@@ -7,6 +7,8 @@ import heapq
 import hashlib
 import logging
 import sqlite3
+from collections import defaultdict
+from collections.abc import Iterable
 from pathlib import Path
 from typing import Any
 
@@ -22,6 +24,7 @@ from .observability import (
     log_stage,
     monotonic_ms,
 )
+from .path_utils import extract_path_stem, is_mirror_path, select_canonical_mirror_copy
 from .schema import QueryResult
 from .settings import PROJECT_SETTINGS, is_canonical_path
 from .shared import EMBEDDER, SQLITE_DB, query_prompt_name
@@ -272,6 +275,56 @@ def _dedup_key_from_record(record: dict[str, Any]) -> tuple[str, str, int, int]:
     return ("content_hash", str(fallback_hash), start_line, end_line)
 
 
+def _mirror_dedup_key_from_record(record: dict[str, Any]) -> tuple[str, int, int]:
+    start_line = int(record["start_line"])
+    end_line = int(record["end_line"])
+    fallback_hash = record.get("content_hash") or _hash_content(str(record["content"]))
+    return (str(fallback_hash), start_line, end_line)
+
+
+def _collapse_mirror_aliases(
+    ranked: list[tuple[QueryResult, dict[str, Any]]],
+    *,
+    canonical_mirror: str,
+    mirror_prefixes: Iterable[str],
+) -> tuple[list[tuple[QueryResult, dict[str, Any]]], int]:
+    prefixes = tuple(mirror_prefixes)
+    if not ranked or not prefixes:
+        return ranked, 0
+
+    group_map: defaultdict[
+        tuple[str, tuple[str, int, int]],
+        list[tuple[QueryResult, dict[str, Any]]],
+    ] = defaultdict(list)
+    for result, record in ranked:
+        file_path = str(record.get("file_path", ""))
+        if not is_mirror_path(file_path, prefixes):
+            continue
+        stem = extract_path_stem(file_path, prefixes)
+        group_map[(stem, _mirror_dedup_key_from_record(record))].append((result, record))
+
+    loser_record_ids: set[int] = set()
+    for group in group_map.values():
+        if len(group) < 2:
+            continue
+        records = [record for _result, record in group]
+        winner, losers = select_canonical_mirror_copy(
+            records,
+            canonical_mirror,
+            prefixes,
+        )
+        if winner is None:
+            continue
+        loser_record_ids.update(id(record) for record in losers)
+
+    if not loser_record_ids:
+        return ranked, 0
+    return (
+        [(result, record) for result, record in ranked if id(record) not in loser_record_ids],
+        len(loser_record_ids),
+    )
+
+
 def _record_from_vector_row(row: tuple[Any, ...]) -> dict[str, Any]:
     (
         chunk_id,
@@ -484,6 +537,8 @@ def _dedup_and_rank_hybrid_rows(
     *,
     query: str,
     canonical_paths: list[str] | None = None,
+    canonical_mirror: str | None = None,
+    mirror_prefixes: Iterable[str] | None = None,
 ) -> tuple[list[QueryResult], int]:
     implementation_intent = _has_implementation_intent(query)
     ranked = [
@@ -501,9 +556,14 @@ def _dedup_and_rank_hybrid_rows(
     ]
     ranked.sort(key=lambda item: item[0].score, reverse=True)
 
+    ranked, deduped_aliases = _collapse_mirror_aliases(
+        ranked,
+        canonical_mirror=canonical_mirror or config.canonical_mirror,
+        mirror_prefixes=config.mirror_prefixes if mirror_prefixes is None else mirror_prefixes,
+    )
+
     seen: set[tuple[str, str, int, int]] = set()
     unique: list[QueryResult] = []
-    deduped_aliases = 0
     for result, record in ranked:
         key = _dedup_key_from_record(record)
         if key in seen:

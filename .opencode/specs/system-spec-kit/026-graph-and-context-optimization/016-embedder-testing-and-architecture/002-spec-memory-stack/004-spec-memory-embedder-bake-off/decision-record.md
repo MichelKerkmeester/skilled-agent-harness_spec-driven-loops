@@ -716,3 +716,55 @@ Evidence:
 - `013-bench-harness-and-fixture-audit/evidence/fixture-audit-summary.md`
 - `013-bench-harness-and-fixture-audit/scratch/test_path_extraction.py`
 <!-- /ANCHOR:adr-016 -->
+
+<!-- ANCHOR:adr-017 -->
+## ADR-017: Canonical mirror dedup before CocoIndex rerank
+
+**Date**: 2026-05-19
+**Status**: Accepted, shipped (packet 016/004/014)
+**Packet**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/014-mirror-dedup-canonical-preference/`
+
+### Defect
+
+CocoIndex indexes equivalent runtime mirror paths under `.opencode/`, `.codex/`, `.gemini/`, and `.claude/`. Deep-dive evidence from packet 011 showed the same source file appearing in all four mirrors with identical chunk counts, line ranges, content hashes, and `path_class`. Because the hybrid dedup hook only used source-realpath/content-hash plus line range, whichever mirror ranked first could become the visible representative, and duplicate mirror candidates could consume rerank-window slots before downstream retrieval improvements had clean signal.
+
+### Decision
+
+Add mirror-aware dedup as Pass A inside `_dedup_and_rank_hybrid_rows()`:
+
+1. Compute a path stem by stripping configured runtime mirror prefixes.
+2. Group mirror candidates by path stem plus content hash and line range.
+3. Keep the configured canonical mirror copy when present.
+4. If the canonical copy is absent, keep the first ranked mirror copy.
+5. Run the prior source-realpath/content-hash plus line-range dedup unchanged as Pass B.
+
+The default canonical mirror is `.opencode/`, because `.opencode` is the source-of-truth directory in this repository. The behavior is embedder-agnostic and reranker-agnostic; it operates only on candidate file paths and existing chunk identity.
+
+### Env Var Contract
+
+| Variable | Default | Contract |
+|---|---|---|
+| `COCOINDEX_CANONICAL_MIRROR` | `.opencode` | Preferred mirror representative. Known mirrors may be provided with or without trailing slash; custom values must end with `/`. Empty values warn and fall back. |
+| `COCOINDEX_MIRROR_PREFIXES` | `[".opencode/", ".codex/", ".gemini/", ".claude/"]` | JSON array of mirror prefixes. Values normalize to trailing slash. `[]` is valid and disables mirror collapse. |
+
+### Rollback Path
+
+Set:
+
+```bash
+COCOINDEX_MIRROR_PREFIXES='[]'
+```
+
+Then restart the `ccc` daemon so the config singleton reloads. This disables Pass A while preserving the existing Pass B dedup. Full code rollback reverts `config.py`, `path_utils.py`, `query.py`, the new tests, README update, and this ADR.
+
+### Evidence
+
+- Targeted pytest: `38 passed` for config, path helper, and mirror dedup tests.
+- Full MCP server pytest: `103 passed`.
+- Corrected 18-probe bench retained `14/18` hits across baseline-bge, bge-path-class, and jina-v3.
+- Delta artifact records no probe hit/miss regressions and p95 latency under the corrected baseline threshold.
+
+Evidence files:
+- `014-mirror-dedup-canonical-preference/evidence/phase2-comparison-014-dedup.md`
+- `014-mirror-dedup-canonical-preference/evidence/phase2-comparison-013-vs-014-delta.md`
+<!-- /ANCHOR:adr-017 -->

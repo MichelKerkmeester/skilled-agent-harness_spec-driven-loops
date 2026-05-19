@@ -17,6 +17,8 @@ _DEFAULT_HYBRID_FTS5_WEIGHT = 0.7
 _DEFAULT_HYBRID_RRF_K = 60
 _DEFAULT_RERANK_MODEL = "BAAI/bge-reranker-v2-m3"
 _DEFAULT_RERANK_TOP_K = 20
+_DEFAULT_CANONICAL_MIRROR = ".opencode"
+_DEFAULT_MIRROR_PREFIXES = [".opencode/", ".codex/", ".gemini/", ".claude/"]
 # ADR-015 Phase 2: path-class boost defaults from 011 deep-research iter 10
 # Multiplies the cross-encoder score per QueryResult.path_class. Flag-gated by
 # COCOINDEX_RERANK_PATH_CLASS_BOOST. Override via COCOINDEX_RERANK_PATH_CLASS_FACTORS.
@@ -121,6 +123,55 @@ def _parse_json_string_list_env(var_name: str) -> list[str]:
             result.append(item)
 
     return result
+
+
+def _normalize_mirror_prefix(prefix: str) -> str:
+    """Normalize mirror prefixes to the form used by file_path startswith checks."""
+    normalized = prefix.strip()
+    if not normalized:
+        return ""
+    return normalized if normalized.endswith("/") else f"{normalized}/"
+
+
+def _parse_mirror_prefixes_env() -> list[str]:
+    """Parse COCOINDEX_MIRROR_PREFIXES, preserving [] as an explicit opt-out."""
+    raw_value = os.environ.get("COCOINDEX_MIRROR_PREFIXES")
+    if raw_value is None or not raw_value.strip():
+        return list(_DEFAULT_MIRROR_PREFIXES)
+
+    prefixes = _parse_json_string_list_env("COCOINDEX_MIRROR_PREFIXES")
+    normalized: list[str] = []
+    seen: set[str] = set()
+    for prefix in prefixes:
+        normalized_prefix = _normalize_mirror_prefix(prefix)
+        if normalized_prefix and normalized_prefix not in seen:
+            normalized.append(normalized_prefix)
+            seen.add(normalized_prefix)
+    return normalized
+
+
+def _parse_canonical_mirror_env(mirror_prefixes: list[str]) -> str:
+    """Parse COCOINDEX_CANONICAL_MIRROR with default fallback and warning."""
+    raw_value = os.environ.get("COCOINDEX_CANONICAL_MIRROR", _DEFAULT_CANONICAL_MIRROR)
+    stripped = raw_value.strip()
+    if not stripped:
+        logger.warning(
+            "Ignoring empty COCOINDEX_CANONICAL_MIRROR; falling back to %r",
+            _DEFAULT_CANONICAL_MIRROR,
+        )
+        return _normalize_mirror_prefix(_DEFAULT_CANONICAL_MIRROR)
+
+    recognized = set(_DEFAULT_MIRROR_PREFIXES) | set(mirror_prefixes)
+    normalized = _normalize_mirror_prefix(stripped)
+    if stripped.endswith("/") or normalized in recognized:
+        return normalized
+
+    logger.warning(
+        "Ignoring invalid COCOINDEX_CANONICAL_MIRROR=%r; expected a known mirror or trailing slash; falling back to %r",
+        raw_value,
+        _DEFAULT_CANONICAL_MIRROR,
+    )
+    return _normalize_mirror_prefix(_DEFAULT_CANONICAL_MIRROR)
 
 
 def _parse_json_dict_env(
@@ -314,6 +365,8 @@ class Config:
     rerank_path_class_boost: bool
     rerank_path_class_factors: dict[str, float]
     rerank_adapter: str
+    canonical_mirror: str
+    mirror_prefixes: list[str]
 
     @classmethod
     def from_env(cls) -> Config:
@@ -427,6 +480,8 @@ class Config:
             _DEFAULT_PATH_CLASS_FACTORS,
         )
         rerank_adapter = os.environ.get("COCOINDEX_RERANK_ADAPTER", "").strip().lower()
+        mirror_prefixes = _parse_mirror_prefixes_env()
+        canonical_mirror = _parse_canonical_mirror_env(mirror_prefixes)
 
         return cls(
             codebase_root_path=root,
@@ -448,6 +503,8 @@ class Config:
             rerank_path_class_boost=rerank_path_class_boost,
             rerank_path_class_factors=rerank_path_class_factors,
             rerank_adapter=rerank_adapter,
+            canonical_mirror=canonical_mirror,
+            mirror_prefixes=mirror_prefixes,
         )
 
     @property
