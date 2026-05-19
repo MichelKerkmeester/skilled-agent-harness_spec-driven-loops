@@ -1,0 +1,16 @@
+{
+  "title": "016/004/017 Hybrid Fusion Empirical Recalibration",
+  "description": "Partial packet state for RRF sweep harness and deterministic analyzer. Shared config/default lock, full sweep, ADR-020, README, final gate, and strict validation are blocked until feat(016/004/016) lands.",
+  "trigger_phrases": [
+    "016/004/017 hybrid recalibration",
+    "RRF parameter sweep",
+    "vec_weight fts_weight tuning",
+    "cocoindex hybrid fusion",
+    "COCOINDEX_RRF_K"
+  ],
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "status": "partial-blocked",
+  "packet_pointer": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/017-hybrid-fusion-empirical-recalibration",
+  "updated_at": "2026-05-19T17:00:00Z"
+}

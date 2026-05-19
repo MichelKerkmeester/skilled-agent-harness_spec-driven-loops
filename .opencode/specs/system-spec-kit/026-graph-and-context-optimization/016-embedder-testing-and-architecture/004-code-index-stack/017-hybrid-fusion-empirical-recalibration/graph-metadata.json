@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "node_type": "spec_packet",
+  "status": "partial-blocked",
+  "derived": {
+    "status": "partial-blocked",
+    "completion_pct": 45,
+    "last_active_child_id": null
+  },
+  "blocked_by": [
+    "feat(016/004/016) commit is not present in git log"
+  ],
+  "links": {
+    "parent": "../spec.md",
+    "depends_on": [
+      "../016-query-expansion-identifier-bridging"
+    ],
+    "evidence": [
+      "evidence/cells",
+      "evidence/sweep-results.md",
+      "evidence/phase2-comparison-017-recalibrated.md"
+    ]
+  },
+  "updated_at": "2026-05-19T17:00:00Z"
+}
