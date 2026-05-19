@@ -75,6 +75,8 @@ All 4 sub-phases shipped before this restructure landed. The restructure is pure
 | 004-spec-memory-embedder-bake-off | mxbai swap + cat-24/409 closure | Shipped |
 | 015-cascade-reorder-and-nomic-hf-local-default | 016-reindex-populates-vec-memories-knn-table | [Criteria TBD] | [Verification TBD] |
 | 016-reindex-populates-vec-memories-knn-table | 017-factory-shard-fallback-for-hf-voyage-openai | Confirm whether hf-local, voyage, and openai have active-embedder DB resolvers needing ADR-012 shard fallback. | Source audit documents that no analogous functions exist; shared and MCP server builds pass. |
+| 017-factory-shard-fallback-for-hf-voyage-openai | 018-constitutional-quality-gate-exemption | [Criteria TBD] | [Verification TBD] |
+| 018-constitutional-quality-gate-exemption | 019-lineage-and-metadata-repair-runner | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 <!-- ANCHOR:cross-refs -->

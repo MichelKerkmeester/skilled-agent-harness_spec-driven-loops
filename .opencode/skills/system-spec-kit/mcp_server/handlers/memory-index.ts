@@ -468,10 +468,16 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
   if (filesToIndex.length > 0) {
     const batchResults = await processBatches(filesToIndex, async (filePath: string) => {
       const isSpecDoc = specDocKeySet.has(getCachedKey(filePath));
+      // Packet 018: constitutional markdown is policy text, not evidence-bearing memory.
+      // It does not carry primary-evidence sections or ANCHOR tags by design, so the
+      // strict sufficiency gate would always reject it. Treat constitutional files like
+      // spec docs and pass them through warn-only mode so they index against the same
+      // pipeline without the document-evidence requirements.
+      const isConstitutional = constitutionalSet.has(getCachedKey(filePath));
       // During force reindex, use warn-only for all files — the goal is to index
       // everything that has valid frontmatter, not to enforce template contracts on
       // older files created before current templates were established.
-      const useWarnOnly = force || isSpecDoc;
+      const useWarnOnly = force || isSpecDoc || isConstitutional;
       return await indexSingleFile(filePath, force, {
         ...(useWarnOnly ? { qualityGateMode: 'warn-only' as const } : {}),
         fromScan: true,
