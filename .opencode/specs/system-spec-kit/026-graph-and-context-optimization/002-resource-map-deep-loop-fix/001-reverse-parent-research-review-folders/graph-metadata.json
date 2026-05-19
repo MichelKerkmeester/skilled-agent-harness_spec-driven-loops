@@ -12,203 +12,27 @@
   "derived": {
     "trigger_phrases": [
       "reverse parent research review folders",
-      "rollback child deep-loop packet placement",
-      "local owner artifact rollback",
-      "013/001 reverse parent folders",
-      "013/001 rollback plan",
-      "reverse parent folders plan",
-      "013/001 rollback tasks",
-      "reverse parent folders tasks",
-      "013/001 checklist",
-      "reverse parent folders checklist",
-      "013/001 implementation summary",
-      "reverse parent folders implementation"
+      "reverse parent research review folders graph metadata"
     ],
     "key_topics": [
       "reverse",
       "parent",
       "research",
       "review",
-      "folders",
-      "rollback",
-      "child",
-      "deep-loop",
-      "packet",
-      "placement",
-      "local",
-      "owner"
+      "folders"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "resource-map.md",
-      ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
-      ".opencode/skills/system-spec-kit/scripts/migrate-deep-loop-local-owner.cjs",
-      ".opencode/skills/system-spec-kit/scripts/migrate-deep-loop-legacy-owner-map.cjs",
-      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
-      ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "checklist.md",
       "tasks.md",
-      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
-      ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
-      ".opencode/agents/deep-research.md",
-      ".claude/agents/deep-research.md",
-      ".gemini/agents/deep-research.md",
-      ".codex/agents/deep-research.toml",
-      ".opencode/agents/deep-review.md",
-      ".claude/agents/deep-review.md",
-      ".gemini/agents/deep-review.md"
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md"
     ],
-    "entities": [
-      {
-        "name": "resource-map.md",
-        "kind": "doc",
-        "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "review-research-paths.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "migrate-deep-loop-local-owner.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/migrate-deep-loop-local-owner.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "migrate-deep-loop-legacy-owner-map.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/migrate-deep-loop-legacy-owner-map.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "spec_kit_deep-research_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "spec_kit_deep-review_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec_kit_deep-research_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "spec_kit_deep-review_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research.md",
-        "kind": "doc",
-        "path": ".opencode/agents/deep-research.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research.toml",
-        "kind": "file",
-        "path": ".codex/agents/deep-research.toml",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review.md",
-        "kind": "doc",
-        "path": ".opencode/agents/deep-review.md",
-        "source": "derived"
-      },
-      {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Reverse Parent Research",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Review Folder Placement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Parent Spec",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Parent Plan",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      }
-    ],
-    "causal_summary": "This packet reverses the parent-root artifact placement policy introduced during the `007-deep-review-remediation/006-integrity-parity-closure` follow-up work and reinforced by later canonical-placement commits. It restores the earlier ownership model: root specs keep root-local `research/` and `review/`, while child phases and sub-phases keep packet folders inside their own local `research/` and `review/` directories. It also owns the repo-wide migration of child packets that were already centralized under ancestor roots, including the later manual owner-map cleanup that emptied the remaining root `research/` and `review/` packet directories under `026-graph-and-context-optimization`.",
+    "entities": [],
+    "causal_summary": "Graph metadata for the current packet.",
     "created_at": "2026-04-24T12:32:52.475Z",
     "last_save_at": "2026-05-19T13:51:39.006Z",
     "save_lineage": "same_pass",

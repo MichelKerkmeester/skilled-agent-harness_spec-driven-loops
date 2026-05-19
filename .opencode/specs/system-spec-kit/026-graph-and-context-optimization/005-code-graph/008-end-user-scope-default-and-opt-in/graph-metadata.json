@@ -38,7 +38,7 @@
       "end-user-only",
       "009"
     ],
-    "importance_tier": "high",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "lib/utils/index-scope.ts",

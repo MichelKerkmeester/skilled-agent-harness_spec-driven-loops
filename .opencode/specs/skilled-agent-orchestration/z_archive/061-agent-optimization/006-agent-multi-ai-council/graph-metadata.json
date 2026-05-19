@@ -16,7 +16,15 @@
       "006-agent-multi-ai-council",
       "ultra-think optimization",
       "ultra-think rename",
-      "multi-ai-council promotion"
+      "multi-ai-council promotion",
+      "skilled-agent-orchestration/z_archive/061-agent-optimization/006-agent-multi-ai-council",
+      "skilled-agent-orchestration",
+      "z_archive",
+      "061-agent-optimization",
+      "ultra-think",
+      "multi-ai-council",
+      "agent",
+      "optimization"
     ],
     "key_topics": [
       "006-agent-multi-ai-council",
@@ -32,7 +40,7 @@
       "architect",
       "cross-runtime"
     ],
-    "importance_tier": "high",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "improvement/integration-report-post-rename.json",
@@ -189,7 +197,7 @@
     ],
     "causal_summary": "Improvement focus: **Multi-strategy planning architect; cross-runtime RENAME (ultra-think → multi-ai-council)**. Planning-only — never modifies files. RENAME requires touching all 4 runtime mirrors + every reference.",
     "created_at": "2026-05-18T07:49:27.106Z",
-    "last_save_at": "2026-05-18T15:17:56.933Z",
+    "last_save_at": "2026-05-19T13:51:38.614Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -4,12 +4,58 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment/001-skill-mds-audit",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment",
   "children_ids": [],
-  "manual": {"depends_on": [], "supersedes": [], "related_to": []},
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
   "derived": {
-    "trigger_phrases": ["021/001 skill mds audit", "stale embedder references", "skill docs sweep"],
-    "key_topics": ["021", "audit", "skill-md", "stale-refs", "embedder", "explore-agent"],
+    "trigger_phrases": [
+      "021/001 skill mds audit",
+      "stale embedder references",
+      "skill docs sweep",
+      "021/001 plan",
+      "021/001 tasks",
+      "021/001 summary",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment/001-skill-mds-audit",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "016-embedder-testing-and-architecture",
+      "005-cross-cutting-quality",
+      "003-skill-docs-alignment"
+    ],
+    "key_topics": [
+      "021",
+      "audit",
+      "skill-md",
+      "stale-refs",
+      "embedder",
+      "explore-agent",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "016-embedder-testing-and-architecture",
+      "005-cross-cutting-quality",
+      "003-skill-docs-alignment",
+      "001-skill-mds-audit"
+    ],
     "importance_tier": "important",
     "status": "planned",
-    "key_files": ["spec.md", "plan.md", "tasks.md"]
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "Sweep all skill SKILL.md / README.md / references/ / assets/ for stale embedder defaults + outdated architecture claims",
+    "created_at": "2026-05-18T08:07:26.068Z",
+    "last_save_at": "2026-05-19T19:44:28.899Z",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ]
   }
 }

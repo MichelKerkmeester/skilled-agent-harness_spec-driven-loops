@@ -1,35 +1,47 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/055-root-readme-realignment",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/055-root-readme-realignment",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/014-local-embeddings-migration-055-root-readme-realignment",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/014-local-embeddings-migration-055-root-readme-realignment",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization",
   "children_ids": [],
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/005-code-graph/017-code-folder-readmes",
-      "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-code-folder-readme-coverage",
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/054-code-folder-readmes"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
   "derived": {
     "trigger_phrases": [
-      "055 root readme realignment",
-      "root readme drift audit",
-      "sonnet markdown writer rewrite",
-      "phase D root readme"
+      "local embeddings migration root readme realignment",
+      "local embeddings migration root readme realignment graph metadata"
     ],
-    "key_topics": ["055", "root-readme", "realignment", "drift-audit", "phase-D"],
+    "key_topics": [
+      "local",
+      "embeddings",
+      "migration",
+      "root",
+      "readme",
+      "realignment"
+    ],
     "importance_tier": "important",
     "status": "planned",
-    "key_files": ["spec.md", "plan.md", "tasks.md", "implementation-summary.md", "resource-map.md"],
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
     "entities": [],
-    "causal_summary": "Phase D of 4-phase pipeline. Audits + realigns ./README.md with 3-pass pipeline: cli-devin context, cli-opencode cross-check, sonnet @markdown writer (different shape from A/B/C because the WRITER is sonnet via Task tool, not deepseek).",
+    "causal_summary": "Graph metadata for the current packet.",
     "created_at": "2026-05-15T12:55:00Z",
     "last_save_at": "2026-05-15T12:55:00Z",
-    "save_lineage": "main_agent",
     "last_accessed_at": null,
-    "source_docs": ["spec.md", "plan.md", "tasks.md", "implementation-summary.md", "resource-map.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ]
   }
 }

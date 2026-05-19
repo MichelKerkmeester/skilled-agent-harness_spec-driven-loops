@@ -21,7 +21,10 @@
       "w3 trust tree",
       "tasks",
       "verification",
-      "implementation summary"
+      "implementation summary",
+      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/004-search-rag-measurement-implementation",
+      "system-spec-kit",
+      "026-graph-and-context-optimization"
     ],
     "key_topics": [
       "007",
@@ -37,7 +40,7 @@
       "plan",
       "tasks"
     ],
-    "importance_tier": "high",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "lib/rag/trust-tree.ts",

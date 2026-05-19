@@ -1,26 +1,65 @@
 {
-  "schema_version": "1.0",
-  "node_type": "spec_packet",
-  "status": "blocked",
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/015-code-aware-chunking-tree-sitter-stage-b",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/015-code-aware-chunking-tree-sitter-stage-b",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
   "derived": {
-    "status": "blocked",
-    "completion_pct": 75,
-    "last_active_child_id": null
-  },
-  "relationships": {
-    "parent": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack",
-    "predecessors": [
-      "013-bench-harness-and-fixture-audit",
-      "014-mirror-dedup-canonical-preference"
+    "trigger_phrases": [
+      "016/004/015 plan",
+      "code-aware chunking plan",
+      "tree-sitter chunking plan",
+      "016/004/015 tasks",
+      "code-aware chunking tasks",
+      "tree-sitter chunking tasks",
+      "016/004/015 checklist",
+      "code-aware chunking verification",
+      "tree-sitter chunking checklist",
+      "016/004/015 summary",
+      "code-aware chunking summary",
+      "tree-sitter chunking summary"
     ],
-    "successors": [
-      "016-query-expansion",
-      "017-hybrid-recalibration",
-      "018-rerank-matrix-rebench"
+    "key_topics": [
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "016-embedder-testing-and-architecture",
+      "004-code-index-stack",
+      "015-code-aware-chunking-tree-sitter-stage-b",
+      "016",
+      "004",
+      "015",
+      "code-aware",
+      "tree-sitter",
+      "chunking",
+      "stage"
+    ],
+    "importance_tier": "important",
+    "status": "blocked",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "Replaces RecursiveSplitter",
+    "created_at": "2026-05-19T12:33:28.231Z",
+    "last_save_at": "2026-05-19T12:31:25Z",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ]
-  },
-  "blockers": [
-    "CocoIndex core environment initialization fails with RuntimeError: Operation not permitted (os error 1)"
-  ],
-  "updated_at": "2026-05-19T12:31:25Z"
+  }
 }

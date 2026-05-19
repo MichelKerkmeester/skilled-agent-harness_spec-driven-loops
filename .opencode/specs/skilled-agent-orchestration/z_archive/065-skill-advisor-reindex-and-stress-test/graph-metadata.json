@@ -46,7 +46,7 @@
       "testing",
       "playbook"
     ],
-    "importance_tier": "high",
+    "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "This packet is now the container for the full skill-advisor routing quality program.",
     "created_at": "2026-05-18T07:49:27.122Z",
-    "last_save_at": "2026-05-18T15:17:56.942Z",
+    "last_save_at": "2026-05-19T13:51:38.626Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

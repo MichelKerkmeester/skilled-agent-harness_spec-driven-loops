@@ -4,12 +4,58 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment/002-root-readme-update",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment",
   "children_ids": [],
-  "manual": {"depends_on": [], "supersedes": [], "related_to": []},
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
   "derived": {
-    "trigger_phrases": ["021/002 root readme", "root readme refresh"],
-    "key_topics": ["021", "root-readme", "refresh", "embedder", "architecture"],
+    "trigger_phrases": [
+      "021/002 root readme",
+      "root readme refresh",
+      "021/002 plan",
+      "021/002 tasks",
+      "021/002 summary",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment/002-root-readme-update",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "016-embedder-testing-and-architecture",
+      "005-cross-cutting-quality",
+      "003-skill-docs-alignment",
+      "002-root-readme-update"
+    ],
+    "key_topics": [
+      "021",
+      "root-readme",
+      "refresh",
+      "embedder",
+      "architecture",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "016-embedder-testing-and-architecture",
+      "005-cross-cutting-quality",
+      "003-skill-docs-alignment",
+      "002-root-readme-update",
+      "002"
+    ],
     "importance_tier": "important",
     "status": "planned",
-    "key_files": ["spec.md", "plan.md", "tasks.md"]
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "Refresh root README.md with current embedder defaults + architecture summary + link to canonical pluggability narrative",
+    "created_at": "2026-05-18T08:07:26.068Z",
+    "last_save_at": "2026-05-19T19:44:28.899Z",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ]
   }
 }

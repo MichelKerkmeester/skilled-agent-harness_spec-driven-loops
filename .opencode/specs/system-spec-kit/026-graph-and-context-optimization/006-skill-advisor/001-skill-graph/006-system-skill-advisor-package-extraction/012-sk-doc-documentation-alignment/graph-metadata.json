@@ -1,17 +1,60 @@
 {
-  "schema_version": 2,
-  "spec_id": "012-sk-doc-documentation-alignment",
-  "title": "Align system-skill-advisor docs with sk-doc",
-  "status": "complete",
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/012-sk-doc-documentation-alignment",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/012-sk-doc-documentation-alignment",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
   "derived": {
-    "last_active_at": "2026-05-14T18:45:00Z",
-    "last_active_child_id": null,
     "trigger_phrases": [
       "013/009/012",
       "doc alignment sk-doc",
-      "system-skill-advisor docs"
+      "system-skill-advisor docs",
+      "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/012-sk-doc-documentation-alignment",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "006-skill-advisor",
+      "001-skill-graph",
+      "006-system-skill-advisor-package-extraction",
+      "012-sk-doc-documentation-alignment",
+      "feature",
+      "specification"
     ],
+    "key_topics": [
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "006-skill-advisor",
+      "001-skill-graph",
+      "006-system-skill-advisor-package-extraction",
+      "012-sk-doc-documentation-alignment",
+      "feature",
+      "specification",
+      "advisor",
+      "doc",
+      "alignment",
+      "sk-doc"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "Level 2 packet for aligning system-skill-advisor docs, feature catalog, playbook, references, READMEs, architecture, and root README with sk-doc.",
+    "created_at": "2026-05-18T08:53:19.989Z",
+    "last_save_at": "2026-05-19T19:44:28.899Z",
+    "last_accessed_at": null,
+    "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",

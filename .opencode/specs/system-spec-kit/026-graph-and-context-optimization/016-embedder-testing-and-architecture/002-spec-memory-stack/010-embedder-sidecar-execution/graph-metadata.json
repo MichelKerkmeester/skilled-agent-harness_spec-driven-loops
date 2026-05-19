@@ -5,15 +5,9 @@
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack",
   "children_ids": [],
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/007-auto-embedder-selection-and-llama-cpp-purge",
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/008-byte-aware-health-telemetry",
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/009-byte-bounded-embedding-cache"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/005-context-server-memory-reduction-research"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -28,8 +22,7 @@
       "sidecar lifecycle task checklist",
       "hf-local sidecar task list",
       "embedder sidecar execution summary",
-      "sidecar_workers implementation summary",
-      "embedder sidecar commit handoff"
+      "sidecar_workers implementation summary"
     ],
     "key_topics": [
       "embedder",
@@ -39,9 +32,13 @@
       "worker",
       "memory",
       "router",
-      "health"
+      "health",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "016-embedder-testing-and-architecture",
+      "002-spec-memory-stack"
     ],
-    "importance_tier": "high",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts",

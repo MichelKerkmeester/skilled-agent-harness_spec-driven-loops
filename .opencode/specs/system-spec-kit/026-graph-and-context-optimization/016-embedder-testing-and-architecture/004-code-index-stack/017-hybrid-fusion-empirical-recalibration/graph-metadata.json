@@ -1,25 +1,65 @@
 {
-  "schema_version": "1.0",
-  "node_type": "spec_packet",
-  "status": "partial-blocked",
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/017-hybrid-fusion-empirical-recalibration",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/017-hybrid-fusion-empirical-recalibration",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
   "derived": {
-    "status": "partial-blocked",
-    "completion_pct": 45,
-    "last_active_child_id": null
-  },
-  "blocked_by": [
-    "feat(016/004/016) commit is not present in git log"
-  ],
-  "links": {
-    "parent": "../spec.md",
-    "depends_on": [
-      "../016-query-expansion-identifier-bridging"
+    "trigger_phrases": [
+      "016/004/017 plan",
+      "RRF sweep plan",
+      "hybrid fusion recalibration plan",
+      "016/004/017 tasks",
+      "RRF sweep tasks",
+      "hybrid fusion tasks",
+      "016/004/017 checklist",
+      "RRF sweep verification",
+      "hybrid fusion checklist",
+      "016/004/017 summary",
+      "RRF sweep summary",
+      "hybrid fusion recalibration summary"
     ],
-    "evidence": [
-      "evidence/cells",
-      "evidence/sweep-results.md",
-      "evidence/phase2-comparison-017-recalibrated.md"
+    "key_topics": [
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "016-embedder-testing-and-architecture",
+      "004-code-index-stack",
+      "017-hybrid-fusion-empirical-recalibration",
+      "016",
+      "004",
+      "017",
+      "hybrid",
+      "fusion",
+      "empirical",
+      "rrf"
+    ],
+    "importance_tier": "important",
+    "status": "partial_blocked",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "Re-grounds CocoIndex",
+    "created_at": "2026-05-19T14:26:30.924Z",
+    "last_save_at": "2026-05-19T17:00:00Z",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ]
-  },
-  "updated_at": "2026-05-19T17:00:00Z"
+  }
 }

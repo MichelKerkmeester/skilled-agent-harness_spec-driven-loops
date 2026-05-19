@@ -20,7 +20,14 @@
       "sk-code-review playbook",
       "sk-git playbook",
       "manual testing playbook for review",
-      "manual testing playbook for git"
+      "manual testing playbook for git",
+      "skilled-agent-orchestration/z_archive/093-testing-playbooks-code-review-and-git",
+      "skilled-agent-orchestration",
+      "z_archive",
+      "093-testing-playbooks-code-review-and-git",
+      "093",
+      "testing",
+      "playbooks"
     ],
     "key_topics": [
       "093",
@@ -36,19 +43,12 @@
       "two",
       "packages"
     ],
-    "importance_tier": "high",
+    "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/specs/skilled-agent-orchestration/graph-metadata.json",
       "spec.md"
     ],
     "entities": [
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/specs/skilled-agent-orchestration/graph-metadata.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -94,7 +94,7 @@
     ],
     "causal_summary": "Produce two `manual_testing_playbook/` packages — one per skill — following the canonical sk-doc contract, with RCAF-pattern operator prompts that mirror real human-AI conversation, executable both natively and via external CLIs.",
     "created_at": "2026-05-18T07:49:27.224Z",
-    "last_save_at": "2026-05-18T15:17:57.039Z",
+    "last_save_at": "2026-05-19T13:51:38.768Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

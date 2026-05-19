@@ -11,206 +11,31 @@
   },
   "derived": {
     "trigger_phrases": [
-      "cli-copilot deprecation",
-      "cli-copilot removal",
-      "delete cli-copilot",
-      "cli-copilot price hike",
-      "remove copilot cli",
-      "skill advisor copilot purge",
-      "cli-copilot deprecation plan",
-      "cli-codex deletion batches",
-      "skill advisor purge plan",
-      "cli-copilot resource map",
-      "cli-copilot tasks",
-      "deprecation task list"
+      "cli copilot deprecation due to price hike",
+      "cli copilot deprecation due to price hike graph metadata"
     ],
     "key_topics": [
-      "cli-copilot",
-      "deprecation",
-      "removal",
-      "delete",
-      "price",
-      "hike",
-      "remove",
-      "copilot",
       "cli",
-      "skill",
-      "advisor",
-      "purge"
+      "copilot",
+      "deprecation",
+      "due",
+      "price",
+      "hike"
     ],
     "importance_tier": "critical",
     "status": "in_progress",
     "key_files": [
-      ".opencode/commands/spec_kit/deep-research.md",
-      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
-      ".opencode/skills/README.md",
-      "matrix_runners/run-matrix.ts",
-      "matrix_runners/matrix-manifest.json",
-      "matrix_runners/README.md",
-      "mcp_server/tests/description/fixtures/017-001-infrastructure-primitives.description.json",
-      "tests/deep-loop/executor-config.vitest.ts",
-      "implementation-summary.md",
-      ".opencode/commands/spec_kit/deep-review.md",
-      ".opencode/install_guides/README.md",
-      ".opencode/install_guides/SET-UP - AGENTS.md",
-      "resource-map.md",
-      "checklist.md",
+      "spec.md",
+      "plan.md",
       "tasks.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/37-cli-matrix-adapter-runners.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/280-cli-matrix-adapter-runner-smoke.md",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/skills/cli-claude-code/README.md",
-      ".opencode/skills/cli-codex/README.md"
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md"
     ],
-    "entities": [
-      {
-        "name": "deep-research.md",
-        "kind": "doc",
-        "path": ".opencode/commands/spec_kit/deep-research.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec_kit_deep-research_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "run-matrix.ts",
-        "kind": "code",
-        "path": "matrix_runners/run-matrix.ts",
-        "source": "derived"
-      },
-      {
-        "name": "matrix-manifest.json",
-        "kind": "config",
-        "path": "matrix_runners/matrix-manifest.json",
-        "source": "derived"
-      },
-      {
-        "name": "017-001-infrastructure-primitives.description.json",
-        "kind": "config",
-        "path": "mcp_server/tests/description/fixtures/017-001-infrastructure-primitives.description.json",
-        "source": "derived"
-      },
-      {
-        "name": "executor-config.vitest.ts",
-        "kind": "test",
-        "path": "tests/deep-loop/executor-config.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review.md",
-        "kind": "doc",
-        "path": ".opencode/commands/spec_kit/deep-review.md",
-        "source": "derived"
-      },
-      {
-        "name": "SET-UP - AGENTS.md",
-        "kind": "doc",
-        "path": ".opencode/install_guides/SET-UP - AGENTS.md",
-        "source": "derived"
-      },
-      {
-        "name": "resource-map.md",
-        "kind": "doc",
-        "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "37-cli-matrix-adapter-runners.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/37-cli-matrix-adapter-runners.md",
-        "source": "derived"
-      },
-      {
-        "name": "280-cli-matrix-adapter-runner-smoke.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/280-cli-matrix-adapter-runner-smoke.md",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Total Deprecation",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Authored Level",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Parent Track",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      }
-    ],
-    "causal_summary": "GitHub announced a price increase that pushes `cli-copilot` (the external Copilot CLI executor) above the cost ceiling that justified keeping it as a peer to `cli-codex`, `cli-gemini`, `cli-claude-code`, and `cli-opencode`. The packet `075-cli-copilot-hallucination-caveat` already documented quality concerns; the recent price change tips the cost/benefit balance decisively. Continuing to ship `cli-copilot` as a routable skill creates three problems:",
+    "entities": [],
+    "causal_summary": "Graph metadata for the current packet.",
     "created_at": "2026-05-06T10:28:50.690Z",
-    "last_save_at": "2026-05-18T15:17:57.016Z",
+    "last_save_at": "2026-05-19T13:51:38.738Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

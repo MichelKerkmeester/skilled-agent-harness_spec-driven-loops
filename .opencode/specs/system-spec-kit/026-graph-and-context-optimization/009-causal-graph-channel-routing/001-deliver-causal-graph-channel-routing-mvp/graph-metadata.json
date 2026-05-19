@@ -10,27 +10,62 @@
     "related_to": []
   },
   "derived": {
-    "status": "complete",
-    "completion_pct": 100,
-    "last_active_child_id": null,
     "trigger_phrases": [
       "012/001 initial delivery",
       "shouldPreserveGraph",
       "entity-density",
       "graphChannelInvocationRate",
-      "deep-review 012 CONDITIONAL"
+      "deep-review 012 CONDITIONAL",
+      "system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/001-deliver-causal-graph-channel-routing-mvp",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "009-causal-graph-channel-routing",
+      "001-deliver-causal-graph-channel-routing-mvp",
+      "feature",
+      "specification"
     ],
     "key_topics": [
       "graph channel routing",
       "intent driven preservation",
       "entity density cache",
-      "routing telemetry"
+      "routing telemetry",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "009-causal-graph-channel-routing",
+      "001-deliver-causal-graph-channel-routing-mvp",
+      "feature",
+      "specification",
+      "012",
+      "causal"
     ],
+    "importance_tier": "important",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/entity-density.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/routing-telemetry.ts"
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/routing-telemetry.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "handover.md",
+      "resource-map.md"
+    ],
+    "entities": [],
+    "causal_summary": "Activate the graph and degree channels for intent-driven and short-query searches that currently route only through vector+fts+bm25 — 1,328 live causal edges sit unused because the complex-tier threshold (>8 terms) excludes essentially all natural queries.",
+    "created_at": "2026-05-19T15:28:02.708Z",
+    "last_save_at": "2026-05-19T19:44:28.899Z",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "handover.md",
+      "resource-map.md"
     ]
   }
 }

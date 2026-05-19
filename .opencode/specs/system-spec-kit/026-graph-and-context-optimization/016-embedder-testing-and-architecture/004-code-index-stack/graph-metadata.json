@@ -8,22 +8,41 @@
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/002-baseline-fixture",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/003-comparison-measure",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/010-daemon-resilience"
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/005-declarative-registry",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/006-install-guide-updates",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/007-reranker-integration",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/008-chunking-strategy-tuning",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/009-hybrid-search-bm25-fusion",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/010-daemon-resilience",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-probe-10",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/014-mirror-dedup-canonical-preference",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/015-code-aware-chunking-tree-sitter-stage-b",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/016-query-expansion-identifier-bridging",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/017-hybrid-fusion-empirical-recalibration",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/018-rerank-matrix-rebench",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/020-deep-review-p1-p2-remediation"
   ],
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/017-playbook-quality-audit"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "018 code embedder coderank",
       "cocoindex embedder swap",
-      "code-specific embedder comparison"
+      "code-specific embedder comparison",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "016-embedder-testing-and-architecture",
+      "004-code-index-stack",
+      "018",
+      "code",
+      "embedder",
+      "swap"
     ],
     "key_topics": [
       "018",
@@ -35,18 +54,24 @@
       "metal",
       "mps",
       "embedder-swap",
-      "code-graph-bridge"
+      "code-graph-bridge",
+      "system-spec-kit",
+      "026-graph-and-context-optimization"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
-      "001-cocoindex-swap/spec.md",
-      "002-baseline-fixture/spec.md",
-      "003-comparison-measure/spec.md"
+      "decision-record.md"
     ],
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off",
-    "last_active_at": "2026-05-18T05:13:47.097Z",
-    "last_save_at": "2026-05-18T05:13:47.097Z"
+    "entities": [],
+    "causal_summary": "Phase parent for swapping CocoIndex (and transitively Code Graph",
+    "created_at": "2026-05-18T16:14:38.272Z",
+    "last_save_at": "2026-05-18T05:13:47.097Z",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "decision-record.md"
+    ]
   }
 }

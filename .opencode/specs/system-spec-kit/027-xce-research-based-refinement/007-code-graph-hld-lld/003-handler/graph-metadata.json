@@ -1,20 +1,57 @@
 {
   "schema_version": 1,
   "packet_id": "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/003-handler",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/003-handler",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/003-handler",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld",
   "children_ids": [],
   "manual": {
-    "depends_on": [
-      "001-contract"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
   "derived": {
-    "status": "spec-scaffolded",
-    "level": 2,
-    "completion_pct": 0,
+    "trigger_phrases": [
+      "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/003-handler",
+      "system-spec-kit",
+      "027-xce-research-based-refinement",
+      "007-code-graph-hld-lld",
+      "003-handler",
+      "003",
+      "handler",
+      "code",
+      "graph",
+      "hld",
+      "lld",
+      "implement"
+    ],
+    "key_topics": [
+      "system-spec-kit",
+      "027-xce-research-based-refinement",
+      "007-code-graph-hld-lld",
+      "003-handler",
+      "003",
+      "handler",
+      "code",
+      "graph",
+      "hld",
+      "lld",
+      "implement",
+      "mcp"
+    ],
+    "importance_tier": "important",
+    "status": "spec_scaffolded",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "Implement the MCP handler and tool wiring using the HLD/LLD contract interface.",
+    "created_at": "2026-05-18T08:15:28.142Z",
+    "last_save_at": "2026-05-19T19:44:28.899Z",
+    "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
@@ -22,6 +59,5 @@
       "checklist.md",
       "implementation-summary.md"
     ]
-  },
-  "importance_tier": "important"
+  }
 }

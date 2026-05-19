@@ -20,160 +20,22 @@
   },
   "derived": {
     "trigger_phrases": [
-      "graph impact and affordance uplift",
-      "010-graph-impact-and-affordance-uplift",
-      "external-project adoption",
-      "phase-dag runner",
-      "detect_changes preflight",
-      "blast radius uplift",
-      "skill advisor affordance",
-      "memory trust display",
-      "resource map",
-      "006-graph-impact-and-affordance-uplift resource map",
-      "path catalog 006-graph-impact-and-affordance-uplift"
+      "external project adoption",
+      "external project adoption graph metadata"
     ],
     "key_topics": [
-      "graph",
-      "impact",
-      "affordance",
-      "uplift",
-      "010-graph-impact-and-affordance-uplift",
-      "external-project",
-      "adoption",
-      "phase-dag",
-      "runner",
-      "preflight",
-      "blast",
-      "radius"
+      "external",
+      "project",
+      "adoption"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
-      "handlers/index.ts",
-      "formatters/search-results.ts",
-      "lib/response/profile-formatters.ts",
-      "mcp_server/README.md",
-      "mcp_server/INSTALL_GUIDE.md",
       "resource-map.md"
     ],
-    "entities": [
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": "handlers/index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-results.ts",
-        "kind": "code",
-        "path": "formatters/search-results.ts",
-        "source": "derived"
-      },
-      {
-        "name": "profile-formatters.ts",
-        "kind": "code",
-        "path": "lib/response/profile-formatters.ts",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "mcp_server/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "INSTALL_GUIDE.md",
-        "kind": "doc",
-        "path": "mcp_server/INSTALL_GUIDE.md",
-        "source": "derived"
-      },
-      {
-        "name": "resource-map.md",
-        "kind": "doc",
-        "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Graph Impact",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Affordance Uplift",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "External Project",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Graph",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Skill Advisor",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Resource Map",
-        "kind": "proper_noun",
-        "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "Author Instructions",
-        "kind": "proper_noun",
-        "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "real",
-        "kind": "key_phrase",
-        "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "Summary",
-        "kind": "heading",
-        "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "2. Documents",
-        "kind": "heading",
-        "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "6. Specs",
-        "kind": "heading",
-        "path": "resource-map.md",
-        "source": "derived"
-      }
-    ],
-    "causal_summary": "Implement the converged pt-01 + pt-02 External Project research recommendations as a 6-sub-phase Level 3 implementation packet. pt-02 cross-checked pt-01 with an independent executor (cli-codex gpt-5.5 high fast) and reached the same core conclusions: External Project is **architectural evidence**, not a source transplant; Code Graph / Memory / Skill Advisor stay **separately owned**; route/tool/shape work is **deferred** until Public has the substrate.",
+    "entities": [],
+    "causal_summary": "Graph metadata for the current packet.",
     "created_at": "2026-04-25T10:47:55.572Z",
     "last_save_at": "2026-05-19T13:51:39.033Z",
     "save_lineage": "same_pass",

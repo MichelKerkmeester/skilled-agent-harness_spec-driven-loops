@@ -5,14 +5,9 @@
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack",
   "children_ids": [],
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off",
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/007-auto-embedder-selection-and-llama-cpp-purge"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/006-ollama-encode-path-wiring"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -21,7 +16,13 @@
       "hf-local nomic default",
       "ollama tier 1 cascade",
       "voyage tier 4 cascade",
-      "016/002/015 cascade reorder"
+      "016/002/015 cascade reorder",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/015-cascade-reorder-and-nomic-hf-local-default",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "016-embedder-testing-and-architecture",
+      "002-spec-memory-stack",
+      "015-cascade-reorder-and-nomic-hf-local-default"
     ],
     "key_topics": [
       "adr-014",
@@ -31,7 +32,11 @@
       "openai",
       "voyage",
       "nomic-embed-text-v1.5",
-      "auto-select"
+      "auto-select",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "016-embedder-testing-and-architecture",
+      "002-spec-memory-stack"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -43,7 +48,10 @@
       ".opencode/skills/system-spec-kit/references/memory/embedding_resilience.md",
       ".opencode/skills/system-spec-kit/references/embedder-pluggability.md",
       ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/decision-record.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -53,18 +61,21 @@
         "source": "manual"
       },
       {
-        "name": "ADR-014",
-        "kind": "decision-record",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/decision-record.md",
-        "source": "manual"
-      },
-      {
         "name": "HF_LOCAL_MODEL",
         "kind": "constant",
         "path": ".opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts",
         "source": "manual"
       }
     ],
-    "last_updated": "2026-05-19T08:20:00.000Z"
+    "causal_summary": "Reorder auto-select provider cascade to Ollama → hf-local → OpenAI → Voyage (local-first). Change HF_LOCAL_MODEL fallback from BAAI/bge-base-en-v1.5 to nomic-ai/nomic-embed-text-v1.5 so new users with sentence-transformers get the same embedder as Ollama users. Update test, INSTALL_GUIDE, opencode.json/mcp.json env notes, all related READMEs, doctor commands, and write ADR-014.",
+    "created_at": "2026-05-19T19:25:52.541Z",
+    "last_save_at": "2026-05-19T19:44:28.899Z",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ]
   }
 }

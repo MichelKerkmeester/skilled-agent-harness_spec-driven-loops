@@ -26,7 +26,14 @@
       "061 phase parent",
       "agent optimization",
       "agent fleet improvement",
-      "improve agents"
+      "improve agents",
+      "skilled-agent-orchestration/z_archive/061-agent-optimization",
+      "skilled-agent-orchestration",
+      "z_archive",
+      "061-agent-optimization",
+      "parent",
+      "061",
+      "agent"
     ],
     "key_topics": [
       "061",
@@ -42,7 +49,7 @@
       "sk-improve-agent",
       "triad"
     ],
-    "importance_tier": "high",
+    "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md"
@@ -93,7 +100,7 @@
     ],
     "causal_summary": "The sk-improve-agent triad was empirically validated in packet 060 — final composite **PASS 6 / PARTIAL 0 / FAIL 0** against a substrate built across 5 sub-phases. The methodology, rubric, and tooling are now production-ready.",
     "created_at": "2026-05-18T07:49:27.101Z",
-    "last_save_at": "2026-05-18T15:17:56.929Z",
+    "last_save_at": "2026-05-19T13:51:38.609Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -13,7 +13,16 @@
     "trigger_phrases": [
       "018/001 cocoindex swap",
       "CodeRankEmbed activation",
-      "MPS auto-detect patch"
+      "MPS auto-detect patch",
+      "018/001 plan",
+      "018/001 tasks",
+      "018/001 summary",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/001-cocoindex-swap",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "016-embedder-testing-and-architecture",
+      "004-code-index-stack",
+      "001-cocoindex-swap"
     ],
     "key_topics": [
       "018",
@@ -22,14 +31,31 @@
       "swap",
       "coderank",
       "mps",
-      "config"
+      "config",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "016-embedder-testing-and-architecture",
+      "004-code-index-stack",
+      "001-cocoindex-swap"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "Swap CocoIndex default embedder from gemma to nomic-ai/jina-code + MPS auto-detect patch",
+    "created_at": "2026-05-18T08:18:02.783Z",
+    "last_save_at": "2026-05-19T19:44:28.899Z",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
     ]
   }
 }

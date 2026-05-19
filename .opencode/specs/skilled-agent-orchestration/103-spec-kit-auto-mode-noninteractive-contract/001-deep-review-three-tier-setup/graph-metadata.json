@@ -13,7 +13,16 @@
     "trigger_phrases": [
       "deep-review setup hang",
       "deep-review :auto non-interactive bypass",
-      "F-Stage-E-001"
+      "F-Stage-E-001",
+      "skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup",
+      "skilled-agent-orchestration",
+      "103-spec-kit-auto-mode-noninteractive-contract",
+      "001-deep-review-three-tier-setup",
+      "feature",
+      "specification",
+      "deep-review",
+      "auto",
+      "non-interactive"
     ],
     "key_topics": [
       "deep-review",
@@ -37,7 +46,6 @@
       ".opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup/tasks.md",
       ".opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup/checklist.md",
       ".opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup/implementation-summary.md",
-      ".opencode/specs/skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md",
       ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
       "evidence/dry-run-verification.txt",
       "implementation-summary.md",
@@ -196,7 +204,7 @@
     ],
     "causal_summary": "Concrete incident: 2026-05-11 102/004 Stage E first dispatch hung 3 minutes at the setup gate; second dispatch (with pre-bound answers in the prompt) ran the full 5-iteration deep-review and converged.",
     "created_at": "2026-05-11T09:32:52Z",
-    "last_save_at": "2026-05-18T15:17:56.748Z",
+    "last_save_at": "2026-05-19T13:51:38.358Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

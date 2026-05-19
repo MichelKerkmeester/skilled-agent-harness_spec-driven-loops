@@ -1,18 +1,15 @@
 {
   "schema_version": 1,
   "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/033-deferred-fix-followup",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/033-deferred-fix-followup",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-033-deferred-fix-followup",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/005-code-graph/032-deep-review-remediation"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/005-code-graph/031-deep-review-campaign-010-016",
-      "system-spec-kit/026-graph-and-context-optimization/005-code-graph/024-mcp-tool-rename-mk-code-index"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -21,13 +18,27 @@
       "launcher kitdir basename",
       "playbook blast radius",
       "playbook apply sub operations",
-      "playbook multi file detect changes"
+      "playbook multi file detect changes",
+      "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-033-deferred-fix-followup",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "z_archive",
+      "wave-3-deep-archives",
+      "007-033-deferred-fix-followup"
     ],
     "key_topics": [
       "019",
       "deferred-fix",
       "architecture-reconstruction",
-      "playbook-expansion"
+      "playbook-expansion",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "z_archive",
+      "wave-3-deep-archives",
+      "007-033-deferred-fix-followup",
+      "feature",
+      "specification",
+      "follow-up"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -37,16 +48,16 @@
       "tasks.md",
       "implementation-summary.md"
     ],
+    "entities": [],
+    "causal_summary": "Closes the 5 deferred findings from 018 (F001, F006/F011, F012, F017, F018) — architecture.md reconstruction, launcher kitDir-derived path, source-map verification, 3 new playbook scenarios.",
+    "created_at": "2026-05-14T21:35:00Z",
+    "last_save_at": "2026-05-14T21:35:00Z",
+    "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ],
-    "created_at": "2026-05-14T21:35:00Z",
-    "last_save_at": "2026-05-14T21:35:00Z",
-    "save_lineage": "main_agent"
-  },
-  "migrated": true,
-  "migration_source": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/013-system-code-graph-extraction/019-deferred-fix-followup"
+    ]
+  }
 }

@@ -16,7 +16,13 @@
       "010 bridge",
       "010 bridge plan",
       "010 bridge tasks",
-      "010 bridge implementation summary"
+      "010 bridge implementation summary",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/010-multi-client-stdio-socket-bridge",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "016-embedder-testing-and-architecture",
+      "006-mcp-launcher-concurrency-arc",
+      "010-multi-client-stdio-socket-bridge"
     ],
     "key_topics": [
       "multi-client",
@@ -32,7 +38,7 @@
       "secondary",
       "mcp"
     ],
-    "importance_tier": "useful",
+    "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       ".opencode/bin/lib/launcher-ipc-bridge.cjs",

@@ -17,7 +17,12 @@
       "009 eperm parity",
       "009 plan eperm",
       "009 tasks",
-      "009 implementation summary"
+      "009 implementation summary",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/009-launcher-eperm-parity-fix",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "016-embedder-testing-and-architecture",
+      "006-mcp-launcher-concurrency-arc"
     ],
     "key_topics": [
       "eperm",
@@ -33,7 +38,7 @@
       "implementation",
       "summary"
     ],
-    "importance_tier": "useful",
+    "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       ".opencode/skills/system-code-graph/dist/system-spec-kit/shared/embeddings/factory.js",

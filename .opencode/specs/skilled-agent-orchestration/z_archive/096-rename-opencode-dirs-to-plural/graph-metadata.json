@@ -28,7 +28,13 @@
       "post-rename review remediation",
       "skilled-agent-orchestration release cycle",
       "096 resource map",
-      "rename and review cycle resources"
+      "rename and review cycle resources",
+      "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural",
+      "skilled-agent-orchestration",
+      "z_archive",
+      "096-rename-opencode-dirs-to-plural",
+      "feature",
+      "specification"
     ],
     "key_topics": [
       "096",
@@ -44,7 +50,7 @@
       "release",
       "resource"
     ],
-    "importance_tier": "high",
+    "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
@@ -53,8 +59,7 @@
       "mcp_server/hooks/claude/session-stop.ts",
       "shared/review-research-paths.cjs",
       "scripts/spec/check-smart-router.sh",
-      "mcp_server/tests/deep-loop/executor-config.vitest.ts",
-      "001-rename-opencode-dirs/resource-map.md"
+      "mcp_server/tests/deep-loop/executor-config.vitest.ts"
     ],
     "entities": [
       {
@@ -174,7 +179,7 @@
     ],
     "causal_summary": "Track the complete opencode plural-directory rename cycle and the cascading post-rename quality work it triggered. What started as a 1-commit bulk rename grew into 8 phases of progressively deeper review and remediation:",
     "created_at": "2026-05-18T07:49:27.230Z",
-    "last_save_at": "2026-05-18T15:17:57.044Z",
+    "last_save_at": "2026-05-19T13:51:38.774Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

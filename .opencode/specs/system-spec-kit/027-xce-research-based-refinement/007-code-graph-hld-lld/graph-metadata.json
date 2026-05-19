@@ -1,22 +1,16 @@
 {
   "schema_version": 1,
   "packet_id": "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement",
   "children_ids": [
-    "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/001-contract",
-    "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/002-lib-impl",
-    "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/003-handler",
-    "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/004-test"
+    "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/001-contract",
+    "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/002-lib-impl",
+    "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/003-handler",
+    "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/004-test"
   ],
   "manual": {
     "depends_on": [],
-    "children": [
-      "001-contract",
-      "002-lib-impl",
-      "003-handler",
-      "004-test"
-    ],
     "supersedes": [],
     "related_to": []
   },
@@ -25,7 +19,15 @@
       "027 phase 002",
       "code-graph hld-lld",
       "code-graph narrative",
-      "code_graph_hld_lld"
+      "code_graph_hld_lld",
+      "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld",
+      "system-spec-kit",
+      "027-xce-research-based-refinement",
+      "007-code-graph-hld-lld",
+      "parent",
+      "027",
+      "002",
+      "code"
     ],
     "key_topics": [
       "phase-parent",
@@ -33,12 +35,16 @@
       "hld",
       "lld",
       "narrative",
-      "code_graph"
+      "code_graph",
+      "system-spec-kit",
+      "027-xce-research-based-refinement",
+      "007-code-graph-hld-lld",
+      "parent",
+      "027",
+      "002"
     ],
     "importance_tier": "important",
-    "status": "phase-parent",
-    "level": 2,
-    "last_active_child_id": null,
+    "status": "phase_parent",
     "key_files": [
       "spec.md",
       "description.json",
@@ -70,8 +76,6 @@
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
-    ],
-    "completion_pct": 0
-  },
-  "importance_tier": "important"
+    ]
+  }
 }

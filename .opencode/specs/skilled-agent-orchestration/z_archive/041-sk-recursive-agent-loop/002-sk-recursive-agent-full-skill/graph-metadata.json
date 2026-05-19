@@ -11,203 +11,29 @@
   },
   "derived": {
     "trigger_phrases": [
-      "agent improvement full skill",
-      "sk-improve-agent phase 2",
-      "benchmark harness",
-      "multi-target agent improvement",
-      "agent improvement full skill plan",
-      "benchmark harness plan",
-      "phase 2 loop plan",
-      "agent improvement full skill tasks",
-      "benchmark harness tasks",
-      "agent improvement full skill checklist",
-      "benchmark harness verification",
-      "agent improvement full skill decisions"
+      "sk recursive agent full skill",
+      "sk recursive agent full skill graph metadata"
     ],
     "key_topics": [
+      "recursive",
       "agent",
-      "improvement",
       "full",
-      "skill",
-      "sk-improve-agent",
-      "phase",
-      "benchmark",
-      "harness",
-      "multi-target",
-      "plan",
-      "loop",
-      "tasks"
+      "skill"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "review/parallel-review-summary.md",
-      "improvement/benchmark-runs/handover/run-001.json",
-      "improvement/benchmark-runs/handover/run-002.json",
-      "improvement/benchmark-runs/handover/repeatability.json",
-      "improvement/benchmark-runs/context-prime/run-001.json",
-      "improvement/benchmark-runs/context-prime/run-candidate-weak.json",
-      "improvement/score-context-prime-candidate-001.json",
-      "improvement/agent-improvement-dashboard.md",
-      "improvement/experiment-registry.json",
-      "improvement/mirror-drift-report.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "spec.md",
-      "implementation-summary.md",
-      "improvement/agent-improvement-state.jsonl"
+      "implementation-summary.md"
     ],
-    "entities": [
-      {
-        "name": "parallel-review-summary.md",
-        "kind": "doc",
-        "path": "review/parallel-review-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "run-001.json",
-        "kind": "config",
-        "path": "improvement/benchmark-runs/handover/run-001.json",
-        "source": "derived"
-      },
-      {
-        "name": "run-002.json",
-        "kind": "config",
-        "path": "improvement/benchmark-runs/handover/run-002.json",
-        "source": "derived"
-      },
-      {
-        "name": "repeatability.json",
-        "kind": "config",
-        "path": "improvement/benchmark-runs/handover/repeatability.json",
-        "source": "derived"
-      },
-      {
-        "name": "run-candidate-weak.json",
-        "kind": "config",
-        "path": "improvement/benchmark-runs/context-prime/run-candidate-weak.json",
-        "source": "derived"
-      },
-      {
-        "name": "score-context-prime-candidate-001.json",
-        "kind": "config",
-        "path": "improvement/score-context-prime-candidate-001.json",
-        "source": "derived"
-      },
-      {
-        "name": "agent-improvement-dashboard.md",
-        "kind": "doc",
-        "path": "improvement/agent-improvement-dashboard.md",
-        "source": "derived"
-      },
-      {
-        "name": "experiment-registry.json",
-        "kind": "config",
-        "path": "improvement/experiment-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "mirror-drift-report.md",
-        "kind": "doc",
-        "path": "improvement/mirror-drift-report.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "agent-improvement-state.jsonl",
-        "kind": "file",
-        "path": "improvement/agent-improvement-state.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Agent Improvement Full Skill",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Decisions",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Critical Dependencies",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Parent Spec",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      }
-    ],
-    "causal_summary": "Packet `041-sk-improve-agent-loop` shipped the evaluator-first MVP and proved that the loop can safely operate on one canonical target with explicit promotion and rollback boundaries. Phase `002-sk-improve-agent-full-skill` defines the next step: stronger benchmark-backed evaluation, reusable runtime structure, target-specific scoring profiles, controlled expansion to a second structured target, and packaging rules for mirror sync without weakening the trust boundary.",
+    "entities": [],
+    "causal_summary": "Graph metadata for the current packet.",
     "created_at": "2026-04-12T09:02:50.186Z",
-    "last_save_at": "2026-05-18T15:17:56.858Z",
+    "last_save_at": "2026-05-19T13:51:38.503Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

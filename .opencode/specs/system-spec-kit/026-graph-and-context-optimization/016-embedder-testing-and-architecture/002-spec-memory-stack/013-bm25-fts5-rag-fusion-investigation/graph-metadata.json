@@ -5,15 +5,9 @@
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack",
   "children_ids": [],
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/005-context-server-memory-reduction-research"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/010-embedder-sidecar-execution",
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/011-lazy-startup-gating",
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/012-canonical-vector-shard-split"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -21,7 +15,14 @@
       "sqlite fts5 default bm25 engine",
       "hybrid search lexical lane",
       "rrf keyword fusion",
-      "bm25 fts5 parity"
+      "bm25 fts5 parity",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/013-bm25-fts5-rag-fusion-investigation",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "016-embedder-testing-and-architecture",
+      "002-spec-memory-stack",
+      "013-bm25-fts5-rag-fusion-investigation",
+      "feature"
     ],
     "key_topics": [
       "bm25",
@@ -32,9 +33,12 @@
       "synonyms",
       "stemming",
       "tokenization",
-      "golden-queries"
+      "golden-queries",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "016-embedder-testing-and-architecture"
     ],
-    "importance_tier": "high",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts",
@@ -43,7 +47,14 @@
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts"
+      ".opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
     ],
     "entities": [
       {
@@ -65,6 +76,18 @@
         "source": "manual"
       }
     ],
-    "last_updated": "2026-05-19T00:00:00.000Z"
+    "causal_summary": "Read-only Level 3 research packet evaluating whether replacing the in-memory JS BM25 lane with SQLite FTS5 degrades hybrid RAG fusion quality.",
+    "created_at": "2026-05-19T19:25:52.542Z",
+    "last_save_at": "2026-05-19T19:44:28.899Z",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ]
   }
 }

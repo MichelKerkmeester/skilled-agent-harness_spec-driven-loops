@@ -17,7 +17,14 @@
       "agent template alignment",
       "063 plan",
       "063 tasks",
-      "063 implementation summary"
+      "063 implementation summary",
+      "skilled-agent-orchestration/z_archive/063-sk-doc-agent-template-alignment",
+      "skilled-agent-orchestration",
+      "z_archive",
+      "063-sk-doc-agent-template-alignment",
+      "063",
+      "sk-doc",
+      "agent"
     ],
     "key_topics": [
       "063",
@@ -33,7 +40,7 @@
       "files",
       "063a"
     ],
-    "importance_tier": "high",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       ".opencode/agents/context.md",
@@ -191,7 +198,7 @@
     ],
     "causal_summary": "Clean up agent files (063a) AND align the template to current production reality (063b). Sets the stage for 064 (new @create-doc agent built from the updated template).",
     "created_at": "2026-05-18T07:49:27.115Z",
-    "last_save_at": "2026-05-18T15:17:56.941Z",
+    "last_save_at": "2026-05-19T13:51:38.623Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

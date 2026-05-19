@@ -1,18 +1,13 @@
 {
   "schema_version": 1,
   "packet_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/007-cross-skill-enhancement-edge-propagation",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/007-cross-skill-enhancement-edge-propagation",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/007-cross-skill-enhancement-edge-propagation",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph",
   "children_ids": [],
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor",
-      "skilled-agent-orchestration/104-cli-devin-creation"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-devin-advisor-hook-integration"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -25,7 +20,9 @@
       "graph-metadata edges",
       "family-inference",
       "asset-shape inference",
-      "sibling-transitivity"
+      "sibling-transitivity",
+      "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/007-cross-skill-enhancement-edge-propagation",
+      "system-spec-kit"
     ],
     "key_topics": [
       "skill-graph",
@@ -38,22 +35,75 @@
       "MCP-tool",
       "cli-devin",
       "sk-prompt",
-      "system-skill-advisor"
+      "system-skill-advisor",
+      "system-spec-kit"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      { "name": "skill_graph_propagate_enhances", "kind": "proper_noun", "path": "spec.md", "source": "derived" },
-      { "name": "cross-skill-edges", "kind": "proper_noun", "path": "plan.md", "source": "derived" },
-      { "name": "detectInboundEnhances", "kind": "proper_noun", "path": "plan.md", "source": "derived" },
-      { "name": "propagateInboundEnhances", "kind": "proper_noun", "path": "plan.md", "source": "derived" },
-      { "name": "applyEnhanceEdge", "kind": "proper_noun", "path": "plan.md", "source": "derived" },
-      { "name": "InboundEnhanceCandidate", "kind": "proper_noun", "path": "plan.md", "source": "derived" },
-      { "name": "enhance_when", "kind": "key_phrase", "path": "spec.md", "source": "derived" },
-      { "name": "auto_added_at", "kind": "key_phrase", "path": "spec.md", "source": "derived" },
-      { "name": "auto_added_reason", "kind": "key_phrase", "path": "spec.md", "source": "derived" }
+      {
+        "name": "skill_graph_propagate_enhances",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "cross-skill-edges",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "detectInboundEnhances",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "propagateInboundEnhances",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "applyEnhanceEdge",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "InboundEnhanceCandidate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "enhance_when",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "auto_added_at",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "auto_added_reason",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
     ],
     "causal_summary": "Build skill_graph_propagate_enhances MCP tool plus a new lib/cross-skill-edges/ module that detects missing inbound enhances edges via composite scoring (family-inference + asset-shape + sibling-transitivity) and offers report/propose/apply modes with idempotent graph-metadata.json patches. Closes the manual-backfill pattern that surfaced in commits 269ad9d75 and 99a606000.",
-    "status": "draft",
-    "completion_pct": 50,
     "created_at": "2026-05-15T15:30:00.000Z",
     "last_save_at": "2026-05-15T15:30:00.000Z",
     "save_lineage": "same_pass",
@@ -64,18 +114,6 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ],
-    "edges": {
-      "depends_on": [
-        { "target": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor", "weight": 0.9, "context": "phase parent" },
-        { "target": "skilled-agent-orchestration/104-cli-devin-creation", "weight": 0.6, "context": "audit pattern + codex research evidence" }
-      ],
-      "enhances": [],
-      "siblings": [
-        { "target": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-devin-advisor-hook-integration", "weight": 0.4, "context": "adjacent skill-advisor phase" }
-      ],
-      "conflicts_with": [],
-      "prerequisite_for": []
-    }
+    ]
   }
 }

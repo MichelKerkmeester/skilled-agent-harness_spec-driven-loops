@@ -5,16 +5,59 @@
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack",
   "children_ids": [],
   "manual": {
-    "depends_on": ["system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote"],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": ["system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-probe-10","system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/007-reranker-integration"]
+    "related_to": []
   },
   "derived": {
-    "trigger_phrases": ["rerank model fit","cross-encoder code retrieval","code-tuned reranker investigation"],
-    "key_topics": ["011","rerank-model-fit","cross-encoder","code-retrieval","research"],
+    "trigger_phrases": [
+      "rerank model fit",
+      "cross-encoder code retrieval",
+      "code-tuned reranker investigation",
+      "016/004/011 plan",
+      "016/004/011 tasks",
+      "016/004/011 summary",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "016-embedder-testing-and-architecture",
+      "004-code-index-stack",
+      "011-rerank-model-fit-investigation"
+    ],
+    "key_topics": [
+      "011",
+      "rerank-model-fit",
+      "cross-encoder",
+      "code-retrieval",
+      "research",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "016-embedder-testing-and-architecture",
+      "004-code-index-stack",
+      "011-rerank-model-fit-investigation",
+      "016",
+      "004"
+    ],
     "importance_tier": "important",
     "status": "planned",
-    "last_active_child_id": null,
-    "last_active_at": null
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research.md"
+    ],
+    "entities": [],
+    "causal_summary": "Investigate whether BAAI/bge-reranker-v2-m3 is the right cross-encoder for code-retrieval queries on a 4-mirror codebase. The May 18 evening instrumented bench surfaced a structural failure mode: the reranker demotes implementations below tests/refs on paraphrase-heavy queries (lexical-cue density rewarded over semantic role). This packet researches alternative cross-encoder reranker models trained on code (or code-adjacent retrieval), measures the four failure-case probes (3, 10, 14, 18) against the alternatives, and recommends a swap if any alternative materially improves the failure-mode pattern.",
+    "created_at": "2026-05-18T19:21:19.316Z",
+    "last_save_at": "2026-05-19T19:44:28.899Z",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research.md"
+    ]
   }
 }

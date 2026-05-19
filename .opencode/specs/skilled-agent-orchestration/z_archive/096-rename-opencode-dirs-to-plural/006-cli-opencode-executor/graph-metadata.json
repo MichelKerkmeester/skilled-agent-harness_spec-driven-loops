@@ -19,7 +19,12 @@
       "101 tasks",
       "101 checklist",
       "101 implementation",
-      "cli-opencode executor summary"
+      "cli-opencode executor summary",
+      "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/006-cli-opencode-executor",
+      "skilled-agent-orchestration",
+      "z_archive",
+      "096-rename-opencode-dirs-to-plural",
+      "006-cli-opencode-executor"
     ],
     "key_topics": [
       "101",
@@ -35,7 +40,7 @@
       "deep-research",
       "workflows"
     ],
-    "importance_tier": "high",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "mcp_server/dist/lib/deep-loop/executor-config.js",
@@ -194,7 +199,7 @@
     ],
     "causal_summary": "The deep-review/deep-research workflows support 4 executors (`native`, `cli-codex`, `cli-gemini`, `cli-claude-code`) but not `cli-opencode`. Users cannot dispatch deep-loop iterations via OpenCode CLI even though the cli-opencode skill exists for cross-AI handback. Requested explicitly during the post-100 verdict-flip re-run.",
     "created_at": "2026-05-18T07:49:27.249Z",
-    "last_save_at": "2026-05-18T15:17:57.064Z",
+    "last_save_at": "2026-05-19T13:51:38.797Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

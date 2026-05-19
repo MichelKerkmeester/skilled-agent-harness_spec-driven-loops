@@ -5,21 +5,24 @@
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack",
   "children_ids": [],
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/013-bm25-fts5-rag-fusion-investigation"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/011-lazy-startup-gating",
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/012-canonical-vector-shard-split"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "fts5 default lexical guardrails",
       "speckit bm25 engine",
       "sqlite fts5 lexical default",
-      "golden query overlap gate"
+      "golden query overlap gate",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/014-fts5-default-lexical-with-guardrails",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "016-embedder-testing-and-architecture",
+      "002-spec-memory-stack",
+      "014-fts5-default-lexical-with-guardrails",
+      "feature",
+      "specification"
     ],
     "key_topics": [
       "bm25",
@@ -29,9 +32,13 @@
       "golden-queries",
       "overlap-at-5",
       "hybrid-search",
-      "memory-health"
+      "memory-health",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "016-embedder-testing-and-architecture",
+      "002-spec-memory-stack"
     ],
-    "importance_tier": "high",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/lexical-normalizer.ts",
@@ -39,7 +46,12 @@
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
       ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/lexical-overlap-quality-gate.vitest.ts"
+      ".opencode/skills/system-spec-kit/mcp_server/tests/lexical-overlap-quality-gate.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -55,6 +67,16 @@
         "source": "manual"
       }
     ],
-    "last_updated": "2026-05-19T00:00:00.000Z"
+    "causal_summary": "Implement Option B from packet 013: make SQLite FTS5 the default lexical BM25 provider while preserving legacy fallback and adding golden-query guardrails.",
+    "created_at": "2026-05-19T19:25:52.541Z",
+    "last_save_at": "2026-05-19T19:44:28.899Z",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
   }
 }

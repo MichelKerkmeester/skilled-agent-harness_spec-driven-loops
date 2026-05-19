@@ -1,17 +1,60 @@
 {
-  "schema_version": 2,
-  "spec_id": "010-skill-id-field-rename",
-  "title": "Align system-skill-advisor skill id",
-  "status": "complete",
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/010-skill-id-field-rename",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/010-skill-id-field-rename",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
   "derived": {
-    "last_active_at": "2026-05-14T18:20:00Z",
-    "last_active_child_id": null,
     "trigger_phrases": [
       "013/009/010",
       "skill id rename",
-      "system-skill-advisor graph health"
+      "system-skill-advisor graph health",
+      "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/010-skill-id-field-rename",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "006-skill-advisor",
+      "001-skill-graph",
+      "006-system-skill-advisor-package-extraction",
+      "010-skill-id-field-rename",
+      "feature",
+      "specification"
     ],
+    "key_topics": [
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "006-skill-advisor",
+      "001-skill-graph",
+      "006-system-skill-advisor-package-extraction",
+      "010-skill-id-field-rename",
+      "feature",
+      "specification",
+      "align",
+      "system-skill-advisor",
+      "skill",
+      "level"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "Level 2 packet for renaming the advisor graph skill id from skill_advisor to system-skill-advisor and closing the remaining graph-health failure.",
+    "created_at": "2026-05-18T08:53:19.727Z",
+    "last_save_at": "2026-05-19T19:44:28.899Z",
+    "last_accessed_at": null,
+    "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",

@@ -10,21 +10,24 @@
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack/004-skill-graph-db-writer-cross-wire"
   ],
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off",
-      "system-spec-kit/026-graph-and-context-optimization/019-cocoindex-embedder-registry"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/021-skill-docs-alignment",
-      "system-spec-kit/026-graph-and-context-optimization/020-deep-review-016-019-stack"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "022 skill advisor embedder parity",
       "skill-advisor jina swap",
-      "skill-advisor pluggable embedder"
+      "skill-advisor pluggable embedder",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "016-embedder-testing-and-architecture",
+      "003-skill-advisor-stack",
+      "022",
+      "skill-advisor",
+      "embedder",
+      "parity"
     ],
     "key_topics": [
       "022",
@@ -34,18 +37,24 @@
       "jina",
       "pluggable",
       "auto-detect",
-      "vec-metadata"
+      "vec-metadata",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "016-embedder-testing-and-architecture",
+      "003-skill-advisor-stack"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "spec.md",
-      "001-pluggable-architecture/spec.md",
-      "002-jina-swap-and-reindex/spec.md",
-      "003-install-guide-docs/spec.md"
+      "spec.md"
     ],
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack/004-skill-graph-db-writer-cross-wire",
-    "last_active_at": "2026-05-17T22:02:54.685Z",
-    "last_save_at": "2026-05-17T22:02:54.685Z"
+    "entities": [],
+    "causal_summary": "Bring skill-advisor up to the 016+019 pattern. Today skill-advisor",
+    "created_at": "2026-05-18T16:14:38.284Z",
+    "last_save_at": "2026-05-17T22:02:54.685Z",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ]
   }
 }

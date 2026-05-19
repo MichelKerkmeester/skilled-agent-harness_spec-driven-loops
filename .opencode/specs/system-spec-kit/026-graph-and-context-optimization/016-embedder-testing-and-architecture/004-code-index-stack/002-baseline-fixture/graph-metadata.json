@@ -13,7 +13,16 @@
     "trigger_phrases": [
       "018/002 baseline fixture",
       "code-retrieval fixture authoring",
-      "cocoindex measurement fixture"
+      "cocoindex measurement fixture",
+      "018/002 plan",
+      "018/002 tasks",
+      "018/002 summary",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/002-baseline-fixture",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "016-embedder-testing-and-architecture",
+      "004-code-index-stack",
+      "002-baseline-fixture"
     ],
     "key_topics": [
       "018",
@@ -21,14 +30,32 @@
       "code-retrieval",
       "baseline",
       "benchmark",
-      "deterministic"
+      "deterministic",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "016-embedder-testing-and-architecture",
+      "004-code-index-stack",
+      "002-baseline-fixture",
+      "002"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "Author 10-20 deterministic query→expected-source pairs for CocoIndex embedder benchmarking",
+    "created_at": "2026-05-18T08:18:02.786Z",
+    "last_save_at": "2026-05-19T19:44:28.899Z",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
     ]
   }
 }

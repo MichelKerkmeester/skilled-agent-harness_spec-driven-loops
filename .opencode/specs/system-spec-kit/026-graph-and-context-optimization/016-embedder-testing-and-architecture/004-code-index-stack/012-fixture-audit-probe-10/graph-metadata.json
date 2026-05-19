@@ -5,16 +5,59 @@
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack",
   "children_ids": [],
   "manual": {
-    "depends_on": ["system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote"],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": ["system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation","system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/002-baseline-fixture"]
+    "related_to": []
   },
   "derived": {
-    "trigger_phrases": ["fixture audit probe 10","expected_source_path correctness","code retrieval fixture review"],
-    "key_topics": ["012","fixture-audit","probe-10","expected-source-path","research"],
+    "trigger_phrases": [
+      "fixture audit probe 10",
+      "expected_source_path correctness",
+      "code retrieval fixture review",
+      "016/004/012 plan",
+      "016/004/012 tasks",
+      "016/004/012 summary",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-probe-10",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "016-embedder-testing-and-architecture",
+      "004-code-index-stack",
+      "012-fixture-audit-probe-10"
+    ],
+    "key_topics": [
+      "012",
+      "fixture-audit",
+      "probe-10",
+      "expected-source-path",
+      "research",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "016-embedder-testing-and-architecture",
+      "004-code-index-stack",
+      "012-fixture-audit-probe-10",
+      "016",
+      "004"
+    ],
     "importance_tier": "normal",
     "status": "planned",
-    "last_active_child_id": null,
-    "last_active_at": null
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research.md"
+    ],
+    "entities": [],
+    "causal_summary": "Audit the 18-pair code-retrieval fixture for expected-path correctness. Probe 10 (`context save command that reads structured JSON` expected as the `.js` dist artifact) is the immediate trigger — the `.ts` source variant is arguably more correct. Audit pass: read every probe",
+    "created_at": "2026-05-18T19:21:19.321Z",
+    "last_save_at": "2026-05-19T19:44:28.899Z",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research.md"
+    ]
   }
 }

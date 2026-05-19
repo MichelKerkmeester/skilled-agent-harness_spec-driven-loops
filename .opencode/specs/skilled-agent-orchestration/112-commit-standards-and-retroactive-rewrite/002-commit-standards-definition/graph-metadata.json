@@ -11,196 +11,27 @@
   },
   "derived": {
     "trigger_phrases": [
-      "112-commit-standards-definition",
-      "commit standards",
-      "conventional commits standard",
-      "Sequential Thinking commit standards",
-      "112-commit-standards-definition plan",
-      "112-commit-standards-definition tasks",
-      "112-commit-standards-decision-record",
-      "commit standards ADRs",
-      "112-commit-standards-definition summary",
-      "commit standards locked"
+      "commit standards definition",
+      "commit standards definition graph metadata"
     ],
     "key_topics": [
-      "112-commit-standards-definition",
       "commit",
       "standards",
-      "conventional",
-      "commits",
-      "standard",
-      "sequential",
-      "thinking",
-      "plan",
-      "tasks",
-      "112-commit-standards-decision-record",
-      "adrs"
+      "definition"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "decision-record.md",
-      "evidence/sample-20.txt",
-      "evidence/sample-packet-id.txt",
-      "evidence/sample-coauthor.txt",
-      "evidence/sample-merges.txt",
-      "implementation-summary.md",
-      ".opencode/skills/sk-git/SKILL.md",
-      ".opencode/skills/sk-git/assets/commit_message_template.md",
-      ".opencode/skills/sk-git/references/commit_workflows.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "entities": [
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "sample-20.txt",
-        "kind": "file",
-        "path": "evidence/sample-20.txt",
-        "source": "derived"
-      },
-      {
-        "name": "sample-packet-id.txt",
-        "kind": "file",
-        "path": "evidence/sample-packet-id.txt",
-        "source": "derived"
-      },
-      {
-        "name": "sample-coauthor.txt",
-        "kind": "file",
-        "path": "evidence/sample-coauthor.txt",
-        "source": "derived"
-      },
-      {
-        "name": "sample-merges.txt",
-        "kind": "file",
-        "path": "evidence/sample-merges.txt",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-git/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "commit_message_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-git/assets/commit_message_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "commit_workflows.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-git/references/commit_workflows.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Commit Standards Definition",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Use Sequential Thinking",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Sequential Thinking",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Parent Spec",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Sequential Thinking Group",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "existing Co-Authored-By",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      }
-    ],
-    "causal_summary": "This is **Phase 2** of the 112 packet — and the **current user focus**. The user invoked this packet specifically to \"first define the standards\" using deep thought, before any downstream work (sk-git update, cli-devin prompt authoring, retroactive rewrite execution).",
+    "entities": [],
+    "causal_summary": "Graph metadata for the current packet.",
     "created_at": "2026-05-16T09:42:33Z",
-    "last_save_at": "2026-05-18T15:17:56.770Z",
+    "last_save_at": "2026-05-19T13:51:38.384Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

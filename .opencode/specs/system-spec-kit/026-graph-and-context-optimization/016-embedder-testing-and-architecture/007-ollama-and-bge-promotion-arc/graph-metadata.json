@@ -10,15 +10,9 @@
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/004-newer-text-embedders-survey"
   ],
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off",
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack",
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/007-reranker-integration"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -26,7 +20,14 @@
       "ollama adapter cocoindex",
       "bge-code-v1 default promotion",
       "bge-m3 spec memory benchmark",
-      "indexer surface investigation"
+      "indexer surface investigation",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "016-embedder-testing-and-architecture",
+      "007-ollama-and-bge-promotion-arc",
+      "016",
+      "013"
     ],
     "key_topics": [
       "013",
@@ -38,11 +39,22 @@
       "embedder-promotion",
       "indexer-investigation",
       "litellm",
-      "phase-parent"
+      "phase-parent",
+      "system-spec-kit",
+      "026-graph-and-context-optimization"
     ],
     "importance_tier": "important",
     "status": "planned",
-    "last_active_child_id": null,
-    "last_active_at": null
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [],
+    "causal_summary": "Phase parent. 4 sub-phases: (001) investigate what each retrieval system actually indexes, (002) add Ollama adapter to CocoIndex via LiteLLM, (003) 3-run-confirm + promote bge-code-v1 as the CocoIndex default, (004) survey newer text embedders released after May 2026 — only bench if a clearly stronger candidate emerges (mk-spec-memory bake-off already shipped jina-embeddings-v3 + rescue per ADR-012). Outcome: clear embedder routing + Ollama support + validated defaults across CocoIndex and mk-spec-memory.",
+    "created_at": "2026-05-18T16:52:17.347Z",
+    "last_save_at": "2026-05-19T19:44:28.899Z",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ]
   }
 }

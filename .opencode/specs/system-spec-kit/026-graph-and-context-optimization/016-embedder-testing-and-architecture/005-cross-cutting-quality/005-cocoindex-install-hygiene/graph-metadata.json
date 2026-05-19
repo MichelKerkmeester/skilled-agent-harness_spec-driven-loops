@@ -43,7 +43,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off/evidence/run-extended-bake-off-with-hybrid-rerank.sh",
       ".opencode/skills/mcp-coco-index/INSTALL_GUIDE.md",
       "implementation-summary.md",
       ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/reranker.py",
@@ -52,12 +51,6 @@
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "run-extended-bake-off-with-hybrid-rerank.sh",
-        "kind": "script",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off/evidence/run-extended-bake-off-with-hybrid-rerank.sh",
-        "source": "derived"
-      },
       {
         "name": "INSTALL_GUIDE.md",
         "kind": "doc",

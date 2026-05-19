@@ -23,7 +23,8 @@
       "061 ADRs",
       "061 implementation summary",
       "061 handover",
-      "061 resource map"
+      "061 resource map",
+      "skilled-agent-orchestration/z_archive/060-sk-agent-improver-test-report-alignment/004-improve-agent-command-flow-stress-tests"
     ],
     "key_topics": [
       "061",
@@ -39,7 +40,7 @@
       "cp-044",
       "cp-045"
     ],
-    "importance_tier": "high",
+    "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
       "spec.md",
@@ -199,7 +200,7 @@
     ],
     "causal_summary": "Packet 060/002 ran R1 stress tests with the prepend-agent-body dispatch and scored 0/2/4 PASS/PARTIAL/FAIL. 060/003 research diagnosed the failure as test-layer-selection: @improve-agent's discipline lives in the `/improve:agent` command orchestrator, not in the agent body. Packet 005 (was 062) just shipped the executable wiring (static benchmark assets, materializer, nested `legal_stop_evaluated.details.gateResults`, stop-reason enum reconciliation, both YAMLs in lockstep).",
     "created_at": "2026-05-02T15:00:00Z",
-    "last_save_at": "2026-05-18T15:17:56.926Z",
+    "last_save_at": "2026-05-19T13:51:38.605Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

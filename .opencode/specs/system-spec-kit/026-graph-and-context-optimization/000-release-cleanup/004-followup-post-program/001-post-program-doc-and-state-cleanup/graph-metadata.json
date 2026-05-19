@@ -23,7 +23,8 @@
       "005 post-program cleanup checklist",
       "026 cleanup verification",
       "005 post-program cleanup summary",
-      "026 cleanup implementation summary"
+      "026 cleanup implementation summary",
+      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/001-post-program-doc-and-state-cleanup"
     ],
     "key_topics": [
       "005",
@@ -39,7 +40,7 @@
       "tasks",
       "task"
     ],
-    "importance_tier": "high",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",

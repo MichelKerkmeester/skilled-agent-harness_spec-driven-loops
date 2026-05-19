@@ -46,7 +46,7 @@
       "implementation",
       "summary"
     ],
-    "importance_tier": "high",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "resource-map.md",
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The prompt `create a test playbook for stressing this skill` routed to generic `sk-doc` at 0.866 and did not surface `create:testing-playbook`. This phase exists to make the dedicated testing-playbook creation route win for that intent.",
     "created_at": "2026-05-18T07:49:27.133Z",
-    "last_save_at": "2026-05-18T15:17:56.948Z",
+    "last_save_at": "2026-05-19T13:51:38.634Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -40,7 +40,7 @@
       "tasks",
       "checklist"
     ],
-    "importance_tier": "high",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "lib/query/query-plan.ts",

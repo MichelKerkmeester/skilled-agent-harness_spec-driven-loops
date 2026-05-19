@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "packet_id": "system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/004-maintenance",
-  "spec_folder": "system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/004-maintenance",
-  "parent_id": "system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook",
+  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/004-maintenance",
+  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -11,200 +11,23 @@
   },
   "derived": {
     "trigger_phrases": [
-      "maintenance manual testing",
-      "phase 004 maintenance",
-      "ex-014 ex-035 ex-041 ex-042 ex-043 ex-044 ex-045",
-      "memory_index_scan startup guards test",
-      "memory_update memory_delete test",
-      "bulk delete health check index repair",
-      "maintenance phase execution plan",
-      "phase 004 plan",
-      "ex-014 ex-035 execution",
-      "maintenance phase tasks",
-      "phase 004 tasks",
-      "ex-014 ex-035 tasks"
+      "maintenance",
+      "maintenance graph metadata"
     ],
     "key_topics": [
-      "maintenance",
-      "manual",
-      "testing",
-      "phase",
-      "004",
-      "ex-014",
-      "ex-035",
-      "ex-041",
-      "ex-042",
-      "ex-043",
-      "ex-044",
-      "ex-045"
+      "maintenance"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "handlers/memory-index.ts",
-      "lib/storage/incremental-index.ts",
-      "tests/startup-checks.vitest.ts",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/014-workspace-scanning-and-indexing-memory-index-scan.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/035-startup-runtime-compatibility-guards.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/041-pre-flight-token-budget-validation-pi-a3.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/042-spec-folder-description-discovery-pi-b3.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/043-pre-storage-quality-gate-tm-04.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/044-reconsolidation-on-save-tm-06.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/045-smarter-memory-content-generation-s1.md",
       "spec.md",
       "plan.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md"
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "entities": [
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "memory-index.ts",
-        "kind": "code",
-        "path": "handlers/memory-index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "incremental-index.ts",
-        "kind": "code",
-        "path": "lib/storage/incremental-index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "startup-checks.vitest.ts",
-        "kind": "test",
-        "path": "tests/startup-checks.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "014-workspace-scanning-and-indexing-memory-index-scan.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/014-workspace-scanning-and-indexing-memory-index-scan.md",
-        "source": "derived"
-      },
-      {
-        "name": "035-startup-runtime-compatibility-guards.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/035-startup-runtime-compatibility-guards.md",
-        "source": "derived"
-      },
-      {
-        "name": "041-pre-flight-token-budget-validation-pi-a3.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/041-pre-flight-token-budget-validation-pi-a3.md",
-        "source": "derived"
-      },
-      {
-        "name": "042-spec-folder-description-discovery-pi-b3.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/042-spec-folder-description-discovery-pi-b3.md",
-        "source": "derived"
-      },
-      {
-        "name": "043-pre-storage-quality-gate-tm-04.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/043-pre-storage-quality-gate-tm-04.md",
-        "source": "derived"
-      },
-      {
-        "name": "044-reconsolidation-on-save-tm-06.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/044-reconsolidation-on-save-tm-06.md",
-        "source": "derived"
-      },
-      {
-        "name": "045-smarter-memory-content-generation-s1.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/045-smarter-memory-content-generation-s1.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "MANUAL_TESTING_PLAYBOOK.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
-        "source": "derived"
-      },
-      {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Kit Memory",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Not Started",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Parent Spec",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement Phase",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Purpose Execute",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      }
-    ],
-    "causal_summary": "Phase 004 maintenance scenarios must be executed from scratch. All prior results are invalidated. The seven maintenance scenarios (EX-014, EX-035, EX-041, EX-042, EX-043, EX-044, EX-045) require fresh manual execution to verify that memory_index_scan, startup runtime compatibility guards, memory_update, memory_delete, bulk delete, health check diagnostics, and index scan and repair behave as specified by the canonical playbook. The five new scenarios (EX-041 through EX-045) expand coverage to state-mutating maintenance operations and diagnostic repair workflows.",
+    "entities": [],
+    "causal_summary": "Graph metadata for the current packet.",
     "created_at": "2026-04-12T09:02:50.291Z",
     "last_save_at": "2026-04-26T09:17:15.513Z",
     "save_lineage": "graph_only",

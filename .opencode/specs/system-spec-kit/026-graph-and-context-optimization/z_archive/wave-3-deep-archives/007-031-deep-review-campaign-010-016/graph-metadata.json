@@ -1,27 +1,58 @@
 {
-  "id": "017-deep-review-campaign-010-016",
-  "title": "017: Deep-Review Campaign 010-016",
-  "status": "complete",
-  "parentPhase": "013-system-code-graph-extraction",
-  "derived": {
-    "last_active_child_id": null,
-    "phase_count": 0,
-    "completion_percentage": 100
-  },
-  "review": {
-    "verdict": "CONDITIONAL",
-    "hasAdvisories": true,
-    "iterations": 10,
-    "convergedAtIteration": 10,
-    "stopReason": "maxIterationsReached",
-    "p0": 0,
-    "p1": 1,
-    "p2": 19
-  },
-  "createdAt": "2026-05-14T18:33:47Z",
-  "updatedAt": "2026-05-14T21:00:00Z",
+  "schema_version": 1,
   "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/031-deep-review-campaign-010-016",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-031-deep-review-campaign-010-016",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization",
+  "children_ids": [],
   "migrated": true,
-  "migration_source": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/013-system-code-graph-extraction/017-deep-review-campaign-010-016"
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-031-deep-review-campaign-010-016",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "z_archive",
+      "wave-3-deep-archives",
+      "007-031-deep-review-campaign-010-016",
+      "017",
+      "deep-review",
+      "campaign",
+      "010-016"
+    ],
+    "key_topics": [
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "z_archive",
+      "wave-3-deep-archives",
+      "007-031-deep-review-campaign-010-016",
+      "017",
+      "deep-review",
+      "campaign",
+      "010-016"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "|",
+    "created_at": "2026-05-18T08:15:28.149Z",
+    "last_save_at": "2026-05-19T19:44:28.899Z",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ]
+  }
 }

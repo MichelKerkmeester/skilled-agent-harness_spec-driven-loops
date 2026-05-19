@@ -13,7 +13,16 @@
     "trigger_phrases": [
       "019/001 declarative registry",
       "embedder catalog",
-      "vetted code embedders"
+      "vetted code embedders",
+      "019/001 plan",
+      "019/001 tasks",
+      "019/001 summary",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/005-declarative-registry",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "016-embedder-testing-and-architecture",
+      "004-code-index-stack",
+      "005-declarative-registry"
     ],
     "key_topics": [
       "019",
@@ -21,14 +30,32 @@
       "embedder",
       "catalog",
       "metadata",
-      "cocoindex"
+      "cocoindex",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "016-embedder-testing-and-architecture",
+      "004-code-index-stack",
+      "005-declarative-registry",
+      "001"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "Catalog of vetted code-embedder candidates with metadata for new-user selection",
+    "created_at": "2026-05-18T08:18:02.785Z",
+    "last_save_at": "2026-05-19T19:44:28.899Z",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
     ]
   }
 }

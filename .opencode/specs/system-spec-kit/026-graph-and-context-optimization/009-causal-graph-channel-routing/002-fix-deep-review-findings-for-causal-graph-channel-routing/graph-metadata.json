@@ -5,38 +5,60 @@
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing",
   "children_ids": [],
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/001-deliver-causal-graph-channel-routing-mvp"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
   "derived": {
-    "status": "planned",
-    "completion_pct": 0,
     "trigger_phrases": [
       "002-fix-deep-review-findings-for-causal-graph-channel-routing",
       "012 deep-review remediation",
       "P1-C-001 cache wiring",
       "entity-density invalidation hooks",
       "resource-map drift 012",
-      "ADV-001 env-flag tightening"
+      "ADV-001 env-flag tightening",
+      "system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "009-causal-graph-channel-routing",
+      "feature",
+      "specification"
     ],
     "key_topics": [
       "deep review remediation",
       "entity density cache wiring",
       "resource map drift",
       "env flag parsing",
-      "routing telemetry polish"
+      "routing telemetry polish",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "009-causal-graph-channel-routing",
+      "002-fix-deep-review-findings-for-causal-graph-channel-routing",
+      "feature",
+      "specification",
+      "002"
     ],
+    "importance_tier": "important",
+    "status": "planned",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/entity-density.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/routing-telemetry.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts"
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
+    "entities": [],
+    "causal_summary": "Close 3 P1 and 39 P2 findings from the 2026-05-11 10-iteration deep review (cli-opencode + deepseek/deepseek-v4-pro) of 012/001-deliver-causal-graph-channel-routing-mvp. Tier-1 wires invalidateEntityDensityCache + fixes resource-map drift; Tier-2 ships ~19 code/test polish items; Tier-3 cleans graph-metadata.json + doc-staleness.",
+    "created_at": "2026-05-19T15:28:02.707Z",
+    "last_save_at": "2026-05-19T19:44:28.899Z",
+    "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",

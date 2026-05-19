@@ -21,7 +21,10 @@
       "100 tasks",
       "100 checklist",
       "100/implementation",
-      "099 remediation summary"
+      "099 remediation summary",
+      "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/005-remediation",
+      "skilled-agent-orchestration",
+      "z_archive"
     ],
     "key_topics": [
       "100",
@@ -37,7 +40,7 @@
       "summary",
       "packet"
     ],
-    "importance_tier": "high",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "plan.md",
@@ -194,7 +197,7 @@
     ],
     "causal_summary": "Packet 099 deep-review (10 iterations, gpt-5.5 high fast) confirmed P0=0 holding (098/001 dist rebuild succeeded) but verdict remained FAIL on 13 active P1 findings: 1 carryover (P1-007) plus 12 NEW findings surfaced by the remediation itself, including source/dist parity gaps (P1-015, P1-016), security spec_folder shell injection in YAML (P1-019), 098 sub-phase strict-validate failures (P1-024), advisor missing deep-review alias (P1-025), validator zero-inventory false-pass (P1-020), shared-CLI path resolver gap (P1-021), 095 internally contradictory results (P1-017), 096/004 anchor mismatch (P1-022), playbooks not linked from owning SKILL.md (P1-018), and continuity blockers field empty despite documented deferrals (P1-023).",
     "created_at": "2026-05-18T07:49:27.247Z",
-    "last_save_at": "2026-05-18T15:17:57.062Z",
+    "last_save_at": "2026-05-19T13:51:38.795Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

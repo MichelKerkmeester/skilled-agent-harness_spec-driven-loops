@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/058-skill-md-realignment",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/058-skill-md-realignment",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/014-local-embeddings-migration-058-skill-md-realignment",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/014-local-embeddings-migration-058-skill-md-realignment",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -13,200 +13,28 @@
   },
   "derived": {
     "trigger_phrases": [
-      "058 spec",
-      "skill md realignment",
-      "20 iter deep review cli-devin",
-      "058 plan",
-      "skill md realignment plan",
-      "058 tasks",
-      "058 implementation",
-      "058 resource map"
+      "local embeddings migration skill md realignment",
+      "local embeddings migration skill md realignment graph metadata"
     ],
     "key_topics": [
-      "058",
-      "spec",
+      "local",
+      "embeddings",
+      "migration",
       "skill",
-      "realignment",
-      "iter",
-      "deep",
-      "review",
-      "cli-devin",
-      "plan",
-      "tasks",
-      "implementation",
-      "resource"
+      "realignment"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-doc/assets/skill/skill_md_template.md",
-      "research/iterations/iteration-001.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "resource-map.md",
-      "research/track-seeds.md",
-      "assets/iter-template.md",
+      "implementation-summary.md",
       "research/research.md",
-      "research/delta-verified.md",
-      "spec.md",
-      "research/deep-research-state.jsonl",
-      ".opencode/skills/system-spec-kit/SKILL.md",
-      ".opencode/skills/system-code-graph/SKILL.md",
-      ".opencode/skills/system-skill-advisor/SKILL.md",
-      ".opencode/skills/system-spec-kit/mcp_server/README.md",
-      ".opencode/skills/system-code-graph/mcp_server/README.md",
-      ".opencode/skills/system-skill-advisor/mcp_server/README.md",
-      "research/edit-evidence-A.md",
-      "research/edit-evidence-B.md",
-      "research/edit-evidence-C.md"
+      "resource-map.md"
     ],
-    "entities": [
-      {
-        "name": "skill_md_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/skill/skill_md_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "iteration-001.md",
-        "kind": "doc",
-        "path": "research/iterations/iteration-001.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "resource-map.md",
-        "kind": "doc",
-        "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "track-seeds.md",
-        "kind": "doc",
-        "path": "research/track-seeds.md",
-        "source": "derived"
-      },
-      {
-        "name": "iter-template.md",
-        "kind": "doc",
-        "path": "assets/iter-template.md",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "delta-verified.md",
-        "kind": "doc",
-        "path": "research/delta-verified.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-state.jsonl",
-        "kind": "file",
-        "path": "research/deep-research-state.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "edit-evidence-A.md",
-        "kind": "doc",
-        "path": "research/edit-evidence-A.md",
-        "source": "derived"
-      },
-      {
-        "name": "edit-evidence-B.md",
-        "kind": "doc",
-        "path": "research/edit-evidence-B.md",
-        "source": "derived"
-      },
-      {
-        "name": "edit-evidence-C.md",
-        "kind": "doc",
-        "path": "research/edit-evidence-C.md",
-        "source": "derived"
-      },
-      {
-        "name": "Target Level",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Three",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Five",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      }
-    ],
-    "causal_summary": "Three system skills evolved through extraction events without consistent styling:",
+    "entities": [],
+    "causal_summary": "Graph metadata for the current packet.",
     "created_at": "2026-05-15T15:00:00Z",
     "last_save_at": "2026-05-15T18:27:20.005Z",
     "save_lineage": "same_pass",

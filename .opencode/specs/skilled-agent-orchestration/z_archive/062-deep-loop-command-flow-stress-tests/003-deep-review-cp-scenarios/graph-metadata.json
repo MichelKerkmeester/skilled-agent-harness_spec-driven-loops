@@ -13,7 +13,18 @@
   },
   "derived": {
     "trigger_phrases": [
-      "003-deep-review-cp-scenarios"
+      "003-deep-review-cp-scenarios",
+      "skilled-agent-orchestration/z_archive/062-deep-loop-command-flow-stress-tests/003-deep-review-cp-scenarios",
+      "skilled-agent-orchestration",
+      "z_archive",
+      "062-deep-loop-command-flow-stress-tests",
+      "deep-review",
+      "cp-scenario",
+      "authoring",
+      "003",
+      "sub-phase",
+      "under",
+      "062-deep-loop-command-flow-stress-tests."
     ],
     "key_topics": [
       "003-deep-review-cp-scenarios",
@@ -29,7 +40,7 @@
       "003",
       "sub-phase"
     ],
-    "importance_tier": "high",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
@@ -185,7 +196,7 @@
     ],
     "causal_summary": "Author 6 CP-XXX scenarios for the @deep-review command flow.",
     "created_at": "2026-05-18T07:49:27.113Z",
-    "last_save_at": "2026-05-18T15:17:56.939Z",
+    "last_save_at": "2026-05-19T13:51:38.622Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

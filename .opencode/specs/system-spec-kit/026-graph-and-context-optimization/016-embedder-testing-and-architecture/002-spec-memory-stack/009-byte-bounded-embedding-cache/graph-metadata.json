@@ -38,7 +38,7 @@
       "wiring",
       "tasks"
     ],
-    "importance_tier": "high",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts",
