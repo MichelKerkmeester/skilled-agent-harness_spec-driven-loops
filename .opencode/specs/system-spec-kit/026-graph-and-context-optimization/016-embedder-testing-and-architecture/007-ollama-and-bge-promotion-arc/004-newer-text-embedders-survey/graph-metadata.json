@@ -10,10 +10,10 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": ["016/013/004 spec memory bench","bge-m3 jina-code comparison","mk-spec-memory swap"],
-    "key_topics": ["004","bge-m3","spec-memory","text-embedder","mk-spec-memory"],
+    "trigger_phrases": ["016/013/004 newer text embedders survey","post-adr-012 embedder survey","mk-spec-memory candidate refresh","jina-v3 hold decision"],
+    "key_topics": ["004","post-may-2026","text-embedder","mk-spec-memory","jina-v3","hf-crawl"],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "last_active_child_id": null,
     "last_active_at": null
   }

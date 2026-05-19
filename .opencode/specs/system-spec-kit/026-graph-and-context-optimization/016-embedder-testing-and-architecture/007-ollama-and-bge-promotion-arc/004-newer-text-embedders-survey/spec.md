@@ -8,6 +8,28 @@ trigger_phrases:
   - "newer text embedder hf crawl"
 importance_tier: "normal"
 contextType: "research"
+_memory:
+  continuity:
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/004-newer-text-embedders-survey"
+    last_updated_at: "2026-05-18T20:41:03Z"
+    last_updated_by: "codex-gpt-5"
+    recent_action: "Completed post-May HF survey; zero MEASURE candidates."
+    next_safe_action: "Hold jina-v3; optional future bench only."
+    blockers: []
+    key_files:
+      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/004-newer-text-embedders-survey/research.md"
+      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/004-newer-text-embedders-survey/plan.md"
+      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/004-newer-text-embedders-survey/tasks.md"
+      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/004-newer-text-embedders-survey/implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "004-newer-text-embedders-survey-20260518"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Gate 3 folder was pre-answered by the operator."
+      - "Survey outcome: SKIP=3, CONSIDER=3, MEASURE=0."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->
@@ -24,7 +46,7 @@ contextType: "research"
 
 | Field | Value |
 |---|---|
-| Status | Planned (rescoped 2026-05-18) |
+| Status | Complete (research-only closeout 2026-05-18) |
 | Type | Research-only (HF crawl). May trigger a follow-on bench if a strong candidate is identified. |
 | Owner | Main agent |
 | Parent | `../spec.md` (007-ollama-and-bge-promotion-arc) |
@@ -66,11 +88,11 @@ Out of scope (defer unless survey surfaces a MEASURE candidate):
 
 | # | Requirement |
 |---|---|
-| R1 | `research.md` lists at least 5 newer text-embedder candidates (post-2026-05-01) with paper/HF metadata. |
-| R2 | Each candidate has a written SKIP / CONSIDER / MEASURE verdict with rationale citing jina-v3 as the production baseline to beat. |
-| R3 | If any candidate is MEASURE-tier: file a follow-on packet under `016/013/` (e.g., `005-newer-text-embedder-bench`) with the same shape as `002-spec-memory-stack/004-spec-memory-embedder-bake-off/` — fixture reuse + harness reuse. |
-| R4 | If ZERO MEASURE candidates: document the finding ("survey confirms ADR-012 still holds") and close this sub-phase. |
-| R5 | Strict-validate PASSED on this sub-phase. |
+| REQ-001 | `research.md` lists at least 5 newer text-embedder candidates (post-2026-05-01 update or publication event) with paper/HF metadata. |
+| REQ-002 | Each candidate has a written SKIP / CONSIDER / MEASURE verdict with rationale citing jina-v3 as the production baseline to beat. |
+| REQ-003 | If any candidate is MEASURE-tier: file a follow-on packet under `016/013/` (e.g., `005-newer-text-embedder-bench`) with the same shape as `002-spec-memory-stack/004-spec-memory-embedder-bake-off/` — fixture reuse + harness reuse. |
+| REQ-004 | If ZERO MEASURE candidates: document the finding ("survey confirms ADR-012 still holds") and close this sub-phase. |
+| REQ-005 | Strict-validate PASSED on this sub-phase. |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:approach -->
@@ -93,6 +115,11 @@ Out of scope (defer unless survey surfaces a MEASURE candidate):
 - Either:
   - **A clear MEASURE candidate exists** → follow-on bench packet scaffolded; OR
   - **No MEASURE candidate exists** → ADR-012 stays, packet closes with a "still-holds" finding.
+
+Acceptance scenarios:
+
+- **Given** the HF survey finds no candidate stronger on paper than `jina-embeddings-v3 + rescue`, **When** the packet closes, **Then** the standing decision remains HOLD with no bench dispatch.
+- **Given** a future operator promotes a CONSIDER candidate, **When** measurement is authorized, **Then** the existing bake-off scaffold at `../../002-spec-memory-stack/004-spec-memory-embedder-bake-off/` is reused instead of inventing a new harness.
 <!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:risks -->
@@ -107,12 +134,12 @@ Dependencies:
 - ADR-012 in that packet (the standing decision)
 <!-- /ANCHOR:risks -->
 
-<!-- ANCHOR:open-questions -->
+<!-- ANCHOR:questions -->
 ## 8. OPEN QUESTIONS
 
-- Is there a HF-side filter for "released after date X" that doesn't depend on the `created` sort field? (Crawl approach assumes yes.)
-- Should the survey include closed-source API embedders (Voyage, Cohere) for reference, or strictly local-first? Default: local-first only.
-<!-- /ANCHOR:open-questions -->
+- Is there a HF-side filter for "released after date X" that does not depend only on the `created` sort field? This run used HF search plus HF API `createdAt` / `lastModified` checks.
+- Should the survey include closed-source API embedders (Voyage, Cohere) for reference, or strictly local-first? This run stayed local-first.
+<!-- /ANCHOR:questions -->
 
 <!-- ANCHOR:skill-local-promotion -->
 ## 9. CONDITIONAL PROMOTION TO SKILL-LOCAL BENCHMARKS

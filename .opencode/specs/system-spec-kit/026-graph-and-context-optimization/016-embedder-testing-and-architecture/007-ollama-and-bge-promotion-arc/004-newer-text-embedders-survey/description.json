@@ -1,7 +1,7 @@
 {
   "level": "feature",
   "specFolder": "004-newer-text-embedders-survey",
-  "description": "Live HF crawl for text embedders released after May 2026 (post-ADR-012). Research-only by default — only triggers a follow-on bench if a clearly stronger candidate emerges vs jina-embeddings-v3 + rescue layer (mk-spec-memory production default).",
+  "description": "Completed HF crawl for text embedders released or updated after 2026-05-01 (post-ADR-012). Research-only verdict: SKIP=3, CONSIDER=3, MEASURE=0, so jina-embeddings-v3 + rescue remains the mk-spec-memory production default.",
   "keywords": [
     "newer-text-embedders",
     "hf-crawl",
@@ -10,7 +10,7 @@
     "mk-spec-memory-candidate-refresh",
     "research"
   ],
-  "lastUpdated": "2026-05-18T18:30:00.000Z",
+  "lastUpdated": "2026-05-18T20:41:03.000Z",
   "specId": "004",
   "folderSlug": "004-newer-text-embedders-survey",
   "parentChain": [
