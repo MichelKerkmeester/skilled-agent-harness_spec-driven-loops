@@ -1,8 +1,6 @@
 """Shared context keys, embedder factory, and CodeChunk schema."""
 
 # Modified by spec-kit-skilled-agent-orchestration: 009 packet REQ-001..006 (see ../NOTICE)
-# Modified by 014-local-embeddings-setup-a / 001-prefix-registry-architecture:
-# _QUERY_PROMPT_MODELS converted from set to dict; env override added.
 from __future__ import annotations
 
 import json
@@ -32,32 +30,11 @@ SBERT_PREFIX = "sbert/"
 OLLAMA_PREFIX = "ollama/"
 DEFAULT_OLLAMA_API_BASE = "http://localhost:11434"
 
-# Models that define a "query" prompt for asymmetric retrieval.
-# Maps model_id -> prompt_name passed to SentenceTransformerEmbedder.
-# Resolution order in resolve_query_prompt_name():
-#   1) env override COCOINDEX_QUERY_PROMPT_NAME (empty string == no prompt)
-#   2) this registry entry
-#   3) None (raw text, no prompt-name flag)
-_QUERY_PROMPT_MODELS: dict[str, str] = {
-    "nomic-ai/nomic-embed-code": "query",
-    "nomic-ai/CodeRankEmbed": "query",
-    # 014-local-embeddings-setup-a / 001-prefix-registry-architecture additions:
-    "Qwen/Qwen3-Embedding-0.6B": "query",
-    "Qwen/Qwen3-Embedding-4B": "query",
-    "Qwen/Qwen3-Embedding-8B": "query",
-    # 014-local-embeddings-setup-a / 011-embeddinggemma-unification:
-    # EmbeddingGemma uses task-specific prompt templates. For CODE SEARCH the
-    # canonical prompt is "InstructionRetrieval" -> "task: code retrieval | query: ".
-    # The alternative "query" -> "task: search result | query: " is for general
-    # retrieval (what mk-spec-memory uses). Code search wants the code variant.
-    #
-    # NOTE: this sets only the QUERY prompt. EmbeddingGemma also has a distinct
-    # DOCUMENT prompt ("title: none | text: ") expected at indexing time.
-    # CocoIndex's current daemon doesn't apply asymmetric query/document prompts,
-    # so documents are indexed without the document prefix. Quality is suboptimal
-    # vs ideal EmbeddingGemma usage but still much better than no prompt at all.
-    "google/embeddinggemma-300m": "InstructionRetrieval",
-}
+def _registry_name(model_name: str) -> str:
+    """Return the registry model name, preserving provider prefix where present."""
+    if model_name.startswith(SBERT_PREFIX) or model_name.startswith(OLLAMA_PREFIX):
+        return model_name
+    return f"{SBERT_PREFIX}{model_name}"
 
 
 def resolve_query_prompt_name(model_name: str) -> str | None:
@@ -69,7 +46,21 @@ def resolve_query_prompt_name(model_name: str) -> str | None:
     env_value = os.environ.get("COCOINDEX_QUERY_PROMPT_NAME")
     if env_value is not None:
         return env_value if env_value != "" else None
-    return _QUERY_PROMPT_MODELS.get(model_name)
+    metadata = get_embedder_metadata(_registry_name(model_name))
+    return metadata.query_prompt_name if metadata is not None else None
+
+
+def resolve_document_prompt_name(model_name: str) -> str | None:
+    """Resolve the document/indexing prompt name for a model.
+
+    Env override (COCOINDEX_DOCUMENT_PROMPT_NAME) wins over the registry.
+    Empty string is a valid override meaning "explicitly no prompt".
+    """
+    env_value = os.environ.get("COCOINDEX_DOCUMENT_PROMPT_NAME")
+    if env_value is not None:
+        return env_value if env_value != "" else None
+    metadata = get_embedder_metadata(_registry_name(model_name))
+    return metadata.document_prompt_name if metadata is not None else None
 
 
 def _ollama_api_base() -> str:
@@ -132,6 +123,8 @@ SQLITE_DB = coco.ContextKey[sqlite.ManagedConnection]("index_db", tracked=False)
 CODEBASE_DIR = coco.ContextKey[pathlib.Path]("codebase", tracked=False)
 GITIGNORE_SPEC = coco.ContextKey[GitIgnoreSpec | None]("gitignore_spec", tracked=False)
 EXT_LANG_OVERRIDE_MAP = coco.ContextKey[dict[str, str]]("ext_lang_override_map")
+QUERY_PROMPT_NAME = coco.ContextKey[str | None]("query_prompt_name", tracked=False)
+DOCUMENT_PROMPT_NAME = coco.ContextKey[str | None]("document_prompt_name", tracked=False)
 
 # Module-level variable — set by daemon at startup (needed for CodeChunk annotation).
 embedder: Embedder | None = None
@@ -139,10 +132,13 @@ embedder: Embedder | None = None
 # Query prompt name — set alongside embedder by create_embedder().
 query_prompt_name: str | None = None
 
+# Document prompt name — set alongside embedder by create_embedder().
+document_prompt_name: str | None = None
+
 
 def _build_embedder(settings: EmbeddingSettings) -> Embedder:
     """Build an embedder from settings."""
-    global query_prompt_name
+    global document_prompt_name, query_prompt_name
 
     if settings.provider == "sentence-transformers":
         from cocoindex.ops.sentence_transformers import SentenceTransformerEmbedder
@@ -152,7 +148,16 @@ def _build_embedder(settings: EmbeddingSettings) -> Embedder:
         if model_name.startswith(SBERT_PREFIX):
             model_name = model_name[len(SBERT_PREFIX) :]
 
-        query_prompt_name = resolve_query_prompt_name(model_name)
+        query_prompt_name = (
+            settings.query_params.get("prompt_name")
+            if settings.query_params is not None
+            else resolve_query_prompt_name(model_name)
+        )
+        document_prompt_name = (
+            settings.indexing_params.get("prompt_name")
+            if settings.indexing_params is not None
+            else resolve_document_prompt_name(model_name)
+        )
         instance = SentenceTransformerEmbedder(
             model_name,
             device=settings.device,
@@ -169,6 +174,7 @@ def _build_embedder(settings: EmbeddingSettings) -> Embedder:
             kwargs["api_base"] = _ollama_api_base()
         instance = LiteLLMEmbedder(settings.model, **kwargs)
         query_prompt_name = None
+        document_prompt_name = None
         logger.info("Embedding model (LiteLLM): %s", settings.model)
 
     return instance
@@ -177,7 +183,7 @@ def _build_embedder(settings: EmbeddingSettings) -> Embedder:
 def create_embedder(settings: EmbeddingSettings) -> Embedder:
     """Create and return an embedder instance based on settings.
 
-    Also sets the module-level ``embedder`` and ``query_prompt_name`` variables.
+    Also sets the module-level ``embedder`` and prompt-name variables.
     """
     global embedder
 

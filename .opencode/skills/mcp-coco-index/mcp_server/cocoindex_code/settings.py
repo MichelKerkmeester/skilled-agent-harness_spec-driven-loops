@@ -86,6 +86,8 @@ class EmbeddingSettings:
     model: str
     provider: str = "litellm"
     device: str | None = None
+    indexing_params: dict[str, str] | None = None
+    query_params: dict[str, str] | None = None
 
 
 @dataclass
@@ -265,6 +267,10 @@ def _user_settings_to_dict(settings: UserSettings) -> dict[str, Any]:
     }
     if settings.embedding.device is not None:
         emb["device"] = settings.embedding.device
+    if settings.embedding.indexing_params is not None:
+        emb["indexing_params"] = dict(settings.embedding.indexing_params)
+    if settings.embedding.query_params is not None:
+        emb["query_params"] = dict(settings.embedding.query_params)
     d["embedding"] = emb
     if settings.envs:
         d["envs"] = dict(settings.envs)
@@ -281,6 +287,10 @@ def _user_settings_from_dict(d: dict[str, Any]) -> UserSettings:
         emb_kwargs["provider"] = emb_dict["provider"]
     if "device" in emb_dict:
         emb_kwargs["device"] = emb_dict["device"]
+    if "indexing_params" in emb_dict:
+        emb_kwargs["indexing_params"] = emb_dict["indexing_params"]
+    if "query_params" in emb_dict:
+        emb_kwargs["query_params"] = emb_dict["query_params"]
     embedding = EmbeddingSettings(**emb_kwargs)
     envs = d.get("envs", {})
     return UserSettings(embedding=embedding, envs=envs)

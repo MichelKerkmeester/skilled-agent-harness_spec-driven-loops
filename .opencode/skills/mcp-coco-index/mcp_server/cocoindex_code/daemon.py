@@ -20,6 +20,11 @@ from typing import Any, TextIO
 from cocoindex.connectors import sqlite as coco_sqlite
 
 from ._version import __version__
+from .index_metadata import (
+    IndexCompatibilityError,
+    build_current_index_metadata,
+    check_index_compatibility,
+)
 from .observability import (
     RetrievalDiagnostics,
     build_index_fingerprint,
@@ -73,7 +78,8 @@ from .settings import (
     load_user_settings,
     user_settings_dir,
 )
-from .shared import EMBEDDER, SQLITE_DB, Embedder, create_embedder
+from . import shared
+from .shared import EMBEDDER, QUERY_PROMPT_NAME, SQLITE_DB, Embedder, create_embedder
 
 logger = logging.getLogger(__name__)
 _client_disconnect_count = 0
@@ -345,6 +351,9 @@ class ProjectRegistry:
         self._index_locks = {}
         self._load_time_done: dict[str, asyncio.Event] = {}
         self._embedder = embedder
+        self._embedder_by_config_hash: dict[str, Embedder] = {}
+        self._project_effective_config_hash: dict[str, str] = {}
+        self._current_index_meta: dict[str, dict[str, Any] | None] = {}
 
     async def get_project(self, project_root: str, *, suppress_auto_index: bool = False) -> Project:
         """Get or create a Project for the given root. Lazy initialization.
@@ -355,16 +364,56 @@ class ProjectRegistry:
         IndexRequest, SearchRequest with refresh) should pass
         ``suppress_auto_index=True``.
         """
+        if project_root in self._projects:
+            self._refresh_project_if_config_changed(project_root)
         if project_root not in self._projects:
             root = Path(project_root)
             project_settings = load_project_settings(root)
-            project = await Project.create(root, project_settings, self._embedder)
+            embedder = self._embedder_for_project(project_root)
+            project = await Project.create(root, project_settings, embedder)
             self._projects[project_root] = project
             self._index_locks[project_root] = asyncio.Lock()
             self._load_time_done[project_root] = asyncio.Event()
             if not suppress_auto_index:
                 asyncio.create_task(self._run_index(project_root))
         return self._projects[project_root]
+
+    def _runtime_metadata(self, project_root: str) -> dict[str, Any]:
+        embedding_model, embedding_provider = self._embedding_settings()
+        query_prompt, document_prompt = self._embedding_prompt_names()
+        return build_current_index_metadata(
+            project_root=Path(project_root),
+            embedding_model=embedding_model,
+            embedding_provider=embedding_provider,
+            query_prompt_name=query_prompt,
+            document_prompt_name=document_prompt,
+        ).dump()
+
+    def _embedder_for_project(self, project_root: str) -> Embedder:
+        runtime_meta = self._runtime_metadata(project_root)
+        effective_hash = str(runtime_meta.get("effective_config_hash"))
+        self._current_index_meta[project_root] = read_index_meta(Path(project_root))
+        if effective_hash not in self._embedder_by_config_hash:
+            try:
+                settings = load_user_settings()
+                self._embedder_by_config_hash[effective_hash] = create_embedder(settings.embedding)
+            except Exception:
+                logger.exception("Failed to create project-scoped embedder for %s", project_root)
+                raise
+        self._project_effective_config_hash[project_root] = effective_hash
+        return self._embedder_by_config_hash[effective_hash]
+
+    def _refresh_project_if_config_changed(self, project_root: str) -> None:
+        if project_root in self._projects and project_root not in self._project_effective_config_hash:
+            return
+        runtime_meta = self._runtime_metadata(project_root)
+        effective_hash = str(runtime_meta.get("effective_config_hash"))
+        if self._project_effective_config_hash.get(project_root) == effective_hash:
+            return
+        project = self._projects.pop(project_root, None)
+        if project is not None:
+            project.close()
+        self._project_effective_config_hash.pop(project_root, None)
 
     def should_wait_for_indexing(self, project_root: str) -> bool:
         """Check if search should wait before querying.
@@ -430,6 +479,25 @@ class ProjectRegistry:
             return None, None
         return settings.embedding.model, settings.embedding.provider
 
+    def _embedding_prompt_names(self) -> tuple[str | None, str | None]:
+        try:
+            settings = load_user_settings()
+        except Exception:
+            return shared.query_prompt_name, shared.document_prompt_name
+        model = settings.embedding.model
+        stripped_model = model[len("sbert/") :] if model.startswith("sbert/") else model
+        query_prompt = (
+            settings.embedding.query_params.get("prompt_name")
+            if settings.embedding.query_params is not None
+            else shared.resolve_query_prompt_name(stripped_model)
+        )
+        document_prompt = (
+            settings.embedding.indexing_params.get("prompt_name")
+            if settings.embedding.indexing_params is not None
+            else shared.resolve_document_prompt_name(stripped_model)
+        )
+        return query_prompt, document_prompt
+
     def _index_counts(self, project_root: str) -> tuple[int, int]:
         target_db = Path(project_root) / ".cocoindex_code" / "target_sqlite.db"
         if not target_db.exists():
@@ -460,12 +528,15 @@ class ProjectRegistry:
         file_count: int = 0,
     ) -> dict[str, Any]:
         embedding_model, embedding_provider = self._embedding_settings()
+        query_prompt, document_prompt = self._embedding_prompt_names()
         fingerprint = build_index_fingerprint(
             project_root=Path(project_root),
             chunk_count=chunk_count,
             file_count=file_count,
             embedding_model=embedding_model,
             embedding_provider=embedding_provider,
+            query_prompt_name=query_prompt,
+            document_prompt_name=document_prompt,
         )
         return fingerprint.dump()
 
@@ -499,9 +570,8 @@ class ProjectRegistry:
     def _warn_if_fingerprint_mismatch(self, project_root: str, *, req_id: str | None = None) -> None:
         current = self._current_fingerprint_payload(project_root)
         indexed = read_index_meta(Path(project_root))
-        if not indexed:
-            return
-        indexed_hash = indexed.get("effective_config_hash")
+        self._current_index_meta[project_root] = indexed
+        indexed_hash = indexed.get("effective_config_hash") if indexed else None
         current_hash = current.get("effective_config_hash")
         if indexed_hash == current_hash:
             return
@@ -513,6 +583,29 @@ class ProjectRegistry:
             indexedHash=indexed_hash,
             currentHash=current_hash,
         )
+
+    def _check_search_compatibility(self, project_root: str) -> None:
+        embedding_model, embedding_provider = self._embedding_settings()
+        query_prompt, document_prompt = self._embedding_prompt_names()
+        expected = build_current_index_metadata(
+            project_root=Path(project_root),
+            embedding_model=embedding_model,
+            embedding_provider=embedding_provider,
+            query_prompt_name=query_prompt,
+            document_prompt_name=document_prompt,
+        )
+        result = check_index_compatibility(Path(project_root), expected)
+        self._current_index_meta[project_root] = read_index_meta(Path(project_root))
+        for warning in result.soft_warnings:
+            log_json(
+                logger,
+                event="INDEX_FINGERPRINT_SOFT_WARN",
+                projectRoot=project_root,
+                field=warning.field,
+                expected=warning.expected,
+                actual=warning.actual,
+            )
+        result.raise_for_hard_refusal()
 
     async def update_index(
         self, project_root: str, *, suppress_auto_index: bool = True
@@ -577,7 +670,10 @@ class ProjectRegistry:
     ) -> SearchResults:
         """Search within a project."""
         project_root = _validate_project_root(project_root)
+        self._refresh_project_if_config_changed(project_root)
+        active_embedder = self._embedder_for_project(project_root)
         self._warn_if_fingerprint_mismatch(project_root, req_id=req_id)
+        self._check_search_compatibility(project_root)
         root = Path(project_root)
         target_db = root / ".cocoindex_code" / "target_sqlite.db"
         project = self._projects.get(project_root)
@@ -588,7 +684,8 @@ class ProjectRegistry:
             env: Any = SearchOnlyContext(
                 {
                     SQLITE_DB: db_to_close,
-                    EMBEDDER: self._embedder,
+                    EMBEDDER: active_embedder,
+                    QUERY_PROMPT_NAME: shared.query_prompt_name,
                     PROJECT_SETTINGS: project_settings,
                 }
             )
@@ -724,6 +821,8 @@ class ProjectRegistry:
         project = self._projects.pop(project_root, None)
         self._index_locks.pop(project_root, None)
         self._load_time_done.pop(project_root, None)
+        self._project_effective_config_hash.pop(project_root, None)
+        self._current_index_meta.pop(project_root, None)
         if project is not None:
             project.close()
             del project
@@ -886,6 +985,13 @@ async def _search_with_wait(
             uniqueResultCount=results.uniqueResultCount,
             diagnostics=_diagnostics_payload(results.diagnostics),
         )
+    except IndexCompatibilityError as e:
+        yield ErrorResponse(
+            message=str(e),
+            reqId=req_id,
+            code="INDEX_FINGERPRINT_MISMATCH",
+            details=e.details(),
+        )
     except Exception as e:
         yield ErrorResponse(message=str(e), reqId=req_id)
 
@@ -952,6 +1058,14 @@ async def _dispatch(
             return StopResponse(ok=True)
 
         return ErrorResponse(message=f"Unknown request type: {type(req).__name__}", reqId=req_id)
+    except IndexCompatibilityError as e:
+        logger.info("Search refused by index compatibility check: %s", e)
+        return ErrorResponse(
+            message=str(e),
+            reqId=req_id,
+            code="INDEX_FINGERPRINT_MISMATCH",
+            details=e.details(),
+        )
     except Exception as e:
         logger.exception("Error dispatching request")
         return ErrorResponse(message=str(e), reqId=req_id)

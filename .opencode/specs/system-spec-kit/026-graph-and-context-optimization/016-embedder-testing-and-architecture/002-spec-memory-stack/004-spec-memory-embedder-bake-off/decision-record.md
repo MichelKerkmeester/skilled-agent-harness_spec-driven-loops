@@ -1086,3 +1086,86 @@ _TBD:_
 - Aggregated decision matrix: `018-rerank-matrix-rebench/evidence/rerank-matrix-results.md`
 - Final-state baseline (locked defaults): `018-rerank-matrix-rebench/evidence/phase2-comparison-018-final.md`
 <!-- /ANCHOR:adr-021 -->
+
+<!-- ANCHOR:adr-024 -->
+## ADR-024: Commercial-safe profile and license manifest discipline
+
+| Field | Value |
+|---|---|
+| Status | Accepted (2026-05-19) |
+| Date | 2026-05-19 |
+| Decision | Add model-license metadata to the registry and enforce `COCOINDEX_COMMERCIAL_SAFE_PROFILE` at config load |
+
+### Defect
+
+The project code is Apache-2.0, but the default reranker `jinaai/jina-reranker-v3` is CC BY-NC 4.0. Operators could reasonably assume an Apache dependency stack means unrestricted commercial use, especially because the previous license signal lived only in fingerprint output and not in the model-selection UX.
+
+### Decision
+
+Every registered embedder and reranker must declare a HuggingFace-derived `license` and computed `commercial_safe` value. `COCOINDEX_COMMERCIAL_SAFE_PROFILE=true` refuses active non-commercial-safe models before daemon work proceeds and suggests registered safe alternatives.
+
+### Rules
+
+- `apache-2.0`, `mit`, and `bsd*` licenses are commercial-safe by default.
+- `cc-by-nc*` and explicit `non-commercial` markers are not commercial-safe.
+- Custom licenses require explicit review before being marked commercial-safe.
+- New model defaults must update registry metadata and tests in the same packet.
+
+### Evidence
+
+- Jina v3 model card: `jinaai/jina-reranker-v3` license is `cc-by-nc-4.0`.
+- BGE reranker model card: `BAAI/bge-reranker-v2-m3` license is `apache-2.0`.
+- Nomic CodeRankEmbed model card: `nomic-ai/CodeRankEmbed` license is `mit`.
+- Tests: `tests/test_embedder_license.py` and `tests/test_doctor.py`.
+<!-- /ANCHOR:adr-024 -->
+
+<!-- ANCHOR:adr-025 -->
+## ADR-025: Reranker selection criteria
+
+| Field | Value |
+|---|---|
+| Status | Accepted (2026-05-19) |
+| Date | 2026-05-19 |
+| Decision | Reranker defaults must satisfy fixture quality, license governance, cost, and supportability criteria |
+
+### Defect
+
+018 picked Jina v3 on corrected fixture quality, but the selection did not leave a durable governance rule for future reranker swaps. The default changed quickly across GTE, BGE, and Jina, creating operator uncertainty and making license/cost trade-offs easy to miss.
+
+### Decision
+
+Future reranker default changes must be justified against four criteria, in order:
+
+1. Quality on the corrected fixture and any current regression fixture.
+2. License status and commercial-safe profile behavior.
+3. Runtime cost, model load cost, and reindex or daemon restart burden.
+4. Sustainable support in the local adapter stack.
+
+### Consequences
+
+- Jina v3 can remain default because ADR-021 quality evidence wins for non-commercial/default profile users.
+- Commercial deployments should opt into BGE via `COCOINDEX_COMMERCIAL_SAFE_PROFILE=true` or `COCOINDEX_RERANK_MODEL=BAAI/bge-reranker-v2-m3`.
+- A future Apache-2.0 reranker can replace Jina only after matching or beating fixture quality and supportability.
+<!-- /ANCHOR:adr-025 -->
+
+<!-- ANCHOR:adr-026 -->
+## ADR-026: Pipeline-before-model invariant
+
+| Field | Value |
+|---|---|
+| Status | Accepted (2026-05-19) |
+| Date | 2026-05-19 |
+| Decision | Fix retrieval pipeline defects before swapping models to compensate |
+
+### Defect
+
+The 013-018 arc showed that fixture correctness, mirror dedup, code-aware chunking, query expansion defaults, and RRF calibration can dominate apparent model quality. Swapping embedders or rerankers before pipeline defects are fixed risks paying a 10-25 minute reindex cost while masking the real recall or ranking failure.
+
+### Decision
+
+When search quality regresses, the first response is pipeline diagnosis: fixture validity, candidate-set recall, chunking, dedup, prompt policy, RRF lanes, and fingerprint drift. Model swaps are allowed only after the pipeline is known-good or the experiment explicitly measures the pipeline defect as an independent variable.
+
+### Operational Rule
+
+Run `ccc doctor` before model swaps. If it reports fingerprint mismatch, stale CLI, or a non-commercial default in a commercial context, fix that first. Use the model-swap reindex estimate to make rollback cost visible before starting a full reset/index cycle.
+<!-- /ANCHOR:adr-026 -->

@@ -1,0 +1,36 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023A1-metadata-fingerprint",
+  "description": "Metadata fingerprint compatibility for mcp-coco-index, persisting embedder prompt dimension chunking corpus and daemon isolation metadata with hard refusal for unsafe mismatches.",
+  "keywords": [
+    "metadata",
+    "fingerprint",
+    "compatibility",
+    "mcp-coco-index",
+    "persisting",
+    "embedder",
+    "prompt",
+    "dimension",
+    "chunking",
+    "corpus",
+    "daemon",
+    "isolation",
+    "hard",
+    "refusal",
+    "unsafe",
+    "mismatches"
+  ],
+  "lastUpdated": "2026-05-19T20:42:27.067Z",
+  "specId": "023A1",
+  "folderSlug": "metadata-fingerprint",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "004-code-index-stack"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

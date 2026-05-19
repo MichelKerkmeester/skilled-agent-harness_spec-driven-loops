@@ -19,6 +19,7 @@ from . import reranker
 from .config import config
 from .fts_index import query_fts
 from .fusion import FusedRow, RankedRow, rrf_fuse
+from .index_metadata import build_current_index_metadata, ensure_index_compatible
 from .observability import (
     LANE_HYBRID_RERANK,
     LANE_HYBRID_RRF,
@@ -34,7 +35,8 @@ from .query_expansion import ExpandedQuery, expand_query
 from .schema import QueryResult
 from .search_budget import SearchBudget, validate_search_budget
 from .settings import PROJECT_SETTINGS, is_canonical_path
-from .shared import EMBEDDER, SQLITE_DB, query_prompt_name
+from . import shared
+from .shared import EMBEDDER, QUERY_PROMPT_NAME, SQLITE_DB
 
 logger = logging.getLogger(__name__)
 
@@ -750,9 +752,26 @@ async def query_codebase(
             f"Index database not found at {target_sqlite_db_path}. "
             "Please run a query with refresh_index=True first."
         )
+    if target_sqlite_db_path.parent.name == ".cocoindex_code":
+        project_root = target_sqlite_db_path.parent.parent.resolve()
+        compatibility = ensure_index_compatible(
+            project_root,
+            build_current_index_metadata(project_root=project_root),
+        )
+        for warning in compatibility.soft_warnings:
+            logger.warning(
+                "INDEX_FINGERPRINT_SOFT_WARN field=%s expected=%r actual=%r",
+                warning.field,
+                warning.expected,
+                warning.actual,
+            )
 
     db = env.get_context(SQLITE_DB)
     embedder = env.get_context(EMBEDDER)
+    try:
+        query_prompt = env.get_context(QUERY_PROMPT_NAME)
+    except KeyError:
+        query_prompt = shared.query_prompt_name
     project_settings = env.get_context(PROJECT_SETTINGS)
     diagnostics = RetrievalDiagnostics()
     expanded_query = _query_expansion_payload(query)
@@ -769,7 +788,7 @@ async def query_codebase(
     # Generate query embedding.
     stage_start = monotonic_ms()
     query_embeddings = [
-        await embedder.embed(dense_query, query_prompt_name)
+        await embedder.embed(dense_query, query_prompt)
         for dense_query in dense_queries
     ]
     if req_id is not None:

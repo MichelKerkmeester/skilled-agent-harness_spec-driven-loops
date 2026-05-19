@@ -13,11 +13,14 @@ from .fts_index import sync_fts_from_code_chunks
 from .indexer import indexer_main
 from .protocol import IndexingProgress
 from .settings import PROJECT_SETTINGS, ProjectSettings, load_gitignore_spec
+from . import shared
 from .shared import (
     CODEBASE_DIR,
     EMBEDDER,
     EXT_LANG_OVERRIDE_MAP,
     GITIGNORE_SPEC,
+    DOCUMENT_PROMPT_NAME,
+    QUERY_PROMPT_NAME,
     SQLITE_DB,
     Embedder,
 )
@@ -105,6 +108,8 @@ class Project:
         context.provide(CODEBASE_DIR, project_root)
         context.provide(SQLITE_DB, sqlite.connect(str(target_sqlite_db_path), load_vec=True))
         context.provide(EMBEDDER, embedder)
+        context.provide(QUERY_PROMPT_NAME, shared.query_prompt_name)
+        context.provide(DOCUMENT_PROMPT_NAME, shared.document_prompt_name)
         context.provide(PROJECT_SETTINGS, project_settings)
         context.provide(
             EXT_LANG_OVERRIDE_MAP,

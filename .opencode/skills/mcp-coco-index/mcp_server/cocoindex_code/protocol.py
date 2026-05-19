@@ -122,6 +122,7 @@ class RetrievalDiagnosticsPayload(_msgspec.Struct):
 
 
 class IndexFingerprintPayload(_msgspec.Struct):
+    schema_version: int | None = None
     embedder_name: str | None = None
     embedder_dim: int | None = None
     embedder_provider: str | None = None
@@ -133,7 +134,10 @@ class IndexFingerprintPayload(_msgspec.Struct):
     chunk_size: int | None = None
     chunk_overlap: int | None = None
     chunking_policy: str | None = None
+    mirror_dedup_canonical_preference: bool | None = None
     corpus_root: str | None = None
+    created_at: str | None = None
+    indexer_version: str | None = None
     chunk_count: int | None = None
     file_count: int | None = None
     rrf_K: int | None = None
@@ -192,6 +196,8 @@ class StopResponse(_msgspec.Struct, tag="stop"):
 class ErrorResponse(_msgspec.Struct, tag="error"):
     message: str
     reqId: str | None = None
+    code: str | None = None
+    details: dict[str, object] | None = None
 
 
 Response = (

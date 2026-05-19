@@ -26,6 +26,7 @@ from .observability import build_index_fingerprint, write_index_meta
 from .settings import PROJECT_SETTINGS, is_canonical_path
 from .shared import (
     CODEBASE_DIR,
+    DOCUMENT_PROMPT_NAME,
     EMBEDDER,
     EXT_LANG_OVERRIDE_MAP,
     GITIGNORE_SPEC,
@@ -295,6 +296,7 @@ async def process_file(
 ) -> None:
     """Process a single file: chunk, embed, and store."""
     embedder = coco.use_context(EMBEDDER)
+    document_prompt_name = coco.use_context(DOCUMENT_PROMPT_NAME)
     db = coco.use_context(SQLITE_DB)
 
     try:
@@ -344,7 +346,7 @@ async def process_file(
                 path_class=path_class,
                 start_line=chunk.start.line,
                 end_line=chunk.end.line,
-                embedding=await embedder.embed(chunk.text),
+                embedding=await embedder.embed(chunk.text, document_prompt_name),
             )
         )
         with db.transaction() as conn:

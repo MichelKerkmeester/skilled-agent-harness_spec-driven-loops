@@ -1,0 +1,37 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023D-doctor-model-swap-ux",
+  "description": "CocoIndex ccc doctor command for stale CLI detection, model license warnings, commercial-safe profile enforcement, fingerprint drift, and reindex cost",
+  "keywords": [
+    "cocoindex",
+    "ccc",
+    "doctor",
+    "command",
+    "stale",
+    "cli",
+    "detection",
+    "model",
+    "license",
+    "warnings",
+    "commercial-safe",
+    "profile",
+    "enforcement",
+    "fingerprint",
+    "drift",
+    "reindex",
+    "cost"
+  ],
+  "lastUpdated": "2026-05-19T20:38:56.102Z",
+  "specId": "023",
+  "folderSlug": "d-doctor-model-swap-ux",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "004-code-index-stack"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

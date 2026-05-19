@@ -10,7 +10,14 @@ from pathlib import Path
 
 from .path_utils import normalize_mirror_prefix
 from .query_expansion import _DEFAULT_SYNONYMS
-from .registered_embedders import DEFAULT_EMBEDDER_NAME
+from .registered_embedders import (
+    DEFAULT_EMBEDDER_NAME,
+    DEFAULT_RERANKER_NAME,
+    commercial_safe_embedder_alternatives,
+    commercial_safe_reranker_alternatives,
+    get_embedder_metadata,
+    get_reranker_metadata,
+)
 
 _DEFAULT_MODEL = DEFAULT_EMBEDDER_NAME  # 018 follow-on: ties bge-code-v1 on hit rate (12/13/14 across BGE/BGE+path-class/jina-v3 lanes) with ~10% lower median latency; supersedes jina-v2-base-code default
 _DEFAULT_CHUNK_SIZE = 1500
@@ -21,7 +28,7 @@ _DEFAULT_TREE_SITTER_LANGUAGES: dict[str, object] = {}
 _DEFAULT_HYBRID_VECTOR_WEIGHT = 0.9  # 017 empirical: tied hit rate across V=[0.7,0.9], V=0.9 picks lower p95
 _DEFAULT_HYBRID_FTS5_WEIGHT = 0.5  # 017 empirical: tied hit rate across F=[0.5,0.7], F=0.5 picks lower p95
 _DEFAULT_HYBRID_RRF_K = 60  # 017 empirical: K=[30,60,90,120] all tied at 12/18 hits; keep canonical 60
-_DEFAULT_RERANK_MODEL = "jinaai/jina-reranker-v3"  # 018 empirical: 14/18 vs BGE 12/18 vs BGE+path-class 13/18 on corrected fixture under post-017 pipeline; BGE retained as opt-in via env override
+_DEFAULT_RERANK_MODEL = DEFAULT_RERANKER_NAME  # 018 empirical: 14/18 vs BGE 12/18 vs BGE+path-class 13/18 on corrected fixture under post-017 pipeline; BGE retained as opt-in via env override
 _DEFAULT_RERANK_TOP_K = 20
 _DEFAULT_QUERY_EXPANSION = False  # 016 empirical: ON regressed 14/13/12 → 12/12/12 on corrected fixture; ships opt-in pending 017 RRF tuning
 _DEFAULT_QUERY_EXPANSION_MAX_VARIANTS = 6
@@ -53,6 +60,29 @@ _MAX_JSON_LIST_ITEMS = 100
 _MAX_JSON_DICT_ITEMS = 100
 
 logger = logging.getLogger(__name__)
+
+
+class CommercialSafeProfileError(ValueError):
+    """Raised when COCOINDEX_COMMERCIAL_SAFE_PROFILE blocks an active model."""
+
+
+def _commercial_safe_error(
+    *,
+    model_kind: str,
+    model_name: str,
+    license_name: str,
+    alternatives: list[str],
+) -> CommercialSafeProfileError:
+    payload = {
+        "error": "COCOINDEX_COMMERCIAL_SAFE_PROFILE_MODEL_BLOCKED",
+        "model_kind": model_kind,
+        "model_name": model_name,
+        "license": license_name,
+        "commercial_safe": False,
+        "alternatives": alternatives,
+        "remediation": "Choose a commercial-safe model or unset COCOINDEX_COMMERCIAL_SAFE_PROFILE.",
+    }
+    return CommercialSafeProfileError(json.dumps(payload, sort_keys=True))
 
 
 def _find_root_with_marker(start: Path, markers: list[str]) -> Path | None:
@@ -526,9 +556,40 @@ def _warn_on_semantic_rrf_config(
 
 
 def _is_registered_embedder(name: str) -> bool:
-    from cocoindex_code.registered_embedders import get_embedder_metadata  # noqa: PLC0415
-
     return get_embedder_metadata(name) is not None
+
+
+def _enforce_commercial_safe_profile(
+    *,
+    enabled: bool,
+    embedding_model: str,
+    rerank_enabled: bool,
+    rerank_model: str,
+) -> None:
+    """Block active non-commercial-safe models when the operator opts in."""
+    if not enabled:
+        return
+
+    embedder = get_embedder_metadata(embedding_model)
+    if embedder is not None and not embedder.commercial_safe:
+        raise _commercial_safe_error(
+            model_kind="embedder",
+            model_name=embedding_model,
+            license_name=embedder.license,
+            alternatives=commercial_safe_embedder_alternatives(),
+        )
+
+    if not rerank_enabled:
+        return
+
+    reranker = get_reranker_metadata(rerank_model)
+    if reranker is not None and not reranker.commercial_safe:
+        raise _commercial_safe_error(
+            model_kind="reranker",
+            model_name=rerank_model,
+            license_name=reranker.license,
+            alternatives=commercial_safe_reranker_alternatives(),
+        )
 
 
 @dataclass
@@ -556,6 +617,7 @@ class Config:
     rerank_path_class_boost: bool
     rerank_path_class_factors: dict[str, float]
     rerank_adapter: str
+    commercial_safe_profile: bool
     query_expansion: bool
     query_expansion_max_variants: int
     query_expansion_synonyms: dict[str, list[str]]
@@ -695,6 +757,13 @@ class Config:
             _DEFAULT_PATH_CLASS_FACTORS,
         )
         rerank_adapter = os.environ.get("COCOINDEX_RERANK_ADAPTER", "").strip().lower()
+        commercial_safe_profile = _parse_bool_env("COCOINDEX_COMMERCIAL_SAFE_PROFILE", False)
+        _enforce_commercial_safe_profile(
+            enabled=commercial_safe_profile,
+            embedding_model=embedding_model,
+            rerank_enabled=rerank_enabled,
+            rerank_model=rerank_model,
+        )
         query_expansion = _parse_bool_env(
             "COCOINDEX_QUERY_EXPANSION",
             _DEFAULT_QUERY_EXPANSION,
@@ -772,6 +841,7 @@ class Config:
             rerank_path_class_boost=rerank_path_class_boost,
             rerank_path_class_factors=rerank_path_class_factors,
             rerank_adapter=rerank_adapter,
+            commercial_safe_profile=commercial_safe_profile,
             query_expansion=query_expansion,
             query_expansion_max_variants=query_expansion_max_variants,
             query_expansion_synonyms=query_expansion_synonyms,

@@ -11,13 +11,18 @@ hf_url for authoritative current values.
 from __future__ import annotations
 
 import logging
-from dataclasses import dataclass
-from typing import Literal
+from dataclasses import dataclass, field
+from types import MappingProxyType
+from typing import Literal, Mapping
 
 
 EmbedderCategory = Literal["text", "code"]
+PromptPolicy = Literal["none", "query_only", "asymmetric"]
 
 logger = logging.getLogger(__name__)
+
+PERMISSIVE_LICENSE_PREFIXES = ("apache-2.0", "mit", "bsd")
+NON_COMMERCIAL_LICENSE_MARKERS = ("cc-by-nc", "non-commercial")
 
 DIMENSION_MIGRATION_REQUIREMENTS = (
     "Changing to an embedder whose dim differs from the indexed vector schema requires "
@@ -25,6 +30,14 @@ DIMENSION_MIGRATION_REQUIREMENTS = (
     "new index validates, and roll back by restoring the prior COCOINDEX_CODE_EMBEDDING_MODEL "
     "plus rerunning reset/index so stored vectors match the live model dimension."
 )
+
+
+def license_is_commercial_safe(license_name: str) -> bool:
+    """Return whether a model license is safe for the commercial-safe profile."""
+    normalized = license_name.strip().lower()
+    if any(marker in normalized for marker in NON_COMMERCIAL_LICENSE_MARKERS):
+        return False
+    return normalized.startswith(PERMISSIVE_LICENSE_PREFIXES)
 
 
 @dataclass(frozen=True)
@@ -52,11 +65,53 @@ class EmbedderMetadata:
     hf_url: str
     """HuggingFace model card URL (authoritative source for metadata + license)."""
 
+    license: str
+    """License identifier from the HuggingFace model card."""
+
+    commercial_safe: bool = field(init=False)
+    """True when the license is allowed under COCOINDEX_COMMERCIAL_SAFE_PROFILE."""
+
     notes: str
     """When to prefer this embedder — operator-facing guidance."""
 
     requires_ollama_daemon: bool = False
     """True when the embedder requires a reachable local Ollama daemon."""
+
+    prompt_policy: PromptPolicy = "none"
+    """Whether the model expects prompt params for query and/or document embedding."""
+
+    indexing_params: Mapping[str, str] = field(default_factory=dict)
+    """Upstream-style params forwarded when embedding indexed documents."""
+
+    query_params: Mapping[str, str] = field(default_factory=dict)
+    """Upstream-style params forwarded when embedding search queries."""
+
+    @property
+    def query_prompt_name(self) -> str | None:
+        """SentenceTransformers prompt_name for search queries, if configured."""
+        return self.query_params.get("prompt_name")
+
+    @property
+    def document_prompt_name(self) -> str | None:
+        """SentenceTransformers prompt_name for indexed documents, if configured."""
+        return self.indexing_params.get("prompt_name")
+
+    def __post_init__(self) -> None:
+        object.__setattr__(self, "commercial_safe", license_is_commercial_safe(self.license))
+
+
+@dataclass(frozen=True)
+class RerankerMetadata:
+    """Metadata describing one supported reranker candidate."""
+
+    name: str
+    hf_url: str
+    license: str
+    notes: str
+    commercial_safe: bool = field(init=False)
+
+    def __post_init__(self) -> None:
+        object.__setattr__(self, "commercial_safe", license_is_commercial_safe(self.license))
 
 
 MANIFESTS: tuple[EmbedderMetadata, ...] = (
@@ -68,6 +123,7 @@ MANIFESTS: tuple[EmbedderMetadata, ...] = (
         mps_compatible=True,
         category="code",
         hf_url="https://huggingface.co/jinaai/jina-embeddings-v2-base-code",
+        license="apache-2.0",
         notes="Former default. Code-tuned (Python/JS/Go/Java/Ruby/PHP), 8192 ctx. Dim matches the 768d schema. Strong general-purpose code retrieval fallback.",
     ),
     EmbedderMetadata(
@@ -78,7 +134,11 @@ MANIFESTS: tuple[EmbedderMetadata, ...] = (
         mps_compatible=True,
         category="text",
         hf_url="https://huggingface.co/google/embeddinggemma-300m",
+        license="gemma",
         notes="BASELINE (pre-018). General-text model, not code-tuned. Kept as a reference baseline for benchmarks and as a fallback.",
+        prompt_policy="asymmetric",
+        indexing_params=MappingProxyType({"prompt_name": "InstructionRetrieval"}),
+        query_params=MappingProxyType({"prompt_name": "InstructionRetrieval"}),
     ),
     EmbedderMetadata(
         name="sbert/nomic-ai/CodeRankEmbed",
@@ -88,7 +148,10 @@ MANIFESTS: tuple[EmbedderMetadata, ...] = (
         mps_compatible=True,
         category="code",
         hf_url="https://huggingface.co/nomic-ai/CodeRankEmbed",
+        license="mit",
         notes="DEFAULT as of the 2026-05-19 nomic promotion. Code-tuned embedder that tied bge-code-v1 hit rate on the corrected fixture with lower median latency; keep 768d schema compatibility.",
+        prompt_policy="query_only",
+        query_params=MappingProxyType({"prompt_name": "query"}),
     ),
     EmbedderMetadata(
         name="sbert/BAAI/bge-code-v1",
@@ -98,6 +161,7 @@ MANIFESTS: tuple[EmbedderMetadata, ...] = (
         mps_compatible=True,
         category="code",
         hf_url="https://huggingface.co/BAAI/bge-code-v1",
+        license="apache-2.0",
         notes="BAAI's code embedder. Use if multilingual code coverage is critical.",
     ),
     EmbedderMetadata(
@@ -108,6 +172,7 @@ MANIFESTS: tuple[EmbedderMetadata, ...] = (
         mps_compatible=True,
         category="text",
         hf_url="https://huggingface.co/jinaai/jina-embeddings-v2-base-en",
+        license="apache-2.0",
         notes="English-text-tuned variant of jina v2. Use if your repo is documentation-heavy rather than code-heavy.",
     ),
     EmbedderMetadata(
@@ -118,6 +183,7 @@ MANIFESTS: tuple[EmbedderMetadata, ...] = (
         mps_compatible=True,
         category="text",
         hf_url="https://huggingface.co/nomic-ai/nomic-embed-text-v1.5",
+        license="apache-2.0",
         notes="Local Ollama text embedder. Useful for operators who already run Ollama and want an immediate 768d local option; not code-tuned, so benchmark before replacing the default code model.",
         requires_ollama_daemon=True,
     ),
@@ -129,6 +195,7 @@ MANIFESTS: tuple[EmbedderMetadata, ...] = (
         mps_compatible=True,
         category="code",
         hf_url="https://huggingface.co/Salesforce/SFR-Embedding-Code-2B_R",
+        license="cc-by-nc-4.0",
         notes="Large (2B params), top-of-leaderboard on CoIR benchmark. Use if you have GPU/RAM headroom and need maximum code retrieval quality. Slower inference.",
     ),
     EmbedderMetadata(
@@ -139,12 +206,30 @@ MANIFESTS: tuple[EmbedderMetadata, ...] = (
         mps_compatible=True,
         category="text",
         hf_url="https://huggingface.co/dunzhang/stella_en_400M_v5",
+        license="mit",
         notes="Small (400M), fast, surprisingly competitive on code + text retrieval. Default 1024d (also supports 768/512). MTEB-strong. Schema migration needed when swapping from 768d default (use vec_1024).",
     ),
 )
 
 
+RERANKER_MANIFESTS: tuple[RerankerMetadata, ...] = (
+    RerankerMetadata(
+        name="jinaai/jina-reranker-v3",
+        hf_url="https://huggingface.co/jinaai/jina-reranker-v3",
+        license="cc-by-nc-4.0",
+        notes="Default as of 018 for quality on the corrected fixture. Non-commercial license; use BGE for commercial-safe deployments.",
+    ),
+    RerankerMetadata(
+        name="BAAI/bge-reranker-v2-m3",
+        hf_url="https://huggingface.co/BAAI/bge-reranker-v2-m3",
+        license="apache-2.0",
+        notes="Commercial-safe opt-in reranker. Runner-up quality lane in 018; supported by the CrossEncoder adapter.",
+    ),
+)
+
+
 DEFAULT_EMBEDDER_NAME = "sbert/nomic-ai/CodeRankEmbed"  # 018 follow-on: promoted over jina-v2-base-code after corrected-pipeline bench tied bge-code-v1 on hit rate with lower latency
+DEFAULT_RERANKER_NAME = "jinaai/jina-reranker-v3"
 _DEFAULT_NAME = DEFAULT_EMBEDDER_NAME
 
 
@@ -153,12 +238,35 @@ def list_embedders() -> tuple[EmbedderMetadata, ...]:
     return MANIFESTS
 
 
+def list_rerankers() -> tuple[RerankerMetadata, ...]:
+    """Return the frozen registry of supported reranker candidates."""
+    return RERANKER_MANIFESTS
+
+
 def get_embedder_metadata(name: str) -> EmbedderMetadata | None:
     """Look up one embedder by `name` (sbert/ string). Returns None if not registered."""
     for entry in MANIFESTS:
         if entry.name == name:
             return entry
     return None
+
+
+def get_reranker_metadata(name: str) -> RerankerMetadata | None:
+    """Look up one reranker by exact name or registered prefix."""
+    for entry in RERANKER_MANIFESTS:
+        if name == entry.name or name.startswith(entry.name):
+            return entry
+    return None
+
+
+def commercial_safe_embedder_alternatives() -> list[str]:
+    """Return operator-facing commercial-safe embedder names."""
+    return [entry.name for entry in MANIFESTS if entry.commercial_safe]
+
+
+def commercial_safe_reranker_alternatives() -> list[str]:
+    """Return operator-facing commercial-safe reranker names."""
+    return [entry.name for entry in RERANKER_MANIFESTS if entry.commercial_safe]
 
 
 def default_embedder() -> EmbedderMetadata:
