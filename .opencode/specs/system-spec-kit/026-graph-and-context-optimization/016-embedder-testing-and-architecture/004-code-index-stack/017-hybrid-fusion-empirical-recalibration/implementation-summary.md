@@ -68,7 +68,7 @@ The safe non-shared slice is in place. `sweep-rrf.sh` can iterate the RRF grid, 
 
 The implementation respected the parallel-execution lock. `git log --oneline -10` did not include `feat(016/004/016)`, so `config.py`, `query.py`, `README.md`, the bake-off ADR, full sweep execution, and final no-env bench were not touched.
 
-The wrapper sets both the requested future-facing env names (`COCOINDEX_RRF_K`, `COCOINDEX_RRF_VEC_WEIGHT`, `COCOINDEX_RRF_FTS_WEIGHT`) and the current config names (`COCOINDEX_HYBRID_RRF_K`, `COCOINDEX_HYBRID_VECTOR_WEIGHT`, `COCOINDEX_HYBRID_FTS5_WEIGHT`). This keeps the harness runnable before and after the later config alias work.
+The wrapper sets the production config names (`COCOINDEX_HYBRID_RRF_K`, `COCOINDEX_HYBRID_VECTOR_WEIGHT`, `COCOINDEX_HYBRID_FTS5_WEIGHT`) for each sweep cell. That keeps the harness aligned with `Config.from_env()` and ADR-020's rollback path.
 <!-- /ANCHOR:how-delivered -->
 
 <!-- ANCHOR:decisions -->

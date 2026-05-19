@@ -29,6 +29,7 @@ import os
 from dataclasses import replace
 from typing import Any
 
+from .config import _parse_int_env
 from .reranker import (
     MIN_AVAILABLE_RAM_BYTES,
     _apply_path_class_boost,
@@ -142,8 +143,11 @@ class JinaRerankerAdapter:
         head = candidates[:rerank_count]
         tail = candidates[rerank_count:]
 
-        max_doc_chars = int(
-            os.environ.get("COCOINDEX_RERANK_JINA_MAX_DOC_CHARS", _DEFAULT_MAX_DOC_CHARS)
+        max_doc_chars = _parse_int_env(
+            "COCOINDEX_RERANK_JINA_MAX_DOC_CHARS",
+            _DEFAULT_MAX_DOC_CHARS,
+            1,
+            50000,
         )
 
         # Clip doc content upstream of the model's own tokenizer truncation

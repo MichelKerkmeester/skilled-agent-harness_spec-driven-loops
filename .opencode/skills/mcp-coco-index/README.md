@@ -66,7 +66,7 @@ If that exploration feeds into Spec Kit packet recovery, `/spec_kit:resume` rema
 
 ### Key Statistics
 
-This skill runs version 1.2.0 and exposes 2 MCP tools (search and cocoindex_refresh_index). It supports 28+ programming languages and uses the nomic-ai/CodeRankEmbed embedding model by default via sentence-transformers (768-dim, local, no API key, Metal/MPS accelerated on Apple Silicon — auto-detected). The code-tuned default was ratified in packet 018 after a comparison against gemma-300m, nomic-CodeRankEmbed, and BAAI/bge-code-v1. Vector storage uses SQLite via sqlite-vec, with a default chunk size of 1500 characters (250 char minimum, 200 char overlap, all tunable via env vars in v1.2.0+) and cosine similarity (0.0 to 1.0) as the similarity metric. Hybrid search (FTS5 + RRF) and cross-encoder rerank are opt-in v1.2.0 features (default OFF).
+This skill runs version 1.2.0 and exposes 2 MCP tools (search and cocoindex_refresh_index). It supports 28+ programming languages and uses the nomic-ai/CodeRankEmbed embedding model by default via sentence-transformers (768-dim, local, no API key, Metal/MPS accelerated on Apple Silicon, auto-detected). The code-tuned default was ratified in packet 018 after a comparison against gemma-300m, nomic-CodeRankEmbed, and BAAI/bge-code-v1. Vector storage uses SQLite via sqlite-vec, with a default chunk size of 1500 characters (250 char minimum, 200 char overlap, all tunable via env vars in v1.2.0+) and cosine similarity (0.0 to 1.0) as the similarity metric. Hybrid search (FTS5 + RRF) and Jina v3 cross-encoder rerank are default-on production features.
 
 ### Key Features
 
@@ -77,18 +77,18 @@ This skill runs version 1.2.0 and exposes 2 MCP tools (search and cocoindex_refr
 - Incremental indexing: Only re-embeds changed files on subsequent runs
 - Daemon architecture: Auto-starts, auto-restarts on version or settings change
 - Spec Kit integration: Companion lifecycle tools (`ccc_status`, `ccc_reindex`, `ccc_feedback`) and code-graph/session integration are available through system-spec-kit
-- Jina-code default: 768d code-tuned `nomic-ai/CodeRankEmbed` via sentence-transformers; Metal/MPS auto-detected on Apple Silicon, no API key. Note: mk-spec-memory uses `jina-embeddings-v3` (1024d text-tuned) — both jina, but different variants for different content types
+- Nomic default: 768d code-tuned `nomic-ai/CodeRankEmbed` via sentence-transformers; Metal/MPS auto-detected on Apple Silicon, no API key. Note: mk-spec-memory uses `jina-embeddings-v3` (1024d text-tuned), while CocoIndex uses nomic CodeRankEmbed for local code search
 - 28+ languages: Language-aware chunk splitting preserves function and class boundaries
 
 In the broader system-spec-kit stack, CocoIndex is the semantic half of a three-system retrieval model: CocoIndex finds conceptually similar code, Code Graph answers structural questions, and session bootstrap surfaces CocoIndex readiness during recovery. The companion lifecycle helpers exposed through system-spec-kit are `ccc_status`, `ccc_reindex`, and `ccc_feedback`.
 
-### v1.2.0 Retrieval-Quality Capabilities (Opt-in)
+### v1.2.0 Retrieval-Quality Capabilities
 
-Three opt-in retrieval features shipped in v1.2.0. All default OFF — production behavior is unchanged unless you flip the env flag.
+Three retrieval-quality capabilities ship in v1.2.0. Chunking tunables are always available; hybrid retrieval and rerank are default ON and can be disabled with env flags when operators need ablations or rollback.
 
 - **Chunking tunables** — `CHUNK_SIZE` raised 1000 → 1500 for better function-boundary preservation; new env overrides `COCOINDEX_CODE_CHUNK_SIZE`, `COCOINDEX_CODE_CHUNK_OVERLAP`, `COCOINDEX_CODE_MIN_CHUNK_SIZE`.
-- **Hybrid search** (`COCOINDEX_HYBRID=1`) — SQLite FTS5 lexical channel fused with the vector channel via Reciprocal Rank Fusion. Mirrors the retrieval stack used by `mk-spec-memory`. Tunable via `COCOINDEX_HYBRID_VECTOR_WEIGHT`, `COCOINDEX_HYBRID_FTS5_WEIGHT`, `COCOINDEX_HYBRID_RRF_K`.
-- **Cross-encoder rerank** (`COCOINDEX_RERANK=1`) — Local GTE multilingual reranker applied to the top-K candidates. Tunable via `COCOINDEX_RERANK_MODEL`, `COCOINDEX_RERANK_TOP_K`. First use downloads the model to `~/.cache/huggingface/hub/`.
+- **Hybrid search** (`COCOINDEX_HYBRID=true`) — SQLite FTS5 lexical channel fused with the vector channel via Reciprocal Rank Fusion. Mirrors the retrieval stack used by `mk-spec-memory`. Tunable via `COCOINDEX_HYBRID_VECTOR_WEIGHT`, `COCOINDEX_HYBRID_FTS5_WEIGHT`, `COCOINDEX_HYBRID_RRF_K`; set `COCOINDEX_HYBRID=false` for vector-only rollback.
+- **Cross-encoder rerank** (`COCOINDEX_RERANK=true`) — Local Jina v3 reranker applied to the top-K candidates. Tunable via `COCOINDEX_RERANK_MODEL`, `COCOINDEX_RERANK_TOP_K`. First use downloads the model to `~/.cache/huggingface/hub/`; set `COCOINDEX_RERANK=false` for no-rerank ablations.
 
 Full env-var matrix with defaults and valid ranges: [INSTALL_GUIDE.md §4 "Tuning + optional retrieval features"](INSTALL_GUIDE.md).
 
@@ -202,7 +202,6 @@ The CLI and MCP interfaces are complementary, not redundant. The CLI handles ind
 |---|---|---|---|---|
 | `nomic-ai/CodeRankEmbed` | Local via sentence-transformers | 768 | None | **Default.** Code-tuned. Metal/MPS auto-detect on Apple Silicon |
 | `google/embeddinggemma-300m` | Local via sentence-transformers | 768 | None | Pre-018 baseline. General-text. Kept for benchmark comparisons |
-| `nomic-ai/CodeRankEmbed` | Local via sentence-transformers | 768 | None | Alternative code-tuned. Python-leaning training data |
 | `BAAI/bge-code-v1` | Local via sentence-transformers | 768 | None | Multilingual code coverage focus |
 | `Salesforce/SFR-Embedding-Code-2B_R` | Local via sentence-transformers | 2048 | None | Largest, highest quality. Needs ~4 GB RAM headroom |
 | `voyage/voyage-code-3` | Cloud via LiteLLM | 1024 | `VOYAGE_API_KEY` | Higher-dim cloud option (requires API key) |
@@ -329,7 +328,7 @@ Set `"disabled": false` to activate. The MCP server is disabled by default to av
 |---|---|---|
 | `COCOINDEX_CODE_ROOT_PATH` | auto-detected | Override project root for indexing |
 | `COCOINDEX_CODE_DIR` | `~/.cocoindex_code` | Override config and data directory |
-| `COCOINDEX_CODE_EMBEDDING_MODEL` | `sbert/nomic-ai/CodeRankEmbed` | Override the cocoindex embedding model (default = jina-code per registered_embedders.py) |
+| `COCOINDEX_CODE_EMBEDDING_MODEL` | `sbert/nomic-ai/CodeRankEmbed` | Override the CocoIndex embedding model. Default is nomic CodeRankEmbed per `registered_embedders.py` |
 | `COCOINDEX_CODE_DEVICE` | auto-detect (cuda → mps → cpu) | Override compute device. Use `cpu` as kill switch if MPS produces unstable results |
 | `COCOINDEX_QUERY_PROMPT_NAME` | from registry | Override cocoindex query-prompt routing |
 | `VOYAGE_API_KEY` | (none) | Required only when using Voyage cloud models |

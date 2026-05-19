@@ -7,9 +7,10 @@
 #   2. bge-path-class     : same BGE model + COCOINDEX_RERANK_PATH_CLASS_BOOST=1
 #   3. jina-v3            : throwaway jina-reranker-v3 adapter
 #
-# Embedder is PINNED to sbert/BAAI/bge-code-v1 across all 3 lanes — this is a
-# reranker/path-role test, not an embedder test. The DB must already be indexed
-# under bge-code-v1 (see plan §1 "background DB reset").
+# Embedder defaults to sbert/BAAI/bge-code-v1 across all 3 lanes because this
+# began as a reranker/path-role test, not an embedder test. Override
+# COCOINDEX_CODE_EMBEDDING_MODEL when reproducing another already-indexed
+# embedder lane, for example sbert/nomic-ai/CodeRankEmbed.
 #
 # Per-lane behavior:
 #   - Kill the ccc daemon (clears _ADAPTERS singleton + reranker model cache)
@@ -53,8 +54,8 @@ print(len(json.loads(open(sys.argv[1]).read())))
 PYTHON_COUNT
 )"
 
-# Pinned embedder for all lanes (reranker/path-role test)
-export COCOINDEX_CODE_EMBEDDING_MODEL="sbert/BAAI/bge-code-v1"
+# Default embedder for all lanes; callers may override for already-indexed embedder lanes.
+export COCOINDEX_CODE_EMBEDDING_MODEL="${COCOINDEX_CODE_EMBEDDING_MODEL:-sbert/BAAI/bge-code-v1}"
 export COCOINDEX_HYBRID="true"
 export COCOINDEX_RERANK="true"
 

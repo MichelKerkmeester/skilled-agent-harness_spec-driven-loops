@@ -6,7 +6,7 @@ trigger_phrases:
   - "RRF parameter sweep"
   - "vec_weight fts_weight tuning"
   - "cocoindex hybrid fusion"
-  - "COCOINDEX_RRF_K"
+  - "COCOINDEX_HYBRID_RRF_K"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
@@ -89,17 +89,17 @@ In scope:
   - `fts_weight ∈ {0.3, 0.5, 0.7, 0.9}` (4 values)
   - Total cells: 4 × 4 × 4 = **64**
   - Bounded by `COCOINDEX_RRF_SWEEP_K_VALUES`, `COCOINDEX_RRF_SWEEP_VEC_WEIGHTS`, `COCOINDEX_RRF_SWEEP_FTS_WEIGHTS` JSON-list env vars (operator-configurable for future re-runs with different grids).
-- **Per-cell run**: each cell sets `COCOINDEX_RRF_K`, `COCOINDEX_RRF_VEC_WEIGHT`, `COCOINDEX_RRF_FTS_WEIGHT` env vars, restarts daemon, runs `run-phase2-smoke.sh` against the corrected fixture, captures the per-probe hit/miss + latency + dense top-K composition.
+- **Per-cell run**: each cell sets production RRF env vars `COCOINDEX_HYBRID_RRF_K`, `COCOINDEX_HYBRID_VECTOR_WEIGHT`, `COCOINDEX_HYBRID_FTS5_WEIGHT`, restarts daemon, runs `run-phase2-smoke.sh` against the corrected fixture, captures the per-probe hit/miss + latency + dense top-K composition.
 - **Aggregator output** (`evidence/sweep-results.md`):
   - **Table 1**: best 10 cells by hit rate, ties broken by p95 latency.
   - **Table 2**: per-probe heatmap — which (k, vec_weight, fts_weight) cells solve each previously-failing probe.
   - **Table 3**: latency vs hit-rate scatter (text approximation).
   - **Decision**: picked config + 3-sentence rationale.
-- **New defaults** in `config.py`: `COCOINDEX_RRF_K`, `COCOINDEX_RRF_VEC_WEIGHT`, `COCOINDEX_RRF_FTS_WEIGHT`. Defaults updated to the picked cell. Env-override path (operator can revert via env var) preserved.
+- **New defaults** in `config.py`: `COCOINDEX_HYBRID_RRF_K`, `COCOINDEX_HYBRID_VECTOR_WEIGHT`, `COCOINDEX_HYBRID_FTS5_WEIGHT`. Defaults updated to the picked cell. Env-override path (operator can revert via env var) preserved.
 - **ADR-020** appended to `004-spec-memory-embedder-bake-off/decision-record.md`:
   - Grid swept
   - Picked cell + rationale
-  - Rollback path (`COCOINDEX_RRF_K=60 COCOINDEX_RRF_VEC_WEIGHT=0.7 COCOINDEX_RRF_FTS_WEIGHT=0.7` reverts to pre-017 defaults)
+  - Rollback path (`COCOINDEX_HYBRID_RRF_K=60 COCOINDEX_HYBRID_VECTOR_WEIGHT=0.7 COCOINDEX_HYBRID_FTS5_WEIGHT=0.7` reverts to pre-017 defaults)
   - Caveat: any embedder or reranker swap may require re-sweep
 - **Test coverage**:
   - `tests/test_rrf_config.py` ≥4 tests: env-var parsing, default fallback, invalid-value handling, integration with `_run_hybrid_search()`.
@@ -122,7 +122,7 @@ Out of scope:
 | R1 | `phase2-bench/sweep-rrf.sh` exists, iterates 4×4×4 grid by default. Each cell sets env vars, restarts ccc daemon, runs the 18-probe corrected bench, captures hit-rate + latency + per-probe outcomes to a per-cell JSON file. Skippable cells (already run): supports `--resume`. |
 | R2 | `phase2-bench/sweep-rrf.py` (NEW) aggregates per-cell JSONs into `sweep-results.md`. Aggregator emits Table 1 (top-10 by hit rate), Table 2 (per-probe heatmap), Table 3 (latency scatter), and a final picked-config recommendation. |
 | R3 | Grid configurable via `COCOINDEX_RRF_SWEEP_K_VALUES`, `COCOINDEX_RRF_SWEEP_VEC_WEIGHTS`, `COCOINDEX_RRF_SWEEP_FTS_WEIGHTS` JSON-list env vars. Defaults: `[30,60,90,120]`, `[0.5,0.7,0.9,1.0]`, `[0.3,0.5,0.7,0.9]`. |
-| R4 | `config.py` has `COCOINDEX_RRF_K`, `COCOINDEX_RRF_VEC_WEIGHT`, `COCOINDEX_RRF_FTS_WEIGHT` env vars with the picked-cell defaults. `query.py` reads from config. Backward compat: env override falls through. |
+| R4 | `config.py` has `COCOINDEX_HYBRID_RRF_K`, `COCOINDEX_HYBRID_VECTOR_WEIGHT`, `COCOINDEX_HYBRID_FTS5_WEIGHT` env vars with the picked-cell defaults. `query.py` reads from config. Backward compat: env override falls through. |
 | R5 | Picked-cell defaults are derived from the sweep results — NOT pre-decided. The picked cell maximizes hit rate, ties broken by p95 latency, then by smallest delta from `(60, 0.7, 0.7)`. |
 | R6 | `evidence/sweep-results.md` written with all three tables + decision rationale. ≥1 sentence per probe explaining why the picked cell flipped (or didn't flip) it relative to the pre-017 baseline. |
 | R7 | ADR-020 appended to `004-spec-memory-embedder-bake-off/decision-record.md`. Cover: defect (inherited defaults), fix (empirical sweep), picked cell, grid swept, rollback path, future re-sweep guidance. |

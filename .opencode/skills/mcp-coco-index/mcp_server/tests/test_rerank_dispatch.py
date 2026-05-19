@@ -8,7 +8,6 @@ from typing import Any
 from unittest.mock import patch
 
 from cocoindex_code.config import _DEFAULT_RERANK_MODEL, Config
-from cocoindex_code.reranker import CrossEncoderRerankerAdapter
 
 
 def test_rerank_ablation_env_disables_reranker(tmp_path: Path) -> None:

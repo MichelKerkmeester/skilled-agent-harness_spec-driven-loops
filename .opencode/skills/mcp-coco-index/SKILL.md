@@ -15,7 +15,7 @@ Natural language code search through two complementary approaches: CLI (ccc) for
 
 > **Forked From**: This skill bundles a soft-fork of [cocoindex-code](https://github.com/cocoindex-io/cocoindex-code) (Apache 2.0). Upstream version forked: 0.2.3. Current fork version: 0.2.3+spec-kit-fork.0.2.0. Patches: REQ-001..006 (mirror dedup + path-class reranking) from the local fork patch set. See NOTICE and changelog/CHANGELOG.md for the full attribution and modification list.
 
-> **v1.2.0 retrieval-quality features (opt-in, default OFF)**: Hybrid search (SQLite FTS5 + RRF fusion) and cross-encoder rerank (GTE multilingual) are env-flag enabled and mirror the proven retrieval stack used by `mk-spec-memory`. Production search behavior is unchanged unless `COCOINDEX_HYBRID=1` or `COCOINDEX_RERANK=1` is set. Chunking defaults were also retuned (CHUNK_SIZE 1000 → 1500) for better function-boundary preservation. See [INSTALL_GUIDE.md §4 "Tuning + optional retrieval features"](INSTALL_GUIDE.md) for the full env-var matrix.
+> **v1.2.0 retrieval-quality defaults**: Hybrid search (SQLite FTS5 + RRF fusion) and cross-encoder rerank are default ON and mirror the proven retrieval stack used by `mk-spec-memory`. The shipped defaults are `COCOINDEX_HYBRID=true`, `COCOINDEX_RERANK=true`, `COCOINDEX_RERANK_MODEL=jinaai/jina-reranker-v3`, and `COCOINDEX_CODE_EMBEDDING_MODEL=sbert/nomic-ai/CodeRankEmbed`. Chunking defaults were also retuned (CHUNK_SIZE 1000 → 1500) for better function-boundary preservation. See [INSTALL_GUIDE.md §4 "Tuning + optional retrieval features"](INSTALL_GUIDE.md) for the full env-var matrix.
 
 ### Activation Triggers
 
@@ -273,7 +273,6 @@ CocoIndex Code defaults to local `nomic-ai/CodeRankEmbed` (768d code-tuned, Meta
 | ----- | ---- | ---------- | ------- | -------- |
 | `nomic-ai/CodeRankEmbed` | Local via sentence-transformers | 768 | None | **Default.** Code-tuned, multi-language, Metal-accelerated |
 | `google/embeddinggemma-300m` | Local via sentence-transformers | 768 | None | Pre-018 baseline. Kept for benchmark comparisons |
-| `nomic-ai/CodeRankEmbed` | Local via sentence-transformers | 768 | None | Alternative code-tuned. Python-leaning training data |
 | `BAAI/bge-code-v1` | Local via sentence-transformers | 768 | None | Multilingual code coverage emphasis |
 | `voyage/voyage-code-3` | Cloud via LiteLLM | 1024 | `VOYAGE_API_KEY` required | Cloud alternative requiring a rebuild |
 

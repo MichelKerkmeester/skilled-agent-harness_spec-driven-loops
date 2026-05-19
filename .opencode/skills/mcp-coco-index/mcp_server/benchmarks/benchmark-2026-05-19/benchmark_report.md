@@ -362,11 +362,14 @@ COCOINDEX_CODE_EMBEDDING_MODEL=sbert/nomic-ai/CodeRankEmbed \
   .opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc index
 
 # 3. Run 3-lane bench (~3 min wall)
-bash .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/run-phase2-smoke.sh \
-  FIXTURE_OVERRIDE=.opencode/specs/.../phase2-bench/code-retrieval-fixture-corrected.json \
-  OUTPUT_TAG=-reproduce \
-  COMPARISON_OUTPUT=/tmp/reproduce-comparison.md
+COCOINDEX_CODE_EMBEDDING_MODEL=sbert/nomic-ai/CodeRankEmbed \
+FIXTURE_OVERRIDE=.opencode/specs/.../phase2-bench/code-retrieval-fixture-corrected.json \
+OUTPUT_TAG=-reproduce \
+COMPARISON_OUTPUT=/tmp/reproduce-comparison.md \
+bash .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/run-phase2-smoke.sh
 ```
+
+`run-phase2-smoke.sh` defaults to `sbert/BAAI/bge-code-v1` for the historical reranker matrix. For nomic reproduction, the `COCOINDEX_CODE_EMBEDDING_MODEL=sbert/nomic-ai/CodeRankEmbed` prefix is required and must match the model used for the preceding reset/index.
 
 ### Source data
 

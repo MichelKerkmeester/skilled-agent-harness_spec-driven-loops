@@ -98,7 +98,7 @@ CocoIndex Code gives AI assistants the ability to search your codebase by meanin
 | **Fork**      | Local editable package at `.opencode/skills/mcp-coco-index/mcp_server` |
 | **Binary**    | `ccc`                                                                 |
 | **License**   | Apache-2.0                                                            |
-| **Embedding** | Configurable (default: local EmbeddingGemma 300M; cloud alternatives available) |
+| **Embedding** | Configurable (default: local nomic CodeRankEmbed; cloud alternatives available) |
 
 ### When to Use Semantic Search
 
@@ -343,8 +343,8 @@ Adds SQLite FTS5 lexical channel fused with vector channel via Reciprocal Rank F
 | Variable | Default | Range | Description |
 |---|---:|---|---|
 | `COCOINDEX_HYBRID` | `true` | bool (`1/true/yes/on` or `0/false/no/off`) | Enable hybrid (vector + FTS5) retrieval. Set `false` to fall back to vector-only. |
-| `COCOINDEX_HYBRID_VECTOR_WEIGHT` | `0.7` | 0.0–2.0 | RRF weight for the vector channel. |
-| `COCOINDEX_HYBRID_FTS5_WEIGHT` | `0.7` | 0.0–2.0 | RRF weight for the FTS5 lexical channel. |
+| `COCOINDEX_HYBRID_VECTOR_WEIGHT` | `0.9` | 0.0–2.0 | RRF weight for the vector channel. |
+| `COCOINDEX_HYBRID_FTS5_WEIGHT` | `0.5` | 0.0–2.0 | RRF weight for the FTS5 lexical channel. |
 | `COCOINDEX_HYBRID_RRF_K` | `60` | 1–500 | RRF dampening constant; higher k flattens the influence of top-ranked hits. |
 
 See [`feature_catalog/hybrid-search.md`](feature_catalog/hybrid-search.md) for activation guidance and tuning notes.
@@ -356,12 +356,12 @@ Applies a local cross-encoder rerank to the top-K candidates after retrieval. Hi
 | Variable | Default | Range | Description |
 |---|---:|---|---|
 | `COCOINDEX_RERANK` | `true` | bool | Enable cross-encoder rerank pass over retrieval results. Set `false` to disable. |
-| `COCOINDEX_RERANK_MODEL` | `BAAI/bge-reranker-v2-m3` | string | HuggingFace model id for the cross-encoder; first use downloads (~2.3 GB) to `~/.cache/huggingface/hub/`. |
+| `COCOINDEX_RERANK_MODEL` | `jinaai/jina-reranker-v3` | string | HuggingFace model id for the cross-encoder; first use downloads to `~/.cache/huggingface/hub/`. |
 | `COCOINDEX_RERANK_TOP_K` | `20` | 5–100 | Number of retrieval candidates passed to the reranker before final cut. |
 
-> **Model swap (v1.10):** the default reranker was switched from `Alibaba-NLP/gte-multilingual-reranker-base` to `BAAI/bge-reranker-v2-m3` (Apache-2.0, ~568M params) on 2026-05-18. GTE-multilingual currently fails on Apple Silicon MPS with `AcceleratorError: index ... is out of bounds` (sentence-transformers 5.4.1 + transformers 5.8.0 + torch 2.11.0); the reranker module catches the error but silently returns the unranked order, so every prior `COCOINDEX_RERANK=true` query on MPS got zero rerank contribution. Operators on non-MPS backends, or those who want to test future ST/transformers compatibility fixes, can pin GTE via `COCOINDEX_RERANK_MODEL=Alibaba-NLP/gte-multilingual-reranker-base`.
+> **Model swap (2026-05-19):** the default reranker is `jinaai/jina-reranker-v3`, promoted by the 018 rerank matrix after beating BGE lanes on the corrected fixture. `BAAI/bge-reranker-v2-m3` remains available via `COCOINDEX_RERANK_MODEL=BAAI/bge-reranker-v2-m3`; GTE can still be pinned for compatibility experiments via `COCOINDEX_RERANK_MODEL=Alibaba-NLP/gte-multilingual-reranker-base`.
 
-See [`feature_catalog/reranker.md`](feature_catalog/reranker.md) for model trade-offs, RAM requirements, and when to enable.
+See [`feature_catalog/reranker.md`](feature_catalog/reranker.md) for model trade-offs, RAM requirements, and when to tune or disable reranking.
 
 ### Configuration for All 6 CLI Environments
 
@@ -558,7 +558,6 @@ If you do want to swap, the registry of vetted candidates lives in `cocoindex_co
 |---|---:|---:|---:|---|---|
 | **nomic-ai/CodeRankEmbed** | 768 | ~600 MB | ~280 MB | code | DEFAULT. Multi-language code-tuned, 8192 ctx. |
 | google/embeddinggemma-300m | 768 | ~600 MB | ~300 MB | text | Baseline. General-text only. Keep for benchmarks. |
-| nomic-ai/CodeRankEmbed | 768 | ~550 MB | ~270 MB | code | Alternative code-tuned. Python-leaning. Try if jina underperforms on your repo. |
 | BAAI/bge-code-v1 | 768 | ~700 MB | ~340 MB | code | Multilingual code coverage emphasis. |
 | jinaai/jina-embeddings-v2-base-en | 768 | ~600 MB | ~280 MB | text | English-text variant. Docs-heavy repos. |
 | ollama/nomic-embed-text | 768 | ~600 MB | ~270 MB | text | Local Ollama option. Requires `ollama serve` + `ollama pull nomic-embed-text`; text-tuned, not code-tuned. |
@@ -995,9 +994,9 @@ Expected result:
 
 - **Upstream**: [cocoindex-io/cocoindex-code](https://github.com/cocoindex-io/cocoindex-code)
 - **PyPI upstream package**: [cocoindex-code](https://pypi.org/project/cocoindex-code/)
-- **Default Embedding**: [EmbeddingGemma 300M](https://huggingface.co/nomic-ai/CodeRankEmbed)
+- **Default Embedding**: [nomic CodeRankEmbed](https://huggingface.co/nomic-ai/CodeRankEmbed)
 - **Cloud Embedding Option**: [Voyage Code 3](https://docs.voyageai.com/docs/embeddings)
-- **Default Local Embedding**: [EmbeddingGemma 300M](https://huggingface.co/nomic-ai/CodeRankEmbed)
+- **Default Local Embedding**: [nomic CodeRankEmbed](https://huggingface.co/nomic-ai/CodeRankEmbed)
 
 <!-- /ANCHOR:resources -->
 
@@ -1060,6 +1059,7 @@ ccc daemon status             # Check daemon status
 
 | Version | Date       | Changes                                                      |
 | ------- | ---------- | ------------------------------------------------------------ |
+| 1.2.2   | 2026-05-19 | Promote default embedder to `nomic-ai/CodeRankEmbed` and reranker to `jinaai/jina-reranker-v3`; lock RRF defaults at K=60, vector=0.9, FTS5=0.5 |
 | 1.2.1   | 2026-05-18 | Promote hybrid + reranker to default-on; swap reranker default GTE → `BAAI/bge-reranker-v2-m3` (GTE/MPS incompatibility) |
 | 1.2.0   | 2026-05-18 | Add chunking tunables, hybrid (FTS5 + RRF), cross-encoder reranker (opt-in at the time) |
 | 1.1.0   | 2026-03-18 | Add embedding model config, 28+ languages, settings reference |

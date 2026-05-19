@@ -35,6 +35,9 @@ from .shared import EMBEDDER, SQLITE_DB, query_prompt_name
 
 logger = logging.getLogger(__name__)
 
+_HYBRID_PATH_CLASS_SHIFT = 0.01
+_HYBRID_CANONICAL_RESOURCE_BOOST = 0.02
+
 
 def _l2_to_score(distance: float) -> float:
     """Convert L2 distance to cosine similarity (exact for unit vectors)."""
@@ -472,18 +475,18 @@ def _hybrid_ranked_result(
 
     if implementation_intent:
         if path_class == "implementation":
-            score += 0.05
+            score += _HYBRID_PATH_CLASS_SHIFT
             ranking_signals.append("implementation_boost")
         elif path_class == "spec_research":
-            score -= 0.05
+            score -= _HYBRID_PATH_CLASS_SHIFT
             ranking_signals.append("spec_research_penalty")
         elif path_class == "docs":
-            score -= 0.05
+            score -= _HYBRID_PATH_CLASS_SHIFT
             ranking_signals.append("docs_penalty")
 
     file_path = str(record["file_path"])
     if canonical_paths and is_canonical_path(file_path, canonical_paths):
-        score += 0.10
+        score += _HYBRID_CANONICAL_RESOURCE_BOOST
         ranking_signals.append("canonical_resource_boost")
 
     return QueryResult(

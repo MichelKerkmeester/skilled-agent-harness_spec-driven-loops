@@ -10,6 +10,8 @@ import cocoindex as _coco
 import yaml as _yaml
 from pathspec import GitIgnoreSpec
 
+from .config import _DEFAULT_MODEL
+
 # ---------------------------------------------------------------------------
 # Default file patterns (moved from indexer.py)
 # ---------------------------------------------------------------------------
@@ -116,7 +118,7 @@ def default_user_settings() -> UserSettings:
     return UserSettings(
         embedding=EmbeddingSettings(
             provider="sentence-transformers",
-            model="google/embeddinggemma-300m",
+            model=_DEFAULT_MODEL,
         )
     )
 

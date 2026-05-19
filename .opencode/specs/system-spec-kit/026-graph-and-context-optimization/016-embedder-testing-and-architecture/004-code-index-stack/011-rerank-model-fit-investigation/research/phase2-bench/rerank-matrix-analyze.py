@@ -54,16 +54,39 @@ class LaneSummary:
     maintainability: int
 
 
-def _load_runs(runs_dir: Path) -> list[dict[str, Any]]:
+@dataclass(frozen=True)
+class SkippedRun:
+    path: str
+    reason: str
+
+
+def _skip_reason(run: dict[str, Any]) -> str | None:
+    if run.get("success") is False:
+        return "success=false"
+
+    latency = run.get("latency_ms", {})
+    mean_latency = float(latency.get("mean", 0.0)) if isinstance(latency, dict) else 0.0
+    if float(run.get("hit_rate", 0.0)) == 0.0 and mean_latency > 25000:
+        return "zero-hit 25s+ timeout signature"
+
+    return None
+
+
+def _load_runs(runs_dir: Path) -> tuple[list[dict[str, Any]], list[SkippedRun]]:
     runs: list[dict[str, Any]] = []
+    skipped: list[SkippedRun] = []
     for path in sorted(runs_dir.glob("lane*-iter*.json")):
         try:
             run = json.loads(path.read_text(encoding="utf-8"))
         except json.JSONDecodeError as exc:
             raise SystemExit(f"Invalid JSON in {path}: {exc}") from exc
         run["_path"] = str(path)
+        reason = _skip_reason(run)
+        if reason is not None:
+            skipped.append(SkippedRun(path=str(path), reason=reason))
+            continue
         runs.append(run)
-    return runs
+    return runs, skipped
 
 
 def _mean(values: list[float]) -> float:
@@ -173,13 +196,26 @@ def _heatmap_cell(hit: bool) -> str:
     return "hit" if hit else "miss"
 
 
-def _render_markdown(summaries: list[LaneSummary], runs: list[dict[str, Any]]) -> str:
+def _render_markdown(
+    summaries: list[LaneSummary],
+    runs: list[dict[str, Any]],
+    skipped_runs: list[SkippedRun] | None = None,
+) -> str:
     winner, runner_up = _pick_winner(summaries)
     probe_ids = sorted({int(row["probe_id"]) for run in runs for row in run.get("per_probe", [])})
 
     lines: list[str] = []
     lines.append("# Rerank Matrix Results — 018 Final Reranker Verdict")
     lines.append("")
+    if skipped_runs:
+        lines.append("## Skipped run warnings")
+        lines.append("")
+        lines.append("The analyzer excluded failed or timeout-signature run JSON before computing lane summaries.")
+        lines.append("")
+        for skipped in skipped_runs:
+            lines.append(f"- `{skipped.path}` — {skipped.reason}")
+        lines.append("")
+
     lines.append("## Per-lane summary")
     lines.append("")
     lines.append("| Lane | Name | Iterations | Mean hits | Hit rate mean | Hit rate stddev | p50 mean ms | p95 mean ms | p99 mean ms | Peak RSS MB |")
@@ -281,13 +317,13 @@ def main() -> int:
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     args = parser.parse_args()
 
-    runs = _load_runs(args.runs_dir)
+    runs, skipped_runs = _load_runs(args.runs_dir)
     if not runs:
         raise SystemExit(f"No run JSON files found in {args.runs_dir}")
 
     summaries = _build_summaries(runs)
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(_render_markdown(summaries, runs), encoding="utf-8")
+    args.output.write_text(_render_markdown(summaries, runs, skipped_runs), encoding="utf-8")
     print(f"wrote {args.output}")
     return 0
 

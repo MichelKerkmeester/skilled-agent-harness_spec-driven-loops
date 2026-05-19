@@ -5,10 +5,11 @@ Exercises the lock acquisition, safe-send wrapper, and socket-unlink guard in
 isolation. Integration coverage of the run_daemon flow lives in
 test_e2e_daemon.py.
 """
+import asyncio
 import logging
 import os
 import sys
-from unittest.mock import MagicMock
+from unittest.mock import AsyncMock, MagicMock
 
 import pytest
 
@@ -127,6 +128,29 @@ def test_daemon_lock_path_is_separate_from_pid_path():
     assert daemon_lock_path().name == "daemon.lock"
     assert daemon_pid_path().name == "daemon.pid"
     assert daemon_lock_path().parent == daemon_pid_path().parent
+
+
+def test_update_index_reports_project_update_failure(tmp_path):
+    """A project.update_index exception must surface as success=False."""
+    from cocoindex_code.daemon import ProjectRegistry
+    from cocoindex_code.protocol import IndexResponse
+
+    async def _run():
+        project_root = str(tmp_path)
+        registry = ProjectRegistry(embedder=MagicMock())
+        project = MagicMock()
+        project.update_index = AsyncMock(side_effect=RuntimeError("boom"))
+        registry._projects[project_root] = project
+        registry._index_locks[project_root] = asyncio.Lock()
+        registry._load_time_done[project_root] = asyncio.Event()
+
+        return [response async for response in registry.update_index(project_root)]
+
+    responses = asyncio.run(_run())
+
+    assert isinstance(responses[-1], IndexResponse)
+    assert responses[-1].success is False
+    assert responses[-1].message == "boom"
 
 
 def test_wait_for_daemon_claim_returns_when_pid_appears(tmp_path, monkeypatch):

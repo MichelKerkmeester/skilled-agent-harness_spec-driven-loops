@@ -65,7 +65,7 @@ _memory:
 <!-- ANCHOR:phase-4 -->
 ## 5. PHASE 4: DEFAULT LOCK AND FINAL GATE
 
-- [B] T013 - Add/alias `COCOINDEX_RRF_K`, `COCOINDEX_RRF_VEC_WEIGHT`, and `COCOINDEX_RRF_FTS_WEIGHT` in `config.py`. Blocked by missing 016 commit.
+- [B] T013 - Lock `COCOINDEX_HYBRID_RRF_K`, `COCOINDEX_HYBRID_VECTOR_WEIGHT`, and `COCOINDEX_HYBRID_FTS5_WEIGHT` defaults in `config.py`. Blocked by missing 016 commit.
 - [B] T014 - Update `query.py` only if shared integration still needs changes after 016 lands. Blocked by missing 016 commit.
 - [B] T015 - Lock picked defaults in `config.py`. Blocked by sweep evidence.
 - [B] T016 - Run final no-env corrected bench and save `evidence/phase2-comparison-017-recalibrated.md`. Blocked by T015.

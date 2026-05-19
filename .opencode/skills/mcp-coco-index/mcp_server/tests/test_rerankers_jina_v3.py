@@ -9,8 +9,11 @@ bench shows jina-v3 doesn't materially outrank BGE+path-class boost.
 
 from __future__ import annotations
 
+import logging
 from typing import Any
 from unittest.mock import MagicMock
+
+import pytest
 
 from cocoindex_code.rerankers_jina_v3 import JinaRerankerAdapter
 from cocoindex_code.schema import QueryResult
@@ -95,3 +98,28 @@ def test_jina_adapter_returns_original_order_on_forward_pass_failure(monkeypatch
 
     # Same list reference returned on failure
     assert reranked is candidates
+
+
+def test_jina_adapter_invalid_max_doc_chars_falls_back(
+    monkeypatch: pytest.MonkeyPatch,
+    caplog: pytest.LogCaptureFixture,
+) -> None:
+    adapter = JinaRerankerAdapter()
+    fake_model = MagicMock()
+    fake_model.rerank.return_value = [
+        {"document": "content of b", "relevance_score": 0.9, "index": 1},
+        {"document": "content of a", "relevance_score": 0.1, "index": 0},
+    ]
+    adapter._model = fake_model
+    adapter._device = "cpu"
+    monkeypatch.setenv("COCOINDEX_RERANK_JINA_MAX_DOC_CHARS", "bad")
+    caplog.set_level(logging.WARNING, logger="cocoindex_code.config")
+
+    candidates = [
+        _candidate("a.py", 0.5, content="content of a"),
+        _candidate("b.py", 0.5, content="content of b"),
+    ]
+    reranked = adapter.rerank("query", candidates, top_k=20)
+
+    assert [c.file_path for c in reranked] == ["b.py", "a.py"]
+    assert "Ignoring invalid COCOINDEX_RERANK_JINA_MAX_DOC_CHARS='bad'" in caplog.text

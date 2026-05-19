@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 import sys
 from pathlib import Path
 from unittest.mock import MagicMock, patch
@@ -25,6 +26,13 @@ from cocoindex_code.config import (
     _DEFAULT_SYNONYMS,
     Config,
     _resolve_device,
+)
+
+REPO_ROOT = Path(__file__).resolve().parents[4]
+ADR_020_DECISION_RECORD = (
+    REPO_ROOT
+    / "specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture"
+    / "002-spec-memory-stack/004-spec-memory-embedder-bake-off/decision-record.md"
 )
 
 
@@ -280,6 +288,36 @@ class TestHybridConfigValidation:
         assert cfg.hybrid_vector_weight == 1.2
         assert cfg.hybrid_fts5_weight == 0.4
         assert cfg.hybrid_rrf_k == 40
+
+    def test_adr_020_documented_rrf_env_vars_take_effect(self, tmp_path: Path) -> None:
+        decision_record = ADR_020_DECISION_RECORD.read_text(encoding="utf-8")
+        adr_020 = decision_record.split("## ADR-020:", maxsplit=1)[1].split(
+            "## ADR-021:",
+            maxsplit=1,
+        )[0]
+        documented_vars = set(re.findall(r"`(COCOINDEX_HYBRID_[A-Z0-9_]+)`", adr_020))
+
+        assert {
+            "COCOINDEX_HYBRID_VECTOR_WEIGHT",
+            "COCOINDEX_HYBRID_FTS5_WEIGHT",
+            "COCOINDEX_HYBRID_RRF_K",
+        }.issubset(documented_vars)
+
+        with patch.dict(
+            "os.environ",
+            {
+                "COCOINDEX_CODE_ROOT_PATH": str(tmp_path),
+                "COCOINDEX_HYBRID_VECTOR_WEIGHT": "1.1",
+                "COCOINDEX_HYBRID_FTS5_WEIGHT": "0.3",
+                "COCOINDEX_HYBRID_RRF_K": "90",
+            },
+            clear=True,
+        ):
+            cfg = Config.from_env()
+
+        assert cfg.hybrid_vector_weight == 1.1
+        assert cfg.hybrid_fts5_weight == 0.3
+        assert cfg.hybrid_rrf_k == 90
 
     def test_invalid_hybrid_params_fall_back(
         self,

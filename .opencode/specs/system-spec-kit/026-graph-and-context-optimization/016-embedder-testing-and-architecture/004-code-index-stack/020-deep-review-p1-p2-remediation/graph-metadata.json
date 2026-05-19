@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "packet_id": "020-deep-review-p1-p2-remediation",
+  "spec_folder": "020-deep-review-p1-p2-remediation",
+  "parent_id": "004-code-index-stack",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "019-deep-review-013-018-arc"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "011-rerank-model-fit-investigation",
+      "017-hybrid-fusion-empirical-recalibration",
+      "018-rerank-matrix-rebench"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "020 deep review P1 remediation",
+      "mcp-coco-index P1 remediation",
+      "ADR-022 hybrid boost scaling"
+    ],
+    "key_topics": [
+      "mcp-coco-index",
+      "CodeRankEmbed",
+      "Jina reranker",
+      "hybrid RRF",
+      "benchmark evidence",
+      "operator docs"
+    ],
+    "importance_tier": "important",
+    "status": "completed",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "decision-record.md",
+      "evidence/query-expansion-root-cause-analysis.md"
+    ],
+    "entities": [
+      "COCOINDEX_CODE_EMBEDDING_MODEL",
+      "COCOINDEX_RERANK_JINA_MAX_DOC_CHARS",
+      "COCOINDEX_HYBRID_RRF_K",
+      "COCOINDEX_HYBRID_VECTOR_WEIGHT",
+      "COCOINDEX_HYBRID_FTS5_WEIGHT",
+      "_DEFAULT_MODEL",
+      "_hybrid_ranked_result"
+    ],
+    "causal_summary": "The 019 deep-review found nine P1 defects affecting defaults, env contracts, rerank robustness, daemon failure signaling, benchmark evidence, docs, hybrid ranking, and query-expansion RCA. This packet remediates them with scoped fixes and targeted tests.",
+    "created_at": "2026-05-19T17:59:30Z",
+    "last_save_at": "2026-05-19T18:17:10Z",
+    "save_lineage": "manual_packet_update",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "decision-record.md"
+    ]
+  }
+}

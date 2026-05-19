@@ -858,7 +858,7 @@ The design is deliberately LLM-free. It is a pure string transform over the quer
 
 | Variable | Default | Contract |
 |---|---|---|
-| `COCOINDEX_QUERY_EXPANSION` | `true` | Master kill switch. `false` preserves the pre-016 query path. |
+| `COCOINDEX_QUERY_EXPANSION` | `false` | Master opt-in switch. `false` preserves the pre-016 query path after the corrected-fixture regression. |
 | `COCOINDEX_QUERY_EXPANSION_MAX_VARIANTS` | `6` | Bounds dense fanout and FTS5 expansion terms. Invalid values fall back to `6`. |
 | `COCOINDEX_QUERY_EXPANSION_SYNONYMS` | curated dict | JSON dict of `{str: list[str]}`. Valid overrides replace the default dictionary; malformed input warns and falls back. |
 | `COCOINDEX_QUERY_EXPANSION_DENSE_FANOUT` | `true` | `true` embeds variants separately and merges candidates by best distance. `false` concatenates variants into one embedding request for lower latency. |
@@ -866,6 +866,17 @@ The design is deliberately LLM-free. It is a pure string transform over the quer
 ### Synonym Rationale
 
 The default dictionary stays small and code-domain-specific. It covers high-leverage retrieval vocabulary seen in the Phase 2 probes and adjacent code search language: traversal (`walker`, `finder`, `indexer`), persistence (`save`, `load`), parsing (`parser`, `lexer`, `tokenizer`), configuration (`config`, `settings`, `options`), lifecycle verbs (`init`, `create`, `delete`), and reranking (`rerank`, `adapter`). Expansion is single-hop only to avoid synonym graph drift and latency surprises.
+
+### Root Cause Addendum (020 remediation, 2026-05-19)
+
+The regression mechanism is surface displacement, not a syntax bug in `query_expansion.py`. The module broadens recall by adding synonym phrases and identifier variants to both dense fanout and FTS5 OR terms, but the retrieval stage does not constrain those expanded candidates by path class.
+
+Evidence from the 020 RCA:
+- Probe 15 (`query-time path class adjustment...`) expected `cocoindex_code/query.py`, but rerank-score traces show docs and tests such as `references/tool_reference.md` and `tests/test_query_expansion.py` entering above or near the intended implementation file.
+- Probe 9 (`declarative list of vetted sentence transformer candidates...`) expected `registered_embedders.py`, but `references/embedder-pluggability.md` outranked it while `query_expansion.py` also entered the candidate pool.
+- `query_expansion.py` builds dense variants at lines 187-198 and emits FTS5 OR terms at lines 243-249; both paths broaden recall without implementation-surface preference.
+
+Most likely cause: test/doc displacement amplified by FTS5 over-matching. Dense-fanout score noise is plausible but secondary. The deferred fix is path-class-aware expansion: expand only for implementation-intent queries, prefer implementation surfaces during expanded admission, or weight generated FTS5 terms below original query tokens.
 
 ### Latency Tradeoff
 

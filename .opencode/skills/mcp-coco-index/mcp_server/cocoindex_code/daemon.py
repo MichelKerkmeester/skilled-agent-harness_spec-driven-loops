@@ -396,6 +396,7 @@ class ProjectRegistry:
             )
         except Exception:
             logger.exception("Indexing failed for %s", project_root)
+            raise
         finally:
             event = self._load_time_done.get(project_root)
             if event is not None:

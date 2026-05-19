@@ -11,6 +11,7 @@ from pathlib import Path
 
 import pytest
 
+from cocoindex_code.config import _DEFAULT_MODEL
 from cocoindex_code.settings import (
     CANONICAL_RESOURCE_PATHS,
     DEFAULT_EXCLUDED_PATTERNS,
@@ -47,7 +48,7 @@ def _patch_user_dir(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
 def test_default_user_settings() -> None:
     s = default_user_settings()
     assert s.embedding.provider == "sentence-transformers"
-    assert "google/embeddinggemma-300m" in s.embedding.model
+    assert s.embedding.model == _DEFAULT_MODEL
     assert s.embedding.device is None
     assert s.envs == {}
 

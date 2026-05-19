@@ -28,6 +28,7 @@ def _record(
     *,
     source_realpath: str = "/real/skills/example/file.py",
     content_hash: str = "hash-example",
+    path_class: str = "implementation",
     start_line: int = 1,
     end_line: int = 10,
     content: str = "def example(): pass",
@@ -39,7 +40,7 @@ def _record(
         "language": "python",
         "content": content,
         "content_hash": content_hash,
-        "path_class": "implementation",
+        "path_class": path_class,
         "start_line": start_line,
         "end_line": end_line,
     }
@@ -155,3 +156,40 @@ def test_mirror_collapse_does_not_depend_on_matching_source_realpath() -> None:
 
     assert paths == [".opencode/skills/example/file.py"]
     assert deduped_aliases == 1
+
+
+def test_hybrid_boosts_do_not_override_strong_rrf_lead() -> None:
+    records = [
+        _record(
+            1,
+            "docs/reference.md",
+            content_hash="hash-docs",
+            path_class="docs",
+            source_realpath="/real/docs/reference.md",
+        ),
+        _record(
+            2,
+            ".opencode/skills/example/impl.py",
+            content_hash="hash-impl",
+            path_class="implementation",
+            source_realpath="/real/skills/example/impl.py",
+        ),
+    ]
+    fused_rows = [_fused(1, 0.10), _fused(2, 0.03)]
+    records_by_id = {record["chunk_id"]: record for record in records}
+
+    results, deduped_aliases = _dedup_and_rank_hybrid_rows(
+        fused_rows,
+        records_by_id,
+        query="implementation lookup",
+        canonical_paths=[".opencode/skills/**"],
+        canonical_mirror=".opencode",
+        mirror_prefixes=[],
+    )
+
+    assert [result.file_path for result in results] == [
+        "docs/reference.md",
+        ".opencode/skills/example/impl.py",
+    ]
+    assert deduped_aliases == 0
+    assert results[0].score > results[1].score
