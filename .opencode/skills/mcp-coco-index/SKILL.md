@@ -267,11 +267,11 @@ This split is intentional: index lifecycle is operator territory, explicit refre
 
 ### Embedding Models
 
-CocoIndex Code defaults to local `jinaai/jina-embeddings-v2-base-code` (768d code-tuned, Metal/MPS auto-detected on Apple Silicon) and supports alternate embedding models configured via `~/.cocoindex_code/global_settings.yml` or the `COCOINDEX_CODE_EMBEDDING_MODEL` env var. Full vetted registry at `mcp_server/cocoindex_code/registered_embedders.py`; swap runbook in [INSTALL_GUIDE.md §4 "Choosing an embedder"](INSTALL_GUIDE.md). Default ratified per packet 018.
+CocoIndex Code defaults to local `nomic-ai/CodeRankEmbed` (768d code-tuned, Metal/MPS auto-detected on Apple Silicon) and supports alternate embedding models configured via `~/.cocoindex_code/global_settings.yml` or the `COCOINDEX_CODE_EMBEDDING_MODEL` env var. Full vetted registry at `mcp_server/cocoindex_code/registered_embedders.py`; swap runbook in [INSTALL_GUIDE.md §4 "Choosing an embedder"](INSTALL_GUIDE.md). Default ratified per packet 018.
 
 | Model | Type | Dimensions | API Key | Best For |
 | ----- | ---- | ---------- | ------- | -------- |
-| `jinaai/jina-embeddings-v2-base-code` | Local via sentence-transformers | 768 | None | **Default.** Code-tuned, multi-language, Metal-accelerated |
+| `nomic-ai/CodeRankEmbed` | Local via sentence-transformers | 768 | None | **Default.** Code-tuned, multi-language, Metal-accelerated |
 | `google/embeddinggemma-300m` | Local via sentence-transformers | 768 | None | Pre-018 baseline. Kept for benchmark comparisons |
 | `nomic-ai/CodeRankEmbed` | Local via sentence-transformers | 768 | None | Alternative code-tuned. Python-leaning training data |
 | `BAAI/bge-code-v1` | Local via sentence-transformers | 768 | None | Multilingual code coverage emphasis |

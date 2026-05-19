@@ -137,7 +137,7 @@ MANIFESTS: tuple[EmbedderMetadata, ...] = (
 )
 
 
-_DEFAULT_NAME = "sbert/jinaai/jina-embeddings-v2-base-code"
+_DEFAULT_NAME = "sbert/nomic-ai/CodeRankEmbed"  # 018 follow-on: promoted over jina-v2-base-code after corrected-pipeline bench tied bge-code-v1 on hit rate with lower latency
 
 
 def list_embedders() -> tuple[EmbedderMetadata, ...]:

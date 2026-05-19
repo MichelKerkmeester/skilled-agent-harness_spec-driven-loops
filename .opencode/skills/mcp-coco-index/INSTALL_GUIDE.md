@@ -402,7 +402,7 @@ Below are repo-portable patterns that match the checked-in integration.
       "environment": {
         "COCOINDEX_CODE_ROOT_PATH": ".",
         "_NOTE_1_PACKAGE": "Local editable cocoindex-code fork, installed via scripts/install.sh",
-        "_NOTE_2_EMBEDDING": "Default: jinaai/jina-embeddings-v2-base-code (local sentence-transformers, no API key needed, 768d)",
+        "_NOTE_2_EMBEDDING": "Default: nomic-ai/CodeRankEmbed (local sentence-transformers, no API key needed, 768d)",
         "_NOTE_3_INDEX": "Index stored in .cocoindex_code/ (gitignored)"
       }
     }
@@ -457,7 +457,7 @@ Below are repo-portable patterns that match the checked-in integration.
       "env": {
         "COCOINDEX_CODE_ROOT_PATH": ".",
         "_NOTE_1_PACKAGE": "Local editable cocoindex-code fork, installed via scripts/install.sh",
-        "_NOTE_2_EMBEDDING": "Default: jinaai/jina-embeddings-v2-base-code (local sentence-transformers, no API key needed, 768d)",
+        "_NOTE_2_EMBEDDING": "Default: nomic-ai/CodeRankEmbed (local sentence-transformers, no API key needed, 768d)",
         "_NOTE_3_INDEX": "Index stored in .cocoindex_code/ (gitignored)"
       }
     }
@@ -477,7 +477,7 @@ args = ["mcp"]
 [mcp_servers.cocoindex_code.env]
 COCOINDEX_CODE_ROOT_PATH = "."
 _NOTE_1 = "Requires local editable fork: bash .opencode/skills/mcp-coco-index/scripts/install.sh"
-_NOTE_2 = "Default embedding: jinaai/jina-embeddings-v2-base-code (local sentence-transformers, no API key needed, 768d)"
+_NOTE_2 = "Default embedding: nomic-ai/CodeRankEmbed (local sentence-transformers, no API key needed, 768d)"
 _NOTE_3 = "Index stored in .cocoindex_code/ (gitignored)"
 ```
 
@@ -485,13 +485,13 @@ _NOTE_3 = "Index stored in .cocoindex_code/ (gitignored)"
 
 CocoIndex Code supports multiple embedding models. Configure via `~/.cocoindex_code/global_settings.yml`.
 
-**Default:** `jinaai/jina-embeddings-v2-base-code` via the `sentence-transformers` provider -- local 768-dimensional code search with no API key.
+**Default:** `nomic-ai/CodeRankEmbed` via the `sentence-transformers` provider -- local 768-dimensional code search with no API key.
 
 ```yaml
 # Default local model (no API key, works offline)
 embedding:
   provider: sentence-transformers
-  model: jinaai/jina-embeddings-v2-base-code
+  model: nomic-ai/CodeRankEmbed
 ```
 
 **Cloud alternative:** `voyage/voyage-code-3` via LiteLLM provider. Requires `VOYAGE_API_KEY` and a full index rebuild.
@@ -550,13 +550,13 @@ The registry marks Ollama-backed models with `requires_ollama_daemon=True`, so `
 
 ### Choosing an embedder
 
-The default is `sbert/jinaai/jina-embeddings-v2-base-code` (768d, code-tuned, ~280 MB on disk, Metal-accelerated on Apple Silicon). It indexes a typical 8,000-file repo in ~15-30 min and runs purely local — no API key required. **Use the default unless you need different trade-offs.**
+The default is `sbert/nomic-ai/CodeRankEmbed` (768d, code-tuned, ~280 MB on disk, Metal-accelerated on Apple Silicon). It indexes a typical 8,000-file repo in ~15-30 min and runs purely local — no API key required. **Use the default unless you need different trade-offs.**
 
 If you do want to swap, the registry of vetted candidates lives in `cocoindex_code/registered_embedders.py`:
 
 | Embedder | Dim | RAM | Disk | Cat | When to prefer |
 |---|---:|---:|---:|---|---|
-| **jinaai/jina-embeddings-v2-base-code** | 768 | ~600 MB | ~280 MB | code | DEFAULT. Multi-language code-tuned, 8192 ctx. |
+| **nomic-ai/CodeRankEmbed** | 768 | ~600 MB | ~280 MB | code | DEFAULT. Multi-language code-tuned, 8192 ctx. |
 | google/embeddinggemma-300m | 768 | ~600 MB | ~300 MB | text | Baseline. General-text only. Keep for benchmarks. |
 | nomic-ai/CodeRankEmbed | 768 | ~550 MB | ~270 MB | code | Alternative code-tuned. Python-leaning. Try if jina underperforms on your repo. |
 | BAAI/bge-code-v1 | 768 | ~700 MB | ~340 MB | code | Multilingual code coverage emphasis. |
@@ -732,7 +732,7 @@ ccc status
 
 | Property        | Value                                                                       |
 | --------------- | --------------------------------------------------------------------------- |
-| **Default**     | `jinaai/jina-embeddings-v2-base-code` (local, no API key, 768 dimensions)            |
+| **Default**     | `nomic-ai/CodeRankEmbed` (local, no API key, 768 dimensions)            |
 | **Cloud option** | Voyage Code 3 via LiteLLM (API key required, rebuild required)             |
 | **Flexibility** | 7+ models supported including OpenAI, Gemini, Cohere, Ollama, Nomic         |
 | **Config**      | `~/.cocoindex_code/global_settings.yml` (see [Settings Reference](references/settings_reference.md)) |
@@ -995,9 +995,9 @@ Expected result:
 
 - **Upstream**: [cocoindex-io/cocoindex-code](https://github.com/cocoindex-io/cocoindex-code)
 - **PyPI upstream package**: [cocoindex-code](https://pypi.org/project/cocoindex-code/)
-- **Default Embedding**: [EmbeddingGemma 300M](https://huggingface.co/jinaai/jina-embeddings-v2-base-code)
+- **Default Embedding**: [EmbeddingGemma 300M](https://huggingface.co/nomic-ai/CodeRankEmbed)
 - **Cloud Embedding Option**: [Voyage Code 3](https://docs.voyageai.com/docs/embeddings)
-- **Default Local Embedding**: [EmbeddingGemma 300M](https://huggingface.co/jinaai/jina-embeddings-v2-base-code)
+- **Default Local Embedding**: [EmbeddingGemma 300M](https://huggingface.co/nomic-ai/CodeRankEmbed)
 
 <!-- /ANCHOR:resources -->
 

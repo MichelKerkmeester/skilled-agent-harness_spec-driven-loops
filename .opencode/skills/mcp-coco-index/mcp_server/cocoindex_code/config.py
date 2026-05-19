@@ -10,7 +10,7 @@ from pathlib import Path
 
 from .query_expansion import _DEFAULT_SYNONYMS
 
-_DEFAULT_MODEL = "sbert/jinaai/jina-embeddings-v2-base-code"
+_DEFAULT_MODEL = "sbert/nomic-ai/CodeRankEmbed"  # 018 follow-on: ties bge-code-v1 on hit rate (12/13/14 across BGE/BGE+path-class/jina-v3 lanes) with ~10% lower median latency; supersedes jina-v2-base-code default
 _DEFAULT_CHUNK_SIZE = 1500
 _DEFAULT_CHUNK_OVERLAP = 200
 _DEFAULT_MIN_CHUNK_SIZE = 250

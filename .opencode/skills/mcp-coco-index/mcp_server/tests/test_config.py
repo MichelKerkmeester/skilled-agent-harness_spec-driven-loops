@@ -29,9 +29,9 @@ from cocoindex_code.config import (
 
 
 class TestDefaultEmbedder:
-    def test_default_model_is_jina_code(self) -> None:
-        """Default embedder must be jina's code-tuned variant per ADR-001 / 018 packet."""
-        assert _DEFAULT_MODEL == "sbert/jinaai/jina-embeddings-v2-base-code"
+    def test_default_model_is_nomic_coderankembed(self) -> None:
+        """Default embedder is nomic/CodeRankEmbed per 018 follow-on: ties bge-code-v1 on hit rate (12/13/14) with ~10% lower median latency under corrected pipeline."""
+        assert _DEFAULT_MODEL == "sbert/nomic-ai/CodeRankEmbed"
 
 
 class TestResolveDevice:

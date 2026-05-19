@@ -1,0 +1,7 @@
+embedder,reranker,path_class_boost,n_pairs,total_hits,hit_rate,hit_easy,hit_medium,hit_hard,median_ms,p95_ms
+sbert/nomic-ai/CodeRankEmbed,jinaai/jina-reranker-v3,false,18,14,0.778,4,4,6,1964,13554
+sbert/nomic-ai/CodeRankEmbed,BAAI/bge-reranker-v2-m3,true,18,13,0.722,4,4,5,1585,11608
+sbert/nomic-ai/CodeRankEmbed,BAAI/bge-reranker-v2-m3,false,18,12,0.667,4,4,4,1573,12760
+sbert/BAAI/bge-code-v1,jinaai/jina-reranker-v3,false,18,14,0.778,4,4,6,2183,13938
+sbert/BAAI/bge-code-v1,BAAI/bge-reranker-v2-m3,true,18,13,0.722,4,4,5,1726,12389
+sbert/BAAI/bge-code-v1,BAAI/bge-reranker-v2-m3,false,18,12,0.667,4,4,4,1758,12178

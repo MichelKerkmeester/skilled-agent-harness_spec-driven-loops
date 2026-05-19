@@ -55,27 +55,45 @@ The canonical mechanics for the layout convention live at `.opencode/skills/sk-d
 
 | Date | Bench | Winner | Status | Spec packet |
 |---|---|---|---|---|
-| May 18, 2026 | [`benchmark-2026-05-18/`](./benchmark-2026-05-18/) | `BAAI/bge-code-v1` (11/18 = 61.1%, median 504ms) | Single-run; 3-run confirmation planned (`016/007/003`) | `016/004/004-extended-bake-off` |
+| **May 19, 2026** ← **production** | [`benchmark-2026-05-19/`](./benchmark-2026-05-19/) | `nomic-ai/CodeRankEmbed` + `jinaai/jina-reranker-v3` (**14/18 = 77.8%**, median 1964ms) | Shipped + locked as default | `016/004/013-018` six-packet arc + nomic promotion follow-on |
+| May 18, 2026 | [`benchmark-2026-05-18/`](./benchmark-2026-05-18/) | `BAAI/bge-code-v1` (11/18 = 61.1%, median 504ms) | **STRUCTURALLY INVALIDATED** — rerank wasn't firing due to stale pipx; preserved as historical record | `016/004/004-extended-bake-off` |
 
-**Current production default:** `sbert/jinaai/jina-embeddings-v2-base-code` (`cocoindex_code/config.py:_DEFAULT_MODEL`). The May 18, 2026 winner has not yet been promoted — see Pending Decisions below.
+**Current production default (since 2026-05-19):** `sbert/nomic-ai/CodeRankEmbed` embedder + `jinaai/jina-reranker-v3` reranker. The 6-packet 013-018 arc fixed the candidate-set pipeline (bench harness, mirror dedup, tree-sitter chunking, RRF lock) before locking the embedder + reranker defaults. Under the corrected pipeline, nomic-CodeRankEmbed ties bge-code-v1 on hit rate (14/18) with ~10% lower median latency.
 <!-- /ANCHOR:active-benchmarks -->
 
 <!-- ANCHOR:pending-decisions -->
 ## 3. PENDING DECISIONS
 
-Two follow-on packets must close before the May 18, 2026 winner is promoted as the default.
+The May 19, 2026 bench is the production state. Open follow-ons (non-blocking):
 
-### 3.1 3-run confirmation of `bge-code-v1`
+### 3.1 Lane A (no-rerank ablation) debug
 
-- Tracked in: `016/007/003-bge-code-v1-confirmation-and-promote/`.
-- Why: per the noise-floor lessons from `113/005-extraction-rerun` (memory: `project_116_confirmation_rcaf_holds`), single-sample wins on a small fixture need a 3-run confirmation before promotion. bge-code-v1's 11.1pp lead is well above the noise floor, but only 4 unique probes account for the entire gap.
-- Promotion rule: if hit rate stays in `10/18`–`12/18` across all 3 replays → swap `_DEFAULT_MODEL` jina-code → bge-code-v1 in `cocoindex_code/config.py`. If any single run drops to `9/18` → hold at jina-code.
+- The rerank-matrix harness exhibits a 32-sec/probe timeout under `COCOINDEX_RERANK_ENABLED=false` (hits=0/18, p95 32sec).
+- Bug is in the rerank-disabled dispatch path inside `query.py`, not blocking the production verdict.
+- Needs a separate debug packet to isolate + fix.
 
-### 3.2 Ollama adapter for CocoIndex
+### 3.2 3-iteration confirmation of the top-2 lanes
 
-- Tracked in: `016/007/002-cocoindex-ollama-adapter/`.
-- Why: CocoIndex's Python registry (`registered_embedders.py`) is currently `sbert/`-only. Adding an Ollama adapter would let future bake-offs measure Ollama-served candidates on the same fixture — useful for cross-backend comparisons against the `mk-spec-memory` text-side bench.
-- Blocking effect on this folder: no current benchmark here measures Ollama candidates; future Ollama-backed runs will land here once the adapter ships.
+- Current bench data is n=1 per cell. Hit rate is binary (low variance per probe), but the latency p95 has natural jitter of ±10% on Apple Silicon.
+- Recommend a 3-iteration replay for the top-2 reranker lanes (jina-v3 on nomic + bge-code-v1) to bound confidence intervals before lifting the production state to a wider corpus.
+
+### 3.3 Re-bench other embedders under corrected pipeline
+
+- jina-v2-base-code, gemma-300m, mxbai, stella were measured under the broken May 18 pipeline.
+- Hypothesis (from the nomic re-bench): the "embedder choice is no longer load-bearing" pattern generalizes — all of them might lift to 14/18 under the corrected pipeline.
+- Untested. Each re-bench requires a ~25 min re-index swap.
+
+### 3.4 Path-class-aware query expansion
+
+- 016 shipped query expansion as opt-in default-false because deterministic expansion pulled test/doc files into top-K.
+- Hypothesis: only expand for implementation-class chunks would make it net-positive.
+- Follow-on packet candidate.
+
+### 3.5 Probe forensics (probes 5, 12, 13)
+
+- These 3 probes miss across EVERY embedder × reranker combination measured.
+- Either fixture-truth issues OR the entire embedder family lacks the semantic understanding for these queries.
+- Worth a deep-dive to decide: expand the fixture, fix the truth, or accept as semantic-ceiling.
 <!-- /ANCHOR:pending-decisions -->
 
 <!-- ANCHOR:structure -->
