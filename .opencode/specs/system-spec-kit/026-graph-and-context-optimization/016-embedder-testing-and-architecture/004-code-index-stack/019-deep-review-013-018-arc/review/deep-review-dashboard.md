@@ -98,3 +98,49 @@
 - **Required streak**: 3 consecutive iterations
 - **Status**: CONVERGED
 - **Next iteration**: SYNTHESIS (final report)
+
+## CLI-CODEX PASS
+
+### Pass Configuration
+- **Executor**: Codex second independent pass
+- **Iteration files**: `review/iterations-codex/iteration-001.md` through `iteration-015.md`
+- **Priority dimensions**: architecture, code-quality, maintainability, tests, documentation, performance, reproducibility
+- **Sequential-thinking MCP**: attempted; runtime returned `user cancelled MCP tool call`, so each iteration records the five-point preflight manually
+- **SpawnAgent used**: yes, three read-only sidecars
+
+### Iteration Progress
+
+| Iteration | Focus | New P0 | New P1 | New P2 | Notes |
+|---:|---|---:|---:|---:|---|
+| 001 | architecture | 0 | 1 | 0 | `COCOINDEX_RRF_*` rollback/env names are documented but production reads `COCOINDEX_HYBRID_*`. |
+| 002 | code-quality | 0 | 1 | 0 | Jina max-doc-char env parsing can crash the default reranker path. |
+| 003 | maintainability | 0 | 0 | 1 | Path-class boost has two config authorities. |
+| 004 | tests | 0 | 0 | 1 | Reranker tests mock dispatch but miss real adapter and rerank-off integration. |
+| 005 | documentation | 0 | 1 | 0 | Operator docs contradict shipped default hybrid/rerank/embedder behavior. |
+| 006 | performance | 0 | 0 | 1 | Query expansion embeds serial identifier variants before useful synonyms. |
+| 007 | reproducibility | 0 | 0 | 1 | 017 "future-proof" RRF evidence is seven cells, not the full default grid. |
+| 008 | embedder-agnosticism | 0 | 0 | 1 | Nomic default is still described as an alternative in registry guidance. |
+| 009 | reranker-agnosticism | 0 | 0 | 1 | Jina still composes with BGE-era path-class boost if flag is left on. |
+| 010 | tree-sitter edge cases | 0 | 0 | 0 | Smoke-tested malformed/unicode/comment-only inputs; no new issue beyond Devin fallback observability. |
+| 011 | daemon lifecycle | 0 | 0 | 1 | Bench lane switching stops shared daemon without lock/isolation. |
+| 012 | final cross-check | 0 | 0 | 0 | Focused tests passed: 36 passed in 0.59s. |
+| 013 | daemon defaults and lifecycle | 0 | 2 | 1 | Fresh daemon settings miss nomic; index failures can report success; daemon lifetime lock released early. |
+| 014 | benchmark validity | 0 | 2 | 2 | Nomic repro path pinned to BGE; analyzer accepts failed JSON; reproduction docs wrong. |
+| 015 | score-scale cross-check | 0 | 1 | 0 | Heuristic boosts can dominate calibrated RRF scores. |
+
+### Codex Running Totals
+- **New P0**: 0
+- **New P1**: 8
+- **New P2**: 10
+- **Total codex-only findings**: 18
+- **Codex verdict**: FAIL pending P1 remediation
+
+### Codex P1 Summary
+- [C-P1-001] Documented `COCOINDEX_RRF_*` rollback/env names do not affect production.
+- [C-P1-002] Invalid `COCOINDEX_RERANK_JINA_MAX_DOC_CHARS` can crash the default reranker path.
+- [C-P1-003] Operator docs contradict shipped default retrieval stack.
+- [C-P1-004] Fresh daemon settings still default to EmbeddingGemma, bypassing nomic promotion.
+- [C-P1-005] Index failures can be reported as successful.
+- [C-P1-006] Nomic reproduction path is contradicted by the phase-2 smoke harness.
+- [C-P1-007] Rerank matrix analyzer accepts failed run JSON as valid input.
+- [C-P1-008] Hybrid heuristic boosts can dominate calibrated RRF scores.
