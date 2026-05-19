@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "006-benchmark-format-to-sk-doc",
   "description": "Invert ownership of benchmark format mechanics so sk-doc becomes single source of truth and sibling MCP skills retain only dated result folders plus s",
   "keywords": [
@@ -24,11 +25,12 @@
     "stack-specific",
     "scripts"
   ],
-  "lastUpdated": "2026-05-19T07:48:11.012Z",
+  "lastUpdated": "2026-05-19T12:49:55.502Z",
   "specId": "006",
   "folderSlug": "benchmark-format-to-sk-doc",
   "parentChain": [],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "19-05-26_13-49__implementation-mid-flight-redesign-of-packet-006.md"
+  ]
 }

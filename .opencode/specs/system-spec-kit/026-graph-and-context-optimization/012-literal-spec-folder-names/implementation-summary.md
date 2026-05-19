@@ -11,10 +11,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/012-literal-spec-folder-names"
-    last_updated_at: "2026-05-19T10:00:00Z"
+    last_updated_at: "2026-05-19T12:49:41Z"
     last_updated_by: "claude-code"
-    recent_action: "Implementation complete; all 8 target files updated and validated"
-    next_safe_action: "Commit on main; smoke-test /spec_kit:plan against an ambiguous task in a future session"
+    recent_action: "Rule 20 tightened; SWE-1.6 still conflates source/target; lint follow-on candidate"
+    next_safe_action: "review lint follow-on candidate or accept model-tier variance on small-model dispatch"
     blockers: []
     key_files:
       - ".opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml"

@@ -2,25 +2,214 @@
   "schema_version": 1,
   "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/006-benchmark-format-to-sk-doc",
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/006-benchmark-format-to-sk-doc",
-  "parent_id": null,
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md","checklist.md"],
-    "entities": [],
-    "causal_summary": "Invert ownership of benchmark format mechanics so sk-doc becomes single source of truth and sibling MCP skills retain only dated result folders plus stack-specific scripts",
+  "derived": {
+    "trigger_phrases": [
+      "benchmark creation reference",
+      "benchmark_creation.md",
+      "benchmark format consolidation",
+      "FORMAT.md consolidation",
+      "sk-doc benchmark creation",
+      "benchmark consolidation plan",
+      "benchmark_creation.md plan",
+      "006 implementation plan",
+      "006 tasks",
+      "benchmark consolidation tasks",
+      "006 checklist",
+      "benchmark consolidation checklist"
+    ],
+    "key_topics": [
+      "benchmark",
+      "creation",
+      "reference",
+      "format",
+      "consolidation",
+      "sk-doc",
+      "plan",
+      "006",
+      "implementation",
+      "tasks",
+      "checklist",
+      "mechanics"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-doc/references/benchmark_creation.md",
+      ".opencode/skills/sk-doc/assets/benchmark/source_template.md",
+      ".opencode/skills/sk-doc/assets/benchmark/benchmark_report_template.md",
+      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/README.md",
+      ".opencode/skills/mcp-coco-index/mcp_server/benchmarks/README.md",
+      ".opencode/skills/sk-doc/scripts/validate_document.py",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "benchmark_creation.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/references/benchmark_creation.md",
+        "source": "derived"
+      },
+      {
+        "name": "source_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/assets/benchmark/source_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "benchmark_report_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/assets/benchmark/benchmark_report_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Consolidate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Create",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Author",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The benchmark format mechanics for MCP skill-local benchmark folders were split across two separate files in sk-doc (`references/benchmarks/FORMAT.md` and `references/benchmarks_format.md`) and mirrored to sibling MCP skills via relative symlinks. This created three problems: readers had to consult two files to get the full picture; the symlink topology added maintenance overhead and path-resolution fragility; and the FORMAT.md and benchmarks_format.md naming did not follow the `*_creation.md` pattern used by sk-doc's other creation references (feature_catalog_creation.md, manual_testing_playbook_creation.md, agent_creation.md).",
     "created_at": "2026-05-19T07:48:10Z",
-    "last_save_at": "2026-05-19T07:48:10Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-05-19T12:49:55.502Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md","checklist.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
   }
 }

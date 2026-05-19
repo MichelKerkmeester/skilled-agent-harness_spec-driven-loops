@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "012-literal-spec-folder-names",
   "description": "Improve AI-driven spec folder and phase naming so AI-chosen slugs describe concrete work being built or fixed rather than generic placeholders like re",
   "keywords": [
@@ -22,11 +23,12 @@
     "remediation",
     "phase-n"
   ],
-  "lastUpdated": "2026-05-19T07:48:18.237Z",
+  "lastUpdated": "2026-05-19T12:49:41.510Z",
   "specId": "012",
   "folderSlug": "literal-spec-folder-names",
   "parentChain": [],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "19-05-26_13-49__with-swe-1.md"
+  ]
 }
