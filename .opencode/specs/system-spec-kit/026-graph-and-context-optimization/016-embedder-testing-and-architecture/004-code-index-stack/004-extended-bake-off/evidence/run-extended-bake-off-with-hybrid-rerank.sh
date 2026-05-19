@@ -93,6 +93,8 @@ import os
 import sys
 import subprocess
 import time
+import re
+from pathlib import Path
 
 fixture_path = sys.argv[1]
 candidate = sys.argv[2]
@@ -103,6 +105,50 @@ pairs = json.loads(open(fixture_path).read())
 hits = 0
 hits_by_difficulty = {"easy": 0, "medium": 0, "hard": 0}
 latencies = []
+MIRROR_PREFIXES = (".opencode/", ".claude/", ".codex/", ".gemini/")
+TRAILING_PUNCTUATION = ",;.)]}"
+QUOTE_CHARS = chr(96) + "'\""
+
+def _clean_path_candidate(token: str) -> str:
+    candidate = token.strip().strip(QUOTE_CHARS).strip()
+    for _ in range(2):
+        candidate = candidate.lstrip("([{").rstrip(TRAILING_PUNCTUATION).strip(QUOTE_CHARS).strip()
+    candidate = re.sub(r":\d+(-\d+)?$", "", candidate)
+    candidate = candidate.rstrip(TRAILING_PUNCTUATION).strip(QUOTE_CHARS).strip()
+    candidate = re.sub(r":\d+(-\d+)?$", "", candidate)
+    return candidate
+
+def _wrapper_paths(line: str) -> list[str]:
+    paths: list[str] = []
+    quote_class = re.escape(QUOTE_CHARS)
+    for match in re.finditer(rf"\b(?:import|require)\(\s*([{quote_class}])([^{quote_class}]+)\1\s*\)?", line):
+        paths.append(match.group(2))
+    for match in re.finditer(rf"\bfrom\s+([{quote_class}])([^{quote_class}]+)\1", line):
+        paths.append(match.group(2))
+    return paths
+
+def _candidate_exists(candidate: str) -> bool:
+    if candidate.startswith(MIRROR_PREFIXES):
+        return True
+    return Path(candidate).exists()
+
+def _extract_paths(stdout: str) -> list[str]:
+    top_paths: list[str] = []
+    for line in stdout.splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        for token in [*_wrapper_paths(line), *line.split()]:
+            if "/" not in token or "." not in token.split("/")[-1]:
+                continue
+            candidate = _clean_path_candidate(token)
+            if not candidate or "/" not in candidate or "." not in candidate.split("/")[-1]:
+                continue
+            if not _candidate_exists(candidate):
+                continue
+            if candidate not in top_paths:
+                top_paths.append(candidate)
+    return top_paths
 
 for i, p in enumerate(pairs, 1):
     query = p["query"]
@@ -117,21 +163,7 @@ for i, p in enumerate(pairs, 1):
     latency_ms = int((time.monotonic() - t0) * 1000)
     latencies.append(latency_ms)
 
-    top_paths = []  # ordered list of all parsed top-K result paths
-    if result.returncode == 0:
-        import re as _re
-        for line in result.stdout.splitlines():
-            line = line.strip()
-            if not line:
-                continue
-            # Look for path-like tokens with file extension; collect ALL of them
-            for part in line.split():
-                # path candidate must have a "/" and an extension after last slash
-                if "/" in part and "." in part.split("/")[-1]:
-                    # strip line-range suffix like ":1-9" or trailing punctuation
-                    p = _re.sub(r":\d+(-\d+)?$", "", part).rstrip(",;:()")
-                    if p and p not in top_paths:
-                        top_paths.append(p)
+    top_paths = _extract_paths(result.stdout) if result.returncode == 0 else []
 
     # Normalize across mirror trees: .opencode/.claude/.codex/.gemini
     def norm(path):

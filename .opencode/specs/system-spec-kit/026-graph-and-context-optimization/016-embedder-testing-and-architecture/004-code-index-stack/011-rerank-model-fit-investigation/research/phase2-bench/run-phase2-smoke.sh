@@ -28,10 +28,12 @@ set -uo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel)"
-FIXTURE="$SCRIPT_DIR/probe-subset.json"
+FIXTURE="${FIXTURE_OVERRIDE:-$SCRIPT_DIR/probe-subset.json}"
 CCC="$REPO_ROOT/.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc"
 PYTHON="$REPO_ROOT/.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/python3"
 RUNLOG="$SCRIPT_DIR/phase2-runlog.txt"
+OUTPUT_TAG="${OUTPUT_TAG:-}"
+COMPARISON_OUTPUT="${COMPARISON_OUTPUT:-$SCRIPT_DIR/phase2-comparison${OUTPUT_TAG}.md}"
 
 cd "$REPO_ROOT"
 
@@ -44,6 +46,12 @@ if [ ! -f "$FIXTURE" ]; then
   echo "FATAL: probe subset fixture not found: $FIXTURE" >&2
   exit 1
 fi
+PROBE_COUNT="$($PYTHON - "$FIXTURE" <<'PYTHON_COUNT'
+import json
+import sys
+print(len(json.loads(open(sys.argv[1]).read())))
+PYTHON_COUNT
+)"
 
 # Pinned embedder for all lanes (reranker/path-role test)
 export COCOINDEX_CODE_EMBEDDING_MODEL="sbert/BAAI/bge-code-v1"
@@ -86,8 +94,8 @@ run_lane() {
   fi
 
   # Per-lane output paths
-  export COCOINDEX_RERANK_LOG_PATH="$SCRIPT_DIR/${lane_name}.rerank-scores.jsonl"
-  local results_jsonl="$SCRIPT_DIR/${lane_name}.results.jsonl"
+  export COCOINDEX_RERANK_LOG_PATH="$SCRIPT_DIR/${lane_name}${OUTPUT_TAG}.rerank-scores.jsonl"
+  local results_jsonl="$SCRIPT_DIR/${lane_name}${OUTPUT_TAG}.results.jsonl"
   : > "$COCOINDEX_RERANK_LOG_PATH"
   : > "$results_jsonl"
 
@@ -103,6 +111,7 @@ import re
 import subprocess
 import sys
 import time
+from pathlib import Path
 
 fixture_path = sys.argv[1]
 lane = sys.argv[2]
@@ -113,6 +122,50 @@ pairs = json.loads(open(fixture_path).read())
 hits = 0
 latencies = []
 per_probe = []
+MIRROR_PREFIXES = (".opencode/", ".claude/", ".codex/", ".gemini/")
+TRAILING_PUNCTUATION = ",;.)]}"
+QUOTE_CHARS = chr(96) + "'\""
+
+def _clean_path_candidate(token: str) -> str:
+    candidate = token.strip().strip(QUOTE_CHARS).strip()
+    for _ in range(2):
+        candidate = candidate.lstrip("([{").rstrip(TRAILING_PUNCTUATION).strip(QUOTE_CHARS).strip()
+    candidate = re.sub(r":\d+(-\d+)?$", "", candidate)
+    candidate = candidate.rstrip(TRAILING_PUNCTUATION).strip(QUOTE_CHARS).strip()
+    candidate = re.sub(r":\d+(-\d+)?$", "", candidate)
+    return candidate
+
+def _wrapper_paths(line: str) -> list[str]:
+    paths: list[str] = []
+    quote_class = re.escape(QUOTE_CHARS)
+    for match in re.finditer(rf"\b(?:import|require)\(\s*([{quote_class}])([^{quote_class}]+)\1\s*\)?", line):
+        paths.append(match.group(2))
+    for match in re.finditer(rf"\bfrom\s+([{quote_class}])([^{quote_class}]+)\1", line):
+        paths.append(match.group(2))
+    return paths
+
+def _candidate_exists(candidate: str) -> bool:
+    if candidate.startswith(MIRROR_PREFIXES):
+        return True
+    return Path(candidate).exists()
+
+def _extract_paths(stdout: str) -> list[str]:
+    top_paths: list[str] = []
+    for line in stdout.splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        for token in [*_wrapper_paths(line), *line.split()]:
+            if "/" not in token or "." not in token.split("/")[-1]:
+                continue
+            candidate = _clean_path_candidate(token)
+            if not candidate or "/" not in candidate or "." not in candidate.split("/")[-1]:
+                continue
+            if not _candidate_exists(candidate):
+                continue
+            if candidate not in top_paths:
+                top_paths.append(candidate)
+    return top_paths
 
 def _norm(path):
     for prefix in [".opencode/", ".claude/", ".codex/", ".gemini/"]:
@@ -136,17 +189,7 @@ for p in pairs:
     latency_ms = int((time.monotonic() - t0) * 1000)
     latencies.append(latency_ms)
 
-    top_paths = []
-    if result.returncode == 0:
-        for line in result.stdout.splitlines():
-            line = line.strip()
-            if not line:
-                continue
-            for part in line.split():
-                if "/" in part and "." in part.split("/")[-1]:
-                    pp = re.sub(r":\d+(-\d+)?$", "", part).rstrip(",;:()")
-                    if pp and pp not in top_paths:
-                        top_paths.append(pp)
+    top_paths = _extract_paths(result.stdout) if result.returncode == 0 else []
 
     top1 = top_paths[0] if top_paths else ""
     top5 = [_norm(p) for p in top_paths[:5]]
@@ -184,7 +227,7 @@ PYTHON
 
 log "=========================================="
 log "Phase 2 Smoke Bench starting"
-log "Fixture: $FIXTURE (8 probes — 4 failures + 4 controls)"
+log "Fixture: $FIXTURE ($PROBE_COUNT probes)"
 log "Pinned embedder: $COCOINDEX_CODE_EMBEDDING_MODEL"
 log "=========================================="
 
@@ -196,12 +239,14 @@ log "=========================================="
 log "Phase 2 bench complete; running comparison synthesis"
 log "=========================================="
 
-$PYTHON - "$SCRIPT_DIR" <<'PYTHON_SUMMARY'
+$PYTHON - "$SCRIPT_DIR" "$OUTPUT_TAG" "$COMPARISON_OUTPUT" <<'PYTHON_SUMMARY'
 import json
 import sys
 from pathlib import Path
 
 script_dir = Path(sys.argv[1])
+output_tag = sys.argv[2]
+comparison_output = Path(sys.argv[3])
 lanes = ["baseline-bge", "bge-path-class", "jina-v3"]
 FAILURES = {3, 10, 14, 18}
 CONTROLS = {1, 5, 11, 16}
@@ -209,7 +254,7 @@ CONTROLS = {1, 5, 11, 16}
 # Load per-lane results
 lane_results = {}
 for lane in lanes:
-    fp = script_dir / f"{lane}.results.jsonl"
+    fp = script_dir / f"{lane}{output_tag}.results.jsonl"
     if not fp.exists():
         lane_results[lane] = []
         continue
@@ -310,11 +355,11 @@ out.append("")
 out.append("## Phase 2 Bench Order Reminder\n")
 out.append("Per 011/research/research-convergence.md — bench BGE+path-class FIRST as the production-shippable lane; jina-v3 INFORMS only (never ships from this throwaway). If jina-v3 dominates path-class, escalate to production jina-v3 adapter packet. If jina-v3 ties or loses, delete cocoindex_code/rerankers_jina_v3.py + tests/test_rerankers_jina_v3.py.\n")
 
-output_path = script_dir / "phase2-comparison.md"
+output_path = comparison_output
 output_path.write_text("\n".join(out))
 print(f"wrote {output_path}")
 PYTHON_SUMMARY
 
 log "=========================================="
-log "Phase 2 done. Comparison: $SCRIPT_DIR/phase2-comparison.md"
+log "Phase 2 done. Comparison: $COMPARISON_OUTPUT"
 log "=========================================="

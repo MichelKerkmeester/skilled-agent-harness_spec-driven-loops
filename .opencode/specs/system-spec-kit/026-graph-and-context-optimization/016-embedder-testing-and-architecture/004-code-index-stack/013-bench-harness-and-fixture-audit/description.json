@@ -1,0 +1,39 @@
+{
+  "level": "1",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit",
+  "description": "Hardens Phase 2 CocoIndex bench measurement: path extraction in both harnesses, full 18-probe sqlite fixture audit, corrected probe 10 source path, co",
+  "keywords": [
+    "hardens",
+    "phase",
+    "cocoindex",
+    "bench",
+    "measurement",
+    "path",
+    "extraction",
+    "harnesses",
+    "full",
+    "18-probe",
+    "sqlite",
+    "fixture",
+    "audit",
+    "corrected",
+    "probe",
+    "source",
+    "baseline",
+    "packets",
+    "014-018"
+  ],
+  "lastUpdated": "2026-05-19T10:34:20.103Z",
+  "specId": "013",
+  "folderSlug": "bench-harness-and-fixture-audit",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "004-code-index-stack"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

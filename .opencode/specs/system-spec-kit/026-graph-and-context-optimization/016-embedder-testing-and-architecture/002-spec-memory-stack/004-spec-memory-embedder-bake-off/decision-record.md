@@ -652,3 +652,67 @@ Evidence:
 - Test fix: `.opencode/skills/system-spec-kit/mcp_server/tests/embedder-auto-selection.vitest.ts:158` (error-message order assertion flipped)
 - Doc sweep: INSTALL_GUIDE.md, opencode.json + .claude/mcp.json env notes, README.md, mcp_server/README.md, references/memory/embedder_architecture.md, references/memory/embedding_resilience.md, references/embedder-pluggability.md, mcp_server/ENV_REFERENCE.md
 <!-- /ANCHOR:adr-014 -->
+
+<!-- ANCHOR:adr-016 -->
+## ADR-016: Bench harness hardening + fixture audit
+
+**Date**: 2026-05-19
+**Status**: Accepted, shipped (packet 016/004/013)
+**Packet**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit/`
+
+### Decision
+
+Adopt the hardened Phase 2 harness and corrected fixture as the measurement baseline for CocoIndex downstream packets 014-018. The canonical comparison point is now:
+
+```text
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/phase2-comparison-corrected.md
+```
+
+### Defects Found
+
+1. **Path extraction produced false misses.** The harness parsed whitespace tokens as paths, but kept wrappers such as backticks, import/require wrappers, quoted literals, line ranges, and mock strings. Probe 11 was the clearest defect: the expected `config.py` was present in output but wrapped in backticks and therefore scored as a miss.
+2. **Probe 10 targeted an excluded dist artifact.** The fixture expected `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`. The live DB audit found `vec_count=0` and `fts_count=0`; `.cocoindex_code/settings.yml` excludes `**/dist`, so no embedder, reranker, or retrieval-tuning packet can make that target hit.
+
+### Fixes Applied
+
+- Added `_extract_paths(stdout: str) -> list[str]` to both bench harnesses.
+- Stripped backticks, single/double quotes, import/require/from wrappers, line ranges, and trailing punctuation.
+- Added mirror-prefix awareness for `.opencode/`, `.claude/`, `.codex/`, and `.gemini/`.
+- Added a filesystem-existence sanity check for non-mirror paths so mock literals such as `./measurement-fixtures.js` do not occupy top-5 result slots.
+- Audited all 18 fixture probes against `code_chunks_vec` and `code_chunks_fts`.
+- Re-pointed probe 10 to `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts`, the indexed TypeScript source of truth.
+- Preserved historical artifacts and wrote corrected artifacts with `-corrected` or `-audited` suffixes.
+
+### Measurement Contract
+
+Downstream packets 014-018 must compare against `phase2-comparison-corrected.md`, not the historical `phase2-comparison.md`. The historical file remains evidence for how the bad measurement behaved; it is no longer the baseline for improvement claims.
+
+The corrected re-bench measured:
+
+| Lane | Corrected hit rate |
+|---|---:|
+| baseline-bge | 14/18 |
+| bge-path-class | 14/18 |
+| jina-v3 | 14/18 |
+
+The delta artifact shows the historical 8-probe subset improved from `3/8` to `6/8` for both BGE lanes. It attributes one miss-to-hit flip to the fixture fix (probe 10) and three miss-to-hit flips to harness/result extraction cleanup in each BGE lane, with probe 5 recorded as a hit-to-miss residual risk to inspect.
+
+### Rollback Path
+
+To roll back this decision:
+
+1. Revert the `_extract_paths` helper changes in both harness scripts.
+2. Stop using `code-retrieval-fixture-corrected.json`; restore `probe-subset.json` or the original baseline fixture for measurement.
+3. Treat `phase2-comparison.md` as historical-only unless a replacement audit is run.
+4. Remove this ADR section or supersede it with a new ADR that names the replacement measurement contract.
+
+Rollback is measurement-only. It does not mutate the live CocoIndex DB and does not require `ccc reset` or `ccc index`.
+
+Evidence:
+- `phase2-bench/code-retrieval-fixture-audited.json`
+- `phase2-bench/code-retrieval-fixture-corrected.json`
+- `phase2-bench/phase2-comparison-corrected.md`
+- `phase2-bench/phase2-comparison-baseline-vs-corrected-delta.md`
+- `013-bench-harness-and-fixture-audit/evidence/fixture-audit-summary.md`
+- `013-bench-harness-and-fixture-audit/scratch/test_path_extraction.py`
+<!-- /ANCHOR:adr-016 -->

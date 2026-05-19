@@ -29,6 +29,26 @@ Each lane: clears CocoIndex daemon to drop `_ADAPTERS` cache, sets env vars (mod
 
 Output: `baseline-bge.rerank-scores.jsonl`, `bge-path-class.rerank-scores.jsonl`, `jina-v3.rerank-scores.jsonl` + a comparison report `phase2-comparison.md`.
 
+## Corrected measurement baseline
+
+Packet `016/004/013` hardened the harness path extractor and audited the full 18-probe fixture against `.cocoindex_code/target_sqlite.db`. Use these artifacts as the canonical baseline for downstream packets 014-018:
+
+- `code-retrieval-fixture-audited.json` — all 18 probes annotated with `_fixture_status` and sqlite vec/FTS evidence.
+- `code-retrieval-fixture-corrected.json` — corrected benchmark fixture; probe 10 points at indexed TypeScript source `scripts/memory/generate-context.ts` instead of excluded `scripts/dist/**` output.
+- `phase2-comparison-corrected.md` — corrected 18-probe re-bench result.
+- `phase2-comparison-baseline-vs-corrected-delta.md` — explains historical-vs-corrected flips by harness fix, fixture fix, or residual regression.
+
+Re-run without overwriting historical Phase 2 artifacts:
+
+```bash
+FIXTURE_OVERRIDE=phase2-bench/code-retrieval-fixture-corrected.json \
+OUTPUT_TAG=-corrected \
+COMPARISON_OUTPUT=phase2-bench/phase2-comparison-corrected.md \
+bash phase2-bench/run-phase2-smoke.sh
+```
+
+The original `phase2-comparison.md` remains historical evidence. New measurement claims should compare against `phase2-comparison-corrected.md`.
+
 ## Decision rubric
 
 **Track A SHIPS** iff: ≥2 of probes {3, 10, 14, 18} flip miss → hit AND 0 of probes {1, 5, 11, 16} flip hit → miss AND p95 latency delta < 5%.
