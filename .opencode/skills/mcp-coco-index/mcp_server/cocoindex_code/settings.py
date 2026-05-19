@@ -43,6 +43,8 @@ DEFAULT_INCLUDED_PATTERNS: list[str] = [
     "**/*.zsh",  # Zsh
     "**/*.php",  # PHP
     "**/*.lua",  # Lua
+    "**/*.svelte",  # Svelte
+    "**/*.vue",  # Vue
     # 014-local-embeddings-setup-a / 010-cocoindex-code-only-patterns:
     # markdown / mdx / txt / rst REMOVED from defaults — cocoindex is for CODE
     # search; documentation is indexed by mk-spec-memory which has its own

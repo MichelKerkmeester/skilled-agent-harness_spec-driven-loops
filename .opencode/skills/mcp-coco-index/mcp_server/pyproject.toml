@@ -59,7 +59,7 @@ ccc = "cocoindex_code.cli:app"
 # LiteLLM (Voyage AI etc.) is an optional explicit setup.
 # Users who want offline / no-API-key embeddings: `pip install -e ".[local]"`.
 local = [
-    "sentence-transformers>=2.2.0",
+    "sentence-transformers==5.4.1",
 ]
 dev = [
     "mypy>=1.0.0",
