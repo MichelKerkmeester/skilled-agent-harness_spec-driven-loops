@@ -16,9 +16,9 @@ _DEFAULT_CHUNK_OVERLAP = 200
 _DEFAULT_MIN_CHUNK_SIZE = 250
 _DEFAULT_CODE_AWARE_CHUNKING = True
 _DEFAULT_TREE_SITTER_LANGUAGES: dict[str, object] = {}
-_DEFAULT_HYBRID_VECTOR_WEIGHT = 0.7
-_DEFAULT_HYBRID_FTS5_WEIGHT = 0.7
-_DEFAULT_HYBRID_RRF_K = 60
+_DEFAULT_HYBRID_VECTOR_WEIGHT = 0.9  # 017 empirical: tied hit rate across V=[0.7,0.9], V=0.9 picks lower p95
+_DEFAULT_HYBRID_FTS5_WEIGHT = 0.5  # 017 empirical: tied hit rate across F=[0.5,0.7], F=0.5 picks lower p95
+_DEFAULT_HYBRID_RRF_K = 60  # 017 empirical: K=[30,60,90,120] all tied at 12/18 hits; keep canonical 60
 _DEFAULT_RERANK_MODEL = "BAAI/bge-reranker-v2-m3"
 _DEFAULT_RERANK_TOP_K = 20
 _DEFAULT_QUERY_EXPANSION = False  # 016 empirical: ON regressed 14/13/12 → 12/12/12 on corrected fixture; ships opt-in pending 017 RRF tuning

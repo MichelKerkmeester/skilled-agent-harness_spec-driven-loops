@@ -258,8 +258,8 @@ class TestHybridConfigValidation:
             cfg = Config.from_env()
 
         assert cfg.hybrid_enabled is True
-        assert cfg.hybrid_vector_weight == _DEFAULT_HYBRID_VECTOR_WEIGHT == 0.7
-        assert cfg.hybrid_fts5_weight == _DEFAULT_HYBRID_FTS5_WEIGHT == 0.7
+        assert cfg.hybrid_vector_weight == _DEFAULT_HYBRID_VECTOR_WEIGHT == 0.9
+        assert cfg.hybrid_fts5_weight == _DEFAULT_HYBRID_FTS5_WEIGHT == 0.5
         assert cfg.hybrid_rrf_k == _DEFAULT_HYBRID_RRF_K == 60
 
     def test_hybrid_env_overrides(self, tmp_path: Path) -> None:

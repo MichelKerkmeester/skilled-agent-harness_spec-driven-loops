@@ -1,0 +1,932 @@
+{
+  "cell": {
+    "fts_weight": 0.5,
+    "k": 60,
+    "vec_weight": 0.7
+  },
+  "comparison_output": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/017-hybrid-fusion-empirical-recalibration/evidence/cells/K60-V0p7-F0p5-comparison.md",
+  "created_at": "2026-05-19T15:01:39.340110+00:00",
+  "fixture": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/code-retrieval-fixture-corrected.json",
+  "lanes": {
+    "baseline-bge": {
+      "hit_rate": 0.6666666666666666,
+      "hits": 12,
+      "p50_ms": 1640,
+      "p95_ms": 13759,
+      "probes": [
+        {
+          "difficulty": "easy",
+          "expected": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/registry.ts",
+          "hit": true,
+          "lane": "baseline-bge",
+          "latency_ms": 13759,
+          "probe_id": 1,
+          "query": "registry of available embedding backends with dimensions and model notes",
+          "top1": ".opencode/skills/system-spec-kit/references/embedder-pluggability.md",
+          "top5": [
+            "skills/system-spec-kit/references/embedder-pluggability.md",
+            "skills/system-spec-kit/mcp_server/lib/embedders/registry.ts",
+            "skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts",
+            "skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py"
+          ]
+        },
+        {
+          "difficulty": "easy",
+          "expected": ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-set.ts",
+          "hit": true,
+          "lane": "baseline-bge",
+          "latency_ms": 1424,
+          "probe_id": 2,
+          "query": "handler that accepts an embedder name and queues a reindex job",
+          "top1": ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-set.ts",
+          "top5": [
+            "skills/system-spec-kit/mcp_server/handlers/embedder-set.ts",
+            "skills/system-spec-kit/references/embedder-pluggability.md",
+            "skills/system-spec-kit/mcp_server/handlers/embedder-status.ts",
+            "skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+            "specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/evidence/generate-playbook-quality-audit.js"
+          ]
+        },
+        {
+          "difficulty": "easy",
+          "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+          "hit": true,
+          "lane": "baseline-bge",
+          "latency_ms": 1667,
+          "probe_id": 3,
+          "query": "CocoIndex configuration that chooses the default local code embedding model",
+          "top1": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_config.py",
+          "top5": [
+            "skills/mcp-coco-index/mcp_server/tests/test_config.py",
+            "skills/mcp-coco-index/references/tool_reference.md",
+            "skills/system-spec-kit/references/embedder-pluggability.md",
+            "skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+            "skills/mcp-coco-index/references/settings_reference.md"
+          ]
+        },
+        {
+          "difficulty": "easy",
+          "expected": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+          "hit": true,
+          "lane": "baseline-bge",
+          "latency_ms": 1706,
+          "probe_id": 4,
+          "query": "shell validator for spec folders with strict mode and recursive phase support",
+          "top1": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+          "top5": [
+            "skills/system-spec-kit/scripts/spec/validate.sh",
+            "skills/system-spec-kit/references/templates/template_guide.md",
+            "skills/system-spec-kit/scripts/rules/check-phase-links.sh",
+            "skills/system-spec-kit/references/structure/phase_definitions.md"
+          ]
+        },
+        {
+          "difficulty": "easy",
+          "expected": ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts",
+          "hit": false,
+          "lane": "baseline-bge",
+          "latency_ms": 1471,
+          "probe_id": 5,
+          "query": "Vitest coverage for code graph readiness snapshots and stale state",
+          "top1": ".opencode/skills/system-code-graph/mcp_server/tests/startup-brief.vitest.ts",
+          "top5": [
+            "skills/system-code-graph/mcp_server/tests/startup-brief.vitest.ts",
+            "skills/system-spec-kit/mcp_server/stress_test/search-quality/w7-degraded-stale.vitest.ts",
+            "skills/system-code-graph/references/readiness-and-scope-fingerprint.md",
+            "skills/system-spec-kit/mcp_server/tests/m8-trust-state-vocabulary.vitest.ts"
+          ]
+        },
+        {
+          "difficulty": "medium",
+          "expected": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/adapters/ollama.ts",
+          "hit": true,
+          "lane": "baseline-bge",
+          "latency_ms": 2061,
+          "probe_id": 6,
+          "query": "construct an Ollama-backed embedder and apply query/document prefixes before embedding",
+          "top1": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/adapters/ollama.ts",
+          "top5": [
+            "skills/system-spec-kit/mcp_server/lib/embedders/adapters/ollama.ts",
+            "skills/system-skill-advisor/mcp_server/lib/embedders/adapters/ollama.ts",
+            "skills/system-spec-kit/references/memory/embedder_architecture.md",
+            "skills/system-skill-advisor/mcp_server/lib/embedders/adapters/ollama.ts"
+          ]
+        },
+        {
+          "difficulty": "medium",
+          "expected": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
+          "hit": true,
+          "lane": "baseline-bge",
+          "latency_ms": 1185,
+          "probe_id": 7,
+          "query": "single scoring stage where recency, graph, feedback, and rescue boosts are combined",
+          "top1": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
+          "top5": [
+            "skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
+            "skills/system-spec-kit/shared/ranking/learned-combiner.ts",
+            "skills/system-spec-kit/mcp_server/shared/ranking/learned-combiner.d.ts",
+            "skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts",
+            "specs/system-spec-kit/z_archive/022-hybrid-rag-fusion/006-feature-catalog/scratch/generate-source-files.mjs"
+          ]
+        },
+        {
+          "difficulty": "medium",
+          "expected": ".opencode/skills/system-code-graph/mcp_server/lib/ccc-readiness-probe.ts",
+          "hit": true,
+          "lane": "baseline-bge",
+          "latency_ms": 1508,
+          "probe_id": 8,
+          "query": "readiness probe that checks whether the semantic code index is fresh or absent",
+          "top1": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+          "top5": [
+            "skills/system-spec-kit/mcp_server/context-server.ts",
+            "skills/system-code-graph/mcp_server/lib/ccc-readiness-probe.ts",
+            "skills/system-code-graph/references/readiness-and-scope-fingerprint.md",
+            "skills/mcp-coco-index/references/search_patterns.md"
+          ]
+        },
+        {
+          "difficulty": "medium",
+          "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py",
+          "hit": true,
+          "lane": "baseline-bge",
+          "latency_ms": 1208,
+          "probe_id": 9,
+          "query": "declarative list of vetted sentence transformer candidates for local code search",
+          "top1": ".opencode/skills/system-spec-kit/references/embedder-pluggability.md",
+          "top5": [
+            "skills/system-spec-kit/references/embedder-pluggability.md",
+            "skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py",
+            "skills/mcp-coco-index/mcp_server/cocoindex_code/query_expansion.py",
+            "skills/system-spec-kit/scripts/extractors/decision-extractor.ts",
+            "skills/system-spec-kit/shared/embeddings/providers/hf-local.ts"
+          ]
+        },
+        {
+          "difficulty": "medium",
+          "expected": ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
+          "hit": false,
+          "lane": "baseline-bge",
+          "latency_ms": 1729,
+          "probe_id": 10,
+          "query": "context save command that reads structured JSON and refreshes graph metadata",
+          "top1": ".opencode/skills/system-spec-kit/references/structure/sub_folder_versioning.md",
+          "top5": [
+            "skills/system-spec-kit/references/structure/sub_folder_versioning.md",
+            "skills/system-spec-kit/references/workflows/quick_reference.md",
+            "skills/system-spec-kit/scripts/dist/memory/generate-context.js",
+            "skills/system-spec-kit/references/memory/save_workflow.md",
+            "skills/system-spec-kit/references/workflows/execution_methods.md"
+          ]
+        },
+        {
+          "difficulty": "hard",
+          "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+          "hit": true,
+          "lane": "baseline-bge",
+          "latency_ms": 1666,
+          "probe_id": 11,
+          "query": "Apple Silicon device fallback that prefers Metal when CUDA is unavailable",
+          "top1": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_config.py",
+          "top5": [
+            "skills/mcp-coco-index/mcp_server/tests/test_config.py",
+            "skills/system-spec-kit/references/embedder-pluggability.md",
+            "skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+            "specs/system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/scratch/graphrag-hybrid/src/processors/embedding_processor.py",
+            "skills/system-spec-kit/shared/embeddings/providers/hf-local.ts"
+          ]
+        },
+        {
+          "difficulty": "hard",
+          "expected": ".opencode/skills/system-spec-kit/mcp_server/lib/search/rerank/retrieval-rescue.ts",
+          "hit": false,
+          "lane": "baseline-bge",
+          "latency_ms": 2100,
+          "probe_id": 12,
+          "query": "paraphrase recovery path that promotes sibling memory artifacts from the same folder",
+          "top1": ".opencode/skills/system-spec-kit/references/embedder-pluggability.md",
+          "top5": [
+            "skills/system-spec-kit/references/embedder-pluggability.md",
+            "skills/deep-ai-council/references/graph_support.md",
+            "skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts",
+            "skills/system-spec-kit/scripts/lib/validate-memory-quality.ts",
+            "skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts"
+          ]
+        },
+        {
+          "difficulty": "hard",
+          "expected": ".opencode/skills/system-code-graph/mcp_server/lib/budget-allocator.ts",
+          "hit": false,
+          "lane": "baseline-bge",
+          "latency_ms": 1618,
+          "probe_id": 13,
+          "query": "bounded token budget allocation for assembling structural context responses",
+          "top1": ".opencode/skills/system-spec-kit/mcp_server/lib/session/structural-bootstrap-contract.ts",
+          "top5": [
+            "skills/system-spec-kit/mcp_server/lib/session/structural-bootstrap-contract.ts",
+            "skills/system-spec-kit/mcp_server/hooks/memory-surface.ts",
+            "skills/cli-devin/references/context-budget.md",
+            "skills/cli-opencode/references/context-budget.md",
+            "skills/system-spec-kit/mcp_server/handlers/memory-context.ts"
+          ]
+        },
+        {
+          "difficulty": "hard",
+          "expected": ".opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts",
+          "hit": false,
+          "lane": "baseline-bge",
+          "latency_ms": 1711,
+          "probe_id": 14,
+          "query": "filesystem walker that emits typed structural symbols and import edges",
+          "top1": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_code_aware_chunker.py",
+          "top5": [
+            "skills/mcp-coco-index/mcp_server/tests/test_code_aware_chunker.py",
+            "skills/system-code-graph/mcp_server/lib/tree-sitter-parser.ts",
+            "skills/system-code-graph/mcp_server/lib/indexer-types.ts",
+            "skills/system-skill-advisor/mcp_server/lib/scorer/types.ts",
+            "skills/sk-doc/assets/readme/readme_code_template.md"
+          ]
+        },
+        {
+          "difficulty": "hard",
+          "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py",
+          "hit": true,
+          "lane": "baseline-bge",
+          "latency_ms": 1430,
+          "probe_id": 15,
+          "query": "query-time path class adjustment that favors implementation files over generated copies",
+          "top1": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_query_expansion.py",
+          "top5": [
+            "skills/mcp-coco-index/mcp_server/tests/test_query_expansion.py",
+            "skills/mcp-coco-index/references/tool_reference.md",
+            "skills/mcp-coco-index/mcp_server/cocoindex_code/query.py",
+            "skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py"
+          ]
+        },
+        {
+          "difficulty": "medium",
+          "expected": ".opencode/skills/system-code-graph/mcp_server/tests/readiness-marker-atomic-write.vitest.ts",
+          "hit": true,
+          "lane": "baseline-bge",
+          "latency_ms": 1353,
+          "probe_id": 16,
+          "query": "atomic readiness marker persistence tested for partial writes",
+          "top1": "specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit/scratch/test_path_extraction.py",
+          "top5": [
+            "specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit/scratch/test_path_extraction.py",
+            "skills/system-code-graph/mcp_server/tests/readiness-marker-atomic-write.vitest.ts",
+            "skills/system-code-graph/mcp_server/lib/readiness-marker.ts",
+            "skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts",
+            "skills/system-spec-kit/mcp_server/tests/hook-session-stop-replay.vitest.ts"
+          ]
+        },
+        {
+          "difficulty": "hard",
+          "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py",
+          "hit": true,
+          "lane": "baseline-bge",
+          "latency_ms": 1636,
+          "probe_id": 17,
+          "query": "file matcher that lets explicitly canonical skill resources bypass hidden directory exclusions",
+          "top1": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py",
+          "top5": [
+            "skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py",
+            "skills/mcp-coco-index/tests/test_settings.py",
+            "skills/sk-code/assets/opencode/checklists/skill_authoring.md",
+            "skills/system-skill-advisor/mcp_server/lib/utils/workspace-root.ts",
+            "skills/system-spec-kit/SKILL.md"
+          ]
+        },
+        {
+          "difficulty": "medium",
+          "expected": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_refresh_split.py",
+          "hit": false,
+          "lane": "baseline-bge",
+          "latency_ms": 1644,
+          "probe_id": 18,
+          "query": "integration test for reprocessing only changed files during an index refresh",
+          "top1": ".opencode/skills/mcp-coco-index/references/tool_reference.md",
+          "top5": [
+            "skills/mcp-coco-index/references/tool_reference.md",
+            "skills/sk-code-review/references/fix-completeness-checklist.md",
+            "skills/system-spec-kit/scripts/lib/anchor-generator.ts",
+            "skills/system-spec-kit/mcp_server/handlers/memory-index.ts"
+          ]
+        }
+      ],
+      "total": 18
+    },
+    "bge-path-class": {
+      "hit_rate": 0.7222222222222222,
+      "hits": 13,
+      "p50_ms": 1649,
+      "p95_ms": 11964,
+      "probes": [
+        {
+          "difficulty": "easy",
+          "expected": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/registry.ts",
+          "hit": true,
+          "lane": "bge-path-class",
+          "latency_ms": 11964,
+          "probe_id": 1,
+          "query": "registry of available embedding backends with dimensions and model notes",
+          "top1": ".opencode/skills/system-spec-kit/references/embedder-pluggability.md",
+          "top5": [
+            "skills/system-spec-kit/references/embedder-pluggability.md",
+            "skills/system-spec-kit/mcp_server/lib/embedders/registry.ts",
+            "skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts",
+            "skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py"
+          ]
+        },
+        {
+          "difficulty": "easy",
+          "expected": ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-set.ts",
+          "hit": true,
+          "lane": "bge-path-class",
+          "latency_ms": 1409,
+          "probe_id": 2,
+          "query": "handler that accepts an embedder name and queues a reindex job",
+          "top1": ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-set.ts",
+          "top5": [
+            "skills/system-spec-kit/mcp_server/handlers/embedder-set.ts",
+            "skills/system-spec-kit/references/embedder-pluggability.md",
+            "skills/system-spec-kit/mcp_server/handlers/embedder-status.ts",
+            "skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+            "specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/evidence/generate-playbook-quality-audit.js"
+          ]
+        },
+        {
+          "difficulty": "easy",
+          "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+          "hit": true,
+          "lane": "bge-path-class",
+          "latency_ms": 1679,
+          "probe_id": 3,
+          "query": "CocoIndex configuration that chooses the default local code embedding model",
+          "top1": ".opencode/skills/mcp-coco-index/references/tool_reference.md",
+          "top5": [
+            "skills/mcp-coco-index/references/tool_reference.md",
+            "skills/system-spec-kit/references/embedder-pluggability.md",
+            "skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+            "skills/mcp-coco-index/references/settings_reference.md"
+          ]
+        },
+        {
+          "difficulty": "easy",
+          "expected": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+          "hit": true,
+          "lane": "bge-path-class",
+          "latency_ms": 1734,
+          "probe_id": 4,
+          "query": "shell validator for spec folders with strict mode and recursive phase support",
+          "top1": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+          "top5": [
+            "skills/system-spec-kit/scripts/spec/validate.sh",
+            "skills/system-spec-kit/references/templates/template_guide.md",
+            "skills/system-spec-kit/scripts/rules/check-phase-links.sh",
+            "skills/system-spec-kit/references/structure/phase_definitions.md"
+          ]
+        },
+        {
+          "difficulty": "easy",
+          "expected": ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts",
+          "hit": false,
+          "lane": "bge-path-class",
+          "latency_ms": 1483,
+          "probe_id": 5,
+          "query": "Vitest coverage for code graph readiness snapshots and stale state",
+          "top1": ".opencode/skills/system-code-graph/mcp_server/tests/startup-brief.vitest.ts",
+          "top5": [
+            "skills/system-code-graph/mcp_server/tests/startup-brief.vitest.ts",
+            "skills/system-code-graph/references/readiness-and-scope-fingerprint.md",
+            "skills/system-spec-kit/mcp_server/stress_test/search-quality/w7-degraded-stale.vitest.ts",
+            "skills/system-spec-kit/mcp_server/tests/m8-trust-state-vocabulary.vitest.ts"
+          ]
+        },
+        {
+          "difficulty": "medium",
+          "expected": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/adapters/ollama.ts",
+          "hit": true,
+          "lane": "bge-path-class",
+          "latency_ms": 2037,
+          "probe_id": 6,
+          "query": "construct an Ollama-backed embedder and apply query/document prefixes before embedding",
+          "top1": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/adapters/ollama.ts",
+          "top5": [
+            "skills/system-spec-kit/mcp_server/lib/embedders/adapters/ollama.ts",
+            "skills/system-skill-advisor/mcp_server/lib/embedders/adapters/ollama.ts",
+            "skills/system-spec-kit/references/memory/embedder_architecture.md",
+            "skills/system-skill-advisor/mcp_server/lib/embedders/adapters/ollama.ts"
+          ]
+        },
+        {
+          "difficulty": "medium",
+          "expected": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
+          "hit": true,
+          "lane": "bge-path-class",
+          "latency_ms": 1245,
+          "probe_id": 7,
+          "query": "single scoring stage where recency, graph, feedback, and rescue boosts are combined",
+          "top1": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
+          "top5": [
+            "skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
+            "skills/system-spec-kit/shared/ranking/learned-combiner.ts",
+            "skills/system-spec-kit/mcp_server/shared/ranking/learned-combiner.d.ts",
+            "skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts",
+            "specs/system-spec-kit/z_archive/022-hybrid-rag-fusion/006-feature-catalog/scratch/generate-source-files.mjs"
+          ]
+        },
+        {
+          "difficulty": "medium",
+          "expected": ".opencode/skills/system-code-graph/mcp_server/lib/ccc-readiness-probe.ts",
+          "hit": true,
+          "lane": "bge-path-class",
+          "latency_ms": 1563,
+          "probe_id": 8,
+          "query": "readiness probe that checks whether the semantic code index is fresh or absent",
+          "top1": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+          "top5": [
+            "skills/system-spec-kit/mcp_server/context-server.ts",
+            "skills/system-code-graph/mcp_server/lib/ccc-readiness-probe.ts",
+            "skills/system-code-graph/references/readiness-and-scope-fingerprint.md",
+            "skills/mcp-coco-index/references/search_patterns.md"
+          ]
+        },
+        {
+          "difficulty": "medium",
+          "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py",
+          "hit": true,
+          "lane": "bge-path-class",
+          "latency_ms": 1262,
+          "probe_id": 9,
+          "query": "declarative list of vetted sentence transformer candidates for local code search",
+          "top1": ".opencode/skills/system-spec-kit/references/embedder-pluggability.md",
+          "top5": [
+            "skills/system-spec-kit/references/embedder-pluggability.md",
+            "skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py",
+            "skills/mcp-coco-index/mcp_server/cocoindex_code/query_expansion.py",
+            "skills/system-spec-kit/scripts/extractors/decision-extractor.ts",
+            "skills/system-spec-kit/shared/embeddings/providers/hf-local.ts"
+          ]
+        },
+        {
+          "difficulty": "medium",
+          "expected": ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
+          "hit": false,
+          "lane": "bge-path-class",
+          "latency_ms": 1743,
+          "probe_id": 10,
+          "query": "context save command that reads structured JSON and refreshes graph metadata",
+          "top1": ".opencode/skills/system-spec-kit/references/structure/sub_folder_versioning.md",
+          "top5": [
+            "skills/system-spec-kit/references/structure/sub_folder_versioning.md",
+            "skills/system-spec-kit/references/workflows/quick_reference.md",
+            "skills/system-spec-kit/scripts/dist/memory/generate-context.js",
+            "skills/system-spec-kit/references/memory/save_workflow.md",
+            "skills/system-spec-kit/references/workflows/execution_methods.md"
+          ]
+        },
+        {
+          "difficulty": "hard",
+          "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+          "hit": true,
+          "lane": "bge-path-class",
+          "latency_ms": 1653,
+          "probe_id": 11,
+          "query": "Apple Silicon device fallback that prefers Metal when CUDA is unavailable",
+          "top1": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_config.py",
+          "top5": [
+            "skills/mcp-coco-index/mcp_server/tests/test_config.py",
+            "skills/system-spec-kit/references/embedder-pluggability.md",
+            "skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+            "specs/system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/scratch/graphrag-hybrid/src/processors/embedding_processor.py",
+            "skills/system-spec-kit/shared/embeddings/providers/hf-local.ts"
+          ]
+        },
+        {
+          "difficulty": "hard",
+          "expected": ".opencode/skills/system-spec-kit/mcp_server/lib/search/rerank/retrieval-rescue.ts",
+          "hit": false,
+          "lane": "bge-path-class",
+          "latency_ms": 2059,
+          "probe_id": 12,
+          "query": "paraphrase recovery path that promotes sibling memory artifacts from the same folder",
+          "top1": ".opencode/skills/system-spec-kit/references/embedder-pluggability.md",
+          "top5": [
+            "skills/system-spec-kit/references/embedder-pluggability.md",
+            "skills/deep-ai-council/references/graph_support.md",
+            "skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts",
+            "skills/system-spec-kit/scripts/lib/validate-memory-quality.ts",
+            "skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts"
+          ]
+        },
+        {
+          "difficulty": "hard",
+          "expected": ".opencode/skills/system-code-graph/mcp_server/lib/budget-allocator.ts",
+          "hit": false,
+          "lane": "bge-path-class",
+          "latency_ms": 1646,
+          "probe_id": 13,
+          "query": "bounded token budget allocation for assembling structural context responses",
+          "top1": ".opencode/skills/system-spec-kit/mcp_server/lib/session/structural-bootstrap-contract.ts",
+          "top5": [
+            "skills/system-spec-kit/mcp_server/lib/session/structural-bootstrap-contract.ts",
+            "skills/system-spec-kit/mcp_server/hooks/memory-surface.ts",
+            "skills/cli-devin/references/context-budget.md",
+            "skills/cli-opencode/references/context-budget.md",
+            "skills/system-spec-kit/mcp_server/handlers/memory-context.ts"
+          ]
+        },
+        {
+          "difficulty": "hard",
+          "expected": ".opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts",
+          "hit": true,
+          "lane": "bge-path-class",
+          "latency_ms": 1795,
+          "probe_id": 14,
+          "query": "filesystem walker that emits typed structural symbols and import edges",
+          "top1": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_code_aware_chunker.py",
+          "top5": [
+            "skills/mcp-coco-index/mcp_server/tests/test_code_aware_chunker.py",
+            "skills/system-code-graph/mcp_server/lib/tree-sitter-parser.ts",
+            "skills/system-code-graph/mcp_server/lib/indexer-types.ts",
+            "skills/system-skill-advisor/mcp_server/lib/scorer/types.ts",
+            "skills/system-code-graph/mcp_server/lib/structural-indexer.ts"
+          ]
+        },
+        {
+          "difficulty": "hard",
+          "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py",
+          "hit": true,
+          "lane": "bge-path-class",
+          "latency_ms": 1444,
+          "probe_id": 15,
+          "query": "query-time path class adjustment that favors implementation files over generated copies",
+          "top1": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_query_expansion.py",
+          "top5": [
+            "skills/mcp-coco-index/mcp_server/tests/test_query_expansion.py",
+            "skills/mcp-coco-index/references/tool_reference.md",
+            "skills/mcp-coco-index/mcp_server/cocoindex_code/query.py",
+            "skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py"
+          ]
+        },
+        {
+          "difficulty": "medium",
+          "expected": ".opencode/skills/system-code-graph/mcp_server/tests/readiness-marker-atomic-write.vitest.ts",
+          "hit": true,
+          "lane": "bge-path-class",
+          "latency_ms": 1358,
+          "probe_id": 16,
+          "query": "atomic readiness marker persistence tested for partial writes",
+          "top1": "specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit/scratch/test_path_extraction.py",
+          "top5": [
+            "specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit/scratch/test_path_extraction.py",
+            "skills/system-code-graph/mcp_server/tests/readiness-marker-atomic-write.vitest.ts",
+            "skills/system-code-graph/mcp_server/lib/readiness-marker.ts",
+            "skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts",
+            "skills/system-spec-kit/mcp_server/tests/hook-session-stop-replay.vitest.ts"
+          ]
+        },
+        {
+          "difficulty": "hard",
+          "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py",
+          "hit": true,
+          "lane": "bge-path-class",
+          "latency_ms": 1602,
+          "probe_id": 17,
+          "query": "file matcher that lets explicitly canonical skill resources bypass hidden directory exclusions",
+          "top1": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py",
+          "top5": [
+            "skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py",
+            "skills/mcp-coco-index/tests/test_settings.py",
+            "skills/sk-code/assets/opencode/checklists/skill_authoring.md",
+            "skills/system-skill-advisor/mcp_server/lib/utils/workspace-root.ts",
+            "skills/system-spec-kit/SKILL.md"
+          ]
+        },
+        {
+          "difficulty": "medium",
+          "expected": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_refresh_split.py",
+          "hit": false,
+          "lane": "bge-path-class",
+          "latency_ms": 1657,
+          "probe_id": 18,
+          "query": "integration test for reprocessing only changed files during an index refresh",
+          "top1": ".opencode/skills/mcp-coco-index/references/tool_reference.md",
+          "top5": [
+            "skills/mcp-coco-index/references/tool_reference.md",
+            "skills/sk-code-review/references/fix-completeness-checklist.md",
+            "skills/system-spec-kit/scripts/lib/anchor-generator.ts",
+            "skills/system-spec-kit/mcp_server/handlers/memory-index.ts"
+          ]
+        }
+      ],
+      "total": 18
+    },
+    "jina-v3": {
+      "hit_rate": 0.7777777777777778,
+      "hits": 14,
+      "p50_ms": 2005,
+      "p95_ms": 13378,
+      "probes": [
+        {
+          "difficulty": "easy",
+          "expected": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/registry.ts",
+          "hit": true,
+          "lane": "jina-v3",
+          "latency_ms": 13378,
+          "probe_id": 1,
+          "query": "registry of available embedding backends with dimensions and model notes",
+          "top1": ".opencode/skills/system-spec-kit/references/embedder-pluggability.md",
+          "top5": [
+            "skills/system-spec-kit/references/embedder-pluggability.md",
+            "skills/system-spec-kit/mcp_server/lib/embedders/registry.ts",
+            "skills/system-spec-kit/mcp_server/handlers/embedder-list.ts",
+            "skills/system-skill-advisor/mcp_server/lib/embedders/types.ts",
+            "skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py"
+          ]
+        },
+        {
+          "difficulty": "easy",
+          "expected": ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-set.ts",
+          "hit": true,
+          "lane": "jina-v3",
+          "latency_ms": 1884,
+          "probe_id": 2,
+          "query": "handler that accepts an embedder name and queues a reindex job",
+          "top1": ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-set.ts",
+          "top5": [
+            "skills/system-spec-kit/mcp_server/handlers/embedder-set.ts",
+            "skills/system-spec-kit/references/embedder-pluggability.md",
+            "skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+            "skills/system-spec-kit/mcp_server/handlers/embedder-status.ts",
+            "skills/system-spec-kit/references/memory/embedder_architecture.md"
+          ]
+        },
+        {
+          "difficulty": "easy",
+          "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+          "hit": true,
+          "lane": "jina-v3",
+          "latency_ms": 1950,
+          "probe_id": 3,
+          "query": "CocoIndex configuration that chooses the default local code embedding model",
+          "top1": ".opencode/skills/system-spec-kit/references/embedder-pluggability.md",
+          "top5": [
+            "skills/system-spec-kit/references/embedder-pluggability.md",
+            "skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+            "skills/mcp-coco-index/references/settings_reference.md"
+          ]
+        },
+        {
+          "difficulty": "easy",
+          "expected": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+          "hit": true,
+          "lane": "jina-v3",
+          "latency_ms": 2795,
+          "probe_id": 4,
+          "query": "shell validator for spec folders with strict mode and recursive phase support",
+          "top1": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+          "top5": [
+            "skills/system-spec-kit/scripts/spec/validate.sh",
+            "skills/system-spec-kit/references/structure/phase_definitions.md",
+            "skills/system-spec-kit/scripts/tests/continuity-freshness.vitest.ts",
+            "skills/system-spec-kit/references/templates/template_guide.md"
+          ]
+        },
+        {
+          "difficulty": "easy",
+          "expected": ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts",
+          "hit": false,
+          "lane": "jina-v3",
+          "latency_ms": 1901,
+          "probe_id": 5,
+          "query": "Vitest coverage for code graph readiness snapshots and stale state",
+          "top1": ".opencode/skills/system-code-graph/mcp_server/tests/startup-brief.vitest.ts",
+          "top5": [
+            "skills/system-code-graph/mcp_server/tests/startup-brief.vitest.ts",
+            "skills/system-spec-kit/mcp_server/stress_test/search-quality/w7-degraded-stale.vitest.ts",
+            "skills/system-code-graph/references/readiness-and-scope-fingerprint.md",
+            "skills/system-spec-kit/scripts/tests/graph-upgrades-regression-floor.vitest.ts.test.ts",
+            "skills/system-spec-kit/mcp_server/tests/m8-trust-state-vocabulary.vitest.ts"
+          ]
+        },
+        {
+          "difficulty": "medium",
+          "expected": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/adapters/ollama.ts",
+          "hit": true,
+          "lane": "jina-v3",
+          "latency_ms": 2352,
+          "probe_id": 6,
+          "query": "construct an Ollama-backed embedder and apply query/document prefixes before embedding",
+          "top1": ".opencode/skills/system-skill-advisor/mcp_server/lib/embedders/adapters/ollama.ts",
+          "top5": [
+            "skills/system-skill-advisor/mcp_server/lib/embedders/adapters/ollama.ts",
+            "skills/system-skill-advisor/mcp_server/lib/embedders/adapters/ollama.ts",
+            "skills/system-spec-kit/mcp_server/lib/embedders/adapters/ollama.ts"
+          ]
+        },
+        {
+          "difficulty": "medium",
+          "expected": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
+          "hit": true,
+          "lane": "jina-v3",
+          "latency_ms": 1367,
+          "probe_id": 7,
+          "query": "single scoring stage where recency, graph, feedback, and rescue boosts are combined",
+          "top1": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
+          "top5": [
+            "skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
+            "skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts",
+            "skills/system-spec-kit/shared/ranking/learned-combiner.ts",
+            "skills/system-spec-kit/mcp_server/shared/ranking/learned-combiner.d.ts",
+            "skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts"
+          ]
+        },
+        {
+          "difficulty": "medium",
+          "expected": ".opencode/skills/system-code-graph/mcp_server/lib/ccc-readiness-probe.ts",
+          "hit": true,
+          "lane": "jina-v3",
+          "latency_ms": 2207,
+          "probe_id": 8,
+          "query": "readiness probe that checks whether the semantic code index is fresh or absent",
+          "top1": ".opencode/skills/system-code-graph/mcp_server/lib/ccc-readiness-probe.ts",
+          "top5": [
+            "skills/system-code-graph/mcp_server/lib/ccc-readiness-probe.ts",
+            "skills/system-spec-kit/mcp_server/context-server.ts",
+            "skills/system-code-graph/mcp_server/handlers/detect-changes.ts"
+          ]
+        },
+        {
+          "difficulty": "medium",
+          "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py",
+          "hit": true,
+          "lane": "jina-v3",
+          "latency_ms": 1344,
+          "probe_id": 9,
+          "query": "declarative list of vetted sentence transformer candidates for local code search",
+          "top1": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py",
+          "top5": [
+            "skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py",
+            "skills/system-spec-kit/references/embedder-pluggability.md",
+            "skills/system-spec-kit/mcp_server/shared/embeddings/providers/hf-local.d.ts",
+            "skills/mcp-coco-index/mcp_server/cocoindex_code/query_expansion.py"
+          ]
+        },
+        {
+          "difficulty": "medium",
+          "expected": ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
+          "hit": true,
+          "lane": "jina-v3",
+          "latency_ms": 2700,
+          "probe_id": 10,
+          "query": "context save command that reads structured JSON and refreshes graph metadata",
+          "top1": ".opencode/skills/system-spec-kit/references/memory/save_workflow.md",
+          "top5": [
+            "skills/system-spec-kit/references/memory/save_workflow.md",
+            "skills/system-spec-kit/scripts/memory/generate-context.ts",
+            "skills/system-spec-kit/references/workflows/quick_reference.md",
+            "skills/system-spec-kit/references/structure/sub_folder_versioning.md",
+            "skills/system-spec-kit/scripts/dist/memory/generate-context.js"
+          ]
+        },
+        {
+          "difficulty": "hard",
+          "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+          "hit": true,
+          "lane": "jina-v3",
+          "latency_ms": 1330,
+          "probe_id": 11,
+          "query": "Apple Silicon device fallback that prefers Metal when CUDA is unavailable",
+          "top1": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_config.py",
+          "top5": [
+            "skills/mcp-coco-index/mcp_server/tests/test_config.py",
+            "skills/system-spec-kit/references/embedder-pluggability.md",
+            "skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+            "skills/system-spec-kit/mcp_server/shared/embeddings/providers/hf-local.js",
+            "skills/system-spec-kit/shared/embeddings/providers/hf-local.ts"
+          ]
+        },
+        {
+          "difficulty": "hard",
+          "expected": ".opencode/skills/system-spec-kit/mcp_server/lib/search/rerank/retrieval-rescue.ts",
+          "hit": false,
+          "lane": "jina-v3",
+          "latency_ms": 2060,
+          "probe_id": 12,
+          "query": "paraphrase recovery path that promotes sibling memory artifacts from the same folder",
+          "top1": ".opencode/skills/system-spec-kit/references/embedder-pluggability.md",
+          "top5": [
+            "skills/system-spec-kit/references/embedder-pluggability.md",
+            "skills/system-spec-kit/references/structure/sub_folder_versioning.md",
+            "skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
+            "skills/deep-ai-council/references/graph_support.md",
+            "skills/sk-doc/references/benchmark_creation.md"
+          ]
+        },
+        {
+          "difficulty": "hard",
+          "expected": ".opencode/skills/system-code-graph/mcp_server/lib/budget-allocator.ts",
+          "hit": false,
+          "lane": "jina-v3",
+          "latency_ms": 2087,
+          "probe_id": 13,
+          "query": "bounded token budget allocation for assembling structural context responses",
+          "top1": ".opencode/skills/system-spec-kit/mcp_server/lib/session/structural-bootstrap-contract.ts",
+          "top5": [
+            "skills/system-spec-kit/mcp_server/lib/session/structural-bootstrap-contract.ts",
+            "skills/system-spec-kit/references/config/environment_variables.md",
+            "skills/system-spec-kit/mcp_server/context-server.ts",
+            "skills/system-spec-kit/mcp_server/hooks/memory-surface.ts",
+            "skills/cli-devin/references/context-budget.md"
+          ]
+        },
+        {
+          "difficulty": "hard",
+          "expected": ".opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts",
+          "hit": false,
+          "lane": "jina-v3",
+          "latency_ms": 1321,
+          "probe_id": 14,
+          "query": "filesystem walker that emits typed structural symbols and import edges",
+          "top1": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_code_aware_chunker.py",
+          "top5": [
+            "skills/mcp-coco-index/mcp_server/tests/test_code_aware_chunker.py",
+            "skills/system-code-graph/mcp_server/lib/indexer-types.ts",
+            "skills/sk-doc/assets/readme/readme_code_template.md",
+            "skills/system-code-graph/mcp_server/lib/tree-sitter-parser.ts",
+            "skills/system-spec-kit/mcp_server/tests/devin-session-start-hook.vitest.ts"
+          ]
+        },
+        {
+          "difficulty": "hard",
+          "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py",
+          "hit": true,
+          "lane": "jina-v3",
+          "latency_ms": 1770,
+          "probe_id": 15,
+          "query": "query-time path class adjustment that favors implementation files over generated copies",
+          "top1": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_query_expansion.py",
+          "top5": [
+            "skills/mcp-coco-index/mcp_server/tests/test_query_expansion.py",
+            "skills/mcp-coco-index/references/tool_reference.md",
+            "skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py",
+            "skills/mcp-coco-index/mcp_server/cocoindex_code/query.py"
+          ]
+        },
+        {
+          "difficulty": "medium",
+          "expected": ".opencode/skills/system-code-graph/mcp_server/tests/readiness-marker-atomic-write.vitest.ts",
+          "hit": true,
+          "lane": "jina-v3",
+          "latency_ms": 1540,
+          "probe_id": 16,
+          "query": "atomic readiness marker persistence tested for partial writes",
+          "top1": ".opencode/skills/system-code-graph/mcp_server/lib/readiness-marker.ts",
+          "top5": [
+            "skills/system-code-graph/mcp_server/lib/readiness-marker.ts",
+            "specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit/scratch/test_path_extraction.py",
+            "skills/system-code-graph/mcp_server/tests/readiness-marker-atomic-write.vitest.ts",
+            "skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts"
+          ]
+        },
+        {
+          "difficulty": "hard",
+          "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py",
+          "hit": true,
+          "lane": "jina-v3",
+          "latency_ms": 2385,
+          "probe_id": 17,
+          "query": "file matcher that lets explicitly canonical skill resources bypass hidden directory exclusions",
+          "top1": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py",
+          "top5": [
+            "skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py",
+            "skills/mcp-coco-index/tests/test_settings.py",
+            "skills/sk-code/assets/opencode/checklists/skill_authoring.md",
+            "skills/sk-doc/assets/skill/skill_smart_router.md"
+          ]
+        },
+        {
+          "difficulty": "medium",
+          "expected": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_refresh_split.py",
+          "hit": true,
+          "lane": "jina-v3",
+          "latency_ms": 2516,
+          "probe_id": 18,
+          "query": "integration test for reprocessing only changed files during an index refresh",
+          "top1": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_refresh_split.py",
+          "top5": [
+            "skills/mcp-coco-index/mcp_server/tests/test_refresh_split.py",
+            "skills/mcp-coco-index/references/tool_reference.md",
+            "skills/mcp-coco-index/tests/test_e2e.py",
+            "skills/system-spec-kit/mcp_server/tests/handler-memory-index.vitest.ts"
+          ]
+        }
+      ],
+      "total": 18
+    }
+  },
+  "output_tag": "-rrf-K60-V0p7-F0p5",
+  "status": "ok"
+}
