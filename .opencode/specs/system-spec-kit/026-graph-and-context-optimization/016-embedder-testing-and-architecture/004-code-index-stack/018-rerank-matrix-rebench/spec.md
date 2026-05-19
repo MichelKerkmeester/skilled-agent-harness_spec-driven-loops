@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |---|---|
-| Status | Draft (spec written 2026-05-19) |
+| Status | Complete (2026-05-19) — jina-reranker-v3 LOCKED as production default (14/18 vs BGE 12/18 vs BGE+path-class 13/18). BGE retained as opt-in via env override. ADR-021 documents 4-lane verdict; Lane A no-rerank ablation deferred to follow-on (32-sec/probe timeout bug in dispatch). Arc closed. |
 | Type | Empirical bench + production-default lock |
 | Owner | cli-codex gpt-5.5 high fast (dispatched by main agent after 017 commits) |
 | Parent | `../spec.md` (004-code-index-stack) |

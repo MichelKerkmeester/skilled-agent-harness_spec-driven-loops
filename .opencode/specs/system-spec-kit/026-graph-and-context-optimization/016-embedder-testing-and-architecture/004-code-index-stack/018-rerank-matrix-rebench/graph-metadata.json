@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "node_type": "spec_packet",
+  "status": "in-progress",
+  "derived": {
+    "status": "in-progress",
+    "completion_pct": 50,
+    "last_active_child_id": null
+  },
+  "blocked_by": [],
+  "links": {
+    "parent": "../spec.md",
+    "depends_on": [
+      "../013-bench-harness-and-fixture-audit",
+      "../014-mirror-dedup-canonical-preference",
+      "../015-code-aware-chunking-tree-sitter-stage-b",
+      "../016-query-expansion-identifier-bridging",
+      "../017-hybrid-fusion-empirical-recalibration"
+    ],
+    "evidence": [
+      "evidence/runs",
+      "evidence/rerank-matrix-results.md",
+      "evidence/phase2-comparison-018-final.md"
+    ]
+  },
+  "updated_at": "2026-05-19T17:35:00Z"
+}

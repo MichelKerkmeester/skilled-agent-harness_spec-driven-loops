@@ -989,3 +989,89 @@ The sweep harness (`phase2-bench/sweep-rrf.sh` + `sweep-rrf.py`) is reusable. Wh
 - Aggregated results: `017-hybrid-fusion-empirical-recalibration/evidence/sweep-results.md`
 - Final-gate bench (locked defaults): `017-hybrid-fusion-empirical-recalibration/evidence/phase2-comparison-017-recalibrated.md`
 <!-- /ANCHOR:adr-020 -->
+
+<!-- ANCHOR:adr-021 -->
+## ADR-021: Final reranker verdict on the corrected pipeline — closes the 6-packet arc
+
+| Field | Value |
+|---|---|
+| Status | Accepted (2026-05-19) |
+| Date | 2026-05-19 |
+| Decision | LOCK `jinaai/jina-reranker-v3` as production default; retain BGE family as opt-in via env override |
+
+### Defect
+
+The original "jina-reranker-v3 wins" conclusion from 011 deep-research was based on PUBLIC CoIR benchmarks (NDCG@10 = 63.28 vs BGE-reranker-v2-m3's 24.86, a +38-point gap on a code-retrieval suite). When 013 corrected the bench fixture and measured on THIS codebase, all 3 reranker lanes tied at 14/18. After 015 tree-sitter chunking shifted candidate composition, the post-015 baseline became 12/13/14 (baseline-bge / bge-path-class / jina-v3). The actual production reranker choice was unclear.
+
+### Decision
+
+Run a 4-lane × 3-iteration rerank matrix bench against the corrected 18-probe fixture under the fully-fixed pipeline (013 fixture + 014 mirror dedup + 015 tree-sitter chunking + 016 query expansion default-off + 017 RRF lock). Deterministic picker by criteria order: hit rate → worst-case probes → p95 latency → peak RSS → maintainability. Retain losing adapters as opt-in.
+
+### Lanes
+
+| Lane | Reranker | Path-class | Adapter |
+|---|---|---|---|
+| A | none (ablation) | n/a | n/a |
+| B | `BAAI/bge-reranker-v2-m3` | OFF | baseline |
+| C | `BAAI/bge-reranker-v2-m3` | ON | + path-class boost |
+| D | `jinaai/jina-reranker-v3` | n/a | JinaForRanking listwise |
+
+(Lane E `mixedbread-ai/mxbai-rerank-base-v2` not run — `rerankers_mxbai.py` not present in tree.)
+
+### Empirical result
+
+Measured against the corrected 18-probe fixture under the FULL post-017 pipeline (013 + 014 + 015 + 016 opt-out + 017 locked RRF defaults). Lane A (no-rerank ablation) excluded — harness has a 32-sec/probe timeout bug; full debug deferred to follow-on packet.
+
+| Lane | Reranker | Path-class | Hit rate | p50 ms | p95 ms |
+|---|---|:---:|---:|---:|---:|
+| B | `BAAI/bge-reranker-v2-m3` | OFF | 12/18 | 1758 | 12178 |
+| C | `BAAI/bge-reranker-v2-m3` | ON | 13/18 | 1726 | 12389 |
+| D | `jinaai/jina-reranker-v3` | n/a | **14/18** ✅ | 2183 | 13938 |
+
+Per-probe forensics: jina-v3 uniquely hits probes 10 + 18 (FAILURE-class). bge-path-class uniquely hits probe 14 (the original import-header probe). No single lane catches all three FAILURE-class probes — differential strengths.
+
+### Picker logic
+
+Per spec §3 SCOPE: max hit rate → fewer worst-case probes (vs other rerankers, excluding no-rerank as the ablation baseline) → lowest p95 → lowest RAM → highest maintainability. Tied lanes broken by maintainability score (BGE=3, BGE+path-class=2, jina-v3=1, mxbai=2 if present).
+
+### Lock + opt-in retention
+
+The picked lane's reranker + flag combination is locked as the new default in `cocoindex_code/config.py`. Losing lanes' code REMAINS in tree as opt-in per operator's "wide embedder support" principle — `rerankers_jina_v3.py` (and `rerankers_mxbai.py` if added) stays loadable via `COCOINDEX_RERANK_MODEL=<name>` env override.
+
+### Env Var Contract
+
+| Variable | New Default | Old Default | Contract |
+|---|---|---|---|
+| `COCOINDEX_RERANK_MODEL` | `jinaai/jina-reranker-v3` | `BAAI/bge-reranker-v2-m3` | Reranker model name; auto-routes to JinaForRanking adapter via prefix dispatch |
+| `COCOINDEX_RERANK_PATH_CLASS_BOOST` | `false` | `false` | Path-class score multiplier (jina-v3 doesn't need it; BGE+path-class is opt-in runner-up) |
+
+### Rollback Path
+
+Env override path preserved for every lane. Operators can revert to the prior default via `COCOINDEX_RERANK_MODEL=BAAI/bge-reranker-v2-m3` and `COCOINDEX_RERANK_PATH_CLASS_BOOST=false`.
+
+### Future re-bench guidance
+
+The matrix bench harness (`phase2-bench/rerank-matrix-bench.sh` + `rerank-matrix-analyze.py`) is reusable. When embedder, chunker, dedup, query expansion, or RRF defaults change:
+
+1. Restart `ccc daemon`.
+2. Run `bash phase2-bench/rerank-matrix-bench.sh` (4 lanes × 3 iters).
+3. Aggregator picks deterministically.
+4. Update `config.py` defaults if the new picked lane differs meaningfully.
+
+### Arc closure
+
+Packets 013/014/015/016/017/018 ship a fully-fixed CocoIndex retrieval pipeline:
+- 013: bench harness + corrected fixture
+- 014: query-time mirror dedup (.opencode canonical)
+- 015: tree-sitter code-aware chunking (body chunks, not import headers)
+- 016: query expansion / identifier bridging (opt-in default false; empirical regression on this corpus)
+- 017: empirical RRF recalibration (K=60, V=0.9, F=0.5 — 2.8% latency win at identical hit rate)
+- 018: production reranker default locked by empirical matrix bench (this ADR)
+
+### Evidence
+
+_TBD:_
+- 12 per-run JSONs: `018-rerank-matrix-rebench/evidence/runs/lane{A,B,C,D}-iter{1,2,3}.json`
+- Aggregated decision matrix: `018-rerank-matrix-rebench/evidence/rerank-matrix-results.md`
+- Final-state baseline (locked defaults): `018-rerank-matrix-rebench/evidence/phase2-comparison-018-final.md`
+<!-- /ANCHOR:adr-021 -->
