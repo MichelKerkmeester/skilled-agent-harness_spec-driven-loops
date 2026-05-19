@@ -7,6 +7,13 @@ trigger_phrases:
   - "COCOINDEX_QUERY_EXPANSION"
 importance_tier: "important"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/016-query-expansion-identifier-bridging"
+    last_updated_at: "2026-05-19T16:30:00Z"
+    last_updated_by: "codex"
+    recent_action: "Bench gate failed after implementation"
+    next_safe_action: "Tune retrieval or defer to 017"
 ---
 # Implementation Plan: 016 Query Expansion Identifier Bridging
 
@@ -165,7 +172,7 @@ Set `COCOINDEX_QUERY_EXPANSION=false` and restart the `ccc` daemon. Full code ro
 
 ---
 
-<!-- ANCHOR:l2-phase-deps -->
+<!-- ANCHOR:phase-deps -->
 ## L2: PHASE DEPENDENCIES
 
 ```text
@@ -180,11 +187,11 @@ Module + Config -> Query Integration -> Tests -> Bench -> Docs/Validate
 | Bench | Tests + live DB | Completion claim |
 | Docs/validate | Code + evidence | Commit handoff |
 
-<!-- /ANCHOR:l2-phase-deps -->
+<!-- /ANCHOR:phase-deps -->
 
 ---
 
-<!-- ANCHOR:l2-effort -->
+<!-- ANCHOR:effort -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |
@@ -195,5 +202,17 @@ Module + Config -> Query Integration -> Tests -> Bench -> Docs/Validate
 | Tests | Medium | 45 minutes |
 | Bench/docs/validate | Medium | 45-60 minutes |
 
-<!-- /ANCHOR:l2-effort -->
+<!-- /ANCHOR:effort -->
 
+---
+
+<!-- ANCHOR:enhanced-rollback -->
+## L2: ENHANCED ROLLBACK
+
+| Trigger | Action | Evidence Needed |
+|---------|--------|-----------------|
+| Query expansion worsens hit rate | Set `COCOINDEX_QUERY_EXPANSION=false` | Bench delta showing restored baseline |
+| Dense fanout latency too high | Set `COCOINDEX_QUERY_EXPANSION_DENSE_FANOUT=false` | p95 comparison before/after |
+| Synonym dictionary adds noise | Override `COCOINDEX_QUERY_EXPANSION_SYNONYMS` with smaller dict | Probe-level top-5 comparison |
+
+<!-- /ANCHOR:enhanced-rollback -->

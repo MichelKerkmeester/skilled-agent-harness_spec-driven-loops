@@ -6,6 +6,13 @@ trigger_phrases:
   - "identifier bridging checklist"
 importance_tier: "important"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/016-query-expansion-identifier-bridging"
+    last_updated_at: "2026-05-19T16:30:00Z"
+    last_updated_by: "codex"
+    recent_action: "Checklist updated"
+    next_safe_action: "Resolve bench gate"
 ---
 # Verification Checklist: 016 Query Expansion Identifier Bridging
 
@@ -67,20 +74,32 @@ contextType: "implementation"
 - [x] CHK-020 [P0] Minimum 12 query expansion tests exist.
   - Evidence: `tests/test_query_expansion.py` contains 14 tests covering spec cases.
 - [x] CHK-021 [P0] Targeted pytest passes.
-  - Evidence: query expansion, config, and FTS integration set passed `50 passed`.
-- [ ] CHK-022 [P0] Full MCP server pytest passes.
-  - Evidence: pending.
+  - Evidence: query expansion, config, and FTS integration set passed `52 passed`.
+- [x] CHK-022 [P0] Full MCP server pytest passes.
+  - Evidence: `138 passed` from the MCP server package cwd.
 - [ ] CHK-023 [P0] Corrected Phase 2 bench does not regress hit rate.
-  - Evidence: pending.
-- [ ] CHK-024 [P1] Probes 1, 5, 12, 15 inspected.
-  - Evidence: pending.
+  - Evidence: failed for two lanes; baseline-bge 12/18 held, bge-path-class 13/18 -> 12/18, jina-v3 14/18 -> 12/18.
+- [x] CHK-024 [P1] Probes 1, 5, 12, 15 inspected.
+  - Evidence: no miss-to-hit flips; delta artifact records remaining misses and lane regressions.
 
 <!-- /ANCHOR:testing -->
 
 ---
 
+<!-- ANCHOR:fix-completeness -->
+## Fix Completeness
+
+- [x] CHK-025 [P0] Code path implemented behind rollback flag.
+  - Evidence: `COCOINDEX_QUERY_EXPANSION=false` preserves the raw query path.
+- [ ] CHK-026 [P0] Retrieval fix satisfies bench gate.
+  - Evidence: failed; see `phase2-comparison-015-vs-016-delta.md`.
+
+<!-- /ANCHOR:fix-completeness -->
+
+---
+
 <!-- ANCHOR:security -->
-## Security And Safety
+## Security
 
 - [x] CHK-030 [P0] No LLM dependency or external network call added.
   - Evidence: expansion is deterministic string processing.
@@ -102,8 +121,8 @@ contextType: "implementation"
   - Evidence: `004-spec-memory-embedder-bake-off/decision-record.md` includes ADR-019.
 - [x] CHK-042 [P1] Packet plan and tasks authored.
   - Evidence: `plan.md` and `tasks.md` created.
-- [ ] CHK-043 [P1] Packet metadata files created.
-  - Evidence: pending.
+- [x] CHK-043 [P1] Packet metadata files created.
+  - Evidence: `description.json` generated and `graph-metadata.json` authored locally because global backfill is blocked by an unrelated invalid graph metadata file.
 
 <!-- /ANCHOR:docs -->
 
@@ -128,12 +147,11 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 9 | 7/9 |
-| P1 Items | 13 | 11/13 |
+| P0 Items | 11 | 9/11 |
+| P1 Items | 13 | 13/13 |
 | P2 Items | 0 | 0/0 |
 
 Verification date: 2026-05-19
 Verified by: Codex
 
 <!-- /ANCHOR:summary -->
-

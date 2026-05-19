@@ -27,11 +27,12 @@ Use this file to identify the folder boundary, the likely verification path, and
 
 | Metric | Value |
 |---|---:|
-| Code files | 21 |
+| Code files | 22 |
 | README scope | Direct files in this folder |
 | Audit context | Internal validation notes |
 | v1.2.0 additions | `fts_index.py`, `fusion.py`, `reranker.py` (opt-in retrieval-quality modules) |
 | v1.3.0 additions | `chunkers/` tree-sitter code-aware chunking |
+| v1.3.1 additions | `query_expansion.py` deterministic identifier bridging |
 
 <!-- /ANCHOR:overview -->
 
@@ -72,6 +73,7 @@ Load this folder through the owning skill workflow or MCP server entrypoint.
 | Cross-encoder rerank (v1.2.0) | `reranker.py` adds a local GTE multilingual rerank pass (opt-in via `COCOINDEX_RERANK=1`). |
 | Mirror-aware dedup (v1.2.1) | `path_utils.py` + `query.py` collapse runtime mirror aliases before rerank, preferring the canonical mirror copy. |
 | Code-aware chunking (v1.3.0) | `chunkers/` uses tree-sitter grammars for Python, TypeScript/TSX, JavaScript, Go, Rust, and Java so chunks align with definitions instead of blind line windows. |
+| Query expansion (v1.3.1) | `query_expansion.py` bridges natural-language phrases to camelCase, snake_case, PascalCase, kebab-case, SCREAMING_SNAKE, and curated code-domain synonyms before hybrid search. |
 
 <!-- /ANCHOR:features -->
 
@@ -97,6 +99,7 @@ Load this folder through the owning skill workflow or MCP server entrypoint.
 | `path_utils.py` | Pure helpers for mirror-prefix detection, path-stem extraction, and canonical mirror selection. |
 | `project.py` | Per-project state and lifecycle (`ProjectRegistry`). |
 | `protocol.py` | Msgpack IPC protocol shared by daemon + client. |
+| `query_expansion.py` | Pure deterministic query expansion helpers and `ExpandedQuery` payload for dense fanout plus FTS5 clauses. |
 | `query.py` | Search execution: vector query, optional hybrid fusion, optional rerank. |
 | `registered_embedders.py` | Vetted embedder registry (jina-code default + alternatives). |
 | `reranker.py` | **v1.2.0.** Optional GTE multilingual cross-encoder rerank over top-K candidates. |
@@ -120,6 +123,10 @@ Load this folder through the owning skill workflow or MCP server entrypoint.
 | `COCOINDEX_MIRROR_PREFIXES` | `[".opencode/", ".codex/", ".gemini/", ".claude/"]` | JSON list of runtime mirror prefixes. Set to `[]` to disable mirror collapse. |
 | `COCOINDEX_CODE_AWARE_CHUNKING` | `true` | Enables tree-sitter code-aware chunking for supported languages. Set to `false` to restore the pre-015 `RecursiveSplitter` path globally. |
 | `COCOINDEX_TREE_SITTER_LANGUAGES` | `{}` | Optional JSON object for adding grammar specs with `module`, `function`, `top_level_node_types`, and `doc_comment_node_types`. |
+| `COCOINDEX_QUERY_EXPANSION` | `true` | Enables deterministic query expansion before hybrid dense + FTS5 retrieval. Set to `false` to restore the pre-016 query path. |
+| `COCOINDEX_QUERY_EXPANSION_MAX_VARIANTS` | `6` | Bounds per-query dense variants and FTS5 identifier terms. Values below 1 fall back to the default. |
+| `COCOINDEX_QUERY_EXPANSION_SYNONYMS` | curated JSON dict | Operator override for code-domain synonyms such as `walker -> finder`, `save -> persist`, and `parser -> lexer`. |
+| `COCOINDEX_QUERY_EXPANSION_DENSE_FANOUT` | `true` | When true, embeds each expanded dense variant and OR-merges candidates by best vector score. When false, concatenates variants into one embedding request. |
 
 ### Mirror Dedup Behavior
 
@@ -130,6 +137,14 @@ Hybrid query results run a mirror-collapse pass before the existing source-realp
 Supported code files route through `CodeAwareSplitter` before embedding. The splitter parses the file with tree-sitter, emits chunks for top-level definitions, includes immediately preceding doc comments, and uses `RecursiveSplitter` inside any single definition larger than `2 * COCOINDEX_CODE_CHUNK_SIZE`.
 
 Unsupported languages, parse errors, and `COCOINDEX_CODE_AWARE_CHUNKING=false` use the pre-015 `RecursiveSplitter` path unchanged. Because chunk boundaries change, switching this flag on or off requires `ccc reset --force && ccc index` before comparing retrieval results.
+
+### Query Expansion
+
+Hybrid search expands the user query once before candidate retrieval. The original text stays first, then deterministic identifier spellings and single-hop code-domain synonyms are added up to `COCOINDEX_QUERY_EXPANSION_MAX_VARIANTS`. Expansion is intentionally conservative: long prose queries with more than four content words stay on the pre-016 path to avoid creating noisy sentence-sized identifiers.
+
+Dense retrieval uses fanout by default: each variant is embedded separately, vector candidates are OR-merged by `chunk_id`, and the best distance wins. `COCOINDEX_QUERY_EXPANSION_DENSE_FANOUT=false` uses a single concatenated embedding string for cheaper but less targeted recall.
+
+FTS5 receives the same expansion as an explicit quoted `OR` clause, with original atomic words included so phrase expansion does not lose ordinary token recall. The design has no LLM dependency, no embedder-specific assumptions, and no reranker coupling. Roll back by setting `COCOINDEX_QUERY_EXPANSION=false` and restarting the `ccc` daemon.
 
 <!-- /ANCHOR:configuration -->
 

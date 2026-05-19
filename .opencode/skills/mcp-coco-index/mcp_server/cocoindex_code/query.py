@@ -5,10 +5,13 @@ from __future__ import annotations
 
 import heapq
 import hashlib
+import json
 import logging
+import os
 import sqlite3
 from collections import defaultdict
 from collections.abc import Iterable
+from dataclasses import asdict
 from pathlib import Path
 from typing import Any
 
@@ -25,6 +28,7 @@ from .observability import (
     monotonic_ms,
 )
 from .path_utils import extract_path_stem, is_mirror_path, select_canonical_mirror_copy
+from .query_expansion import ExpandedQuery, expand_query
 from .schema import QueryResult
 from .settings import PROJECT_SETTINGS, is_canonical_path
 from .shared import EMBEDDER, SQLITE_DB, query_prompt_name
@@ -613,6 +617,54 @@ def _hybrid_vector_rows(
     )
 
 
+def _merge_vector_rows_by_best_distance(
+    rows_by_variant: list[list[tuple[Any, ...]]],
+    fetch_k: int,
+) -> list[tuple[Any, ...]]:
+    best_by_candidate: dict[tuple[str, int], tuple[Any, ...]] = {}
+    for rows in rows_by_variant:
+        for row in rows:
+            key = (str(row[1]), int(row[0]))
+            current = best_by_candidate.get(key)
+            if current is None or float(row[9]) < float(current[9]):
+                best_by_candidate[key] = row
+    return heapq.nsmallest(fetch_k, best_by_candidate.values(), key=lambda row: row[9])
+
+
+def _no_expanded_query(query: str) -> ExpandedQuery:
+    return ExpandedQuery(
+        original=query,
+        dense_variants=[query],
+        fts5_clause=query,
+        expansion_applied=False,
+    )
+
+
+def _query_expansion_payload(query: str) -> ExpandedQuery:
+    if not config.query_expansion:
+        return _no_expanded_query(query)
+    return expand_query(
+        query,
+        config.query_expansion_synonyms,
+        config.query_expansion_max_variants,
+    )
+
+
+def _maybe_log_query_expansion(expanded_query: ExpandedQuery) -> None:
+    log_path = os.environ.get("COCOINDEX_RERANK_LOG_PATH", "").strip()
+    if not log_path:
+        return
+    try:
+        row = {
+            "query": expanded_query.original,
+            "query_expansion": asdict(expanded_query),
+        }
+        with open(log_path, "a", encoding="utf-8") as f:
+            f.write(json.dumps(row) + "\n")
+    except Exception as exc:  # pragma: no cover - observability must not break search
+        logger.warning("query expansion log failed: %s (path=%r)", exc, log_path)
+
+
 async def query_codebase(
     query: str,
     target_sqlite_db_path: Path,
@@ -639,10 +691,23 @@ async def query_codebase(
     db = env.get_context(SQLITE_DB)
     embedder = env.get_context(EMBEDDER)
     project_settings = env.get_context(PROJECT_SETTINGS)
+    expanded_query = _query_expansion_payload(query)
+    if expanded_query.expansion_applied:
+        logger.debug("Expanded query: %s", expanded_query)
+        _maybe_log_query_expansion(expanded_query)
+
+    dense_queries = [query]
+    if expanded_query.expansion_applied and config.hybrid_enabled:
+        dense_queries = expanded_query.dense_variants
+    if expanded_query.expansion_applied and config.hybrid_enabled and not config.query_expansion_dense_fanout:
+        dense_queries = [" ".join(expanded_query.dense_variants)]
 
     # Generate query embedding.
     stage_start = monotonic_ms()
-    query_embedding = await embedder.embed(query, query_prompt_name)
+    query_embeddings = [
+        await embedder.embed(dense_query, query_prompt_name)
+        for dense_query in dense_queries
+    ]
     if req_id is not None:
         log_stage(
             logger,
@@ -651,14 +716,24 @@ async def query_codebase(
             duration_ms=elapsed_ms(stage_start),
         )
 
-    embedding_bytes = query_embedding.astype("float32").tobytes()
+    embedding_bytes_list = [
+        query_embedding.astype("float32").tobytes()
+        for query_embedding in query_embeddings
+    ]
+    embedding_bytes = embedding_bytes_list[0]
     unique_k = max(limit + offset, 1)
     fetch_k = unique_k * 4
 
     stage_start = monotonic_ms()
     with db.readonly() as conn:
         if config.hybrid_enabled:
-            vector_rows = _hybrid_vector_rows(conn, embedding_bytes, fetch_k, languages, paths)
+            vector_rows = _merge_vector_rows_by_best_distance(
+                [
+                    _hybrid_vector_rows(conn, variant_embedding, fetch_k, languages, paths)
+                    for variant_embedding in embedding_bytes_list
+                ],
+                fetch_k,
+            )
             vector_records = {
                 record["chunk_id"]: record
                 for record in (_record_from_vector_row(row) for row in vector_rows)
@@ -676,6 +751,11 @@ async def query_codebase(
                 fetch_k,
                 languages=languages,
                 paths=paths,
+                match_clause=(
+                    expanded_query.fts5_clause
+                    if expanded_query.expansion_applied
+                    else None
+                ),
             )
             fts_results = [
                 RankedRow(chunk_id=chunk_id, score=bm25_score)

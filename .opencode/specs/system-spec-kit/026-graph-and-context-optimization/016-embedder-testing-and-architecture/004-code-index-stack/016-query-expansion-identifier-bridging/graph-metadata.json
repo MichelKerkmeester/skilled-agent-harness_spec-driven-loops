@@ -41,7 +41,7 @@
       "benchmark"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "blocked",
     "key_files": [
       ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query_expansion.py",
       ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py",
@@ -87,7 +87,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Natural-language code-search probes miss identifier-heavy chunks after 015; deterministic pre-encoding query expansion adds identifier variants and synonyms so dense and FTS5 both admit better candidates before rerank.",
+    "causal_summary": "Natural-language code-search probes miss identifier-heavy chunks after 015; deterministic pre-encoding query expansion adds identifier variants and synonyms, but the retained 016 bench still regresses bge-path-class and jina-v3 hit rates, so the packet is implemented but blocked on retrieval tuning.",
     "created_at": "2026-05-19T16:20:00.000Z",
     "last_save_at": "2026-05-19T16:20:00.000Z",
     "save_lineage": "manual_packet_metadata",

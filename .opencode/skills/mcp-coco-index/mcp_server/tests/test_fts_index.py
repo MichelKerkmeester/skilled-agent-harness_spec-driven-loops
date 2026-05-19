@@ -35,7 +35,11 @@ class FakeDb:
 
 
 class FakeEmbedder:
+    def __init__(self) -> None:
+        self.queries: list[str] = []
+
     async def embed(self, query: str, prompt_name: str | None = None) -> np.ndarray:
+        self.queries.append(query)
         return np.array([0.1, 0.2], dtype=np.float32)
 
 
@@ -153,6 +157,26 @@ def test_fts_query_returns_ranked_bm25(tmp_path: Path) -> None:
     assert rows[0][1] > 0
 
 
+def test_fts_query_accepts_expanded_match_clause(tmp_path: Path) -> None:
+    conn = sqlite3.connect(tmp_path / "index.db")
+    populate_fts(
+        conn,
+        [
+            (1, "def memory_save_context(): pass", "src/memory.py", "python"),
+            (2, "def unrelated(): pass", "src/other.py", "python"),
+        ],
+    )
+
+    rows = query_fts(
+        conn,
+        "ignored",
+        5,
+        match_clause='"memory" OR "save" OR "memorySave" OR "memory_save"',
+    )
+
+    assert rows[0][0] == 1
+
+
 def test_rrf_fuse_combines_two_ranked_lists() -> None:
     fused = rrf_fuse(
         [RankedRow(chunk_id=1, score=0.9), RankedRow(chunk_id=2, score=0.8)],
@@ -174,6 +198,7 @@ def test_query_codebase_hybrid_off_unchanged(
     db_path = tmp_path / "target_sqlite.db"
     conn = sqlite3.connect(db_path)
     monkeypatch.setattr(query_module.config, "hybrid_enabled", False)
+    monkeypatch.setattr(query_module.config, "query_expansion", False)
     monkeypatch.setattr(
         query_module,
         "_knn_query",
@@ -213,6 +238,7 @@ def test_query_codebase_hybrid_on_returns_fused(
     _insert_chunk(conn, 2, "def authenticate_user(token): return token")
     sync_fts_from_code_chunks(conn)
     monkeypatch.setattr(query_module.config, "hybrid_enabled", True)
+    monkeypatch.setattr(query_module.config, "query_expansion", False)
     monkeypatch.setattr(query_module.config, "hybrid_rrf_k", 60)
     monkeypatch.setattr(query_module.config, "hybrid_vector_weight", 0.7)
     monkeypatch.setattr(query_module.config, "hybrid_fts5_weight", 0.7)
@@ -241,3 +267,56 @@ def test_query_codebase_hybrid_on_returns_fused(
     assert any("hybrid_rrf" in result.rankingSignals for result in results)
     assert any(result.rrf_score is not None for result in results)
     assert any(result.fts5_score is not None for result in results)
+
+
+def test_query_codebase_hybrid_query_expansion_fans_out_dense_and_fts(
+    tmp_path: Path,
+    monkeypatch: Any,
+) -> None:
+    db_path = tmp_path / "target_sqlite.db"
+    conn = sqlite3.connect(db_path)
+    _create_chunk_table(conn)
+    _insert_chunk(conn, 1, "def memory_save_context(): pass")
+    sync_fts_from_code_chunks(conn)
+    monkeypatch.setattr(query_module.config, "hybrid_enabled", True)
+    monkeypatch.setattr(query_module.config, "query_expansion", True)
+    monkeypatch.setattr(query_module.config, "query_expansion_max_variants", 4)
+    monkeypatch.setattr(query_module.config, "query_expansion_synonyms", {"save": ["persist"]})
+    monkeypatch.setattr(query_module.config, "query_expansion_dense_fanout", True)
+    monkeypatch.setattr(query_module.config, "hybrid_rrf_k", 60)
+    monkeypatch.setattr(query_module.config, "hybrid_vector_weight", 0.7)
+    monkeypatch.setattr(query_module.config, "hybrid_fts5_weight", 0.7)
+
+    seen_match_clauses: list[str | None] = []
+
+    def fake_query_fts(*args: Any, **kwargs: Any) -> list[tuple[int, float]]:
+        seen_match_clauses.append(kwargs.get("match_clause"))
+        return [(1, 1.0)]
+
+    monkeypatch.setattr(query_module, "query_fts", fake_query_fts)
+    monkeypatch.setattr(
+        query_module,
+        "_hybrid_vector_rows",
+        lambda *_args: [
+            (
+                1,
+                "src/memory.py",
+                "/real/src/memory.py",
+                "python",
+                "def memory_save_context(): pass",
+                "hash-1",
+                "implementation",
+                1,
+                2,
+                0.1,
+            )
+        ],
+    )
+    env = FakeEnv(conn)
+
+    results = asyncio.run(query_codebase("memory save", db_path, env, limit=1))
+
+    assert len(results) == 1
+    assert env.embedder.queries == ["memory save", "memorySave", "memory_save", "MemorySave"]
+    assert seen_match_clauses
+    assert '"memorySave"' in str(seen_match_clauses[0])

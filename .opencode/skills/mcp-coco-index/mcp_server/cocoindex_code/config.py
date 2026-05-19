@@ -8,6 +8,8 @@ import os
 from dataclasses import dataclass
 from pathlib import Path
 
+from .query_expansion import _DEFAULT_SYNONYMS
+
 _DEFAULT_MODEL = "sbert/jinaai/jina-embeddings-v2-base-code"
 _DEFAULT_CHUNK_SIZE = 1500
 _DEFAULT_CHUNK_OVERLAP = 200
@@ -19,6 +21,9 @@ _DEFAULT_HYBRID_FTS5_WEIGHT = 0.7
 _DEFAULT_HYBRID_RRF_K = 60
 _DEFAULT_RERANK_MODEL = "BAAI/bge-reranker-v2-m3"
 _DEFAULT_RERANK_TOP_K = 20
+_DEFAULT_QUERY_EXPANSION = False  # 016 empirical: ON regressed 14/13/12 → 12/12/12 on corrected fixture; ships opt-in pending 017 RRF tuning
+_DEFAULT_QUERY_EXPANSION_MAX_VARIANTS = 6
+_DEFAULT_QUERY_EXPANSION_DENSE_FANOUT = True
 _DEFAULT_CANONICAL_MIRROR = ".opencode"
 _DEFAULT_MIRROR_PREFIXES = [".opencode/", ".codex/", ".gemini/", ".claude/"]
 # ADR-015 Phase 2: path-class boost defaults from 011 deep-research iter 10
@@ -284,6 +289,61 @@ def _parse_json_object_env(
     return result
 
 
+def _parse_json_string_list_dict_env(
+    var_name: str,
+    default: dict[str, list[str]],
+) -> dict[str, list[str]]:
+    """Parse a JSON dict env var with string keys and list-of-string values."""
+    raw_value = os.environ.get(var_name, "")
+    if not raw_value.strip():
+        return {key: list(values) for key, values in default.items()}
+
+    try:
+        parsed = json.loads(raw_value)
+    except json.JSONDecodeError:
+        logger.warning(
+            "Ignoring invalid %s=%r; expected JSON dict of {str: list[str]}; falling back to default",
+            var_name,
+            raw_value,
+        )
+        return {key: list(values) for key, values in default.items()}
+
+    if not isinstance(parsed, dict):
+        logger.warning(
+            "Ignoring invalid %s=%r; expected JSON dict; falling back to default",
+            var_name,
+            raw_value,
+        )
+        return {key: list(values) for key, values in default.items()}
+
+    result: dict[str, list[str]] = {}
+    for key, value in parsed.items():
+        if not isinstance(key, str):
+            logger.warning("Ignoring non-string key %r in %s; skipping", key, var_name)
+            continue
+        normalized_key = key.strip().lower()
+        if not normalized_key:
+            continue
+        if not isinstance(value, list):
+            logger.warning(
+                "Ignoring non-list value for key %r in %s; skipping",
+                key,
+                var_name,
+            )
+            continue
+        synonyms = [item.strip().lower() for item in value if isinstance(item, str) and item.strip()]
+        if synonyms:
+            result[normalized_key] = synonyms
+
+    if not result:
+        logger.warning(
+            "%s parsed to empty dict; falling back to default synonyms",
+            var_name,
+        )
+        return {key: list(values) for key, values in default.items()}
+    return result
+
+
 def _parse_int_env(
     var_name: str,
     default: int,
@@ -412,6 +472,10 @@ class Config:
     rerank_path_class_boost: bool
     rerank_path_class_factors: dict[str, float]
     rerank_adapter: str
+    query_expansion: bool
+    query_expansion_max_variants: int
+    query_expansion_synonyms: dict[str, list[str]]
+    query_expansion_dense_fanout: bool
     canonical_mirror: str
     mirror_prefixes: list[str]
 
@@ -535,6 +599,24 @@ class Config:
             _DEFAULT_PATH_CLASS_FACTORS,
         )
         rerank_adapter = os.environ.get("COCOINDEX_RERANK_ADAPTER", "").strip().lower()
+        query_expansion = _parse_bool_env(
+            "COCOINDEX_QUERY_EXPANSION",
+            _DEFAULT_QUERY_EXPANSION,
+        )
+        query_expansion_max_variants = _parse_int_env(
+            "COCOINDEX_QUERY_EXPANSION_MAX_VARIANTS",
+            _DEFAULT_QUERY_EXPANSION_MAX_VARIANTS,
+            1,
+            32,
+        )
+        query_expansion_synonyms = _parse_json_string_list_dict_env(
+            "COCOINDEX_QUERY_EXPANSION_SYNONYMS",
+            _DEFAULT_SYNONYMS,
+        )
+        query_expansion_dense_fanout = _parse_bool_env(
+            "COCOINDEX_QUERY_EXPANSION_DENSE_FANOUT",
+            _DEFAULT_QUERY_EXPANSION_DENSE_FANOUT,
+        )
         mirror_prefixes = _parse_mirror_prefixes_env()
         canonical_mirror = _parse_canonical_mirror_env(mirror_prefixes)
 
@@ -560,6 +642,10 @@ class Config:
             rerank_path_class_boost=rerank_path_class_boost,
             rerank_path_class_factors=rerank_path_class_factors,
             rerank_adapter=rerank_adapter,
+            query_expansion=query_expansion,
+            query_expansion_max_variants=query_expansion_max_variants,
+            query_expansion_synonyms=query_expansion_synonyms,
+            query_expansion_dense_fanout=query_expansion_dense_fanout,
             canonical_mirror=canonical_mirror,
             mirror_prefixes=mirror_prefixes,
         )

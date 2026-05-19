@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |---|---|
-| Status | Draft (spec written 2026-05-19) |
+| Status | Complete (2026-05-19) — code + tests + docs SHIPPED with default `COCOINDEX_QUERY_EXPANSION=false`. Empirical bench showed deterministic expansion regressed all 3 lanes vs post-015 baseline (test/doc files displace implementation files in top-K). Available as opt-in research artifact; revisit defaults after 017 RRF recalibration. |
 | Type | Pipeline enhancement — query.py + config.py + tests + bench |
 | Owner | cli-codex gpt-5.5 high fast (dispatched by main agent after 015 commits) |
 | Parent | `../spec.md` (004-code-index-stack) |

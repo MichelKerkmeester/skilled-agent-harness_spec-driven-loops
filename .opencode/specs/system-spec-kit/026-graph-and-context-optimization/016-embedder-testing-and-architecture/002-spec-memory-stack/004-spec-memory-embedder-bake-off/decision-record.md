@@ -834,7 +834,7 @@ Then restart the `ccc` daemon and run `ccc reset --force && ccc index`. Code rol
 ## ADR-019: Deterministic query expansion for CocoIndex identifier bridging
 
 **Date**: 2026-05-19
-**Status**: Accepted, code shipped; bench evidence pending packet validation
+**Status**: Accepted for code path; bench gate not yet satisfied
 **Packet**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/016-query-expansion-identifier-bridging/`
 
 ### Defect
@@ -850,6 +850,7 @@ Add deterministic query expansion before hybrid retrieval:
 3. It applies a single-hop curated code-domain synonym dictionary with a hard combinatorial cap.
 4. Hybrid dense retrieval embeds each expanded variant by default, OR-merges vector rows by `chunk_id`, and keeps the best vector distance.
 5. FTS5 receives a quoted `OR` clause containing original atomic words plus expanded variants, so phrase expansion does not remove ordinary token recall.
+6. Long prose queries with more than four content words do not expand by default. The first bench pass showed sentence-sized identifier variants add noise; the production default keeps expansion focused on short identifier-like phrases.
 
 The design is deliberately LLM-free. It is a pure string transform over the query, so it is embedder-agnostic, reranker-agnostic, deterministic under tests, and cheap to reason about in benchmark deltas.
 
@@ -882,6 +883,23 @@ Then restart the `ccc` daemon so the config singleton reloads. Full code rollbac
 
 ### Evidence
 
-- Targeted pytest passed for query expansion, config parsing, FTS5, and hybrid integration: `50 passed`.
-- Bench evidence will be recorded in packet 016 evidence before completion metadata is finalized.
+- Targeted pytest passed for query expansion, config parsing, FTS5, and hybrid integration: `52 passed`.
+- Full MCP server pytest passed: `138 passed`.
+- Ruff passed for changed Python files.
+- Corrected Phase 2 bench retained `baseline-bge` at 12/18 but regressed `bge-path-class` from 13/18 to 12/18 and `jina-v3` from 14/18 to 12/18.
+
+### Shipping Decision (main-agent, 2026-05-19)
+
+The deterministic expansion regresses every reranker lane on the corrected fixture. Per-probe forensics show test files (e.g. `test_code_aware_chunker.py`) and doc files (e.g. `sub_folder_versioning.md`, `tool_reference.md`) being pulled into top-K, displacing the real implementation files. The FTS5 OR-fanout over-matches non-implementation surfaces.
+
+**Decision**: ship 016 with **`COCOINDEX_QUERY_EXPANSION=false` as the new default**. The code, tests, env contract, and synonym dictionary stay in tree as an opt-in research artifact. Operators can enable via `COCOINDEX_QUERY_EXPANSION=true` for experimentation or future tuning. Production pipeline reverts to post-015 behavior (baseline-bge 12, bge-path-class 13, jina-v3 14 on corrected fixture).
+
+**Why not delete?** Operator principle: "wide embedder support". The expansion module is conceptually correct (NL→identifier bridging is a real gap); it just doesn't show empirical recall improvement on THIS corpus with THIS reranker family without further tuning. Keeping it as opt-in preserves the work for:
+- 017 RRF empirical recalibration (may discover fusion weights where expansion helps)
+- Future packets that explore path-class-aware expansion (only expand for implementation files, not docs/tests)
+- Operators with different corpora where the test/doc displacement is not an issue
+
+**Rollback path to enable expansion**: `COCOINDEX_QUERY_EXPANSION=true` (no code change). The regression is in the empirical recall numbers, not in correctness — turning it on works and produces measurable but currently-inferior retrieval.
+
+**Recovery responsibility for the 14/13/12 baseline**: Packet 017 (RRF recalibration) may discover fusion weights that make expansion net-positive. Packet 018 (rerank matrix re-bench) measures the final state. If neither closes the gap, 016 stays opt-in indefinitely and the recall gains we hoped for stay deferred to a future identifier-bridging packet (e.g. LLM-rewrite, learned reranker, path-class-aware expansion).
 <!-- /ANCHOR:adr-019 -->

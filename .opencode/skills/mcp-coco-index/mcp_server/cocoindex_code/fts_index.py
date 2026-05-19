@@ -97,9 +97,11 @@ def query_fts(
     limit: int,
     languages: list[str] | None = None,
     paths: list[str] | None = None,
+    *,
+    match_clause: str | None = None,
 ) -> list[tuple[int, float]]:
     """Run a BM25 FTS5 search and return ``(chunk_id, score)`` tuples."""
-    sanitized = _normalize_fts_query(query)
+    sanitized = match_clause if match_clause is not None else _normalize_fts_query(query)
     if not sanitized or limit <= 0:
         return []
 

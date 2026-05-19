@@ -9,16 +9,20 @@ from unittest.mock import MagicMock, patch
 import pytest
 
 from cocoindex_code.config import (
+    _DEFAULT_CANONICAL_MIRROR,
     _DEFAULT_CHUNK_OVERLAP,
     _DEFAULT_CHUNK_SIZE,
+    _DEFAULT_CODE_AWARE_CHUNKING,
     _DEFAULT_HYBRID_FTS5_WEIGHT,
     _DEFAULT_HYBRID_RRF_K,
     _DEFAULT_HYBRID_VECTOR_WEIGHT,
     _DEFAULT_MIN_CHUNK_SIZE,
-    _DEFAULT_CODE_AWARE_CHUNKING,
-    _DEFAULT_CANONICAL_MIRROR,
     _DEFAULT_MIRROR_PREFIXES,
     _DEFAULT_MODEL,
+    _DEFAULT_QUERY_EXPANSION,
+    _DEFAULT_QUERY_EXPANSION_DENSE_FANOUT,
+    _DEFAULT_QUERY_EXPANSION_MAX_VARIANTS,
+    _DEFAULT_SYNONYMS,
     Config,
     _resolve_device,
 )
@@ -304,6 +308,68 @@ class TestHybridConfigValidation:
         assert "Ignoring invalid COCOINDEX_HYBRID_VECTOR_WEIGHT='2.1'" in caplog.text
         assert "Ignoring invalid COCOINDEX_HYBRID_FTS5_WEIGHT='nope'" in caplog.text
         assert "Ignoring invalid COCOINDEX_HYBRID_RRF_K='0'" in caplog.text
+
+
+class TestQueryExpansionConfigValidation:
+    def test_default_query_expansion_config(self, tmp_path: Path) -> None:
+        with patch.dict(
+            "os.environ",
+            {"COCOINDEX_CODE_ROOT_PATH": str(tmp_path)},
+            clear=True,
+        ):
+            cfg = Config.from_env()
+
+        assert cfg.query_expansion is _DEFAULT_QUERY_EXPANSION is False
+        assert cfg.query_expansion_max_variants == _DEFAULT_QUERY_EXPANSION_MAX_VARIANTS == 6
+        assert cfg.query_expansion_dense_fanout is _DEFAULT_QUERY_EXPANSION_DENSE_FANOUT is True
+        assert cfg.query_expansion_synonyms == _DEFAULT_SYNONYMS
+
+    def test_query_expansion_env_overrides(self, tmp_path: Path) -> None:
+        with patch.dict(
+            "os.environ",
+            {
+                "COCOINDEX_CODE_ROOT_PATH": str(tmp_path),
+                "COCOINDEX_QUERY_EXPANSION": "false",
+                "COCOINDEX_QUERY_EXPANSION_MAX_VARIANTS": "4",
+                "COCOINDEX_QUERY_EXPANSION_SYNONYMS": '{"walk":["find"],"SAVE":["Persist"]}',
+                "COCOINDEX_QUERY_EXPANSION_DENSE_FANOUT": "off",
+            },
+            clear=True,
+        ):
+            cfg = Config.from_env()
+
+        assert cfg.query_expansion is False
+        assert cfg.query_expansion_max_variants == 4
+        assert cfg.query_expansion_synonyms == {"walk": ["find"], "save": ["persist"]}
+        assert cfg.query_expansion_dense_fanout is False
+
+    def test_invalid_query_expansion_config_falls_back(
+        self,
+        tmp_path: Path,
+        caplog: pytest.LogCaptureFixture,
+    ) -> None:
+        caplog.set_level("WARNING", logger="cocoindex_code.config")
+        with patch.dict(
+            "os.environ",
+            {
+                "COCOINDEX_CODE_ROOT_PATH": str(tmp_path),
+                "COCOINDEX_QUERY_EXPANSION": "maybe",
+                "COCOINDEX_QUERY_EXPANSION_MAX_VARIANTS": "0",
+                "COCOINDEX_QUERY_EXPANSION_SYNONYMS": '{"walker":"finder"}',
+                "COCOINDEX_QUERY_EXPANSION_DENSE_FANOUT": "sometimes",
+            },
+            clear=True,
+        ):
+            cfg = Config.from_env()
+
+        assert cfg.query_expansion is _DEFAULT_QUERY_EXPANSION
+        assert cfg.query_expansion_max_variants == _DEFAULT_QUERY_EXPANSION_MAX_VARIANTS
+        assert cfg.query_expansion_synonyms == _DEFAULT_SYNONYMS
+        assert cfg.query_expansion_dense_fanout is True
+        assert "Ignoring invalid COCOINDEX_QUERY_EXPANSION='maybe'" in caplog.text
+        assert "Ignoring invalid COCOINDEX_QUERY_EXPANSION_MAX_VARIANTS='0'" in caplog.text
+        assert "COCOINDEX_QUERY_EXPANSION_SYNONYMS parsed to empty dict" in caplog.text
+        assert "Ignoring invalid COCOINDEX_QUERY_EXPANSION_DENSE_FANOUT='sometimes'" in caplog.text
 
 
 class TestMirrorConfigValidation:

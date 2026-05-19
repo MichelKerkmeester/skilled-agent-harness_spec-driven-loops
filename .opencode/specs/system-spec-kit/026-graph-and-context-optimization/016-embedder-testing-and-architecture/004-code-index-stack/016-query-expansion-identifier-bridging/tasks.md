@@ -6,6 +6,13 @@ trigger_phrases:
   - "identifier bridging tasks"
 importance_tier: "important"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/016-query-expansion-identifier-bridging"
+    last_updated_at: "2026-05-19T16:30:00Z"
+    last_updated_by: "codex"
+    recent_action: "Task ledger updated"
+    next_safe_action: "Resolve bench gate"
 ---
 # Tasks: 016 Query Expansion Identifier Bridging
 
@@ -31,7 +38,7 @@ contextType: "implementation"
 ---
 
 <!-- ANCHOR:phase-1 -->
-## Phase 1: Expansion Module
+## Phase 1: Setup
 
 - [x] T001 Read binding spec and query/config entrypoints (`spec.md`, `query.py`, `config.py`) [20m]
 - [x] T002 Invoke sequential-thinking MCP five times before edits (tool returned cancellation) [5m]
@@ -46,7 +53,7 @@ contextType: "implementation"
 ---
 
 <!-- ANCHOR:phase-2 -->
-## Phase 2: Config And Integration
+## Phase 2: Implementation
 
 - [x] T008 Add query expansion defaults and env fields (`config.py`) [15m]
 - [x] T009 Add synonym JSON parser with fallback warnings (`config.py`) [15m]
@@ -60,7 +67,7 @@ contextType: "implementation"
 ---
 
 <!-- ANCHOR:phase-3 -->
-## Phase 3: Tests
+## Phase 3: Verification
 
 - [x] T014 Add pure helper tests (`tests/test_query_expansion.py`) [25m]
 - [x] T015 Add config default/override/fallback tests (`tests/test_config.py`) [20m]
@@ -68,7 +75,7 @@ contextType: "implementation"
 - [x] T017 Add hybrid dense fanout integration test (`tests/test_fts_index.py`) [20m]
 - [x] T018 Run targeted pytest for changed behavior [10m]
 - [x] T019 Run ruff over changed Python files [5m]
-- [ ] T020 Run full MCP server pytest [15m]
+- [x] T020 Run full MCP server pytest [15m]
 
 <!-- /ANCHOR:phase-3 -->
 
@@ -77,11 +84,11 @@ contextType: "implementation"
 <!-- ANCHOR:phase-4 -->
 ## Phase 4: Bench Evidence
 
-- [ ] T021 Stop/restart `ccc` daemon to pick up env defaults [5m]
-- [ ] T022 Run corrected Phase 2 smoke bench with `OUTPUT_TAG=-016-query-expansion` [30m]
-- [ ] T023 Save `evidence/phase2-comparison-016-query-expansion.md` [5m]
-- [ ] T024 Write `evidence/phase2-comparison-015-vs-016-delta.md` [15m]
-- [ ] T025 Inspect probes 1, 5, 12, 15 for miss-to-hit flips [15m]
+- [x] T021 Stop/restart `ccc` daemon to pick up env defaults [5m]
+- [x] T022 Run corrected Phase 2 smoke bench with `OUTPUT_TAG=-016-query-expansion` [30m]
+- [x] T023 Save `evidence/phase2-comparison-016-query-expansion.md` [5m]
+- [x] T024 Write `evidence/phase2-comparison-015-vs-016-delta.md` [15m]
+- [x] T025 Inspect probes 1, 5, 12, 15 for miss-to-hit flips [15m]
 
 <!-- /ANCHOR:phase-4 -->
 
@@ -93,9 +100,9 @@ contextType: "implementation"
 - [x] T026 Update `cocoindex_code/README.md` [15m]
 - [x] T027 Append ADR-019 (`decision-record.md`) [15m]
 - [x] T028 Create Level 2 packet docs (`plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`) [30m]
-- [ ] T029 Create/refresh `description.json` and `graph-metadata.json` [10m]
-- [ ] T030 Run strict spec validation [10m]
-- [ ] T031 Finalize implementation summary and checklist evidence [15m]
+- [x] T029 Create/refresh `description.json` and `graph-metadata.json` [10m]
+- [x] T030 Run strict spec validation [10m]
+- [x] T031 Finalize implementation summary and checklist evidence [15m]
 
 <!-- /ANCHOR:phase-5 -->
 
@@ -104,11 +111,11 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`.
+- [x] All tasks marked `[x]`.
 - [ ] No `[B]` blocked tasks remaining.
 - [ ] Targeted and full pytest passing.
 - [ ] Bench hit rate is at least post-015 baseline.
-- [ ] Strict validation passed.
+- [x] Strict validation passed.
 
 <!-- /ANCHOR:completion -->
 
@@ -123,4 +130,3 @@ contextType: "implementation"
 - **Implementation Summary**: See `implementation-summary.md`
 
 <!-- /ANCHOR:cross-refs -->
-
