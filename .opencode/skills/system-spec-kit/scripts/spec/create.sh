@@ -568,7 +568,8 @@ EOF
 scaffold_phase_parent_validation_child() {
     local parent_path="$1"
     local feature_name="$2"
-    local child_name="001-phase-one"
+    local child_name="001-validation-phase-PROVIDE-DESCRIPTIVE-SLUG"
+    echo "[speckit] Warning: scaffolding validation child with placeholder name '$child_name'. Replace via --phase-names <literal-slug> for production use." >&2
     local child_path="$parent_path/$child_name"
     local child_contract template_name
 
@@ -1081,7 +1082,8 @@ if [[ "$PHASE_MODE" = true ]]; then
         if [[ ${#PHASE_NAME_ARRAY[@]} -ge $_i ]]; then
             _child_slug="${PHASE_NAME_ARRAY[$((_i - 1))]}"
         else
-            _child_slug="phase-${_phase_number}"
+            _child_slug="phase-${_phase_number}-PROVIDE-DESCRIPTIVE-SLUG"
+            echo "[speckit] Warning: Falling back to generic phase name '$_child_slug'. Provide --phase-names with literal slugs describing the concrete work." >&2
         fi
         CHILD_FOLDERS+=("${_child_num}-${_child_slug}")
     done

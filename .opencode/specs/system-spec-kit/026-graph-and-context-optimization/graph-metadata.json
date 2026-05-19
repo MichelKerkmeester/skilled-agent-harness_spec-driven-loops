@@ -16,6 +16,7 @@
     "system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing",
     "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator",
     "system-spec-kit/026-graph-and-context-optimization/011-mcp-shared-dependency-startup-fix",
+    "system-spec-kit/026-graph-and-context-optimization/012-literal-spec-folder-names",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture"
   ],
   "migrated": true,
@@ -144,7 +145,7 @@
     ],
     "causal_summary": "Packet `026-graph-and-context-optimization` presents a 10-wrapper active navigation surface after two topical consolidation passes plus a post-push topology adjustment. The first pass (2026-04-21) collapsed 29 chronological phase folders into nine thematic wrappers with originals preserved as child packets. The second pass (2026-04-25 12:10) merged the former `006-search-routing-advisor/` into `006-skill-advisor/`, redistributed children of the former `009-hook-package/` across `005-code-graph/`, `006-skill-advisor/`, and the renamed `010-hook-parity/`. A subsequent post-push adjustment (2026-04-25 14:45) renamed `010-hook-parity/` to `007-hook-parity/` and removed the post-hoc `009-memory-causal-graph/` documentation packet (causal-graph infrastructure remains in production code; documentation lives in `010-graph-impact-and-affordance-uplift/005-memory-causal-trust-display/` from a display-layer perspective).",
     "created_at": "2026-04-12T09:02:53.443Z",
-    "last_save_at": "2026-05-18T15:17:57.077Z",
+    "last_save_at": "2026-05-19T06:12:07.967Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

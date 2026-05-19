@@ -4337,6 +4337,8 @@ Shell script: `.opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh`
 
 The `--phases <N>` option controls how many child phase folders are generated (default is determined by the phase scoring algorithm if `recommend-level.sh` was run first). The `--phase-names` option accepts a comma-separated list of descriptive names for each phase, which are used in both folder naming and the Phase Documentation Map entries. When `--phase-names` is omitted, child folders receive sequential numeric names. The parent folder receives the standard spec kit template files at the specified level, while each child phase folder receives its own independent set of template files.
 
+**Literal naming requirement**: Phase names must be LITERAL slugs describing the concrete work (e.g., `data-model-design`, `api-implementation`, `ui-integration`) — NOT generic placeholders like `phase-1` or `remediation`. When `--phase-names` is omitted, `create.sh` now emits `PROVIDE-DESCRIPTIVE-SLUG` placeholder names with stderr warnings. The YAML workflow P2 step in `/spec_kit:plan` and `/spec_kit:complete` enforces literal naming guidance, and SKILL.md rule 20 provides the full naming convention for AI-derived spec folders and phases.
+
 #### Current Reality
 
 The `--phase` flag on `create.sh` switches from single-folder creation to a parent-children phase structure. The parent spec folder is created with a Phase Documentation Map in its `spec.md` that links to all child phase folders. Each child phase folder is created with back-references to the parent and, where applicable, predecessor and successor links to adjacent phases.

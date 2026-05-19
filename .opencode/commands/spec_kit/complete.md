@@ -184,8 +184,10 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
      How many phases? (Default: 3)
 
    Q8. Phase Names (if phase_decomposition == TRUE and --phase-names not provided):
-     Provide phase names? (Optional — auto-generated if skipped)
-     Example: "data-model, api-layer, ui-components"
+     Provide phase names? (REQUIRED for literal slugs — auto-generation now emits PROVIDE-DESCRIPTIVE-SLUG placeholders.)
+     Use LITERAL names that describe the concrete work in each phase. Each name must include a specific subject token (the component or behaviour being changed).
+     Good examples: `data-model-design, api-implementation, ui-integration`, `fix-singleton-leak-in-launcher, harden-mcp-server-startup-races`.
+     Bad examples (rejected): `phase-1, phase-2, phase-3`, `cleanup`, `remediation`, `review-remediation-2`.
 
    **Intake contract block** (ONLY if `intake_required = TRUE`; keep this inside the SAME prompt, not a second command flow):
 

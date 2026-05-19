@@ -45,7 +45,7 @@ optional_workflows:
         output: phase_recommendation
       - id: P2
         name: Define Decomposition
-        activities: ["Generate phase names", "Define scope boundaries per phase", "Map dependencies between phases", "Define deliverables per phase"]
+        activities: ["Generate LITERAL phase names that describe the concrete work in each phase — e.g. data-model-design, api-implementation, ui-integration — NOT generic placeholders like phase-1 / phase-2 / remediation / cleanup. Names must include a specific subject token (the component or behaviour being changed).", "Define scope boundaries per phase", "Map dependencies between phases", "Define deliverables per phase"]
         output: phase_plan
       - id: P3
         name: Create Folders
