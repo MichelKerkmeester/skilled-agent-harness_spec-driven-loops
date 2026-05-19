@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────
+// MODULE: IPC Socket Server (multi-client launcher bridge)
+// ───────────────────────────────────────────────────────────────
+
 import fs from 'node:fs';
 import net from 'node:net';
 import path from 'node:path';

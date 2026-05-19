@@ -1,4 +1,6 @@
+// ───────────────────────────────────────────────────────────────
 // MODULE: Lexical Normalizer
+// ───────────────────────────────────────────────────────────────
 
 interface NormalizedLexicalQueryTokens {
   fts: string;
