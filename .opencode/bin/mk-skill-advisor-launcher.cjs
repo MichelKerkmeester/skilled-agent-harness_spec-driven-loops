@@ -96,6 +96,26 @@ function log(message) {
   process.stderr.write(`[mk-skill-advisor-launcher] ${message}\n`);
 }
 
+function loadBridgeModule() {
+  try {
+    return require('./lib/launcher-ipc-bridge.cjs');
+  } catch (error) {
+    if (error.code !== 'MODULE_NOT_FOUND') throw error;
+    return {
+      maybeBridgeLeaseHolder({ leaseResult, legacyReport }) {
+        if (process.env.SPECKIT_LAUNCHER_BRIDGE_DISABLED === '1' && legacyReport) {
+          legacyReport(leaseResult);
+          return true;
+        }
+        const startedAt = leaseResult.startedAt ?? new Date(0).toISOString();
+        const legacyMarker = leaseResult.legacyPath ? ' (legacy path)' : '';
+        process.stdout.write(`LEASE_HELD_BY:${leaseResult.ownerPid} startedAt=${startedAt}${legacyMarker} (no-bridge-socket)\n`);
+        return true;
+      },
+    };
+  }
+}
+
 // 008-REQ-002: gate verbose error/path logging behind MK_SKILL_ADVISOR_DEBUG.
 // Operationally-important events keep using log(); error stacks + DB-path traces use debug().
 function debug(message) {
@@ -188,10 +208,21 @@ function reportLeaseHeld(leaseResult) {
   process.stdout.write(`LEASE_HELD_BY:${leaseResult.ownerPid} startedAt=${startedAt}${legacyMarker}\n`);
 }
 
+function bridgeOrReportLeaseHeld(leaseResult) {
+  const { maybeBridgeLeaseHolder } = loadBridgeModule();
+  return maybeBridgeLeaseHolder({
+    serviceName: 'mk-skill-advisor',
+    leaseResult,
+    loggerPrefix: 'mk-skill-advisor-launcher',
+    dbDir: resolvedAdvisorDbDir(),
+    legacyReport: reportLeaseHeld,
+  });
+}
+
 function checkStrictSingleWriter() {
   const launcherLease = leaseHeldFromFile();
   if (launcherLease.held && !launcherLease.staleReclaimable) {
-    reportLeaseHeld(launcherLease);
+    bridgeOrReportLeaseHeld(launcherLease);
     return true;
   }
   if (launcherLease.staleReclaimable) {
@@ -204,7 +235,7 @@ function checkStrictSingleWriter() {
     const leaseResult = leaseModule.isLeaseHeld(root);
     const legacyMarker = leaseResult.legacyPath ? ' (legacy path)' : '';
     if (leaseResult.held && !leaseResult.staleReclaimable) {
-      reportLeaseHeld(leaseResult);
+      bridgeOrReportLeaseHeld(leaseResult);
       return true;
     }
     if (leaseResult.staleReclaimable) {

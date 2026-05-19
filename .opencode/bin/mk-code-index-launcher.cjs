@@ -104,6 +104,23 @@ function log(message) {
   process.stderr.write(`[mk-code-index-launcher] ${message}\n`);
 }
 
+function loadBridgeModule() {
+  try {
+    return require('./lib/launcher-ipc-bridge.cjs');
+  } catch (error) {
+    if (error.code !== 'MODULE_NOT_FOUND') throw error;
+    return {
+      maybeBridgeLeaseHolder({ leaseResult }) {
+        const startedAt = leaseResult.startedAt ?? new Date(0).toISOString();
+        const legacyMarker = leaseResult.legacyPath ? ' (legacy path)' : '';
+        const suffix = process.env.SPECKIT_LAUNCHER_BRIDGE_DISABLED === '1' ? '' : ' (no-bridge-socket)';
+        process.stdout.write(`LEASE_HELD_BY:${leaseResult.ownerPid} startedAt=${startedAt}${legacyMarker}${suffix}\n`);
+        return true;
+      },
+    };
+  }
+}
+
 function refreshPaths() {
   skillsDir = path.join(opencodeDir, 'skills');
   legacySkillDir = path.join(opencodeDir, 'skill');
@@ -189,6 +206,16 @@ function isLeaseHeld() {
   }
 
   return primary;
+}
+
+function bridgeOrReportLeaseHeld(leaseResult) {
+  const { maybeBridgeLeaseHolder } = loadBridgeModule();
+  return maybeBridgeLeaseHolder({
+    serviceName: 'mk-code-index',
+    leaseResult,
+    loggerPrefix: 'mk-code-index-launcher',
+    dbDir: resolvedDbDir(),
+  });
 }
 
 function writeLeaseFile() {
@@ -445,10 +472,8 @@ function installSignalHandlers() {
     if (strictSingleWriter) {
       const leaseResult = isLeaseHeld();
       if (leaseResult.held && !leaseResult.staleReclaimable) {
-        const startedAt = leaseResult.startedAt ?? new Date(0).toISOString();
-        const legacyMarker = leaseResult.legacyPath ? ' (legacy path)' : '';
-        process.stdout.write(`LEASE_HELD_BY:${leaseResult.ownerPid} startedAt=${startedAt}${legacyMarker}\n`);
-        process.exit(0);
+        bridgeOrReportLeaseHeld(leaseResult);
+        return;
       }
       if (leaseResult.staleReclaimable) {
         log(`staleReclaimed: true${leaseResult.legacyPath ? ' (legacy path)' : ''}`);

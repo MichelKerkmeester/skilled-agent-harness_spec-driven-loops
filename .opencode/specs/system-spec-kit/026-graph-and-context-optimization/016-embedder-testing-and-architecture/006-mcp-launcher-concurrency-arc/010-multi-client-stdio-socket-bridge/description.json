@@ -1,0 +1,28 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/010-multi-client-stdio-socket-bridge",
+  "description": "Multi-client stdio-socket launcher bridge for MCP lease-held secondary sessions.",
+  "keywords": [
+    "multi-client",
+    "stdio-socket",
+    "launcher",
+    "bridge",
+    "mcp",
+    "lease-held",
+    "secondary",
+    "sessions"
+  ],
+  "lastUpdated": "2026-05-19T05:54:16.620Z",
+  "specId": "010",
+  "folderSlug": "multi-client-stdio-socket-bridge",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "006-mcp-launcher-concurrency-arc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

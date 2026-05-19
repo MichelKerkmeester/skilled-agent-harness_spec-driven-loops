@@ -106,6 +106,11 @@ import {
 } from './lib/search/search-flags.js';
 import { runCleanupStep, runAsyncCleanupStep } from './lib/utils/cleanup-helpers.js';
 import { disposeLocalReranker } from './lib/search/local-reranker.js';
+import {
+  resolveIpcSocketPath,
+  startIpcSocketServer,
+  type IpcSocketServerHandle,
+} from './lib/ipc/socket-server.js';
 import * as workingMemory from './lib/cognitive/working-memory.js';
 import * as attentionDecay from './lib/cognitive/attention-decay.js';
 import * as coActivation from './lib/cognitive/co-activation.js';
@@ -888,10 +893,14 @@ async function invalidateReinitializedDbCaches(): Promise<void> {
    3. SERVER INITIALIZATION
 ──────────────────────────────────────────────────────────────── */
 
-const server = new Server(
-  { name: 'mk-spec-memory', version: '1.7.2' },
-  { capabilities: { tools: {} } }
-);
+function createContextMcpServer(): Server {
+  return new Server(
+    { name: 'mk-spec-memory', version: '1.7.2' },
+    { capabilities: { tools: {} } },
+  );
+}
+
+const server = createContextMcpServer();
 const serverWithInstructions = server as unknown as { setInstructions?: (instructions: string) => void };
 const KNOWN_TOOL_NAMES = new Set(TOOL_DEFINITIONS.map((tool) => tool.name));
 
@@ -899,16 +908,17 @@ const KNOWN_TOOL_NAMES = new Set(TOOL_DEFINITIONS.map((tool) => tool.name));
    4. TOOL DEFINITIONS (T303: from tool-schemas.ts)
 ──────────────────────────────────────────────────────────────── */
 
-server.setRequestHandler(ListToolsRequestSchema, async () => ({
-  tools: TOOL_DEFINITIONS
-}));
+function registerContextServerHandlers(targetServer: Server): void {
+  targetServer.setRequestHandler(ListToolsRequestSchema, async () => ({
+    tools: TOOL_DEFINITIONS
+  }));
 
 /* ───────────────────────────────────────────────────────────────
    5. TOOL DISPATCH (T303: routed through tools/*.ts)
 ──────────────────────────────────────────────────────────────── */
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-server.setRequestHandler(CallToolRequestSchema, async (request, _extra: unknown): Promise<any> => {
+  targetServer.setRequestHandler(CallToolRequestSchema, async (request, _extra: unknown): Promise<any> => {
   const requestParams = request.params as { name: string; arguments?: Record<string, unknown> };
   const { name } = requestParams;
   const args: Record<string, unknown> = requestParams.arguments ?? {};
@@ -1194,7 +1204,10 @@ server.setRequestHandler(CallToolRequestSchema, async (request, _extra: unknown)
       });
     }
   }
-});
+  });
+}
+
+registerContextServerHandlers(server);
 
 /* ───────────────────────────────────────────────────────────────
    6. STARTUP SCAN & PENDING FILE RECOVERY
@@ -1390,6 +1403,7 @@ let shuttingDown = false;
 let transport: StdioServerTransport | null = null;
 let transportConnectedAt: string | null = null;
 let fileWatcher: FSWatcher | null = null;
+let ipcBridge: IpcSocketServerHandle | null = null;
 
 /** Maximum time (ms) to wait for async cleanup before force-exiting. */
 const SHUTDOWN_DEADLINE_MS = 5000;
@@ -1431,6 +1445,12 @@ async function fatalShutdown(reason: string, exitCode: number): Promise<void> {
         transport.close();
         transport = null;
         transportConnectedAt = null;
+      }
+    });
+    await runAsyncCleanupStep('ipcBridge', async () => {
+      if (ipcBridge) {
+        await ipcBridge.close();
+        ipcBridge = null;
       }
     });
   })();
@@ -1943,6 +1963,15 @@ async function main(): Promise<void> {
   transportConnectedAt = new Date().toISOString();
   transport = new StdioServerTransport();
   await server.connect(transport);
+  ipcBridge = await startIpcSocketServer({
+    socketPath: resolveIpcSocketPath(DATABASE_DIR),
+    createServer: () => {
+      const secondaryServer = createContextMcpServer();
+      registerContextServerHandlers(secondaryServer);
+      return secondaryServer;
+    },
+    log: (message) => console.error(message),
+  });
   const rssMb = Math.round(process.memoryUsage().rss / 1024 / 1024);
   console.error(`[health] startup pid=${process.pid} rss=${rssMb}MB uptime=0s`);
   console.error('[context-server] Context MCP server running on stdio');

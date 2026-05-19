@@ -40,6 +40,7 @@ import {
 } from '../lib/telemetry/heap-profiler.js';
 import { getSidecarWorkerSnapshot } from '../lib/embedders/execution-router.js';
 import { getBm25EngineStatus } from '../lib/search/bm25-index.js';
+import { getIpcBridgeStats, type IpcBridgeStats } from '../lib/ipc/socket-server.js';
 
 import type { MCPResponse, EmbeddingProfile } from './types.js';
 import type { HealthArgs, PartialProviderMetadata } from './memory-crud-types.js';
@@ -141,6 +142,7 @@ interface FullMemoryReport {
     embedding_cache_by_profile: Record<string, EmbeddingCacheProfileStats>;
   };
   sidecar_workers: ReturnType<typeof getSidecarWorkerSnapshot>;
+  ipc_bridge: IpcBridgeStats;
   db_split: {
     canonical_path: string;
     canonical_size_mb: number;
@@ -316,6 +318,7 @@ function getFullMemoryReport(
         : {},
     },
     sidecar_workers: getSidecarWorkerSnapshot(),
+    ipc_bridge: getIpcBridgeStats(),
     db_split: {
       canonical_path: vectorSource.canonical_path,
       canonical_size_mb: fileSizeMb(vectorSource.canonical_path),
