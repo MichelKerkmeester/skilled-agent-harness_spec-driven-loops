@@ -130,6 +130,44 @@ def test_daemon_lock_path_is_separate_from_pid_path():
     assert daemon_lock_path().parent == daemon_pid_path().parent
 
 
+def test_async_daemon_main_closes_lifetime_lock_on_shutdown(monkeypatch):
+    from cocoindex_code import daemon as daemon_module
+
+    class FakeEvent:
+        def is_set(self):
+            return True
+
+        def set(self):
+            return None
+
+        async def wait(self):
+            return None
+
+    class FakeListener:
+        closed = False
+
+        def __init__(self, *args, **kwargs):
+            pass
+
+        def close(self):
+            self.closed = True
+
+    class FakeFd:
+        closed = False
+
+        def close(self):
+            self.closed = True
+
+    fake_fd = FakeFd()
+    monkeypatch.setattr(daemon_module.asyncio, "Event", FakeEvent)
+    monkeypatch.setattr(daemon_module, "Listener", FakeListener)
+    monkeypatch.setattr(daemon_module, "daemon_socket_path", lambda: "unused.sock")
+
+    asyncio.run(daemon_module._async_daemon_main(MagicMock(), None, fake_fd))
+
+    assert fake_fd.closed is True
+
+
 def test_update_index_reports_project_update_failure(tmp_path):
     """A project.update_index exception must surface as success=False."""
     from cocoindex_code.daemon import ProjectRegistry

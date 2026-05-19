@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from cocoindex_code.path_utils import (
     extract_path_stem,
     is_mirror_path,
+    normalize_mirror_prefix,
     select_canonical_mirror_copy,
 )
 
@@ -34,6 +35,22 @@ def test_extract_path_stem_returns_original_without_mirror_match() -> None:
 def test_is_mirror_path_matches_configured_prefixes() -> None:
     assert is_mirror_path(".gemini/skills/example/file.py", MIRRORS) is True
     assert is_mirror_path("skills/example/file.py", MIRRORS) is False
+
+
+def test_normalize_mirror_prefix_rejects_malicious_patterns() -> None:
+    for value in ("../", "..\\", ".opencode/../secrets", ".opencode\x00/secrets", ".opencode:bad"):
+        try:
+            normalize_mirror_prefix(value)
+        except ValueError:
+            continue
+        raise AssertionError(f"expected invalid mirror prefix to be rejected: {value!r}")
+
+
+def test_mirror_helpers_ignore_invalid_prefixes() -> None:
+    prefixes = ["../", ".opencode"]
+
+    assert is_mirror_path(".opencode/skills/example/file.py", prefixes) is True
+    assert extract_path_stem("../secret.py", prefixes) == "../secret.py"
 
 
 def test_select_canonical_mirror_copy_prefers_canonical_when_present() -> None:

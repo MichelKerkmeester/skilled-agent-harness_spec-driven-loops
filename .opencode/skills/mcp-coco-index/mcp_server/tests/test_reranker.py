@@ -317,3 +317,23 @@ def test_rerank_path_class_boost_disabled_when_flag_off(monkeypatch: Any) -> Non
 
     # No boost applied → all scores stay at 1.0 → tie-break preserves original order
     assert all(c.reranker_score == 1.0 for c in reranked)
+
+
+def test_path_class_factor_parse_is_cached(monkeypatch: Any, caplog: Any) -> None:
+    from cocoindex_code import reranker as reranker_module
+
+    monkeypatch.setattr(reranker_module, "_PATH_CLASS_FACTORS_CACHE", None)
+    monkeypatch.setenv("COCOINDEX_RERANK_PATH_CLASS_BOOST", "1")
+    monkeypatch.setenv("COCOINDEX_RERANK_PATH_CLASS_FACTORS", "{bad-json")
+    caplog.set_level("WARNING", logger="cocoindex_code.config")
+    candidates = [
+        _path_class_candidate("src/impl.py", 0.9, "implementation"),
+        _path_class_candidate("tests/test_impl.py", 0.8, "tests"),
+    ]
+
+    first = reranker_module._apply_path_class_boost([1.0, 1.0], candidates)
+    second = reranker_module._apply_path_class_boost([1.0, 1.0], candidates)
+
+    assert first == [1.0, 0.85]
+    assert second == [1.0, 0.85]
+    assert caplog.text.count("Ignoring invalid COCOINDEX_RERANK_PATH_CLASS_FACTORS") == 1

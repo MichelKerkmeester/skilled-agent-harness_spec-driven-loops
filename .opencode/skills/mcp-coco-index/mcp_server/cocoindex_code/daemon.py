@@ -972,9 +972,10 @@ async def _async_daemon_main(
     # defensive helper used by the unit tests.
     try:
         listener = Listener(sock_path, family=_connection_family(), backlog=128)
-    finally:
+    except BaseException:
         if startup_lock_fd is not None:
             startup_lock_fd.close()
+        raise
     logger.info("Listening on %s", sock_path)
 
     loop = asyncio.get_event_loop()
@@ -1035,6 +1036,8 @@ async def _async_daemon_main(
         await shutdown_event.wait()
     finally:
         listener.close()
+        if startup_lock_fd is not None:
+            startup_lock_fd.close()
         accept_thread.join(timeout=2)
         if tasks:
             # Patch 10: bound the shutdown wait. asyncio.wait_for cancels its

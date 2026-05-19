@@ -59,6 +59,18 @@ def test_default_dispatch_uses_jina_adapter(monkeypatch: Any) -> None:
     assert adapter.model_name == _DEFAULT_RERANK_MODEL
 
 
+def test_default_dispatch_uses_real_jina_adapter(monkeypatch: Any) -> None:
+    from cocoindex_code import reranker as reranker_module
+    from cocoindex_code.rerankers_jina_v3 import JinaRerankerAdapter
+
+    monkeypatch.setattr(reranker_module, "_ADAPTERS", {})
+
+    adapter = reranker_module.get_reranker_adapter(_DEFAULT_RERANK_MODEL)
+
+    assert isinstance(adapter, JinaRerankerAdapter)
+    assert adapter.model_name == _DEFAULT_RERANK_MODEL
+
+
 def test_override_dispatch_uses_jina_adapter(monkeypatch: Any) -> None:
     from cocoindex_code import reranker as reranker_module
 
@@ -88,3 +100,14 @@ def test_adapter_cache_is_keyed_by_model_name(monkeypatch: Any) -> None:
     assert default_adapter is not override_adapter
     assert default_adapter.model_name == _DEFAULT_RERANK_MODEL
     assert override_adapter.model_name == "BAAI/bge-reranker-v2-m3-alt"
+
+
+def test_bge_opt_in_dispatches_to_cross_encoder(monkeypatch: Any) -> None:
+    from cocoindex_code import reranker as reranker_module
+
+    monkeypatch.setattr(reranker_module, "_ADAPTERS", {})
+
+    adapter = reranker_module.get_reranker_adapter("BAAI/bge-reranker-v2-m3")
+
+    assert isinstance(adapter, reranker_module.CrossEncoderRerankerAdapter)
+    assert adapter.model_name == "BAAI/bge-reranker-v2-m3"

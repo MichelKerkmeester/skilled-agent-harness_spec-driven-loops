@@ -89,6 +89,34 @@ def test_expand_query_deduplicates_dense_variants() -> None:
     assert expanded.dense_variants[0] == "parser"
 
 
+def test_expand_query_prioritizes_synonym_phrases_over_identifier_spellings() -> None:
+    expanded = expand_query("find files", _DEFAULT_SYNONYMS, max_variants=6)
+
+    assert expanded.dense_variants == [
+        "find files",
+        "find paths",
+        "find documents",
+        "finder files",
+        "finder paths",
+        "finder documents",
+    ]
+    assert "findFiles" not in expanded.dense_variants
+
+
+def test_expand_query_caps_total_variant_pool_for_fts5() -> None:
+    expanded = expand_query(
+        "memory save adapter",
+        {
+            "memory": ["context", "state"],
+            "save": ["persist", "store", "write"],
+            "adapter": ["wrapper", "bridge"],
+        },
+        max_variants=6,
+    )
+
+    assert expanded.fts5_clause.count(" OR ") + 1 <= 23
+
+
 def test_expand_query_max_variants_zero_is_noop() -> None:
     expanded = expand_query("memory save", _DEFAULT_SYNONYMS, max_variants=0)
 

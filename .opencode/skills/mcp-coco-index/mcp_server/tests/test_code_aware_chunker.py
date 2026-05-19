@@ -6,6 +6,7 @@ from types import SimpleNamespace
 
 from cocoindex.ops.text import RecursiveSplitter
 
+import cocoindex_code.chunkers.code_aware as code_aware
 from cocoindex_code.chunkers import CodeAwareSplitter
 from cocoindex_code.indexer import _split_chunks
 
@@ -145,7 +146,12 @@ def test_oversized_definition_uses_recursive_splitter_with_absolute_lines() -> N
 
 def test_unsupported_language_uses_recursive_splitter() -> None:
     text = "# Title\n\nSome prose content.\n"
-    chunks = _split(text, "markdown")
+    splitter = CodeAwareSplitter(
+        chunk_size=1500,
+        chunk_overlap=0,
+        min_chunk_size=1,
+    )
+    chunks = splitter.split(text, "markdown")
     expected = RecursiveSplitter().split(
         text,
         chunk_size=1500,
@@ -155,6 +161,50 @@ def test_unsupported_language_uses_recursive_splitter() -> None:
     )
 
     assert chunks == expected
+    assert splitter.fallback_count == 1
+
+
+def test_parser_load_failure_falls_back_with_counter(monkeypatch) -> None:
+    text = "def first():\n    return 1\n"
+    splitter = CodeAwareSplitter(chunk_size=1500, chunk_overlap=0, min_chunk_size=1)
+
+    class BrokenSpec:
+        def load_language(self) -> object:
+            raise OSError("missing grammar")
+
+    monkeypatch.setattr(code_aware, "grammar_for_language", lambda _language, _overrides: BrokenSpec())
+
+    chunks = splitter.split(text, "python")
+
+    assert chunks == RecursiveSplitter().split(
+        text,
+        chunk_size=1500,
+        min_chunk_size=1,
+        chunk_overlap=0,
+        language="python",
+    )
+    assert splitter.fallback_count == 1
+
+
+def test_definition_extraction_failure_falls_back_with_counter(monkeypatch) -> None:
+    text = "def first():\n    return 1\n"
+    splitter = CodeAwareSplitter(chunk_size=1500, chunk_overlap=0, min_chunk_size=1)
+
+    def broken_ranges(*_args: object, **_kwargs: object) -> list:
+        raise ValueError("bad node shape")
+
+    monkeypatch.setattr(code_aware, "_definition_ranges", broken_ranges)
+
+    chunks = splitter.split(text, "python")
+
+    assert chunks == RecursiveSplitter().split(
+        text,
+        chunk_size=1500,
+        min_chunk_size=1,
+        chunk_overlap=0,
+        language="python",
+    )
+    assert splitter.fallback_count == 1
 
 
 def test_indexer_dispatch_respects_code_aware_opt_out(monkeypatch) -> None:

@@ -12,6 +12,7 @@ _LOWER_UPPER_BOUNDARY_RE = re.compile(r"([a-z0-9])([A-Z])")
 _WORD_RE = re.compile(r"[A-Za-z0-9]+")
 _FTS5_QUOTE_RE = re.compile(r'"')
 _SYNONYM_CAP = 8
+_TOTAL_VARIANT_CAP = 20
 _MAX_EXPANDABLE_CONTENT_WORDS = 4
 _STOPWORDS = {
     "a",
@@ -190,12 +191,12 @@ def _expanded_variant_pool(
     synonym_dict: dict[str, list[str]],
 ) -> list[str]:
     candidates = _phrase_candidates(words)
-    variants = [query]
-    for word_list in apply_synonyms(candidates[0], synonym_dict):
-        phrase = " ".join(word_list)
-        variants.append(phrase)
-        variants.extend(generate_identifier_variants(word_list))
-    return _dedupe_preserve_order(variants)
+    synonym_word_lists = apply_synonyms(candidates[0], synonym_dict)
+    phrase_variants = [" ".join(word_list) for word_list in synonym_word_lists]
+    identifier_variants: list[str] = []
+    for word_list in synonym_word_lists:
+        identifier_variants.extend(generate_identifier_variants(word_list))
+    return _dedupe_preserve_order([query, *phrase_variants, *identifier_variants])[:_TOTAL_VARIANT_CAP]
 
 
 def expand_query(

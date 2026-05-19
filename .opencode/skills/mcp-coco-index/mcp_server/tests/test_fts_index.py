@@ -18,6 +18,7 @@ from cocoindex_code.fts_index import (
     populate_fts,
     query_fts,
     sync_fts_from_code_chunks,
+    _normalize_fts_query,
 )
 from cocoindex_code.fusion import RankedRow, rrf_fuse
 from cocoindex_code.query import query_codebase
@@ -155,6 +156,10 @@ def test_fts_query_returns_ranked_bm25(tmp_path: Path) -> None:
 
     assert rows[0][0] == 1
     assert rows[0][1] > 0
+
+
+def test_fts_query_normalization_escapes_embedded_quotes() -> None:
+    assert _normalize_fts_query('auth"token path') == '"auth""token" OR "path"'
 
 
 def test_fts_query_accepts_expanded_match_clause(tmp_path: Path) -> None:
@@ -317,6 +322,6 @@ def test_query_codebase_hybrid_query_expansion_fans_out_dense_and_fts(
     results = asyncio.run(query_codebase("memory save", db_path, env, limit=1))
 
     assert len(results) == 1
-    assert env.embedder.queries == ["memory save", "memorySave", "memory_save", "MemorySave"]
+    assert env.embedder.queries == ["memory save", "memory persist", "memorySave", "memory_save"]
     assert seen_match_clauses
     assert '"memorySave"' in str(seen_match_clauses[0])

@@ -1,8 +1,9 @@
 ---
 title: "Decision Record: 020 Deep Review P1/P2 Remediation"
-description: "ADR-022 documents the hybrid path-class boost scaling chosen for P1-H."
+description: "ADR-022 documents hybrid path-class boost scaling; ADR-023 documents nomic CodeRankEmbed promotion traceability."
 trigger_phrases:
   - "ADR-022 hybrid boost scaling"
+  - "ADR-023 nomic CodeRankEmbed promotion"
   - "path-class RRF calibration"
   - "020 P1-H decision record"
 importance_tier: "important"
@@ -12,7 +13,7 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/020-deep-review-p1-p2-remediation"
     last_updated_at: "2026-05-19T18:17:10Z"
     last_updated_by: "codex"
-    recent_action: "Recorded ADR-022 for hybrid additive boost scaling."
+    recent_action: "Recorded ADR-022 and ADR-023 for P1/P2 remediation decisions."
     next_safe_action: "Main agent may review the diff and commit."
     blockers: []
     key_files:
@@ -133,3 +134,73 @@ Hybrid retrieval combines dense and FTS5 lanes using RRF with the calibrated def
 **How to roll back**: Restore `_HYBRID_PATH_CLASS_SHIFT` to `0.05` and `_HYBRID_CANONICAL_RESOURCE_BOOST` to `0.10`, then rerun `test_dedup_mirrors.py` and the full mcp-coco-index pytest suite.
 <!-- /ANCHOR:adr-022-impl -->
 <!-- /ANCHOR:adr-022 -->
+
+---
+
+<!-- ANCHOR:adr-023 -->
+## ADR-023: Document Nomic CodeRankEmbed Promotion
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-19 |
+| **Deciders** | Codex implementation owner for packet 020 |
+
+---
+
+<!-- ANCHOR:adr-023-context -->
+### Context
+
+Commit `8364bdd5b` promoted `sbert/nomic-ai/CodeRankEmbed` as the CocoIndex default embedder after the corrected 013-018 pipeline arc. The change was material because it affects fresh daemon settings, local install defaults, benchmark docs, and operator rollback. The 019 deep review flagged that the promotion lacked an ADR reference, making the default look like a code-only drift rather than an evidence-backed decision.
+
+### Constraints
+
+- Preserve wide embedder support and keep BGE/Jina/Gemma/Ollama alternatives registered.
+- Treat the May 19 benchmark as n=1 provisional evidence until the planned 3-run replay exists.
+- Do not re-run heavy `ccc reset` or `ccc index` inside this remediation.
+<!-- /ANCHOR:adr-023-context -->
+
+---
+
+<!-- ANCHOR:adr-023-decision -->
+### Decision
+
+**We chose**: keep `sbert/nomic-ai/CodeRankEmbed` as the production default, but document the promotion as provisional pending 3-run confirmation.
+
+**Why**: On the corrected pipeline, nomic tied bge-code-v1 on hit rate while reducing median latency in the promoted benchmark evidence. The default remains 768-dimensional, so it does not require a schema migration from the current CocoIndex vector table. Alternatives remain available through `COCOINDEX_CODE_EMBEDDING_MODEL`.
+<!-- /ANCHOR:adr-023-decision -->
+
+---
+
+<!-- ANCHOR:adr-023-consequences -->
+### Consequences
+
+**What improves**:
+- Future operators can trace the nomic default to an explicit decision.
+- Registry and docs no longer call nomic an alternative while config treats it as default.
+- The benchmark caveat is honest about n=1 evidence.
+
+**What it costs**:
+- The promotion remains provisional until replayed. This is acceptable because the rollback path is an env override plus reset/index.
+
+**Rollback path**: set `COCOINDEX_CODE_EMBEDDING_MODEL=sbert/BAAI/bge-code-v1`, run `ccc reset --force`, then `ccc index` so stored vectors match the live embedder dimension/model.
+<!-- /ANCHOR:adr-023-consequences -->
+
+---
+
+<!-- ANCHOR:adr-023-impl -->
+### Implementation
+
+**What changes**:
+- `registered_embedders.py`: nomic notes mark it as default and export dimension migration requirements.
+- `mcp_server/benchmarks/benchmark-2026-05-19/benchmark_report.md`: winner wording is provisional pending 3-run confirmation.
+- `004-code-index-stack/decision-record.md`: local ADR index links ADR-016 through ADR-023 from the CocoIndex stack folder.
+
+**Evidence**:
+- P1 commit `7eba2a453` fixed fresh daemon/settings default authority.
+- Batch 3 tests assert registry default alignment.
+- Batch 8 docs mark the n=1 caveat.
+<!-- /ANCHOR:adr-023-impl -->
+<!-- /ANCHOR:adr-023 -->

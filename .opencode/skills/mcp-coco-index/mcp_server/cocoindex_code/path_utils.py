@@ -6,6 +6,24 @@ from collections.abc import Iterable
 from typing import TypeVar
 
 T = TypeVar("T")
+_SAFE_PREFIX_CHARS = frozenset("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789._-/")
+
+
+def normalize_mirror_prefix(prefix: str) -> str:
+    """Normalize and validate a mirror prefix for startswith path checks."""
+    value = str(prefix).strip()
+    if not value:
+        return ""
+    if "\x00" in value:
+        raise ValueError("mirror prefix must not contain null bytes")
+    if "\\" in value:
+        raise ValueError("mirror prefix must use forward slashes")
+    if any(char not in _SAFE_PREFIX_CHARS for char in value):
+        raise ValueError("mirror prefix contains unsupported characters")
+    parts = [part for part in value.split("/") if part and part != "."]
+    if any(part == ".." for part in parts):
+        raise ValueError("mirror prefix must not contain path traversal segments")
+    return value if value.endswith("/") else f"{value}/"
 
 
 def _field(item: object, name: str) -> object:
@@ -18,10 +36,12 @@ def _normalized_prefixes(prefixes: Iterable[str]) -> list[str]:
     normalized: list[str] = []
     seen: set[str] = set()
     for prefix in prefixes:
-        value = str(prefix).strip()
+        try:
+            value = normalize_mirror_prefix(str(prefix))
+        except ValueError:
+            continue
         if not value:
             continue
-        value = value if value.endswith("/") else f"{value}/"
         if value not in seen:
             normalized.append(value)
             seen.add(value)

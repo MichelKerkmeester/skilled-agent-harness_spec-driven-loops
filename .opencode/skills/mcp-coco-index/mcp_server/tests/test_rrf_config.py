@@ -57,6 +57,15 @@ def test_rrf_sweep_grid_rejects_invalid_values() -> None:
     with pytest.raises(ValueError, match="positive finite"):
         sweep.parse_grid_from_env({"COCOINDEX_RRF_SWEEP_VEC_WEIGHTS": "[-0.1]"})
 
+    with pytest.raises(ValueError, match="<= 2.0"):
+        sweep.parse_grid_from_env({"COCOINDEX_RRF_SWEEP_FTS_WEIGHTS": "[2.5]"})
+
+    with pytest.raises(ValueError, match="at most"):
+        sweep.parse_grid_from_env({"COCOINDEX_RRF_SWEEP_K_VALUES": "[" + ",".join("1" for _ in range(101)) + "]"})
+
+    with pytest.raises(ValueError, match="JSON array"):
+        sweep.parse_grid_from_env({"COCOINDEX_RRF_SWEEP_K_VALUES": '{"k": 60}'})
+
 
 def test_rrf_picker_uses_hit_rate_latency_and_default_delta(tmp_path: Path) -> None:
     sweep = _load_sweep_module()

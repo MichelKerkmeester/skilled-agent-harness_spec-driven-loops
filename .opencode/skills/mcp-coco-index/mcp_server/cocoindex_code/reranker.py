@@ -15,11 +15,14 @@ logger = logging.getLogger(__name__)
 
 MIN_AVAILABLE_RAM_BYTES = 2 * 1024 * 1024 * 1024
 _ADAPTERS: dict[str, "CrossEncoderRerankerAdapter"] = {}
+_PATH_CLASS_FACTORS_CACHE: tuple[str | None, dict[str, float]] | None = None
 
 
 def _apply_path_class_boost(
     scores: list[float],
     head: list[QueryResult],
+    *,
+    reranker_family: str = "cross_encoder",
 ) -> list[float]:
     """Per-path-class score multiplier (ADR-015 Phase 2 path-class boost).
 
@@ -33,14 +36,26 @@ def _apply_path_class_boost(
     flag = os.environ.get("COCOINDEX_RERANK_PATH_CLASS_BOOST", "").strip().lower()
     if flag not in {"1", "true", "yes", "on"}:
         return scores
+    raw_factors = os.environ.get("COCOINDEX_RERANK_PATH_CLASS_FACTORS")
+    if reranker_family == "jina_v3" and raw_factors is None:
+        logger.warning(
+            "Ignoring COCOINDEX_RERANK_PATH_CLASS_BOOST for jina-v3 without explicit "
+            "COCOINDEX_RERANK_PATH_CLASS_FACTORS; built-in factors were validated on the BGE path-class lane"
+        )
+        return scores
 
     # Lazy import to avoid circular import at module load
     from .config import _DEFAULT_PATH_CLASS_FACTORS, _parse_json_dict_env  # noqa: PLC0415
 
-    factors = _parse_json_dict_env(
-        "COCOINDEX_RERANK_PATH_CLASS_FACTORS",
-        _DEFAULT_PATH_CLASS_FACTORS,
-    )
+    global _PATH_CLASS_FACTORS_CACHE
+    if _PATH_CLASS_FACTORS_CACHE is not None and _PATH_CLASS_FACTORS_CACHE[0] == raw_factors:
+        factors = _PATH_CLASS_FACTORS_CACHE[1]
+    else:
+        factors = _parse_json_dict_env(
+            "COCOINDEX_RERANK_PATH_CLASS_FACTORS",
+            _DEFAULT_PATH_CLASS_FACTORS,
+        )
+        _PATH_CLASS_FACTORS_CACHE = (raw_factors, factors)
     return [
         score * factors.get(candidate.path_class, 1.0)
         for score, candidate in zip(scores, head, strict=True)

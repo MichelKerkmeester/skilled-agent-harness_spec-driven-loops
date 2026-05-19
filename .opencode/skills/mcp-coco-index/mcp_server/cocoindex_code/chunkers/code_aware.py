@@ -41,6 +41,12 @@ class CodeAwareSplitter:
         self._min_chunk_size = min_chunk_size
         self._grammar_overrides = grammar_overrides
         self._fallback = RecursiveSplitter()
+        self._fallback_count = 0
+
+    @property
+    def fallback_count(self) -> int:
+        """Return how many times this splitter instance used RecursiveSplitter."""
+        return self._fallback_count
 
     def split(self, text: str, language: str) -> list[Chunk]:
         """Return code-aware chunks for supported languages."""
@@ -52,7 +58,7 @@ class CodeAwareSplitter:
             parser = Parser(spec.load_language())
             source_bytes = text.encode("utf-8")
             tree = parser.parse(source_bytes)
-        except Exception as exc:  # pragma: no cover - environment-specific parser failure
+        except (ImportError, OSError, RuntimeError, TypeError, ValueError, UnicodeEncodeError) as exc:
             logger.warning(
                 "Falling back to RecursiveSplitter for %s after tree-sitter failure: %s",
                 language,
@@ -61,10 +67,20 @@ class CodeAwareSplitter:
             return self.fallback_split(text, language)
 
         if tree.root_node.has_error:
+            logger.debug("Falling back to RecursiveSplitter for %s after tree-sitter parse error", language)
             return self.fallback_split(text, language)
 
-        ranges = list(_definition_ranges(tree.root_node.children, spec, source_bytes))
+        try:
+            ranges = list(_definition_ranges(tree.root_node.children, spec, source_bytes))
+        except (AttributeError, TypeError, ValueError, UnicodeDecodeError) as exc:
+            logger.warning(
+                "Falling back to RecursiveSplitter for %s after tree-sitter range extraction failure: %s",
+                language,
+                exc,
+            )
+            return self.fallback_split(text, language)
         if not ranges:
+            logger.debug("Falling back to RecursiveSplitter for %s because tree-sitter found no definitions", language)
             return self.fallback_split(text, language)
 
         chunks: list[Chunk] = []
@@ -79,6 +95,7 @@ class CodeAwareSplitter:
 
     def fallback_split(self, text: str, language: str) -> list[Chunk]:
         """Run the pre-015 RecursiveSplitter path."""
+        self._fallback_count += 1
         return self._fallback.split(
             text,
             chunk_size=self._chunk_size,

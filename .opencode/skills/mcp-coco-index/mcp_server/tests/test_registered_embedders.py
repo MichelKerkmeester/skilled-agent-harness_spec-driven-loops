@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from cocoindex_code.config import _DEFAULT_MODEL
 from cocoindex_code.registered_embedders import (
+    DEFAULT_EMBEDDER_NAME,
+    DIMENSION_MIGRATION_REQUIREMENTS,
     MANIFESTS,
     EmbedderMetadata,
     default_embedder,
@@ -53,6 +55,7 @@ class TestDefaultAlignment:
     def test_default_matches_config(self) -> None:
         """Registry default MUST match config._DEFAULT_MODEL or the registry has drifted."""
         assert default_embedder().name == _DEFAULT_MODEL
+        assert DEFAULT_EMBEDDER_NAME == _DEFAULT_MODEL
 
     def test_default_is_code_category(self) -> None:
         """For CocoIndex (code search), default should be code-tuned."""
@@ -61,6 +64,16 @@ class TestDefaultAlignment:
     def test_default_is_metal_compatible(self) -> None:
         """Default must work on Apple Silicon Metal — covers majority of operators."""
         assert default_embedder().mps_compatible is True
+
+    def test_default_notes_describe_current_promotion(self) -> None:
+        notes = default_embedder().notes.lower()
+
+        assert "default" in notes
+        assert "alternative" not in notes
+
+    def test_registry_documents_dimension_migration_requirements(self) -> None:
+        assert "ccc reset && ccc index" in DIMENSION_MIGRATION_REQUIREMENTS
+        assert "dimension" in DIMENSION_MIGRATION_REQUIREMENTS
 
 
 class TestLookupAPI:

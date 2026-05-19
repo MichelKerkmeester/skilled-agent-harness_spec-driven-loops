@@ -8,9 +8,11 @@ import os
 from dataclasses import dataclass
 from pathlib import Path
 
+from .path_utils import normalize_mirror_prefix
 from .query_expansion import _DEFAULT_SYNONYMS
+from .registered_embedders import DEFAULT_EMBEDDER_NAME
 
-_DEFAULT_MODEL = "sbert/nomic-ai/CodeRankEmbed"  # 018 follow-on: ties bge-code-v1 on hit rate (12/13/14 across BGE/BGE+path-class/jina-v3 lanes) with ~10% lower median latency; supersedes jina-v2-base-code default
+_DEFAULT_MODEL = DEFAULT_EMBEDDER_NAME  # 018 follow-on: ties bge-code-v1 on hit rate (12/13/14 across BGE/BGE+path-class/jina-v3 lanes) with ~10% lower median latency; supersedes jina-v2-base-code default
 _DEFAULT_CHUNK_SIZE = 1500
 _DEFAULT_CHUNK_OVERLAP = 200
 _DEFAULT_MIN_CHUNK_SIZE = 250
@@ -26,8 +28,10 @@ _DEFAULT_QUERY_EXPANSION_MAX_VARIANTS = 6
 _DEFAULT_QUERY_EXPANSION_DENSE_FANOUT = True
 _DEFAULT_CANONICAL_MIRROR = ".opencode"
 _DEFAULT_MIRROR_PREFIXES = [".opencode/", ".codex/", ".gemini/", ".claude/"]
-# ADR-015 Phase 2: path-class boost defaults from 011 deep-research iter 10
-# Multiplies the cross-encoder score per QueryResult.path_class. Flag-gated by
+# ADR-015 Phase 2: path-class boost defaults from 011 deep-research iter 10.
+# These factors are embedder-independent metadata, but the empirical evidence is
+# BGE path-class lane only; future reranker families must revalidate before
+# composing the default factors with their score distribution. Flag-gated by
 # COCOINDEX_RERANK_PATH_CLASS_BOOST. Override via COCOINDEX_RERANK_PATH_CLASS_FACTORS.
 _DEFAULT_PATH_CLASS_FACTORS: dict[str, float] = {
     "implementation": 1.00,
@@ -38,6 +42,9 @@ _DEFAULT_PATH_CLASS_FACTORS: dict[str, float] = {
     "spec_research": 0.90,
 }
 _VALID_DEVICES = {"cuda", "mps", "cpu"}
+_MAX_JSON_ENV_BYTES = 10_000
+_MAX_JSON_LIST_ITEMS = 100
+_MAX_JSON_DICT_ITEMS = 100
 
 logger = logging.getLogger(__name__)
 
@@ -112,6 +119,7 @@ def _parse_json_string_list_env(var_name: str) -> list[str]:
     raw_value = os.environ.get(var_name, "")
     if not raw_value.strip():
         return []
+    _validate_json_env_size(var_name, raw_value)
 
     try:
         parsed = json.loads(raw_value)
@@ -120,6 +128,8 @@ def _parse_json_string_list_env(var_name: str) -> list[str]:
 
     if not isinstance(parsed, list):
         raise ValueError(f"{var_name} must be a JSON array of strings")
+    if len(parsed) > _MAX_JSON_LIST_ITEMS:
+        raise ValueError(f"{var_name} must contain at most {_MAX_JSON_LIST_ITEMS} items")
 
     result: list[str] = []
     for item in parsed:
@@ -132,12 +142,9 @@ def _parse_json_string_list_env(var_name: str) -> list[str]:
     return result
 
 
-def _normalize_mirror_prefix(prefix: str) -> str:
-    """Normalize mirror prefixes to the form used by file_path startswith checks."""
-    normalized = prefix.strip()
-    if not normalized:
-        return ""
-    return normalized if normalized.endswith("/") else f"{normalized}/"
+def _validate_json_env_size(var_name: str, raw_value: str) -> None:
+    if len(raw_value.encode("utf-8")) > _MAX_JSON_ENV_BYTES:
+        raise ValueError(f"{var_name} must be at most {_MAX_JSON_ENV_BYTES} bytes")
 
 
 def _parse_mirror_prefixes_env() -> list[str]:
@@ -150,7 +157,11 @@ def _parse_mirror_prefixes_env() -> list[str]:
     normalized: list[str] = []
     seen: set[str] = set()
     for prefix in prefixes:
-        normalized_prefix = _normalize_mirror_prefix(prefix)
+        try:
+            normalized_prefix = normalize_mirror_prefix(prefix)
+        except ValueError as exc:
+            logger.warning("Ignoring invalid mirror prefix %r in COCOINDEX_MIRROR_PREFIXES: %s", prefix, exc)
+            continue
         if normalized_prefix and normalized_prefix not in seen:
             normalized.append(normalized_prefix)
             seen.add(normalized_prefix)
@@ -166,10 +177,19 @@ def _parse_canonical_mirror_env(mirror_prefixes: list[str]) -> str:
             "Ignoring empty COCOINDEX_CANONICAL_MIRROR; falling back to %r",
             _DEFAULT_CANONICAL_MIRROR,
         )
-        return _normalize_mirror_prefix(_DEFAULT_CANONICAL_MIRROR)
+        return normalize_mirror_prefix(_DEFAULT_CANONICAL_MIRROR)
 
     recognized = set(_DEFAULT_MIRROR_PREFIXES) | set(mirror_prefixes)
-    normalized = _normalize_mirror_prefix(stripped)
+    try:
+        normalized = normalize_mirror_prefix(stripped)
+    except ValueError as exc:
+        logger.warning(
+            "Ignoring invalid COCOINDEX_CANONICAL_MIRROR=%r: %s; falling back to %r",
+            raw_value,
+            exc,
+            _DEFAULT_CANONICAL_MIRROR,
+        )
+        return normalize_mirror_prefix(_DEFAULT_CANONICAL_MIRROR)
     if stripped.endswith("/") or normalized in recognized:
         return normalized
 
@@ -178,7 +198,7 @@ def _parse_canonical_mirror_env(mirror_prefixes: list[str]) -> str:
         raw_value,
         _DEFAULT_CANONICAL_MIRROR,
     )
-    return _normalize_mirror_prefix(_DEFAULT_CANONICAL_MIRROR)
+    return normalize_mirror_prefix(_DEFAULT_CANONICAL_MIRROR)
 
 
 def _parse_json_dict_env(
@@ -191,6 +211,11 @@ def _parse_json_dict_env(
     """Parse a JSON dict env var with float values. Falls back to default on malformed input."""
     raw_value = os.environ.get(var_name, "")
     if not raw_value.strip():
+        return dict(default)
+    try:
+        _validate_json_env_size(var_name, raw_value)
+    except ValueError as exc:
+        logger.warning("%s; falling back to default", exc)
         return dict(default)
 
     try:
@@ -208,6 +233,13 @@ def _parse_json_dict_env(
             "Ignoring invalid %s=%r; expected JSON dict; falling back to default",
             var_name,
             raw_value,
+        )
+        return dict(default)
+    if len(parsed) > _MAX_JSON_DICT_ITEMS:
+        logger.warning(
+            "Ignoring invalid %s; expected at most %s entries; falling back to default",
+            var_name,
+            _MAX_JSON_DICT_ITEMS,
         )
         return dict(default)
 
@@ -254,6 +286,11 @@ def _parse_json_object_env(
     raw_value = os.environ.get(var_name, "")
     if not raw_value.strip():
         return dict(default)
+    try:
+        _validate_json_env_size(var_name, raw_value)
+    except ValueError as exc:
+        logger.warning("%s; falling back to default", exc)
+        return dict(default)
 
     try:
         parsed = json.loads(raw_value)
@@ -270,6 +307,13 @@ def _parse_json_object_env(
             "Ignoring invalid %s=%r; expected JSON dict; falling back to default",
             var_name,
             raw_value,
+        )
+        return dict(default)
+    if len(parsed) > _MAX_JSON_DICT_ITEMS:
+        logger.warning(
+            "Ignoring invalid %s; expected at most %s entries; falling back to default",
+            var_name,
+            _MAX_JSON_DICT_ITEMS,
         )
         return dict(default)
 
@@ -297,6 +341,11 @@ def _parse_json_string_list_dict_env(
     raw_value = os.environ.get(var_name, "")
     if not raw_value.strip():
         return {key: list(values) for key, values in default.items()}
+    try:
+        _validate_json_env_size(var_name, raw_value)
+    except ValueError as exc:
+        logger.warning("%s; falling back to default", exc)
+        return {key: list(values) for key, values in default.items()}
 
     try:
         parsed = json.loads(raw_value)
@@ -313,6 +362,13 @@ def _parse_json_string_list_dict_env(
             "Ignoring invalid %s=%r; expected JSON dict; falling back to default",
             var_name,
             raw_value,
+        )
+        return {key: list(values) for key, values in default.items()}
+    if len(parsed) > _MAX_JSON_DICT_ITEMS:
+        logger.warning(
+            "Ignoring invalid %s; expected at most %s entries; falling back to default",
+            var_name,
+            _MAX_JSON_DICT_ITEMS,
         )
         return {key: list(values) for key, values in default.items()}
 
@@ -439,6 +495,28 @@ def _parse_float_env(
         default,
     )
     return default
+
+
+def _warn_on_semantic_rrf_config(
+    *,
+    hybrid_enabled: bool,
+    vector_weight: float,
+    fts5_weight: float,
+    rrf_k: int,
+) -> None:
+    """Warn on semantically suspicious RRF combinations after bounded parsing."""
+    if not hybrid_enabled:
+        return
+    if vector_weight == 0.0 and fts5_weight == 0.0:
+        logger.warning("Hybrid RRF has both vector and FTS5 weights set to 0.0; fusion will have no signal")
+    elif vector_weight == 0.0:
+        logger.warning("Hybrid RRF vector weight is 0.0; dense retrieval lane is disabled")
+    elif fts5_weight == 0.0:
+        logger.warning("Hybrid RRF FTS5 weight is 0.0; lexical retrieval lane is disabled")
+    if vector_weight == 2.0 or fts5_weight == 2.0:
+        logger.warning("Hybrid RRF weight at upper bound 2.0; verify score-scale behavior before relying on this")
+    if rrf_k <= 5:
+        logger.warning("Hybrid RRF K=%s is very low; ranking may become overly sensitive to top positions", rrf_k)
 
 
 def _is_registered_embedder(name: str) -> bool:
@@ -575,6 +653,12 @@ class Config:
             _DEFAULT_HYBRID_RRF_K,
             1,
             500,
+        )
+        _warn_on_semantic_rrf_config(
+            hybrid_enabled=hybrid_enabled,
+            vector_weight=hybrid_vector_weight,
+            fts5_weight=hybrid_fts5_weight,
+            rrf_k=hybrid_rrf_k,
         )
         rerank_enabled = _parse_bool_env("COCOINDEX_RERANK", True)
         rerank_model = os.environ.get("COCOINDEX_RERANK_MODEL", _DEFAULT_RERANK_MODEL).strip()

@@ -1,15 +1,8 @@
-"""THROWAWAY jina-reranker-v3 adapter for the 011 Phase 2 diagnostic bench.
+"""Production jina-reranker-v3 adapter for CocoIndex reranking.
 
-This file is DELIBERATELY scoped to the smoke-gate measurement that decides whether
-jina-reranker-v3 plausibly outranks BGE+path-class boost on the internal 18-probe
-fixture. The 011 deep-research convergence flagged a gap: jina-v3 carries the
-highest CoIR NDCG@10 in the candidate pool (63.28 vs BGE 24.86) but was filtered
-out at Phase 1 triage on integration-cost grounds without measurement on this
-codebase's fixture. This adapter exists ONLY to answer that empirical question.
-
-If jina-v3 dominates path-class boost in the Phase 2 bench → open the production
-jina-v3 adapter packet (proper error surfacing, robust batching, test coverage).
-If jina-v3 ties or loses → DELETE this file (and its test file) post-investigation.
+This adapter became the default reranker after the 018 rerank-matrix rebench.
+It keeps the diagnostic Phase 2 mapping semantics while carrying production
+fallback behavior, bounded document clipping, and regression tests.
 
 Scoring model: Jina's NATIVE listwise rerank API (NOT pointwise yes/no).
 jinaai/jina-reranker-v3 is a JinaForRanking model (Qwen3-base) that projects
@@ -47,16 +40,13 @@ _DEFAULT_MAX_DOC_CHARS = 6000
 
 
 class JinaRerankerAdapter:
-    """Throwaway listwise adapter for jinaai/jina-reranker-v3.
+    """Listwise adapter for jinaai/jina-reranker-v3.
 
     Loads via transformers.AutoModel with trust_remote_code=True so the
     JinaForRanking class registers. Scoring uses the model's native rerank() API
     which returns [{"relevance_score": float, "index": int, ...}, ...] sorted
-    descending. We map scores back to the input candidate order then apply the
-    standard path-class boost + log hooks so both candidates compose identically.
-
-    Cleanup contract: delete this file and tests/test_rerankers_jina_v3.py
-    post-Phase-2-bench if jina-v3 doesn't materially outrank BGE+path-class boost.
+    descending. We map scores back to the input candidate order and then run the
+    standard score logging hook.
     """
 
     def __init__(self, model_name: str = "jinaai/jina-reranker-v3") -> None:
@@ -174,9 +164,9 @@ class JinaRerankerAdapter:
         # Build aligned scores list (missing indices → 0.0, defensive)
         scores = [score_by_index.get(i, 0.0) for i in range(len(head))]
 
-        # ADR-015 Phase 2: path-class boost (flag-gated, no-op when disabled)
-        # Shared with CrossEncoderRerankerAdapter so both candidates compose identically.
-        scores = _apply_path_class_boost(scores, head)
+        # Path-class defaults were validated on the BGE path-class lane; Jina
+        # only composes with the boost when operators provide explicit factors.
+        scores = _apply_path_class_boost(scores, head, reranker_family="jina_v3")
 
         _maybe_log_scores(query, head, scores)
 

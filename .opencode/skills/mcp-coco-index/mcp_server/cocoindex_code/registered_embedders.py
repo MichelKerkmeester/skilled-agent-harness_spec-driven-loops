@@ -19,6 +19,13 @@ EmbedderCategory = Literal["text", "code"]
 
 logger = logging.getLogger(__name__)
 
+DIMENSION_MIGRATION_REQUIREMENTS = (
+    "Changing to an embedder whose dim differs from the indexed vector schema requires "
+    "`ccc reset && ccc index` before search. Keep the previous index directory until the "
+    "new index validates, and roll back by restoring the prior COCOINDEX_CODE_EMBEDDING_MODEL "
+    "plus rerunning reset/index so stored vectors match the live model dimension."
+)
+
 
 @dataclass(frozen=True)
 class EmbedderMetadata:
@@ -61,7 +68,7 @@ MANIFESTS: tuple[EmbedderMetadata, ...] = (
         mps_compatible=True,
         category="code",
         hf_url="https://huggingface.co/jinaai/jina-embeddings-v2-base-code",
-        notes="DEFAULT. Code-tuned (Python/JS/Go/Java/Ruby/PHP), 8192 ctx. Dim matches gemma (768) — no schema migration when swapping from baseline. Strong general-purpose code retrieval.",
+        notes="Former default. Code-tuned (Python/JS/Go/Java/Ruby/PHP), 8192 ctx. Dim matches the 768d schema. Strong general-purpose code retrieval fallback.",
     ),
     EmbedderMetadata(
         name="sbert/google/embeddinggemma-300m",
@@ -81,7 +88,7 @@ MANIFESTS: tuple[EmbedderMetadata, ...] = (
         mps_compatible=True,
         category="code",
         hf_url="https://huggingface.co/nomic-ai/CodeRankEmbed",
-        notes="Alternative code-tuned embedder from nomic. Python-leaning training data. Use if jina-code underperforms on your repo.",
+        notes="DEFAULT as of the 2026-05-19 nomic promotion. Code-tuned embedder that tied bge-code-v1 hit rate on the corrected fixture with lower median latency; keep 768d schema compatibility.",
     ),
     EmbedderMetadata(
         name="sbert/BAAI/bge-code-v1",
@@ -137,7 +144,8 @@ MANIFESTS: tuple[EmbedderMetadata, ...] = (
 )
 
 
-_DEFAULT_NAME = "sbert/nomic-ai/CodeRankEmbed"  # 018 follow-on: promoted over jina-v2-base-code after corrected-pipeline bench tied bge-code-v1 on hit rate with lower latency
+DEFAULT_EMBEDDER_NAME = "sbert/nomic-ai/CodeRankEmbed"  # 018 follow-on: promoted over jina-v2-base-code after corrected-pipeline bench tied bge-code-v1 on hit rate with lower latency
+_DEFAULT_NAME = DEFAULT_EMBEDDER_NAME
 
 
 def list_embedders() -> tuple[EmbedderMetadata, ...]:
@@ -154,10 +162,7 @@ def get_embedder_metadata(name: str) -> EmbedderMetadata | None:
 
 
 def default_embedder() -> EmbedderMetadata:
-    """Return the metadata for the production default embedder.
-
-    Should match `cocoindex_code.config._DEFAULT_MODEL`. Enforced by test.
-    """
+    """Return the metadata for the production default embedder."""
     metadata = get_embedder_metadata(_DEFAULT_NAME)
     if metadata is None:
         raise RuntimeError(
@@ -165,3 +170,6 @@ def default_embedder() -> EmbedderMetadata:
             "registry and config.py have drifted"
         )
     return metadata
+
+
+default_embedder()

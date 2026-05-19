@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import re
 import sys
 from pathlib import Path
@@ -24,7 +25,13 @@ from cocoindex_code.config import (
     _DEFAULT_QUERY_EXPANSION_DENSE_FANOUT,
     _DEFAULT_QUERY_EXPANSION_MAX_VARIANTS,
     _DEFAULT_SYNONYMS,
+    _MAX_JSON_DICT_ITEMS,
+    _MAX_JSON_ENV_BYTES,
+    _MAX_JSON_LIST_ITEMS,
     Config,
+    _parse_json_dict_env,
+    _parse_json_object_env,
+    _parse_json_string_list_env,
     _resolve_device,
 )
 
@@ -133,6 +140,36 @@ class TestConfigValidation:
             clear=True,
         ):
             assert Config.from_env().embedding_model == "ollama/nomic-embed-text"
+
+    def test_json_string_list_env_rejects_oversized_raw_value(self) -> None:
+        oversized = "[" + ",".join('"x"' for _ in range(_MAX_JSON_ENV_BYTES)) + "]"
+        with patch.dict("os.environ", {"COCOINDEX_CODE_EXCLUDED_PATTERNS": oversized}, clear=True):
+            with pytest.raises(ValueError, match="at most"):
+                _parse_json_string_list_env("COCOINDEX_CODE_EXCLUDED_PATTERNS")
+
+    def test_json_string_list_env_rejects_too_many_items(self) -> None:
+        too_many = "[" + ",".join('"x"' for _ in range(_MAX_JSON_LIST_ITEMS + 1)) + "]"
+        with patch.dict("os.environ", {"COCOINDEX_CODE_EXCLUDED_PATTERNS": too_many}, clear=True):
+            with pytest.raises(ValueError, match="at most"):
+                _parse_json_string_list_env("COCOINDEX_CODE_EXCLUDED_PATTERNS")
+
+    def test_json_dict_env_falls_back_on_too_many_entries(self, caplog: pytest.LogCaptureFixture) -> None:
+        caplog.set_level("WARNING", logger="cocoindex_code.config")
+        too_many = {f"k{idx}": 1.0 for idx in range(_MAX_JSON_DICT_ITEMS + 1)}
+        with patch.dict("os.environ", {"COCOINDEX_RERANK_PATH_CLASS_FACTORS": json.dumps(too_many)}, clear=True):
+            result = _parse_json_dict_env("COCOINDEX_RERANK_PATH_CLASS_FACTORS", {"implementation": 1.0})
+
+        assert result == {"implementation": 1.0}
+        assert "expected at most" in caplog.text
+
+    def test_json_object_env_falls_back_on_oversized_raw_value(self, caplog: pytest.LogCaptureFixture) -> None:
+        caplog.set_level("WARNING", logger="cocoindex_code.config")
+        oversized = '{"x":"' + ("x" * _MAX_JSON_ENV_BYTES) + '"}'
+        with patch.dict("os.environ", {"COCOINDEX_TREE_SITTER_LANGUAGES": oversized}, clear=True):
+            result = _parse_json_object_env("COCOINDEX_TREE_SITTER_LANGUAGES", {"python": {}})
+
+        assert result == {"python": {}}
+        assert "at most" in caplog.text
 
 
 class TestChunkConfigValidation:
@@ -346,6 +383,26 @@ class TestHybridConfigValidation:
         assert "Ignoring invalid COCOINDEX_HYBRID_VECTOR_WEIGHT='2.1'" in caplog.text
         assert "Ignoring invalid COCOINDEX_HYBRID_FTS5_WEIGHT='nope'" in caplog.text
         assert "Ignoring invalid COCOINDEX_HYBRID_RRF_K='0'" in caplog.text
+
+    def test_semantically_extreme_hybrid_params_warn(self, tmp_path: Path, caplog: pytest.LogCaptureFixture) -> None:
+        caplog.set_level("WARNING", logger="cocoindex_code.config")
+        with patch.dict(
+            "os.environ",
+            {
+                "COCOINDEX_CODE_ROOT_PATH": str(tmp_path),
+                "COCOINDEX_HYBRID_VECTOR_WEIGHT": "0.0",
+                "COCOINDEX_HYBRID_FTS5_WEIGHT": "0.0",
+                "COCOINDEX_HYBRID_RRF_K": "1",
+            },
+            clear=True,
+        ):
+            cfg = Config.from_env()
+
+        assert cfg.hybrid_vector_weight == 0.0
+        assert cfg.hybrid_fts5_weight == 0.0
+        assert cfg.hybrid_rrf_k == 1
+        assert "both vector and FTS5 weights set to 0.0" in caplog.text
+        assert "K=1 is very low" in caplog.text
 
 
 class TestQueryExpansionConfigValidation:

@@ -1,18 +1,20 @@
 ---
 title: "Implementation Summary: 020 Deep Review P1/P2 Remediation"
-description: "All nine 019 P1 findings were remediated with scoped fixes, regression coverage, operator-doc alignment, and packet-local decision evidence."
+description: "All nine 019 P1 findings and all 31 P2 findings were remediated with scoped fixes, regression coverage, operator-doc alignment, and packet-local decision evidence."
 trigger_phrases:
   - "020 P1 remediation implementation summary"
+  - "020 P2 remediation implementation summary"
   - "mcp-coco-index P1 fixes"
+  - "mcp-coco-index P2 fixes"
   - "CodeRankEmbed Jina hybrid remediation evidence"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/020-deep-review-p1-p2-remediation"
-    last_updated_at: "2026-05-19T18:17:10Z"
+    last_updated_at: "2026-05-19T18:38:00Z"
     last_updated_by: "codex"
-    recent_action: "All P1 sections documented and final validation passed."
+    recent_action: "All P1 and P2 sections documented; full pytest, ruff, and strict validation passed."
     next_safe_action: "Main agent may review the diff and commit."
     blockers: []
     key_files:
@@ -20,6 +22,9 @@ _memory:
       - ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/rerankers_jina_v3.py"
       - ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py"
       - ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py"
+      - ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py"
+      - ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/reranker.py"
+      - ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query_expansion.py"
       - ".opencode/skills/mcp-coco-index/mcp_server/tests"
     session_dedup:
       fingerprint: "sha256:0204020402040204020402040204020402040204020402040204020402040204"
@@ -46,6 +51,7 @@ _memory:
 | **Completed** | 2026-05-19 |
 | **Level** | 2 |
 | **P1 Findings Fixed** | 9/9 |
+| **P2 Findings Fixed** | 31/31 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -126,6 +132,69 @@ All nine 019 P1 findings were remediated without broad refactors. The changes ma
 - **Files changed**: `.opencode/specs/.../020-deep-review-p1-p2-remediation/evidence/query-expansion-root-cause-analysis.md`; `.opencode/specs/.../002-spec-memory-stack/004-spec-memory-embedder-bake-off/decision-record.md`.
 - **Tests**: `15 passed` via `.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/python -m pytest .opencode/skills/mcp-coco-index/mcp_server/tests/test_query_expansion.py -v`.
 - **Evidence**: Source confirmation at `query_expansion.py:187-198,243-249` and ADR-019; RCA cites rerank-score traces where docs/tests enter ahead of expected implementation targets.
+
+## P2 Batch 1 - Security hardening
+
+- **Findings fixed**: Devin P2 #6, #7, #10, #11; Codex C-P2-009.
+- **Fix**: Added JSON env-var byte/item caps, centralized malicious mirror-prefix rejection, hardened RRF sweep JSON grid validation, validated shell harness env/fixture inputs, and confirmed benchmark reproduction commands use env-prefix form rather than positional overrides.
+- **Files changed**: `cocoindex_code/config.py`; `cocoindex_code/path_utils.py`; `tests/test_config.py`; `tests/test_path_utils.py`; `tests/test_rrf_config.py`; `011.../phase2-bench/sweep-rrf.py`; `011.../phase2-bench/sweep-rrf.sh`; `benchmarks/benchmark-2026-05-19/benchmark_report.md`.
+- **Tests**: `48 passed` via `.venv/bin/python -m pytest tests/test_config.py tests/test_path_utils.py tests/test_rrf_config.py -v`; `bash -n .../sweep-rrf.sh` passed.
+
+## P2 Batch 2 - Tree-sitter chunker observability
+
+- **Findings fixed**: Devin P2 #1.
+- **Fix**: Narrowed tree-sitter fallback catches to expected parser/range failures, added fallback counting, and logged fallback reasons.
+- **Files changed**: `cocoindex_code/chunkers/code_aware.py`; `tests/test_code_aware_chunker.py`.
+- **Tests**: `14 passed` via `.venv/bin/python -m pytest tests/test_code_aware_chunker.py -v`.
+
+## P2 Batch 3 - Config dedup and consistency
+
+- **Findings fixed**: Devin P2 #2, #3, #5, #17; Codex C-P2-001, C-P2-005.
+- **Fix**: Consolidated mirror-prefix normalization through `path_utils.normalize_mirror_prefix()`, added semantic warnings for extreme RRF configs, made the promoted nomic default a registry constant consumed by config, and updated registry/path-class guidance to mark nomic as the default with explicit validation scope.
+- **Files changed**: `cocoindex_code/config.py`; `cocoindex_code/path_utils.py`; `cocoindex_code/registered_embedders.py`; `tests/test_config.py`; `tests/test_registered_embedders.py`; `tests/test_path_utils.py`.
+- **Tests**: `57 passed` via `.venv/bin/python -m pytest tests/test_config.py tests/test_registered_embedders.py tests/test_path_utils.py -v`.
+
+## P2 Batch 4 - Reranker coverage and hardening
+
+- **Findings fixed**: Devin P2 #4, #18, #20; Codex C-P2-002, C-P2-006.
+- **Fix**: Cached parsed path-class factors by env value, removed throwaway language from the Jina v3 adapter, added real-adapter default dispatch coverage, added BGE opt-in coverage, and prevented implicit BGE-era path-class factors from composing with Jina unless explicit factors are set.
+- **Files changed**: `cocoindex_code/reranker.py`; `cocoindex_code/rerankers_jina_v3.py`; `tests/test_reranker.py`; `tests/test_rerankers_jina_v3.py`; `tests/test_rerank_dispatch.py`.
+- **Tests**: `25 passed` via `.venv/bin/python -m pytest tests/test_reranker.py tests/test_rerankers_jina_v3.py tests/test_rerank_dispatch.py -v`.
+
+## P2 Batch 5 - Query expansion improvements
+
+- **Findings fixed**: Devin P2 #9; Codex C-P2-003.
+- **Fix**: Added a total expanded-variant cap and reordered expansion so synonym phrase variants are generated before identifier spellings, keeping dense/FTS fanout more semantically useful under tight budgets.
+- **Files changed**: `cocoindex_code/query_expansion.py`; `tests/test_query_expansion.py`.
+- **Tests**: `17 passed` via `.venv/bin/python -m pytest tests/test_query_expansion.py -v`.
+
+## P2 Batch 6 - FTS5 quote escaping
+
+- **Findings fixed**: Devin P2 #8.
+- **Fix**: Escaped embedded double quotes in normalized FTS5 phrase tokens and added regression coverage for quoted user input.
+- **Files changed**: `cocoindex_code/fts_index.py`; `tests/test_fts_index.py`.
+- **Tests**: `9 passed` via `.venv/bin/python -m pytest tests/test_fts_index.py -v`.
+
+## P2 Batch 7 - Daemon lifecycle hardening
+
+- **Findings fixed**: Codex C-P2-007, C-P2-008.
+- **Fix**: Held the daemon startup/lifetime lock through listener shutdown, closed it in the listener lifecycle finally block, and serialized benchmark daemon restarts with a shared restart lock.
+- **Files changed**: `cocoindex_code/daemon.py`; `tests/test_daemon.py`; `011.../phase2-bench/rerank-matrix-bench.sh`.
+- **Tests**: `15 passed` via `.venv/bin/python -m pytest tests/test_daemon.py -v`; `bash -n .../rerank-matrix-bench.sh` passed.
+
+## P2 Batch 8 - RRF sweep breadth
+
+- **Findings fixed**: Devin P2 #19; Codex C-P2-004, C-P2-010.
+- **Fix**: Documented the RRF lock as bge-code-v1-validated, separated harness breadth from the executed seven-cell evidence, and labeled n=1 benchmark data as provisional with replay policy.
+- **Files changed**: `017-hybrid-fusion-empirical-recalibration/spec.md`; `002-spec-memory-stack/004-spec-memory-embedder-bake-off/decision-record.md`; `benchmarks/README.md`; `benchmarks/benchmark-2026-05-19/benchmark_report.md`.
+- **Tests**: Static `rg` audit passed for `7-cell local-neighborhood`, `bge-code-v1-validated`, `Provisional winner`, and `n=1 evidence`.
+
+## P2 Batch 9 - Documentation and traceability
+
+- **Findings fixed**: Devin P2 #12, #13, #14, #15, #16, #21.
+- **Fix**: Added a stack-local ADR index linking ADR-016 through ADR-023, appended ADR-023 for the nomic promotion decision, added a Lane A known-issue note to 018, added cross-packet dependency notes to 013-018, and documented embedder dimension migration requirements in the registry.
+- **Files changed**: `004-code-index-stack/decision-record.md`; `020.../decision-record.md`; `018-rerank-matrix-rebench/implementation-summary.md`; `013-018/spec.md`; `cocoindex_code/registered_embedders.py`; `tests/test_registered_embedders.py`.
+- **Tests**: `13 passed` via `.venv/bin/python -m pytest tests/test_registered_embedders.py -v`; static `rg` audit passed for ADR index, ADR-023, dependency notes, known issue, and dimension migration.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -133,7 +202,7 @@ All nine 019 P1 findings were remediated without broad refactors. The changes ma
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Each P1 started with source confirmation and a five-point preflight because the sequential-thinking MCP was unavailable. Code changes stayed in the cited files where possible, tests were added beside existing matching tests, and evidence/docs changes were kept in the relevant historical packet or this 020 packet.
+Each P1 and P2 batch started with source confirmation and a five-point preflight because the sequential-thinking MCP was unavailable. Code changes stayed in the cited files where possible, tests were added beside existing matching tests, and evidence/docs changes were kept in the relevant historical packet or this 020 packet.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -147,6 +216,8 @@ Each P1 started with source confirmation and a five-point preflight because the 
 | Re-raise `_run_index()` failures. | Existing `update_index()` already had a task-result exception path that emits `success=False`; re-raising is the smallest fix that uses that contract. |
 | Scale hybrid boosts instead of replacing them with multipliers. | Scaling additive boosts has the fewest downstream effects and preserves current close-tie behavior while restoring RRF dominance. |
 | Defer deeper query-expansion experiment and document RCA from existing evidence. | Query expansion is opt-in and disabled by default; the fastest P1-safe remediation was an explicit root-cause artifact tied to existing rerank-score traces. |
+| Treat Jina path-class boost as explicit opt-in. | The BGE-era default factors were not validated with Jina v3, so Jina keeps native scores unless operators set explicit factors. |
+| Keep ADR bodies in their original packet and add a stack-local index. | Moving historical ADRs would add churn across packet history; the index fixes discoverability while preserving canonical decision evidence. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -165,9 +236,18 @@ Each P1 started with source confirmation and a five-point preflight because the 
 | Static `rg` audit of README, SKILL, INSTALL guide stale defaults | PASS |
 | `python -m pytest .opencode/skills/mcp-coco-index/mcp_server/tests/test_dedup_mirrors.py -v` | PASS, 8 passed |
 | `python -m pytest .opencode/skills/mcp-coco-index/mcp_server/tests/test_query_expansion.py -v` | PASS, 15 passed |
-| `.venv/bin/python -m pytest tests/ -v` from `mcp_server` | PASS, 152 passed |
+| `.venv/bin/python -m pytest tests/test_config.py tests/test_path_utils.py tests/test_rrf_config.py -v` from `mcp_server` | PASS, 48 passed |
+| `.venv/bin/python -m pytest tests/test_code_aware_chunker.py -v` from `mcp_server` | PASS, 14 passed |
+| `.venv/bin/python -m pytest tests/test_config.py tests/test_registered_embedders.py tests/test_path_utils.py -v` from `mcp_server` | PASS, 57 passed |
+| `.venv/bin/python -m pytest tests/test_reranker.py tests/test_rerankers_jina_v3.py tests/test_rerank_dispatch.py -v` from `mcp_server` | PASS, 25 passed |
+| `.venv/bin/python -m pytest tests/test_query_expansion.py -v` from `mcp_server` | PASS, 17 passed |
+| `.venv/bin/python -m pytest tests/test_fts_index.py -v` from `mcp_server` | PASS, 9 passed |
+| `.venv/bin/python -m pytest tests/test_daemon.py -v` from `mcp_server` | PASS, 15 passed |
+| Static `rg` audit for P2 documentation and traceability strings | PASS |
+| `bash -n .../sweep-rrf.sh` and `bash -n .../rerank-matrix-bench.sh` | PASS |
+| `.venv/bin/python -m pytest tests/ -v` from `mcp_server` | PASS, 172 passed |
 | `.venv/bin/python -m ruff check cocoindex_code tests/` from `mcp_server` | PASS |
-| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <020-packet> --strict` | PASS |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <020-packet> --strict` | PASS, 0 errors and 0 warnings |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -177,4 +257,5 @@ Each P1 started with source confirmation and a five-point preflight because the 
 
 1. **Sequential-thinking MCP unavailable.** Every MCP call was cancelled, so the required five thoughts were recorded inline as fallback preflights.
 2. **Query expansion RCA is evidence-based, not a fresh experiment.** This matches the operator's accepted punt path because query expansion is already opt-in and default-false.
+3. **RRF lock evidence is bge-code-v1 scoped.** Future embedders or rerankers need a replay sweep before claiming embedder-agnostic optimality.
 <!-- /ANCHOR:limitations -->

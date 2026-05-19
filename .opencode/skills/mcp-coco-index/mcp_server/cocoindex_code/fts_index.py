@@ -9,7 +9,8 @@ from dataclasses import dataclass
 from typing import Any
 
 FTS_TABLE = "code_chunks_fts"
-TOKEN_RE = re.compile(r"[A-Za-z0-9_./:-]+")
+TOKEN_RE = re.compile(r"[A-Za-z0-9_./:\-\"]+")
+_FTS5_QUOTE_RE = re.compile(r'"')
 
 
 @dataclass(frozen=True)
@@ -88,7 +89,12 @@ def sync_fts_from_code_chunks(conn: sqlite3.Connection) -> None:
 def _normalize_fts_query(query: str) -> str:
     """Convert user text into a safe, recall-oriented FTS5 query."""
     tokens = [token.strip() for token in TOKEN_RE.findall(query) if token.strip()]
-    return " OR ".join(f'"{token}"' for token in tokens)
+    return " OR ".join(_quote_fts5_phrase(token) for token in tokens)
+
+
+def _quote_fts5_phrase(value: str) -> str:
+    escaped = _FTS5_QUOTE_RE.sub('""', value)
+    return f'"{escaped}"'
 
 
 def query_fts(

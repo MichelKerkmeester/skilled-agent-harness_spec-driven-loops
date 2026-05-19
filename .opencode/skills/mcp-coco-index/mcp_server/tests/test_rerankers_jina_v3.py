@@ -1,10 +1,7 @@
-"""Smoke test for the THROWAWAY jina-reranker-v3 adapter.
+"""Smoke tests for the production jina-reranker-v3 adapter.
 
 Verifies the native-rerank-API integration without loading the actual transformers
 model. Mocks the model.rerank() method to return synthetic score dicts.
-
-DELETE this file alongside cocoindex_code/rerankers_jina_v3.py if the Phase 2
-bench shows jina-v3 doesn't materially outrank BGE+path-class boost.
 """
 
 from __future__ import annotations
@@ -30,6 +27,21 @@ def _candidate(file_path: str, score: float, content: str = "def f(): pass") -> 
         raw_score=score,
         path_class="implementation",
         rankingSignals=[],
+    )
+
+
+def _path_candidate(file_path: str, score: float, path_class: str) -> QueryResult:
+    candidate = _candidate(file_path, score)
+    return QueryResult(
+        file_path=candidate.file_path,
+        language=candidate.language,
+        content=candidate.content,
+        start_line=candidate.start_line,
+        end_line=candidate.end_line,
+        score=candidate.score,
+        raw_score=candidate.raw_score,
+        path_class=path_class,
+        rankingSignals=candidate.rankingSignals,
     )
 
 
@@ -123,3 +135,51 @@ def test_jina_adapter_invalid_max_doc_chars_falls_back(
 
     assert [c.file_path for c in reranked] == ["b.py", "a.py"]
     assert "Ignoring invalid COCOINDEX_RERANK_JINA_MAX_DOC_CHARS='bad'" in caplog.text
+
+
+def test_jina_adapter_ignores_default_path_class_boost_without_explicit_factors(
+    monkeypatch: pytest.MonkeyPatch,
+    caplog: pytest.LogCaptureFixture,
+) -> None:
+    adapter = JinaRerankerAdapter()
+    fake_model = MagicMock()
+    fake_model.rerank.return_value = [
+        {"document": "vendor", "relevance_score": 0.9, "index": 1},
+        {"document": "impl", "relevance_score": 0.8, "index": 0},
+    ]
+    adapter._model = fake_model
+    adapter._device = "cpu"
+    monkeypatch.setenv("COCOINDEX_RERANK_PATH_CLASS_BOOST", "1")
+    monkeypatch.delenv("COCOINDEX_RERANK_PATH_CLASS_FACTORS", raising=False)
+    caplog.set_level(logging.WARNING, logger="cocoindex_code.reranker")
+
+    candidates = [
+        _path_candidate("src/impl.py", 0.5, "implementation"),
+        _path_candidate("vendor/lib.py", 0.5, "vendor"),
+    ]
+    reranked = adapter.rerank("query", candidates, top_k=20)
+
+    assert [c.file_path for c in reranked] == ["vendor/lib.py", "src/impl.py"]
+    assert "Ignoring COCOINDEX_RERANK_PATH_CLASS_BOOST for jina-v3" in caplog.text
+
+
+def test_jina_adapter_applies_explicit_path_class_factors(monkeypatch: pytest.MonkeyPatch) -> None:
+    adapter = JinaRerankerAdapter()
+    fake_model = MagicMock()
+    fake_model.rerank.return_value = [
+        {"document": "vendor", "relevance_score": 0.9, "index": 1},
+        {"document": "impl", "relevance_score": 0.8, "index": 0},
+    ]
+    adapter._model = fake_model
+    adapter._device = "cpu"
+    monkeypatch.setenv("COCOINDEX_RERANK_PATH_CLASS_BOOST", "1")
+    monkeypatch.setenv("COCOINDEX_RERANK_PATH_CLASS_FACTORS", '{"implementation": 2.0, "vendor": 0.5}')
+
+    candidates = [
+        _path_candidate("src/impl.py", 0.5, "implementation"),
+        _path_candidate("vendor/lib.py", 0.5, "vendor"),
+    ]
+    reranked = adapter.rerank("query", candidates, top_k=20)
+
+    assert [c.file_path for c in reranked] == ["src/impl.py", "vendor/lib.py"]
+    assert reranked[0].reranker_score == 1.6

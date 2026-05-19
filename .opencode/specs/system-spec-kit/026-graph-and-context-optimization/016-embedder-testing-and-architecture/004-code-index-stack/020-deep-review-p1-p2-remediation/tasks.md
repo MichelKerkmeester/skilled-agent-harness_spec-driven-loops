@@ -1,18 +1,20 @@
 ---
 title: "Tasks: 020 Deep Review P1/P2 Remediation"
-description: "Task checklist for all nine P1 remediations from 019, with targeted verification and packet documentation."
+description: "Task checklist for all nine P1 remediations and all 31 P2 remediations from 019, with targeted verification and packet documentation."
 trigger_phrases:
   - "020 P1 remediation tasks"
+  - "020 P2 remediation tasks"
   - "mcp-coco-index P1 task list"
+  - "mcp-coco-index P2 task list"
   - "deep review remediation tasks"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/020-deep-review-p1-p2-remediation"
-    last_updated_at: "2026-05-19T18:17:10Z"
+    last_updated_at: "2026-05-19T18:38:00Z"
     last_updated_by: "codex"
-    recent_action: "All P1 implementation and validation tasks completed."
+    recent_action: "All P1 and P2 implementation tasks completed; full pytest, ruff, and strict validation passed."
     next_safe_action: "Main agent may review the diff and commit."
     blockers: []
     key_files:
@@ -74,6 +76,15 @@ _memory:
 - [x] T013 P1-H scale hybrid additive boosts and add top-1 preservation test.
 - [x] T014 P1-I add query expansion RCA evidence and ADR-019 addendum.
 - [x] T015 Add packet-local ADR-022 documenting hybrid boost scaling.
+- [x] T028 P2 Batch 1 harden JSON env parsing, path-prefix validation, and RRF sweep harness inputs.
+- [x] T029 P2 Batch 2 narrow tree-sitter chunker fallback handling and expose fallback counts.
+- [x] T030 P2 Batch 3 deduplicate config authorities and enforce default embedder consistency.
+- [x] T031 P2 Batch 4 cache reranker path-class factors and cover real Jina/BGE adapter dispatch.
+- [x] T032 P2 Batch 5 cap total query expansion variants and prioritize synonym phrase variants.
+- [x] T033 P2 Batch 6 escape embedded quotes in FTS5 query normalization.
+- [x] T034 P2 Batch 7 hold daemon lifetime lock and serialize benchmark daemon restarts.
+- [x] T035 P2 Batch 8 document RRF sweep evidence breadth and n=1 benchmark caveats.
+- [x] T036 P2 Batch 9 add ADR/dependency/dimension-migration traceability.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -93,6 +104,10 @@ _memory:
 - [x] T025 Run full pytest suite from `mcp_server`.
 - [x] T026 Run ruff for `cocoindex_code tests/`.
 - [x] T027 Run strict Spec Kit validation for 020 packet.
+- [x] T037 Run P2 targeted pytest and shell syntax checks.
+- [x] T038 Run P2 static documentation traceability audits.
+- [x] T039 Re-run full pytest suite from `mcp_server` after P2 changes.
+- [x] T040 Re-run ruff for `cocoindex_code tests/` after P2 changes.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -102,7 +117,8 @@ _memory:
 
 - [x] All tasks marked `[x]`.
 - [x] No `[B]` blocked tasks remaining.
-- [x] Full verification passed.
+- [x] Full pytest and ruff verification passed.
+- [x] Strict Spec Kit validation passed.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -114,5 +130,5 @@ _memory:
 - **Plan**: See `plan.md`.
 - **Verification**: See `checklist.md`.
 - **Evidence**: See `implementation-summary.md` and `evidence/query-expansion-root-cause-analysis.md`.
-- **Decision**: See `decision-record.md` ADR-022.
+- **Decision**: See `decision-record.md` ADR-022 and ADR-023.
 <!-- /ANCHOR:cross-refs -->
