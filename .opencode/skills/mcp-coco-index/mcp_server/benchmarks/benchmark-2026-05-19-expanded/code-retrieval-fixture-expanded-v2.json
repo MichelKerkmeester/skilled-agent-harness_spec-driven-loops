@@ -1,0 +1,1919 @@
+[
+  {
+    "id": 1,
+    "query": "registry of available embedding backends with dimensions and model notes",
+    "expected_source_path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/registry.ts",
+    "expected_symbol": "listManifests",
+    "difficulty": "easy",
+    "category": "mk-spec-memory-embedder",
+    "_fixture_status": "indexed",
+    "_audit_evidence": {
+      "db_path": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db",
+      "expected_source_path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/registry.ts",
+      "normalized_suffix": "skills/system-spec-kit/mcp_server/lib/embedders/registry.ts",
+      "vec_count": 20,
+      "vec_sample_chunk_id": 14125,
+      "fts_count": 20,
+      "fts_sample_rowid": 14125,
+      "exact_vec_count": 5,
+      "exact_vec_sample_chunk_id": 36953,
+      "exact_fts_count": 5,
+      "exact_fts_sample_rowid": 36953,
+      "source_file_exists": true,
+      "exclude_patterns_matched": []
+    },
+    "probe_profiles": [
+      "original"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/registry.ts"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/registry.ts"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "Original 18-probe corrected fixture regression floor; query and truth target preserved."
+  },
+  {
+    "id": 2,
+    "query": "handler that accepts an embedder name and queues a reindex job",
+    "expected_source_path": ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-set.ts",
+    "expected_symbol": "handleEmbedderSet",
+    "difficulty": "easy",
+    "category": "mk-spec-memory-handler",
+    "_fixture_status": "indexed",
+    "_audit_evidence": {
+      "db_path": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db",
+      "expected_source_path": ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-set.ts",
+      "normalized_suffix": "skills/system-spec-kit/mcp_server/handlers/embedder-set.ts",
+      "vec_count": 12,
+      "vec_sample_chunk_id": 15323,
+      "fts_count": 12,
+      "fts_sample_rowid": 15323,
+      "exact_vec_count": 3,
+      "exact_vec_sample_chunk_id": 38151,
+      "exact_fts_count": 3,
+      "exact_fts_sample_rowid": 38151,
+      "source_file_exists": true,
+      "exclude_patterns_matched": []
+    },
+    "probe_profiles": [
+      "original"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-set.ts"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-set.ts"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "Original 18-probe corrected fixture regression floor; query and truth target preserved."
+  },
+  {
+    "id": 3,
+    "query": "CocoIndex configuration that chooses the default local code embedding model",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+    "expected_symbol": "Config.from_env",
+    "difficulty": "easy",
+    "category": "cocoindex-code",
+    "_fixture_status": "indexed",
+    "_audit_evidence": {
+      "db_path": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db",
+      "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+      "normalized_suffix": "skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+      "vec_count": 52,
+      "vec_sample_chunk_id": 16294,
+      "fts_count": 52,
+      "fts_sample_rowid": 16294,
+      "exact_vec_count": 13,
+      "exact_vec_sample_chunk_id": 39486,
+      "exact_fts_count": 13,
+      "exact_fts_sample_rowid": 39486,
+      "source_file_exists": true,
+      "exclude_patterns_matched": []
+    },
+    "probe_profiles": [
+      "original"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "Original 18-probe corrected fixture regression floor; query and truth target preserved."
+  },
+  {
+    "id": 4,
+    "query": "shell validator for spec folders with strict mode and recursive phase support",
+    "expected_source_path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+    "expected_symbol": "parse_args",
+    "difficulty": "easy",
+    "category": "spec-kit-script",
+    "_fixture_status": "indexed",
+    "_audit_evidence": {
+      "db_path": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db",
+      "expected_source_path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      "normalized_suffix": "skills/system-spec-kit/scripts/spec/validate.sh",
+      "vec_count": 168,
+      "vec_sample_chunk_id": 3159,
+      "fts_count": 168,
+      "fts_sample_rowid": 3159,
+      "exact_vec_count": 42,
+      "exact_vec_sample_chunk_id": 25994,
+      "exact_fts_count": 42,
+      "exact_fts_sample_rowid": 25994,
+      "source_file_exists": true,
+      "exclude_patterns_matched": []
+    },
+    "probe_profiles": [
+      "original"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "Original 18-probe corrected fixture regression floor; query and truth target preserved."
+  },
+  {
+    "id": 5,
+    "query": "Vitest coverage for code graph readiness snapshots and stale state",
+    "expected_source_path": ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts",
+    "expected_symbol": "describe",
+    "difficulty": "easy",
+    "category": "vitest-case",
+    "_fixture_status": "indexed",
+    "_audit_evidence": {
+      "db_path": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db",
+      "expected_source_path": ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts",
+      "normalized_suffix": "skills/system-code-graph/mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts",
+      "vec_count": 64,
+      "vec_sample_chunk_id": 19273,
+      "fts_count": 64,
+      "fts_sample_rowid": 19273,
+      "exact_vec_count": 16,
+      "exact_vec_sample_chunk_id": 44113,
+      "exact_fts_count": 16,
+      "exact_fts_sample_rowid": 44113,
+      "source_file_exists": true,
+      "exclude_patterns_matched": []
+    },
+    "probe_profiles": [
+      "original"
+    ],
+    "path_class": "tests",
+    "truth_set": [
+      ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts"
+    ],
+    "truth_path_classes": {
+      "tests": [
+        ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "Original 18-probe corrected fixture regression floor; query and truth target preserved."
+  },
+  {
+    "id": 6,
+    "query": "construct an Ollama-backed embedder and apply query/document prefixes before embedding",
+    "expected_source_path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/adapters/ollama.ts",
+    "expected_symbol": "OllamaAdapter",
+    "difficulty": "medium",
+    "category": "mk-spec-memory-embedder",
+    "_fixture_status": "indexed",
+    "_audit_evidence": {
+      "db_path": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db",
+      "expected_source_path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/adapters/ollama.ts",
+      "normalized_suffix": "skills/system-spec-kit/mcp_server/lib/embedders/adapters/ollama.ts",
+      "vec_count": 36,
+      "vec_sample_chunk_id": 14146,
+      "fts_count": 36,
+      "fts_sample_rowid": 14146,
+      "exact_vec_count": 9,
+      "exact_vec_sample_chunk_id": 36974,
+      "exact_fts_count": 9,
+      "exact_fts_sample_rowid": 36974,
+      "source_file_exists": true,
+      "exclude_patterns_matched": []
+    },
+    "probe_profiles": [
+      "original"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/adapters/ollama.ts"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/adapters/ollama.ts"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "Original 18-probe corrected fixture regression floor; query and truth target preserved."
+  },
+  {
+    "id": 7,
+    "query": "single scoring stage where recency, graph, feedback, and rescue boosts are combined",
+    "expected_source_path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
+    "expected_symbol": "executeStage2Fusion",
+    "difficulty": "medium",
+    "category": "rescue-layer",
+    "_fixture_status": "indexed",
+    "_audit_evidence": {
+      "db_path": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db",
+      "expected_source_path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
+      "normalized_suffix": "skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
+      "vec_count": 236,
+      "vec_sample_chunk_id": 13899,
+      "fts_count": 236,
+      "fts_sample_rowid": 13899,
+      "exact_vec_count": 59,
+      "exact_vec_sample_chunk_id": 36727,
+      "exact_fts_count": 59,
+      "exact_fts_sample_rowid": 36727,
+      "source_file_exists": true,
+      "exclude_patterns_matched": []
+    },
+    "probe_profiles": [
+      "original"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "Original 18-probe corrected fixture regression floor; query and truth target preserved."
+  },
+  {
+    "id": 8,
+    "query": "readiness probe that checks whether the semantic code index is fresh or absent",
+    "expected_source_path": ".opencode/skills/system-code-graph/mcp_server/lib/ccc-readiness-probe.ts",
+    "expected_symbol": "probeCocoIndexReadiness",
+    "difficulty": "medium",
+    "category": "code-graph-lib",
+    "_fixture_status": "indexed",
+    "_audit_evidence": {
+      "db_path": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db",
+      "expected_source_path": ".opencode/skills/system-code-graph/mcp_server/lib/ccc-readiness-probe.ts",
+      "normalized_suffix": "skills/system-code-graph/mcp_server/lib/ccc-readiness-probe.ts",
+      "vec_count": 32,
+      "vec_sample_chunk_id": 19887,
+      "fts_count": 32,
+      "fts_sample_rowid": 19887,
+      "exact_vec_count": 8,
+      "exact_vec_sample_chunk_id": 44727,
+      "exact_fts_count": 8,
+      "exact_fts_sample_rowid": 44727,
+      "source_file_exists": true,
+      "exclude_patterns_matched": []
+    },
+    "probe_profiles": [
+      "original"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/system-code-graph/mcp_server/lib/ccc-readiness-probe.ts"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/system-code-graph/mcp_server/lib/ccc-readiness-probe.ts"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "Original 18-probe corrected fixture regression floor; query and truth target preserved."
+  },
+  {
+    "id": 9,
+    "query": "declarative list of vetted sentence transformer candidates for local code search",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py",
+    "expected_symbol": "MANIFESTS",
+    "difficulty": "medium",
+    "category": "cocoindex-code",
+    "_fixture_status": "indexed",
+    "_audit_evidence": {
+      "db_path": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db",
+      "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py",
+      "normalized_suffix": "skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py",
+      "vec_count": 24,
+      "vec_sample_chunk_id": 16414,
+      "fts_count": 24,
+      "fts_sample_rowid": 16414,
+      "exact_vec_count": 6,
+      "exact_vec_sample_chunk_id": 39617,
+      "exact_fts_count": 6,
+      "exact_fts_sample_rowid": 39617,
+      "source_file_exists": true,
+      "exclude_patterns_matched": []
+    },
+    "probe_profiles": [
+      "original"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "Original 18-probe corrected fixture regression floor; query and truth target preserved."
+  },
+  {
+    "id": 10,
+    "query": "context save command that reads structured JSON and refreshes graph metadata",
+    "expected_source_path": ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
+    "expected_symbol": "HELP_TEXT",
+    "difficulty": "medium",
+    "category": "spec-kit-script",
+    "_fixture_status": "indexed",
+    "_audit_evidence": {
+      "db_path": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db",
+      "expected_source_path": ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
+      "normalized_suffix": "skills/system-spec-kit/scripts/dist/memory/generate-context.js",
+      "vec_count": 0,
+      "vec_sample_chunk_id": null,
+      "fts_count": 0,
+      "fts_sample_rowid": null,
+      "exact_vec_count": 0,
+      "exact_vec_sample_chunk_id": null,
+      "exact_fts_count": 0,
+      "exact_fts_sample_rowid": null,
+      "source_file_exists": true,
+      "exclude_patterns_matched": [
+        "**/dist"
+      ]
+    },
+    "_corrected_from": {
+      "expected_source_path": ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
+      "expected_symbol": "HELP_TEXT",
+      "reason": "Original dist JavaScript target is excluded by the project **/dist pattern; the TypeScript source is indexed and is the retrievable source of truth.",
+      "replacement_vec_count": 128,
+      "replacement_vec_sample_chunk_id": 1140,
+      "replacement_fts_count": 128,
+      "replacement_fts_sample_rowid": 1140
+    },
+    "probe_profiles": [
+      "original"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "Original 18-probe corrected fixture regression floor; query and truth target preserved."
+  },
+  {
+    "id": 11,
+    "query": "Apple Silicon device fallback that prefers Metal when CUDA is unavailable",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+    "expected_symbol": "_resolve_device",
+    "difficulty": "hard",
+    "category": "cocoindex-code",
+    "_fixture_status": "indexed",
+    "_audit_evidence": {
+      "db_path": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db",
+      "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+      "normalized_suffix": "skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+      "vec_count": 52,
+      "vec_sample_chunk_id": 16294,
+      "fts_count": 52,
+      "fts_sample_rowid": 16294,
+      "exact_vec_count": 13,
+      "exact_vec_sample_chunk_id": 39486,
+      "exact_fts_count": 13,
+      "exact_fts_sample_rowid": 39486,
+      "source_file_exists": true,
+      "exclude_patterns_matched": []
+    },
+    "probe_profiles": [
+      "original"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "Original 18-probe corrected fixture regression floor; query and truth target preserved."
+  },
+  {
+    "id": 12,
+    "query": "paraphrase recovery path that promotes sibling memory artifacts from the same folder",
+    "expected_source_path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/rerank/retrieval-rescue.ts",
+    "expected_symbol": "applyRetrievalRescueLayer",
+    "difficulty": "hard",
+    "category": "rescue-layer",
+    "_fixture_status": "indexed",
+    "_audit_evidence": {
+      "db_path": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db",
+      "expected_source_path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/rerank/retrieval-rescue.ts",
+      "normalized_suffix": "skills/system-spec-kit/mcp_server/lib/search/rerank/retrieval-rescue.ts",
+      "vec_count": 60,
+      "vec_sample_chunk_id": 14063,
+      "fts_count": 60,
+      "fts_sample_rowid": 14063,
+      "exact_vec_count": 15,
+      "exact_vec_sample_chunk_id": 36891,
+      "exact_fts_count": 15,
+      "exact_fts_sample_rowid": 36891,
+      "source_file_exists": true,
+      "exclude_patterns_matched": []
+    },
+    "probe_profiles": [
+      "original"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/rerank/retrieval-rescue.ts"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/rerank/retrieval-rescue.ts"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "Original 18-probe corrected fixture regression floor; query and truth target preserved."
+  },
+  {
+    "id": 13,
+    "query": "bounded token budget allocation for assembling structural context responses",
+    "expected_source_path": ".opencode/skills/system-code-graph/mcp_server/lib/budget-allocator.ts",
+    "expected_symbol": "allocateBudget",
+    "difficulty": "hard",
+    "category": "code-graph-lib",
+    "_fixture_status": "indexed",
+    "_audit_evidence": {
+      "db_path": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db",
+      "expected_source_path": ".opencode/skills/system-code-graph/mcp_server/lib/budget-allocator.ts",
+      "normalized_suffix": "skills/system-code-graph/mcp_server/lib/budget-allocator.ts",
+      "vec_count": 20,
+      "vec_sample_chunk_id": 19882,
+      "fts_count": 20,
+      "fts_sample_rowid": 19882,
+      "exact_vec_count": 5,
+      "exact_vec_sample_chunk_id": 44722,
+      "exact_fts_count": 5,
+      "exact_fts_sample_rowid": 44722,
+      "source_file_exists": true,
+      "exclude_patterns_matched": []
+    },
+    "probe_profiles": [
+      "original"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/system-code-graph/mcp_server/lib/budget-allocator.ts"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/system-code-graph/mcp_server/lib/budget-allocator.ts"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "Original 18-probe corrected fixture regression floor; query and truth target preserved."
+  },
+  {
+    "id": 14,
+    "query": "filesystem walker that emits typed structural symbols and import edges",
+    "expected_source_path": ".opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts",
+    "expected_symbol": "StructuralIndexer",
+    "difficulty": "hard",
+    "category": "code-graph-lib",
+    "_fixture_status": "indexed",
+    "_audit_evidence": {
+      "db_path": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db",
+      "expected_source_path": ".opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts",
+      "normalized_suffix": "skills/system-code-graph/mcp_server/lib/structural-indexer.ts",
+      "vec_count": 268,
+      "vec_sample_chunk_id": 19815,
+      "fts_count": 268,
+      "fts_sample_rowid": 19815,
+      "exact_vec_count": 67,
+      "exact_vec_sample_chunk_id": 44655,
+      "exact_fts_count": 67,
+      "exact_fts_sample_rowid": 44655,
+      "source_file_exists": true,
+      "exclude_patterns_matched": []
+    },
+    "probe_profiles": [
+      "original"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "Original 18-probe corrected fixture regression floor; query and truth target preserved."
+  },
+  {
+    "id": 15,
+    "query": "query-time path class adjustment that favors implementation files over generated copies",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py",
+    "expected_symbol": "_ranked_result",
+    "difficulty": "hard",
+    "category": "cocoindex-code",
+    "_fixture_status": "indexed",
+    "_audit_evidence": {
+      "db_path": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db",
+      "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py",
+      "normalized_suffix": "skills/mcp-coco-index/mcp_server/cocoindex_code/query.py",
+      "vec_count": 80,
+      "vec_sample_chunk_id": 16313,
+      "fts_count": 80,
+      "fts_sample_rowid": 16313,
+      "exact_vec_count": 20,
+      "exact_vec_sample_chunk_id": 39507,
+      "exact_fts_count": 20,
+      "exact_fts_sample_rowid": 39507,
+      "source_file_exists": true,
+      "exclude_patterns_matched": []
+    },
+    "probe_profiles": [
+      "original"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "Original 18-probe corrected fixture regression floor; query and truth target preserved."
+  },
+  {
+    "id": 16,
+    "query": "atomic readiness marker persistence tested for partial writes",
+    "expected_source_path": ".opencode/skills/system-code-graph/mcp_server/tests/readiness-marker-atomic-write.vitest.ts",
+    "expected_symbol": "describe",
+    "difficulty": "medium",
+    "category": "vitest-case",
+    "_fixture_status": "indexed",
+    "_audit_evidence": {
+      "db_path": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db",
+      "expected_source_path": ".opencode/skills/system-code-graph/mcp_server/tests/readiness-marker-atomic-write.vitest.ts",
+      "normalized_suffix": "skills/system-code-graph/mcp_server/tests/readiness-marker-atomic-write.vitest.ts",
+      "vec_count": 16,
+      "vec_sample_chunk_id": 19490,
+      "fts_count": 16,
+      "fts_sample_rowid": 19490,
+      "exact_vec_count": 4,
+      "exact_vec_sample_chunk_id": 44330,
+      "exact_fts_count": 4,
+      "exact_fts_sample_rowid": 44330,
+      "source_file_exists": true,
+      "exclude_patterns_matched": []
+    },
+    "probe_profiles": [
+      "original"
+    ],
+    "path_class": "tests",
+    "truth_set": [
+      ".opencode/skills/system-code-graph/mcp_server/tests/readiness-marker-atomic-write.vitest.ts"
+    ],
+    "truth_path_classes": {
+      "tests": [
+        ".opencode/skills/system-code-graph/mcp_server/tests/readiness-marker-atomic-write.vitest.ts"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "Original 18-probe corrected fixture regression floor; query and truth target preserved."
+  },
+  {
+    "id": 17,
+    "query": "file matcher that lets explicitly canonical skill resources bypass hidden directory exclusions",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py",
+    "expected_symbol": "CanonicalResourceMatcher",
+    "difficulty": "hard",
+    "category": "cocoindex-code",
+    "_fixture_status": "indexed",
+    "_audit_evidence": {
+      "db_path": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db",
+      "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py",
+      "normalized_suffix": "skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py",
+      "vec_count": 44,
+      "vec_sample_chunk_id": 16389,
+      "fts_count": 44,
+      "fts_sample_rowid": 16389,
+      "exact_vec_count": 11,
+      "exact_vec_sample_chunk_id": 39583,
+      "exact_fts_count": 11,
+      "exact_fts_sample_rowid": 39583,
+      "source_file_exists": true,
+      "exclude_patterns_matched": []
+    },
+    "probe_profiles": [
+      "original"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "Original 18-probe corrected fixture regression floor; query and truth target preserved."
+  },
+  {
+    "id": 18,
+    "query": "integration test for reprocessing only changed files during an index refresh",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_refresh_split.py",
+    "expected_symbol": "test_refresh",
+    "difficulty": "medium",
+    "category": "cocoindex-code",
+    "_fixture_status": "indexed",
+    "_audit_evidence": {
+      "db_path": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db",
+      "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_refresh_split.py",
+      "normalized_suffix": "skills/mcp-coco-index/mcp_server/tests/test_refresh_split.py",
+      "vec_count": 12,
+      "vec_sample_chunk_id": 16274,
+      "fts_count": 12,
+      "fts_sample_rowid": 16274,
+      "exact_vec_count": 3,
+      "exact_vec_sample_chunk_id": 39466,
+      "exact_fts_count": 3,
+      "exact_fts_sample_rowid": 39466,
+      "source_file_exists": true,
+      "exclude_patterns_matched": []
+    },
+    "probe_profiles": [
+      "original"
+    ],
+    "path_class": "tests",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_refresh_split.py"
+    ],
+    "truth_path_classes": {
+      "tests": [
+        ".opencode/skills/mcp-coco-index/mcp_server/tests/test_refresh_split.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "Original 18-probe corrected fixture regression floor; query and truth target preserved."
+  },
+  {
+    "id": 19,
+    "query": "request-budget validator",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/search_budget.py",
+    "expected_symbol": "validate_search_budget",
+    "difficulty": "medium",
+    "category": "architecture_invariant",
+    "probe_profiles": [
+      "architecture_invariant",
+      "path_class_stratified"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/search_budget.py"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/search_budget.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 20,
+    "query": "vector schema migration script",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/migrations/001_per_dim_tables.py",
+    "expected_symbol": "migrate",
+    "difficulty": "hard",
+    "category": "architecture_invariant",
+    "probe_profiles": [
+      "architecture_invariant",
+      "path_class_stratified"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/migrations/001_per_dim_tables.py"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/migrations/001_per_dim_tables.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 21,
+    "query": "reranker fallback observability",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/reranker.py",
+    "expected_symbol": "rerank",
+    "difficulty": "medium",
+    "category": "architecture_invariant",
+    "probe_profiles": [
+      "architecture_invariant",
+      "path_class_stratified"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/reranker.py"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/reranker.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 22,
+    "query": "per-project daemon state isolation",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py",
+    "expected_symbol": "ProjectRegistry",
+    "difficulty": "hard",
+    "category": "architecture_invariant",
+    "probe_profiles": [
+      "architecture_invariant",
+      "path_class_stratified"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 23,
+    "query": "tree-sitter chunker oversize fallback",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/chunkers/code_aware.py",
+    "expected_symbol": "fallback_count",
+    "difficulty": "hard",
+    "category": "architecture_invariant",
+    "probe_profiles": [
+      "architecture_invariant",
+      "path_class_stratified"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/chunkers/code_aware.py"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/chunkers/code_aware.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 24,
+    "query": "index metadata hard refusal boundary",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/index_metadata.py",
+    "expected_symbol": "ensure_index_compatible",
+    "difficulty": "medium",
+    "category": "architecture_invariant",
+    "probe_profiles": [
+      "architecture_invariant"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/index_metadata.py"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/index_metadata.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 25,
+    "query": "registered model license guardrail",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py",
+    "expected_symbol": "validate_registry",
+    "difficulty": "medium",
+    "category": "architecture_invariant",
+    "probe_profiles": [
+      "architecture_invariant"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 26,
+    "query": "query expansion dense fanout switch",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py",
+    "expected_symbol": "dense_queries",
+    "difficulty": "hard",
+    "category": "architecture_invariant",
+    "probe_profiles": [
+      "architecture_invariant"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 27,
+    "query": "canonical mirror alias collapse",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py",
+    "expected_symbol": "_collapse_mirror_aliases",
+    "difficulty": "hard",
+    "category": "architecture_invariant",
+    "probe_profiles": [
+      "architecture_invariant"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 28,
+    "query": "FTS sync from active vector table",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/fts_index.py",
+    "expected_symbol": "sync_fts_index",
+    "difficulty": "medium",
+    "category": "architecture_invariant",
+    "probe_profiles": [
+      "architecture_invariant"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/fts_index.py"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/fts_index.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 29,
+    "query": "doctor stale CLI check",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py",
+    "expected_symbol": "_check_cli_resolution",
+    "difficulty": "medium",
+    "category": "architecture_invariant",
+    "probe_profiles": [
+      "architecture_invariant"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 30,
+    "query": "project root resolver for nested commands",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/project.py",
+    "expected_symbol": "find_project_root",
+    "difficulty": "easy",
+    "category": "architecture_invariant",
+    "probe_profiles": [
+      "architecture_invariant"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/project.py"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/project.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 31,
+    "query": "prompt-policy query document split",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/shared.py",
+    "expected_symbol": "QUERY_PROMPT_NAME",
+    "difficulty": "medium",
+    "category": "architecture_invariant",
+    "probe_profiles": [
+      "architecture_invariant"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/shared.py"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/shared.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 32,
+    "query": "semantic readiness probe fallback design",
+    "expected_source_path": ".opencode/skills/system-code-graph/mcp_server/lib/ccc-readiness-probe.ts",
+    "expected_symbol": "probeCocoIndexReadiness",
+    "difficulty": "medium",
+    "category": "architecture_invariant",
+    "probe_profiles": [
+      "architecture_invariant"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/system-code-graph/mcp_server/lib/ccc-readiness-probe.ts"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/system-code-graph/mcp_server/lib/ccc-readiness-probe.ts"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 33,
+    "query": "spec folder strict validator phase parent",
+    "expected_source_path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+    "expected_symbol": "is_phase_parent",
+    "difficulty": "medium",
+    "category": "architecture_invariant",
+    "probe_profiles": [
+      "architecture_invariant"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 34,
+    "query": "waar wordt _QUERY_PROMPT_MODELS resolved when the embedder changes",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py",
+    "expected_symbol": "embed_query_prompt",
+    "difficulty": "medium",
+    "category": "multilingual",
+    "probe_profiles": [
+      "multilingual_code_switched",
+      "path_class_stratified"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 35,
+    "query": "donde se calcula effective_config_hash for ccc status",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/index_metadata.py",
+    "expected_symbol": "effective_config_hash",
+    "difficulty": "medium",
+    "category": "multilingual",
+    "probe_profiles": [
+      "multilingual_code_switched"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/index_metadata.py"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/index_metadata.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 36,
+    "query": "zoek de SearchBudgetExceeded limit validator",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/search_budget.py",
+    "expected_symbol": "SearchBudgetExceeded",
+    "difficulty": "easy",
+    "category": "multilingual",
+    "probe_profiles": [
+      "multilingual_code_switched"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/search_budget.py"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/search_budget.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 37,
+    "query": "waar test test_per_dim_table_size_in_status per-dim metadata",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_per_dim_storage.py",
+    "expected_symbol": "test_per_dim_table_size_in_status",
+    "difficulty": "medium",
+    "category": "multilingual",
+    "probe_profiles": [
+      "multilingual_code_switched",
+      "path_class_stratified"
+    ],
+    "path_class": "tests",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_per_dim_storage.py"
+    ],
+    "truth_path_classes": {
+      "tests": [
+        ".opencode/skills/mcp-coco-index/mcp_server/tests/test_per_dim_storage.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 38,
+    "query": "donde esta reranker_fallback_reason asserted",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_observability.py",
+    "expected_symbol": "test_reranker_fallback_recorded",
+    "difficulty": "medium",
+    "category": "multilingual",
+    "probe_profiles": [
+      "multilingual_code_switched",
+      "path_class_stratified"
+    ],
+    "path_class": "tests",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_observability.py"
+    ],
+    "truth_path_classes": {
+      "tests": [
+        ".opencode/skills/mcp-coco-index/mcp_server/tests/test_observability.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 39,
+    "query": "waar wordt COCOINDEX_HYBRID_RRF_K parsed",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+    "expected_symbol": "hybrid_rrf_k",
+    "difficulty": "medium",
+    "category": "multilingual",
+    "probe_profiles": [
+      "multilingual_code_switched"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 40,
+    "query": "donde is canonical_resource_paths documented",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/README.md",
+    "expected_symbol": "CANONICAL_RESOURCE_PATHS",
+    "difficulty": "hard",
+    "category": "multilingual",
+    "probe_profiles": [
+      "multilingual_code_switched",
+      "path_class_stratified"
+    ],
+    "path_class": "docs",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/README.md"
+    ],
+    "truth_path_classes": {
+      "docs": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/README.md"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 41,
+    "query": "waar test _resolve_device Metal fallback",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_config.py",
+    "expected_symbol": "test_no_env_cpu_fallback",
+    "difficulty": "hard",
+    "category": "multilingual",
+    "probe_profiles": [
+      "multilingual_code_switched"
+    ],
+    "path_class": "tests",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_config.py"
+    ],
+    "truth_path_classes": {
+      "tests": [
+        ".opencode/skills/mcp-coco-index/mcp_server/tests/test_config.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 42,
+    "query": "donde se escribe index_meta.json atomically",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/index_metadata.py",
+    "expected_symbol": "write_index_meta",
+    "difficulty": "medium",
+    "category": "multilingual",
+    "probe_profiles": [
+      "multilingual_code_switched"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/index_metadata.py"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/index_metadata.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 43,
+    "query": "waar staat ccc doctor json_output",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py",
+    "expected_symbol": "doctor",
+    "difficulty": "easy",
+    "category": "multilingual",
+    "probe_profiles": [
+      "multilingual_code_switched"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 44,
+    "query": "RRF K",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/fusion.py",
+    "expected_symbol": "rrf_fuse",
+    "difficulty": "easy",
+    "category": "short_query",
+    "probe_profiles": [
+      "short_query"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/fusion.py"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/fusion.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 45,
+    "query": "Metal fallback",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+    "expected_symbol": "_resolve_device",
+    "difficulty": "medium",
+    "category": "short_query",
+    "probe_profiles": [
+      "short_query"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 46,
+    "query": "daemon isolation",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_multi_project_daemon.py",
+    "expected_symbol": "test",
+    "difficulty": "medium",
+    "category": "short_query",
+    "probe_profiles": [
+      "short_query",
+      "path_class_stratified"
+    ],
+    "path_class": "tests",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_multi_project_daemon.py"
+    ],
+    "truth_path_classes": {
+      "tests": [
+        ".opencode/skills/mcp-coco-index/mcp_server/tests/test_multi_project_daemon.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 47,
+    "query": "schema migration",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/migrations/001_per_dim_tables.py",
+    "expected_symbol": "migrate_db_path",
+    "difficulty": "medium",
+    "category": "short_query",
+    "probe_profiles": [
+      "short_query"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/migrations/001_per_dim_tables.py"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/migrations/001_per_dim_tables.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 48,
+    "query": "license registry",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_embedder_license.py",
+    "expected_symbol": "test",
+    "difficulty": "medium",
+    "category": "short_query",
+    "probe_profiles": [
+      "short_query"
+    ],
+    "path_class": "tests",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_embedder_license.py"
+    ],
+    "truth_path_classes": {
+      "tests": [
+        ".opencode/skills/mcp-coco-index/mcp_server/tests/test_embedder_license.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 49,
+    "query": "Which code rejects a search when the runtime embedder metadata no longer matches the persisted index fingerprint for the current project?",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/index_metadata.py",
+    "expected_symbol": "ensure_index_compatible",
+    "difficulty": "hard",
+    "category": "long_query",
+    "probe_profiles": [
+      "long_query"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/index_metadata.py"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/index_metadata.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 50,
+    "query": "Find the test that proves status reports the active vector table sizes after per-dimension table migration has completed.",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_per_dim_storage.py",
+    "expected_symbol": "test_per_dim_table_size_in_status",
+    "difficulty": "hard",
+    "category": "long_query",
+    "probe_profiles": [
+      "long_query"
+    ],
+    "path_class": "tests",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_per_dim_storage.py"
+    ],
+    "truth_path_classes": {
+      "tests": [
+        ".opencode/skills/mcp-coco-index/mcp_server/tests/test_per_dim_storage.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 51,
+    "query": "Where does the command-line health check combine license safety, stale executable detection, fingerprint drift, and reindex-cost estimation into one doctor report?",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py",
+    "expected_symbol": "_run_doctor_checks",
+    "difficulty": "hard",
+    "category": "long_query",
+    "probe_profiles": [
+      "long_query"
+    ],
+    "path_class": "implementation",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py"
+    ],
+    "truth_path_classes": {
+      "implementation": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 52,
+    "query": "Which documentation explains the local CocoIndex Code package modules and names fusion.py as the RRF implementation for hybrid retrieval?",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/README.md",
+    "expected_symbol": "fusion.py",
+    "difficulty": "medium",
+    "category": "long_query",
+    "probe_profiles": [
+      "long_query",
+      "path_class_stratified"
+    ],
+    "path_class": "docs",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/README.md"
+    ],
+    "truth_path_classes": {
+      "docs": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/README.md"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 53,
+    "query": "Which generated JavaScript context-save command is intentionally excluded from indexing and should point users back to the TypeScript source instead?",
+    "expected_source_path": ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
+    "expected_symbol": "HELP_TEXT",
+    "difficulty": "hard",
+    "category": "long_query",
+    "probe_profiles": [
+      "long_query",
+      "path_class_stratified"
+    ],
+    "path_class": "generated",
+    "truth_set": [
+      ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js"
+    ],
+    "truth_path_classes": {
+      "generated": [
+        ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js"
+      ]
+    },
+    "expected_failure_mode": "lexical_gap",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 54,
+    "query": "observability test counters",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_observability.py",
+    "expected_symbol": "test_search_response_diagnostics",
+    "difficulty": "medium",
+    "category": "path_class_stratified",
+    "probe_profiles": [
+      "path_class_stratified"
+    ],
+    "path_class": "tests",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_observability.py"
+    ],
+    "truth_path_classes": {
+      "tests": [
+        ".opencode/skills/mcp-coco-index/mcp_server/tests/test_observability.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 55,
+    "query": "refresh split regression test",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_refresh_split.py",
+    "expected_symbol": "test_refresh",
+    "difficulty": "medium",
+    "category": "path_class_stratified",
+    "probe_profiles": [
+      "path_class_stratified"
+    ],
+    "path_class": "tests",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_refresh_split.py"
+    ],
+    "truth_path_classes": {
+      "tests": [
+        ".opencode/skills/mcp-coco-index/mcp_server/tests/test_refresh_split.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 56,
+    "query": "coverage tooling smoke",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_coverage_tooling.py",
+    "expected_symbol": "test_pytest_cov_available",
+    "difficulty": "easy",
+    "category": "path_class_stratified",
+    "probe_profiles": [
+      "path_class_stratified"
+    ],
+    "path_class": "tests",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_coverage_tooling.py"
+    ],
+    "truth_path_classes": {
+      "tests": [
+        ".opencode/skills/mcp-coco-index/mcp_server/tests/test_coverage_tooling.py"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 57,
+    "query": "benchmark README rerank matrix",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/benchmarks/README.md",
+    "expected_symbol": "benchmark",
+    "difficulty": "easy",
+    "category": "path_class_stratified",
+    "probe_profiles": [
+      "path_class_stratified"
+    ],
+    "path_class": "docs",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/benchmarks/README.md"
+    ],
+    "truth_path_classes": {
+      "docs": [
+        ".opencode/skills/mcp-coco-index/mcp_server/benchmarks/README.md"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 58,
+    "query": "023F delta classification research",
+    "expected_source_path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023F-upstream-rebase-spike/research/delta-classification.md",
+    "expected_symbol": "PRESERVE_LOCAL",
+    "difficulty": "medium",
+    "category": "path_class_stratified",
+    "probe_profiles": [
+      "path_class_stratified"
+    ],
+    "path_class": "spec_research",
+    "truth_set": [
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023F-upstream-rebase-spike/research/delta-classification.md"
+    ],
+    "truth_path_classes": {
+      "spec_research": [
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023F-upstream-rebase-spike/research/delta-classification.md"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 59,
+    "query": "023C retrieval observability summary counters",
+    "expected_source_path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023C-retrieval-observability/implementation-summary.md",
+    "expected_symbol": "Per-Query Diagnostics",
+    "difficulty": "easy",
+    "category": "path_class_stratified",
+    "probe_profiles": [
+      "path_class_stratified"
+    ],
+    "path_class": "spec_research",
+    "truth_set": [
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023C-retrieval-observability/implementation-summary.md"
+    ],
+    "truth_path_classes": {
+      "spec_research": [
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023C-retrieval-observability/implementation-summary.md"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 60,
+    "query": "pip vendor packaging license metadata",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/pip/_vendor/packaging/LICENSE",
+    "expected_symbol": "BSD",
+    "difficulty": "hard",
+    "category": "path_class_stratified",
+    "probe_profiles": [
+      "path_class_stratified"
+    ],
+    "path_class": "vendor",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/pip/_vendor/packaging/LICENSE"
+    ],
+    "truth_path_classes": {
+      "vendor": [
+        ".opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/pip/_vendor/packaging/LICENSE"
+      ]
+    },
+    "expected_failure_mode": "lexical_gap",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 61,
+    "query": "torch vendored packaging version parser",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/torch/_vendor/packaging/version.py",
+    "expected_symbol": "Version",
+    "difficulty": "hard",
+    "category": "path_class_stratified",
+    "probe_profiles": [
+      "path_class_stratified"
+    ],
+    "path_class": "vendor",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/torch/_vendor/packaging/version.py"
+    ],
+    "truth_path_classes": {
+      "vendor": [
+        ".opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/torch/_vendor/packaging/version.py"
+      ]
+    },
+    "expected_failure_mode": "lexical_gap",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 62,
+    "query": "networkx vendored tree json graph helper",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/networkx/readwrite/json_graph/tree.py",
+    "expected_symbol": "tree_data",
+    "difficulty": "hard",
+    "category": "path_class_stratified",
+    "probe_profiles": [
+      "path_class_stratified"
+    ],
+    "path_class": "vendor",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/networkx/readwrite/json_graph/tree.py"
+    ],
+    "truth_path_classes": {
+      "vendor": [
+        ".opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/networkx/readwrite/json_graph/tree.py"
+      ]
+    },
+    "expected_failure_mode": "lexical_gap",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 63,
+    "query": "system-spec-kit generated context save dist output",
+    "expected_source_path": ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
+    "expected_symbol": "HELP_TEXT",
+    "difficulty": "hard",
+    "category": "path_class_stratified",
+    "probe_profiles": [
+      "path_class_stratified"
+    ],
+    "path_class": "generated",
+    "truth_set": [
+      ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js"
+    ],
+    "truth_path_classes": {
+      "generated": [
+        ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js"
+      ]
+    },
+    "expected_failure_mode": "lexical_gap",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 64,
+    "query": "opencode swarm generated dispatcher definitions",
+    "expected_source_path": ".opencode/specs/z_future/improved-agent-orchestration/external/opencode-swarm-main/dist/parallel/dispatcher/parallel-dispatcher.d.ts",
+    "expected_symbol": "ParallelDispatcher",
+    "difficulty": "hard",
+    "category": "path_class_stratified",
+    "probe_profiles": [
+      "path_class_stratified"
+    ],
+    "path_class": "generated",
+    "truth_set": [
+      ".opencode/specs/z_future/improved-agent-orchestration/external/opencode-swarm-main/dist/parallel/dispatcher/parallel-dispatcher.d.ts"
+    ],
+    "truth_path_classes": {
+      "generated": [
+        ".opencode/specs/z_future/improved-agent-orchestration/external/opencode-swarm-main/dist/parallel/dispatcher/parallel-dispatcher.d.ts"
+      ]
+    },
+    "expected_failure_mode": "lexical_gap",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 65,
+    "query": "cached bytecode for reranker module",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/__pycache__/reranker.cpython-311.pyc",
+    "expected_symbol": "reranker",
+    "difficulty": "hard",
+    "category": "path_class_stratified",
+    "probe_profiles": [
+      "path_class_stratified"
+    ],
+    "path_class": "generated",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/__pycache__/reranker.cpython-311.pyc"
+    ],
+    "truth_path_classes": {
+      "generated": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/__pycache__/reranker.cpython-311.pyc"
+      ]
+    },
+    "expected_failure_mode": "lexical_gap",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 66,
+    "query": "phase2 rerank comparison corrected report",
+    "expected_source_path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/phase2-comparison-corrected.md",
+    "expected_symbol": "Phase 2",
+    "difficulty": "medium",
+    "category": "path_class_stratified",
+    "probe_profiles": [
+      "path_class_stratified"
+    ],
+    "path_class": "spec_research",
+    "truth_set": [
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/phase2-comparison-corrected.md"
+    ],
+    "truth_path_classes": {
+      "spec_research": [
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/phase2-comparison-corrected.md"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 67,
+    "query": "deep review pass report for architecture invariant misses",
+    "expected_source_path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/022-verification-p1-p2-remediation/review/review-report.md",
+    "expected_symbol": "FINDING",
+    "difficulty": "medium",
+    "category": "path_class_stratified",
+    "probe_profiles": [
+      "path_class_stratified"
+    ],
+    "path_class": "spec_research",
+    "truth_set": [
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/022-verification-p1-p2-remediation/review/review-report.md"
+    ],
+    "truth_path_classes": {
+      "spec_research": [
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/022-verification-p1-p2-remediation/review/review-report.md"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 68,
+    "query": "project docs module map",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/README.md",
+    "expected_symbol": "cocoindex-code",
+    "difficulty": "easy",
+    "category": "path_class_stratified",
+    "probe_profiles": [
+      "path_class_stratified"
+    ],
+    "path_class": "docs",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/README.md"
+    ],
+    "truth_path_classes": {
+      "docs": [
+        ".opencode/skills/mcp-coco-index/mcp_server/README.md"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 69,
+    "query": "mcp server test README organization",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/tests/README.md",
+    "expected_symbol": "pytest",
+    "difficulty": "easy",
+    "category": "path_class_stratified",
+    "probe_profiles": [
+      "path_class_stratified"
+    ],
+    "path_class": "docs",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/README.md"
+    ],
+    "truth_path_classes": {
+      "docs": [
+        ".opencode/skills/mcp-coco-index/mcp_server/tests/README.md"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 70,
+    "query": "vendored packaging SPDX parser",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/pip/_vendor/packaging/licenses/_spdx.py",
+    "expected_symbol": "VERSION_PATTERN",
+    "difficulty": "hard",
+    "category": "path_class_stratified",
+    "probe_profiles": [
+      "path_class_stratified"
+    ],
+    "path_class": "vendor",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/pip/_vendor/packaging/licenses/_spdx.py"
+    ],
+    "truth_path_classes": {
+      "vendor": [
+        ".opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/pip/_vendor/packaging/licenses/_spdx.py"
+      ]
+    },
+    "expected_failure_mode": "lexical_gap",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 71,
+    "query": "vendored requests license file",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/pip/_vendor/requests/LICENSE",
+    "expected_symbol": "Apache",
+    "difficulty": "hard",
+    "category": "path_class_stratified",
+    "probe_profiles": [
+      "path_class_stratified"
+    ],
+    "path_class": "vendor",
+    "truth_set": [
+      ".opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/pip/_vendor/requests/LICENSE"
+    ],
+    "truth_path_classes": {
+      "vendor": [
+        ".opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/pip/_vendor/requests/LICENSE"
+      ]
+    },
+    "expected_failure_mode": "lexical_gap",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 72,
+    "query": "generated opencode swarm lint declarations",
+    "expected_source_path": ".opencode/specs/z_future/improved-agent-orchestration/external/opencode-swarm-main/dist/tools/lint.d.ts",
+    "expected_symbol": "lint",
+    "difficulty": "hard",
+    "category": "path_class_stratified",
+    "probe_profiles": [
+      "path_class_stratified"
+    ],
+    "path_class": "generated",
+    "truth_set": [
+      ".opencode/specs/z_future/improved-agent-orchestration/external/opencode-swarm-main/dist/tools/lint.d.ts"
+    ],
+    "truth_path_classes": {
+      "generated": [
+        ".opencode/specs/z_future/improved-agent-orchestration/external/opencode-swarm-main/dist/tools/lint.d.ts"
+      ]
+    },
+    "expected_failure_mode": "lexical_gap",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  },
+  {
+    "id": 73,
+    "query": "023A1 metadata fingerprint decision record",
+    "expected_source_path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023A1-metadata-fingerprint/decision-record.md",
+    "expected_symbol": "ADR",
+    "difficulty": "medium",
+    "category": "path_class_stratified",
+    "probe_profiles": [
+      "path_class_stratified"
+    ],
+    "path_class": "spec_research",
+    "truth_set": [
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023A1-metadata-fingerprint/decision-record.md"
+    ],
+    "truth_path_classes": {
+      "spec_research": [
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023A1-metadata-fingerprint/decision-record.md"
+      ]
+    },
+    "expected_failure_mode": "none",
+    "notes": "023B expanded fixture probe for calibration and residual miss taxonomy."
+  }
+]

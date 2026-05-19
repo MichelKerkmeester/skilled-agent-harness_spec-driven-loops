@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023B-fixture-calibration",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023B-fixture-calibration",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack",
+  "children_ids": [],
+  "migrated": false,
+  "migration_source": null,
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023C-retrieval-observability",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023A1-metadata-fingerprint",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023A2-prompt-license-registry",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023A3-multi-dim-storage",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023D-doctor-model-swap-ux",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023F-upstream-rebase-spike"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "023B",
+      "fixture calibration",
+      "expanded retrieval fixture",
+      "residual miss taxonomy"
+    ],
+    "key_topics": [
+      "mcp-coco-index",
+      "retrieval calibration",
+      "RRF sweep",
+      "rerank top-k",
+      "residual miss taxonomy",
+      "ROBUST verdict gates"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "decision-record.md"
+    ],
+    "entities": [
+      "code-retrieval-fixture-expanded-v2",
+      "run-expanded-bench",
+      "calibration_perturbation",
+      "RetrievalDiagnostics"
+    ],
+    "causal_summary": "023B expands the retrieval fixture and adds repeated-run calibration harnesses so future default changes can be measured rather than inferred from the regression floor.",
+    "created_at": "2026-05-19T00:00:00Z",
+    "last_save_at": "2026-05-19T00:00:00Z",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "decision-record.md",
+      "research.md"
+    ]
+  }
+}
