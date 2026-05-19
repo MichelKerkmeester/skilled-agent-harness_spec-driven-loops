@@ -47,7 +47,7 @@ This folder is the skill-local index of code-retrieval benchmark runs for the `m
 2. Skill-local `benchmark_report.md` — curated summary; tracks the spec packet's headline.
 3. CSV / JSONL files — direct copies of the spec packet evidence; same authority.
 
-The single source of the layout convention is [`FORMAT.md`](./FORMAT.md), symlinked from the system-spec-kit sibling skill.
+The canonical mechanics for the layout convention live at `.opencode/skills/sk-doc/references/benchmark_creation.md`.
 <!-- /ANCHOR:overview -->
 
 <!-- ANCHOR:active-benchmarks -->
@@ -87,7 +87,7 @@ What this folder is and is NOT.
 
 - A curated, dated index of code-retrieval bake-offs that have been promoted out of `evidence/` into a stable skill-local location.
 - The first place to look for "what is the current code-embedder winner on this stack?"
-- The home for `FORMAT.md` (symlinked from `system-spec-kit`), `README.md` (this file), and `benchmark-<YYYY-MM-DD>/` subfolders.
+- The home for `README.md` (this file) and `benchmark-<YYYY-MM-DD>/` subfolders. The convention mechanics live at `.opencode/skills/sk-doc/references/benchmark_creation.md`.
 
 ### What this folder is NOT
 
@@ -100,9 +100,8 @@ What this folder is and is NOT.
 
 ```
 mcp_server/benchmarks/
-├── README.md                                  ← This file (index)
-├── FORMAT.md                                  ← Symlink to system-spec-kit
-└── benchmark-<YYYY-MM-DD>/                    ← One folder per benchmark RUN
+├── README.md                                  <- This file (index)
+└── benchmark-<YYYY-MM-DD>/                    <- One folder per benchmark RUN
     ├── benchmark_report.md                    ← Curated 10-section report
     ├── results.csv                            ← Primary aggregate
     ├── per-probe.jsonl                        ← Per-query / per-probe rows
@@ -171,7 +170,7 @@ Other MCP servers in this repo maintain the same folder convention (per `FORMAT.
 | `system-spec-kit` (mk-spec-memory) | [`../../system-spec-kit/mcp_server/benchmarks/`](../../system-spec-kit/mcp_server/benchmarks/) | Ollama-backed text retrieval | Different stack — do NOT cross-reference latency or hit-rate numbers. Look here for memory-side embedder choices. |
 | `mcp-coco-index` (this skill) | (you are here) | sbert + CocoIndex hybrid + rerank | Code-side bake-offs. |
 
-The format convention itself lives once: [`FORMAT.md`](./FORMAT.md) is symlinked from `.opencode/skills/system-spec-kit/mcp_server/benchmarks/FORMAT.md` — edit there, not here.
+The format convention itself lives at `.opencode/skills/sk-doc/references/benchmark_creation.md`. Read it there, not in this folder.
 <!-- /ANCHOR:sibling-benchmarks -->
 
 <!-- ANCHOR:related -->
@@ -192,6 +191,6 @@ The format convention itself lives once: [`FORMAT.md`](./FORMAT.md) is symlinked
 
 ### Format and tooling
 
-- [`FORMAT.md`](./FORMAT.md) — single-source layout convention (symlinked from system-spec-kit).
+- `.opencode/skills/sk-doc/references/benchmark_creation.md` — single-source layout convention and authoring workflow.
 - `.opencode/skills/sk-doc/SKILL.md` — markdown documentation standards used by every `benchmark_report.md` and this README.
 <!-- /ANCHOR:related -->

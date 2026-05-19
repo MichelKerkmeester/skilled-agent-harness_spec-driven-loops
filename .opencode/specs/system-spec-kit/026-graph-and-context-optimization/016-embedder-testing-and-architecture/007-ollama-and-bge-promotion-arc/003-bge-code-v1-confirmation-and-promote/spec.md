@@ -115,8 +115,8 @@ On a PROMOTE outcome, a curated subset of this 3-run evidence plus a fresh `benc
 
 Authority and mechanics:
 
-- Adoption criteria and case studies: `.opencode/skills/sk-doc/references/benchmarks_format.md`
-- Canonical format mechanics (layout, ten-section structure, symlink, promotion workflow): `.opencode/skills/system-spec-kit/mcp_server/benchmarks/FORMAT.md`
+- Adoption criteria and case studies: `.opencode/skills/sk-doc/references/benchmark_creation.md`
+- Canonical format mechanics (layout, ten-section structure, promotion workflow): `.opencode/skills/sk-doc/references/benchmark_creation.md`
 - Report template: `.opencode/skills/sk-doc/assets/benchmark/benchmark_report_template.md`
 
 A HOLD outcome does not promote; the standing `benchmark-2026-05-18/` report retains its provisional caveat and this packet's `implementation-summary.md` records the negative result. Convention provenance: `../../005-cross-cutting-quality/004-skill-local-benchmarks-format/`.

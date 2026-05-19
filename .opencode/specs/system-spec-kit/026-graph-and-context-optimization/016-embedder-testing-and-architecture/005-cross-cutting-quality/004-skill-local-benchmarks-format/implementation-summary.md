@@ -110,4 +110,9 @@ Checklist:
 
 - **Only 2 skills adopted so far.** Other MCPs in the repo (mk-skill-advisor) don't yet have benchmarks to promote. mk-code-index doesn't use embeddings (structural only), so no benchmarks folder needed.
 - **No promotion script automation.** Future bench results must be manually promoted (CSV copy + benchmark_report.md re-write). A `promote-benchmark.sh` helper could be a Tier 3 follow-on.
+- **Historical note (added by packet 006):** FORMAT.md relocated to sk-doc in packet `005-cross-cutting-quality/006-benchmark-format-to-sk-doc`. The canonical mechanics document is now `.opencode/skills/sk-doc/references/benchmark_creation.md` (consolidated from FORMAT.md + benchmarks_format.md). The legacy `references/benchmarks/` directory and `references/benchmarks_format.md` were deleted as part of that packet.
 <!-- /ANCHOR:limitations -->
+
+---
+
+> NOTE (2026-05-19): FORMAT.md was relocated to .opencode/skills/sk-doc/references/benchmarks/ in packet 006-benchmark-format-to-sk-doc. The original system-spec-kit and mcp-coco-index paths now hold relative symlinks to the new sk-doc canonical.

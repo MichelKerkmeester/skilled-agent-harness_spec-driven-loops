@@ -150,8 +150,8 @@ Conditional promotion target on a follow-on bench win: `.opencode/skills/system-
 
 Authority and mechanics (load only if a follow-on bench is actually triggered):
 
-- Adoption criteria and case studies: `.opencode/skills/sk-doc/references/benchmarks_format.md`
-- Canonical format mechanics: `.opencode/skills/system-spec-kit/mcp_server/benchmarks/FORMAT.md`
+- Adoption criteria and case studies: `.opencode/skills/sk-doc/references/benchmark_creation.md`
+- Canonical format mechanics: `.opencode/skills/sk-doc/references/benchmark_creation.md`
 - Report template: `.opencode/skills/sk-doc/assets/benchmark/benchmark_report_template.md`
 
 Convention provenance: `../../005-cross-cutting-quality/004-skill-local-benchmarks-format/`.

@@ -119,4 +119,10 @@ sk-doc additions (cross-cutting):
 This is a docs-only sub-phase. Rollback = `git revert` the commit. The source spec packets are untouched and remain authoritative; reverting only removes the skill-local entry points.
 
 If FORMAT.md needs to evolve, edit the canonical file in `system-spec-kit/mcp_server/benchmarks/`; the symlink in `mcp-coco-index/...` follows automatically.
+
+**Historical note (added by packet 006):** FORMAT.md relocated to sk-doc in packet `005-cross-cutting-quality/006-benchmark-format-to-sk-doc`. The canonical mechanics document is now `.opencode/skills/sk-doc/references/benchmark_creation.md`.
 <!-- /ANCHOR:rollback -->
+
+---
+
+> NOTE (2026-05-19): FORMAT.md was relocated to .opencode/skills/sk-doc/references/benchmarks/ in packet 006-benchmark-format-to-sk-doc. The original system-spec-kit and mcp-coco-index paths now hold relative symlinks to the new sk-doc canonical.

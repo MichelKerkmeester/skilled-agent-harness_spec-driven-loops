@@ -155,3 +155,15 @@ This sub-phase formalizes the format, populates the first two adopters, and docu
 
 None — scope is bounded by the two source spec packets and the FORMAT.md convention.
 <!-- /ANCHOR:questions -->
+
+---
+
+<!-- ANCHOR:relocation-note -->
+## 8. HISTORICAL NOTE
+
+FORMAT.md relocated to sk-doc in packet 006. The canonical mechanics document is now `.opencode/skills/sk-doc/references/benchmark_creation.md` (consolidated from FORMAT.md + benchmarks_format.md into a single `*_creation.md`-pattern reference). The legacy `references/benchmarks/FORMAT.md` and `references/benchmarks_format.md` paths were deleted as part of packet `005-cross-cutting-quality/006-benchmark-format-to-sk-doc`. Requirements REQ-001 and REQ-002 in this spec were true at time-of-ship and are preserved as historical record.
+<!-- /ANCHOR:relocation-note -->
+
+---
+
+> NOTE (2026-05-19): FORMAT.md was relocated to .opencode/skills/sk-doc/references/benchmarks/ in packet 006-benchmark-format-to-sk-doc. The original system-spec-kit and mcp-coco-index paths now hold relative symlinks to the new sk-doc canonical.

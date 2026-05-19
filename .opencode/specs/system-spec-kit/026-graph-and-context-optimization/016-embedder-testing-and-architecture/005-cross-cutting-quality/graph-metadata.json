@@ -6,7 +6,9 @@
   "children_ids": [
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/002-deep-review-stack",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment"
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/005-cocoindex-install-hygiene",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/006-benchmark-format-to-sk-doc"
   ],
   "manual": {
     "depends_on": [],
@@ -84,13 +86,13 @@
     ],
     "causal_summary": "This phase parent groups the cross-cutting quality + verification + docs work that spans multiple 016 stacks (001 foundation + 002 mk-spec-memory + 003 skill-advisor + 004 cocoindex). Each child sweeps across the per-stack work to ensure alignment + correctness.",
     "created_at": "2026-05-18T08:06:49.047Z",
-    "last_save_at": "2026-05-18T08:06:52.262Z",
+    "last_save_at": "2026-05-18T19:05:21.269Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "last_active_child_id": null,
-    "last_active_at": "2026-05-18T08:06:52.262Z"
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/005-cocoindex-install-hygiene",
+    "last_active_at": "2026-05-18T19:05:21.269Z"
   }
 }

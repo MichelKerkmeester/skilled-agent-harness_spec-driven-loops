@@ -24,8 +24,7 @@ Validate after authoring:
     .opencode/skills/<your-skill>/mcp_server/benchmarks/benchmark-<YYYY-MM-DD>/benchmark_report.md \
     --type readme
 
-Format reference: .opencode/skills/sk-doc/references/benchmarks_format.md
-Canonical convention: .opencode/skills/system-spec-kit/mcp_server/benchmarks/FORMAT.md
+Canonical reference: .opencode/skills/sk-doc/references/benchmark_creation.md
 -->
 
 # {{SKILL_NAME}} {{BENCHMARK_TOPIC}} -- {{LONG_DATE}}
@@ -370,7 +369,7 @@ Expected outcome: {{EXPECTED_OUTCOME_LINE}}.
 | [`per-probe.jsonl`](./per-probe.jsonl) | Per-probe rows. |
 | [`runtime-measurements.md`](./runtime-measurements.md) | RAM, residency, raw inference latency for the final candidates. |
 | [`../README.md`](../README.md) | Index of all `{{SKILL_NAME}}` benchmarks. |
-| [`../FORMAT.md`](../FORMAT.md) | Convention these files follow. |
+| [`benchmark_creation.md`](.opencode/skills/sk-doc/references/benchmark_creation.md) | Convention these files follow. |
 
 ### Authoritative spec packet
 
