@@ -8,18 +8,16 @@ out at Phase 1 triage on integration-cost grounds without measurement on this
 codebase's fixture. This adapter exists ONLY to answer that empirical question.
 
 If jina-v3 dominates path-class boost in the Phase 2 bench → open the production
-jina-v3 adapter packet (proper listwise scoring per the v3 paper, error surfacing,
-test coverage). If jina-v3 ties or loses → DELETE this file (and its test file)
-post-investigation.
+jina-v3 adapter packet (proper error surfacing, robust batching, test coverage).
+If jina-v3 ties or loses → DELETE this file (and its test file) post-investigation.
 
-Scoring model: POINTWISE yes/no causal-LM scoring (not listwise).
-- For each (query, doc) pair, prompt the model with a "Is this relevant?" template
-- Extract the logit for the " yes" token at the final position
-- Score = sigmoid(logit_yes - logit_no) — clipped to [0, 1]
-- This is the classic LLM-as-reranker pointwise approach; works for many causal-LM
-  rerankers without depending on v3's exact listwise format. A production adapter
-  would use the v3 listwise mode for proper performance, but this PoC is
-  sufficient to answer the dominance question.
+Scoring model: Jina's NATIVE listwise rerank API (NOT pointwise yes/no).
+jinaai/jina-reranker-v3 is a JinaForRanking model (Qwen3-base) that projects
+hidden states at <|rerank_token|>/<|embed_token|> positions and returns cosine
+similarities between projected query/doc embeddings. The model exposes a clean
+public API: `model.rerank(query, documents, top_n=...)` returning a list of
+dicts with `relevance_score` and `index`. We map those scores back to the
+original QueryResult ordering.
 
 ADR-015 Phase 2 / 011/research/research-convergence.md §"Final Candidate Ranking"
 """
@@ -32,32 +30,29 @@ from dataclasses import replace
 from typing import Any
 
 from .reranker import (
+    MIN_AVAILABLE_RAM_BYTES,
     _apply_path_class_boost,
     _available_ram_bytes,
     _maybe_log_scores,
-    MIN_AVAILABLE_RAM_BYTES,
 )
 from .schema import QueryResult
 
 logger = logging.getLogger(__name__)
 
-# Yes/no token strings for pointwise relevance scoring. Tokenized at model-load
-# time; the first sub-token id of each is used at scoring time.
-_YES_TOKEN = " yes"
-_NO_TOKEN = " no"
-
-# Hard limit on per-document characters to keep the prompt under the model's
-# context window. Truncates the document content before assembling the prompt.
-_DEFAULT_MAX_DOC_CHARS = 1500
+# Hard limit on per-document characters before passing to the model's own
+# truncator (the model truncates internally at max_doc_length tokens, but we
+# clip upstream to keep latency predictable on tail-heavy queries).
+_DEFAULT_MAX_DOC_CHARS = 6000
 
 
 class JinaRerankerAdapter:
-    """Throwaway pointwise yes/no causal-LM adapter for jina-reranker-v3.
+    """Throwaway listwise adapter for jinaai/jina-reranker-v3.
 
-    Loads via transformers.AutoModelForCausalLM. Scores each candidate by querying
-    the model for relevance and extracting the yes/no logit gap at the final
-    position. Reuses the same path-class boost block as CrossEncoderRerankerAdapter
-    so the two candidates compose identically.
+    Loads via transformers.AutoModel with trust_remote_code=True so the
+    JinaForRanking class registers. Scoring uses the model's native rerank() API
+    which returns [{"relevance_score": float, "index": int, ...}, ...] sorted
+    descending. We map scores back to the input candidate order then apply the
+    standard path-class boost + log hooks so both candidates compose identically.
 
     Cleanup contract: delete this file and tests/test_rerankers_jina_v3.py
     post-Phase-2-bench if jina-v3 doesn't materially outrank BGE+path-class boost.
@@ -66,15 +61,12 @@ class JinaRerankerAdapter:
     def __init__(self, model_name: str = "jinaai/jina-reranker-v3") -> None:
         self.model_name = model_name
         self._model: Any | None = None
-        self._tokenizer: Any | None = None
-        self._yes_token_id: int | None = None
-        self._no_token_id: int | None = None
         self._device: str = "cpu"
         self._load_failed = False
 
-    def _load_model(self) -> tuple[Any, Any] | None:
-        if self._model is not None and self._tokenizer is not None:
-            return self._model, self._tokenizer
+    def _load_model(self) -> Any | None:
+        if self._model is not None:
+            return self._model
         if self._load_failed:
             return None
 
@@ -89,10 +81,7 @@ class JinaRerankerAdapter:
 
         try:
             import torch  # noqa: PLC0415
-            from transformers import (  # noqa: PLC0415
-                AutoModelForCausalLM,
-                AutoTokenizer,
-            )
+            from transformers import AutoModel  # noqa: PLC0415
 
             # Device pick: MPS on Darwin → CUDA → CPU. Env var override.
             requested = os.environ.get("COCOINDEX_CODE_DEVICE", "").strip().lower()
@@ -108,11 +97,9 @@ class JinaRerankerAdapter:
             # fp16 on GPU/MPS; fp32 on CPU
             dtype = torch.float16 if device in {"cuda", "mps"} else torch.float32
 
-            self._tokenizer = AutoTokenizer.from_pretrained(
-                self.model_name,
-                trust_remote_code=True,
-            )
-            self._model = AutoModelForCausalLM.from_pretrained(
+            # AutoModel + trust_remote_code → JinaForRanking instance with the
+            # native rerank() method available
+            self._model = AutoModel.from_pretrained(
                 self.model_name,
                 trust_remote_code=True,
                 torch_dtype=dtype,
@@ -120,23 +107,10 @@ class JinaRerankerAdapter:
             self._model.eval()
             self._device = device
 
-            # Cache yes/no token ids — use the first sub-token of each
-            yes_ids = self._tokenizer.encode(_YES_TOKEN, add_special_tokens=False)
-            no_ids = self._tokenizer.encode(_NO_TOKEN, add_special_tokens=False)
-            if not yes_ids or not no_ids:
-                raise ValueError(
-                    f"Tokenizer produced empty token id for yes/no markers: "
-                    f"yes={yes_ids!r} no={no_ids!r}"
-                )
-            self._yes_token_id = yes_ids[0]
-            self._no_token_id = no_ids[0]
-
             logger.info(
-                "Loaded jina-v3 reranker: device=%s dtype=%s yes_id=%d no_id=%d",
+                "Loaded jina-v3 reranker: device=%s dtype=%s",
                 device,
                 dtype,
-                self._yes_token_id,
-                self._no_token_id,
             )
 
         except Exception as exc:
@@ -148,45 +122,7 @@ class JinaRerankerAdapter:
             self._load_failed = True
             return None
 
-        return self._model, self._tokenizer
-
-    @staticmethod
-    def _build_prompt(query: str, doc_content: str, max_doc_chars: int) -> str:
-        """Pointwise yes/no relevance prompt. Truncate doc to fit context."""
-        truncated = doc_content[:max_doc_chars]
-        return (
-            "You are a relevance grader.\n"
-            f"Query: {query}\n"
-            f"Document: {truncated}\n"
-            "Is the document relevant to the query? Answer with yes or no."
-        )
-
-    def _score_pair(self, model: Any, tokenizer: Any, prompt: str) -> float:
-        """Forward pass + extract sigmoid(logit_yes - logit_no) at final position."""
-        import torch  # noqa: PLC0415
-
-        inputs = tokenizer(
-            prompt,
-            return_tensors="pt",
-            truncation=True,
-            max_length=4096,
-        ).to(self._device)
-
-        with torch.no_grad():
-            outputs = model(**inputs)
-            # logits shape: (batch=1, seq_len, vocab)
-            final_logits = outputs.logits[0, -1, :]
-            yes_logit = float(final_logits[self._yes_token_id].item())
-            no_logit = float(final_logits[self._no_token_id].item())
-
-        # sigmoid(diff) → probability of "yes"
-        diff = yes_logit - no_logit
-        if diff > 50:
-            return 1.0
-        if diff < -50:
-            return 0.0
-        import math  # noqa: PLC0415
-        return 1.0 / (1.0 + math.exp(-diff))
+        return self._model
 
     def rerank(
         self,
@@ -194,14 +130,13 @@ class JinaRerankerAdapter:
         candidates: list[QueryResult],
         top_k: int,
     ) -> list[QueryResult]:
-        """Pointwise rerank the first ``top_k`` candidates; stable tail."""
+        """Listwise rerank the first ``top_k`` candidates; stable tail."""
         if len(candidates) < 2:
             return candidates
 
-        loaded = self._load_model()
-        if loaded is None:
+        model = self._load_model()
+        if model is None:
             return candidates
-        model, tokenizer = loaded
 
         rerank_count = max(1, min(top_k, len(candidates)))
         head = candidates[:rerank_count]
@@ -211,21 +146,29 @@ class JinaRerankerAdapter:
             os.environ.get("COCOINDEX_RERANK_JINA_MAX_DOC_CHARS", _DEFAULT_MAX_DOC_CHARS)
         )
 
+        # Clip doc content upstream of the model's own tokenizer truncation
+        docs = [c.content[:max_doc_chars] for c in head]
+
         try:
-            scores = [
-                self._score_pair(
-                    model,
-                    tokenizer,
-                    self._build_prompt(query, c.content, max_doc_chars),
-                )
-                for c in head
-            ]
+            results = model.rerank(query, docs)
         except Exception as exc:
             logger.warning(
                 "jina-v3 rerank forward pass failed: %s; returning original order",
                 exc,
             )
             return candidates
+
+        # results is List[{"document": str, "relevance_score": float, "index": int, ...}]
+        # Map scores back to the original head order using the index field
+        score_by_index: dict[int, float] = {}
+        for entry in results:
+            idx = int(entry.get("index", -1))
+            score = float(entry.get("relevance_score", 0.0))
+            if 0 <= idx < len(head):
+                score_by_index[idx] = score
+
+        # Build aligned scores list (missing indices → 0.0, defensive)
+        scores = [score_by_index.get(i, 0.0) for i in range(len(head))]
 
         # ADR-015 Phase 2: path-class boost (flag-gated, no-op when disabled)
         # Shared with CrossEncoderRerankerAdapter so both candidates compose identically.
