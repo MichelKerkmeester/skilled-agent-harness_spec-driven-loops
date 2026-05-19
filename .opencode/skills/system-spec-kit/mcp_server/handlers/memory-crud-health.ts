@@ -7,7 +7,7 @@
 ──────────────────────────────────────────────────────────────── */
 
 import { randomUUID } from 'node:crypto';
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, statSync } from 'node:fs';
 import { resolve } from 'node:path';
 import type Database from 'better-sqlite3';
 
@@ -140,6 +140,19 @@ interface FullMemoryReport {
     embedding_cache_by_profile: Record<string, EmbeddingCacheProfileStats>;
   };
   sidecar_workers: ReturnType<typeof getSidecarWorkerSnapshot>;
+  db_split: {
+    canonical_path: string;
+    canonical_size_mb: number;
+    shard_path: string;
+    shard_size_mb: number;
+    attached: boolean;
+    profile: {
+      provider: string;
+      model: string;
+      dim: number;
+      dtype?: string | null;
+    };
+  };
   recommended_action: string;
 }
 
@@ -270,6 +283,13 @@ function getFullMemoryReport(
 
   const snapshot = getDetailedMemorySnapshot();
   const cacheByteEstimates = getCacheByteEstimates();
+  const vectorSource = vectorIndex.getActiveVectorSource();
+  const fileSizeMb = (filePath: string): number => {
+    if (!filePath || !existsSync(filePath)) {
+      return 0;
+    }
+    return Math.round((statSync(filePath).size / 1024 / 1024) * 100) / 100;
+  };
   if (database) {
     const embeddingEstimate = getEmbeddingCacheByteEstimate(database);
     cacheByteEstimates.embedding_cache_in_process = {
@@ -288,6 +308,14 @@ function getFullMemoryReport(
         : {},
     },
     sidecar_workers: getSidecarWorkerSnapshot(),
+    db_split: {
+      canonical_path: vectorSource.canonical_path,
+      canonical_size_mb: fileSizeMb(vectorSource.canonical_path),
+      shard_path: vectorSource.shard_path,
+      shard_size_mb: fileSizeMb(vectorSource.shard_path),
+      attached: vectorSource.attached,
+      profile: vectorSource.profile,
+    },
     recommended_action: getRecommendedAction(snapshot),
   };
 }

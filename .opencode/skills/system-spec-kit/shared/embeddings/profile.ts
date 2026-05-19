@@ -72,9 +72,23 @@ export class EmbeddingProfile {
     this.slug = createProfileSlug(provider, model, dim, dtype);
   }
 
-  /** Get database path for the profile-keyed sqlite file. */
+  /** Get stable canonical metadata database path. */
+  getCanonicalDatabasePath(baseDir: string): string {
+    return path.join(baseDir, 'context-index.sqlite');
+  }
+
+  /** Get profile-specific vector/cache shard path. */
+  getVectorShardPath(baseDir: string): string {
+    const vectorDir = path.join(baseDir, 'vectors');
+    if (!fs.existsSync(vectorDir)) {
+      fs.mkdirSync(vectorDir, { recursive: true, mode: 0o700 });
+    }
+    return path.join(vectorDir, `context-vectors__${this.slug}.sqlite`);
+  }
+
+  /** Deprecated: use getCanonicalDatabasePath() plus getVectorShardPath(). */
   getDatabasePath(baseDir: string): string {
-    return `${baseDir}/context-index__${this.slug}.sqlite`;
+    return this.getCanonicalDatabasePath(baseDir);
   }
 
   toFilename(): string {

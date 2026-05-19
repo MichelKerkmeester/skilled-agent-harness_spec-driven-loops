@@ -3,10 +3,13 @@
 // -------------------------------------------------------------------
 
 import { randomUUID } from 'node:crypto';
+import * as path from 'node:path';
 
 import Database from 'better-sqlite3';
 
-import { initializeDb } from '../search/vector-index-store.js';
+import { EmbeddingProfile } from '@spec-kit/shared/embeddings/profile';
+
+import { attachActiveVectorShard, initializeDb } from '../search/vector-index-store.js';
 import { to_embedding_buffer } from '../search/vector-index-types.js';
 import {
   ensureVecTableForDim,
@@ -233,6 +236,52 @@ function writeVectors(
   writeBatch();
 }
 
+function getDatabaseDir(db: Database.Database): string | null {
+  const row = (db.prepare('PRAGMA database_list').all() as Array<{ name?: string; file?: string }>)
+    .find((entry) => entry.name === 'main');
+  if (!row?.file || row.file === ':memory:') {
+    return null;
+  }
+  return path.dirname(row.file);
+}
+
+function writeVectorsToShard(
+  db: Database.Database,
+  profile: EmbeddingProfile,
+  tableName: string,
+  rows: MemoryRow[],
+  embeddings: Float32Array[],
+): void {
+  const databaseDir = getDatabaseDir(db);
+  if (!databaseDir) {
+    return;
+  }
+
+  const shard = new Database(profile.getVectorShardPath(databaseDir));
+  try {
+    shard.pragma('journal_mode = WAL');
+    shard.exec(`
+      CREATE TABLE IF NOT EXISTS vec_metadata (
+        key TEXT PRIMARY KEY,
+        value TEXT NOT NULL,
+        created_at TEXT DEFAULT (datetime('now'))
+      );
+      INSERT OR REPLACE INTO vec_metadata (key, value) VALUES
+        ('provider', '${profile.provider.replace(/'/g, "''")}'),
+        ('model', '${profile.model.replace(/'/g, "''")}'),
+        ('dim', '${String(profile.dim)}'),
+        ('embedding_dim', '${String(profile.dim)}');
+      CREATE TABLE IF NOT EXISTS ${tableName} (
+        id INTEGER PRIMARY KEY,
+        vec BLOB NOT NULL
+      );
+    `);
+    writeVectors(shard, tableName, rows, embeddings);
+  } finally {
+    shard.close();
+  }
+}
+
 function enqueueJob(db: Database.Database, jobId: string): void {
   if (runningJobs.has(jobId)) {
     return;
@@ -256,6 +305,13 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
     return;
   }
   const adapter = getEmbedderAdapter(manifest.backend, initialJob.toName, initialJob.toDim);
+  const targetProfile = new EmbeddingProfile({
+    provider: manifest.backend,
+    model: manifest.name,
+    dim: manifest.dim,
+    dtype: null,
+    baseUrl: null,
+  });
 
   ensureVecTableForDim(db, initialJob.toDim);
   const tableName = vecTableNameForDim(initialJob.toDim);
@@ -281,6 +337,7 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
       }
 
       writeVectors(db, tableName, rows, embeddings);
+      writeVectorsToShard(db, targetProfile, tableName, rows, embeddings);
       processed += rows.length;
       setJobStatus(db, jobId, 'running', processed);
       await yieldToEventLoop();
@@ -295,6 +352,9 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
       setJobStatus(db, jobId, 'completed', initialJob.total);
     });
     complete();
+    if (getDatabaseDir(db)) {
+      attachActiveVectorShard(db, targetProfile);
+    }
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
     setJobStatus(db, jobId, 'failed', processed, message);

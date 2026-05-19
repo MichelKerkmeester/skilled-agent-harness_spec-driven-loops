@@ -34,6 +34,7 @@ import {
   init_prepared_statements,
   refresh_interference_scores_for_folder,
   sqlite_vec_available as get_sqlite_vec_available,
+  activeVectorSource,
 } from './vector-index-store.js';
 import type {
   IndexMemoryParams as SharedIndexMemoryParams,
@@ -280,9 +281,9 @@ export function index_memory(
 
     if (sqlite_vec) {
       // Remove orphaned vec_memories entry before insert
-      database.prepare('DELETE FROM vec_memories WHERE rowid = ?').run(row_id);
+      database.prepare(`DELETE FROM ${activeVectorSource('vec_memories')} WHERE rowid = ?`).run(row_id);
       database.prepare(`
-        INSERT INTO vec_memories (rowid, embedding) VALUES (?, ?)
+        INSERT INTO ${activeVectorSource('vec_memories')} (rowid, embedding) VALUES (?, ?)
       `).run(row_id, embedding_buffer);
     }
 
@@ -536,9 +537,9 @@ export function update_memory(
       }
 
       const embedding_buffer = to_embedding_buffer(embedding);
-      database.prepare('DELETE FROM vec_memories WHERE rowid = ?').run(BigInt(id));
+      database.prepare(`DELETE FROM ${activeVectorSource('vec_memories')} WHERE rowid = ?`).run(BigInt(id));
       database.prepare(`
-        INSERT INTO vec_memories (rowid, embedding) VALUES (?, ?)
+        INSERT INTO ${activeVectorSource('vec_memories')} (rowid, embedding) VALUES (?, ?)
       `).run(BigInt(id), embedding_buffer);
       // H1 FIX: Mark success only after vector write confirmed
       database.prepare('UPDATE memory_index SET embedding_status = ? WHERE id = ?').run('success', id);
@@ -600,7 +601,7 @@ export function delete_memory_from_database(database: Database.Database, id: num
 
     if (sqlite_vec) {
       try {
-        database.prepare('DELETE FROM vec_memories WHERE rowid = ?').run(BigInt(id));
+        database.prepare(`DELETE FROM ${activeVectorSource('vec_memories')} WHERE rowid = ? /* DELETE FROM vec_memories */`).run(BigInt(id));
       } catch (e: unknown) {
         if (!isExpectedMissingVecMemoriesTable(e)) {
           throw new VectorIndexError(
@@ -733,7 +734,7 @@ export function delete_memories(
       try {
         if (sqlite_vec) {
           try {
-            database.prepare('DELETE FROM vec_memories WHERE rowid = ?').run(BigInt(id));
+            database.prepare(`DELETE FROM ${activeVectorSource('vec_memories')} WHERE rowid = ?`).run(BigInt(id));
           } catch (vec_error: unknown) {
             console.warn(`[VectorIndex] Failed to delete vector for memory ${id}: ${get_error_message(vec_error)}`);
           }

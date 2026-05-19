@@ -312,7 +312,7 @@ describe('vector-index schema migration refinements', () => {
     const tableSql = database.prepare(`
       SELECT sql FROM sqlite_master WHERE type = 'table' AND name = 'embedding_cache'
     `).get() as { sql: string };
-    expect(tableSql.sql).toMatch(/PRIMARY KEY \(content_hash, model_id, dimensions\)/);
+    expect(tableSql.sql).toMatch(/PRIMARY KEY \(content_hash, profile_key, input_kind, model_id, dimensions\)/);
 
     database.prepare(`
       INSERT INTO embedding_cache (content_hash, model_id, embedding, dimensions, created_at, last_used_at)

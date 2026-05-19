@@ -3,6 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 import { createHash } from 'crypto';
 import type Database from 'better-sqlite3';
+import { ACTIVE_VECTOR_SCHEMA, activeVectorSource } from '../search/vector-index-store.js';
 
 // Feature catalog: Embedding cache
 
@@ -112,23 +113,39 @@ function normalizeInputKind(inputKind: EmbeddingInputKind | undefined): Embeddin
 
 function tableExists(db: Database.Database, tableName: string): boolean {
   const row = (db.prepare(
-    "SELECT 1 AS present FROM sqlite_master WHERE type = 'table' AND name = ?",
+    `SELECT 1 AS present FROM ${sqliteMasterTable(db)} WHERE type = 'table' AND name = ?`,
   ) as Database.Statement).get(tableName) as { present?: number } | undefined;
 
   return row?.present === 1;
 }
 
 function getTableColumns(db: Database.Database, tableName: string): Set<string> {
+  const pragma = hasActiveVectorShard(db)
+    ? `PRAGMA ${ACTIVE_VECTOR_SCHEMA}.table_info(${tableName})`
+    : `PRAGMA table_info(${tableName})`;
   return new Set(
-    ((db.prepare(`PRAGMA table_info(${tableName})`) as Database.Statement).all() as Array<{ name: string }>)
+    ((db.prepare(pragma) as Database.Statement).all() as Array<{ name: string }>)
       .map((column) => column.name)
       .filter((columnName) => typeof columnName === 'string' && columnName.length > 0),
   );
 }
 
+function hasActiveVectorShard(db: Database.Database): boolean {
+  return (db.prepare('PRAGMA database_list').all() as Array<{ name?: string }>)
+    .some((entry) => entry.name === ACTIVE_VECTOR_SCHEMA);
+}
+
+function sqliteMasterTable(db: Database.Database): string {
+  return hasActiveVectorShard(db) ? `${ACTIVE_VECTOR_SCHEMA}.sqlite_master` : 'sqlite_master';
+}
+
+function cacheTable(db: Database.Database): string {
+  return hasActiveVectorShard(db) ? activeVectorSource('embedding_cache') : 'embedding_cache';
+}
+
 function createEmbeddingCacheTable(db: Database.Database): void {
   db.exec(`
-    CREATE TABLE IF NOT EXISTS embedding_cache (
+    CREATE TABLE IF NOT EXISTS ${cacheTable(db)} (
       content_hash TEXT NOT NULL,
       profile_key TEXT NOT NULL DEFAULT '',
       input_kind TEXT NOT NULL DEFAULT 'document' CHECK (input_kind IN ('document', 'query')),
@@ -143,7 +160,10 @@ function createEmbeddingCacheTable(db: Database.Database): void {
 }
 
 function readVecMetadataValue(db: Database.Database, key: string): string | null {
-  if (!tableExists(db, 'vec_metadata')) {
+  const rowExists = (db.prepare(
+    "SELECT 1 AS present FROM sqlite_master WHERE type = 'table' AND name = 'vec_metadata'",
+  ) as Database.Statement).get() as { present?: number } | undefined;
+  if (rowExists?.present !== 1) {
     return null;
   }
 
@@ -171,7 +191,7 @@ function backfillActiveProfileKey(db: Database.Database): void {
   }
 
   (db.prepare(
-    "UPDATE embedding_cache SET profile_key = ? WHERE profile_key = ''",
+    `UPDATE ${cacheTable(db)} SET profile_key = ? WHERE profile_key = ''`,
   ) as Database.Statement).run(profileKey);
 }
 
@@ -183,10 +203,10 @@ function migrateEmbeddingCacheSchema(db: Database.Database): void {
 
   const columns = getTableColumns(db, 'embedding_cache');
   if (!columns.has('profile_key')) {
-    db.exec('ALTER TABLE embedding_cache RENAME TO embedding_cache_legacy_profile');
+    db.exec(`ALTER TABLE ${cacheTable(db)} RENAME TO embedding_cache_legacy_profile`);
     createEmbeddingCacheTable(db);
     db.exec(`
-      INSERT OR REPLACE INTO embedding_cache (
+      INSERT OR REPLACE INTO ${cacheTable(db)} (
         content_hash,
         profile_key,
         input_kind,
@@ -205,15 +225,15 @@ function migrateEmbeddingCacheSchema(db: Database.Database): void {
         dimensions,
         created_at,
         last_used_at
-      FROM embedding_cache_legacy_profile
+      FROM ${hasActiveVectorShard(db) ? `${ACTIVE_VECTOR_SCHEMA}.` : ''}embedding_cache_legacy_profile
     `);
-    db.exec('DROP TABLE embedding_cache_legacy_profile');
+    db.exec(`DROP TABLE ${hasActiveVectorShard(db) ? `${ACTIVE_VECTOR_SCHEMA}.` : ''}embedding_cache_legacy_profile`);
     backfillActiveProfileKey(db);
     return;
   }
 
   if (!columns.has('input_kind')) {
-    db.exec("ALTER TABLE embedding_cache ADD COLUMN input_kind TEXT NOT NULL DEFAULT 'document'");
+    db.exec(`ALTER TABLE ${cacheTable(db)} ADD COLUMN input_kind TEXT NOT NULL DEFAULT 'document'`);
   }
 
   backfillActiveProfileKey(db);
@@ -236,15 +256,15 @@ function estimateRowBytes(row: {
   );
 }
 
-function rowIdDeleteSql(rowIds: number[]): string {
-  return `DELETE FROM embedding_cache WHERE rowid IN (${rowIds.map(() => '?').join(', ')})`;
+function rowIdDeleteSql(db: Database.Database, rowIds: number[]): string {
+  return `DELETE FROM ${cacheTable(db)} WHERE rowid IN (${rowIds.map(() => '?').join(', ')})`;
 }
 
 function deleteRowsById(db: Database.Database, rowIds: number[]): number {
   let deleted = 0;
   for (let index = 0; index < rowIds.length; index += 500) {
     const chunk = rowIds.slice(index, index + 500);
-    const result = (db.prepare(rowIdDeleteSql(chunk)) as Database.Statement).run(...chunk);
+    const result = (db.prepare(rowIdDeleteSql(db, chunk)) as Database.Statement).run(...chunk);
     deleted += (result as { changes: number }).changes;
   }
 
@@ -259,7 +279,7 @@ function evictLruUntilUnderBudget(
 ): number {
   const totalRow = (db.prepare(`
     SELECT COALESCE(SUM(${BYTE_ESTIMATE_SQL}), 0) AS bytes
-    FROM embedding_cache
+    FROM ${cacheTable(db)}
     WHERE ${whereClause}
   `) as Database.Statement).get(...params) as { bytes: number };
 
@@ -270,7 +290,7 @@ function evictLruUntilUnderBudget(
 
   const rows = (db.prepare(`
     SELECT rowid, ${BYTE_ESTIMATE_SQL} AS bytes
-    FROM embedding_cache
+    FROM ${cacheTable(db)}
     WHERE ${whereClause}
     ORDER BY last_used_at ASC, created_at ASC, rowid ASC
   `) as Database.Statement).all(...params) as Array<{ rowid: number; bytes: number }>;
@@ -291,7 +311,7 @@ function evictLruUntilUnderBudget(
 function evictProfileEntryOverflow(db: Database.Database, maxEntriesPerProfile: number): number {
   const rows = (db.prepare(`
     SELECT profile_key, COUNT(*) AS entries
-    FROM embedding_cache
+    FROM ${cacheTable(db)}
     GROUP BY profile_key
     HAVING COUNT(*) > ?
   `) as Database.Statement).all(maxEntriesPerProfile) as Array<{ profile_key: string; entries: number }>;
@@ -300,10 +320,10 @@ function evictProfileEntryOverflow(db: Database.Database, maxEntriesPerProfile: 
   for (const row of rows) {
     const excess = row.entries - maxEntriesPerProfile;
     const result = (db.prepare(`
-      DELETE FROM embedding_cache
+      DELETE FROM ${cacheTable(db)}
       WHERE rowid IN (
         SELECT rowid
-        FROM embedding_cache
+        FROM ${cacheTable(db)}
         WHERE profile_key = ?
         ORDER BY last_used_at ASC, created_at ASC, rowid ASC
         LIMIT ?
@@ -361,7 +381,7 @@ function lookupEmbedding(
   const row = hasScopedLookup
     ? (db.prepare(
       `SELECT rowid, embedding
-       FROM embedding_cache
+       FROM ${cacheTable(db)}
        WHERE content_hash = ?
          AND profile_key = ?
          AND input_kind = ?
@@ -372,7 +392,7 @@ function lookupEmbedding(
       | undefined
     : (db.prepare(
       `SELECT rowid, embedding
-       FROM embedding_cache
+       FROM ${cacheTable(db)}
        WHERE content_hash = ?
          AND model_id = ?
          AND dimensions = ?
@@ -393,7 +413,7 @@ function lookupEmbedding(
 
   // Update last_used_at on cache hit
   (db.prepare(
-    "UPDATE embedding_cache SET last_used_at = datetime('now') WHERE rowid = ?",
+    `UPDATE ${cacheTable(db)} SET last_used_at = datetime('now') WHERE rowid = ?`,
   ) as Database.Statement).run(row.rowid);
 
   return row.embedding;
@@ -430,7 +450,7 @@ function storeEmbedding(
   const inputKind = normalizeInputKind(options.inputKind);
 
   (db.prepare(
-    `INSERT INTO embedding_cache
+    `INSERT INTO ${cacheTable(db)}
        (content_hash, profile_key, input_kind, model_id, embedding, dimensions, last_used_at)
      VALUES (?, ?, ?, ?, ?, ?, datetime('now'))
      ON CONFLICT(content_hash, profile_key, input_kind, model_id, dimensions)
@@ -458,7 +478,7 @@ function evictIfOverBudget(db: Database.Database): number {
 
   const profileRows = (db.prepare(`
     SELECT profile_key, COALESCE(SUM(${BYTE_ESTIMATE_SQL}), 0) AS bytes
-    FROM embedding_cache
+    FROM ${cacheTable(db)}
     GROUP BY profile_key
     HAVING COALESCE(SUM(${BYTE_ESTIMATE_SQL}), 0) > ?
   `) as Database.Statement).all(budgets.profileMaxBytes) as Array<{ profile_key: string; bytes: number }>;
@@ -495,7 +515,7 @@ function evictIfOverBudget(db: Database.Database): number {
  */
 function evictOldEntries(db: Database.Database, maxAgeDays: number): number {
   const result = (db.prepare(
-    `DELETE FROM embedding_cache
+    `DELETE FROM ${cacheTable(db)}
      WHERE last_used_at < datetime('now', ? || ' days')`,
   ) as Database.Statement).run(`-${maxAgeDays}`);
 
@@ -535,7 +555,7 @@ function getCacheStats(db?: Database.Database): EmbeddingCacheStats | EmbeddingC
       COALESCE(SUM(${BYTE_ESTIMATE_SQL}), 0) AS total_size_bytes,
       MIN(last_used_at) AS oldest_entry,
       MAX(last_used_at) AS newest_entry
-    FROM embedding_cache
+    FROM ${cacheTable(db)}
   `) as Database.Statement).get() as {
     total_entries: number;
     total_size_bytes: number;
@@ -556,7 +576,7 @@ function getByteEstimate(db: Database.Database): EmbeddingCacheByteEstimate {
     SELECT
       COUNT(*) AS entries,
       COALESCE(SUM(${BYTE_ESTIMATE_SQL}), 0) AS approx_bytes
-    FROM embedding_cache
+    FROM ${cacheTable(db)}
   `) as Database.Statement).get() as {
     entries: number;
     approx_bytes: number;
@@ -577,7 +597,7 @@ function getEmbeddingCacheByProfileStats(
       input_kind,
       COUNT(*) AS entries,
       COALESCE(SUM(${BYTE_ESTIMATE_SQL}), 0) AS bytes
-    FROM embedding_cache
+    FROM ${cacheTable(db)}
     GROUP BY profile_key, input_kind
   `) as Database.Statement).all() as Array<{
     profile_key: string;
@@ -618,7 +638,7 @@ function getEmbeddingCacheByProfileStats(
  * @param db - better-sqlite3 database instance
  */
 function clearCache(db: Database.Database): void {
-  db.exec('DELETE FROM embedding_cache');
+  db.exec(`DELETE FROM ${cacheTable(db)}`);
 }
 
 /**
@@ -634,7 +654,7 @@ function clearCache(db: Database.Database): void {
  */
 function deleteByContentHash(db: Database.Database, contentHash: string): number {
   const result = (db.prepare(
-    'DELETE FROM embedding_cache WHERE content_hash = ?',
+    `DELETE FROM ${cacheTable(db)} WHERE content_hash = ?`,
   ) as Database.Statement).run(contentHash);
 
   return (result as { changes: number }).changes;

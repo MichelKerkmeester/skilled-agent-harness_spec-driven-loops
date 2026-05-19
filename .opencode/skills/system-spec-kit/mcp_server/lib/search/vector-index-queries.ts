@@ -39,6 +39,7 @@ import {
   safe_parse_json,
   search_weights,
   sqlite_vec_available as get_sqlite_vec_available,
+  activeVectorSource as activeVectorSchema,
 } from './vector-index-store.js';
 import { delete_memory_from_database } from './vector-index-mutations.js';
 import type {
@@ -79,20 +80,20 @@ function appendSpecFolderScope(
 function tableExists(database: Database.Database, tableName: string): boolean {
   const row = database.prepare(`
     SELECT 1 AS found
-    FROM sqlite_master
+    FROM active_vec.sqlite_master
     WHERE type = 'table' AND name = ?
     LIMIT 1
   `).get(tableName) as { found?: number } | undefined;
   return row?.found === 1;
 }
 
-function activeVectorSource(database: Database.Database): VectorSource {
+function getActiveVectorSourceForQuery(database: Database.Database): VectorSource {
   const active = getActiveEmbedder(database);
   const dimTableName = `vec_${active.dim}`;
   if (active.name !== DEFAULT_ACTIVE_EMBEDDER.name && tableExists(database, dimTableName)) {
     return {
       dim: active.dim,
-      tableName: dimTableName,
+      tableName: activeVectorSchema(dimTableName),
       idColumn: 'id',
       embeddingColumn: 'vec',
     };
@@ -100,7 +101,7 @@ function activeVectorSource(database: Database.Database): VectorSource {
 
   return {
     dim: get_embedding_dim(),
-    tableName: 'vec_memories',
+    tableName: activeVectorSchema('vec_memories'),
     idColumn: 'rowid',
     embeddingColumn: 'embedding',
   };
@@ -244,7 +245,7 @@ export function vector_search(
     includeArchived = false
   } = options;
 
-  const vectorSource = activeVectorSource(database);
+  const vectorSource = getActiveVectorSourceForQuery(database);
   if (!query_embedding || query_embedding.length !== vectorSource.dim) {
     throw new VectorIndexError(
       `Invalid embedding dimension: expected ${vectorSource.dim}, got ${query_embedding?.length}`,
@@ -383,7 +384,7 @@ export function multi_concept_search(
     throw new VectorIndexError('Multi-concept search requires 2-5 concepts', VectorIndexErrorCode.QUERY_FAILED);
   }
 
-  const vectorSource = activeVectorSource(database);
+  const vectorSource = getActiveVectorSourceForQuery(database);
   for (const emb of concepts) {
     if (!emb || emb.length !== vectorSource.dim) {
       throw new VectorIndexError(
@@ -1394,7 +1395,7 @@ export function verify_integrity(
     }
     try {
       return (database.prepare(`
-        SELECT v.rowid FROM vec_memories v
+	        SELECT v.rowid FROM ${activeVectorSchema('vec_memories')} v
         WHERE NOT EXISTS (SELECT 1 FROM memory_index m WHERE m.id = v.rowid)
       `).all() as Array<{ rowid: number }>).map((r) => r.rowid);
     } catch (e: unknown) {
@@ -1409,7 +1410,7 @@ export function verify_integrity(
   let cleaned_vectors = 0;
   if (autoClean && orphaned_vectors > 0 && sqlite_vec) {
     logger.info(`Auto-cleaning ${orphaned_vectors} orphaned vectors...`);
-    const delete_stmt = database.prepare('DELETE FROM vec_memories WHERE rowid = ?');
+    const delete_stmt = database.prepare(`DELETE FROM ${activeVectorSchema('vec_memories')} WHERE rowid = ?`);
     for (const rowid of orphaned_vector_ids) {
       try {
         delete_stmt.run(BigInt(rowid));
@@ -1427,13 +1428,13 @@ export function verify_integrity(
     ? (database.prepare(`
         SELECT COUNT(*) as count FROM memory_index m
         WHERE m.embedding_status = 'success'
-        AND NOT EXISTS (SELECT 1 FROM vec_memories v WHERE v.rowid = m.id)
+	        AND NOT EXISTS (SELECT 1 FROM ${activeVectorSchema('vec_memories')} v WHERE v.rowid = m.id)
       `).get() as { count: number }).count
     : 0;
 
   const total_memories = (database.prepare('SELECT COUNT(*) as count FROM memory_index').get() as { count: number }).count;
   const total_vectors = sqlite_vec
-    ? (database.prepare('SELECT COUNT(*) as count FROM vec_memories').get() as { count: number }).count
+    ? (database.prepare(`SELECT COUNT(*) as count FROM ${activeVectorSchema('vec_memories')}`).get() as { count: number }).count
     : 0;
 
   const check_orphaned_files = () => {

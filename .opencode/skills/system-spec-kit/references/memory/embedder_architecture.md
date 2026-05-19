@@ -62,6 +62,21 @@ Dim-tagged vector tables keep incompatible vectors separated:
 
 Search queries must be encoded to the same dimension as the active vector source. A 768-dim query against `vec_1024` is invalid.
 
+## Storage Layout
+
+The memory store is split into one stable canonical metadata database plus one attached vector shard for the active embedding profile:
+
+| File | Contents |
+|------|----------|
+| `mcp_server/database/context-index.sqlite` | `memory_index`, `memory_lineage`, `memory_fts*`, projections, governance tables, checkpoints, session state, and canonical `vec_metadata` active embedder pointers |
+| `mcp_server/database/vectors/context-vectors__<provider>__<model>__<dim>.sqlite` | `vec_memories*`, dim-tagged `vec_<dim>` payload tables, profile-specific `embedding_cache`, and shard-local `vec_metadata` for provider/model/dim self-description |
+
+At runtime the canonical connection attaches the active shard as `active_vec`. Vector queries and writes use `active_vec.vec_memories` or `active_vec.vec_<dim>`, while cache reads and writes use `active_vec.embedding_cache`. The canonical `vec_metadata.active_embedder_*` keys remain the source of truth for the active profile; the shard mirror is an integrity check that prevents attaching a mismatched provider/model/dimension store.
+
+Legacy profile databases named `context-index__<slug>.sqlite` migrate during guarded memory-runtime initialization when the active profile still has a single-file store and the canonical/shard pair is missing. Migration copies canonical tables into `context-index.sqlite`, copies vector/cache payloads into `vectors/context-vectors__<slug>.sqlite`, enables WAL on both files, and moves the original legacy file to `mcp_server/database/migrations/legacy_<slug>_<timestamp>.sqlite.bak` for rollback. Operators should delete that backup only after validating the split in production.
+
+No environment variable controls this layout. `MEMORY_DB_PATH` still points at the canonical DB when explicitly set; the active shard path is derived from the canonical directory and the active embedding profile.
+
 ## Supported Manifests
 
 The MCP registry currently exposes these Ollama-backed re-index manifests:

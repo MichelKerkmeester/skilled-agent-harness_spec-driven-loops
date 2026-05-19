@@ -487,6 +487,36 @@ function getGitBranch(): string | null {
 
 function tableExists(database: Database.Database, tableName: string): boolean {
   try {
+    if (tableName === 'vec_memories') {
+      const mainOrTempRow = database.prepare(`
+        SELECT 1 AS found
+        FROM temp.sqlite_master
+        WHERE type IN ('table','view') AND name = 'vec_memories'
+        UNION ALL
+        SELECT 1 AS found
+        FROM sqlite_master
+        WHERE type IN ('table','view') AND name = 'vec_memories'
+        LIMIT 1
+      `).get() as { found?: number } | undefined;
+      if (mainOrTempRow?.found === 1) {
+        return true;
+      }
+
+      const hasActiveVectorShard = (database.prepare('PRAGMA database_list').all() as Array<{ name?: string }>)
+        .some((entry) => entry.name === 'active_vec');
+      if (!hasActiveVectorShard) {
+        return false;
+      }
+
+      const vectorRow = database.prepare(`
+        SELECT 1 AS found
+        FROM active_vec.sqlite_master
+        WHERE type IN ('table','view') AND name = 'vec_memories'
+        LIMIT 1
+      `).get() as { found?: number } | undefined;
+      return vectorRow?.found === 1;
+    }
+
     const row = database.prepare(
       "SELECT name FROM sqlite_master WHERE type IN ('table','view') AND name = ?"
     ).get(tableName) as { name?: string } | undefined;

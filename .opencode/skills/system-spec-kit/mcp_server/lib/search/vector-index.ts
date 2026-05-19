@@ -160,6 +160,11 @@ export {
   clear_prepared_statements,
   refresh_interference_scores_for_folder,
   sqlite_vec_available,
+  activeVectorSource,
+  getActiveVectorSource,
+  attachActiveVectorShard,
+  detachActiveVectorShard,
+  attachActiveVectorShardForActiveProfile,
 } from './vector-index-store.js';
 
 // Snake_case aliases for store exports used by legacy callers

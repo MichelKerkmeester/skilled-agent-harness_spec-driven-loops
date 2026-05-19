@@ -47,6 +47,7 @@ dist/
 .opencode/skills/system-spec-kit/mcp_server/database/*.sqlite
 .opencode/skills/system-spec-kit/mcp_server/database/*.sqlite-shm
 .opencode/skills/system-spec-kit/mcp_server/database/*.sqlite-wal
+.opencode/skills/system-spec-kit/mcp_server/database/**/*.sqlite*
 .opencode/skills/system-spec-kit/mcp_server/database/*.sqlite.bak*
 .opencode/skills/system-spec-kit/mcp_server/database/.db-updated
 .opencode/skills/system-spec-kit/mcp_server/*.sqlite*

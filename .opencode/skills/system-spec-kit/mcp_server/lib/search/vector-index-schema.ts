@@ -173,7 +173,8 @@ function hasEmbeddingCacheDimensionsPrimaryKey(database: Database.Database): boo
     return false;
   }
 
-  return /PRIMARY\s+KEY\s*\(\s*content_hash\s*,\s*model_id\s*,\s*dimensions\s*\)/i.test(tableSql);
+  return /PRIMARY\s+KEY\s*\(\s*content_hash\s*,\s*model_id\s*,\s*dimensions\s*\)/i.test(tableSql)
+    || /PRIMARY\s+KEY\s*\(\s*content_hash\s*,\s*profile_key\s*,\s*input_kind\s*,\s*model_id\s*,\s*dimensions\s*\)/i.test(tableSql);
 }
 
 function ensureEmbeddingCacheSchema(database: Database.Database): void {

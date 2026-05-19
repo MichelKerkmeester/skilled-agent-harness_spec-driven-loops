@@ -1543,6 +1543,7 @@ async function main(): Promise<void> {
 
   try {
     const active = await ensureActiveEmbedder(startupDb, { timeoutMs: API_KEY_VALIDATION_TIMEOUT_MS });
+    vectorIndex.attachActiveVectorShardForActiveProfile(startupDb);
     console.error(
       `[context-server] Active embedder: ${active.name} (${active.dim}d${active.provider ? `, ${active.provider}` : ''})`,
     );
