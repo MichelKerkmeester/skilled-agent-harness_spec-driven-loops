@@ -14,7 +14,37 @@ from .schema import QueryResult
 logger = logging.getLogger(__name__)
 
 MIN_AVAILABLE_RAM_BYTES = 2 * 1024 * 1024 * 1024
-_ADAPTERS: dict[str, "RerankerAdapter"] = {}
+_ADAPTERS: dict[str, "CrossEncoderRerankerAdapter"] = {}
+
+
+def _apply_path_class_boost(
+    scores: list[float],
+    head: list[QueryResult],
+) -> list[float]:
+    """Per-path-class score multiplier (ADR-015 Phase 2 path-class boost).
+
+    Reads env on every call so bench lane swaps + tests can change behavior
+    without daemon restart. Flag-gated by COCOINDEX_RERANK_PATH_CLASS_BOOST.
+    Factors from COCOINDEX_RERANK_PATH_CLASS_FACTORS (JSON dict) or built-in defaults.
+
+    Called inside rerank() BEFORE _maybe_log_scores so the JSONL trail captures
+    the boosted scores (single-source-of-truth for the evidence trail).
+    """
+    flag = os.environ.get("COCOINDEX_RERANK_PATH_CLASS_BOOST", "").strip().lower()
+    if flag not in {"1", "true", "yes", "on"}:
+        return scores
+
+    # Lazy import to avoid circular import at module load
+    from .config import _DEFAULT_PATH_CLASS_FACTORS, _parse_json_dict_env  # noqa: PLC0415
+
+    factors = _parse_json_dict_env(
+        "COCOINDEX_RERANK_PATH_CLASS_FACTORS",
+        _DEFAULT_PATH_CLASS_FACTORS,
+    )
+    return [
+        score * factors.get(candidate.path_class, 1.0)
+        for score, candidate in zip(scores, head, strict=True)
+    ]
 
 
 def _maybe_log_scores(query: str, head: list[QueryResult], scores: list[float]) -> None:
@@ -65,7 +95,7 @@ def _available_ram_bytes() -> int | None:
     return None
 
 
-class RerankerAdapter:
+class CrossEncoderRerankerAdapter:
     """Lazy wrapper around a sentence-transformers CrossEncoder model."""
 
     def __init__(self, model_name: str = _DEFAULT_RERANK_MODEL) -> None:
@@ -134,6 +164,9 @@ class RerankerAdapter:
             )
             return candidates
 
+        # ADR-015 Phase 2: path-class boost (flag-gated, no-op when disabled)
+        scores = _apply_path_class_boost(scores, head)
+
         _maybe_log_scores(query, head, scores)
 
         reranked_head = [
@@ -150,11 +183,31 @@ class RerankerAdapter:
         return [*reranked_head, *tail]
 
 
-def get_reranker_adapter(model_name: str = _DEFAULT_RERANK_MODEL) -> RerankerAdapter:
-    """Return the cached adapter for a reranker model."""
+# Backward-compat alias: existing imports of `RerankerAdapter` continue to resolve
+# to the cross-encoder implementation (tests + downstream callers unchanged).
+RerankerAdapter = CrossEncoderRerankerAdapter
+
+
+def get_reranker_adapter(model_name: str = _DEFAULT_RERANK_MODEL) -> Any:
+    """Return the cached adapter for a reranker model.
+
+    Prefix dispatch (ADR-015 Phase 2): if model_name matches a known custom-adapter
+    family OR COCOINDEX_RERANK_ADAPTER overrides explicitly, instantiate the matching
+    adapter class. Otherwise fall through to CrossEncoderRerankerAdapter for the
+    sentence-transformers CrossEncoder default.
+
+    Lazy-imports custom adapters so callers on the BGE-only path do NOT pay the
+    transformers import cost.
+    """
     adapter = _ADAPTERS.get(model_name)
     if adapter is None:
-        adapter = RerankerAdapter(model_name)
+        override = os.environ.get("COCOINDEX_RERANK_ADAPTER", "").strip().lower()
+        if override == "jina_v3" or model_name.startswith("jinaai/jina-reranker-v3"):
+            from .rerankers_jina_v3 import JinaRerankerAdapter  # noqa: PLC0415
+
+            adapter = JinaRerankerAdapter(model_name)
+        else:
+            adapter = CrossEncoderRerankerAdapter(model_name)
         _ADAPTERS[model_name] = adapter
     return adapter
 

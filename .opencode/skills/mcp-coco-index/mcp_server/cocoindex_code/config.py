@@ -17,6 +17,17 @@ _DEFAULT_HYBRID_FTS5_WEIGHT = 0.7
 _DEFAULT_HYBRID_RRF_K = 60
 _DEFAULT_RERANK_MODEL = "BAAI/bge-reranker-v2-m3"
 _DEFAULT_RERANK_TOP_K = 20
+# ADR-015 Phase 2: path-class boost defaults from 011 deep-research iter 10
+# Multiplies the cross-encoder score per QueryResult.path_class. Flag-gated by
+# COCOINDEX_RERANK_PATH_CLASS_BOOST. Override via COCOINDEX_RERANK_PATH_CLASS_FACTORS.
+_DEFAULT_PATH_CLASS_FACTORS: dict[str, float] = {
+    "implementation": 1.00,
+    "tests": 0.85,
+    "docs": 0.85,
+    "generated": 0.95,
+    "vendor": 0.70,
+    "spec_research": 0.90,
+}
 _VALID_DEVICES = {"cuda", "mps", "cpu"}
 
 logger = logging.getLogger(__name__)
@@ -109,6 +120,71 @@ def _parse_json_string_list_env(var_name: str) -> list[str]:
         if item:
             result.append(item)
 
+    return result
+
+
+def _parse_json_dict_env(
+    var_name: str,
+    default: dict[str, float],
+    *,
+    min_value: float = 0.0,
+    max_value: float = 5.0,
+) -> dict[str, float]:
+    """Parse a JSON dict env var with float values. Falls back to default on malformed input."""
+    raw_value = os.environ.get(var_name, "")
+    if not raw_value.strip():
+        return dict(default)
+
+    try:
+        parsed = json.loads(raw_value)
+    except json.JSONDecodeError:
+        logger.warning(
+            "Ignoring invalid %s=%r; expected JSON dict of {str: float}; falling back to default",
+            var_name,
+            raw_value,
+        )
+        return dict(default)
+
+    if not isinstance(parsed, dict):
+        logger.warning(
+            "Ignoring invalid %s=%r; expected JSON dict; falling back to default",
+            var_name,
+            raw_value,
+        )
+        return dict(default)
+
+    result: dict[str, float] = {}
+    for key, value in parsed.items():
+        if not isinstance(key, str):
+            logger.warning("Ignoring non-string key %r in %s; skipping", key, var_name)
+            continue
+        try:
+            num = float(value)
+        except (TypeError, ValueError):
+            logger.warning(
+                "Ignoring non-numeric value for key %r in %s; skipping",
+                key,
+                var_name,
+            )
+            continue
+        if not (min_value <= num <= max_value):
+            logger.warning(
+                "Ignoring out-of-range value %s for key %r in %s; expected %s..%s",
+                num,
+                key,
+                var_name,
+                min_value,
+                max_value,
+            )
+            continue
+        result[key] = num
+
+    if not result:
+        logger.warning(
+            "%s parsed to empty dict; falling back to default factors",
+            var_name,
+        )
+        return dict(default)
     return result
 
 
@@ -235,6 +311,9 @@ class Config:
     rerank_enabled: bool
     rerank_model: str
     rerank_top_k: int
+    rerank_path_class_boost: bool
+    rerank_path_class_factors: dict[str, float]
+    rerank_adapter: str
 
     @classmethod
     def from_env(cls) -> Config:
@@ -339,6 +418,15 @@ class Config:
             5,
             100,
         )
+        rerank_path_class_boost = _parse_bool_env(
+            "COCOINDEX_RERANK_PATH_CLASS_BOOST",
+            False,
+        )
+        rerank_path_class_factors = _parse_json_dict_env(
+            "COCOINDEX_RERANK_PATH_CLASS_FACTORS",
+            _DEFAULT_PATH_CLASS_FACTORS,
+        )
+        rerank_adapter = os.environ.get("COCOINDEX_RERANK_ADAPTER", "").strip().lower()
 
         return cls(
             codebase_root_path=root,
@@ -357,6 +445,9 @@ class Config:
             rerank_enabled=rerank_enabled,
             rerank_model=rerank_model,
             rerank_top_k=rerank_top_k,
+            rerank_path_class_boost=rerank_path_class_boost,
+            rerank_path_class_factors=rerank_path_class_factors,
+            rerank_adapter=rerank_adapter,
         )
 
     @property

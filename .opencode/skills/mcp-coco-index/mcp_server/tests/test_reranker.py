@@ -212,3 +212,108 @@ def test_query_codebase_rerank_on_changes_order(
     results = asyncio.run(query_codebase("query", db_path, FakeEnv(conn), limit=1))
 
     assert results[0].file_path == "src/second.py"
+
+
+# ───────────────────────────────────────────────────────────────────
+# ADR-015 Phase 2: path-class boost + jina-v3 dispatch
+# ───────────────────────────────────────────────────────────────────
+
+
+def _path_class_candidate(
+    file_path: str,
+    score: float,
+    path_class: str,
+) -> QueryResult:
+    """Build a QueryResult with an explicit path_class for boost tests."""
+    return QueryResult(
+        file_path=file_path,
+        language="python",
+        content="def example(): pass",
+        start_line=1,
+        end_line=2,
+        score=score,
+        raw_score=score,
+        path_class=path_class,
+        rankingSignals=[],
+    )
+
+
+def test_rerank_adapter_dispatch_jina_prefix(monkeypatch: Any) -> None:
+    """get_reranker_adapter() routes jinaai/jina-reranker-v3* model names to the jina adapter."""
+    from cocoindex_code import reranker as reranker_module
+
+    # Reset adapter cache so the dispatch path runs fresh
+    monkeypatch.setattr(reranker_module, "_ADAPTERS", {})
+
+    # Stub the lazy-imported JinaRerankerAdapter so we don't actually load transformers
+    class FakeJinaAdapter:
+        def __init__(self, model_name: str) -> None:
+            self.model_name = model_name
+
+    fake_module = type(sys)("cocoindex_code.rerankers_jina_v3")
+    fake_module.JinaRerankerAdapter = FakeJinaAdapter  # type: ignore[attr-defined]
+    monkeypatch.setitem(sys.modules, "cocoindex_code.rerankers_jina_v3", fake_module)
+
+    adapter = reranker_module.get_reranker_adapter("jinaai/jina-reranker-v3")
+    assert isinstance(adapter, FakeJinaAdapter)
+    assert adapter.model_name == "jinaai/jina-reranker-v3"
+
+    # BGE path still routes to CrossEncoderRerankerAdapter
+    monkeypatch.setattr(reranker_module, "_ADAPTERS", {})
+    bge_adapter = reranker_module.get_reranker_adapter("BAAI/bge-reranker-v2-m3")
+    assert isinstance(bge_adapter, reranker_module.CrossEncoderRerankerAdapter)
+
+
+def test_rerank_path_class_boost_applied(monkeypatch: Any) -> None:
+    """When COCOINDEX_RERANK_PATH_CLASS_BOOST=1, scores get per-path-class multipliers."""
+    adapter = RerankerAdapter()
+
+    class UniformScoreEncoder:
+        def predict(self, pairs: list[tuple[str, str]]) -> list[float]:
+            return [1.0 for _ in pairs]
+
+    monkeypatch.setattr(adapter, "_load_model", lambda: UniformScoreEncoder())
+    monkeypatch.setenv("COCOINDEX_RERANK_PATH_CLASS_BOOST", "1")
+    # Don't set FACTORS env var — use built-in defaults
+
+    candidates = [
+        _path_class_candidate("src/impl.py", 0.9, "implementation"),
+        _path_class_candidate("tests/test_impl.py", 0.85, "tests"),
+        _path_class_candidate("vendor/lib.py", 0.8, "vendor"),
+    ]
+
+    reranked = adapter.rerank("query", candidates, top_k=20)
+
+    # Defaults: implementation=1.00, tests=0.85, vendor=0.70 → boosted scores [1.00, 0.85, 0.70]
+    # Sort order should be: impl > tests > vendor
+    assert [c.file_path for c in reranked] == ["src/impl.py", "tests/test_impl.py", "vendor/lib.py"]
+    assert reranked[0].reranker_score == 1.00
+    assert abs(reranked[1].reranker_score - 0.85) < 1e-9
+    assert abs(reranked[2].reranker_score - 0.70) < 1e-9
+
+
+def test_rerank_path_class_boost_disabled_when_flag_off(monkeypatch: Any) -> None:
+    """With the boost flag unset, scores are untouched even when factors env is present."""
+    adapter = RerankerAdapter()
+
+    class UniformScoreEncoder:
+        def predict(self, pairs: list[tuple[str, str]]) -> list[float]:
+            return [1.0 for _ in pairs]
+
+    monkeypatch.setattr(adapter, "_load_model", lambda: UniformScoreEncoder())
+    monkeypatch.delenv("COCOINDEX_RERANK_PATH_CLASS_BOOST", raising=False)
+    # Factors env var set but flag is off → must be ignored
+    monkeypatch.setenv(
+        "COCOINDEX_RERANK_PATH_CLASS_FACTORS",
+        '{"implementation": 0.5, "tests": 2.0}',
+    )
+
+    candidates = [
+        _path_class_candidate("src/impl.py", 0.9, "implementation"),
+        _path_class_candidate("tests/test_impl.py", 0.85, "tests"),
+    ]
+
+    reranked = adapter.rerank("query", candidates, top_k=20)
+
+    # No boost applied → all scores stay at 1.0 → tie-break preserves original order
+    assert all(c.reranker_score == 1.0 for c in reranked)

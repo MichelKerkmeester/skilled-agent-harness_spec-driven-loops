@@ -10,10 +10,10 @@ set -uo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel)"
-FIXTURE="$REPO_ROOT/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/002-baseline-fixture/evidence/code-retrieval-fixture.json"
-OUT_CSV="$SCRIPT_DIR/cocoindex-embedder-comparison-with-hybrid-rerank.csv"
-OUT_JSONL="$SCRIPT_DIR/cocoindex-embedder-comparison-with-hybrid-rerank.jsonl"
-RUNLOG="$SCRIPT_DIR/runlog-with-hybrid-rerank.txt"
+FIXTURE="${FIXTURE_OVERRIDE:-$REPO_ROOT/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/002-baseline-fixture/evidence/code-retrieval-fixture.json}"
+OUT_CSV="${OUT_CSV_OVERRIDE:-$SCRIPT_DIR/cocoindex-embedder-comparison-with-hybrid-rerank.csv}"
+OUT_JSONL="${OUT_JSONL_OVERRIDE:-$SCRIPT_DIR/cocoindex-embedder-comparison-with-hybrid-rerank.jsonl}"
+RUNLOG="${RUNLOG_OVERRIDE:-$SCRIPT_DIR/runlog-with-hybrid-rerank.txt}"
 
 # Canonical ccc binary — prefer the editable local venv install (production-truthful);
 # fall back to whatever's on PATH. After 016/005/005-cocoindex-install-hygiene both pipx

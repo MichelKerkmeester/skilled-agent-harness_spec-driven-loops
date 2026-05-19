@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "query": "registry of available embedding backends with dimensions and model notes",
+    "expected_source_path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/registry.ts",
+    "expected_symbol": "listManifests",
+    "difficulty": "easy",
+    "category": "mk-spec-memory-embedder"
+  },
+  {
+    "id": 3,
+    "query": "CocoIndex configuration that chooses the default local code embedding model",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+    "expected_symbol": "Config.from_env",
+    "difficulty": "easy",
+    "category": "cocoindex-code"
+  },
+  {
+    "id": 5,
+    "query": "Vitest coverage for code graph readiness snapshots and stale state",
+    "expected_source_path": ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts",
+    "expected_symbol": "describe",
+    "difficulty": "easy",
+    "category": "vitest-case"
+  },
+  {
+    "id": 10,
+    "query": "context save command that reads structured JSON and refreshes graph metadata",
+    "expected_source_path": ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
+    "expected_symbol": "HELP_TEXT",
+    "difficulty": "medium",
+    "category": "spec-kit-script"
+  },
+  {
+    "id": 11,
+    "query": "Apple Silicon device fallback that prefers Metal when CUDA is unavailable",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+    "expected_symbol": "_resolve_device",
+    "difficulty": "hard",
+    "category": "cocoindex-code"
+  },
+  {
+    "id": 14,
+    "query": "filesystem walker that emits typed structural symbols and import edges",
+    "expected_source_path": ".opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts",
+    "expected_symbol": "StructuralIndexer",
+    "difficulty": "hard",
+    "category": "code-graph-lib"
+  },
+  {
+    "id": 16,
+    "query": "atomic readiness marker persistence tested for partial writes",
+    "expected_source_path": ".opencode/skills/system-code-graph/mcp_server/tests/readiness-marker-atomic-write.vitest.ts",
+    "expected_symbol": "describe",
+    "difficulty": "medium",
+    "category": "vitest-case"
+  },
+  {
+    "id": 18,
+    "query": "integration test for reprocessing only changed files during an index refresh",
+    "expected_source_path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_refresh_split.py",
+    "expected_symbol": "test_refresh",
+    "difficulty": "medium",
+    "category": "cocoindex-code"
+  }
+]
