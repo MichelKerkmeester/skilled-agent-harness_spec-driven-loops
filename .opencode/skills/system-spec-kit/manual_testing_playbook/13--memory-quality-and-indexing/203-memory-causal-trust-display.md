@@ -83,5 +83,5 @@ Saved `rg` output, static diff output for the protected files, the final Vitest 
 - Playbook ID: 203
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `13--memory-quality-and-indexing/28-memory-causal-trust-display.md`
-- Phase / sub-phase: `026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/005-memory-causal-trust-display` (baseline) + `026/010/007-review-remediation` T-E (DI rig + bind-type fix R-007-13) + T-F (cache invalidation R-007-12)
+- Phase / sub-phase: `026-graph-and-context-optimization/004-external-project-adoption/005-memory-causal-trust-display` (baseline) + `026/004-external-project-adoption/007-fix-external-project-adoption-deep-review-findings` T-E (DI rig + bind-type fix R-007-13) + T-F (cache invalidation R-007-12)
 - Coverage extension: 010/011-manual-testing-playbook-coverage-and-run (Block B added)
