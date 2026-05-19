@@ -6,6 +6,7 @@ import { randomUUID } from 'node:crypto';
 import * as path from 'node:path';
 
 import Database from 'better-sqlite3';
+import * as sqliteVec from 'sqlite-vec';
 
 import { EmbeddingProfile } from '@spec-kit/shared/embeddings/profile';
 
@@ -245,6 +246,28 @@ function getDatabaseDir(db: Database.Database): string | null {
   return path.dirname(row.file);
 }
 
+function writeVectorsToKnn(
+  db: Database.Database,
+  rows: MemoryRow[],
+  embeddings: Float32Array[],
+): void {
+  const writeBatch = db.transaction(() => {
+    const del = db.prepare('DELETE FROM vec_memories WHERE rowid = ?');
+    const ins = db.prepare('INSERT INTO vec_memories (rowid, embedding) VALUES (?, ?)');
+    for (let i = 0; i < rows.length; i += 1) {
+      const row = rows[i];
+      const embedding = embeddings[i];
+      if (!row || !embedding) {
+        throw new Error('Embedding batch cardinality mismatch');
+      }
+      del.run(BigInt(row.id));
+      ins.run(BigInt(row.id), to_embedding_buffer(embedding));
+    }
+  });
+
+  writeBatch();
+}
+
 function writeVectorsToShard(
   db: Database.Database,
   profile: EmbeddingProfile,
@@ -260,6 +283,18 @@ function writeVectorsToShard(
   const shard = new Database(profile.getVectorShardPath(databaseDir));
   try {
     shard.pragma('journal_mode = WAL');
+
+    // ADR-012 bridge: load sqlite-vec so the runtime KNN virtual table can be created
+    // and populated alongside the canonical vec_<dim> blob table. When the extension
+    // is unavailable the runtime falls back to vec_<dim> only and search degrades to
+    // lexical signals; we surface that through the existing console.warn in vector-index-store.
+    let vecAvailable = true;
+    try {
+      sqliteVec.load(shard);
+    } catch (_err) {
+      vecAvailable = false;
+    }
+
     shard.exec(`
       CREATE TABLE IF NOT EXISTS vec_metadata (
         key TEXT PRIMARY KEY,
@@ -276,7 +311,19 @@ function writeVectorsToShard(
         vec BLOB NOT NULL
       );
     `);
+
+    if (vecAvailable) {
+      shard.exec(`
+        CREATE VIRTUAL TABLE IF NOT EXISTS vec_memories USING vec0(
+          embedding FLOAT[${profile.dim}]
+        )
+      `);
+    }
+
     writeVectors(shard, tableName, rows, embeddings);
+    if (vecAvailable) {
+      writeVectorsToKnn(shard, rows, embeddings);
+    }
   } finally {
     shard.close();
   }

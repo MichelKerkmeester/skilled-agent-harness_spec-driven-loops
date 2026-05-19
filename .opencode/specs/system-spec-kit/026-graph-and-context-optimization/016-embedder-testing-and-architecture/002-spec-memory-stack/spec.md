@@ -73,6 +73,7 @@ All 4 sub-phases shipped before this restructure landed. The restructure is pure
 | 002-ollama-backend-and-multi-dim-schema | OllamaAdapter + vec_<dim> schema | Shipped |
 | 003-mcp-tools-and-reindex | embedder_list/set/status + reindex orchestrator | Shipped |
 | 004-spec-memory-embedder-bake-off | mxbai swap + cat-24/409 closure | Shipped |
+| 015-cascade-reorder-and-nomic-hf-local-default | 016-reindex-populates-vec-memories-knn-table | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 <!-- ANCHOR:cross-refs -->

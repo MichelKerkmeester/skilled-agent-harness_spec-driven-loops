@@ -32,11 +32,15 @@ trigger_phrases:
 
 Current responsibilities:
 
-- Store local memory index, vector, FTS and checkpoint data at runtime.
+- Store local memory index, FTS and checkpoint data at runtime.
+- Store per-embedder vector shards under `vectors/` per ADR-012.
+- Hold reserved space for future per-server schema migrations under `migrations/`.
 - Store structural code graph and evaluation databases when the default path is active.
 - Provide marker files used by runtime state checks.
 
 The default path is resolved through shared path and config helpers. Runtime variables such as `MEMORY_DB_PATH`, `SPEC_KIT_DB_DIR` and `SPECKIT_DB_DIR` can point storage elsewhere.
+
+Two subdirectories live alongside the SQLite databases. `vectors/` holds per-embedder shard files split out by ADR-012, with one shard per provider, model and dimension. `migrations/` is reserved infrastructure for future per-server schema migrations and is empty today. See [`./vectors/README.md`](./vectors/README.md) and [`./migrations/README.md`](./migrations/README.md) for the rules that govern each folder.
 
 <!-- /ANCHOR:overview -->
 
@@ -70,7 +74,9 @@ mcp_server/database/
 database/
 +-- README.md       # Directory guide
 +-- .gitkeep        # Keeps the runtime directory present in clean checkouts
-`-- .db-updated     # Runtime update marker
++-- .db-updated     # Runtime update marker
++-- vectors/        # Per-embedder vector shards (ADR-012)
+`-- migrations/     # Reserved for future per-server schema migrations
 ```
 
 Generated database files are runtime artifacts. They are not source modules and should not be listed as key source files.
@@ -87,10 +93,16 @@ database/
 +-- README.md
 +-- .gitkeep
 +-- .db-updated
-+-- *.sqlite        # Generated runtime databases
-+-- *.db            # Generated runtime databases
-+-- *-wal           # Generated SQLite write-ahead logs
-`-- *-shm           # Generated SQLite shared-memory files
++-- *.sqlite                       # Generated runtime databases
++-- *.db                           # Generated runtime databases
++-- *-wal                          # Generated SQLite write-ahead logs
++-- *-shm                          # Generated SQLite shared-memory files
++-- vectors/
+|   +-- README.md                  # Per-embedder shard rules
+|   `-- context-vectors__*.sqlite  # Generated per-embedder shards
+`-- migrations/
+    +-- README.md                  # Future migration policy
+    `-- .gitkeep                   # Keeps the reserved folder present
 ```
 
 <!-- /ANCHOR:directory-tree -->
@@ -105,8 +117,10 @@ database/
 | `README.md` | Explains the database directory contract. |
 | `.gitkeep` | Keeps the directory available before runtime files exist. |
 | `.db-updated` | Stores the last database update timestamp for runtime refresh checks. |
+| `vectors/` | Per-embedder vector shard directory governed by ADR-012. See [`./vectors/README.md`](./vectors/README.md). |
+| `migrations/` | Reserved directory for future per-server schema migrations. See [`./migrations/README.md`](./migrations/README.md). |
 
-Runtime artifacts include `context-index*.sqlite`, `code-graph.sqlite`, `speckit-eval.db`, `*-wal` and `*-shm` files. Treat them as generated data, not source files.
+Runtime artifacts include `context-index*.sqlite`, `code-graph.sqlite`, `speckit-eval.db`, `*-wal` and `*-shm` files. Vector shards live in `vectors/` as `context-vectors__<provider>__<model>__<dim>[__<quant>].sqlite`. The active production shard today is `context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite` at about 15 MB. Treat all of these as generated data, not source files.
 
 <!-- /ANCHOR:key-files -->
 
@@ -115,7 +129,7 @@ Runtime artifacts include `context-index*.sqlite`, `code-graph.sqlite`, `speckit
 <!-- ANCHOR:boundaries-and-flow -->
 ## 6. BOUNDARIES AND FLOW
 
-This directory owns storage location only. Schema creation, migrations, indexing, code graph scans and health checks live in MCP server code and scripts outside this folder.
+This directory owns storage location only. Schema creation, indexing, code graph scans and health checks live in MCP server code and scripts outside this folder. Vector shard schemas under `vectors/` are created lazily on first attach by `mcp_server/dist/lib/search/vector-index-store.js` through `ensure_vector_shard_schema()`, which derives the dim-tagged virtual table name from `vector_table_name_for_profile()`. The `migrations/` folder stays empty until a true breaking schema change ships. The runtime uses `CREATE TABLE IF NOT EXISTS` for normal schema evolution.
 
 Main flow:
 
@@ -123,7 +137,7 @@ Main flow:
 runtime config -> database path resolution -> SQLite read or write -> .db-updated marker refresh -> health or search tools observe state
 ```
 
-Do not commit generated SQLite databases or sidecar files unless a test fixture path explicitly requires one outside this runtime directory.
+Do not commit generated SQLite databases, vector shards or sidecar files. The existing `.gitignore` for this folder already covers `*.sqlite`, `*.sqlite-shm` and `*.sqlite-wal` patterns. Test fixtures that need a real database belong outside this runtime directory.
 
 <!-- /ANCHOR:boundaries-and-flow -->
 
@@ -147,6 +161,8 @@ Use MCP memory and code graph health tools to validate live database state.
 <!-- ANCHOR:related -->
 ## 8. RELATED
 
+- `./vectors/README.md`
+- `./migrations/README.md`
 - `../core/README.md`
 - `../handlers/README.md`
 - `../../references/memory/memory_system.md`

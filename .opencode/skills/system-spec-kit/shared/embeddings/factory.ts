@@ -368,17 +368,35 @@ function readActiveOllamaEmbedderFromDb(sqlitePath: string): ActiveOllamaEmbedde
   }
 
   const expectedTable = `vec_${dim}`;
-  if (!tableExistsInSqlite(sqlitePath, expectedTable)) {
+
+  // ADR-012 (canonical vector shard split): the dim-tagged table moved out of the
+  // main metadata DB and into a per-embedder shard at <db_dir>/vectors/. We accept
+  // either location: main DB first (legacy layout), then the shard.
+  let tableSource: string | null = null;
+  if (tableExistsInSqlite(sqlitePath, expectedTable)) {
+    tableSource = sqlitePath;
+  } else {
+    const shardPath = path.join(
+      path.dirname(sqlitePath),
+      'vectors',
+      `context-vectors__ollama__${name}__${dim}.sqlite`,
+    );
+    if (existsSync(shardPath) && tableExistsInSqlite(shardPath, expectedTable)) {
+      tableSource = shardPath;
+    }
+  }
+
+  if (tableSource === null) {
     warnActiveOllamaFallback(
-      `Active embedder ${name} points to ${expectedTable}, but that table is missing in ${sqlitePath}; continuing provider cascade.`,
+      `Active embedder ${name} points to ${expectedTable}, but that table is missing in ${sqlitePath} (and no matching shard under vectors/); continuing provider cascade.`,
     );
     return null;
   }
 
-  const rowCount = countRowsInSqliteTable(sqlitePath, expectedTable);
+  const rowCount = countRowsInSqliteTable(tableSource, expectedTable);
   if (rowCount === null || rowCount <= 0) {
     warnActiveOllamaFallback(
-      `Active embedder ${name} points to ${expectedTable}, but that table is empty in ${sqlitePath}; continuing provider cascade.`,
+      `Active embedder ${name} points to ${expectedTable}, but that table is empty in ${tableSource}; continuing provider cascade.`,
     );
     return null;
   }
