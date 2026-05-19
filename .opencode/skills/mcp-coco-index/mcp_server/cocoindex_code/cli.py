@@ -36,6 +36,7 @@ if TYPE_CHECKING:
     from .client import DaemonClient
 
 from .protocol import IndexingProgress, ProjectStatusResponse, SearchResponse
+from .search_budget import SearchBudgetExceeded, validate_search_budget
 from .settings import (
     default_project_settings,
     default_user_settings,
@@ -155,6 +156,35 @@ def print_index_stats(status: ProjectStatusResponse) -> None:
         _typer.echo("  Languages:")
         for lang, count in sorted(status.languages.items(), key=lambda x: -x[1]):
             _typer.echo(f"    {lang}: {count} chunks")
+    print_fingerprint(status)
+
+
+def print_fingerprint(status: ProjectStatusResponse) -> None:
+    fp = status.fingerprint
+    if fp.effective_config_hash is None:
+        return
+    _typer.echo("\nRetrieval fingerprint:")
+    _typer.echo(f"  Embedder: {fp.embedder_name} ({fp.embedder_provider}, dim={fp.embedder_dim})")
+    _typer.echo(f"  Query prompt: {fp.query_prompt_name}")
+    _typer.echo(f"  Document prompt: {fp.document_prompt_name}")
+    _typer.echo(
+        f"  Reranker: {fp.reranker_name} "
+        f"(enabled={fp.reranker_enabled}, license={fp.reranker_license})"
+    )
+    _typer.echo(
+        f"  Chunking: {fp.chunking_policy} "
+        f"(size={fp.chunk_size}, overlap={fp.chunk_overlap})"
+    )
+    _typer.echo(
+        f"  RRF: K={fp.rrf_K}, V={fp.rrf_V}, F={fp.rrf_F}; "
+        f"boost_path={fp.hybrid_boost_path}, boost_canonical={fp.hybrid_boost_canonical}"
+    )
+    _typer.echo(f"  Corpus: {fp.corpus_root}")
+    _typer.echo(f"  Hash: {fp.effective_config_hash}")
+    if fp.indexed_effective_config_hash:
+        _typer.echo(f"  Indexed hash: {fp.indexed_effective_config_hash}")
+    if fp.fingerprint_warning:
+        _typer.echo(f"  Warning: {fp.fingerprint_warning}")
 
 
 def print_search_results(response: SearchResponse) -> None:
@@ -388,30 +418,47 @@ def search(
     refresh: bool = _typer.Option(False, "--refresh", help="Refresh index before searching"),
 ) -> None:
     """Semantic search across the codebase."""
-    client, project_root = require_daemon_for_project()
+    project_root_path = require_project_root()
+    project_root = str(project_root_path)
     query_str = " ".join(query)
 
-    # Refresh index with progress display before searching
-    if refresh:
-        _run_index_with_progress(client, project_root)
-
-    # Default path filter from CWD
     paths: list[str] | None = None
     if path is not None:
         paths = [path]
     else:
-        default = resolve_default_path(Path(project_root))
+        default = resolve_default_path(project_root_path)
         if default is not None:
             paths = [default]
+    try:
+        budgeted = validate_search_budget(
+            limit=limit,
+            offset=offset,
+            languages=lang or None,
+            paths=paths,
+        )
+    except SearchBudgetExceeded as exc:
+        _typer.echo(f"Search failed: {exc}", err=True)
+        raise _typer.Exit(code=1)
+
+    from .client import ensure_daemon
+
+    try:
+        client = ensure_daemon()
+    except Exception as e:
+        _typer.echo(f"Error: Failed to connect to daemon: {e}", err=True)
+        raise _typer.Exit(code=1)
+
+    if refresh:
+        _run_index_with_progress(client, project_root)
 
     resp = _search_with_wait_spinner(
         client,
         project_root=project_root,
         query=query_str,
-        languages=lang or None,
-        paths=paths,
-        limit=limit,
-        offset=offset,
+        languages=budgeted.languages,
+        paths=budgeted.paths,
+        limit=budgeted.limit,
+        offset=budgeted.offset,
     )
     print_search_results(resp)
 

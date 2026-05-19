@@ -21,6 +21,8 @@ from cocoindex.connectors import sqlite as coco_sqlite
 
 from ._version import __version__
 from .observability import (
+    RetrievalDiagnostics,
+    build_index_fingerprint,
     elapsed_ms,
     ipc_debug_enabled,
     log_json,
@@ -29,6 +31,7 @@ from .observability import (
     log_stage,
     monotonic_ms,
     new_request_id,
+    read_index_meta,
     resolve_mcp_request_timeout_ms,
 )
 from .project import Project
@@ -45,6 +48,7 @@ from .protocol import (
     IndexResponse,
     IndexStreamResponse,
     IndexWaitingNotice,
+    IndexFingerprintPayload,
     ProjectStatusRequest,
     ProjectStatusResponse,
     RemoveProjectRequest,
@@ -55,6 +59,7 @@ from .protocol import (
     SearchResponse,
     SearchResult,
     SearchStreamResponse,
+    RetrievalDiagnosticsPayload,
     StopRequest,
     StopResponse,
     decode_request,
@@ -135,6 +140,17 @@ def _response_result_count(resp: Response) -> int:
     return 0
 
 
+def _diagnostics_payload(diagnostics: RetrievalDiagnostics) -> RetrievalDiagnosticsPayload:
+    return RetrievalDiagnosticsPayload(**diagnostics.dump())
+
+
+def _fingerprint_payload(payload: dict[str, Any] | None) -> IndexFingerprintPayload:
+    if not payload:
+        return IndexFingerprintPayload()
+    allowed = set(IndexFingerprintPayload.__struct_fields__)
+    return IndexFingerprintPayload(**{key: value for key, value in payload.items() if key in allowed})
+
+
 def _send_response(conn: Connection, resp: Response, *, req_id: str) -> None:
     stage_start = monotonic_ms()
     payload = encode_response(resp)
@@ -212,6 +228,7 @@ class SearchResults(list[SearchResult]):
 
     dedupedAliases: int
     uniqueResultCount: int
+    diagnostics: RetrievalDiagnostics
 
     def __init__(
         self,
@@ -219,10 +236,12 @@ class SearchResults(list[SearchResult]):
         *,
         deduped_aliases: int,
         unique_result_count: int,
+        diagnostics: RetrievalDiagnostics | None = None,
     ) -> None:
         super().__init__(results)
         self.dedupedAliases = deduped_aliases
         self.uniqueResultCount = unique_result_count
+        self.diagnostics = diagnostics or RetrievalDiagnostics()
 
 
 class SearchOnlyContext:
@@ -394,6 +413,7 @@ class ProjectRegistry:
             await project.update_index(
                 on_progress=on_progress,
             )
+            self._write_index_metadata(project_root)
         except Exception:
             logger.exception("Indexing failed for %s", project_root)
             raise
@@ -402,6 +422,97 @@ class ProjectRegistry:
             if event is not None:
                 event.set()
             lock.release()
+
+    def _embedding_settings(self) -> tuple[str | None, str | None]:
+        try:
+            settings = load_user_settings()
+        except Exception:
+            return None, None
+        return settings.embedding.model, settings.embedding.provider
+
+    def _index_counts(self, project_root: str) -> tuple[int, int]:
+        target_db = Path(project_root) / ".cocoindex_code" / "target_sqlite.db"
+        if not target_db.exists():
+            return 0, 0
+        try:
+            import sqlite_vec
+
+            conn = sqlite3.connect(f"file:{target_db}?mode=ro", uri=True)
+            try:
+                conn.enable_load_extension(True)
+                sqlite_vec.load(conn)
+                total_chunks = conn.execute("SELECT COUNT(*) FROM code_chunks_vec").fetchone()[0]
+                total_files = conn.execute(
+                    "SELECT COUNT(DISTINCT file_path) FROM code_chunks_vec"
+                ).fetchone()[0]
+                return int(total_chunks), int(total_files)
+            finally:
+                conn.close()
+        except Exception:
+            logger.exception("Failed to read index counts for %s", project_root)
+            return 0, 0
+
+    def _current_fingerprint_payload(
+        self,
+        project_root: str,
+        *,
+        chunk_count: int = 0,
+        file_count: int = 0,
+    ) -> dict[str, Any]:
+        embedding_model, embedding_provider = self._embedding_settings()
+        fingerprint = build_index_fingerprint(
+            project_root=Path(project_root),
+            chunk_count=chunk_count,
+            file_count=file_count,
+            embedding_model=embedding_model,
+            embedding_provider=embedding_provider,
+        )
+        return fingerprint.dump()
+
+    def _write_index_metadata(self, project_root: str) -> None:
+        chunk_count, file_count = self._index_counts(project_root)
+        embedding_model, embedding_provider = self._embedding_settings()
+        from .indexer import write_index_metadata
+
+        write_index_metadata(
+            Path(project_root),
+            chunk_count=chunk_count,
+            file_count=file_count,
+            embedding_model=embedding_model,
+            embedding_provider=embedding_provider,
+        )
+
+    def _status_fingerprint(self, project_root: str, chunk_count: int, file_count: int) -> dict[str, Any]:
+        current = self._current_fingerprint_payload(
+            project_root,
+            chunk_count=chunk_count,
+            file_count=file_count,
+        )
+        indexed = read_index_meta(Path(project_root))
+        if indexed and indexed.get("effective_config_hash") != current.get("effective_config_hash"):
+            current["indexed_effective_config_hash"] = indexed.get("effective_config_hash")
+            current["fingerprint_warning"] = "INDEX_FINGERPRINT_MISMATCH"
+        elif indexed:
+            current["indexed_effective_config_hash"] = indexed.get("effective_config_hash")
+        return current
+
+    def _warn_if_fingerprint_mismatch(self, project_root: str, *, req_id: str | None = None) -> None:
+        current = self._current_fingerprint_payload(project_root)
+        indexed = read_index_meta(Path(project_root))
+        if not indexed:
+            return
+        indexed_hash = indexed.get("effective_config_hash")
+        current_hash = current.get("effective_config_hash")
+        if indexed_hash == current_hash:
+            return
+        log_json(
+            logger,
+            event="INDEX_FINGERPRINT_MISMATCH",
+            reqId=req_id,
+            projectRoot=project_root,
+            indexedHash=indexed_hash,
+            currentHash=current_hash,
+        )
 
     async def update_index(
         self, project_root: str, *, suppress_auto_index: bool = True
@@ -466,6 +577,7 @@ class ProjectRegistry:
     ) -> SearchResults:
         """Search within a project."""
         project_root = _validate_project_root(project_root)
+        self._warn_if_fingerprint_mismatch(project_root, req_id=req_id)
         root = Path(project_root)
         target_db = root / ".cocoindex_code" / "target_sqlite.db"
         project = self._projects.get(project_root)
@@ -518,6 +630,7 @@ class ProjectRegistry:
             search_results,
             deduped_aliases=results.dedupedAliases,
             unique_result_count=results.uniqueResultCount,
+            diagnostics=results.diagnostics,
         )
 
     def get_status(self, project_root: str) -> ProjectStatusResponse:
@@ -548,6 +661,9 @@ class ProjectRegistry:
                             total_files=total_files,
                             languages={lang: cnt for lang, cnt in lang_rows},
                             index_exists=True,
+                            fingerprint=_fingerprint_payload(
+                                self._status_fingerprint(project_root, total_chunks, total_files)
+                            ),
                         )
                     finally:
                         conn.close()
@@ -557,7 +673,14 @@ class ProjectRegistry:
                         "0 chunks reported; project not loaded — call ccc index to refresh"
                     )
             return ProjectStatusResponse(
-                indexing=False, total_chunks=0, total_files=0, languages={}, index_exists=target_db.exists()
+                indexing=False,
+                total_chunks=0,
+                total_files=0,
+                languages={},
+                index_exists=target_db.exists(),
+                fingerprint=_fingerprint_payload(
+                    self._status_fingerprint(project_root, 0, 0)
+                ),
             )
 
         db = project.env.get_context(SQLITE_DB)
@@ -588,6 +711,9 @@ class ProjectRegistry:
             languages={lang: cnt for lang, cnt in lang_rows},
             progress=progress,
             index_exists=index_exists,
+            fingerprint=_fingerprint_payload(
+                self._status_fingerprint(project_root, total_chunks, total_files)
+            ),
         )
 
     def remove_project(self, project_root: str) -> bool:
@@ -758,6 +884,7 @@ async def _search_with_wait(
             offset=req.offset,
             dedupedAliases=results.dedupedAliases,
             uniqueResultCount=results.uniqueResultCount,
+            diagnostics=_diagnostics_payload(results.diagnostics),
         )
     except Exception as e:
         yield ErrorResponse(message=str(e), reqId=req_id)
@@ -802,6 +929,7 @@ async def _dispatch(
                 offset=req.offset,
                 dedupedAliases=results.dedupedAliases,
                 uniqueResultCount=results.uniqueResultCount,
+                diagnostics=_diagnostics_payload(results.diagnostics),
             )
 
         if isinstance(req, ProjectStatusRequest):

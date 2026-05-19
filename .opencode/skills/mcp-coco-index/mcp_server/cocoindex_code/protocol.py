@@ -109,6 +109,43 @@ class SearchResult(_msgspec.Struct):
     reranker_score: float | None = None
 
 
+class RetrievalDiagnosticsPayload(_msgspec.Struct):
+    vec_candidates_count: int = 0
+    fts_candidates_count: int = 0
+    overlap_count: int = 0
+    post_dedup_count: int = 0
+    rerank_input_count: int = 0
+    rerank_output_count: int = 0
+    boost_flip_count: int = 0
+    reranker_fallback_used: bool = False
+    reranker_fallback_reason: str = "none"
+
+
+class IndexFingerprintPayload(_msgspec.Struct):
+    embedder_name: str | None = None
+    embedder_dim: int | None = None
+    embedder_provider: str | None = None
+    query_prompt_name: str | None = None
+    document_prompt_name: str | None = None
+    reranker_name: str | None = None
+    reranker_enabled: bool | None = None
+    reranker_license: str | None = None
+    chunk_size: int | None = None
+    chunk_overlap: int | None = None
+    chunking_policy: str | None = None
+    corpus_root: str | None = None
+    chunk_count: int | None = None
+    file_count: int | None = None
+    rrf_K: int | None = None
+    rrf_V: float | None = None
+    rrf_F: float | None = None
+    hybrid_boost_path: bool | None = None
+    hybrid_boost_canonical: bool | None = None
+    effective_config_hash: str | None = None
+    indexed_effective_config_hash: str | None = None
+    fingerprint_warning: str | None = None
+
+
 class SearchResponse(_msgspec.Struct, tag="search"):
     success: bool
     results: list[SearchResult] = []
@@ -116,6 +153,9 @@ class SearchResponse(_msgspec.Struct, tag="search"):
     offset: int = 0
     dedupedAliases: int = 0
     uniqueResultCount: int = 0
+    diagnostics: RetrievalDiagnosticsPayload = _msgspec.field(
+        default_factory=RetrievalDiagnosticsPayload
+    )
     message: str | None = None
 
 
@@ -126,6 +166,7 @@ class ProjectStatusResponse(_msgspec.Struct, tag="project_status"):
     languages: dict[str, int]
     progress: IndexingProgress | None = None
     index_exists: bool = True
+    fingerprint: IndexFingerprintPayload = _msgspec.field(default_factory=IndexFingerprintPayload)
 
 
 class DaemonProjectInfo(_msgspec.Struct):

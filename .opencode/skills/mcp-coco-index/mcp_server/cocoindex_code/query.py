@@ -23,13 +23,16 @@ from .observability import (
     LANE_HYBRID_RERANK,
     LANE_HYBRID_RRF,
     LANE_VECTOR_ONLY,
+    RetrievalDiagnostics,
     elapsed_ms,
+    log_retrieval_diagnostics,
     log_stage,
     monotonic_ms,
 )
 from .path_utils import extract_path_stem, is_mirror_path, select_canonical_mirror_copy
 from .query_expansion import ExpandedQuery, expand_query
 from .schema import QueryResult
+from .search_budget import SearchBudget, validate_search_budget
 from .settings import PROJECT_SETTINGS, is_canonical_path
 from .shared import EMBEDDER, SQLITE_DB, query_prompt_name
 
@@ -49,6 +52,7 @@ class QueryResults(list[QueryResult]):
 
     dedupedAliases: int
     uniqueResultCount: int
+    diagnostics: RetrievalDiagnostics
 
     def __init__(
         self,
@@ -56,10 +60,12 @@ class QueryResults(list[QueryResult]):
         *,
         deduped_aliases: int,
         unique_result_count: int,
+        diagnostics: RetrievalDiagnostics | None = None,
     ) -> None:
         super().__init__(results)
         self.dedupedAliases = deduped_aliases
         self.uniqueResultCount = unique_result_count
+        self.diagnostics = diagnostics or RetrievalDiagnostics()
 
 
 IMPLEMENTATION_INTENT_KEYWORDS = [
@@ -582,18 +588,59 @@ def _dedup_and_rank_hybrid_rows(
     return unique, deduped_aliases
 
 
+def _count_hybrid_boost_flips(
+    fused_rows: list[FusedRow],
+    records_by_id: dict[int, dict[str, Any]],
+    *,
+    query: str,
+    canonical_paths: list[str] | None = None,
+    top_k: int,
+) -> int:
+    if not fused_rows:
+        return 0
+    implementation_intent = _has_implementation_intent(query)
+    baseline = [
+        fused.chunk_id
+        for fused in fused_rows
+        if fused.chunk_id in records_by_id
+    ][:top_k]
+    boosted = [
+        fused.chunk_id
+        for result, fused in sorted(
+            [
+                (
+                    _hybrid_ranked_result(
+                        fused,
+                        records_by_id[fused.chunk_id],
+                        implementation_intent=implementation_intent,
+                        canonical_paths=canonical_paths,
+                    ),
+                    fused,
+                )
+                for fused in fused_rows
+                if fused.chunk_id in records_by_id
+            ],
+            key=lambda item: item[0].score,
+            reverse=True,
+        )
+    ][:top_k]
+    return sum(1 for before, after in zip(baseline, boosted, strict=False) if before != after)
+
+
 def _window_results(
     candidates: list[QueryResult],
     *,
     limit: int,
     offset: int,
     deduped_aliases: int,
+    diagnostics: RetrievalDiagnostics | None = None,
 ) -> QueryResults:
     window = candidates[offset : offset + limit]
     return QueryResults(
         window,
         deduped_aliases=deduped_aliases,
         unique_result_count=len(window),
+        diagnostics=diagnostics,
     )
 
 
@@ -685,6 +732,19 @@ async def query_codebase(
     Language filtering uses vec0 partition keys for exact index-level filtering.
     Path filtering triggers a full scan with distance computation.
     """
+    budgeted = validate_search_budget(
+        limit=limit,
+        offset=offset,
+        languages=languages,
+        paths=paths,
+        budget=SearchBudget.from_config(config),
+    )
+    limit = budgeted.limit
+    offset = budgeted.offset
+    languages = budgeted.languages
+    paths = budgeted.paths
+    search_start = monotonic_ms()
+
     if not target_sqlite_db_path.exists():
         raise RuntimeError(
             f"Index database not found at {target_sqlite_db_path}. "
@@ -694,6 +754,7 @@ async def query_codebase(
     db = env.get_context(SQLITE_DB)
     embedder = env.get_context(EMBEDDER)
     project_settings = env.get_context(PROJECT_SETTINGS)
+    diagnostics = RetrievalDiagnostics()
     expanded_query = _query_expansion_payload(query)
     if expanded_query.expansion_applied:
         logger.debug("Expanded query: %s", expanded_query)
@@ -724,8 +785,7 @@ async def query_codebase(
         for query_embedding in query_embeddings
     ]
     embedding_bytes = embedding_bytes_list[0]
-    unique_k = max(limit + offset, 1)
-    fetch_k = unique_k * 4
+    fetch_k = budgeted.fetch_k
 
     stage_start = monotonic_ms()
     with db.readonly() as conn:
@@ -737,6 +797,7 @@ async def query_codebase(
                 ],
                 fetch_k,
             )
+            diagnostics.record_stage("vec_candidates_count", len(vector_rows))
             vector_records = {
                 record["chunk_id"]: record
                 for record in (_record_from_vector_row(row) for row in vector_rows)
@@ -764,6 +825,11 @@ async def query_codebase(
                 RankedRow(chunk_id=chunk_id, score=bm25_score)
                 for chunk_id, bm25_score in fts_rows
             ]
+            diagnostics.record_stage("fts_candidates_count", len(fts_results))
+            diagnostics.record_stage(
+                "overlap_count",
+                len({row.chunk_id for row in vector_results} & {row.chunk_id for row in fts_results}),
+            )
             fused_rows = rrf_fuse(
                 vector_results,
                 fts_results,
@@ -783,9 +849,11 @@ async def query_codebase(
             rows = []
         elif paths:
             rows = _full_scan_query(conn, embedding_bytes, fetch_k, 0, languages, paths)
+            diagnostics.record_stage("vec_candidates_count", len(rows))
         elif not languages or len(languages) == 1:
             lang = languages[0] if languages else None
             rows = _knn_query(conn, embedding_bytes, fetch_k, lang)
+            diagnostics.record_stage("vec_candidates_count", len(rows))
         else:
             rows = heapq.nsmallest(
                 fetch_k,
@@ -796,6 +864,7 @@ async def query_codebase(
                 ),
                 key=lambda r: r[8],
             )
+            diagnostics.record_stage("vec_candidates_count", len(rows))
     if req_id is not None:
         log_stage(
             logger,
@@ -808,6 +877,7 @@ async def query_codebase(
 
     stage_start = monotonic_ms()
     rerank_applied = False
+    timed_out = elapsed_ms(search_start) / 1000 > budgeted.timeout_sec
     if config.hybrid_enabled:
         candidates, deduped_aliases = _dedup_and_rank_hybrid_rows(
             fused_rows,
@@ -815,26 +885,57 @@ async def query_codebase(
             query=query,
             canonical_paths=project_settings.canonical_resource_paths,
         )
-        if config.rerank_enabled:
+        diagnostics.record_stage("post_dedup_count", len(candidates))
+        diagnostics.record_stage(
+            "boost_flip_count",
+            _count_hybrid_boost_flips(
+                fused_rows,
+                records_by_id,
+                query=query,
+                canonical_paths=project_settings.canonical_resource_paths,
+                top_k=max(limit + offset, 1),
+            ),
+        )
+        if config.rerank_enabled and not timed_out:
+            diagnostics.record_stage(
+                "rerank_input_count",
+                min(config.rerank_top_k, len(candidates)),
+            )
             reranked_candidates = reranker.rerank(
                 query,
                 candidates,
                 top_k=config.rerank_top_k,
                 model_name=config.rerank_model,
+                diagnostics=diagnostics,
+            )
+            diagnostics.record_stage(
+                "rerank_output_count",
+                min(config.rerank_top_k, len(reranked_candidates)),
             )
             rerank_applied = reranked_candidates is not candidates
             candidates = reranked_candidates
+        elif config.rerank_enabled and timed_out:
+            diagnostics.record_reranker_fallback("timeout")
+            logger.warning(
+                "Search soft timeout exceeded before rerank; returning partial candidates after %.2fs",
+                elapsed_ms(search_start) / 1000,
+            )
+        else:
+            diagnostics.record_reranker_fallback("disabled")
     else:
         candidates, deduped_aliases = _dedup_and_rank_rows(
             rows,
             query=query,
             canonical_paths=project_settings.canonical_resource_paths,
         )
+        diagnostics.record_stage("post_dedup_count", len(candidates))
+        diagnostics.record_reranker_fallback("disabled")
     results = _window_results(
         candidates,
         limit=limit,
         offset=offset,
         deduped_aliases=deduped_aliases,
+        diagnostics=diagnostics,
     )
     if req_id is not None:
         log_stage(
@@ -851,4 +952,5 @@ async def query_codebase(
                 else LANE_VECTOR_ONLY
             ),
         )
+        log_retrieval_diagnostics(logger, req_id=req_id, diagnostics=diagnostics)
     return results

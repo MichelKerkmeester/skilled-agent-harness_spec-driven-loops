@@ -9,6 +9,7 @@ from dataclasses import replace
 from typing import Any
 
 from .config import _DEFAULT_RERANK_MODEL
+from .observability import RetrievalDiagnostics
 from .schema import QueryResult
 
 logger = logging.getLogger(__name__)
@@ -156,6 +157,8 @@ class CrossEncoderRerankerAdapter:
         query: str,
         candidates: list[QueryResult],
         top_k: int,
+        *,
+        diagnostics: RetrievalDiagnostics | None = None,
     ) -> list[QueryResult]:
         """Rerank the first ``top_k`` candidates and keep the remaining tail stable."""
         if len(candidates) < 2:
@@ -163,6 +166,8 @@ class CrossEncoderRerankerAdapter:
 
         model = self._load_model()
         if model is None:
+            if diagnostics is not None:
+                diagnostics.record_reranker_fallback("model_load_failed")
             return candidates
 
         rerank_count = max(1, min(top_k, len(candidates)))
@@ -177,6 +182,8 @@ class CrossEncoderRerankerAdapter:
                 "Cross-encoder rerank failed: %s; returning original order",
                 exc,
             )
+            if diagnostics is not None:
+                diagnostics.record_reranker_fallback("model_error")
             return candidates
 
         # ADR-015 Phase 2: path-class boost (flag-gated, no-op when disabled)
@@ -233,6 +240,12 @@ def rerank(
     top_k: int,
     *,
     model_name: str = _DEFAULT_RERANK_MODEL,
+    diagnostics: RetrievalDiagnostics | None = None,
 ) -> list[QueryResult]:
     """Feature-callable module entrypoint used by ``query_codebase``."""
-    return get_reranker_adapter(model_name).rerank(query, candidates, top_k)
+    return get_reranker_adapter(model_name).rerank(
+        query,
+        candidates,
+        top_k,
+        diagnostics=diagnostics,
+    )

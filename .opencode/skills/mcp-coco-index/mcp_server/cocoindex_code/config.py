@@ -28,6 +28,12 @@ _DEFAULT_QUERY_EXPANSION_MAX_VARIANTS = 6
 _DEFAULT_QUERY_EXPANSION_DENSE_FANOUT = True
 _DEFAULT_CANONICAL_MIRROR = ".opencode"
 _DEFAULT_MIRROR_PREFIXES = [".opencode/", ".codex/", ".gemini/", ".claude/"]
+_DEFAULT_SEARCH_MAX_OFFSET = 1000
+_DEFAULT_SEARCH_MAX_LIMIT = 200
+_DEFAULT_SEARCH_MAX_FETCH_K = 4000
+_DEFAULT_SEARCH_MAX_LANGUAGES = 8
+_DEFAULT_SEARCH_PATH_FULLSCAN_ALLOWED = False
+_DEFAULT_SEARCH_TIMEOUT_SEC = 10.0
 # ADR-015 Phase 2: path-class boost defaults from 011 deep-research iter 10.
 # These factors are embedder-independent metadata, but the empirical evidence is
 # BGE path-class lane only; future reranker families must revalidate before
@@ -556,6 +562,12 @@ class Config:
     query_expansion_dense_fanout: bool
     canonical_mirror: str
     mirror_prefixes: list[str]
+    search_max_offset: int
+    search_max_limit: int
+    search_max_fetch_k: int
+    search_max_languages: int
+    search_path_fullscan_allowed: bool
+    search_timeout_sec: float
 
     @classmethod
     def from_env(cls) -> Config:
@@ -703,6 +715,40 @@ class Config:
         )
         mirror_prefixes = _parse_mirror_prefixes_env()
         canonical_mirror = _parse_canonical_mirror_env(mirror_prefixes)
+        search_max_offset = _parse_int_env(
+            "COCOINDEX_SEARCH_MAX_OFFSET",
+            _DEFAULT_SEARCH_MAX_OFFSET,
+            0,
+            1_000_000,
+        )
+        search_max_limit = _parse_int_env(
+            "COCOINDEX_SEARCH_MAX_LIMIT",
+            _DEFAULT_SEARCH_MAX_LIMIT,
+            1,
+            10_000,
+        )
+        search_max_fetch_k = _parse_int_env(
+            "COCOINDEX_SEARCH_MAX_FETCH_K",
+            _DEFAULT_SEARCH_MAX_FETCH_K,
+            1,
+            1_000_000,
+        )
+        search_max_languages = _parse_int_env(
+            "COCOINDEX_SEARCH_MAX_LANGUAGES",
+            _DEFAULT_SEARCH_MAX_LANGUAGES,
+            1,
+            1000,
+        )
+        search_path_fullscan_allowed = _parse_bool_env(
+            "COCOINDEX_SEARCH_PATH_FULLSCAN_ALLOWED",
+            _DEFAULT_SEARCH_PATH_FULLSCAN_ALLOWED,
+        )
+        search_timeout_sec = _parse_float_env(
+            "COCOINDEX_SEARCH_TIMEOUT_SEC",
+            _DEFAULT_SEARCH_TIMEOUT_SEC,
+            0.1,
+            600.0,
+        )
 
         return cls(
             codebase_root_path=root,
@@ -732,6 +778,12 @@ class Config:
             query_expansion_dense_fanout=query_expansion_dense_fanout,
             canonical_mirror=canonical_mirror,
             mirror_prefixes=mirror_prefixes,
+            search_max_offset=search_max_offset,
+            search_max_limit=search_max_limit,
+            search_max_fetch_k=search_max_fetch_k,
+            search_max_languages=search_max_languages,
+            search_path_fullscan_allowed=search_path_fullscan_allowed,
+            search_timeout_sec=search_timeout_sec,
         )
 
     @property

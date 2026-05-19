@@ -33,6 +33,7 @@ from .observability import (
     resolve_mcp_request_timeout_ms,
 )
 from .protocol import IndexingProgress
+from .search_budget import SearchBudgetExceeded, validate_search_budget
 
 _MCP_INSTRUCTIONS = (
     "Code search and codebase understanding tools."
@@ -71,6 +72,18 @@ class CodeChunkResult(BaseModel):
     reranker_score: float | None = Field(default=None, description="Raw cross-encoder reranker score")
 
 
+class RetrievalDiagnosticsModel(BaseModel):
+    vec_candidates_count: int = 0
+    fts_candidates_count: int = 0
+    overlap_count: int = 0
+    post_dedup_count: int = 0
+    rerank_input_count: int = 0
+    rerank_output_count: int = 0
+    boost_flip_count: int = 0
+    reranker_fallback_used: bool = False
+    reranker_fallback_reason: str = "none"
+
+
 class SearchResultModel(BaseModel):
     """Result from search tool."""
 
@@ -81,6 +94,7 @@ class SearchResultModel(BaseModel):
     offset: int = Field(default=0)
     dedupedAliases: int = Field(default=0)
     uniqueResultCount: int = Field(default=0)
+    diagnostics: RetrievalDiagnosticsModel = Field(default_factory=RetrievalDiagnosticsModel)
     message: str | None = None
 
 
@@ -172,6 +186,21 @@ def create_mcp_server(client: DaemonClient, project_root: str) -> FastMCP:
         stage_start = monotonic_ms()
         languages = languages or None
         paths = paths or None
+        try:
+            budgeted = validate_search_budget(
+                limit=limit,
+                offset=offset,
+                languages=languages,
+                paths=paths,
+            )
+        except SearchBudgetExceeded as exc:
+            result = SearchResultModel(success=False, reqId=req_id, message=str(exc))
+            _log_json_response_size(result, req_id=req_id)
+            return result
+        limit = budgeted.limit
+        offset = budgeted.offset
+        languages = budgeted.languages
+        paths = budgeted.paths
         log_stage(
             logger,
             req_id=req_id,
@@ -227,6 +256,10 @@ def create_mcp_server(client: DaemonClient, project_root: str) -> FastMCP:
                     offset=resp.offset,
                     dedupedAliases=resp.dedupedAliases,
                     uniqueResultCount=resp.uniqueResultCount,
+                    diagnostics=RetrievalDiagnosticsModel(**{
+                        field: getattr(resp.diagnostics, field)
+                        for field in RetrievalDiagnosticsModel.model_fields
+                    }),
                     message=resp.message,
                 )
 

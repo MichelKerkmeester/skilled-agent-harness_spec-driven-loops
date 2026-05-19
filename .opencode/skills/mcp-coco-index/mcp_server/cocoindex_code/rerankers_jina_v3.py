@@ -29,6 +29,7 @@ from .reranker import (
     _available_ram_bytes,
     _maybe_log_scores,
 )
+from .observability import RetrievalDiagnostics
 from .schema import QueryResult
 
 logger = logging.getLogger(__name__)
@@ -120,6 +121,8 @@ class JinaRerankerAdapter:
         query: str,
         candidates: list[QueryResult],
         top_k: int,
+        *,
+        diagnostics: RetrievalDiagnostics | None = None,
     ) -> list[QueryResult]:
         """Listwise rerank the first ``top_k`` candidates; stable tail."""
         if len(candidates) < 2:
@@ -127,6 +130,8 @@ class JinaRerankerAdapter:
 
         model = self._load_model()
         if model is None:
+            if diagnostics is not None:
+                diagnostics.record_reranker_fallback("model_load_failed")
             return candidates
 
         rerank_count = max(1, min(top_k, len(candidates)))
@@ -150,6 +155,8 @@ class JinaRerankerAdapter:
                 "jina-v3 rerank forward pass failed: %s; returning original order",
                 exc,
             )
+            if diagnostics is not None:
+                diagnostics.record_reranker_fallback("model_error")
             return candidates
 
         # results is List[{"document": str, "relevance_score": float, "index": int, ...}]
@@ -162,6 +169,8 @@ class JinaRerankerAdapter:
                 score_by_index[idx] = score
 
         # Build aligned scores list (missing indices → 0.0, defensive)
+        if diagnostics is not None and len(score_by_index) < len(head):
+            diagnostics.record_reranker_fallback("missing_indices")
         scores = [score_by_index.get(i, 0.0) for i in range(len(head))]
 
         # Path-class defaults were validated on the BGE path-class lane; Jina

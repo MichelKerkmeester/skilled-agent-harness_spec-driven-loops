@@ -22,6 +22,7 @@ from .chunkers import CodeAwareSplitter
 from .chunkers.grammars import grammar_for_language
 from .config import config
 from .fts_index import FtsChunkRow, ensure_fts_table, populate_fts
+from .observability import build_index_fingerprint, write_index_meta
 from .settings import PROJECT_SETTINGS, is_canonical_path
 from .shared import (
     CODEBASE_DIR,
@@ -39,6 +40,24 @@ CHUNK_OVERLAP = 200
 
 # Chunking splitter (stateless, can be module-level)
 splitter = RecursiveSplitter()
+
+
+def write_index_metadata(
+    project_root: Path,
+    *,
+    chunk_count: int,
+    file_count: int,
+    embedding_model: str | None = None,
+    embedding_provider: str | None = None,
+) -> Path:
+    fingerprint = build_index_fingerprint(
+        project_root=project_root,
+        chunk_count=chunk_count,
+        file_count=file_count,
+        embedding_model=embedding_model,
+        embedding_provider=embedding_provider,
+    )
+    return write_index_meta(project_root, fingerprint)
 
 
 def _split_chunks(
