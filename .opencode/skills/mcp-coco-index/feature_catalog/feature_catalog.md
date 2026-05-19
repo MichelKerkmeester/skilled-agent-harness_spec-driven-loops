@@ -290,7 +290,7 @@ Creates sentence-transformer or LiteLLM embedders from user settings.
 
 #### Current Reality
 
-Default user settings choose the local sentence-transformers provider with `google/embeddinggemma-300m`; environment defaults may present the same model as `sbert/google/embeddinggemma-300m`. When the provider is `sentence-transformers`, the factory strips the legacy `sbert/` prefix and resolves the `InstructionRetrieval` query prompt for EmbeddingGemma. Other providers route through LiteLLM. Registered `ollama/` models use the LiteLLM path with an additional local daemon/model readiness check.
+Default user settings choose the local sentence-transformers provider with `nomic-ai/CodeRankEmbed`; environment defaults may present the same model as `sbert/nomic-ai/CodeRankEmbed`. When the provider is `sentence-transformers`, the factory strips the legacy `sbert/` prefix and resolves the `query` prompt prefix for nomic CodeRankEmbed (code-tuned, 768d, Metal/MPS auto-detected on Apple Silicon). Other providers route through LiteLLM. Registered `ollama/` models use the LiteLLM path with an additional local daemon/model readiness check.
 
 #### Source Files
 
@@ -742,7 +742,7 @@ Stores embedding provider, model, device and daemon environment variables global
 
 #### Current Reality
 
-The default user settings use the local sentence-transformers provider and `google/embeddinggemma-300m`; environment defaults may expose the same model as `sbert/google/embeddinggemma-300m`. The query prompt registry maps this model to `InstructionRetrieval`. The loader rejects missing or empty settings files and the saver writes explicit YAML.
+The default user settings use the local sentence-transformers provider and `nomic-ai/CodeRankEmbed`; environment defaults may expose the same model as `sbert/nomic-ai/CodeRankEmbed`. The query prompt registry maps this model to `query` (the code-search prefix; see `mcp_server/cocoindex_code/shared.py::_QUERY_PROMPT_MODELS`). The loader rejects missing or empty settings files and the saver writes explicit YAML.
 
 #### Source Files
 

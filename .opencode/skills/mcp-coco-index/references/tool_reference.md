@@ -419,7 +419,7 @@ CocoIndex Code uses YAML settings files stored in the project `.cocoindex_code/`
 
 **User settings** (`~/.cocoindex_code/global_settings.yml`):
 - `embedding.provider` -- embedding provider (e.g., `sentence-transformers`, `litellm`)
-- `embedding.model` -- embedding model name (default `google/embeddinggemma-300m`; alternatives include `openai/text-embedding-3-small`, `voyage/voyage-4`, and `gemini/text-embedding-004`)
+- `embedding.model` -- embedding model name (default `nomic-ai/CodeRankEmbed`; alternatives include `openai/text-embedding-3-small`, `voyage/voyage-4`, and `gemini/text-embedding-004`)
 - `embedding.device` -- compute device (e.g., `cpu`, `cuda`, `mps`; default: auto-detect)
 - `envs` -- environment variables map (e.g., API keys for LiteLLM providers)
 

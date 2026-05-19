@@ -20,7 +20,7 @@ User settings apply across projects and control the embedding backend plus daemo
 <!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
-The default user settings use the local sentence-transformers provider and `google/embeddinggemma-300m`; environment defaults may expose the same model as `sbert/google/embeddinggemma-300m`. The query prompt registry maps this model to `InstructionRetrieval`. The loader rejects missing or empty settings files and the saver writes explicit YAML.
+The default user settings use the local sentence-transformers provider and `nomic-ai/CodeRankEmbed`; environment defaults may expose the same model as `sbert/nomic-ai/CodeRankEmbed`. The query prompt registry maps this model to `query` (the code-search prefix; see `mcp_server/cocoindex_code/shared.py::_QUERY_PROMPT_MODELS`). The loader rejects missing or empty settings files and the saver writes explicit YAML.
 <!-- /ANCHOR:current-reality -->
 
 ---

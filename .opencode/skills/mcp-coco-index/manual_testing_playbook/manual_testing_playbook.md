@@ -324,9 +324,9 @@ This category covers 7 scenario summaries while the linked feature files remain 
 Verify global settings contain the documented default embedding model.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, check the CocoIndex Code global settings for the embedding model against the current CocoIndex CLI, daemon, and MCP surfaces in this repository. Verify Settings file exists; `embedding.provider` is `sentence-transformers`; `embedding.model` is the current EmbeddingGemma default (`google/embeddinggemma-300m` in settings or `sbert/google/embeddinggemma-300m` in environment defaults); query prompt resolves to `InstructionRetrieval`. Return a concise user-facing pass/fail verdict with the main reason.
+Prompt summary: As a manual-testing orchestrator, check the CocoIndex Code global settings for the embedding model against the current CocoIndex CLI, daemon, and MCP surfaces in this repository. Verify Settings file exists; `embedding.provider` is `sentence-transformers`; `embedding.model` is the current code-search default (`nomic-ai/CodeRankEmbed` in settings or `sbert/nomic-ai/CodeRankEmbed` in environment defaults); query prompt resolves to `query`. Return a concise user-facing pass/fail verdict with the main reason.
 
-Expected signals: Settings file exists; `embedding.provider` is `sentence-transformers`; `embedding.model` matches the current EmbeddingGemma default; query prompt resolves to `InstructionRetrieval`.
+Expected signals: Settings file exists; `embedding.provider` is `sentence-transformers`; `embedding.model` matches the current code-search default (`nomic-ai/CodeRankEmbed`); query prompt resolves to `query`.
 
 #### Test Execution
 > **Feature File:** [CFG-001](03--configuration/001-default-model-verification.md)

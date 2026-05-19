@@ -20,7 +20,7 @@ The embedder factory selects the runtime embedding backend. It supports local se
 <!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
-Default user settings choose the local sentence-transformers provider with `google/embeddinggemma-300m`; environment defaults may present the same model as `sbert/google/embeddinggemma-300m`. When the provider is `sentence-transformers`, the factory strips the legacy `sbert/` prefix and resolves the `InstructionRetrieval` query prompt for EmbeddingGemma. Other providers route through LiteLLM. Registered `ollama/` models use the LiteLLM path with an additional local daemon/model readiness check.
+Default user settings choose the local sentence-transformers provider with `nomic-ai/CodeRankEmbed`; environment defaults may present the same model as `sbert/nomic-ai/CodeRankEmbed`. When the provider is `sentence-transformers`, the factory strips the legacy `sbert/` prefix and resolves the `query` prompt prefix for nomic CodeRankEmbed (code-tuned, 768d, Metal/MPS auto-detected on Apple Silicon). Other providers route through LiteLLM. Registered `ollama/` models use the LiteLLM path with an additional local daemon/model readiness check.
 <!-- /ANCHOR:current-reality -->
 
 ---
