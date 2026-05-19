@@ -305,6 +305,30 @@ def _check_cli_parity() -> DoctorCheck:
     )
 
 
+def _check_registry_contract() -> DoctorCheck:
+    from .registry import validate_registry
+
+    try:
+        validate_registry()
+    except RuntimeError as exc:
+        return DoctorCheck(
+            id="CHECK-0",
+            name="Registry metadata contract",
+            status="FAIL",
+            message=str(exc),
+            remediation="Fix cocoindex_code.registry so every model exposes prompt and license metadata.",
+            details={"error": str(exc)},
+        )
+    return DoctorCheck(
+        id="CHECK-0",
+        name="Registry metadata contract",
+        status="PASS",
+        message="Embedder and reranker registries expose prompt and license metadata.",
+        remediation="No action needed.",
+        details={},
+    )
+
+
 def _version_tuple(version: str) -> tuple[int, int, int]:
     nums = [int(part) for part in _re.findall(r"\d+", version)[:3]]
     while len(nums) < 3:
@@ -438,9 +462,13 @@ def _license_check(
 
 
 def _check_active_embedder_license(embedder: str, commercial_profile: bool) -> DoctorCheck:
-    from .registered_embedders import commercial_safe_embedder_alternatives, get_embedder_metadata
+    from .registry import embedder_for
+    from .registered_embedders import commercial_safe_embedder_alternatives
 
-    metadata = get_embedder_metadata(embedder)
+    try:
+        metadata = embedder_for(embedder)
+    except KeyError:
+        metadata = None
     return _license_check(
         check_id="CHECK-3",
         name="Active embedder license",
@@ -459,7 +487,8 @@ def _check_active_reranker_license(
     rerank_enabled: bool,
     commercial_profile: bool,
 ) -> DoctorCheck:
-    from .registered_embedders import commercial_safe_reranker_alternatives, get_reranker_metadata
+    from .registry import reranker_for
+    from .registered_embedders import commercial_safe_reranker_alternatives
 
     if not rerank_enabled:
         return DoctorCheck(
@@ -470,7 +499,10 @@ def _check_active_reranker_license(
             remediation="No action needed.",
             details={"rerank_enabled": False},
         )
-    metadata = get_reranker_metadata(reranker)
+    try:
+        metadata = reranker_for(reranker)
+    except KeyError:
+        metadata = None
     check = _license_check(
         check_id="CHECK-4",
         name="Active reranker license",
@@ -578,6 +610,7 @@ def _run_doctor_checks() -> list[DoctorCheck]:
     embedder, reranker, rerank_enabled, commercial_profile = _active_models_from_env()
     status, project_root, status_error = _project_status_if_available()
     return [
+        _check_registry_contract(),
         _check_cli_parity(),
         _check_sentence_transformers_version(),
         _check_active_embedder_license(embedder, commercial_profile),

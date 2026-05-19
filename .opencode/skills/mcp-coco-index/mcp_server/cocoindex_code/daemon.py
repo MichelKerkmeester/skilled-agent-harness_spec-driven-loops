@@ -1078,6 +1078,9 @@ async def _dispatch(
 
 def run_daemon() -> None:
     """Main entry point for the daemon process (blocking)."""
+    from .registry import validate_registry
+
+    validate_registry()
     daemon_dir().mkdir(parents=True, exist_ok=True)
 
     # Load user settings and record mtime for staleness detection

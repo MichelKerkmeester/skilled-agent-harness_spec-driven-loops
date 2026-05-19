@@ -98,8 +98,8 @@ def test_doctor_json_output(
 
     assert result.exit_code == 0
     payload = json.loads(result.output)
-    assert len(payload["checks"]) == 6
-    assert payload["summary"]["total"] == 6
+    assert len(payload["checks"]) == 7
+    assert payload["summary"]["total"] == 7
 
 
 def test_commercial_safe_profile_blocks_jina_v3(

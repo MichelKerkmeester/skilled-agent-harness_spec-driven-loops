@@ -249,11 +249,14 @@ def build_current_index_metadata(
     document_prompt_name: str | None | object = _UNSET,
 ) -> IndexMetadata:
     from .config import config
-    from .registered_embedders import get_embedder_metadata
+    from .registry import embedder_for
     from . import shared
 
     embedder_name = embedding_model or config.embedding_model
-    metadata = get_embedder_metadata(embedder_name)
+    try:
+        metadata = embedder_for(embedder_name)
+    except KeyError:
+        metadata = None
     embedder_dim = metadata.dim if metadata is not None else None
     embedder_provider = embedding_provider or (
         "sentence-transformers" if embedder_name.startswith("sbert/") else "litellm"
@@ -309,12 +312,12 @@ def build_current_index_metadata(
 
 
 def _reranker_license(model_name: str) -> str:
-    from .registered_embedders import get_reranker_metadata
+    from .registry import rerank_license
 
-    metadata = get_reranker_metadata(model_name)
-    if metadata is not None:
-        return metadata.license
-    return "unknown"
+    try:
+        return rerank_license(model_name)
+    except KeyError:
+        return "unknown"
 
 
 def check_index_compatibility(project_root: Path, expected: IndexMetadata) -> IndexCompatibilityResult:

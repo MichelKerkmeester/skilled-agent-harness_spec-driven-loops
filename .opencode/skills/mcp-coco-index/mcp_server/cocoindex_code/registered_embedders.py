@@ -80,24 +80,42 @@ class EmbedderMetadata:
     prompt_policy: PromptPolicy = "none"
     """Whether the model expects prompt params for query and/or document embedding."""
 
+    query_prompt_name: str | None = None
+    """SentenceTransformers prompt_name for search queries, if configured."""
+
+    document_prompt_name: str | None = None
+    """SentenceTransformers prompt_name for indexed documents, if configured."""
+
     indexing_params: Mapping[str, str] = field(default_factory=dict)
     """Upstream-style params forwarded when embedding indexed documents."""
 
     query_params: Mapping[str, str] = field(default_factory=dict)
     """Upstream-style params forwarded when embedding search queries."""
 
-    @property
-    def query_prompt_name(self) -> str | None:
-        """SentenceTransformers prompt_name for search queries, if configured."""
-        return self.query_params.get("prompt_name")
-
-    @property
-    def document_prompt_name(self) -> str | None:
-        """SentenceTransformers prompt_name for indexed documents, if configured."""
-        return self.indexing_params.get("prompt_name")
-
     def __post_init__(self) -> None:
         object.__setattr__(self, "commercial_safe", license_is_commercial_safe(self.license))
+        query_params = dict(self.query_params)
+        indexing_params = dict(self.indexing_params)
+        query_prompt_name = self.query_prompt_name or query_params.get("prompt_name")
+        document_prompt_name = self.document_prompt_name or indexing_params.get("prompt_name")
+        if self.query_prompt_name is not None and query_params.get("prompt_name") not in {
+            None,
+            self.query_prompt_name,
+        }:
+            raise ValueError(f"{self.name} query_prompt_name conflicts with query_params")
+        if self.document_prompt_name is not None and indexing_params.get("prompt_name") not in {
+            None,
+            self.document_prompt_name,
+        }:
+            raise ValueError(f"{self.name} document_prompt_name conflicts with indexing_params")
+        if query_prompt_name is not None:
+            query_params["prompt_name"] = query_prompt_name
+        if document_prompt_name is not None:
+            indexing_params["prompt_name"] = document_prompt_name
+        object.__setattr__(self, "query_prompt_name", query_prompt_name)
+        object.__setattr__(self, "document_prompt_name", document_prompt_name)
+        object.__setattr__(self, "query_params", MappingProxyType(query_params))
+        object.__setattr__(self, "indexing_params", MappingProxyType(indexing_params))
 
 
 @dataclass(frozen=True)
@@ -137,8 +155,8 @@ MANIFESTS: tuple[EmbedderMetadata, ...] = (
         license="gemma",
         notes="BASELINE (pre-018). General-text model, not code-tuned. Kept as a reference baseline for benchmarks and as a fallback.",
         prompt_policy="asymmetric",
-        indexing_params=MappingProxyType({"prompt_name": "InstructionRetrieval"}),
-        query_params=MappingProxyType({"prompt_name": "InstructionRetrieval"}),
+        query_prompt_name="InstructionRetrieval",
+        document_prompt_name="InstructionRetrieval",
     ),
     EmbedderMetadata(
         name="sbert/nomic-ai/CodeRankEmbed",
@@ -151,7 +169,7 @@ MANIFESTS: tuple[EmbedderMetadata, ...] = (
         license="mit",
         notes="DEFAULT as of the 2026-05-19 nomic promotion. Code-tuned embedder that tied bge-code-v1 hit rate on the corrected fixture with lower median latency; keep 768d schema compatibility.",
         prompt_policy="query_only",
-        query_params=MappingProxyType({"prompt_name": "query"}),
+        query_prompt_name="query",
     ),
     EmbedderMetadata(
         name="sbert/BAAI/bge-code-v1",
@@ -232,6 +250,9 @@ DEFAULT_EMBEDDER_NAME = "sbert/nomic-ai/CodeRankEmbed"  # 018 follow-on: promote
 DEFAULT_RERANKER_NAME = "jinaai/jina-reranker-v3"
 _DEFAULT_NAME = DEFAULT_EMBEDDER_NAME
 
+EmbedderSpec = EmbedderMetadata
+RerankerSpec = RerankerMetadata
+
 
 def list_embedders() -> tuple[EmbedderMetadata, ...]:
     """Return the frozen registry of vetted embedder candidates."""
@@ -257,6 +278,74 @@ def get_reranker_metadata(name: str) -> RerankerMetadata | None:
         if name == entry.name or name.startswith(entry.name):
             return entry
     return None
+
+
+def _unknown_registry_key(kind: str, name: str, known_names: tuple[str, ...]) -> KeyError:
+    hint = ", ".join(known_names)
+    return KeyError(f"Unknown {kind} {name!r}. Registered {kind}s: {hint}")
+
+
+def embedder_for(name: str) -> EmbedderSpec:
+    """Return the registered embedder spec or raise a clear KeyError."""
+    metadata = get_embedder_metadata(name)
+    if metadata is None:
+        raise _unknown_registry_key("embedder", name, tuple(entry.name for entry in MANIFESTS))
+    return metadata
+
+
+def reranker_for(name: str) -> RerankerSpec:
+    """Return the registered reranker spec or raise a clear KeyError."""
+    metadata = get_reranker_metadata(name)
+    if metadata is None:
+        raise _unknown_registry_key(
+            "reranker",
+            name,
+            tuple(entry.name for entry in RERANKER_MANIFESTS),
+        )
+    return metadata
+
+
+def embed_query_prompt(name: str) -> str | None:
+    """Return the registry query prompt for an embedder."""
+    return embedder_for(name).query_prompt_name
+
+
+def embed_document_prompt(name: str) -> str | None:
+    """Return the registry document/index prompt for an embedder."""
+    return embedder_for(name).document_prompt_name
+
+
+def embedder_license(name: str) -> str:
+    """Return the registry license for an embedder."""
+    return embedder_for(name).license
+
+
+def rerank_license(name: str) -> str:
+    """Return the registry license for a reranker."""
+    return reranker_for(name).license
+
+
+def validate_registry() -> None:
+    """Fail fast if registry entries lose required prompt or license metadata."""
+    errors: list[str] = []
+    for entry in MANIFESTS:
+        if not entry.license:
+            errors.append(f"embedder {entry.name!r} missing license")
+        if not hasattr(entry, "query_prompt_name"):
+            errors.append(f"embedder {entry.name!r} missing query_prompt_name")
+        if not hasattr(entry, "document_prompt_name"):
+            errors.append(f"embedder {entry.name!r} missing document_prompt_name")
+        if entry.query_params.get("prompt_name") != entry.query_prompt_name:
+            errors.append(f"embedder {entry.name!r} query params drifted from registry prompt")
+        if entry.indexing_params.get("prompt_name") != entry.document_prompt_name:
+            errors.append(f"embedder {entry.name!r} indexing params drifted from registry prompt")
+    for entry in RERANKER_MANIFESTS:
+        if not entry.license:
+            errors.append(f"reranker {entry.name!r} missing license")
+        if not hasattr(entry, "commercial_safe"):
+            errors.append(f"reranker {entry.name!r} missing commercial_safe")
+    if errors:
+        raise RuntimeError("CocoIndex registry validation failed: " + "; ".join(errors))
 
 
 def commercial_safe_embedder_alternatives() -> list[str]:

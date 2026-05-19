@@ -10,13 +10,12 @@ from pathlib import Path
 
 from .path_utils import normalize_mirror_prefix
 from .query_expansion import _DEFAULT_SYNONYMS
+from .registry import embedder_for, reranker_for
 from .registered_embedders import (
     DEFAULT_EMBEDDER_NAME,
     DEFAULT_RERANKER_NAME,
     commercial_safe_embedder_alternatives,
     commercial_safe_reranker_alternatives,
-    get_embedder_metadata,
-    get_reranker_metadata,
 )
 
 _DEFAULT_MODEL = DEFAULT_EMBEDDER_NAME  # 018 follow-on: ties bge-code-v1 on hit rate (12/13/14 across BGE/BGE+path-class/jina-v3 lanes) with ~10% lower median latency; supersedes jina-v2-base-code default
@@ -556,7 +555,11 @@ def _warn_on_semantic_rrf_config(
 
 
 def _is_registered_embedder(name: str) -> bool:
-    return get_embedder_metadata(name) is not None
+    try:
+        embedder_for(name)
+    except KeyError:
+        return False
+    return True
 
 
 def _enforce_commercial_safe_profile(
@@ -570,7 +573,10 @@ def _enforce_commercial_safe_profile(
     if not enabled:
         return
 
-    embedder = get_embedder_metadata(embedding_model)
+    try:
+        embedder = embedder_for(embedding_model)
+    except KeyError:
+        embedder = None
     if embedder is not None and not embedder.commercial_safe:
         raise _commercial_safe_error(
             model_kind="embedder",
@@ -582,7 +588,10 @@ def _enforce_commercial_safe_profile(
     if not rerank_enabled:
         return
 
-    reranker = get_reranker_metadata(rerank_model)
+    try:
+        reranker = reranker_for(rerank_model)
+    except KeyError:
+        reranker = None
     if reranker is not None and not reranker.commercial_safe:
         raise _commercial_safe_error(
             model_kind="reranker",

@@ -21,6 +21,7 @@ if TYPE_CHECKING:
     from cocoindex.ops.litellm import LiteLLMEmbedder
     from cocoindex.ops.sentence_transformers import SentenceTransformerEmbedder
 
+from .registry import embed_document_prompt, embed_query_prompt
 from .registered_embedders import get_embedder_metadata
 from .settings import EmbeddingSettings
 
@@ -46,8 +47,10 @@ def resolve_query_prompt_name(model_name: str) -> str | None:
     env_value = os.environ.get("COCOINDEX_QUERY_PROMPT_NAME")
     if env_value is not None:
         return env_value if env_value != "" else None
-    metadata = get_embedder_metadata(_registry_name(model_name))
-    return metadata.query_prompt_name if metadata is not None else None
+    try:
+        return embed_query_prompt(_registry_name(model_name))
+    except KeyError:
+        return None
 
 
 def resolve_document_prompt_name(model_name: str) -> str | None:
@@ -59,8 +62,10 @@ def resolve_document_prompt_name(model_name: str) -> str | None:
     env_value = os.environ.get("COCOINDEX_DOCUMENT_PROMPT_NAME")
     if env_value is not None:
         return env_value if env_value != "" else None
-    metadata = get_embedder_metadata(_registry_name(model_name))
-    return metadata.document_prompt_name if metadata is not None else None
+    try:
+        return embed_document_prompt(_registry_name(model_name))
+    except KeyError:
+        return None
 
 
 def _ollama_api_base() -> str:

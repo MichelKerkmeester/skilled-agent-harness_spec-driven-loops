@@ -72,12 +72,12 @@ def index_meta_path(project_root: Path) -> Path:
 
 
 def _reranker_license(model_name: str) -> str:
-    from .registered_embedders import get_reranker_metadata
+    from .registry import rerank_license
 
-    metadata = get_reranker_metadata(model_name)
-    if metadata is not None:
-        return metadata.license
-    return "unknown"
+    try:
+        return rerank_license(model_name)
+    except KeyError:
+        return "unknown"
 
 
 def build_index_fingerprint(
