@@ -47,7 +47,7 @@ _memory:
 ### Spec packet (010-doctor-update-orchestrator/)
 
 - Parent: `spec.md`, `description.json`, `graph-metadata.json`, `resource-map.md`
-- 001-initial-doctor-commands: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `resource-map.md`, `description.json`, `graph-metadata.json`
+- 001-implement-initial-doctor-command-set: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `resource-map.md`, `description.json`, `graph-metadata.json`
 - 002-sandbox-testing-playbook: `spec.md`, `plan.md` (unchanged), `tasks.md` (unchanged), `checklist.md`, `decision-record.md`, `implementation-summary.md`, `resource-map.md`, `description.json`, `graph-metadata.json`, `handover.md`
 - 002-fix-deep-review-findings-for-doctor-update-orchestrator: all this packet's own scaffolding + scratch summaries
 

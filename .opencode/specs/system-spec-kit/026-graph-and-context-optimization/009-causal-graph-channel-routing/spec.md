@@ -51,19 +51,19 @@ Activate the graph and degree channels for intent-driven and entity-rich short q
 ## 3. SUB-PHASE CONTROL FILE
 
 - **Active child:** `002-fix-deep-review-findings-for-causal-graph-channel-routing` (planning phase as of 2026-05-11T10:30Z)
-- **Last completed child:** `001-initial-delivery`
+- **Last completed child:** `001-deliver-causal-graph-channel-routing-mvp`
 - Resume / planning entry: `/spec_kit:resume` honors `graph-metadata.json.derived.last_active_child_id` first; falls back to listing children with statuses.
 
 ---
 
 ## 4. WHAT NEEDS DONE (parent-level pointer)
 
-The parent itself owns no implementation. All work lives in the children. The deep-review report at `001-initial-delivery/review/review-report.md` is the source of truth for what 002 must close.
+The parent itself owns no implementation. All work lives in the children. The deep-review report at `001-deliver-causal-graph-channel-routing-mvp/review/review-report.md` is the source of truth for what 002 must close.
 
 **Tier-1 (release-blocking) work owned by 002:**
 - P1-C-001 — wire `invalidateEntityDensityCache()` into `memory_save` and `memory_bulk_delete` post-commit hooks.
-- P1-002 — fix `001-initial-delivery/resource-map.md:55` playbook path (210 → 272).
-- P1-003 — verify/resolve `001-initial-delivery/resource-map.md:73` changelog reference.
+- P1-002 — fix `001-deliver-causal-graph-channel-routing-mvp/resource-map.md:55` playbook path (210 → 272).
+- P1-003 — verify/resolve `001-deliver-causal-graph-channel-routing-mvp/resource-map.md:73` changelog reference.
 
 **Tier-2 / Tier-3 (polish) work owned by 002:**
 - 39 P2 findings clustered across docs (12), maintainability (8), reliability (5), defensive (5), tests (5), env-flag/security (3), perf (1, downgraded), metadata (1).

@@ -50,7 +50,7 @@ _memory:
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 6 of 6 |
-| **Predecessor** | 005-docs |
+| **Predecessor** | 005-skill-advisor-documentation |
 | **Successor** | None |
 | **Handoff Criteria** | Single daemon writer enforced at launcher boundary; SQLite opens use WAL + busy_timeout; zero `.corrupt` files generated in a 24-hour soak with concurrent-launch attempts blocked. |
 <!-- /ANCHOR:metadata -->
@@ -60,7 +60,7 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 6** of the 006-skill-advisor track. Phases 1–5 (`001-skill-graph`, `002-scorer`, `003-router`, `004-hardening`, `005-docs`) built the advisor. This phase hardens its concurrency boundary, which `004-hardening` did not cover.
+This is **Phase 6** of the 006-skill-advisor track. Phases 1–5 (`001-skill-graph`, `002-skill-advisor-scoring-engine`, `003-skill-advisor-routing-engine`, `004-skill-advisor-production-hardening`, `005-skill-advisor-documentation`) built the advisor. This phase hardens its concurrency boundary, which `004-skill-advisor-production-hardening` did not cover.
 
 **Scope Boundary**: changes are limited to the launcher + daemon-lifecycle + skill-graph DB open path. No scorer, schema, or query-surface changes.
 

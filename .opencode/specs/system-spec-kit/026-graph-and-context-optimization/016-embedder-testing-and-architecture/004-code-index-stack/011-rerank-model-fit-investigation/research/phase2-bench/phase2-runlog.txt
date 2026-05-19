@@ -471,3 +471,74 @@
 [17:12:00]   path_class_boost=0
 [17:12:00]   adapter=jina_v3
 [17:12:00] killing ccc daemon (if any) to clear _ADAPTERS cache
+[17:12:51] LANE END: jina-v3  wall_s=51
+[17:12:51] ==========================================
+[17:12:51] Phase 2 bench complete; running comparison synthesis
+[17:12:51] ==========================================
+[17:12:51] ==========================================
+[17:12:51] Phase 2 done. Comparison: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/017-hybrid-fusion-empirical-recalibration/evidence/cells/K30-V0p7-F0p7-comparison.md
+[17:12:51] ==========================================
+[17:12:55] ==========================================
+[17:12:55] Phase 2 Smoke Bench starting
+[17:12:55] Fixture: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/code-retrieval-fixture-corrected.json (18 probes)
+[17:12:55] Pinned embedder: sbert/BAAI/bge-code-v1
+[17:12:55] ==========================================
+[17:12:55] ==========================================
+[17:12:55] LANE START: baseline-bge
+[17:12:55]   rerank_model=BAAI/bge-reranker-v2-m3
+[17:12:55]   path_class_boost=0
+[17:12:55]   adapter=
+[17:12:55] killing ccc daemon (if any) to clear _ADAPTERS cache
+[17:13:43] LANE END: baseline-bge  wall_s=48
+[17:13:43] ==========================================
+[17:13:43] LANE START: bge-path-class
+[17:13:43]   rerank_model=BAAI/bge-reranker-v2-m3
+[17:13:43]   path_class_boost=1
+[17:13:43]   adapter=
+[17:13:43] killing ccc daemon (if any) to clear _ADAPTERS cache
+[17:14:27] LANE END: bge-path-class  wall_s=44
+[17:14:27] ==========================================
+[17:14:27] LANE START: jina-v3
+[17:14:27]   rerank_model=jinaai/jina-reranker-v3
+[17:14:27]   path_class_boost=0
+[17:14:27]   adapter=jina_v3
+[17:14:27] killing ccc daemon (if any) to clear _ADAPTERS cache
+[17:15:19] LANE END: jina-v3  wall_s=52
+[17:15:19] ==========================================
+[17:15:19] Phase 2 bench complete; running comparison synthesis
+[17:15:19] ==========================================
+[17:15:19] ==========================================
+[17:15:19] Phase 2 done. Comparison: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/017-hybrid-fusion-empirical-recalibration/evidence/cells/K90-V0p7-F0p7-comparison.md
+[17:15:19] ==========================================
+[17:15:23] ==========================================
+[17:15:23] Phase 2 Smoke Bench starting
+[17:15:23] Fixture: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/code-retrieval-fixture-corrected.json (18 probes)
+[17:15:23] Pinned embedder: sbert/BAAI/bge-code-v1
+[17:15:23] ==========================================
+[17:15:23] ==========================================
+[17:15:23] LANE START: baseline-bge
+[17:15:23]   rerank_model=BAAI/bge-reranker-v2-m3
+[17:15:23]   path_class_boost=0
+[17:15:23]   adapter=
+[17:15:23] killing ccc daemon (if any) to clear _ADAPTERS cache
+[17:16:09] LANE END: baseline-bge  wall_s=46
+[17:16:09] ==========================================
+[17:16:09] LANE START: bge-path-class
+[17:16:09]   rerank_model=BAAI/bge-reranker-v2-m3
+[17:16:09]   path_class_boost=1
+[17:16:09]   adapter=
+[17:16:09] killing ccc daemon (if any) to clear _ADAPTERS cache
+[17:16:55] LANE END: bge-path-class  wall_s=46
+[17:16:55] ==========================================
+[17:16:55] LANE START: jina-v3
+[17:16:55]   rerank_model=jinaai/jina-reranker-v3
+[17:16:55]   path_class_boost=0
+[17:16:55]   adapter=jina_v3
+[17:16:55] killing ccc daemon (if any) to clear _ADAPTERS cache
+[17:17:45] LANE END: jina-v3  wall_s=50
+[17:17:45] ==========================================
+[17:17:45] Phase 2 bench complete; running comparison synthesis
+[17:17:45] ==========================================
+[17:17:45] ==========================================
+[17:17:45] Phase 2 done. Comparison: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/017-hybrid-fusion-empirical-recalibration/evidence/cells/K120-V0p7-F0p7-comparison.md
+[17:17:45] ==========================================

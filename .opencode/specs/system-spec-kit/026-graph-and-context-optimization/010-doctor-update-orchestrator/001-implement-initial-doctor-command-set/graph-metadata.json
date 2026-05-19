@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-implement-initial-doctor-command-set",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-implement-initial-doctor-command-set",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [
+      "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook"
+    ],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "010-doctor-update-orchestrator",
+      "doctor update command",
+      "spec kit version migration",
+      "rebuild all databases",
+      "doctor memory",
+      "doctor causal-graph",
+      "doctor deep-loop",
+      "doctor cocoindex",
+      "cross-subsystem health dashboard",
+      "010-doctor-update-orchestrator plan",
+      "doctor command authoring plan",
+      "council 10-line spec"
+    ],
+    "key_topics": [
+      "010-doctor-update-orchestrator",
+      "doctor",
+      "update",
+      "command",
+      "spec",
+      "kit",
+      "version",
+      "migration",
+      "rebuild",
+      "databases",
+      "memory",
+      "causal-graph"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "resource-map.md",
+      "decision-record.md",
+      "mcp_server/handlers/memory-index.ts",
+      "mcp_server/database/migration-manifest.json",
+      ".opencode/commands/doctor/memory.md",
+      ".opencode/commands/doctor/assets/doctor_memory.yaml",
+      ".opencode/commands/doctor/causal-graph.md",
+      ".opencode/commands/doctor/assets/doctor_causal-graph.yaml",
+      ".opencode/commands/doctor/deep-loop.md",
+      ".opencode/commands/doctor/assets/doctor_deep-loop.yaml",
+      ".opencode/commands/doctor/cocoindex.md",
+      ".opencode/commands/doctor/assets/doctor_cocoindex.yaml",
+      ".opencode/commands/doctor/update.md",
+      ".opencode/commands/doctor/assets/doctor_update.yaml",
+      ".opencode/skills/system-spec-kit/mcp_server/database/migration-manifest.json",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/graph-metadata.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "migration-manifest.json",
+        "kind": "config",
+        "path": "mcp_server/database/migration-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "memory.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/memory.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor_memory.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor_memory.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "causal-graph.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/causal-graph.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor_causal-graph.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor_causal-graph.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-loop.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/deep-loop.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor_deep-loop.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor_deep-loop.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "cocoindex.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/cocoindex.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor_cocoindex.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor_cocoindex.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "update.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/update.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor_update.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor_update.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Doctor Update Orchestrator",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 13 of the 026 graph-and-context-optimization wrapper. The 010-graph-impact and 011-cocoindex-daemon and 012-causal-graph wrappers added the underlying systems (causal trust display, daemon resilience, channel routing); this phase exposes them as doctor commands so users can rebuild + maintain them via the standard `/doctor:*` surface. Closes the gap left by v3.4.1.0 which shipped the doctor pattern for `code-graph`, `skill-advisor`, `skill-budget`, `mcp_install`, and `mcp_debug` but not the four other databases.",
+    "created_at": "2026-05-09T12:15:31.296Z",
+    "last_save_at": "2026-05-11T08:39:07.900Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ]
+  }
+}

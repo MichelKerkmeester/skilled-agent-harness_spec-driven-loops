@@ -133,7 +133,7 @@ Run canonical context generation for the 002 packet and refresh parent metadata 
 
 ### Step 9: Final verification
 
-Run strict validation on 013 parent, 003-router-consolidation, and 004-hard-cutover; rerun route validation; verify file counts; run the case-insensitive stale invocation grep; run sandbox shell syntax checks.
+Run strict validation on 013 parent, 003-skill-advisor-routing-engine-consolidation, and 004-hard-cutover; rerun route validation; verify file counts; run the case-insensitive stale invocation grep; run sandbox shell syntax checks.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -177,7 +177,7 @@ Rollback requires restoring deleted legacy command files from git and reversing 
 <!-- ANCHOR:phase-deps -->
 ## 8. PHASE DEPENDENCIES
 
-Phase 2 depends on 003-router-consolidation being validated. It closes the 013 phase parent and has no successor phase planned.
+Phase 2 depends on 003-skill-advisor-routing-engine-consolidation being validated. It closes the 013 phase parent and has no successor phase planned.
 <!-- /ANCHOR:phase-deps -->
 
 ---

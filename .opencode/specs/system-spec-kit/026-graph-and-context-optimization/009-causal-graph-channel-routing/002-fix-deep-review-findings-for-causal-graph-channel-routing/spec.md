@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: 002 Deep-Review Remediation for 012 Causal Graph Channel Routing"
-description: "Close 3 P1 and 39 P2 findings from the 2026-05-11 10-iteration deep review (cli-opencode + deepseek/deepseek-v4-pro) of 012/001-initial-delivery. Tier-1 wires invalidateEntityDensityCache + fixes resource-map drift; Tier-2 ships ~19 code/test polish items; Tier-3 cleans graph-metadata.json + doc-staleness."
+description: "Close 3 P1 and 39 P2 findings from the 2026-05-11 10-iteration deep review (cli-opencode + deepseek/deepseek-v4-pro) of 012/001-deliver-causal-graph-channel-routing-mvp. Tier-1 wires invalidateEntityDensityCache + fixes resource-map drift; Tier-2 ships ~19 code/test polish items; Tier-3 cleans graph-metadata.json + doc-staleness."
 trigger_phrases:
   - "002-fix-deep-review-findings-for-causal-graph-channel-routing"
   - "012 deep-review remediation"
@@ -121,10 +121,10 @@ No open questions remain after T4 synthesis.
 | **Created** | 2026-05-11 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` (phase parent: 012) |
-| **Predecessor** | `001-initial-delivery` |
+| **Predecessor** | `001-deliver-causal-graph-channel-routing-mvp` |
 | **Successor** | None planned |
 | **Executor** | cli-codex `gpt-5.5` reasoning=high service_tier=fast |
-| **Source of Findings** | `001-initial-delivery/review/review-report.md` (10-iteration deep review, 2026-05-11, cli-opencode + deepseek/deepseek-v4-pro) |
+| **Source of Findings** | `001-deliver-causal-graph-channel-routing-mvp/review/review-report.md` (10-iteration deep review, 2026-05-11, cli-opencode + deepseek/deepseek-v4-pro) |
 | **Handoff Criteria** | All P1 findings RESOLVED with file:line evidence; all P2 findings either RESOLVED or explicitly accepted in `implementation-summary.md`; `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` exits 0; `npm run build` exits 0; full vitest regresses 0 tests vs pre-002 baseline. |
 <!-- /ANCHOR:metadata -->
 
@@ -138,7 +138,7 @@ Phase 002 of the 012 phase parent. 001 shipped the channel-routing override on 2
 **Scope Boundary:** Modify only the surfaces named below. Do NOT redesign the routing override, the channel-selector algorithm, or the causal-edge creation pathways. Doc/test/metadata-only changes are in scope when they close a finding.
 
 **Dependencies:**
-- The full deep-review packet at `../001-initial-delivery/review/` is the source of truth.
+- The full deep-review packet at `../001-deliver-causal-graph-channel-routing-mvp/review/` is the source of truth.
 - All 4 implementation files from 001 are still in their original locations (no moves).
 
 **Deliverables:** see §3 SCOPE and §4 REQUIREMENTS below.
@@ -153,11 +153,11 @@ Phase 002 of the 012 phase parent. 001 shipped the channel-routing override on 2
 
 ### Problem Statement
 
-The 2026-05-11 deep review of `001-initial-delivery` produced a CONDITIONAL verdict because of two release-blocking P1s and 39 P2 polish items. Specifically:
+The 2026-05-11 deep review of `001-deliver-causal-graph-channel-routing-mvp` produced a CONDITIONAL verdict because of two release-blocking P1s and 39 P2 polish items. Specifically:
 
 - **P1-C-001:** `invalidateEntityDensityCache()` is exported but never wired into `memory_save` or `memory_bulk_delete` commit hooks. The entity-density signal can sit stale for the 60s TTL after row mutations, weakening REQ-003 in burst-write scenarios.
-- **P1-002:** `001-initial-delivery/resource-map.md:55` points to playbook `210-...` but the actual file is `272-routing-telemetry-and-graph-channel-invocation.md`.
-- **P1-003:** `001-initial-delivery/resource-map.md:73` changelog entry may be missing on disk (flagged "likely OBE" — verify).
+- **P1-002:** `001-deliver-causal-graph-channel-routing-mvp/resource-map.md:55` points to playbook `210-...` but the actual file is `272-routing-telemetry-and-graph-channel-invocation.md`.
+- **P1-003:** `001-deliver-causal-graph-channel-routing-mvp/resource-map.md:73` changelog entry may be missing on disk (flagged "likely OBE" — verify).
 
 The 39 P2 findings cluster across docs (12), maintainability (8), reliability (5), defensive (5), tests (5), env-flag/security (3), perf (1, downgraded), metadata (1). None are correctness-blocking individually, but cumulatively they degrade trust in the resource-map, leave defensive coding gaps, and let cosmetic doc drift accumulate.
 
@@ -174,7 +174,7 @@ Close every P1 and P2 finding so the 012 phase parent moves from CONDITIONAL to 
 ### In Scope (Tier 1 — Release Blockers)
 
 - **Cache wiring:** call `invalidateEntityDensityCache()` from the post-commit branches of `memory-save.ts` (single-row save) and `memory-bulk-delete.ts` (bulk delete). Add one integration test asserting that the entity-density score reflects a row delete without waiting for TTL.
-- **Resource-map cleanup:** in `001-initial-delivery/resource-map.md`, fix playbook path 210 → 272 (P1-002); verify/resolve changelog row (P1-003); add missing `routing-telemetry-stress.vitest.ts` row (P2-015); add `scratch/live-smoke-results.md` + `scratch/stress-test-results.md` rows (P2-TR-002); fix Skills 8/9 and total 18/19 count mismatch (P2-TR-005).
+- **Resource-map cleanup:** in `001-deliver-causal-graph-channel-routing-mvp/resource-map.md`, fix playbook path 210 → 272 (P1-002); verify/resolve changelog row (P1-003); add missing `routing-telemetry-stress.vitest.ts` row (P2-015); add `scratch/live-smoke-results.md` + `scratch/stress-test-results.md` rows (P2-TR-002); fix Skills 8/9 and total 18/19 count mismatch (P2-TR-005).
 
 ### In Scope (Tier 2 — Code / Test Polish)
 
@@ -204,7 +204,7 @@ Query-router / routing-telemetry:
 - Extract `setEnv`/`restoreEnv` test helpers to a shared module (P2-023).
 
 Docs/traceability:
-- Fix all stale line numbers and missing references in `001-initial-delivery/`:
+- Fix all stale line numbers and missing references in `001-deliver-causal-graph-channel-routing-mvp/`:
   - `implementation-summary.md` test-count consistency 27 vs 15 vs 25 (P2-TR-001).
   - `scratch/live-smoke-results.md` shouldPreserveGraph line ref 167-189 → 183-205 (P2-TR-003).
   - `feature_catalog/12-graph-channel-preservation.md` line refs + add `routing-telemetry-stress.vitest.ts` to validation table (P2-016, P2-TR-004).
@@ -217,7 +217,7 @@ Docs/traceability:
 
 ### In Scope (Tier 3 — Metadata)
 
-- Dedup `001-initial-delivery/graph-metadata.json` `derived.key_files` duplicate entries with different path prefixes (F10-006).
+- Dedup `001-deliver-causal-graph-channel-routing-mvp/graph-metadata.json` `derived.key_files` duplicate entries with different path prefixes (F10-006).
 
 ### Out of Scope
 
@@ -243,14 +243,14 @@ Docs/traceability:
 | `mcp_server/tests/routing-telemetry-stress.vitest.ts` | Modify | Use shared setEnv/restoreEnv helpers (P2-023) |
 | `mcp_server/tests/__helpers__/test-env.ts` (new) | Create | Shared `setEnv`/`restoreEnv` helpers (P2-023) |
 | `mcp_server/tests/integration/entity-density-commit-hooks.vitest.ts` (new) | Create | Integration test for P1-C-001 |
-| `001-initial-delivery/resource-map.md` | Modify | Fix playbook path 210→272; verify changelog row; add 3 missing rows; fix count mismatch (P1-002/003, P2-015, P2-TR-002, P2-TR-005) |
-| `001-initial-delivery/implementation-summary.md` | Modify | Test-count consistency; Q2 full answer (P2-TR-001, P2-TR-006) |
-| `001-initial-delivery/spec.md` | Modify | Status field Draft→Shipped (F10-001) |
-| `001-initial-delivery/plan.md` | Modify | DoD checkboxes update (F10-002) |
-| `001-initial-delivery/handover.md` | Modify | completion_pct 95→100 (F10-003) |
-| `001-initial-delivery/checklist.md` | Modify | CHK-052 evidence (P2-TR-007) |
-| `001-initial-delivery/scratch/live-smoke-results.md` | Modify | Line ref 167-189→183-205 (P2-TR-003) |
-| `001-initial-delivery/graph-metadata.json` | Modify | Dedup key_files entries (F10-006) |
+| `001-deliver-causal-graph-channel-routing-mvp/resource-map.md` | Modify | Fix playbook path 210→272; verify changelog row; add 3 missing rows; fix count mismatch (P1-002/003, P2-015, P2-TR-002, P2-TR-005) |
+| `001-deliver-causal-graph-channel-routing-mvp/implementation-summary.md` | Modify | Test-count consistency; Q2 full answer (P2-TR-001, P2-TR-006) |
+| `001-deliver-causal-graph-channel-routing-mvp/spec.md` | Modify | Status field Draft→Shipped (F10-001) |
+| `001-deliver-causal-graph-channel-routing-mvp/plan.md` | Modify | DoD checkboxes update (F10-002) |
+| `001-deliver-causal-graph-channel-routing-mvp/handover.md` | Modify | completion_pct 95→100 (F10-003) |
+| `001-deliver-causal-graph-channel-routing-mvp/checklist.md` | Modify | CHK-052 evidence (P2-TR-007) |
+| `001-deliver-causal-graph-channel-routing-mvp/scratch/live-smoke-results.md` | Modify | Line ref 167-189→183-205 (P2-TR-003) |
+| `001-deliver-causal-graph-channel-routing-mvp/graph-metadata.json` | Modify | Dedup key_files entries (F10-006) |
 | `feature_catalog/12-graph-channel-preservation.md` | Modify | Line refs + validation table (P2-016, P2-TR-004) |
 | `playbooks/272-routing-telemetry-and-graph-channel-invocation.md` | Modify | Rate 0.6→0.4 with classifier note (P2-14) |
 <!-- /ANCHOR:scope -->
@@ -266,8 +266,8 @@ Docs/traceability:
 |----|-------------|---------------------|
 | REQ-T1-001 | `invalidateEntityDensityCache()` is called from `memory-save.ts` after a successful single-row save (P1-C-001) | Unit/integration test: save a row, call `getEntityDensityScore` once (warm cache), update the row's trigger-phrase / increase its causal-edge count, call again — score reflects new state WITHOUT waiting for 60s TTL. |
 | REQ-T1-002 | `invalidateEntityDensityCache()` is called from `memory-bulk-delete.ts` after a successful bulk delete (P1-C-001) | Integration test: seed N high-degree rows, score reflects N. Bulk-delete some. Score reflects remaining count without TTL wait. |
-| REQ-T1-003 | `001-initial-delivery/resource-map.md:55` playbook path is corrected (P1-002) | `rg -n '272-routing-telemetry-and-graph-channel-invocation' 001-initial-delivery/resource-map.md` finds row 55; no remaining `210-graph-channel-utilization` references in the file. |
-| REQ-T1-004 | `001-initial-delivery/resource-map.md:73` changelog row is resolved (P1-003) | Either (a) the referenced changelog file exists on disk AND the row's status reads `OK`, OR (b) the changelog file is created from `001-initial-delivery/changelog.md` so the row reference resolves. |
+| REQ-T1-003 | `001-deliver-causal-graph-channel-routing-mvp/resource-map.md:55` playbook path is corrected (P1-002) | `rg -n '272-routing-telemetry-and-graph-channel-invocation' 001-deliver-causal-graph-channel-routing-mvp/resource-map.md` finds row 55; no remaining `210-graph-channel-utilization` references in the file. |
+| REQ-T1-004 | `001-deliver-causal-graph-channel-routing-mvp/resource-map.md:73` changelog row is resolved (P1-003) | Either (a) the referenced changelog file exists on disk AND the row's status reads `OK`, OR (b) the changelog file is created from `001-deliver-causal-graph-channel-routing-mvp/changelog.md` so the row reference resolves. |
 
 ### P1 — Required (complete OR user-approved deferral)
 
@@ -308,9 +308,9 @@ Docs/traceability:
 |------|------|--------|------------|
 | Risk | `memory_save` / `memory_bulk_delete` is a hot path; adding a cache-invalidate call could add latency | Low | `invalidateEntityDensityCache()` is an in-process state mutation (~µs); call it AFTER commit so a failed save does not invalidate the cache |
 | Risk | Tightening env-flag parsing (ADV-001) breaks consumers that set `SPECKIT_GRAPH_CHANNEL_PRESERVATION=0` expecting `enabled` | Low | Document the change in `changelog.md`; the existing default is ON, and "0" being treated as enabled was a bug, not a documented contract |
-| Risk | Resource-map fixes (P1-002, P1-003, P2-015, P2-TR-002, P2-TR-005) touch the file deep-review found inconsistencies in; risk of new drift while editing | Low | Run `find 001-initial-delivery -type f | sort` and reconcile against resource-map.md row list before commit |
+| Risk | Resource-map fixes (P1-002, P1-003, P2-015, P2-TR-002, P2-TR-005) touch the file deep-review found inconsistencies in; risk of new drift while editing | Low | Run `find 001-deliver-causal-graph-channel-routing-mvp -type f | sort` and reconcile against resource-map.md row list before commit |
 | Risk | cli-codex dispatches sometimes silently fail under heavy parallelism (per memory `feedback_cli_dispatch_unreliability.md`) | Med | Run one cli-codex dispatch at a time; verify each diff before moving to the next; do not run parallel dispatches |
-| Dependency | The 001-initial-delivery code surface stays unchanged in signatures | Required | Spec-coupled by REQ-001..REQ-008 contract; do not change exported function shapes |
+| Dependency | The 001-deliver-causal-graph-channel-routing-mvp code surface stays unchanged in signatures | Required | Spec-coupled by REQ-001..REQ-008 contract; do not change exported function shapes |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -332,7 +332,7 @@ Docs/traceability:
 | Dimension | Rating | Notes |
 |-----------|--------|-------|
 | **Code surface** | Low–Medium | ~250–350 LOC across 6 source files + 3 test files + 1 new helper. No new modules with novel logic. |
-| **Cross-file coupling** | Medium | Cache wiring touches 2 handlers + 1 lib. Resource-map drift touches 5+ docs in `001-initial-delivery/`. |
+| **Cross-file coupling** | Medium | Cache wiring touches 2 handlers + 1 lib. Resource-map drift touches 5+ docs in `001-deliver-causal-graph-channel-routing-mvp/`. |
 | **Risk of regression** | Low | All changes are additive (new calls, new tests) or local refactors (JSDoc, helper extraction). The behavior contract from 001 is unchanged. |
 | **Operational complexity** | Low | No new infra. |
 | **Time-to-value** | Fast | ~1 day Tier 1, ½ day Tier 2 code, ½ day Tier 2 docs, 10 min Tier 3. |
@@ -350,7 +350,7 @@ Overall complexity: **Medium-Low**. Warrants Level 3 (decision-record.md) only b
 - **Env-flag legacy value:** if a user has `SPECKIT_GRAPH_CHANNEL_PRESERVATION=0` set, the override goes from "enabled" to "disabled" after ADV-001 fix. Changelog must document this. Default remains ON, so unset users see no behavior change.
 - **`safeGetDb` returns null on warn-once path:** ensure the warn fires AT MOST once per process lifetime; do not spam the log.
 - **`getRoutingTelemetrySnapshot` try/catch fallback:** the fallback `{ graphChannelInvocationRate: 0, channelInvocationRates: {...zeroed}, totalRecorded: 0, windowSize: WINDOW_SIZE }` must round-trip through the existing `memory_health.data.routing` schema.
-- **Resource-map row 73 verification:** before writing, run `ls -la 001-initial-delivery/changelog/` to determine OBE vs missing-file before deciding which fix branch to take.
+- **Resource-map row 73 verification:** before writing, run `ls -la 001-deliver-causal-graph-channel-routing-mvp/changelog/` to determine OBE vs missing-file before deciding which fix branch to take.
 <!-- /ANCHOR:edge-cases -->
 
 ---

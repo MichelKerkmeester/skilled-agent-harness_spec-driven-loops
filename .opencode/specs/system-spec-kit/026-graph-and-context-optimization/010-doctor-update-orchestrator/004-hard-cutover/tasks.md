@@ -63,7 +63,7 @@ Task IDs are stable for checklist and implementation-summary references.
 - [ ] Static-verify router/manifest YAML table.
 - [ ] Run `route-validate.sh`.
 - [ ] Run `route-validate.sh --self-test`.
-- [ ] Mark 003-router-consolidation completion metadata to 100.
+- [ ] Mark 003-skill-advisor-routing-engine-consolidation completion metadata to 100.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -118,7 +118,7 @@ Task IDs are stable for checklist and implementation-summary references.
 
 ### T-201 - Strict validate packets
 - [ ] **Effort:** 10-15 min
-- [ ] Validate 013 parent, 003-router-consolidation, and 004-hard-cutover.
+- [ ] Validate 013 parent, 003-skill-advisor-routing-engine-consolidation, and 004-hard-cutover.
 
 ### T-202 - Route and inventory verification
 - [ ] **Effort:** 10 min

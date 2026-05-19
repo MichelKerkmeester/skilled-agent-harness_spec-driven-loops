@@ -11,10 +11,10 @@ trigger_phrases:
   - "/doctor cocoindex"
   - "doctor update orchestrator"
   - "spec-kit version migration"
-  - "001-initial-doctor-commands"
+  - "001-implement-initial-doctor-command-set"
   - "002-sandbox-testing-playbook"
   - "002-fix-deep-review-findings-for-doctor-update-orchestrator"
-  - "003-router-consolidation"
+  - "003-skill-advisor-routing-engine-consolidation"
   - "004-hard-cutover"
 importance_tier: "important"
 contextType: "implementation"
@@ -27,11 +27,11 @@ _memory:
     next_safe_action: "Ship calibration packet for 23 manual playbook scenarios (deferred from 014)"
     blockers: []
     key_files:
-      - "001-initial-doctor-commands/spec.md"
-      - "001-initial-doctor-commands/decision-record.md"
+      - "001-implement-initial-doctor-command-set/spec.md"
+      - "001-implement-initial-doctor-command-set/decision-record.md"
       - "002-sandbox-testing-playbook/spec.md"
       - "002-fix-deep-review-findings-for-doctor-update-orchestrator/spec.md"
-      - "003-router-consolidation/spec.md"
+      - "003-skill-advisor-routing-engine-consolidation/spec.md"
       - "004-hard-cutover/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -108,10 +108,10 @@ Group the complete doctor command surface timeline under one phase root so the s
 
 | Phase | Folder | Status | Description |
 |-------|--------|--------|-------------|
-| 1 | `001-initial-doctor-commands/` | Complete | Feature Specification: 5 isolated `/doctor:*` commands (memory, causal-graph, deep-loop, cocoindex) + unified `/doctor:update` orchestrator implementing the council 10-line spec, plus the migration manifest for 3.3.0.0 → 3.4.1.0. Authored via cli-codex gpt-5.5 high fast across 5 sequential dispatch tracks; 23 deliverables total (5 cmds + 10 yamls + 1 manifest + 7 packet docs). G1+G2 verification gates passed. |
+| 1 | `001-implement-initial-doctor-command-set/` | Complete | Feature Specification: 5 isolated `/doctor:*` commands (memory, causal-graph, deep-loop, cocoindex) + unified `/doctor:update` orchestrator implementing the council 10-line spec, plus the migration manifest for 3.3.0.0 → 3.4.1.0. Authored via cli-codex gpt-5.5 high fast across 5 sequential dispatch tracks; 23 deliverables total (5 cmds + 10 yamls + 1 manifest + 7 packet docs). G1+G2 verification gates passed. |
 | 2 | `002-sandbox-testing-playbook/` | Complete | Feature Specification: Docker sandbox + 23-scenario manual testing playbook covering all 5 doctor commands and the version-migration end-to-end. Adds new playbook category `23--doctor-commands/` (IDs 323-347 with gaps at 337 and 343) plus `_sandbox/23--doctor-commands/` with Dockerfile, docker-compose.yml, fixture-fetch script, 4 harness scripts, and 23 per-scenario shell wrappers. |
 | 3 | `002-fix-deep-review-findings-for-doctor-update-orchestrator/` | Complete | RM-8 doc-honesty + security hardening + cross-runtime mirror remediation that closed 30/30 P1 and 28/30 P2 findings from the original deep-review (commit `8d794afad`). 4 sequential cli-codex (gpt-5.5 high fast) batches: A doc honesty, B security (`flock(2)` + `--no-audit` drop + cap_drop), C cross-runtime mirror (10 doctor commands × 4 runtimes), D P2 cleanup. Verdict moved CONDITIONAL → PASS (hasAdvisories=true) per re-review commit `76daa9ef0`. |
-| 4 | `003-router-consolidation/` | Complete | Router consolidation (was packet 014 Phase 1, dissolved into 013): authored `.opencode/commands/doctor.md` (argv-positional router) + `doctor/mcp.md` + `_routes.yaml` manifest + route-validate.sh CI assertion. 4-runtime mirrors (.claude / .gemini / .codex). Additive ship — old 10 `.md` commands still present during this phase. |
+| 4 | `003-skill-advisor-routing-engine-consolidation/` | Complete | Router consolidation (was packet 014 Phase 1, dissolved into 013): authored `.opencode/commands/doctor.md` (argv-positional router) + `doctor/mcp.md` + `_routes.yaml` manifest + route-validate.sh CI assertion. 4-runtime mirrors (.claude / .gemini / .codex). Additive ship — old 10 `.md` commands still present during this phase. |
 | 5 | `004-hard-cutover/` | Complete | Hard cutover (was packet 014 Phase 2, dissolved into 013): DELETED 9 legacy `/doctor:<name>.md` files across `.opencode` + `.gemini`; sed-updated 23 manual playbook scenarios + 28 sandbox shell scripts + 5 YAML assets + 3 install guides + sk-doc references + feature catalog + 013 historical spec docs (94 substitutions across 15 files); advisor reindex via `advisor_rebuild`. Final state: 3 `.md` files (router + mcp + update) per runtime; 10 unchanged YAML workflows. |
 <!-- /ANCHOR:phase-map -->
 
@@ -171,7 +171,7 @@ Group the complete doctor command surface timeline under one phase root so the s
 
 (All resolved at intake — kept for audit trail.)
 
-- **Q-A** *(answered 2026-05-09)*: Spec packet location for the sandbox playbook? **Answer**: New child `002-sandbox-testing-playbook/` inside this phase parent (parallel to `001-initial-doctor-commands/`).
+- **Q-A** *(answered 2026-05-09)*: Spec packet location for the sandbox playbook? **Answer**: New child `002-sandbox-testing-playbook/` inside this phase parent (parallel to `001-implement-initial-doctor-command-set/`).
 - **Q-B** *(answered 2026-05-09)*: Manual playbook home — packet-local or skill-level? **Answer**: Skill-level at `system-spec-kit/manual_testing_playbook/23--doctor-commands/` (matches existing 22-category convention).
 - **Q-C** *(answered 2026-05-09)*: Sandbox harness location? **Answer**: `manual_testing_playbook/_sandbox/23--doctor-commands/` (sibling to Markdown categories with `_` prefix to keep out of validator scans).
 - **Q-D** *(answered 2026-05-09)*: Fixture archive hosting? **Answer**: External download via `fetch-fixtures.sh` at sandbox setup time (cleanest repo footprint).
@@ -183,7 +183,7 @@ Group the complete doctor command surface timeline under one phase root so the s
 <!--
 PHASE-PARENT SPEC + LEVEL 1 (~210 lines)
 - Lean trio at parent (this file + description.json + graph-metadata.json)
-- 2 children (001-initial-doctor-commands complete, 002-sandbox-testing-playbook in progress)
+- 2 children (001-implement-initial-doctor-command-set complete, 002-sandbox-testing-playbook in progress)
 - No plan/tasks/checklist/decision-record/implementation-summary at parent (those live in children)
 - PHASE DOCUMENTATION MAP enumerates child layout
 - REQ-P-### tracks cross-child outcomes only; per-command/per-scenario REQs live in children

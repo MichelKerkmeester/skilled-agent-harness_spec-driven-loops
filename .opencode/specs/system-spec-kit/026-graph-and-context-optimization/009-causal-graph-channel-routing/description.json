@@ -1,7 +1,7 @@
 {
   "level": "3",
   "specFolder": "026-graph-and-context-optimization/009-causal-graph-channel-routing",
-  "description": "Phase parent for graph-channel routing utilization. 001-initial-delivery ships the override (complete, CONDITIONAL deep-review verdict). 002-fix-deep-review-findings-for-causal-graph-channel-routing closes 3 P1 + 39 P2 deep-review findings via cli-codex gpt-5.5 reasoning=high service_tier=fast.",
+  "description": "Phase parent for graph-channel routing utilization. 001-deliver-causal-graph-channel-routing-mvp ships the override (complete, CONDITIONAL deep-review verdict). 002-fix-deep-review-findings-for-causal-graph-channel-routing closes 3 P1 + 39 P2 deep-review findings via cli-codex gpt-5.5 reasoning=high service_tier=fast.",
   "keywords": [
     "009-causal-graph-channel-routing",
     "012 phase parent",

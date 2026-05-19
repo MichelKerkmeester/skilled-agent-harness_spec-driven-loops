@@ -1,9 +1,9 @@
 {
   "childTopology": [
-    "001-initial-doctor-commands",
+    "001-implement-initial-doctor-command-set",
     "002-sandbox-testing-playbook",
     "002-fix-deep-review-findings-for-doctor-update-orchestrator",
-    "003-router-consolidation",
+    "003-skill-advisor-routing-engine-consolidation",
     "004-hard-cutover"
   ],
   "specFolder": "010-doctor-update-orchestrator",

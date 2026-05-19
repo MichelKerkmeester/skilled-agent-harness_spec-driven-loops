@@ -1,0 +1,10 @@
+{
+  "spec_folder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-implement-initial-doctor-command-set",
+  "current_round": 1,
+  "max_rounds": 3,
+  "seats_per_round": 3,
+  "convergence_signal": "two-of-three-agree",
+  "created_at": "2026-05-09T19:45:00Z",
+  "updated_at": "2026-05-09T19:45:00Z",
+  "status": "complete"
+}

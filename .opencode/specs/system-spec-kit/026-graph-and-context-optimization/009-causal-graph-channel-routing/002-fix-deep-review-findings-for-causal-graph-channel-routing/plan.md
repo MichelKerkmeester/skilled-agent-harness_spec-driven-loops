@@ -77,17 +77,17 @@ Per `feedback_cli_dispatch_unreliability.md`, dispatches run **sequentially**, o
 
 **Files:**
 - New: `mcp_server/tests/integration/entity-density-commit-hooks.vitest.ts`
-- Modify: `001-initial-delivery/resource-map.md`
+- Modify: `001-deliver-causal-graph-channel-routing-mvp/resource-map.md`
 
 **Change:**
 - Write integration test: seed a high-degree row, call `getEntityDensityScore` (warms cache), bulk-delete the row, call again — score reflects deletion WITHOUT 60s TTL wait.
 - Fix `resource-map.md:55` playbook 210 → 272 (P1-002).
-- Verify `resource-map.md:73`: run `ls -la 001-initial-delivery/changelog/`; if missing, create the changelog file from `001-initial-delivery/changelog.md`; either way, mark row status `OK` (P1-003).
+- Verify `resource-map.md:73`: run `ls -la 001-deliver-causal-graph-channel-routing-mvp/changelog/`; if missing, create the changelog file from `001-deliver-causal-graph-channel-routing-mvp/changelog.md`; either way, mark row status `OK` (P1-003).
 - Add missing `routing-telemetry-stress.vitest.ts` row (P2-015).
 - Add `scratch/live-smoke-results.md` + `scratch/stress-test-results.md` rows (P2-TR-002).
 - Fix Skills 8/9 and total 18/19 count mismatch (P2-TR-005).
 
-**Acceptance:** `vitest run mcp_server/tests/integration/entity-density-commit-hooks.vitest.ts` passes; `rg -n '210-graph-channel-utilization' 001-initial-delivery/resource-map.md` returns 0 matches; row counts verified.
+**Acceptance:** `vitest run mcp_server/tests/integration/entity-density-commit-hooks.vitest.ts` passes; `rg -n '210-graph-channel-utilization' 001-deliver-causal-graph-channel-routing-mvp/resource-map.md` returns 0 matches; row counts verified.
 
 ---
 
@@ -177,28 +177,28 @@ Per `feedback_cli_dispatch_unreliability.md`, dispatches run **sequentially**, o
 
 ## 5. TIER 2b — DOC POLISH (7 batches)
 
-### Batch T2b.1 — `001-initial-delivery/spec.md` Status (F10-001)
+### Batch T2b.1 — `001-deliver-causal-graph-channel-routing-mvp/spec.md` Status (F10-001)
 
 Change Status `Draft` → `Shipped (012/001 closed 2026-05-08; remediation in 012/002)`.
 
-### Batch T2b.2 — `001-initial-delivery/plan.md` DoD (F10-002)
+### Batch T2b.2 — `001-deliver-causal-graph-channel-routing-mvp/plan.md` DoD (F10-002)
 
 Tick all DoD checkboxes that are actually done; add a note that the 002 packet is the next-step.
 
-### Batch T2b.3 — `001-initial-delivery/handover.md` completion (F10-003)
+### Batch T2b.3 — `001-deliver-causal-graph-channel-routing-mvp/handover.md` completion (F10-003)
 
 Update `completion_pct: 95` → `100`. Update the most-recent-action line to reference the 2026-05-11 deep-review verdict.
 
-### Batch T2b.4 — `001-initial-delivery/implementation-summary.md` test counts + Q2 (P2-TR-001, P2-TR-006)
+### Batch T2b.4 — `001-deliver-causal-graph-channel-routing-mvp/implementation-summary.md` test counts + Q2 (P2-TR-001, P2-TR-006)
 
 - Fix the internal test-count inconsistency: pick one canonical number (the suite that runs in CI today; cite by `vitest run` output) and update the 3 mention sites (lines 87, 124, and any third drift point).
 - Expand Q2 answer (rate band) to a single full paragraph that ties the live smoke result to the SC-001 threshold and the deferred recall/precision pipeline.
 
-### Batch T2b.5 — `001-initial-delivery/checklist.md` CHK-052 (P2-TR-007)
+### Batch T2b.5 — `001-deliver-causal-graph-channel-routing-mvp/checklist.md` CHK-052 (P2-TR-007)
 
 Append `routing-telemetry-stress.vitest.ts` to the CHK-052 evidence enumeration. Verify no other CHK row has the same omission.
 
-### Batch T2b.6 — `001-initial-delivery/scratch/live-smoke-results.md` line ref (P2-TR-003)
+### Batch T2b.6 — `001-deliver-causal-graph-channel-routing-mvp/scratch/live-smoke-results.md` line ref (P2-TR-003)
 
 Fix the stale `shouldPreserveGraph` line reference `167-189` → `183-205`.
 
@@ -211,7 +211,7 @@ Fix the stale `shouldPreserveGraph` line reference `167-189` → `183-205`.
 
 ## 6. TIER 3 — METADATA (1 batch)
 
-### Batch T3.1 — `001-initial-delivery/graph-metadata.json` key_files dedup (F10-006)
+### Batch T3.1 — `001-deliver-causal-graph-channel-routing-mvp/graph-metadata.json` key_files dedup (F10-006)
 
 Normalize all `derived.key_files` entries to the same path prefix (e.g., always `.opencode/skills/...` with no leading `specs/`). Drop any duplicates. Final list should be ≤19 unique entries.
 

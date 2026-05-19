@@ -1,5 +1,5 @@
 ---
-title: "Checklist: Doctor Router Phase 1 [system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/003-router-consolidation/checklist]"
+title: "Checklist: Doctor Router Phase 1 [system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/003-skill-advisor-routing-engine-consolidation/checklist]"
 description: "Verification gates and completion criteria for Phase 1 (additive /doctor router + /doctor:mcp + _routes.yaml + 4-runtime mirrors)."
 trigger_phrases:
   - "013/004 router phase checklist"
@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/003-router-consolidation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/003-skill-advisor-routing-engine-consolidation"
     last_updated_at: "2026-05-11T16:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Phase 1 router shipped + verified"
@@ -52,7 +52,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->"
 
 - [ ] CHK-001 [P0]: 013 phase parent has lean trio (`spec.md`, `description.json`, `graph-metadata.json`) — no heavy docs at parent.
 - [ ] CHK-002 [P0]: 013 phase parent `graph-metadata.json` `parent_id` = `system-spec-kit/026-graph-and-context-optimization`.
-- [ ] CHK-003 [P0]: 013 phase parent `children_ids` includes `system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/003-router-consolidation`.
+- [ ] CHK-003 [P0]: 013 phase parent `children_ids` includes `system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/003-skill-advisor-routing-engine-consolidation`.
 - [ ] CHK-004 [P0]: 001-router-phase has full Level 2 doc set (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `description.json`, `graph-metadata.json`).
 - [ ] CHK-005 [P1]: 001-router-phase `description.json` `parentChain` = `["system-spec-kit", "026-graph-and-context-optimization", "010-doctor-update-orchestrator"]`.
 - [ ] CHK-006 [P0]: Both packets pass `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <path> --strict` (exit 0).
@@ -186,7 +186,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->"
 ## DOCUMENTATION
 
 - [ ] CHK-901 [P1]: `generate-context.js` run for this packet; updated `description.json` + `graph-metadata.json`.
-- [ ] CHK-902 [P1]: Phase-parent `graph-metadata.json` `derived.last_active_child_id` = `003-router-consolidation`.
+- [ ] CHK-902 [P1]: Phase-parent `graph-metadata.json` `derived.last_active_child_id` = `003-skill-advisor-routing-engine-consolidation`.
 - [ ] CHK-903 [P2]: Phase-parent `_memory.continuity.next_safe_action` updated to `Scaffold 004-hard-cutover`.
 - [ ] CHK-904 [P1]: `_memory.continuity.completion_pct` on this packet = 100.
 <!-- /ANCHOR:docs -->

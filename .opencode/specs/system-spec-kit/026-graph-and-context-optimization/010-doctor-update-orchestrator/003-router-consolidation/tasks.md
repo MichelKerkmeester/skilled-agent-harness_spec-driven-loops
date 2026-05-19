@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Doctor Router Phase 1 [system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/003-router-consolidation/tasks]"
+title: "Tasks: Doctor Router Phase 1 [system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/003-skill-advisor-routing-engine-consolidation/tasks]"
 description: "Decomposed task list for the additive /doctor router + /doctor:mcp + _routes.yaml + route-validate.sh + 4-runtime mirrors."
 trigger_phrases:
   - "013/004 router phase tasks"
@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/003-router-consolidation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/003-skill-advisor-routing-engine-consolidation"
     last_updated_at: "2026-05-11T16:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Phase 1 router shipped + verified"
@@ -59,7 +59,7 @@ Each task keeps its original `T-###` identifier so references from `plan.md`, `c
   - `.opencode/specs/.../010-doctor-update-orchestrator/description.json`
   - `.opencode/specs/.../010-doctor-update-orchestrator/graph-metadata.json`
 
-### T-002 — Scaffold 003-router-consolidation Level 2 docs
+### T-002 — Scaffold 003-skill-advisor-routing-engine-consolidation Level 2 docs
 - [~] **Effort:** 30-40 min
 - [x] `spec.md`
 - [x] `plan.md`

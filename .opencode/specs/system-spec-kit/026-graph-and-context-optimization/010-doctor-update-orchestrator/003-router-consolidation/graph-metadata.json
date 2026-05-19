@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/003-router-consolidation",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/003-router-consolidation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/003-skill-advisor-routing-engine-consolidation",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/003-skill-advisor-routing-engine-consolidation",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator",
   "children_ids": [],
   "migrated": false,
   "migration_source": null,
   "manual": {
     "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-initial-doctor-commands"
+      "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-implement-initial-doctor-command-set"
     ],
     "supersedes": [],
     "related_to": []

@@ -94,14 +94,14 @@ Move 013 from CONDITIONAL → PASS by resolving all 60 findings: documentation r
 ### In Scope
 
 **Batch A — Doc honesty (P1 clusters A-F + part of D)**:
-- Re-run `generate-context.js` on `001-initial-doctor-commands` to fix `description.json.specFolder` (cluster E)
+- Re-run `generate-context.js` on `001-implement-initial-doctor-command-set` to fix `description.json.specFolder` (cluster E)
 - Re-run `generate-context.js` on `002-sandbox-testing-playbook` to refresh `last_active_child_id` (cluster A) — verify post-regen that parent metadata stays correct (per memory `feedback_generate_context_regenerates_parent_metadata.md`)
 - Manually patch parent `graph-metadata.json` `derived.status: "planned"` → `"in_progress"`
 - Reconcile 001 `implementation-summary.md` to consistent ~95% completion: title + body table + continuity `completion_pct` aligned (cluster B)
 - Reconcile 002 `implementation-summary.md` to consistent ~95% completion: continuity `completion_pct: 70` → `95` (cluster C)
 - Fix 002 `spec.md` SC-001 "25 scenarios" → "23 scenarios" (cluster C)
 - Fix parent `spec.md:105` Phase Map "21 yamls" → "10 yamls" (or actual on-disk count) (cluster D)
-- Mark `001-initial-doctor-commands/checklist.md` items with `[x]` + evidence anchors where verified (clusters B)
+- Mark `001-implement-initial-doctor-command-set/checklist.md` items with `[x]` + evidence anchors where verified (clusters B)
 - Mark `002-sandbox-testing-playbook/checklist.md` items with `[x]` + evidence anchors where verified (cluster C)
 - Bulk replace `Status: PLANNED` → `Status: OK` in 001 + 002 `resource-map.md` for files verified on disk (cluster F)
 - Drop the stale `.opencode/skill` symlink row from parent `resource-map.md` (cluster F)
@@ -147,12 +147,12 @@ Approximate list (final list confirmed at each batch dispatch):
 | `.../010-doctor-update-orchestrator/graph-metadata.json` | Modify (derived.status, derived.last_active_child_id) | A |
 | `.../010-doctor-update-orchestrator/spec.md` | Modify (Phase Map yaml count + REQ-P-001) | A + D |
 | `.../010-doctor-update-orchestrator/resource-map.md` | Modify (drop .opencode/skill row) | A |
-| `.../001-initial-doctor-commands/description.json` | Regenerate via generate-context.js | A |
-| `.../001-initial-doctor-commands/spec.md` | Modify (continuity refresh) | A + D |
-| `.../001-initial-doctor-commands/tasks.md` | Modify (T-011..T-046 status) | A |
-| `.../001-initial-doctor-commands/checklist.md` | Modify (mark items with evidence) | A |
-| `.../001-initial-doctor-commands/implementation-summary.md` | Modify (reconcile completion state) | A |
-| `.../001-initial-doctor-commands/resource-map.md` | Modify (PLANNED → OK bulk) | A |
+| `.../001-implement-initial-doctor-command-set/description.json` | Regenerate via generate-context.js | A |
+| `.../001-implement-initial-doctor-command-set/spec.md` | Modify (continuity refresh) | A + D |
+| `.../001-implement-initial-doctor-command-set/tasks.md` | Modify (T-011..T-046 status) | A |
+| `.../001-implement-initial-doctor-command-set/checklist.md` | Modify (mark items with evidence) | A |
+| `.../001-implement-initial-doctor-command-set/implementation-summary.md` | Modify (reconcile completion state) | A |
+| `.../001-implement-initial-doctor-command-set/resource-map.md` | Modify (PLANNED → OK bulk) | A |
 | `.../002-sandbox-testing-playbook/spec.md` | Modify (SC-001 scenario count, continuity) | A + D |
 | `.../002-sandbox-testing-playbook/checklist.md` | Modify (mark items with evidence) | A |
 | `.../002-sandbox-testing-playbook/implementation-summary.md` | Modify (continuity completion_pct) | A |
@@ -195,7 +195,7 @@ Approximate list (final list confirmed at each batch dispatch):
 
 - **SC-001**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-fix-deep-review-findings-for-doctor-update-orchestrator --strict` exits 0.
 - **SC-002**: Re-run of `/spec_kit:deep-review:auto` on `010-doctor-update-orchestrator` (post-remediation, optional) emits a PASS or PASS-with-advisories verdict, with the 30 P1 findings closed.
-- **SC-003**: `001-initial-doctor-commands/checklist.md` and `002-sandbox-testing-playbook/checklist.md` show `[x]` on items with disk evidence; no `[ ]` items where evidence exists.
+- **SC-003**: `001-implement-initial-doctor-command-set/checklist.md` and `002-sandbox-testing-playbook/checklist.md` show `[x]` on items with disk evidence; no `[ ]` items where evidence exists.
 - **SC-004**: `find .opencode .claude .codex .gemini -path '*/commands/doctor/*'` shows 5 commands × 4 runtimes = 20 files.
 <!-- /ANCHOR:success-criteria -->
 

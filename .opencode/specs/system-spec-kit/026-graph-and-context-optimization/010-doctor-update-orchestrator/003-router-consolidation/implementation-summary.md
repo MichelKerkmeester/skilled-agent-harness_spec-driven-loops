@@ -10,7 +10,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/003-router-consolidation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/003-skill-advisor-routing-engine-consolidation"
     last_updated_at: "2026-05-11T16:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Phase 1 router shipped + verified"
@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/003-router-consolidation` |
+| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/003-skill-advisor-routing-engine-consolidation` |
 | **Status** | In Progress |
 | **Level** | 2 |
 | **Phase** | Phase 1: additive router |
@@ -144,5 +144,5 @@ None in this strict-validation documentation pass.
 <!-- ANCHOR:next-session -->
 ## Next Session Continuation
 
-Run strict validation for `003-router-consolidation`, patch any remaining template-schema findings, then update checklist evidence once validation exits 0.
+Run strict validation for `003-skill-advisor-routing-engine-consolidation`, patch any remaining template-schema findings, then update checklist evidence once validation exits 0.
 <!-- /ANCHOR:next-session -->

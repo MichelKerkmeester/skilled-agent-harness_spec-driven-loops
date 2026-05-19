@@ -38,7 +38,7 @@ _memory:
 
 ## Phase A — Doc Honesty (cli-codex gpt-5.5 high fast)
 
-- [ ] T-A01 Run `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '{...}' .opencode/specs/.../001-initial-doctor-commands` → fixes description.json.specFolder
+- [ ] T-A01 Run `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '{...}' .opencode/specs/.../001-implement-initial-doctor-command-set` → fixes description.json.specFolder
 - [ ] T-A02 Run same on 002-sandbox-testing-playbook → refreshes last_active_child_id
 - [ ] T-A03 Restore parent graph-metadata.json: `derived.status: "in_progress"`, preserve `derived.last_active_child_id`, `parent_id`, `manual.depends_on`
 - [ ] T-A04 Reconcile `001/implementation-summary.md`: title "COMPLETE" → "COMPLETE (~95%)"; body table Status row → "COMPLETE (~95%)"; continuity `completion_pct: 99` → `95`
@@ -83,7 +83,7 @@ _memory:
 - [ ] T-D02 If sandbox Dockerfile uses `debian:bookworm`, switch to `debian:bookworm-slim` (R5-P2-001)
 - [ ] T-D03 Sandbox guard: locate the guard that returns success-on-cannot-run; change to return SKIP (R5-P2-002)
 - [ ] T-D04 Edit parent `spec.md:117` REQ-P-001 acceptance criterion to allow cross-cutting docs (handover.md, resource-map.md) alongside the lean trio (R8-P2-002)
-- [ ] T-D05 Fix `packet_pointer` strings in 001 child docs that are missing the `/001-initial-doctor-commands` suffix (R9-P2-004)
+- [ ] T-D05 Fix `packet_pointer` strings in 001 child docs that are missing the `/001-implement-initial-doctor-command-set` suffix (R9-P2-004)
 - [ ] T-D06 Address remaining iter-009 P2 findings R9-P2-001..009 case-by-case
 - [ ] T-D07 R7-P2-002: 002 SC-001 already fixed in T-A06 — confirm coverage
 - [ ] T-D-VERIFY targeted re-grep per P2 ID finds zero unresolved hits; checklist marks each P2 `[x]` or `[~]`

@@ -5,10 +5,10 @@
   "parent_id": "system-spec-kit/026-graph-and-context-optimization",
   "children_ids": [
     "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph",
-    "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-scorer",
-    "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/003-router",
-    "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-hardening",
-    "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-docs"
+    "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-skill-advisor-scoring-engine",
+    "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/003-skill-advisor-routing-engine",
+    "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-skill-advisor-production-hardening",
+    "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation"
   ],
   "migrated": true,
   "migration_source": "legacy",

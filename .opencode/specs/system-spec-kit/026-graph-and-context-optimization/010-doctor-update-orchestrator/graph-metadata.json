@@ -4,9 +4,9 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization",
   "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-initial-doctor-commands",
+    "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-implement-initial-doctor-command-set",
     "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-fix-deep-review-findings-for-doctor-update-orchestrator",
-    "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/003-router-consolidation",
+    "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/003-skill-advisor-routing-engine-consolidation",
     "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/004-hard-cutover"
   ],
   "migrated": true,
@@ -27,10 +27,10 @@
       "/doctor:cocoindex",
       "doctor update orchestrator",
       "spec-kit version migration",
-      "001-initial-doctor-commands",
+      "001-implement-initial-doctor-command-set",
       "002-sandbox-testing-playbook",
-      "001-initial-doctor-commands handover",
-      "003-router-consolidation",
+      "001-implement-initial-doctor-command-set handover",
+      "003-skill-advisor-routing-engine-consolidation",
       "004-hard-cutover"
     ],
     "key_topics": [
@@ -56,9 +56,9 @@
       ".opencode/commands/doctor/assets/doctor_update.yaml",
       ".opencode/commands/doctor/update.md",
       ".opencode/skills/system-spec-kit/mcp_server/database/migration-manifest.json",
-      "001-initial-doctor-commands/implementation-summary.md",
-      "001-initial-doctor-commands/description.json",
-      "001-initial-doctor-commands/ai-council/council-report.md",
+      "001-implement-initial-doctor-command-set/implementation-summary.md",
+      "001-implement-initial-doctor-command-set/description.json",
+      "001-implement-initial-doctor-command-set/ai-council/council-report.md",
       "002-sandbox-testing-playbook/handover.md",
       ".opencode/skills/system-spec-kit/package-lock.json",
       "mcp_server/package.json",
@@ -70,7 +70,7 @@
       ".opencode/commands/doctor/causal-graph.md",
       ".opencode/commands/doctor/deep-loop.md",
       ".opencode/commands/doctor/cocoindex.md",
-      "003-router-consolidation/spec.md",
+      "003-skill-advisor-routing-engine-consolidation/spec.md",
       "004-hard-cutover/spec.md"
     ],
     "entities": [
@@ -113,13 +113,13 @@
       {
         "name": "description.json",
         "kind": "config",
-        "path": "001-initial-doctor-commands/description.json",
+        "path": "001-implement-initial-doctor-command-set/description.json",
         "source": "derived"
       },
       {
         "name": "council-report.md",
         "kind": "doc",
-        "path": "001-initial-doctor-commands/ai-council/council-report.md",
+        "path": "001-implement-initial-doctor-command-set/ai-council/council-report.md",
         "source": "derived"
       },
       {

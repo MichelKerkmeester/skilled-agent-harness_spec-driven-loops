@@ -132,10 +132,10 @@ Each finding ID below corresponds to the `R<iter>-<sev>-<seq>` IDs in `../review
 
 ### R9 P2 (9 findings)
 
-- [ ] **R9-P2-001** Stale 001-initial-doctor-commands resource-map statuses — covered by Cluster F — evidence: ___
+- [ ] **R9-P2-001** Stale 001-implement-initial-doctor-command-set resource-map statuses — covered by Cluster F — evidence: ___
 - [ ] **R9-P2-002** 001 resource-map references absent scratch/ — evidence: ___
 - [ ] **R9-P2-003** 001 spec.md stale continuity (completion_pct: 0) — evidence: ___
-- [ ] **R9-P2-004** Stale packet_pointer in 001 child docs missing /001-initial-doctor-commands suffix — evidence: ___
+- [ ] **R9-P2-004** Stale packet_pointer in 001 child docs missing /001-implement-initial-doctor-command-set suffix — evidence: ___
 - [ ] **R9-P2-005** 013-parent resource-map marks .opencode/skill symlink OK but path absent — evidence: ___
 - [ ] **R9-P2-006** evidence: ___
 - [ ] **R9-P2-007** evidence: ___

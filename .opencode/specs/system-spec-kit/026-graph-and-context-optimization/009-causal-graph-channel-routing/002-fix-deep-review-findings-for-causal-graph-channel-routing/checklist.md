@@ -25,8 +25,8 @@ Legend: `[ ]` = pending, `[x]` = passed with evidence.
 - [x] **CHK-001** [P0] `memory-save.ts` calls `invalidateEntityDensityCache()` post-commit (REQ-T1-001) — evidence: `rg -n invalidateEntityDensityCache mcp_server/handlers/memory-save.ts`
 - [x] **CHK-002** [P0] `memory-bulk-delete.ts` calls `invalidateEntityDensityCache()` post-commit (REQ-T1-002) — evidence: `rg -n invalidateEntityDensityCache mcp_server/handlers/memory-bulk-delete.ts`
 - [x] **CHK-003** [P0] Integration test `entity-density-commit-hooks.vitest.ts` passes — evidence: `vitest run mcp_server/tests/integration/entity-density-commit-hooks.vitest.ts` exit 0
-- [x] **CHK-004** [P0] `resource-map.md:55` playbook path is `272-...` (P1-002) — evidence: `rg -n '210-graph-channel-utilization' 001-initial-delivery/resource-map.md` returns 0
-- [x] **CHK-005** [P0] `resource-map.md:73` changelog row resolved (P1-003) — evidence: `ls 001-initial-delivery/changelog/` shows referenced file OR `changelog.md` is the canonical source
+- [x] **CHK-004** [P0] `resource-map.md:55` playbook path is `272-...` (P1-002) — evidence: `rg -n '210-graph-channel-utilization' 001-deliver-causal-graph-channel-routing-mvp/resource-map.md` returns 0
+- [x] **CHK-005** [P0] `resource-map.md:73` changelog row resolved (P1-003) — evidence: `ls 001-deliver-causal-graph-channel-routing-mvp/changelog/` shows referenced file OR `changelog.md` is the canonical source
 
 ## P1 — Required (code)
 
