@@ -542,3 +542,35 @@
 [17:17:45] ==========================================
 [17:17:45] Phase 2 done. Comparison: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/017-hybrid-fusion-empirical-recalibration/evidence/cells/K120-V0p7-F0p7-comparison.md
 [17:17:45] ==========================================
+[17:28:44] ==========================================
+[17:28:44] Phase 2 Smoke Bench starting
+[17:28:44] Fixture: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/code-retrieval-fixture-corrected.json (18 probes)
+[17:28:44] Pinned embedder: sbert/BAAI/bge-code-v1
+[17:28:44] ==========================================
+[17:28:44] ==========================================
+[17:28:44] LANE START: baseline-bge
+[17:28:44]   rerank_model=BAAI/bge-reranker-v2-m3
+[17:28:44]   path_class_boost=0
+[17:28:44]   adapter=
+[17:28:44] killing ccc daemon (if any) to clear _ADAPTERS cache
+[17:29:27] LANE END: baseline-bge  wall_s=43
+[17:29:27] ==========================================
+[17:29:27] LANE START: bge-path-class
+[17:29:27]   rerank_model=BAAI/bge-reranker-v2-m3
+[17:29:27]   path_class_boost=1
+[17:29:27]   adapter=
+[17:29:27] killing ccc daemon (if any) to clear _ADAPTERS cache
+[17:30:10] LANE END: bge-path-class  wall_s=43
+[17:30:10] ==========================================
+[17:30:10] LANE START: jina-v3
+[17:30:10]   rerank_model=jinaai/jina-reranker-v3
+[17:30:10]   path_class_boost=0
+[17:30:10]   adapter=jina_v3
+[17:30:10] killing ccc daemon (if any) to clear _ADAPTERS cache
+[17:31:02] LANE END: jina-v3  wall_s=52
+[17:31:02] ==========================================
+[17:31:02] Phase 2 bench complete; running comparison synthesis
+[17:31:02] ==========================================
+[17:31:02] ==========================================
+[17:31:02] Phase 2 done. Comparison: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/017-hybrid-fusion-empirical-recalibration/evidence/phase2-comparison-017-recalibrated.md
+[17:31:02] ==========================================

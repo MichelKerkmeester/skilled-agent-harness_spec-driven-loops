@@ -4,7 +4,7 @@
     "002-sandbox-testing-playbook",
     "002-fix-deep-review-findings-for-doctor-update-orchestrator",
     "003-skill-advisor-routing-engine-consolidation",
-    "004-hard-cutover"
+    "004-cutover-doctor-router-from-legacy-files"
   ],
   "specFolder": "010-doctor-update-orchestrator",
   "description": "Phase parent for the doctor command surface and the manual testing playbook that exercises it. 5 isolated /doctor:* commands plus the unified /doctor:update orchestrator (child 001) ship the runtime; a Docker sandbox + 23-scenario manual playbook (child 002) ships the validation harness; doc-honesty + security hardening + cross-runtime mirror remediation (child 003) closed the deep-review CONDITIONAL findings. Router consolidation (child 004) and hard cutover (child 005) now complete the timeline after dissolving 014.",

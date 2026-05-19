@@ -69,7 +69,7 @@ The reference implementation in `.opencode/skills/system-spec-kit/mcp_server/hoo
 | **Sibling**  | `004-copilot-hook-parity-remediation/` (same user-visible symptom, different root cause) |
 | **Parent Spec** | `../spec.md` |
 | **Predecessor** | `../002-copilot-custom-instructions-hook-parity/spec.md` |
-| **Successor** | `../004-claude-freshness-schema-harness-fixes/spec.md` |
+| **Successor** | `../004-fix-claude-freshness-schema-harness/spec.md` |
 <!-- /ANCHOR:metadata -->
 
 ---

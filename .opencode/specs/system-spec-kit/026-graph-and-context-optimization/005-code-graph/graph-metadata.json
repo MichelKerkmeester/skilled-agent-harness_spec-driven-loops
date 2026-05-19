@@ -5,9 +5,9 @@
   "parent_id": "system-spec-kit/026-graph-and-context-optimization",
   "children_ids": [
     "system-spec-kit/026-graph-and-context-optimization/005-code-graph/001-code-graph-runtime-upgrades",
-    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/002-stale-highlights-and-scan-scope-fix",
+    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/002-fix-stale-highlights-and-scan-scope",
     "system-spec-kit/026-graph-and-context-optimization/005-code-graph/003-resolver-and-hook-improvements",
-    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/004-code-graph-and-advisor-refinement-research-and-fixes",
+    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/004-research-and-fix-code-graph-advisor-refinement",
     "system-spec-kit/026-graph-and-context-optimization/005-code-graph/005-doctor-diagnostic-command-phase-a",
     "system-spec-kit/026-graph-and-context-optimization/005-code-graph/006-code-graph-resilience-research",
     "system-spec-kit/026-graph-and-context-optimization/005-code-graph/007-code-graph-backend-resilience-implementation",
@@ -39,7 +39,7 @@
       "code graph upgrades and self-contained package migration",
       "001-code-graph-runtime-upgrades",
       "002-code-graph-self-contained-package",
-      "002-stale-highlights-and-scan-scope-fix",
+      "002-fix-stale-highlights-and-scan-scope",
       "005-doctor-diagnostic-command-phase-a",
       "006-code-graph-resilience-research",
       "/doctor:code-graph",
@@ -57,7 +57,7 @@
       "migration",
       "001-code-graph-runtime-upgrades",
       "002-code-graph-self-contained-package",
-      "002-stale-highlights-and-scan-scope-fix",
+      "002-fix-stale-highlights-and-scan-scope",
       "005-doctor-diagnostic-command-phase-a",
       "006-code-graph-resilience-research"
     ],
@@ -153,7 +153,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This parent packet coordinates the phased work under `Code Graph Package` so the child packets stay discoverable and the root purpose remains clear while implementation details live below the parent level. The current child surface includes 001-code-graph-runtime-upgrades, 002-code-graph-self-contained-package, 002-stale-highlights-and-scan-scope-fix, and other child phases.",
+    "causal_summary": "This parent packet coordinates the phased work under `Code Graph Package` so the child packets stay discoverable and the root purpose remains clear while implementation details live below the parent level. The current child surface includes 001-code-graph-runtime-upgrades, 002-code-graph-self-contained-package, 002-fix-stale-highlights-and-scan-scope, and other child phases.",
     "created_at": "2026-04-21T13:00:00Z",
     "last_save_at": "2026-05-19T13:51:39.046Z",
     "save_lineage": "graph_only",

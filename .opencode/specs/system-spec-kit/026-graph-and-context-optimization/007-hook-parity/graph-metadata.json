@@ -7,8 +7,8 @@
     "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/001-fix-runtime-hook-parity-findings",
     "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/002-copilot-custom-instructions-hook-parity",
     "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/003-codex-native-startup-advisor-hooks",
-    "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/004-claude-freshness-schema-harness-fixes",
-    "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/005-opencode-plugin-loader-bridge-fixes",
+    "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/004-fix-claude-freshness-schema-harness",
+    "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/005-fix-opencode-plugin-loader-bridge",
     "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/006-copilot-wrapper-schema-fix",
     "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/007-copilot-writer-wiring",
     "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/008-docs-impact-remediation"
@@ -29,8 +29,8 @@
       "001-fix-runtime-hook-parity-findings",
       "002-copilot-custom-instructions-hook-parity",
       "003-codex-native-startup-advisor-hooks",
-      "004-claude-freshness-schema-harness-fixes",
-      "005-opencode-plugin-loader-bridge-fixes",
+      "004-fix-claude-freshness-schema-harness",
+      "005-fix-opencode-plugin-loader-bridge",
       "006-copilot-wrapper-schema-fix",
       "007-copilot-writer-wiring",
       "008-docs-impact-remediation"
@@ -47,7 +47,7 @@
       "001-fix-runtime-hook-parity-findings",
       "002-copilot-custom-instructions-hook-parity",
       "003-codex-native-startup-advisor-hooks",
-      "004-claude-freshness-schema-harness-fixes"
+      "004-fix-claude-freshness-schema-harness"
     ],
     "importance_tier": "important",
     "status": "complete",

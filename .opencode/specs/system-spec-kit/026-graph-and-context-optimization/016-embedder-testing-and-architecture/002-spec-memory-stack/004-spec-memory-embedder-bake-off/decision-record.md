@@ -903,3 +903,89 @@ The deterministic expansion regresses every reranker lane on the corrected fixtu
 
 **Recovery responsibility for the 14/13/12 baseline**: Packet 017 (RRF recalibration) may discover fusion weights that make expansion net-positive. Packet 018 (rerank matrix re-bench) measures the final state. If neither closes the gap, 016 stays opt-in indefinitely and the recall gains we hoped for stay deferred to a future identifier-bridging packet (e.g. LLM-rewrite, learned reranker, path-class-aware expansion).
 <!-- /ANCHOR:adr-019 -->
+
+<!-- ANCHOR:adr-020 -->
+## ADR-020: Empirical RRF recalibration — fusion params are a no-op on the corrected 015 candidate set
+
+| Field | Value |
+|---|---|
+| Status | Accepted |
+| Date | 2026-05-19 |
+| Decision | LOCK `(K=60, V=0.9, F=0.5)` as new defaults; ship 017 sweep harness as reusable artifact |
+
+### Defect
+
+CocoIndex's hybrid Reciprocal Rank Fusion math used inherited defaults `(k=60, vec_weight=0.7, fts_weight=0.7)` from a generic RRF reference, never measured against this codebase's corpus + embedder + reranker. After 4 packets of pipeline hardening (013 fixture audit, 014 mirror dedup, 015 tree-sitter chunking, 016 query expansion opt-in), the candidate-set composition is materially different. The optimal RRF parameters were unknown.
+
+### Decision
+
+Empirically sweep a 4D parameter grid against the corrected 18-probe fixture under bge-code-v1, pick the best cell deterministically (highest hit rate → lowest p95 latency → smallest delta from defaults), lock the picked cell as new defaults, and ship the sweep harness so the exercise can be repeated for any future embedder/reranker/corpus change.
+
+### Grid swept
+
+| Dimension | Values | Source |
+|---|---|---|
+| `k` | `{30, 60, 90, 120}` (4) | spec §3 SCOPE |
+| `vec_weight` | `{0.7, 0.9}` (2) | smoke + targeted re-sweep |
+| `fts_weight` | `{0.5, 0.7}` (2) | smoke + targeted re-sweep |
+| **Total cells** | **7** | smoke 4 + K-only sweep 3 (3×3×3=27 abandoned after first 7 confirmed no-op) |
+
+### Empirical result
+
+**All 7 cells produced IDENTICAL hit rate: 12/18 on baseline-bge lane.** RRF parameter tuning does NOT affect hit rate on this corpus + embedder + reranker. The 6 missed probes (5, 10, 12, 13, 14, 18) miss regardless of fusion weights.
+
+| Rank | K | V | F | Hits | p50 ms | p95 ms |
+|---:|---:|---:|---:|---:|---:|---:|
+| 1 | 60 | 0.9 | 0.5 | 12/18 | 1652 | **11868** ← **PICKED** |
+| 2 | 60 | 0.9 | 0.7 | 12/18 | 1702 | 12096 |
+| 3 | 30 | 0.7 | 0.7 | 12/18 | 1766 | 12174 |
+| 4 | 60 | 0.7 | 0.7 | 12/18 | 1633 | 12210 |
+| 5 | 90 | 0.7 | 0.7 | 12/18 | 1959 | 12989 |
+| 6 | 120 | 0.7 | 0.7 | 12/18 | 1717 | 13642 |
+| 7 | 60 | 0.7 | 0.5 | 12/18 | 1640 | 13759 |
+
+### Why all cells tie
+
+RRF only re-ranks WITHIN the candidate set surfaced by dense + FTS5. The missed probes (5, 10, 12, 13, 14, 18) are missed at the RECALL stage — the right chunk never enters the candidate set — so fusion math has nothing to fix. Tuning RRF without changing what's in the candidate set is a no-op.
+
+### Picker logic
+
+The deterministic picker selected `(K=60, V=0.9, F=0.5)` by hit rate (all tied at 12/18) then by lowest p95 latency (11868 ms). This represents a **2.8% p95 latency win** vs current defaults (12210 ms) at IDENTICAL hit rate.
+
+### Env Var Contract
+
+| Variable | New Default | Old Default | Contract |
+|---|---|---|---|
+| `COCOINDEX_HYBRID_VECTOR_WEIGHT` | `0.9` | `0.7` | RRF dense weight |
+| `COCOINDEX_HYBRID_FTS5_WEIGHT` | `0.5` | `0.7` | RRF lexical weight |
+| `COCOINDEX_HYBRID_RRF_K` | `60` | `60` | RRF normalization constant (unchanged — empirically irrelevant in [30,120]) |
+
+### Rollback Path
+
+```bash
+COCOINDEX_HYBRID_VECTOR_WEIGHT=0.7 COCOINDEX_HYBRID_FTS5_WEIGHT=0.7 COCOINDEX_HYBRID_RRF_K=60
+```
+
+Reverts to pre-017 inherited defaults. Code rollback reverts `config.py` defaults + `tests/test_config.py` assertions.
+
+### Future re-sweep guidance
+
+The sweep harness (`phase2-bench/sweep-rrf.sh` + `sweep-rrf.py`) is reusable. When embedder, reranker, or corpus changes:
+
+1. Restart `ccc daemon`.
+2. Run `bash phase2-bench/sweep-rrf.sh` with desired grid.
+3. Aggregator picks deterministically.
+4. Update `config.py` defaults if the new picked cell differs meaningfully.
+
+### Lessons learned
+
+- **Fusion tuning is downstream of recall**: cannot rescue probes missed at candidate-set generation.
+- **Sweep harness pays its keep**: a 14-min smoke + 6-min targeted re-sweep produced a definitive empirical answer that would have been impossible to reason about analytically.
+- **Lock the picker's choice even on tied hit rate**: the 2.8% latency win is small but free; deterministic + auditable beats sentimental defaults.
+
+### Evidence
+
+- 7 per-cell JSONs: `017-hybrid-fusion-empirical-recalibration/evidence/cells/cell-K*.json`
+- Aggregated results: `017-hybrid-fusion-empirical-recalibration/evidence/sweep-results.md`
+- Final-gate bench (locked defaults): `017-hybrid-fusion-empirical-recalibration/evidence/phase2-comparison-017-recalibrated.md`
+<!-- /ANCHOR:adr-020 -->

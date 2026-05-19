@@ -58,7 +58,7 @@ _memory:
 | **Created** | 2026-05-09 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Superseded By** | ../003-skill-advisor-routing-engine-consolidation/ and ../004-hard-cutover/ (router consolidation + cutover, 2026-05-11) |
+| **Superseded By** | ../003-skill-advisor-routing-engine-consolidation/ and ../004-cutover-doctor-router-from-legacy-files/ (router consolidation + cutover, 2026-05-11) |
 | **Phase** | 13 of 13 |
 | **Predecessor** | 009-causal-graph-channel-routing |
 | **Successor** | None |

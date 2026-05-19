@@ -58,7 +58,7 @@ _memory:
 | **Branch** | `main` |
 | **Parent Spec** | None (top-level packet) |
 | **Parent Packet** | None |
-| **Predecessor** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/003-documentation-config-drift-fixes` (single-shot drift fixes; this packet coordinates the broader docs-quality work) |
+| **Predecessor** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/003-fix-documentation-config-drift` (single-shot drift fixes; this packet coordinates the broader docs-quality work) |
 | **Successor** | None |
 | **Handoff Criteria** | Each child passes `validate.sh --strict` independently; research.md ships from 001 before 002-005 author plan/tasks |
 <!-- /ANCHOR:metadata -->
@@ -123,7 +123,7 @@ Drive system-skill-advisor to docs-quality parity with the sk-doc baseline: mark
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 001 | `001-documentation-quality-audit-research/` | 20-iter `/spec_kit:deep-research:auto` via cli-devin SWE 1.6. Surfaces all drift, broken refs, content gaps, HVR violations, alignment misses. Produces ranked findings ledger that gates 002-005. | In Progress |
-| 002 | `002-documentation-bug-fixes/` | Audit-confirmed P0 bug fixes (ADR-001 path, hook reference link, build command path, 9 nested README audit-packet rows). | Pending (gated by 001 synthesis) |
+| 002 | `002-fix-documentation-bugs/` | Audit-confirmed P0 bug fixes (ADR-001 path, hook reference link, build command path, 9 nested README audit-packet rows). | Pending (gated by 001 synthesis) |
 | 003 | `003-readme-problem-first-rewrite/` | Full README.md rewrite: marketing-style, HVR-compliant, ~2000 words, 9 numbered sections, peer-anchored on system-code-graph/README.md. | Pending |
 | 004 | `004-sk-doc-type-validation-alignment/` | Per-file 1:1 sk-doc template alignment across SKILL.md, ARCHITECTURE.md, INSTALL_GUIDE.md, references/*, feature_catalog/*, manual_testing_playbook/*. | Pending |
 | 005 | `005-content-additions-hvr-polish/` | 5 new reference docs (lane-weight tuning, query cookbook, validation baselines, daemon lease, skill-graph drift) + canonical hook-reference copy + HVR sweep. | Pending |
@@ -166,6 +166,6 @@ Drive system-skill-advisor to docs-quality parity with the sk-doc baseline: mark
 - **Phase children**: See sub-folders `001-*/` through `005-*/` for per-phase spec.md
 - **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer
 - **Resource Map**: See `resource-map.md` for aggregated path catalog across all phases
-- **Predecessor packet**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/003-documentation-config-drift-fixes/`
+- **Predecessor packet**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/003-fix-documentation-config-drift/`
 - **Peer for README voice ceiling**: `.opencode/skills/system-code-graph/README.md`
 - **Binding voice rules**: `.opencode/skills/sk-doc/references/global/hvr_rules.md`

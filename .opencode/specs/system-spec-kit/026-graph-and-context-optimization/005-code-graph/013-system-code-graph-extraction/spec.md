@@ -62,7 +62,7 @@ That coupling makes it harder to:
 
 This phase migrates code-graph into `.opencode/skills/system-code-graph/` with its own first-class SKILL.md, graph-metadata.json, references/, manual_testing_playbook/, feature_catalog/, and a clean MCP server integration story.
 
-The 007 line — through `001-code-graph-runtime-upgrades`, `002-stale-highlights-and-scan-scope-fix`, `005-code-graph-backend-resilience`, `010-broader-excludes-and-granular-skills`, and `012-doctor-apply-mode-implementation` — proved code-graph is empirically stable and well-instrumented; this is a structural cleanup, not a functional change.
+The 007 line — through `001-code-graph-runtime-upgrades`, `002-fix-stale-highlights-and-scan-scope`, `005-code-graph-backend-resilience`, `010-broader-excludes-and-granular-skills`, and `012-doctor-apply-mode-implementation` — proved code-graph is empirically stable and well-instrumented; this is a structural cleanup, not a functional change.
 
 ## 8. FOLLOW-ON PHASES
 

@@ -7,7 +7,7 @@
     "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-implement-initial-doctor-command-set",
     "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-fix-deep-review-findings-for-doctor-update-orchestrator",
     "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/003-skill-advisor-routing-engine-consolidation",
-    "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/004-hard-cutover"
+    "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/004-cutover-doctor-router-from-legacy-files"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -31,7 +31,7 @@
       "002-sandbox-testing-playbook",
       "001-implement-initial-doctor-command-set handover",
       "003-skill-advisor-routing-engine-consolidation",
-      "004-hard-cutover"
+      "004-cutover-doctor-router-from-legacy-files"
     ],
     "key_topics": [
       "010-doctor-update-orchestrator",
@@ -71,7 +71,7 @@
       ".opencode/commands/doctor/deep-loop.md",
       ".opencode/commands/doctor/cocoindex.md",
       "003-skill-advisor-routing-engine-consolidation/spec.md",
-      "004-hard-cutover/spec.md"
+      "004-cutover-doctor-router-from-legacy-files/spec.md"
     ],
     "entities": [
       {
@@ -229,7 +229,7 @@
       "handover.md",
       "resource-map.md"
     ],
-    "last_active_child_id": "004-hard-cutover",
+    "last_active_child_id": "004-cutover-doctor-router-from-legacy-files",
     "last_active_at": "2026-05-12T04:55:46Z"
   }
 }

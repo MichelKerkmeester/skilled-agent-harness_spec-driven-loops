@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/004-research-and-fix-code-graph-advisor-refinement",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/004-research-and-fix-code-graph-advisor-refinement",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code graph advisor refinement",
+      "code graph research",
+      "skill advisor research",
+      "026/009/015",
+      "code graph skill advisor refinement",
+      "code graph advisor refinement plan",
+      "026/009/015 remediation plan",
+      "015 implementation plan",
+      "10-PR remediation roadmap",
+      "code graph advisor refinement tasks",
+      "026/009/015 tasks",
+      "015 remediation tasks"
+    ],
+    "key_topics": [
+      "code",
+      "graph",
+      "advisor",
+      "refinement",
+      "research",
+      "skill",
+      "026",
+      "009",
+      "015",
+      "plan",
+      "remediation",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "applied/B1.md",
+      "applied/B2.md",
+      "applied/B3.md",
+      "applied/B4.md",
+      "applied/B5.md",
+      "applied/F35-calibration.md",
+      "applied/B6.md",
+      "mcp_server/tests/promotion-positive-validation-semantics.vitest.ts",
+      ".claude/settings.local.json",
+      "research/001-code-graph-advisor-refinement-roadmap/research.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "research/001-code-graph-advisor-refinement-roadmap/resource-map.md",
+      "implementation-summary.md",
+      "dist/hooks/claude/user-prompt-submit.js",
+      "mcp_server/package.json",
+      "handlers/index.ts",
+      "tests/promotion-positive-validation-semantics.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "B1.md",
+        "kind": "doc",
+        "path": "applied/B1.md",
+        "source": "derived"
+      },
+      {
+        "name": "B2.md",
+        "kind": "doc",
+        "path": "applied/B2.md",
+        "source": "derived"
+      },
+      {
+        "name": "B3.md",
+        "kind": "doc",
+        "path": "applied/B3.md",
+        "source": "derived"
+      },
+      {
+        "name": "B4.md",
+        "kind": "doc",
+        "path": "applied/B4.md",
+        "source": "derived"
+      },
+      {
+        "name": "B5.md",
+        "kind": "doc",
+        "path": "applied/B5.md",
+        "source": "derived"
+      },
+      {
+        "name": "F35-calibration.md",
+        "kind": "doc",
+        "path": "applied/F35-calibration.md",
+        "source": "derived"
+      },
+      {
+        "name": "B6.md",
+        "kind": "doc",
+        "path": "applied/B6.md",
+        "source": "derived"
+      },
+      {
+        "name": "promotion-positive-validation-semantics.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/promotion-positive-validation-semantics.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.js",
+        "kind": "code",
+        "path": "dist/hooks/claude/user-prompt-submit.js",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": "mcp_server/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": "handlers/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor Refinement Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Initialized Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Both the Code Graph subsystem and the Skill Advisor system have matured independently, but no systematic investigation has been conducted into their combined correctness, performance boundaries, and UX consistency. This research phase uses 20 deep-research iterations to produce actionable, evidence-based recommendations across both systems so that a follow-up implementation phase can make targeted improvements with confidence rather than guesswork.",
+    "created_at": "2026-04-24T00:00:00Z",
+    "last_save_at": "2026-05-19T13:51:39.054Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ]
+  }
+}

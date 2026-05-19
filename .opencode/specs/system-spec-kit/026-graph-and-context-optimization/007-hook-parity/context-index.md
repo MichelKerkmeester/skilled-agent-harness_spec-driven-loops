@@ -9,8 +9,8 @@ trigger_phrases:
   - "001-fix-runtime-hook-parity-findings"
   - "002-copilot-custom-instructions-hook-parity"
   - "003-codex-native-startup-advisor-hooks"
-  - "004-claude-freshness-schema-harness-fixes"
-  - "005-opencode-plugin-loader-bridge-fixes"
+  - "004-fix-claude-freshness-schema-harness"
+  - "005-fix-opencode-plugin-loader-bridge"
   - "006-copilot-wrapper-schema-fix"
   - "007-copilot-writer-wiring"
   - "008-docs-impact-remediation"
@@ -53,8 +53,8 @@ Runtime hook parity across Claude / Codex / Copilot / OpenCode plugin: schema fi
 | `001-fix-runtime-hook-parity-findings/` | Feature Specification: 029 — Runtime Hook Parity Remediation | Complete | `007-hook-parity/001-fix-runtime-hook-parity-findings/` |
 | `002-copilot-custom-instructions-hook-parity/` | Feature Specification: Copilot CLI Hook Parity Remediation | Complete | `007-hook-parity/002-copilot-custom-instructions-hook-parity/` |
 | `003-codex-native-startup-advisor-hooks/` | Feature Specification: Codex CLI Hook Parity Remediation | Complete | `007-hook-parity/003-codex-native-startup-advisor-hooks/` |
-| `004-claude-freshness-schema-harness-fixes/` | Feature Specification: Claude Hook Findings Remediation | Partial Verification | `007-hook-parity/004-claude-freshness-schema-harness-fixes/` |
-| `005-opencode-plugin-loader-bridge-fixes/` | Feature Specification: OpenCode Plugin Loader Remediation | Complete | `007-hook-parity/005-opencode-plugin-loader-bridge-fixes/` |
+| `004-fix-claude-freshness-schema-harness/` | Feature Specification: Claude Hook Findings Remediation | Partial Verification | `007-hook-parity/004-fix-claude-freshness-schema-harness/` |
+| `005-fix-opencode-plugin-loader-bridge/` | Feature Specification: OpenCode Plugin Loader Remediation | Complete | `007-hook-parity/005-fix-opencode-plugin-loader-bridge/` |
 | `006-copilot-wrapper-schema-fix/` | Feature Specification: Copilot Wrapper Schema Fix | Reverted - Reapply Required | `007-hook-parity/006-copilot-wrapper-schema-fix/` |
 | `007-copilot-writer-wiring/` | Feature Specification: Copilot Writer Wiring | Reverted - Reapply Required | `007-hook-parity/007-copilot-writer-wiring/` |
 | `008-docs-impact-remediation/` | Feature Specification: Documentation Impact Remediation for 009 Hook/Daemon Parity | Planning | `007-hook-parity/008-docs-impact-remediation/` |
@@ -64,8 +64,8 @@ Runtime hook parity across Claude / Codex / Copilot / OpenCode plugin: schema fi
 - **`001-fix-runtime-hook-parity-findings/`**: **Implemented with documented blockers.** Phases A–D are complete at the targeted source/test layer, and Phase E captured remediation evidence. The whole-repo vitest gate is not green because broader baseline suites still fail outside this packet's implementation surface.
 - **`002-copilot-custom-instructions-hook-parity/`**: Outcome B custom-instructions transport shipped for Copilot CLI because customer hook output cannot mutate prompts.
 - **`003-codex-native-startup-advisor-hooks/`**: Outcome A native Codex SessionStart/UserPromptSubmit parity shipped and was re-verified.
-- **`004-claude-freshness-schema-harness-fixes/`**: Freshness persistence, Claude hook schema normalization, and multi-turn harness docs shipped; live Claude parity remains environment-blocked.
-- **`005-opencode-plugin-loader-bridge-fixes/`**: OpenCode helper isolation, legacy parser hardening, and skill-advisor OpenCode hook remap shipped; full-suite Vitest remains blocked by the parent-tracked Copilot hook wiring mismatch.
+- **`004-fix-claude-freshness-schema-harness/`**: Freshness persistence, Claude hook schema normalization, and multi-turn harness docs shipped; live Claude parity remains environment-blocked.
+- **`005-fix-opencode-plugin-loader-bridge/`**: OpenCode helper isolation, legacy parser hardening, and skill-advisor OpenCode hook remap shipped; full-suite Vitest remains blocked by the parent-tracked Copilot hook wiring mismatch.
 - **`006-copilot-wrapper-schema-fix/`**: Landed in `162a6cb16c` but was reverted in `6cd00aa51b`; current `.claude/settings.local.json` no longer has the top-level Copilot-safe wrapper fields, so reapply is required.
 - **`007-copilot-writer-wiring/`**: Landed in `162a6cb16c` but was reverted in `6cd00aa51b`; current `.claude/settings.local.json` no longer points the top-level wrappers at the Copilot writers, so reapply is required after packet 006.
 - **`008-docs-impact-remediation/`**: Documentation impact remediation for the hook-parity packets; planning stage with consolidated external doc updates flagged by the merged impact report.
@@ -75,8 +75,8 @@ Runtime hook parity across Claude / Codex / Copilot / OpenCode plugin: schema fi
 - **`001-fix-runtime-hook-parity-findings/`**: status before migration was Complete at source/test layer; whole-repo vitest gate remains red on broader baseline suites outside this packet.
 - **`002-copilot-custom-instructions-hook-parity/`**: status before migration was Complete; 1 unchecked checklist item remains for degraded memory indexing.
 - **`003-codex-native-startup-advisor-hooks/`**: status before migration was Complete; no unchecked task/checklist items remain.
-- **`004-claude-freshness-schema-harness-fixes/`**: status before migration was Partial Verification; 4 unchecked completion items remain because live Claude auth/user-global hook state blocked AS-003/AS-004.
-- **`005-opencode-plugin-loader-bridge-fixes/`**: status before migration was Complete; 1 unchecked full-suite Vitest item remains because `copilot-hook-wiring.vitest.ts` is blocked outside this packet.
+- **`004-fix-claude-freshness-schema-harness/`**: status before migration was Partial Verification; 4 unchecked completion items remain because live Claude auth/user-global hook state blocked AS-003/AS-004.
+- **`005-fix-opencode-plugin-loader-bridge/`**: status before migration was Complete; 1 unchecked full-suite Vitest item remains because `copilot-hook-wiring.vitest.ts` is blocked outside this packet.
 - **`006-copilot-wrapper-schema-fix/`**: patch landed, then reverted in `6cd00aa51b`; top-level wrapper fields must be restored before any smoke is meaningful.
 - **`007-copilot-writer-wiring/`**: landed, then reverted in `6cd00aa51b`; depends on packet 006 being reapplied first, then the writer commands being restored.
 - **`008-docs-impact-remediation/`**: status is Planning; sub-packets/tasks for external doc updates still need to be carved from the merged impact report.

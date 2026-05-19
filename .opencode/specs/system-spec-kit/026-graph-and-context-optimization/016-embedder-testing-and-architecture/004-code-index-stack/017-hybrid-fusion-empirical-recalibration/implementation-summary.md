@@ -7,24 +7,22 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/017-hybrid-fusion-empirical-recalibration"
-    last_updated_at: "2026-05-19T17:00:00Z"
-    last_updated_by: "codex"
-    recent_action: "PHASE 1-2 + DOCS COMPLETE; AWAITING 016 COMMIT FOR PHASE 3-5"
-    next_safe_action: "Resume after feat(016/004/016)"
-    blockers:
-      - "Missing feat(016/004/016) commit in git log"
+    last_updated_at: "2026-05-19T17:35:00Z"
+    last_updated_by: "main-agent"
+    recent_action: "Sweep complete; defaults locked; ADR-020 shipped"
+    next_safe_action: "Commit 017 + dispatch 018 matrix bench"
+    blockers: []
     key_files:
       - "../011-rerank-model-fit-investigation/research/phase2-bench/sweep-rrf.sh"
       - "../011-rerank-model-fit-investigation/research/phase2-bench/sweep-rrf.py"
-      - ".opencode/skills/mcp-coco-index/mcp_server/tests/test_rrf_config.py"
-      - "plan.md"
-      - "tasks.md"
-      - "checklist.md"
+      - ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py"
+      - "evidence/sweep-results.md"
+      - "evidence/phase2-comparison-017-recalibrated.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000004017"
       session_id: "016-004-017-summary"
       parent_session_id: "016-004-017"
-    completion_pct: 45
+    completion_pct: 100
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->

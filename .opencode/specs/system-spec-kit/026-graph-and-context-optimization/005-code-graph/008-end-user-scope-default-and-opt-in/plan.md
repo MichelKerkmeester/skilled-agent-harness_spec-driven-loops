@@ -319,7 +319,7 @@ Record pre/post counts from `code_files`, `code_nodes`, and `code_edges` after t
 | Completed 009 research synthesis | Internal | Done | Plan loses source evidence if ignored. |
 | ADR-001 in this packet | Internal | Accepted | Implementation default and opt-in surfaces become ambiguous. |
 | ADR-005 workflow invariance from `008-template-levels/002-manifest-driven-template-design/decision-record.md` | Internal | Accepted | Docs must avoid changing spec workflow vocabulary or prompts. |
-| ADR-003 exit-code taxonomy from `008-template-levels/004-template-deferred-followup-fixes/decision-record.md` | Internal | Applicable if new CLI/script errors are introduced | New errors should follow existing exit-code expectations if a script path is added. |
+| ADR-003 exit-code taxonomy from `008-template-levels/004-fix-template-deferred-followups/decision-record.md` | Internal | Applicable if new CLI/script errors are introduced | New errors should follow existing exit-code expectations if a script path is added. |
 | 008 backend resilience packet | Internal | Reference | Readiness/status wording should align with existing degraded/blocked graph behavior. |
 | Vitest harness under `mcp_server/node_modules/vitest/vitest.mjs` | Internal | Available | Focused verification depends on it. |
 | SQLite metadata table | Internal | Available | Scope fingerprint should reuse existing metadata storage. |

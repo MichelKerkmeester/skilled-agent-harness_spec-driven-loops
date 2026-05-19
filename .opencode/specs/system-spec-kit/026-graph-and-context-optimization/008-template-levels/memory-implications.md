@@ -138,7 +138,7 @@ The 010 phase parent's `graph-metadata.json` was updated by each child packet's 
   "system-spec-kit/026-graph-and-context-optimization/008-template-levels/001-template-level-consolidation-research",
   "system-spec-kit/026-graph-and-context-optimization/008-template-levels/002-manifest-driven-template-design",
   "system-spec-kit/026-graph-and-context-optimization/008-template-levels/003-manifest-template-implementation-plan",
-  "system-spec-kit/026-graph-and-context-optimization/008-template-levels/004-template-deferred-followup-fixes",
+  "system-spec-kit/026-graph-and-context-optimization/008-template-levels/004-fix-template-deferred-followups",
   "system-spec-kit/026-graph-and-context-optimization/008-template-levels/005-skill-reference-asset-doc-alignment",
   "system-spec-kit/026-graph-and-context-optimization/008-template-levels/006-command-markdown-yaml-workflow-alignment"
 ],
@@ -155,7 +155,7 @@ The cross-packet `depends_on[]` / `enhances[]` / `prerequisite_for[]` edges betw
 
 ```typescript
 mcp__mk_spec_memory__memory_causal_link({
-  source: "system-spec-kit/.../008-template-levels/004-template-deferred-followup-fixes",
+  source: "system-spec-kit/.../008-template-levels/004-fix-template-deferred-followups",
   target: "system-spec-kit/.../008-template-levels/003-manifest-template-implementation-plan",
   type: "depends_on"
 })
@@ -346,6 +346,6 @@ Expected: 003-manifest-template-implementation-plan's checklist.md surfaces with
 ## 13. Related
 
 - `before-after-template-system.md` — what changed in the template system itself
-- `004-template-deferred-followup-fixes/decision-record.md` — ADR-001 (validation orchestrator), ADR-002 (parent_session_id semantics), ADR-003 (exit codes), ADR-004 (version field), ADR-005 (migration policy)
+- `004-fix-template-deferred-followups/decision-record.md` — ADR-001 (validation orchestrator), ADR-002 (parent_session_id semantics), ADR-003 (exit codes), ADR-004 (version field), ADR-005 (migration policy)
 - `templates/manifest/MIGRATION.md` — legacy marker compatibility for old packets
 - `templates/manifest/EXTENSION_GUIDE.md` — how new doc types extend the manifest

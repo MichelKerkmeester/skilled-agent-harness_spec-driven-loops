@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |---|---|
-| Status | Draft (spec written 2026-05-19) |
+| Status | Complete (2026-05-19) — 7-cell sweep showed RRF tuning is a NO-OP on hit rate (all cells tied at 12/18); locked picker's latency-optimum cell `(K=60, V=0.9, F=0.5)` for 2.8% p95 win at identical recall. Sweep harness reusable for future embedder/reranker swaps. ADR-020 documents empirical finding. |
 | Type | Empirical configuration sweep — bench harness + analyzer + new defaults |
 | Owner | cli-codex gpt-5.5 high fast (dispatched by main agent after 016 commits) |
 | Parent | `../spec.md` (004-code-index-stack) |

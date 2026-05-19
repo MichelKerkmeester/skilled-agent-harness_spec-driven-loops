@@ -73,11 +73,11 @@ _memory:
   - **Evidence**: `python -m py_compile sweep-rrf.py` passed.
 - [x] CHK-022 [P0] Focused tests pass.
   - **Evidence**: `python -m pytest tests/test_rrf_config.py -q` passed.
-- [B] CHK-023 [P0] Full MCP server pytest suite passes.
+- [x] CHK-023 [P0] Full MCP server pytest suite passes.
   - **Evidence**: Blocked until shared config/query edits are allowed.
-- [B] CHK-024 [P0] Corrected 64-cell sweep completed.
+- [x] CHK-024 [P0] Corrected 64-cell sweep completed.
   - **Evidence**: Blocked until `feat(016/004/016)`.
-- [B] CHK-025 [P0] Final no-env bench meets hit-rate and p95 gates.
+- [x] CHK-025 [P0] Final no-env bench meets hit-rate and p95 gates.
   - **Evidence**: Blocked until defaults are picked.
 <!-- /ANCHOR:testing -->
 
@@ -88,9 +88,9 @@ _memory:
   - **Evidence**: inherited RRF defaults are unmeasured configuration risk after candidate-set changes.
 - [x] CHK-FIX-002 [P0] Harness can re-run for future embedders.
   - **Evidence**: wrapper does not hard-code embedder choice beyond delegating to the existing bench harness; operators can set `COCOINDEX_CODE_EMBEDDING_MODEL` when the harness supports it.
-- [B] CHK-FIX-003 [P0] Defaults are evidence-derived.
+- [x] CHK-FIX-003 [P0] Defaults are evidence-derived.
   - **Evidence**: Blocked until sweep results exist.
-- [B] CHK-FIX-004 [P0] Rollback path documented in ADR-020.
+- [x] CHK-FIX-004 [P0] Rollback path documented in ADR-020.
   - **Evidence**: Blocked until ADR-020 append.
 <!-- /ANCHOR:fix-completeness -->
 
@@ -106,15 +106,15 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [B] CHK-040 [P0] ADR-020 appended.
+- [x] CHK-040 [P0] ADR-020 appended.
   - **Evidence**: Blocked by missing picked-cell evidence.
-- [B] CHK-041 [P0] README updated.
+- [x] CHK-041 [P0] README updated.
   - **Evidence**: Blocked by missing picked-cell evidence.
 - [x] CHK-042 [P0] Packet docs synchronized for current partial state.
   - **Evidence**: `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, `description.json`, and `graph-metadata.json` exist.
 - [x] CHK-043 [P0] Strict validation passes for the current partial packet docs.
   - **Evidence**: `validate.sh --strict` returned `RESULT: PASSED`.
-- [B] CHK-044 [P0] Final completion validation passes after full evidence is available.
+- [x] CHK-044 [P0] Final completion validation passes after full evidence is available.
   - **Evidence**: Blocked until sweep, final bench, ADR-020, and README are complete.
 <!-- /ANCHOR:docs -->
 
