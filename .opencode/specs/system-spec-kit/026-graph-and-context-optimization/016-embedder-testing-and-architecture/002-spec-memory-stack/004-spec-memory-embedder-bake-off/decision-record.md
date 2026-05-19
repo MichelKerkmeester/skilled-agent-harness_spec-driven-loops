@@ -543,3 +543,50 @@ Evidence:
 - `evidence/embedder-comparison-with-rescue.jsonl`
 - `evidence/embedder-comparison.csv`
 <!-- /ANCHOR:adr-012 -->
+
+<!-- ANCHOR:adr-013 -->
+## ADR-013: Operator switch to nomic-embed-text-v1.5 as production default (supersedes ADR-012)
+
+**Date**: 2026-05-19
+**Status**: ACCEPTED (code reorder shipped; re-index gated on power constraint lift at >=23:20)
+**Supersedes**: ADR-012
+**Decision driver**: Operator preference for disk / raw-embed-latency / CPU efficiency over +1 hit on the PASS gate.
+
+**Decision**: Make `nomic-embed-text-v1.5` the production default for mk-spec-memory. Demote `jina-embeddings-v3` to second-priority in the Ollama auto-select chain (still available as a fallback if nomic is absent locally).
+
+**Code change** (single intent, swap two entries in `OLLAMA_PRIORITY`):
+
+`.opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts` — reorder `OLLAMA_PRIORITY` so `nomic-embed-text-v1.5` precedes `jina-embeddings-v3`. The shape of the auto-select chain (Voyage > OpenAI > Ollama > hf-local) is unchanged; only the within-Ollama priority order swapped.
+
+**Why operator picked nomic over jina (despite -1 hit on the PASS gate)**:
+
+| Aspect | jina-v3 (ADR-012) | nomic-v1.5 (ADR-013) | Operator weighting |
+|---|---|---|---|
+| cat-24/409 top-3 (w/ rescue) | 9/10 | 8/10 | -1 hit accepted as fair trade |
+| Disk footprint | 1.1 GB | **270 MB** | **4x smaller** — material on dev laptops |
+| Raw embed latency | 60 ms | **12 ms** | **5x faster** during bursty queries |
+| RAM loaded | 495 MB (Q4) | 578 MB (F16) | +17% RAM accepted |
+| p95 end-to-end | 1465 ms | 3045 ms | wider tail accepted given the disk + speed win |
+| Schema migration cost | none (live) | vec_1024 -> vec_768 re-index (~tens of minutes) | one-time cost |
+
+**Net judgment**: The bake-off (`benchmark-results.md`) shows the rescue layer contributes more than the embedder swap (jina raw 4/10 -> jina+rescue 9/10 = +5; nomic raw 5/10 -> nomic+rescue 8/10 = +3). At the margin the operator prioritizes the 4x disk savings + 5x raw embed speed over the +1 hit on the PASS gate. The rescue layer keeps both embedders well above the 7/10 baseline that Gemma stalled at.
+
+**What ships with this ADR (immediate)**:
+
+1. `OLLAMA_PRIORITY` reorder in `auto-select.ts` (shipped 2026-05-19).
+2. ADR-013 (this entry).
+
+**What is DEFERRED to a follow-on commit** (low-battery state at decision time, resume >=23:20):
+
+3. Production daemon restart + auto-select bootstrap probe — picks nomic on first run when `active_embedder_name` is the `auto` sentinel, OR when the operator explicitly clears `vec_metadata` to force re-selection.
+4. Full re-index of mk-spec-memory's existing corpus (~7,738 rows) from vec_1024 (jina embeddings) to vec_768 (nomic embeddings). Wall time ~tens-of-minutes per bake-off observations.
+
+**Rollback path**: revert the `OLLAMA_PRIORITY` reorder (jina back to position 1) AND restart the daemon. The vec_1024 jina index that lived under ADR-012 is preserved on disk until the operator runs the re-index for nomic — so even with this ADR shipped, the production DB stays on jina embeddings until step 4 above runs.
+
+**Trade-off acknowledged**: 8/10 vs 9/10 means roughly one in every ten paraphrased trigger queries that would have ranked top-3 under jina will now miss. The rescue layer's contribution dwarfs this delta, but the operator should re-measure cat-24/409 under nomic after the re-index lands and update this ADR if the actual production number drifts from the bake-off's 8/10.
+
+Evidence:
+- `evidence/embedder-comparison-with-rescue.jsonl` (the original bake-off — still authoritative for the comparison)
+- `benchmark-results.md` §3.2 (per-embedder nomic profile)
+- Code change: `.opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts` (OLLAMA_PRIORITY reorder)
+<!-- /ANCHOR:adr-013 -->

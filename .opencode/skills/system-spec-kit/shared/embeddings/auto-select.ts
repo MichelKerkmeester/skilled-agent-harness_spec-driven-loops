@@ -82,14 +82,14 @@ const HF_LOCAL_DIM = 768;
 
 const OLLAMA_PRIORITY: readonly OllamaManifest[] = Object.freeze([
   {
-    name: 'jina-embeddings-v3',
-    dim: 1024,
-    ollamaName: 'hf.co/gaianet/jina-embeddings-v3-GGUF:Q4_K_M',
-  },
-  {
     name: 'nomic-embed-text-v1.5',
     dim: 768,
     ollamaName: 'nomic-embed-text:v1.5',
+  },
+  {
+    name: 'jina-embeddings-v3',
+    dim: 1024,
+    ollamaName: 'hf.co/gaianet/jina-embeddings-v3-GGUF:Q4_K_M',
   },
   {
     name: 'bge-m3',
