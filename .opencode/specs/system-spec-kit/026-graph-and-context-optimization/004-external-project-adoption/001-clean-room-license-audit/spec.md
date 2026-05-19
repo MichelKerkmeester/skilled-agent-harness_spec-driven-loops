@@ -39,7 +39,7 @@ _memory:
 > license block" are historical; the post-scrub posture (no quote
 > required) is documented in `decision-record.md` and confirmed by the
 > `010/008-deep-research-review` audit (research/research.md §6 D5).
-> See `010/007-review-remediation/implementation-summary.md` R-007-1
+> See `010/007-fix-external-project-adoption-deep-review-findings/implementation-summary.md` R-007-1
 > for the closure record.
 
 ---

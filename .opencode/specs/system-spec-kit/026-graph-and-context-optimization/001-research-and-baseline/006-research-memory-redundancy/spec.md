@@ -29,7 +29,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify +
 
 This packet operationalizes the completed redundancy research in `research/research.md`. It does not rerun the investigation. It records how the parent research canonicals and the downstream packet train should react to the compact-wrapper conclusion that memory saves should point at canonical docs instead of replaying them.
 
-**Key Decisions**: Keep `research/research.md` as the local authority, keep the parent `../research/cross-phase-matrix.md` untouched, and point future runtime implementation back to `../../002-memory-quality-remediation/`.
+**Key Decisions**: Keep `research/research.md` as the local authority, keep the parent `../research/cross-phase-matrix.md` untouched, and point future runtime implementation back to `../../002-fix-memory-quality/`.
 
 **Critical Dependencies**: `research/research.md`, `research/findings-registry.json`, parent research docs under `../research/`, and the downstream packet docs from `../../001-cache-warning-hooks/` through `../../z_archive/research-governance-contracts/013-warm-start-bundle-conditional-validation/`.
 
@@ -50,7 +50,7 @@ This packet operationalizes the completed redundancy research in `research/resea
 | **Phase** | 6 of 6 |
 | **Predecessor** | `005-claudest` |
 | **Successor** | None |
-| **Handoff Criteria** | Parent research docs reflect the follow-on, downstream packet outcomes are recorded, and runtime ownership is explicitly handed to `../../002-memory-quality-remediation/`. |
+| **Handoff Criteria** | Parent research docs reflect the follow-on, downstream packet outcomes are recorded, and runtime ownership is explicitly handed to `../../002-fix-memory-quality/`. |
 | **Research Authority** | `research/research.md` |
 | **Packet Role** | Coordination packet for parent-canonical sync and downstream packet review |
 <!-- /ANCHOR:metadata -->
@@ -99,7 +99,7 @@ Turn the completed redundancy findings into a validator-clean follow-on packet t
 | `plan.md` | Modify | Describe parent sync, downstream review, and verification workflow. |
 | `tasks.md` | Modify | Track setup, packet review, closeout docs, and verification. |
 | `checklist.md` | Modify | Capture packet-local verification evidence. |
-| `decision-record.md` | Create | Record why runtime ownership stays with `../../002-memory-quality-remediation/`. |
+| `decision-record.md` | Create | Record why runtime ownership stays with `../../002-fix-memory-quality/`. |
 | `implementation-summary.md` | Create | Record the delivered packet refresh and validation outcome. |
 <!-- /ANCHOR:scope -->
 
@@ -108,7 +108,7 @@ Turn the completed redundancy findings into a validator-clean follow-on packet t
 | Packet | Impact Class | Planned Outcome |
 |--------|--------------|-----------------|
 | `../../001-cache-warning-hooks/` | Documentation sync only | Keep producer scope unchanged while aligning memory-artifact assumptions |
-| `../../002-memory-quality-remediation/` | Implementation re-scope | Keep the runtime implementation lane here |
+| `../../002-fix-memory-quality/` | Implementation re-scope | Keep the runtime implementation lane here |
 | `../../001-agent-execution-guardrails/` | No change | Policy packet with no memory-save runtime ownership |
 | `../../z_archive/research-governance-contracts/005-provisional-measurement-contract/` | No change | Measurement contract remains orthogonal |
 | `../../z_archive/research-governance-contracts/006-structural-trust-axis-contract/` | No change | Structural trust-axis contract remains orthogonal |
@@ -132,7 +132,7 @@ Turn the completed redundancy findings into a validator-clean follow-on packet t
 | REQ-001 | The packet must formalize the redundancy findings without replacing the local research canonicals. | `spec.md`, `plan.md`, `tasks.md`, and `checklist.md` treat `research/research.md` and `research/findings-registry.json` as the authority. |
 | REQ-002 | Parent research docs must acknowledge the follow-on without rewriting the external-systems matrix. | `../research/research.md`, `../research/recommendations.md`, and `../research/deep-research-dashboard.md` are the sync targets, while `../research/cross-phase-matrix.md` stays unchanged. |
 | REQ-003 | The downstream packet train must receive explicit impact classifications. | The packet docs record outcomes for `../../001-cache-warning-hooks/` through `../../z_archive/research-governance-contracts/013-warm-start-bundle-conditional-validation/`. |
-| REQ-004 | Runtime implementation ownership must stay with `../../002-memory-quality-remediation/`. | `decision-record.md` and the packet docs identify `../../002-memory-quality-remediation/` as the follow-on runtime owner. |
+| REQ-004 | Runtime implementation ownership must stay with `../../002-fix-memory-quality/`. | `decision-record.md` and the packet docs identify `../../002-fix-memory-quality/` as the follow-on runtime owner. |
 | REQ-005 | The folder must validate as a complete Level 3 packet. | `decision-record.md` and `implementation-summary.md` exist, and strict validation passes on this folder. |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -154,7 +154,7 @@ Turn the completed redundancy findings into a validator-clean follow-on packet t
 
 **Given** the downstream packet train is reviewed, **when** packets `../../001-cache-warning-hooks/` through `../../z_archive/research-governance-contracts/013-warm-start-bundle-conditional-validation/` are classified, **then** each packet has an explicit impact class.
 
-**Given** a maintainer looks for the next runtime home, **when** they read this packet, **then** `../../002-memory-quality-remediation/` is named as the implementation owner.
+**Given** a maintainer looks for the next runtime home, **when** they read this packet, **then** `../../002-fix-memory-quality/` is named as the implementation owner.
 
 **Given** an orthogonal packet like `../../001-agent-execution-guardrails/` is inspected, **when** the impact map is read, **then** the packet is marked as intentionally unchanged rather than silently skipped.
 
@@ -167,7 +167,7 @@ Turn the completed redundancy findings into a validator-clean follow-on packet t
 
 - **SC-001**: This folder validates as a complete Level 3 follow-on packet.
 - **SC-002**: Parent research docs and parent root docs acknowledge the follow-on without reshaping the original research charter.
-- **SC-003**: `../../002-memory-quality-remediation/` is clearly identified as the future runtime implementation owner.
+- **SC-003**: `../../002-fix-memory-quality/` is clearly identified as the future runtime implementation owner.
 - **SC-004**: Every downstream packet from `../../001-cache-warning-hooks/` through `../../z_archive/research-governance-contracts/013-warm-start-bundle-conditional-validation/` has an explicit impact class.
 - **SC-005**: Orthogonal packets are documented as intentionally unchanged where appropriate.
 - **SC-006**: Future audits can resume here without reopening the research artifacts to learn the packet outcome.
@@ -182,7 +182,7 @@ Turn the completed redundancy findings into a validator-clean follow-on packet t
 |------|------|--------|------------|
 | Dependency | `research/research.md` remains the redundancy authority | High | Keep the packet coordination-only and cite the research docs directly |
 | Risk | Parent docs begin to imply a recomputed six-lane matrix | High | Keep `../research/cross-phase-matrix.md` untouched and name that boundary explicitly |
-| Risk | Runtime ownership diffuses across multiple downstream packets | High | Name `../../002-memory-quality-remediation/` as the implementation owner in all packet docs |
+| Risk | Runtime ownership diffuses across multiple downstream packets | High | Name `../../002-fix-memory-quality/` as the implementation owner in all packet docs |
 | Risk | Downstream review creates unnecessary doc churn | Medium | Record explicit no-change outcomes for orthogonal packets and patch only real assumption drift |
 <!-- /ANCHOR:risks -->
 
@@ -211,7 +211,7 @@ Turn the completed redundancy findings into a validator-clean follow-on packet t
 
 ### Error Scenarios
 - If a downstream packet already matches the compact-wrapper contract, the correct outcome is explicit no change.
-- If future runtime work reopens the compact-wrapper lane, it must happen in `../../002-memory-quality-remediation/`, not here.
+- If future runtime work reopens the compact-wrapper lane, it must happen in `../../002-fix-memory-quality/`, not here.
 
 ---
 
@@ -233,7 +233,7 @@ Turn the completed redundancy findings into a validator-clean follow-on packet t
 | Risk ID | Description | Impact | Likelihood | Mitigation |
 |---------|-------------|--------|------------|------------|
 | R-001 | Parent docs imply the follow-on rewrote the original research charter | H | M | Keep the parent matrix untouched and state the boundary explicitly |
-| R-002 | Runtime ownership gets assigned to the wrong packet | H | M | Name `../../002-memory-quality-remediation/` explicitly in the packet decision and checklist |
+| R-002 | Runtime ownership gets assigned to the wrong packet | H | M | Name `../../002-fix-memory-quality/` explicitly in the packet decision and checklist |
 | R-003 | Orthogonal packets are treated as unreviewed | M | M | Keep the downstream impact map explicit about no-change outcomes |
 
 ---
@@ -252,10 +252,10 @@ Turn the completed redundancy findings into a validator-clean follow-on packet t
 
 ### US-002: Runtime maintainer needs one implementation owner (Priority: P0)
 
-**As a** runtime maintainer, **I want** the docs to point to `../../002-memory-quality-remediation/` as the next implementation home, **so that** I do not reopen the research packet for code work.
+**As a** runtime maintainer, **I want** the docs to point to `../../002-fix-memory-quality/` as the next implementation home, **so that** I do not reopen the research packet for code work.
 
 **Acceptance Criteria**:
-1. Given this packet is open, When I look for the runtime owner, Then `../../002-memory-quality-remediation/` is named explicitly.
+1. Given this packet is open, When I look for the runtime owner, Then `../../002-fix-memory-quality/` is named explicitly.
 2. Given later runtime work starts, When I resume from this folder, Then the next implementation lane is unambiguous.
 
 ---

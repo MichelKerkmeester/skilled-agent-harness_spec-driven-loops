@@ -51,7 +51,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->"
 - [x] CHK-010 [P0] The full Level 3 doc set exists in this folder. [EVIDENCE: spec.md; plan.md; tasks.md; checklist.md; decision-record.md; implementation-summary.md]
 - [x] CHK-011 [P0] Parent sync surfaces are named explicitly. [EVIDENCE: spec.md; plan.md]
 - [x] CHK-012 [P1] Downstream packet outcomes are explicit. [EVIDENCE: spec.md]
-- [x] CHK-013 [P1] Runtime ownership stays with `../../002-memory-quality-remediation/`. [EVIDENCE: decision-record.md]
+- [x] CHK-013 [P1] Runtime ownership stays with `../../002-fix-memory-quality/`. [EVIDENCE: decision-record.md]
 <!-- /ANCHOR:code-quality -->
 
 ---

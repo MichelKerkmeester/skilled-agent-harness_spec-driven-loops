@@ -3,7 +3,7 @@
     "flattened_at": "2026-04-21T13:00:00Z",
     "child_phase_folders": [
       "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/001-cache-warning-hooks",
-      "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/002-memory-quality-remediation",
+      "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/002-fix-memory-quality",
       "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates",
       "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/004-memory-save-rewrite"
     ],

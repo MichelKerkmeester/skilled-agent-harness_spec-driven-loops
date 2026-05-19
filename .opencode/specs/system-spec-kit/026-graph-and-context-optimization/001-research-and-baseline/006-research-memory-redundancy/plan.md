@@ -75,7 +75,7 @@ This plan applies the completed redundancy research without reopening runtime sc
 |---------|------|-----|
 | AI-SCOPE-001 | Edit only packet docs that actually carry the redundancy consequence | Prevents doc churn across unaffected packets |
 | AI-MATRIX-001 | Keep `../research/cross-phase-matrix.md` read-only | Preserves the parent external-systems boundary |
-| AI-OWNER-001 | Point runtime implementation to `../../002-memory-quality-remediation/` | Keeps packet ownership clear |
+| AI-OWNER-001 | Point runtime implementation to `../../002-fix-memory-quality/` | Keeps packet ownership clear |
 | AI-VERIFY-001 | Finish with strict validation on this folder | Proves the packet surface is now complete |
 
 ### Status Reporting Format
@@ -127,7 +127,7 @@ The local research files define the redundancy conclusions. Parent docs absorb t
 
 ### Phase 3: Verification
 - [x] Run strict validation on this folder.
-- [x] Confirm the packet still points runtime work to `../../002-memory-quality-remediation/`.
+- [x] Confirm the packet still points runtime work to `../../002-fix-memory-quality/`.
 - [x] Confirm the downstream packet outcomes are explicit and bounded.
 <!-- /ANCHOR:phases -->
 
@@ -152,7 +152,7 @@ The local research files define the redundancy conclusions. Parent docs absorb t
 |------------|------|--------|-------------------|
 | `research/research.md` | Internal | Green | The packet loses its authority source |
 | Parent docs under `../research/` | Internal | Green | Parent visibility cannot be synced honestly |
-| `../../002-memory-quality-remediation/` | Internal | Green | The implementation-owner decision cannot be grounded |
+| `../../002-fix-memory-quality/` | Internal | Green | The implementation-owner decision cannot be grounded |
 | Downstream packet docs under `../../` | Internal | Green | Packet classifications cannot be recorded cleanly |
 <!-- /ANCHOR:dependencies -->
 
@@ -289,7 +289,7 @@ strict validation
 
 **Context**: The research is complete, but the packet family still needed one clean coordination surface.
 
-**Decision**: Keep the packet documentation-only and point runtime work to `../../002-memory-quality-remediation/`.
+**Decision**: Keep the packet documentation-only and point runtime work to `../../002-fix-memory-quality/`.
 
 **Consequences**:
 - The packet stays small and auditable.

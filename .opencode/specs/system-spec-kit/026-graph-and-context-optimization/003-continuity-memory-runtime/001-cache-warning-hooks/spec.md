@@ -49,7 +49,7 @@ This packet no longer treats the earlier six-phase warning-hook prototype as the
 | **Parent Spec** | ../spec.md |
 | **Parent Plan** | ../plan.md |
 | **Predecessor** | None |
-| **Successor** | ../002-memory-quality-remediation/spec.md |
+| **Successor** | ../002-fix-memory-quality/spec.md |
 <!-- /ANCHOR:metadata -->
 
 
@@ -72,7 +72,7 @@ Define a research-aligned Level 3 packet that captures the producer-side continu
 - idempotent verification and handoff to later packets
 <!-- /ANCHOR:problem -->
 
-> **Memory save contract (cross-ref):** Memory saves in this packet follow the compact retrieval wrapper contract owned by `system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/002-memory-quality-remediation/006-memory-duplication-reduction/`, the implementation host for the `001-research-graph-context-systems/006-research-memory-redundancy/` research findings. Canonical narrative ownership stays in `decision-record.md` and `implementation-summary.md`; memory files carry only canonical-doc pointers, distinguishing evidence, continuation state, and recovery metadata. [SOURCE: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/006-research-memory-redundancy/research/research.md:103-120]
+> **Memory save contract (cross-ref):** Memory saves in this packet follow the compact retrieval wrapper contract owned by `system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/002-fix-memory-quality/006-memory-duplication-reduction/`, the implementation host for the `001-research-graph-context-systems/006-research-memory-redundancy/` research findings. Canonical narrative ownership stays in `decision-record.md` and `implementation-summary.md`; memory files carry only canonical-doc pointers, distinguishing evidence, continuation state, and recovery metadata. [SOURCE: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/006-research-memory-redundancy/research/research.md:103-120]
 
 ---
 

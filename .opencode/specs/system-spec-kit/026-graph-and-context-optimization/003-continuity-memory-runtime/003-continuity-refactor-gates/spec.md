@@ -42,7 +42,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 | **Branch** | `system-speckit/026-graph-and-context-optimization` |
 | **Parent Spec** | ../spec.md |
 | **Parent Plan** | ../plan.md |
-| **Predecessor** | ../002-memory-quality-remediation/spec.md |
+| **Predecessor** | ../002-fix-memory-quality/spec.md |
 | **Successor** | ../004-memory-save-rewrite/spec.md |
 <!-- /ANCHOR:metadata -->
 

@@ -160,7 +160,7 @@ The follow-up remediation packet completes when all Phase 2 + Phase 3 tasks are 
 - **Canonical command spec**: `.opencode/commands/memory/search.md`
 - **Sibling packets**:
   - `../001-cache-warning-hooks/` — token-budget hook patterns
-  - `../002-memory-quality-remediation/` — prior backend repair history
+  - `../002-fix-memory-quality/` — prior backend repair history
   - `../003-continuity-refactor-gates/` — gates A-F coordination
   - `../004-memory-save-rewrite/` — planner-first save contract
 - **Related work outside parent**: `../../005-memory-indexer-invariants/`

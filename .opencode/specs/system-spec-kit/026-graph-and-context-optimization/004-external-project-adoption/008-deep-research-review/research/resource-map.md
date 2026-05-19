@@ -64,7 +64,7 @@ This document maps every finding from the 10-iteration deep-research review to t
 
 | Path | Lines | Role |
 |---|---|---|
-| `010/007-review-remediation/spec.md` | ~95 | Claims LICENSE quote resolved by scrub |
+| `010/007-fix-external-project-adoption-deep-review-findings/spec.md` | ~95 | Claims LICENSE quote resolved by scrub |
 | `010/001-clean-room-license-audit/spec.md` | 85-88 | Original spec still requires reading + quoting `external/LICENSE` |
 | `010/001-clean-room-license-audit/decision-record.md` | 45-85 | ADR labels canonical PolyForm block as "verbatim", references Yoyodyne example |
 | `010/001-clean-room-license-audit/implementation-summary.md` | 46-48 | Adds post-scrub caveat |
@@ -96,7 +96,7 @@ This document maps every finding from the 10-iteration deep-research review to t
 
 | Path | Lines | Role |
 |---|---|---|
-| `010/007-review-remediation/implementation-summary.md` | T-F R-007-P2-4 row | Claims `limit + 1` SQL request mechanism |
+| `010/007-fix-external-project-adoption-deep-review-findings/implementation-summary.md` | T-F R-007-P2-4 row | Claims `limit + 1` SQL request mechanism |
 | `mcp_server/code_graph/handlers/query.ts` | ~859-897 | `computeBlastRadius` SQL/traversal — actual mechanism does not match documented `limit + 1` |
 | `mcp_server/code_graph/tests/code-graph-query-handler.vitest.ts` | (overflow tests) | Tests do not pin the mechanism |
 
@@ -169,7 +169,7 @@ This document maps every finding from the 10-iteration deep-research review to t
 
 | Path | Lines | Role |
 |---|---|---|
-| `010/007-review-remediation/implementation-summary.md` | (T-E section) | Claims "3/3 SQL pipeline tests pass" |
+| `010/007-fix-external-project-adoption-deep-review-findings/implementation-summary.md` | (T-E section) | Claims "3/3 SQL pipeline tests pass" |
 | `mcp_server/tests/memory/trust-badges.test.ts` | 115, 150, 167 | Actually 2 SQL + 1 formatter pass-through |
 
 ---

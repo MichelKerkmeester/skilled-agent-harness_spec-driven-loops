@@ -47,7 +47,7 @@ The existing packet docs were normalized to the active template shape, and the m
 
 ### Ownership Clarification
 
-The packet now states one clear follow-on rule: runtime implementation belongs in `../../002-memory-quality-remediation/`. This folder records the consequences of the research, not the runtime implementation itself.
+The packet now states one clear follow-on rule: runtime implementation belongs in `../../002-fix-memory-quality/`. This folder records the consequences of the research, not the runtime implementation itself.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -66,7 +66,7 @@ The pass began with the strict-validator baseline for this folder. After the pac
 | Decision | Why |
 |----------|-----|
 | Keep `research/research.md` as the local authority | The research is already complete there |
-| Keep runtime ownership in `../../002-memory-quality-remediation/` | The runtime debt already lives in the memory-quality packet train |
+| Keep runtime ownership in `../../002-fix-memory-quality/` | The runtime debt already lives in the memory-quality packet train |
 | Record explicit no-change outcomes for orthogonal packets | Reviewers need to see that those packets were considered intentionally |
 <!-- /ANCHOR:decisions -->
 

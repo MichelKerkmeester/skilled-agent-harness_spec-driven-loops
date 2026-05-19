@@ -57,7 +57,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 | **Created** | 2026-04-26 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Sibling Phases** | `001-cache-warning-hooks`, `002-memory-quality-remediation`, `003-continuity-refactor-gates`, `004-memory-save-rewrite` |
+| **Sibling Phases** | `001-cache-warning-hooks`, `002-fix-memory-quality`, `003-continuity-refactor-gates`, `004-memory-save-rewrite` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -269,5 +269,5 @@ T2: total_edges=1135 by_relation={supersedes:786, caused:236, supports:113}
 ```
 +344 edges, all `supersedes`. `caused`/`supports` unchanged. Coverage moved 56.77% → 56.21% (negative despite adds).
 
-Authoritative sources: `.opencode/commands/memory/search.md` (canonical spec), `.opencode/skills/system-spec-kit/mcp_server/` (runtime), sibling packets `001-cache-warning-hooks` (token-budget patterns), `002-memory-quality-remediation` (prior repair history).
+Authoritative sources: `.opencode/commands/memory/search.md` (canonical spec), `.opencode/skills/system-spec-kit/mcp_server/` (runtime), sibling packets `001-cache-warning-hooks` (token-budget patterns), `002-fix-memory-quality` (prior repair history).
 <!-- /ANCHOR:questions -->

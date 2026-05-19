@@ -1,6 +1,6 @@
 ---
 title: Deep Research Strategy — 002-continuity-memory-runtime audit
-description: Correctness, concurrency, and doc-code drift audit over the 002-continuity-memory-runtime parent packet and its four direct children (001-cache-warning-hooks, 002-memory-quality-remediation, 003-continuity-refactor-gates, 004-memory-save-rewrite).
+description: Correctness, concurrency, and doc-code drift audit over the 002-continuity-memory-runtime parent packet and its four direct children (001-cache-warning-hooks, 002-fix-memory-quality, 003-continuity-refactor-gates, 004-memory-save-rewrite).
 ---
 
 # Deep Research Strategy — 002-continuity-memory-runtime audit
@@ -22,7 +22,7 @@ Forensic audit of the 002-continuity-memory-runtime packet — the parent and it
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:topic -->
 ## 2. TOPIC
-026 continuity-memory-runtime — correctness gaps, concurrency/race conditions, and doc-code drift across the parent packet and its four direct children (`001-cache-warning-hooks/`, `002-memory-quality-remediation/`, `003-continuity-refactor-gates/`, `004-memory-save-rewrite/`), with specific emphasis on the MCP/runtime code that those packets landed.
+026 continuity-memory-runtime — correctness gaps, concurrency/race conditions, and doc-code drift across the parent packet and its four direct children (`001-cache-warning-hooks/`, `002-fix-memory-quality/`, `003-continuity-refactor-gates/`, `004-memory-save-rewrite/`), with specific emphasis on the MCP/runtime code that those packets landed.
 
 ---
 
@@ -32,7 +32,7 @@ Forensic audit of the 002-continuity-memory-runtime packet — the parent and it
 - [ ] Q1 — Advisory-lock, sentinel-file, and generation-bumping paths in the continuity runtime (deep-research lock, cache-warning hooks, /memory:save): where can two concurrent writers or an interrupted writer + resumer corrupt or silently drop state? (race conditions, atomicity, fail-closed guarantees)
 - [ ] Q2 — /memory:save planner-first rewrite: does the routing table in code match the documented behavior for every intent (decision, narrative_progress, narrative_delivery, handover_state, research_finding, task_update, metadata_only, drop)? Where is the specified-but-unimplemented gap or implemented-but-undocumented behavior?
 - [ ] Q3 — Continuity-refactor Gates A–F (003-continuity-refactor-gates): which gate checks are actually enforced by runtime code vs. documented as enforced? Where does the gate runner's reporter contract differ from the gate spec?
-- [ ] Q4 — Memory-quality remediation D1–D8 (002-memory-quality-remediation): for each of the 8 remediation slices, which land in code and which are only in documentation / tests? What silent-drop, enum-mismatch, or schema-mismatch paths remain?
+- [ ] Q4 — Memory-quality remediation D1–D8 (002-fix-memory-quality): for each of the 8 remediation slices, which land in code and which are only in documentation / tests? What silent-drop, enum-mismatch, or schema-mismatch paths remain?
 - [ ] Q5 — Cache-warning hook system (001-cache-warning-hooks): is the documented transcript-identity + cache-token carry-forward contract fully honored by the hook runtime code, and does the replay harness cover the actual concurrency paths (two parallel Stop-handlers, hook failure, partial write)?
 - [ ] Q6 — Reducer / state rehydration: does `reduce-state.cjs` + the deep-research state machine agree on the canonical JSONL schema (type enum, required fields, lineage fields) across all four children, or are there drift points between code, prompt pack, and protocol doc?
 - [ ] Q7 — JSONL audit surface: are there first-class events emitted by live code that are undocumented, or documented events never emitted (e.g. `spec_synthesis_deferred`, `lock_released`, `blocked_stop`), creating doc-code drift on the audit contract?
@@ -119,7 +119,7 @@ Iteration 1 — Map the runtime surface area. Enumerate every executable script,
 Child packet implementation-summary excerpts (from spec.md PHASE DOCUMENTATION MAP and implementation-summary.md):
 
 - **001-cache-warning-hooks**: bounded Stop-path metadata handoff persisting transcript identity + cache-token carry-forward state, plus an isolated replay harness.
-- **002-memory-quality-remediation**: D1–D8 repair train across five child phases, PRs landed per slice, outcomes verifiable from phase-local checklists.
+- **002-fix-memory-quality**: D1–D8 repair train across five child phases, PRs landed per slice, outcomes verifiable from phase-local checklists.
 - **003-continuity-refactor-gates**: gates-only coordination packet (Gates A–F), promoted follow-on work to sibling top-level phases `007`+.
 - **004-memory-save-rewrite**: `/memory:save` is planner-first by default; returns structured planner response with routes/blockers/advisories and mutates nothing unless the operator opts in (`SPECKIT_MEMORY_SAVE_EXECUTE`).
 

@@ -104,7 +104,7 @@ Close the 15 actionable Tier 2 findings to move D/E/F/G from CONDITIONAL toward 
 | 006-graph-impact-and-affordance-uplift/008-deep-research-review/spec.md | Modify | G-P1-001 (lifecycle state) |
 | `006-graph-impact-and-affordance-uplift/008-deep-research-review/description.json` | Modify | G-P1-002 (metadata path) |
 | `006-graph-impact-and-affordance-uplift/008-deep-research-review/graph-metadata.json` | Modify | G-P1-002 |
-| `006-graph-impact-and-affordance-uplift/007-review-remediation/{tasks,checklist,implementation-summary}.md` | Modify | G-P1-003 (sibling contradiction resolve) |
+| `006-graph-impact-and-affordance-uplift/007-fix-external-project-adoption-deep-review-findings/{tasks,checklist,implementation-summary}.md` | Modify | G-P1-003 (sibling contradiction resolve) |
 | `__tier2-h-deferred.md` (this sub-phase root) | Create | H-P0 documentation |
 
 ---

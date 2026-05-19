@@ -145,7 +145,7 @@ Clusters 4-7 (P1 / P2) remain deferred per the original plan. Boundary respected
 | Each REQ has a falsifiable acceptance criterion | PASS |
 | Probe evidence captured verbatim | PASS — see spec §8 |
 | Validation via `validate.sh --strict` | PENDING — runs at packet close |
-| Sibling cross-references resolve | PASS — siblings are 001-cache-warning-hooks, 002-memory-quality-remediation, 003-continuity-refactor-gates, 004-memory-save-rewrite |
+| Sibling cross-references resolve | PASS — siblings are 001-cache-warning-hooks, 002-fix-memory-quality, 003-continuity-refactor-gates, 004-memory-save-rewrite |
 <!-- /ANCHOR:verification -->
 
 ---

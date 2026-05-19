@@ -5,7 +5,7 @@ trigger_phrases:
   - "002-continuity-memory-runtime"
   - "cache hooks, memory quality, continuity refactor, and memory-save rewrite"
   - "001-cache-warning-hooks"
-  - "002-memory-quality-remediation"
+  - "002-fix-memory-quality"
   - "003-continuity-refactor-gates"
   - "004-memory-save-rewrite"
 importance_tier: "important"
@@ -96,7 +96,7 @@ Keep this theme as an active parent while making each original phase packet a di
 | Phase | Folder | Status | Description |
 |-------|--------|--------|-------------|
 | 1 | `001-cache-warning-hooks/` | Implemented — predecessor verified | Feature Specification: Cache-Warning Hook System |
-| 2 | `002-memory-quality-remediation/` | Complete | Feature Specification: Memory Quality Backend Improvements |
+| 2 | `002-fix-memory-quality/` | Complete | Feature Specification: Memory Quality Backend Improvements |
 | 3 | `003-continuity-refactor-gates/` | Complete | Feature Specification: Phase 6 — Continuity Refactor Gates |
 | 4 | `004-memory-save-rewrite/` | Complete | Feature Specification: /memory:save Planner-First Default |
 <!-- /ANCHOR:phase-map -->

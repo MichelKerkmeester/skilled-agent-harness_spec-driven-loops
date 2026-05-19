@@ -151,7 +151,7 @@ Findings-first remediation: catalog → cluster → sequence → execute. This p
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Sibling packet `004-memory-save-rewrite` (planner-first contract) | Internal | Green (complete) | None — already landed |
-| Sibling packet `002-memory-quality-remediation` (backend repair history) | Internal | Green (complete) | None — informs root-cause analysis |
+| Sibling packet `002-fix-memory-quality` (backend repair history) | Internal | Green (complete) | None — informs root-cause analysis |
 | `005-memory-indexer-invariants` parent-of-026 sibling | Internal | Yellow (active) | Coordinate to avoid double-touch on indexer code |
 | CocoIndex daemon | External | Red (down — observed in conversation) | REQ-012 verification blocked until daemon runnable |
 | Spec Kit Memory MCP server source | Internal | Green | All clusters touch this; ensure single PR-batching strategy |

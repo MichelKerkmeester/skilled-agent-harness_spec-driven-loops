@@ -373,7 +373,7 @@ All findings carry file:line citations from the shipped code on `main`. Primary 
 - `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md`
 - `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md`
 - `010/{001-006}/spec.md` + implementation-summary.md + decision-record.md
-- 010/007-review-remediation/implementation-summary.md
+- 010/007-fix-external-project-adoption-deep-review-findings/implementation-summary.md
 - 011-manual-testing-playbook-coverage-and-run/implementation-summary.md
 
 ---
