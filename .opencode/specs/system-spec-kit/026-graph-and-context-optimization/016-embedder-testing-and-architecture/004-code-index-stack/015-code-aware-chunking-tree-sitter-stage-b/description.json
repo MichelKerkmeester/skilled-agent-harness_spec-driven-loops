@@ -1,0 +1,24 @@
+{
+  "title": "016/004/015 Code-Aware Tree-sitter Chunking",
+  "description": "Adds tree-sitter code-aware chunking for CocoIndex Code with a six-language grammar registry, env opt-out, indexer dispatch, tests, docs, and blocked re-index/bench evidence.",
+  "trigger_phrases": [
+    "016/004/015 tree-sitter chunking",
+    "code-aware chunker stage b",
+    "ast-aware code chunking",
+    "cocoindex code splitter"
+  ],
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "status": "blocked",
+  "completion_pct": 75,
+  "last_updated_at": "2026-05-19T12:31:25Z",
+  "blockers": [
+    "CocoIndex core raises RuntimeError: Operation not permitted (os error 1) during coco.Environment initialization, blocking live re-index and bench"
+  ],
+  "key_files": [
+    ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/chunkers/code_aware.py",
+    ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/chunkers/grammars.py",
+    ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py",
+    ".opencode/skills/mcp-coco-index/mcp_server/tests/test_code_aware_chunker.py"
+  ]
+}

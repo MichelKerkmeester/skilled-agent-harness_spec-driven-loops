@@ -314,7 +314,7 @@ Connect CocoIndex Code to your AI assistant (Phase 4). The MCP server runs via `
 
 ### Tuning + retrieval features (v1.2.0+)
 
-All 10 variables below have safe defaults. Hybrid (BM25+RRF) and cross-encoder rerank are **default-on** as of the v1.10 promotion (2026-05-18); operators opt **out** by setting the flags to `false`. Source of truth: `mcp_server/cocoindex_code/config.py`.
+The variables below have safe defaults. Hybrid (BM25+RRF), cross-encoder rerank, and tree-sitter code-aware chunking are **default-on**; operators opt **out** by setting the flags to `false`. Source of truth: `mcp_server/cocoindex_code/config.py`.
 
 **Chunking (always on, tunable defaults):**
 
@@ -323,8 +323,18 @@ All 10 variables below have safe defaults. Hybrid (BM25+RRF) and cross-encoder r
 | `COCOINDEX_CODE_CHUNK_SIZE` | `1500` | 100–8000 | Max characters per code chunk before splitting. Raised from 1000 → 1500 in v1.2.0 for better function-boundary preservation. |
 | `COCOINDEX_CODE_CHUNK_OVERLAP` | `200` | 0–1000 | Character overlap between adjacent chunks for cross-chunk continuity. |
 | `COCOINDEX_CODE_MIN_CHUNK_SIZE` | `250` | 50–1000 | Smallest chunk emitted; smaller fragments are merged with neighbors. |
+| `COCOINDEX_CODE_AWARE_CHUNKING` | `true` | bool | Enable tree-sitter AST chunking for Python, TypeScript/TSX, JavaScript, Go, Rust, and Java. Set `false` to restore blind `RecursiveSplitter` chunking. |
+| `COCOINDEX_TREE_SITTER_LANGUAGES` | `{}` | JSON object | Optional grammar registry extension. Each entry can provide `module`, `function`, `top_level_node_types`, `doc_comment_node_types`, and optional wrapper/alias fields. |
 
 See [`feature_catalog/chunking.md`](feature_catalog/chunking.md) for the tuning rationale and benchmark methodology.
+
+Tree-sitter support is installed with the local fork:
+
+```bash
+.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/pip install -e .opencode/skills/mcp-coco-index/mcp_server
+```
+
+The editable install includes `tree-sitter`, `tree-sitter-python`, `tree-sitter-typescript`, `tree-sitter-javascript`, `tree-sitter-go`, `tree-sitter-rust`, and `tree-sitter-java`. Any change to code-aware chunking settings requires a full re-index because chunk content and embeddings change.
 
 **Hybrid search (default ON):**
 

@@ -31,6 +31,7 @@ Use this file to identify the folder boundary, the likely verification path, and
 | README scope | Direct files in this folder |
 | Audit context | Internal validation notes |
 | v1.2.0 additions | `fts_index.py`, `fusion.py`, `reranker.py` (opt-in retrieval-quality modules) |
+| v1.3.0 additions | `chunkers/` tree-sitter code-aware chunking |
 
 <!-- /ANCHOR:overview -->
 
@@ -70,6 +71,7 @@ Load this folder through the owning skill workflow or MCP server entrypoint.
 | Hybrid retrieval (v1.2.0) | `fts_index.py` + `fusion.py` add SQLite FTS5 + RRF fusion (opt-in via `COCOINDEX_HYBRID=1`). |
 | Cross-encoder rerank (v1.2.0) | `reranker.py` adds a local GTE multilingual rerank pass (opt-in via `COCOINDEX_RERANK=1`). |
 | Mirror-aware dedup (v1.2.1) | `path_utils.py` + `query.py` collapse runtime mirror aliases before rerank, preferring the canonical mirror copy. |
+| Code-aware chunking (v1.3.0) | `chunkers/` uses tree-sitter grammars for Python, TypeScript/TSX, JavaScript, Go, Rust, and Java so chunks align with definitions instead of blind line windows. |
 
 <!-- /ANCHOR:features -->
 
@@ -85,6 +87,7 @@ Load this folder through the owning skill workflow or MCP server entrypoint.
 | `_version.py` | Fork version string (`0.2.3+spec-kit-fork.0.2.0`). |
 | `cli.py` | `ccc` CLI command implementations (search, index, status, init, reset, daemon, mcp). |
 | `client.py` | Client-side daemon IPC wrapper. |
+| `chunkers/` | Tree-sitter grammar registry and `CodeAwareSplitter`; falls back to `RecursiveSplitter` when disabled, unsupported, or parse-invalid. |
 | `config.py` | Environment-variable configuration loader; defaults for chunking, hybrid, rerank live here. |
 | `daemon.py` | Background daemon that manages projects, indexing, and search IPC. |
 | `fts_index.py` | **v1.2.0.** SQLite FTS5 helpers for the lexical channel of hybrid search. |
@@ -115,10 +118,18 @@ Load this folder through the owning skill workflow or MCP server entrypoint.
 | README scope | Direct folder | This file documents this folder, not sibling folders. |
 | `COCOINDEX_CANONICAL_MIRROR` | `.opencode` | Preferred runtime mirror representative when duplicate mirror chunks compete. |
 | `COCOINDEX_MIRROR_PREFIXES` | `[".opencode/", ".codex/", ".gemini/", ".claude/"]` | JSON list of runtime mirror prefixes. Set to `[]` to disable mirror collapse. |
+| `COCOINDEX_CODE_AWARE_CHUNKING` | `true` | Enables tree-sitter code-aware chunking for supported languages. Set to `false` to restore the pre-015 `RecursiveSplitter` path globally. |
+| `COCOINDEX_TREE_SITTER_LANGUAGES` | `{}` | Optional JSON object for adding grammar specs with `module`, `function`, `top_level_node_types`, and `doc_comment_node_types`. |
 
 ### Mirror Dedup Behavior
 
 Hybrid query results run a mirror-collapse pass before the existing source-realpath/content-hash dedup. When several runtime mirror paths represent the same chunk, the query keeps the configured canonical mirror copy, defaulting to `.opencode/`. If the canonical copy is absent, the first ranked mirror copy is kept. Non-mirror same-stem files are preserved, and the existing line-range dedup still runs afterward.
+
+### Code-Aware Chunking
+
+Supported code files route through `CodeAwareSplitter` before embedding. The splitter parses the file with tree-sitter, emits chunks for top-level definitions, includes immediately preceding doc comments, and uses `RecursiveSplitter` inside any single definition larger than `2 * COCOINDEX_CODE_CHUNK_SIZE`.
+
+Unsupported languages, parse errors, and `COCOINDEX_CODE_AWARE_CHUNKING=false` use the pre-015 `RecursiveSplitter` path unchanged. Because chunk boundaries change, switching this flag on or off requires `ccc reset --force && ccc index` before comparing retrieval results.
 
 <!-- /ANCHOR:configuration -->
 

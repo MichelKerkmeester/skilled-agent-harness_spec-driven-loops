@@ -768,3 +768,64 @@ Evidence files:
 - `014-mirror-dedup-canonical-preference/evidence/phase2-comparison-014-dedup.md`
 - `014-mirror-dedup-canonical-preference/evidence/phase2-comparison-013-vs-014-delta.md`
 <!-- /ANCHOR:adr-017 -->
+
+<!-- ANCHOR:adr-018 -->
+## ADR-018: Tree-sitter code-aware chunking for CocoIndex Code
+
+**Date**: 2026-05-19
+**Status**: Accepted, code shipped; live re-index blocked in current sandbox
+**Packet**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/015-code-aware-chunking-tree-sitter-stage-b/`
+
+### Defect
+
+The pre-015 indexer used `RecursiveSplitter` line-windowing for every file. Packet 011 deep research showed this starved the reranker: for the structural-indexer probe, the highest pre-rerank candidate was the file's import/header slice rather than a function body such as `findFiles` or `indexFiles`. That made retrieval quality overly sensitive to reranker lexical bias and embedder quirks.
+
+### Decision
+
+Add `cocoindex_code/chunkers/`:
+
+1. `grammars.py` owns `GrammarSpec` and the baseline tree-sitter registry for Python, TypeScript/TSX, JavaScript, Go, Rust, and Java.
+2. `code_aware.py` owns `CodeAwareSplitter`, which emits AST definition chunks with immediately preceding doc comments.
+3. Oversized definition chunks larger than `2 * COCOINDEX_CODE_CHUNK_SIZE` fall back to the existing `RecursiveSplitter` inside that definition.
+4. `indexer.py` dispatches to `CodeAwareSplitter` only when `COCOINDEX_CODE_AWARE_CHUNKING=true` and a grammar exists; otherwise it preserves the old `RecursiveSplitter` path.
+
+The design is embedder-agnostic and reranker-agnostic. It changes the indexed text boundaries before embedding, so operators must re-index after enabling, disabling, or extending the grammar registry.
+
+### Env Var Contract
+
+| Variable | Default | Contract |
+|---|---|---|
+| `COCOINDEX_CODE_AWARE_CHUNKING` | `true` | Global runtime opt-out. Set `false` and restart the daemon to restore pre-015 line-window chunking. |
+| `COCOINDEX_TREE_SITTER_LANGUAGES` | `{}` | JSON object for adding grammar specs. Each entry supports `module`, `function`, `top_level_node_types`, `doc_comment_node_types`, and optional wrapper/alias fields. Invalid entries warn and are ignored. |
+
+### Rollback Path
+
+Set:
+
+```bash
+COCOINDEX_CODE_AWARE_CHUNKING=false
+```
+
+Then restart the `ccc` daemon and run `ccc reset --force && ccc index`. Code rollback reverts `pyproject.toml`, `config.py`, `indexer.py`, `chunkers/`, `tests/test_code_aware_chunker.py`, README/install guide updates, and this ADR.
+
+### Evidence
+
+- Tree-sitter grammar install smoke passed for Python, TypeScript/TSX, JavaScript, Go, Rust, and Java.
+- Targeted pytest passed: `38 passed` for `tests/test_code_aware_chunker.py` and `tests/test_config.py`.
+- Full MCP server pytest passed: `118 passed`.
+- Ruff passed for changed CocoIndex Python code and tests.
+- Local splitter probe on `structural-indexer.ts` emitted body chunks for `findFiles` at lines 1391-1465 and `indexFiles` at lines 2194-2234; the import/header was no longer emitted as a standalone chunk.
+- Live `ccc reset --force` deleted the old DB, but `ccc index` and direct `coco.Environment(...)` initialization both failed under this Codex sandbox with `RuntimeError: Operation not permitted (os error 1)`. Main-agent recovery completed the re-index and bench gates on 2026-05-19.
+- **Recovery re-index** (main agent, post-codex sandbox): `ccc index` produced 83,527 chunks across 8,469 files. Language breakdown: typescript 61,050 / javascript 11,158 / python 4,224 / bash 3,597 / markdown 3,464 / html 19 / css 8 / json 6 / text 1. Tree-sitter dispatched for TS/JS/Python; bash + markdown used the existing `RecursiveSplitter` fallback (no grammar registered).
+- **Corrected Phase 2 bench result** (2026-05-19, post-015):
+
+  | Lane | 014 hits | 015 hits | Δ | Median ms | p95 ms |
+  |---|---:|---:|---:|---:|---:|
+  | baseline-bge | 14/18 | **12/18** | **−2** | 1856 | 14067 |
+  | bge-path-class | 14/18 | **13/18** | **−1** | 1792 | 12437 |
+  | jina-v3 | 14/18 | **14/18** | **0** | 2239 | 14508 |
+
+- **Honest verdict**: 015 is architecturally correct but locally regressing. Tree-sitter body chunks gain probes 1 + 15 universally (recall from body-chunk addressability) and hit probe 14 on bge-path-class (the original import-header chunking-starvation bug from 011 iter 6 — the load-bearing 015 win). But probes 10/13/18 lose on BGE-family due to lexical-surface drop in tighter chunks. jina-v3 listwise scoring is more robust to the shift (loses only probe 13).
+- **Recall recovery responsibility**: the BGE-family losses are recoverable downstream. Packet 016 (query expansion / identifier bridging) adds camelCase / snake_case / synonym variants to the query, restoring lexical surface. Packet 017 (RRF empirical recalibration) tunes fusion weights for the new candidate set. Packet 018 (rerank matrix re-bench) picks the optimal reranker on the fully-fixed pipeline. The arc-final target is ≥14/18 across all 3 lanes; 015 alone is not the final shipping state.
+- **Rollback contract**: `COCOINDEX_CODE_AWARE_CHUNKING=false` + `ccc reset --force && ccc index` returns to the 014 corrected baseline (14/18 on all 3 lanes).
+<!-- /ANCHOR:adr-018 -->

@@ -15,6 +15,9 @@ from cocoindex_code.config import (
     _DEFAULT_HYBRID_RRF_K,
     _DEFAULT_HYBRID_VECTOR_WEIGHT,
     _DEFAULT_MIN_CHUNK_SIZE,
+    _DEFAULT_CODE_AWARE_CHUNKING,
+    _DEFAULT_CANONICAL_MIRROR,
+    _DEFAULT_MIRROR_PREFIXES,
     _DEFAULT_MODEL,
     Config,
     _resolve_device,
@@ -132,6 +135,8 @@ class TestChunkConfigValidation:
         assert cfg.chunk_size == _DEFAULT_CHUNK_SIZE == 1500
         assert cfg.chunk_overlap == _DEFAULT_CHUNK_OVERLAP == 200
         assert cfg.min_chunk_size == _DEFAULT_MIN_CHUNK_SIZE == 250
+        assert cfg.code_aware_chunking is _DEFAULT_CODE_AWARE_CHUNKING is True
+        assert cfg.tree_sitter_languages == {}
 
     def test_env_override_chunk_size(self, tmp_path: Path) -> None:
         with patch.dict(
@@ -203,6 +208,41 @@ class TestChunkConfigValidation:
         assert cfg.min_chunk_size == _DEFAULT_MIN_CHUNK_SIZE
         assert "Ignoring invalid COCOINDEX_CODE_MIN_CHUNK_SIZE='49'" in caplog.text
 
+    def test_code_aware_chunking_can_be_disabled(self, tmp_path: Path) -> None:
+        with patch.dict(
+            "os.environ",
+            {
+                "COCOINDEX_CODE_ROOT_PATH": str(tmp_path),
+                "COCOINDEX_CODE_AWARE_CHUNKING": "false",
+            },
+            clear=True,
+        ):
+            cfg = Config.from_env()
+
+        assert cfg.code_aware_chunking is False
+
+    def test_tree_sitter_language_override_json(self, tmp_path: Path) -> None:
+        override = (
+            '{"kotlin":{"module":"tree_sitter_kotlin",'
+            '"top_level_node_types":["function_declaration"],'
+            '"doc_comment_node_types":["comment"]}}'
+        )
+        with patch.dict(
+            "os.environ",
+            {
+                "COCOINDEX_CODE_ROOT_PATH": str(tmp_path),
+                "COCOINDEX_TREE_SITTER_LANGUAGES": override,
+            },
+            clear=True,
+        ):
+            cfg = Config.from_env()
+
+        assert cfg.tree_sitter_languages["kotlin"] == {
+            "module": "tree_sitter_kotlin",
+            "top_level_node_types": ["function_declaration"],
+            "doc_comment_node_types": ["comment"],
+        }
+
 
 class TestHybridConfigValidation:
     def test_default_hybrid_params(self, tmp_path: Path) -> None:
@@ -264,3 +304,64 @@ class TestHybridConfigValidation:
         assert "Ignoring invalid COCOINDEX_HYBRID_VECTOR_WEIGHT='2.1'" in caplog.text
         assert "Ignoring invalid COCOINDEX_HYBRID_FTS5_WEIGHT='nope'" in caplog.text
         assert "Ignoring invalid COCOINDEX_HYBRID_RRF_K='0'" in caplog.text
+
+
+class TestMirrorConfigValidation:
+    def test_default_mirror_config(self, tmp_path: Path) -> None:
+        with patch.dict(
+            "os.environ",
+            {"COCOINDEX_CODE_ROOT_PATH": str(tmp_path)},
+            clear=True,
+        ):
+            cfg = Config.from_env()
+
+        assert _DEFAULT_CANONICAL_MIRROR == ".opencode"
+        assert cfg.canonical_mirror == ".opencode/"
+        assert cfg.mirror_prefixes == _DEFAULT_MIRROR_PREFIXES
+
+    def test_mirror_prefixes_normalize_trailing_slashes(self, tmp_path: Path) -> None:
+        with patch.dict(
+            "os.environ",
+            {
+                "COCOINDEX_CODE_ROOT_PATH": str(tmp_path),
+                "COCOINDEX_MIRROR_PREFIXES": '[".opencode", ".cursor/"]',
+                "COCOINDEX_CANONICAL_MIRROR": ".cursor/",
+            },
+            clear=True,
+        ):
+            cfg = Config.from_env()
+
+        assert cfg.mirror_prefixes == [".opencode/", ".cursor/"]
+        assert cfg.canonical_mirror == ".cursor/"
+
+    def test_empty_mirror_prefixes_are_valid_opt_out(self, tmp_path: Path) -> None:
+        with patch.dict(
+            "os.environ",
+            {
+                "COCOINDEX_CODE_ROOT_PATH": str(tmp_path),
+                "COCOINDEX_MIRROR_PREFIXES": "[]",
+            },
+            clear=True,
+        ):
+            cfg = Config.from_env()
+
+        assert cfg.mirror_prefixes == []
+
+    def test_invalid_empty_canonical_mirror_falls_back(
+        self,
+        tmp_path: Path,
+        caplog: pytest.LogCaptureFixture,
+    ) -> None:
+        caplog.set_level("WARNING", logger="cocoindex_code.config")
+        with patch.dict(
+            "os.environ",
+            {
+                "COCOINDEX_CODE_ROOT_PATH": str(tmp_path),
+                "COCOINDEX_CANONICAL_MIRROR": "   ",
+            },
+            clear=True,
+        ):
+            cfg = Config.from_env()
+
+        assert cfg.canonical_mirror == ".opencode/"
+        assert "Ignoring empty COCOINDEX_CANONICAL_MIRROR" in caplog.text

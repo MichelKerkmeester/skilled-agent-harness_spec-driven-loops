@@ -12,6 +12,8 @@ _DEFAULT_MODEL = "sbert/jinaai/jina-embeddings-v2-base-code"
 _DEFAULT_CHUNK_SIZE = 1500
 _DEFAULT_CHUNK_OVERLAP = 200
 _DEFAULT_MIN_CHUNK_SIZE = 250
+_DEFAULT_CODE_AWARE_CHUNKING = True
+_DEFAULT_TREE_SITTER_LANGUAGES: dict[str, object] = {}
 _DEFAULT_HYBRID_VECTOR_WEIGHT = 0.7
 _DEFAULT_HYBRID_FTS5_WEIGHT = 0.7
 _DEFAULT_HYBRID_RRF_K = 60
@@ -239,6 +241,49 @@ def _parse_json_dict_env(
     return result
 
 
+def _parse_json_object_env(
+    var_name: str,
+    default: dict[str, object],
+) -> dict[str, object]:
+    """Parse a JSON object env var with string keys."""
+    raw_value = os.environ.get(var_name, "")
+    if not raw_value.strip():
+        return dict(default)
+
+    try:
+        parsed = json.loads(raw_value)
+    except json.JSONDecodeError:
+        logger.warning(
+            "Ignoring invalid %s=%r; expected JSON object; falling back to default",
+            var_name,
+            raw_value,
+        )
+        return dict(default)
+
+    if not isinstance(parsed, dict):
+        logger.warning(
+            "Ignoring invalid %s=%r; expected JSON dict; falling back to default",
+            var_name,
+            raw_value,
+        )
+        return dict(default)
+
+    result: dict[str, object] = {}
+    for key, value in parsed.items():
+        if not isinstance(key, str):
+            logger.warning(
+                "Ignoring invalid key %r in %s; expected string key",
+                key,
+                var_name,
+            )
+            continue
+        key = key.strip()
+        if key:
+            result[key] = value
+
+    return result
+
+
 def _parse_int_env(
     var_name: str,
     default: int,
@@ -355,6 +400,8 @@ class Config:
     chunk_size: int
     chunk_overlap: int
     min_chunk_size: int
+    code_aware_chunking: bool
+    tree_sitter_languages: dict[str, object]
     hybrid_enabled: bool
     hybrid_vector_weight: float
     hybrid_fts5_weight: float
@@ -438,6 +485,14 @@ class Config:
             50,
             1000,
         )
+        code_aware_chunking = _parse_bool_env(
+            "COCOINDEX_CODE_AWARE_CHUNKING",
+            _DEFAULT_CODE_AWARE_CHUNKING,
+        )
+        tree_sitter_languages = _parse_json_object_env(
+            "COCOINDEX_TREE_SITTER_LANGUAGES",
+            _DEFAULT_TREE_SITTER_LANGUAGES,
+        )
         hybrid_enabled = _parse_bool_env("COCOINDEX_HYBRID", True)
         hybrid_vector_weight = _parse_float_env(
             "COCOINDEX_HYBRID_VECTOR_WEIGHT",
@@ -493,6 +548,8 @@ class Config:
             chunk_size=chunk_size,
             chunk_overlap=chunk_overlap,
             min_chunk_size=min_chunk_size,
+            code_aware_chunking=code_aware_chunking,
+            tree_sitter_languages=tree_sitter_languages,
             hybrid_enabled=hybrid_enabled,
             hybrid_vector_weight=hybrid_vector_weight,
             hybrid_fts5_weight=hybrid_fts5_weight,

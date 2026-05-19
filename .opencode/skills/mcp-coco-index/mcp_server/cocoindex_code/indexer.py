@@ -18,6 +18,8 @@ from cocoindex.resources.file import FilePathMatcher, PatternFilePathMatcher
 from cocoindex.resources.id import IdGenerator
 from pathspec import GitIgnoreSpec
 
+from .chunkers import CodeAwareSplitter
+from .chunkers.grammars import grammar_for_language
 from .config import config
 from .fts_index import FtsChunkRow, ensure_fts_table, populate_fts
 from .settings import PROJECT_SETTINGS, is_canonical_path
@@ -37,6 +39,31 @@ CHUNK_OVERLAP = 200
 
 # Chunking splitter (stateless, can be module-level)
 splitter = RecursiveSplitter()
+
+
+def _split_chunks(
+    content: str,
+    *,
+    language: str,
+    chunk_size: int,
+    min_chunk_size: int,
+    chunk_overlap: int,
+) -> list[Chunk]:
+    if config.code_aware_chunking and grammar_for_language(language, config.tree_sitter_languages):
+        return CodeAwareSplitter(
+            chunk_size=chunk_size,
+            min_chunk_size=min_chunk_size,
+            chunk_overlap=chunk_overlap,
+            grammar_overrides=config.tree_sitter_languages,
+        ).split(content, language)
+
+    return splitter.split(
+        content,
+        chunk_size=chunk_size,
+        min_chunk_size=min_chunk_size,
+        chunk_overlap=chunk_overlap,
+        language=language,
+    )
 
 
 def _normalize_chunk_content(content: str) -> str:
@@ -274,12 +301,12 @@ async def process_file(
     min_chunk_size = getattr(config, "min_chunk_size", MIN_CHUNK_SIZE)
     chunk_overlap = getattr(config, "chunk_overlap", CHUNK_OVERLAP)
 
-    chunks = splitter.split(
+    chunks = _split_chunks(
         content,
+        language=language,
         chunk_size=chunk_size,
         min_chunk_size=min_chunk_size,
         chunk_overlap=chunk_overlap,
-        language=language,
     )
 
     id_gen = IdGenerator()
