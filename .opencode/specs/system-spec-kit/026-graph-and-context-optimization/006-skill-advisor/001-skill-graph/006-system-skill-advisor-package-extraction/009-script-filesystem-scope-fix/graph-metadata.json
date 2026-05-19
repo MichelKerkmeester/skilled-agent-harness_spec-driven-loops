@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Two production advisor scripts resolve filesystem paths one directory too high. `skill_graph_compiler.py` names its root `SKILLS_DIR` but currently lands at `.opencode/`, causing graph compilation to scan non-skill trees. `skill_advisor.py` currently resolves the SQLite database under the skill root instead of `mcp_server/database/`, so the Python parity shim can probe the wrong database path.",
     "created_at": "2026-05-14T00:00:00Z",
-    "last_save_at": "2026-05-18T15:17:57.387Z",
+    "last_save_at": "2026-05-19T13:51:39.120Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T00:00:00Z",
     "source_docs": [

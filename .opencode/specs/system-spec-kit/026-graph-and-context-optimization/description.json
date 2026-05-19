@@ -22,7 +22,7 @@
     "006-skill-advisor",
     "007-hook-parity",
     "010-graph-impact-and-affordance-uplift",
-    "003-mcp-runtime-stress-remediation",
+    "003-fix-mcp-runtime-stress-findings",
     "014-local-embeddings-setup-a"
   ],
   "specFolder": "system-spec-kit/026-graph-and-context-optimization",

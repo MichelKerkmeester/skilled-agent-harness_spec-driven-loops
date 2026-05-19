@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Packet 037/005 migrated only two filename-matching stress files into the dedicated stress folder. That missed the real stress-test surface, especially the search-quality harness, W-cell matrix cases, memory benchmarks, session benchmarks, skill-advisor concurrency coverage, and code-graph degraded sweeps.",
     "created_at": "2026-04-29T18:45:00Z",
-    "last_save_at": "2026-05-18T15:17:57.230Z",
+    "last_save_at": "2026-05-19T13:51:38.960Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

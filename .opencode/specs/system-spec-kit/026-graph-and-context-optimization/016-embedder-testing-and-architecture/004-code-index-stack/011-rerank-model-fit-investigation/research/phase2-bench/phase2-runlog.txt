@@ -62,3 +62,99 @@
 [12:29:01] ==========================================
 [12:29:01] Phase 2 done. Comparison: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/phase2-comparison-corrected.md
 [12:29:01] ==========================================
+[13:05:08] ==========================================
+[13:05:08] Phase 2 Smoke Bench starting
+[13:05:08] Fixture: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/code-retrieval-fixture-corrected.json (18 probes)
+[13:05:08] Pinned embedder: sbert/BAAI/bge-code-v1
+[13:05:08] ==========================================
+[13:05:08] ==========================================
+[13:05:08] LANE START: baseline-bge
+[13:05:08]   rerank_model=BAAI/bge-reranker-v2-m3
+[13:05:08]   path_class_boost=0
+[13:05:08]   adapter=
+[13:05:08] killing ccc daemon (if any) to clear _ADAPTERS cache
+[13:05:51] LANE END: baseline-bge  wall_s=43
+[13:05:51] ==========================================
+[13:05:51] LANE START: bge-path-class
+[13:05:51]   rerank_model=BAAI/bge-reranker-v2-m3
+[13:05:51]   path_class_boost=1
+[13:05:51]   adapter=
+[13:05:51] killing ccc daemon (if any) to clear _ADAPTERS cache
+[13:06:32] LANE END: bge-path-class  wall_s=41
+[13:06:32] ==========================================
+[13:06:32] LANE START: jina-v3
+[13:06:32]   rerank_model=jinaai/jina-reranker-v3
+[13:06:32]   path_class_boost=0
+[13:06:32]   adapter=jina_v3
+[13:06:32] killing ccc daemon (if any) to clear _ADAPTERS cache
+[13:07:11] LANE END: jina-v3  wall_s=39
+[13:07:11] ==========================================
+[13:07:11] Phase 2 bench complete; running comparison synthesis
+[13:07:11] ==========================================
+[13:07:11] ==========================================
+[13:07:11] Phase 2 done. Comparison: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/014-mirror-dedup-canonical-preference/evidence/phase2-comparison-014-dedup.md
+[13:07:11] ==========================================
+[13:07:20] ==========================================
+[13:07:20] Phase 2 Smoke Bench starting
+[13:07:20] Fixture: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/code-retrieval-fixture-corrected.json (18 probes)
+[13:07:20] Pinned embedder: sbert/BAAI/bge-code-v1
+[13:07:20] ==========================================
+[13:07:20] ==========================================
+[13:07:20] LANE START: baseline-bge
+[13:07:20]   rerank_model=BAAI/bge-reranker-v2-m3
+[13:07:20]   path_class_boost=0
+[13:07:20]   adapter=
+[13:07:20] killing ccc daemon (if any) to clear _ADAPTERS cache
+[13:07:59] LANE END: baseline-bge  wall_s=39
+[13:07:59] ==========================================
+[13:07:59] LANE START: bge-path-class
+[13:07:59]   rerank_model=BAAI/bge-reranker-v2-m3
+[13:07:59]   path_class_boost=1
+[13:07:59]   adapter=
+[13:07:59] killing ccc daemon (if any) to clear _ADAPTERS cache
+[13:08:37] LANE END: bge-path-class  wall_s=38
+[13:08:37] ==========================================
+[13:08:37] LANE START: jina-v3
+[13:08:37]   rerank_model=jinaai/jina-reranker-v3
+[13:08:37]   path_class_boost=0
+[13:08:37]   adapter=jina_v3
+[13:08:37] killing ccc daemon (if any) to clear _ADAPTERS cache
+[13:09:16] LANE END: jina-v3  wall_s=39
+[13:09:16] ==========================================
+[13:09:16] Phase 2 bench complete; running comparison synthesis
+[13:09:16] ==========================================
+[13:09:16] ==========================================
+[13:09:16] Phase 2 done. Comparison: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/014-mirror-dedup-canonical-preference/evidence/phase2-comparison-014-dedup.md
+[13:09:16] ==========================================
+[15:26:52] ==========================================
+[15:26:52] Phase 2 Smoke Bench starting
+[15:26:52] Fixture: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/code-retrieval-fixture-corrected.json (18 probes)
+[15:26:52] Pinned embedder: sbert/BAAI/bge-code-v1
+[15:26:52] ==========================================
+[15:26:52] ==========================================
+[15:26:52] LANE START: baseline-bge
+[15:26:52]   rerank_model=BAAI/bge-reranker-v2-m3
+[15:26:52]   path_class_boost=0
+[15:26:52]   adapter=
+[15:26:52] killing ccc daemon (if any) to clear _ADAPTERS cache
+[15:27:39] LANE END: baseline-bge  wall_s=47
+[15:27:39] ==========================================
+[15:27:39] LANE START: bge-path-class
+[15:27:39]   rerank_model=BAAI/bge-reranker-v2-m3
+[15:27:39]   path_class_boost=1
+[15:27:39]   adapter=
+[15:27:39] killing ccc daemon (if any) to clear _ADAPTERS cache
+[15:28:23] LANE END: bge-path-class  wall_s=44
+[15:28:23] ==========================================
+[15:28:23] LANE START: jina-v3
+[15:28:23]   rerank_model=jinaai/jina-reranker-v3
+[15:28:23]   path_class_boost=0
+[15:28:23]   adapter=jina_v3
+[15:28:23] killing ccc daemon (if any) to clear _ADAPTERS cache
+[15:29:17] LANE END: jina-v3  wall_s=54
+[15:29:17] ==========================================
+[15:29:17] Phase 2 bench complete; running comparison synthesis
+[15:29:17] ==========================================
+[15:29:17] ==========================================
+[15:29:17] Phase 2 done. Comparison: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/015-code-aware-chunking-tree-sitter-stage-b/evidence/phase2-comparison-015-treesitter.md
+[15:29:17] ==========================================

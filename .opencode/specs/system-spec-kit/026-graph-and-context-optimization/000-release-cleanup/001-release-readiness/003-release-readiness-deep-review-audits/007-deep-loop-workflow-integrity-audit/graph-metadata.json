@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The release-readiness program needs a truth check for the deep-loop workflow layer. Deep-research and deep-review loops must stop honestly, preserve append-only JSONL evidence, continue lineage without exposing deferred branches, recover from malformed or missing iteration artifacts, and render prompt packs without leaking secrets or losing required state paths.",
     "created_at": "2026-04-29T20:30:00.000Z",
-    "last_save_at": "2026-05-18T15:17:57.092Z",
+    "last_save_at": "2026-05-19T13:51:38.825Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -97,7 +97,7 @@ Create a dedicated `.opencode/skills/system-spec-kit/mcp_server/stress_test/` fo
 | `.opencode/skills/system-spec-kit/mcp_server/tsconfig.json` | Modify | Exclude stress test files from build |
 | `.opencode/skills/system-spec-kit/mcp_server/README` | Modify | Document new folder in structure map |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/README` | Modify | Clarify default test vs stress-test boundary |
-| `specs/.../003-mcp-runtime-stress-remediation/**/*.md` | Modify | Refresh direct path references for moved stress suite |
+| `specs/.../003-fix-mcp-runtime-stress-findings/**/*.md` | Modify | Refresh direct path references for moved stress suite |
 | `specs/.../005-stress-test-folder-migration/*` | Create | Level 2 packet docs and migration plan |
 <!-- /ANCHOR:scope -->
 

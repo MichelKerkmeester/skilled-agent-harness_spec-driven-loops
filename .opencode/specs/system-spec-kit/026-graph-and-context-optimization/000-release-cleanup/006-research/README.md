@@ -7,7 +7,7 @@ Investigations, automation-self research, supplemental research.
 - `001-automation-self-management-research`
 - `002-automation-reality-supplemental-research`
 - `003-system-bug-improvement-research`
-- `004-deep-research-findings-remediation`
+- `004-fix-deep-research-findings`
 
 ## Provenance
 

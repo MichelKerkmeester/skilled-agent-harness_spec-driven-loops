@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-fix-mcp-runtime-stress-findings/016-degraded-readiness-envelope-parity",
+  "description": "Feature Specification: Degraded-readiness envelope parity",
+  "keywords": [
+    "feature",
+    "specification",
+    "degraded-readiness",
+    "envelope",
+    "parity"
+  ],
+  "lastUpdated": "2026-05-08T08:26:57.191Z",
+  "specId": "016",
+  "folderSlug": "degraded-readiness-envelope-parity",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup",
+    "003-fix-mcp-runtime-stress-findings"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

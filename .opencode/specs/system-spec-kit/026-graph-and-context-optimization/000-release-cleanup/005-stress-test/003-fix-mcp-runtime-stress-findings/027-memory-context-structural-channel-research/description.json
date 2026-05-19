@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-fix-mcp-runtime-stress-findings/027-memory-context-structural-channel-research",
+  "description": "Research Charter: memory_context Structural Channel Routing",
+  "keywords": [
+    "research",
+    "charter",
+    "structural",
+    "channel",
+    "routing"
+  ],
+  "lastUpdated": "2026-05-02T10:39:48.252Z",
+  "specId": "027",
+  "folderSlug": "memory-context-structural-channel-research",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup",
+    "003-fix-mcp-runtime-stress-findings"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

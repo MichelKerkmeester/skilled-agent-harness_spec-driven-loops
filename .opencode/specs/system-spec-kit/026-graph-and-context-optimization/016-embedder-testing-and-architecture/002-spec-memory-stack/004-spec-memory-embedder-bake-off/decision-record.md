@@ -829,3 +829,59 @@ Then restart the `ccc` daemon and run `ccc reset --force && ccc index`. Code rol
 - **Recall recovery responsibility**: the BGE-family losses are recoverable downstream. Packet 016 (query expansion / identifier bridging) adds camelCase / snake_case / synonym variants to the query, restoring lexical surface. Packet 017 (RRF empirical recalibration) tunes fusion weights for the new candidate set. Packet 018 (rerank matrix re-bench) picks the optimal reranker on the fully-fixed pipeline. The arc-final target is ≥14/18 across all 3 lanes; 015 alone is not the final shipping state.
 - **Rollback contract**: `COCOINDEX_CODE_AWARE_CHUNKING=false` + `ccc reset --force && ccc index` returns to the 014 corrected baseline (14/18 on all 3 lanes).
 <!-- /ANCHOR:adr-018 -->
+
+<!-- ANCHOR:adr-019 -->
+## ADR-019: Deterministic query expansion for CocoIndex identifier bridging
+
+**Date**: 2026-05-19
+**Status**: Accepted, code shipped; bench evidence pending packet validation
+**Packet**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/016-query-expansion-identifier-bridging/`
+
+### Defect
+
+Post-015 tree-sitter chunks made function and class bodies addressable, but natural-language queries still did not reliably reach identifier-heavy code. The failure mode is pre-rerank recall: queries such as `memory save`, `structural indexer`, and `rerank adapter` are natural text, while the corpus stores `memory_save`, `structuralIndexer`, and `RerankerAdapter`. A reranker cannot recover chunks that dense retrieval and FTS5 never admit into the candidate set.
+
+### Decision
+
+Add deterministic query expansion before hybrid retrieval:
+
+1. `query_expansion.py` splits compound identifiers across camelCase, PascalCase, snake_case, kebab-case, and SCREAMING_SNAKE.
+2. It emits bounded identifier variants for the user phrase: joined lower, camelCase, snake_case, PascalCase, kebab-case, and SCREAMING_SNAKE.
+3. It applies a single-hop curated code-domain synonym dictionary with a hard combinatorial cap.
+4. Hybrid dense retrieval embeds each expanded variant by default, OR-merges vector rows by `chunk_id`, and keeps the best vector distance.
+5. FTS5 receives a quoted `OR` clause containing original atomic words plus expanded variants, so phrase expansion does not remove ordinary token recall.
+
+The design is deliberately LLM-free. It is a pure string transform over the query, so it is embedder-agnostic, reranker-agnostic, deterministic under tests, and cheap to reason about in benchmark deltas.
+
+### Env Var Contract
+
+| Variable | Default | Contract |
+|---|---|---|
+| `COCOINDEX_QUERY_EXPANSION` | `true` | Master kill switch. `false` preserves the pre-016 query path. |
+| `COCOINDEX_QUERY_EXPANSION_MAX_VARIANTS` | `6` | Bounds dense fanout and FTS5 expansion terms. Invalid values fall back to `6`. |
+| `COCOINDEX_QUERY_EXPANSION_SYNONYMS` | curated dict | JSON dict of `{str: list[str]}`. Valid overrides replace the default dictionary; malformed input warns and falls back. |
+| `COCOINDEX_QUERY_EXPANSION_DENSE_FANOUT` | `true` | `true` embeds variants separately and merges candidates by best distance. `false` concatenates variants into one embedding request for lower latency. |
+
+### Synonym Rationale
+
+The default dictionary stays small and code-domain-specific. It covers high-leverage retrieval vocabulary seen in the Phase 2 probes and adjacent code search language: traversal (`walker`, `finder`, `indexer`), persistence (`save`, `load`), parsing (`parser`, `lexer`, `tokenizer`), configuration (`config`, `settings`, `options`), lifecycle verbs (`init`, `create`, `delete`), and reranking (`rerank`, `adapter`). Expansion is single-hop only to avoid synonym graph drift and latency surprises.
+
+### Latency Tradeoff
+
+Dense fanout can add up to `MAX_VARIANTS - 1` extra embedding and vector-search calls. That cost is intentional when recall improves, and it is bounded by the default cap of six. Operators who need lower latency can set `COCOINDEX_QUERY_EXPANSION_DENSE_FANOUT=false`, keeping the same FTS5 expansion while reducing dense retrieval to one embedding request.
+
+### Rollback Path
+
+Set:
+
+```bash
+COCOINDEX_QUERY_EXPANSION=false
+```
+
+Then restart the `ccc` daemon so the config singleton reloads. Full code rollback reverts `query_expansion.py`, `query.py`, `fts_index.py`, `config.py`, query expansion tests, README updates, and this ADR.
+
+### Evidence
+
+- Targeted pytest passed for query expansion, config parsing, FTS5, and hybrid integration: `50 passed`.
+- Bench evidence will be recorded in packet 016 evidence before completion metadata is finalized.
+<!-- /ANCHOR:adr-019 -->

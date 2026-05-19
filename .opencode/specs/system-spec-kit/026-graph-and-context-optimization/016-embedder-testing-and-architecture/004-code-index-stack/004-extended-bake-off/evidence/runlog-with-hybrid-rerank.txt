@@ -593,3 +593,156 @@ or edit it manually.
 Project: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 Indexing failed: Daemon error: environment already open in this program; close it to be able to open it again with different options
 [2026-05-18T16:54:41+0200] restore complete; CocoIndex back on jina-code baseline
+[2026-05-18T19:50:30+0200] benchmark start; candidates=sbert/BAAI/bge-code-v1
+[2026-05-18T19:50:30+0200] candidate start: sbert/BAAI/bge-code-v1
+[2026-05-18T19:50:30+0200] pre-pull start: sbert/BAAI/bge-code-v1
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 9974.07it/s]
+[2026-05-18T19:50:37+0200] pre-pull done: sbert/BAAI/bge-code-v1
+[2026-05-18T19:50:37+0200] reset: sbert/BAAI/bge-code-v1
+The following files will be deleted:
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/cocoindex.db
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db
+Databases deleted.
+Settings file still exists. Run `ccc reset --all` to remove it too,
+or edit it manually.
+[2026-05-18T19:50:37+0200] index start: sbert/BAAI/bge-code-v1
+[2026-05-18T19:50:43+0200] index FAILED: sbert/BAAI/bge-code-v1; rc=0; stderr=Error: Failed to connect to daemon: Failed to connect to daemon after starting it
+[2026-05-18T19:50:43+0200] candidate marked failed: sbert/BAAI/bge-code-v1
+[2026-05-18T19:50:43+0200] benchmark complete; total_wall_s=13
+[2026-05-18T19:50:43+0200] results: CSV=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off/evidence/cocoindex-embedder-comparison-with-hybrid-rerank.csv JSONL=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off/evidence/cocoindex-embedder-comparison-with-hybrid-rerank.jsonl RUNLOG=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off/evidence/runlog-with-hybrid-rerank.txt
+[2026-05-18T19:50:43+0200] restore: setting COCOINDEX_CODE_EMBEDDING_MODEL back to jina-code
+Nothing to reset.
+Error: Failed to connect to daemon: Failed to connect to daemon after starting it
+[2026-05-18T19:50:48+0200] restore complete; CocoIndex back on jina-code baseline
+[2026-05-18T20:00:06+0200] benchmark start; candidates=sbert/BAAI/bge-code-v1
+[2026-05-18T20:00:06+0200] candidate start: sbert/BAAI/bge-code-v1
+[2026-05-18T20:00:06+0200] pre-pull start: sbert/BAAI/bge-code-v1
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 25182.51it/s]
+[2026-05-18T20:00:13+0200] pre-pull done: sbert/BAAI/bge-code-v1
+[2026-05-18T20:00:13+0200] reset: sbert/BAAI/bge-code-v1
+The following files will be deleted:
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/cocoindex.db
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db
+Databases deleted.
+Settings file still exists. Run `ccc reset --all` to remove it too,
+or edit it manually.
+[2026-05-18T20:00:14+0200] index start: sbert/BAAI/bge-code-v1
+[2026-05-18T20:24:45+0200] index complete: sbert/BAAI/bge-code-v1; tail='    markdown: 5114 chunks     html: 34 chunks     css: 11 chunks     json: 6 chunks     text: 1 chunks '
+[2026-05-18T20:25:12+0200] probes done: sbert/BAAI/bge-code-v1; summary=sbert/BAAI/bge-code-v1,768,18,11,0.611,3,5,3,380,21082
+[2026-05-18T20:25:12+0200] candidate done: sbert/BAAI/bge-code-v1; wall_s=1506
+[2026-05-18T20:25:12+0200] benchmark complete; total_wall_s=1506
+[2026-05-18T20:25:12+0200] results: CSV=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off/evidence/cocoindex-embedder-comparison-with-hybrid-rerank.csv JSONL=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off/evidence/cocoindex-embedder-comparison-with-hybrid-rerank.jsonl RUNLOG=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off/evidence/runlog-with-hybrid-rerank.txt
+[2026-05-18T20:25:12+0200] restore: setting COCOINDEX_CODE_EMBEDDING_MODEL back to jina-code
+Databases deleted.
+Settings file still exists. Run `ccc reset --all` to remove it too,
+or edit it manually.
+Project: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+[2026-05-18T20:37:57+0200] restore complete; CocoIndex back on jina-code baseline
+[2026-05-18T20:37:59+0200] benchmark start; candidates=sbert/BAAI/bge-code-v1
+[2026-05-18T20:37:59+0200] candidate start: sbert/BAAI/bge-code-v1
+[2026-05-18T20:37:59+0200] pre-pull start: sbert/BAAI/bge-code-v1
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 8875.83it/s]
+[2026-05-18T20:38:08+0200] pre-pull done: sbert/BAAI/bge-code-v1
+[2026-05-18T20:38:08+0200] reset: sbert/BAAI/bge-code-v1
+The following files will be deleted:
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/cocoindex.db
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db
+Databases deleted.
+Settings file still exists. Run `ccc reset --all` to remove it too,
+or edit it manually.
+[2026-05-18T20:38:08+0200] index start: sbert/BAAI/bge-code-v1
+[2026-05-18T21:03:37+0200] index complete: sbert/BAAI/bge-code-v1; tail='    markdown: 3449 chunks     html: 19 chunks     css: 8 chunks     json: 6 chunks     text: 1 chunks '
+[2026-05-18T21:04:13+0200] probes done: sbert/BAAI/bge-code-v1; summary=sbert/BAAI/bge-code-v1,768,18,10,0.556,3,5,2,1313,12474
+[2026-05-18T21:04:13+0200] candidate done: sbert/BAAI/bge-code-v1; wall_s=1574
+[2026-05-18T21:04:13+0200] benchmark complete; total_wall_s=1574
+[2026-05-18T21:04:13+0200] results: CSV=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off/evidence/cocoindex-embedder-comparison-with-hybrid-rerank.csv JSONL=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off/evidence/cocoindex-embedder-comparison-with-hybrid-rerank.jsonl RUNLOG=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off/evidence/runlog-with-hybrid-rerank.txt
+[2026-05-18T21:04:13+0200] restore: setting COCOINDEX_CODE_EMBEDDING_MODEL back to jina-code
+Databases deleted.
+Settings file still exists. Run `ccc reset --all` to remove it too,
+or edit it manually.
+Project: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+Indexing failed: Connection to daemon lost during indexing
+[2026-05-18T21:18:19+0200] restore complete; CocoIndex back on jina-code baseline
+[2026-05-18T21:18:21+0200] benchmark start; candidates=sbert/jinaai/jina-embeddings-v2-base-code sbert/google/embeddinggemma-300m sbert/nomic-ai/CodeRankEmbed sbert/BAAI/bge-code-v1
+[2026-05-18T21:18:21+0200] candidate start: sbert/jinaai/jina-embeddings-v2-base-code
+[2026-05-18T21:18:21+0200] pre-pull start: sbert/jinaai/jina-embeddings-v2-base-code
+/Users/michelkerkmeester/.cache/huggingface/modules/transformers_modules/jinaai/jina_hyphen_bert_hyphen_v2_hyphen_qk_hyphen_post_hyphen_norm/3baf9e3ac750e76e8edd3019170176884695fb94/configuration_bert.py:29: UserWarning: optimum is not installed. To use OnnxConfig and BertOnnxConfig, make sure that `optimum` package is installed
+  warnings.warn("optimum is not installed. To use OnnxConfig and BertOnnxConfig, make sure that `optimum` package is installed")
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/util/decorators.py", line 41, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/sentence_transformer/model.py", line 183, in __init__
+    super().__init__(
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/model.py", line 198, in __init__
+    modules, self.module_kwargs = self._load_modules(
+                                  ^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/model.py", line 974, in _load_modules
+    return self._load_config_modules(model_name_or_path, **load_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/model.py", line 1165, in _load_config_modules
+    module = module_class.load(
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/modules/transformer.py", line 1708, in load
+    return cls(model_name_or_path=model_name_or_path, **init_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/util/decorators.py", line 87, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/modules/transformer.py", line 642, in __init__
+    self.model = self._load_model(
+                 ^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/sentence_transformers/base/modules/transformer.py", line 1414, in _load_model
+    return model_cls.from_pretrained(model_name_or_path, config=config, **model_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/transformers/models/auto/auto_factory.py", line 379, in from_pretrained
+    model_class = get_class_from_dynamic_module(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/transformers/dynamic_module_utils.py", line 627, in get_class_from_dynamic_module
+    return get_class_in_module(class_name, final_module, force_reload=force_download)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/transformers/dynamic_module_utils.py", line 309, in get_class_in_module
+    module_spec.loader.exec_module(module)
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/Users/michelkerkmeester/.cache/huggingface/modules/transformers_modules/jinaai/jina_hyphen_bert_hyphen_v2_hyphen_qk_hyphen_post_hyphen_norm/3baf9e3ac750e76e8edd3019170176884695fb94/modeling_bert.py", line 45, in <module>
+    from transformers.pytorch_utils import (
+ImportError: cannot import name 'find_pruneable_heads_and_indices' from 'transformers.pytorch_utils' (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/transformers/pytorch_utils.py)
+[2026-05-18T21:18:25+0200] pre-pull done: sbert/jinaai/jina-embeddings-v2-base-code
+[2026-05-18T21:18:25+0200] reset: sbert/jinaai/jina-embeddings-v2-base-code
+The following files will be deleted:
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/cocoindex.db
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db
+Databases deleted.
+Settings file still exists. Run `ccc reset --all` to remove it too,
+or edit it manually.
+[2026-05-18T21:18:26+0200] index start: sbert/jinaai/jina-embeddings-v2-base-code
+[2026-05-18T21:51:43+0200] index complete: sbert/jinaai/jina-embeddings-v2-base-code; tail='    markdown: 3459 chunks     html: 19 chunks     css: 8 chunks     json: 6 chunks     text: 1 chunks '
+[2026-05-18T21:52:13+0200] candidate done: sbert/jinaai/jina-embeddings-v2-base-code; wall_s=2032
+[2026-05-18T21:52:13+0200] candidate start: sbert/google/embeddinggemma-300m
+[2026-05-18T21:52:13+0200] pre-pull start: sbert/google/embeddinggemma-300m
+Loading weights:   0%|          | 0/314 [00:00<?, ?it/s]Loading weights: 100%|██████████| 314/314 [00:00<00:00, 7031.07it/s]
+[2026-05-18T21:52:20+0200] pre-pull done: sbert/google/embeddinggemma-300m
+[2026-05-18T21:52:20+0200] reset: sbert/google/embeddinggemma-300m
+The following files will be deleted:
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/cocoindex.db
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db
+Databases deleted.
+Settings file still exists. Run `ccc reset --all` to remove it too,
+or edit it manually.
+[2026-05-18T21:52:23+0200] index start: sbert/google/embeddinggemma-300m
+[2026-05-18T22:19:03+0200] index complete: sbert/google/embeddinggemma-300m; tail='    markdown: 3460 chunks     html: 19 chunks     css: 8 chunks     json: 6 chunks     text: 1 chunks '
+[2026-05-18T22:19:33+0200] candidate done: sbert/google/embeddinggemma-300m; wall_s=1640
+[2026-05-18T22:19:33+0200] candidate start: sbert/nomic-ai/CodeRankEmbed
+[2026-05-18T22:19:33+0200] pre-pull start: sbert/nomic-ai/CodeRankEmbed
+<All keys matched successfully>
+[2026-05-18T22:19:40+0200] pre-pull done: sbert/nomic-ai/CodeRankEmbed
+[2026-05-18T22:19:40+0200] reset: sbert/nomic-ai/CodeRankEmbed
+The following files will be deleted:
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/cocoindex.db
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.cocoindex_code/target_sqlite.db
+Databases deleted.
+Settings file still exists. Run `ccc reset --all` to remove it too,
+or edit it manually.
+[2026-05-18T22:19:41+0200] index start: sbert/nomic-ai/CodeRankEmbed

@@ -74,7 +74,7 @@ Two confirmed stress suites moved out of `tests/`: `session-manager-stress.vites
 | `.opencode/skills/system-spec-kit/mcp_server/tsconfig.json` | Modified | Exclude stress tests from production build |
 | `.opencode/skills/system-spec-kit/mcp_server/README` | Modified | Add `stress_test/` to MCP server structure |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/README` | Modified | Clarify default suite vs stress-suite boundary |
-| `specs/.../003-mcp-runtime-stress-remediation/**/*.md` | Modified | Refresh direct references to the moved degraded stress suite |
+| `specs/.../003-fix-mcp-runtime-stress-findings/**/*.md` | Modified | Refresh direct references to the moved degraded stress suite |
 | `specs/.../005-stress-test-folder-migration/*` | Created | Add packet docs and migration plan |
 <!-- /ANCHOR:what-built -->
 

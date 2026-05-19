@@ -10,13 +10,15 @@
     "hybrid-rerank-benchmark",
     "install-troubleshooting"
   ],
-  "lastUpdated": "2026-05-18T18:47:20.510Z",
+  "lastUpdated": "2026-05-18T19:05:18.852Z",
   "specId": "005",
   "folderSlug": "cocoindex-install-hygiene",
   "parentChain": [
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality"
   ],
-  "memorySequence": 1,
-  "memoryNameHistory": []
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "18-05-26_20-05__root-cause-of-instrumentation-failed-for-good.md"
+  ]
 }

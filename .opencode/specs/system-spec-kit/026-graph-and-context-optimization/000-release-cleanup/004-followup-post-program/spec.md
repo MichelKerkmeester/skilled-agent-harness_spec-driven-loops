@@ -45,7 +45,7 @@ Coordinate followup and post-program work across quality passes, runtime cleanup
 The parent itself owns no implementation. All work lives in the children. Each child's spec.md is the source of truth for that child's scope.
 
 - **Quality assurance**: 002-vitest-baseline-recovery-followup (test baseline recovery) and 003-post-program-quality-pass (quality pass coordination)
-- **Runtime cleanup**: 001-post-program-cleanup (general post-program cleanup) and 004-runtime-root-memory-cleanup-followups (packet 096 followups: workspace root hardening, memory health diagnostics, deprecated-tier bulk deletion)
+- **Runtime cleanup**: 001-post-program-doc-and-state-cleanup (general post-program cleanup) and 004-runtime-root-memory-cleanup-followup-fixes (packet 096 followups: workspace root hardening, memory health diagnostics, deprecated-tier bulk deletion)
 
 ---
 

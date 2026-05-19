@@ -1,0 +1,62 @@
+# Iteration 6 — Voyage/external API caching strategies (disk vs RAM cache, size-bounded, evict on idle)
+
+## Summary
+
+Voyage/OpenAI do not add a large resident model to `context-server.js`; their memory risk is cache policy. Keep external API embeddings disk-first to avoid repeated paid/slow calls, but make the disk cache profile/task-aware and byte-bounded, then shrink or idle-clear the RAM embedding cache so the daemon does not duplicate recent SQLite rows in V8 heap.
+
+## Findings
+
+### Finding 1: Voyage document/query embeddings need task-aware disk-cache keys before query caching is safe
+- Evidence: `.opencode/skills/system-spec-kit/shared/embeddings/providers/voyage.ts:145-159` sends Voyage's `input_type` when present; `.opencode/skills/system-spec-kit/shared/embeddings/providers/voyage.ts:279-290` maps documents to `input_type='document'` and queries to `input_type='query'`. The persistent cache schema only keys `(content_hash, model_id, dimensions)` at `.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:47-55`, and `memory_save` computes `content_hash` from normalized content while ignoring the `model` argument at `.opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:114-130`.
+- Memory impact: adding query vectors to the current table without a task discriminator would either be unsafe or force separate ad hoc hash prefixes. At 2048 dims, 1,000 query vectors are ~7.8 MiB raw; at 10,000 rows they are ~78.1 MiB before SQLite page/index overhead. The active Ollama/Jina DB already has `embedding_cache` at 4,127 rows / 16,904,192 raw bytes / 19,030,016 table bytes, so a Voyage 2048 cache can become a material slice of the 246 MB baseline if left count-bounded.
+- Proposed change: in `.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts`, migrate the table to include `input_kind TEXT NOT NULL DEFAULT 'document'` and `profile_key TEXT NOT NULL`, with a new primary key such as `(content_hash, profile_key, input_kind)`. Build `profile_key` from provider, model, dimension, dtype, and a short hash of `baseUrl`; do not rely on model name alone. Update `lookupEmbedding()` and `storeEmbedding()` to accept `{ profileKey, inputKind }`, and have document callers pass `document`. Only then add query-cache callers for Voyage/OpenAI.
+- Trade-off: schema migration plus call-site updates. The payoff is correctness: Voyage query/document vectors remain distinct, external API proxies do not share stale cache rows, and future BGE/mxbai/Ollama/local profiles still use the same cache contract.
+- Effort: M
+
+### Finding 2: External API embeddings should prefer bounded disk cache over RAM cache
+- Evidence: `.opencode/skills/system-spec-kit/shared/embeddings.ts:106-107` keeps a process-wide `Map<string, Float32Array>` capped only by 1,000 entries; `.opencode/skills/system-spec-kit/shared/embeddings.ts:323-331` evicts one oldest entry by count. The same document embeddings are also stored in SQLite through `lookupEmbedding()`/`storeEmbedding()` in `.opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:132-169` and `.opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:193-209`.
+- Memory impact: the RAM cache is small versus the old llama-cpp model root, but it is now visible at a 246 MB baseline. Raw worst case is ~3.9 MiB for 1,000 x 1024-dim vectors, ~7.8 MiB for Voyage 2048, and ~11.7 MiB for OpenAI 3072, before `Map`/typed-array overhead. Since persistent rows already exist on disk, cloud providers can reclaim most of that RAM with little feature cost.
+- Proposed change: in `.opencode/skills/system-spec-kit/shared/embeddings.ts`, replace the fixed `EMBEDDING_CACHE_MAX_SIZE = 1000` with byte/profile/kind caps. Suggested defaults: `SPECKIT_INPROC_EMBED_CACHE_MAX_BYTES=2097152` when `profile.provider` is `voyage` or `openai`, `8388608` for local/Ollama; `SPECKIT_INPROC_EMBED_CACHE_PROFILE_MAX_BYTES` at half the global cap; query entries capped at 25% of the provider cap. Keep the disk cache as the durable API-cost saver.
+- Trade-off: repeated hot queries/documents may hit SQLite or the API more often if the disk cache misses. For external APIs this is still the right trade because RAM should be a tiny read-through layer, not the main cache.
+- Effort: M
+
+### Finding 3: Add idle eviction for the in-process cache and validation cache
+- Evidence: the shared embedding RAM cache has `clearEmbeddingCache()` at `.opencode/skills/system-spec-kit/shared/embeddings.ts:334-342`, but no idle timer; `context-server` shutdown disposes the local reranker and closes SQLite at `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1373-1384`, but it does not clear or dispose embedding-provider state. Cloud validation also uses an unbounded module-level `providerValidationCache` at `.opencode/skills/system-spec-kit/shared/embeddings/factory.ts:95` and stores promises by full JSON key at `.opencode/skills/system-spec-kit/shared/embeddings/factory.ts:718-749`.
+- Memory impact: in-process embedding entries are the measurable part: reclaim roughly 2-12 MiB depending on dimensions and traffic. `providerValidationCache` is likely under 1 MiB in normal use, but it has no bound and retains API-key-bearing key strings for the life of the process.
+- Proposed change: add `scheduleEmbeddingCacheIdleEviction()` in `.opencode/skills/system-spec-kit/shared/embeddings.ts`. After every cache hit/store, reset an unref'd timer; default `SPECKIT_INPROC_EMBED_CACHE_IDLE_MS=300000` for cloud providers and `900000` for local providers, with `0` disabling. On timer fire, call `clearEmbeddingCache()` and log previous `{ entries, approxBytes }`. In `factory.ts`, key `providerValidationCache` by a redacted fingerprint (`sha256(provider|baseUrl|model|apiKey).slice(0,16)`), cap it to 8 entries, and TTL entries after 10 minutes.
+- Trade-off: first query after idle is cold, though disk cache can still satisfy document/query embeddings once Finding 1 lands. Validation TTL may repeat a lightweight network check after long idle sessions.
+- Effort: S
+
+### Finding 4: Query embeddings are RAM-only on the shared provider path and uncached on the new adapter path
+- Evidence: `.opencode/skills/system-spec-kit/shared/embeddings.ts:690-720` caches query embeddings only in the process `Map` and only while the cache is below 90% capacity. `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:629-657` calls the active `OllamaAdapter` directly for non-default embedders and otherwise calls `embeddings.generateQueryEmbedding()`, with no persistent `embedding_cache` lookup/store around either path.
+- Memory impact: repeated searches currently lean on RAM for shared Voyage/OpenAI queries, while new adapter queries pay backend calls every time. A bounded disk query cache of 512 x 1024-dim vectors is ~2 MiB raw; 512 x 2048 is ~4 MiB raw. That is a better steady-state budget than retaining up to 1,000 mixed query/document entries in V8 heap.
+- Proposed change: after the task-aware schema in Finding 1, wrap `generate_query_embedding()` in `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts` with a persistent query-cache check. Use `input_kind='query'`, `profile_key` from the active embedder/shared provider, and separate env caps: `SPECKIT_QUERY_EMBED_CACHE_MAX_BYTES=4194304`, `SPECKIT_QUERY_EMBED_CACHE_TTL_DAYS=7`, `SPECKIT_QUERY_EMBED_CACHE_MAX_ENTRIES=1024`. Store query vectors only after successful dimension validation.
+- Trade-off: SQLite sees more tiny reads/writes on search traffic, and old ad hoc queries linger until TTL. The cost is bounded and it reduces RAM retention plus external API repeat calls.
+- Effort: M
+
+### Finding 5: Disk-cache eviction must release SQLite memory after cloud-cache maintenance
+- Evidence: `storeEmbedding()` trims by row count before insert at `.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:123-149`, while TTL eviction exists but is a standalone function at `.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:153-167`. Runtime SQLite connections still use throughput-biased pragmas at `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:800-806`.
+- Memory impact: current active DB measurement: `embedding_cache` is ~19.0 MB table bytes and ~16.1 MiB raw vectors. The old llama-cpp profile is 10,000 rows / 30,720,000 raw bytes / 41,058,304 table bytes. A full external cache at 2048 dims can exceed 80 MB table+index footprint. Deletes alone may not reduce RSS while the connection keeps hot pages cached/mapped.
+- Proposed change: build on Iteration 3's byte-bounded cache, but make external providers slightly more disk-generous and memory-explicit: `SPECKIT_EMBED_CACHE_CLOUD_MAX_BYTES=33554432`, `SPECKIT_EMBED_CACHE_LOCAL_MAX_BYTES=16777216`, `SPECKIT_EMBED_CACHE_PROFILE_MAX_BYTES=16777216`, and `SPECKIT_EMBED_CACHE_PROFILE_MAX_ENTRIES=4096`. When maintenance deletes rows, return `{ rowsDeleted, bytesDeleted }` and call `db.pragma('shrink_memory')`; log `embedding_cache_maintenance provider=<provider> bytes_deleted=<n> rss_probe_hint=true`.
+- Trade-off: more cloud cache survives than local cache, so SQLite disk footprint can be larger for Voyage/OpenAI. That is intentional: it trades bounded disk for fewer paid API calls while still capping hot-set pressure and allowing RSS to fall after maintenance.
+- Effort: S
+
+## Cross-references
+
+This builds on Iteration 3 Findings 1-3 rather than repeating them: byte caps, TTL, and `PRAGMA shrink_memory` are still the foundation, but this pass adds the external-API-specific task/profile keying needed for Voyage's `input_type` semantics. It aligns with Iteration 4's SQLite pragma work: once cloud caches are byte-bounded, lower `mmap_size`/`cache_size` still controls how much of that disk cache becomes resident. It also agrees with Iteration 5 that llama-cpp idle unload is a separate model-residency problem; Voyage/OpenAI cache tuning is single-digit to tens-of-MB work, not a hundreds-of-MB model-unload lever.
+
+## Negative knowledge (ruled-out)
+
+- Voyage provider construction is not a major RSS consumer. `.opencode/skills/system-spec-kit/shared/embeddings/providers/voyage.ts:116-134` stores API key/base URL/model/dimension plus counters; no model weights or large buffers are resident between calls.
+- The Voyage request path does not batch large arrays in current shared usage. `generateBatchEmbeddings()` fans out with `Promise.all(batch.map(text => generateEmbedding(text)))` at `.opencode/skills/system-spec-kit/shared/embeddings.ts:576-580`, and `VoyageProvider.generateEmbedding()` sends one trimmed string at `.opencode/skills/system-spec-kit/shared/embeddings/providers/voyage.ts:232-253`. Transient response arrays exist, but they are per request, not a steady-state memory root.
+- API-key validation caching is not the 246 MB root. It should still be bounded and redacted, but the memory win is tiny compared with SQLite cache/mmap and persistent embedding rows.
+- Do not disable disk caching for Voyage/OpenAI to save memory. That would preserve RSS in the narrow sense but increase API cost, latency, and offline degradation. The safer path is bounded disk cache plus smaller idle-cleared RAM cache.
+- Do not share a single query/document cache key for Voyage. Because `input_type` changes the provider request, treating equal text as equal embedding across task kinds is an embedding-correctness bug, not an optimization.
+- Live PID RSS could not be re-measured in this sandbox: `ps -p 4791` failed with `operation not permitted`. Estimates use source-level retained structures and read-only SQLite table sizing.
+
+## Open questions
+
+- Should query-cache TTL default to 1 day or 7 days for external APIs? Seven days saves API calls; one day keeps ad hoc query churn smaller.
+- Should `profile_key` include a hash of `baseUrl` for all providers or only cloud/API providers? Including it universally is safer, but it creates more cache partitions.
+- Do active embedder adapters need a generic API adapter before Voyage/OpenAI can participate in the `EmbedderAdapter` path? `BackendKind` already includes `api`, but `registry.ts` throws `NotImplementedError` for it today.
+- What is the measured hit rate for Voyage/OpenAI document and query embeddings under a normal day of `memory_search`, `memory_context`, `memory_save`, retry, and chunking traffic?

@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-fix-deep-research-findings/010-fix-cli-orchestrator-doc-drift",
+  "description": "Feature Specification: 010 CLI Orchestrator Skill Doc Drift",
+  "keywords": [
+    "feature",
+    "specification",
+    "010",
+    "cli",
+    "orchestrator",
+    "skill",
+    "doc",
+    "drift"
+  ],
+  "lastUpdated": "2026-05-08T08:26:57.481Z",
+  "specId": "010",
+  "folderSlug": "cli-orchestrator-drift",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup",
+    "004-fix-deep-research-findings"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

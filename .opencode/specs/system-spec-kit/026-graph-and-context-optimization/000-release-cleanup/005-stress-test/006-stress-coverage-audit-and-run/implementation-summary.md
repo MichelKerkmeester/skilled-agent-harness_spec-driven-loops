@@ -26,7 +26,7 @@ _memory:
       parent_session_id: null
     completion_pct: 95
     open_questions:
-      - "Approve scope for follow-on packet 007-stress-test-coverage-gap-remediation?"
+      - "Approve scope for follow-on packet 007-fix-stress-test-coverage-gap-followup?"
     answered_questions:
       - "Are there P0 gaps? Yes — 10 features (1 code_graph + 9 skill_advisor)."
       - "Did the existing stress suite pass? Yes — 28/28 files, 69/69 tests, exit 0."

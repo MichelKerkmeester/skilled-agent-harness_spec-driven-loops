@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/016-query-expansion-identifier-bridging",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/016-query-expansion-identifier-bridging",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/015-code-aware-chunking-tree-sitter-stage-b",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/014-mirror-dedup-canonical-preference",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/017-hybrid-fusion-empirical-recalibration",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/018-rerank-matrix-rebench"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "016/004/016 query expansion",
+      "identifier bridging cocoindex",
+      "camelCase snake_case query expansion",
+      "code-domain synonyms",
+      "COCOINDEX_QUERY_EXPANSION",
+      "016 query expansion plan",
+      "016 query expansion tasks",
+      "016 query expansion checklist"
+    ],
+    "key_topics": [
+      "cocoindex",
+      "query expansion",
+      "identifier bridging",
+      "hybrid search",
+      "fts5",
+      "dense fanout",
+      "synonyms",
+      "camelCase",
+      "snake_case",
+      "benchmark"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query_expansion.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/fts_index.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_query_expansion.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_config.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_fts_index.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/README.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/decision-record.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/016-query-expansion-identifier-bridging/evidence/phase2-comparison-016-query-expansion.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/016-query-expansion-identifier-bridging/evidence/phase2-comparison-015-vs-016-delta.md"
+    ],
+    "entities": [
+      {
+        "name": "query_expansion.py",
+        "kind": "code",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query_expansion.py",
+        "source": "derived"
+      },
+      {
+        "name": "query.py",
+        "kind": "code",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py",
+        "source": "derived"
+      },
+      {
+        "name": "config.py",
+        "kind": "code",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_query_expansion.py",
+        "kind": "test",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_query_expansion.py",
+        "source": "derived"
+      },
+      {
+        "name": "phase2-comparison-016-query-expansion.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/016-query-expansion-identifier-bridging/evidence/phase2-comparison-016-query-expansion.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Natural-language code-search probes miss identifier-heavy chunks after 015; deterministic pre-encoding query expansion adds identifier variants and synonyms so dense and FTS5 both admit better candidates before rerank.",
+    "created_at": "2026-05-19T16:20:00.000Z",
+    "last_save_at": "2026-05-19T16:20:00.000Z",
+    "save_lineage": "manual_packet_metadata",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
+  }
+}

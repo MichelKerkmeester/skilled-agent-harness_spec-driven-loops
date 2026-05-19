@@ -47,9 +47,9 @@ Validate release readiness through deep review programs, synthesis of findings, 
 The parent itself owns no implementation. All work lives in the children. Each child's spec.md is the source of truth for that child's scope.
 
 **Thematic groupings:**
-- Deep review and synthesis: 003-release-readiness-deep-review-audits, 004-release-readiness-findings-synthesis-remediation
-- P1/P2 remediation: 005-remaining-priority-findings-remediation, 006-stress-test-coverage-gap-remediation
-- Component-specific remediation: 001-skill-advisor-fail-open-fallback-remediation, 002-second-pass-release-readiness-remediation
+- Deep review and synthesis: 003-release-readiness-deep-review-audits, 004-fix-release-readiness-findings-synthesis
+- P1/P2 remediation: 005-fix-remaining-priority-findings, 006-fix-stress-test-coverage-gap
+- Component-specific remediation: 001-fix-skill-advisor-fail-open-fallback, 002-fix-additional-release-readiness-findings
 
 ---
 

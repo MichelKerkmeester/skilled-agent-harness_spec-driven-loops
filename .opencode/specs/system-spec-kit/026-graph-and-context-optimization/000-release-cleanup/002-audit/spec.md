@@ -53,7 +53,7 @@ The parent itself owns no implementation. All work lives in the children. Each c
 - **Security and supply-chain**: 001-dependency-security-supply-chain-audit
 - **Runtime infrastructure**: 002-runtime-wiring-enterprise-readiness-audit, 007-runtime-command-agent-alignment-audit
 - **Documentation and graph**: 003-documentation-truth-validation, 004-code-graph-watcher-claim-retraction
-- **System validation and cleanup**: 005-memory-retention-policy-sweep, 006-runtime-matrix-execution-validation, 008-audit-drift-findings-remediation
+- **System validation and cleanup**: 005-memory-retention-policy-sweep, 006-runtime-matrix-execution-validation, 008-fix-audit-drift-findings
 
 ---
 

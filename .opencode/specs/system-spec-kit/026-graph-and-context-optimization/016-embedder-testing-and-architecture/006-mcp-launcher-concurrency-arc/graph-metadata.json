@@ -8,7 +8,9 @@
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/002-cross-launcher-lease-propagation",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/003-launcher-race-and-error-surface-hardening",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/004-launcher-diagnostics-and-signal-coverage",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/006-lease-canonicalization-and-cleanup-ordering"
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/006-lease-canonicalization-and-cleanup-ordering",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/008-launcher-race-window-and-debug-log-hygiene",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/009-launcher-eperm-parity-fix"
   ],
   "manual": {
     "depends_on": [],
@@ -46,13 +48,13 @@
     ],
     "causal_summary": "Phase parent for the 4-phase arc that introduced launcher-boundary single-writer lease enforcement across all 3 MCP launchers, plus 2 hardening passes from a 3-reviewer parallel audit.",
     "created_at": "2026-05-18T08:15:00Z",
-    "last_save_at": "2026-05-18T15:58:29.330Z",
+    "last_save_at": "2026-05-18T20:00:12.293Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/006-lease-canonicalization-and-cleanup-ordering",
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/009-launcher-eperm-parity-fix",
     "source_docs": [
       "spec.md"
     ],
-    "last_active_at": "2026-05-18T15:58:29.330Z"
+    "last_active_at": "2026-05-18T20:00:12.293Z"
   }
 }

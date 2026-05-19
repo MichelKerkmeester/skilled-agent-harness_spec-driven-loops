@@ -1,0 +1,23 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-fix-mcp-runtime-stress-findings/015-cocoindex-seed-telemetry-passthrough",
+  "description": "Feature Specification: CocoIndex seed telemetry passthrough",
+  "keywords": [
+    "feature",
+    "specification",
+    "cocoindex",
+    "seed",
+    "telemetry",
+    "passthrough"
+  ],
+  "lastUpdated": "2026-05-08T08:26:57.186Z",
+  "specId": "015",
+  "folderSlug": "cocoindex-seed-telemetry-passthrough",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup",
+    "003-fix-mcp-runtime-stress-findings"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -4,13 +4,13 @@ Test pattern documentation, coverage validation, gap remediation.
 
 ## Children (7)
 
-- `001-mcp-stress-cycle-doc-observability-cleanup`
+- `001-fix-mcp-stress-cycle-doc-observability`
 - `002-stress-test-pattern-documentation`
-- `003-mcp-runtime-stress-remediation`
+- `003-fix-mcp-runtime-stress-findings`
 - `004-stress-test-folder-completion`
 - `005-stress-test-expansion-alignment`
 - `006-stress-coverage-audit-and-run`
-- `007-stress-test-coverage-gap-remediation`
+- `007-fix-stress-test-coverage-gap-followup`
 
 ## Provenance
 

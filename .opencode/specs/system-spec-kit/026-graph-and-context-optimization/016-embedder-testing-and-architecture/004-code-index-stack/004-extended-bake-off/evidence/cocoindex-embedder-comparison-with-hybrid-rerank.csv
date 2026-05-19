@@ -3,3 +3,5 @@ sbert/jinaai/jina-embeddings-v2-base-code,768,18,9,0.500,3,4,2,1002,7305
 sbert/google/embeddinggemma-300m,768,18,9,0.500,3,4,2,947,18848
 sbert/nomic-ai/CodeRankEmbed,768,18,9,0.500,3,4,2,1204,2027
 sbert/BAAI/bge-code-v1,768,18,11,0.611,3,5,3,504,4974
+sbert/BAAI/bge-code-v1,768,18,11,0.611,3,5,3,380,21082
+sbert/BAAI/bge-code-v1,768,18,10,0.556,3,5,2,1313,12474

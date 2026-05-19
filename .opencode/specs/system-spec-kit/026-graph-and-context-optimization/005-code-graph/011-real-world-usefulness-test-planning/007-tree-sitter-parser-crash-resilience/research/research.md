@@ -266,8 +266,8 @@ These 9 `.sh` files reproduce B1 deterministically under the iter-005/iter-006 m
 2. `.opencode/specs/skilled-agent-orchestration/077-spec-kit-coco-sk-code-research/research/scripts/run-loop.sh`
 3. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/001-search-intelligence-stress-playbook/001-search-scenario-design/scripts/run-all.sh`
 4. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/010-stress-test-close-loop-measurement-rerun/scripts/run-all.sh`
-5. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/011-post-stress-finding-remediation-research/research/run-iterations.sh`
-6. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/011-post-stress-finding-remediation-research/review/run-iterations.sh`
+5. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/011-research-post-stress-finding-followups/research/run-iterations.sh`
+6. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/011-research-post-stress-finding-followups/review/run-iterations.sh`
 7. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/046-system-deep-research-bugs-and-improvements/research/run_all.sh`
 8. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/046-system-deep-research-bugs-and-improvements/research/run_iteration.sh`
 9. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/008-code-graph-backend-resilience/scratch/codex-runner.sh` (or equivalent: the 9-throw set is the steady-state intersection of the iter-005 100-loop run. exact membership is identifiable by replaying the iter-005 harness with file-level B1 logging: see Note below)

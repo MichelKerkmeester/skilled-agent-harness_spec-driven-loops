@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/010-stress-test-close-loop-measurement-rerun",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/010-stress-test-close-loop-measurement-rerun",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "010-stress-test-close-loop-measurement-rerun",
+      "v1.0.2 stress test rerun",
+      "post-fix sweep",
+      "close-the-loop measurement",
+      "30-cell rerun",
+      "per-packet verdict",
+      "010 stress-test rerun plan",
+      "v1.0.2 sweep plan",
+      "stress-test rerun architecture",
+      "010 stress-test rerun tasks",
+      "v1.0.2 sweep tasks",
+      "T001 daemon attestation"
+    ],
+    "key_topics": [
+      "010-stress-test-close-loop-measurement-rerun",
+      "stress",
+      "test",
+      "rerun",
+      "post-fix",
+      "sweep",
+      "close-the-loop",
+      "measurement",
+      "30-cell",
+      "per-packet",
+      "verdict",
+      "010"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "tasks.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "description.json",
+      "graph-metadata.json",
+      "findings.md",
+      "runs/preflight.log",
+      ".opencode/skills/mcp-coco-index/references/tool_reference.md",
+      "implementation-summary.md",
+      "scripts/prompts/I2.md"
+    ],
+    "entities": [
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": "description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "findings.md",
+        "kind": "doc",
+        "path": "findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "preflight.log",
+        "kind": "file",
+        "path": "runs/preflight.log",
+        "source": "derived"
+      },
+      {
+        "name": "tool_reference.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-coco-index/references/tool_reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "I2.md",
+        "kind": "doc",
+        "path": "scripts/prompts/I2.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Rerun",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Telemetry Assertions",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tool Selection",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Semantic Search",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The v1.0.1 stress-test sweep (`../001-search-intelligence-stress-playbook/002-search-scenario-execution/findings.md`) baselined the four MCP-runtime surfaces against a 30-cell scenario matrix on 2026-04-26 and surfaced the regressions that drove the eight remediation packets shipped earlier this session (003-009 in the renumbered phase tree, originally tracked as 008-014). All eight remediation packets landed source patches plus rebuilt `dist/`, and live MCP probes earlier this session confirmed the fork dist is loaded in production. What is *not yet measured* is the impact: did the contract additions (`preEnforcementTokens`, `fallbackDecision`, `path_class` rerank, `responsePolicy.noCanonicalPathClaims`, normalized `IntentTelemetry`, `deltaByRelation`, daemon rebuild protocol) actually move the per-cell quality, latency, and hallucination scores compared to the v1.0.1 baseline? Without that measurement, the remediation cycle is \"shipped but unconfirmed\" and HANDOVER-deferred.md §2.1 stays open indefinitely.",
+    "created_at": "2026-04-27T15:00:00Z",
+    "last_save_at": "2026-05-19T13:51:38.928Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
+  }
+}

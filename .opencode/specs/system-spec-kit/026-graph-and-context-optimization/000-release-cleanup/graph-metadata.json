@@ -6,7 +6,7 @@
   "children_ids": [
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test",
     "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research"
@@ -138,7 +138,7 @@
     ],
     "causal_summary": "This parent packet coordinates the phased work under `000 Release Cleanup` so the child packets stay discoverable and the root purpose remains clear while implementation details live below the parent level. The current child surface includes 001-memory-terminology, 002-sk-code-opencode-alignment, 003-dead-code-audit, 004-dead-code-pruning.",
     "created_at": "2026-04-27T13:33:11Z",
-    "last_save_at": "2026-05-18T15:17:57.078Z",
+    "last_save_at": "2026-05-19T13:51:38.813Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

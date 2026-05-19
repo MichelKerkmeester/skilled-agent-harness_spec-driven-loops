@@ -105,7 +105,7 @@ Provide one canonical 10-wrapper active map after two topical consolidation pass
 <!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
-> Active children are the 11 thematic wrappers below. Historical phase folders are preserved as direct child folders under each wrapper and mapped in `merged-phase-map.md`. The `Status` column tracks wrapper activity only; use the current-state model below to distinguish implemented, narrowed, reopened, and still-open follow-on work. (Note: legacy `merged-phase-map.md` text below references prior 10-wrapper counts and a gap at `011`; both were superseded by the 2026-04-27 carve-out that promoted the v1.0.1 stress-test → research → remediation cycle into `003-mcp-runtime-stress-remediation/`.)
+> Active children are the 11 thematic wrappers below. Historical phase folders are preserved as direct child folders under each wrapper and mapped in `merged-phase-map.md`. The `Status` column tracks wrapper activity only; use the current-state model below to distinguish implemented, narrowed, reopened, and still-open follow-on work. (Note: legacy `merged-phase-map.md` text below references prior 10-wrapper counts and a gap at `011`; both were superseded by the 2026-04-27 carve-out that promoted the v1.0.1 stress-test → research → remediation cycle into `003-fix-mcp-runtime-stress-findings/`.)
 
 | Folder | Theme | Notes |
 |--------|-------|-------|
@@ -119,7 +119,7 @@ Provide one canonical 10-wrapper active map after two topical consolidation pass
 | `006-skill-advisor/` | Skill advisor system: search/routing tuning, advisor graph, phrase boosters, smart-router, advisor docs/standards, hook surface, daemon unification, plugin hardening, and hook improvements | 11 child phases (six absorbed from former `006-search-routing-advisor/` plus five from former `009-hook-package/{001,002,008,009,014}`). |
 | `007-hook-parity/` | Runtime hook parity across Claude / Codex / Copilot / OpenCode plugin: schema fixes, wrapper wiring fixes, parity remediations | Eight child phases renumbered 001-008 after second-pass migrations out. Renamed from `010-hook-parity/` during the post-push topology adjustment. |
 | `010-graph-impact-and-affordance-uplift/` | External Project pt-01 + pt-02 adoption: phase-DAG runner, edge explanation/impact uplift, advisor affordance evidence, memory causal trust display, docs/catalogs rollup | Six child phases. Owns memory-causal-trust display documentation under `005-memory-causal-trust-display/`. |
-| `003-mcp-runtime-stress-remediation/` | v1.0.1 MCP-runtime stress-test → deep research → remediation cycle: 006 sweep, 007 deep research (10 iterations producing Q1–Q8 diagnoses), 008–014 remediation packets, plus 013 daemon-rebuild contract. Carved out of `003-continuity-memory-runtime/` on 2026-04-27 once the cycle's topology became clear. | Nine child phases (006–014) plus `HANDOVER-deferred.md` tracking the four still-open follow-ups. |
+| `003-fix-mcp-runtime-stress-findings/` | v1.0.1 MCP-runtime stress-test → deep research → remediation cycle: 006 sweep, 007 deep research (10 iterations producing Q1–Q8 diagnoses), 008–014 remediation packets, plus 013 daemon-rebuild contract. Carved out of `003-continuity-memory-runtime/` on 2026-04-27 once the cycle's topology became clear. | Nine child phases (006–014) plus `HANDOVER-deferred.md` tracking the four still-open follow-ups. |
 
 ### Current State Model
 
@@ -334,7 +334,7 @@ Wave 2 executed per `998-aggressive-restructure-research/resource-map.md`.
 ### Changes shipped (W2.A → W2.F)
 
 - **W2.A graph-metadata sync**: 000 children_ids 7→59→6 sub-phases; 008 children_ids 13→26→5 sub-phases; 026 parent gained `phase_sequence`, `meta_phase_ids`, `phase_parent_flag`, `phase_renames`, `resume_priority` derived fields per iter 015.
-- **W2.B 000 recatalog**: 59 flat children → 6 sub-phases (001-release-readiness/002-audit/003-cleanup/004-followup-post-program/005-stress-test/006-research) per 998 iter-003 keyword rules.
+- **W2.B 000 recatalog**: 59 flat children → 6 sub-phases (001-release-readiness/002-audit/003-cross-cutting-cleanup-pass/004-followup-post-program/005-stress-test/006-research) per 998 iter-003 keyword rules.
 - **W2.C M10 unblock**: 015-tanstack-security-audit absorbed → 000/002-audit/001-dependency-security-supply-chain-audit. 015 top-level slot freed.
 - **W2.D 008 5 sub-phases**: 26 children → skill-graph 7 / scorer 8 / router 5 / hardening 4 / docs 2 per 998 iter-005.
 

@@ -1,0 +1,30 @@
+{
+  "title": "048 Remaining P1/P2 Remediation",
+  "trigger_phrases": [
+    "005-fix-remaining-priority-findings",
+    "P1 P2 backlog",
+    "release polish",
+    "conservative defaults pass"
+  ],
+  "contextType": "implementation",
+  "importance_tier": "important",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-fix-remaining-priority-findings",
+  "description": "Feature Specification: 048 Remaining P1/P2 Remediation",
+  "keywords": [
+    "feature",
+    "specification",
+    "048",
+    "remaining",
+    "remediation"
+  ],
+  "lastUpdated": "2026-05-08T08:26:57.394Z",
+  "specId": "035",
+  "folderSlug": "remaining-p1-p2-remediation",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

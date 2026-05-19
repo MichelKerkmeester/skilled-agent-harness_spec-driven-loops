@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/021-sk-doc-conformance-template-sweep",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/021-sk-doc-conformance-template-sweep",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "021-sk-doc-conformance-template-sweep",
+      "sk-doc conformance sweep",
+      "manual testing playbook conformance",
+      "feature catalog conformance",
+      "skill reference conformance",
+      "template cleanup",
+      "021-sk-doc-conformance-template-sweep plan",
+      "sk-doc conformance plan",
+      "021-sk-doc-conformance-template-sweep tasks",
+      "021-sk-doc-conformance-template-sweep checklist",
+      "021-sk-doc-conformance-template-sweep decisions",
+      "021-sk-doc-conformance-template-sweep implementation"
+    ],
+    "key_topics": [
+      "021-sk-doc-conformance-template-sweep",
+      "sk-doc",
+      "conformance",
+      "sweep",
+      "manual",
+      "testing",
+      "playbook",
+      "feature",
+      "catalog",
+      "skill",
+      "reference",
+      "template"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "decision-record.md",
+      ".opencode/plugins/README.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "templates/stress_test/README.md",
+      "templates/changelog/README.md",
+      "handover.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Conformance Sweep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Template Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Severity",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Validation And Tests",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quick Start",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Multiple sk-doc-governed surfaces across the OpenCode tree have drifted from the canonical format the sk-doc skill itself defines: 14 of 15 manual_testing_playbook directories drift in some way, 5 of 7 feature_catalogs drift, 25 of 33 system-spec-kit references drift, and 3 of 8 sk-code-review references drift. Templates folder also needs cleanup (delete `templates/sharded`, rename `stress-test` → `stress_test`, rename `addendum/level3plus-govern` → `level3-plus-govern`, align `templates/changelog`). This packet runs a single coordinated conformance sweep so sk-doc remains the single source-of-truth.",
+    "created_at": "2026-05-18T08:15:53.141Z",
+    "last_save_at": "2026-05-19T13:51:38.878Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md"
+    ]
+  }
+}

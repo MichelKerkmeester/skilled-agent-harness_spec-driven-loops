@@ -179,11 +179,11 @@ Python compat has one required gap. The CLI shim and regression suite are compat
 
 ## §4 — Follow-on Recommendation
 
-RECOMMEND opening packet `007-stress-test-coverage-gap-remediation` to write missing tests for the P0 features above. Do not auto-create — the user must approve scope.
+RECOMMEND opening packet `007-fix-stress-test-coverage-gap-followup` to write missing tests for the P0 features above. Do not auto-create — the user must approve scope.
 
 ### §4.1 — Closed by packet 043 (2026-04-30)
 
-Packet `007-stress-test-coverage-gap-remediation` was opened and completed on the same day. All 10 P0 features above now have direct stress coverage:
+Packet `007-fix-stress-test-coverage-gap-followup` was opened and completed on the same day. All 10 P0 features above now have direct stress coverage:
 
 | feature_id | New stress test file |
 |------------|----------------------|
@@ -204,7 +204,7 @@ P1 (6 features) and P2 (30 features) gaps remain — they roll into the normal r
 
 ### §4.2 — Closed by packet 044 (2026-04-30)
 
-Packet `006-stress-test-coverage-gap-remediation` closed all remaining 6 P1 + 30 P2 gaps on the same day. The matrix now reads `gap_classification=none` for every one of the 54 features. Eighteen new stress files were added (some consolidated where features share a natural test surface):
+Packet `006-fix-stress-test-coverage-gap` closed all remaining 6 P1 + 30 P2 gaps on the same day. The matrix now reads `gap_classification=none` for every one of the 54 features. Eighteen new stress files were added (some consolidated where features share a natural test surface):
 
 | Subsystem | Consolidated test files added |
 |-----------|--------------------------------|

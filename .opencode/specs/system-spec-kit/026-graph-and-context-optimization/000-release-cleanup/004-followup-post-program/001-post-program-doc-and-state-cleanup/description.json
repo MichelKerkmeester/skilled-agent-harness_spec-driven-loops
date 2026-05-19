@@ -1,0 +1,21 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-post-program-doc-and-state-cleanup",
+  "description": "Feature Specification: 005 Post-Program Cleanup",
+  "keywords": [
+    "feature",
+    "specification",
+    "005",
+    "post-program",
+    "cleanup"
+  ],
+  "lastUpdated": "2026-05-02T10:39:47.883Z",
+  "specId": "005",
+  "folderSlug": "post-program-cleanup",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

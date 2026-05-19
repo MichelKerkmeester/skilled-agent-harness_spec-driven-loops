@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Child 006 is the final validation and cleanup pass for ADR-001's standalone advisor MCP migration. It proves the extracted `.opencode/skills/system-skill-advisor/mcp_server/` package works from its new home, verifies all four runtime MCP configurations expose both required servers, and removes the temporary `spec_kit_memory` advisor proxy once caller evidence is clean.",
     "created_at": "2026-05-14T12:45:00Z",
-    "last_save_at": "2026-05-18T15:17:57.383Z",
+    "last_save_at": "2026-05-19T13:51:39.115Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T12:45:00Z",
     "source_docs": [
