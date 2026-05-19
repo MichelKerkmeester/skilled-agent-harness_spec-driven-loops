@@ -23,6 +23,7 @@ from .chunkers.grammars import grammar_for_language
 from .config import config
 from .fts_index import FtsChunkRow, ensure_fts_table, populate_fts
 from .observability import build_index_fingerprint, write_index_meta
+from .schema import _table_name_for_dim
 from .settings import PROJECT_SETTINGS, is_canonical_path
 from .shared import (
     CODEBASE_DIR,
@@ -31,6 +32,7 @@ from .shared import (
     EXT_LANG_OVERRIDE_MAP,
     GITIGNORE_SPEC,
     SQLITE_DB,
+    VECTOR_TABLE_NAME,
     CodeChunk,
 )
 
@@ -371,10 +373,14 @@ async def indexer_main() -> None:
     ps = coco.use_context(PROJECT_SETTINGS)
     gitignore_spec = coco.use_context(GITIGNORE_SPEC)
     project_root = coco.use_context(CODEBASE_DIR)
+    try:
+        vector_table_name = coco.use_context(VECTOR_TABLE_NAME)
+    except KeyError:
+        vector_table_name = _table_name_for_dim(768)
 
     table = await sqlite.mount_table_target(
         db=SQLITE_DB,
-        table_name="code_chunks_vec",
+        table_name=vector_table_name,
         table_schema=await sqlite.TableSchema.from_class(
             CodeChunk,
             primary_key=["id"],

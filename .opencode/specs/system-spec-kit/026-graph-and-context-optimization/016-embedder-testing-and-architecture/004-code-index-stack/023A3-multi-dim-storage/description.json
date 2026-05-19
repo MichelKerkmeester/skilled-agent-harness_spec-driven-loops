@@ -1,0 +1,16 @@
+{
+  "id": "023A3-multi-dim-storage",
+  "title": "Optional multi-dimension storage",
+  "description": "Adds optional per-dimension SQLite vector tables for mcp-coco-index while keeping the default 768d behavior unchanged.",
+  "status": "complete",
+  "level": 3,
+  "packet_pointer": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023a3-multi-dim-storage",
+  "trigger_phrases": [
+    "023A3",
+    "multi-dim storage",
+    "per-dim vector tables"
+  ],
+  "importance_tier": "high",
+  "contextType": "implementation",
+  "updated_at": "2026-05-19T23:30:00Z"
+}

@@ -25,6 +25,7 @@ from .index_metadata import (
     build_current_index_metadata,
     check_index_compatibility,
 )
+from .migrations import migrate_db_path
 from .observability import (
     RetrievalDiagnostics,
     build_index_fingerprint,
@@ -71,6 +72,13 @@ from .protocol import (
     encode_response,
 )
 from .query import query_codebase
+from .schema import (
+    _quote_identifier,
+    _table_name_for_dim,
+    count_table_rows,
+    resolve_existing_vector_table,
+    vector_tables,
+)
 from .settings import (
     PROJECT_SETTINGS,
     global_settings_mtime_us,
@@ -79,7 +87,7 @@ from .settings import (
     user_settings_dir,
 )
 from . import shared
-from .shared import EMBEDDER, QUERY_PROMPT_NAME, SQLITE_DB, Embedder, create_embedder
+from .shared import EMBEDDER, QUERY_PROMPT_NAME, SQLITE_DB, VECTOR_TABLE_NAME, Embedder, create_embedder
 
 logger = logging.getLogger(__name__)
 _client_disconnect_count = 0
@@ -355,6 +363,30 @@ class ProjectRegistry:
         self._project_effective_config_hash: dict[str, str] = {}
         self._current_index_meta: dict[str, dict[str, Any] | None] = {}
 
+    def _target_db_path(self, project_root: str) -> Path:
+        return Path(project_root) / ".cocoindex_code" / "target_sqlite.db"
+
+    def _migrate_vector_tables(self, project_root: str) -> None:
+        migrate_db_path(self._target_db_path(project_root))
+
+    def _vector_table_name_for_project(self, project_root: str) -> str:
+        runtime_meta = self._runtime_metadata(project_root)
+        return _table_name_for_dim(runtime_meta.get("embedder_dim"))
+
+    def _vector_table_sizes(self, conn: sqlite3.Connection) -> dict[str, int]:
+        sizes: dict[str, int] = {}
+        for table_name in vector_tables(conn):
+            if table_name in {"vectors", "code_chunks_vec"}:
+                continue
+            sizes[table_name] = count_table_rows(conn, table_name)
+        return sizes
+
+    def _active_vector_table(self, conn: sqlite3.Connection, project_root: str) -> str:
+        return resolve_existing_vector_table(
+            conn,
+            self._vector_table_name_for_project(project_root),
+        )
+
     async def get_project(self, project_root: str, *, suppress_auto_index: bool = False) -> Project:
         """Get or create a Project for the given root. Lazy initialization.
 
@@ -368,9 +400,11 @@ class ProjectRegistry:
             self._refresh_project_if_config_changed(project_root)
         if project_root not in self._projects:
             root = Path(project_root)
+            self._migrate_vector_tables(project_root)
             project_settings = load_project_settings(root)
             embedder = self._embedder_for_project(project_root)
-            project = await Project.create(root, project_settings, embedder)
+            vector_table_name = self._vector_table_name_for_project(project_root)
+            project = await Project.create(root, project_settings, embedder, vector_table_name)
             self._projects[project_root] = project
             self._index_locks[project_root] = asyncio.Lock()
             self._load_time_done[project_root] = asyncio.Event()
@@ -499,9 +533,10 @@ class ProjectRegistry:
         return query_prompt, document_prompt
 
     def _index_counts(self, project_root: str) -> tuple[int, int]:
-        target_db = Path(project_root) / ".cocoindex_code" / "target_sqlite.db"
+        target_db = self._target_db_path(project_root)
         if not target_db.exists():
             return 0, 0
+        self._migrate_vector_tables(project_root)
         try:
             import sqlite_vec
 
@@ -509,9 +544,11 @@ class ProjectRegistry:
             try:
                 conn.enable_load_extension(True)
                 sqlite_vec.load(conn)
-                total_chunks = conn.execute("SELECT COUNT(*) FROM code_chunks_vec").fetchone()[0]
+                active_table = self._active_vector_table(conn, project_root)
+                quoted_table = _quote_identifier(active_table)
+                total_chunks = conn.execute(f"SELECT COUNT(*) FROM {quoted_table}").fetchone()[0]
                 total_files = conn.execute(
-                    "SELECT COUNT(DISTINCT file_path) FROM code_chunks_vec"
+                    f"SELECT COUNT(DISTINCT file_path) FROM {quoted_table}"
                 ).fetchone()[0]
                 return int(total_chunks), int(total_files)
             finally:
@@ -675,7 +712,9 @@ class ProjectRegistry:
         self._warn_if_fingerprint_mismatch(project_root, req_id=req_id)
         self._check_search_compatibility(project_root)
         root = Path(project_root)
-        target_db = root / ".cocoindex_code" / "target_sqlite.db"
+        target_db = self._target_db_path(project_root)
+        self._migrate_vector_tables(project_root)
+        vector_table_name = self._vector_table_name_for_project(project_root)
         project = self._projects.get(project_root)
         db_to_close: Any | None = None
         if project is None:
@@ -686,6 +725,7 @@ class ProjectRegistry:
                     SQLITE_DB: db_to_close,
                     EMBEDDER: active_embedder,
                     QUERY_PROMPT_NAME: shared.query_prompt_name,
+                    VECTOR_TABLE_NAME: vector_table_name,
                     PROJECT_SETTINGS: project_settings,
                 }
             )
@@ -735,7 +775,8 @@ class ProjectRegistry:
         project_root = _validate_project_root(project_root)
         project = self._projects.get(project_root)
         if project is None:
-            target_db = Path(project_root) / ".cocoindex_code" / "target_sqlite.db"
+            target_db = self._target_db_path(project_root)
+            self._migrate_vector_tables(project_root)
             if target_db.exists():
                 try:
                     import sqlite_vec
@@ -744,12 +785,17 @@ class ProjectRegistry:
                     try:
                         conn.enable_load_extension(True)
                         sqlite_vec.load(conn)
-                        total_chunks = conn.execute("SELECT COUNT(*) FROM code_chunks_vec").fetchone()[0]
+                        active_table = self._active_vector_table(conn, project_root)
+                        quoted_table = _quote_identifier(active_table)
+                        table_sizes = self._vector_table_sizes(conn)
+                        total_chunks = conn.execute(
+                            f"SELECT COUNT(*) FROM {quoted_table}"
+                        ).fetchone()[0]
                         total_files = conn.execute(
-                            "SELECT COUNT(DISTINCT file_path) FROM code_chunks_vec"
+                            f"SELECT COUNT(DISTINCT file_path) FROM {quoted_table}"
                         ).fetchone()[0]
                         lang_rows = conn.execute(
-                            "SELECT language, COUNT(*) as cnt FROM code_chunks_vec"
+                            f"SELECT language, COUNT(*) as cnt FROM {quoted_table}"
                             " GROUP BY language ORDER BY cnt DESC"
                         ).fetchall()
                         return ProjectStatusResponse(
@@ -757,6 +803,7 @@ class ProjectRegistry:
                             total_chunks=total_chunks,
                             total_files=total_files,
                             languages={lang: cnt for lang, cnt in lang_rows},
+                            per_dim_table_sizes=table_sizes,
                             index_exists=True,
                             fingerprint=_fingerprint_payload(
                                 self._status_fingerprint(project_root, total_chunks, total_files)
@@ -774,6 +821,7 @@ class ProjectRegistry:
                 total_chunks=0,
                 total_files=0,
                 languages={},
+                per_dim_table_sizes={},
                 index_exists=target_db.exists(),
                 fingerprint=_fingerprint_payload(
                     self._status_fingerprint(project_root, 0, 0)
@@ -784,12 +832,15 @@ class ProjectRegistry:
         index_exists = True
         try:
             with db.readonly() as conn:
-                total_chunks = conn.execute("SELECT COUNT(*) FROM code_chunks_vec").fetchone()[0]
+                active_table = self._active_vector_table(conn, project_root)
+                quoted_table = _quote_identifier(active_table)
+                table_sizes = self._vector_table_sizes(conn)
+                total_chunks = conn.execute(f"SELECT COUNT(*) FROM {quoted_table}").fetchone()[0]
                 total_files = conn.execute(
-                    "SELECT COUNT(DISTINCT file_path) FROM code_chunks_vec"
+                    f"SELECT COUNT(DISTINCT file_path) FROM {quoted_table}"
                 ).fetchone()[0]
                 lang_rows = conn.execute(
-                    "SELECT language, COUNT(*) as cnt FROM code_chunks_vec"
+                    f"SELECT language, COUNT(*) as cnt FROM {quoted_table}"
                     " GROUP BY language ORDER BY cnt DESC"
                 ).fetchall()
         except sqlite3.OperationalError:
@@ -797,6 +848,7 @@ class ProjectRegistry:
             total_chunks = 0
             total_files = 0
             lang_rows = []
+            table_sizes = {}
 
         lock = self._index_locks.get(project_root)
         is_indexing = lock is not None and lock.locked()
@@ -806,6 +858,7 @@ class ProjectRegistry:
             total_chunks=total_chunks,
             total_files=total_files,
             languages={lang: cnt for lang, cnt in lang_rows},
+            per_dim_table_sizes=table_sizes,
             progress=progress,
             index_exists=index_exists,
             fingerprint=_fingerprint_payload(

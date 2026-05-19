@@ -130,6 +130,7 @@ GITIGNORE_SPEC = coco.ContextKey[GitIgnoreSpec | None]("gitignore_spec", tracked
 EXT_LANG_OVERRIDE_MAP = coco.ContextKey[dict[str, str]]("ext_lang_override_map")
 QUERY_PROMPT_NAME = coco.ContextKey[str | None]("query_prompt_name", tracked=False)
 DOCUMENT_PROMPT_NAME = coco.ContextKey[str | None]("document_prompt_name", tracked=False)
+VECTOR_TABLE_NAME = coco.ContextKey[str]("vector_table_name", tracked=False)
 
 # Module-level variable — set by daemon at startup (needed for CodeChunk annotation).
 embedder: Embedder | None = None
