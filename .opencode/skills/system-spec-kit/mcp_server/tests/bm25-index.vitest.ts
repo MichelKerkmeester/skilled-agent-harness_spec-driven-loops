@@ -18,7 +18,9 @@ type BetterSqliteDatabase = InstanceType<typeof BetterSqlite3>;
 type HybridSearchModule = typeof import('../lib/search/hybrid-search');
 
 const ORIGINAL_ENABLE_BM25 = process.env.ENABLE_BM25;
+const ORIGINAL_BM25_ENGINE = process.env.SPECKIT_BM25_ENGINE;
 process.env.ENABLE_BM25 = 'true';
+process.env.SPECKIT_BM25_ENGINE = 'legacy-inmemory';
 
 let hybridSearch: HybridSearchModule | null = null;
 try {
@@ -31,6 +33,7 @@ try {
 describe('BM25 Index Tests (T031-T039)', () => {
   beforeEach(() => {
     process.env.ENABLE_BM25 = 'true';
+    process.env.SPECKIT_BM25_ENGINE = 'legacy-inmemory';
     resetIndex();
   });
 
@@ -38,6 +41,7 @@ describe('BM25 Index Tests (T031-T039)', () => {
     resetIndex();
     vi.useRealTimers();
     process.env.ENABLE_BM25 = 'true';
+    process.env.SPECKIT_BM25_ENGINE = 'legacy-inmemory';
   });
 
   /* ═══════════════════════════════════════════════════════════
@@ -836,5 +840,10 @@ afterAll(() => {
     delete process.env.ENABLE_BM25;
   } else {
     process.env.ENABLE_BM25 = ORIGINAL_ENABLE_BM25;
+  }
+  if (ORIGINAL_BM25_ENGINE === undefined) {
+    delete process.env.SPECKIT_BM25_ENGINE;
+  } else {
+    process.env.SPECKIT_BM25_ENGINE = ORIGINAL_BM25_ENGINE;
   }
 });

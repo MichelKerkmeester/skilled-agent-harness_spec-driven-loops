@@ -6,7 +6,11 @@
 // 1. IMPORTS
 
 // Local
-import { getIndex, isBm25Enabled } from './bm25-index.js';
+import {
+  getIndex,
+  isBm25Enabled,
+  shouldUseSqliteLexicalEngine,
+} from './bm25-index.js';
 import { fuseResultsMulti } from '@spec-kit/shared/algorithms/rrf-fusion';
 import { adaptiveFuse, getAdaptiveWeights, isAdaptiveFusionEnabled } from '@spec-kit/shared/algorithms/adaptive-fusion';
 import { CO_ACTIVATION_CONFIG, spreadActivation } from '../cognitive/co-activation.js';
@@ -338,6 +342,26 @@ function bm25Search(
   const { limit = DEFAULT_LIMIT, specFolder } = options;
 
   try {
+    if (shouldUseSqliteLexicalEngine(db)) {
+      return ftsSearch(query, {
+        limit,
+        specFolder,
+      }).map((result) => ({
+        ...result,
+        bm25_score: result.score,
+        source: 'bm25',
+        sources: Array.from(new Set([
+          ...(
+            Array.isArray((result as Record<string, unknown>).sources)
+              ? ((result as Record<string, unknown>).sources as unknown[]).filter((source): source is string => typeof source === 'string')
+              : []
+          ),
+          'fts',
+          'bm25',
+        ])),
+      }));
+    }
+
     const index = getIndex();
     const results = index.search(query, limit);
 

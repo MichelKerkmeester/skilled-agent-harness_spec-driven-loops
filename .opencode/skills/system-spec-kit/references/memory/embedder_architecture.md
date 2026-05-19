@@ -141,6 +141,14 @@ The MCP server now starts with a thin bootstrap: tool schemas, validation, runti
 
 The trade-off is first-call latency: the first `memory_search`, `memory_context`, `memory_save`, embedder, checkpoint, ingest, eval, causal, or session-learning call pays the runtime initialization cost. Idle startup stays smaller because SQLite, BM25, retry jobs, startup scans, and local model sidecars remain cold until memory is actually used.
 
+### Lexical Search Engine
+
+`SPECKIT_BM25_ENGINE` controls the lexical BM25 provider without changing the public `bm25Search()` API. The default `auto` mode uses SQLite FTS5 when the canonical database has `memory_fts`, so startup skips the resident JavaScript BM25 warmup and the BM25 lane is populated from FTS5 results tagged as `bm25` for compatibility with keyword fusion.
+
+Use `SPECKIT_BM25_ENGINE=legacy-inmemory` to restore the old warm JavaScript singleton for tokenizer, stemmer, or rollback investigations. `SPECKIT_BM25_ENGINE=sqlite` forces FTS5 only and fails clearly when `memory_fts` is missing. `packed-inmemory` is reserved for a future packed term-id implementation and currently warns before falling back to legacy in-memory behavior.
+
+The lexical normalizer lives in `mcp_server/lib/search/lexical-normalizer.ts` and is shared by both BM25 paths. It remains the source of truth for query synonyms, lightweight stemming, FTS-safe query expansion, and BM25 query tokens, so switching the rank provider does not silently drop synonym recall.
+
 ### Sidecar Execution
 
 Embedding execution is routed through `mcp_server/lib/embedders/execution-router.ts`. The router keeps SQLite reads/writes, cache lookup/store, and vector table mutations in the MCP process, but can move heavy local model runtimes into a child Node sidecar that speaks JSONL over stdio.

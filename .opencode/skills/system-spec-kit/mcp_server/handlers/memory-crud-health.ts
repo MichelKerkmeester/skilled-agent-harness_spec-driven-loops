@@ -39,6 +39,7 @@ import {
   type DetailedMemorySnapshot,
 } from '../lib/telemetry/heap-profiler.js';
 import { getSidecarWorkerSnapshot } from '../lib/embedders/execution-router.js';
+import { getBm25EngineStatus } from '../lib/search/bm25-index.js';
 
 import type { MCPResponse, EmbeddingProfile } from './types.js';
 import type { HealthArgs, PartialProviderMetadata } from './memory-crud-types.js';
@@ -151,6 +152,12 @@ interface FullMemoryReport {
       model: string;
       dim: number;
       dtype?: string | null;
+    };
+    lexical_engine: 'auto' | 'sqlite' | 'packed-inmemory' | 'legacy-inmemory';
+    bm25_warm_status: {
+      enabled: boolean;
+      fts5_available: boolean;
+      warms_in_memory_bm25: boolean;
     };
   };
   recommended_action: string;
@@ -284,6 +291,7 @@ function getFullMemoryReport(
   const snapshot = getDetailedMemorySnapshot();
   const cacheByteEstimates = getCacheByteEstimates();
   const vectorSource = vectorIndex.getActiveVectorSource();
+  const lexicalStatus = getBm25EngineStatus(database);
   const fileSizeMb = (filePath: string): number => {
     if (!filePath || !existsSync(filePath)) {
       return 0;
@@ -315,6 +323,12 @@ function getFullMemoryReport(
       shard_size_mb: fileSizeMb(vectorSource.shard_path),
       attached: vectorSource.attached,
       profile: vectorSource.profile,
+      lexical_engine: lexicalStatus.lexical_engine,
+      bm25_warm_status: {
+        enabled: lexicalStatus.bm25_enabled,
+        fts5_available: lexicalStatus.fts5_available,
+        warms_in_memory_bm25: lexicalStatus.warms_in_memory_bm25,
+      },
     },
     recommended_action: getRecommendedAction(snapshot),
   };

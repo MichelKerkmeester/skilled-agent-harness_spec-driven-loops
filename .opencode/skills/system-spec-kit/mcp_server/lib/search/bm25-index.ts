@@ -4,6 +4,14 @@
 // Feature catalog: BM25 trigger phrase re-index gate
 import type Database from 'better-sqlite3';
 import { normalizeContentForBM25 } from '../parsing/content-normalizer.js';
+import {
+  normalizeLexicalQueryTokens,
+  sanitizeFTS5Query,
+  sanitizeQueryTokens,
+  simpleStem,
+  tokenize,
+} from './lexical-normalizer.js';
+import type { NormalizedLexicalQueryTokens } from './lexical-normalizer.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. INTERFACES
@@ -41,6 +49,9 @@ const DEFAULT_B = 0.75;
 const BM25_WARMUP_BATCH_SIZE = 250;
 const BM25_ENABLED_VALUES = new Set(['1', 'true', 'yes', 'on', 'experimental', 'fallback']);
 const BM25_DISABLED_VALUES = new Set(['0', 'false', 'no', 'off']);
+const BM25_ENGINE_VALUES = ['auto', 'sqlite', 'packed-inmemory', 'legacy-inmemory'] as const;
+type Bm25Engine = typeof BM25_ENGINE_VALUES[number];
+let packedInmemoryWarningEmitted = false;
 
 /**
  * C138: Field weight multipliers for weighted BM25 scoring.
@@ -65,27 +76,6 @@ const BM25_FIELD_WEIGHTS: Record<string, number> = {
   body: BM25_FTS5_WEIGHTS[3],
 };
 
-const LEXICAL_QUERY_SYNONYMS: Record<string, string[]> = {
-  ephemeral: ['temporary', 'short-term', 'transient'],
-  temporary: ['ephemeral', 'short-term', 'transient'],
-  transient: ['ephemeral', 'temporary', 'short-term'],
-  short: ['ephemeral', 'temporary'],
-  term: ['ephemeral', 'temporary'],
-  constitutional: ['always-surface', 'pinned', 'critical'],
-  always: ['constitutional', 'pinned', 'critical'],
-  surface: ['constitutional', 'pinned', 'critical'],
-  pinned: ['constitutional', 'always-surface'],
-  critical: ['constitutional', 'always-surface'],
-  tier: ['importance', 'priority'],
-  importance: ['tier', 'priority'],
-  priority: ['tier', 'importance'],
-  memory: ['context', 'knowledge'],
-  memories: ['memory', 'context', 'knowledge'],
-  retrieval: ['search', 'query'],
-  search: ['retrieval', 'query'],
-  query: ['search', 'retrieval'],
-};
-
 /**
  * Check whether the in-memory BM25 index is enabled.
  *
@@ -108,78 +98,6 @@ function isBm25Enabled(): boolean {
 // 2. HELPERS
 
 // ───────────────────────────────────────────────────────────────
-const STOP_WORDS = new Set([
-  'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for',
-  'of', 'with', 'by', 'from', 'is', 'it', 'as', 'was', 'are', 'be',
-  'has', 'had', 'have', 'been', 'were', 'will', 'would', 'could', 'should',
-  'may', 'might', 'can', 'this', 'that', 'these', 'those', 'not', 'no',
-  'do', 'does', 'did', 'so', 'if', 'then', 'than', 'too', 'very',
-]);
-
-/**
- * Apply lightweight stemming to a token for BM25 indexing and matching.
- *
- * @param word - Token to stem.
- * @returns A lowercased token with simple suffix normalization applied.
- * @example
- * ```ts
- * simpleStem('running');
- * // 'run'
- * ```
- */
-function simpleStem(word: string): string {
-  let stem = word.toLowerCase();
-  let suffixRemoved = false;
-  // Simple suffix removal
-  if (stem.endsWith('ing') && stem.length > 5) { stem = stem.slice(0, -3); suffixRemoved = true; }
-  else if (stem.endsWith('tion') && stem.length > 6) { stem = stem.slice(0, -4); suffixRemoved = true; }
-  else if (stem.endsWith('ed') && stem.length > 4) { stem = stem.slice(0, -2); suffixRemoved = true; }
-  else if (stem.endsWith('ly') && stem.length > 4) { stem = stem.slice(0, -2); suffixRemoved = true; }
-  else if (stem.endsWith('es') && stem.length > 4) { stem = stem.slice(0, -2); suffixRemoved = true; }
-  else if (stem.endsWith('s') && stem.length > 3) { stem = stem.slice(0, -1); suffixRemoved = true; }
-  // Only deduplicate doubled consonants when a suffix was actually removed.
-  // Without this guard, original double consonants are incorrectly stripped:
-  // "bass" -> "bas", "jazz" -> "jaz", "bill" -> "bil" etc.
-  // Handle doubled consonants after suffix
-  // Removal. "running"→"runn"→"run", "stopped"→"stopp"→"stop". Check if last two chars
-  // Are identical consonants and deduplicate.
-  if (suffixRemoved && stem.length >= 3) {
-    const last = stem[stem.length - 1];
-    if (last === stem[stem.length - 2] && !/[aeiou]/.test(last)) {
-      stem = stem.slice(0, -1);
-    }
-  }
-  return stem;
-}
-
-function splitLexicalFragments(text: string): string[] {
-  if (!text || typeof text !== 'string') return [];
-
-  return text
-    .toLowerCase()
-    .replace(/[^a-z0-9\s-_]/g, ' ')
-    .split(/\s+/)
-    .map(t => t.trim())
-    .filter(Boolean);
-}
-
-/**
- * Tokenize raw text into normalized BM25 terms.
- *
- * @param text - Input text to tokenize.
- * @returns Stemmed, lowercased, stop-word-filtered terms.
- * @example
- * ```ts
- * tokenize('The memory indexing pipeline');
- * // ['memory', 'index', 'pipeline']
- * ```
- */
-function tokenize(text: string): string[] {
-  return splitLexicalFragments(text)
-    .filter(t => t.length >= 2 && !STOP_WORDS.has(t))
-    .map(simpleStem);
-}
-
 /**
  * Count token frequency occurrences for BM25 scoring.
  *
@@ -533,90 +451,113 @@ function resetIndex(): void {
 }
 
 // ───────────────────────────────────────────────────────────────
-// 5. FTS5 QUERY SANITIZATION (P3-06)
+// 5. LEXICAL ENGINE ROUTING
 
 // ───────────────────────────────────────────────────────────────
-/**
- * Sanitize a query string for safe use with SQLite FTS5 and return
- * the individual tokens as an array. This is the shared tokenization
- * entry point — both FTS5 query construction and BM25 callers should
- * use this array to ensure consistent tokenization.
- *
- * Removes all FTS5 operators and special characters, then returns
- * the remaining non-empty tokens.
- *
- * @param query - Raw user query text that may contain FTS operators.
- * @returns Sanitized query tokens safe to reuse for lexical search paths.
- * @example
- * ```ts
- * sanitizeQueryTokens('title:memory AND vector');
- * // ['title', 'memory', 'vector']
- * ```
- */
-function sanitizeQueryTokens(query: string): string[] {
-  // Input length guard: truncate overly long queries to prevent DoS
-  if (query.length > 2000) {
-    query = query.substring(0, 2000);
+function resolveBm25Engine(): Bm25Engine {
+  const value = process.env.SPECKIT_BM25_ENGINE?.trim().toLowerCase();
+  if (!value) {
+    return 'auto';
   }
-  // Remove FTS5 boolean/proximity operators (case-insensitive)
-  let sanitized = query
-    .replace(/\bNEAR\b/gi, '')
-    .replace(/\bNOT\b/gi, '')
-    .replace(/\bAND\b/gi, '')
-    .replace(/\bOR\b/gi, '');
-  // Strip NEAR/N residual (e.g., "NEAR/5" becomes "NEAR" then "/" and "5" remain)
-  sanitized = sanitized.replace(/\/\d+/g, ' ');
-  // Remove FTS5 special characters and column-filter colon.
-  sanitized = sanitized
-    .replace(/[*^(){}[\]"]/g, '')
-    .replace(/:/g, ' ')
-    .trim();
-  return sanitized
-    .split(/\s+/)
-    .filter(Boolean);
+
+  if ((BM25_ENGINE_VALUES as readonly string[]).includes(value)) {
+    return value as Bm25Engine;
+  }
+
+  console.warn(`[bm25-index] Unsupported SPECKIT_BM25_ENGINE=${value}; falling back to auto`);
+  return 'auto';
 }
 
-interface NormalizedLexicalQueryTokens {
-  fts: string[];
-  bm25: string[];
+function isMemoryFtsAvailable(database: Database.Database | null | undefined): boolean {
+  if (!database) {
+    return false;
+  }
+
+  try {
+    const result = (database.prepare(
+      `SELECT name FROM sqlite_master WHERE type='table' AND name='memory_fts'`
+    ) as Database.Statement).get() as { name: string } | undefined;
+    return !!result;
+  } catch {
+    return false;
+  }
 }
 
-function normalizeLexicalQueryTokens(query: string): NormalizedLexicalQueryTokens {
-  const sharedTokens = sanitizeQueryTokens(query)
-    .flatMap((token) => splitLexicalFragments(token));
-  const expandedTokens = Array.from(new Set([
-    ...sharedTokens,
-    ...sharedTokens.flatMap((token) => LEXICAL_QUERY_SYNONYMS[token] ?? []),
-  ]));
-  const phraseToken = sharedTokens.length >= 2
-    ? [`"${sharedTokens.join(' ')}"`]
-    : [];
+function emitPackedInmemoryWarning(): void {
+  if (packedInmemoryWarningEmitted) {
+    return;
+  }
+  packedInmemoryWarningEmitted = true;
+  console.warn('[bm25-index] SPECKIT_BM25_ENGINE=packed-inmemory is reserved and not yet implemented; using legacy-inmemory');
+}
+
+function shouldWarmInMemoryBm25(database: Database.Database | null | undefined): boolean {
+  if (!isBm25Enabled()) {
+    return false;
+  }
+
+  const engine = resolveBm25Engine();
+  if (engine === 'sqlite') {
+    if (!isMemoryFtsAvailable(database)) {
+      throw new Error('SPECKIT_BM25_ENGINE=sqlite requires the memory_fts table; JS BM25 warmup is disabled in sqlite mode');
+    }
+    return false;
+  }
+
+  if (engine === 'auto') {
+    return !isMemoryFtsAvailable(database);
+  }
+
+  if (engine === 'packed-inmemory') {
+    emitPackedInmemoryWarning();
+    return true;
+  }
+
+  return true;
+}
+
+function shouldUseSqliteLexicalEngine(database: Database.Database | null | undefined): boolean {
+  const engine = resolveBm25Engine();
+  if (engine === 'sqlite') {
+    if (!isMemoryFtsAvailable(database)) {
+      throw new Error('SPECKIT_BM25_ENGINE=sqlite requires the memory_fts table for lexical BM25 search');
+    }
+    return true;
+  }
+
+  if (engine === 'auto') {
+    return isMemoryFtsAvailable(database);
+  }
+
+  if (engine === 'packed-inmemory') {
+    emitPackedInmemoryWarning();
+  }
+
+  return false;
+}
+
+function getBm25EngineStatus(database: Database.Database | null | undefined = null): {
+  lexical_engine: Bm25Engine;
+  fts5_available: boolean;
+  warms_in_memory_bm25: boolean;
+  bm25_enabled: boolean;
+} {
+  const lexical_engine = resolveBm25Engine();
+  const fts5_available = isMemoryFtsAvailable(database);
+  let warms_in_memory_bm25 = false;
+
+  try {
+    warms_in_memory_bm25 = shouldWarmInMemoryBm25(database);
+  } catch {
+    warms_in_memory_bm25 = false;
+  }
 
   return {
-    fts: [...expandedTokens, ...phraseToken],
-    bm25: expandedTokens
-      .filter((token) => token.length >= 2 && !STOP_WORDS.has(token))
-      .map(simpleStem),
+    lexical_engine,
+    fts5_available,
+    warms_in_memory_bm25,
+    bm25_enabled: isBm25Enabled(),
   };
-}
-
-/**
- * Sanitize a query string for safe use with SQLite FTS5.
- * Delegates to `sanitizeQueryTokens` for tokenization, then wraps
- * each token in quotes for FTS5 safety.
- *
- * @param query - Raw user query text.
- * @returns A quoted FTS5-safe query string.
- * @example
- * ```ts
- * sanitizeFTS5Query('memory search');
- * // "\"memory\" \"search\""
- * ```
- */
-function sanitizeFTS5Query(query: string): string {
-  return sanitizeQueryTokens(query)
-    .map(t => `"${t}"`)
-    .join(' ');
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -631,6 +572,11 @@ export {
   simpleStem,
   getTermFrequencies,
   isBm25Enabled,
+  resolveBm25Engine,
+  isMemoryFtsAvailable,
+  shouldWarmInMemoryBm25,
+  shouldUseSqliteLexicalEngine,
+  getBm25EngineStatus,
   sanitizeQueryTokens,
   sanitizeFTS5Query,
   normalizeLexicalQueryTokens,
@@ -645,4 +591,6 @@ export type {
   BM25SearchResult,
   BM25Stats,
   BM25DocumentSource,
+  Bm25Engine,
+  NormalizedLexicalQueryTokens,
 };

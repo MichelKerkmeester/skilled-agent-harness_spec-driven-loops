@@ -6,7 +6,8 @@
 // Extracted from hybrid-search.ts ftsSearch() for independent
 // Testing and future delegation.
 
-import { BM25_FTS5_WEIGHTS, normalizeLexicalQueryTokens } from './bm25-index.js';
+import { BM25_FTS5_WEIGHTS } from './bm25-index.js';
+import { normalizeLexicalQueryTokens } from './lexical-normalizer.js';
 import type Database from 'better-sqlite3';
 
 // ───────────────────────────────────────────────────────────────
@@ -167,11 +168,8 @@ function fts5Bm25Search(
   const { limit = 20, specFolder, includeArchived = false } = options;
   void includeArchived;
 
-  // Sanitize via shared tokenizer, then wrap each token in quotes and join with OR for recall
-  const tokens = normalizeLexicalQueryTokens(query).fts;
-  const sanitized = tokens
-    .map(t => (t.startsWith('"') && t.endsWith('"')) ? t : `"${t}"`)
-    .join(' OR ');
+  // Sanitize via shared tokenizer, then join quoted terms with OR for recall.
+  const sanitized = normalizeLexicalQueryTokens(query).fts;
 
   if (!sanitized) {
     setLastLexicalCapabilitySnapshot(probeFts5Capability(db));

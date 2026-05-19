@@ -60,6 +60,25 @@ const mockGraphSearch: GraphSearchFn = (query, options = {}) => {
 };
 
 const ORIGINAL_ENABLE_BM25 = process.env.ENABLE_BM25;
+const ORIGINAL_BM25_ENGINE = process.env.SPECKIT_BM25_ENGINE;
+
+beforeEach(() => {
+  process.env.ENABLE_BM25 = 'true';
+  process.env.SPECKIT_BM25_ENGINE = 'legacy-inmemory';
+});
+
+afterEach(() => {
+  if (ORIGINAL_ENABLE_BM25 === undefined) {
+    delete process.env.ENABLE_BM25;
+  } else {
+    process.env.ENABLE_BM25 = ORIGINAL_ENABLE_BM25;
+  }
+  if (ORIGINAL_BM25_ENGINE === undefined) {
+    delete process.env.SPECKIT_BM25_ENGINE;
+  } else {
+    process.env.SPECKIT_BM25_ENGINE = ORIGINAL_BM25_ENGINE;
+  }
+});
 
 // Mock database with FTS5 table
 function createMockDb(): Database.Database {
@@ -248,6 +267,7 @@ function isPromiseLike(
 describe('Hybrid Search Unit Tests (T031+)', () => {
   beforeEach(() => {
     process.env.ENABLE_BM25 = 'true';
+    process.env.SPECKIT_BM25_ENGINE = 'legacy-inmemory';
   });
 
   afterEach(() => {
@@ -255,6 +275,11 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
       delete process.env.ENABLE_BM25;
     } else {
       process.env.ENABLE_BM25 = ORIGINAL_ENABLE_BM25;
+    }
+    if (ORIGINAL_BM25_ENGINE === undefined) {
+      delete process.env.SPECKIT_BM25_ENGINE;
+    } else {
+      process.env.SPECKIT_BM25_ENGINE = ORIGINAL_BM25_ENGINE;
     }
   });
 

@@ -1748,8 +1748,8 @@ async function main(): Promise<void> {
     });
     console.error('[context-server] Checkpoints, access tracker, hybrid search, session boost, and causal boost initialized');
 
-    // P3-04: Rebuild BM25 index from database on startup
-    if (bm25Index.isBm25Enabled()) {
+    // P3-04/014: Warm in-memory BM25 only when the selected lexical engine needs it.
+    if (bm25Index.shouldWarmInMemoryBm25(database)) {
       try {
         const bm25 = bm25Index.getIndex();
         const count = bm25.rebuildFromDatabase(database);

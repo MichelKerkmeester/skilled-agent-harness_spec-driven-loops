@@ -109,7 +109,7 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 <!-- PHASE-010-ENV-SLOT: SPECKIT_COCO_USE_SHARED_RERANK / SPECKIT_EMBEDDING_CACHE_* flags inserted here (027/010) -->
 <!-- PHASE-011-ENV-SLOT: SPECKIT_COCOINDEX_EXEMPLARS_* / SPECKIT_CONTEXT_CURATOR_* flags inserted here (027/011) -->
 
-Total unique variables documented: 135 (legacy HYDRA aliases removed in commit 6f2c2c939).
+Total unique variables documented: 136 (legacy HYDRA aliases removed in commit 6f2c2c939).
 
 ### Provisional Measurement Contract
 
@@ -203,6 +203,7 @@ the publication guard helpers used by the evaluation dashboard.
 | `SPECKIT_RRF_K` | `40` | number | RRF smoothing constant `k`. Lower = more top-heavy ranking, higher = flatter. Must be > 0. | `shared/algorithms/rrf-fusion.ts` |
 | `SPECKIT_RRF_K_EXPERIMENTAL` | `true` | boolean | Per-intent RRF K selection from the D1 K-sweep grid. Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_SEARCH_FALLBACK` | `true` | boolean | Quality-aware 3-tier search fallback chain (PI-A2). Graduated ON. | `lib/search/search-flags.ts` |
+| `SPECKIT_BM25_ENGINE` | `auto` | enum: `auto`, `sqlite`, `packed-inmemory`, `legacy-inmemory` | Selects the lexical BM25 rank provider. `auto` uses SQLite FTS5 when `memory_fts` exists and skips JS BM25 warmup, otherwise falls back to legacy in-memory BM25. `sqlite` forces FTS5 and throws if `memory_fts` is unavailable. `legacy-inmemory` restores the old warm JS singleton. `packed-inmemory` is reserved and currently warns before using legacy behavior. | `lib/search/bm25-index.ts`, `lib/search/hybrid-search.ts`, `context-server.ts` |
 | `SPECKIT_COMPLEXITY_ROUTER` | `true` | boolean | Query complexity classification for routing (simple/moderate/deep). Graduated ON. | `lib/search/query-classifier.ts` |
 | `SPECKIT_MMR` | `true` | boolean | Graph-guided Maximal Marginal Relevance diversity reranking. Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_CROSS_ENCODER` | `true` | boolean | Cross-encoder reranking gate. Graduated ON. | `lib/search/search-flags.ts` |
