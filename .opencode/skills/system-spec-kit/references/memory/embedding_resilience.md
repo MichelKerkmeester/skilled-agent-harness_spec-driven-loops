@@ -9,12 +9,12 @@ Spec-memory prefers a working semantic provider over a perfect one. Bootstrap au
 
 ## Bootstrap Probe Sequence
 
-When `vec_metadata` has no active pointer, daemon startup probes providers in this order:
+When `vec_metadata` has no active pointer, daemon startup probes providers in this **local-first** order (ADR-014, 2026-05-19):
 
-1. Voyage API: `VOYAGE_API_KEY` plus a successful `voyage-code-3` embeddings request.
-2. OpenAI API: `OPENAI_API_KEY` plus a successful `text-embedding-3-small` embeddings request.
-3. Ollama: reachable `/api/tags`, choosing the first pulled model in ADR-012 order: `jina-embeddings-v3`, `nomic-embed-text-v1.5`, `bge-m3`, `mxbai-embed-large-v1`.
-4. hf-local: `sentence-transformers` importable, selecting `BAAI/bge-base-en-v1.5`.
+1. Ollama: reachable `/api/tags`, choosing the first pulled model in ADR-013 order: `nomic-embed-text-v1.5`, `jina-embeddings-v3`, `bge-m3`, `mxbai-embed-large-v1`.
+2. hf-local: `sentence-transformers` importable, selecting `nomic-ai/nomic-embed-text-v1.5` (same family as the Ollama default, ADR-014).
+3. OpenAI API: `OPENAI_API_KEY` plus a successful `text-embedding-3-small` embeddings request.
+4. Voyage API: `VOYAGE_API_KEY` plus a successful `voyage-code-3` embeddings request.
 
 The selected provider is persisted as:
 
@@ -30,12 +30,12 @@ If no tier is available, startup fails with a tier-by-tier diagnostic. This is i
 
 Provider creation still has bounded runtime fallback for transient failures:
 
-| Failed provider | Next candidates |
+| Failed provider | Next candidates (in ADR-014 cascade order) |
 |-----------------|-----------------|
-| Voyage | OpenAI, Ollama, hf-local |
-| OpenAI | Ollama, hf-local |
-| Ollama | hf-local |
-| hf-local | none |
+| Ollama | hf-local, OpenAI, Voyage |
+| hf-local | OpenAI, Voyage |
+| OpenAI | Voyage |
+| Voyage | none |
 
 Runtime fallback is best-effort and may change dimensions. When that happens, logs must warn that existing vector tables may need reindexing.
 

@@ -77,7 +77,10 @@ const VOYAGE_MODEL = 'voyage-code-3';
 const VOYAGE_DIM = 1024;
 const OPENAI_MODEL = 'text-embedding-3-small';
 const OPENAI_DIM = 1536;
-const HF_LOCAL_MODEL = 'BAAI/bge-base-en-v1.5';
+// ADR-014: hf-local fallback uses nomic-embed-text-v1.5 to align with the
+// in-Ollama default (ADR-013). New users with Python + sentence-transformers
+// and no Ollama get the same embedder as Ollama-equipped users.
+const HF_LOCAL_MODEL = 'nomic-ai/nomic-embed-text-v1.5';
 const HF_LOCAL_DIM = 768;
 
 const OLLAMA_PRIORITY: readonly OllamaManifest[] = Object.freeze([
@@ -449,11 +452,14 @@ async function selectWithoutPersistence(options: AutoSelectOptions): Promise<Aut
   };
 
   const probes: AutoSelectProbeResult[] = [];
+  // ADR-014: local-first cascade. Try Ollama first, fall through to hf-local
+  // (Python/sentence-transformers), then escalate to cloud APIs (OpenAI, Voyage)
+  // only when nothing local works. Supersedes ADR-013's cloud-first ordering.
   const sequence: Array<readonly [AutoSelectedEmbedderProvider, (ctx: ProbeContext) => Promise<ProbeOutcome>]> = [
-    ['voyage', probeVoyage],
-    ['openai', probeOpenAi],
     ['ollama', probeOllama],
     ['hf-local', probeHfLocal],
+    ['openai', probeOpenAi],
+    ['voyage', probeVoyage],
   ];
 
   for (const [tier, probe] of sequence) {

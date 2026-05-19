@@ -52,16 +52,30 @@ The promise does NOT mean any HuggingFace model just works. Only vetted candidat
 
 ## 2. MK-SPEC-MEMORY SIDE
 
-### Current default: jina-embeddings-v3 (1024d Q4_K_M via Ollama)
+### Provider cascade (ADR-014, local-first)
 
-Production active pointer per ADR-012:
+Before any within-Ollama choice, the outer provider cascade decides which backend wins:
+
+```
+Ollama (tier 1, local)  ->  hf-local (tier 2, local Python)  ->  OpenAI (tier 3, cloud)  ->  Voyage (tier 4, cloud)
+```
+
+ADR-014 (2026-05-19) supersedes the cascade clause of ADR-013 — earlier cascade was cloud-first (`voyage > openai > ollama > hf-local`); the new order keeps embeddings local by default unless the operator explicitly chooses a cloud tier (`EMBEDDINGS_PROVIDER=openai|voyage`).
+
+Within tier 1 (Ollama), the priority order is ADR-013: `nomic-embed-text-v1.5`, `jina-embeddings-v3`, `bge-m3`, `mxbai-embed-large-v1`. Within tier 2 (hf-local), the default fallback model is `nomic-ai/nomic-embed-text-v1.5` (same family as the Ollama default — ADR-014).
+
+### Current default: nomic-embed-text-v1.5 (768d via Ollama; ADR-013)
+
+Production active pointer per ADR-013 (within-Ollama priority):
 
 ```text
-active_embedder_name -> jina-embeddings-v3
-active_embedder_dim  -> 1024
-ollama tag           -> hf.co/gaianet/jina-embeddings-v3-GGUF:Q4_K_M
+active_embedder_name -> nomic-embed-text-v1.5
+active_embedder_dim  -> 768
+ollama tag           -> nomic-embed-text:v1.5
 maxInputChars        -> 8000
 ```
+
+> **History.** ADR-012 originally ratified `jina-embeddings-v3` (1024d Q4_K_M); ADR-013 made `nomic-embed-text-v1.5` the within-Ollama default; ADR-014 reorders the outer cascade so Ollama beats cloud APIs by default.
 
 Rescue layer is default-on (`SPECKIT_RERANK_LAYER` unset or `true`). Kill switch: `SPECKIT_RERANK_LAYER=false`.
 

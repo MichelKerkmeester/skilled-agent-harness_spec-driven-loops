@@ -23,15 +23,15 @@
       ],
       "environment": {
         "EMBEDDINGS_PROVIDER": "auto",
-        "_NOTE_1_DB": "Default DB: context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite (auto-derived from provider+model+dim+dtype; hf-local ONNX q8 is the fallback).",
+        "_NOTE_1_DB": "Default DB (recommended): context-index__ollama__nomic-embed-text-v1.5__768.sqlite (auto-derived from provider+model+dim). Pull `ollama pull nomic-embed-text:v1.5` for the local-first new-user setup; hf-local with nomic-ai/nomic-embed-text-v1.5 is the Python-side fallback.",
         "_NOTE_2_TOOLS": "Registers 39 tools: memory_save/search/context/match_triggers/index_scan/stats/health/validate/update/delete/bulk_delete/list/drift_why/retention_sweep/get_learning_history (15 memory), memory_causal_link/stats (2 causal), memory_ingest_start/status/cancel (3 async ingest), session_bootstrap/resume/health (3 session), checkpoint_create/delete/list/restore (4 checkpoint), task_preflight/postflight (2 task), council_graph_query/status/upsert/convergence (4 council), deep_loop_graph_query/status/upsert/convergence (4 deep-loop), eval_run_ablation/reporting_dashboard (2 eval). MCP namespace: mcp__mk_spec_memory__*",
-        "_NOTE_3_PROVIDERS": "Auto cascade: VOYAGE_API_KEY -> OPENAI_API_KEY -> llama-cpp (GGUF Q8_0 + Metal) -> hf-local (ONNX q8 fallback).",
-        "_NOTE_4_EMBEDDINGS_PROVIDER": "Auto cascade: VOYAGE_API_KEY -> OPENAI_API_KEY -> llama-cpp (when GGUF runtime installed) -> hf-local. Set EMBEDDINGS_PROVIDER=<provider> to force a specific provider.",
-        "_NOTE_5_CLOUD_PROVIDERS": "For cloud: add VOYAGE_API_KEY or OPENAI_API_KEY; Voyage uses rerank-2.5 and auto-selects the matching DB profile",
+        "_NOTE_3_PROVIDERS": "Auto cascade (ADR-014, local-first): Ollama (local) -> hf-local (Python sentence-transformers) -> OpenAI API -> Voyage API.",
+        "_NOTE_4_EMBEDDINGS_PROVIDER": "Auto cascade (ADR-014, local-first): Ollama -> hf-local -> OpenAI -> Voyage. Set EMBEDDINGS_PROVIDER=<provider> (ollama|hf-local|openai|voyage) to force a specific tier.",
+        "_NOTE_5_CLOUD_PROVIDERS": "Cloud tiers are explicit opt-in: add VOYAGE_API_KEY or OPENAI_API_KEY only when you want cloud embeddings; otherwise the cascade keeps everything local.",
         "_NOTE_6_GET_VOYAGE_KEY": "Get Voyage key: https://dash.voyageai.com/api-keys",
         "_NOTE_7_GET_OPENAI_KEY": "Get OpenAI key: https://platform.openai.com/api-keys",
         "_NOTE_8_FEATURE_FLAGS": "Opt-out flags (default ON): SPECKIT_ADAPTIVE_FUSION, SPECKIT_SESSION_BOOST, SPECKIT_CAUSAL_BOOST, SPECKIT_HYDE_ACTIVE, SPECKIT_ENTITY_LINKING, SPECKIT_GRAPH_CONCEPT_ROUTING, SPECKIT_GRAPH_REFRESH_MODE=write_local. Tier 3 LLM save routing is always on (fail-open to Tier 2 on timeout).",
-        "_NOTE_AUTO_MIGRATION": "Auto-migration: hf-local sqlite + llama-cpp active -> daemon re-embeds + deletes source. Opt out: MEMORY_AUTO_MIGRATE_HF_TO_LLAMA=false."
+        "_NOTE_RECOMMENDED_SETUP": "New users: install Ollama (https://ollama.com) and run `ollama pull nomic-embed-text:v1.5`. The cascade auto-detects Ollama and persists nomic-embed-text-v1.5 (768d) as the active embedder — no API keys, all-local."
       }
     },
     "mk_skill_advisor": {

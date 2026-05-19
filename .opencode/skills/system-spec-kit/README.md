@@ -77,7 +77,9 @@ Context survives across sessions through persistent semantic memory and session 
 
 ### Requirements
 
-Requires Node.js 18+, TypeScript 5.0+, and Bash 4.0+. Embedding access is optional. Without a key the runtime falls back to local embedding cascade: Voyage and OpenAI when keys are set, then ollama when the GGUF runtime is installed, then HF Local ONNX as the final tier.
+Requires Node.js 18+, TypeScript 5.0+, and Bash 4.0+. Embeddings are **local-first** (ADR-014, 2026-05-19): the runtime probes Ollama first, falls through to HuggingFace local (Python `sentence-transformers`), and only escalates to OpenAI or Voyage when an API key is set AND no local tier is available.
+
+**Recommended new-user setup:** install [Ollama](https://ollama.com) and run `ollama pull nomic-embed-text:v1.5`. The cascade auto-detects it on first daemon startup and persists `nomic-embed-text-v1.5` (768d) as the active embedder — no API keys required, all embeddings stay on-device.
 
 Workspace module profile:
 
@@ -618,25 +620,24 @@ Session starts
 
 ### Embedding Providers
 
-The indexed-continuity store converts text to numerical embeddings for vector search. Five providers are supported. The default cascade (when `EMBEDDINGS_PROVIDER=auto` or unset) is Voyage -> OpenAI -> ollama -> hf-local:
+The indexed-continuity store converts text to numerical embeddings for vector search. Four providers are supported. The default cascade (when `EMBEDDINGS_PROVIDER=auto` or unset) is **local-first** (ADR-014): Ollama -> hf-local -> OpenAI -> Voyage.
 
-| Provider          | Dimensions | Notes                                                            |
-| ----------------- | ---------- | ---------------------------------------------------------------- |
-| ollama         | 768        | Auto when GGUF runtime is installed. Apple Silicon Metal GPU acceleration when available; CPU fallback otherwise. |
-| HuggingFace Local | 768        | Final fallback when ollama runtime is unavailable. q8 ONNX on CPU. |
-| Voyage AI         | 1024       | Cloud opt-in. Requires `VOYAGE_API_KEY`. Gated by egress guard.  |
-| OpenAI            | 1536       | Cloud opt-in. Requires `OPENAI_API_KEY`.                         |
+| Tier | Provider          | Dimensions | Notes                                                            |
+| ---- | ----------------- | ---------- | ---------------------------------------------------------------- |
+| 1    | Ollama            | 768        | **Default.** Probes `/api/tags`; selects first pulled model in ADR-013 order (`nomic-embed-text-v1.5`, `jina-embeddings-v3`, `bge-m3`, `mxbai-embed-large-v1`). Recommended new-user setup. |
+| 2    | HuggingFace Local | 768        | Python `sentence-transformers` fallback. Default model: `nomic-ai/nomic-embed-text-v1.5` (same family as the Ollama default, ADR-014). |
+| 3    | OpenAI            | 1536       | Cloud opt-in. Requires `OPENAI_API_KEY`.                         |
+| 4    | Voyage AI         | 1024       | Cloud opt-in. Requires `VOYAGE_API_KEY`. Gated by egress guard.  |
 
 ### Environment Variables
 
 | Variable             | Required    | Description                                          |
 | -------------------- | ----------- | ---------------------------------------------------- |
+| `EMBEDDINGS_PROVIDER` | No         | `auto` (default) follows the ADR-014 cascade; set to `ollama`, `hf-local`, `openai`, or `voyage` to pin a specific tier |
 | `VOYAGE_API_KEY`     | No          | Voyage AI cloud embeddings (opt-in)                  |
 | `OPENAI_API_KEY`     | No          | OpenAI cloud embeddings (opt-in)                     |
-| `OLLAMA_EMBEDDINGS_MODEL` | No  | Override ollama model (default: `unsloth/bge-base-en-v1.5-GGUF`) |
-| `OLLAMA_EMBEDDINGS_GGUF_FILE` | No | GGUF filename (default: `bge-base-en-v1.5-300M-Q8_0.gguf`)         |
-| `HF_EMBEDDINGS_MODEL` | No         | Override hf-local model (default: `onnx-community/bge-base-en-v1.5-ONNX`) |
-| `HF_EMBEDDINGS_DTYPE` | No         | hf-local dtype: `q8` default, also `fp32`, `fp16`, `q4`, `int8`, `uint8`, `bnb4` |
+| `OLLAMA_EMBEDDINGS_MODEL` | No     | Override Ollama model (default: first pulled in ADR-013 priority order) |
+| `HF_EMBEDDINGS_MODEL` | No         | Override hf-local model (default: `nomic-ai/nomic-embed-text-v1.5`) |
 | `MEMORY_AUTO_MIGRATE_HF_TO_LLAMA` | No | Set to `false` to disable 018 auto-migration on first startup |
 | `SPEC_KIT_DB_DIR` / `SPECKIT_DB_DIR` | No | Preferred database-directory override; runtime derives the sqlite filename from the active embedding profile |
 | `MEMORY_DB_PATH`     | No          | Explicit file override for the active SQLite database path |

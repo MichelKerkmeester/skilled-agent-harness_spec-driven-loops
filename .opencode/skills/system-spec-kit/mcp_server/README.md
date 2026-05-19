@@ -55,26 +55,16 @@ You rarely touch this server directly. Six surfaces drive it for you:
 
 ### Embedding Provider Cascade
 
-The runtime resolves an embedding provider on every cold start. The default `auto` cascade tries Voyage first when `VOYAGE_API_KEY` is set, then OpenAI when `OPENAI_API_KEY` is set, then a local `ollama` runtime running an `BGE local fallback` GGUF, then `hf-local` ONNX as the final fallback. Pin one explicitly with `EMBEDDINGS_PROVIDER` if you want deterministic behavior.
+The runtime resolves an embedding provider on every cold start. The default `auto` cascade is **local-first** (ADR-014, 2026-05-19):
 
-The `ollama` path keeps a separate vector index profile (`ollama__unsloth-bge-base-en-v1.5-gguf__768__q8`) so its embeddings never mix with `hf-local` results. Install it with:
+1. **Ollama** — probes `/api/tags`; selects the first pulled model in ADR-013 priority order (`nomic-embed-text-v1.5`, `jina-embeddings-v3`, `bge-m3`, `mxbai-embed-large-v1`).
+2. **hf-local** — Python `sentence-transformers` importable; defaults to `nomic-ai/nomic-embed-text-v1.5` (same family as the Ollama default, ADR-014).
+3. **OpenAI** — `OPENAI_API_KEY` set and `text-embedding-3-small` reachable.
+4. **Voyage** — `VOYAGE_API_KEY` set and `voyage-code-3` reachable.
 
-```bash
-bash .opencode/skills/system-spec-kit/scripts/install-ollama.sh
-```
+Pin one tier explicitly with `EMBEDDINGS_PROVIDER=ollama|hf-local|openai|voyage` if you want deterministic behavior. Each tier persists its own vector index profile (e.g. `ollama__nomic-embed-text-v1.5__768`) so embeddings from different providers never mix.
 
-### Auto-Migration From `hf-local`
-
-Old `hf-local` installations migrate themselves on first daemon startup. The server detects the largest `context-index__hf-local__*.sqlite`, re-embeds every row into the `ollama` store, validates row counts plus a sample-vector check, deletes the source sqlite (and any `-shm` / `-wal` companions), then drops `.auto-migration-complete.json` into `database/` so the migration never runs twice.
-
-Opt out by setting `MEMORY_AUTO_MIGRATE_HF_TO_LLAMA=false` and running the migration script manually:
-
-```bash
-MEMORY_AUTO_MIGRATE_HF_TO_LLAMA=false
-npx tsx .opencode/skills/system-spec-kit/scripts/migrate-embeddings-to-ollama.ts
-```
-
-Use `EMBEDDINGS_PROVIDER=hf-local` directly when a host cannot load the GGUF runtime, or when you want the canonical fallback for a specific run.
+**Recommended new-user setup:** install [Ollama](https://ollama.com) and run `ollama pull nomic-embed-text:v1.5`. The cascade auto-detects and persists it as the active embedder — no API keys required.
 
 <!-- /ANCHOR:overview -->
 

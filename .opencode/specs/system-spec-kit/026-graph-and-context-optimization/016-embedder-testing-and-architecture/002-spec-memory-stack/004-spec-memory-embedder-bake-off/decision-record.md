@@ -590,3 +590,65 @@ Evidence:
 - `benchmark-results.md` §3.2 (per-embedder nomic profile)
 - Code change: `.opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts` (OLLAMA_PRIORITY reorder)
 <!-- /ANCHOR:adr-013 -->
+
+<!-- ANCHOR:adr-014 -->
+## ADR-014: Local-first cascade reorder + hf-local nomic alignment (supersedes ADR-013's cascade clause)
+
+**Date**: 2026-05-19
+**Status**: Accepted, shipped (packet 016/002/015)
+**Packet**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/015-cascade-reorder-and-nomic-hf-local-default/`
+**Supersedes**: ADR-013's cascade clause only (ADR-013's within-Ollama priority order — nomic first — still stands).
+
+### Decision
+
+Two coupled changes to the embedder auto-selection cascade in `shared/embeddings/auto-select.ts`:
+
+1. **Outer cascade order is now local-first.** Previous order (cloud-first): `voyage > openai > ollama > hf-local`. New order: `ollama > hf-local > openai > voyage`.
+2. **hf-local fallback model is `nomic-ai/nomic-embed-text-v1.5`** (768d), replacing the previous `BAAI/bge-base-en-v1.5` (768d). The hf-local default now matches the in-Ollama default (ADR-013) so that operators on the Python fallback get the same embedder family as Ollama-equipped operators.
+
+### New tier table
+
+| Tier | Provider | Probe | Default model | Dim | Notes |
+|------|----------|-------|---------------|-----|-------|
+| 1 | **Ollama** (local) | `/api/tags` reachable | first pulled in ADR-013 priority (`nomic-embed-text-v1.5`, `jina-embeddings-v3`, `bge-m3`, `mxbai-embed-large-v1`) | 768 / 1024 | Default for the recommended new-user setup |
+| 2 | **hf-local** (local Python) | `sentence-transformers` importable | `nomic-ai/nomic-embed-text-v1.5` | 768 | Same family as the Ollama default — keeps the production characteristic profile consistent across local backends |
+| 3 | **OpenAI** (cloud) | `OPENAI_API_KEY` set + embeddings endpoint reachable | `text-embedding-3-small` | 1536 | Explicit opt-in |
+| 4 | **Voyage** (cloud) | `VOYAGE_API_KEY` set + `voyage-code-3` reachable | `voyage-code-3` | 1024 | Explicit opt-in |
+
+### Rationale
+
+1. **Operator preference for local-first execution.** The operator's 2026-05-19 directive: prefer Ollama when available, fall through to local Python/HF, only escalate to cloud APIs when nothing local works. Cloud tiers stay reachable but become explicit opt-in.
+2. **Privacy + offline-by-default.** A user with Ollama running gets all-local embeddings without configuration. No egress, no API-key billing, no dependency on Voyage/OpenAI uptime.
+3. **Cascade consistency with the in-Ollama default.** ADR-013 made `nomic-embed-text-v1.5` the within-Ollama default. With hf-local previously defaulting to `BAAI/bge-base-en-v1.5`, a user without Ollama got a different embedder family than a user with Ollama — fragmenting the production characteristic profile. ADR-014 aligns both to nomic-v1.5.
+4. **Cloud APIs are still reachable.** Operators who want Voyage or OpenAI explicitly set `EMBEDDINGS_PROVIDER=voyage` (or `openai`); the cascade order does not gatekeep cloud usage.
+
+### Recommended new-user flow
+
+1. Install [Ollama](https://ollama.com).
+2. `ollama pull nomic-embed-text:v1.5`.
+3. Start the MCP server. The cascade auto-detects Ollama on first daemon startup and persists `nomic-embed-text-v1.5` (768d, ADR-013 within-Ollama priority) as the active embedder.
+
+No API keys required, no Python `sentence-transformers` setup required. The hf-local tier is reserved as the Python fallback for environments without Ollama; cloud tiers are reserved for explicit opt-in.
+
+### Behavior-change warning for operators with VOYAGE_API_KEY or OPENAI_API_KEY set
+
+This is a breaking change in **probe order** but NOT in persisted active embedders. Daemons with existing `vec_metadata.active_embedder_*` rows continue using whatever embedder was previously persisted — ADR-014 only affects the **first-boot** path (when `vec_metadata` has no active pointer).
+
+Operators who want to keep using Voyage or OpenAI after a fresh `vec_metadata` rebuild MUST set `EMBEDDINGS_PROVIDER=voyage` (or `openai`) explicitly. Otherwise, the cascade now prefers Ollama (if running) and hf-local (if `sentence-transformers` is importable) before reaching cloud tiers.
+
+### Rollback path
+
+To revert ADR-014 entirely:
+1. Revert the `sequence` array order in `shared/embeddings/auto-select.ts` back to `[voyage, openai, ollama, hf-local]`.
+2. Revert `HF_LOCAL_MODEL` back to `'BAAI/bge-base-en-v1.5'`.
+3. Revert the matching test assertion in `mcp_server/tests/embedder-auto-selection.vitest.ts` (line ~158) back to `/voyage:.*openai:.*ollama:.*hf-local:/i`.
+4. Run `npm run build && npm run typecheck`.
+5. Restart the MCP daemon. Any persisted `vec_metadata.active_embedder_*` rows continue working; only first-boot probes use the reverted order.
+
+ADR-013's within-Ollama priority order (nomic first) is **not** affected by ADR-014 rollback — they are independent decisions.
+
+Evidence:
+- Code change: `.opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts` (sequence reorder + HF_LOCAL_MODEL update)
+- Test fix: `.opencode/skills/system-spec-kit/mcp_server/tests/embedder-auto-selection.vitest.ts:158` (error-message order assertion flipped)
+- Doc sweep: INSTALL_GUIDE.md, opencode.json + .claude/mcp.json env notes, README.md, mcp_server/README.md, references/memory/embedder_architecture.md, references/memory/embedding_resilience.md, references/embedder-pluggability.md, mcp_server/ENV_REFERENCE.md
+<!-- /ANCHOR:adr-014 -->

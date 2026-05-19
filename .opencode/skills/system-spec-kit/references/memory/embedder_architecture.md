@@ -28,16 +28,18 @@ Both paths must agree on the active model and vector dimension.
 
 ## Bootstrap Auto-Selection
 
-On first memory-runtime use, `context-server.ts` opens the vector database and calls `ensureActiveEmbedder()`. If `vec_metadata` already has a valid active pointer, startup reuses it. If the pointer is empty, `autoSelectActiveEmbedder()` probes this precedence chain and persists the first available choice:
+On first memory-runtime use, `context-server.ts` opens the vector database and calls `ensureActiveEmbedder()`. If `vec_metadata` already has a valid active pointer, startup reuses it. If the pointer is empty, `autoSelectActiveEmbedder()` probes this **local-first** precedence chain (ADR-014, 2026-05-19) and persists the first available choice:
 
 | Tier | Probe | Persisted active embedder |
 |------|-------|---------------------------|
-| 1 | `VOYAGE_API_KEY` set and `https://api.voyageai.com/v1/embeddings` accepts `voyage-code-3` | `{ name: "voyage-code-3", dim: 1024, provider: "voyage" }` |
-| 2 | `OPENAI_API_KEY` set and OpenAI embeddings endpoint is reachable | `{ name: "text-embedding-3-small", dim: 1536, provider: "openai" }` |
-| 3 | Ollama `/api/tags` reachable and an ADR-012 priority model is pulled | first pulled of `jina-embeddings-v3`, `nomic-embed-text-v1.5`, `bge-m3`, `mxbai-embed-large-v1` |
-| 4 | `sentence-transformers` importable in the spec-memory Python runtime | `{ name: "BAAI/bge-base-en-v1.5", dim: 768, provider: "hf-local" }` |
+| 1 | Ollama `/api/tags` reachable and an ADR-013 priority model is pulled | first pulled of `nomic-embed-text-v1.5`, `jina-embeddings-v3`, `bge-m3`, `mxbai-embed-large-v1` |
+| 2 | `sentence-transformers` importable in the spec-memory Python runtime | `{ name: "nomic-ai/nomic-embed-text-v1.5", dim: 768, provider: "hf-local" }` |
+| 3 | `OPENAI_API_KEY` set and OpenAI embeddings endpoint is reachable | `{ name: "text-embedding-3-small", dim: 1536, provider: "openai" }` |
+| 4 | `VOYAGE_API_KEY` set and `https://api.voyageai.com/v1/embeddings` accepts `voyage-code-3` | `{ name: "voyage-code-3", dim: 1024, provider: "voyage" }` |
 
 If all probes fail, startup fails with an error listing every tier and the reason it was rejected. There is no silent local model fallback.
+
+> ADR-014 supersedes the cascade clause of ADR-013 (which had defined the cloud-first ordering `voyage > openai > ollama > hf-local`). ADR-013's within-Ollama priority order (nomic first) still stands and is reflected in tier 1 above.
 
 The selected pointer is persisted in:
 
@@ -56,7 +58,7 @@ Dim-tagged vector tables keep incompatible vectors separated:
 | Table | Dimension | Typical models |
 |-------|-----------|----------------|
 | `vec_384` | 384 | `bge-small-en-v1.5` |
-| `vec_768` | 768 | `nomic-embed-text-v1.5`, `BAAI/bge-base-en-v1.5` |
+| `vec_768` | 768 | `nomic-embed-text-v1.5`, `nomic-ai/nomic-embed-text-v1.5`, `BAAI/bge-base-en-v1.5` (legacy hf-local default) |
 | `vec_1024` | 1024 | `jina-embeddings-v3`, `mxbai-embed-large-v1`, `bge-m3`, `bge-large-en-v1.5`, `snowflake-arctic-embed-l-v2.0`, `voyage-code-3` |
 | `vec_1536` | 1536 | `text-embedding-3-small` |
 
@@ -132,6 +134,14 @@ For active `jina-embeddings-v3`, the expected operator result after daemon resta
 ## Memory Diagnostics
 
 `memory_health` accepts `includeFullReport:true` for byte-aware runtime diagnostics. The extended report includes RSS, V8 heap totals, external memory, ArrayBuffer memory, V8 malloc counters, cache byte estimates for tool cache, trigger matcher regex retention, and the in-process embedding LRU.
+
+### Multi-client launcher bridge
+
+The launcher concurrency model remains strict-single-writer: one primary daemon owns the SQLite handle and lease. When a secondary MCP launcher sees a live lease, it now looks for the daemon IPC socket at `<dbDir>/daemon-ipc.sock` and, when present, bridges its stdio stream to that socket instead of exiting. The daemon accepts the socket connection as another JSON-RPC channel and runs it through the same handler pipeline as the primary stdio transport.
+
+Bridge mode is only used for normal MCP launcher flow after a live lease is detected. If the socket is missing or refused, the launcher falls back to the diagnostic `LEASE_HELD_BY:<pid>` line so MCP hosts get the established failure signal instead of opening a second SQLite writer.
+
+Operators can disable bridge mode with `SPECKIT_LAUNCHER_BRIDGE_DISABLED=1`, which restores legacy exit-on-lease-held behavior. `SPECKIT_MAX_SECONDARY_CLIENTS` caps concurrent bridge clients (default 8), and `SPECKIT_IPC_SOCKET_DIR` can relocate the socket for tests. Full `memory_health({ includeFullReport: true })` output includes `ipc_bridge.socket_path`, `secondary_clients_count`, and cumulative secondary message counters.
 
 ### Lazy Startup Gating
 

@@ -155,7 +155,7 @@ describe('embedder bootstrap auto-selection', () => {
         throw new Error('offline');
       }) as typeof fetch,
       runPythonImportProbe: async () => false,
-    })).rejects.toThrow(/voyage:.*openai:.*ollama:.*hf-local:/i);
+    })).rejects.toThrow(/ollama:.*hf-local:.*openai:.*voyage:/i);
   });
 
   it('persists the selected embedder to vec_metadata during daemon bootstrap', async () => {

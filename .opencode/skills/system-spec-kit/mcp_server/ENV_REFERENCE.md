@@ -109,7 +109,7 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 <!-- PHASE-010-ENV-SLOT: SPECKIT_COCO_USE_SHARED_RERANK / SPECKIT_EMBEDDING_CACHE_* flags inserted here (027/010) -->
 <!-- PHASE-011-ENV-SLOT: SPECKIT_COCOINDEX_EXEMPLARS_* / SPECKIT_CONTEXT_CURATOR_* flags inserted here (027/011) -->
 
-Total unique variables documented: 136 (legacy HYDRA aliases removed in commit 6f2c2c939).
+Total unique variables documented: 139 (legacy HYDRA aliases removed in commit 6f2c2c939).
 
 ### Provisional Measurement Contract
 
@@ -176,6 +176,9 @@ the publication guard helpers used by the evaluation dashboard.
 | `SPECKIT_DB_DIR` | (auto-detected) | string | Override database directory path. Also accepts `SPEC_KIT_DB_DIR`. | `core/config.ts`, `shared/config.ts` |
 | `SPECKIT_HEAP_SNAPSHOT_DIR` | (unset) | string | Opt-in directory for V8 heap snapshots written by byte-aware health telemetry. The server creates the directory with mode `0700` and snapshot files with mode `0600`; snapshots can contain sensitive memory contents. | `mcp_server/lib/telemetry/heap-profiler.ts` |
 | `SPECKIT_CONTEXT_SERVER_MAX_OLD_SPACE_MB` | (unset) | number | Optional child-process V8 old-space cap for `context-server.js`. The launcher passes `--max-old-space-size=<value>` only when set; no cap is applied by default. | `.opencode/bin/mk-spec-memory-launcher.cjs` |
+| `SPECKIT_LAUNCHER_BRIDGE_DISABLED` | `false` | boolean | Rollback flag for MCP launcher bridge mode. Set `1` to force legacy strict-single-writer behavior where secondary launchers print `LEASE_HELD_BY` and exit instead of attaching to the daemon IPC socket. | `.opencode/bin/lib/launcher-ipc-bridge.cjs`, `.opencode/bin/mk-*-launcher.cjs` |
+| `SPECKIT_MAX_SECONDARY_CLIENTS` | `8` | number | Maximum concurrent secondary stdio clients accepted by the daemon IPC socket before new bridge connections are refused. | `mcp_server/lib/ipc/socket-server.ts` |
+| `SPECKIT_IPC_SOCKET_DIR` | database directory | string | Testing override for the daemon IPC socket directory. Defaults to the active service database directory and uses `daemon-ipc.sock` as the socket file name. | `.opencode/bin/lib/launcher-ipc-bridge.cjs`, `mcp_server/lib/ipc/socket-server.ts` |
 | `SPECKIT_EVAL_DB_PATH` | (null) | string | Custom file path for the eval reporting SQLite database. | `handlers/eval-reporting.ts` |
 | `SPECKIT_STRICT_SCHEMAS` | `true` | boolean | Enforce strict JSON schema validation on MCP tool inputs. Set `false` to relax. | `schemas/tool-input-schemas.ts` |
 | `SPECKIT_SKIP_API_VALIDATION` | `false` | boolean | Skip API-level input validation. Opt-in: set `true` to enable. | `context-server.ts` |
@@ -446,14 +449,16 @@ When `VOYAGE_API_KEY` is present and local reranking is not forced, the default 
 <!-- ANCHOR:embedding -->
 ## 15. EMBEDDING
 
-Embedding provider selection stays auto-cascaded unless you force it. In `EMBEDDINGS_PROVIDER=auto`, the runtime selects Voyage `voyage-4` (1024 dims) when `VOYAGE_API_KEY` is set, then OpenAI `text-embedding-3-small` (1536 dims) when `OPENAI_API_KEY` is set, then ollama BGE local fallback GGUF (768 dims) when the local GGUF runtime is available, and finally hf-local BGE local fallback ONNX q8 (768 dims). If you override only `SPEC_KIT_DB_DIR` / `SPECKIT_DB_DIR`, the sqlite filename is derived automatically from that active profile.
+Embedding provider selection stays auto-cascaded unless you force it. In `EMBEDDINGS_PROVIDER=auto`, the runtime probes this **local-first** sequence (ADR-014, 2026-05-19): (1) Ollama — first pulled model in ADR-013 priority order (`nomic-embed-text-v1.5` 768d, then `jina-embeddings-v3` 1024d, `bge-m3` 1024d, `mxbai-embed-large-v1` 1024d); (2) hf-local — `sentence-transformers` importable, default `nomic-ai/nomic-embed-text-v1.5` (768d, same family as the Ollama default); (3) OpenAI — `OPENAI_API_KEY` set, `text-embedding-3-small` (1536d); (4) Voyage — `VOYAGE_API_KEY` set, `voyage-code-3` (1024d). If you override only `SPEC_KIT_DB_DIR` / `SPECKIT_DB_DIR`, the sqlite filename is derived automatically from that active profile.
+
+For the simplest local-first new-user setup, install [Ollama](https://ollama.com) and `ollama pull nomic-embed-text:v1.5` — the cascade auto-selects it with no API keys.
 
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|
 | `SPECKIT_EMBEDDING_CIRCUIT_BREAKER` | `true` | boolean | Circuit breaker for embedding model failures. Graduated ON. | `shared/embeddings.ts` |
 | `SPECKIT_EMBEDDING_CB_THRESHOLD` | `3` | number | Consecutive failure count before circuit breaker opens. | `shared/embeddings.ts` |
 | `SPECKIT_EMBEDDING_CB_COOLDOWN_MS` | `60000` | number | Cooldown period in ms before circuit breaker resets (min 1000). | `shared/embeddings.ts` |
-| `SPECKIT_EMBEDDER_EXECUTION` | `auto` | string | Embedder runtime execution policy: `auto` sidecars local in-process providers (`hf-local`, future `sentence-transformers`, future `llama-cpp`) while keeping Voyage/OpenAI/Ollama direct; `direct` forces in-process; `sidecar` forces worker execution. | `lib/embedders/execution-router.ts` |
+| `SPECKIT_EMBEDDER_EXECUTION` | `auto` | string | Embedder runtime execution policy: `auto` sidecars local in-process providers (`hf-local`, future `sentence-transformers`) while keeping Ollama/OpenAI/Voyage direct; `direct` forces in-process; `sidecar` forces worker execution. | `lib/embedders/execution-router.ts` |
 | `SPECKIT_EMBEDDER_SIDECAR_IDLE_MS` | `300000` | number | Idle timeout in milliseconds before an embedder sidecar worker is terminated. | `lib/embedders/sidecar-client.ts` |
 | `SPECKIT_EMBEDDER_SIDECAR_PING_TIMEOUT_MS` | `2000` | number | Health ping timeout in milliseconds before the sidecar client respawns a worker. | `lib/embedders/sidecar-client.ts` |
 | `SPECKIT_EMBED_CACHE_MAX_BYTES` | `104857600` | number | Global hard cap for persistent embedding cache rows across all profiles and document/query kinds. Defaults to 100 MB. | `lib/cache/embedding-cache.ts` |

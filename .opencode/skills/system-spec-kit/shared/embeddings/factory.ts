@@ -761,9 +761,12 @@ async function ensureCloudProviderValidated(options: ValidateApiKeyOptions): Pro
 }
 
 function getCascadeFallbackOrder(failedProvider: SupportedProviderName): SupportedProviderName[] {
+  // ADR-014 (2026-05-19): local-first cascade. When a provider fails at creation
+  // time, fall through in the order Ollama -> hf-local -> OpenAI -> Voyage. The
+  // ollama-specific short list keeps the legacy local-only progression.
   const cascadeOrder: SupportedProviderName[] = failedProvider === 'ollama'
     ? ['ollama', 'hf-local']
-    : ['voyage', 'openai', 'ollama', 'hf-local'];
+    : ['ollama', 'hf-local', 'openai', 'voyage'];
   const failedIndex = cascadeOrder.indexOf(failedProvider);
   return failedIndex === -1 ? [] : cascadeOrder.slice(failedIndex + 1);
 }

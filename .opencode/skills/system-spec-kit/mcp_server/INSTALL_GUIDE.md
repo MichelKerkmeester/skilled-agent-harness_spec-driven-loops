@@ -113,18 +113,35 @@ This guide addresses the full installation lifecycle and common failures after m
 | `.opencode/skills/system-spec-kit/mcp_server/database/context-index__*.sqlite` | Active repo-local memory database resolved from the embedding profile |
 | `.opencode/skills/system-spec-kit/mcp_server/database/code-graph.sqlite` | Default repo-local structural code-graph database used by the checked-in configs |
 
-The checked-in repo configs currently point `SPEC_KIT_DB_DIR` at `mcp_server/database/`. The runtime derives the active sqlite filename from the selected embedding profile. Typical filenames are `context-index__ollama__jina-embeddings-v3__1024.sqlite`, `context-index__hf-local__baai_bge-base-en-v1.5__768__q8.sqlite`, `context-index__voyage__voyage-code-3__1024__cloud.sqlite`, and `context-index__openai__text-embedding-3-small__1536__cloud.sqlite`. Override `MEMORY_DB_PATH` only when you intentionally want to pin one exact sqlite file.
+The checked-in repo configs currently point `SPEC_KIT_DB_DIR` at `mcp_server/database/`. The runtime derives the active sqlite filename from the selected embedding profile. Typical filenames are `context-index__ollama__nomic-embed-text-v1.5__768.sqlite`, `context-index__hf-local__nomic-ai_nomic-embed-text-v1.5__768.sqlite`, `context-index__openai__text-embedding-3-small__1536__cloud.sqlite`, and `context-index__voyage__voyage-code-3__1024__cloud.sqlite`. Override `MEMORY_DB_PATH` only when you intentionally want to pin one exact sqlite file.
 
 ### What Gets Picked
 
-On first daemon startup, when `vec_metadata` has no active embedder, the server probes this precedence chain and persists the first working choice:
+On first daemon startup, when `vec_metadata` has no active embedder, the server probes this **local-first** precedence chain (ADR-014, 2026-05-19) and persists the first working choice:
 
-1. Voyage API: `VOYAGE_API_KEY` set and `voyage-code-3` embeddings reachable.
-2. OpenAI API: `OPENAI_API_KEY` set and `text-embedding-3-small` embeddings reachable.
-3. Ollama: `/api/tags` reachable, selecting the first pulled model in ADR-012 order: `jina-embeddings-v3`, `nomic-embed-text-v1.5`, `bge-m3`, `mxbai-embed-large-v1`.
-4. hf-local: `sentence-transformers` importable, selecting `BAAI/bge-base-en-v1.5`.
+1. **Ollama** (local, tier 1): `/api/tags` reachable, selecting the first pulled model in ADR-013 order: `nomic-embed-text-v1.5`, `jina-embeddings-v3`, `bge-m3`, `mxbai-embed-large-v1`.
+2. **hf-local** (local Python, tier 2): `sentence-transformers` importable, selecting `nomic-ai/nomic-embed-text-v1.5` (same family as the Ollama default — ADR-014).
+3. **OpenAI API** (cloud, tier 3): `OPENAI_API_KEY` set and `text-embedding-3-small` embeddings reachable.
+4. **Voyage API** (cloud, tier 4): `VOYAGE_API_KEY` set and `voyage-code-3` embeddings reachable.
 
-If no tier is reachable, startup fails with a clear probe report. Fix the relevant API key, Ollama pull, or Python environment, then restart the MCP server.
+If no tier is reachable, startup fails with a clear probe report. Fix the relevant Ollama install, Python environment, or API key, then restart the MCP server.
+
+To force a specific tier regardless of probe order, set `EMBEDDINGS_PROVIDER` explicitly (`ollama` / `hf-local` / `openai` / `voyage`).
+
+### Recommended setup for new users
+
+For the simplest first-run experience that matches our reference production profile:
+
+1. **Install Ollama** — https://ollama.com (one-line install on macOS, Linux, Windows).
+2. **Pull the default embedding model:**
+   ```bash
+   ollama pull nomic-embed-text:v1.5
+   ```
+3. **Start the MCP server.** On first startup the cascade will detect Ollama and persist `ollama` + `nomic-embed-text-v1.5` (768-dim) as the active embedder — no API keys required, all embeddings stay local.
+
+If you skip Ollama, the cascade falls through to `hf-local` (Python + `sentence-transformers` + `nomic-ai/nomic-embed-text-v1.5`) for an all-local Python-side fallback. Cloud tiers (OpenAI, Voyage) are now reserved for explicit opt-in only.
+
+> **Behavior change for existing operators (ADR-014):** Daemons with `VOYAGE_API_KEY` or `OPENAI_API_KEY` set will, on a fresh `vec_metadata` boot, prefer Ollama / hf-local first. To pin a cloud tier on rebuild, set `EMBEDDINGS_PROVIDER=voyage` (or `openai`). Existing persisted embedders in `vec_metadata` are NOT changed by this update; the new order applies only when the daemon re-probes.
 
 The Code Graph system uses a separate database stored alongside the spec-doc record index:
 
@@ -1174,7 +1191,8 @@ MCP TOOLS: memory_context, memory_search, memory_match_triggers,
 
 | Version | Date | Summary |
 |---|---|---|
-| v1.8.0 | 2026-05-18 | Bootstrap auto-selection now persists Voyage, OpenAI, Ollama, or hf-local into `vec_metadata`; native GGUF provider surface removed. |
+| v1.8.1 | 2026-05-19 | ADR-014: cascade reordered to local-first (Ollama > hf-local > OpenAI > Voyage). `HF_LOCAL_MODEL` fallback aligned with Ollama default (`nomic-ai/nomic-embed-text-v1.5`). |
+| v1.8.0 | 2026-05-18 | Bootstrap auto-selection now persists Ollama, hf-local, OpenAI, or Voyage into `vec_metadata`; native GGUF provider surface removed. |
 | v1.7.2 | 2026-03-15 | Dependency audit: `sqlite-vec-darwin-arm64` moved to `optionalDependencies`. Added `@huggingface/transformers` (with `onnxruntime-common` transitively), `chokidar`, `zod`. Rollback procedure added. Prerequisites script (`check-prerequisites.sh`) documented. |
 | v1.7.x | 2026-02-20 | Cross-encoder reranking enabled by default. Co-activation score boost fix. Query expansion on deep mode. Evidence gap warnings. MMR reranking with intent-mapped lambda. Phase system support (recursive validation, phase detection scoring). Feature flag updates. `memory_context` tokenUsage parameter. 28-tool surface area. |
 | v1.x | 2025 | Adaptive fusion, extended telemetry, artifact-class routing, append-only mutation ledger, typed retrieval contracts. Semantic search, trigger matching, intent-aware context, session deduplication. |
