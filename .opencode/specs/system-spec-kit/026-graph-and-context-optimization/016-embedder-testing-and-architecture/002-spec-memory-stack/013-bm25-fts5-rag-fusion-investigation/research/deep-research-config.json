@@ -1,0 +1,20 @@
+{
+  "sessionId": "res-013-20260519-000000",
+  "researchTopic": "BM25 → SQLite FTS5 swap impact on RAG-fusion search intelligence",
+  "specFolder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/013-bm25-fts5-rag-fusion-investigation",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.10,
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.5",
+    "reasoningEffort": "high",
+    "serviceTier": "fast",
+    "timeoutSeconds": 900
+  },
+  "createdAt": "2026-05-19T00:00:00Z",
+  "status": "running",
+  "driver": "single-codex-dispatch (5 internal rounds + synthesis)",
+  "predecessor": "005-context-server-memory-reduction-research",
+  "implements": "Rec 1 from deep-research-005 iter-010 Finding 1"
+}
