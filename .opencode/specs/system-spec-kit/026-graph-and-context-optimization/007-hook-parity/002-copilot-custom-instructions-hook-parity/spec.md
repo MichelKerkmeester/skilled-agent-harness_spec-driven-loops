@@ -64,7 +64,7 @@ Under Copilot CLI, neither payload appears. Empirical test: user asked Copilot "
 | **Created**  | 2026-04-19                              |
 | **Parent**   | `026-graph-and-context-optimization/007-hook-parity/` |
 | **Parent Spec** | `../spec.md` |
-| **Predecessor** | `../001-runtime-hook-parity-findings-remediation/spec.md` |
+| **Predecessor** | `../001-fix-runtime-hook-parity-findings/spec.md` |
 | **Successor** | `../003-codex-native-startup-advisor-hooks/spec.md` |
 
 ---
@@ -301,7 +301,7 @@ None for this closure pass. Historical investigation questions were answered by 
 ## RELATED DOCUMENTS
 
 - **Parent packet**: `../spec.md`, ../plan.md, ../implementation-summary.md
-- **Predecessor phase**: `../001-runtime-hook-parity-findings-remediation/`
+- **Predecessor phase**: `../001-fix-runtime-hook-parity-findings/`
 - **Successor phase**: `../003-codex-native-startup-advisor-hooks/`
 - **Referenced spec**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-advisor-hook-surface-integration/` — established the Claude hook wiring this phase aims to parity-match
 - **Referenced skill**: `.opencode/skills/cli-copilot/` — target of the documentation updates

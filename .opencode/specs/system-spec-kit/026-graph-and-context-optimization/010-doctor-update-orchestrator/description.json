@@ -2,7 +2,7 @@
   "childTopology": [
     "001-initial-doctor-commands",
     "002-sandbox-testing-playbook",
-    "002-deep-review-remediation",
+    "002-fix-deep-review-findings-for-doctor-update-orchestrator",
     "003-router-consolidation",
     "004-hard-cutover"
   ],

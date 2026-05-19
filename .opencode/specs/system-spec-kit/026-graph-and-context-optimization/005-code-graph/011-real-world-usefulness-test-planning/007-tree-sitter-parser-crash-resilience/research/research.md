@@ -379,7 +379,7 @@ When a fresh `web-tree-sitter@0.24.7` parser is loaded with ONLY bash and asked 
 ### Cross-packet
 
 - `001-sandbox-usefulness-trials`, `002-native-deferred-trial-rerun`, `003-code-graph-bug-surface-research`: sibling packets that surfaced the parser-crash signal
-- `004-zero-node-and-parser-remediation`, `005-scope-change-scan-guard`, `006-readiness-hooks-advisor-polish`: closed F-002/F-003/F-008/F-011/F-018/F-019 via Path 3 native subagents
+- `004-fix-zero-node-and-parser-issues`, `005-scope-change-scan-guard`, `006-readiness-hooks-advisor-polish`: closed F-002/F-003/F-008/F-011/F-018/F-019 via Path 3 native subagents
 <!-- /ANCHOR:citations -->
 
 ---

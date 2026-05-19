@@ -5,7 +5,7 @@
   "parent_id": "system-spec-kit/026-graph-and-context-optimization",
   "children_ids": [
     "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-initial-doctor-commands",
-    "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-deep-review-remediation",
+    "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-fix-deep-review-findings-for-doctor-update-orchestrator",
     "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/003-router-consolidation",
     "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/004-hard-cutover"
   ],

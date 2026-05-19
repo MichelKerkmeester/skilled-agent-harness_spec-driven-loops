@@ -7,7 +7,7 @@
     "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/001-sandbox-usefulness-trials",
     "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/002-native-deferred-trial-rerun",
     "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/003-code-graph-bug-surface-research",
-    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/004-zero-node-and-parser-remediation",
+    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/004-fix-zero-node-and-parser-issues",
     "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/005-scope-change-scan-guard",
     "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/006-readiness-hooks-advisor-polish",
     "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/007-tree-sitter-parser-crash-resilience"

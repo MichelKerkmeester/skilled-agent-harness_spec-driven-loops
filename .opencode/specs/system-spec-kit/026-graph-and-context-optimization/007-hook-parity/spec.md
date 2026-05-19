@@ -6,7 +6,7 @@ trigger_phrases:
   - "hook parity"
   - "runtime hook parity"
   - "claude codex copilot opencode hook parity"
-  - "001-runtime-hook-parity-findings-remediation"
+  - "001-fix-runtime-hook-parity-findings"
   - "002-copilot-custom-instructions-hook-parity"
   - "003-codex-native-startup-advisor-hooks"
   - "004-claude-freshness-schema-harness-fixes"
@@ -104,7 +104,7 @@ Keep this parent narrow to runtime hook parity: schema fixes, wrapper wiring fix
 
 | Phase | Folder | Status | Description |
 |-------|--------|--------|-------------|
-| 1 | `001-runtime-hook-parity-findings-remediation/` | Complete | Feature Specification: 029 — Runtime Hook Parity Remediation |
+| 1 | `001-fix-runtime-hook-parity-findings/` | Complete | Feature Specification: 029 — Runtime Hook Parity Remediation |
 | 2 | `002-copilot-custom-instructions-hook-parity/` | Complete | Feature Specification: Copilot CLI Hook Parity Remediation |
 | 3 | `003-codex-native-startup-advisor-hooks/` | Complete | Feature Specification: Codex CLI Hook Parity Remediation |
 | 4 | `004-claude-freshness-schema-harness-fixes/` | In Progress | Feature Specification: Claude Hook Findings Remediation |

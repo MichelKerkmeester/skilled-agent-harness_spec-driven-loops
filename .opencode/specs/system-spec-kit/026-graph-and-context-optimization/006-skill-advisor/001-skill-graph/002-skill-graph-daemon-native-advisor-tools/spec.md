@@ -47,7 +47,7 @@ Phase 027 unified the skill-advisor subsystem around a live skill graph, derived
 | **Branch** | `007-hook-parity` |
 | **Parent Spec** | `../spec.md` |
 | **Predecessor** | `../004-advisor-hook-surface-integration/spec.md` |
-| **Successor** | `../../007-hook-parity/001-runtime-hook-parity-findings-remediation/spec.md` |
+| **Successor** | `../../007-hook-parity/001-fix-runtime-hook-parity-findings/spec.md` |
 <!-- /ANCHOR:metadata -->
 
 ---

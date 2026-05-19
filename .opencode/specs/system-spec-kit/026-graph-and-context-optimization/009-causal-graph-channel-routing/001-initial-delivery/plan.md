@@ -60,7 +60,7 @@ Mirror the existing `shouldPreserveBm25` precedent (`query-router.ts:120-128`) w
 - [ ] Baseline `graph_channel_invocation_rate` captured pre-change
 
 ### Definition of Done
-Note: Closed 2026-05-08 with deep-review remediation tracked in 002-deep-review-remediation/.
+Note: Closed 2026-05-08 with deep-review remediation tracked in 002-fix-deep-review-findings-for-causal-graph-channel-routing/.
 
 - [x] REQ-001 — `shouldPreserveGraph` implemented + intent-driven test passes
 - [x] REQ-002 — Channel-list adjustment in `routeQuery()` integrated; routingReasons surface

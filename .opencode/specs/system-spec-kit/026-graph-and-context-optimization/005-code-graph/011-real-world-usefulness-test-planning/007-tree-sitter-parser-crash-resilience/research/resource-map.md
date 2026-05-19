@@ -80,7 +80,7 @@ Lean ledger of every artifact touched, created, or referenced across the 7-itera
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/001-sandbox-usefulness-trials/`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/002-native-deferred-trial-rerun/`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/003-code-graph-bug-surface-research/`: surfaced this packet's source signal
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/004-zero-node-and-parser-remediation/`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/004-fix-zero-node-and-parser-issues/`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/005-scope-change-scan-guard/`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/006-readiness-hooks-advisor-polish/`: closed F-002/F-003/F-008/F-011/F-018/F-019
 

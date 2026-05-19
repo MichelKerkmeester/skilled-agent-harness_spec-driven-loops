@@ -46,12 +46,12 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/001-runtime-hook-parity-findings-remediation/checklist.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/001-runtime-hook-parity-findings-remediation/decision-record.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/001-runtime-hook-parity-findings-remediation/implementation-summary.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/001-runtime-hook-parity-findings-remediation/plan.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/001-runtime-hook-parity-findings-remediation/spec.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/001-runtime-hook-parity-findings-remediation/tasks.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/001-fix-runtime-hook-parity-findings/checklist.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/001-fix-runtime-hook-parity-findings/decision-record.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/001-fix-runtime-hook-parity-findings/implementation-summary.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/001-fix-runtime-hook-parity-findings/plan.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/001-fix-runtime-hook-parity-findings/spec.md | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/001-fix-runtime-hook-parity-findings/tasks.md | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/002-copilot-custom-instructions-hook-parity/checklist.md | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/002-copilot-custom-instructions-hook-parity/decision-record.md | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/002-copilot-custom-instructions-hook-parity/implementation-summary.md | Cited | OK | phase child |
@@ -163,8 +163,8 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/001-runtime-hook-parity-findings-remediation/description.json | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/001-runtime-hook-parity-findings-remediation/graph-metadata.json | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/001-fix-runtime-hook-parity-findings/description.json | Cited | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/001-fix-runtime-hook-parity-findings/graph-metadata.json | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/002-copilot-custom-instructions-hook-parity/description.json | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/002-copilot-custom-instructions-hook-parity/graph-metadata.json | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/003-codex-native-startup-advisor-hooks/description.json | Cited | OK | phase child |

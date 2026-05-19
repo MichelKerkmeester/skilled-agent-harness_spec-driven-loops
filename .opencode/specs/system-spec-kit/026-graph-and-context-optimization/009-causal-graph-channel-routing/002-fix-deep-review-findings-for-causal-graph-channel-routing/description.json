@@ -1,0 +1,22 @@
+{
+  "level": "3",
+  "specFolder": "026-graph-and-context-optimization/009-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing",
+  "description": "Level 3 plan to close 3 P1 + 39 P2 deep-review findings from 2026-05-11 (cli-opencode + deepseek/deepseek-v4-pro). 21 batches across 4 tiers; implementation via cli-codex gpt-5.5 reasoning=high service_tier=fast.",
+  "keywords": [
+    "002-fix-deep-review-findings-for-causal-graph-channel-routing",
+    "012 deep-review remediation",
+    "P1-C-001 invalidateEntityDensityCache wiring",
+    "resource-map drift fix 012",
+    "entity-density cache invalidation hooks",
+    "ADV-001 env-flag tightening",
+    "routing-telemetry remediation",
+    "012 P2 polish"
+  ],
+  "lastUpdated": "2026-05-11T10:35:00Z",
+  "specId": "002",
+  "folderSlug": "deep-review-remediation",
+  "parentChain": [
+    "026-graph-and-context-optimization",
+    "009-causal-graph-channel-routing"
+  ]
+}

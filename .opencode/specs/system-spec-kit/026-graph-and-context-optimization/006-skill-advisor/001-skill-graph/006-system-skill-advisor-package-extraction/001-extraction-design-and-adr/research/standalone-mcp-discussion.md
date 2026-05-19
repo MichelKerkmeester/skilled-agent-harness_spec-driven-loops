@@ -162,7 +162,7 @@ This is the right trade: it honors the operator's hard process and DB ownership 
    Critical dependency: 004 server launches in all runtimes.  
    Effort: L.
 
-5. **006-validation-cleanup-deprecation-removal**  
+5. **006-clean-validation-and-remove-deprecated-code**  
    Deliverable: Run package-local Vitest, Python parity, hook smoke tests, runtime config validation, advisor live probes, DB path verification, and install guide checks. Remove old advisor source paths, stale docs that say "do not register a second MCP server", and any temporary `spec_kit_memory` proxies once consumers are cut over.  
    Critical dependency: 005 consumer cutover is green.  
    Effort: M.

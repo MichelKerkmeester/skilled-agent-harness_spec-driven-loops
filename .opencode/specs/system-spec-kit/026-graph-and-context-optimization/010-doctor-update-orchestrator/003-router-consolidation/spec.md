@@ -52,7 +52,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 | **Created** | 2026-05-11 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Predecessor** | `../002-deep-review-remediation/spec.md` |
+| **Predecessor** | `../002-fix-deep-review-findings-for-doctor-update-orchestrator/spec.md` |
 | **Successor** | `../004-hard-cutover/spec.md` |
 <!-- /ANCHOR:metadata -->
 

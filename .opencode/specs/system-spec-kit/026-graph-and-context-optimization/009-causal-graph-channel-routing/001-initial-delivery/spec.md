@@ -46,7 +46,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Shipped (012/001 closed 2026-05-08; remediation in 012/002-deep-review-remediation) |
+| **Status** | Shipped (012/001 closed 2026-05-08; remediation in 012/002-fix-deep-review-findings-for-causal-graph-channel-routing) |
 | **Created** | 2026-05-08 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |

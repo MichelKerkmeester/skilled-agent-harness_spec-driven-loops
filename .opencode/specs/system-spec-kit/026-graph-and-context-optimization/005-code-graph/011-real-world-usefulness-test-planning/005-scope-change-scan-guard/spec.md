@@ -50,7 +50,7 @@ _memory:
 | **Created** | 2026-05-06 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
-| **Source Plan** | `../004-zero-node-and-parser-remediation/scratch/f002-council-r1-cli-copilot.md` |
+| **Source Plan** | `../004-fix-zero-node-and-parser-issues/scratch/f002-council-r1-cli-copilot.md` |
 <!-- /ANCHOR:metadata -->
 
 ---

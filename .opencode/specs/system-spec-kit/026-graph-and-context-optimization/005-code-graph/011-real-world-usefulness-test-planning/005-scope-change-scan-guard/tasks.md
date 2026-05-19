@@ -51,7 +51,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Read the council R1 plan (`004-zero-node-and-parser-remediation/scratch/f002-council-r1-cli-copilot.md`).
+- [x] T001 Read the council R1 plan (`004-fix-zero-node-and-parser-issues/scratch/f002-council-r1-cli-copilot.md`).
 - [x] T002 Read existing scan guard and scope metadata helper surfaces.
 - [x] T003 [P] Read schema validation and tool schema surfaces.
 - [x] T004 [P] Scaffold and author Level 2 Phase 005 planning artifacts.
@@ -104,5 +104,5 @@ _memory:
 - **Specification**: See `spec.md`.
 - **Plan**: See `plan.md`.
 - **Decision Record**: See `decision-record.md`.
-- **Source Council Plan**: See `../004-zero-node-and-parser-remediation/scratch/f002-council-r1-cli-copilot.md`.
+- **Source Council Plan**: See `../004-fix-zero-node-and-parser-issues/scratch/f002-council-r1-cli-copilot.md`.
 <!-- /ANCHOR:cross-refs -->

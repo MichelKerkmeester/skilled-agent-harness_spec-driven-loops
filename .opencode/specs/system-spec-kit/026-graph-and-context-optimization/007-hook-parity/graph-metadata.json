@@ -4,7 +4,7 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-hook-parity",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization",
   "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/001-runtime-hook-parity-findings-remediation",
+    "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/001-fix-runtime-hook-parity-findings",
     "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/002-copilot-custom-instructions-hook-parity",
     "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/003-codex-native-startup-advisor-hooks",
     "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/004-claude-freshness-schema-harness-fixes",
@@ -26,7 +26,7 @@
       "hook parity",
       "runtime hook parity",
       "claude codex copilot opencode hook parity",
-      "001-runtime-hook-parity-findings-remediation",
+      "001-fix-runtime-hook-parity-findings",
       "002-copilot-custom-instructions-hook-parity",
       "003-codex-native-startup-advisor-hooks",
       "004-claude-freshness-schema-harness-fixes",
@@ -44,7 +44,7 @@
       "codex",
       "copilot",
       "opencode",
-      "001-runtime-hook-parity-findings-remediation",
+      "001-fix-runtime-hook-parity-findings",
       "002-copilot-custom-instructions-hook-parity",
       "003-codex-native-startup-advisor-hooks",
       "004-claude-freshness-schema-harness-fixes"

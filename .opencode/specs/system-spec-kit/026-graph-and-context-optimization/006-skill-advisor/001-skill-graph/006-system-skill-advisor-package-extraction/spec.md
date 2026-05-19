@@ -88,7 +88,7 @@ The codex impact discussion narrowed the shape to **Standalone Advisor MCP With 
 
 - Child **005-hook-compatibility-consumer-cutover** *(NOT YET scaffolded; depends on 004)*: update hook wrappers, Python shim, OpenCode plugin bridge, doctor skill-advisor workflow, install guides, and any direct `advisor_*` consumers to target the standalone package/server. Keep legacy tool ids. Add deprecation/proxy behavior in `spec_kit_memory` only if required by live consumers, with tests proving both paths. Effort: L.
 
-- Child **006-validation-cleanup-deprecation-removal** *(NOT YET scaffolded; depends on 005)*: run package-local Vitest, Python parity, hook smoke tests, runtime config validation, advisor live probes, DB path verification, install guide checks. Remove old advisor source paths, stale docs that say "do not register a second MCP server", and any temporary `spec_kit_memory` proxies once consumers are cut over. Effort: M.
+- Child **006-clean-validation-and-remove-deprecated-code** *(NOT YET scaffolded; depends on 005)*: run package-local Vitest, Python parity, hook smoke tests, runtime config validation, advisor live probes, DB path verification, install guide checks. Remove old advisor source paths, stale docs that say "do not register a second MCP server", and any temporary `spec_kit_memory` proxies once consumers are cut over. Effort: M.
 
 ## Out of Scope (for this phase parent)
 

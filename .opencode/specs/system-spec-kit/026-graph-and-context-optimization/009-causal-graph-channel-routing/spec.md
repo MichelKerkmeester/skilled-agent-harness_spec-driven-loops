@@ -50,7 +50,7 @@ Activate the graph and degree channels for intent-driven and entity-rich short q
 
 ## 3. SUB-PHASE CONTROL FILE
 
-- **Active child:** `002-deep-review-remediation` (planning phase as of 2026-05-11T10:30Z)
+- **Active child:** `002-fix-deep-review-findings-for-causal-graph-channel-routing` (planning phase as of 2026-05-11T10:30Z)
 - **Last completed child:** `001-initial-delivery`
 - Resume / planning entry: `/spec_kit:resume` honors `graph-metadata.json.derived.last_active_child_id` first; falls back to listing children with statuses.
 
@@ -68,4 +68,4 @@ The parent itself owns no implementation. All work lives in the children. The de
 **Tier-2 / Tier-3 (polish) work owned by 002:**
 - 39 P2 findings clustered across docs (12), maintainability (8), reliability (5), defensive (5), tests (5), env-flag/security (3), perf (1, downgraded), metadata (1).
 
-See `002-deep-review-remediation/spec.md` for the full breakdown and `002-.../plan.md` for the implementation sequencing.
+See `002-fix-deep-review-findings-for-causal-graph-channel-routing/spec.md` for the full breakdown and `002-.../plan.md` for the implementation sequencing.

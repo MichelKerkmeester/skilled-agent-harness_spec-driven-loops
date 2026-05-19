@@ -88,7 +88,10 @@ if [ "$AGGREGATE_ONLY" = true ]; then
   exit $?
 fi
 
-mapfile -t CELLS < <("$PYTHON" - "$SCRIPT_DIR/sweep-rrf.py" <<'PYTHON_GRID'
+CELLS=()
+while IFS= read -r _line; do
+  CELLS+=("$_line")
+done < <("$PYTHON" - "$SCRIPT_DIR/sweep-rrf.py" <<'PYTHON_GRID'
 import importlib.util
 import sys
 from pathlib import Path

@@ -6,7 +6,7 @@ trigger_phrases:
   - "hook parity"
   - "runtime hook parity"
   - "claude codex copilot opencode hook parity"
-  - "001-runtime-hook-parity-findings-remediation"
+  - "001-fix-runtime-hook-parity-findings"
   - "002-copilot-custom-instructions-hook-parity"
   - "003-codex-native-startup-advisor-hooks"
   - "004-claude-freshness-schema-harness-fixes"
@@ -50,7 +50,7 @@ Runtime hook parity across Claude / Codex / Copilot / OpenCode plugin: schema fi
 
 | Child Phase | Old Title | Status Before Consolidation | Current Path |
 |-------------|-----------|-----------------------|--------------|
-| `001-runtime-hook-parity-findings-remediation/` | Feature Specification: 029 — Runtime Hook Parity Remediation | Complete | `007-hook-parity/001-runtime-hook-parity-findings-remediation/` |
+| `001-fix-runtime-hook-parity-findings/` | Feature Specification: 029 — Runtime Hook Parity Remediation | Complete | `007-hook-parity/001-fix-runtime-hook-parity-findings/` |
 | `002-copilot-custom-instructions-hook-parity/` | Feature Specification: Copilot CLI Hook Parity Remediation | Complete | `007-hook-parity/002-copilot-custom-instructions-hook-parity/` |
 | `003-codex-native-startup-advisor-hooks/` | Feature Specification: Codex CLI Hook Parity Remediation | Complete | `007-hook-parity/003-codex-native-startup-advisor-hooks/` |
 | `004-claude-freshness-schema-harness-fixes/` | Feature Specification: Claude Hook Findings Remediation | Partial Verification | `007-hook-parity/004-claude-freshness-schema-harness-fixes/` |
@@ -61,7 +61,7 @@ Runtime hook parity across Claude / Codex / Copilot / OpenCode plugin: schema fi
 
 ## Key Implementation Summaries
 
-- **`001-runtime-hook-parity-findings-remediation/`**: **Implemented with documented blockers.** Phases A–D are complete at the targeted source/test layer, and Phase E captured remediation evidence. The whole-repo vitest gate is not green because broader baseline suites still fail outside this packet's implementation surface.
+- **`001-fix-runtime-hook-parity-findings/`**: **Implemented with documented blockers.** Phases A–D are complete at the targeted source/test layer, and Phase E captured remediation evidence. The whole-repo vitest gate is not green because broader baseline suites still fail outside this packet's implementation surface.
 - **`002-copilot-custom-instructions-hook-parity/`**: Outcome B custom-instructions transport shipped for Copilot CLI because customer hook output cannot mutate prompts.
 - **`003-codex-native-startup-advisor-hooks/`**: Outcome A native Codex SessionStart/UserPromptSubmit parity shipped and was re-verified.
 - **`004-claude-freshness-schema-harness-fixes/`**: Freshness persistence, Claude hook schema normalization, and multi-turn harness docs shipped; live Claude parity remains environment-blocked.
@@ -72,7 +72,7 @@ Runtime hook parity across Claude / Codex / Copilot / OpenCode plugin: schema fi
 
 ## Open Or Deferred Items
 
-- **`001-runtime-hook-parity-findings-remediation/`**: status before migration was Complete at source/test layer; whole-repo vitest gate remains red on broader baseline suites outside this packet.
+- **`001-fix-runtime-hook-parity-findings/`**: status before migration was Complete at source/test layer; whole-repo vitest gate remains red on broader baseline suites outside this packet.
 - **`002-copilot-custom-instructions-hook-parity/`**: status before migration was Complete; 1 unchecked checklist item remains for degraded memory indexing.
 - **`003-codex-native-startup-advisor-hooks/`**: status before migration was Complete; no unchecked task/checklist items remain.
 - **`004-claude-freshness-schema-harness-fixes/`**: status before migration was Partial Verification; 4 unchecked completion items remain because live Claude auth/user-global hook state blocked AS-003/AS-004.

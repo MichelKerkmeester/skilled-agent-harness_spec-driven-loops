@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "spec_id": "018-fix-followup-p2-findings-for-package-extraction",
+  "title": "10-iter P2 cleanup",
+  "status": "complete",
+  "derived": {
+    "last_active_at": "2026-05-15T06:09:08Z",
+    "last_active_child_id": null,
+    "trigger_phrases": [
+      "013/009/018",
+      "P2 cleanup",
+      "10-iter remediation"
+    ],
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
+  }
+}

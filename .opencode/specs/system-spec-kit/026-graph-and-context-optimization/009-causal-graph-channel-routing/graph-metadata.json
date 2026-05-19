@@ -5,7 +5,7 @@
   "parent_id": "system-spec-kit/026-graph-and-context-optimization",
   "children_ids": [
     "system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/001-initial-delivery",
-    "system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/002-deep-review-remediation"
+    "system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -41,7 +41,7 @@
     "status": "complete",
     "key_files": [
       "001-initial-delivery/review/review-report.md",
-      "002-deep-review-remediation/spec.md",
+      "002-fix-deep-review-findings-for-causal-graph-channel-routing/spec.md",
       "spec.md"
     ],
     "entities": [
@@ -102,7 +102,7 @@
     "source_docs": [
       "spec.md"
     ],
-    "last_active_child_id": "002-deep-review-remediation",
+    "last_active_child_id": "002-fix-deep-review-findings-for-causal-graph-channel-routing",
     "last_active_at": "2026-05-11T10:38:58.181Z"
   }
 }

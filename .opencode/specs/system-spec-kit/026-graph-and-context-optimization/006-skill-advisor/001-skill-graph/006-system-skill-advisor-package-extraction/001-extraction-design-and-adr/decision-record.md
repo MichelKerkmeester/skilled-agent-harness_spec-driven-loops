@@ -148,7 +148,7 @@ This ADR adopts the locked migration sequence already listed in the parent 015/0
 2. **003-advisor-source-db-tests-migration**: move advisor handlers, lib, tools, schemas, scripts, compat, tests, and DB path resolver into the new package.
 3. **004-standalone-mcp-launcher-runtime-configs**: add `skill-advisor-launcher.cjs`, standalone MCP entrypoint, and `system_skill_advisor` entries in OpenCode, Codex, Claude, and Gemini configs.
 4. **005-hook-compatibility-consumer-cutover**: move or wrap hooks, plugin bridge, Python shim, doctor workflow, install guides, and direct consumers while keeping `advisor_*` ids.
-5. **006-validation-cleanup-deprecation-removal**: verify package-local tests, hook smoke tests, runtime configs, live probes, DB path, and docs; then remove old source paths and temporary memory-side proxies.
+5. **006-clean-validation-and-remove-deprecated-code**: verify package-local tests, hook smoke tests, runtime configs, live probes, DB path, and docs; then remove old source paths and temporary memory-side proxies.
 
 This packet does not move code, modify runtime configs, or create the new skill folder.
 <!-- /ANCHOR:adr-001-impl -->

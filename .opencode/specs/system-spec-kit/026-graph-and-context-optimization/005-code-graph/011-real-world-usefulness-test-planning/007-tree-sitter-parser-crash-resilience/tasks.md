@@ -114,7 +114,7 @@ _memory:
 - **Plan**: See `plan.md`
 - **Sibling packets**:
   - `001-sandbox-usefulness-trials`, `002-native-deferred-trial-rerun`, `003-code-graph-bug-surface-research` (this packet's source signal)
-  - `004-zero-node-and-parser-remediation`, `005-scope-change-scan-guard`, `006-readiness-hooks-advisor-polish` (the remediation that closed F-002/F-003/F-008/F-011/F-018/F-019)
+  - `004-fix-zero-node-and-parser-issues`, `005-scope-change-scan-guard`, `006-readiness-hooks-advisor-polish` (the remediation that closed F-002/F-003/F-008/F-011/F-018/F-019)
 - **Live test artifacts**: `/tmp/cg-driver.mjs` (direct-handler driver script)
 - **Source-of-truth schema**: `mcp_server/code_graph/lib/code-graph-db.ts`
 <!-- /ANCHOR:cross-refs -->

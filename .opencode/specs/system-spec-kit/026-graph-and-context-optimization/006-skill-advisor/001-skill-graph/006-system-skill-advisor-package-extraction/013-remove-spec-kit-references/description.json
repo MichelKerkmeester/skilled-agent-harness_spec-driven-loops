@@ -1,0 +1,17 @@
+{
+  "specFolder": "013-remove-spec-kit-references",
+  "description": "Audit and clean stale system-skill-advisor references from system-spec-kit operator-facing docs.",
+  "keywords": [
+    "spec-kit-ref-cleanup",
+    "system-skill-advisor",
+    "stale advisor docs",
+    "post-extraction cleanup"
+  ],
+  "lastUpdated": "2026-05-14T19:30:00.000Z",
+  "specId": "013",
+  "folderSlug": "spec-kit-ref-cleanup",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
