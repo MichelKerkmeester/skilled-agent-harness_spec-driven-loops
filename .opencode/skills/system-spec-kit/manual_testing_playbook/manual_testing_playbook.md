@@ -3402,6 +3402,45 @@ All 7 steps execute in sequence; scoring output visible; folders created with co
 #### Test Execution
 > **Feature File:** [PHASE-005](16--tooling-and-scripts/005-phase-command-workflow.md)
 
+### PHASE-006 | Spec-folder literal naming (create.sh fallback)
+
+#### Description
+Run `create.sh --phase --phase-count 3` without `--phase-names` and confirm the placeholder slug and stderr warning behavior shipped in Packet 012.
+
+#### Scenario Contract
+Prompt: `Validate create.sh literal-naming fallback by running create.sh "literal-naming smoke" --short-name "literal-naming-smoke" --level 2 --phase --phase-count 3 --path /tmp/speckit-naming-smoke-$$ 2>/tmp/speckit-stderr-$$.log without --phase-names. Report cited pass/fail evidence.`
+
+3 child folders ending with `-PROVIDE-DESCRIPTIVE-SLUG`; 3 `[speckit] Warning:` lines on stderr; create.sh exit 0 (warn-only, not fail-hard)
+
+#### Test Execution
+> **Feature File:** [PHASE-006](16--tooling-and-scripts/006-spec-folder-literal-naming-create-sh-fallback.md)
+
+### PHASE-008 | Spec-folder literal naming (CLI-driven slug proposal)
+
+#### Description
+Route an ambiguous spec task through multiple external CLI agents and confirm each agent proposes phase names with specific subject tokens per the `Generate LITERAL phase names` YAML activity added in Packet 012.
+
+#### Scenario Contract
+Prompt: `An operator gives a deliberately ambiguous task to an external CLI agent that should trigger /spec_kit:plan phase decomposition. Verify the AI proposes phase names with specific subject tokens, NOT generic placeholders.`
+
+All 3 proposed slugs contain a specific subject token naming the concrete component or behavior; no slug matches the generic stoplist (phase-1, phase-2, phase-3, cleanup, remediation, fix, refactor, setup); aggregate PASS requires 2 or more CLIs to report PASS
+
+#### Test Execution
+> **Feature File:** [PHASE-008](16--tooling-and-scripts/008-spec-folder-literal-naming-cli-driven-slug.md)
+
+### PHASE-009 | Spec-folder literal naming (remediation rule via SKILL.md rule 20)
+
+#### Description
+Route a synthetic deep-review FAIL verdict through multiple external CLI agents and confirm each agent proposes a remediation packet slug that references both the source (deep-review findings) and the specific target component, per SKILL.md ALWAYS rule 20 added in Packet 012.
+
+#### Scenario Contract
+Prompt: `An operator gives a CLI agent a deep-review FAIL verdict and asks for the remediation packet name. Verify the proposed slug references BOTH the source (deep-review findings) AND the target (the specific component being remediated), per system-spec-kit SKILL.md ALWAYS rule 20.`
+
+`proposed_slug` contains both a source token (origin of findings) and a target token (component being fixed); slug does not match the bare stoplist (remediation, cleanup, fix, phase-N, round-N, review-remediation); `rule_20_self_audit` field cites both portions; aggregate PASS requires 2 or more CLIs to report PASS
+
+#### Test Execution
+> **Feature File:** [PHASE-009](16--tooling-and-scripts/009-spec-folder-literal-naming-remediation-rule.md)
+
 ### Catalog Coverage Notes for Phases 001-018
 
 These 30 catalog entries are explicitly documented here even when validation is automated-only or routed through a shared operator scenario.
@@ -3790,6 +3829,9 @@ This split playbook keeps automated coverage references in three places:
 | PHASE-003 | Phase System Features | Recursive phase validation | [PHASE-003](16--tooling-and-scripts/003-recursive-phase-validation.md) | *(test-only, no catalog entry)* |
 | PHASE-004 | Phase System Features | Phase link validation | [PHASE-004](16--tooling-and-scripts/004-phase-link-validation.md) | *(test-only, no catalog entry)* |
 | PHASE-005 | Phase System Features | Phase command workflow | [PHASE-005](16--tooling-and-scripts/005-phase-command-workflow.md) | *(test-only, no catalog entry)* |
+| PHASE-006 | Phase System Features | Spec-folder literal naming (create.sh fallback) | [PHASE-006](16--tooling-and-scripts/006-spec-folder-literal-naming-create-sh-fallback.md) | *(test-only, no catalog entry)* |
+| PHASE-008 | Phase System Features | Spec-folder literal naming (CLI-driven slug proposal) | [PHASE-008](16--tooling-and-scripts/008-spec-folder-literal-naming-cli-driven-slug.md) | *(test-only, no catalog entry)* |
+| PHASE-009 | Phase System Features | Spec-folder literal naming (remediation rule via SKILL.md rule 20) | [PHASE-009](16--tooling-and-scripts/009-spec-folder-literal-naming-remediation-rule.md) | *(test-only, no catalog entry)* |
 | M-001 | Dedicated Memory/Spec-Kit Scenarios | Context Recovery and Continuation | [M-001](01--retrieval/001-context-recovery-and-continuation.md) | *(test-only, no catalog entry)* |
 | M-002 | Dedicated Memory/Spec-Kit Scenarios | Targeted Memory Lookup | [M-002](01--retrieval/002-targeted-memory-lookup.md) | *(test-only, no catalog entry)* |
 | M-003 | Dedicated Memory/Spec-Kit Scenarios | Context Save + Index Update | [M-003](13--memory-quality-and-indexing/003-context-save-index-update.md) | *(test-only, no catalog entry)* |

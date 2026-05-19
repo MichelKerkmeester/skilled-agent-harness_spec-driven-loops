@@ -39,7 +39,7 @@ trigger_phrases:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-sk-doc is the central documentation engine for OpenCode projects. It operates in five modes: Document Quality (structure enforcement, DQI scoring, content optimization), Component Creation (skills, agents, and commands with templates and full validation), Flowchart Creation (ASCII diagrams for workflows and decision trees), Install Guide Creation (phase-based setup documentation), and Catalog/Playbook Creation (feature catalogs and manual testing playbooks for inventory and validation packages).
+sk-doc is the central documentation engine for OpenCode projects. It operates in six modes: Document Quality (structure enforcement, DQI scoring, content optimization), Component Creation (skills, agents, and commands with templates and full validation), Flowchart Creation (ASCII diagrams for workflows and decision trees), Install Guide Creation (phase-based setup documentation), Catalog/Playbook Creation (feature catalogs and manual testing playbooks for inventory and validation packages), and Benchmark Folder Creation (curated `mcp_server/benchmarks/benchmark-<YYYY-MM-DD>/` folders that promote bake-off results from a spec packet into the consuming skill).
 
 The skill follows a script-assisted AI analysis model. Python scripts handle deterministic parsing and metrics extraction. The AI handles quality judgment and recommendations. The core principle is structure first, then content, then quality. Document type auto-detection applies the correct enforcement level automatically, ranging from strict (SKILL.md, Commands) to flexible (README) to loose (Spec files).
 
@@ -49,7 +49,7 @@ For Spec Kit packet recovery, this skill treats `/spec_kit:resume` as the canoni
 
 ### Key Statistics
 
-The skill runs version 1.5.0.0 with five operating modes. It includes six automation scripts, over ten templates across four asset categories, and twelve reference files (six global and six creation guides). The flowchart system provides seven core patterns. The DQI scale ranges from 0 to 100 across four quality bands.
+The skill runs version 1.6.0.0 with six operating modes. It includes six automation scripts, over a dozen templates across five asset categories, and thirteen reference files (six global and seven creation guides). The flowchart system provides seven core patterns. The DQI scale ranges from 0 to 100 across four quality bands.
 
 ### Key Features
 
@@ -115,6 +115,8 @@ Install Guide creation applies a five-phase structure (Prerequisites, Installati
 
 Feature Catalog and Manual Testing Playbook creation handle package-level documentation for skills and systems. A feature catalog inventories current behavior with source-file anchors and stable slugs, organized in numbered category folders with one per-feature file per catalog entry. A manual testing playbook uses nine-column scenario tables with deterministic prompts, unique Feature IDs (PREFIX-NNN format), Global Preconditions, Evidence Requirements, and a Feature Catalog Cross-Reference Index. Both packages follow a root-document-plus-per-feature-file structure where the root owns the canonical surface (directory, review guidance, orchestration blocks) and the per-feature files hold full execution detail.
 
+Benchmark Folder Creation produces skill-local `mcp_server/benchmarks/benchmark-<YYYY-MM-DD>/` folders that promote curated bake-off results from a spec packet into the consuming skill. The canonical reference `benchmark_creation.md` covers when to promote (an ADR has landed, the headline is stable, sibling skills already use the convention), when to skip (in-flight runs, single-data-point results, cross-stack comparisons), and the ten-section `benchmark_report.md` structure (headline through cross-links). Two templates in `assets/benchmark/` scaffold the work: `benchmark_report_template.md` for the curated narrative with measured outcomes, and `source_template.md` for the SOURCE.md wayfinding pointer that maps each operator question to the right file in the originating spec packet. Bake-off runners stay in the spec packet's `evidence/` folder because they are stack-specific; only the curated outputs (`benchmark_report.md`, `SOURCE.md`, `results.csv`, `*.jsonl`, optional sidecars) get promoted.
+
 ### 3.2 FEATURE REFERENCE
 
 **Document Quality (Mode 1)**
@@ -171,6 +173,16 @@ Feature Catalog and Manual Testing Playbook creation handle package-level docume
 ||| Feature Catalog | `FEATURE_CATALOG.md` | One file per catalog entry, numbered categories |
 ||| Testing Playbook | `manual_testing_playbook.md` | One file per Feature ID, numbered categories |
 
+**Benchmark Folder Creation (Mode 6)**
+
+||| File | Purpose | Template |
+||| --- | --- | --- |
+||| `benchmark_report.md` | Ten-section curated narrative with headline metrics and recommendations | `assets/benchmark/benchmark_report_template.md` |
+||| `SOURCE.md` | Wayfinding pointer from the skill-local folder back into the originating spec packet | `assets/benchmark/source_template.md` |
+||| `results.csv` | Headline numeric outcomes, one row per candidate | Author per fixture |
+||| `*.jsonl` | Per-probe / per-query detail rows | Author per fixture |
+||| Optional sidecars | `runtime-measurements.md`, `risk-analysis-*.md` for stack profiles and non-determinism analysis | Author per run |
+
 ### 3.3 SKILL COMPARISON
 
 ||| Capability | sk-doc | system-spec-kit | sk-git |
@@ -182,6 +194,7 @@ Feature Catalog and Manual Testing Playbook creation handle package-level docume
 ||| ASCII flowcharts | Yes | No | No |
 ||| Install guides | Yes | No | No |
 ||| Feature catalogs and playbooks | Yes | No | No |
+||| Skill-local benchmark folder creation | Yes | No | No |
 ||| Git workflow orchestration | No | No | Yes |
 
 <!-- /ANCHOR:features -->
@@ -217,6 +230,9 @@ sk-doc/
 │   ├── agents/                                      # Agent and command templates
 │   │   ├── agent_template.md                        # Agent creation template
 │   │   └── command_template.md                      # Command creation template
+│   ├── benchmark/                                   # Skill-local benchmark folder templates
+│   │   ├── benchmark_report_template.md             # Ten-section curated report scaffold
+│   │   └── source_template.md                       # SOURCE.md wayfinding pointer scaffold
 │   └── template_rules.json                          # Template enforcement rules
 ├── references/
 │   ├── global/                                      # Shared standards
@@ -232,7 +248,8 @@ sk-doc/
 │       ├── readme_creation.md                       # README creation workflow
 │       ├── install_guide_creation.md                # Install guide standards and workflow
 │       ├── feature_catalog_creation.md              # Feature catalog standards and workflow
-│       └── manual_testing_playbook_creation.md      # Playbook standards and workflow
+│       ├── manual_testing_playbook_creation.md      # Playbook standards and workflow
+│       └── benchmark_creation.md                    # Benchmark folder standards and workflow
 └── scripts/                                         # Automation scripts
     ├── extract_structure.py                         # Parse document to JSON + DQI score
     ├── validate_document.py                         # README format validation (exit 0/1/2)
@@ -407,6 +424,7 @@ A: A feature catalog documents current behavior. It inventories what a skill or 
 ||| Install guide creation | `references/install_guide_creation.md` | Install guide standards and workflow |
 ||| Feature catalog creation | `references/feature_catalog_creation.md` | Catalog package standards and workflow |
 ||| Playbook creation | `references/manual_testing_playbook_creation.md` | Playbook standards and workflow |
+||| Benchmark creation | `references/benchmark_creation.md` | Benchmark folder standards, ten-section report shape, promotion workflow |
 ||| system-spec-kit | `.opencode/skills/system-spec-kit/SKILL.md` | Spec folder lifecycle and context preservation |
 ||| sk-git | `.opencode/skills/sk-git/SKILL.md` | Git workflow orchestration |
 ||| CommonMark spec | https://spec.commonmark.org/ | Markdown rendering standard |

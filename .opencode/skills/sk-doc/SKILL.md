@@ -144,6 +144,22 @@ Create feature catalogs with a rooted feature inventory, numbered category secti
 - [feature_catalog_creation.md](./references/feature_catalog_creation.md)
 - [feature_catalog_template.md](./assets/feature_catalog/feature_catalog_template.md)
 
+### Use Case: Benchmark Folder Creation
+
+Create skill-local `mcp_server/benchmarks/benchmark-<YYYY-MM-DD>/` folders that promote curated bake-off results from an originating spec packet into the consuming skill, where operators reading the MCP code can find the headline without leaving the skill tree.
+
+**Benchmark Creation** - Use `benchmark_report_template.md` plus `source_template.md` when:
+- An ADR or spec packet has just promoted a non-trivial default change (embedder swap, reranker change, retrieval policy) backed by measured evidence
+- The originating spec packet has a stable headline plus replay commands and is worth surfacing inside the consuming skill
+- A sibling skill already ships a `mcp_server/benchmarks/` folder and parity matters for operators moving between skills
+
+**Canonical Package**: One `benchmark-<YYYY-MM-DD>/` folder per run, holding `benchmark_report.md` (ten-section curated narrative), `SOURCE.md` (wayfinding pointer back to the spec packet), `results.csv`, `*.jsonl` per-probe data, and optional sidecars (`runtime-measurements.md`, `risk-analysis-*.md`).
+
+**See**:
+- [benchmark_creation.md](./references/benchmark_creation.md)
+- [benchmark_report_template.md](./assets/benchmark/benchmark_report_template.md)
+- [source_template.md](./assets/benchmark/source_template.md)
+
 ### When NOT to Use (All Modes)
 
 - Non-markdown files (only `.md` supported)
@@ -167,6 +183,7 @@ The router discovers markdown resources recursively from `references/` and `asse
 - `assets/readme/` for README and install-guide scaffolds; `assets/changelog_template.md`, `assets/frontmatter_templates.md`, and `assets/llmstxt_templates.md` at the assets/ root for cross-cutting templates.
 - `assets/skill/` for skill creation templates, including `SKILL.md`, skill README, reference and asset scaffolds; `assets/agent_template.md` and `assets/command_template.md` at the assets/ root for agent and command creation templates.
 - `assets/feature_catalog/` and `assets/testing_playbook/` at the assets/ root for feature catalog and manual testing playbook package templates.
+- `assets/benchmark/` for skill-local benchmark folder templates (`benchmark_report_template.md`, `source_template.md`).
 - `assets/flowcharts/` for reusable ASCII flowchart patterns and diagram examples.
 
 > **Cross-CLI consumption note** (per packets 071/072 stress-test data): when sk-doc is dispatched via an external CLI and the caller consumes the routing-trace output LITERALLY (e.g. attempts to `Read()` cited resource paths), prefer **cli-codex** (gpt-5.5/high/fast) — it scored 66.7% resource-accuracy vs cli-opencode 47.2% on the sk-doc router stress matrix. claude-opus-4.7 tends to hallucinate plausible-sounding paths that don't exist in this skill's filesystem; treat its routing trace as advisory and verify cited paths before reading. See the local router stress-test notes for the full data and hallucination finding.
@@ -207,7 +224,7 @@ INTENT_SIGNALS = {
     "FEATURE_CATALOG": {"weight": 4, "keywords": ["feature catalog", "feature inventory", "catalog snippet"]},
     "README_CREATION": {"weight": 3, "keywords": ["create readme", "readme creation", "write readme", "add documentation", "folder readme"]},
     "CHANGELOG": {"weight": 4, "keywords": ["changelog", "release notes", "changelog template", "release template", "create changelog", "github release"]},
-    "BENCHMARK": {"weight": 4, "keywords": ["benchmark", "benchmark report", "benchmarks format", "mcp_server benchmarks", "benchmark_report.md", "skill-local benchmark"]},
+    "BENCHMARK": {"weight": 4, "keywords": ["benchmark", "benchmark creation", "benchmark report", "mcp_server benchmarks", "benchmark_report.md", "skill-local benchmark", "benchmark folder", "source.md template"]},
 }
 
 RESOURCE_MAP = {
@@ -222,7 +239,7 @@ RESOURCE_MAP = {
     "FEATURE_CATALOG": ["references/feature_catalog_creation.md", "assets/feature_catalog/feature_catalog_template.md"],
     "README_CREATION": ["references/readme_creation.md", "assets/readme/readme_template.md"],
     "CHANGELOG": ["assets/changelog_template.md"],
-    "BENCHMARK": ["references/benchmarks_format.md", "assets/benchmark/benchmark_report_template.md"],
+    "BENCHMARK": ["references/benchmark_creation.md", "assets/benchmark/benchmark_report_template.md", "assets/benchmark/source_template.md"],
 }
 
 LOADING_LEVELS = {
@@ -436,7 +453,7 @@ Need fast navigation? See [quick_reference.md](./references/global/quick_referen
 
 ---
 
-**Remember**: This skill operates in five modes: Document Quality, Skill Creation, Flowchart Creation, Install Guide Creation and Playbook Creation.
+**Remember**: This skill operates in six modes: Document Quality, Component Creation (skills/agents/commands), Flowchart Creation, Install Guide Creation, Catalog/Playbook Creation, and Benchmark Folder Creation.
 
 ---
 
