@@ -27,6 +27,11 @@ import { startSkillGraphDaemon, type SkillGraphDaemon } from './lib/daemon/lifec
 import type { SkillGraphFsWatcher } from './lib/daemon/watcher.js';
 import { readAdvisorStatus } from './handlers/advisor-status.js';
 import { runWithCallerContext, type MCPCallerContext } from './lib/context/caller-context.js';
+import {
+  resolveIpcSocketPath,
+  startIpcSocketServer,
+  type IpcSocketServerHandle,
+} from './lib/ipc/socket-server.js';
 
 type MCPResponse = {
   content: Array<{ type: 'text'; text: string }>;
@@ -149,12 +154,20 @@ async function startupSkillGraphScan(): Promise<void> {
 
 let transport: StdioServerTransport | null = null;
 let skillGraphDaemon: SkillGraphDaemon | null = null;
+let ipcBridge: IpcSocketServerHandle | null = null;
 let shuttingDown = false;
 
 async function shutdownAdvisor(reason: string): Promise<void> {
   if (shuttingDown) return;
   shuttingDown = true;
   console.error(`[mk-skill-advisor-launcher] ${reason}`);
+  if (ipcBridge) {
+    await ipcBridge.close().catch((error: unknown) => {
+      const message = error instanceof Error ? error.message : String(error);
+      console.error(`[mk-skill-advisor-launcher] ipc-bridge close error: ${message}`);
+    });
+    ipcBridge = null;
+  }
   if (skillGraphDaemon) {
     await skillGraphDaemon.shutdown(reason);
     skillGraphDaemon = null;
@@ -189,46 +202,52 @@ function buildCallerContext(extra: unknown): MCPCallerContext {
   };
 }
 
-const server = new Server(
-  { name: 'mk_skill_advisor', version: '0.1.0' },
-  { capabilities: { tools: {} } },
-);
+function createAdvisorMcpServer(): Server {
+  const advisorServer = new Server(
+    { name: 'mk_skill_advisor', version: '0.1.0' },
+    { capabilities: { tools: {} } },
+  );
 
-server.setRequestHandler(ListToolsRequestSchema, async () => ({
-  tools: TOOL_DEFINITIONS,
-}));
+  advisorServer.setRequestHandler(ListToolsRequestSchema, async () => ({
+    tools: TOOL_DEFINITIONS,
+  }));
 
-server.setRequestHandler(CallToolRequestSchema, async (request): Promise<MCPResponse> => {
-  const requestParams = request.params as { name: string; arguments?: Record<string, unknown>; _meta?: unknown };
-  const name = requestParams.name;
-  const args = requestParams.arguments ?? {};
+  advisorServer.setRequestHandler(CallToolRequestSchema, async (request): Promise<MCPResponse> => {
+    const requestParams = request.params as { name: string; arguments?: Record<string, unknown>; _meta?: unknown };
+    const name = requestParams.name;
+    const args = requestParams.arguments ?? {};
 
-  if (!TOOL_NAMES.has(name)) {
-    return {
-      isError: true,
-      content: [{ type: 'text', text: `Unknown advisor tool: ${name}` }],
-    };
-  }
+    if (!TOOL_NAMES.has(name)) {
+      return {
+        isError: true,
+        content: [{ type: 'text', text: `Unknown advisor tool: ${name}` }],
+      };
+    }
 
-  try {
-    const callerContext = buildCallerContext(requestParams._meta);
-    const response = await runWithCallerContext(
-      callerContext,
-      async () => dispatchTool(name, args, callerContext),
-    );
-    if (response) return response;
-    return {
-      isError: true,
-      content: [{ type: 'text', text: `Unhandled advisor tool: ${name}` }],
-    };
-  } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : String(error);
-    return {
-      isError: true,
-      content: [{ type: 'text', text: JSON.stringify({ status: 'error', error: message }) }],
-    };
-  }
-});
+    try {
+      const callerContext = buildCallerContext(requestParams._meta);
+      const response = await runWithCallerContext(
+        callerContext,
+        async () => dispatchTool(name, args, callerContext),
+      );
+      if (response) return response;
+      return {
+        isError: true,
+        content: [{ type: 'text', text: `Unhandled advisor tool: ${name}` }],
+      };
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error);
+      return {
+        isError: true,
+        content: [{ type: 'text', text: JSON.stringify({ status: 'error', error: message }) }],
+      };
+    }
+  });
+
+  return advisorServer;
+}
+
+const server = createAdvisorMcpServer();
 
 export async function main(): Promise<void> {
   console.error(`[mk-skill-advisor-launcher] DB: ${resolveSkillGraphDbPath()}`);
@@ -244,6 +263,11 @@ export async function main(): Promise<void> {
   console.error(`[mk-skill-advisor-launcher] Skill graph daemon active=${skillGraphDaemon.active}`);
   transport = new StdioServerTransport();
   await server.connect(transport);
+  ipcBridge = await startIpcSocketServer({
+    socketPath: resolveIpcSocketPath(resolveSkillGraphDbDir()),
+    createServer: () => createAdvisorMcpServer(),
+    log: (message: string) => console.error(message),
+  });
 }
 
 const isMain = process.argv[1] && decodeURIComponent(import.meta.url).endsWith(process.argv[1].replace(/\\/g, '/'));

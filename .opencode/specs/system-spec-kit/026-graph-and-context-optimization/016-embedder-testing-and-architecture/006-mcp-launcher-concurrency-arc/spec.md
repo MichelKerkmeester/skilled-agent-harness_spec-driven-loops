@@ -65,6 +65,7 @@ This arc fixes the smell at its source — single-writer enforcement at the laun
 | 009 | `009-launcher-eperm-parity-fix/` | Complete | Propagates skill-advisor's `EPERM` handling in `leaseHeldFromFile` to `mk-spec-memory` and `mk-code-index`. Closes the `-32000` MCP reconnect failure when `kill(pid,0)` returns `EPERM` in sandboxed runtimes. |
 | 010 | `010-multi-client-stdio-socket-bridge/` | Complete | Secondary MCP launchers attach to the primary daemon over an IPC socket instead of exiting with `LEASE_HELD_BY`. Foundation for the sun_path issue surfaced in 011. |
 | 011 | `011-sun-path-and-stale-lease-followups/` | Complete (1 follow-on open) | Pins `SPECKIT_IPC_SOCKET_DIR=/tmp/<service>` across all 4 runtime configs to clear the macOS 104-char `sun_path` limit (commit `9ae9a6f4e`). Documents the operational lease-clear recipe and flags dead-PID auto-reclaim in `skill_graph_daemon_lease` as the next follow-on. |
+| 012 | `012-daemon-bridge-socket-for-skill-advisor-and-code-index/` | Complete | Closes packet 010's daemon-side gap. Lifts the `socket-server.ts` pattern from `mk-spec-memory` into the skill-advisor and code-index daemons; both now bind `/tmp/<service>/daemon-ipc.sock` so secondary launchers (incl. the OpenCode plugin bridge) attach via the socket instead of failing with `LEASE_HELD_BY ... (no-bridge-socket)`. |
 <!-- /ANCHOR:phase-map -->
 
 ---
