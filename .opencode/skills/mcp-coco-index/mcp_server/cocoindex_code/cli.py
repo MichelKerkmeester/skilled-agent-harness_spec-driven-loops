@@ -136,6 +136,28 @@ def resolve_default_path(project_root: Path) -> str | None:
     return f"{rel.as_posix()}/*"
 
 
+def _ensure_rerank_sidecar_for_mcp() -> None:
+    """Best-effort sidecar startup for the MCP stdio entrypoint."""
+    try:
+        repo_root = Path(__file__).resolve().parents[5]
+        sidecar_skill_path = repo_root / ".opencode" / "skills" / "system-rerank-sidecar"
+        if str(sidecar_skill_path) not in _sys.path:
+            _sys.path.insert(0, str(sidecar_skill_path))
+        from scripts.ensure_rerank_sidecar import ensure_rerank_sidecar
+    except Exception as exc:
+        _typer.echo(f"[cocoindex mcp] rerank sidecar ensure unavailable: {exc}", err=True)
+        return
+
+    try:
+        result = ensure_rerank_sidecar(
+            port=int(_os.environ.get("RERANK_SIDECAR_PORT", "8765")),
+            sidecar_skill_path=sidecar_skill_path,
+        )
+        _typer.echo(f"[cocoindex mcp] rerank sidecar: {_json.dumps(result)}", err=True)
+    except Exception as exc:
+        _typer.echo(f"[cocoindex mcp] rerank sidecar ensure failed: {exc}", err=True)
+
+
 def _format_progress(progress: IndexingProgress) -> str:
     """Format an IndexingProgress snapshot as a human-readable string."""
     return (
@@ -1159,6 +1181,7 @@ def mcp() -> None:
     """Run as MCP server (stdio mode)."""
     import asyncio
 
+    _ensure_rerank_sidecar_for_mcp()
     client, project_root = require_daemon_for_project()
 
     async def _run_mcp() -> None:

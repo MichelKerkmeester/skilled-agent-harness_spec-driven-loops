@@ -9,6 +9,7 @@
 const fs = require('fs');
 const path = require('path');
 const { spawn, spawnSync } = require('child_process');
+const { ensureRerankSidecar } = require('./lib/ensure-rerank-sidecar.cjs');
 
 const root = path.resolve(__dirname, '..', '..');
 const opencodeDir = path.join(root, '.opencode');
@@ -445,6 +446,10 @@ function installSignalHandlers() {
       process.stdout.write(`LEASE_HELD_BY:${reprobe ? reprobe.pid : 'unknown'} startedAt=${startedAt}\n`);
       process.exit(0);
     }
+    const rerankResult = await ensureRerankSidecar({
+      port: Number(process.env.RERANK_SIDECAR_PORT || 8765),
+    });
+    log(`rerank sidecar: ${JSON.stringify(rerankResult)}`);
     launchServer();
   } catch (error) {
     try {

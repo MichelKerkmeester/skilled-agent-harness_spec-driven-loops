@@ -17,6 +17,11 @@ EMBEDDINGS_PROVIDER = "auto"
 # EINVAL on listen(). Pin the socket dir to a short /tmp path so the
 # multi-client launcher bridge can bind cleanly.
 SPECKIT_IPC_SOCKET_DIR = "/tmp/mk-spec-memory"
+# Phase 008/003: shared rerank sidecar port. Auto-spawned by mk-spec-memory-launcher
+# via ensure-rerank-sidecar.cjs when SPECKIT_CROSS_ENCODER=true. Sidecar lives at
+# .opencode/skills/system-rerank-sidecar/.
+RERANK_SIDECAR_PORT = "8765"
+_NOTE_RERANK = "Phase 008/003: when SPECKIT_CROSS_ENCODER=true, the launcher probes localhost:RERANK_SIDECAR_PORT and spawns the system-rerank-sidecar skill detached if absent. Sigmoid-normalized Qwen/Qwen3-Reranker-0.6B scores feed Stage 3 of the cross-encoder pipeline."
 # MEMORY_DB_PATH intentionally unset: filename is auto-derived from provider+model+dim
 # (e.g., context-index__ollama__nomic-embed-text-v1.5__768.sqlite when Ollama is
 # detected; otherwise context-index__hf-local__nomic-ai_nomic-embed-text-v1.5__768.sqlite).
@@ -52,6 +57,8 @@ args = [".opencode/bin/mk-code-index-launcher.cjs"]
 [mcp_servers.mk_code_index.env]
 # macOS sun_path limit fix (see mk-spec-memory above for context).
 SPECKIT_IPC_SOCKET_DIR = "/tmp/mk-code-index"
+# Phase 008/003: shared rerank sidecar (see mk-spec-memory above for context).
+RERANK_SIDECAR_PORT = "8765"
 _NOTE_1_DB = "Database lives at .opencode/.spec-kit/code-graph/database/code-graph.sqlite by default; SPECKIT_CODE_GRAPH_DB_DIR overrides."
 _NOTE_2_TOOLS = "Registers 11 tools: code_graph_scan/query/classify_query_intent/context/status/verify/apply, detect_changes, ccc_status/reindex/feedback. MCP namespace: mcp__mk_code_index__*"
 _NOTE_3_INDEX_DEFAULTS = "INDEX_* committed defaults are false (end-user safe). Maintainer mode: set SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true in .env.local (gitignored); the launcher will force all 5 INDEX_* to true at startup. Per-call code_graph_scan args (includeSkills, includeAgents, includeCommands, includeSpecs, includePlugins) still override env for fine-grained control."
@@ -67,6 +74,8 @@ args = ["mcp"]
 
 [mcp_servers.cocoindex_code.env]
 COCOINDEX_CODE_ROOT_PATH = "."
+# Phase 008/003: shared rerank sidecar (see mk-spec-memory above for context).
+RERANK_SIDECAR_PORT = "8765"
 _NOTE_1 = "Install: bash .opencode/skills/mcp-coco-index/scripts/install.sh"
 _NOTE_2 = "Default embedding: google/embeddinggemma-300m (sentence-transformers, ~620MB, no API key)"
 _NOTE_3 = "Index stored in .cocoindex_code/ (gitignored)"
