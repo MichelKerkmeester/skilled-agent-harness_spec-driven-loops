@@ -15,7 +15,15 @@ Complete reference for all CLI commands and MCP tools exposed by CocoIndex Code.
 
 ---
 
-## Pipeline architecture
+## 1. OVERVIEW
+
+This document provides the complete reference for CocoIndex Code CLI commands and MCP tools. It covers all available commands (search, index, status, init, reset, mcp, daemon), their parameters, expected output, supported languages, environment variables, settings schema, and related resources.
+
+**Important distinction:** The MCP server exposes `search` and `cocoindex_refresh_index`. The `status`, index lifecycle, and reset operations are still CLI-only commands and are not available through the MCP protocol.
+
+---
+
+## 2. PIPELINE ARCHITECTURE
 
 CocoIndex Code uses two model stages plus a lexical fusion lane. The Stage 1 embedder and Stage 2 reranker are not interchangeable: the embedder creates independent vectors for stored chunks and queries, while the reranker scores each query/candidate pair together.
 
@@ -26,15 +34,9 @@ CocoIndex Code uses two model stages plus a lexical fusion lane. The Stage 1 emb
 | Dedup | Canonical result grouping | Realpath first, content hash fallback | Built into the forked query path | One representative row per duplicate group |
 | Stage 2 | Cross-encoder reranker | `Qwen/Qwen3-Reranker-0.6B` | `COCOINDEX_RERANK`, `COCOINDEX_RERANK_MODEL`, `COCOINDEX_RERANK_TOP_K` | Final candidate order after query+candidate scoring |
 
-## 1. OVERVIEW
-
-This document provides the complete reference for CocoIndex Code CLI commands and MCP tools. It covers all available commands (search, index, status, init, reset, mcp, daemon), their parameters, expected output, supported languages, environment variables, settings schema, and related resources.
-
-**Important distinction:** The MCP server exposes `search` and `cocoindex_refresh_index`. The `status`, index lifecycle, and reset operations are still CLI-only commands and are not available through the MCP protocol.
-
 ---
 
-## 1. CLI COMMANDS
+## 3. CLI COMMANDS
 
 ### ccc search
 
@@ -238,12 +240,12 @@ ccc daemon stop
 
 ### Daemon lifecycle
 
-The bundled fork shipped daemon resilience patches in commit `1bbe80986` for packet `026/011-cocoindex-daemon-resilience`. Operators should expect the lifecycle behavior below when `ccc search`, `ccc status` or `ccc daemon` touches the background daemon.
+The bundled fork ships daemon resilience patches in `client.py` + `daemon.py`. Operators should expect the lifecycle behavior below when `ccc search`, `ccc status` or `ccc daemon` touches the background daemon.
 
 Source files:
 
-- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/core/client.py` (moved to `core/` subdir in commit 29f412f31; previously at `cocoindex_code/client.py`)
-- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py` (entry-point file; stays at package root)
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/core/client.py`
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py`
 
 | Behavior | Operator-visible result |
 | -------- | ----------------------- |
@@ -279,7 +281,7 @@ If stale daemon state still blocks startup after a crash or manual process kill,
 
 ---
 
-## 2. MCP TOOLS
+## 4. MCP TOOLS
 
 The MCP server (`ccc mcp`) exposes `search` and `cocoindex_refresh_index`. Status, index lifecycle, and reset remain CLI-only commands.
 
@@ -352,7 +354,7 @@ Refresh the code index without performing a semantic search.
 
 ---
 
-## 3. CLI vs. MCP PARAMETER MAPPING
+## 5. CLI vs. MCP PARAMETER MAPPING
 
 | Concept          | CLI Parameter       | MCP Parameter    | Notes                                       |
 | ---------------- | ------------------- | ---------------- | ------------------------------------------- |
@@ -366,7 +368,7 @@ Refresh the code index without performing a semantic search.
 
 ---
 
-## 4. SUPPORTED LANGUAGES
+## 6. SUPPORTED LANGUAGES
 
 CocoIndex Code supports **28+ programming and markup languages**:
 
@@ -408,7 +410,7 @@ Use these code values with the CLI `--lang` flag or the MCP `languages` paramete
 
 ---
 
-## 5. ENVIRONMENT VARIABLES
+## 7. ENVIRONMENT VARIABLES
 
 | Variable                      | Required | Default              | Description                                       |
 | ----------------------------- | -------- | -------------------- | ------------------------------------------------- |
@@ -426,7 +428,7 @@ Legacy variables are recognized for backward compatibility and automatically map
 
 ---
 
-## 6. SETTINGS SCHEMA
+## 8. SETTINGS SCHEMA
 
 CocoIndex Code uses YAML settings files stored in the project `.cocoindex_code/` directory and the user home `~/.cocoindex_code/` directory.
 
@@ -452,7 +454,7 @@ For detailed schema and configuration examples, see the upstream test files in `
 
 ---
 
-## 7. FORK-SPECIFIC OUTPUT TELEMETRY
+## 9. FORK-SPECIFIC OUTPUT TELEMETRY
 
 This skill bundles a vendored soft-fork of `cocoindex-code` (Python wrapper) at version `0.2.3+spec-kit-fork.0.2.0`. The fork ships REQ-001 through REQ-006 patches that add dedup, canonical path identity, path-class reranking, and ranking telemetry. All search responses (CLI `ccc search` and MCP `search` tool) include the fields below in addition to the standard `file` / `lines` / `snippet` / `score` / `language` baseline. **Vanilla upstream `cocoindex-code` 0.2.3 does NOT emit any of these fields.**
 
@@ -514,7 +516,7 @@ Canonical resource paths receive an additional `+0.10` boost and emit `canonical
 }
 ```
 
-Verified against `query._ranked_result` as of mcp-coco-index 1.1.1 (packet 078/004).
+Verified against `query._ranked_result` in mcp-coco-index 1.1.1.
 
 ### 7.6 Compatibility notes
 
@@ -523,7 +525,7 @@ Verified against `query._ranked_result` as of mcp-coco-index 1.1.1 (packet 078/0
 - **Reindex required.** Existing indexes built by an older binary won't have `source_realpath` / `content_hash` / `path_class` populated on their chunk rows. Run `ccc reset && ccc index` once after upgrading to fork ≥0.2.0 to populate. The fallback path (using `content_hash` only when `source_realpath` is missing) keeps the dedup correct during the transition.
 - **Verifying the binary.** Run `ccc --version` — a fork build reports `0.2.3+spec-kit-fork.0.2.0`. If the version string does NOT contain `+spec-kit-fork.`, the binary is upstream PyPI cocoindex-code and none of the fields above will be emitted. See `INSTALL_GUIDE.md` §Verify and §Reinstall for recovery.
 
-## 8. RELATED RESOURCES
+## 10. RELATED RESOURCES
 
 | Resource         | Location                                                            |
 | ---------------- | ------------------------------------------------------------------- |

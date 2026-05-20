@@ -21,7 +21,7 @@ Strategies and patterns for effective semantic code search using CocoIndex Code.
 
 ---
 
-## 1. WRITING GOOD QUERIES
+## 2. WRITING GOOD QUERIES
 
 Semantic search understands meaning, not just keywords. Write queries as you would describe what you are looking for to a colleague.
 
@@ -71,7 +71,7 @@ Write:      "error checking in Go functions"
 
 ---
 
-## 2. USING LANGUAGE FILTERS
+## 3. USING LANGUAGE FILTERS
 
 Filter by language when you know which language you need results from. CocoIndex Code supports **28+ languages** (see tool_reference.md for the full list).
 
@@ -121,7 +121,7 @@ ccc search "data serialization" --lang python --lang rust --lang go
 
 ---
 
-## 3. USING PATH FILTERS
+## 4. USING PATH FILTERS
 
 Scope searches to specific directories when you know where to look.
 
@@ -151,7 +151,7 @@ ccc search "error handling" --path src/services/ --lang typescript --lang python
 
 ---
 
-## 4. COMBINING FILTERS FOR PRECISION
+## 5. COMBINING FILTERS FOR PRECISION
 
 Combine query specificity, language filters, and path filters for the most targeted results.
 
@@ -171,7 +171,7 @@ ccc search "configuration loading" --lang python --lang typescript --path src/co
 
 ---
 
-## 5. INTERPRETING RELEVANCE SCORES
+## 6. INTERPRETING RELEVANCE SCORES
 
 Each result includes a relevance score from 0.0 to 1.0.
 
@@ -189,7 +189,7 @@ Each result includes a relevance score from 0.0 to 1.0.
 
 ---
 
-## 6. SEMANTIC SEARCH VS. GREP
+## 7. SEMANTIC SEARCH VS. GREP
 
 ### When Semantic Search Wins
 
@@ -230,7 +230,7 @@ Do you know the exact text?
 
 ---
 
-## 7. VERIFYING RESULTS WITH READ
+## 8. VERIFYING RESULTS WITH READ
 
 Semantic search returns snippets. Always verify with the Read tool before acting on results.
 
@@ -251,7 +251,7 @@ ccc search "database connection setup"
 
 ---
 
-## 8. COMMON QUERY PATTERNS
+## 9. COMMON QUERY PATTERNS
 
 ### Architecture and Design
 
@@ -309,7 +309,7 @@ ccc search "configuration validation"
 
 ---
 
-## 8b. INDEX FRESHNESS STRATEGY
+## 10. INDEX FRESHNESS STRATEGY
 
 ### When to Re-index
 
@@ -353,7 +353,7 @@ Use `ccc_feedback` to improve search quality over time:
 
 Feedback is stored in `.opencode/skills/mcp-coco-index/feedback/search-feedback.jsonl` for analysis.
 
-## 9. RELATED RESOURCES
+## 11. RELATED RESOURCES
 
 | Resource        | Location                                                           |
 | --------------- | ------------------------------------------------------------------ |

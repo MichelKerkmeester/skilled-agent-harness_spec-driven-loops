@@ -26,7 +26,7 @@ Search runs in a fixed order: Stage 1 bi-encoder embedding generates query/chunk
 
 ---
 
-## 1. GLOBAL SETTINGS
+## 2. GLOBAL SETTINGS
 
 **File:** `~/.cocoindex_code/global_settings.yml`
 
@@ -77,7 +77,7 @@ envs:
 
 ---
 
-## 2. PROJECT SETTINGS
+## 3. PROJECT SETTINGS
 
 **File:** `<project-root>/.cocoindex_code/settings.yml`
 
@@ -130,7 +130,7 @@ dist/**, build/**, .next/**, target/**, *.min.js, *.min.css,
 
 ---
 
-## 3. EMBEDDING MODEL OPTIONS
+## 4. EMBEDDING MODEL OPTIONS
 
 Stage 1 embedding models are bi-encoders: they encode the query and chunks independently, then the vector lane compares those embeddings with cosine similarity before RRF fusion.
 
@@ -142,7 +142,7 @@ Stage 1 embedding models are bi-encoders: they encode the query and chunks indep
 | `gemini/gemini-embedding-001` | litellm | `GEMINI_API_KEY` | 768 | Google Gemini |
 | `cohere/embed-v4.0` | litellm | `COHERE_API_KEY` | 1024 | Cohere |
 | `ollama/nomic-embed-text` | litellm | None | 768 | Local via Ollama (requires Ollama running) |
-| `google/embeddinggemma-300m` | sentence-transformers | None | 768 | Pre-018 baseline. General-text; query prompt resolves to `InstructionRetrieval`. Kept for benchmark comparisons |
+| `google/embeddinggemma-300m` | sentence-transformers | None | 768 | Pre-CodeRankEmbed baseline. General-text; query prompt resolves to `InstructionRetrieval`. Kept for benchmark comparisons |
 
 ### Reranker Model Options
 
@@ -150,8 +150,8 @@ Stage 2 reranker models are cross-encoders: they encode the query and each retri
 
 | Model | Type | License | Status | Notes |
 |---|---|---|---|---|
-| `Qwen/Qwen3-Reranker-0.6B` | Cross-encoder | Apache-2.0 | Current default | Promoted 2026-05-20 after 023B 73-probe head-to-head: 30/73 hits vs jina-v3 29/73, p95 1984ms vs 2905ms, n=3 zero stddev. |
-| `jinaai/jina-reranker-v3` | Cross-encoder | **CC BY-NC 4.0** | Pre-2026-05-20 default; opt-in fallback | Highest quality on 18-probe fixture (018 bench), but demoted after 023B expanded-fixture bench; non-commercial. Operator-visible WARNING via `ccc doctor` and `COCOINDEX_COMMERCIAL_SAFE_PROFILE` when explicitly pinned. |
+| `Qwen/Qwen3-Reranker-0.6B` | Cross-encoder | Apache-2.0 | Current default | Promoted 2026-05-20 after the 73-probe expanded-fixture head-to-head bench (see `mcp_server/benchmarks/benchmark-2026-05-20-expanded/`): 30/73 hits vs jina-v3 29/73, p95 1984ms vs 2905ms, n=3 zero stddev. |
+| `jinaai/jina-reranker-v3` | Cross-encoder | **CC BY-NC 4.0** | Pre-2026-05-20 default; opt-in fallback | Highest quality on the 18-probe fixture, but demoted after the 73-probe expanded-fixture bench; non-commercial. Operator-visible WARNING via `ccc doctor` and `COCOINDEX_COMMERCIAL_SAFE_PROFILE` when explicitly pinned. |
 | `BAAI/bge-reranker-v2-m3` | Cross-encoder | Apache-2.0 | Commercial-safe alternative | Close runner-up on 18-probe; ships in registered_embedders.py |
 | `mixedbread-ai/mxbai-rerank-base-v2` | Cross-encoder | Apache-2.0 | Commercial-safe alternative | Listed in registry; not benchmarked head-to-head on 73-probe yet |
 
@@ -165,7 +165,7 @@ Configure reranking with `COCOINDEX_RERANK`, `COCOINDEX_RERANK_MODEL`, and `COCO
 
 ---
 
-## 4. CHUNKING CONFIGURATION
+## 5. CHUNKING CONFIGURATION
 
 CocoIndex Code splits source files into chunks for embedding and search. Chunking parameters are built-in and not user-configurable.
 
@@ -186,7 +186,7 @@ The chunker respects language structure when splitting:
 
 ---
 
-## 5. ROOT PATH DISCOVERY
+## 6. ROOT PATH DISCOVERY
 
 CocoIndex Code determines the project root using the following priority order:
 
@@ -210,7 +210,7 @@ Running `ccc search "handler"` from `src/api/` finds `/home/user/projects/my-app
 
 ---
 
-## 6. ENVIRONMENT VARIABLES
+## 7. ENVIRONMENT VARIABLES
 
 ### Runtime Variables
 
@@ -255,7 +255,7 @@ These older variable names are mapped automatically for backward compatibility:
 
 ---
 
-## 7. RELATED RESOURCES
+## 8. RELATED RESOURCES
 
 | Resource         | Location                                                            |
 | ---------------- | ------------------------------------------------------------------- |
