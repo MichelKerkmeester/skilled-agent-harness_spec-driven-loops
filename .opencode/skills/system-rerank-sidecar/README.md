@@ -138,6 +138,30 @@ RERANK_DEVICE=cpu bash scripts/start.sh
 RERANK_LOG_PATH=/tmp/rerank.jsonl bash scripts/start.sh
 ```
 
+### Switch reranker model
+
+`scripts/use-model.sh` is the one-step swapper — updates `.env.local`, downloads weights if missing, restarts the sidecar, probes `/health` + `/warmup`.
+
+```bash
+# Default Qwen, pinned revision
+bash scripts/use-model.sh Qwen/Qwen3-Reranker-0.6B \
+  --revision e61197ed45024b0ed8a2d74b80b4d909f1255473
+
+# Lighter / faster
+bash scripts/use-model.sh cross-encoder/ms-marco-MiniLM-L-6-v2
+
+# Multilingual
+bash scripts/use-model.sh BAAI/bge-reranker-v2-m3
+
+# Apple Silicon GPU
+bash scripts/use-model.sh Qwen/Qwen3-Reranker-0.6B --device mps
+
+# Update .env.local only, don't restart
+bash scripts/use-model.sh <model> --no-restart
+```
+
+Both consumers (mk-spec-memory + mcp-coco-index) automatically inherit the change — `/rerank` carries no model field, so swapping the sidecar swaps everyone.
+
 ---
 
 ## 5. TROUBLESHOOTING

@@ -162,7 +162,32 @@ bash scripts/start.sh
 | `RERANK_LOG_PATH` | unset | Optional JSONL request log path |
 | `RERANK_DEVICE` | unset | Optional device override: `cpu`, `mps`, or `cuda` |
 
-`scripts/start.sh` loads `.env` first and `.env.local` second so operators can keep local overrides out of version control.
+`scripts/start.sh` loads `.env` first and `.env.local` second so operators can keep local overrides out of version control. `scripts/start.sh` also clears all parent-shell env vars except a `HOME`/`PATH`/`LANG`/`TMPDIR`/`HF_*`/`RERANK_*` allowlist before exec'ing uvicorn (env-var leak mitigation).
+
+### Switching Reranker Models
+
+`scripts/use-model.sh` is the one-step model swapper. It updates `.env.local`, downloads weights if missing, restarts the sidecar, and probes `/health` + `/warmup` in a single invocation:
+
+```bash
+# Default (Qwen, pinned revision):
+bash .opencode/skills/system-rerank-sidecar/scripts/use-model.sh \
+  Qwen/Qwen3-Reranker-0.6B \
+  --revision e61197ed45024b0ed8a2d74b80b4d909f1255473
+
+# Lighter alternative (faster, smaller, lower quality):
+bash .opencode/skills/system-rerank-sidecar/scripts/use-model.sh \
+  cross-encoder/ms-marco-MiniLM-L-6-v2
+
+# Multilingual:
+bash .opencode/skills/system-rerank-sidecar/scripts/use-model.sh \
+  BAAI/bge-reranker-v2-m3
+
+# Apple Silicon GPU override:
+bash .opencode/skills/system-rerank-sidecar/scripts/use-model.sh \
+  Qwen/Qwen3-Reranker-0.6B --device mps
+```
+
+Both consumers (mk-spec-memory + mcp-coco-index) inherit the change automatically — the `/rerank` HTTP contract carries no model field, so swapping the sidecar's model swaps it for everyone.
 
 ### Consumers
 
