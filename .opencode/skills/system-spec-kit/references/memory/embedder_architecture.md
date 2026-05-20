@@ -141,7 +141,7 @@ The launcher concurrency model remains strict-single-writer: one primary daemon 
 
 Bridge mode is only used for normal MCP launcher flow after a live lease is detected. If the socket is missing or refused, the launcher falls back to the diagnostic `LEASE_HELD_BY:<pid>` line so MCP hosts get the established failure signal instead of opening a second SQLite writer.
 
-Operators can disable bridge mode with `SPECKIT_LAUNCHER_BRIDGE_DISABLED=1`, which restores legacy exit-on-lease-held behavior. `SPECKIT_MAX_SECONDARY_CLIENTS` caps concurrent bridge clients (default 8), and `SPECKIT_IPC_SOCKET_DIR` can relocate the socket for tests. Full `memory_health({ includeFullReport: true })` output includes `ipc_bridge.socket_path`, `secondary_clients_count`, and cumulative secondary message counters.
+Operators can disable bridge mode with `SPECKIT_LAUNCHER_BRIDGE_DISABLED=1`, which restores legacy exit-on-lease-held behavior. `SPECKIT_MAX_SECONDARY_CLIENTS` caps concurrent bridge clients (default 8). `SPECKIT_IPC_SOCKET_DIR` relocates the bridge socket directory and is **required on macOS** for all three launcher services: the default `<service-db>/daemon-ipc.sock` path is longer than the platform's 104-char `sun_path` limit, so `listen()` fails with `EINVAL` and the MCP handshake never completes. The committed runtime configs pin each service to `/tmp/mk-spec-memory`, `/tmp/mk-skill-advisor`, and `/tmp/mk-code-index`. Full `memory_health({ includeFullReport: true })` output includes `ipc_bridge.socket_path`, `secondary_clients_count`, and cumulative secondary message counters.
 
 ### Lazy Startup Gating
 

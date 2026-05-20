@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/011-sun-path-and-stale-lease-followups",
+  "description": "Retroactive packet documenting commit 9ae9a6f4e (SPECKIT_IPC_SOCKET_DIR pin for macOS sun_path workaround) plus documentation alignment in ENV_REFERENCE.md and embedder_architecture.md, plus operational lease-clear recipe for stale skill_graph_daemon_lease rows. Captures REQ-006 (dead-PID auto-reclaim) as a follow-on packet candidate.",
+  "keywords": [
+    "011",
+    "sun_path",
+    "speckit_ipc_socket_dir",
+    "mcp",
+    "launcher",
+    "daemon-ipc-sock",
+    "skill_graph_daemon_lease",
+    "stale-lease",
+    "reclaim",
+    "followup",
+    "macos",
+    "einval"
+  ],
+  "lastUpdated": "2026-05-20T00:00:00Z",
+  "specId": "011",
+  "folderSlug": "sun-path-and-stale-lease-followups",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "006-mcp-launcher-concurrency-arc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
