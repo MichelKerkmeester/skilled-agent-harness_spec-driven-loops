@@ -23,7 +23,7 @@ import pytest
 from cocoindex_code._version import __version__
 from cocoindex_code.core.client import DaemonClient, start_daemon, stop_daemon
 from cocoindex_code.daemon import daemon_socket_path
-from cocoindex_code.settings import (
+from cocoindex_code.config.settings import (
     default_project_settings,
     default_user_settings,
     save_project_settings,

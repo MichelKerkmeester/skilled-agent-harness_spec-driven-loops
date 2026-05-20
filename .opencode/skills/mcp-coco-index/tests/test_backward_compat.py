@@ -12,7 +12,7 @@ from pathlib import Path
 import pytest
 
 from cocoindex_code.server import _convert_embedding_model
-from cocoindex_code.settings import (
+from cocoindex_code.config.settings import (
     EmbeddingSettings,
     LanguageOverride,
     UserSettings,
@@ -31,11 +31,11 @@ def test_legacy_entry_creates_settings_from_env_vars(
 ) -> None:
     """Settings migration from env vars should produce correct YAML values."""
     monkeypatch.setattr(
-        "cocoindex_code.settings.user_settings_dir",
+        "cocoindex_code.config.settings.user_settings_dir",
         lambda: tmp_path / "user",
     )
     monkeypatch.setattr(
-        "cocoindex_code.settings.user_settings_path",
+        "cocoindex_code.config.settings.user_settings_path",
         lambda: tmp_path / "user" / "global_settings.yml",
     )
 
@@ -56,11 +56,11 @@ def test_legacy_entry_respects_existing_settings(
 ) -> None:
     """Pre-existing settings files should not be overwritten."""
     monkeypatch.setattr(
-        "cocoindex_code.settings.user_settings_dir",
+        "cocoindex_code.config.settings.user_settings_dir",
         lambda: tmp_path / "user",
     )
     monkeypatch.setattr(
-        "cocoindex_code.settings.user_settings_path",
+        "cocoindex_code.config.settings.user_settings_path",
         lambda: tmp_path / "user" / "global_settings.yml",
     )
 

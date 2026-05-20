@@ -21,12 +21,12 @@ import pytest
 from cocoindex_code._version import __version__
 from cocoindex_code.core.client import DaemonClient
 from cocoindex_code.daemon import _connection_family
-from cocoindex_code.protocol import (
+from cocoindex_code.core.protocol import (
     HandshakeRequest,
     StopRequest,
     encode_request,
 )
-from cocoindex_code.settings import (
+from cocoindex_code.config.settings import (
     default_user_settings,
     save_user_settings,
 )
@@ -45,9 +45,9 @@ def daemon_env(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> tuple[Path, s
         sock_path = str(sock_dir / "d.sock")
     pid_path = user_dir / "daemon.pid"
 
-    monkeypatch.setattr("cocoindex_code.settings.user_settings_dir", lambda: user_dir)
+    monkeypatch.setattr("cocoindex_code.config.settings.user_settings_dir", lambda: user_dir)
     monkeypatch.setattr(
-        "cocoindex_code.settings.user_settings_path",
+        "cocoindex_code.config.settings.user_settings_path",
         lambda: user_dir / "global_settings.yml",
     )
     save_user_settings(default_user_settings())

@@ -23,7 +23,7 @@ import pytest
 
 from cocoindex_code._version import __version__
 from cocoindex_code.daemon import _connection_family
-from cocoindex_code.protocol import (
+from cocoindex_code.core.protocol import (
     DaemonStatusRequest,
     HandshakeRequest,
     IndexProgressUpdate,
@@ -39,7 +39,7 @@ from cocoindex_code.protocol import (
     decode_response,
     encode_request,
 )
-from cocoindex_code.settings import (
+from cocoindex_code.config.settings import (
     default_project_settings,
     default_user_settings,
     save_project_settings,
@@ -61,8 +61,8 @@ def calculate_fibonacci(n: int) -> int:
 def daemon_sock() -> Iterator[str]:
     """Start a daemon once per session and return the socket path."""
     import cocoindex_code.daemon as dm
-    from cocoindex_code.shared import create_embedder
-    from cocoindex_code.shared import embedder as shared_emb
+    from cocoindex_code.core.shared import create_embedder
+    from cocoindex_code.core.shared import embedder as shared_emb
 
     emb = (
         shared_emb if shared_emb is not None else create_embedder(default_user_settings().embedding)

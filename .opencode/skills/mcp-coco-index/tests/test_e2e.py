@@ -24,7 +24,7 @@ from typer.testing import CliRunner
 
 from cocoindex_code.cli import app
 from cocoindex_code.core.client import stop_daemon
-from cocoindex_code.settings import find_parent_with_marker
+from cocoindex_code.config.settings import find_parent_with_marker
 
 runner = CliRunner()
 

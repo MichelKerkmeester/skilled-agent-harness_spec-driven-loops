@@ -36,11 +36,11 @@ from cocoindex_code.config.settings import (
 def _patch_user_dir(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     """Redirect user_settings_dir() to a temp directory."""
     monkeypatch.setattr(
-        "cocoindex_code.settings.user_settings_dir",
+        "cocoindex_code.config.settings.user_settings_dir",
         lambda: tmp_path / ".cocoindex_code",
     )
     monkeypatch.setattr(
-        "cocoindex_code.settings.user_settings_path",
+        "cocoindex_code.config.settings.user_settings_path",
         lambda: tmp_path / ".cocoindex_code" / "global_settings.yml",
     )
 
@@ -146,7 +146,7 @@ def test_load_user_settings_missing_model_raises(tmp_path: Path) -> None:
 
 @pytest.mark.usefixtures("_patch_user_dir")
 def test_from_dict_missing_provider_defaults_to_litellm() -> None:
-    from cocoindex_code.settings import _user_settings_from_dict
+    from cocoindex_code.config.settings import _user_settings_from_dict
 
     settings = _user_settings_from_dict({"embedding": {"model": "some/model"}})
     assert settings.embedding.provider == "litellm"
@@ -155,7 +155,7 @@ def test_from_dict_missing_provider_defaults_to_litellm() -> None:
 
 @pytest.mark.usefixtures("_patch_user_dir")
 def test_save_default_settings_writes_explicit_embedding() -> None:
-    from cocoindex_code.settings import user_settings_path
+    from cocoindex_code.config.settings import user_settings_path
 
     save_user_settings(default_user_settings())
     content = user_settings_path().read_text()

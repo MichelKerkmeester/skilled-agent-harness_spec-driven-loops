@@ -1173,20 +1173,34 @@ Run `ccc doctor` before model swaps. If it reports fingerprint mismatch, stale C
 <!-- ANCHOR:adr-027 -->
 ## ADR-027: Reranker default flipped to Qwen3-Reranker-0.6B (2026-05-20)
 
-**Context**: 023-deep-research-arc-blind-spots/007-fixture-calibration shipped a 73-probe expanded fixture and a calibration sweep harness. A reranker sub-sweep ran jinaai/jina-reranker-v3 (CC BY-NC 4.0, pre-2026-05-20 default) head-to-head against Qwen/Qwen3-Reranker-0.6B (Apache-2.0) at n=3 runs with zero stddev on both sides.
+**Context**: 023-deep-research-arc-blind-spots/007-fixture-calibration shipped a 73-probe expanded fixture and a calibration sweep harness. A reranker sub-sweep ran jinaai/jina-reranker-v3 (CC BY-NC 4.0, pre-2026-05-20 default) head-to-head against Qwen/Qwen3-Reranker-0.6B (Apache-2.0) at n=3 runs.
 
 **Decision**: Default reranker flipped jinaai/jina-reranker-v3 -> Qwen/Qwen3-Reranker-0.6B as of 2026-05-20.
 
-**Evidence**:
+**Evidence** (corrected 2026-05-20 after deep-review found stat error in initial writeup):
 
-| Metric | jina-v3 | Qwen3-0.6B | Delta |
+Raw per-run hit counts from `023-deep-research-arc-blind-spots/007-fixture-calibration/evidence/runs/lane-reranker-*-run-{1,2,3}.json`:
+
+| Run | jina-v3 hits | jina-v3 p95 | Qwen3-0.6B hits | Qwen3-0.6B p95 |
+|---|---|---|---|---|
+| 1 | **14/73** | **4957 ms** | 30/73 | 1957 ms |
+| 2 | 29/73 | 2899 ms | 30/73 | 2055 ms |
+| 3 | 29/73 | 2877 ms | 30/73 | 1941 ms |
+
+| Aggregate | jina-v3 | Qwen3-0.6B | Delta |
 |---|---|---|---|
-| Mean hits | 29.0/73 | 30.0/73 | +1 hit (+1.4pp) |
-| Hit rate | 0.397 | 0.411 | +0.014 |
-| p95 latency | 2905 ms | 1984 ms | -921 ms (-32%) |
+| Mean hits (n=3) | **24.0/73** | **30.0/73** | **+6 hits (+8.2pp)** |
+| Stddev (hits) | ~8.5 | 0 | Qwen is consistent; jina has cold-start variance |
+| Hit rate mean | 0.329 | 0.411 | +0.082 |
+| Best-run hits | 29/73 | 30/73 | +1 hit (+1.4pp) — pre-correction claim |
+| Warm-only mean (jina runs 2-3 vs Qwen all 3) | 29.0/0 | 30.0/0 | +1 hit (+1.4pp), zero stddev both sides |
+| p95 latency mean (n=3) | 3578 ms | 1984 ms | -1594 ms (-45%) |
 | License | CC BY-NC 4.0 | Apache-2.0 | commercial-safe |
 | RSS warm (full daemon) | 1145 MB | 1179 MB | +34 MB (+3%) |
-| Stddev (hits, n=3) | 0 | 0 | zero |
+
+**Note on jina-v3 run-1 outlier**: jina-v3's first run after `restart_daemon` (the harness restarts daemon between lanes) hit 14/73 with p95=4957ms because many search probes saturated at the 5-second subprocess timeout while the cross-encoder model loaded cold. Runs 2 and 3 (warm cache) returned 29/73 each, matching the original benchmark expectation. Qwen3-Reranker-0.6B did NOT exhibit a cold-start outlier — likely because the smaller model loads within the 5s probe budget. Either way, Qwen3 wins both warm head-to-head AND cold-start resilience.
+
+**Original ADR-027 claimed `jina-v3 mean=29.0/73 stddev=0 (n=3)`**, which was wrong (computed against runs 2+3 only, omitting run-1's cold-start data). Corrected above. The decision still stands — Qwen3 wins on every real metric (mean hits, warm-only hits, p95 latency, license, stddev) — but the original supporting statistic was inaccurate.
 
 **Consequence**:
 

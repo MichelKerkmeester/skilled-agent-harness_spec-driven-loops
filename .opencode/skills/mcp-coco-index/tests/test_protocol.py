@@ -7,7 +7,7 @@
 
 from __future__ import annotations
 
-from cocoindex_code.protocol import (
+from cocoindex_code.core.protocol import (
     DaemonProjectInfo,
     DaemonStatusRequest,
     DaemonStatusResponse,

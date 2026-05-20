@@ -59,17 +59,31 @@ The load-bearing result is narrow but unambiguous: Qwen3 produced one additional
 <!-- ANCHOR:aggregate-results -->
 ## 2. AGGREGATE RESULTS
 
-| Reranker | Default status | License | Mean hits | Hit rate | p95 mean | Verdict |
-|---|---|---|---:|---:|---:|---|
-| `jinaai/jina-reranker-v3` | Old default | CC BY-NC 4.0 | 29.00/73 | 0.397 | 2905 ms | Superseded |
-| **`Qwen/Qwen3-Reranker-0.6B`** | **New default** | **Apache-2.0** | **30.00/73** | **0.411** | **1984 ms** | **Promoted** |
+Per-run hits (n=3) — verified against `023-deep-research-arc-blind-spots/007-fixture-calibration/evidence/runs/lane-reranker-*-run-{1,2,3}.json`:
+
+| Run | jina-v3 hits | jina-v3 p95 | Qwen3-0.6B hits | Qwen3-0.6B p95 |
+|---|---:|---:|---:|---:|
+| 1 | **14/73** | **4957 ms** | 30/73 | 1957 ms |
+| 2 | 29/73 | 2899 ms | 30/73 | 2055 ms |
+| 3 | 29/73 | 2877 ms | 30/73 | 1941 ms |
+
+Aggregate:
+
+| Reranker | Default status | License | Mean hits (n=3) | Stddev | Best run | p95 mean | Verdict |
+|---|---|---|---:|---:|---:|---:|---|
+| `jinaai/jina-reranker-v3` | Old default | CC BY-NC 4.0 | **24.00/73** | ~8.5 | 29/73 | 3578 ms | Superseded |
+| **`Qwen/Qwen3-Reranker-0.6B`** | **New default** | **Apache-2.0** | **30.00/73** | **0** | 30/73 | **1984 ms** | **Promoted** |
 
 Delta:
 
-- Hits: +1/73 (+1.4 percentage points).
-- p95 latency: -921 ms (-32%).
+- Mean hits (n=3): +6.0/73 (+8.2 pp).
+- Best-run hits: +1/73 (+1.4 pp).
+- Warm-only mean (jina runs 2-3 vs Qwen all 3): jina=29.0 / Qwen=30.0, both zero stddev → +1.4 pp.
+- p95 latency mean: -1594 ms (-45%) on n=3; -921 ms (-32%) on warm-only.
 - License: non-commercial default removed from the default path.
-- Stddev: zero for hits across n=3 on both lanes.
+- Stddev: zero for Qwen across n=3; jina-v3 stddev ~8.5 due to run-1 cold-start (model load saturated the 5s subprocess probe timeout on many probes).
+
+**Original report claimed jina-v3 = 29.00/73 n=3 zero-stddev** which was wrong (computed against runs 2+3 only, omitting run-1). Corrected 2026-05-20. The decision (flip default to Qwen3) is unchanged — Qwen3 wins every axis — but the supporting statistic was inaccurate.
 <!-- /ANCHOR:aggregate-results -->
 
 ---
@@ -114,7 +128,7 @@ Pipeline shape:
 |---|---|
 | Role | Stage 2 cross-encoder reranker |
 | License | CC BY-NC 4.0 |
-| Result | 29.00/73 hits, 0.397 hit rate, p95 2905 ms |
+| Result | Mean 24.00/73 hits (n=3 with cold-start run 1), warm-only 29.00/73 (n=2 runs 2-3), p95 mean 3578 ms, warm-only p95 2888 ms |
 | Warm RSS | 1,145 MB |
 | Idle CPU | 0% |
 | Strengths observed | Strong historical 018 fixture result; existing custom adapter remains supported |
@@ -136,8 +150,8 @@ Pipeline shape:
 
 Qwen3 wins on all decision axes that matter for this flip:
 
-- Quality improved from 29.00/73 to 30.00/73.
-- p95 improved from 2905 ms to 1984 ms.
+- Quality (n=3 mean) improved from 24.00/73 to 30.00/73; warm-only from 29.00/73 to 30.00/73.
+- p95 (n=3 mean) improved from 3578 ms to 1984 ms; warm-only from 2888 ms to 1984 ms.
 - License improved from CC BY-NC 4.0 to Apache-2.0.
 - Resource cost is effectively equivalent: +34 MB RSS and 0% idle CPU for both daemons.
 
