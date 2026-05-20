@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/001-flag-routing-fix-for-cross-encoder",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/001-flag-routing-fix-for-cross-encoder",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "speckit_cross_encoder routing",
+      "reranker_local shim shadow",
+      "stage3-rerank flag gate",
+      "cross-encoder http local provider",
+      "001 flag routing fix"
+    ],
+    "key_topics": [
+      "flag-routing",
+      "stage3-rerank",
+      "cross-encoder",
+      "precedence",
+      "search-flags"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/local-reranker.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts"
+    ],
+    "last_indexed_at": "2026-05-20T00:00:00Z"
+  }
+}

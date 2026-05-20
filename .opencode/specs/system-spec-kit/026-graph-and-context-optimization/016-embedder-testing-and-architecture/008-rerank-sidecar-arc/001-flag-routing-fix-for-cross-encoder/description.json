@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/001-flag-routing-fix-for-cross-encoder",
+  "description": "Phase 001 of the 008 rerank-sidecar arc. Split SPECKIT_CROSS_ENCODER from RERANKER_LOCAL precedence in stage3-rerank.ts and search-flags.ts so the HTTP cross-encoder local-provider path is reachable. Prerequisite for the sidecar work in phase 002 and beyond.",
+  "keywords": [
+    "001",
+    "flag-routing",
+    "speckit_cross_encoder",
+    "reranker_local",
+    "stage3-rerank",
+    "cross-encoder",
+    "precedence",
+    "local-reranker-shim"
+  ],
+  "lastUpdated": "2026-05-20T00:00:00Z",
+  "specId": "001",
+  "folderSlug": "flag-routing-fix-for-cross-encoder",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "008-rerank-sidecar-arc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

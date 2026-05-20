@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture",
+  "children_ids": [
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/001-flag-routing-fix-for-cross-encoder"
+  ],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/012-daemon-bridge-socket-for-skill-advisor-and-code-index"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "rerank sidecar arc",
+      "qwen reranker spec-memory",
+      "system-rerank-sidecar skill",
+      "shared cross-encoder daemon",
+      "008 arc rerank",
+      "qwen3-reranker-0.6b"
+    ],
+    "key_topics": [
+      "rerank",
+      "cross-encoder",
+      "sidecar",
+      "qwen",
+      "shared-skill",
+      "stage3-rerank"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      ".opencode/skills/system-rerank-sidecar/",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/rerankers/reranker.py"
+    ],
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/001-flag-routing-fix-for-cross-encoder",
+    "last_active_at": "2026-05-20T00:00:00Z",
+    "last_indexed_at": "2026-05-20T00:00:00Z"
+  }
+}
