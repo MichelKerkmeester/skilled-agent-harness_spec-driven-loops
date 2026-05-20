@@ -10,7 +10,7 @@ Creates sentence-transformer or LiteLLM embedders from user settings. The embedd
 > **Pipeline note**: CocoIndex Code's retrieval uses **two architecturally distinct models** in sequence:
 >
 > 1. **Bi-encoder embedder** (`sbert/nomic-ai/CodeRankEmbed`, 768d, MIT) — encodes query + chunks independently; vector lane uses cosine similarity, fused with FTS5 via RRF (K=60, V=0.9, F=0.5).
-> 2. **Cross-encoder reranker** (`jinaai/jina-reranker-v3`, CC BY-NC 4.0) — encodes query+candidate **together** (token-level attention) to capture interaction signals the bi-encoder cannot. Runs on top-K (default 20) only.
+> 2. **Cross-encoder reranker** (`Qwen/Qwen3-Reranker-0.6B`, Apache-2.0) — encodes query+candidate **together** (token-level attention) to capture interaction signals the bi-encoder cannot. Runs on top-K (default 20) only.
 >
 > The two slots are not interchangeable: a bi-encoder cannot rerank (cosine already runs in the vector lane), and a cross-encoder cannot embed at scale (50–200ms per pair × 84k chunks = unworkable).
 

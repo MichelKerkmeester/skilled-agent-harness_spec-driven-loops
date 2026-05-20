@@ -14,7 +14,7 @@ Supports runtime overrides for config directory, root path, device and legacy va
 
 Environment overrides give agents and CI runs deterministic control over where CocoIndex stores state and which project it searches.
 
-> **Pipeline note**: environment settings address both retrieval stages separately. `COCOINDEX_CODE_EMBEDDING_MODEL` selects the Stage 1 bi-encoder embedder (`sbert/nomic-ai/CodeRankEmbed`, 768d, MIT by default); `COCOINDEX_RERANK_MODEL` selects the Stage 2 cross-encoder reranker (`jinaai/jina-reranker-v3`, CC BY-NC 4.0 by default). The embedder runs over queries and chunks independently at index/search time; the reranker runs only on top-K fused candidates.
+> **Pipeline note**: environment settings address both retrieval stages separately. `COCOINDEX_CODE_EMBEDDING_MODEL` selects the Stage 1 bi-encoder embedder (`sbert/nomic-ai/CodeRankEmbed`, 768d, MIT by default); `COCOINDEX_RERANK_MODEL` selects the Stage 2 cross-encoder reranker (`Qwen/Qwen3-Reranker-0.6B`, Apache-2.0 by default). The embedder runs over queries and chunks independently at index/search time; the reranker runs only on top-K fused candidates.
 <!-- /ANCHOR:overview -->
 
 ---
@@ -46,7 +46,7 @@ Environment overrides give agents and CI runs deterministic control over where C
 | Variable | Default | Bounds | Behavior |
 |----------|--------:|--------|----------|
 | `COCOINDEX_RERANK` | `true` | truthy/falsy | Default-on flag for cross-encoder reranking after RRF fusion. Set `false` to disable the rerank stage. |
-| `COCOINDEX_RERANK_MODEL` | `jinaai/jina-reranker-v3` | non-empty string | Cross-encoder reranker name passed to `sentence-transformers.CrossEncoder`. Empty values fall back to the default with a warning. Pin `Alibaba-NLP/gte-multilingual-reranker-base` only on non-MPS backends — GTE currently fails on Apple Silicon MPS and `RerankerAdapter` falls back silently. |
+| `COCOINDEX_RERANK_MODEL` | `Qwen/Qwen3-Reranker-0.6B` | non-empty string | Cross-encoder reranker name passed to `sentence-transformers.CrossEncoder`. Empty values fall back to the default with a warning. Pin `jinaai/jina-reranker-v3` only when its CC BY-NC 4.0 license is acceptable; pin `Alibaba-NLP/gte-multilingual-reranker-base` only on non-MPS backends because GTE currently fails on Apple Silicon MPS and `RerankerAdapter` falls back silently. |
 | `COCOINDEX_RERANK_TOP_K` | 20 | 5..100 | Number of candidates passed to the cross-encoder; the remaining tail keeps its prior order. |
 
 Chunking, hybrid and reranking overrides are research-derived Stage A defaults; lift estimates are not yet validated on the fixture suite. The reranker loads on first call unless `COCOINDEX_RERANK=false` is set and skips when available RAM is below the 2 GB gate enforced by `RerankerAdapter._load_model`.

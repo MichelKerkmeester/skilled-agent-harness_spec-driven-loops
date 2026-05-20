@@ -14,7 +14,7 @@ PHASE2_BENCH = (
 )
 FIXTURE = (
     REPO_ROOT
-    / "skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-19-expanded"
+    / "skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-20-expanded"
     / "code-retrieval-fixture-expanded-v2.json"
 )
 

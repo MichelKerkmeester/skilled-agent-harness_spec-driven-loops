@@ -32,7 +32,7 @@ This document combines the current feature inventory for the `mcp-coco-index` sk
 
 Use this catalog as the canonical inventory for the live `mcp-coco-index` feature surface. The skill provides semantic code search through a local `ccc` CLI, daemon-backed MCP `search` and `cocoindex_refresh_index` tools, an indexing pipeline, readiness scripts, configuration references, fork-specific ranking extensions and validation coverage.
 
-> **Retrieval pipeline**: CocoIndex Code has two separate model slots. Stage 1 uses the **bi-encoder embedder** (`sbert/nomic-ai/CodeRankEmbed`, 768d, MIT) to embed query and chunks independently for cosine vector search, then fuses that lane with FTS5 through RRF (K=60, V=0.9, F=0.5). Stage 2 uses the **cross-encoder reranker** (`jinaai/jina-reranker-v3`, CC BY-NC 4.0) to score each top-K `(query, candidate)` pair together. The embedder cannot rerank after cosine has already run; the reranker cannot embed the full corpus at 50–200ms per pair × 84k chunks.
+> **Retrieval pipeline**: CocoIndex Code has two separate model slots. Stage 1 uses the **bi-encoder embedder** (`sbert/nomic-ai/CodeRankEmbed`, 768d, MIT) to embed query and chunks independently for cosine vector search, then fuses that lane with FTS5 through RRF (K=60, V=0.9, F=0.5). Stage 2 uses the **cross-encoder reranker** (`Qwen/Qwen3-Reranker-0.6B`, Apache-2.0) to score each top-K `(query, candidate)` pair together. The embedder cannot rerank after cosine has already run; the reranker cannot embed the full corpus at 50–200ms per pair × 84k chunks.
 
 | Category | Coverage | Primary Runtime Surface |
 |---|---:|---|
@@ -556,7 +556,7 @@ Runs the Stage 2 cross-encoder reranker over the top hybrid candidates; default-
 
 #### Current Reality
 
-`reranker.rerank` runs after RRF fusion. Both `COCOINDEX_HYBRID` and `COCOINDEX_RERANK` are default-on (`true`); operators opt out by setting them to `false`. The cross-encoder score replaces the fused score for the first `COCOINDEX_RERANK_TOP_K` candidates and `pre_rerank_score` is preserved for audit. The Stage 2 reranker model is `jinaai/jina-reranker-v3` (CC BY-NC 4.0). The reranker is fail-soft on model-load failure and skipped when available RAM is below the 2 GB gate.
+`reranker.rerank` runs after RRF fusion. Both `COCOINDEX_HYBRID` and `COCOINDEX_RERANK` are default-on (`true`); operators opt out by setting them to `false`. The cross-encoder score replaces the fused score for the first `COCOINDEX_RERANK_TOP_K` candidates and `pre_rerank_score` is preserved for audit. The Stage 2 reranker model is `Qwen/Qwen3-Reranker-0.6B` (Apache-2.0). The reranker is fail-soft on model-load failure and skipped when available RAM is below the 2 GB gate.
 
 #### Source Files
 
@@ -792,7 +792,7 @@ Supports runtime overrides for config directory, root path, device and legacy va
 
 #### Current Reality
 
-`COCOINDEX_CODE_DIR` changes the global settings directory. `COCOINDEX_CODE_ROOT_PATH` pins the project root for helper scripts and legacy config. Extra extension and excluded pattern environment variables remain in the compatibility config path. Chunking, hybrid search and cross-encoder reranking are also driven by environment variables consumed by `Config.from_env`; hybrid and reranker are default-on (`COCOINDEX_HYBRID=true`, `COCOINDEX_RERANK=true`) and the Stage 2 reranker default is `jinaai/jina-reranker-v3`.
+`COCOINDEX_CODE_DIR` changes the global settings directory. `COCOINDEX_CODE_ROOT_PATH` pins the project root for helper scripts and legacy config. Extra extension and excluded pattern environment variables remain in the compatibility config path. Chunking, hybrid search and cross-encoder reranking are also driven by environment variables consumed by `Config.from_env`; hybrid and reranker are default-on (`COCOINDEX_HYBRID=true`, `COCOINDEX_RERANK=true`) and the Stage 2 reranker default is `Qwen/Qwen3-Reranker-0.6B`.
 
 #### Source Files
 

@@ -7,14 +7,14 @@ description: "Reranks the top hybrid candidates with a local cross-encoder reran
 
 Reranks the top hybrid candidates with a local cross-encoder when enabled. The reranker runs after RRF fusion and dedup but before the pagination window, replacing the fused score on the reranked head while preserving the prior score on `pre_rerank_score` for audit.
 
-> **Pipeline note**: this page covers **Stage 2 — Cross-encoder reranker** (`jinaai/jina-reranker-v3`, CC BY-NC 4.0). It receives the top-K candidates after Stage 1 has already embedded the query/chunks and fused vector results with FTS5 via RRF. The reranker scores each `(query, candidate)` pair together with token-level attention; it is not an embedding model and cannot replace the bi-encoder over the full corpus.
+> **Pipeline note**: this page covers **Stage 2 — Cross-encoder reranker** (`Qwen/Qwen3-Reranker-0.6B`, Apache-2.0). It receives the top-K candidates after Stage 1 has already embedded the query/chunks and fused vector results with FTS5 via RRF. The reranker scores each `(query, candidate)` pair together with token-level attention; it is not an embedding model and cannot replace the bi-encoder over the full corpus.
 
 ---
 
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-Cross-encoders score full `(query, candidate)` pairs and typically lift top-N precision when query and chunk wording disagree. The reranker is **default-on** as of v1.10 (`COCOINDEX_RERANK=true`); operators opt out by setting `COCOINDEX_RERANK=false`. The Stage 2 reranker model is `jinaai/jina-reranker-v3` (CC BY-NC 4.0); it runs only on the top-K candidate set, defaulting to 20.
+Cross-encoders score full `(query, candidate)` pairs and typically lift top-N precision when query and chunk wording disagree. The reranker is **default-on** as of v1.10 (`COCOINDEX_RERANK=true`); operators opt out by setting `COCOINDEX_RERANK=false`. The Stage 2 reranker model is `Qwen/Qwen3-Reranker-0.6B` (Apache-2.0); it runs only on the top-K candidate set, defaulting to 20. `jinaai/jina-reranker-v3` remains available as an opt-in fallback, but its CC BY-NC 4.0 license is non-commercial.
 <!-- /ANCHOR:overview -->
 
 ---

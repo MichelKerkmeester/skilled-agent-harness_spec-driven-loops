@@ -5,7 +5,7 @@ allowed-tools: [Bash, Read, Grep, Glob]
 version: 1.2.0
 ---
 
-<!-- Keywords: cocoindex-code, semantic-search, vector-embeddings, code-search, mcp-server, ccc, codebase-indexing, voyage-code-3, embeddinggemma-300m, hybrid-search, bm25, fts5, rrf-fusion, cross-encoder-reranker, jina-embeddings-v3 -->
+<!-- Keywords: cocoindex-code, semantic-search, vector-embeddings, code-search, mcp-server, ccc, codebase-indexing, voyage-code-3, embeddinggemma-300m, hybrid-search, bm25, fts5, rrf-fusion, cross-encoder-reranker, qwen3-reranker, jina-embeddings-v3 -->
 
 # CocoIndex Code - Semantic Code Search via Vector Embeddings
 
@@ -15,7 +15,7 @@ Natural language code search through two complementary approaches: CLI (ccc) for
 
 > **Forked From**: This skill bundles a soft-fork of [cocoindex-code](https://github.com/cocoindex-io/cocoindex-code) (Apache 2.0). Upstream version forked: 0.2.3. Current fork version: 0.2.3+spec-kit-fork.0.2.0. Patches: REQ-001..006 (mirror dedup + path-class reranking) from the local fork patch set. See NOTICE and changelog/CHANGELOG.md for the full attribution and modification list.
 
-> **v1.2.0 retrieval-quality defaults**: Hybrid search (SQLite FTS5 + RRF fusion) and cross-encoder rerank are default ON and mirror the proven retrieval stack used by `mk-spec-memory`. The shipped defaults are `COCOINDEX_HYBRID=true`, `COCOINDEX_RERANK=true`, Stage 1 bi-encoder embedder `COCOINDEX_CODE_EMBEDDING_MODEL=sbert/nomic-ai/CodeRankEmbed`, and Stage 2 cross-encoder reranker `COCOINDEX_RERANK_MODEL=jinaai/jina-reranker-v3`. Chunking defaults were also retuned (CHUNK_SIZE 1000 → 1500) for better function-boundary preservation. See [INSTALL_GUIDE.md §4 "Tuning + optional retrieval features"](INSTALL_GUIDE.md) and [§4.5 "Two-stage pipeline"](INSTALL_GUIDE.md#45-two-stage-pipeline) for the full env-var matrix and model-slot distinction.
+> **v1.2.3 retrieval-quality defaults**: Hybrid search (SQLite FTS5 + RRF fusion) and cross-encoder rerank are default ON and mirror the proven retrieval stack used by `mk-spec-memory`. The shipped defaults are `COCOINDEX_HYBRID=true`, `COCOINDEX_RERANK=true`, Stage 1 bi-encoder embedder `COCOINDEX_CODE_EMBEDDING_MODEL=sbert/nomic-ai/CodeRankEmbed`, and Stage 2 cross-encoder reranker `COCOINDEX_RERANK_MODEL=Qwen/Qwen3-Reranker-0.6B`. Chunking defaults were also retuned (CHUNK_SIZE 1000 → 1500) for better function-boundary preservation. See [INSTALL_GUIDE.md §4 "Tuning + optional retrieval features"](INSTALL_GUIDE.md) and [§4.5 "Two-stage pipeline"](INSTALL_GUIDE.md#45-two-stage-pipeline) for the full env-var matrix and model-slot distinction.
 
 ### Two-stage retrieval pipeline
 
@@ -24,9 +24,9 @@ CocoIndex Code uses **two architecturally distinct models** in sequence, not alt
 | Stage | Model type | Default | Role |
 |---|---|---|---|
 | 1. Retrieval | Bi-encoder embedder | `sbert/nomic-ai/CodeRankEmbed` (768d, MIT) | Encodes query and chunks independently; vector cosine results join FTS5 through RRF |
-| 2. Reranking | Cross-encoder reranker | `jinaai/jina-reranker-v3` (CC BY-NC 4.0) | Encodes query + each top-K candidate together; captures token-level interaction signals |
+| 2. Reranking | Cross-encoder reranker | `Qwen/Qwen3-Reranker-0.6B` (Apache-2.0) | Encodes query + each top-K candidate together; captures token-level interaction signals |
 
-Do not swap these slots. The bi-encoder already supplies the vector lane, so using it again as a reranker is redundant; the cross-encoder is too slow to score every indexed chunk. Default flow: nomic vector lane + FTS5 -> RRF (`K=60`, vector `0.9`, FTS5 `0.5`) -> mirror dedup -> top-K rerank (`20`) -> path-class/canonical boosts -> final results. Commercial deployments should treat Jina v3 as non-commercial and enable `COCOINDEX_COMMERCIAL_SAFE_PROFILE=true`; `registered_embedders.py` currently lists `BAAI/bge-reranker-v2-m3` as the Apache-2.0 reranker alternative.
+Do not swap these slots. The bi-encoder already supplies the vector lane, so using it again as a reranker is redundant; the cross-encoder is too slow to score every indexed chunk. Default flow: nomic vector lane + FTS5 -> RRF (`K=60`, vector `0.9`, FTS5 `0.5`) -> mirror dedup -> top-K rerank (`20`) -> path-class/canonical boosts -> final results. The default reranker is Apache-2.0 as of 2026-05-20; `jinaai/jina-reranker-v3` remains registered as an opt-in fallback with a non-commercial CC BY-NC 4.0 license.
 
 ### Activation Triggers
 

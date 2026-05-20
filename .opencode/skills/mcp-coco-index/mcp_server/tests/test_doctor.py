@@ -107,12 +107,12 @@ def test_doctor_output_explains_pipeline(
 ) -> None:
     result = runner.invoke(cli.app, ["doctor"])
 
-    assert result.exit_code == 1
+    assert result.exit_code == 0
     assert result.output.startswith("Pipeline (two architecturally distinct models):")
     assert "Bi-encoder" in result.output
     assert "Cross-encoder" in result.output
     assert "sbert/nomic-ai/CodeRankEmbed" in result.output
-    assert "jinaai/jina-reranker-v3" in result.output
+    assert "Qwen/Qwen3-Reranker-0.6B" in result.output
 
 
 def test_doctor_json_pipeline_field(
@@ -120,10 +120,11 @@ def test_doctor_json_pipeline_field(
 ) -> None:
     result = runner.invoke(cli.app, ["doctor", "--json"])
 
-    assert result.exit_code == 1
+    assert result.exit_code == 0
     payload = json.loads(result.output)
     assert payload["pipeline"]["stage_1"]["role"] == "bi-encoder embedder"
     assert payload["pipeline"]["stage_2"]["role"] == "cross-encoder reranker"
+    assert payload["pipeline"]["stage_2"]["name"] == "Qwen/Qwen3-Reranker-0.6B"
 
 
 def test_commercial_safe_profile_blocks_jina_v3(

@@ -1,6 +1,6 @@
-# Benchmark 2026-05-19 Expanded
+# Benchmark 2026-05-20 Expanded
 
-This folder contains the 023B expanded retrieval fixture.
+This folder contains the 023B expanded retrieval fixture and Qwen3 reranker default-flip report.
 
 Fixture: `code-retrieval-fixture-expanded-v2.json`
 

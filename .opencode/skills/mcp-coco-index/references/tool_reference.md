@@ -24,7 +24,7 @@ CocoIndex Code uses two model stages plus a lexical fusion lane. The Stage 1 emb
 | Stage 1 | Bi-encoder embedder | `sbert/nomic-ai/CodeRankEmbed` (`nomic-ai/CodeRankEmbed` in `global_settings.yml`) | `embedding.provider`, `embedding.model`, `embedding.device`, or `COCOINDEX_CODE_EMBEDDING_MODEL` | Query/chunk vectors compared by cosine similarity |
 | Fusion | Vector + FTS5 RRF | RRF K=60, vector weight 0.9, FTS5 weight 0.5 | `COCOINDEX_HYBRID*` environment variables | Top-K retrieval candidates after reciprocal-rank fusion |
 | Dedup | Canonical result grouping | Realpath first, content hash fallback | Built into the forked query path | One representative row per duplicate group |
-| Stage 2 | Cross-encoder reranker | `jinaai/jina-reranker-v3` | `COCOINDEX_RERANK`, `COCOINDEX_RERANK_MODEL`, `COCOINDEX_RERANK_TOP_K` | Final candidate order after query+candidate scoring |
+| Stage 2 | Cross-encoder reranker | `Qwen/Qwen3-Reranker-0.6B` | `COCOINDEX_RERANK`, `COCOINDEX_RERANK_MODEL`, `COCOINDEX_RERANK_TOP_K` | Final candidate order after query+candidate scoring |
 
 ## 1. OVERVIEW
 
@@ -438,10 +438,10 @@ CocoIndex Code uses YAML settings files stored in the project `.cocoindex_code/`
 
 **Reranker environment settings**:
 - `COCOINDEX_RERANK` -- enable or disable the Stage 2 cross-encoder reranker (default `true`)
-- `COCOINDEX_RERANK_MODEL` -- Stage 2 cross-encoder reranker model name (default `jinaai/jina-reranker-v3`)
+- `COCOINDEX_RERANK_MODEL` -- Stage 2 cross-encoder reranker model name (default `Qwen/Qwen3-Reranker-0.6B`)
 - `COCOINDEX_RERANK_TOP_K` -- number of retrieval candidates passed to Stage 2 before the final result cut (default `20`)
 - `COCOINDEX_RERANK_PATH_CLASS_BOOST` / `COCOINDEX_RERANK_PATH_CLASS_FACTORS` -- optional path-class reranker tuning controls
-- `COCOINDEX_COMMERCIAL_SAFE_PROFILE` -- blocks active non-commercial models, including the default `jinaai/jina-reranker-v3` reranker, when enabled
+- `COCOINDEX_COMMERCIAL_SAFE_PROFILE` -- blocks active non-commercial models when enabled; relevant if opting into non-commercial fallbacks such as `jinaai/jina-reranker-v3`
 
 **Project settings** (`<project>/.cocoindex_code/settings.yml`):
 - `include_patterns` -- glob patterns for files to index (default: language-specific patterns)

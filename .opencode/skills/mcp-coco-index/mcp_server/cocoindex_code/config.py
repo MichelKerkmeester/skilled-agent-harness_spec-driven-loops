@@ -27,7 +27,7 @@ _DEFAULT_TREE_SITTER_LANGUAGES: dict[str, object] = {}
 _DEFAULT_HYBRID_VECTOR_WEIGHT = 0.9  # 017 empirical: tied hit rate across V=[0.7,0.9], V=0.9 picks lower p95
 _DEFAULT_HYBRID_FTS5_WEIGHT = 0.5  # 017 empirical: tied hit rate across F=[0.5,0.7], F=0.5 picks lower p95
 _DEFAULT_HYBRID_RRF_K = 60  # 017 empirical: K=[30,60,90,120] all tied at 12/18 hits; keep canonical 60
-_DEFAULT_RERANK_MODEL = DEFAULT_RERANKER_NAME  # 018 empirical: 14/18 vs BGE 12/18 vs BGE+path-class 13/18 on corrected fixture under post-017 pipeline; BGE retained as opt-in via env override
+_DEFAULT_RERANK_MODEL = DEFAULT_RERANKER_NAME  # 023B empirical: Qwen3-0.6B beat jina-v3 on 73-probe expanded fixture (30/73 vs 29/73, -32% p95, Apache-2.0); jina-v3 retained as opt-in fallback
 _DEFAULT_RERANK_TOP_K = 20
 _DEFAULT_QUERY_EXPANSION = False  # 016 empirical: ON regressed 14/13/12 → 12/12/12 on corrected fixture; ships opt-in pending 017 RRF tuning
 _DEFAULT_QUERY_EXPANSION_MAX_VARIANTS = 6

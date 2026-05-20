@@ -25,7 +25,7 @@ REPO_ROOT="$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel)"
 CCC="$REPO_ROOT/.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc"
 PYTHON="$REPO_ROOT/.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/python"
 CALIBRATION="$SCRIPT_DIR/calibration_perturbation.py"
-FIXTURE="${FIXTURE_OVERRIDE:-$REPO_ROOT/.opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-19-expanded/code-retrieval-fixture-expanded-v2.json}"
+FIXTURE="${FIXTURE_OVERRIDE:-$REPO_ROOT/.opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-20-expanded/code-retrieval-fixture-expanded-v2.json}"
 PACKET_DIR="$REPO_ROOT/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023B-fixture-calibration"
 RUNS_DIR="$PACKET_DIR/evidence/runs"
 RUNS=3
@@ -234,7 +234,7 @@ export COCOINDEX_CODE_EMBEDDING_MODEL="${COCOINDEX_CODE_EMBEDDING_MODEL:-sbert/n
 export COCOINDEX_HYBRID="true"
 export COCOINDEX_RERANK="true"
 export COCOINDEX_RERANK_ENABLED="true"
-export COCOINDEX_RERANK_MODEL="${COCOINDEX_RERANK_MODEL:-jinaai/jina-reranker-v3}"
+export COCOINDEX_RERANK_MODEL="${COCOINDEX_RERANK_MODEL:-Qwen/Qwen3-Reranker-0.6B}"
 
 for run_no in $(seq 1 "$RUNS"); do
   if group_enabled "rrf"; then

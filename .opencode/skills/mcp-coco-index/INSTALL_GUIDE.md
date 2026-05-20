@@ -356,10 +356,10 @@ Applies a local cross-encoder rerank to the top-K candidates after retrieval. Hi
 | Variable | Default | Range | Description |
 |---|---:|---|---|
 | `COCOINDEX_RERANK` | `true` | bool | Enable cross-encoder rerank pass over retrieval results. Set `false` to disable. |
-| `COCOINDEX_RERANK_MODEL` | `jinaai/jina-reranker-v3` | string | HuggingFace model id for the cross-encoder; first use downloads to `~/.cache/huggingface/hub/`. |
+| `COCOINDEX_RERANK_MODEL` | `Qwen/Qwen3-Reranker-0.6B` | string | HuggingFace model id for the cross-encoder; first use downloads to `~/.cache/huggingface/hub/`. |
 | `COCOINDEX_RERANK_TOP_K` | `20` | 5–100 | Number of retrieval candidates passed to the reranker before final cut. |
 
-> **Model swap (2026-05-19):** the default reranker is `jinaai/jina-reranker-v3`, promoted by the 018 rerank matrix after beating BGE lanes on the corrected fixture. `BAAI/bge-reranker-v2-m3` remains available via `COCOINDEX_RERANK_MODEL=BAAI/bge-reranker-v2-m3`; GTE can still be pinned for compatibility experiments via `COCOINDEX_RERANK_MODEL=Alibaba-NLP/gte-multilingual-reranker-base`.
+> **Model swap (2026-05-20):** the default reranker is `Qwen/Qwen3-Reranker-0.6B`, promoted by the 023B head-to-head expanded fixture after beating `jinaai/jina-reranker-v3` on hits, p95 latency, and license posture. `jinaai/jina-reranker-v3` remains available as an opt-in fallback via `COCOINDEX_RERANK_MODEL=jinaai/jina-reranker-v3`; BGE and GTE can still be pinned for compatibility experiments.
 
 See [`feature_catalog/reranker.md`](feature_catalog/reranker.md) for model trade-offs, RAM requirements, and when to tune or disable reranking.
 
@@ -590,7 +590,7 @@ The embedder and reranker are two separate model slots. They run one after the o
 | Stage | Model type | Default | License | Role |
 |---|---|---|---|---|
 | 1. Retrieval | Bi-encoder embedder | `sbert/nomic-ai/CodeRankEmbed` | MIT | Encodes the query and every indexed chunk independently into 768-dimensional vectors; vector cosine results are fused with FTS5 via RRF |
-| 2. Reranking | Cross-encoder reranker | `jinaai/jina-reranker-v3` | CC BY-NC 4.0 | Encodes query + each top-K candidate together, allowing token-level attention across both texts |
+| 2. Reranking | Cross-encoder reranker | `Qwen/Qwen3-Reranker-0.6B` | Apache-2.0 | Encodes query + each top-K candidate together, allowing token-level attention across both texts |
 
 Pipeline order:
 
@@ -604,7 +604,7 @@ Pipeline order:
 
 You cannot swap one stage's model into the other slot. Bi-encoders cannot add reranker value because their independent vectors are already consumed by the vector lane. Cross-encoders cannot embed the whole repo at scale because they score query/document pairs one at a time.
 
-`jinaai/jina-reranker-v3` is non-commercial (`CC BY-NC 4.0`). For commercial deployments, set `COCOINDEX_COMMERCIAL_SAFE_PROFILE=true` so daemon startup refuses non-commercial defaults. Commercial-safe reranker alternatives are tracked in `mcp_server/cocoindex_code/registered_embedders.py`; the current Apache-2.0 reranker entry is `BAAI/bge-reranker-v2-m3`.
+The default `Qwen/Qwen3-Reranker-0.6B` reranker is Apache-2.0. `jinaai/jina-reranker-v3` is still available as an opt-in fallback but is non-commercial (`CC BY-NC 4.0`), so commercial deployments that pin it should keep `COCOINDEX_COMMERCIAL_SAFE_PROFILE=true` enabled. Commercial-safe reranker alternatives are tracked in `mcp_server/cocoindex_code/registered_embedders.py`.
 
 <!-- /ANCHOR:configuration -->
 
@@ -1082,6 +1082,7 @@ ccc daemon status             # Check daemon status
 
 | Version | Date       | Changes                                                      |
 | ------- | ---------- | ------------------------------------------------------------ |
+| 1.2.3   | 2026-05-20 | Promote default reranker to `Qwen/Qwen3-Reranker-0.6B` (Apache-2.0); jina-v3 demoted to opt-in fallback per 023B head-to-head bench |
 | 1.2.2   | 2026-05-19 | Promote default embedder to `nomic-ai/CodeRankEmbed` and reranker to `jinaai/jina-reranker-v3`; lock RRF defaults at K=60, vector=0.9, FTS5=0.5 |
 | 1.2.1   | 2026-05-18 | Promote hybrid + reranker to default-on; swap reranker default GTE → `BAAI/bge-reranker-v2-m3` (GTE/MPS incompatibility) |
 | 1.2.0   | 2026-05-18 | Add chunking tunables, hybrid (FTS5 + RRF), cross-encoder reranker (opt-in at the time) |

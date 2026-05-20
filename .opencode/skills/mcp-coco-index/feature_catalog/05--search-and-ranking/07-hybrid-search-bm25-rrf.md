@@ -7,7 +7,7 @@ description: "Fuses vector and FTS5 BM25 result lists with weighted Reciprocal R
 
 Fuses vector and FTS5 BM25 result lists with weighted Reciprocal Rank Fusion when enabled. The hybrid lane queries the semantic vector index and the `code_chunks_fts` BM25 index in sequence, normalizes both score channels and combines them with weighted RRF so exact-token hits and semantic neighbors share a single ranked list.
 
-> **Pipeline note**: hybrid fusion still belongs to Stage 1 retrieval. The bi-encoder embedder (`sbert/nomic-ai/CodeRankEmbed`, 768d, MIT) supplies the vector lane, FTS5 supplies the lexical lane, and RRF merges them before the Stage 2 cross-encoder reranker (`jinaai/jina-reranker-v3`, CC BY-NC 4.0) scores the top-K candidates together with the query.
+> **Pipeline note**: hybrid fusion still belongs to Stage 1 retrieval. The bi-encoder embedder (`sbert/nomic-ai/CodeRankEmbed`, 768d, MIT) supplies the vector lane, FTS5 supplies the lexical lane, and RRF merges them before the Stage 2 cross-encoder reranker (`Qwen/Qwen3-Reranker-0.6B`, Apache-2.0) scores the top-K candidates together with the query.
 
 ---
 

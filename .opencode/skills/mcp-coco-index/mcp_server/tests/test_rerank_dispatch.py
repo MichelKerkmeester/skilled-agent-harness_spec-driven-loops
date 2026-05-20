@@ -40,34 +40,26 @@ def test_rerank_model_env_override_changes_config_model(tmp_path: Path) -> None:
     assert cfg.rerank_model == "jinaai/jina-reranker-v3"
 
 
-def test_default_dispatch_uses_jina_adapter(monkeypatch: Any) -> None:
-    """Default reranker is jinaai/jina-reranker-v3 (018) → prefix dispatch routes to JinaRerankerAdapter."""
+def test_default_dispatch_uses_cross_encoder_adapter(monkeypatch: Any) -> None:
+    """Default reranker is Qwen3-Reranker-0.6B, which uses the standard CrossEncoder adapter."""
     from cocoindex_code import reranker as reranker_module
 
-    class FakeJinaAdapter:
-        def __init__(self, model_name: str) -> None:
-            self.model_name = model_name
-
-    fake_module = type(sys)("cocoindex_code.rerankers_jina_v3")
-    fake_module.JinaRerankerAdapter = FakeJinaAdapter  # type: ignore[attr-defined]
     monkeypatch.setattr(reranker_module, "_ADAPTERS", {})
-    monkeypatch.setitem(sys.modules, "cocoindex_code.rerankers_jina_v3", fake_module)
 
     adapter = reranker_module.get_reranker_adapter(_DEFAULT_RERANK_MODEL)
 
-    assert isinstance(adapter, FakeJinaAdapter)
+    assert isinstance(adapter, reranker_module.CrossEncoderRerankerAdapter)
     assert adapter.model_name == _DEFAULT_RERANK_MODEL
 
 
-def test_default_dispatch_uses_real_jina_adapter(monkeypatch: Any) -> None:
+def test_default_dispatch_uses_real_cross_encoder_adapter(monkeypatch: Any) -> None:
     from cocoindex_code import reranker as reranker_module
-    from cocoindex_code.rerankers_jina_v3 import JinaRerankerAdapter
 
     monkeypatch.setattr(reranker_module, "_ADAPTERS", {})
 
     adapter = reranker_module.get_reranker_adapter(_DEFAULT_RERANK_MODEL)
 
-    assert isinstance(adapter, JinaRerankerAdapter)
+    assert isinstance(adapter, reranker_module.CrossEncoderRerankerAdapter)
     assert adapter.model_name == _DEFAULT_RERANK_MODEL
 
 

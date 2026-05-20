@@ -82,7 +82,7 @@ Load this folder through the owning skill workflow or MCP server entrypoint.
 | Stage | Model | Role | License | Why It Exists |
 |---|---|---|---|---|
 | Stage 1 | `sbert/nomic-ai/CodeRankEmbed` | Bi-encoder embedder, 768d | MIT | Encodes the query and code chunks independently, then retrieves by cosine similarity in the vector lane. |
-| Stage 2 | `jinaai/jina-reranker-v3` | Cross-encoder reranker | CC BY-NC 4.0 | Scores query+candidate pairs together over the top-K candidates returned by the retrieval lanes. |
+| Stage 2 | `Qwen/Qwen3-Reranker-0.6B` | Cross-encoder reranker | Apache-2.0 | Scores query+candidate pairs together over the top-K candidates returned by the retrieval lanes. |
 
 The two stages are not interchangeable. A bi-encoder is built for scalable embedding and vector lookup; it does not rerank pairwise candidates after retrieval. A cross-encoder is built for pairwise relevance scoring; running it across every indexed chunk would multiply its 50-200ms pair cost by the full corpus size.
 

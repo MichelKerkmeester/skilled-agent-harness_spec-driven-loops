@@ -66,7 +66,7 @@ If that exploration feeds into Spec Kit packet recovery, `/spec_kit:resume` rema
 
 ### Key Statistics
 
-This skill runs version 1.2.0 and exposes 2 MCP tools (search and cocoindex_refresh_index). It supports 28+ programming languages and uses the nomic-ai/CodeRankEmbed embedding model by default via sentence-transformers (768-dim, local, no API key, Metal/MPS accelerated on Apple Silicon, auto-detected). The code-tuned default was ratified in packet 018 after a comparison against gemma-300m, nomic-CodeRankEmbed, and BAAI/bge-code-v1. Vector storage uses SQLite via sqlite-vec, with a default chunk size of 1500 characters (250 char minimum, 200 char overlap, all tunable via env vars in v1.2.0+) and cosine similarity (0.0 to 1.0) as the similarity metric. Hybrid search (FTS5 + RRF) and Jina v3 cross-encoder rerank are default-on production features.
+This skill runs version 1.2.0 and exposes 2 MCP tools (search and cocoindex_refresh_index). It supports 28+ programming languages and uses the nomic-ai/CodeRankEmbed embedding model by default via sentence-transformers (768-dim, local, no API key, Metal/MPS accelerated on Apple Silicon, auto-detected). The code-tuned default was ratified in packet 018 after a comparison against gemma-300m, nomic-CodeRankEmbed, and BAAI/bge-code-v1. Vector storage uses SQLite via sqlite-vec, with a default chunk size of 1500 characters (250 char minimum, 200 char overlap, all tunable via env vars in v1.2.0+) and cosine similarity (0.0 to 1.0) as the similarity metric. Hybrid search (FTS5 + RRF) and Qwen3-Reranker-0.6B cross-encoder rerank are default-on production features.
 
 ### Two-stage retrieval pipeline
 
@@ -75,11 +75,11 @@ CocoIndex Code uses **two architecturally distinct models**, not one. They run s
 | Stage | Model type | Default | Role |
 |---|---|---|---|
 | 1. Retrieval | Bi-encoder embedder | `sbert/nomic-ai/CodeRankEmbed` (768d, MIT) | Embeds the query and indexed chunks independently; vector cosine results are fused with FTS5 via RRF |
-| 2. Reranking | Cross-encoder reranker | `jinaai/jina-reranker-v3` (CC BY-NC 4.0) | Scores each query + top-K candidate together with token-level attention |
+| 2. Reranking | Cross-encoder reranker | `Qwen/Qwen3-Reranker-0.6B` (Apache-2.0) | Scores each query + top-K candidate together with token-level attention |
 
 Pipeline order: nomic vector lane + FTS5 lexical lane -> RRF fusion (`K=60`, vector `0.9`, FTS5 `0.5`) -> mirror dedup -> top-K rerank (`20` default) -> path-class/canonical boosts -> final ranking.
 
-Bi-encoders cannot replace the reranker because the vector lane already uses their cosine signal. Cross-encoders cannot replace the embedder because scoring every indexed chunk would be too slow at repo scale. Commercial deployments should note the Jina v3 non-commercial license and use `COCOINDEX_COMMERCIAL_SAFE_PROFILE=true`; commercial-safe reranker options are tracked in `registered_embedders.py` (currently `BAAI/bge-reranker-v2-m3`, Apache-2.0).
+Bi-encoders cannot replace the reranker because the vector lane already uses their cosine signal. Cross-encoders cannot replace the embedder because scoring every indexed chunk would be too slow at repo scale. The default reranker is Apache-2.0 as of 2026-05-20; `jinaai/jina-reranker-v3` remains registered as an opt-in fallback with a non-commercial CC BY-NC 4.0 license.
 
 ### Key Features
 

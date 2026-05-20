@@ -1169,3 +1169,31 @@ When search quality regresses, the first response is pipeline diagnosis: fixture
 
 Run `ccc doctor` before model swaps. If it reports fingerprint mismatch, stale CLI, or a non-commercial default in a commercial context, fix that first. Use the model-swap reindex estimate to make rollback cost visible before starting a full reset/index cycle.
 <!-- /ANCHOR:adr-026 -->
+
+<!-- ANCHOR:adr-027 -->
+## ADR-027: Reranker default flipped to Qwen3-Reranker-0.6B (2026-05-20)
+
+**Context**: 023B-fixture-calibration shipped a 73-probe expanded fixture and a calibration sweep harness. A reranker sub-sweep ran jinaai/jina-reranker-v3 (CC BY-NC 4.0, pre-2026-05-20 default) head-to-head against Qwen/Qwen3-Reranker-0.6B (Apache-2.0) at n=3 runs with zero stddev on both sides.
+
+**Decision**: Default reranker flipped jinaai/jina-reranker-v3 -> Qwen/Qwen3-Reranker-0.6B as of 2026-05-20.
+
+**Evidence**:
+
+| Metric | jina-v3 | Qwen3-0.6B | Delta |
+|---|---|---|---|
+| Mean hits | 29.0/73 | 30.0/73 | +1 hit (+1.4pp) |
+| Hit rate | 0.397 | 0.411 | +0.014 |
+| p95 latency | 2905 ms | 1984 ms | -921 ms (-32%) |
+| License | CC BY-NC 4.0 | Apache-2.0 | commercial-safe |
+| RSS warm (full daemon) | 1145 MB | 1179 MB | +34 MB (+3%) |
+| Stddev (hits, n=3) | 0 | 0 | zero |
+
+**Consequence**:
+
+- Pass-2 FINDING-012-B (default reranker has CC BY-NC 4.0 license risk) closed.
+- `COCOINDEX_COMMERCIAL_SAFE_PROFILE=true` no longer needed on default path.
+- jinaai/jina-reranker-v3 stays in registry as opt-in fallback (no functionality lost).
+- `benchmark-2026-05-20-expanded/` directory + new benchmark report under it.
+
+**Rule honored**: ADR-B-003 requires "data-unambiguous + operator-confirmed" for default flips. Both satisfied.
+<!-- /ANCHOR:adr-027 -->

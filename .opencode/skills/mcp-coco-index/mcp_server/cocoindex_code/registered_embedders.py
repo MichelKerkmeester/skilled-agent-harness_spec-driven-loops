@@ -232,10 +232,16 @@ MANIFESTS: tuple[EmbedderMetadata, ...] = (
 
 RERANKER_MANIFESTS: tuple[RerankerMetadata, ...] = (
     RerankerMetadata(
+        name="Qwen/Qwen3-Reranker-0.6B",
+        hf_url="https://huggingface.co/Qwen/Qwen3-Reranker-0.6B",
+        license="apache-2.0",
+        notes="DEFAULT as of 2026-05-20 (023B benchmark-2026-05-20-expanded). Beat jina-v3 head-to-head on the 73-probe expanded fixture: +1 hit/73 (30 vs 29, n=3, zero stddev) and -32% p95 latency (1984ms vs 2905ms). Apache-2.0 license removes commercial-safe profile contention.",
+    ),
+    RerankerMetadata(
         name="jinaai/jina-reranker-v3",
         hf_url="https://huggingface.co/jinaai/jina-reranker-v3",
         license="cc-by-nc-4.0",
-        notes="Default as of 018 for quality on the corrected fixture. Non-commercial license; use BGE for commercial-safe deployments.",
+        notes="Pre-2026-05-20 default. Non-commercial license. Kept as opt-in fallback; lost head-to-head to Qwen3-Reranker-0.6B in 023B expanded-fixture bench (1.4pp hit rate, 32% slower).",
     ),
     RerankerMetadata(
         name="BAAI/bge-reranker-v2-m3",
@@ -247,7 +253,7 @@ RERANKER_MANIFESTS: tuple[RerankerMetadata, ...] = (
 
 
 DEFAULT_EMBEDDER_NAME = "sbert/nomic-ai/CodeRankEmbed"  # 018 follow-on: promoted over jina-v2-base-code after corrected-pipeline bench tied bge-code-v1 on hit rate with lower latency
-DEFAULT_RERANKER_NAME = "jinaai/jina-reranker-v3"
+DEFAULT_RERANKER_NAME = "Qwen/Qwen3-Reranker-0.6B"  # 023B follow-on: promoted over jina-v3 after 73-probe expanded-fixture bench (n=3, +1 hit/73, -32% p95, Apache-2.0)
 _DEFAULT_NAME = DEFAULT_EMBEDDER_NAME
 
 EmbedderSpec = EmbedderMetadata

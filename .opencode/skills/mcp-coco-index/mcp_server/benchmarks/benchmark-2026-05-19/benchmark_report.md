@@ -24,7 +24,7 @@ Validate after edits:
 
 # mcp-coco-index Code-Retrieval Pipeline Future-Proofing -- May 19, 2026
 
-> **Winner:** `nomic-ai/CodeRankEmbed` embedder + `jinaai/jina-reranker-v3` reranker, **14/18 = 77.8%** top-5 hit rate, median 1964 ms, p95 13554 ms. **Pipeline-fix-first approach** delivered embedder-agnostic gains: bge-code-v1 ties on hit rate but loses ~10% median latency. Locked nomic as production default after 6 packets of pipeline hardening (013/014/015/016/017/018) eliminated the candidate-set defects that previously made embedder choice load-bearing.
+> **Provisional winner:** `nomic-ai/CodeRankEmbed` embedder + `jinaai/jina-reranker-v3` reranker, **14/18 = 77.8%** top-5 hit rate, median 1964 ms, p95 13554 ms. **Pipeline-fix-first approach** delivered embedder-agnostic gains in the n=1 evidence: bge-code-v1 ties on hit rate but loses ~10% median latency. Locked nomic as production default after 6 packets of pipeline hardening (013/014/015/016/017/018), with 3-run confirmation tracked as follow-up.
 
 ---
 
@@ -53,7 +53,7 @@ Validate after edits:
 
 ### Headline numbers
 
-- **Final hit rate**: 14/18 (77.8%) under default config (nomic embedder + jina-v3 reranker + locked RRF + tree-sitter chunking + mirror dedup)
+- **Final hit rate**: 14/18 (77.8%) under default config (nomic embedder + jina-v3 reranker + locked RRF + tree-sitter chunking + mirror dedup), based on n=1 promoted evidence pending 3-run confirmation
 - **Pre-arc baseline**: 10-11/18 (rerank not firing in May 18 bench; corrected May 18 evening run: 10/18)
 - **Embedder choice is no longer load-bearing**: nomic and bge-code-v1 tie at 14/18 with the same per-probe hit pattern
 - **Reranker choice IS load-bearing**: jina-v3 beats BGE-baseline by +2 probes on both embedders
@@ -329,7 +329,7 @@ The 015 packet's `ccc index` failed under codex's `workspace-write` sandbox with
 
 1. **Promote `sbert/nomic-ai/CodeRankEmbed`** as the production embedder default (done in same commit as this report)
 2. **Promote `jinaai/jina-reranker-v3`** as the production reranker default (already done in packet 018, commit `38d4e2d62`)
-3. **Lock RRF params `(K=60, V=0.9, F=0.5)`** (already done in packet 017, commit `ee788254d`)
+3. **Keep RRF params `(K=60, V=0.9, F=0.5)`** as the bge-code-v1-validated default (already done in packet 017, commit `ee788254d`; re-sweep before claiming embedder-agnostic optimality)
 4. **Keep BGE family + jina-v2-base-code + gemma + mxbai as opt-in** via env override (`COCOINDEX_CODE_EMBEDDING_MODEL` / `COCOINDEX_RERANK_MODEL`)
 
 ### Follow-on packets (not blocking arc closure)

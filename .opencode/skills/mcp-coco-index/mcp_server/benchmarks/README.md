@@ -55,10 +55,11 @@ The canonical mechanics for the layout convention live at `.opencode/skills/sk-d
 
 | Date | Bench | Winner | Status | Spec packet |
 |---|---|---|---|---|
-| **May 19, 2026** ← **production** | [`benchmark-2026-05-19/`](./benchmark-2026-05-19/) | `nomic-ai/CodeRankEmbed` + `jinaai/jina-reranker-v3` (**14/18 = 77.8%**, median 1964ms) | Shipped + locked as default | `016/004/013-018` six-packet arc + nomic promotion follow-on |
+| **May 20, 2026** ← **production** | [`benchmark-2026-05-20-expanded/`](./benchmark-2026-05-20-expanded/) | `nomic-ai/CodeRankEmbed` + `Qwen/Qwen3-Reranker-0.6B` (**30/73 = 41.1%**, p95 1984ms) | Shipped + locked as default | `016/004/023B` expanded fixture calibration |
+| May 19, 2026 | [`benchmark-2026-05-19/`](./benchmark-2026-05-19/) | `nomic-ai/CodeRankEmbed` + `jinaai/jina-reranker-v3` (**14/18 = 77.8%**, median 1964ms) | Superseded by 2026-05-20 Qwen3 default flip | `016/004/013-018` six-packet arc + nomic promotion follow-on |
 | May 18, 2026 | [`benchmark-2026-05-18/`](./benchmark-2026-05-18/) | `BAAI/bge-code-v1` (11/18 = 61.1%, median 504ms) | **STRUCTURALLY INVALIDATED** — rerank wasn't firing due to stale pipx; preserved as historical record | `016/004/004-extended-bake-off` |
 
-**Current production default (since 2026-05-19):** `sbert/nomic-ai/CodeRankEmbed` embedder + `jinaai/jina-reranker-v3` reranker. The 6-packet 013-018 arc fixed the candidate-set pipeline (bench harness, mirror dedup, tree-sitter chunking, RRF lock) before locking the embedder + reranker defaults. Under the corrected pipeline, nomic-CodeRankEmbed ties bge-code-v1 on hit rate (14/18) with ~10% lower median latency.
+**Current production default (since 2026-05-20):** `sbert/nomic-ai/CodeRankEmbed` embedder + `Qwen/Qwen3-Reranker-0.6B` reranker. The 023B expanded-fixture head-to-head kept the 013-018 corrected pipeline and flipped only the reranker, where Qwen3 beat jina-v3 by +1 hit/73, -32% p95 latency, and a permissive Apache-2.0 license.
 <!-- /ANCHOR:active-benchmarks -->
 
 <!-- ANCHOR:pending-decisions -->
@@ -111,7 +112,7 @@ What this folder is and is NOT.
 
 - A draft scratchpad. In-progress experiments live in the spec packet's `evidence/` until they ship.
 - A replacement for spec packets. The full ADR trail, fixture rationale, and rollback context stay in `specs/`.
-- A place for single-data-point measurements. Promote here only when there is enough rigor to warrant skill-local visibility.
+- A place for unqualified single-data-point measurements. Promote n=1 evidence only with an explicit provisional label and a follow-on replay plan; remove the provisional label after the policy-preferred 3-run confirmation exists.
 - A cross-skill performance comparison. Numbers here are valid only against this skill's stack (sbert + CocoIndex hybrid + rerank). Do NOT cross-reference latency or hit-rate numbers with `mk-spec-memory`'s Ollama-backed bench.
 
 ### Folder layout (per FORMAT.md)
