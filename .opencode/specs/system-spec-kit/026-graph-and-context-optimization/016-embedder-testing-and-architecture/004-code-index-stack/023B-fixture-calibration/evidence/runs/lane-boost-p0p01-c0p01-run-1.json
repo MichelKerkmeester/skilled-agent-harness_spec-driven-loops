@@ -1,0 +1,1921 @@
+{
+  "completed_at": "2026-05-20T07:17:24.462645+00:00",
+  "env": {
+    "COCOINDEX_CODE_EMBEDDING_MODEL": "sbert/nomic-ai/CodeRankEmbed",
+    "COCOINDEX_HYBRID": "true",
+    "COCOINDEX_HYBRID_CANONICAL_RESOURCE_BOOST": "0.01",
+    "COCOINDEX_HYBRID_PATH_CLASS_SHIFT": "0.01",
+    "COCOINDEX_RERANK": "true",
+    "COCOINDEX_RERANK_ENABLED": "true",
+    "COCOINDEX_RERANK_MODEL": "jinaai/jina-reranker-v3"
+  },
+  "fixture": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-19-expanded/code-retrieval-fixture-expanded-v2.json",
+  "hit_rate": 0.3972602739726027,
+  "hits": 29,
+  "lane_id": "boost-p0p01-c0p01",
+  "lane_name": "boost path=0.01 canonical=0.01",
+  "latency_ms": {
+    "mean": 1818.49,
+    "p50": 1474,
+    "p95": 2800,
+    "p99": 3510
+  },
+  "per_probe": [
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/registry.ts",
+      "hit": false,
+      "latency_ms": 14968,
+      "probe_id": 1,
+      "query": "registry of available embedding backends with dimensions and model notes",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/system-spec-kit/references/embedder-pluggability.md",
+        "skills/system-spec-kit/mcp_server/lib/embedders/types.ts",
+        "skills/system-spec-kit/mcp_server/handlers/embedder-list.ts",
+        "skills/system-skill-advisor/mcp_server/lib/embedders/adapter.ts"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-set.ts",
+      "hit": true,
+      "latency_ms": 1598,
+      "probe_id": 2,
+      "query": "handler that accepts an embedder name and queues a reindex job",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/system-spec-kit/mcp_server/handlers/embedder-set.ts",
+        "skills/system-spec-kit/references/embedder-pluggability.md",
+        "skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+        "skills/system-spec-kit/mcp_server/handlers/embedder-status.ts",
+        "skills/system-spec-kit/references/memory/embedder_architecture.md"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+      "hit": true,
+      "latency_ms": 1736,
+      "probe_id": 3,
+      "query": "CocoIndex configuration that chooses the default local code embedding model",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/system-spec-kit/references/embedder-pluggability.md",
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+        "skills/mcp-coco-index/references/settings_reference.md"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      "hit": true,
+      "latency_ms": 2019,
+      "probe_id": 4,
+      "query": "shell validator for spec folders with strict mode and recursive phase support",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/system-spec-kit/scripts/spec/validate.sh",
+        "skills/system-spec-kit/references/templates/template_guide.md",
+        "skills/system-spec-kit/scripts/.scan-validate-all.sh",
+        "skills/system-spec-kit/scripts/.scan-one.sh"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts",
+      "hit": false,
+      "latency_ms": 1824,
+      "probe_id": 5,
+      "query": "Vitest coverage for code graph readiness snapshots and stale state",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/system-code-graph/mcp_server/tests/startup-brief.vitest.ts",
+        "skills/system-spec-kit/mcp_server/stress_test/search-quality/w7-degraded-stale.vitest.ts",
+        "skills/system-code-graph/mcp_server/lib/ensure-ready.ts",
+        "skills/system-code-graph/references/code-graph-readiness-check.md",
+        "skills/system-code-graph/references/readiness-and-scope-fingerprint.md"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/adapters/ollama.ts",
+      "hit": true,
+      "latency_ms": 1787,
+      "probe_id": 6,
+      "query": "construct an Ollama-backed embedder and apply query/document prefixes before embedding",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/system-skill-advisor/mcp_server/lib/embedders/adapters/ollama.ts",
+        "skills/system-spec-kit/mcp_server/lib/embedders/adapters/ollama.ts",
+        "skills/system-spec-kit/references/memory/embedder_architecture.md"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
+      "hit": true,
+      "latency_ms": 1611,
+      "probe_id": 7,
+      "query": "single scoring stage where recency, graph, feedback, and rescue boosts are combined",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
+        "skills/system-spec-kit/shared/ranking/learned-combiner.ts",
+        "skills/system-spec-kit/mcp_server/shared/ranking/learned-combiner.d.ts"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/system-code-graph/mcp_server/lib/ccc-readiness-probe.ts",
+      "hit": true,
+      "latency_ms": 1482,
+      "probe_id": 8,
+      "query": "readiness probe that checks whether the semantic code index is fresh or absent",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/system-code-graph/mcp_server/lib/ccc-readiness-probe.ts",
+        "skills/system-spec-kit/mcp_server/context-server.ts",
+        "skills/mcp-coco-index/scripts/ensure_ready.sh",
+        "skills/mcp-coco-index/scripts/common.sh"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py",
+      "hit": true,
+      "latency_ms": 1931,
+      "probe_id": 9,
+      "query": "declarative list of vetted sentence transformer candidates for local code search",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py",
+        "skills/mcp-coco-index/references/settings_reference.md",
+        "skills/system-spec-kit/references/embedder-pluggability.md",
+        "specs/system-spec-kit/z_archive/022-hybrid-rag-fusion/006-feature-catalog/scratch/generate-source-files.mjs"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
+      "hit": false,
+      "latency_ms": 2552,
+      "probe_id": 10,
+      "query": "context save command that reads structured JSON and refreshes graph metadata",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/system-spec-kit/references/structure/folder_routing.md",
+        "skills/system-spec-kit/references/memory/save_workflow.md",
+        "skills/system-spec-kit/scripts/core/workflow.ts",
+        "skills/system-spec-kit/mcp_server/tests/memory-save-planner-first.vitest.ts"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+      "hit": false,
+      "latency_ms": 1208,
+      "probe_id": 11,
+      "query": "Apple Silicon device fallback that prefers Metal when CUDA is unavailable",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/mcp-coco-index/mcp_server/tests/test_config.py",
+        "skills/system-spec-kit/references/embedder-pluggability.md",
+        "skills/system-spec-kit/mcp_server/shared/embeddings/providers/hf-local.js",
+        "skills/system-spec-kit/shared/embeddings/providers/hf-local.ts",
+        "skills/system-spec-kit/mcp_server/shared/embeddings.js"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/system-spec-kit/mcp_server/lib/search/rerank/retrieval-rescue.ts",
+      "hit": false,
+      "latency_ms": 1782,
+      "probe_id": 12,
+      "query": "paraphrase recovery path that promotes sibling memory artifacts from the same folder",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/system-spec-kit/references/embedder-pluggability.md",
+        "skills/system-spec-kit/references/structure/sub_folder_versioning.md",
+        "skills/deep-ai-council/references/graph_support.md",
+        "skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
+        "skills/sk-doc/references/benchmark_creation.md"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/system-code-graph/mcp_server/lib/budget-allocator.ts",
+      "hit": true,
+      "latency_ms": 1273,
+      "probe_id": 13,
+      "query": "bounded token budget allocation for assembling structural context responses",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/system-code-graph/mcp_server/lib/budget-allocator.ts",
+        "skills/system-spec-kit/mcp_server/lib/session/structural-bootstrap-contract.ts",
+        "skills/system-spec-kit/references/config/environment_variables.md",
+        "skills/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts",
+      "hit": false,
+      "latency_ms": 1330,
+      "probe_id": 14,
+      "query": "filesystem walker that emits typed structural symbols and import edges",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/mcp-coco-index/mcp_server/tests/test_code_aware_chunker.py",
+        "skills/system-code-graph/mcp_server/lib/indexer-types.ts",
+        "skills/sk-doc/assets/readme/readme_code_template.md",
+        "skills/system-code-graph/mcp_server/lib/tree-sitter-parser.ts"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py",
+      "hit": false,
+      "latency_ms": 1321,
+      "probe_id": 15,
+      "query": "query-time path class adjustment that favors implementation files over generated copies",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/mcp-coco-index/mcp_server/tests/test_query_expansion.py",
+        "skills/mcp-coco-index/references/tool_reference.md",
+        "skills/mcp-coco-index/mcp_server/tests/test_rerankers_jina_v3.py",
+        "skills/mcp-coco-index/mcp_server/tests/test_reranker.py"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/system-code-graph/mcp_server/tests/readiness-marker-atomic-write.vitest.ts",
+      "hit": false,
+      "latency_ms": 1367,
+      "probe_id": 16,
+      "query": "atomic readiness marker persistence tested for partial writes",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/system-code-graph/mcp_server/lib/readiness-marker.ts",
+        "specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit/scratch/test_path_extraction.py",
+        "skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py",
+      "hit": true,
+      "latency_ms": 1862,
+      "probe_id": 17,
+      "query": "file matcher that lets explicitly canonical skill resources bypass hidden directory exclusions",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py",
+        "skills/mcp-coco-index/tests/test_settings.py",
+        "skills/sk-doc/assets/skill/skill_md_template.md",
+        "skills/system-skill-advisor/mcp_server/lib/utils/workspace-root.ts"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_refresh_split.py",
+      "hit": true,
+      "latency_ms": 2210,
+      "probe_id": 18,
+      "query": "integration test for reprocessing only changed files during an index refresh",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/mcp-coco-index/mcp_server/tests/test_refresh_split.py",
+        "skills/mcp-coco-index/tests/test_e2e.py",
+        "skills/mcp-coco-index/references/tool_reference.md",
+        "skills/system-spec-kit/mcp_server/tests/handler-memory-index-cooldown.vitest.ts"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/search_budget.py",
+      "hit": true,
+      "latency_ms": 1348,
+      "probe_id": 19,
+      "query": "request-budget validator",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/search_budget.py",
+        "skills/mcp-coco-index/mcp_server/tests/test_search_budget.py",
+        "skills/system-spec-kit/scripts/tests/test-alignment-validator.js",
+        "skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/migrations/001_per_dim_tables.py",
+      "hit": false,
+      "latency_ms": 1206,
+      "probe_id": 20,
+      "query": "vector schema migration script",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+        "skills/system-spec-kit/mcp_server/tests/schema-migration.vitest.ts"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/reranker.py",
+      "hit": false,
+      "latency_ms": 1230,
+      "probe_id": 21,
+      "query": "reranker fallback observability",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/mcp-coco-index/mcp_server/tests/test_observability.py",
+        "skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts",
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/observability.py",
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/server.py",
+        "skills/system-spec-kit/mcp_server/tests/search-limits-scoring.vitest.ts"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py",
+      "hit": false,
+      "latency_ms": 1350,
+      "probe_id": 22,
+      "query": "per-project daemon state isolation",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/mcp-coco-index/mcp_server/tests/test_multi_project_daemon.py",
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/protocol.py",
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py",
+        "skills/system-spec-kit/references/hooks/skill-advisor-hook.md"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/chunkers/code_aware.py",
+      "hit": true,
+      "latency_ms": 1329,
+      "probe_id": 23,
+      "query": "tree-sitter chunker oversize fallback",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/mcp-coco-index/mcp_server/tests/test_config.py",
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/chunkers/code_aware.py",
+        "skills/mcp-coco-index/mcp_server/tests/test_code_aware_chunker.py",
+        "skills/system-spec-kit/mcp_server/lib/chunking/anchor-chunker.ts"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/index_metadata.py",
+      "hit": true,
+      "latency_ms": 1040,
+      "probe_id": 24,
+      "query": "index metadata hard refusal boundary",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/index_metadata.py",
+        "skills/mcp-coco-index/mcp_server/tests/test_index_metadata.py"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py",
+      "hit": true,
+      "latency_ms": 1005,
+      "probe_id": 25,
+      "query": "registered model license guardrail",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py",
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py",
+        "skills/system-spec-kit/scripts/core/post-save-review.ts"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py",
+      "hit": true,
+      "latency_ms": 1361,
+      "probe_id": 26,
+      "query": "query expansion dense fanout switch",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/query.py",
+        "skills/mcp-coco-index/mcp_server/tests/test_fts_index.py",
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/query_expansion.py"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py",
+      "hit": true,
+      "latency_ms": 1225,
+      "probe_id": 27,
+      "query": "canonical mirror alias collapse",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/query.py",
+        "skills/mcp-coco-index/mcp_server/tests/test_dedup_mirrors.py"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/fts_index.py",
+      "hit": true,
+      "latency_ms": 1138,
+      "probe_id": 28,
+      "query": "FTS sync from active vector table",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/fts_index.py",
+        "skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
+        "skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py",
+      "hit": true,
+      "latency_ms": 1004,
+      "probe_id": 29,
+      "query": "doctor stale CLI check",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py",
+        "skills/mcp-coco-index/mcp_server/tests/test_doctor.py"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/project.py",
+      "hit": false,
+      "latency_ms": 1474,
+      "probe_id": 30,
+      "query": "project root resolver for nested commands",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/system-spec-kit/scripts/memory/migrate-trigger-phrase-residual.ts",
+        "skills/system-spec-kit/scripts/memory/backfill-frontmatter.ts",
+        "commands/doctor/scripts/mcp-doctor-lib.sh",
+        "commands/doctor/scripts/mcp-doctor.sh",
+        "skills/system-spec-kit/scripts/tests/nested-changelog.vitest.ts"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/shared.py",
+      "hit": false,
+      "latency_ms": 953,
+      "probe_id": 31,
+      "query": "prompt-policy query document split",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/system-spec-kit/scripts/tests/manual-playbook-runner.ts",
+        "skills/system-spec-kit/scripts/tests/manual-playbook-runner.js",
+        "skills/mcp-coco-index/mcp_server/tests/test_index_metadata.py",
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py",
+        "skills/mcp-coco-index/mcp_server/tests/test_prompt_policy_contract.py"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/system-code-graph/mcp_server/lib/ccc-readiness-probe.ts",
+      "hit": true,
+      "latency_ms": 1094,
+      "probe_id": 32,
+      "query": "semantic readiness probe fallback design",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/system-code-graph/mcp_server/handlers/query.ts",
+        "skills/system-code-graph/mcp_server/handlers/context.ts",
+        "skills/system-code-graph/mcp_server/lib/ccc-readiness-probe.ts"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      "hit": false,
+      "latency_ms": 1930,
+      "probe_id": 33,
+      "query": "spec folder strict validator phase parent",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/system-spec-kit/references/structure/phase_definitions.md",
+        "skills/system-spec-kit/references/validation/template_compliance_contract.md",
+        "skills/system-spec-kit/scripts/spec/is-phase-parent.ts",
+        "skills/system-spec-kit/scripts/lib/shell-common.sh"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py",
+      "hit": true,
+      "latency_ms": 1948,
+      "probe_id": 34,
+      "query": "waar wordt _QUERY_PROMPT_MODELS resolved when the embedder changes",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py",
+        "specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/001-prefix-registry-architecture/scratch/test-cocoindex-prompts.py",
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/shared.py",
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/index_metadata.py",
+        "skills/system-spec-kit/references/embedder-pluggability.md"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/index_metadata.py",
+      "hit": true,
+      "latency_ms": 2009,
+      "probe_id": 35,
+      "query": "donde se calcula effective_config_hash for ccc status",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py",
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/index_metadata.py",
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/observability.py",
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py",
+        "skills/system-code-graph/mcp_server/handlers/ccc-status.ts"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/search_budget.py",
+      "hit": true,
+      "latency_ms": 1017,
+      "probe_id": 36,
+      "query": "zoek de SearchBudgetExceeded limit validator",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/mcp-coco-index/mcp_server/tests/test_search_budget.py",
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/search_budget.py"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_per_dim_storage.py",
+      "hit": false,
+      "latency_ms": 1376,
+      "probe_id": 37,
+      "query": "waar test test_per_dim_table_size_in_status per-dim metadata",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/system-spec-kit/mcp_server/tests/embedder-schema.vitest.ts",
+        "skills/system-skill-advisor/mcp_server/tests/python/test_skill_advisor.py",
+        "skills/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts",
+        "skills/mcp-coco-index/mcp_server/tests/test_embedder_license.py",
+        "skills/system-skill-advisor/mcp_server/tests/cross-skill-edges.vitest.ts"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_observability.py",
+      "hit": true,
+      "latency_ms": 1349,
+      "probe_id": 38,
+      "query": "donde esta reranker_fallback_reason asserted",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/mcp-coco-index/mcp_server/tests/test_observability.py",
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/observability.py",
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/server.py",
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/protocol.py",
+        "skills/deep-review/references/state_format.md"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+      "hit": true,
+      "latency_ms": 1745,
+      "probe_id": 39,
+      "query": "waar wordt COCOINDEX_HYBRID_RRF_K parsed",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+        "skills/mcp-coco-index/mcp_server/tests/test_config.py",
+        "specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/run-expanded-bench.sh"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/README.md",
+      "hit": false,
+      "latency_ms": 975,
+      "probe_id": 40,
+      "query": "donde is canonical_resource_paths documented",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/mcp-coco-index/tests/test_settings.py",
+        "skills/system-spec-kit/scripts/tests/test-five-checks.js",
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/settings.py"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_config.py",
+      "hit": true,
+      "latency_ms": 1414,
+      "probe_id": 41,
+      "query": "waar test _resolve_device Metal fallback",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/mcp-coco-index/mcp_server/tests/test_config.py",
+        "skills/system-spec-kit/references/embedder-pluggability.md",
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+        "skills/cli-devin/references/quota-fallback.md",
+        "skills/system-spec-kit/shared/embeddings/providers/hf-local.ts"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/index_metadata.py",
+      "hit": true,
+      "latency_ms": 1132,
+      "probe_id": 42,
+      "query": "donde se escribe index_meta.json atomically",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/index_metadata.py",
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/observability.py",
+        "skills/mcp-coco-index/mcp_server/tests/test_index_metadata.py"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py",
+      "hit": true,
+      "latency_ms": 1407,
+      "probe_id": 43,
+      "query": "waar staat ccc doctor json_output",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py",
+        "skills/mcp-coco-index/mcp_server/tests/test_doctor.py",
+        "skills/mcp-coco-index/scripts/doctor.sh",
+        "commands/doctor/scripts/mcp-doctor.sh",
+        "skills/mcp-coco-index/scripts/install.sh"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/fusion.py",
+      "hit": false,
+      "latency_ms": 1359,
+      "probe_id": 44,
+      "query": "RRF K",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/system-spec-kit/shared/algorithms/rrf-fusion.ts",
+        "skills/system-spec-kit/mcp_server/shared/algorithms/rrf-fusion.js",
+        "specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/run-expanded-bench.sh",
+        "skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/config.py"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+      "hit": false,
+      "latency_ms": 1245,
+      "probe_id": 45,
+      "query": "Metal fallback",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/system-spec-kit/shared/embeddings/providers/hf-local.ts",
+        "specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-shallow-medium/014-041-llama-cpp-metal-investigation/scratch/probe-gpulayers-zero.mjs",
+        "skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts",
+        "skills/cli-devin/references/quota-fallback.md",
+        "skills/system-spec-kit/mcp_server/shared/embeddings/providers/hf-local.js"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_multi_project_daemon.py",
+      "hit": false,
+      "latency_ms": 1681,
+      "probe_id": 46,
+      "query": "daemon isolation",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/mcp-coco-index/tests/test_daemon.py",
+        "skills/mcp-coco-index/mcp_server/tests/test_e2e_daemon.py",
+        "skills/mcp-coco-index/references/tool_reference.md",
+        "skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/migrations/001_per_dim_tables.py",
+      "hit": false,
+      "latency_ms": 1268,
+      "probe_id": 47,
+      "query": "schema migration",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+        "skills/system-spec-kit/mcp_server/lib/graph/temporal-edges.ts",
+        "skills/system-spec-kit/mcp_server/tests/schema-migration.vitest.ts",
+        "skills/system-code-graph/mcp_server/lib/code-graph-db.ts"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_embedder_license.py",
+      "hit": false,
+      "latency_ms": 1041,
+      "probe_id": 48,
+      "query": "license registry",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py",
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py",
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/observability.py",
+        "skills/mcp-coco-index/mcp_server/tests/test_registry_accessors.py"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/index_metadata.py",
+      "hit": true,
+      "latency_ms": 1564,
+      "probe_id": 49,
+      "query": "Which code rejects a search when the runtime embedder metadata no longer matches the persisted index fingerprint for the current project?",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/index_metadata.py",
+        "skills/mcp-coco-index/mcp_server/tests/test_index_metadata.py",
+        "skills/system-spec-kit/mcp_server/tests/memory-save-fallback-fingerprint.vitest.ts",
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_per_dim_storage.py",
+      "hit": false,
+      "latency_ms": 2047,
+      "probe_id": 50,
+      "query": "Find the test that proves status reports the active vector table sizes after per-dimension table migration has completed.",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/evidence/generate-playbook-quality-audit.js",
+        "skills/system-spec-kit/references/embedder-pluggability.md",
+        "skills/system-spec-kit/mcp_server/shared/embeddings/factory.js",
+        "skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py",
+      "hit": true,
+      "latency_ms": 1646,
+      "probe_id": 51,
+      "query": "Where does the command-line health check combine license safety, stale executable detection, fingerprint drift, and reindex-cost estimation into one doctor report?",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py",
+        "skills/mcp-coco-index/scripts/doctor.sh"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/README.md",
+      "hit": false,
+      "latency_ms": 1854,
+      "probe_id": 52,
+      "query": "Which documentation explains the local CocoIndex Code package modules and names fusion.py as the RRF implementation for hybrid retrieval?",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/sweep-rrf.sh",
+        "skills/system-spec-kit/shared/algorithms/index.ts",
+        "skills/system-spec-kit/mcp_server/shared/algorithms/index.js",
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+        "skills/system-code-graph/references/ccc-bridge-integration.md"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
+      "hit": false,
+      "latency_ms": 1923,
+      "probe_id": 53,
+      "query": "Which generated JavaScript context-save command is intentionally excluded from indexing and should point users back to the TypeScript source instead?",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/system-spec-kit/references/memory/save_workflow.md",
+        "skills/system-spec-kit/mcp_server/handlers/save/types.ts",
+        "skills/system-skill-advisor/mcp_server/lib/derived/extract.ts",
+        "skills/system-spec-kit/mcp_server/tests/handler-memory-index.vitest.ts"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_observability.py",
+      "hit": false,
+      "latency_ms": 1101,
+      "probe_id": 54,
+      "query": "observability test counters",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/system-spec-kit/scripts/tests/test-upgrade-level.sh",
+        "skills/system-skill-advisor/mcp_server/tests/legacy/advisor-observability.vitest.ts",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/016-runtime-hook-plugin-testing/runners/common.ts",
+        "skills/system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py",
+        "skills/system-spec-kit/scripts/migrate-deep-research-paths.ts"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_refresh_split.py",
+      "hit": false,
+      "latency_ms": 1189,
+      "probe_id": 55,
+      "query": "refresh split regression test",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/system-skill-advisor/mcp_server/tests/skill-graph/refresh-roundtrip.vitest.ts",
+        "skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts",
+        "skills/mcp-coco-index/tests/test_e2e.py",
+        "skills/system-skill-advisor/mcp_server/tests/python/test_skill_advisor.py"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_coverage_tooling.py",
+      "hit": false,
+      "latency_ms": 1747,
+      "probe_id": 56,
+      "query": "coverage tooling smoke",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/evidence/generate-playbook-quality-audit.js",
+        "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/018-three-way-isolation-finalize/smoke-test/delete-spec-kit-smoke.sh",
+        "skills/system-spec-kit/scripts/tests/test-scripts-modules.js",
+        "skills/system-spec-kit/mcp_server/tests/archive/coverage-graph-tools.vitest.ts"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/benchmarks/README.md",
+      "hit": false,
+      "latency_ms": 2281,
+      "probe_id": 57,
+      "query": "benchmark README rerank matrix",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/rerank-matrix-bench.sh",
+        "skills/mcp-coco-index/mcp_server/tests/test_rerank_matrix_analyze.py",
+        "skills/sk-doc/references/benchmark_creation.md"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023F-upstream-rebase-spike/research/delta-classification.md",
+      "hit": false,
+      "latency_ms": 3054,
+      "probe_id": 58,
+      "query": "023F delta classification research",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/system-spec-kit/mcp_server/lib/feedback/rank-metrics.ts",
+        "skills/system-spec-kit/scripts/tests/test-extractors-loaders.js",
+        "skills/cli-devin/references/deep-loop-iter-contract.md",
+        "skills/system-spec-kit/scripts/lib/simulation-factory.ts"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023C-retrieval-observability/implementation-summary.md",
+      "hit": false,
+      "latency_ms": 1142,
+      "probe_id": 59,
+      "query": "023C retrieval observability summary counters",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/system-skill-advisor/mcp_server/lib/metrics.js",
+        "specs/system-spec-kit/z_archive/022-hybrid-rag-fusion/006-feature-catalog/scratch/generate-source-files.mjs",
+        "skills/system-spec-kit/shared/contracts/retrieval-trace.ts",
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/observability.py"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/pip/_vendor/packaging/LICENSE",
+      "hit": false,
+      "latency_ms": 996,
+      "probe_id": 60,
+      "query": "pip vendor packaging license metadata",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/mcp-coco-index/mcp_server/tests/test_embedder_license.py",
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py",
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/torch/_vendor/packaging/version.py",
+      "hit": false,
+      "latency_ms": 2009,
+      "probe_id": 61,
+      "query": "torch vendored packaging version parser",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/mcp-coco-index/scripts/update.sh",
+        "skills/mcp-coco-index/mcp_server/tests/test_config.py",
+        "skills/system-code-graph/mcp_server/lib/shared/shared-payload.ts",
+        "skills/system-spec-kit/mcp_server/startup-checks.ts"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/networkx/readwrite/json_graph/tree.py",
+      "hit": false,
+      "latency_ms": 1493,
+      "probe_id": 62,
+      "query": "networkx vendored tree json graph helper",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/deep-ai-council/scripts/replay-graph-from-artifacts.cjs",
+        "skills/system-spec-kit/scripts/rules/check-files.sh",
+        "skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts",
+        "skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
+      "hit": false,
+      "latency_ms": 2659,
+      "probe_id": 63,
+      "query": "system-spec-kit generated context save dist output",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/deep-research/references/loop_protocol.md",
+        "skills/system-spec-kit/references/workflows/execution_methods.md",
+        "skills/system-spec-kit/references/memory/save_workflow.md",
+        "skills/system-spec-kit/references/workflows/quick_reference.md",
+        "skills/system-spec-kit/references/intake-contract.md"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/specs/z_future/improved-agent-orchestration/external/opencode-swarm-main/dist/parallel/dispatcher/parallel-dispatcher.d.ts",
+      "hit": false,
+      "latency_ms": 2563,
+      "probe_id": 64,
+      "query": "opencode swarm generated dispatcher definitions",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/cli-opencode/references/agent_delegation.md",
+        "skills/cli-opencode/references/cli_reference.md"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/__pycache__/reranker.cpython-311.pyc",
+      "hit": false,
+      "latency_ms": 1156,
+      "probe_id": 65,
+      "query": "cached bytecode for reranker module",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/mcp-coco-index/mcp_server/tests/test_reranker.py",
+        "skills/mcp-coco-index/mcp_server/tests/test_rerank_dispatch.py",
+        "skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts",
+        "skills/system-spec-kit/mcp_server/lib/search/local-reranker.ts",
+        "skills/system-spec-kit/mcp_server/tests/local-reranker.vitest.ts"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/phase2-comparison-corrected.md",
+      "hit": false,
+      "latency_ms": 2694,
+      "probe_id": 66,
+      "query": "phase2 rerank comparison corrected report",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/run-phase2-smoke.sh",
+        "specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/sweep-rrf.sh"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/022-verification-p1-p2-remediation/review/review-report.md",
+      "hit": false,
+      "latency_ms": 3510,
+      "probe_id": 67,
+      "query": "deep review pass report for architecture invariant misses",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/deep-review/references/quick_reference.md",
+        "skills/system-skill-advisor/mcp_server/scripts/run-deep-review-arc.sh",
+        "skills/deep-review/references/state_format.md",
+        "skills/deep-review/references/loop_protocol.md",
+        "skills/deep-review/references/convergence.md"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/README.md",
+      "hit": false,
+      "latency_ms": 1331,
+      "probe_id": 68,
+      "query": "project docs module map",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/evidence/generate-playbook-quality-audit.js",
+        "skills/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts",
+        "skills/sk-doc/scripts/tests/test_extract_structure_regressions.py",
+        "skills/system-spec-kit/scripts/types/session-types.ts",
+        "skills/system-spec-kit/mcp_server/tests/search-limits-scoring.vitest.ts"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/tests/README.md",
+      "hit": false,
+      "latency_ms": 2800,
+      "probe_id": 69,
+      "query": "mcp server test README organization",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/sk-doc/assets/readme/readme_code_template.md",
+        "skills/sk-code/references/opencode/shared/code_organization.md",
+        "skills/mcp-code-mode/references/configuration.md"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/pip/_vendor/packaging/licenses/_spdx.py",
+      "hit": false,
+      "latency_ms": 2581,
+      "probe_id": 70,
+      "query": "vendored packaging SPDX parser",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/system-spec-kit/references/config/environment_variables.md",
+        "skills/sk-doc/scripts/package_skill.py",
+        "skills/mcp-coco-index/scripts/update.sh",
+        "skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts",
+        "skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/.venv/lib/python3.11/site-packages/pip/_vendor/requests/LICENSE",
+      "hit": false,
+      "latency_ms": 1572,
+      "probe_id": 71,
+      "query": "vendored requests license file",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/mcp-coco-index/scripts/update.sh",
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py",
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/specs/z_future/improved-agent-orchestration/external/opencode-swarm-main/dist/tools/lint.d.ts",
+      "hit": false,
+      "latency_ms": 2869,
+      "probe_id": 72,
+      "query": "generated opencode swarm lint declarations",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/003-system-bug-improvement-research/research/gen_prompts.sh",
+        "skills/system-spec-kit/scripts/rules/check-normalizer-lint.sh",
+        "specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/007-cross-model-validation/scripts/cross-model-confirm.cjs",
+        "specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/review/archive/2026-05-11T05-55-00Z-rm8-013-deepseek-original/run-loop.sh"
+      ]
+    },
+    {
+      "diagnostics": {
+        "boost_flip_count": null,
+        "fts_candidates_count": null,
+        "overlap_count": null,
+        "post_dedup_count": null,
+        "rerank_input_count": null,
+        "rerank_output_count": null,
+        "reranker_fallback_reason": null,
+        "reranker_fallback_used": null,
+        "vec_candidates_count": null
+      },
+      "expected": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023A1-metadata-fingerprint/decision-record.md",
+      "hit": false,
+      "latency_ms": 1455,
+      "probe_id": 73,
+      "query": "023A1 metadata fingerprint decision record",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/system-spec-kit/scripts/types/session-types.ts",
+        "skills/system-code-graph/mcp_server/tests/auto-rescan-policy.vitest.ts",
+        "skills/system-spec-kit/mcp_server/tests/memory-save-fallback-fingerprint.vitest.ts",
+        "skills/system-spec-kit/mcp_server/tests/gate-d-regression-intent-routing.vitest.ts",
+        "skills/system-skill-advisor/mcp_server/lib/cross-skill-edges/types.ts"
+      ]
+    }
+  ],
+  "run": 1,
+  "schema_version": 2,
+  "started_at": "2026-05-20T07:15:11.667676+00:00",
+  "success": true,
+  "total_probes": 73
+}

@@ -230,11 +230,11 @@ if not artifact["success"]:
 PYTHON
 }
 
-export COCOINDEX_CODE_EMBEDDING_MODEL="${COCOINDEX_CODE_EMBEDDING_MODEL:-sbert/BAAI/bge-code-v1}"
+export COCOINDEX_CODE_EMBEDDING_MODEL="${COCOINDEX_CODE_EMBEDDING_MODEL:-sbert/nomic-ai/CodeRankEmbed}"
 export COCOINDEX_HYBRID="true"
 export COCOINDEX_RERANK="true"
 export COCOINDEX_RERANK_ENABLED="true"
-export COCOINDEX_RERANK_MODEL="${COCOINDEX_RERANK_MODEL:-BAAI/bge-reranker-v2-m3}"
+export COCOINDEX_RERANK_MODEL="${COCOINDEX_RERANK_MODEL:-jinaai/jina-reranker-v3}"
 
 for run_no in $(seq 1 "$RUNS"); do
   if group_enabled "rrf"; then
