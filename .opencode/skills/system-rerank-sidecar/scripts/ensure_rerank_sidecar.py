@@ -1,5 +1,18 @@
 #!/usr/bin/env python3
-"""Ensure the local rerank sidecar is running for MCP launchers."""
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: ENSURE RERANK SIDECAR (PYTHON SIBLING)
+# ───────────────────────────────────────────────────────────────
+"""Ensure the local rerank sidecar is running for MCP launchers.
+
+Mirrors the contract of .opencode/bin/lib/ensure-rerank-sidecar.cjs for
+CocoIndex's Python MCP entry point. Probes /health; spawns the sidecar
+detached if absent; attaches as an HTTP client if present. Port-bind
+EADDRINUSE is the atomicity primitive (mirrors packet 010/012 lease
+pattern at the port level).
+
+Usage: invoked by .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py::mcp
+       before daemon connection.
+"""
 
 from __future__ import annotations
 
