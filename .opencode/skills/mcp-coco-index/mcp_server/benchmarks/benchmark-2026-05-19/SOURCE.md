@@ -10,7 +10,35 @@ contextType: "reference"
 
 # Source manifest -- benchmark-2026-05-19
 
-## Spec packets (full audit trail)
+Wayfinding pointer from the skill-local benchmark folder to the originating spec packets, ADRs, harness scripts, and raw JSONLs that this benchmark report distills.
+
+---
+
+<!-- ANCHOR:table-of-contents -->
+## TABLE OF CONTENTS
+
+- [1. OVERVIEW](#1--overview)
+- [2. SPEC PACKETS (FULL AUDIT TRAIL)](#2--spec-packets-full-audit-trail)
+- [3. DECISION RECORDS](#3--decision-records)
+- [4. BENCH HARNESS SOURCES](#4--bench-harness-sources)
+- [5. PER-EMBEDDER + PER-RERANKER RAW JSONLS](#5--per-embedder--per-reranker-raw-jsonls)
+- [6. CODE CHANGES THAT SHIP WITH THIS BENCHMARK](#6--code-changes-that-ship-with-this-benchmark)
+- [7. PREDECESSOR BENCH](#7--predecessor-bench)
+
+<!-- /ANCHOR:table-of-contents -->
+
+---
+
+<!-- ANCHOR:overview -->
+## 1. OVERVIEW
+
+This SOURCE manifest names every spec packet, ADR, harness script, and raw evidence file behind the May 19, 2026 retrieval-pipeline benchmark. The curated headline lives in `benchmark_report.md`; this file is the audit trail.
+
+<!-- /ANCHOR:overview -->
+
+---
+
+## 2. SPEC PACKETS (FULL AUDIT TRAIL)
 
 Located under: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/`
 
@@ -23,7 +51,7 @@ Located under: `.opencode/specs/system-spec-kit/026-graph-and-context-optimizati
 | 017-hybrid-fusion-empirical-recalibration | `24471c843` + `ee788254d` | `evidence/cells/*.json` + `sweep-results.md` + `phase2-comparison-017-recalibrated.md` |
 | 018-rerank-matrix-rebench | `38d4e2d62` | `evidence/rerank-matrix-results.md` + `phase2-comparison-018-final.md` + `evidence/nomic-coderankembed/phase2-comparison-nomic.md` |
 
-## Decision records (ADR-016 through ADR-021)
+## 3. DECISION RECORDS
 
 Located in: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/decision-record.md`
 
@@ -36,7 +64,7 @@ Located in: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/
 | ADR-020 | 017 RRF empirical recalibration (no-op finding + latency-optimum lock) |
 | ADR-021 | 018 jina-reranker-v3 production default + arc closure |
 
-## Bench harness sources
+## 4. BENCH HARNESS SOURCES
 
 Located in: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/`
 
@@ -47,7 +75,7 @@ Located in: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/
 | `rerank-matrix-bench.sh` + `rerank-matrix-analyze.py` | Reranker matrix harness (packet 018) |
 | `code-retrieval-fixture-corrected.json` | 18-probe corrected fixture (013 hardened) |
 
-## Per-embedder + per-reranker raw JSONLs
+## 5. PER-EMBEDDER + PER-RERANKER RAW JSONLS
 
 bge-code-v1 (017 final-gate, in-place; used as 018 lane data):
 - `phase2-bench/baseline-bge-017-recalibrated.results.jsonl`
@@ -59,7 +87,7 @@ nomic-CodeRankEmbed (this benchmark, follow-on):
 - `phase2-bench/bge-path-class-nomic-coderankembed.results.jsonl`
 - `phase2-bench/jina-v3-nomic-coderankembed.results.jsonl`
 
-## Code changes that ship with this benchmark
+## 6. CODE CHANGES THAT SHIP WITH THIS BENCHMARK
 
 | File | Packet | Change |
 |---|---|---|
@@ -72,6 +100,6 @@ nomic-CodeRankEmbed (this benchmark, follow-on):
 | `cocoindex_code/rerankers_jina_v3.py` | 011 carry-forward | Production default (was 011 Track B throwaway) |
 | `cocoindex_code/registered_embedders.py` | follow-on | `_DEFAULT_NAME` → nomic |
 
-## Predecessor bench
+## 7. PREDECESSOR BENCH
 
 - `../benchmark-2026-05-18/` -- May 18, 2026. 5-candidate bake-off. **STRUCTURALLY INVALIDATED** by stale-pipx-no-rerank-firing bug. Preserved as historical record.

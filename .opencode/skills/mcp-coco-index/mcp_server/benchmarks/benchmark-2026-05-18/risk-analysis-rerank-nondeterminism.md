@@ -19,19 +19,29 @@ contextType: "reference"
 
 ## TABLE OF CONTENTS
 
-- [1. THE QUESTION](#1--the-question)
-- [2. THE 4 UNIQUE WINS](#2--the-4-unique-wins)
-- [3. SOURCES OF RERANK NON-DETERMINISM](#3--sources-of-rerank-non-determinism)
-- [4. PER-PROBE FRAGILITY ESTIMATE](#4--per-probe-fragility-estimate)
-- [5. WHAT WE NEED TO MEASURE](#5--what-we-need-to-measure)
-- [6. MITIGATION OPTIONS](#6--mitigation-options)
-- [7. RECOMMENDED PRE-CONFIRMATION STEPS](#7--recommended-pre-confirmation-steps)
-- [8. PROMOTION-RULE IMPACT](#8--promotion-rule-impact)
+- [1. OVERVIEW](#1--overview)
+- [2. THE QUESTION](#2--the-question)
+- [3. THE 4 UNIQUE WINS](#3--the-4-unique-wins)
+- [4. SOURCES OF RERANK NON-DETERMINISM](#4--sources-of-rerank-non-determinism)
+- [5. PER-PROBE FRAGILITY ESTIMATE](#5--per-probe-fragility-estimate)
+- [6. WHAT WE NEED TO MEASURE](#6--what-we-need-to-measure)
+- [7. MITIGATION OPTIONS](#7--mitigation-options)
+- [8. RECOMMENDED PRE-CONFIRMATION STEPS](#8--recommended-pre-confirmation-steps)
+- [9. PROMOTION-RULE IMPACT](#9--promotion-rule-impact)
+
+---
+
+<!-- ANCHOR:overview -->
+## 1. OVERVIEW
+
+This risk analysis asks whether `bge-code-v1`'s +2-pair lead over the May 18, 2026 three-way tie is robust under cross-encoder rerank non-determinism. The follow-up sections unpack the 4 unique wins, enumerate six sources of variance, size the per-probe fragility, propose instrumentation, and prescribe pre-confirmation steps before the 3-run replay.
+
+<!-- /ANCHOR:overview -->
 
 ---
 
 <!-- ANCHOR:the-question -->
-## 1. THE QUESTION
+## 2. THE QUESTION
 
 The May 18, 2026 bake-off measured bge-code-v1 at **11/18 = 61.1%** vs jina-code / gemma / nomic all tied at 9/18 = 50.0%. The +2-pair lead comes entirely from 4 probes that ONLY bge-code-v1 hit (probes 3, 10, 14, 18) minus 2 probes that bge-code-v1 missed but others hit (probes 5, 8).
 
@@ -45,7 +55,7 @@ The 3-run confirmation in `016/007/003-bge-code-v1-confirmation-and-promote/` is
 ---
 
 <!-- ANCHOR:the-4-unique-wins -->
-## 2. THE 4 UNIQUE WINS
+## 3. THE 4 UNIQUE WINS
 
 From `per-probe.jsonl` (72 rows = 4 embedders × 18 probes):
 
@@ -71,7 +81,7 @@ Expected unique-wins per run under these priors: 4 × (average hold probability 
 ---
 
 <!-- ANCHOR:sources-of-rerank-non-determinism -->
-## 3. SOURCES OF RERANK NON-DETERMINISM
+## 4. SOURCES OF RERANK NON-DETERMINISM
 
 Six independent variance sources in the current `cocoindex_code/reranker.py` pipeline:
 
@@ -108,7 +118,7 @@ Model loading via `SentenceTransformer(name, trust_remote_code=True)` involves c
 ---
 
 <!-- ANCHOR:per-probe-fragility-estimate -->
-## 4. PER-PROBE FRAGILITY ESTIMATE
+## 5. PER-PROBE FRAGILITY ESTIMATE
 
 The fragility of each unique win depends on the **score margin** between the correct answer's cross-encoder score and the next-best candidate's score.
 
@@ -129,7 +139,7 @@ Without that data, fragility is an unknown — but the structural analysis in §
 ---
 
 <!-- ANCHOR:what-we-need-to-measure -->
-## 5. WHAT WE NEED TO MEASURE
+## 6. WHAT WE NEED TO MEASURE
 
 One-time instrumentation cost: add cross-encoder score logging to `cocoindex_code/reranker.py` for a single bench run, then analyze the JSONL.
 
@@ -150,7 +160,7 @@ This single observation tells us whether to:
 ---
 
 <!-- ANCHOR:mitigation-options -->
-## 6. MITIGATION OPTIONS
+## 7. MITIGATION OPTIONS
 
 Ordered from cheapest to most invasive:
 
@@ -192,7 +202,7 @@ Run each probe N=3 times within a single bench candidate, take the majority answ
 ---
 
 <!-- ANCHOR:recommended-pre-confirmation-steps -->
-## 7. RECOMMENDED PRE-CONFIRMATION STEPS
+## 8. RECOMMENDED PRE-CONFIRMATION STEPS
 
 Sequence before launching `016/007/003-bge-code-v1-confirmation-and-promote/`:
 
@@ -210,7 +220,7 @@ Total pre-work: under 1 hour. Avoids burning 3.5 hours of bench compute on a fla
 ---
 
 <!-- ANCHOR:promotion-rule-impact -->
-## 8. PROMOTION-RULE IMPACT
+## 9. PROMOTION-RULE IMPACT
 
 The current promote rule in `016/007/003` spec.md §3:
 
