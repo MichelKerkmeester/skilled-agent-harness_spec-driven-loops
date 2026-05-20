@@ -26,9 +26,9 @@ _memory:
 
 | Phase | What | Status |
 |-------|------|--------|
-| **A** | Scaffold the skill folder structure (`scripts/`, `tests/`, `pyproject.toml`, `.env.example`, SKILL.md stubs) | Planned |
-| **B** | Author `rerank_sidecar.py` — FastAPI app, sentence-transformers wrapper, `asyncio.Lock`, sigmoid output, `/health` + `/warmup` + `/rerank` endpoints, SIGTERM handler | Planned |
-| **C** | Author `install.sh` (venv + pip install) and `start.sh` (activate + exec uvicorn). Pin revision sha for Qwen3-Reranker-0.6B. Pytest cases for REQ-001..REQ-004 | Planned |
+| **A** | Scaffold the skill folder structure (`scripts/`, `tests/`, `pyproject.toml`, `.env.example`, SKILL.md stubs) | Complete |
+| **B** | Author `rerank_sidecar.py` — FastAPI app, sentence-transformers wrapper, `asyncio.Lock`, sigmoid output, `/health` + `/warmup` + `/rerank` endpoints, SIGTERM handler | Complete |
+| **C** | Author `install.sh` (venv + pip install) and `start.sh` (activate + exec uvicorn). Pin revision sha for Qwen3-Reranker-0.6B. Pytest cases for REQ-001..REQ-004 | Complete |
 <!-- /ANCHOR:summary -->
 
 ---

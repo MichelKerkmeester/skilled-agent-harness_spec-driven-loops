@@ -39,7 +39,7 @@ Phase 002 of the 008 rerank-sidecar arc. Build the shared HTTP cross-encoder ser
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-05-20 |
 | **Branch** | `main` |
 | **Parent Arc** | `008-rerank-sidecar-arc` |
