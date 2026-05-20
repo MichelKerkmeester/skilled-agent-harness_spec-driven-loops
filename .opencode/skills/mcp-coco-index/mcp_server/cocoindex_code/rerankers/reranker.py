@@ -168,7 +168,8 @@ class CrossEncoderRerankerAdapter:
         if model is None:
             if diagnostics is not None:
                 diagnostics.record_reranker_fallback("model_load_failed")
-            return candidates
+            fb = _try_fallback_reranker(query, candidates, top_k, diagnostics=diagnostics)
+            return fb if fb is not None else candidates
 
         rerank_count = max(1, min(top_k, len(candidates)))
         head = candidates[:rerank_count]
@@ -179,12 +180,13 @@ class CrossEncoderRerankerAdapter:
             scores = [float(score) for score in model.predict(pairs)]
         except Exception as exc:
             logger.warning(
-                "Cross-encoder rerank failed: %s; returning original order",
+                "Cross-encoder rerank failed: %s; trying fallback chain",
                 exc,
             )
             if diagnostics is not None:
                 diagnostics.record_reranker_fallback("model_error")
-            return candidates
+            fb = _try_fallback_reranker(query, candidates, top_k, diagnostics=diagnostics)
+            return fb if fb is not None else candidates
 
         # ADR-015 Phase 2: path-class boost (flag-gated, no-op when disabled)
         scores = _apply_path_class_boost(scores, head)
@@ -208,6 +210,26 @@ class CrossEncoderRerankerAdapter:
 # Backward-compat alias: existing imports of `RerankerAdapter` continue to resolve
 # to the cross-encoder implementation (tests + downstream callers unchanged).
 RerankerAdapter = CrossEncoderRerankerAdapter
+
+
+def _try_fallback_reranker(
+    query: str,
+    candidates: list,
+    top_k: int,
+    *,
+    diagnostics=None,
+) -> list | None:
+    """If COCOINDEX_RERANK_FALLBACK_MODEL is set, try that model when the primary fails."""
+    fb_name = os.environ.get("COCOINDEX_RERANK_FALLBACK_MODEL", "").strip()
+    if not fb_name or fb_name == _DEFAULT_RERANK_MODEL:
+        return None
+    try:
+        fb_adapter = get_reranker_adapter(fb_name)
+        logger.warning("Falling back to reranker %r", fb_name)
+        return fb_adapter.rerank(query, candidates, top_k, diagnostics=diagnostics)
+    except Exception as exc:  # pragma: no cover - fallback best-effort
+        logger.warning("Fallback reranker %r also failed: %s", fb_name, exc)
+        return None
 
 
 def get_reranker_adapter(model_name: str = _DEFAULT_RERANK_MODEL) -> Any:
