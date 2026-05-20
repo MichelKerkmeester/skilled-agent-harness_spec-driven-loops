@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/004-spec-memory-rerank-benchmark"
     last_updated_at: "2026-05-20T00:00:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Plan authored"
-    next_safe_action: "Begin Phase A fixture audit"
+    recent_action: "Benchmark complete; HOLD verdict documented"
+    next_safe_action: "Phase 005 consumes benchmark_report.md Section 8"
     blockers: []
 ---
 # Implementation Plan: spec-memory rerank A/B benchmark
@@ -26,9 +26,9 @@ _memory:
 
 | Phase | What | Status |
 |-------|------|--------|
-| **A** | Author 50-60 probe fixture (extend cat-24/409 + import 416/417/418 + add 20 fresh paraphrase queries with verified gold docs) | Planned |
-| **B** | Author harness script `scripts/run-ab.sh` that toggles `SPECKIT_CROSS_ENCODER` between runs and captures per-probe JSONL | Planned |
-| **C** | Run benchmark n=5 per arm; analyze; author sk-doc-compliant `benchmark_report.md`; document decision | Planned |
+| **A** | Author 50-probe fixture (extend cat-24/409 + import 416/417/418 + add 28 fresh paraphrase/current-corpus queries with verified gold docs) | Complete |
+| **B** | Author harness script `scripts/run-ab.sh` that toggles `SPECKIT_CROSS_ENCODER` between runs and captures per-probe JSONL | Complete |
+| **C** | Run benchmark n=5 per arm; analyze; author sk-doc-compliant `benchmark_report.md`; document decision | Complete — HOLD |
 <!-- /ANCHOR:summary -->
 
 ---

@@ -15,8 +15,8 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/004-spec-memory-rerank-benchmark"
     last_updated_at: "2026-05-20T00:00:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Spec authored"
-    next_safe_action: "Begin Phase A fixture audit"
+    recent_action: "Benchmark complete; HOLD verdict documented"
+    next_safe_action: "Phase 005 consumes benchmark_report.md Section 8"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-MM-DD-rerank-ab/"
@@ -38,7 +38,7 @@ Phase 004 of the 008 rerank-sidecar arc. Quantify the actual quality lift of Qwe
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete — HOLD |
 | **Created** | 2026-05-20 |
 | **Branch** | `main` |
 | **Parent Arc** | `008-rerank-sidecar-arc` |
