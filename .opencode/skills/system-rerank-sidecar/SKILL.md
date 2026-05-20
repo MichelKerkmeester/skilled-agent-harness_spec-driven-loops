@@ -167,7 +167,7 @@ bash scripts/start.sh
 ### Consumers
 
 - **mk-spec-memory** consumes via `mcp_server/lib/search/cross-encoder.ts:local` when `SPECKIT_CROSS_ENCODER=true`. Per arc 008 phase 005 HOLD, this is opt-in (not default).
-- **CocoIndex** currently bundles its own Qwen instance. Repointing it at this shared sidecar is a future packet candidate (out of arc 008 scope).
+- **mcp-coco-index** consumes via `HttpSidecarRerankerAdapter` (`cocoindex_code/rerankers/reranker.py`). Default-on as of arc 008 phase 006 (`COCOINDEX_RERANK_VIA_SIDECAR=true`); bundled `CrossEncoderRerankerAdapter` is retained as the HTTP-failure fallback. The cocoindex MCP startup auto-ensures the sidecar via `cli.py::_ensure_rerank_sidecar_for_mcp`.
 
 ### RAM Budget + macOS Notes
 

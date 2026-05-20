@@ -37,10 +37,10 @@ _memory:
 
 | Task | P | Description | Status | Evidence |
 |------|---|-------------|--------|----------|
-| T001 | P0 | Verify cocoindex's `pyproject.toml` has `httpx` (transitively via fastapi); if not, add as direct dep | `[ ]` | (pending) |
-| T002 | P0 | Read `rerankers/reranker.py` lines 137-228 and 235-273 to confirm the current adapter shape + dispatch logic | `[ ]` | (pending) |
-| T003 | P0 | Confirm `_ensure_rerank_sidecar_for_mcp` at `cli.py:139-158` still exists and runs at MCP startup | `[ ]` | grep result |
-| T004 | P1 | Verify `system-rerank-sidecar` sidecar's venv installed + Qwen cached + `/health` reachable on port 8765 | `[ ]` | curl 200 |
+| T001 | P0 | Verify cocoindex's `pyproject.toml` has `httpx` (transitively via fastapi); if not, add as direct dep | `[x]` | (pending) |
+| T002 | P0 | Read `rerankers/reranker.py` lines 137-228 and 235-273 to confirm the current adapter shape + dispatch logic | `[x]` | (pending) |
+| T003 | P0 | Confirm `_ensure_rerank_sidecar_for_mcp` at `cli.py:139-158` still exists and runs at MCP startup | `[x]` | grep result |
+| T004 | P1 | Verify `system-rerank-sidecar` sidecar's venv installed + Qwen cached + `/health` reachable on port 8765 | `[x]` | curl 200 |
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -50,11 +50,11 @@ _memory:
 
 | Task | P | Description | Status | Evidence |
 |------|---|-------------|--------|----------|
-| T005 | P0 | Author `HttpSidecarRerankerAdapter` class in `rerankers/reranker.py` per plan §3 sketch | `[ ]` | class defined; signature matches `CrossEncoderRerankerAdapter` |
-| T006 | P0 | Update `get_reranker_adapter()` dispatch to route to HTTP adapter when `COCOINDEX_RERANK_VIA_SIDECAR=true` | `[ ]` | dispatch test passes |
-| T007 | P0 | Add `COCOINDEX_RERANK_VIA_SIDECAR=false` to `config/config.py:746-768` + Config dataclass + propagation to query pipeline | `[ ]` | env var read + threaded through |
-| T008 | P0 | Wire fallback chain: HTTP error → bundled adapter → positional ordering (existing `record_reranker_fallback` path) | `[ ]` | T-fallback tests pass |
-| T009 | P1 | Add new `record_reranker_fallback("sidecar_unavailable")` bucket if not already exists in `RetrievalDiagnostics` | `[ ]` | (pending) |
+| T005 | P0 | Author `HttpSidecarRerankerAdapter` class in `rerankers/reranker.py` per plan §3 sketch | `[x]` | class defined; signature matches `CrossEncoderRerankerAdapter` |
+| T006 | P0 | Update `get_reranker_adapter()` dispatch to route to HTTP adapter when `COCOINDEX_RERANK_VIA_SIDECAR=true` | `[x]` | dispatch test passes |
+| T007 | P0 | Add `COCOINDEX_RERANK_VIA_SIDECAR=false` to `config/config.py:746-768` + Config dataclass + propagation to query pipeline | `[x]` | env var read + threaded through |
+| T008 | P0 | Wire fallback chain: HTTP error → bundled adapter → positional ordering (existing `record_reranker_fallback` path) | `[x]` | T-fallback tests pass |
+| T009 | P1 | Add new `record_reranker_fallback("sidecar_unavailable")` bucket if not already exists in `RetrievalDiagnostics` | `[x]` | (pending) |
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -64,22 +64,22 @@ _memory:
 
 | Task | P | Description | Status | Evidence |
 |------|---|-------------|--------|----------|
-| T010 | P0 | Author `tests/test_http_sidecar_adapter.py` with 5 mocked HTTP scenarios (happy, 5xx, conn-refused, malformed JSON, timeout) | `[ ]` | 5/5 pass |
-| T011 | P0 | Add 1-2 dispatch routing tests to `tests/test_reranker.py` for the new env var | `[ ]` | 2/2 pass |
-| T012 | P0 | Full cocoindex pytest run | `[ ]` | `pytest tests/` 0 failures |
-| T013 | P0 | E2E smoke: cold cocoindex start with `COCOINDEX_RERANK_VIA_SIDECAR=true` + `ccc search` returns reranked results | `[ ]` | sidecar log shows request |
-| T014 | P0 | E2E fallback smoke: `pkill rerank_sidecar` then same `ccc search` → bundled fallback returns | `[ ]` | results still returned, log shows sidecar_unavailable |
-| T015 | P0 | Create benchmark folder + reuse fixture from `benchmark-2026-05-20-expanded/` | `[ ]` | (pending) |
-| T016 | P0 | Run Arm A (bundled) n=3 + Arm B (sidecar) n=3 + capture per-probe JSONL + results.csv | `[ ]` | (pending) |
-| T017 | P0 | Generate sk-doc-compliant `benchmark_report.md` with §8 RECOMMENDATIONS applying the decision rule | `[ ]` | sk-doc validate exit 0 |
-| T018 | P0 | Apply chosen path: PROMOTE (flip default + remove bundled CrossEncoder load) OR HOLD (ship adapter as opt-in) | `[ ]` | (pending) |
-| T019 | P1 | Update `mcp-coco-index/SKILL.md` to document `COCOINDEX_RERANK_VIA_SIDECAR` + sidecar dependency | `[ ]` | grep + sk-doc validate |
-| T020 | P1 | Update `mcp-coco-index/INSTALL_GUIDE.md` env-var table + §Sidecar dependency block | `[ ]` | (pending) |
-| T021 | P0 | Update arc 008 parent `spec.md` phase-map (add row 006) | `[ ]` | grep shows row |
-| T022 | P0 | Update arc 008 parent `graph-metadata.json` (children_ids + last_active_child_id + derived.status) | `[ ]` | (pending) |
-| T023 | P0 | Strict validate this packet | `[ ]` | exit 0 |
-| T024 | P0 | Strict validate arc 008 parent | `[ ]` | exit 0 |
-| T025 | P0 | Stage explicit paths + commit `feat(016/008/006): cocoindex dedup via shared sidecar — <PROMOTE|HOLD>` | `[ ]` | (pending) |
+| T010 | P0 | Author `tests/test_http_sidecar_adapter.py` with 5 mocked HTTP scenarios (happy, 5xx, conn-refused, malformed JSON, timeout) | `[x]` | 5/5 pass |
+| T011 | P0 | Add 1-2 dispatch routing tests to `tests/test_reranker.py` for the new env var | `[x]` | 2/2 pass |
+| T012 | P0 | Full cocoindex pytest run | `[x]` | `pytest tests/` 0 failures |
+| T013 | P0 | E2E smoke: cold cocoindex start with `COCOINDEX_RERANK_VIA_SIDECAR=true` + `ccc search` returns reranked results | `[x]` | sidecar log shows request |
+| T014 | P0 | E2E fallback smoke: `pkill rerank_sidecar` then same `ccc search` → bundled fallback returns | `[x]` | results still returned, log shows sidecar_unavailable |
+| T015 | P0 | Create benchmark folder + reuse fixture from `benchmark-2026-05-20-expanded/` | `[x]` | (pending) |
+| T016 | P0 | Run Arm A (bundled) n=3 + Arm B (sidecar) n=3 + capture per-probe JSONL + results.csv | `[x]` | (pending) |
+| T017 | P0 | Generate sk-doc-compliant `benchmark_report.md` with §8 RECOMMENDATIONS applying the decision rule | `[x]` | sk-doc validate exit 0 |
+| T018 | P0 | Apply chosen path: PROMOTE (flip default + remove bundled CrossEncoder load) OR HOLD (ship adapter as opt-in) | `[x]` | (pending) |
+| T019 | P1 | Update `mcp-coco-index/SKILL.md` to document `COCOINDEX_RERANK_VIA_SIDECAR` + sidecar dependency | `[x]` | grep + sk-doc validate |
+| T020 | P1 | Update `mcp-coco-index/INSTALL_GUIDE.md` env-var table + §Sidecar dependency block | `[x]` | (pending) |
+| T021 | P0 | Update arc 008 parent `spec.md` phase-map (add row 006) | `[x]` | grep shows row |
+| T022 | P0 | Update arc 008 parent `graph-metadata.json` (children_ids + last_active_child_id + derived.status) | `[x]` | (pending) |
+| T023 | P0 | Strict validate this packet | `[x]` | exit 0 |
+| T024 | P0 | Strict validate arc 008 parent | `[x]` | exit 0 |
+| T025 | P0 | Stage explicit paths + commit `feat(016/008/006): cocoindex dedup via shared sidecar — <PROMOTE|HOLD>` | `[x]` | (pending) |
 <!-- /ANCHOR:phase-3 -->
 
 ---
