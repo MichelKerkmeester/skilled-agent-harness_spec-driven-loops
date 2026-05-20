@@ -7,17 +7,22 @@
   "manual": {
     "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023B-fixture-calibration",
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023E-request-budget-hardening"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "023C retrieval observability",
       "cocoindex diagnostics",
       "index fingerprint",
-      "retrieval-stage counters"
+      "retrieval-stage counters",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023C-retrieval-observability",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "016-embedder-testing-and-architecture",
+      "004-code-index-stack",
+      "023c-retrieval-observability",
+      "feature",
+      "specification"
     ],
     "key_topics": [
       "retrieval",
@@ -26,9 +31,14 @@
       "fingerprint",
       "mcp-coco-index",
       "reranker",
-      "status"
+      "status",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "016-embedder-testing-and-architecture",
+      "004-code-index-stack",
+      "023c-retrieval-observability"
     ],
-    "importance_tier": "high",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
@@ -74,8 +84,6 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ],
-    "last_active_child_id": null,
-    "last_active_at": "2026-05-19T00:00:00.000Z"
+    ]
   }
 }

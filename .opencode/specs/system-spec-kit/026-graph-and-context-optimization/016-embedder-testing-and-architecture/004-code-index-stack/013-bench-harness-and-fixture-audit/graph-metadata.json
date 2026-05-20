@@ -11,158 +11,28 @@
   },
   "derived": {
     "trigger_phrases": [
-      "016/004/013 bench harness hardening",
-      "phase 2 path extraction regex fix",
-      "code retrieval fixture audit",
-      "probe 10 fixture truth",
-      "bench measurement quality",
-      "016/004/013 plan",
-      "bench harness hardening plan",
-      "fixture audit plan",
-      "016/004/013 tasks",
-      "bench harness hardening tasks",
-      "016/004/013 checklist",
-      "bench harness verification"
+      "bench harness and fixture audit",
+      "bench harness and fixture audit graph metadata"
     ],
     "key_topics": [
-      "016",
-      "004",
-      "013",
       "bench",
       "harness",
-      "hardening",
-      "phase",
-      "path",
-      "extraction",
-      "regex",
-      "fix",
-      "code"
+      "fixture",
+      "audit"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
-      "scratch/test_path_extraction.py",
-      "evidence/fixture-audit-summary.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit/plan.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit/tasks.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit/implementation-summary.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit/description.json",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit/graph-metadata.json",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit/scratch/test_path_extraction.py",
-      "spec.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "entities": [
-      {
-        "name": "generate-context.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
-        "source": "derived"
-      },
-      {
-        "name": "test_path_extraction.py",
-        "kind": "file",
-        "path": "scratch/test_path_extraction.py",
-        "source": "derived"
-      },
-      {
-        "name": "fixture-audit-summary.md",
-        "kind": "doc",
-        "path": "evidence/fixture-audit-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit/plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit/tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit/implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "Bench Harness Hardening",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Full Fixture Audit",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "The Phase",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Existing Phase",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Measurement Integrity",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fixture Audit",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Canonical Python",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Historical Phase",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      }
-    ],
-    "causal_summary": "The Phase 2 bench produced a verdict that DeepSeek synthesized into a recommendation, but the deep-dive surfaced TWO measurement-quality defects that undermine the verdict's reliability:",
+    "entities": [],
+    "causal_summary": "Graph metadata for the current packet.",
     "created_at": "2026-05-19T10:32:52.990Z",
-    "last_save_at": "2026-05-19T10:35:10.415Z",
+    "last_save_at": "2026-05-19T20:42:43.960Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
