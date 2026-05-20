@@ -323,7 +323,7 @@ def _check_registry_contract() -> DoctorCheck:
             name="Registry metadata contract",
             status="FAIL",
             message=str(exc),
-            remediation="Fix cocoindex_code.registry so every model exposes prompt and license metadata.",
+            remediation="Fix cocoindex_code.embedders.registry so every model exposes prompt and license metadata.",
             details={"error": str(exc)},
         )
     return DoctorCheck(
@@ -1117,7 +1117,7 @@ def reset(
 
     # Remove project from daemon first so it releases file handles
     try:
-        from .client import DaemonClient
+        from .core.client import DaemonClient
 
         client = DaemonClient.connect()
         client.handshake()
@@ -1213,7 +1213,7 @@ def daemon_status() -> None:
 @daemon_app.command("restart")
 def daemon_restart() -> None:
     """Restart the daemon."""
-    from .client import _wait_for_daemon, start_daemon, stop_daemon
+    from .core.client import _wait_for_daemon, start_daemon, stop_daemon
 
     _typer.echo("Stopping daemon...")
     stop_daemon()
@@ -1231,7 +1231,7 @@ def daemon_restart() -> None:
 @daemon_app.command("stop")
 def daemon_stop() -> None:
     """Stop the daemon."""
-    from .client import is_daemon_running, stop_daemon
+    from .core.client import is_daemon_running, stop_daemon
     from .daemon import daemon_pid_path
 
     pid_path = daemon_pid_path()

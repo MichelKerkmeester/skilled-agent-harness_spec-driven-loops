@@ -543,7 +543,7 @@ class ProjectRegistry:
     def _write_index_metadata(self, project_root: str) -> None:
         chunk_count, file_count = self._index_counts(project_root)
         embedding_model, embedding_provider = self._embedding_settings()
-        from .indexer import write_index_metadata
+        from .indexer.indexer import write_index_metadata
 
         write_index_metadata(
             Path(project_root),
@@ -1078,7 +1078,7 @@ async def _dispatch(
 
 def run_daemon() -> None:
     """Main entry point for the daemon process (blocking)."""
-    from .registry import validate_registry
+    from .embedders.registry import validate_registry
 
     validate_registry()
     daemon_dir().mkdir(parents=True, exist_ok=True)

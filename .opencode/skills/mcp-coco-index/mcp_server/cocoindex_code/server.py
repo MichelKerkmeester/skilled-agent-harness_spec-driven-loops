@@ -412,8 +412,8 @@ def main() -> None:
     """
     import argparse
 
-    from .client import ensure_daemon
-    from .settings import (
+    from .core.client import ensure_daemon
+    from .config.settings import (
         EmbeddingSettings,
         LanguageOverride,
         default_project_settings,

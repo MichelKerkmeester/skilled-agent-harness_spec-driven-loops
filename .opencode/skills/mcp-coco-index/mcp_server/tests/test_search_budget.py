@@ -113,7 +113,7 @@ def test_fetch_k_clamped(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> Non
 
 
 def test_language_fanout_capped(caplog: pytest.LogCaptureFixture) -> None:
-    caplog.set_level("WARNING", logger="cocoindex_code.search_budget")
+    caplog.set_level("WARNING", logger="cocoindex_code.retrieval.search_budget")
     languages = [f"lang{idx}" for idx in range(9)]
 
     budgeted = validate_search_budget(limit=10, offset=0, languages=languages)

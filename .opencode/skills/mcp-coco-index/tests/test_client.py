@@ -19,7 +19,7 @@ from pathlib import Path
 import pytest
 
 from cocoindex_code._version import __version__
-from cocoindex_code.client import DaemonClient
+from cocoindex_code.core.client import DaemonClient
 from cocoindex_code.daemon import _connection_family
 from cocoindex_code.protocol import (
     HandshakeRequest,
@@ -54,8 +54,8 @@ def daemon_env(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> tuple[Path, s
 
     # Override socket/pid paths for short AF_UNIX paths
     monkeypatch.setattr("cocoindex_code.daemon.daemon_socket_path", lambda: sock_path)
-    monkeypatch.setattr("cocoindex_code.client.daemon_socket_path", lambda: sock_path)
-    monkeypatch.setattr("cocoindex_code.client.daemon_pid_path", lambda: pid_path)
+    monkeypatch.setattr("cocoindex_code.core.client.daemon_socket_path", lambda: sock_path)
+    monkeypatch.setattr("cocoindex_code.core.client.daemon_pid_path", lambda: pid_path)
 
     return user_dir, sock_path, pid_path
 
@@ -105,7 +105,7 @@ def test_client_connect_refuses_when_no_daemon(
 ) -> None:
     sock_dir = Path(tempfile.mkdtemp(prefix="ccc_noconn_"))
     sock_path = str(sock_dir / "d.sock")
-    monkeypatch.setattr("cocoindex_code.client.daemon_socket_path", lambda: sock_path)
+    monkeypatch.setattr("cocoindex_code.core.client.daemon_socket_path", lambda: sock_path)
 
     with pytest.raises(ConnectionRefusedError):
         DaemonClient.connect()

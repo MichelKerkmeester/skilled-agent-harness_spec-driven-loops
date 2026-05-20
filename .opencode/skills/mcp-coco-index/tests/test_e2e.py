@@ -23,7 +23,7 @@ from cocoindex.connectors import sqlite as coco_sqlite
 from typer.testing import CliRunner
 
 from cocoindex_code.cli import app
-from cocoindex_code.client import stop_daemon
+from cocoindex_code.core.client import stop_daemon
 from cocoindex_code.settings import find_parent_with_marker
 
 runner = CliRunner()

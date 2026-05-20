@@ -125,7 +125,7 @@ def test_jina_adapter_invalid_max_doc_chars_falls_back(
     adapter._model = fake_model
     adapter._device = "cpu"
     monkeypatch.setenv("COCOINDEX_RERANK_JINA_MAX_DOC_CHARS", "bad")
-    caplog.set_level(logging.WARNING, logger="cocoindex_code.config")
+    caplog.set_level(logging.WARNING, logger="cocoindex_code.config.config")
 
     candidates = [
         _candidate("a.py", 0.5, content="content of a"),
@@ -151,7 +151,7 @@ def test_jina_adapter_ignores_default_path_class_boost_without_explicit_factors(
     adapter._device = "cpu"
     monkeypatch.setenv("COCOINDEX_RERANK_PATH_CLASS_BOOST", "1")
     monkeypatch.delenv("COCOINDEX_RERANK_PATH_CLASS_FACTORS", raising=False)
-    caplog.set_level(logging.WARNING, logger="cocoindex_code.reranker")
+    caplog.set_level(logging.WARNING, logger="cocoindex_code.rerankers.reranker")
 
     candidates = [
         _path_candidate("src/impl.py", 0.5, "implementation"),
