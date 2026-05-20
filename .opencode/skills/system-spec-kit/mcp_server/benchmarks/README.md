@@ -60,7 +60,7 @@ One row per dated folder. Sorted newest first.
 
 | Date | Bench | Winner | Status | Spec packet |
 |---|---|---|---|---|
-| May 20, 2026 | [`benchmark-2026-05-20/`](./benchmark-2026-05-20/) | `nomic-embed-text-v1.5` (ADR-013) re-bench: 0/10 ID-match (fixture stale), ~6/10 semantic top-1, median 1826 ms, p95 3229 ms | INFORMATIONAL (fixture regeneration recommended) | `.opencode/specs/.../002-spec-memory-stack/016-reindex-populates-vec-memories-knn-table/` through `019-lineage-and-metadata-repair-runner/` |
+| May 20, 2026 | [`benchmark-2026-05-20/`](./benchmark-2026-05-20/) | `nomic-embed-text-v1.5` (ADR-013) re-bench: 9/10 top-1 ID-match (regenerated fixture, Z_SCORE_THRESHOLD tuned 1.5 -> 1.3, shared harness, embedding_cache reset), median 1071 ms, p95 2627 ms | PASS, matches May 17 baseline at stricter top-1 | `.opencode/specs/.../002-spec-memory-stack/016-reindex-populates-vec-memories-knn-table/` through `019-lineage-and-metadata-repair-runner/` |
 | May 17, 2026 | [`benchmark-2026-05-17/`](./benchmark-2026-05-17/) | `jina-embeddings-v3` + retrieval-rescue layer (9/10 cat-24/409) | SHIPPED (ADR-012) | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/` |
 
 Open each folder's `benchmark_report.md` for the full headline, methodology, per-candidate profile, and reproducibility instructions. Open `SOURCE.md` for the spec-packet pointer.

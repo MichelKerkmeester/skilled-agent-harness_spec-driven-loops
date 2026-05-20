@@ -1,52 +1,62 @@
 [
   {
     "query": "documentation verification checklist for the CocoIndex complete-fork author docs phase",
-    "expected_source_memory_id": 4460,
+    "expected_source_memory_id": 2000,
+    "expected_title_substring": "Verification Checklist: Author Fork Documentation",
     "paraphrase_difficulty": "easy"
   },
   {
     "query": "checklist for fixing V8 cross-spec contamination and ADR numeric prefix overreach in the local embeddings migration",
-    "expected_source_memory_id": 7007,
+    "expected_source_memory_id": 1620,
+    "expected_title_substring": "040 V-rule cross-spec overreach fix",
     "paraphrase_difficulty": "medium"
   },
   {
     "query": "deep-research summary comparing Contextador's retrieval ergonomics and MCP query surface against Public's existing substrate",
-    "expected_source_memory_id": 7479,
+    "expected_source_memory_id": 954,
+    "expected_title_substring": "research-and-baseline",
     "paraphrase_difficulty": "medium"
   },
   {
     "query": "ADR about consolidating spec-kit templates into the level and addendum generator instead of leaving compose scripts separate",
-    "expected_source_memory_id": 8048,
+    "expected_source_memory_id": 1404,
+    "expected_title_substring": "Decision Record: Template System Consolidation",
     "paraphrase_difficulty": "medium"
   },
   {
     "query": "research packet for turning review findings into fix-completeness inventories and cross-surface planner checks",
-    "expected_source_memory_id": 7639,
+    "expected_source_memory_id": 1047,
+    "expected_title_substring": "Feature Specification: Fix-Iteration Quality Meta-Research",
     "paraphrase_difficulty": "hard"
   },
   {
     "query": "implementation summary for the FIX-010-v2 remediation of packet docs, review strategy state, and inert planner imports",
-    "expected_source_memory_id": 7636,
+    "expected_source_memory_id": 1046,
+    "expected_title_substring": "Implementation Summary: FIX-010-v2",
     "paraphrase_difficulty": "easy"
   },
   {
     "query": "file ledger resource map for the testing playbook trio follow-up quality pass",
-    "expected_source_memory_id": 7183,
+    "expected_source_memory_id": 729,
+    "expected_title_substring": "Resource Map - 037 child 003 testing playbook trio",
     "paraphrase_difficulty": "easy"
   },
   {
     "query": "plan covering memory indexer invariants, PE lineage guardrails, scan recheck bypass, and constitutional tier cleanup",
-    "expected_source_memory_id": 12897,
+    "expected_source_memory_id": 1007,
+    "expected_title_substring": "Plan: Memory Indexer Invariants",
     "paraphrase_difficulty": "hard"
   },
   {
     "query": "stress-test task list tracking cat-14 pipeline gaps, cat-16 tooling fixes, and the remaining cat-24 memory-recall failure",
-    "expected_source_memory_id": 13310,
+    "expected_source_memory_id": 908,
+    "expected_title_substring": "Tasks: 052 Stress Test Expansion and Alignment",
     "paraphrase_difficulty": "hard"
   },
   {
     "query": "task checklist for the mxbai swap that planned a 20-scenario PASS sample across cat-01, cat-11, cat-15, cat-13, and cat-23",
-    "expected_source_memory_id": 13352,
+    "expected_source_memory_id": 1096,
+    "expected_title_substring": "Verification Checklist: Real-World Usefulness Test",
     "paraphrase_difficulty": "medium"
   }
 ]

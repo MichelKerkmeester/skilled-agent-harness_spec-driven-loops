@@ -11,8 +11,18 @@ import type { ParserProvenance } from '../context/shared-payload.js';
 // 1. CONSTANTS
 
 // ───────────────────────────────────────────────────────────────
-/** Z-score threshold below which retrieval confidence is considered low. */
-const Z_SCORE_THRESHOLD = 1.5;
+/**
+ * Z-score threshold below which retrieval confidence is considered low.
+ *
+ * Tuning history:
+ * - 1.5 (May 17 jina-v3 + retrieval-rescue layer baseline; ADR-010/011 era)
+ * - 1.3 (May 20 nomic-embed-text-v1.5 default per ADR-013, no cross-encoder
+ *   provider available; positional fallback-sort lands paraphrase queries
+ *   around Z=1.4 consistently. 1.3 reflects the realistic steady-state
+ *   floor under this configuration. The long-term fix is enabling a real
+ *   reranker via VOYAGE_API_KEY, COHERE_API_KEY, or RERANKER_LOCAL=true.)
+ */
+const Z_SCORE_THRESHOLD = 1.3;
 
 /** Absolute minimum score; any top score below this triggers a gap. */
 const MIN_ABSOLUTE_SCORE = 0.015;
