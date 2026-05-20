@@ -179,7 +179,7 @@ Replay entrypoint:
 Raw evidence lives in the 023B packet:
 
 ```text
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023B-fixture-calibration/evidence/runs/
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/007-fixture-calibration/evidence/runs/
 ```
 
 Relevant run files:
@@ -198,7 +198,7 @@ Relevant run files:
 ## 10. RELATED RESOURCES
 
 - [`SOURCE.md`](./SOURCE.md) -- fixture composition and harness pointer.
-- `023B-fixture-calibration/evidence/runs/` -- raw lane JSON.
+- `023-deep-research-arc-blind-spots/007-fixture-calibration/evidence/runs/` -- raw lane JSON.
 - `004-spec-memory-embedder-bake-off/decision-record.md` -- ADR-027.
 - `mcp_server/cocoindex_code/registered_embedders.py` -- default reranker registry source.
 <!-- /ANCHOR:related-resources -->

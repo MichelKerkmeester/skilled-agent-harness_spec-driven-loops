@@ -232,4 +232,5 @@ Dependencies:
 - Successor packets: 016 (query expansion), 017 (hybrid recalib), 018 (rerank matrix re-bench)
 - ADR target: `../../002-spec-memory-stack/004-spec-memory-embedder-bake-off/decision-record.md` (ADR-018)
 - Bench baseline: `../014-mirror-dedup-canonical-preference/evidence/phase2-comparison-014-dedup.md` (14/18 ceiling 015 must hold or improve)
+- **Dependency note**: 015 depends on 013's corrected fixture and 014's mirror dedup; 016-018 inherit 015's AST-body chunking as the candidate-set shape under test.
 <!-- /ANCHOR:cross-links -->

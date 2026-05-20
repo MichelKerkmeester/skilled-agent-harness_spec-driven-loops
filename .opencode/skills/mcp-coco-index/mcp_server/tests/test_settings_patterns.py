@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from cocoindex_code.settings import DEFAULT_INCLUDED_PATTERNS
+from cocoindex_code.config.settings import DEFAULT_INCLUDED_PATTERNS
 
 
 def test_default_patterns_include_svelte_and_vue() -> None:

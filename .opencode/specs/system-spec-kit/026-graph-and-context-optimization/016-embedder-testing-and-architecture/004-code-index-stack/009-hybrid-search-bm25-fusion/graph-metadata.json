@@ -17,7 +17,9 @@
       "016/011/003 plan",
       "hybrid search (bm25 + semantic fusion) plan",
       "016/011/003 tasks",
-      "016/011/003 summary"
+      "016/011/003 summary",
+      "cocoindex hybrid search",
+      "SQLite FTS5 RRF fusion"
     ],
     "key_topics": [
       "016",
@@ -36,12 +38,23 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "research/research.md",
       "spec.md",
       "plan.md",
+      "lib/search/sqlite-fts.ts",
+      "lib/search/pipeline/stage2-fusion.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts",
+      ".opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -52,6 +65,24 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "sqlite-fts.ts",
+        "kind": "code",
+        "path": "lib/search/sqlite-fts.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stage2-fusion.ts",
+        "kind": "code",
+        "path": "lib/search/pipeline/stage2-fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "rrf-fusion.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts",
         "source": "derived"
       },
       {
@@ -69,19 +100,19 @@
       {
         "name": "Hybrid Search",
         "kind": "proper_noun",
-        "path": "spec.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
         "name": "Semantic Fusion",
         "kind": "proper_noun",
-        "path": "spec.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
         "name": "Reciprocal Rank Fusion",
         "kind": "proper_noun",
-        "path": "spec.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -133,7 +164,7 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Completion Criteria Implementation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -145,46 +176,35 @@
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation (post-research, if go)",
+        "name": "Phase 2: Implementation",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "What Was Built Scaffolding",
+        "name": "What Was Built",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "How It Was Delivered Pending",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Decisions",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Known Limitations",
+        "name": "How It Was Delivered Implementation",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "This packet is part of §3 structural improvements identified in the 018/003 follow-up discussion (38.9% baseline hit rate, embedder swap unlikely to be the dominant lever). Research first, then plan, then implement.",
+    "causal_summary": "This packet is part of §3 structural improvements identified in the 018/003 follow-up discussion (38.9% baseline hit rate, embedder swap unlikely to be the dominant lever). Research converged on SQLite FTS5 + weighted RRF; implementation is now opt-in behind `COCOINDEX_HYBRID=true`.",
     "created_at": "2026-05-18T05:13:46.575Z",
-    "last_save_at": "2026-05-18T05:13:46.575Z",
+    "last_save_at": "2026-05-19T20:42:43.952Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md"
     ]
   }
 }

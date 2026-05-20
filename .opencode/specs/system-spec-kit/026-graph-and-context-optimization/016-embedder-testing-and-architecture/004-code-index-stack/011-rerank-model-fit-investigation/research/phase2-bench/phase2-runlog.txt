@@ -574,3 +574,35 @@
 [17:31:02] ==========================================
 [17:31:02] Phase 2 done. Comparison: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/017-hybrid-fusion-empirical-recalibration/evidence/phase2-comparison-017-recalibrated.md
 [17:31:02] ==========================================
+[18:53:43] ==========================================
+[18:53:43] Phase 2 Smoke Bench starting
+[18:53:43] Fixture: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/code-retrieval-fixture-corrected.json (18 probes)
+[18:53:43] Pinned embedder: sbert/BAAI/bge-code-v1
+[18:53:43] ==========================================
+[18:53:43] ==========================================
+[18:53:43] LANE START: baseline-bge
+[18:53:43]   rerank_model=BAAI/bge-reranker-v2-m3
+[18:53:43]   path_class_boost=0
+[18:53:43]   adapter=
+[18:53:43] killing ccc daemon (if any) to clear _ADAPTERS cache
+[18:54:24] LANE END: baseline-bge  wall_s=41
+[18:54:24] ==========================================
+[18:54:24] LANE START: bge-path-class
+[18:54:24]   rerank_model=BAAI/bge-reranker-v2-m3
+[18:54:24]   path_class_boost=1
+[18:54:24]   adapter=
+[18:54:24] killing ccc daemon (if any) to clear _ADAPTERS cache
+[18:55:04] LANE END: bge-path-class  wall_s=40
+[18:55:04] ==========================================
+[18:55:04] LANE START: jina-v3
+[18:55:04]   rerank_model=jinaai/jina-reranker-v3
+[18:55:04]   path_class_boost=0
+[18:55:04]   adapter=jina_v3
+[18:55:04] killing ccc daemon (if any) to clear _ADAPTERS cache
+[18:55:51] LANE END: jina-v3  wall_s=47
+[18:55:51] ==========================================
+[18:55:51] Phase 2 bench complete; running comparison synthesis
+[18:55:51] ==========================================
+[18:55:51] ==========================================
+[18:55:51] Phase 2 done. Comparison: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/018-rerank-matrix-rebench/evidence/nomic-coderankembed/phase2-comparison-nomic.md
+[18:55:51] ==========================================

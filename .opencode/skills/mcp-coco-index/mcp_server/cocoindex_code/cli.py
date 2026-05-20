@@ -43,11 +43,11 @@ except ImportError:
 import typer as _typer
 
 if TYPE_CHECKING:
-    from .client import DaemonClient
+    from .core.client import DaemonClient
 
-from .protocol import IndexingProgress, ProjectStatusResponse, SearchResponse
-from .search_budget import SearchBudgetExceeded, validate_search_budget
-from .settings import (
+from .core.protocol import IndexingProgress, ProjectStatusResponse, SearchResponse
+from .retrieval.search_budget import SearchBudgetExceeded, validate_search_budget
+from .config.settings import (
     default_project_settings,
     default_user_settings,
     find_parent_with_marker,
@@ -113,7 +113,7 @@ def require_daemon_for_project() -> tuple[DaemonClient, str]:
 
     Returns ``(client, project_root_str)``. Exits on failure.
     """
-    from .client import ensure_daemon
+    from .core.client import ensure_daemon
 
     project_root = require_project_root()
     try:
@@ -313,7 +313,7 @@ def _check_cli_parity() -> DoctorCheck:
 
 
 def _check_registry_contract() -> DoctorCheck:
-    from .registry import validate_registry
+    from .embedders.registry import validate_registry
 
     try:
         validate_registry()
@@ -399,7 +399,7 @@ def _check_sentence_transformers_version() -> DoctorCheck:
 
 
 def _active_models_from_env() -> tuple[str, str, bool, bool]:
-    from .registered_embedders import DEFAULT_EMBEDDER_NAME, DEFAULT_RERANKER_NAME
+    from .embedders.registered_embedders import DEFAULT_EMBEDDER_NAME, DEFAULT_RERANKER_NAME
 
     embedder = _os.environ.get("COCOINDEX_CODE_EMBEDDING_MODEL", DEFAULT_EMBEDDER_NAME).strip()
     reranker = _os.environ.get("COCOINDEX_RERANK_MODEL", DEFAULT_RERANKER_NAME).strip()
@@ -469,8 +469,8 @@ def _license_check(
 
 
 def _check_active_embedder_license(embedder: str, commercial_profile: bool) -> DoctorCheck:
-    from .registry import embedder_for
-    from .registered_embedders import commercial_safe_embedder_alternatives
+    from .embedders.registry import embedder_for
+    from .embedders.registered_embedders import commercial_safe_embedder_alternatives
 
     try:
         metadata = embedder_for(embedder)
@@ -494,8 +494,8 @@ def _check_active_reranker_license(
     rerank_enabled: bool,
     commercial_profile: bool,
 ) -> DoctorCheck:
-    from .registry import reranker_for
-    from .registered_embedders import commercial_safe_reranker_alternatives
+    from .embedders.registry import reranker_for
+    from .embedders.registered_embedders import commercial_safe_reranker_alternatives
 
     if not rerank_enabled:
         return DoctorCheck(
@@ -536,7 +536,7 @@ def _project_status_if_available() -> tuple[ProjectStatusResponse | None, str | 
     if project_root is None:
         return None, None, "Not in an initialized project directory."
     try:
-        from .client import ensure_daemon
+        from .core.client import ensure_daemon
 
         client = ensure_daemon()
         return client.project_status(str(project_root)), str(project_root), None
@@ -588,7 +588,7 @@ def _check_reindex_cost(
 ) -> DoctorCheck:
     chunk_count = status.total_chunks if status is not None else None
     if chunk_count is None and project_root is not None:
-        from .observability import read_index_meta
+        from .observability.observability import read_index_meta
 
         meta = read_index_meta(Path(project_root))
         if meta is not None and isinstance(meta.get("chunk_count"), int):
@@ -632,7 +632,7 @@ def _fingerprint_dict(
             "rrf_F": fp.rrf_F,
         }
 
-    from .observability import build_index_fingerprint
+    from .observability.observability import build_index_fingerprint
 
     chunk_count = status.total_chunks if status is not None else 0
     file_count = status.total_files if status is not None else 0
@@ -647,7 +647,7 @@ def _fingerprint_dict(
 def _embedder_license(model_name: str | None) -> str:
     if model_name is None:
         return "unknown"
-    from .registry import embedder_for
+    from .embedders.registry import embedder_for
 
     try:
         return embedder_for(model_name).license
@@ -656,7 +656,7 @@ def _embedder_license(model_name: str | None) -> str:
 
 
 def _runtime_rerank_top_k() -> int:
-    from .config import config
+    from .config.config import config
 
     return config.rerank_top_k
 
@@ -930,7 +930,7 @@ def init(
     force: bool = _typer.Option(False, "-f", "--force", help="Skip parent directory warning"),
 ) -> None:
     """Initialize a project for cocoindex-code."""
-    from .settings import project_settings_path as _project_settings_path
+    from .config.settings import project_settings_path as _project_settings_path
 
     cwd = Path.cwd().resolve()
     settings_file = _project_settings_path(cwd)
@@ -1046,7 +1046,7 @@ def search(
         _typer.echo(f"Search failed: {exc}", err=True)
         raise _typer.Exit(code=1)
 
-    from .client import ensure_daemon
+    from .core.client import ensure_daemon
 
     try:
         client = ensure_daemon()
@@ -1189,7 +1189,7 @@ async def _bg_index(client, project_root: str) -> None:  # type: ignore[no-untyp
 @daemon_app.command("status")
 def daemon_status() -> None:
     """Show daemon status."""
-    from .client import ensure_daemon
+    from .core.client import ensure_daemon
 
     try:
         client = ensure_daemon()

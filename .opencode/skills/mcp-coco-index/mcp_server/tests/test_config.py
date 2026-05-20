@@ -10,7 +10,7 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from cocoindex_code.config import (
+from cocoindex_code.config.config import (
     _DEFAULT_CANONICAL_MIRROR,
     _DEFAULT_CHUNK_OVERLAP,
     _DEFAULT_CHUNK_SIZE,
@@ -113,7 +113,7 @@ class TestConfigValidation:
                 },
                 clear=True,
             ),
-            patch("cocoindex_code.config._discover_codebase_root", return_value=tmp_path),
+            patch("cocoindex_code.config.config._discover_codebase_root", return_value=tmp_path),
         ):
             assert Config.from_env().codebase_root_path == tmp_path
 

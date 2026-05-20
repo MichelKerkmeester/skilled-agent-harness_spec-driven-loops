@@ -8,7 +8,7 @@ from cocoindex.ops.text import RecursiveSplitter
 
 import cocoindex_code.chunkers.code_aware as code_aware
 from cocoindex_code.chunkers import CodeAwareSplitter
-from cocoindex_code.indexer import _split_chunks
+from cocoindex_code.indexer.indexer import _split_chunks
 
 
 def _split(text: str, language: str, *, chunk_size: int = 1500) -> list:
@@ -210,7 +210,7 @@ def test_definition_extraction_failure_falls_back_with_counter(monkeypatch) -> N
 def test_indexer_dispatch_respects_code_aware_opt_out(monkeypatch) -> None:
     text = "def first():\n    return 1\n\ndef second():\n    return 2\n"
     monkeypatch.setattr(
-        "cocoindex_code.indexer.config",
+        "cocoindex_code.indexer.indexer.config",
         SimpleNamespace(code_aware_chunking=False, tree_sitter_languages={}),
     )
 
@@ -235,7 +235,7 @@ def test_indexer_dispatch_respects_code_aware_opt_out(monkeypatch) -> None:
 def test_indexer_dispatch_uses_code_aware_for_supported_language(monkeypatch) -> None:
     text = "def first():\n    return 1\n\ndef second():\n    return 2\n"
     monkeypatch.setattr(
-        "cocoindex_code.indexer.config",
+        "cocoindex_code.indexer.indexer.config",
         SimpleNamespace(code_aware_chunking=True, tree_sitter_languages={}),
     )
 

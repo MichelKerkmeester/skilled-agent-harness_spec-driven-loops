@@ -11,8 +11,8 @@ from typing import Any
 
 import numpy as np
 
-from cocoindex_code import query as query_module
-from cocoindex_code.fts_index import (
+from cocoindex_code.retrieval import query as query_module
+from cocoindex_code.retrieval.fts_index import (
     FtsChunkRow,
     ensure_fts_table,
     populate_fts,
@@ -20,10 +20,10 @@ from cocoindex_code.fts_index import (
     sync_fts_from_code_chunks,
     _normalize_fts_query,
 )
-from cocoindex_code.fusion import RankedRow, rrf_fuse
-from cocoindex_code.query import query_codebase
-from cocoindex_code.settings import PROJECT_SETTINGS
-from cocoindex_code.shared import EMBEDDER, SQLITE_DB
+from cocoindex_code.retrieval.fusion import RankedRow, rrf_fuse
+from cocoindex_code.retrieval.query import query_codebase
+from cocoindex_code.config.settings import PROJECT_SETTINGS
+from cocoindex_code.core.shared import EMBEDDER, SQLITE_DB
 
 
 class FakeDb:

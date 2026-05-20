@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from typing import Any
 
-from cocoindex_code.fusion import FusedRow
-from cocoindex_code.query import _dedup_and_rank_hybrid_rows
+from cocoindex_code.retrieval.fusion import FusedRow
+from cocoindex_code.retrieval.query import _dedup_and_rank_hybrid_rows
 
 
 MIRRORS = [".opencode/", ".codex/", ".gemini/", ".claude/"]

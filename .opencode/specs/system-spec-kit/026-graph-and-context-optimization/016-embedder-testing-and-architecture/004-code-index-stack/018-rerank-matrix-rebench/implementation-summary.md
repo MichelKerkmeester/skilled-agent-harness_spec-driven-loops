@@ -63,6 +63,10 @@ Implemented the non-shared tranche allowed while 016 and 017 are still in flight
 
 The harness uses the existing corrected fixture and path extraction logic adapted from `run-phase2-smoke.sh`. The legacy smoke script itself always runs its own three lanes, so the matrix harness runs its own single-lane loop to avoid contaminating the run shape.
 
+### Known Issues
+
+Lane A no-rerank ablation remains a deferred follow-up from the final 018 verdict: the bench path observed a 32-sec/probe timeout shape when rerank was disabled. Current runtime reads `COCOINDEX_RERANK`; the harness also exported legacy `COCOINDEX_RERANK_ENABLED` for compatibility, but the bug should be tracked as a Lane A dispatch/timeout issue rather than as evidence against the final Jina-v3 default. Packet 020 records the follow-up and keeps Lane A evidence out of production-default claims.
+
 ### Analyzer
 
 `rerank-matrix-analyze.py` loads normalized run JSONs and emits:

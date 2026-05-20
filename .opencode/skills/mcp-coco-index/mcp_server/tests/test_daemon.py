@@ -19,7 +19,7 @@ win_only = pytest.mark.skipif(sys.platform != "win32", reason="Win32-only")
 
 
 def test_try_acquire_pid_lock_first_call_succeeds(tmp_path):
-    from cocoindex_code.client import _try_acquire_pid_lock
+    from cocoindex_code.core.client import _try_acquire_pid_lock
 
     lock_path = tmp_path / "test.pid"
     fd = _try_acquire_pid_lock(lock_path)
@@ -28,7 +28,7 @@ def test_try_acquire_pid_lock_first_call_succeeds(tmp_path):
 
 
 def test_try_acquire_pid_lock_second_call_blocks(tmp_path):
-    from cocoindex_code.client import _try_acquire_pid_lock
+    from cocoindex_code.core.client import _try_acquire_pid_lock
 
     lock_path = tmp_path / "test.pid"
     fd1 = _try_acquire_pid_lock(lock_path)
@@ -39,7 +39,7 @@ def test_try_acquire_pid_lock_second_call_blocks(tmp_path):
 
 
 def test_try_acquire_pid_lock_releases_on_close(tmp_path):
-    from cocoindex_code.client import _try_acquire_pid_lock
+    from cocoindex_code.core.client import _try_acquire_pid_lock
 
     lock_path = tmp_path / "test.pid"
     fd1 = _try_acquire_pid_lock(lock_path)
@@ -171,7 +171,7 @@ def test_async_daemon_main_closes_lifetime_lock_on_shutdown(monkeypatch):
 def test_update_index_reports_project_update_failure(tmp_path):
     """A project.update_index exception must surface as success=False."""
     from cocoindex_code.daemon import ProjectRegistry
-    from cocoindex_code.protocol import IndexResponse
+    from cocoindex_code.core.protocol import IndexResponse
 
     async def _run():
         project_root = str(tmp_path)
@@ -193,7 +193,7 @@ def test_update_index_reports_project_update_failure(tmp_path):
 
 def test_wait_for_daemon_claim_returns_when_pid_appears(tmp_path, monkeypatch):
     """Patch 12: returns as soon as daemon.pid contains a live PID."""
-    from cocoindex_code import client as client_module
+    from cocoindex_code.core import client as client_module
 
     pid_path = tmp_path / "daemon.pid"
     spawned = MagicMock()
@@ -213,7 +213,7 @@ def test_wait_for_daemon_claim_returns_when_pid_appears(tmp_path, monkeypatch):
 
 def test_wait_for_daemon_claim_returns_when_spawn_dies(tmp_path):
     """Patch 12: returns when the spawned process exits, even if PID never appears."""
-    from cocoindex_code import client as client_module
+    from cocoindex_code.core import client as client_module
 
     pid_path = tmp_path / "daemon.pid"  # never populated
     spawned = MagicMock()
@@ -229,7 +229,7 @@ def test_wait_for_daemon_claim_returns_when_spawn_dies(tmp_path):
 
 def test_wait_for_daemon_claim_returns_at_timeout(tmp_path, monkeypatch):
     """Patch 12: bounded wait when neither claim happens nor spawn dies."""
-    from cocoindex_code import client as client_module
+    from cocoindex_code.core import client as client_module
 
     pid_path = tmp_path / "daemon.pid"  # never populated
     spawned = MagicMock()

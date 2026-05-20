@@ -11,8 +11,8 @@ from pathlib import Path
 
 import pytest
 
-from cocoindex_code.config import _DEFAULT_MODEL
-from cocoindex_code.settings import (
+from cocoindex_code.config.config import _DEFAULT_MODEL
+from cocoindex_code.config.settings import (
     CANONICAL_RESOURCE_PATHS,
     DEFAULT_EXCLUDED_PATTERNS,
     DEFAULT_INCLUDED_PATTERNS,

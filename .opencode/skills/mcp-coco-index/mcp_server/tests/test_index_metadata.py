@@ -9,7 +9,7 @@ from typing import Any
 
 import pytest
 
-from cocoindex_code.index_metadata import (
+from cocoindex_code.observability.index_metadata import (
     CURRENT_SCHEMA_VERSION,
     CompatibilitySeverity,
     IndexCompatibility,
@@ -19,7 +19,7 @@ from cocoindex_code.index_metadata import (
     read_index_meta,
     write_index_meta,
 )
-from cocoindex_code.indexer import write_index_metadata
+from cocoindex_code.indexer.indexer import write_index_metadata
 
 
 def _metadata(tmp_path: Path):
@@ -122,7 +122,7 @@ def test_atomic_write_no_partial_meta(tmp_path: Path, monkeypatch: pytest.Monkey
     def fail_replace(_src: Any, _dst: Any) -> None:
         raise RuntimeError("replace interrupted")
 
-    monkeypatch.setattr("cocoindex_code.index_metadata.os.replace", fail_replace)
+    monkeypatch.setattr("cocoindex_code.observability.index_metadata.os.replace", fail_replace)
 
     with pytest.raises(RuntimeError, match="replace interrupted"):
         write_index_meta(tmp_path, replace(original, chunk_count=99))

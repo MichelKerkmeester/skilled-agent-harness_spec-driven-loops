@@ -20,12 +20,12 @@ from typing import Any, TextIO
 from cocoindex.connectors import sqlite as coco_sqlite
 
 from ._version import __version__
-from .index_metadata import (
+from .observability.index_metadata import (
     IndexCompatibilityError,
     build_current_index_metadata,
     check_index_compatibility,
 )
-from .observability import (
+from .observability.observability import (
     RetrievalDiagnostics,
     build_index_fingerprint,
     elapsed_ms,
@@ -39,8 +39,8 @@ from .observability import (
     read_index_meta,
     resolve_mcp_request_timeout_ms,
 )
-from .project import Project
-from .protocol import (
+from .core.project import Project
+from .core.protocol import (
     DaemonProjectInfo,
     DaemonStatusRequest,
     DaemonStatusResponse,
@@ -70,16 +70,16 @@ from .protocol import (
     decode_request,
     encode_response,
 )
-from .query import query_codebase
-from .settings import (
+from .retrieval.query import query_codebase
+from .config.settings import (
     PROJECT_SETTINGS,
     global_settings_mtime_us,
     load_project_settings,
     load_user_settings,
     user_settings_dir,
 )
-from . import shared
-from .shared import EMBEDDER, QUERY_PROMPT_NAME, SQLITE_DB, Embedder, create_embedder
+from .core import shared
+from .core.shared import EMBEDDER, QUERY_PROMPT_NAME, SQLITE_DB, Embedder, create_embedder
 
 logger = logging.getLogger(__name__)
 _client_disconnect_count = 0

@@ -36,12 +36,19 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "research/research.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -69,7 +76,7 @@
       {
         "name": "Chunking Strategy Tuning",
         "kind": "proper_noun",
-        "path": "spec.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -151,7 +158,7 @@
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation (post-research, if go)",
+        "name": "Phase 2: Implementation",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -163,25 +170,19 @@
         "source": "derived"
       },
       {
-        "name": "What Was Built Scaffolding",
+        "name": "Implemented Stage",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "How It Was Delivered Pending",
+        "name": "What Was Built Stage",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Key Decisions",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Known Limitations",
+        "name": "Pending Stage",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -189,14 +190,15 @@
     ],
     "causal_summary": "This packet is part of §3 structural improvements identified in the 018/003 follow-up discussion (38.9% baseline hit rate, embedder swap unlikely to be the dominant lever). Research first, then plan, then implement.",
     "created_at": "2026-05-18T05:13:46.123Z",
-    "last_save_at": "2026-05-18T05:13:46.123Z",
+    "last_save_at": "2026-05-19T20:42:43.951Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md"
     ]
   }
 }

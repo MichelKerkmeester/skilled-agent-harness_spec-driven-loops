@@ -274,4 +274,5 @@ Dependencies:
 - ADR target: `../../002-spec-memory-stack/004-spec-memory-embedder-bake-off/decision-record.md` (append ADR-021)
 - Bench harness reused: `../011-rerank-model-fit-investigation/research/phase2-bench/run-phase2-smoke.sh`
 - Final-state baseline target: `evidence/phase2-comparison-018-final.md` (locks the post-arc baseline for future packets)
+- **Dependency note**: 018 is only a reranker verdict because 013-017 fixed fixture truth, mirror dedup, AST chunking, query-expansion default state, and RRF defaults first. Future reranker comparisons must preserve or explicitly revise those upstream assumptions.
 <!-- /ANCHOR:cross-links -->

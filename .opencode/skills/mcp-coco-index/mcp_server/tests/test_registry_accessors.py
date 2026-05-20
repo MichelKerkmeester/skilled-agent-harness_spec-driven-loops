@@ -7,7 +7,7 @@ from pathlib import Path
 
 import pytest
 
-from cocoindex_code.registry import (
+from cocoindex_code.embedders.registry import (
     EmbedderSpec,
     RerankerSpec,
     embed_document_prompt,

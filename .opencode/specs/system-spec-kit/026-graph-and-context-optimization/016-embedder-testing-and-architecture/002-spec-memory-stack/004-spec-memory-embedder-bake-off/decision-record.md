@@ -1173,7 +1173,7 @@ Run `ccc doctor` before model swaps. If it reports fingerprint mismatch, stale C
 <!-- ANCHOR:adr-027 -->
 ## ADR-027: Reranker default flipped to Qwen3-Reranker-0.6B (2026-05-20)
 
-**Context**: 023B-fixture-calibration shipped a 73-probe expanded fixture and a calibration sweep harness. A reranker sub-sweep ran jinaai/jina-reranker-v3 (CC BY-NC 4.0, pre-2026-05-20 default) head-to-head against Qwen/Qwen3-Reranker-0.6B (Apache-2.0) at n=3 runs with zero stddev on both sides.
+**Context**: 023-deep-research-arc-blind-spots/007-fixture-calibration shipped a 73-probe expanded fixture and a calibration sweep harness. A reranker sub-sweep ran jinaai/jina-reranker-v3 (CC BY-NC 4.0, pre-2026-05-20 default) head-to-head against Qwen/Qwen3-Reranker-0.6B (Apache-2.0) at n=3 runs with zero stddev on both sides.
 
 **Decision**: Default reranker flipped jinaai/jina-reranker-v3 -> Qwen/Qwen3-Reranker-0.6B as of 2026-05-20.
 

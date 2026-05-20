@@ -8,7 +8,10 @@ CCC="$REPO_ROOT/.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc"
 PYTHON="$REPO_ROOT/.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/python3"
 DEFAULT_PACKET_DIR="$SCRIPT_DIR/../../../017-hybrid-fusion-empirical-recalibration"
 PACKET_DIR="${COCOINDEX_RRF_SWEEP_PACKET_DIR:-$DEFAULT_PACKET_DIR}"
-PACKET_DIR="$(cd "$PACKET_DIR" && pwd)"
+if ! PACKET_DIR="$(cd "$PACKET_DIR" 2>/dev/null && pwd)"; then
+  echo "FATAL: invalid COCOINDEX_RRF_SWEEP_PACKET_DIR" >&2
+  exit 2
+fi
 CELLS_DIR="$PACKET_DIR/evidence/cells"
 FIXTURE="${COCOINDEX_RRF_SWEEP_FIXTURE:-$SCRIPT_DIR/code-retrieval-fixture-corrected.json}"
 BASELINE_COMPARISON="${COCOINDEX_RRF_SWEEP_BASELINE_COMPARISON:-$PACKET_DIR/../016-query-expansion-identifier-bridging/evidence/phase2-comparison-016-query-expansion.md}"
@@ -28,6 +31,11 @@ Environment:
   COCOINDEX_RRF_SWEEP_PICK_LANE=baseline-bge
   COCOINDEX_RRF_SWEEP_CELL_LIMIT=4
 USAGE
+}
+
+die() {
+  echo "FATAL: $*" >&2
+  exit 2
 }
 
 while [ "$#" -gt 0 ]; do
@@ -78,10 +86,27 @@ aggregate() {
     --baseline-comparison "$BASELINE_COMPARISON"
 }
 
+case "$PICK_LANE" in
+  baseline-bge|bge-path-class|jina-v3) ;;
+  *) die "invalid COCOINDEX_RRF_SWEEP_PICK_LANE: $PICK_LANE" ;;
+esac
+
+if ! [[ "$CELL_LIMIT" =~ ^[0-9]+$ ]]; then
+  die "COCOINDEX_RRF_SWEEP_CELL_LIMIT must be a non-negative integer"
+fi
+
+if [[ "$FIXTURE" == *".."* ]]; then
+  die "COCOINDEX_RRF_SWEEP_FIXTURE must not contain path traversal"
+fi
 if [ ! -f "$FIXTURE" ]; then
   echo "FATAL: corrected fixture not found: $FIXTURE" >&2
   exit 1
 fi
+FIXTURE_REAL="$(cd "$(dirname "$FIXTURE")" && pwd)/$(basename "$FIXTURE")"
+case "$FIXTURE_REAL" in
+  "$REPO_ROOT"/*) ;;
+  *) die "COCOINDEX_RRF_SWEEP_FIXTURE must resolve under repository root" ;;
+esac
 
 if [ "$AGGREGATE_ONLY" = true ]; then
   aggregate

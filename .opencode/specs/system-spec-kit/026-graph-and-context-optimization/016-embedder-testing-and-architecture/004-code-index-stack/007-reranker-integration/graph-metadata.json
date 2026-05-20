@@ -17,7 +17,9 @@
       "016/011/001 plan",
       "reranker integration plan",
       "016/011/001 tasks",
-      "016/011/001 summary"
+      "016/011/001 summary",
+      "cocoindex reranker integration",
+      "GTE cross-encoder reranker"
     ],
     "key_topics": [
       "016",
@@ -29,19 +31,29 @@
       "plan",
       "tasks",
       "summary",
-      "packet",
-      "part",
-      "structural"
+      "cocoindex",
+      "gte",
+      "cross-encoder"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "research/research.md",
       "spec.md",
       "plan.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/local-reranker.ts",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -52,6 +64,24 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "stage3-rerank.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts",
+        "source": "derived"
+      },
+      {
+        "name": "local-reranker.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/local-reranker.ts",
+        "source": "derived"
+      },
+      {
+        "name": "query.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py",
         "source": "derived"
       },
       {
@@ -69,23 +99,11 @@
       {
         "name": "Reranker Integration",
         "kind": "proper_noun",
-        "path": "spec.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "acceptable",
-        "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "estimated",
-        "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "synthesis",
+        "name": "reranker",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -100,6 +118,30 @@
         "name": "2. PROBLEM & PURPOSE",
         "kind": "heading",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In scope",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -121,18 +163,6 @@
         "source": "derived"
       },
       {
-        "name": "3. ARCHITECTURE",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "4. IMPLEMENTATION PHASES",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -145,58 +175,35 @@
         "source": "derived"
       },
       {
+        "name": "MCP",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation (post-research, if go)",
+        "name": "Phase 2: Implementation",
         "kind": "heading",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built Scaffolding",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "How It Was Delivered Pending",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Decisions",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Known Limitations",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "This packet is part of §3 structural improvements identified in the 018/003 follow-up discussion (38.9% baseline hit rate, embedder swap unlikely to be the dominant lever). Research first, then plan, then implement.",
+    "causal_summary": "This packet is part of §3 structural improvements identified in the 018/003 follow-up discussion. Research converged on `Alibaba-NLP/gte-multilingual-reranker-base`, K=20, opt-in rollout, score replacement, and default-on only after fixture and latency gates.",
     "created_at": "2026-05-18T05:13:45.663Z",
-    "last_save_at": "2026-05-18T05:13:45.663Z",
+    "last_save_at": "2026-05-19T20:42:43.950Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md"
     ]
   }
 }

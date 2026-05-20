@@ -223,4 +223,5 @@ Dependencies:
 - Successor packets: 015 (tree-sitter chunking — depends on extract_path_stem helper), 016 (query expansion — also uses the helper)
 - ADR target: `../../002-spec-memory-stack/004-spec-memory-embedder-bake-off/decision-record.md` (append ADR-017)
 - Baseline bench result: `../011-rerank-model-fit-investigation/research/phase2-bench/phase2-comparison-corrected.md`
+- **Dependency note**: 014 depends on 013's corrected fixture for meaningful bench comparison; 015-018 depend on 014's canonical mirror collapse to keep rerank windows from being mirror-polluted.
 <!-- /ANCHOR:cross-links -->

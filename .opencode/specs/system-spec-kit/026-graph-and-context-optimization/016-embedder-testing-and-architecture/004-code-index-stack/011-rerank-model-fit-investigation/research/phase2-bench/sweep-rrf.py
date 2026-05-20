@@ -18,6 +18,8 @@ DEFAULT_VEC_WEIGHTS = [0.5, 0.7, 0.9, 1.0]
 DEFAULT_FTS_WEIGHTS = [0.3, 0.5, 0.7, 0.9]
 DEFAULT_CELL = (60, 0.7, 0.7)
 DEFAULT_PICK_LANE = "baseline-bge"
+MAX_GRID_ENV_BYTES = 10_000
+MAX_GRID_VALUES = 100
 
 
 @dataclass(frozen=True)
@@ -51,12 +53,16 @@ class CellMetrics:
 def _parse_json_list(raw_value: str, default: list[int] | list[float], var_name: str) -> list[Any]:
     if not raw_value.strip():
         return list(default)
+    if len(raw_value.encode("utf-8")) > MAX_GRID_ENV_BYTES:
+        raise ValueError(f"{var_name} must be at most {MAX_GRID_ENV_BYTES} bytes")
     try:
         parsed = json.loads(raw_value)
     except json.JSONDecodeError as exc:
         raise ValueError(f"{var_name} must be a JSON array") from exc
     if not isinstance(parsed, list):
         raise ValueError(f"{var_name} must be a JSON array")
+    if len(parsed) > MAX_GRID_VALUES:
+        raise ValueError(f"{var_name} must contain at most {MAX_GRID_VALUES} values")
     return parsed
 
 
@@ -83,9 +89,14 @@ def parse_grid_from_env(environ: dict[str, str] | None = None) -> tuple[list[int
     for value in raw_k:
         if isinstance(value, bool):
             raise ValueError("COCOINDEX_RRF_SWEEP_K_VALUES entries must be positive integers")
-        int_value = int(value)
+        try:
+            int_value = int(value)
+        except (TypeError, ValueError) as exc:
+            raise ValueError("COCOINDEX_RRF_SWEEP_K_VALUES entries must be positive integers") from exc
         if int_value <= 0 or int_value != value:
             raise ValueError("COCOINDEX_RRF_SWEEP_K_VALUES entries must be positive integers")
+        if int_value > 500:
+            raise ValueError("COCOINDEX_RRF_SWEEP_K_VALUES entries must be <= 500")
         k_values.append(int_value)
 
     vec_weights = [_positive_float(value, "COCOINDEX_RRF_SWEEP_VEC_WEIGHTS") for value in raw_vec]
@@ -104,6 +115,8 @@ def _positive_float(value: Any, var_name: str) -> float:
         raise ValueError(f"{var_name} entries must be positive numbers") from exc
     if not math.isfinite(result) or result <= 0:
         raise ValueError(f"{var_name} entries must be positive finite numbers")
+    if result > 2.0:
+        raise ValueError(f"{var_name} entries must be <= 2.0")
     return result
 
 

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from cocoindex_code.query_expansion import (
+from cocoindex_code.retrieval.query_expansion import (
     _DEFAULT_SYNONYMS,
     apply_synonyms,
     expand_query,

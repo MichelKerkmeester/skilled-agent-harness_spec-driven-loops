@@ -8,13 +8,13 @@ from pathlib import Path
 from typing import Any
 
 from cocoindex_code import daemon as daemon_module
-from cocoindex_code.observability import (
+from cocoindex_code.observability.observability import (
     effective_config_hash,
     index_meta_path,
     write_index_meta,
 )
-from cocoindex_code.indexer import write_index_metadata
-from cocoindex_code.settings import EmbeddingSettings, UserSettings
+from cocoindex_code.indexer.indexer import write_index_metadata
+from cocoindex_code.config.settings import EmbeddingSettings, UserSettings
 
 
 def test_fingerprint_persisted_at_index_time(tmp_path: Path, monkeypatch: Any) -> None:

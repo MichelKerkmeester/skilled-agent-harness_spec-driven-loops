@@ -10,10 +10,10 @@ from typing import Any
 
 import numpy as np
 
-from cocoindex_code import query as query_module
-from cocoindex_code.query import query_codebase
-from cocoindex_code.settings import PROJECT_SETTINGS
-from cocoindex_code.shared import (
+from cocoindex_code.retrieval import query as query_module
+from cocoindex_code.retrieval.query import query_codebase
+from cocoindex_code.config.settings import PROJECT_SETTINGS
+from cocoindex_code.core.shared import (
     EMBEDDER,
     QUERY_PROMPT_NAME,
     SQLITE_DB,
@@ -77,7 +77,7 @@ def _vector_row(chunk_id: int, file_path: str, distance: float) -> tuple[Any, ..
 
 
 def test_document_prompt_used_at_index_time() -> None:
-    source = Path("cocoindex_code/indexer.py").read_text()
+    source = Path("cocoindex_code/indexer/indexer.py").read_text()
 
     assert "DOCUMENT_PROMPT_NAME" in source
     assert "embedder.embed(chunk.text, document_prompt_name)" in source

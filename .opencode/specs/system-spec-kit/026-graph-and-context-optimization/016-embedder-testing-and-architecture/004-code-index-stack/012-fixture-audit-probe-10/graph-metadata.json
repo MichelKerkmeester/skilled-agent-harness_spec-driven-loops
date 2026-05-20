@@ -13,44 +13,204 @@
     "trigger_phrases": [
       "fixture audit probe 10",
       "expected_source_path correctness",
-      "code retrieval fixture review",
+      "code-retrieval fixture review",
+      "dist vs source target",
+      "016/004/012 fixture audit",
       "016/004/012 plan",
       "016/004/012 tasks",
       "016/004/012 summary",
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-probe-10",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "016-embedder-testing-and-architecture",
-      "004-code-index-stack",
-      "012-fixture-audit-probe-10"
+      "fixture audit probe 10 research",
+      "code retrieval fixture expected path audit",
+      "universal ceiling probe audit"
     ],
     "key_topics": [
-      "012",
-      "fixture-audit",
-      "probe-10",
-      "expected-source-path",
-      "research",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "016-embedder-testing-and-architecture",
-      "004-code-index-stack",
-      "012-fixture-audit-probe-10",
+      "fixture",
+      "audit",
+      "probe",
+      "correctness",
+      "code-retrieval",
+      "review",
+      "dist",
+      "source",
+      "target",
       "016",
-      "004"
+      "004",
+      "012"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      "research.md",
+      ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
+      ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
+      "evidence/code-retrieval-fixture-proposed.json",
+      ".opencode/skills/mcp-coco-index/tests/test_e2e.py",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-probe-10/research.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-probe-10/evidence/code-retrieval-fixture-proposed.json",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-probe-10/tasks.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-probe-10/implementation-summary.md",
+      "scripts/memory/generate-context.ts",
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "implementation-summary.md",
-      "research.md"
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/registry.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-set.ts",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/adapters/ollama.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/ccc-readiness-probe.ts"
     ],
-    "entities": [],
-    "causal_summary": "Audit the 18-pair code-retrieval fixture for expected-path correctness. Probe 10 (`context save command that reads structured JSON` expected as the `.js` dist artifact) is the immediate trigger — the `.ts` source variant is arguably more correct. Audit pass: read every probe",
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-probe-10/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
+        "source": "derived"
+      },
+      {
+        "name": "code-retrieval-fixture-proposed.json",
+        "kind": "config",
+        "path": "evidence/code-retrieval-fixture-proposed.json",
+        "source": "derived"
+      },
+      {
+        "name": "test_e2e.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/tests/test_e2e.py",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-probe-10/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-probe-10/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "registry.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/registry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedder-set.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-set.ts",
+        "source": "derived"
+      },
+      {
+        "name": "config.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph-status-readiness-snapshot.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ollama.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/adapters/ollama.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stage2-fusion.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ccc-readiness-probe.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/ccc-readiness-probe.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Fixture Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The May",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "rationale",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "full",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 18-pair code-retrieval fixture at `../002-baseline-fixture/evidence/code-retrieval-fixture.json` was authored without a peer review of \"is the `expected_source_path` for each query actually the BEST answer?\". The May 18 evening instrumented bench surfaced a specific case worth scrutinizing:",
     "created_at": "2026-05-18T19:21:19.321Z",
-    "last_save_at": "2026-05-19T19:44:28.899Z",
+    "last_save_at": "2026-05-19T20:42:43.958Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

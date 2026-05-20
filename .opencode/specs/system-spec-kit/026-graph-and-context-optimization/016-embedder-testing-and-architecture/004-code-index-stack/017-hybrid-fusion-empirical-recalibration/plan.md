@@ -113,7 +113,7 @@ The wrapper lives next to `run-phase2-smoke.sh` because it orchestrates that har
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-Before defaults are locked, rollback is deleting the new sweep scripts, tests, and packet docs. After defaults are locked, runtime rollback is `COCOINDEX_RRF_K=60 COCOINDEX_RRF_VEC_WEIGHT=0.7 COCOINDEX_RRF_FTS_WEIGHT=0.7` plus a daemon restart.
+Before defaults are locked, rollback is deleting the new sweep scripts, tests, and packet docs. After defaults are locked, runtime rollback is `COCOINDEX_HYBRID_RRF_K=60 COCOINDEX_HYBRID_VECTOR_WEIGHT=0.7 COCOINDEX_HYBRID_FTS5_WEIGHT=0.7` plus a daemon restart.
 <!-- /ANCHOR:rollback -->
 
 <!-- ANCHOR:phase-deps -->

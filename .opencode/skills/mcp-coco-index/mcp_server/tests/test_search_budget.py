@@ -11,13 +11,13 @@ from typing import Any
 import numpy as np
 import pytest
 
-from cocoindex_code import query as query_module
-from cocoindex_code.search_budget import (
+from cocoindex_code.retrieval import query as query_module
+from cocoindex_code.retrieval.search_budget import (
     SearchBudgetExceeded,
     validate_search_budget,
 )
-from cocoindex_code.settings import PROJECT_SETTINGS
-from cocoindex_code.shared import EMBEDDER, SQLITE_DB
+from cocoindex_code.config.settings import PROJECT_SETTINGS
+from cocoindex_code.core.shared import EMBEDDER, SQLITE_DB
 
 
 class FakeDb:

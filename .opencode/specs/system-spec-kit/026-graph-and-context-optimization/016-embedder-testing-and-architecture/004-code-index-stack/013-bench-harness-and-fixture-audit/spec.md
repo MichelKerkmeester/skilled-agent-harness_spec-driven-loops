@@ -200,4 +200,5 @@ This packet is Level 2 because measurement correctness spans shell, embedded Pyt
 - **Downstream packets that depend on this**: 014 (mirror dedup), 015 (tree-sitter chunking), 016 (query expansion), 017 (hybrid recalib), 018 (rerank matrix re-bench)
 - **Phase 2 bench artifacts** that compare against: `phase2-bench/baseline-bge.results.jsonl`, `phase2-bench/jina-v3.results.jsonl`, `phase2-bench/phase2-comparison.md`
 - **ADR target**: `../004-spec-memory-embedder-bake-off/decision-record.md` (ADR-016, the bench harness + fixture correction decision)
+- **Dependency note**: 013 is the measurement-quality root for 014-018; downstream hit-rate claims depend on its corrected fixture and path-extraction contract.
 <!-- /ANCHOR:cross-links -->

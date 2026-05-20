@@ -13,7 +13,7 @@ from unittest.mock import patch
 
 import pytest
 
-from cocoindex_code.config import Config
+from cocoindex_code.config.config import Config
 
 
 class TestConfigDevice:

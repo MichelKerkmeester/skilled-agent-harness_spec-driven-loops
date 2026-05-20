@@ -22,9 +22,10 @@ from typing import Any
 
 import pytest
 
-from cocoindex_code import client, daemon
+from cocoindex_code.core import client
+from cocoindex_code import daemon
 from cocoindex_code._version import __version__
-from cocoindex_code.protocol import HandshakeRequest, StopRequest, decode_response, encode_request
+from cocoindex_code.core.protocol import HandshakeRequest, StopRequest, decode_response, encode_request
 
 
 def _wait_for_socket(socket_path: Path, timeout: float = 5.0) -> None:
@@ -69,7 +70,7 @@ class _DonePopenStub:
 
 
 def _locked_start_worker(coco_dir: str, marker_path: str) -> None:
-    from cocoindex_code import client as worker_client
+    from cocoindex_code.core import client as worker_client
     from cocoindex_code import daemon as worker_daemon
 
     marker = Path(marker_path)

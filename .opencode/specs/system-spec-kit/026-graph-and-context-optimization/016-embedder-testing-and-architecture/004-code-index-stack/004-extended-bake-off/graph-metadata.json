@@ -17,7 +17,11 @@
       "016/006/004 plan",
       "extended bake-off plan",
       "016/006/004 tasks",
-      "016/006/004 summary"
+      "016/004/004 summary",
+      "bge-code-v1 wins",
+      "extended bake-off results",
+      "hybrid rerank bench complete",
+      "stella xformers"
     ],
     "key_topics": [
       "016",
@@ -36,6 +40,13 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "evidence/runlog-with-hybrid-rerank.txt",
+      "evidence/cocoindex-embedder-comparison-with-hybrid-rerank.csv",
+      "evidence/cocoindex-embedder-comparison-with-hybrid-rerank.jsonl",
+      "evidence/run-extended-bake-off.sh",
+      ".opencode/skills/sk-doc/references/benchmark_creation.md",
+      ".opencode/skills/sk-doc/assets/benchmark/benchmark_report_template.md",
+      "evidence/cocoindex-embedder-comparison-extended.csv",
       "spec.md",
       "plan.md",
       ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py",
@@ -43,6 +54,48 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "runlog-with-hybrid-rerank.txt",
+        "kind": "file",
+        "path": "evidence/runlog-with-hybrid-rerank.txt",
+        "source": "derived"
+      },
+      {
+        "name": "cocoindex-embedder-comparison-with-hybrid-rerank.csv",
+        "kind": "file",
+        "path": "evidence/cocoindex-embedder-comparison-with-hybrid-rerank.csv",
+        "source": "derived"
+      },
+      {
+        "name": "cocoindex-embedder-comparison-with-hybrid-rerank.jsonl",
+        "kind": "file",
+        "path": "evidence/cocoindex-embedder-comparison-with-hybrid-rerank.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "run-extended-bake-off.sh",
+        "kind": "script",
+        "path": "evidence/run-extended-bake-off.sh",
+        "source": "derived"
+      },
+      {
+        "name": "benchmark_creation.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/references/benchmark_creation.md",
+        "source": "derived"
+      },
+      {
+        "name": "benchmark_report_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/assets/benchmark/benchmark_report_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "cocoindex-embedder-comparison-extended.csv",
+        "kind": "file",
+        "path": "evidence/cocoindex-embedder-comparison-extended.csv",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -86,6 +139,12 @@
         "source": "derived"
       },
       {
+        "name": "On May",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "verdict KEEP-JINA-CODE",
         "kind": "key_phrase",
         "path": "spec.md",
@@ -104,13 +163,13 @@
         "source": "derived"
       },
       {
-        "name": "retry",
+        "name": "same",
         "kind": "key_phrase",
-        "path": "spec.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "same",
+        "name": "retry",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
@@ -138,59 +197,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "findings",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built Scaffolding",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "How It Was Delivered Pending",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Decisions",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Known Limitations",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "sentence-transformers",
-        "kind": "key_phrase",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This packet extends the 018/003 bake-off with these 2 additional candidates using the same fixture + same measurement approach. bge-code-v1 retry deferred unless nomic is also stable.",
     "created_at": "2026-05-18T05:13:47.028Z",
-    "last_save_at": "2026-05-18T05:13:47.028Z",
+    "last_save_at": "2026-05-19T20:42:43.947Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

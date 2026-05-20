@@ -6,8 +6,8 @@ from pathlib import Path
 from typing import Any
 
 from cocoindex_code import daemon as daemon_module
-from cocoindex_code.index_metadata import build_current_index_metadata, write_index_meta
-from cocoindex_code.settings import EmbeddingSettings, UserSettings
+from cocoindex_code.observability.index_metadata import build_current_index_metadata, write_index_meta
+from cocoindex_code.config.settings import EmbeddingSettings, UserSettings
 
 
 class FakeEmbedder:

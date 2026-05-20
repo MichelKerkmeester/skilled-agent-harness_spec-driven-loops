@@ -16,41 +16,186 @@
       "code embedder benchmark",
       "018/003 plan",
       "018/003 tasks",
-      "018/003 summary",
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/003-comparison-measure",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "016-embedder-testing-and-architecture",
-      "004-code-index-stack",
-      "003-comparison-measure"
+      "code embedder benchmark verdict",
+      "KEEP-JINA-CODE",
+      "018/003 summary"
     ],
     "key_topics": [
       "018",
+      "003",
       "comparison",
-      "measurement",
-      "adr",
+      "measure",
+      "adr-001",
       "cocoindex",
       "embedder",
+      "choice",
+      "code",
       "benchmark",
-      "ratification",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "016-embedder-testing-and-architecture",
-      "004-code-index-stack"
+      "plan",
+      "tasks"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      "evidence/cocoindex-embedder-comparison.jsonl",
+      "evidence/cocoindex-embedder-comparison.csv",
+      "decision-record.md",
       "spec.md",
       "plan.md",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
       "tasks.md",
-      "decision-record.md",
       "implementation-summary.md"
     ],
-    "entities": [],
-    "causal_summary": "Run gemma vs CodeRankEmbed (and optional jina-code, bge-code) on 018/002 fixture + author ADR-001 ratifying CocoIndex production embedder",
+    "entities": [
+      {
+        "name": "cocoindex-embedder-comparison.jsonl",
+        "kind": "file",
+        "path": "evidence/cocoindex-embedder-comparison.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "cocoindex-embedder-comparison.csv",
+        "kind": "file",
+        "path": "evidence/cocoindex-embedder-comparison.csv",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. REQUIREMENTS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "5. SUCCESS CRITERIA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "6. RISKS & DEPENDENCIES",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "env",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Pre-flight",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After 018/001 (swap mechanism) and 018/002 (fixture), we still don't know which embedder actually wins for OUR repo. Without measurement, the swap is a leap of faith.",
     "created_at": "2026-05-18T08:18:02.785Z",
-    "last_save_at": "2026-05-19T19:44:28.899Z",
+    "last_save_at": "2026-05-19T20:42:43.946Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

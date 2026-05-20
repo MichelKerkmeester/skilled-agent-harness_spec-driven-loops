@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack",
+  "children_ids": [
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/001-request-budget-hardening",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/002-retrieval-observability",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/003-upstream-rebase-spike",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/004-metadata-fingerprint",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/005-doctor-model-swap-ux",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/006-prompt-license-registry",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/007-fixture-calibration",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/008-vec0-migration-fix-deferred"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/019-deep-review-013-018-arc",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/022-verification-p1-p2-remediation"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep research arc blind spots",
+      "023 follow-on arc",
+      "mcp-coco-index blind spots",
+      "retrieval hardening arc"
+    ],
+    "key_topics": [
+      "mcp-coco-index",
+      "retrieval",
+      "observability",
+      "request-budget",
+      "metadata"
+    ],
+    "importance_tier": "high",
+    "status": "active",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      "SearchBudget",
+      "index_meta",
+      "ccc doctor",
+      "registered_embedders",
+      "vec0"
+    ],
+    "causal_summary": "Phase parent for the 8-packet follow-on arc that tracks mcp-coco-index deep-research findings across retrieval hardening, observability, metadata, registry, doctor UX, calibration, upstream drift, and deferred vec0 work.",
+    "created_at": "2026-05-20T09:11:27Z",
+    "last_save_at": "2026-05-20T09:11:27Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/008-vec0-migration-fix-deferred",
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_at": "2026-05-20T09:11:27Z"
+  }
+}

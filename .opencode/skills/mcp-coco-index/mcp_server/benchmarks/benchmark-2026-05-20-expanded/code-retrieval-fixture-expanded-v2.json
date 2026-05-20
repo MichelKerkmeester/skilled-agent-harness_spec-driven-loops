@@ -1567,7 +1567,7 @@
   {
     "id": 58,
     "query": "023F delta classification research",
-    "expected_source_path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023F-upstream-rebase-spike/research/delta-classification.md",
+    "expected_source_path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/003-upstream-rebase-spike/research/delta-classification.md",
     "expected_symbol": "PRESERVE_LOCAL",
     "difficulty": "medium",
     "category": "path_class_stratified",
@@ -1576,11 +1576,11 @@
     ],
     "path_class": "spec_research",
     "truth_set": [
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023F-upstream-rebase-spike/research/delta-classification.md"
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/003-upstream-rebase-spike/research/delta-classification.md"
     ],
     "truth_path_classes": {
       "spec_research": [
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023F-upstream-rebase-spike/research/delta-classification.md"
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/003-upstream-rebase-spike/research/delta-classification.md"
       ]
     },
     "expected_failure_mode": "none",
@@ -1589,7 +1589,7 @@
   {
     "id": 59,
     "query": "023C retrieval observability summary counters",
-    "expected_source_path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023C-retrieval-observability/implementation-summary.md",
+    "expected_source_path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/002-retrieval-observability/implementation-summary.md",
     "expected_symbol": "Per-Query Diagnostics",
     "difficulty": "easy",
     "category": "path_class_stratified",
@@ -1598,11 +1598,11 @@
     ],
     "path_class": "spec_research",
     "truth_set": [
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023C-retrieval-observability/implementation-summary.md"
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/002-retrieval-observability/implementation-summary.md"
     ],
     "truth_path_classes": {
       "spec_research": [
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023C-retrieval-observability/implementation-summary.md"
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/002-retrieval-observability/implementation-summary.md"
       ]
     },
     "expected_failure_mode": "none",
@@ -1897,7 +1897,7 @@
   {
     "id": 73,
     "query": "023A1 metadata fingerprint decision record",
-    "expected_source_path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023A1-metadata-fingerprint/decision-record.md",
+    "expected_source_path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/004-metadata-fingerprint/decision-record.md",
     "expected_symbol": "ADR",
     "difficulty": "medium",
     "category": "path_class_stratified",
@@ -1906,11 +1906,11 @@
     ],
     "path_class": "spec_research",
     "truth_set": [
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023A1-metadata-fingerprint/decision-record.md"
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/004-metadata-fingerprint/decision-record.md"
     ],
     "truth_path_classes": {
       "spec_research": [
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023A1-metadata-fingerprint/decision-record.md"
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/004-metadata-fingerprint/decision-record.md"
       ]
     },
     "expected_failure_mode": "none",

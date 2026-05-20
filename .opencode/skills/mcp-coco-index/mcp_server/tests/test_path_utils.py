@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from cocoindex_code.path_utils import (
+from cocoindex_code.core.path_utils import (
     extract_path_stem,
     is_mirror_path,
     normalize_mirror_prefix,

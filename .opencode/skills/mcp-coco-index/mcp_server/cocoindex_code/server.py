@@ -21,9 +21,9 @@ from mcp.server.fastmcp import FastMCP
 from pydantic import BaseModel, Field
 
 if TYPE_CHECKING:
-    from .client import DaemonClient
+    from .core.client import DaemonClient
 
-from .observability import (
+from .observability.observability import (
     elapsed_ms,
     log_json,
     log_response_size,
@@ -32,8 +32,8 @@ from .observability import (
     new_request_id,
     resolve_mcp_request_timeout_ms,
 )
-from .protocol import IndexingProgress
-from .search_budget import SearchBudgetExceeded, validate_search_budget
+from .core.protocol import IndexingProgress
+from .retrieval.search_budget import SearchBudgetExceeded, validate_search_budget
 
 _MCP_INSTRUCTIONS = (
     "Code search and codebase understanding tools."

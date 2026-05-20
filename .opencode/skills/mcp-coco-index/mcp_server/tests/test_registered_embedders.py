@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from cocoindex_code.config import _DEFAULT_MODEL
-from cocoindex_code.registered_embedders import (
+from cocoindex_code.config.config import _DEFAULT_MODEL
+from cocoindex_code.embedders.registered_embedders import (
     DEFAULT_EMBEDDER_NAME,
     DIMENSION_MIGRATION_REQUIREMENTS,
     MANIFESTS,

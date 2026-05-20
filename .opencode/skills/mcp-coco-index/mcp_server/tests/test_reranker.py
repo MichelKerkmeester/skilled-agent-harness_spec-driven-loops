@@ -12,17 +12,17 @@ from unittest.mock import patch
 
 import numpy as np
 
-from cocoindex_code import query as query_module
-from cocoindex_code.config import (
+from cocoindex_code.retrieval import query as query_module
+from cocoindex_code.config.config import (
     _DEFAULT_RERANK_MODEL,
     _DEFAULT_RERANK_TOP_K,
     Config,
 )
-from cocoindex_code.query import query_codebase
-from cocoindex_code.reranker import RerankerAdapter
-from cocoindex_code.schema import QueryResult
-from cocoindex_code.settings import PROJECT_SETTINGS
-from cocoindex_code.shared import EMBEDDER, SQLITE_DB
+from cocoindex_code.retrieval.query import query_codebase
+from cocoindex_code.rerankers.reranker import RerankerAdapter
+from cocoindex_code.indexer.schema import QueryResult
+from cocoindex_code.config.settings import PROJECT_SETTINGS
+from cocoindex_code.core.shared import EMBEDDER, SQLITE_DB
 
 
 class FakeDb:
@@ -98,7 +98,7 @@ def _vector_row(chunk_id: int, file_path: str, distance: float) -> tuple[Any, ..
 
 
 def test_reranker_module_imports() -> None:
-    from cocoindex_code import reranker
+    from cocoindex_code.rerankers import reranker
 
     assert reranker.RerankerAdapter is RerankerAdapter
 
@@ -115,9 +115,9 @@ def test_rerank_falls_back_on_model_load_failure(
 ) -> None:
     adapter = RerankerAdapter()
     candidates = [_candidate("a.py", 0.9), _candidate("b.py", 0.8)]
-    monkeypatch.setattr("cocoindex_code.reranker._available_ram_bytes", lambda: 8 * 1024**3)
+    monkeypatch.setattr("cocoindex_code.rerankers.reranker._available_ram_bytes", lambda: 8 * 1024**3)
 
-    caplog.set_level("WARNING", logger="cocoindex_code.reranker")
+    caplog.set_level("WARNING", logger="cocoindex_code.rerankers.reranker")
     with patch.dict(sys.modules, {"sentence_transformers": None}):
         reranked = adapter.rerank("query", candidates, top_k=20)
 
@@ -240,7 +240,7 @@ def _path_class_candidate(
 
 def test_rerank_adapter_dispatch_jina_prefix(monkeypatch: Any) -> None:
     """get_reranker_adapter() routes jinaai/jina-reranker-v3* model names to the jina adapter."""
-    from cocoindex_code import reranker as reranker_module
+    from cocoindex_code.rerankers import reranker as reranker_module
 
     # Reset adapter cache so the dispatch path runs fresh
     monkeypatch.setattr(reranker_module, "_ADAPTERS", {})
@@ -250,9 +250,9 @@ def test_rerank_adapter_dispatch_jina_prefix(monkeypatch: Any) -> None:
         def __init__(self, model_name: str) -> None:
             self.model_name = model_name
 
-    fake_module = type(sys)("cocoindex_code.rerankers_jina_v3")
+    fake_module = type(sys)("cocoindex_code.rerankers.rerankers_jina_v3")
     fake_module.JinaRerankerAdapter = FakeJinaAdapter  # type: ignore[attr-defined]
-    monkeypatch.setitem(sys.modules, "cocoindex_code.rerankers_jina_v3", fake_module)
+    monkeypatch.setitem(sys.modules, "cocoindex_code.rerankers.rerankers_jina_v3", fake_module)
 
     adapter = reranker_module.get_reranker_adapter("jinaai/jina-reranker-v3")
     assert isinstance(adapter, FakeJinaAdapter)
@@ -320,7 +320,7 @@ def test_rerank_path_class_boost_disabled_when_flag_off(monkeypatch: Any) -> Non
 
 
 def test_path_class_factor_parse_is_cached(monkeypatch: Any, caplog: Any) -> None:
-    from cocoindex_code import reranker as reranker_module
+    from cocoindex_code.rerankers import reranker as reranker_module
 
     monkeypatch.setattr(reranker_module, "_PATH_CLASS_FACTORS_CACHE", None)
     monkeypatch.setenv("COCOINDEX_RERANK_PATH_CLASS_BOOST", "1")

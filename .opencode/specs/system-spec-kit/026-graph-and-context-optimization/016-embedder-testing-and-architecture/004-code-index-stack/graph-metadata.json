@@ -22,7 +22,10 @@
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/016-query-expansion-identifier-bridging",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/017-hybrid-fusion-empirical-recalibration",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/018-rerank-matrix-rebench",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/020-deep-review-p1-p2-remediation"
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/019-deep-review-013-018-arc",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/020-deep-review-p1-p2-remediation",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/022-verification-p1-p2-remediation",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots"
   ],
   "manual": {
     "depends_on": [],
@@ -34,29 +37,23 @@
       "018 code embedder coderank",
       "cocoindex embedder swap",
       "code-specific embedder comparison",
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "016-embedder-testing-and-architecture",
-      "004-code-index-stack",
-      "018",
-      "code",
-      "embedder",
-      "swap"
+      "CocoIndex ADR index",
+      "004 code index stack decisions",
+      "ADR-016 ADR-017 ADR-018 ADR-019 ADR-020 ADR-021 ADR-023"
     ],
     "key_topics": [
       "018",
-      "cocoindex",
-      "code-embedder",
+      "code",
+      "embedder",
       "coderank",
-      "nomic",
-      "code-search",
-      "metal",
-      "mps",
-      "embedder-swap",
-      "code-graph-bridge",
-      "system-spec-kit",
-      "026-graph-and-context-optimization"
+      "cocoindex",
+      "swap",
+      "code-specific",
+      "comparison",
+      "adr",
+      "index",
+      "004",
+      "stack"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -64,10 +61,96 @@
       "spec.md",
       "decision-record.md"
     ],
-    "entities": [],
-    "causal_summary": "Phase parent for swapping CocoIndex (and transitively Code Graph",
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Apple Silicon",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "PyTorch MPS",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ollama",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "LiteLLM",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "MPS",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record Index",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Index Stack",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Index Stack The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "BGE",
+        "kind": "key_phrase",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record Index: 004 Code Index Stack",
+        "kind": "quoted",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger_phrases:   -",
+        "kind": "quoted",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "CocoIndex (semantic code search) currently uses `sbert/google/embeddinggemma-300m` — a general-text embedder, not code-tuned. Code Graph's `mk-code-index` reaches CocoIndex through a bridge in `lib/`, so swapping CocoIndex's embedder also affects Code Graph's semantic queries.",
     "created_at": "2026-05-18T16:14:38.272Z",
-    "last_save_at": "2026-05-18T05:13:47.097Z",
+    "last_save_at": "2026-05-19T20:42:43.938Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

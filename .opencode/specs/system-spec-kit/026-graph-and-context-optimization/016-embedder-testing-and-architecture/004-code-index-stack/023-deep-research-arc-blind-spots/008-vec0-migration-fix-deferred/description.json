@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/008-vec0-migration-fix-deferred",
+  "description": "Deferred Level 1 child packet for the future vec0 migration repair follow-up.",
+  "keywords": [
+    "023",
+    "008",
+    "vec0",
+    "migration",
+    "deferred",
+    "mcp-coco-index"
+  ],
+  "lastUpdated": "2026-05-20T09:11:27Z",
+  "specId": "008",
+  "folderSlug": "vec0-migration-fix-deferred",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "004-code-index-stack",
+    "023-deep-research-arc-blind-spots"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

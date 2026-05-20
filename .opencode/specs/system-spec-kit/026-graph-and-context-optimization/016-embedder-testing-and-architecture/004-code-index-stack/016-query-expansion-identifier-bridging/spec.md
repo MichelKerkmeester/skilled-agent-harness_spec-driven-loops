@@ -280,4 +280,5 @@ Dependencies:
 - Successor packets: `../017-hybrid-fusion-empirical-recalibration/`, `../018-rerank-matrix-rebench/`
 - ADR target: `../../002-spec-memory-stack/004-spec-memory-embedder-bake-off/decision-record.md` (append ADR-019)
 - Reuses helpers from: `../014-mirror-dedup-canonical-preference/` (path_utils.py — not directly used here, but same module style)
+- **Dependency note**: 016 depends on 013's corrected fixture, 014's deduped candidate set, and 015's body-level chunks; 017/018 evaluate the final pipeline with query expansion default-false after the documented regression.
 <!-- /ANCHOR:cross-links -->

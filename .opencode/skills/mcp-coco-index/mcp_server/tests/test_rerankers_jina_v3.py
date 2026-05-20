@@ -12,8 +12,8 @@ from unittest.mock import MagicMock
 
 import pytest
 
-from cocoindex_code.rerankers_jina_v3 import JinaRerankerAdapter
-from cocoindex_code.schema import QueryResult
+from cocoindex_code.rerankers.rerankers_jina_v3 import JinaRerankerAdapter
+from cocoindex_code.indexer.schema import QueryResult
 
 
 def _candidate(file_path: str, score: float, content: str = "def f(): pass") -> QueryResult:

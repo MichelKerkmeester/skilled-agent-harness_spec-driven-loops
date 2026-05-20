@@ -6,7 +6,7 @@ from __future__ import annotations
 import asyncio
 from typing import Any
 
-from cocoindex_code.protocol import IndexResponse, SearchResponse
+from cocoindex_code.core.protocol import IndexResponse, SearchResponse
 from cocoindex_code.server import create_mcp_server
 
 

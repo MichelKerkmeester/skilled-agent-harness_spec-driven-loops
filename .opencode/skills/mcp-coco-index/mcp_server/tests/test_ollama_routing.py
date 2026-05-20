@@ -9,8 +9,8 @@ from unittest.mock import patch
 import numpy as np
 import pytest
 
-from cocoindex_code.settings import EmbeddingSettings
-from cocoindex_code.shared import (
+from cocoindex_code.config.settings import EmbeddingSettings
+from cocoindex_code.core.shared import (
     _ollama_model_tag,
     _ollama_tag_matches,
     create_embedder,
@@ -47,7 +47,7 @@ def test_ollama_embedder_routes_through_litellm_call_site() -> None:
 
     settings = EmbeddingSettings(provider="litellm", model="ollama/nomic-embed-text")
     with (
-        patch("cocoindex_code.shared._ensure_ollama_daemon_ready") as ready,
+        patch("cocoindex_code.core.shared._ensure_ollama_daemon_ready") as ready,
         patch("litellm.aembedding", side_effect=fake_aembedding),
     ):
         embedder = create_embedder(settings)

@@ -20,6 +20,7 @@ CCC="$REPO_ROOT/.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc"
 PYTHON="$REPO_ROOT/.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/python"
 PACKET_DIR="$REPO_ROOT/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/018-rerank-matrix-rebench"
 RUNS_DIR="$PACKET_DIR/evidence/runs"
+DAEMON_RESTART_LOCK="$RUNS_DIR/.daemon-restart.lock"
 FIXTURE="${FIXTURE_OVERRIDE:-$SCRIPT_DIR/code-retrieval-fixture-corrected.json}"
 ITERATIONS=3
 LANE_FILTER="A,B,C,D"
@@ -106,7 +107,20 @@ lane_enabled() {
 }
 
 restart_daemon() {
+  local acquired=0
+  for _attempt in {1..100}; do
+    if mkdir "$DAEMON_RESTART_LOCK" 2>/dev/null; then
+      acquired=1
+      break
+    fi
+    sleep 0.1
+  done
+  if [[ "$acquired" -ne 1 ]]; then
+    echo "ERROR: timed out waiting for daemon restart lock: $DAEMON_RESTART_LOCK" >&2
+    return 1
+  fi
   "$CCC" daemon stop >/dev/null 2>&1 || true
+  rmdir "$DAEMON_RESTART_LOCK"
   # The installed CLI has no `daemon start`; the first `ccc search` auto-starts
   # the daemon with the env vars exported for this lane.
 }

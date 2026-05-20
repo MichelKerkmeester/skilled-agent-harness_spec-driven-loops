@@ -11,7 +11,7 @@ from typing import Any
 
 import numpy as np
 
-from cocoindex_code.observability import (
+from cocoindex_code.observability.observability import (
     DEFAULT_MCP_REQUEST_TIMEOUT_MS,
     MAX_MCP_REQUEST_TIMEOUT_MS,
     MCP_REQUEST_TIMEOUT_ENV,
@@ -19,14 +19,14 @@ from cocoindex_code.observability import (
     RetrievalDiagnostics,
     resolve_mcp_request_timeout_ms,
 )
-from cocoindex_code.query import (
+from cocoindex_code.retrieval.query import (
     _count_hybrid_boost_flips,
     query_codebase,
 )
-from cocoindex_code import query as query_module
-from cocoindex_code.fusion import FusedRow
-from cocoindex_code.settings import PROJECT_SETTINGS
-from cocoindex_code.shared import EMBEDDER, SQLITE_DB
+from cocoindex_code.retrieval import query as query_module
+from cocoindex_code.retrieval.fusion import FusedRow
+from cocoindex_code.config.settings import PROJECT_SETTINGS
+from cocoindex_code.core.shared import EMBEDDER, SQLITE_DB
 
 
 class FakeDb:

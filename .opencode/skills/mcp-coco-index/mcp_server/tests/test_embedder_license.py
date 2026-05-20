@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from cocoindex_code.registered_embedders import (
+from cocoindex_code.embedders.registered_embedders import (
     MANIFESTS,
     get_reranker_metadata,
 )

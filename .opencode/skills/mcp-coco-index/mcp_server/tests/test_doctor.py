@@ -9,8 +9,8 @@ import pytest
 from typer.testing import CliRunner
 
 from cocoindex_code import cli
-from cocoindex_code.config import Config
-from cocoindex_code.protocol import ProjectStatusResponse
+from cocoindex_code.config.config import Config
+from cocoindex_code.core.protocol import ProjectStatusResponse
 
 
 runner = CliRunner()

@@ -1,0 +1,107 @@
+{
+  "completed_at": "2026-05-19T21:13:23.719557+00:00",
+  "fixture": ".opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-20-expanded/code-retrieval-fixture-expanded-v2.json",
+  "hit_rate": 0.6,
+  "hits": 3,
+  "lane_id": "sample-smoke",
+  "lane_name": "live smoke subset first five probes",
+  "latency_ms": {
+    "mean": 2110.2,
+    "p50": 1905,
+    "p95": 2866,
+    "p99": 2866
+  },
+  "per_probe": [
+    {
+      "diagnostics": {},
+      "expected": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/registry.ts",
+      "hit": false,
+      "latency_ms": 2273,
+      "probe_id": 1,
+      "query": "registry of available embedding backends with dimensions and model notes",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/system-spec-kit/references/embedder-pluggability.md",
+        "skills/system-spec-kit/references/embedder-pluggability.md",
+        "skills/system-spec-kit/mcp_server/handlers/embedder-list.ts",
+        "skills/system-skill-advisor/mcp_server/lib/embedders/types.ts",
+        "skills/system-spec-kit/references/embedder-pluggability.md"
+      ]
+    },
+    {
+      "diagnostics": {},
+      "expected": ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-set.ts",
+      "hit": true,
+      "latency_ms": 1905,
+      "probe_id": 2,
+      "query": "handler that accepts an embedder name and queues a reindex job",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/system-spec-kit/mcp_server/handlers/embedder-set.ts",
+        "skills/system-spec-kit/references/embedder-pluggability.md",
+        "skills/system-spec-kit/mcp_server/handlers/embedder-status.ts",
+        "skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+        "skills/system-spec-kit/mcp_server/tools/types.ts"
+      ]
+    },
+    {
+      "diagnostics": {},
+      "expected": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+      "hit": true,
+      "latency_ms": 1796,
+      "probe_id": 3,
+      "query": "CocoIndex configuration that chooses the default local code embedding model",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/system-spec-kit/references/embedder-pluggability.md",
+        "skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
+        "skills/mcp-coco-index/references/settings_reference.md",
+        "skills/mcp-coco-index/references/settings_reference.md",
+        "skills/mcp-coco-index/references/settings_reference.md"
+      ]
+    },
+    {
+      "diagnostics": {},
+      "expected": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      "hit": true,
+      "latency_ms": 2866,
+      "probe_id": 4,
+      "query": "shell validator for spec folders with strict mode and recursive phase support",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/system-spec-kit/scripts/spec/validate.sh",
+        "skills/system-spec-kit/scripts/spec/validate.sh",
+        "skills/system-spec-kit/references/structure/phase_definitions.md",
+        "skills/system-spec-kit/scripts/tests/continuity-freshness.vitest.ts",
+        "skills/system-spec-kit/references/templates/template_guide.md"
+      ]
+    },
+    {
+      "diagnostics": {},
+      "expected": ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts",
+      "hit": false,
+      "latency_ms": 1711,
+      "probe_id": 5,
+      "query": "Vitest coverage for code graph readiness snapshots and stale state",
+      "returncode": 0,
+      "stderr": "",
+      "top5": [
+        "skills/system-code-graph/mcp_server/tests/startup-brief.vitest.ts",
+        "skills/system-spec-kit/mcp_server/stress_test/search-quality/w7-degraded-stale.vitest.ts",
+        "skills/system-code-graph/references/readiness-and-scope-fingerprint.md",
+        "skills/system-spec-kit/scripts/tests/graph-upgrades-regression-floor.vitest.ts.test.ts",
+        "skills/system-spec-kit/mcp_server/tests/m8-trust-state-vocabulary.vitest.ts"
+      ]
+    }
+  ],
+  "run": 1,
+  "sample_only": true,
+  "schema_version": 2,
+  "started_at": "2026-05-19T21:13:23.719427+00:00",
+  "success": true,
+  "total_probes": 5
+}

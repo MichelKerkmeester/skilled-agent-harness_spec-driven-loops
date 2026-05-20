@@ -16,40 +16,182 @@
       "cocoindex chooser section",
       "019/002 plan",
       "019/002 tasks",
-      "019/002 summary",
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/006-install-guide-updates",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "016-embedder-testing-and-architecture",
-      "004-code-index-stack",
-      "006-install-guide-updates"
+      "019/002 summary"
     ],
     "key_topics": [
       "019",
-      "install-guide",
-      "readme",
-      "onboarding",
+      "002",
+      "install",
+      "guide",
       "embedder",
-      "documentation",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "016-embedder-testing-and-architecture",
-      "004-code-index-stack",
-      "006-install-guide-updates",
-      "002"
+      "onboarding",
+      "docs",
+      "cocoindex",
+      "chooser",
+      "section",
+      "plan",
+      "tasks"
     ],
-    "importance_tier": "important",
-    "status": "planned",
+    "importance_tier": "normal",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/mcp-coco-index/INSTALL_GUIDE.md",
+      ".opencode/skills/mcp-coco-index/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
-    "entities": [],
-    "causal_summary": "Document the default + alternatives + swap runbook in INSTALL_GUIDE and README",
+    "entities": [
+      {
+        "name": "INSTALL_GUIDE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-coco-index/INSTALL_GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-coco-index/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Apple Silicon",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "dim",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "default",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Pending",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A new user clones the repo and runs CocoIndex. They get jina-code by default (post-018/001). But they don't know:",
     "created_at": "2026-05-18T08:18:02.784Z",
-    "last_save_at": "2026-05-19T19:44:28.899Z",
+    "last_save_at": "2026-05-19T20:42:43.949Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

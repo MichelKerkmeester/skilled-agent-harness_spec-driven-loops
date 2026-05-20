@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |---|---|
-| Status | Complete (2026-05-19) — 7-cell sweep showed RRF tuning is a NO-OP on hit rate (all cells tied at 12/18); locked picker's latency-optimum cell `(K=60, V=0.9, F=0.5)` for 2.8% p95 win at identical recall. Sweep harness reusable for future embedder/reranker swaps. ADR-020 documents empirical finding. |
+| Status | Complete (2026-05-19) — 7-cell local-neighborhood sweep on bge-code-v1 showed RRF tuning is a NO-OP on hit rate (all cells tied at 12/18); locked picker's latency-optimum cell `(K=60, V=0.9, F=0.5)` for 2.8% p95 win at identical recall. Sweep harness supports broader future grids, but this packet's evidence is not a full 64-cell sweep and must be repeated for future embedder/reranker swaps. ADR-020 documents empirical finding. |
 | Type | Empirical configuration sweep — bench harness + analyzer + new defaults |
 | Owner | cli-codex gpt-5.5 high fast (dispatched by main agent after 016 commits) |
 | Parent | `../spec.md` (004-code-index-stack) |
@@ -75,7 +75,7 @@ What "best" means here:
 2. **Secondary**: lowest p95 latency.
 3. **Tiebreak**: smallest config delta from inherited defaults (less disruptive rollback).
 
-Result of this packet: one new default config locked in `config.py`, ADR-020 documenting all configs swept + evidence-based rationale, and a reusable sweep harness so this exercise can be repeated for any future embedder, reranker, or corpus.
+Result of this packet: one new default config locked in `config.py`, ADR-020 documenting the 7 cells actually swept + evidence-based rationale, and a reusable sweep harness so this exercise can be repeated for any future embedder, reranker, or corpus.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -83,12 +83,13 @@ Result of this packet: one new default config locked in `config.py`, ADR-020 doc
 
 In scope:
 - **Sweep harness** — `phase2-bench/sweep-rrf.sh` (NEW shell wrapper) + `phase2-bench/sweep-rrf.py` (NEW Python analyzer). Wrapper iterates the parameter grid; analyzer aggregates per-cell hit rate + p95 latency + per-probe outcomes into `sweep-results.md`.
-- **Parameter grid** (default — operator can override via env):
+- **Parameter grid supported by harness** (operator can override via env; not fully executed in this packet):
   - `k ∈ {30, 60, 90, 120}` (4 values)
   - `vec_weight ∈ {0.5, 0.7, 0.9, 1.0}` (4 values)
   - `fts_weight ∈ {0.3, 0.5, 0.7, 0.9}` (4 values)
-  - Total cells: 4 × 4 × 4 = **64**
+  - Total supported default grid: 4 × 4 × 4 = **64**
   - Bounded by `COCOINDEX_RRF_SWEEP_K_VALUES`, `COCOINDEX_RRF_SWEEP_VEC_WEIGHTS`, `COCOINDEX_RRF_SWEEP_FTS_WEIGHTS` JSON-list env vars (operator-configurable for future re-runs with different grids).
+- **Executed evidence**: 7 bge-code-v1 cells (smoke 4 + targeted K/weight neighborhood 3), all tied at 12/18. Treat `(K=60, V=0.9, F=0.5)` as bge-code-v1-validated until a future embedder/reranker re-sweep says otherwise.
 - **Per-cell run**: each cell sets production RRF env vars `COCOINDEX_HYBRID_RRF_K`, `COCOINDEX_HYBRID_VECTOR_WEIGHT`, `COCOINDEX_HYBRID_FTS5_WEIGHT`, restarts daemon, runs `run-phase2-smoke.sh` against the corrected fixture, captures the per-probe hit/miss + latency + dense top-K composition.
 - **Aggregator output** (`evidence/sweep-results.md`):
   - **Table 1**: best 10 cells by hit rate, ties broken by p95 latency.
@@ -249,7 +250,7 @@ Dependencies:
 ## 8. OPEN QUESTIONS
 
 - **Per-cell rerun count?** Start at 1; rerun 2-3x ONLY for the top-5 by hit rate (variance dominates near optimum).
-- **Beyond bge-code-v1?** Out of scope here. ADR-020 documents how to re-sweep when embedder changes.
+- **Beyond bge-code-v1?** Out of scope here. ADR-020 documents how to re-sweep when embedder changes; current defaults are bge-code-v1-validated, not globally embedder-proof.
 - **Should the aggregator pick the cell, or should the operator manually pick from `sweep-results.md`?** Aggregator picks (per R5 rules), operator can override by editing `config.py` defaults manually.
 - **Latency cap = 15% — too strict?** Acceptable for now. Operator can opt-out by editing the picker logic. ADR documents this knob.
 <!-- /ANCHOR:questions -->
@@ -263,4 +264,5 @@ Dependencies:
 - Successor packet: `../018-rerank-matrix-rebench/` (depends on stable hybrid config from 017)
 - ADR target: `../../002-spec-memory-stack/004-spec-memory-embedder-bake-off/decision-record.md` (append ADR-020)
 - Bench harness reused: `../011-rerank-model-fit-investigation/research/phase2-bench/run-phase2-smoke.sh`
+- **Dependency note**: 017 depends on 013-016 stabilizing fixture truth, mirror dedup, AST chunking, and query-expansion default state; 018 depends on 017's locked RRF baseline for reranker-only comparison.
 <!-- /ANCHOR:cross-links -->
