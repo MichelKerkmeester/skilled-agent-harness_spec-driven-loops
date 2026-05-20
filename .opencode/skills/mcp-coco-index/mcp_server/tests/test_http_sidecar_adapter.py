@@ -237,8 +237,19 @@ def test_dispatch_routes_to_sidecar_when_env_set(monkeypatch):
     assert adapter.model_name == _DEFAULT_MODEL
 
 
-def test_dispatch_off_by_default(monkeypatch):
+def test_dispatch_defaults_to_sidecar_when_env_unset(monkeypatch):
+    """PROMOTE default: unset COCOINDEX_RERANK_VIA_SIDECAR routes to HTTP sidecar."""
     monkeypatch.delenv("COCOINDEX_RERANK_VIA_SIDECAR", raising=False)
+    monkeypatch.setattr(reranker_mod, "_ADAPTERS", {})
+
+    adapter = get_reranker_adapter(_DEFAULT_MODEL)
+
+    assert isinstance(adapter, HttpSidecarRerankerAdapter)
+
+
+def test_dispatch_routes_to_bundled_when_env_explicit_false(monkeypatch):
+    """Operator opt-out: COCOINDEX_RERANK_VIA_SIDECAR=false routes to bundled."""
+    monkeypatch.setenv("COCOINDEX_RERANK_VIA_SIDECAR", "false")
     monkeypatch.setattr(reranker_mod, "_ADAPTERS", {})
 
     from cocoindex_code.rerankers.reranker import CrossEncoderRerankerAdapter

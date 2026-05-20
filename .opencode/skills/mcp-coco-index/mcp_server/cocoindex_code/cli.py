@@ -137,7 +137,18 @@ def resolve_default_path(project_root: Path) -> str | None:
 
 
 def _ensure_rerank_sidecar_for_mcp() -> None:
-    """Best-effort sidecar startup for the MCP stdio entrypoint."""
+    """Best-effort sidecar startup for the MCP stdio entrypoint.
+
+    Cocoindex's gate is ``COCOINDEX_RERANK_VIA_SIDECAR`` (default ``true``), NOT
+    spec-memory's ``SPECKIT_CROSS_ENCODER``. We honor cocoindex's flag here and
+    pass ``skip_if_disabled=False`` to the helper so its built-in spec-memory
+    gate does not block cocoindex's auto-spawn.
+    """
+    from cocoindex_code.rerankers.reranker import _rerank_via_sidecar_enabled
+
+    if not _rerank_via_sidecar_enabled():
+        return
+
     try:
         repo_root = Path(__file__).resolve().parents[5]
         sidecar_skill_path = repo_root / ".opencode" / "skills" / "system-rerank-sidecar"
@@ -152,6 +163,7 @@ def _ensure_rerank_sidecar_for_mcp() -> None:
         result = ensure_rerank_sidecar(
             port=int(_os.environ.get("RERANK_SIDECAR_PORT", "8765")),
             sidecar_skill_path=sidecar_skill_path,
+            skip_if_disabled=False,
         )
         _typer.echo(f"[cocoindex mcp] rerank sidecar: {_json.dumps(result)}", err=True)
     except Exception as exc:

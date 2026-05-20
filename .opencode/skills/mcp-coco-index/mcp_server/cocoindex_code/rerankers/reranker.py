@@ -22,12 +22,17 @@ _PATH_CLASS_FACTORS_CACHE: tuple[str | None, dict[str, float]] | None = None
 
 
 def _rerank_via_sidecar_enabled() -> bool:
-    return os.environ.get("COCOINDEX_RERANK_VIA_SIDECAR", "").strip().lower() in {
-        "1",
-        "true",
-        "yes",
-        "on",
-    }
+    """Cocoindex's rerank-via-sidecar dispatch gate.
+
+    Defaults to True (PROMOTE path) to match ``Config.from_env``'s parsing of
+    ``COCOINDEX_RERANK_VIA_SIDECAR`` at ``config/config.py``. Both code paths
+    must read the same default or the dispatch silently diverges from the
+    documented behavior.
+    """
+    raw = os.environ.get("COCOINDEX_RERANK_VIA_SIDECAR")
+    if raw is None or raw.strip() == "":
+        return True
+    return raw.strip().lower() in {"1", "true", "yes", "on"}
 
 
 def _apply_path_class_boost(

@@ -41,9 +41,10 @@ def test_rerank_model_env_override_changes_config_model(tmp_path: Path) -> None:
 
 
 def test_default_dispatch_uses_cross_encoder_adapter(monkeypatch: Any) -> None:
-    """Default reranker is Qwen3-Reranker-0.6B, which uses the standard CrossEncoder adapter."""
+    """With sidecar dispatch opted out, the default Qwen3 model uses the bundled CrossEncoder."""
     from cocoindex_code.rerankers import reranker as reranker_module
 
+    monkeypatch.setenv("COCOINDEX_RERANK_VIA_SIDECAR", "false")
     monkeypatch.setattr(reranker_module, "_ADAPTERS", {})
 
     adapter = reranker_module.get_reranker_adapter(_DEFAULT_RERANK_MODEL)
@@ -55,6 +56,7 @@ def test_default_dispatch_uses_cross_encoder_adapter(monkeypatch: Any) -> None:
 def test_default_dispatch_uses_real_cross_encoder_adapter(monkeypatch: Any) -> None:
     from cocoindex_code.rerankers import reranker as reranker_module
 
+    monkeypatch.setenv("COCOINDEX_RERANK_VIA_SIDECAR", "false")
     monkeypatch.setattr(reranker_module, "_ADAPTERS", {})
 
     adapter = reranker_module.get_reranker_adapter(_DEFAULT_RERANK_MODEL)
@@ -72,6 +74,7 @@ def test_override_dispatch_uses_jina_adapter(monkeypatch: Any) -> None:
 
     fake_module = type(sys)("cocoindex_code.rerankers.rerankers_jina_v3")
     fake_module.JinaRerankerAdapter = FakeJinaAdapter  # type: ignore[attr-defined]
+    monkeypatch.setenv("COCOINDEX_RERANK_VIA_SIDECAR", "false")
     monkeypatch.setattr(reranker_module, "_ADAPTERS", {})
     monkeypatch.setitem(sys.modules, "cocoindex_code.rerankers.rerankers_jina_v3", fake_module)
 
@@ -97,6 +100,7 @@ def test_adapter_cache_is_keyed_by_model_name(monkeypatch: Any) -> None:
 def test_bge_opt_in_dispatches_to_cross_encoder(monkeypatch: Any) -> None:
     from cocoindex_code.rerankers import reranker as reranker_module
 
+    monkeypatch.setenv("COCOINDEX_RERANK_VIA_SIDECAR", "false")
     monkeypatch.setattr(reranker_module, "_ADAPTERS", {})
 
     adapter = reranker_module.get_reranker_adapter("BAAI/bge-reranker-v2-m3")

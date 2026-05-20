@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/006-cocoindex-dedup-from-shared-sidecar"
-    last_updated_at: "2026-05-20T19:30:00Z"
+    last_updated_at: "2026-05-20T21:10:00Z"
     last_updated_by: "main_agent"
-    recent_action: "PROMOTE applied; A/B benchmark green; tests + docs updated"
-    next_safe_action: "Commit packet 006 + arc parent update"
+    recent_action: "Deep-review P1 remediation shipped"
+    next_safe_action: "Commit remediation; arc 008 closes for real"
     blockers: []
     completion_state: "complete"
 ---
@@ -99,6 +99,10 @@ Single autonomous session on `main`:
 ### D-007: Reverted attempt to thread `rerank_via_sidecar` into `IndexMetadata.hash_payload`
 **Decision:** Do not include `rerank_via_sidecar` in `IndexMetadata.hash_payload`.
 **Rationale:** The hash payload feeds `effective_config_hash()`, which is the durable fingerprint that triggers index rebuilds on change. Adding a runtime-only dispatch flag here would force every existing cocoindex index to rebuild on first read after upgrade. The dispatch flag is environment-driven and observable via diagnostics; it has no semantic effect on indexed content. Reverted before commit.
+
+### D-008: Dispatch + ensure helpers default-on after deep-review found drift
+**Decision:** Patched `_rerank_via_sidecar_enabled()` to return True when env unset (matching `Config.from_env`'s `_parse_bool_env(..., True)` default), and `_ensure_rerank_sidecar_for_mcp` now gates by cocoindex's own flag and passes `skip_if_disabled=False` to the helper.
+**Rationale:** Deep-review iter-2 surfaced DR-002-P1-001: `Config.rerank_via_sidecar` defaulted True but the dispatch helper read raw env (`""` → False), so the shipped PROMOTE claim was materially false. Deep-review iter-2 also surfaced DR-002-P1-002: cocoindex's MCP auto-ensure called the helper with default `skip_if_disabled=True`, which checks **spec-memory's** `SPECKIT_CROSS_ENCODER` — not cocoindex's flag — and silently no-op'd. Both patches verified live: `_rerank_via_sidecar_enabled() = True` on unset env, dispatch returns `HttpSidecarRerankerAdapter`, helper spawns the sidecar (PID 47363) without SPECKIT_CROSS_ENCODER set. Tests updated: the now-misnamed `test_dispatch_off_by_default` split into `test_dispatch_defaults_to_sidecar_when_env_unset` + `test_dispatch_routes_to_bundled_when_env_explicit_false`; 5 pre-existing dispatch tests updated to opt-out explicitly via `monkeypatch.setenv("COCOINDEX_RERANK_VIA_SIDECAR", "false")` before asserting bundled-adapter routing.
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -128,6 +132,18 @@ $ .venv/bin/python benchmarks/benchmark-2026-05-20-cocoindex-via-sidecar/run_ab.
 [arm=a-bundled-qwen] DONE hits=15/73 p50=1382ms p95=1877ms
 [arm=b-sidecar-qwen] DONE hits=15/73 p50=1413ms p95=1895ms
 # Hit-rate Δ = 0, p95 Δ = +18 ms — PROMOTE decision rule gates green
+
+# Post-remediation (deep-review P1 fixes — D-008):
+$ python -c "from cocoindex_code.rerankers.reranker import _rerank_via_sidecar_enabled, get_reranker_adapter, _DEFAULT_RERANK_MODEL; ..."
+_rerank_via_sidecar_enabled() = True       # env unset → PROMOTE default fires
+dispatch adapter = HttpSidecarRerankerAdapter
+
+$ python -c "from scripts.ensure_rerank_sidecar import ensure_rerank_sidecar; result = ensure_rerank_sidecar(port=8765, skip_if_disabled=False); print(result)"
+[ensure-rerank-sidecar] sidecar spawned PID=47363 listening on :8765
+{'spawned': True, 'port': 8765, 'ownerPid': 47363}
+
+$ .venv/bin/python -m pytest tests/ -q
+232 passed in 25.34s                       # 240 → 232 + 1 new test - 1 retired = 232 (one assertion split into two)
 ```
 <!-- /ANCHOR:verification -->
 

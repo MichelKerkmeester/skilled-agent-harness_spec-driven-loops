@@ -239,9 +239,12 @@ def _path_class_candidate(
 
 
 def test_rerank_adapter_dispatch_jina_prefix(monkeypatch: Any) -> None:
-    """get_reranker_adapter() routes jinaai/jina-reranker-v3* model names to the jina adapter."""
+    """get_reranker_adapter() routes jinaai/jina-reranker-v3* model names to the jina adapter
+    when sidecar dispatch is opted out (sidecar dispatch pre-empts jina routing per
+    get_reranker_adapter dispatch priority)."""
     from cocoindex_code.rerankers import reranker as reranker_module
 
+    monkeypatch.setenv("COCOINDEX_RERANK_VIA_SIDECAR", "false")
     # Reset adapter cache so the dispatch path runs fresh
     monkeypatch.setattr(reranker_module, "_ADAPTERS", {})
 
