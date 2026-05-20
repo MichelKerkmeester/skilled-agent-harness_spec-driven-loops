@@ -1,2 +1,2 @@
-candidate,embedder,dim,active_table,id_match_top3,semantic_top1,median_ms,p95_ms,corpus_rows,evidence_gap_z,quality_label,verdict
-production,nomic-embed-text-v1.5,768,vec_768+vec_memories,0/10,~6/10,1826,3229,8403,1.41,weak,informational_fixture_stale
+candidate,embedder,dim,active_table,id_match_top1,median_ms,p95_ms,corpus_rows,z_threshold,quality_label,verdict
+production,nomic-embed-text-v1.5,768,vec_768+vec_memories,9/10,1071,2627,8403,1.3,good,PASS_matches_may17_baseline_at_top1
