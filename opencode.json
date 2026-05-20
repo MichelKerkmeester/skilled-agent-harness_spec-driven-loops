@@ -24,13 +24,13 @@
       "environment": {
         "EMBEDDINGS_PROVIDER": "auto",
         "_NOTE_1_DB": "Default DB (recommended): context-index__ollama__nomic-embed-text-v1.5__768.sqlite (auto-derived from provider+model+dim). Pull `ollama pull nomic-embed-text:v1.5` for the local-first new-user setup; hf-local with nomic-ai/nomic-embed-text-v1.5 is the Python-side fallback.",
-        "_NOTE_2_TOOLS": "Registers 39 tools: memory_save/search/context/match_triggers/index_scan/stats/health/validate/update/delete/bulk_delete/list/drift_why/retention_sweep/get_learning_history (15 memory), memory_causal_link/stats (2 causal), memory_ingest_start/status/cancel (3 async ingest), session_bootstrap/resume/health (3 session), checkpoint_create/delete/list/restore (4 checkpoint), task_preflight/postflight (2 task), council_graph_query/status/upsert/convergence (4 council), deep_loop_graph_query/status/upsert/convergence (4 deep-loop), eval_run_ablation/reporting_dashboard (2 eval). MCP namespace: mcp__mk_spec_memory__*",
+        "_NOTE_2_TOOLS": "Registers 42 tools: memory_save/search/context/match_triggers/index_scan/stats/health/validate/update/delete/bulk_delete/list/drift_why/retention_sweep/get_learning_history/quick_search (16 memory), memory_causal_link/stats (2 causal), memory_ingest_start/status/cancel (3 async ingest), embedder_list/set/status (3 embedder), session_bootstrap/resume/health (3 session), checkpoint_create/delete/list/restore (4 checkpoint), task_preflight/postflight (2 task), council_graph_query/status/upsert/convergence (4 council), deep_loop_graph_query/status/upsert/convergence (4 deep-loop), eval_run_ablation/reporting_dashboard (2 eval). MCP namespace: mcp__mk_spec_memory__*",
         "_NOTE_3_PROVIDERS": "Auto cascade (ADR-014, local-first): Ollama (local) -> hf-local (Python sentence-transformers) -> OpenAI API -> Voyage API.",
         "_NOTE_4_EMBEDDINGS_PROVIDER": "Auto cascade (ADR-014, local-first): Ollama -> hf-local -> OpenAI -> Voyage. Set EMBEDDINGS_PROVIDER=<provider> (ollama|hf-local|openai|voyage) to force a specific tier.",
         "_NOTE_5_CLOUD_PROVIDERS": "Cloud tiers are explicit opt-in: add VOYAGE_API_KEY or OPENAI_API_KEY only when you want cloud embeddings; otherwise the cascade keeps everything local.",
         "_NOTE_6_GET_VOYAGE_KEY": "Get Voyage key: https://dash.voyageai.com/api-keys",
         "_NOTE_7_GET_OPENAI_KEY": "Get OpenAI key: https://platform.openai.com/api-keys",
-        "_NOTE_8_FEATURE_FLAGS": "Opt-out flags (default ON): SPECKIT_ADAPTIVE_FUSION, SPECKIT_SESSION_BOOST, SPECKIT_CAUSAL_BOOST, SPECKIT_HYDE_ACTIVE, SPECKIT_ENTITY_LINKING, SPECKIT_GRAPH_CONCEPT_ROUTING, SPECKIT_GRAPH_REFRESH_MODE=write_local. Tier 3 LLM save routing is always on (fail-open to Tier 2 on timeout).",
+        "_NOTE_8_FEATURE_FLAGS": "Opt-out flags (default ON): SPECKIT_ADAPTIVE_FUSION, SPECKIT_SESSION_BOOST, SPECKIT_CAUSAL_BOOST, SPECKIT_HYDE_ACTIVE, SPECKIT_ENTITY_LINKING, SPECKIT_GRAPH_CONCEPT_ROUTING, SPECKIT_RERANK_LAYER, SPECKIT_GRAPH_REFRESH_MODE=write_local. Tier 3 LLM save routing is always on (fail-open to Tier 2 on timeout).",
         "_NOTE_RECOMMENDED_SETUP": "New users: install Ollama (https://ollama.com) and run `ollama pull nomic-embed-text:v1.5`. The cascade auto-detects Ollama and persists nomic-embed-text-v1.5 (768d) as the active embedder — no API keys, all-local."
       }
     },
@@ -75,8 +75,7 @@
         "COCOINDEX_CODE_ROOT_PATH": ".",
         "_NOTE_1": "Install: bash .opencode/skills/mcp-coco-index/scripts/install.sh",
         "_NOTE_2": "Default embedding: google/embeddinggemma-300m (sentence-transformers, ~620MB, no API key)",
-        "_NOTE_3": "If you switch to LiteLLM with VOYAGE_API_KEY, use voyage/voyage-code-3 for code embeddings",
-        "_NOTE_4": "Index stored in .cocoindex_code/ (gitignored)"
+        "_NOTE_3": "Index stored in .cocoindex_code/ (gitignored)"
       }
     },
     "code_mode": {
