@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/002-system-rerank-sidecar-skill",
+  "description": "Phase 002 of the 008 rerank-sidecar arc. Build the new system-rerank-sidecar skill: dedicated Python HTTP service hosting Qwen3-Reranker-0.6B via sentence-transformers CrossEncoder. Sigmoid-normalized output, asyncio.Lock serialization, /health + /warmup + /rerank endpoints, bounded warmup, clean SIGTERM. Independent infrastructure shared by spec-memory and cocoindex.",
+  "keywords": [
+    "002",
+    "system-rerank-sidecar",
+    "skill-creation",
+    "qwen3-reranker-0.6b",
+    "fastapi",
+    "uvicorn",
+    "sentence-transformers",
+    "sigmoid",
+    "asyncio-lock",
+    "cross-encoder",
+    "http-sidecar"
+  ],
+  "lastUpdated": "2026-05-20T00:00:00Z",
+  "specId": "002",
+  "folderSlug": "system-rerank-sidecar-skill",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "008-rerank-sidecar-arc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

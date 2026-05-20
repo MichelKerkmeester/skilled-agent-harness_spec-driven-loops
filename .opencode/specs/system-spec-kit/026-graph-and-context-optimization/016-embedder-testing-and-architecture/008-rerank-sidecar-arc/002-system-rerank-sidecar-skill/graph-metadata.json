@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/002-system-rerank-sidecar-skill",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/002-system-rerank-sidecar-skill",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/001-flag-routing-fix-for-cross-encoder"
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system-rerank-sidecar skill",
+      "qwen sidecar python",
+      "fastapi rerank sidecar",
+      "sentence-transformers cross-encoder skill",
+      "002 sidecar skill"
+    ],
+    "key_topics": [
+      "sidecar",
+      "fastapi",
+      "qwen",
+      "sentence-transformers",
+      "cross-encoder",
+      "http-service"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      ".opencode/skills/system-rerank-sidecar/SKILL.md",
+      ".opencode/skills/system-rerank-sidecar/scripts/rerank_sidecar.py",
+      ".opencode/skills/system-rerank-sidecar/scripts/install.sh",
+      ".opencode/skills/system-rerank-sidecar/scripts/start.sh",
+      ".opencode/skills/system-rerank-sidecar/pyproject.toml",
+      ".opencode/skills/system-rerank-sidecar/.env.example"
+    ],
+    "last_indexed_at": "2026-05-20T00:00:00Z"
+  }
+}

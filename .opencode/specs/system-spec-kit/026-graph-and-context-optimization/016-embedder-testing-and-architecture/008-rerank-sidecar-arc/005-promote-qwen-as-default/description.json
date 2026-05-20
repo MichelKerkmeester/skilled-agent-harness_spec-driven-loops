@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/005-promote-qwen-as-default",
+  "description": "Phase 005 of the 008 rerank-sidecar arc. Decision-gated final phase. If phase 004 benchmark satisfies the decision rule: flip cross-encoder.ts default to Qwen/Qwen3-Reranker-0.6B, set SPECKIT_CROSS_ENCODER=true in 4 runtime configs, update docs. Else: ship sidecar as opt-in only, update docs to explain. Either way, arc 008 closes with this phase.",
+  "keywords": [
+    "005",
+    "promote-qwen",
+    "default-flip",
+    "speckit_cross_encoder",
+    "cross-encoder-ts",
+    "decision-gated",
+    "promote-or-hold",
+    "arc-close",
+    "qwen3-reranker-0.6b"
+  ],
+  "lastUpdated": "2026-05-20T00:00:00Z",
+  "specId": "005",
+  "folderSlug": "promote-qwen-as-default",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "008-rerank-sidecar-arc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

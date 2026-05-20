@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/003-ensure-sidecar-from-launchers",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/003-ensure-sidecar-from-launchers",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/002-system-rerank-sidecar-skill"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/001-flag-routing-fix-for-cross-encoder",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/012-daemon-bridge-socket-for-skill-advisor-and-code-index"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ensure rerank sidecar launcher",
+      "self-electing primary port",
+      "spawn detached rerank",
+      "mk-spec-memory launcher rerank",
+      "cocoindex launcher rerank attach",
+      "003 ensure sidecar"
+    ],
+    "key_topics": [
+      "launcher-integration",
+      "port-bind",
+      "detached-spawn",
+      "self-electing-primary",
+      "graceful-degradation"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      ".opencode/bin/lib/ensure-rerank-sidecar.cjs",
+      ".opencode/bin/mk-spec-memory-launcher.cjs",
+      ".opencode/bin/mk-code-index-launcher.cjs",
+      ".opencode/skills/system-rerank-sidecar/scripts/ensure_rerank_sidecar.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py"
+    ],
+    "last_indexed_at": "2026-05-20T00:00:00Z"
+  }
+}
