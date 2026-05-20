@@ -20,7 +20,6 @@ from .config import config
 from .fts_index import query_fts
 from .fusion import FusedRow, RankedRow, rrf_fuse
 from .index_metadata import build_current_index_metadata, ensure_index_compatible
-from .migrations import migrate_db_path
 from .observability import (
     LANE_HYBRID_RERANK,
     LANE_HYBRID_RRF,
@@ -33,17 +32,11 @@ from .observability import (
 )
 from .path_utils import extract_path_stem, is_mirror_path, select_canonical_mirror_copy
 from .query_expansion import ExpandedQuery, expand_query
-from .schema import (
-    DEFAULT_VECTOR_DIM,
-    QueryResult,
-    _quote_identifier,
-    _table_name_for_dim,
-    resolve_existing_vector_table,
-)
+from .schema import QueryResult
 from .search_budget import SearchBudget, validate_search_budget
 from .settings import PROJECT_SETTINGS, is_canonical_path
 from . import shared
-from .shared import EMBEDDER, QUERY_PROMPT_NAME, SQLITE_DB, VECTOR_TABLE_NAME
+from .shared import EMBEDDER, QUERY_PROMPT_NAME, SQLITE_DB
 
 logger = logging.getLogger(__name__)
 
@@ -107,24 +100,13 @@ def _hash_content(content: str) -> str:
     return hashlib.sha256(_normalize_chunk_content(content).encode()).hexdigest()
 
 
-def _vector_table_from_env(env: Any, project_root: Path | None) -> str:
-    try:
-        return env.get_context(VECTOR_TABLE_NAME)
-    except KeyError:
-        if project_root is not None:
-            return _table_name_for_dim(
-                build_current_index_metadata(project_root=project_root).embedder_dim
-            )
-        return _table_name_for_dim(DEFAULT_VECTOR_DIM)
-
-
-def _chunk_columns(conn: sqlite3.Connection, table_name: str) -> set[str]:
-    rows = conn.execute(f"PRAGMA table_info({_quote_identifier(table_name)})").fetchall()
+def _chunk_columns(conn: sqlite3.Connection) -> set[str]:
+    rows = conn.execute("PRAGMA table_info(code_chunks_vec)").fetchall()
     return {row[1] for row in rows}
 
 
-def _select_chunk_columns(conn: sqlite3.Connection, table_name: str) -> str:
-    columns = _chunk_columns(conn, table_name)
+def _select_chunk_columns(conn: sqlite3.Connection) -> str:
+    columns = _chunk_columns(conn)
     source_realpath = "source_realpath" if "source_realpath" in columns else "NULL"
     content_hash = "content_hash" if "content_hash" in columns else "NULL"
     path_class = "path_class" if "path_class" in columns else "'implementation'"
@@ -138,8 +120,8 @@ def _select_chunk_columns(conn: sqlite3.Connection, table_name: str) -> str:
     )
 
 
-def _select_chunk_columns_with_id(conn: sqlite3.Connection, table_name: str) -> str:
-    return f"id AS chunk_id, {_select_chunk_columns(conn, table_name)}"
+def _select_chunk_columns_with_id(conn: sqlite3.Connection) -> str:
+    return f"id AS chunk_id, {_select_chunk_columns(conn)}"
 
 
 def _knn_query(
@@ -147,26 +129,24 @@ def _knn_query(
     embedding_bytes: bytes,
     k: int,
     language: str | None = None,
-    table_name: str = _table_name_for_dim(DEFAULT_VECTOR_DIM),
 ) -> list[tuple[Any, ...]]:
     """Run a vec0 KNN query, optionally constrained to a language partition."""
-    quoted_table = _quote_identifier(table_name)
     if language is not None:
-        select_columns = _select_chunk_columns(conn, table_name)
+        select_columns = _select_chunk_columns(conn)
         return conn.execute(
             f"""
             SELECT {select_columns}, distance
-            FROM {quoted_table}
+            FROM code_chunks_vec
             WHERE embedding MATCH ? AND k = ? AND language = ?
             ORDER BY distance
             """,
             (embedding_bytes, k, language),
         ).fetchall()
-    select_columns = _select_chunk_columns(conn, table_name)
+    select_columns = _select_chunk_columns(conn)
     return conn.execute(
         f"""
         SELECT {select_columns}, distance
-        FROM {quoted_table}
+        FROM code_chunks_vec
         WHERE embedding MATCH ? AND k = ?
         ORDER BY distance
         """,
@@ -181,11 +161,9 @@ def _full_scan_query(
     offset: int,
     languages: list[str] | None = None,
     paths: list[str] | None = None,
-    table_name: str = _table_name_for_dim(DEFAULT_VECTOR_DIM),
 ) -> list[tuple[Any, ...]]:
     """Full scan with SQL-level distance computation and filtering."""
-    quoted_table = _quote_identifier(table_name)
-    select_columns = _select_chunk_columns(conn, table_name)
+    select_columns = _select_chunk_columns(conn)
     conditions: list[str] = []
     params: list[Any] = [embedding_bytes]
 
@@ -206,7 +184,7 @@ def _full_scan_query(
         f"""
         SELECT {select_columns},
                vec_distance_L2(embedding, ?) as distance
-        FROM {quoted_table}
+        FROM code_chunks_vec
         {where}
         ORDER BY distance
         LIMIT ? OFFSET ?
@@ -220,16 +198,14 @@ def _knn_query_with_ids(
     embedding_bytes: bytes,
     k: int,
     language: str | None = None,
-    table_name: str = _table_name_for_dim(DEFAULT_VECTOR_DIM),
 ) -> list[tuple[Any, ...]]:
     """Run a vec0 KNN query and include the chunk id for fusion."""
-    quoted_table = _quote_identifier(table_name)
-    select_columns = _select_chunk_columns_with_id(conn, table_name)
+    select_columns = _select_chunk_columns_with_id(conn)
     if language is not None:
         return conn.execute(
             f"""
             SELECT {select_columns}, distance
-            FROM {quoted_table}
+            FROM code_chunks_vec
             WHERE embedding MATCH ? AND k = ? AND language = ?
             ORDER BY distance
             """,
@@ -239,7 +215,7 @@ def _knn_query_with_ids(
     return conn.execute(
         f"""
         SELECT {select_columns}, distance
-        FROM {quoted_table}
+        FROM code_chunks_vec
         WHERE embedding MATCH ? AND k = ?
         ORDER BY distance
         """,
@@ -254,11 +230,9 @@ def _full_scan_query_with_ids(
     offset: int,
     languages: list[str] | None = None,
     paths: list[str] | None = None,
-    table_name: str = _table_name_for_dim(DEFAULT_VECTOR_DIM),
 ) -> list[tuple[Any, ...]]:
     """Full scan with chunk ids included for fusion."""
-    quoted_table = _quote_identifier(table_name)
-    select_columns = _select_chunk_columns_with_id(conn, table_name)
+    select_columns = _select_chunk_columns_with_id(conn)
     conditions: list[str] = []
     params: list[Any] = [embedding_bytes]
 
@@ -279,7 +253,7 @@ def _full_scan_query_with_ids(
         f"""
         SELECT {select_columns},
                vec_distance_L2(embedding, ?) as distance
-        FROM {quoted_table}
+        FROM code_chunks_vec
         {where}
         ORDER BY distance
         LIMIT ? OFFSET ?
@@ -421,7 +395,6 @@ def _record_from_chunk_row(row: tuple[Any, ...]) -> dict[str, Any]:
 
 def _fetch_chunk_records(
     conn: sqlite3.Connection,
-    table_name: str,
     chunk_ids: list[int],
 ) -> dict[int, dict[str, Any]]:
     if not chunk_ids:
@@ -430,8 +403,8 @@ def _fetch_chunk_records(
     placeholders = ",".join("?" for _ in chunk_ids)
     rows = conn.execute(
         f"""
-        SELECT {_select_chunk_columns_with_id(conn, table_name)}
-        FROM {_quote_identifier(table_name)}
+        SELECT {_select_chunk_columns_with_id(conn)}
+        FROM code_chunks_vec
         WHERE id IN ({placeholders})
         """,
         chunk_ids,
@@ -679,27 +652,18 @@ def _hybrid_vector_rows(
     fetch_k: int,
     languages: list[str] | None,
     paths: list[str] | None,
-    table_name: str = _table_name_for_dim(DEFAULT_VECTOR_DIM),
 ) -> list[tuple[Any, ...]]:
     if paths:
-        return _full_scan_query_with_ids(
-            conn,
-            embedding_bytes,
-            fetch_k,
-            0,
-            languages,
-            paths,
-            table_name,
-        )
+        return _full_scan_query_with_ids(conn, embedding_bytes, fetch_k, 0, languages, paths)
     if not languages or len(languages) == 1:
         lang = languages[0] if languages else None
-        return _knn_query_with_ids(conn, embedding_bytes, fetch_k, lang, table_name)
+        return _knn_query_with_ids(conn, embedding_bytes, fetch_k, lang)
     return heapq.nsmallest(
         fetch_k,
         (
             row
             for lang in languages
-            for row in _knn_query_with_ids(conn, embedding_bytes, fetch_k, lang, table_name)
+            for row in _knn_query_with_ids(conn, embedding_bytes, fetch_k, lang)
         ),
         key=lambda row: row[9],
     )
@@ -788,10 +752,8 @@ async def query_codebase(
             f"Index database not found at {target_sqlite_db_path}. "
             "Please run a query with refresh_index=True first."
         )
-    project_root: Path | None = None
     if target_sqlite_db_path.parent.name == ".cocoindex_code":
         project_root = target_sqlite_db_path.parent.parent.resolve()
-        migrate_db_path(target_sqlite_db_path)
         compatibility = ensure_index_compatible(
             project_root,
             build_current_index_metadata(project_root=project_root),
@@ -846,21 +808,10 @@ async def query_codebase(
 
     stage_start = monotonic_ms()
     with db.readonly() as conn:
-        vector_table_name = resolve_existing_vector_table(
-            conn,
-            _vector_table_from_env(env, project_root),
-        )
         if config.hybrid_enabled:
             vector_rows = _merge_vector_rows_by_best_distance(
                 [
-                    _hybrid_vector_rows(
-                        conn,
-                        variant_embedding,
-                        fetch_k,
-                        languages,
-                        paths,
-                        vector_table_name,
-                    )
+                    _hybrid_vector_rows(conn, variant_embedding, fetch_k, languages, paths)
                     for variant_embedding in embedding_bytes_list
                 ],
                 fetch_k,
@@ -912,23 +863,15 @@ async def query_codebase(
             ]
             records_by_id = {
                 **vector_records,
-                **_fetch_chunk_records(conn, vector_table_name, missing_ids),
+                **_fetch_chunk_records(conn, missing_ids),
             }
             rows = []
         elif paths:
-            rows = _full_scan_query(
-                conn,
-                embedding_bytes,
-                fetch_k,
-                0,
-                languages,
-                paths,
-                vector_table_name,
-            )
+            rows = _full_scan_query(conn, embedding_bytes, fetch_k, 0, languages, paths)
             diagnostics.record_stage("vec_candidates_count", len(rows))
         elif not languages or len(languages) == 1:
             lang = languages[0] if languages else None
-            rows = _knn_query(conn, embedding_bytes, fetch_k, lang, vector_table_name)
+            rows = _knn_query(conn, embedding_bytes, fetch_k, lang)
             diagnostics.record_stage("vec_candidates_count", len(rows))
         else:
             rows = heapq.nsmallest(
@@ -936,13 +879,7 @@ async def query_codebase(
                 (
                     row
                     for lang in languages
-                    for row in _knn_query(
-                        conn,
-                        embedding_bytes,
-                        fetch_k,
-                        lang,
-                        vector_table_name,
-                    )
+                    for row in _knn_query(conn, embedding_bytes, fetch_k, lang)
                 ),
                 key=lambda r: r[8],
             )

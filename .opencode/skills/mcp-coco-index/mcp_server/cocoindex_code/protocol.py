@@ -168,7 +168,6 @@ class ProjectStatusResponse(_msgspec.Struct, tag="project_status"):
     total_chunks: int
     total_files: int
     languages: dict[str, int]
-    per_dim_table_sizes: dict[str, int] = _msgspec.field(default_factory=dict)
     progress: IndexingProgress | None = None
     index_exists: bool = True
     fingerprint: IndexFingerprintPayload = _msgspec.field(default_factory=IndexFingerprintPayload)

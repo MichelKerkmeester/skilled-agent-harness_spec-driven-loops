@@ -22,7 +22,6 @@ from .shared import (
     DOCUMENT_PROMPT_NAME,
     QUERY_PROMPT_NAME,
     SQLITE_DB,
-    VECTOR_TABLE_NAME,
     Embedder,
 )
 
@@ -72,9 +71,8 @@ class Project:
                     await asyncio.sleep(0.1)
         finally:
             db = self._env.get_context(SQLITE_DB)
-            vector_table_name = self._env.get_context(VECTOR_TABLE_NAME)
             with db.transaction() as conn:
-                sync_fts_from_code_chunks(conn, vector_table_name)
+                sync_fts_from_code_chunks(conn)
             self._indexing_stats = None
             self._initial_index_done = True
 
@@ -95,7 +93,6 @@ class Project:
         project_root: Path,
         project_settings: ProjectSettings,
         embedder: Embedder,
-        vector_table_name: str,
     ) -> Project:
         """Create a project with explicit settings and embedder."""
         index_dir = project_root / ".cocoindex_code"
@@ -113,7 +110,6 @@ class Project:
         context.provide(EMBEDDER, embedder)
         context.provide(QUERY_PROMPT_NAME, shared.query_prompt_name)
         context.provide(DOCUMENT_PROMPT_NAME, shared.document_prompt_name)
-        context.provide(VECTOR_TABLE_NAME, vector_table_name)
         context.provide(PROJECT_SETTINGS, project_settings)
         context.provide(
             EXT_LANG_OVERRIDE_MAP,

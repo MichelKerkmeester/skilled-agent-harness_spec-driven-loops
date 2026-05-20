@@ -8,8 +8,6 @@ from collections.abc import Iterable, Sequence
 from dataclasses import dataclass
 from typing import Any
 
-from .schema import _quote_identifier
-
 FTS_TABLE = "code_chunks_fts"
 TOKEN_RE = re.compile(r"[A-Za-z0-9_./:\-\"]+")
 _FTS5_QUOTE_RE = re.compile(r'"')
@@ -64,31 +62,26 @@ def populate_fts(
     )
 
 
-def sync_fts_from_code_chunks(
-    conn: sqlite3.Connection,
-    source_table: str = "code_chunks_vec",
-) -> None:
-    """Mirror current active vector rows into the FTS5 table."""
+def sync_fts_from_code_chunks(conn: sqlite3.Connection) -> None:
+    """Mirror current ``code_chunks_vec`` rows into the FTS5 table."""
     source_table = conn.execute(
-        "SELECT name FROM sqlite_master WHERE name = ?",
-        (source_table,),
+        "SELECT name FROM sqlite_master WHERE name = 'code_chunks_vec'"
     ).fetchone()
     if source_table is None:
         return
 
-    quoted_source = _quote_identifier(str(source_table[0]))
     ensure_fts_table(conn)
     conn.execute(
-        f"""
+        """
         DELETE FROM code_chunks_fts
-        WHERE rowid NOT IN (SELECT id FROM {quoted_source})
+        WHERE rowid NOT IN (SELECT id FROM code_chunks_vec)
         """
     )
     conn.execute(
-        f"""
+        """
         INSERT OR REPLACE INTO code_chunks_fts(rowid, content, file_path, language)
         SELECT id, content, file_path, language
-        FROM {quoted_source}
+        FROM code_chunks_vec
         """
     )
 
