@@ -1,7 +1,7 @@
 ---
 title: "Spec Kit Memory: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the Spec Kit Memory MCP server."
-last_updated: "2026-05-09"
+last_updated: "2026-05-20"
 ---
 
 # Spec Kit Memory: Manual Testing Playbook
@@ -3933,3 +3933,6 @@ This split playbook keeps automated coverage references in three places:
 | 345 | Doctor Commands | Version migration 3.3.0.0 → 3.4.1.0 end-to-end | [345](23--doctor-commands/345-version-migration-3.3.0.0-to-3.4.1.0.md) | [migration-manifest.json](../mcp_server/database/migration-manifest.json) |
 | 346 | Doctor Commands | Version migration cleanup-legacy with per-file prompts | [346](23--doctor-commands/346-version-migration-cleanup-legacy.md) | [migration-manifest.json](../mcp_server/database/migration-manifest.json) |
 | 347 | Doctor Commands | Version migration no-op (already-current) | [347](23--doctor-commands/347-version-migration-no-op.md) | [migration-manifest.json](../mcp_server/database/migration-manifest.json) |
+| 416 | Memory Quality And Indexing | vec_memories KNN dual-write and factory shard fallback | [416](13--memory-quality-and-indexing/416-vec-memories-knn-and-factory-shard-fallback.md) | [13--memory-quality-and-indexing/29-vec-memories-knn-and-factory-shard-fallback.md](../feature_catalog/13--memory-quality-and-indexing/29-vec-memories-knn-and-factory-shard-fallback.md) |
+| 417 | Memory Quality And Indexing | Constitutional sufficiency-gate exemption | [417](13--memory-quality-and-indexing/417-constitutional-sufficiency-gate-exemption.md) | [13--memory-quality-and-indexing/30-constitutional-sufficiency-gate-exemption.md](../feature_catalog/13--memory-quality-and-indexing/30-constitutional-sufficiency-gate-exemption.md) |
+| 418 | Memory Quality And Indexing | Graph-metadata and lineage repair runner | [418](13--memory-quality-and-indexing/418-graph-metadata-and-lineage-repair-runner.md) | [13--memory-quality-and-indexing/31-graph-metadata-and-lineage-repair-runner.md](../feature_catalog/13--memory-quality-and-indexing/31-graph-metadata-and-lineage-repair-runner.md) |

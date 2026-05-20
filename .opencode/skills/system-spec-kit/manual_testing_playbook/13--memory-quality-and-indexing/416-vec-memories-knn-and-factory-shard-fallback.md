@@ -1,0 +1,96 @@
+---
+title: "416 -- vec_memories KNN dual-write and factory shard fallback"
+description: "This scenario validates that reindex dual-writes vec_<dim> and vec_memories per shard and that the factory resolves the active ollama embedder through the per-embedder shard when the main DB lacks the dim-tagged table."
+audited_post_018: true
+---
+
+# 416 -- vec_memories KNN dual-write and factory shard fallback
+
+## 1. OVERVIEW
+
+This scenario validates the two cooperating patches that restore `memory_search` semantic confidence: reindex dual-write of `vec_<dim>` and `vec_memories` in the active per-embedder shard, plus the factory's ADR-012 shard-aware fallback when resolving the active ollama embedder.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+
+- Objective: Confirm reindex writes embeddings to both the canonical blob table and the vec0 KNN virtual table in the active shard, and confirm the factory resolves the active embedder when the dim-tagged table lives in the shard rather than the main DB.
+- Real user request: `` Memory search keeps coming back with weak ranked results and the daemon log says the factory is falling back to jina-embeddings-v3 even though I have nomic active. Please validate that a reindex now lands rows in both vec_<dim> and vec_memories in the active shard, that the factory resolves nomic correctly through the shard, and that the daemon log no longer prints `[factory] Active embedder ... points to vec_<dim>, but that table is missing in <main_db>`. Return a pass/fail verdict with evidence. ``
+- RCAF Prompt: `As a memory-system operator, validate the vec_memories KNN dual-write and the factory ADR-012 shard fallback after a daemon restart.`
+- Expected execution process: Run the documented commands against the active embedder shard, capture row counts and the daemon log, compare against the expected signals, and return a concise pass/fail verdict with cited evidence.
+- Expected signals: vec_<dim> and vec_memories have matching row counts in the active shard; KNN self-probe returns the seed row at rank 1 with distance 0 and real neighbors at distances 0.5 to 0.6; daemon startup log emits `[factory] Using provider: ollama (vec_metadata active_embedder_name=...)` with no preceding cascade warning.
+- Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
+- Pass/fail: PASS if both tables match counts, KNN self-probe returns rank-1 with distance 0, and the factory log shows the positive `Using provider` line with no cascade warning. FAIL if vec_memories is empty, if vec_<dim> count differs from vec_memories count after reindex, or if the factory cascade warning still fires.
+
+---
+
+## 3. TEST EXECUTION
+
+### Prompt
+
+```
+Validate vec_memories KNN dual-write and factory ADR-012 shard fallback against the active embedder shard plus the daemon startup log.
+```
+
+### Commands
+
+**Block A: shard row-count parity**
+
+1. Identify the active shard from `<repo>/.opencode/skills/system-spec-kit/mcp_server/database/vectors/context-vectors__<provider>__<model>__<dim>.sqlite`.
+2. From `mcp_server/`, run:
+   ```
+   node -e "const D=require('better-sqlite3'); const V=require('sqlite-vec'); const db=new D('<shard-path>'); V.load(db); console.log({vec_dim: db.prepare('SELECT count(*) AS n FROM vec_<dim>').get().n, vec_memories: db.prepare('SELECT count(*) AS n FROM vec_memories').get().n});"
+   ```
+3. Assert both counts are equal and non-zero.
+
+**Block B: KNN self-probe**
+
+4. From the same node script, pick a seed: `db.prepare('SELECT id, vec FROM vec_<dim> LIMIT 1').get()`.
+5. Run KNN: `db.prepare("SELECT rowid, distance FROM vec_memories WHERE embedding MATCH ? AND k = 5 ORDER BY distance").all(seed.vec)`.
+6. Assert rank 1 has `rowid === seed.id` and `distance === 0`. Assert ranks 2..5 have non-zero distances under 0.7.
+
+**Block C: factory resolution via shard**
+
+7. Restart the daemon clean. From repo root:
+   ```
+   SPECKIT_IPC_SOCKET_DIR=/tmp/mk-spec-memory node .opencode/bin/mk-spec-memory-launcher.cjs &
+   ```
+8. Grep the startup log for the positive factory line and the absence of the cascade warning:
+   ```
+   grep -E "factory.*Using provider|factory.*points to vec_|continuing provider cascade" /tmp/mk-spec-memory-daemon.log
+   ```
+
+### Expected
+
+- Block A: matching row counts between `vec_<dim>` and `vec_memories` in the active shard.
+- Block B: rank-1 self-distance is 0, neighbors fall in the 0.5 to 0.65 range for nomic at 768-dim.
+- Block C: log contains `[factory] Using provider: ollama (vec_metadata active_embedder_name=...)` and contains zero matches for `points to vec_<dim>, but that table is missing` or `continuing provider cascade` when the shard is populated.
+
+### Evidence
+
+Saved row-count output, KNN top-5 output, daemon startup log excerpt for the factory line plus a grep showing zero cascade-warning matches.
+
+### Pass / Fail
+
+- **Pass**: row counts match, KNN self-probe returns rank-1 distance 0, factory log shows positive provider resolution with no cascade warning.
+- **Fail**: vec_memories row count differs from vec_<dim>, or KNN returns a non-self row at rank 1, or factory cascade warning appears in the log.
+
+### Failure Triage
+
+- Block A mismatch: inspect `mcp_server/lib/embedders/reindex.ts::writeVectorsToShard` and `writeVectorsToKnn`. Check sqlite-vec extension load. Confirm dual-write transaction covers both INSERT statements.
+- Block B distance != 0 at rank 1: vec_memories blob format does not match vec_<dim>. Confirm `to_embedding_buffer(embedding)` is identical for both tables.
+- Block C cascade warning: inspect `shared/embeddings/factory.ts::readActiveOllamaEmbedderFromDb`. Confirm the shard fallback path constructs the correct filename pattern `context-vectors__ollama__<name>__<dim>.sqlite`. Confirm the file exists at the expected location.
+
+## 4. SOURCE FILES
+- Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
+- Feature catalog: [13--memory-quality-and-indexing/29-vec-memories-knn-and-factory-shard-fallback.md](../../feature_catalog/13--memory-quality-and-indexing/29-vec-memories-knn-and-factory-shard-fallback.md)
+- Source files: `mcp_server/lib/embedders/reindex.ts`, `shared/embeddings/factory.ts`, `mcp_server/lib/search/vector-index-store.ts`
+- Shipping packets: `016/002/016-reindex-populates-vec-memories-knn-table`, `016/002/017-factory-shard-fallback-for-hf-voyage-openai`
+
+---
+
+## 5. SOURCE METADATA
+- Spec doc identifier: `416`
+- Group: Memory Quality And Indexing
+- Canonical playbook source: `manual_testing_playbook.md`

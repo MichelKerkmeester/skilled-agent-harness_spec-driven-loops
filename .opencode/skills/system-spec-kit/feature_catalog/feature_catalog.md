@@ -1,7 +1,7 @@
 ---
 title: "Spec Kit Memory: Feature Catalog"
 description: "Unified reference combining the complete current system feature inventory for the Spec Kit Memory MCP server."
-last_updated: "2026-04-29"
+last_updated: "2026-05-20"
 ---
 
 # Spec Kit Memory: Feature Catalog
@@ -2919,6 +2919,54 @@ The assistive reconsolidation module operates in three tiers: high-similarity co
 #### Source Files
 
 See [`13--memory-quality-and-indexing/21-assistive-reconsolidation.md`](13--memory-quality-and-indexing/21-assistive-reconsolidation.md) for full implementation and test file listings.
+
+---
+
+### vec_memories KNN dual-write and factory shard fallback
+
+#### Description
+
+Reindex now writes embeddings to both the canonical `vec_<dim>` blob table and the vec0 `vec_memories` virtual table in the active per-embedder shard. The factory follows ADR-012 and resolves the active ollama embedder through `<db_dir>/vectors/context-vectors__ollama__<name>__<dim>.sqlite` when the main DB lacks the dim-tagged table.
+
+#### Current Reality
+
+`writeVectorsToShard` in `lib/embedders/reindex.ts` opens the shard, loads sqlite-vec on the connection, creates both tables lazily, and runs `writeVectors` plus the new `writeVectorsToKnn` helper inside the same transaction. The KNN helper uses DELETE-then-INSERT because vec0 rejects `INSERT OR REPLACE`. `readActiveOllamaEmbedderFromDb` in `shared/embeddings/factory.ts` now consults the shard subdirectory when the main DB does not have the dim-tagged table. Daemon startup logs the positive `[factory] Using provider: ollama (vec_metadata active_embedder_name=...)` line without the cascade warning when the active embedder has a populated shard.
+
+#### Source Files
+
+See [`13--memory-quality-and-indexing/29-vec-memories-knn-and-factory-shard-fallback.md`](13--memory-quality-and-indexing/29-vec-memories-knn-and-factory-shard-fallback.md) for full implementation and test file listings.
+
+---
+
+### Constitutional sufficiency-gate exemption
+
+#### Description
+
+Constitutional markdown files now pass through `memory_index_scan` in warn-only sufficiency mode rather than hard-rejecting with `INSUFFICIENT_CONTEXT_ABORT`. Policy text under `.opencode/skills/*/constitutional/` is exempt from the requirement of three support items plus one anchor when primary evidence is absent.
+
+#### Current Reality
+
+`handleMemoryIndexScan` in `handlers/memory-index.ts` widens the existing `useWarnOnly` exemption with `force || isSpecDoc || isConstitutional`. The downstream sufficiency evaluator still runs against constitutional content but advisories no longer halt the save. The strict gate stays intact for any file that is neither spec doc nor constitutional.
+
+#### Source Files
+
+See [`13--memory-quality-and-indexing/30-constitutional-sufficiency-gate-exemption.md`](13--memory-quality-and-indexing/30-constitutional-sufficiency-gate-exemption.md) for full implementation and test file listings.
+
+---
+
+### Graph-metadata and lineage repair runner
+
+#### Description
+
+Direct-run Node script at `mcp_server/scripts/repair-graph-metadata.mjs` normalizes graph-metadata.json to the v1 schema, maps legacy `importance_tier: "high"` to `important`, compacts archived metadata that fails V-rule V8, and realigns stale `memory_lineage.logical_key` rows with current `memory_index` identities. Direct-run, idempotent on re-run, writes `/tmp/repair-graph-metadata-*` backups before any real mutation.
+
+#### Current Reality
+
+The runner supports `--dry-run`, `--scan-log <path>`, `--root <dir>`, and `--no-lineage`. It walks `<root>/**/graph-metadata.json`, repairs schema/tier/V8 classes, and uses the scan log to identify stale `E_LINEAGE` predecessor ids before realigning them via SQLite UPDATE on `memory_lineage` and `active_memory_projection`. V8 compaction only fires on files the scan log explicitly rejected, preserving manual cross-references on healthy active packets.
+
+#### Source Files
+
+See [`13--memory-quality-and-indexing/31-graph-metadata-and-lineage-repair-runner.md`](13--memory-quality-and-indexing/31-graph-metadata-and-lineage-repair-runner.md) for full implementation and test file listings.
 
 ---
 
