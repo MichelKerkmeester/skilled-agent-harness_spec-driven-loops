@@ -20,7 +20,7 @@ The fork preserves compatibility for callers using the upstream-style entrypoint
 <!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
-The legacy path converts old embedding model prefixes, can create settings from environment variables and delegates work to the daemon-backed implementation. Legacy root discovery can re-anchor to an existing indexed tree.
+The legacy path converts old embedding-model prefixes for Stage 1 embedders, can create settings from environment variables and delegates work to the daemon-backed implementation. Legacy root discovery can re-anchor to an existing indexed tree.
 <!-- /ANCHOR:current-reality -->
 
 ---
@@ -32,7 +32,7 @@ The legacy path converts old embedding model prefixes, can create settings from 
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/server.py:187` | Compatibility | Converts legacy embedding model values. |
+| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/server.py:187` | Compatibility | Converts legacy embedding-model values. |
 | `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/server.py:195` | Compatibility | Defines the backward-compatible entrypoint. |
 | `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/settings.py:161` | Settings | Finds legacy project roots from existing index databases. |
 

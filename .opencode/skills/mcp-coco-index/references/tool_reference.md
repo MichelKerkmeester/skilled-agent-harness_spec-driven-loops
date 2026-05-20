@@ -15,6 +15,17 @@ Complete reference for all CLI commands and MCP tools exposed by CocoIndex Code.
 
 ---
 
+## Pipeline architecture
+
+CocoIndex Code uses two model stages plus a lexical fusion lane. The Stage 1 embedder and Stage 2 reranker are not interchangeable: the embedder creates independent vectors for stored chunks and queries, while the reranker scores each query/candidate pair together.
+
+| Stage | Model role | Current default | Configuration surface | Output |
+| ----- | ---------- | --------------- | --------------------- | ------ |
+| Stage 1 | Bi-encoder embedder | `sbert/nomic-ai/CodeRankEmbed` (`nomic-ai/CodeRankEmbed` in `global_settings.yml`) | `embedding.provider`, `embedding.model`, `embedding.device`, or `COCOINDEX_CODE_EMBEDDING_MODEL` | Query/chunk vectors compared by cosine similarity |
+| Fusion | Vector + FTS5 RRF | RRF K=60, vector weight 0.9, FTS5 weight 0.5 | `COCOINDEX_HYBRID*` environment variables | Top-K retrieval candidates after reciprocal-rank fusion |
+| Dedup | Canonical result grouping | Realpath first, content hash fallback | Built into the forked query path | One representative row per duplicate group |
+| Stage 2 | Cross-encoder reranker | `jinaai/jina-reranker-v3` | `COCOINDEX_RERANK`, `COCOINDEX_RERANK_MODEL`, `COCOINDEX_RERANK_TOP_K` | Final candidate order after query+candidate scoring |
+
 ## 1. OVERVIEW
 
 This document provides the complete reference for CocoIndex Code CLI commands and MCP tools. It covers all available commands (search, index, status, init, reset, mcp, daemon), their parameters, expected output, supported languages, environment variables, settings schema, and related resources.
@@ -292,6 +303,8 @@ Perform semantic search across the indexed codebase.
 - `offset` defaults to **0** for MCP and can be used for pagination
 - `refresh_index` defaults to `false` for predictable search latency
 - `refresh_index=true` remains supported for backward-compatible one-shot refresh-before-search calls
+- Stage 1 embedder settings are not MCP request parameters. Configure them with `embedding.provider`, `embedding.model`, `embedding.device`, or `COCOINDEX_CODE_EMBEDDING_MODEL`, then rebuild the index after model changes.
+- Stage 2 reranker settings are not MCP request parameters. Configure them with `COCOINDEX_RERANK`, `COCOINDEX_RERANK_MODEL`, and `COCOINDEX_RERANK_TOP_K`; reranking runs only on the retrieved top-K candidates.
 
 **MCP request example:**
 ```json
@@ -418,10 +431,17 @@ Legacy variables are recognized for backward compatibility and automatically map
 CocoIndex Code uses YAML settings files stored in the project `.cocoindex_code/` directory and the user home `~/.cocoindex_code/` directory.
 
 **User settings** (`~/.cocoindex_code/global_settings.yml`):
-- `embedding.provider` -- embedding provider (e.g., `sentence-transformers`, `litellm`)
-- `embedding.model` -- embedding model name (default `nomic-ai/CodeRankEmbed`; alternatives include `openai/text-embedding-3-small`, `voyage/voyage-4`, and `gemini/text-embedding-004`)
-- `embedding.device` -- compute device (e.g., `cpu`, `cuda`, `mps`; default: auto-detect)
+- `embedding.provider` -- Stage 1 bi-encoder embedder provider (e.g., `sentence-transformers`, `litellm`)
+- `embedding.model` -- Stage 1 bi-encoder embedding model name (default `nomic-ai/CodeRankEmbed`; alternatives include `text-embedding-3-small`, `voyage/voyage-code-3`, and `gemini/gemini-embedding-001`)
+- `embedding.device` -- Stage 1 embedder compute device (e.g., `cpu`, `cuda`, `mps`; default: auto-detect)
 - `envs` -- environment variables map (e.g., API keys for LiteLLM providers)
+
+**Reranker environment settings**:
+- `COCOINDEX_RERANK` -- enable or disable the Stage 2 cross-encoder reranker (default `true`)
+- `COCOINDEX_RERANK_MODEL` -- Stage 2 cross-encoder reranker model name (default `jinaai/jina-reranker-v3`)
+- `COCOINDEX_RERANK_TOP_K` -- number of retrieval candidates passed to Stage 2 before the final result cut (default `20`)
+- `COCOINDEX_RERANK_PATH_CLASS_BOOST` / `COCOINDEX_RERANK_PATH_CLASS_FACTORS` -- optional path-class reranker tuning controls
+- `COCOINDEX_COMMERCIAL_SAFE_PROFILE` -- blocks active non-commercial models, including the default `jinaai/jina-reranker-v3` reranker, when enabled
 
 **Project settings** (`<project>/.cocoindex_code/settings.yml`):
 - `include_patterns` -- glob patterns for files to index (default: language-specific patterns)

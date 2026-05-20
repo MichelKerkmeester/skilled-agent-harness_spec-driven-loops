@@ -1,9 +1,10 @@
 ---
 title: CocoIndex Code Settings Reference
-description: Complete reference for global settings, project settings, embedding models, chunking configuration, root path discovery, and environment variables.
+description: Complete reference for global settings, project settings, embedding models, reranker models, chunking configuration, root path discovery, and environment variables.
 trigger_phrases:
   - cocoindex settings
   - cocoindex embedding model
+  - cocoindex reranker model
   - cocoindex configuration reference
   - ccc global settings
   - cocoindex environment variables
@@ -11,13 +12,17 @@ trigger_phrases:
 
 # CocoIndex Code Settings Reference
 
-Complete reference for all CocoIndex Code configuration files, embedding model options, chunking parameters, and environment variables.
+Complete reference for all CocoIndex Code configuration files, embedding model options, reranker model options, chunking parameters, and environment variables.
 
 ---
 
 ## 1. OVERVIEW
 
-CocoIndex Code reads per-user global settings plus per-project index settings. Use this reference to pick the active embedding model, understand root-path discovery, and map environment variables without guessing from daemon behavior.
+CocoIndex Code reads per-user global settings plus per-project index settings. Use this reference to pick the active Stage 1 embedding model, understand the Stage 2 reranker, understand root-path discovery, and map environment variables without guessing from daemon behavior.
+
+### Pipeline order
+
+Search runs in a fixed order: Stage 1 bi-encoder embedding generates query/chunk vectors, the vector lane is fused with FTS5 through Reciprocal Rank Fusion (RRF), duplicate chunks are collapsed, Stage 2 cross-encoder reranking scores the top-K query/candidate pairs, then the final ranked results are returned.
 
 ---
 
@@ -25,14 +30,14 @@ CocoIndex Code reads per-user global settings plus per-project index settings. U
 
 **File:** `~/.cocoindex_code/global_settings.yml`
 
-Controls the embedding model and daemon environment. This file is per-user (shared across all projects).
+Controls the Stage 1 embedding model and daemon environment. This file is per-user (shared across all projects).
 
 ### Schema
 
 ```yaml
 embedding:
   provider: <string>    # "sentence-transformers" | "litellm"
-  model: <string>       # Model identifier (see Embedding Model Options below)
+  model: <string>       # Stage 1 embedder identifier (see Embedding Model Options below)
   device: <string|null> # "cpu" | "cuda" | "mps" | null (auto-detect)
 
 envs:                   # Dict of environment variables injected into daemon
@@ -45,9 +50,9 @@ envs:                   # Dict of environment variables injected into daemon
 
 | Field                | Type          | Default                                     | Description                                      |
 | -------------------- | ------------- | ------------------------------------------- | ------------------------------------------------ |
-| `embedding.provider` | string        | `sentence-transformers`                     | Embedding backend: `sentence-transformers` (local) or `litellm` (API) |
-| `embedding.model`    | string        | `nomic-ai/CodeRankEmbed`                   | Model identifier passed to the provider          |
-| `embedding.device`   | string / null | `null`                                      | Compute device. `null` auto-detects (GPU if available, else CPU) |
+| `embedding.provider` | string        | `sentence-transformers`                     | Stage 1 embedding backend: `sentence-transformers` (local) or `litellm` (API) |
+| `embedding.model`    | string        | `nomic-ai/CodeRankEmbed`                   | Stage 1 bi-encoder embedder identifier passed to the provider |
+| `embedding.device`   | string / null | `null`                                      | Stage 1 embedder compute device. `null` auto-detects (GPU if available, else CPU) |
 | `envs`               | dict          | `{}`                                        | Environment variables injected into the daemon process. Used for API keys |
 
 ### Example: Default Local nomic CodeRankEmbed
@@ -68,7 +73,7 @@ envs:
   VOYAGE_API_KEY: your-key-here
 ```
 
-> **CRITICAL**: Changing the embedding model requires `ccc reset && ccc index` to rebuild the index. Different models produce different vector dimensions and cannot be mixed.
+> **CRITICAL**: Changing the Stage 1 embedding model requires `ccc reset && ccc index` to rebuild the index. Different embedders can produce different vector dimensions and cannot be mixed. Changing the Stage 2 reranker does not rebuild stored embeddings because it only scores query/candidate pairs after retrieval.
 
 ---
 
@@ -127,6 +132,8 @@ dist/**, build/**, .next/**, target/**, *.min.js, *.min.css,
 
 ## 3. EMBEDDING MODEL OPTIONS
 
+Stage 1 embedding models are bi-encoders: they encode the query and chunks independently, then the vector lane compares those embeddings with cosine similarity before RRF fusion.
+
 | Model | Provider | Key Required | Dimensions | Notes |
 | ----- | -------- | ------------ | ---------- | ----- |
 | `nomic-ai/CodeRankEmbed` | sentence-transformers | None | 768 | **Current local default** (ratified 2026-05-19 nomic promotion). Code-tuned, Metal/MPS auto-detected on Apple Silicon; query prompt resolves to `query` |
@@ -136,6 +143,19 @@ dist/**, build/**, .next/**, target/**, *.min.js, *.min.css,
 | `cohere/embed-v4.0` | litellm | `COHERE_API_KEY` | 1024 | Cohere |
 | `ollama/nomic-embed-text` | litellm | None | 768 | Local via Ollama (requires Ollama running) |
 | `google/embeddinggemma-300m` | sentence-transformers | None | 768 | Pre-018 baseline. General-text; query prompt resolves to `InstructionRetrieval`. Kept for benchmark comparisons |
+
+### Reranker Model Options
+
+Stage 2 reranker models are cross-encoders: they encode the query and each retrieved candidate together with token attention. They run only on the retrieval top-K after vector/FTS5 fusion and dedup.
+
+| Model | Type | License | Status | Notes |
+|---|---|---|---|---|
+| `jinaai/jina-reranker-v3` | Cross-encoder | **CC BY-NC 4.0** | Current default | Highest quality on 18-probe fixture (018 bench); non-commercial. Operator-visible WARNING via `ccc doctor` and `COCOINDEX_COMMERCIAL_SAFE_PROFILE`. |
+| `BAAI/bge-reranker-v2-m3` | Cross-encoder | Apache-2.0 | Commercial-safe alternative | Close runner-up on 18-probe; ships in registered_embedders.py |
+| `mixedbread-ai/mxbai-rerank-base-v2` | Cross-encoder | Apache-2.0 | Commercial-safe alternative | Listed in registry; not benchmarked head-to-head on 73-probe yet |
+| `Qwen/Qwen3-Reranker-0.6B` | Cross-encoder | Apache-2.0 | Commercial-safe alternative | Listed in registry; pending benchmark |
+
+Configure reranking with `COCOINDEX_RERANK`, `COCOINDEX_RERANK_MODEL`, and `COCOINDEX_RERANK_TOP_K`. These keys control Stage 2 only; they do not change `embedding.model` or the persisted vector index.
 
 ### Provider Details
 
@@ -198,6 +218,19 @@ Running `ccc search "handler"` from `src/api/` finds `/home/user/projects/my-app
 | -------- | ------- | ----------- |
 | `COCOINDEX_CODE_DIR` | `~/.cocoindex_code` | Override the global config directory location |
 | `COCOINDEX_CODE_ROOT_PATH` | (auto-detected) | Override project root detection (see Root Path Discovery) |
+
+### Retrieval Pipeline Variables
+
+| Variable | Default | Description |
+| -------- | ------- | ----------- |
+| `COCOINDEX_HYBRID` | `true` | Enable vector + FTS5 hybrid retrieval before reranking |
+| `COCOINDEX_HYBRID_VECTOR_WEIGHT` | `0.9` | RRF weight for the Stage 1 vector channel |
+| `COCOINDEX_HYBRID_FTS5_WEIGHT` | `0.5` | RRF weight for the FTS5 lexical channel |
+| `COCOINDEX_HYBRID_RRF_K` | `60` | RRF dampening constant |
+| `COCOINDEX_RERANK` | `true` | Enable the Stage 2 cross-encoder reranker |
+| `COCOINDEX_RERANK_MODEL` | `jinaai/jina-reranker-v3` | Stage 2 cross-encoder model identifier |
+| `COCOINDEX_RERANK_TOP_K` | `20` | Number of fused/deduped candidates passed to the reranker |
+| `COCOINDEX_COMMERCIAL_SAFE_PROFILE` | `false` | Block active non-commercial models and surface commercial-safe alternatives |
 
 ### API Key Variables
 

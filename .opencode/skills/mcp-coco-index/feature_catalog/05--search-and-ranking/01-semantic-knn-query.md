@@ -7,12 +7,14 @@ description: "Embeds the query and runs nearest-neighbor search against the vect
 
 Embeds the query and runs nearest-neighbor search against the vector table. Semantic search converts the user query into an embedding and compares it against indexed chunk embeddings.
 
+> **Pipeline note**: this is the Stage 1 bi-encoder lane. `sbert/nomic-ai/CodeRankEmbed` (768d, MIT) embeds the query and chunks independently, then vec0 compares those vectors with cosine similarity. Cross-encoder reranking is a later Stage 2 pass over the top-K results, not part of KNN retrieval.
+
 ---
 
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-Semantic search converts the user query into an embedding and compares it against indexed chunk embeddings.
+Semantic search converts the user query into a bi-encoder embedding and compares it against indexed chunk embeddings.
 <!-- /ANCHOR:overview -->
 
 ---
@@ -20,7 +22,7 @@ Semantic search converts the user query into an embedding and compares it agains
 <!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
-Without path filters, the query path uses SQLite vec0 KNN. With no language filter or one language, it can use a direct KNN query; with multiple languages, it merges KNN rows across partitions.
+Without path filters, the query path uses SQLite vec0 KNN over Stage 1 embeddings. With no language filter or one language, it can use a direct KNN query; with multiple languages, it merges KNN rows across partitions.
 <!-- /ANCHOR:current-reality -->
 
 ---

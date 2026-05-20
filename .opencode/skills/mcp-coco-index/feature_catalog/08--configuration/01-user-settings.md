@@ -1,18 +1,18 @@
 ---
 title: "01. User settings"
-description: "Stores embedding provider, model, device and daemon environment variables globally."
+description: "Stores embedding provider, embedder model, device and daemon environment variables globally."
 ---
 
 # 01. User settings
 
-Stores embedding provider, model, device and daemon environment variables globally. User settings apply across projects and control the embedding backend plus daemon environment variables.
+Stores embedding provider, embedder model, device and daemon environment variables globally. User settings apply across projects and control the Stage 1 embedding backend plus daemon environment variables.
 
 ---
 
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-User settings apply across projects and control the embedding backend plus daemon environment variables.
+User settings apply across projects and control the Stage 1 embedding backend plus daemon environment variables.
 <!-- /ANCHOR:overview -->
 
 ---
@@ -20,7 +20,7 @@ User settings apply across projects and control the embedding backend plus daemo
 <!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
-The default user settings use the local sentence-transformers provider and `nomic-ai/CodeRankEmbed`; environment defaults may expose the same model as `sbert/nomic-ai/CodeRankEmbed`. The query prompt registry maps this model to `query` (the code-search prefix; see `mcp_server/cocoindex_code/shared.py::_QUERY_PROMPT_MODELS`). The loader rejects missing or empty settings files and the saver writes explicit YAML.
+The default user settings use the local sentence-transformers provider and `nomic-ai/CodeRankEmbed`; environment defaults may expose the same Stage 1 embedder as `sbert/nomic-ai/CodeRankEmbed`. The query prompt registry maps this embedder to `query` (the code-search prefix; see `mcp_server/cocoindex_code/shared.py::_QUERY_PROMPT_MODELS`). Stage 2 cross-encoder reranking is configured separately through reranker environment overrides. The loader rejects missing or empty settings files and the saver writes explicit YAML.
 <!-- /ANCHOR:current-reality -->
 
 ---

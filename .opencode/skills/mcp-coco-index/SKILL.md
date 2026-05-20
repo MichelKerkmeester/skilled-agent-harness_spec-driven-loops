@@ -15,7 +15,18 @@ Natural language code search through two complementary approaches: CLI (ccc) for
 
 > **Forked From**: This skill bundles a soft-fork of [cocoindex-code](https://github.com/cocoindex-io/cocoindex-code) (Apache 2.0). Upstream version forked: 0.2.3. Current fork version: 0.2.3+spec-kit-fork.0.2.0. Patches: REQ-001..006 (mirror dedup + path-class reranking) from the local fork patch set. See NOTICE and changelog/CHANGELOG.md for the full attribution and modification list.
 
-> **v1.2.0 retrieval-quality defaults**: Hybrid search (SQLite FTS5 + RRF fusion) and cross-encoder rerank are default ON and mirror the proven retrieval stack used by `mk-spec-memory`. The shipped defaults are `COCOINDEX_HYBRID=true`, `COCOINDEX_RERANK=true`, `COCOINDEX_RERANK_MODEL=jinaai/jina-reranker-v3`, and `COCOINDEX_CODE_EMBEDDING_MODEL=sbert/nomic-ai/CodeRankEmbed`. Chunking defaults were also retuned (CHUNK_SIZE 1000 → 1500) for better function-boundary preservation. See [INSTALL_GUIDE.md §4 "Tuning + optional retrieval features"](INSTALL_GUIDE.md) for the full env-var matrix.
+> **v1.2.0 retrieval-quality defaults**: Hybrid search (SQLite FTS5 + RRF fusion) and cross-encoder rerank are default ON and mirror the proven retrieval stack used by `mk-spec-memory`. The shipped defaults are `COCOINDEX_HYBRID=true`, `COCOINDEX_RERANK=true`, Stage 1 bi-encoder embedder `COCOINDEX_CODE_EMBEDDING_MODEL=sbert/nomic-ai/CodeRankEmbed`, and Stage 2 cross-encoder reranker `COCOINDEX_RERANK_MODEL=jinaai/jina-reranker-v3`. Chunking defaults were also retuned (CHUNK_SIZE 1000 → 1500) for better function-boundary preservation. See [INSTALL_GUIDE.md §4 "Tuning + optional retrieval features"](INSTALL_GUIDE.md) and [§4.5 "Two-stage pipeline"](INSTALL_GUIDE.md#45-two-stage-pipeline) for the full env-var matrix and model-slot distinction.
+
+### Two-stage retrieval pipeline
+
+CocoIndex Code uses **two architecturally distinct models** in sequence, not alternatives for one slot:
+
+| Stage | Model type | Default | Role |
+|---|---|---|---|
+| 1. Retrieval | Bi-encoder embedder | `sbert/nomic-ai/CodeRankEmbed` (768d, MIT) | Encodes query and chunks independently; vector cosine results join FTS5 through RRF |
+| 2. Reranking | Cross-encoder reranker | `jinaai/jina-reranker-v3` (CC BY-NC 4.0) | Encodes query + each top-K candidate together; captures token-level interaction signals |
+
+Do not swap these slots. The bi-encoder already supplies the vector lane, so using it again as a reranker is redundant; the cross-encoder is too slow to score every indexed chunk. Default flow: nomic vector lane + FTS5 -> RRF (`K=60`, vector `0.9`, FTS5 `0.5`) -> mirror dedup -> top-K rerank (`20`) -> path-class/canonical boosts -> final results. Commercial deployments should treat Jina v3 as non-commercial and enable `COCOINDEX_COMMERCIAL_SAFE_PROFILE=true`; `registered_embedders.py` currently lists `BAAI/bge-reranker-v2-m3` as the Apache-2.0 reranker alternative.
 
 ### Activation Triggers
 
@@ -265,18 +276,18 @@ If you need to refresh the index from an AI agent, call `cocoindex_refresh_index
 
 This split is intentional: index lifecycle is operator territory, explicit refresh is a bounded AI-callable maintenance hook, and search should stay predictable by default.
 
-### Embedding Models
+### Stage 1 Embedding Models
 
-CocoIndex Code defaults to local `nomic-ai/CodeRankEmbed` (768d code-tuned, Metal/MPS auto-detected on Apple Silicon) and supports alternate embedding models configured via `~/.cocoindex_code/global_settings.yml` or the `COCOINDEX_CODE_EMBEDDING_MODEL` env var. Full vetted registry at `mcp_server/cocoindex_code/registered_embedders.py`; swap runbook in [INSTALL_GUIDE.md §4 "Choosing an embedder"](INSTALL_GUIDE.md). Default ratified per packet 018.
+CocoIndex Code defaults to local Stage 1 embedder `nomic-ai/CodeRankEmbed` (768d code-tuned, Metal/MPS auto-detected on Apple Silicon) and supports alternate embedders configured via `~/.cocoindex_code/global_settings.yml` or the `COCOINDEX_CODE_EMBEDDING_MODEL` env var. Full vetted registry at `mcp_server/cocoindex_code/registered_embedders.py`; swap runbook in [INSTALL_GUIDE.md §4 "Choosing an embedder"](INSTALL_GUIDE.md). Default ratified per packet 018.
 
-| Model | Type | Dimensions | API Key | Best For |
+| Embedder | Type | Dimensions | API Key | Best For |
 | ----- | ---- | ---------- | ------- | -------- |
 | `nomic-ai/CodeRankEmbed` | Local via sentence-transformers | 768 | None | **Default.** Code-tuned, multi-language, Metal-accelerated |
 | `google/embeddinggemma-300m` | Local via sentence-transformers | 768 | None | Pre-018 baseline. Kept for benchmark comparisons |
 | `BAAI/bge-code-v1` | Local via sentence-transformers | 768 | None | Multilingual code coverage emphasis |
 | `voyage/voyage-code-3` | Cloud via LiteLLM | 1024 | `VOYAGE_API_KEY` required | Cloud alternative requiring a rebuild |
 
-**CRITICAL**: Changing the embedding model requires `ccc reset && ccc index` because different models produce vectors with different dimensions. Mixing dimensions corrupts the index.
+**CRITICAL**: Changing the Stage 1 embedder requires `ccc reset && ccc index` because different embedders produce vectors with different dimensions. Mixing dimensions corrupts the index.
 
 See `references/settings_reference.md` for full configuration details.
 

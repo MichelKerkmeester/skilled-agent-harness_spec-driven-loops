@@ -7,12 +7,14 @@ description: "Fuses vector and FTS5 BM25 result lists with weighted Reciprocal R
 
 Fuses vector and FTS5 BM25 result lists with weighted Reciprocal Rank Fusion when enabled. The hybrid lane queries the semantic vector index and the `code_chunks_fts` BM25 index in sequence, normalizes both score channels and combines them with weighted RRF so exact-token hits and semantic neighbors share a single ranked list.
 
+> **Pipeline note**: hybrid fusion still belongs to Stage 1 retrieval. The bi-encoder embedder (`sbert/nomic-ai/CodeRankEmbed`, 768d, MIT) supplies the vector lane, FTS5 supplies the lexical lane, and RRF merges them before the Stage 2 cross-encoder reranker (`jinaai/jina-reranker-v3`, CC BY-NC 4.0) scores the top-K candidates together with the query.
+
 ---
 
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-The hybrid lane runs the vector channel and the FTS5 channel sequentially, applies per-channel min-max normalization for telemetry, then fuses by rank with weighted RRF. It is opt-in via `COCOINDEX_HYBRID=true`; vector-only behavior is preserved when the flag is unset. Estimated lift is research-derived and not yet validated on the fixture suite.
+The hybrid lane runs the vector channel and the FTS5 channel sequentially, applies per-channel min-max normalization for telemetry, then fuses by rank with weighted RRF. It is opt-in via `COCOINDEX_HYBRID=true`; vector-only behavior is preserved when the flag is unset. Estimated lift is research-derived and not yet validated on the fixture suite. RRF produces the candidate list that cross-encoder reranking can refine later; it is not itself reranking by a model.
 <!-- /ANCHOR:overview -->
 
 ---

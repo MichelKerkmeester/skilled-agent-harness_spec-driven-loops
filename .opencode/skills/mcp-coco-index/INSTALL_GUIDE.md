@@ -9,7 +9,7 @@ trigger_phrases:
 
 # CocoIndex Code Installation Guide
 
-Complete installation and configuration guide for CocoIndex Code, a semantic code search engine for AI-assisted development. Provides natural language code search across your entire codebase with configurable embedding models (local or API-based). Runs as an MCP server exposing `search` and `cocoindex_refresh_index` to AI assistants, while `status`, `index`, `reset`, and `daemon` remain CLI commands.
+Complete installation and configuration guide for CocoIndex Code, a semantic code search engine for AI-assisted development. Provides natural language code search across your entire codebase with a configurable Stage 1 embedder and Stage 2 reranker. Runs as an MCP server exposing `search` and `cocoindex_refresh_index` to AI assistants, while `status`, `index`, `reset`, and `daemon` remain CLI commands.
 
 > **Part of OpenCode Installation.** See the [Master Installation Guide](../README.md) for complete setup.
 > **Package:** local editable `cocoindex-code` soft-fork | **Dependencies:** Python 3.11+
@@ -98,7 +98,7 @@ CocoIndex Code gives AI assistants the ability to search your codebase by meanin
 | **Fork**      | Local editable package at `.opencode/skills/mcp-coco-index/mcp_server` |
 | **Binary**    | `ccc`                                                                 |
 | **License**   | Apache-2.0                                                            |
-| **Embedding** | Configurable (default: local nomic CodeRankEmbed; cloud alternatives available) |
+| **Stage 1 embedder** | Configurable (default: local nomic CodeRankEmbed; cloud alternatives available) |
 
 ### When to Use Semantic Search
 
@@ -483,12 +483,12 @@ _NOTE_3 = "Index stored in .cocoindex_code/ (gitignored)"
 
 ### Embedding Model Configuration
 
-CocoIndex Code supports multiple embedding models. Configure via `~/.cocoindex_code/global_settings.yml`.
+CocoIndex Code supports multiple Stage 1 embedding models. Configure the embedder via `~/.cocoindex_code/global_settings.yml`.
 
 **Default:** `nomic-ai/CodeRankEmbed` via the `sentence-transformers` provider -- local 768-dimensional code search with no API key.
 
 ```yaml
-# Default local model (no API key, works offline)
+# Default local embedder (no API key, works offline)
 embedding:
   provider: sentence-transformers
   model: nomic-ai/CodeRankEmbed
@@ -532,7 +532,7 @@ envs:
   OLLAMA_API_BASE: http://localhost:11434
 ```
 
-The registry marks Ollama-backed models with `requires_ollama_daemon=True`, so `ccc index` fails fast with a clear message when the daemon is unreachable or the model has not been pulled.
+The registry marks Ollama-backed embedders with `requires_ollama_daemon=True`, so `ccc index` fails fast with a clear message when the daemon is unreachable or the model has not been pulled.
 
 **Vetted code-tuned alternatives:** see the curated registry below ("Choosing an embedder") or import `from cocoindex_code.registered_embedders import list_embedders` for the programmatic version. Cloud alternatives (OpenAI, Gemini, Cohere) still work via LiteLLM — see [Settings Reference](references/settings_reference.md) for the full list.
 
@@ -566,7 +566,7 @@ If you do want to swap, the registry of vetted candidates lives in `cocoindex_co
 To swap (env var):
 
 ```bash
-# 1. Choose a model name from the registry
+# 1. Choose an embedder name from the registry
 export COCOINDEX_CODE_EMBEDDING_MODEL="sbert/nomic-ai/CodeRankEmbed"
 
 # 2. Restart the daemon (graceful)
@@ -582,6 +582,29 @@ ps -eo pid,command | grep "ccc run-daemon" | grep -v grep | awk '{print $1}' | x
 **Metal auto-detect**: on Apple Silicon, `_resolve_device()` probes `torch.backends.mps.is_available()` and prefers MPS automatically. Override via `COCOINDEX_CODE_DEVICE=cpu` if MPS produces unstable results.
 
 **Dimension mismatch warning**: switching to an embedder with a different `dim` (e.g., gemma 768 → SFR-2B 2048) requires `ccc reset && ccc index` — the on-disk vectors must match the live model's dimensionality.
+
+### 4.5 Two-stage pipeline
+
+The embedder and reranker are two separate model slots. They run one after the other; they are not interchangeable. The same summary appears in the [README retrieval section](README.md#two-stage-retrieval-pipeline).
+
+| Stage | Model type | Default | License | Role |
+|---|---|---|---|---|
+| 1. Retrieval | Bi-encoder embedder | `sbert/nomic-ai/CodeRankEmbed` | MIT | Encodes the query and every indexed chunk independently into 768-dimensional vectors; vector cosine results are fused with FTS5 via RRF |
+| 2. Reranking | Cross-encoder reranker | `jinaai/jina-reranker-v3` | CC BY-NC 4.0 | Encodes query + each top-K candidate together, allowing token-level attention across both texts |
+
+Pipeline order:
+
+1. Query embedded by nomic -> vector lane.
+2. Query tokenized -> FTS5 lexical lane.
+3. Vector + FTS5 candidates fused by RRF (`K=60`, vector weight `0.9`, FTS5 weight `0.5`).
+4. Mirror dedup prefers canonical paths.
+5. Top-K candidates (`COCOINDEX_RERANK_TOP_K=20` by default) pass to the cross-encoder reranker.
+6. Hybrid path-class and canonical boosts apply below the calibrated RRF magnitude.
+7. Final ranked results return through CLI or MCP.
+
+You cannot swap one stage's model into the other slot. Bi-encoders cannot add reranker value because their independent vectors are already consumed by the vector lane. Cross-encoders cannot embed the whole repo at scale because they score query/document pairs one at a time.
+
+`jinaai/jina-reranker-v3` is non-commercial (`CC BY-NC 4.0`). For commercial deployments, set `COCOINDEX_COMMERCIAL_SAFE_PROFILE=true` so daemon startup refuses non-commercial defaults. Commercial-safe reranker alternatives are tracked in `mcp_server/cocoindex_code/registered_embedders.py`; the current Apache-2.0 reranker entry is `BAAI/bge-reranker-v2-m3`.
 
 <!-- /ANCHOR:configuration -->
 
@@ -727,13 +750,13 @@ ccc status
 | Markdown    | `.md`                          | YAML         | `.yml`, `.yaml`        |
 | Text        | `.txt`                         | TOML         | `.toml`                |
 
-### Embedding Model
+### Stage 1 Embedder
 
 | Property        | Value                                                                       |
 | --------------- | --------------------------------------------------------------------------- |
 | **Default**     | `nomic-ai/CodeRankEmbed` (local, no API key, 768 dimensions)            |
 | **Cloud option** | Voyage Code 3 via LiteLLM (API key required, rebuild required)             |
-| **Flexibility** | 7+ models supported including OpenAI, Gemini, Cohere, Ollama, Nomic         |
+| **Flexibility** | 7+ embedders supported including OpenAI, Gemini, Cohere, Ollama, Nomic      |
 | **Config**      | `~/.cocoindex_code/global_settings.yml` (see [Settings Reference](references/settings_reference.md)) |
 
 ### CLI Commands

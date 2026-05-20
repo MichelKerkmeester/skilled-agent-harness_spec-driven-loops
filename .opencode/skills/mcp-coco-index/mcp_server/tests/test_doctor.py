@@ -102,6 +102,30 @@ def test_doctor_json_output(
     assert payload["summary"]["total"] == 7
 
 
+def test_doctor_output_explains_pipeline(
+    deterministic_doctor: None,
+) -> None:
+    result = runner.invoke(cli.app, ["doctor"])
+
+    assert result.exit_code == 1
+    assert result.output.startswith("Pipeline (two architecturally distinct models):")
+    assert "Bi-encoder" in result.output
+    assert "Cross-encoder" in result.output
+    assert "sbert/nomic-ai/CodeRankEmbed" in result.output
+    assert "jinaai/jina-reranker-v3" in result.output
+
+
+def test_doctor_json_pipeline_field(
+    deterministic_doctor: None,
+) -> None:
+    result = runner.invoke(cli.app, ["doctor", "--json"])
+
+    assert result.exit_code == 1
+    payload = json.loads(result.output)
+    assert payload["pipeline"]["stage_1"]["role"] == "bi-encoder embedder"
+    assert payload["pipeline"]["stage_2"]["role"] == "cross-encoder reranker"
+
+
 def test_commercial_safe_profile_blocks_jina_v3(
     monkeypatch: pytest.MonkeyPatch,
     tmp_path: Path,

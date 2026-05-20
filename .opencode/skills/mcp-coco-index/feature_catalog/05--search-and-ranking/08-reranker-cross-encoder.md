@@ -1,18 +1,20 @@
 ---
 title: "08. Reranker (cross-encoder)"
-description: "Reranks the top hybrid candidates with a local cross-encoder; default model is BAAI/bge-reranker-v2-m3."
+description: "Reranks the top hybrid candidates with a local cross-encoder reranker."
 ---
 
 # 08. Reranker (cross-encoder)
 
 Reranks the top hybrid candidates with a local cross-encoder when enabled. The reranker runs after RRF fusion and dedup but before the pagination window, replacing the fused score on the reranked head while preserving the prior score on `pre_rerank_score` for audit.
 
+> **Pipeline note**: this page covers **Stage 2 — Cross-encoder reranker** (`jinaai/jina-reranker-v3`, CC BY-NC 4.0). It receives the top-K candidates after Stage 1 has already embedded the query/chunks and fused vector results with FTS5 via RRF. The reranker scores each `(query, candidate)` pair together with token-level attention; it is not an embedding model and cannot replace the bi-encoder over the full corpus.
+
 ---
 
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-Cross-encoders score full `(query, candidate)` pairs and typically lift top-N precision when query and chunk wording disagree. The reranker is **default-on** as of v1.10 (`COCOINDEX_RERANK=true`); operators opt out by setting `COCOINDEX_RERANK=false`. The default model is `BAAI/bge-reranker-v2-m3` (Apache-2.0, ~568M params, MPS-compatible).
+Cross-encoders score full `(query, candidate)` pairs and typically lift top-N precision when query and chunk wording disagree. The reranker is **default-on** as of v1.10 (`COCOINDEX_RERANK=true`); operators opt out by setting `COCOINDEX_RERANK=false`. The Stage 2 reranker model is `jinaai/jina-reranker-v3` (CC BY-NC 4.0); it runs only on the top-K candidate set, defaulting to 20.
 <!-- /ANCHOR:overview -->
 
 ---
@@ -28,13 +30,13 @@ AcceleratorError: index 733634176249652595 is out of bounds: 0, range 0 to 21
 
 `RerankerAdapter` catches the exception and returns candidates in their unranked order, so the daemon continues to respond successfully but **every query effectively bypasses the reranker** — `pre_rerank_score` and `reranker_score` stay populated but the order is the upstream RRF order. This silent fallback was caught during end-to-end validation immediately after the v1.10 default-on promotion, before any benchmark could observe degraded rerank quality.
 
-Mitigation in v1.10: the default model was swapped to `BAAI/bge-reranker-v2-m3`, which works on MPS. Operators on non-MPS backends, or those validating future ST/transformers compatibility patches, can re-pin GTE via:
+Mitigation in v1.10: the default reranker was moved away from GTE. Operators on non-MPS backends, or those validating future ST/transformers compatibility patches, can re-pin GTE via:
 
 ```bash
 export COCOINDEX_RERANK_MODEL="Alibaba-NLP/gte-multilingual-reranker-base"
 ```
 
-The fail-soft contract still applies: if any reranker model fails to load or to predict, the daemon logs a warning and returns the upstream candidate order unchanged.
+The fail-soft contract still applies: if any cross-encoder reranker fails to load or to predict, the daemon logs a warning and returns the upstream candidate order unchanged.
 <!-- /ANCHOR:known-limitations -->
 
 ---
@@ -42,7 +44,7 @@ The fail-soft contract still applies: if any reranker model fails to load or to 
 <!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
-`reranker.rerank` is only invoked from `query_codebase` when both `config.hybrid_enabled` and `config.rerank_enabled` are true. It scores the first `config.rerank_top_k` candidates with `sentence-transformers.CrossEncoder.predict`, sorts the reranked head in descending order and keeps the remaining tail in its prior order. The cross-encoder score replaces `score`; the previous score is captured on `pre_rerank_score` and `reranker_score`; the `rankingSignals` list gains a `cross_encoder_rerank` marker. `RerankerAdapter` lazy-loads the model on first call, caches it per model name and skips loading when available RAM is below the 2 GB gate enforced by `MIN_AVAILABLE_RAM_BYTES`. Model-load and prediction failures log a warning and return the original candidate order unchanged so the reranker is fail-soft. Telemetry surfaces the run as `lane=hybrid_rerank` and `stage=rerank` in stage logs when reranking actually changed the ordering.
+`reranker.rerank` is only invoked from `query_codebase` when both `config.hybrid_enabled` and `config.rerank_enabled` are true. It scores the first `config.rerank_top_k` candidates with `sentence-transformers.CrossEncoder.predict`, sorts the reranked head in descending order and keeps the remaining tail in its prior order. The cross-encoder score replaces `score`; the previous score is captured on `pre_rerank_score` and `reranker_score`; the `rankingSignals` list gains a `cross_encoder_rerank` marker. `RerankerAdapter` lazy-loads the reranker on first call, caches it per reranker name and skips loading when available RAM is below the 2 GB gate enforced by `MIN_AVAILABLE_RAM_BYTES`. Model-load and prediction failures log a warning and return the original candidate order unchanged so the reranker is fail-soft. Telemetry surfaces the run as `lane=hybrid_rerank` and `stage=rerank` in stage logs when reranking actually changed the ordering.
 <!-- /ANCHOR:current-reality -->
 
 ---

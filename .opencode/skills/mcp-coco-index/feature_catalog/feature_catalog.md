@@ -32,6 +32,8 @@ This document combines the current feature inventory for the `mcp-coco-index` sk
 
 Use this catalog as the canonical inventory for the live `mcp-coco-index` feature surface. The skill provides semantic code search through a local `ccc` CLI, daemon-backed MCP `search` and `cocoindex_refresh_index` tools, an indexing pipeline, readiness scripts, configuration references, fork-specific ranking extensions and validation coverage.
 
+> **Retrieval pipeline**: CocoIndex Code has two separate model slots. Stage 1 uses the **bi-encoder embedder** (`sbert/nomic-ai/CodeRankEmbed`, 768d, MIT) to embed query and chunks independently for cosine vector search, then fuses that lane with FTS5 through RRF (K=60, V=0.9, F=0.5). Stage 2 uses the **cross-encoder reranker** (`jinaai/jina-reranker-v3`, CC BY-NC 4.0) to score each top-K `(query, candidate)` pair together. The embedder cannot rerank after cosine has already run; the reranker cannot embed the full corpus at 50–200ms per pair × 84k chunks.
+
 | Category | Coverage | Primary Runtime Surface |
 |---|---:|---|
 | CLI commands | 7 features | `01--cli-commands/` |
@@ -286,11 +288,11 @@ See [`03--indexing-pipeline/03-chunking-and-language-detection.md`](03--indexing
 
 #### Description
 
-Creates sentence-transformer or LiteLLM embedders from user settings.
+Selects the Stage 1 bi-encoder embedder from user settings.
 
 #### Current Reality
 
-Default user settings choose the local sentence-transformers provider with `nomic-ai/CodeRankEmbed`; environment defaults may present the same model as `sbert/nomic-ai/CodeRankEmbed`. When the provider is `sentence-transformers`, the factory strips the legacy `sbert/` prefix and resolves the `query` prompt prefix for nomic CodeRankEmbed (code-tuned, 768d, Metal/MPS auto-detected on Apple Silicon). Other providers route through LiteLLM. Registered `ollama/` models use the LiteLLM path with an additional local daemon/model readiness check.
+Default user settings choose the local sentence-transformers provider with `nomic-ai/CodeRankEmbed`; environment defaults may present the same Stage 1 embedder as `sbert/nomic-ai/CodeRankEmbed`. When the provider is `sentence-transformers`, the factory strips the legacy `sbert/` prefix and resolves the `query` prompt prefix for nomic CodeRankEmbed (code-tuned, 768d, Metal/MPS auto-detected on Apple Silicon). Other embedding providers route through LiteLLM. Registered `ollama/` embedders use the LiteLLM path with an additional local daemon/embedder readiness check.
 
 #### Source Files
 
@@ -338,7 +340,7 @@ Routes registered `ollama/` embedders through LiteLLM with local daemon readines
 
 #### Current Reality
 
-`ollama/nomic-embed-text` is registered as a 768-dimensional text embedder with `requires_ollama_daemon=True`. The factory checks the local Ollama daemon and pulled model before constructing the LiteLLM embedder, then passes `OLLAMA_API_BASE` through to the LiteLLM call path.
+`ollama/nomic-embed-text` is registered as a 768-dimensional text embedder with `requires_ollama_daemon=True`. The factory checks the local Ollama daemon and pulled embedder model before constructing the LiteLLM embedder, then passes `OLLAMA_API_BASE` through to the LiteLLM call path.
 
 #### Source Files
 
@@ -438,11 +440,11 @@ These entries cover query execution, filtering, scoring, pagination and result p
 
 #### Description
 
-Embeds the query and runs nearest-neighbor search against the vector table.
+Embeds the query with the Stage 1 bi-encoder and runs nearest-neighbor search against the vector table.
 
 #### Current Reality
 
-Without path filters, the query path uses SQLite vec0 KNN. With no language filter or one language, it can use a direct KNN query; with multiple languages, it merges KNN rows across partitions.
+Without path filters, the query path uses SQLite vec0 KNN over Stage 1 embeddings. With no language filter or one language, it can use a direct KNN query; with multiple languages, it merges KNN rows across partitions.
 
 #### Source Files
 
@@ -550,11 +552,11 @@ See [`05--search-and-ranking/07-hybrid-search-bm25-rrf.md`](05--search-and-ranki
 
 #### Description
 
-Reranks the top hybrid candidates with a local cross-encoder; default-on as of v1.10.
+Runs the Stage 2 cross-encoder reranker over the top hybrid candidates; default-on as of v1.10.
 
 #### Current Reality
 
-`reranker.rerank` runs after RRF fusion. Both `COCOINDEX_HYBRID` and `COCOINDEX_RERANK` are default-on (`true`); operators opt out by setting them to `false`. The cross-encoder score replaces the fused score for the first `COCOINDEX_RERANK_TOP_K` candidates and `pre_rerank_score` is preserved for audit. Default model is `BAAI/bge-reranker-v2-m3` (swapped from `Alibaba-NLP/gte-multilingual-reranker-base` in v1.10 because GTE fails on Apple Silicon MPS and `RerankerAdapter` silently falls back). The reranker is fail-soft on model-load failure and skipped when available RAM is below the 2 GB gate.
+`reranker.rerank` runs after RRF fusion. Both `COCOINDEX_HYBRID` and `COCOINDEX_RERANK` are default-on (`true`); operators opt out by setting them to `false`. The cross-encoder score replaces the fused score for the first `COCOINDEX_RERANK_TOP_K` candidates and `pre_rerank_score` is preserved for audit. The Stage 2 reranker model is `jinaai/jina-reranker-v3` (CC BY-NC 4.0). The reranker is fail-soft on model-load failure and skipped when available RAM is below the 2 GB gate.
 
 #### Source Files
 
@@ -654,7 +656,7 @@ Keeps the older `cocoindex-code` entry path working by converting legacy setting
 
 #### Current Reality
 
-The legacy path converts old embedding model prefixes, can create settings from environment variables and delegates work to the daemon-backed implementation. Legacy root discovery can re-anchor to an existing indexed tree.
+The legacy path converts old embedding-model prefixes for Stage 1 embedders, can create settings from environment variables and delegates work to the daemon-backed implementation. Legacy root discovery can re-anchor to an existing indexed tree.
 
 #### Source Files
 
@@ -738,11 +740,11 @@ These entries cover user settings, project settings, root discovery, environment
 
 #### Description
 
-Stores embedding provider, model, device and daemon environment variables globally.
+Stores embedding provider, embedder model, device and daemon environment variables globally.
 
 #### Current Reality
 
-The default user settings use the local sentence-transformers provider and `nomic-ai/CodeRankEmbed`; environment defaults may expose the same model as `sbert/nomic-ai/CodeRankEmbed`. The query prompt registry maps this model to `query` (the code-search prefix; see `mcp_server/cocoindex_code/shared.py::_QUERY_PROMPT_MODELS`). The loader rejects missing or empty settings files and the saver writes explicit YAML.
+The default user settings use the local sentence-transformers provider and `nomic-ai/CodeRankEmbed`; environment defaults may expose the same Stage 1 embedder as `sbert/nomic-ai/CodeRankEmbed`. The query prompt registry maps this embedder to `query` (the code-search prefix; see `mcp_server/cocoindex_code/shared.py::_QUERY_PROMPT_MODELS`). The loader rejects missing or empty settings files and the saver writes explicit YAML.
 
 #### Source Files
 
@@ -790,7 +792,7 @@ Supports runtime overrides for config directory, root path, device and legacy va
 
 #### Current Reality
 
-`COCOINDEX_CODE_DIR` changes the global settings directory. `COCOINDEX_CODE_ROOT_PATH` pins the project root for helper scripts and legacy config. Extra extension and excluded pattern environment variables remain in the compatibility config path. Chunking, hybrid search and cross-encoder reranking are also driven by environment variables consumed by `Config.from_env`; hybrid and reranker are default-on (`COCOINDEX_HYBRID=true`, `COCOINDEX_RERANK=true`) and the reranker default model is `BAAI/bge-reranker-v2-m3`.
+`COCOINDEX_CODE_DIR` changes the global settings directory. `COCOINDEX_CODE_ROOT_PATH` pins the project root for helper scripts and legacy config. Extra extension and excluded pattern environment variables remain in the compatibility config path. Chunking, hybrid search and cross-encoder reranking are also driven by environment variables consumed by `Config.from_env`; hybrid and reranker are default-on (`COCOINDEX_HYBRID=true`, `COCOINDEX_RERANK=true`) and the Stage 2 reranker default is `jinaai/jina-reranker-v3`.
 
 #### Source Files
 

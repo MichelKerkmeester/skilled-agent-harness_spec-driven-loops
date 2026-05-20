@@ -68,6 +68,19 @@ If that exploration feeds into Spec Kit packet recovery, `/spec_kit:resume` rema
 
 This skill runs version 1.2.0 and exposes 2 MCP tools (search and cocoindex_refresh_index). It supports 28+ programming languages and uses the nomic-ai/CodeRankEmbed embedding model by default via sentence-transformers (768-dim, local, no API key, Metal/MPS accelerated on Apple Silicon, auto-detected). The code-tuned default was ratified in packet 018 after a comparison against gemma-300m, nomic-CodeRankEmbed, and BAAI/bge-code-v1. Vector storage uses SQLite via sqlite-vec, with a default chunk size of 1500 characters (250 char minimum, 200 char overlap, all tunable via env vars in v1.2.0+) and cosine similarity (0.0 to 1.0) as the similarity metric. Hybrid search (FTS5 + RRF) and Jina v3 cross-encoder rerank are default-on production features.
 
+### Two-stage retrieval pipeline
+
+CocoIndex Code uses **two architecturally distinct models**, not one. They run sequentially; they are not interchangeable. See [SKILL.md](SKILL.md) for the v1.2.0 retrieval defaults and operator routing rules.
+
+| Stage | Model type | Default | Role |
+|---|---|---|---|
+| 1. Retrieval | Bi-encoder embedder | `sbert/nomic-ai/CodeRankEmbed` (768d, MIT) | Embeds the query and indexed chunks independently; vector cosine results are fused with FTS5 via RRF |
+| 2. Reranking | Cross-encoder reranker | `jinaai/jina-reranker-v3` (CC BY-NC 4.0) | Scores each query + top-K candidate together with token-level attention |
+
+Pipeline order: nomic vector lane + FTS5 lexical lane -> RRF fusion (`K=60`, vector `0.9`, FTS5 `0.5`) -> mirror dedup -> top-K rerank (`20` default) -> path-class/canonical boosts -> final ranking.
+
+Bi-encoders cannot replace the reranker because the vector lane already uses their cosine signal. Cross-encoders cannot replace the embedder because scoring every indexed chunk would be too slow at repo scale. Commercial deployments should note the Jina v3 non-commercial license and use `COCOINDEX_COMMERCIAL_SAFE_PROFILE=true`; commercial-safe reranker options are tracked in `registered_embedders.py` (currently `BAAI/bge-reranker-v2-m3`, Apache-2.0).
+
 ### Key Features
 
 - Semantic search: Query by concept or intent, not exact text
@@ -196,9 +209,9 @@ The CLI and MCP interfaces are complementary, not redundant. The CLI handles ind
 | Explicit index refresh | `ccc index` | `cocoindex_refresh_index` | MCP refresh is project-wide incremental |
 | Pagination | `--offset` | `offset` (default 0) | Available on both surfaces |
 
-**Embedding models**
+**Stage 1 embedding models**
 
-| Model | Type | Dimensions | API Key | Best For |
+| Embedder | Type | Dimensions | API Key | Best For |
 |---|---|---|---|---|
 | `nomic-ai/CodeRankEmbed` | Local via sentence-transformers | 768 | None | **Default.** Code-tuned. Metal/MPS auto-detect on Apple Silicon |
 | `google/embeddinggemma-300m` | Local via sentence-transformers | 768 | None | Pre-018 baseline. General-text. Kept for benchmark comparisons |
@@ -206,7 +219,7 @@ The CLI and MCP interfaces are complementary, not redundant. The CLI handles ind
 | `Salesforce/SFR-Embedding-Code-2B_R` | Local via sentence-transformers | 2048 | None | Largest, highest quality. Needs ~4 GB RAM headroom |
 | `voyage/voyage-code-3` | Cloud via LiteLLM | 1024 | `VOYAGE_API_KEY` | Higher-dim cloud option (requires API key) |
 
-Full registry with RAM/disk/MPS metadata in `cocoindex_code/registered_embedders.py`. Swap runbook in [INSTALL_GUIDE.md §4](INSTALL_GUIDE.md).
+Full embedder registry with RAM/disk/MPS metadata in `cocoindex_code/registered_embedders.py`. Swap runbook in [INSTALL_GUIDE.md §4](INSTALL_GUIDE.md).
 
 **Similarity score interpretation**
 
@@ -328,7 +341,7 @@ Set `"disabled": false` to activate. The MCP server is disabled by default to av
 |---|---|---|
 | `COCOINDEX_CODE_ROOT_PATH` | auto-detected | Override project root for indexing |
 | `COCOINDEX_CODE_DIR` | `~/.cocoindex_code` | Override config and data directory |
-| `COCOINDEX_CODE_EMBEDDING_MODEL` | `sbert/nomic-ai/CodeRankEmbed` | Override the CocoIndex embedding model. Default is nomic CodeRankEmbed per `registered_embedders.py` |
+| `COCOINDEX_CODE_EMBEDDING_MODEL` | `sbert/nomic-ai/CodeRankEmbed` | Override the Stage 1 embedder. Default is nomic CodeRankEmbed per `registered_embedders.py` |
 | `COCOINDEX_CODE_DEVICE` | auto-detect (cuda → mps → cpu) | Override compute device. Use `cpu` as kill switch if MPS produces unstable results |
 | `COCOINDEX_QUERY_PROMPT_NAME` | from registry | Override cocoindex query-prompt routing |
 | `VOYAGE_API_KEY` | (none) | Required only when using Voyage cloud models |
@@ -342,9 +355,9 @@ CocoIndex Code resolves the project root in this order:
 3. Nearest parent with a project marker (`.git`, `pyproject.toml`, `package.json`, `Cargo.toml`, `go.mod`)
 4. Current working directory
 
-**Changing embedding models**
+**Changing Stage 1 embedders**
 
-Changing the model requires destroying and rebuilding the index. Different models produce vectors with incompatible dimensions, and mixing them corrupts results.
+Changing the embedder requires destroying and rebuilding the index. Different embedders produce vectors with incompatible dimensions, and mixing them corrupts results.
 
 ```bash
 ccc reset
@@ -470,13 +483,13 @@ ccc index
 
 ---
 
-**Embedding model mismatch after changing `global_settings.yml`**
+**Stage 1 embedder mismatch after changing `global_settings.yml`**
 
-What you see: Search returns no results or errors about vector dimension incompatibility after switching the embedding model.
+What you see: Search returns no results or errors about vector dimension incompatibility after switching the embedder.
 
-Common causes: The existing index was built with a different model and the vector dimensions do not match the new model.
+Common causes: The existing index was built with a different embedder and the vector dimensions do not match the new embedder.
 
-Fix: Reset the index and rebuild with the new model.
+Fix: Reset the index and rebuild with the new embedder.
 
 ```bash
 ccc reset
@@ -511,9 +524,9 @@ A: Index lifecycle operations (`index`, `status`, `reset`, `init`, `daemon`) are
 
 ---
 
-**Q: When should I switch from the default model?**
+**Q: When should I switch from the default embedder?**
 
-A: The default model (`nomic-ai/CodeRankEmbed`, 768 dimensions) provides strong code search quality out of the box and runs locally with no API key. Switch to `voyage/voyage-code-3` (1024d cloud via LiteLLM) when you want higher-dimensional cloud embeddings and have a `VOYAGE_API_KEY`. Voyage Code 3 was trained specifically on code and can give better discrimination on nuanced queries, but adds an API dependency. Switching models requires `ccc reset && ccc index` because vector dimensions are incompatible.
+A: The default embedder (`nomic-ai/CodeRankEmbed`, 768 dimensions) provides strong code search quality out of the box and runs locally with no API key. Switch to `voyage/voyage-code-3` (1024d cloud via LiteLLM) when you want higher-dimensional cloud embeddings and have a `VOYAGE_API_KEY`. Voyage Code 3 was trained specifically on code and can give better discrimination on nuanced queries, but adds an API dependency. Switching embedders requires `ccc reset && ccc index` because vector dimensions are incompatible.
 
 ---
 

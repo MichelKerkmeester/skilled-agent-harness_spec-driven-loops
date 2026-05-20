@@ -215,6 +215,13 @@ class DoctorCheck:
     details: dict[str, object]
 
 
+@_dataclass(frozen=True)
+class DoctorPipeline:
+    stage_1: dict[str, object]
+    stage_2: dict[str, object]
+    note: str
+
+
 def estimate_reindex_seconds(chunk_count: int, embedder: str) -> int:
     """Estimate model-swap reindex time from the 80k chunks ~= 25 min benchmark."""
     del embedder
@@ -606,10 +613,97 @@ def _check_reindex_cost(
     )
 
 
+def _fingerprint_dict(
+    status: ProjectStatusResponse | None,
+    project_root: str | None,
+) -> dict[str, object | None]:
+    fp = status.fingerprint if status is not None else None
+    if fp is not None and fp.embedder_name is not None:
+        return {
+            "embedder_name": fp.embedder_name,
+            "embedder_dim": fp.embedder_dim,
+            "embedder_provider": fp.embedder_provider,
+            "reranker_name": fp.reranker_name,
+            "reranker_enabled": fp.reranker_enabled,
+            "reranker_license": fp.reranker_license,
+            "chunk_count": fp.chunk_count,
+            "rrf_K": fp.rrf_K,
+            "rrf_V": fp.rrf_V,
+            "rrf_F": fp.rrf_F,
+        }
+
+    from .observability import build_index_fingerprint
+
+    chunk_count = status.total_chunks if status is not None else 0
+    file_count = status.total_files if status is not None else 0
+    fingerprint = build_index_fingerprint(
+        project_root=Path(project_root) if project_root is not None else Path.cwd(),
+        chunk_count=chunk_count,
+        file_count=file_count,
+    )
+    return fingerprint.dump()
+
+
+def _embedder_license(model_name: str | None) -> str:
+    if model_name is None:
+        return "unknown"
+    from .registry import embedder_for
+
+    try:
+        return embedder_for(model_name).license
+    except KeyError:
+        return "unknown"
+
+
+def _runtime_rerank_top_k() -> int:
+    from .config import config
+
+    return config.rerank_top_k
+
+
+def _build_doctor_pipeline(
+    status: ProjectStatusResponse | None,
+    project_root: str | None,
+) -> DoctorPipeline:
+    fingerprint = _fingerprint_dict(status, project_root)
+    embedder_name = fingerprint.get("embedder_name")
+    reranker_name = fingerprint.get("reranker_name")
+    stage_1 = {
+        "role": "bi-encoder embedder",
+        "name": embedder_name or "unknown",
+        "provider": fingerprint.get("embedder_provider") or "unknown",
+        "dim": fingerprint.get("embedder_dim"),
+        "license": _embedder_license(embedder_name if isinstance(embedder_name, str) else None),
+        "rrf": {
+            "K": fingerprint.get("rrf_K"),
+            "V": fingerprint.get("rrf_V"),
+            "F": fingerprint.get("rrf_F"),
+        },
+    }
+    stage_2 = {
+        "role": "cross-encoder reranker",
+        "name": reranker_name or "unknown",
+        "enabled": bool(fingerprint.get("reranker_enabled")),
+        "license": fingerprint.get("reranker_license") or "unknown",
+        "top_k": _runtime_rerank_top_k(),
+        "chunk_count": fingerprint.get("chunk_count"),
+    }
+    return DoctorPipeline(
+        stage_1=stage_1,
+        stage_2=stage_2,
+        note="Two models are architecturally distinct, not interchangeable",
+    )
+
+
 def _run_doctor_checks() -> list[DoctorCheck]:
+    return _run_doctor_report()[1]
+
+
+def _run_doctor_report() -> tuple[DoctorPipeline, list[DoctorCheck]]:
     embedder, reranker, rerank_enabled, commercial_profile = _active_models_from_env()
     status, project_root, status_error = _project_status_if_available()
-    return [
+    pipeline = _build_doctor_pipeline(status, project_root)
+    checks = [
         _check_registry_contract(),
         _check_cli_parity(),
         _check_sentence_transformers_version(),
@@ -622,6 +716,7 @@ def _run_doctor_checks() -> list[DoctorCheck]:
         _check_fingerprint(status, project_root, status_error),
         _check_reindex_cost(status, project_root, embedder),
     ]
+    return pipeline, checks
 
 
 def _doctor_summary(checks: list[DoctorCheck]) -> dict[str, int]:
@@ -633,6 +728,35 @@ def _doctor_summary(checks: list[DoctorCheck]) -> dict[str, int]:
 
 def _doctor_exit_code(checks: list[DoctorCheck]) -> int:
     return max(_CHECK_STATUS_RC[check.status] for check in checks)
+
+
+def _print_doctor_pipeline(pipeline: DoctorPipeline) -> None:
+    stage_1 = pipeline.stage_1
+    stage_2 = pipeline.stage_2
+    rrf = stage_1["rrf"]
+    chunk_count = stage_2.get("chunk_count")
+    chunk_text = f"{chunk_count} chunks" if chunk_count is not None else "the indexed chunks"
+    _typer.echo("Pipeline (two architecturally distinct models):")
+    _typer.echo(
+        f"  Stage 1 - Bi-encoder embedder: {stage_1['name']} "
+        f"({stage_1['provider']}, {stage_1['dim']}d, {stage_1['license']})"
+    )
+    _typer.echo("            Encodes query + chunks independently; cosine in vector lane;")
+    _typer.echo(
+        f"            RRF-fused with FTS5 (K={rrf['K']}, V={rrf['V']}, F={rrf['F']})."
+    )
+    _typer.echo(
+        f"  Stage 2 - Cross-encoder reranker: {stage_2['name']} "
+        f"({stage_2['license']}) [enabled={stage_2['enabled']}]"
+    )
+    _typer.echo(
+        f"            Encodes query+candidate together; runs on top-K={stage_2['top_k']} only."
+    )
+    _typer.echo("")
+    _typer.echo("  Note: the two slots are not interchangeable. Bi-encoders cannot rerank")
+    _typer.echo("  (cosine already runs in the vector lane); cross-encoders cannot embed")
+    _typer.echo(f"  at scale (50-200ms per pair x {chunk_text}).")
+    _typer.echo("")
 
 
 def print_search_results(response: SearchResponse) -> None:
@@ -861,13 +985,14 @@ def doctor(
     json_output: bool = _typer.Option(False, "--json", help="Emit machine-readable JSON report"),
 ) -> None:
     """Run operator health checks for CLI parity, licenses, fingerprint, and reindex cost."""
-    checks = _run_doctor_checks()
+    pipeline, checks = _run_doctor_report()
     summary = _doctor_summary(checks)
     exit_code = _doctor_exit_code(checks)
     if json_output:
         _typer.echo(
             _json.dumps(
                 {
+                    "pipeline": _asdict(pipeline),
                     "checks": [_asdict(check) for check in checks],
                     "summary": {**summary, "rc": exit_code, "total": len(checks)},
                 },
@@ -876,7 +1001,8 @@ def doctor(
             )
         )
     else:
-        _typer.echo("CocoIndex doctor")
+        _print_doctor_pipeline(pipeline)
+        _typer.echo("CocoIndex doctor checks")
         for check in checks:
             _typer.echo(f"{check.id} {check.status} {check.name}: {check.message}")
             _typer.echo(f"  Remediation: {check.remediation}")
