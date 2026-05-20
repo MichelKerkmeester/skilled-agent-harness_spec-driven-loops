@@ -235,7 +235,7 @@ RERANKER_MANIFESTS: tuple[RerankerMetadata, ...] = (
         name="Qwen/Qwen3-Reranker-0.6B",
         hf_url="https://huggingface.co/Qwen/Qwen3-Reranker-0.6B",
         license="apache-2.0",
-        notes="DEFAULT as of 2026-05-20 (023B benchmark-2026-05-20-expanded). Beat jina-v3 head-to-head on the 73-probe expanded fixture: +1 hit/73 (30 vs 29, n=3, zero stddev) and -32% p95 latency (1984ms vs 2905ms). Apache-2.0 license removes commercial-safe profile contention.",
+        notes="DEFAULT as of 2026-05-20 (023B benchmark-2026-05-20). Beat jina-v3 head-to-head on the 73-probe expanded fixture: +1 hit/73 (30 vs 29, n=3, zero stddev) and -32% p95 latency (1984ms vs 2905ms). Apache-2.0 license removes commercial-safe profile contention.",
     ),
     RerankerMetadata(
         name="jinaai/jina-reranker-v3",

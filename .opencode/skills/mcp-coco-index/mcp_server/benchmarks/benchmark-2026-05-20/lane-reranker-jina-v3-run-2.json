@@ -7,7 +7,7 @@
     "COCOINDEX_RERANK_ENABLED": "true",
     "COCOINDEX_RERANK_MODEL": "jinaai/jina-reranker-v3"
   },
-  "fixture": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-20-expanded/code-retrieval-fixture-expanded-v2.json",
+  "fixture": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-20/code-retrieval-fixture-expanded-v2.json",
   "hit_rate": 0.3972602739726027,
   "hits": 29,
   "lane_id": "reranker-jina-v3",

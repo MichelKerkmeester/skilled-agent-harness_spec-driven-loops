@@ -55,7 +55,7 @@ The canonical mechanics for the layout convention live at `.opencode/skills/sk-d
 
 | Date | Bench | Winner | Status | Spec packet |
 |---|---|---|---|---|
-| **May 20, 2026** ← **production** | [`benchmark-2026-05-20-expanded/`](./benchmark-2026-05-20-expanded/) | `nomic-ai/CodeRankEmbed` + `Qwen/Qwen3-Reranker-0.6B` (**30/73 = 41.1%**, p95 1984ms) | Shipped + locked as default | `016/004/023B` expanded fixture calibration |
+| **May 20, 2026** ← **production** | [`benchmark-2026-05-20/`](./benchmark-2026-05-20/) | `nomic-ai/CodeRankEmbed` + `Qwen/Qwen3-Reranker-0.6B` (**30/73 = 41.1%**, p95 1984ms) | Shipped + locked as default | `016/004/023B` expanded fixture calibration |
 | May 19, 2026 | [`benchmark-2026-05-19/`](./benchmark-2026-05-19/) | `nomic-ai/CodeRankEmbed` + `jinaai/jina-reranker-v3` (**14/18 = 77.8%**, median 1964ms) | Superseded by 2026-05-20 Qwen3 default flip | `016/004/013-018` six-packet arc + nomic promotion follow-on |
 | May 18, 2026 | [`benchmark-2026-05-18/`](./benchmark-2026-05-18/) | `BAAI/bge-code-v1` (11/18 = 61.1%, median 504ms) | **STRUCTURALLY INVALIDATED** — rerank wasn't firing due to stale pipx; preserved as historical record | `016/004/004-extended-bake-off` |
 
