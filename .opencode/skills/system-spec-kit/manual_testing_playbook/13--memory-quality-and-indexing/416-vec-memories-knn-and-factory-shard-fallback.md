@@ -35,14 +35,14 @@ Validate vec_memories KNN dual-write and factory ADR-012 shard fallback against 
 
 ### Commands
 
-**Block A: shard row-count parity**
+**Block A: shard subset invariant**
 
 1. Identify the active shard from `<repo>/.opencode/skills/system-spec-kit/mcp_server/database/vectors/context-vectors__<provider>__<model>__<dim>.sqlite`.
 2. From `mcp_server/`, run:
    ```
-   node -e "const D=require('better-sqlite3'); const V=require('sqlite-vec'); const db=new D('<shard-path>'); V.load(db); console.log({vec_dim: db.prepare('SELECT count(*) AS n FROM vec_<dim>').get().n, vec_memories: db.prepare('SELECT count(*) AS n FROM vec_memories').get().n});"
+   node -e "const D=require('better-sqlite3'); const V=require('sqlite-vec'); const db=new D('<shard-path>'); V.load(db); const a=db.prepare('SELECT count(*) AS n FROM vec_<dim>').get().n; const b=db.prepare('SELECT count(*) AS n FROM vec_memories').get().n; const missing=db.prepare('SELECT count(*) AS n FROM vec_<dim> v WHERE NOT EXISTS (SELECT 1 FROM vec_memories m WHERE m.rowid = v.id)').get().n; console.log({vec_dim: a, vec_memories: b, missing_from_vec_memories: missing});"
    ```
-3. Assert both counts are equal and non-zero.
+3. Assert `vec_dim > 0`, `vec_memories >= vec_dim`, and `missing_from_vec_memories === 0`. The vec_memories table may exceed vec_<dim> because the daemon's save-time indexing path writes incremental new memories directly into vec_memories without invoking the reindex orchestrator. The contract is "every reindexed id has a vec_memories row", not strict equality.
 
 **Block B: KNN self-probe**
 
@@ -63,7 +63,7 @@ Validate vec_memories KNN dual-write and factory ADR-012 shard fallback against 
 
 ### Expected
 
-- Block A: matching row counts between `vec_<dim>` and `vec_memories` in the active shard.
+- Block A: `vec_memories >= vec_<dim>` AND every rowid in `vec_<dim>` exists in `vec_memories` (the subset invariant). Strict equality is not required because daemon-side incremental saves can push vec_memories ahead.
 - Block B: rank-1 self-distance is 0, neighbors fall in the 0.5 to 0.65 range for nomic at 768-dim.
 - Block C: log contains `[factory] Using provider: ollama (vec_metadata active_embedder_name=...)` and contains zero matches for `points to vec_<dim>, but that table is missing` or `continuing provider cascade` when the shard is populated.
 
