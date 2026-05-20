@@ -119,7 +119,7 @@ The framework adds four layers on top of the base platform:
          │     SPEC KIT (documentation framework)   │
          │  specs/###-feature/ - scratch/           │
          │  4 levels - template set - 20 rules      │
-         │  jina-v3 (Ollama) │ HF Local │ Voyage    │
+         │  nomic-v1.5 (Ollama) │ HF Local │ Voyage │
          └──────────────────────────────────────────┘
 ```
 
@@ -131,7 +131,7 @@ Recent work also tightened the public surface without turning this README into a
 
 ### Embedder Architecture
 
-Both native MCPs are pluggable out of the box, no code change to swap. **mk-spec-memory** defaults to `jina-embeddings-v3` (1024 dim, Q4_K_M GGUF served over Ollama HTTP) with the retrieval-rescue layer default-on per ADR-011 (kill switch: `SPECKIT_RERANK_LAYER=false`). **CocoIndex** defaults to `sbert/jinaai/jina-embeddings-v2-base-code` (768 dim, code-tuned, MPS auto-detect on Apple Silicon) and the Code Graph rides on CocoIndex's embedder choice via a shared bridge. See the canonical narrative at [embedder-pluggability.md](.opencode/skills/system-spec-kit/references/embedder-pluggability.md) and the swap runbook in [CocoIndex INSTALL_GUIDE §4 "Choosing an embedder"](.opencode/skills/mcp-coco-index/INSTALL_GUIDE.md).
+Both native MCPs are pluggable out of the box, no code change to swap. **mk-spec-memory** defaults to `nomic-embed-text-v1.5` (768 dim, Ollama-served) per ADR-013/014 local-first cascade (2026-05-19); `jina-embeddings-v3` (1024 dim) is the second-priority fallback. The retrieval-rescue layer is default-on per ADR-011 (kill switch: `SPECKIT_RERANK_LAYER=false`). **CocoIndex** ships a two-stage pipeline: Stage 1 embedder default `sbert/nomic-ai/CodeRankEmbed` (768 dim, MIT, code-tuned bi-encoder, MPS auto-detect on Apple Silicon — promoted 2026-05-19); Stage 2 cross-encoder reranker default `Qwen/Qwen3-Reranker-0.6B` (Apache-2.0 — promoted 2026-05-20 per ADR-027 after a head-to-head bench against jina-reranker-v3, which is kept as opt-in fallback). The Code Graph rides on CocoIndex's embedder choice via a shared bridge. See the canonical narrative at [embedder-pluggability.md](.opencode/skills/system-spec-kit/references/embedder-pluggability.md) and the swap runbook in [CocoIndex INSTALL_GUIDE §4 "Choosing an embedder"](.opencode/skills/mcp-coco-index/INSTALL_GUIDE.md).
 
 <!-- /ANCHOR:overview -->
 
@@ -171,9 +171,11 @@ The native MCP servers (`mk-spec-memory`, `mk_skill_advisor`, `mk_code_index`) s
 Choose an embedding provider:
 
 ```bash
-# Default when no cloud keys are set: jina-embeddings-v3 (1024 dim, Q4_K_M)
+# Default when no cloud keys are set: nomic-embed-text-v1.5 (768 dim)
 # served by a local Ollama HTTP endpoint. Pull the model once:
-#   ollama pull jina/jina-embeddings-v3
+#   ollama pull nomic-embed-text:v1.5
+# (jina-embeddings-v3 is the second-priority fallback; pull via:
+#   ollama pull hf.co/gaianet/jina-embeddings-v3-GGUF:Q4_K_M)
 
 # Option A: Voyage AI (cloud, requires API key, opt-in only)
 export VOYAGE_API_KEY="your-key-here"
@@ -561,7 +563,7 @@ Preview all checks without saving using `dryRun: true`. Learned relevance feedba
 
 The embedder layer is pluggable. Swap defaults via env vars without touching code. Canonical narrative: [embedder-pluggability.md](.opencode/skills/system-spec-kit/references/embedder-pluggability.md).
 
-- **Ollama (jina-embeddings-v3)** - Default. Free, local, 1024d Q4_K_M served over HTTP. Pull once with `ollama pull jina/jina-embeddings-v3`.
+- **Ollama (nomic-embed-text-v1.5)** - Default since 2026-05-19 (ADR-013/014). Free, local, 768d retrieval-tuned. Pull once with `ollama pull nomic-embed-text:v1.5`. The cascade falls back to `jina-embeddings-v3` (1024d Q4_K_M) when nomic isn't pulled.
 - **HuggingFace Local** - Fallback when the Ollama probe fails. Free, local, 768d q8 ONNX.
 - **Voyage AI** - Cloud opt-in. Set `VOYAGE_API_KEY`. 1024d. Gated by egress guard.
 - **OpenAI** - Cloud opt-in. Set `OPENAI_API_KEY`. 1536d.
@@ -890,7 +892,7 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 - Progressive tool loading - zero upfront cost, tools load on first use. Type-safe with autocomplete.
 
 **mcp-coco-index**
-- Semantic code search via vector embeddings (`sbert/jinaai/jina-embeddings-v2-base-code` 768d code-tuned default, MPS auto-detect on Apple Silicon. Alternative embedders registered at [`registered_embedders.py`](.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py); swap runbook in [INSTALL_GUIDE §4](.opencode/skills/mcp-coco-index/INSTALL_GUIDE.md))
+- Semantic code search via vector embeddings (`sbert/nomic-ai/CodeRankEmbed` 768d code-tuned default, MIT, MPS auto-detect on Apple Silicon — promoted 2026-05-19). Stage 2 cross-encoder rerank via `Qwen/Qwen3-Reranker-0.6B` (Apache-2.0 default since 2026-05-20 per ADR-027; jina-reranker-v3 kept as opt-in fallback). Alternative embedders + rerankers registered at [`embedders/registered_embedders.py`](.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/embedders/registered_embedders.py); swap runbook in [INSTALL_GUIDE §4](.opencode/skills/mcp-coco-index/INSTALL_GUIDE.md))
 - Natural-language discovery of code patterns and implementations across 28+ languages
 - Two access modes: CLI (`ccc`) for direct terminal use, MCP server for AI agent integration
 
@@ -1341,16 +1343,16 @@ The other shipped skills will continue working unchanged: `sk-doc` will still va
 The memory server reads configuration from environment variables:
 
 - **`VOYAGE_API_KEY`** (optional) - Voyage AI cloud embeddings (opt-in only, gated by egress guard)
-- **`SPECKIT_EMBEDDER`** (optional) - Override the default embedder id (default: `ollama-jina-v3`). See [embedder-pluggability.md](.opencode/skills/system-spec-kit/references/embedder-pluggability.md) for the registered list.
+- **`SPECKIT_EMBEDDER`** (optional) - Override the default embedder id (default: `ollama-nomic-v1.5` since ADR-013/014 2026-05-19; was previously `ollama-jina-v3`). See [embedder-pluggability.md](.opencode/skills/system-spec-kit/references/embedder-pluggability.md) for the registered list.
 - **`SPECKIT_RERANK_LAYER`** (optional) - Retrieval-rescue layer toggle, default `true` per ADR-011. Set to `false` to disable.
 - **`HF_EMBEDDINGS_DTYPE`** (optional) - hf-local fallback dtype (default: `q8`. Also: `fp32`, `fp16`, `q4`, `int8`, `uint8`, `bnb4`)
 - **`OPENAI_API_KEY`** (optional) - OpenAI embeddings (alternative)
 - **`MEMORY_DB_PATH`** (optional) - Override default database path
 
-Default repo-local database path: `.opencode/skills/system-spec-kit/mcp_server/database/context-index__ollama__jina-embeddings-v3__1024__q4_k_m.sqlite`. The filename encodes provider, model, dimension and dtype so multiple backends can coexist on disk without mixing vectors.
+Default repo-local database path: `.opencode/skills/system-spec-kit/mcp_server/database/context-index__ollama__nomic-embed-text-v1.5__768.sqlite` (default since ADR-013/014 2026-05-19; previously `__jina-embeddings-v3__1024__q4_k_m.sqlite`). The filename encodes provider, model, dimension and dtype so multiple backends can coexist on disk without mixing vectors.
 
 > [!TIP]
-> If no API key is set, the memory engine auto-detects the local Ollama endpoint serving **jina-embeddings-v3**, then falls back to **HuggingFace Local** embeddings.
+> If no API key is set, the memory engine auto-detects the local Ollama endpoint serving **nomic-embed-text-v1.5** (current default per ADR-013/014), falls back to **jina-embeddings-v3** if nomic isn't pulled, then to **HuggingFace Local** embeddings.
 
 
 &nbsp;
@@ -1375,7 +1377,7 @@ The runtime centers on a SQLite `memory_index` table with 56 columns plus compan
 - **Search companions** - FTS5 and vector tables support lexical and embedding retrieval alongside BM25 rebuild/index data.
 - **Graph/lifecycle** - Causal edges, lineage projection, checkpoints, working memory and access tracking support decision tracing and session continuity.
 - **Evaluation** - Separate eval tables persist ablation/reporting metrics, with guards for missing query IDs and synthetic token-usage markers.
-- **Paths** - The checked-in configs default to the provider-keyed database path under `.opencode/skills/system-spec-kit/mcp_server/database/`. The filename encodes provider, model, dimension and dtype (for example: `context-index__ollama__jina-embeddings-v3__1024__q4_k_m.sqlite`). If a runtime cannot write inside the repo, override `MEMORY_DB_PATH` (and, when relevant, `SPEC_KIT_DB_DIR`) to a writable location.
+- **Paths** - The checked-in configs default to the provider-keyed database path under `.opencode/skills/system-spec-kit/mcp_server/database/`. The filename encodes provider, model, dimension and dtype (current default since ADR-013/014: `context-index__ollama__nomic-embed-text-v1.5__768.sqlite`; jina-v3 fallback would produce `context-index__ollama__jina-embeddings-v3__1024__q4_k_m.sqlite`). If a runtime cannot write inside the repo, override `MEMORY_DB_PATH` (and, when relevant, `SPEC_KIT_DB_DIR`) to a writable location.
 
 &nbsp;
 ### MCP Config Shape
