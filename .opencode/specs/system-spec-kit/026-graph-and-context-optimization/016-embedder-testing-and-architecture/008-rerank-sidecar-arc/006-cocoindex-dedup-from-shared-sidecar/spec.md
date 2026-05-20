@@ -136,7 +136,7 @@ Move cocoindex's reranker dispatch onto the shared HTTP sidecar. After this pack
 | REQ-003 | Sigmoid scores from sidecar flow through to `QueryResult.reranker_score` unchanged | `test_sigmoid_scores_passed_through` passes; manual smoke shows scores in `[0,1]` |
 | REQ-004 | A/B benchmark run completes with results.csv + per-probe.jsonl + sk-doc-compliant report | Benchmark folder exists with all 5 files; `sk-doc validate_document.py` exit 0 on the report |
 | REQ-005 | Decision rule applied: ±1 hit AND p95 Δ ≤ +500ms AND no test regressions → PROMOTE; else HOLD | `benchmark_report.md` §8 RECOMMENDATIONS states the verdict |
-| REQ-006 | If PROMOTE: bundled `CrossEncoder` load is REMOVED from `reranker.py` (not just commented out) | `git diff` shows the removal; pytest still passes (no in-process CrossEncoder needed) |
+| REQ-006 | If PROMOTE: bundled `CrossEncoderRerankerAdapter` CLASS is retained as the HTTP-failure fallback (per D-004) but is NOT instantiated eagerly at import time | `get_reranker_adapter` returns `HttpSidecarRerankerAdapter` by default; the bundled adapter only loads its model on first fallback path |
 | REQ-007 | Cocoindex SKILL.md + INSTALL_GUIDE.md document the new env var + the sidecar dependency | Doc grep finds `COCOINDEX_RERANK_VIA_SIDECAR` + cross-link to `system-rerank-sidecar` |
 
 ### P1 - Required
@@ -157,7 +157,7 @@ Move cocoindex's reranker dispatch onto the shared HTTP sidecar. After this pack
 - **SC-002**: With the sidecar killed (`pkill rerank_sidecar`), cocoindex still returns reranked results via bundled fallback OR positional ordering (graceful degradation)
 - **SC-003**: Benchmark `benchmark-2026-05-20-cocoindex-via-sidecar/results.csv` shows sidecar arm within ±1 hit of bundled baseline (30/73)
 - **SC-004**: Benchmark p95 Δ ≤ +500ms (HTTP roundtrip cost acceptable)
-- **SC-005**: PROMOTE path: `grep "CrossEncoder(" mcp-coco-index/.../reranker.py` returns 0 hits (bundled load removed); HOLD path: returns 1 hit (preserved)
+- **SC-005**: PROMOTE path: bundled `CrossEncoder()` is instantiated lazily (only inside `_load_model()` on first fallback). `grep "CrossEncoder("` returns the call inside `_load_model` only — no eager top-level instantiation. HOLD path identical.
 - **SC-006**: All cocoindex tests pass (`test_reranker.py` + `test_rerank_dispatch.py` + `test_http_sidecar_adapter.py`)
 - **SC-007**: Strict-validate this packet + arc parent exit 0/0
 <!-- /ANCHOR:success-criteria -->
