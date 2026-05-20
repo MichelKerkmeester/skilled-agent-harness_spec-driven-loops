@@ -253,6 +253,16 @@ def build_current_index_metadata(
     from . import shared
 
     embedder_name = embedding_model or config.embedding_model
+    # Normalize to registry-canonical `sbert/` form when the bare model name
+    # is a known sentence-transformers entry; settings.yml allows the bare
+    # form, but the registry keys are prefixed.
+    if not embedder_name.startswith(("sbert/", "litellm/", "ollama/")):
+        prefixed = f"sbert/{embedder_name}"
+        try:
+            embedder_for(prefixed)
+            embedder_name = prefixed
+        except KeyError:
+            pass
     try:
         metadata = embedder_for(embedder_name)
     except KeyError:
