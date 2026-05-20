@@ -39,7 +39,7 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 | MMR reranking | ON | `SPECKIT_MMR` | Graph-guided MMR diversity reranking | current |
 | TRM evidence gap detection | ON | `SPECKIT_TRM` | Transparent Reasoning Module evidence-gap detection | current |
 | Multi-query expansion | ON | `SPECKIT_MULTI_QUERY` | Deep-mode multi-query expansion | current |
-| Cross-encoder reranking | ON | `SPECKIT_CROSS_ENCODER` | Cross-encoder reranking gate | current |
+| Cross-encoder reranking | OFF | `SPECKIT_CROSS_ENCODER` | Opt-in HTTP cross-encoder reranking via the local sidecar | current |
 | Search fallback | ON | `SPECKIT_SEARCH_FALLBACK` | Quality-aware 3-tier search fallback chain | PI-A2 |
 | Folder discovery | ON | `SPECKIT_FOLDER_DISCOVERY` | Automatic spec folder discovery via description cache | PI-B3 |
 | Save planner mode | OFF | `SPECKIT_SAVE_PLANNER_MODE` | Mutation-first canonical save behavior; default is `plan-only` | planner-first save |
@@ -209,7 +209,7 @@ the publication guard helpers used by the evaluation dashboard.
 | `SPECKIT_BM25_ENGINE` | `auto` | enum: `auto`, `sqlite`, `packed-inmemory`, `legacy-inmemory` | Selects the lexical BM25 rank provider. `auto` uses SQLite FTS5 when `memory_fts` exists and skips JS BM25 warmup, otherwise falls back to legacy in-memory BM25. `sqlite` forces FTS5 and throws if `memory_fts` is unavailable. `legacy-inmemory` restores the old warm JS singleton. `packed-inmemory` is reserved and currently warns before using legacy behavior. | `lib/search/bm25-index.ts`, `lib/search/hybrid-search.ts`, `context-server.ts` |
 | `SPECKIT_COMPLEXITY_ROUTER` | `true` | boolean | Query complexity classification for routing (simple/moderate/deep). Graduated ON. | `lib/search/query-classifier.ts` |
 | `SPECKIT_MMR` | `true` | boolean | Graph-guided Maximal Marginal Relevance diversity reranking. Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_CROSS_ENCODER` | `true` | boolean | Cross-encoder reranking gate. Graduated ON. Takes precedence over `RERANKER_LOCAL`. | `lib/search/search-flags.ts` |
+| `SPECKIT_CROSS_ENCODER` | `false` | boolean | Default OFF (opt-in). Routes Stage 3 reranking through the HTTP cross-encoder at `localhost:8765` (provided by the `system-rerank-sidecar` skill — auto-spawned by the launcher when enabled). Default model: `Qwen/Qwen3-Reranker-0.6B` (Apache-2.0). Phase 004 benchmark (`mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/`) found p95 Δ +9832ms and Arm B 250/250 rows fallback (sidecar timed out under sustained load); not fit for default-on without CPU→MPS device tuning. Set `true` to opt in for development/single-query use. Takes precedence over `RERANKER_LOCAL`. | `lib/search/search-flags.ts` |
 | `SPECKIT_MULTI_QUERY` | `true` | boolean | Multi-query expansion for deep-mode retrieval. Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_EMBEDDING_EXPANSION` | `true` | boolean | Query expansion for embedding-based retrieval (R12). Suppressed when classification = "simple". Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_CONFIDENCE_TRUNCATION` | `true` | boolean | Confidence-gap truncation for low-confidence result tails. Graduated ON. | `lib/search/search-flags.ts` |

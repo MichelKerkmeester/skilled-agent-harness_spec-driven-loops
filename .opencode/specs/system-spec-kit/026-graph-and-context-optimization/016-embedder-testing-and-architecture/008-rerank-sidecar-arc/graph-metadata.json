@@ -37,7 +37,7 @@
       "stage3-rerank"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md"
     ],
@@ -47,7 +47,7 @@
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts",
       ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/rerankers/reranker.py"
     ],
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/001-flag-routing-fix-for-cross-encoder",
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/005-promote-qwen-as-default",
     "last_active_at": "2026-05-20T00:00:00Z",
     "last_indexed_at": "2026-05-20T00:00:00Z"
   }

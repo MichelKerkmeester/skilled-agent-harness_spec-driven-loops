@@ -10,9 +10,9 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/005-promote-qwen-as-default"
     last_updated_at: "2026-05-20T00:00:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Plan authored"
-    next_safe_action: "Wait for phase 004 verdict"
-    blockers: ["awaiting phase 004 benchmark report"]
+    recent_action: "HOLD path executed per phase 004 verdict"
+    next_safe_action: "Arc 008 closed; follow-on requires CPU to MPS device tuning before re-benchmark"
+    blockers: []
 ---
 # Implementation Plan: Promote Qwen3-Reranker-0.6B as the spec-memory default
 
@@ -26,9 +26,9 @@ _memory:
 
 | Phase | What | Status |
 |-------|------|--------|
-| **A** | Read phase 004's `benchmark_report.md` §8; choose PROMOTE or HOLD per the documented decision rule | Planned |
-| **B** | Execute the chosen path's file edits (PROMOTE: cross-encoder.ts + 4 configs + 3 docs; HOLD: 2 docs only) | Planned |
-| **C** | Update arc parent's `graph-metadata.json` `last_active_child_id` + status; mark arc complete (or "complete with sidecar opt-in" if HOLD) | Planned |
+| **A** | Read phase 004's `benchmark_report.md` §8; choose PROMOTE or HOLD per the documented decision rule | Complete |
+| **B** | Execute the chosen path's file edits (PROMOTE: cross-encoder.ts + 4 configs + 3 docs; HOLD: docs/metadata only) | Complete (HOLD) |
+| **C** | Update arc parent's `graph-metadata.json` `last_active_child_id` + status; mark arc complete (or "complete with sidecar opt-in" if HOLD) | Complete |
 <!-- /ANCHOR:summary -->
 
 ---

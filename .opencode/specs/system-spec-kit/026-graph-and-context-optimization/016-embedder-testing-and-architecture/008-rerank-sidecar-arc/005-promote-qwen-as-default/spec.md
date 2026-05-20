@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Promote Qwen3-Reranker-0.6B as the spec-memory default"
-description: "Conditionally flip cross-encoder.ts:55 default from cross-encoder/ms-marco-MiniLM-L-6-v2 to Qwen/Qwen3-Reranker-0.6B. Set SPECKIT_CROSS_ENCODER=true in all 4 runtime configs so the rerank pipeline is on by default. Update ENV_REFERENCE.md, embedder_architecture.md, and SKILL.md docs. Gated on phase 004's benchmark result — PROMOTE only if the decision rule is met; otherwise stay opt-in."
+description: "Final phase of arc 008. Phase 004 returned HOLD, so Qwen remains opt-in via SPECKIT_CROSS_ENCODER=true. This phase updates ENV_REFERENCE.md, embedder_architecture.md, system-rerank-sidecar/SKILL.md, and arc metadata without changing source code or runtime configs."
 trigger_phrases:
   - "promote qwen default reranker"
   - "cross-encoder ms-marco to qwen3"
@@ -13,9 +13,9 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/005-promote-qwen-as-default"
     last_updated_at: "2026-05-20T00:00:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Spec authored"
-    next_safe_action: "Wait for phase 004 verdict"
-    blockers: ["awaiting phase 004 benchmark report"]
+    recent_action: "HOLD path executed per phase 004 verdict"
+    next_safe_action: "Arc 008 closed; follow-on requires CPU to MPS device tuning before re-benchmark"
+    blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md"
@@ -37,7 +37,7 @@ Phase 005 of the 008 rerank-sidecar arc. Final decision phase — promote Qwen t
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned (decision gated) |
+| **Status** | Complete (HOLD) |
 | **Created** | 2026-05-20 |
 | **Branch** | `main` |
 | **Parent Arc** | `008-rerank-sidecar-arc` |
@@ -120,6 +120,9 @@ If phase 004's benchmark does NOT satisfy the decision rule (HOLD path):
 |-----------|-------------|-------------|
 | `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` | Modify | Describe opt-in + link to benchmark |
 | `.opencode/skills/system-spec-kit/references/memory/embedder_architecture.md` | Modify | Same |
+| `.opencode/skills/system-rerank-sidecar/SKILL.md` | Modify | Document spec-memory as an opt-in consumer and record the CPU latency limitation |
+| `../spec.md` | Modify | Mark phase 005 `Complete (HOLD)` in the arc phase map |
+| `../graph-metadata.json` | Modify | Point `last_active_child_id` at this phase and mark the arc complete |
 <!-- /ANCHOR:scope -->
 
 ---

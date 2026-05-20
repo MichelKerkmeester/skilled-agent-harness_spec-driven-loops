@@ -151,6 +151,12 @@ The MCP server now starts with a thin bootstrap: tool schemas, validation, runti
 
 The trade-off is first-call latency: the first `memory_search`, `memory_context`, `memory_save`, embedder, checkpoint, ingest, eval, causal, or session-learning call pays the runtime initialization cost. Idle startup stays smaller because SQLite, BM25, retry jobs, startup scans, and local model sidecars remain cold until memory is actually used.
 
+### Stage 3 Reranking
+
+Stage 3 can rerank fused search candidates through the HTTP cross-encoder provider in `mcp_server/lib/search/cross-encoder.ts:local`. The Qwen sidecar path is opt-in: set `SPECKIT_CROSS_ENCODER=true` to route rerank requests to `http://localhost:8765/rerank`, served by the `system-rerank-sidecar` skill with `Qwen/Qwen3-Reranker-0.6B`.
+
+Phase 004's A/B benchmark kept this path out of the default configuration. The report at `mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/benchmark_report.md` found only `hit_rate_delta_pp = +0.4` and `MRR_delta = +0.004`, while p95 latency regressed by `+9832.7ms` and every Arm B row fell back after sidecar timeout under sustained load. Until CPU-to-MPS device tuning is re-benchmarked, Qwen-backed Stage 3 reranking is for development and single-query opt-in use, not the shipped default.
+
 ### Lexical Search Engine
 
 `SPECKIT_BM25_ENGINE` controls the lexical BM25 provider without changing the public `bm25Search()` API. The default `auto` mode uses SQLite FTS5 when the canonical database has `memory_fts`, so startup skips the resident JavaScript BM25 warmup and the BM25 lane is populated from FTS5 results tagged as `bm25` for compatibility with keyword fusion.

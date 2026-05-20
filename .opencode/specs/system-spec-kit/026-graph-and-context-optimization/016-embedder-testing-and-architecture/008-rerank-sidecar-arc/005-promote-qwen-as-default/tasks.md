@@ -10,9 +10,9 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/005-promote-qwen-as-default"
     last_updated_at: "2026-05-20T00:00:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Tasks authored"
-    next_safe_action: "Wait for phase 004 verdict"
-    blockers: ["awaiting phase 004 benchmark report"]
+    recent_action: "HOLD path executed per phase 004 verdict"
+    next_safe_action: "Arc 008 closed; follow-on requires CPU to MPS device tuning before re-benchmark"
+    blockers: []
 ---
 # Tasks: Promote Qwen3-Reranker-0.6B as the spec-memory default
 
@@ -37,9 +37,9 @@ _memory:
 
 | Task | P | Description | Status | Evidence |
 |------|---|-------------|--------|----------|
-| T001 | P0 | [B] Read `benchmarks/benchmark-2026-MM-DD-rerank-ab/benchmark_report.md` §8 RECOMMENDATIONS | `[ ]` | (pending phase 004) |
-| T002 | P0 | [B] Quote verbatim §8 into this packet's `implementation-summary.md` §2 | `[ ]` | (pending) |
-| T003 | P0 | [B] Choose PROMOTE or HOLD path; document in implementation-summary.md | `[ ]` | (pending) |
+| T001 | P0 | [B] Read `benchmarks/benchmark-2026-MM-DD-rerank-ab/benchmark_report.md` §8 RECOMMENDATIONS | `[x]` | Read `benchmark-2026-05-20-rerank-ab/benchmark_report.md` §8; verdict `HOLD` |
+| T002 | P0 | [B] Quote verbatim §8 into this packet's `implementation-summary.md` §2 | `[x]` | `implementation-summary.md` §What Was Built includes the verbatim §8 block |
+| T003 | P0 | [B] Choose PROMOTE or HOLD path; document in implementation-summary.md | `[x]` | `implementation-summary.md` §Path executed: HOLD |
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -49,15 +49,15 @@ _memory:
 
 | Task | P | Description | Status | Evidence |
 |------|---|-------------|--------|----------|
-| T004 | P0 | [P] Edit `cross-encoder.ts:55` — change `local.model` from ms-marco to `Qwen/Qwen3-Reranker-0.6B` | `[ ]` | (pending) |
-| T005 | P0 | [P] Update cross-encoder.ts comment block (lines 8-21) to reflect new default | `[ ]` | (pending) |
-| T006 | P0 | [P] Add `SPECKIT_CROSS_ENCODER=true` to `.mcp.json` spec-memory env block | `[ ]` | (pending) |
-| T007 | P0 | [P] Add `SPECKIT_CROSS_ENCODER=true` to `opencode.json` | `[ ]` | (pending) |
-| T008 | P0 | [P] Add `SPECKIT_CROSS_ENCODER=true` to `.gemini/settings.json` | `[ ]` | (pending) |
-| T009 | P0 | [P] Add `SPECKIT_CROSS_ENCODER=true` to `.codex/config.toml` | `[ ]` | (pending) |
-| T010 | P0 | [B] Update ENV_REFERENCE.md `SPECKIT_CROSS_ENCODER` row per chosen path's wording | `[ ]` | (pending) |
-| T011 | P0 | [B] Update `embedder_architecture.md` Stage 3 section per chosen path | `[ ]` | (pending) |
-| T012 | P1 | [P] Update `system-rerank-sidecar/SKILL.md` cross-reference (spec-memory adoption) | `[ ]` | (pending) |
+| T004 | P0 | [P] Edit `cross-encoder.ts:55` — change `local.model` from ms-marco to `Qwen/Qwen3-Reranker-0.6B` | `[—]` | HOLD path; not applicable |
+| T005 | P0 | [P] Update cross-encoder.ts comment block (lines 8-21) to reflect new default | `[—]` | HOLD path; not applicable |
+| T006 | P0 | [P] Add `SPECKIT_CROSS_ENCODER=true` to `.mcp.json` spec-memory env block | `[—]` | HOLD path; not applicable |
+| T007 | P0 | [P] Add `SPECKIT_CROSS_ENCODER=true` to `opencode.json` | `[—]` | HOLD path; not applicable |
+| T008 | P0 | [P] Add `SPECKIT_CROSS_ENCODER=true` to `.gemini/settings.json` | `[—]` | HOLD path; not applicable |
+| T009 | P0 | [P] Add `SPECKIT_CROSS_ENCODER=true` to `.codex/config.toml` | `[—]` | HOLD path; not applicable |
+| T010 | P0 | [B] Update ENV_REFERENCE.md `SPECKIT_CROSS_ENCODER` row per chosen path's wording | `[x]` | `ENV_REFERENCE.md` row says `Default OFF (opt-in)` and cites `benchmark-2026-05-20-rerank-ab/` |
+| T011 | P0 | [B] Update `embedder_architecture.md` Stage 3 section per chosen path | `[x]` | `embedder_architecture.md` adds `Stage 3 Reranking` with the opt-in sidecar and latency caveat |
+| T012 | P1 | [P] Update `system-rerank-sidecar/SKILL.md` cross-reference (spec-memory adoption) | `[—]` | HOLD path; PROMOTE-only default adoption not applicable. HOLD-specific opt-in consumer note was added to `system-rerank-sidecar/SKILL.md`. |
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -67,14 +67,14 @@ _memory:
 
 | Task | P | Description | Status | Evidence |
 |------|---|-------------|--------|----------|
-| T013 | P0 | [B] Strict validate this packet | `[ ]` | Exit 0 |
-| T014 | P0 | [B] Path-correctness audit: `git diff HEAD~1 -- <expected files>` matches chosen path | `[ ]` | Diff shape verified |
-| T015 | P0 | [P] Cold-start integration smoke: spec-memory uses Qwen by default | `[ ]` | trace shows `provider: 'local'` + Qwen model |
-| T016 | P0 | [B] Update arc parent `graph-metadata.json` `last_active_child_id` to 005 | `[ ]` | (pending) |
-| T017 | P0 | [B] Update arc parent `spec.md` phase-map row for 005 with path-specific status | `[ ]` | (pending) |
-| T018 | P0 | [B] Update arc parent `graph-metadata.json.derived.status` to `complete` | `[ ]` | (pending) |
-| T019 | P0 | [B] Strict validate arc parent | `[ ]` | Exit 0 |
-| T020 | P1 | [B] Commit; final arc-complete summary in commit message | `[ ]` | Single commit on main |
+| T013 | P0 | [B] Strict validate this packet | `[x]` | `validate.sh .../005-promote-qwen-as-default --strict` exit 0 |
+| T014 | P0 | [B] Path-correctness audit: `git diff HEAD~1 -- <expected files>` matches chosen path | `[x]` | `git diff HEAD~1 -- cross-encoder.ts` empty; runtime-config diff shows no `SPECKIT_CROSS_ENCODER` changes |
+| T015 | P0 | [P] Cold-start integration smoke: spec-memory uses Qwen by default | `[—]` | HOLD path; not applicable |
+| T016 | P0 | [B] Update arc parent `graph-metadata.json` `last_active_child_id` to 005 | `[x]` | `graph-metadata.json.derived.last_active_child_id` points to `005-promote-qwen-as-default` |
+| T017 | P0 | [B] Update arc parent `spec.md` phase-map row for 005 with path-specific status | `[x]` | Arc parent phase map row says `Complete (HOLD)` |
+| T018 | P0 | [B] Update arc parent `graph-metadata.json.derived.status` to `complete` | `[x]` | `graph-metadata.json.derived.status` is `complete` |
+| T019 | P0 | [B] Strict validate arc parent | `[x]` | `validate.sh .../008-rerank-sidecar-arc --strict` exit 0 |
+| T020 | P1 | [B] Commit; final arc-complete summary in commit message | `[x]` | Commit handoff appended to `implementation-summary.md`; no git commit run per implementation contract |
 <!-- /ANCHOR:phase-3 -->
 
 ---

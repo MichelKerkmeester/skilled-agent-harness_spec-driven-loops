@@ -145,7 +145,15 @@ Shutdown:
 
 ---
 
-## 4. Environment Variables
+## 4. Consumers
+
+Spec-memory consumes this sidecar through `mcp_server/lib/search/cross-encoder.ts:local` when `SPECKIT_CROSS_ENCODER=true`. Per phase 005 of `008-rerank-sidecar-arc`, that path is opt-in rather than default-on: the phase 004 benchmark found sustained-load timeouts and a p95 latency regression that failed the promotion gate.
+
+CocoIndex currently bundles its own Qwen instance separately. Repointing CocoIndex at this shared HTTP sidecar is a future integration concern, not part of the phase 005 HOLD path.
+
+---
+
+## 5. Environment Variables
 
 | Variable | Default | Purpose |
 | --- | --- | --- |
@@ -159,7 +167,7 @@ Shutdown:
 
 ---
 
-## 5. RAM Budget + macOS Notes
+## 6. RAM Budget + macOS Notes
 
 Expect roughly 1.5 GB of warm memory pressure for the Qwen reranker plus PyTorch and sentence-transformers. On 16 GB Macs, running this sidecar beside spec-memory, CocoIndex, code graph tooling, and browser automation may push the system into swap.
 
@@ -172,7 +180,15 @@ Practical defaults:
 
 ---
 
-## 6. Troubleshooting
+## 7. Known Limitations
+
+| Limitation | Finding | Operator guidance |
+| --- | --- | --- |
+| Qwen-on-CPU sustained-load latency | Phase 004 spec-memory A/B benchmark measured sustained-load p95 around 11s (`p95_delta_ms = +9832.7`) and every Arm B row fell back after sidecar timeout. | Keep `SPECKIT_CROSS_ENCODER` opt-in. Tune CPU-to-MPS device selection before any production use or re-benchmark attempt. |
+
+---
+
+## 8. Troubleshooting
 
 `ModuleNotFoundError` on start means the venv is missing or stale. Run:
 
