@@ -12,6 +12,11 @@ args = [".opencode/bin/mk-spec-memory-launcher.cjs"]
 
 [mcp_servers."mk-spec-memory".env]
 EMBEDDINGS_PROVIDER = "auto"
+# macOS sun_path limit (104 chars): the default bridge socket path under
+# database/daemon-ipc.sock exceeds the limit and the launcher fails with
+# EINVAL on listen(). Pin the socket dir to a short /tmp path so the
+# multi-client launcher bridge can bind cleanly.
+SPECKIT_IPC_SOCKET_DIR = "/tmp/mk-spec-memory"
 # MEMORY_DB_PATH intentionally unset: filename is auto-derived from provider+model+dim
 # (e.g., context-index__ollama__nomic-embed-text-v1.5__768.sqlite when Ollama is
 # detected; otherwise context-index__hf-local__nomic-ai_nomic-embed-text-v1.5__768.sqlite).
@@ -32,6 +37,8 @@ command = "node"
 args = [".opencode/bin/mk-skill-advisor-launcher.cjs"]
 
 [mcp_servers.mk_skill_advisor.env]
+# macOS sun_path limit fix (see mk-spec-memory above for context).
+SPECKIT_IPC_SOCKET_DIR = "/tmp/mk-skill-advisor"
 _NOTE_1_DB = "Database lives at .opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite by default; MK_SKILL_ADVISOR_DB_DIR overrides, with SYSTEM_SKILL_ADVISOR_DB_DIR as a legacy fallback."
 _NOTE_2_TOOLS = "Registers 9 tools (8 public + 1 internal trusted-caller): advisor_recommend/rebuild/status/validate plus skill_graph_scan/query/status/validate/propagate_enhances. MCP namespace: mcp__mk_skill_advisor__*"
 MK_SKILL_ADVISOR_DB_DIR = ".opencode/skills/system-skill-advisor/mcp_server/database"
@@ -43,6 +50,8 @@ command = "node"
 args = [".opencode/bin/mk-code-index-launcher.cjs"]
 
 [mcp_servers.mk_code_index.env]
+# macOS sun_path limit fix (see mk-spec-memory above for context).
+SPECKIT_IPC_SOCKET_DIR = "/tmp/mk-code-index"
 _NOTE_1_DB = "Database lives at .opencode/.spec-kit/code-graph/database/code-graph.sqlite by default; SPECKIT_CODE_GRAPH_DB_DIR overrides."
 _NOTE_2_TOOLS = "Registers 11 tools: code_graph_scan/query/classify_query_intent/context/status/verify/apply, detect_changes, ccc_status/reindex/feedback. MCP namespace: mcp__mk_code_index__*"
 _NOTE_3_INDEX_DEFAULTS = "INDEX_* committed defaults are false (end-user safe). Maintainer mode: set SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true in .env.local (gitignored); the launcher will force all 5 INDEX_* to true at startup. Per-call code_graph_scan args (includeSkills, includeAgents, includeCommands, includeSpecs, includePlugins) still override env for fine-grained control."
