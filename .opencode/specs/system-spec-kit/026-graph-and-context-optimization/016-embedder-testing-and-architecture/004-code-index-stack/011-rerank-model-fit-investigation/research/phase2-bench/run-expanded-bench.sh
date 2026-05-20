@@ -259,6 +259,10 @@ for run_no in $(seq 1 "$RUNS"); do
     run_lane "fusion-combmnz" "fusion CombMNZ" "$run_no" COCOINDEX_FUSION_FORMULA="combmnz"
     run_lane "fusion-avg" "fusion equal average" "$run_no" COCOINDEX_FUSION_FORMULA="average"
   fi
+  if group_enabled "reranker"; then
+    run_lane "reranker-jina-v3" "reranker jinaai/jina-reranker-v3 (cc-by-nc-4.0)" "$run_no" COCOINDEX_RERANK_MODEL="jinaai/jina-reranker-v3"
+    run_lane "reranker-qwen3-0p6b" "reranker Qwen/Qwen3-Reranker-0.6B (apache-2.0)" "$run_no" COCOINDEX_RERANK_MODEL="Qwen/Qwen3-Reranker-0.6B"
+  fi
 done
 
 "$PYTHON" "$CALIBRATION" aggregate --runs-dir "$RUNS_DIR" --output "$PACKET_DIR/evidence/expanded-calibration-summary.md"

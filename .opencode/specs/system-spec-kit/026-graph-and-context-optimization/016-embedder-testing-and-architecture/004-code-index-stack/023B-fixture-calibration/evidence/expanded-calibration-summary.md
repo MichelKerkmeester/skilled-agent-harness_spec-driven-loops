@@ -9,6 +9,8 @@
 | fusion-avg | fusion equal average | 1 | 29.00/73 | 0.397 | 0.000 | 0.000 | 2869.0 | 0.0 |
 | fusion-combmnz | fusion CombMNZ | 1 | 29.00/73 | 0.397 | 0.000 | 0.000 | 2837.0 | 0.0 |
 | fusion-rrf | fusion RRF | 1 | 29.00/73 | 0.397 | 0.000 | 0.000 | 2837.0 | 0.0 |
+| reranker-jina-v3 | reranker jinaai/jina-reranker-v3 (cc-by-nc-4.0) | 3 | 29.00/73 | 0.397 | 0.000 | 0.000 | 2904.7 | 30.9 |
+| reranker-qwen3-0p6b | reranker Qwen/Qwen3-Reranker-0.6B (apache-2.0) | 3 | 30.00/73 | 0.411 | 0.000 | 0.000 | 1984.3 | 61.7 |
 | rrf-k10 | RRF K=10 | 2 | 30.00/73 | 0.411 | 0.000 | 0.000 | 2906.0 | 45.3 |
 | rrf-k100 | RRF K=100 | 2 | 29.00/73 | 0.397 | 0.000 | 0.000 | 2905.5 | 38.9 |
 | rrf-k150 | RRF K=150 | 1 | 29.00/73 | 0.397 | 0.000 | 0.000 | 3456.0 | 0.0 |
