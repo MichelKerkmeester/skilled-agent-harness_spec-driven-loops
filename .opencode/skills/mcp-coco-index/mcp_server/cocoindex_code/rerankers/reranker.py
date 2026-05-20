@@ -15,8 +15,19 @@ from ..indexer.schema import QueryResult
 logger = logging.getLogger(__name__)
 
 MIN_AVAILABLE_RAM_BYTES = 2 * 1024 * 1024 * 1024
-_ADAPTERS: dict[str, "CrossEncoderRerankerAdapter"] = {}
+DEFAULT_SIDECAR_PORT = 8765
+DEFAULT_SIDECAR_TIMEOUT_S = 30.0
+_ADAPTERS: dict[str, Any] = {}
 _PATH_CLASS_FACTORS_CACHE: tuple[str | None, dict[str, float]] | None = None
+
+
+def _rerank_via_sidecar_enabled() -> bool:
+    return os.environ.get("COCOINDEX_RERANK_VIA_SIDECAR", "").strip().lower() in {
+        "1",
+        "true",
+        "yes",
+        "on",
+    }
 
 
 def _apply_path_class_boost(
@@ -207,6 +218,139 @@ class CrossEncoderRerankerAdapter:
         return [*reranked_head, *tail]
 
 
+class HttpSidecarRerankerAdapter:
+    """HTTP client adapter for the shared `system-rerank-sidecar` skill.
+
+    POSTs to the local FastAPI sidecar at ``http://127.0.0.1:<port>/rerank`` (port
+    from ``RERANK_SIDECAR_PORT`` env or default 8765). On any HTTP failure, falls
+    back to a bundled ``CrossEncoderRerankerAdapter`` so search keeps working when
+    the sidecar is unreachable.
+    """
+
+    def __init__(
+        self,
+        model_name: str = _DEFAULT_RERANK_MODEL,
+        port: int | None = None,
+        timeout_s: float | None = None,
+    ) -> None:
+        self.model_name = model_name
+        self.port = port if port is not None else int(
+            os.environ.get("RERANK_SIDECAR_PORT", str(DEFAULT_SIDECAR_PORT))
+        )
+        self.timeout_s = timeout_s if timeout_s is not None else DEFAULT_SIDECAR_TIMEOUT_S
+        self._client: Any | None = None
+        self._fallback_adapter: CrossEncoderRerankerAdapter | None = None
+
+    def _get_client(self) -> Any:
+        if self._client is None:
+            import httpx  # noqa: PLC0415
+
+            self._client = httpx.Client(
+                base_url=f"http://127.0.0.1:{self.port}",
+                timeout=self.timeout_s,
+            )
+        return self._client
+
+    def _get_fallback(self) -> CrossEncoderRerankerAdapter:
+        if self._fallback_adapter is None:
+            self._fallback_adapter = CrossEncoderRerankerAdapter(self.model_name)
+        return self._fallback_adapter
+
+    def _fallback_to_bundled(
+        self,
+        query: str,
+        candidates: list[QueryResult],
+        top_k: int,
+        reason: str,
+        diagnostics: RetrievalDiagnostics | None,
+    ) -> list[QueryResult]:
+        if diagnostics is not None:
+            diagnostics.record_reranker_fallback(reason)
+        return self._get_fallback().rerank(
+            query,
+            candidates,
+            top_k,
+            diagnostics=diagnostics,
+        )
+
+    def rerank(
+        self,
+        query: str,
+        candidates: list[QueryResult],
+        top_k: int,
+        *,
+        diagnostics: RetrievalDiagnostics | None = None,
+    ) -> list[QueryResult]:
+        if len(candidates) < 2:
+            return candidates
+
+        rerank_count = max(1, min(top_k, len(candidates)))
+        head = candidates[:rerank_count]
+        tail = candidates[rerank_count:]
+        documents = [candidate.content for candidate in head]
+
+        try:
+            client = self._get_client()
+            response = client.post(
+                "/rerank",
+                json={
+                    "query": query,
+                    "documents": documents,
+                    "top_k": rerank_count,
+                },
+            )
+        except Exception as exc:
+            logger.warning(
+                "Rerank sidecar request failed (%s); falling back to bundled adapter",
+                exc,
+            )
+            return self._fallback_to_bundled(
+                query, candidates, top_k, "sidecar_unavailable", diagnostics
+            )
+
+        if response.status_code != 200:
+            bucket = "sidecar_5xx" if response.status_code >= 500 else f"sidecar_{response.status_code}"
+            logger.warning(
+                "Rerank sidecar returned HTTP %d; falling back to bundled adapter",
+                response.status_code,
+            )
+            return self._fallback_to_bundled(
+                query, candidates, top_k, bucket, diagnostics
+            )
+
+        try:
+            payload = response.json()
+            results = payload["results"]
+            scores_by_index: dict[int, float] = {
+                int(r["index"]): float(r["relevance_score"]) for r in results
+            }
+            scores = [scores_by_index[i] for i in range(len(head))]
+        except (ValueError, KeyError, TypeError) as exc:
+            logger.warning(
+                "Rerank sidecar returned malformed payload (%s); falling back to bundled adapter",
+                exc,
+            )
+            return self._fallback_to_bundled(
+                query, candidates, top_k, "sidecar_malformed", diagnostics
+            )
+
+        scores = _apply_path_class_boost(scores, head)
+        _maybe_log_scores(query, head, scores)
+
+        reranked_head = [
+            replace(
+                candidate,
+                score=reranker_score,
+                pre_rerank_score=candidate.score,
+                reranker_score=reranker_score,
+                rankingSignals=[*candidate.rankingSignals, "cross_encoder_rerank"],
+            )
+            for candidate, reranker_score in zip(head, scores, strict=True)
+        ]
+        reranked_head.sort(key=lambda result: result.reranker_score or float("-inf"), reverse=True)
+        return [*reranked_head, *tail]
+
+
 # Backward-compat alias: existing imports of `RerankerAdapter` continue to resolve
 # to the cross-encoder implementation (tests + downstream callers unchanged).
 RerankerAdapter = CrossEncoderRerankerAdapter
@@ -235,14 +379,22 @@ def _try_fallback_reranker(
 def get_reranker_adapter(model_name: str = _DEFAULT_RERANK_MODEL) -> Any:
     """Return the cached adapter for a reranker model.
 
-    Prefix dispatch (ADR-015 Phase 2): if model_name matches a known custom-adapter
-    family OR COCOINDEX_RERANK_ADAPTER overrides explicitly, instantiate the matching
-    adapter class. Otherwise fall through to CrossEncoderRerankerAdapter for the
-    sentence-transformers CrossEncoder default.
+    Dispatch priority:
+    1. ``COCOINDEX_RERANK_VIA_SIDECAR=true`` -> ``HttpSidecarRerankerAdapter`` (arc 008/006)
+    2. ``COCOINDEX_RERANK_ADAPTER=jina_v3`` or jina model name -> ``JinaRerankerAdapter``
+    3. Default -> ``CrossEncoderRerankerAdapter`` (bundled sentence-transformers)
 
-    Lazy-imports custom adapters so callers on the BGE-only path do NOT pay the
-    transformers import cost.
+    Lazy-imports custom adapters so callers on the default path do NOT pay the
+    transformers/httpx import cost.
     """
+    if _rerank_via_sidecar_enabled():
+        sidecar_key = f"__http_sidecar__:{model_name}"
+        adapter = _ADAPTERS.get(sidecar_key)
+        if adapter is None:
+            adapter = HttpSidecarRerankerAdapter(model_name)
+            _ADAPTERS[sidecar_key] = adapter
+        return adapter
+
     adapter = _ADAPTERS.get(model_name)
     if adapter is None:
         override = os.environ.get("COCOINDEX_RERANK_ADAPTER", "").strip().lower()

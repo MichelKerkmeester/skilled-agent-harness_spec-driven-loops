@@ -13,13 +13,13 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc"
-    last_updated_at: "2026-05-20T00:00:00Z"
+    last_updated_at: "2026-05-20T19:00:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Arc scaffolded; first child 001 created"
-    next_safe_action: "Resume 001-flag-routing-fix-for-cross-encoder"
+    recent_action: "Phase 006 shipped PROMOTE; arc closes (dedup complete)"
+    next_safe_action: "Author system-rerank-sidecar feature catalog + manual testing playbook"
     blockers: []
     key_files:
-      - "001-flag-routing-fix-for-cross-encoder/spec.md"
+      - "006-cocoindex-dedup-from-shared-sidecar/spec.md"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-phase-parent | v2.2 -->
 # Rerank Sidecar Arc
@@ -59,6 +59,7 @@ A second-opinion pass from `cli-codex gpt-5.5 xhigh` (recorded in the arc's rese
 | 003 | `003-ensure-sidecar-from-launchers/` | Planned | Add `ensureRerankSidecar({ port })` self-electing-primary helper to both `mk-spec-memory-launcher.cjs` and `mk-code-index-launcher.cjs` (or cocoindex's equivalent). Probe `/health`; spawn detached if absent; attach as HTTP client if present. Mirrors the lease-based bridge attachment from packet 010/012 but at port level. |
 | 004 | `004-spec-memory-rerank-benchmark/` | Planned | Run an A/B benchmark on spec-memory's own corpus (paraphrase recall fixtures cat-24/409, 416/417/418 playbook scenarios). Quantify the actual lift vs positional fallback before claiming a quality win — cocoindex's `+1/73` on code chunks is not transferable evidence for memory text. |
 | 005 | `005-promote-qwen-as-default/` | Complete (HOLD) | Phase 004 benchmark gates failed (p95 +9832ms; hit-rate Δ +0.4pp); sidecar ships opt-in only. Default model in `cross-encoder.ts:55` stays `cross-encoder/ms-marco-MiniLM-L-6-v2`. |
+| 006 | `006-cocoindex-dedup-from-shared-sidecar/` | Complete (PROMOTE) | Closes the arc's deduplication intent. `HttpSidecarRerankerAdapter` routes cocoindex's Stage 2 rerank through `system-rerank-sidecar` over HTTP by default (`COCOINDEX_RERANK_VIA_SIDECAR=true`); bundled `CrossEncoderRerankerAdapter` retained as fallback. A/B benchmark (`benchmark-2026-05-20-cocoindex-via-sidecar/`) confirmed hit-rate parity (15/73 = 15/73) and bounded p95 latency cost (+18 ms). |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -84,9 +85,8 @@ The arc converges when:
 - Phase 002 ships a `system-rerank-sidecar` skill that, when run standalone, accepts `POST /rerank {query, documents, top_k}` and returns `{results: [{index, relevance_score}]}` with sigmoid scores in `[0,1]`.
 - Phase 003 makes both launchers idempotently ensure the sidecar before search calls; manual smoke-test confirms one-Qwen-loaded across both MCPs.
 - Phase 004 produces a benchmark report comparing positional-fallback vs Qwen on spec-memory's corpus, with confidence intervals (n≥3, ideally n≥5).
-- Phase 005 promotes Qwen to default ONLY IF phase 004's report shows a meaningful lift (definition: ≥3 hits/30 fixtures or ≥0.1 mean MRR delta with non-overlapping CIs). If 004 shows no lift, the sidecar still ships but stays opt-in via `SPECKIT_CROSS_ENCODER=true`.
-
-The follow-on `006-shared-deduplication-from-cocoindex` is OUT of scope for this arc — it depends on phase 005 landing first, then cocoindex's reranker_dispatch needs to be repointed at the shared skill instead of bundling its own copy. Tracked as a future packet under arc 008.
+- Phase 005 promotes Qwen to default ONLY IF phase 004's report shows a meaningful lift (definition: ≥3 hits/30 fixtures or ≥0.1 mean MRR delta with non-overlapping CIs). If 004 shows no lift, the sidecar still ships but stays opt-in via `SPECKIT_CROSS_ENCODER=true`. (Outcome: HOLD — phase 005 shipped opt-in path.)
+- Phase 006 closes the arc's deduplication intent by retargeting cocoindex's rerank dispatch at the shared sidecar via `HttpSidecarRerankerAdapter`. Convergence requires `COCOINDEX_RERANK_VIA_SIDECAR=true` to drive cocoindex's reranker pipeline through `localhost:8765/rerank` with a clean fallback chain to the bundled adapter, plus an A/B benchmark vs the existing bundled baseline. PROMOTE flips the default and removes bundled `CrossEncoder` load at import time; HOLD ships the adapter as opt-in only.
 <!-- /ANCHOR:what-needs-done -->
 
 ---

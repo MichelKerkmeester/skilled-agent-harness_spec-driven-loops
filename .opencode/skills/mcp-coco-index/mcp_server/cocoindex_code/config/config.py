@@ -626,6 +626,7 @@ class Config:
     rerank_path_class_boost: bool
     rerank_path_class_factors: dict[str, float]
     rerank_adapter: str
+    rerank_via_sidecar: bool
     commercial_safe_profile: bool
     query_expansion: bool
     query_expansion_max_variants: int
@@ -766,6 +767,7 @@ class Config:
             _DEFAULT_PATH_CLASS_FACTORS,
         )
         rerank_adapter = os.environ.get("COCOINDEX_RERANK_ADAPTER", "").strip().lower()
+        rerank_via_sidecar = _parse_bool_env("COCOINDEX_RERANK_VIA_SIDECAR", True)
         commercial_safe_profile = _parse_bool_env("COCOINDEX_COMMERCIAL_SAFE_PROFILE", False)
         _enforce_commercial_safe_profile(
             enabled=commercial_safe_profile,
@@ -850,6 +852,7 @@ class Config:
             rerank_path_class_boost=rerank_path_class_boost,
             rerank_path_class_factors=rerank_path_class_factors,
             rerank_adapter=rerank_adapter,
+            rerank_via_sidecar=rerank_via_sidecar,
             commercial_safe_profile=commercial_safe_profile,
             query_expansion=query_expansion,
             query_expansion_max_variants=query_expansion_max_variants,

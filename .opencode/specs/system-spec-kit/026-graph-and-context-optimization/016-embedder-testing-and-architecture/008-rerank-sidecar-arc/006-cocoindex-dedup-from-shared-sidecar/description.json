@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/006-cocoindex-dedup-from-shared-sidecar",
+  "description": "Phase 006 of the 008 rerank-sidecar arc. Re-opens the arc to close its deduplication intent: ship HttpSidecarRerankerAdapter in cocoindex so it consumes the shared system-rerank-sidecar HTTP endpoint instead of bundling its own Qwen/Qwen3-Reranker-0.6B in-process. Includes env-var dispatch, fallback chain to bundled adapter on HTTP failure, A/B benchmark on existing fixture, and PROMOTE or HOLD decision applied per documented decision rule.",
+  "keywords": [
+    "006",
+    "cocoindex-dedup",
+    "shared-sidecar",
+    "http-adapter",
+    "cocoindex_rerank_via_sidecar",
+    "fallback-chain",
+    "promote-or-hold",
+    "arc-close-completion",
+    "deduplication"
+  ],
+  "lastUpdated": "2026-05-20T00:00:00Z",
+  "specId": "006",
+  "folderSlug": "cocoindex-dedup-from-shared-sidecar",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "008-rerank-sidecar-arc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
