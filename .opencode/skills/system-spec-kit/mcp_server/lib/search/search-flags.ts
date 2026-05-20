@@ -358,9 +358,11 @@ export function isFileWatcherEnabled(): boolean {
 /**
  * P1-5: Local GGUF reranker gate.
  * Default: FALSE. Set RERANKER_LOCAL=true to enable.
+ * SPECKIT_CROSS_ENCODER takes precedence and suppresses this legacy shim.
  * Honors SPECKIT_ROLLOUT_PERCENT global rollout policy.
  */
 export function isLocalRerankerEnabled(): boolean {
+  if (isCrossEncoderEnabled()) return false;
   if (process.env.RERANKER_LOCAL?.toLowerCase().trim() !== 'true') return false;
   return isFeatureEnabled('RERANKER_LOCAL');
 }

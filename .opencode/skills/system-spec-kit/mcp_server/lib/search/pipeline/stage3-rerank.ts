@@ -376,8 +376,11 @@ async function applyCrossEncoderReranking(
     },
   });
 
+  const crossEncoderEnabled = isCrossEncoderEnabled();
+  const localRerankerEnabled = isLocalRerankerEnabled();
+
   // Feature-flag guard
-  if (!options.rerank || !isCrossEncoderEnabled()) {
+  if (!options.rerank || (!crossEncoderEnabled && !localRerankerEnabled)) {
     return { rows: results, applied: false, provider: 'none', gateDecision: gate };
   }
 
@@ -397,9 +400,76 @@ async function applyCrossEncoderReranking(
     rowMap.set(row.id, row);
   }
 
-  // Local GGUF reranker path (P1-5): RERANKER_LOCAL=true
+  if (crossEncoderEnabled) {
+    // Map PipelineRow → RerankDocument (uses `content` field per cross-encoder interface)
+    // P1-015: Use effectiveScore() for consistent fallback chain
+    const documents: RerankDocument[] = results.map((row) => ({
+      id: row.id,
+      content: resolveDisplayText(row),
+      score: floorScore(effectiveScore(row)),
+    }));
+
+    try {
+      // Cast through unknown: our local RerankDocument is structurally equivalent to
+      // The cross-encoder module's internal RerankDocument but declared separately.
+      const reranked = await crossEncoder.rerankResults(
+        query,
+        documents as unknown as Parameters<typeof crossEncoder.rerankResults>[1],
+        {
+          limit: options.limit,
+          useCache: true,
+          applyLengthPenalty: options.applyLengthPenalty,
+        }
+      );
+
+      const rerankProvider: RerankProvider = reranked.some(
+        (result) => result.scoringMethod === 'fallback'
+      )
+        ? 'fallback-sort'
+        : 'cross-encoder';
+
+      // Re-map reranked results back to PipelineRow, preserving all original
+      // Fields and updating only the score-related values from the reranker.
+      const rerankedRows: PipelineRow[] = [];
+      for (const rerankResult of reranked) {
+        const original = rowMap.get(rerankResult.id);
+        if (!original) {
+          // Defensive: reranker returned an unknown id — skip it
+          continue;
+        }
+        const rerankScore = resolveRerankOutputScore(
+          rerankResult.rerankerScore ?? rerankResult.score,
+          effectiveScore(original),
+        );
+        rerankedRows.push({
+          ...original,
+          // P1-015: Preserve Stage 2 composite score for auditability
+          stage2Score: original.score,
+          score: rerankScore,
+          similarity: original.similarity,
+          rerankerScore: rerankScore,
+          // F2.02 fix: Sync all score aliases so resolveEffectiveScore() returns
+          // the reranked value instead of stale Stage 2 values.
+          rrfScore: rerankScore,
+          intentAdjustedScore: rerankScore,
+          attentionScore: original.attentionScore,
+        });
+      }
+
+      return { rows: rerankedRows, applied: true, provider: rerankProvider, gateDecision: gate };
+    } catch (err: unknown) {
+      // Graceful degradation — return original results on any reranker failure
+      console.warn(
+        `[stage3-rerank] Cross-encoder reranking failed: ${toErrorMessage(err)} — returning original results`
+      );
+      return { rows: results, applied: false, provider: 'cross-encoder', gateDecision: gate };
+    }
+  }
+
+  // Local GGUF reranker compatibility shim (P1-5): RERANKER_LOCAL=true.
+  // Cross-encoder takes precedence; this legacy path runs only when it is off.
   // On any failure/unavailable precondition, rerankLocal returns original rows unchanged.
-  if (isLocalRerankerEnabled()) {
+  if (localRerankerEnabled) {
     try {
       const localReranked = await rerankLocal(query, results, options.limit);
       if (localReranked === results) {
@@ -436,70 +506,7 @@ async function applyCrossEncoderReranking(
       return { rows: results, applied: false, provider: 'local-gguf', gateDecision: gate };
     }
   }
-
-  // Map PipelineRow → RerankDocument (uses `content` field per cross-encoder interface)
-  // P1-015: Use effectiveScore() for consistent fallback chain
-  const documents: RerankDocument[] = results.map((row) => ({
-    id: row.id,
-    content: resolveDisplayText(row),
-    score: floorScore(effectiveScore(row)),
-  }));
-
-  try {
-    // Cast through unknown: our local RerankDocument is structurally equivalent to
-    // The cross-encoder module's internal RerankDocument but declared separately.
-    const reranked = await crossEncoder.rerankResults(
-      query,
-      documents as unknown as Parameters<typeof crossEncoder.rerankResults>[1],
-      {
-        limit: options.limit,
-        useCache: true,
-        applyLengthPenalty: options.applyLengthPenalty,
-      }
-    );
-
-    const rerankProvider: RerankProvider = reranked.some(
-      (result) => result.scoringMethod === 'fallback'
-    )
-      ? 'fallback-sort'
-      : 'cross-encoder';
-
-    // Re-map reranked results back to PipelineRow, preserving all original
-    // Fields and updating only the score-related values from the reranker.
-    const rerankedRows: PipelineRow[] = [];
-    for (const rerankResult of reranked) {
-      const original = rowMap.get(rerankResult.id);
-      if (!original) {
-        // Defensive: reranker returned an unknown id — skip it
-        continue;
-      }
-      const rerankScore = resolveRerankOutputScore(
-        rerankResult.rerankerScore ?? rerankResult.score,
-        effectiveScore(original),
-      );
-      rerankedRows.push({
-        ...original,
-        // P1-015: Preserve Stage 2 composite score for auditability
-        stage2Score: original.score,
-        score: rerankScore,
-        similarity: original.similarity,
-        rerankerScore: rerankScore,
-        // F2.02 fix: Sync all score aliases so resolveEffectiveScore() returns
-        // the reranked value instead of stale Stage 2 values.
-        rrfScore: rerankScore,
-        intentAdjustedScore: rerankScore,
-        attentionScore: original.attentionScore,
-      });
-    }
-
-    return { rows: rerankedRows, applied: true, provider: rerankProvider, gateDecision: gate };
-  } catch (err: unknown) {
-    // Graceful degradation — return original results on any reranker failure
-    console.warn(
-      `[stage3-rerank] Cross-encoder reranking failed: ${toErrorMessage(err)} — returning original results`
-    );
-    return { rows: results, applied: false, provider: 'cross-encoder', gateDecision: gate };
-  }
+  return { rows: results, applied: false, provider: 'none', gateDecision: gate };
 }
 
 function inferResultChannels(results: readonly PipelineRow[]): string[] {

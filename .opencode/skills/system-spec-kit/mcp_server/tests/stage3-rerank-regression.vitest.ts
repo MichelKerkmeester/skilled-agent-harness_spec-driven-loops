@@ -1,5 +1,5 @@
 // TEST: Stage 3 Rerank Regression
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { PipelineRow } from '../lib/search/pipeline/types';
 
 const flagState = {
@@ -12,6 +12,24 @@ const rerankResultsMock = vi.fn();
 const rerankLocalMock = vi.fn();
 const applyMMRMock = vi.fn();
 const requireDbMock = vi.fn();
+const ORIGINAL_RERANKER_ENV = {
+  SPECKIT_CROSS_ENCODER: process.env.SPECKIT_CROSS_ENCODER,
+  RERANKER_LOCAL: process.env.RERANKER_LOCAL,
+};
+
+function restoreRerankerEnv(): void {
+  if (ORIGINAL_RERANKER_ENV.SPECKIT_CROSS_ENCODER === undefined) {
+    delete process.env.SPECKIT_CROSS_ENCODER;
+  } else {
+    process.env.SPECKIT_CROSS_ENCODER = ORIGINAL_RERANKER_ENV.SPECKIT_CROSS_ENCODER;
+  }
+
+  if (ORIGINAL_RERANKER_ENV.RERANKER_LOCAL === undefined) {
+    delete process.env.RERANKER_LOCAL;
+  } else {
+    process.env.RERANKER_LOCAL = ORIGINAL_RERANKER_ENV.RERANKER_LOCAL;
+  }
+}
 
 vi.mock('../lib/search/search-flags', () => ({
   isCrossEncoderEnabled: () => flagState.crossEncoder,
@@ -58,6 +76,7 @@ const RERANK_OPTIONS = {
 
 describe('stage3-rerank regression (F-16)', () => {
   beforeEach(() => {
+    restoreRerankerEnv();
     flagState.crossEncoder = true;
     flagState.mmr = false;
     flagState.localReranker = false;
@@ -65,6 +84,66 @@ describe('stage3-rerank regression (F-16)', () => {
     rerankLocalMock.mockReset();
     applyMMRMock.mockReset();
     requireDbMock.mockReset();
+  });
+
+  afterEach(() => {
+    restoreRerankerEnv();
+  });
+
+  it('SPECKIT_CROSS_ENCODER=true takes precedence over RERANKER_LOCAL=true', async () => {
+    process.env.SPECKIT_CROSS_ENCODER = 'true';
+    process.env.RERANKER_LOCAL = 'true';
+    flagState.crossEncoder = true;
+    flagState.localReranker = true;
+    rerankResultsMock.mockResolvedValue([
+      { id: 1, score: 0.95, rerankerScore: 0.95 },
+      { id: 2, score: 0.85, rerankerScore: 0.85 },
+      { id: 3, score: 0.75, rerankerScore: 0.75 },
+      { id: 4, score: 0.65, rerankerScore: 0.65 },
+    ]);
+    rerankLocalMock.mockResolvedValue([
+      { id: 4, score: 0.99, rerankerScore: 0.99, content: 'delta' },
+      { id: 3, score: 0.89, rerankerScore: 0.89, content: 'gamma' },
+      { id: 2, score: 0.79, rerankerScore: 0.79, content: 'beta' },
+      { id: 1, score: 0.69, rerankerScore: 0.69, content: 'alpha' },
+    ]);
+
+    const result = await __testables.applyCrossEncoderReranking('query', [
+      { id: 1, score: 0.6, content: 'alpha' },
+      { id: 2, score: 0.5, content: 'beta' },
+      { id: 3, score: 0.4, content: 'gamma' },
+      { id: 4, score: 0.3, content: 'delta' },
+    ], RERANK_OPTIONS);
+
+    expect(result.applied).toBe(true);
+    expect(result.provider).toBe('cross-encoder');
+    expect(rerankResultsMock).toHaveBeenCalledOnce();
+    expect(rerankLocalMock).not.toHaveBeenCalled();
+  });
+
+  it('RERANKER_LOCAL=true alone still invokes the legacy shim', async () => {
+    delete process.env.SPECKIT_CROSS_ENCODER;
+    process.env.RERANKER_LOCAL = 'true';
+    flagState.crossEncoder = false;
+    flagState.localReranker = true;
+    rerankLocalMock.mockResolvedValue([
+      { id: 2, score: 0.88, rerankerScore: 0.88, content: 'beta' },
+      { id: 1, score: 0.78, rerankerScore: 0.78, content: 'alpha' },
+      { id: 3, score: 0.68, rerankerScore: 0.68, content: 'gamma' },
+      { id: 4, score: 0.58, rerankerScore: 0.58, content: 'delta' },
+    ]);
+
+    const result = await __testables.applyCrossEncoderReranking('query', [
+      { id: 1, score: 0.6, content: 'alpha' },
+      { id: 2, score: 0.5, content: 'beta' },
+      { id: 3, score: 0.4, content: 'gamma' },
+      { id: 4, score: 0.3, content: 'delta' },
+    ], RERANK_OPTIONS);
+
+    expect(result.applied).toBe(true);
+    expect(result.provider).toBe('local-gguf');
+    expect(rerankLocalMock).toHaveBeenCalledOnce();
+    expect(rerankResultsMock).not.toHaveBeenCalled();
   });
 
   // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
@@ -96,6 +175,7 @@ describe('stage3-rerank regression (F-16)', () => {
 
   // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
   it('floors negative local-reranker scores at rerank output boundary', async () => {
+    flagState.crossEncoder = false;
     flagState.localReranker = true;
     rerankLocalMock.mockResolvedValue([
       { id: 1, score: -0.3, rerankerScore: -0.2, content: 'alpha' },
@@ -221,6 +301,7 @@ describe('stage3-rerank regression (F-16)', () => {
 
   // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
   it('applies the same 4-result minimum to the local GGUF reranker path', async () => {
+    flagState.crossEncoder = false;
     flagState.localReranker = true;
     rerankLocalMock.mockResolvedValue([
       { id: 1, score: 0.91, rerankerScore: 0.91, content: 'alpha' },

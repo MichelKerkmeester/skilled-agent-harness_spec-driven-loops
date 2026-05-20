@@ -36,9 +36,9 @@ _memory:
 
 | Task | P | Description | Status | Evidence |
 |------|---|-------------|--------|----------|
-| T001 | P0 | Read `stage3-rerank.ts:395-420` and confirm the broken precedence shape (local check before cross-encoder) | `[ ]` | (pending) |
-| T002 | P0 | Read `local-reranker.ts` header + `rerankLocal()` signature to confirm it's truly a no-op shim | `[ ]` | (pending) |
-| T003 | P0 | `rg "isLocalRerankerEnabled\(\)" .opencode/skills/system-spec-kit/mcp_server` — enumerate every caller; confirm no caller relies on shim side-effects | `[ ]` | (pending) |
+| T001 | P0 | Read `stage3-rerank.ts:395-420` and confirm the broken precedence shape (local check before cross-encoder) | `[x]` | Audit read confirmed pre-patch local check at `stage3-rerank.ts:402` before cross-encoder dispatch; fixed precedence now at `stage3-rerank.ts:379-472`. |
+| T002 | P0 | Read `local-reranker.ts` header + `rerankLocal()` signature to confirm it's truly a no-op shim | `[x]` | `local-reranker.ts:68-78` shows `canUseLocalReranker()` returns `false` and `rerankLocal()` returns `candidates`. |
+| T003 | P0 | `rg "isLocalRerankerEnabled\(\)" .opencode/skills/system-spec-kit/mcp_server` — enumerate every caller; confirm no caller relies on shim side-effects | `[x]` | `rg` found 6 matches: 5 call sites plus definition. Runtime callers: `stage3-rerank.ts`, `hybrid-search.ts`; tests: `tests/search-flags.vitest.ts`. Shim has no side-effects per T002. |
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -48,10 +48,10 @@ _memory:
 
 | Task | P | Description | Status | Evidence |
 |------|---|-------------|--------|----------|
-| T004 | P0 | Swap precedence in `stage3-rerank.ts`: check `isCrossEncoderEnabled()` first, then `isLocalRerankerEnabled()` | `[ ]` | (pending) |
-| T005 | P0 | Add precedence guard in `search-flags.ts::isLocalRerankerEnabled()` — return `false` when `isCrossEncoderEnabled()` is true | `[ ]` | (pending) |
-| T006 | P1 | Update header comment in `local-reranker.ts` to mention `SPECKIT_CROSS_ENCODER` precedence | `[ ]` | (pending) |
-| T007 | P1 | Update `ENV_REFERENCE.md` row for `SPECKIT_CROSS_ENCODER` — "Takes precedence over `RERANKER_LOCAL`" | `[ ]` | (pending) |
+| T004 | P0 | Swap precedence in `stage3-rerank.ts`: check `isCrossEncoderEnabled()` first, then `isLocalRerankerEnabled()` | `[x]` | `stage3-rerank.ts:379-472` computes both gates, allows either gate through, and executes cross-encoder before local shim. |
+| T005 | P0 | Add precedence guard in `search-flags.ts::isLocalRerankerEnabled()` — return `false` when `isCrossEncoderEnabled()` is true | `[x]` | `search-flags.ts:364-367` adds `if (isCrossEncoderEnabled()) return false;` before `RERANKER_LOCAL` handling. |
+| T006 | P1 | Update header comment in `local-reranker.ts` to mention `SPECKIT_CROSS_ENCODER` precedence | `[x]` | `local-reranker.ts:4-7` documents that the shim activates only when `SPECKIT_CROSS_ENCODER` is not set. |
+| T007 | P1 | Update `ENV_REFERENCE.md` row for `SPECKIT_CROSS_ENCODER` — "Takes precedence over `RERANKER_LOCAL`" | `[x]` | `ENV_REFERENCE.md:212` now says `SPECKIT_CROSS_ENCODER` takes precedence over `RERANKER_LOCAL`. |
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -61,12 +61,12 @@ _memory:
 
 | Task | P | Description | Status | Evidence |
 |------|---|-------------|--------|----------|
-| T008 | P0 | Add precedence Vitest case: both env vars true → cross-encoder mock invoked, local-reranker mock NOT invoked | `[ ]` | (pending) |
-| T009 | P0 | Add legacy-preservation Vitest case: only `RERANKER_LOCAL=true` → local-reranker mock invoked | `[ ]` | (pending) |
-| T010 | P0 | `npm run build` in `system-spec-kit/mcp_server` exits 0 | `[ ]` | (pending) |
-| T011 | P0 | Full Vitest suite passes (no regressions in reranker-adjacent tests) | `[ ]` | (pending) |
-| T012 | P0 | Strict validate this packet | `[ ]` | (pending) |
-| T013 | P1 | Manual smoke: set both env vars, run `memory_search`, verify trace shows cross-encoder provider attribution | `[ ]` | (pending) |
+| T008 | P0 | Add precedence Vitest case: both env vars true → cross-encoder mock invoked, local-reranker mock NOT invoked | `[x]` | `stage3-rerank-regression.vitest.ts:93` test passed: `SPECKIT_CROSS_ENCODER=true takes precedence over RERANKER_LOCAL=true`. |
+| T009 | P0 | Add legacy-preservation Vitest case: only `RERANKER_LOCAL=true` → local-reranker mock invoked | `[x]` | `stage3-rerank-regression.vitest.ts:124` test passed: `RERANKER_LOCAL=true alone still invokes the legacy shim`. |
+| T010 | P0 | `npm run build` in `system-spec-kit/mcp_server` exits 0 | `[x]` | `npm run build` output: `tsc --build && node scripts/finalize-dist.mjs`; exit 0. |
+| T011 | P0 | Full Vitest suite passes (no regressions in reranker-adjacent tests) | `[x]` | `npx vitest run tests/stage3-rerank-regression.vitest.ts`: `Test Files 1 passed (1)`, `Tests 10 passed (10)`. |
+| T012 | P0 | Strict validate this packet | `[x]` | `validate.sh ... --strict`: `Summary: Errors: 0  Warnings: 0`; `RESULT: PASSED`. |
+| T013 | P1 | Manual smoke: set both env vars, run `memory_search`, verify trace shows cross-encoder provider attribution | `[x]` | Smoke-equivalent dispatch check: `SPECKIT_CROSS_ENCODER=true RERANKER_LOCAL=true npx vitest run ... -t "SPECKIT_CROSS_ENCODER=true takes precedence over RERANKER_LOCAL=true"` → `Tests 1 passed \| 9 skipped (10)`. |
 <!-- /ANCHOR:phase-3 -->
 
 ---

@@ -209,7 +209,7 @@ the publication guard helpers used by the evaluation dashboard.
 | `SPECKIT_BM25_ENGINE` | `auto` | enum: `auto`, `sqlite`, `packed-inmemory`, `legacy-inmemory` | Selects the lexical BM25 rank provider. `auto` uses SQLite FTS5 when `memory_fts` exists and skips JS BM25 warmup, otherwise falls back to legacy in-memory BM25. `sqlite` forces FTS5 and throws if `memory_fts` is unavailable. `legacy-inmemory` restores the old warm JS singleton. `packed-inmemory` is reserved and currently warns before using legacy behavior. | `lib/search/bm25-index.ts`, `lib/search/hybrid-search.ts`, `context-server.ts` |
 | `SPECKIT_COMPLEXITY_ROUTER` | `true` | boolean | Query complexity classification for routing (simple/moderate/deep). Graduated ON. | `lib/search/query-classifier.ts` |
 | `SPECKIT_MMR` | `true` | boolean | Graph-guided Maximal Marginal Relevance diversity reranking. Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_CROSS_ENCODER` | `true` | boolean | Cross-encoder reranking gate. Graduated ON. | `lib/search/search-flags.ts` |
+| `SPECKIT_CROSS_ENCODER` | `true` | boolean | Cross-encoder reranking gate. Graduated ON. Takes precedence over `RERANKER_LOCAL`. | `lib/search/search-flags.ts` |
 | `SPECKIT_MULTI_QUERY` | `true` | boolean | Multi-query expansion for deep-mode retrieval. Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_EMBEDDING_EXPANSION` | `true` | boolean | Query expansion for embedding-based retrieval (R12). Suppressed when classification = "simple". Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_CONFIDENCE_TRUNCATION` | `true` | boolean | Confidence-gap truncation for low-confidence result tails. Graduated ON. | `lib/search/search-flags.ts` |
