@@ -54,24 +54,24 @@ The fail-soft contract still applies: if any cross-encoder reranker fails to loa
 
 ### Implementation
 
-| File | Layer | Role |
-|------|-------|------|
-| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/reranker.py:40` | Reranker | `RerankerAdapter` wraps the lazy CrossEncoder with the RAM gate. |
-| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/reranker.py:81` | Reranker | `RerankerAdapter.rerank` applies score replacement and preserves `pre_rerank_score`. |
-| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/reranker.py:132` | Reranker | `rerank` module entrypoint used by `query_codebase`. |
-| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py:675` | Query | Invokes `reranker.rerank` after fusion when `config.rerank_enabled` is true. |
-| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py:700` | Query | Emits `stage=rerank` and `lane=hybrid_rerank` telemetry when reranking changed the order. |
-| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py:328` | Config | Loads `COCOINDEX_RERANK`, `COCOINDEX_RERANK_MODEL` and `COCOINDEX_RERANK_TOP_K`. |
+|| File | Layer | Role ||
+||------|-------|------||
+|| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/reranker.py:40` | Reranker | `RerankerAdapter` wraps the lazy CrossEncoder with the RAM gate. ||
+|| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/reranker.py:81` | Reranker | `RerankerAdapter.rerank` applies score replacement and preserves `pre_rerank_score`. ||
+|| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/reranker.py:132` | Reranker | `reranker` module entrypoint used by `query_codebase`. ||
+|| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py:675` | Query | Invokes `reranker.rerank` after fusion when `config.rerank_enabled` is true. ||
+|| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py:700` | Query | Emits `stage=rerank` and `lane=hybrid_rerank` telemetry when reranking changed the order. ||
+|| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py:328` | Config | Loads `COCOINDEX_RERANK`, `COCOINDEX_RERANK_MODEL` and `COCOINDEX_RERANK_TOP_K`. ||
 
 ### Validation And Tests
 
-| File | Type | Role |
-|------|------|------|
-| `.opencode/skills/mcp-coco-index/mcp_server/tests/test_reranker.py:112` | Unit | `test_rerank_falls_back_on_model_load_failure` covers fail-soft behavior on model-load error. |
-| `.opencode/skills/mcp-coco-index/mcp_server/tests/test_reranker.py:129` | Unit | `test_rerank_replaces_score_and_preserves_pre_rerank_score` covers the score-replacement contract. |
-| `.opencode/skills/mcp-coco-index/mcp_server/tests/test_reranker.py:156` | Unit | `test_query_codebase_rerank_off_unchanged` proves backward compatibility when the flag is unset. |
-| `.opencode/skills/mcp-coco-index/mcp_server/tests/test_reranker.py:184` | Unit | `test_query_codebase_rerank_on_changes_order` proves reranker rewires the head when enabled. |
-| `.opencode/skills/mcp-coco-index/mcp_server/tests/test_reranker.py:143` | Unit | `test_config_rerank_defaults` covers env-driven reranker overrides. |
+|| File | Type | Role ||
+||------|------|------||
+|| `.opencode/skills/mcp-coco-index/mcp_server/tests/test_reranker.py:112` | Unit | `test_rerank_falls_back_on_model_load_failure` covers fail-soft behavior on model-load error. ||
+|| `.opencode/skills/mcp-coco-index/mcp_server/tests/test_reranker.py:129` | Unit | `test_rerank_replaces_score_and_preserves_pre_rerank_score` covers the score-replacement contract. ||
+|| `.opencode/skills/mcp-coco-index/mcp_server/tests/test_reranker.py:156` | Unit | `test_query_codebase_rerank_off_unchanged` proves backward compatibility when the flag is unset. ||
+|| `.opencode/skills/mcp-coco-index/mcp_server/tests/test_reranker.py:184` | Unit | `test_query_codebase_rerank_on_changes_order` proves reranker rewires the head when enabled. ||
+|| `.opencode/skills/mcp-coco-index/mcp_server/tests/test_reranker.py:143` | Unit | `test_config_rerank_defaults` covers env-driven reranker overrides. ||
 
 <!-- /ANCHOR:source-files -->
 

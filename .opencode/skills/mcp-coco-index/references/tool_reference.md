@@ -242,8 +242,8 @@ The bundled fork shipped daemon resilience patches in commit `1bbe80986` for pac
 
 Source files:
 
-- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/client.py`
-- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py`
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/core/client.py` (moved to `core/` subdir in commit 29f412f31; previously at `cocoindex_code/client.py`)
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py` (entry-point file; stays at package root)
 
 | Behavior | Operator-visible result |
 | -------- | ----------------------- |

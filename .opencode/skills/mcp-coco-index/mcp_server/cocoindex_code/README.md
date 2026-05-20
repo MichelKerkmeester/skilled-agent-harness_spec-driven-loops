@@ -70,7 +70,7 @@ Load this folder through the owning skill workflow or MCP server entrypoint.
 | sk-code alignment | Points reviewers at OpenCode naming, header, error-handling, and type-discipline checks. |
 | Verification handoff | Records the expected owner and audit packet for follow-up work. |
 | Hybrid retrieval (v1.2.0) | `fts_index.py` + `fusion.py` add SQLite FTS5 + RRF fusion (opt-in via `COCOINDEX_HYBRID=1`). |
-| Cross-encoder rerank (v1.2.0) | `reranker.py` adds a local GTE multilingual rerank pass (opt-in via `COCOINDEX_RERANK=1`). |
+| Cross-encoder rerank (v1.2.0+) | `rerankers/reranker.py` runs a Stage 2 cross-encoder over the top-K candidates. Default since 2026-05-20 (ADR-027): `Qwen/Qwen3-Reranker-0.6B` (Apache-2.0). Opt-in fallback: `jinaai/jina-reranker-v3` (CC BY-NC 4.0). Toggle via `COCOINDEX_RERANK=1` / `COCOINDEX_RERANK_MODEL`. |
 | Mirror-aware dedup (v1.2.1) | `path_utils.py` + `query.py` collapse runtime mirror aliases before rerank, preferring the canonical mirror copy. |
 | Code-aware chunking (v1.3.0) | `chunkers/` uses tree-sitter grammars for Python, TypeScript/TSX, JavaScript, Go, Rust, and Java so chunks align with definitions instead of blind line windows. |
 | Query expansion (v1.3.1) | `query_expansion.py` bridges natural-language phrases to camelCase, snake_case, PascalCase, kebab-case, SCREAMING_SNAKE, and curated code-domain synonyms before hybrid search. |
@@ -114,8 +114,8 @@ Hybrid search runs before rerank. The Stage 1 vector lane is RRF-fused with SQLi
 | `protocol.py` | Msgpack IPC protocol shared by daemon + client. |
 | `query_expansion.py` | Pure deterministic query expansion helpers and `ExpandedQuery` payload for dense fanout plus FTS5 clauses. |
 | `query.py` | Search execution: vector query, optional hybrid fusion, optional rerank. |
-| `registered_embedders.py` | Vetted embedder registry (jina-code default + alternatives). |
-| `reranker.py` | **v1.2.0.** Optional GTE multilingual cross-encoder rerank over top-K candidates. |
+| `embedders/registered_embedders.py` | Vetted embedder + reranker registry. Stage 1 default: `sbert/nomic-ai/CodeRankEmbed` (768d, MIT, code-tuned). Stage 2 default: `Qwen/Qwen3-Reranker-0.6B` (Apache-2.0). |
+| `rerankers/reranker.py` | **v1.2.0+.** Stage 2 cross-encoder rerank dispatcher over top-K=20 candidates. Default since 2026-05-20: Qwen3-Reranker-0.6B; jina-v3 kept as opt-in fallback. |
 | `schema.py` | Result row dataclasses (`QueryResult`, telemetry fields). |
 | `server.py` | MCP stdio server exposing `search` + `cocoindex_refresh_index`. |
 | `settings.py` | `~/.cocoindex_code/global_settings.yml` and per-project settings loader. |

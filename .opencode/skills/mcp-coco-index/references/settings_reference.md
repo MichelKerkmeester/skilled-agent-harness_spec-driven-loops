@@ -171,10 +171,10 @@ CocoIndex Code splits source files into chunks for embedding and search. Chunkin
 
 | Parameter          | Value                  | Description                                     |
 | ------------------ | ---------------------- | ----------------------------------------------- |
-| Chunk size         | 1,000 characters       | Target size for each chunk                      |
+| Chunk size         | 1,500 characters       | Target size for each chunk (retuned in v1.2.0 for function-boundary preservation; was 1000 prior) |
 | Minimum chunk size | 250 characters         | Chunks smaller than this are merged with neighbors |
-| Overlap            | 150 characters         | Overlap between adjacent chunks for context     |
-| Algorithm          | RecursiveSplitter      | CocoIndex engine's recursive splitting algorithm |
+| Overlap            | 200 characters         | Overlap between adjacent chunks for context (retuned in v1.2.0 from 150) |
+| Algorithm          | tree-sitter (code-aware) + RecursiveSplitter fallback | Tree-sitter grammars for Python/TS/TSX/JS/Go/Rust/Java; RecursiveSplitter as fallback for unsupported languages |
 
 ### Language-Aware Boundaries
 

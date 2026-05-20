@@ -37,8 +37,8 @@ Environment overrides give agents and CI runs deterministic control over where C
 | Variable | Default | Bounds | Behavior |
 |----------|--------:|--------|----------|
 | `COCOINDEX_HYBRID` | `true` | truthy/falsy | Default-on flag for the FTS5 + RRF hybrid lane in `query_codebase`. Set `false` to fall back to vector-only retrieval. |
-| `COCOINDEX_HYBRID_VECTOR_WEIGHT` | 0.7 | 0.0..2.0 | Weight applied to the vector channel during RRF fusion. |
-| `COCOINDEX_HYBRID_FTS5_WEIGHT` | 0.7 | 0.0..2.0 | Weight applied to the FTS5 channel during RRF fusion. |
+| `COCOINDEX_HYBRID_VECTOR_WEIGHT` | 0.9 | 0.0..2.0 | Weight applied to the vector channel during RRF fusion. Locked at 0.9 per ADR-020 (017 calibration). |
+| `COCOINDEX_HYBRID_FTS5_WEIGHT` | 0.5 | 0.0..2.0 | Weight applied to the FTS5 channel during RRF fusion. Locked at 0.5 per ADR-020 (017 calibration). |
 | `COCOINDEX_HYBRID_RRF_K` | 60 | 1..500 | RRF smoothing constant `k` in `1 / (k + rank)`. |
 
 ### Reranker overrides (default ON)
