@@ -33,7 +33,8 @@ const PACKET_RELATIVE_PATH = join(
   'system-spec-kit',
   '026-graph-and-context-optimization',
   '006-skill-advisor',
-  '006-corpus-seeded-sweep',
+  '002-skill-advisor-scoring-engine',
+  '006-seeded-corpus-evaluation-sweep',
 );
 
 const HARDER_PACKET_RELATIVE_PATH = join(
@@ -42,7 +43,8 @@ const HARDER_PACKET_RELATIVE_PATH = join(
   'system-spec-kit',
   '026-graph-and-context-optimization',
   '006-skill-advisor',
-  '007-harder-intent-corpus-resweep',
+  '002-skill-advisor-scoring-engine',
+  '007-hard-intent-corpus-resweep',
 );
 
 const ORIGINAL_24_BASELINE = {

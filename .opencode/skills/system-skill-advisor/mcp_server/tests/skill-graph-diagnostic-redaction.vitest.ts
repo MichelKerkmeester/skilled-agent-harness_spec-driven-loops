@@ -7,7 +7,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import SpecKitSkillAdvisorPlugin from '../../../../plugins/spec-kit-skill-advisor.js';
+import MkSkillAdvisorPlugin from '../../../../plugins/mk-skill-advisor.js';
 import { handleSkillGraphScan } from '../handlers/skill-graph/scan.js';
 import { runWithCallerContext } from '../lib/context/caller-context.js';
 import type { MCPCallerContext } from '../lib/context/caller-context.js';
@@ -51,7 +51,7 @@ describe('skill graph diagnostic redaction', () => {
   });
 
   it('redacts absolute bridge paths from plugin status output', async () => {
-    const hooks = await SpecKitSkillAdvisorPlugin({ directory: process.cwd() }, {});
+    const hooks = await MkSkillAdvisorPlugin({ directory: process.cwd() }, {});
     const status = await hooks.tool?.spec_kit_skill_advisor_status.execute({});
 
     expect(status).toContain('bridge_path=');
