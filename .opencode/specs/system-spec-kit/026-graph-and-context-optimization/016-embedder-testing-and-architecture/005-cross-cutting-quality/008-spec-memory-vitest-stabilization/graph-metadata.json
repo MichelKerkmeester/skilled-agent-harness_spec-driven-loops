@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/008-spec-memory-vitest-stabilization",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/008-spec-memory-vitest-stabilization",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/002-deep-review-stack"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "008 vitest stabilization",
+      "spec-memory vitest failures",
+      "vitest fixture drift",
+      "test mock exports"
+    ],
+    "key_topics": [
+      "vitest",
+      "test-stabilization",
+      "spec-memory",
+      "scaffold-only",
+      "execution-deferred"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      ".opencode/skills/system-spec-kit/mcp_server/tests/"
+    ],
+    "last_indexed_at": "2026-05-21T13:50:00Z"
+  }
+}

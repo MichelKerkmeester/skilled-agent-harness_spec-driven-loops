@@ -52,6 +52,7 @@ The grouping mirrors the per-stack pattern (e.g., 002-mk-spec-memory-stack, 004-
 | `005-cocoindex-install-hygiene/` | 016/005/005: CocoIndex install hygiene | BLOCKED - pipx repair cannot modify `~/.local/pipx` inside this sandbox |
 | `006-benchmark-format-to-sk-doc/` | Consolidate benchmark format mechanics into a single sk-doc reference following the *_creation.md pattern | Complete |
 | `007-cocoindex-install-hygiene-pipx-repair/` | Apply the open pipx editable repair after operator-side pipx config is available | Planned - blocked on operator pipx config |
+| `008-spec-memory-vitest-stabilization/` | Scaffold-only: 168 pre-existing vitest failures across 5 clusters (mock exports, MCP connection flakes, lease timeouts, assertion drift, flag/config); execution deferred | Scaffold only (execution deferred) |
 <!-- /ANCHOR:phase-map -->
 
 <!-- ANCHOR:cross-refs -->
