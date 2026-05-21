@@ -49,12 +49,27 @@ function looksLikeValidApiKey(value: string | undefined): boolean {
   return true;
 }
 
-function hasAnyRerankerOptInSignal(): boolean {
-  // Explicit veto: SPECKIT_CROSS_ENCODER=false hard-disables regardless of other signals
-  if (isOptOutExplicit('SPECKIT_CROSS_ENCODER')) return false;
+/**
+ * Cross-encoder opt-in signals (used by isCrossEncoderEnabled() for provider selection).
+ * Does NOT include RERANKER_LOCAL — that's a separate legacy-shim flag handled by
+ * isLocalRerankerEnabled(). Including it here would conflate two semantically distinct
+ * rerankers and break the suppression contract in isLocalRerankerEnabled().
+ */
+function hasAnyCrossEncoderOptInSignal(): boolean {
+  if (isOptOutExplicit('SPECKIT_CROSS_ENCODER')) return false; // explicit veto
   if (looksLikeValidApiKey(process.env.VOYAGE_API_KEY)) return true;
   if (looksLikeValidApiKey(process.env.COHERE_API_KEY)) return true;
   if (isOptInEnabled('SPECKIT_CROSS_ENCODER')) return true;
+  return false;
+}
+
+/**
+ * Broader reranker opt-in signals (used by isRerankerExpected() for confidence scoring).
+ * Includes RERANKER_LOCAL because the confidence penalty should fire when ANY reranker
+ * was opted-in but is unreachable — including the legacy local shim.
+ */
+function hasAnyRerankerOptInSignal(): boolean {
+  if (hasAnyCrossEncoderOptInSignal()) return true;
   if (process.env.RERANKER_LOCAL?.toLowerCase().trim() === 'true') return true;
   return false;
 }
@@ -145,7 +160,7 @@ export function isMultiQueryEnabled(): boolean {
  * for the evidence + decision.
  */
 export function isCrossEncoderEnabled(): boolean {
-  return hasAnyRerankerOptInSignal();
+  return hasAnyCrossEncoderOptInSignal();
 }
 
 /**
