@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/005-opt-in-only-closure",
+  "description": "Terminal closure: spec-memory rerank becomes opt-in only; shared sidecar framework stays for cocoindex",
+  "keywords": [
+    "opt-in-rerank",
+    "WEIGHT_RERANKER-conditional",
+    "isRerankerExpected",
+    "supersede-sweep",
+    "arc-closure"
+  ],
+  "lastUpdated": "2026-05-21T15:00:00Z",
+  "specId": "005",
+  "folderSlug": "005-opt-in-only-closure",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "008-rerank-sidecar-arc",
+    "011-spec-memory-rerank-decision-arc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -54,6 +54,7 @@ The 010 packet that previously scaffolded "domain-tuned-reranker-finetune" is su
 | `002-bge-v2-m3-trial/` | Add `BAAI/bge-reranker-v2-m3` to sidecar allowlist; A/B vs OFF on the same fixture | Complete (HOLD; identical numbers to OFF) | ~4-6 hours | HOLD with identical numbers → 004 audit (new gate) |
 | `004-retrieval-and-fixture-audit/` | **Decision gate inserted 2026-05-21 after AI Council 3-1 verdict.** Probe classification + candidate coverage + handler parity + rerank effect → mechanical branch decision | Planned (next) | ~1-2 hours | Branches: RETRIEVAL_WORK / SCORING_INTEGRATION_WORK / PHASE_3_JUSTIFIED |
 | `003-domain-tuned-finetune/` | Synthetic triples (with template-stripping) → fine-tune ms-marco or bge-base → publish artifact → A/B | Blocked by 004 (fires only on PHASE_3_JUSTIFIED branch) | ~3-5 days | — (arc terminus IF triggered) |
+| `005-opt-in-only-closure/` | **Terminal closure (operator decision 2026-05-21).** Keep shared sidecar framework for cocoindex; spec-memory rerank becomes opt-in only. Flip SPECKIT_CROSS_ENCODER default true→false, condition WEIGHT_RERANKER penalty on isRerankerExpected(), supersede 002/003/004 + arc-008 spec-memory tuning packets. | Planned (next) | ~30-45 min | Arc closes |
 <!-- /ANCHOR:phase-map -->
 
 ---
