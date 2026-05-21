@@ -5,11 +5,11 @@
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc",
   "children_ids": [],
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/008-cap-rerank-top-k",
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/009-fp16-rerank"
-    ],
+    "depends_on": [],
     "supersedes": [],
+    "superseded_by": [
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/003-domain-tuned-finetune"
+    ],
     "related_to": [
       "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/007-spec-memory-mps-rerank-promotion"
     ]
@@ -30,7 +30,7 @@
       "execution-deferred"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "superseded",
     "key_files": [
       "spec.md",
       "plan.md",

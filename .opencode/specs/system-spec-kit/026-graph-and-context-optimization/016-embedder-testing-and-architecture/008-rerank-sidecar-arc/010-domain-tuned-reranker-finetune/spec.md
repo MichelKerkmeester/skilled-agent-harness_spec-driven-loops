@@ -11,14 +11,12 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/010-domain-tuned-reranker-finetune"
-    last_updated_at: "2026-05-21T09:00:00Z"
+    last_updated_at: "2026-05-21T13:00:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Spec scaffolded; execution deferred"
-    next_safe_action: "Wait for packets 008 + 009 verdicts before scheduling execution"
+    recent_action: "Superseded by 011/003"
+    next_safe_action: "Use 011/003 instead"
     blockers:
-      - "Packet 008 verdict pending"
-      - "Packet 009 verdict pending"
-      - "Deep-research on 016 still incomplete"
+      - "Superseded — do not execute"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Spec: domain-tuned reranker fine-tune for spec-memory corpus

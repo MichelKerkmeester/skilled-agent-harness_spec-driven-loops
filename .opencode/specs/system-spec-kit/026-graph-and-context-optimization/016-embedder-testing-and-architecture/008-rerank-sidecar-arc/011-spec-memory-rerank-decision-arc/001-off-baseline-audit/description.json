@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/001-off-baseline-audit",
+  "description": "Phase 1: OFF baseline audit + WEIGHT_RERANKER penalty removal (conditional)",
+  "keywords": [
+    "off-baseline",
+    "weight-reranker-penalty",
+    "request-quality",
+    "scoring",
+    "spec-memory"
+  ],
+  "lastUpdated": "2026-05-21T13:00:00Z",
+  "specId": "001",
+  "folderSlug": "001-off-baseline-audit",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "008-rerank-sidecar-arc",
+    "011-spec-memory-rerank-decision-arc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

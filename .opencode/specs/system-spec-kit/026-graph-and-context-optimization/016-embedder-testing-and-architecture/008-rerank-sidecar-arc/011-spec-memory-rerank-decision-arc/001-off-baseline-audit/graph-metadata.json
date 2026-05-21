@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/001-off-baseline-audit",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/001-off-baseline-audit",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/004-spec-memory-rerank-benchmark"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "011/001 off baseline audit",
+      "weight reranker penalty",
+      "request quality fix",
+      "spec-memory off baseline"
+    ],
+    "key_topics": [
+      "off-baseline",
+      "weight-reranker",
+      "request-quality",
+      "scoring",
+      "conditional-penalty"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/scoring/",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts"
+    ],
+    "last_indexed_at": "2026-05-21T13:00:00Z"
+  }
+}

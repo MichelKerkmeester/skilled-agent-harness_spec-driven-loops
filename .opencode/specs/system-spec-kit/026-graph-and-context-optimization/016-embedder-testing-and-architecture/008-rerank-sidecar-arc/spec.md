@@ -63,7 +63,8 @@ A second-opinion pass from `cli-codex gpt-5.5 xhigh` (recorded in the arc's rese
 | `007-spec-memory-mps-rerank-promotion/` | spec-memory MPS rerank promotion candidate | Planned |
 | `008-cap-rerank-top-k/` | cap spec-memory rerank top-k | Planned |
 | `009-fp16-rerank/` | fp16 cross-encoder weights on MPS | Planned |
-| `010-domain-tuned-reranker-finetune/` | domain-tuned reranker fine-tune for spec-memory corpus | Scaffolded (execution deferred) |
+| `010-domain-tuned-reranker-finetune/` | domain-tuned reranker fine-tune for spec-memory corpus | **Superseded by `011/003-domain-tuned-finetune/`** (2026-05-21; added template-stripping refinement) |
+| `011-spec-memory-rerank-decision-arc/` | Phased decision: audit OFF baseline → try bge-v2-m3 → fine-tune with template-stripping | Planned (phase parent; 3 children) |
 <!-- /ANCHOR:phase-map -->
 
 ---
