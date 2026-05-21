@@ -37,9 +37,9 @@ _memory:
 
 | Task | P | Description | Status | Evidence |
 |------|---|-------------|--------|----------|
-| T001 | P0 | Read current spec-memory embedder registry/factory files. | `[ ]` | Planned |
-| T002 | P0 | Read current skill-advisor embedder registry and skill-graph DB embedding path. | `[ ]` | Planned |
-| T003 | P0 | Confirm exact package import path for shared module. | `[ ]` | Planned |
+| T001 | P0 | Read canonical mk-spec-memory embedder files (`adapter.ts`, `types.ts`, `registry.ts`, `adapters/ollama.ts`). | `[x]` | Read 2026-05-21 |
+| T002 | P0 | Read current skill-advisor embedder layer + `schema.ts` + `skill-graph-db.ts` writer dispatcher. | `[x]` | Read 2026-05-21 |
+| T003 | P0 | Confirm `@spec-kit/shared` workspace alias is already wired in both skills' package.json + tsconfig.json. | `[x]` | Confirmed via exploration |
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -49,10 +49,15 @@ _memory:
 
 | Task | P | Description | Status | Evidence |
 |------|---|-------------|--------|----------|
-| T004 | P0 | Extract/promote shared factory module. | `[ ]` | Planned |
-| T005 | P0 | Update skill-advisor registry/default selection. | `[ ]` | Planned |
-| T006 | P0 | Add parity regression test. | `[ ]` | Planned |
-| T007 | P0 | Update docs or env references if implementation changes operator behavior. | `[ ]` | Planned |
+| T004 | P0 | Step 1: Copy `adapter.ts`, `types.ts`, `registry.ts`, `adapters/ollama.ts` to `shared/embeddings/`. Promote skill-advisor's wider interface. | `[ ]` | Planned |
+| T005 | P0 | Step 1: Convert both skills' local `lib/embedders/{adapter,types,registry,adapters/ollama}.ts` to thin re-export shims. | `[ ]` | Planned |
+| T006 | P0 | Step 2: Delete `adapters/llama-cpp-baseline.ts` from skill-advisor. Remove `embeddinggemma-300m` manifest entry. | `[ ]` | Planned |
+| T007 | P0 | Step 3: Add `contentType: 'text' \| 'code'` parameter (default `'text'`) to shared `auto-select.ts`. | `[ ]` | Planned |
+| T008 | P0 | Step 3: Flip skill-advisor `DEFAULT_ACTIVE_EMBEDDER` to `{ name: 'auto', dim: 0 }`. Add `ensureActiveEmbedder()` helper. | `[ ]` | Planned |
+| T009 | P0 | Step 4: Wire `advisor-server.ts` bootstrap to call `ensureActiveEmbedder()` then `refreshSkillEmbeddings()` if pointer just flipped. | `[ ]` | Planned |
+| T010 | P0 | Step 5: Update skill-advisor `INSTALL_GUIDE.md` section 12 + `README.md` pluggable-layer subsection. | `[ ]` | Planned |
+| T011 | P0 | Add `shared-factory-parity.vitest.ts` regression test. | `[ ]` | Planned |
+| T012 | P0 | Add `ensure-active-embedder.vitest.ts` (cascade idempotency, pointer persistence, content-type parameter). | `[ ]` | Planned |
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -62,9 +67,12 @@ _memory:
 
 | Task | P | Description | Status | Evidence |
 |------|---|-------------|--------|----------|
-| T008 | P0 | Run targeted spec-memory embedder tests. | `[ ]` | Planned |
-| T009 | P0 | Run targeted skill-advisor embedder/scorer tests. | `[ ]` | Planned |
-| T010 | P0 | Run strict-validate on the packet. | `[ ]` | Planned |
+| T013 | P0 | Run `npm run typecheck` + `npm run build` in both `system-spec-kit/mcp_server` and `system-skill-advisor/mcp_server`. | `[ ]` | Planned |
+| T014 | P0 | Run `npx vitest run` in both skills. Confirm existing `vi.mock('@spec-kit/shared/embeddings/factory')` calls still pass. | `[ ]` | Planned |
+| T015 | P0 | Parity grep: `git grep -l 'llama-cpp\|LlamaCppProvider\|embeddinggemma' .opencode/skills/system-skill-advisor/` returns empty. | `[ ]` | Planned |
+| T016 | P0 | Run strict-validate on this packet folder. | `[ ]` | Planned |
+| T017 | P1 | Live daemon smoke: cold start, observe pointer flip via sqlite3 probe, run 3 semantic-shadow queries, confirm sane top-3. | `[ ]` | Planned |
+| T018 | P1 | Post-implementation 5-iter deep-review via cli-devin SWE-1.6 (scoped to cross-skill import boundary + cascade idempotency + pointer persistence + legacy-path correctness + INSTALL_GUIDE truth-check). | `[ ]` | Planned |
 <!-- /ANCHOR:phase-3 -->
 
 ---

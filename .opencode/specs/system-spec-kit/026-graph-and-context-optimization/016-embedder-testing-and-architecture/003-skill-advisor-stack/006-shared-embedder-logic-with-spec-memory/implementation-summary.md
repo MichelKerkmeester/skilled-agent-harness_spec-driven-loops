@@ -1,27 +1,30 @@
 ---
-title: "Implementation Summary: shared embedder logic with spec-memory [template:level_1/implementation-summary.md]"
-description: "PRE-IMPLEMENTATION scaffold for shared embedder logic with spec-memory."
+title: "Implementation Summary: shared embedder logic with spec-memory"
+description: "Shipped phase 003/006: shared embedder contract surface, llama-cpp purge parity, 'auto' sentinel default with content-type-aware cascade, bootstrap wiring."
 trigger_phrases:
   - "shared embedder logic skill-advisor"
   - "skill-advisor spec-memory embedder parity"
+  - "auto sentinel default"
+  - "nomic-embed-text-v1.5 default"
+  - "content-type aware cascade"
 importance_tier: "important"
-contextType: "architecture"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack/006-shared-embedder-logic-with-spec-memory"
-    last_updated_at: "2026-05-21T10:16:26Z"
-    last_updated_by: "codex"
-    recent_action: "Pre-implementation scaffold created"
-    next_safe_action: "Extract shared embedder factory and add parity regression"
+    last_updated_at: "2026-05-21T17:37:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "Shipped phase 003/006: shared embedder contract surface + 'auto' cascade + llama-cpp purge"
+    next_safe_action: "Live daemon smoke (cold start, observe pointer flip, semantic-shadow probe)"
     blockers: []
-    completion_pct: 0
+    completion_pct: 95
 ---
 # Implementation Summary: shared embedder logic with spec-memory
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
 
-> **Status: PRE-IMPLEMENTATION.** This packet is a scaffold. The concrete source/test files below are planned targets so the strict validator and future implementer have actionable anchors.
+> **Status: SHIPPED.** Code, tests, docs and strict validation complete. Live daemon smoke remains as the final operator-side check.
 
 ---
 
@@ -31,8 +34,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Level** | 1 |
-| **Status** | Planned - PRE-IMPLEMENTATION |
+| **Status** | Shipped |
 | **Created** | 2026-05-21 |
+| **Shipped** | 2026-05-21 |
 | **Branch** | `main` |
 | **Parent Arc** | `003-skill-advisor-stack` |
 <!-- /ANCHOR:metadata -->
@@ -42,14 +46,61 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-No implementation has shipped yet. The planned build targets are:
+### Shared contract surface (Step 1)
 
-- `.opencode/skills/system-spec-kit/mcp_server/lib/embedders/registry.ts:1` - planned shared registry source.
-- `.opencode/skills/system-spec-kit/shared/embeddings/factory.ts:1` - planned shared provider factory entrypoint.
-- `.opencode/skills/system-skill-advisor/mcp_server/lib/embedders/registry.ts:1` - planned consumer update.
-- `.opencode/skills/system-skill-advisor/mcp_server/tests/embedders/shared-factory-parity.vitest.ts:1` - planned regression.
+Four new files at `.opencode/skills/system-spec-kit/shared/embeddings/`:
 
-This scaffold itself created the canonical packet files: `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`, `description.json`, and `graph-metadata.json`.
+- `adapter.ts` — canonical `EmbedderAdapter` interface (promoted from mk-spec-memory, plus skill-advisor's wider optional `options?: EmbedderOptions` surface)
+- `types.ts` — `BackendKind` enum + `EmbedderManifest` (mk-spec-memory's narrower variant, no llama-cpp, no modelPath)
+- `registry.ts` — `MANIFESTS` array (7 text-tuned manifests) + `getAdapter()` / `getManifest()` / `listManifests()` / `listSupportedDimensions()` factory + `NotImplementedError`
+- `adapters/ollama.ts` — `OllamaAdapter` class with the full `/api/embed` + `/api/embeddings` fallback path
+
+Eight files converted to thin re-export shims (4 in each skill):
+
+- `system-spec-kit/mcp_server/lib/embedders/{adapter, types, registry, adapters/ollama}.ts`
+- `system-skill-advisor/mcp_server/lib/embedders/{adapter, types, registry, adapters/ollama}.ts`
+
+### llama-cpp purge parity (Step 2)
+
+- Deleted `system-skill-advisor/mcp_server/lib/embedders/adapters/llama-cpp-baseline.ts`.
+- Removed `embeddinggemma-300m` and `jina-embeddings-v2-base-code` manifest entries (both vanish through the shim — the shared registry never had them).
+- Removed `DEFAULT_EMBEDDER_NAME` and `BASELINE_EMBEDDER_NAME` constants from the registry barrel (no longer needed once the default flips to `'auto'`).
+- Updated `system-skill-advisor/mcp_server/lib/embedders/index.ts` to drop the `LlamaCppBaselineAdapter` export.
+- Updated `system-skill-advisor/mcp_server/tests/embedders/registry.vitest.ts` to assert the purged manifests are NOT present (parity gate inside the test).
+
+### contentType parameter on shared cascade (Step 3a)
+
+- Added `EmbedderContentType = 'text' | 'code'` type alias and optional `contentType?: EmbedderContentType` field to `AutoSelectOptions` in `system-spec-kit/shared/embeddings/auto-select.ts`. Default is `'text'`.
+- Documented the rationale in code: CocoIndex's code-tuned cascade lives in Python (separate registry), the TS shared cascade is text-only by design, parameter is reserved for future TS code consumers.
+
+### `'auto'` sentinel + `ensureActiveEmbedder()` (Step 3b)
+
+- Flipped `system-skill-advisor/mcp_server/lib/embedders/schema.ts` `DEFAULT_ACTIVE_EMBEDDER` from `{ name: 'embeddinggemma-300m', dim: 768 }` to `{ name: 'auto', dim: 0 }`.
+- Added `ensureActiveEmbedder(db, options?)` helper that:
+  - Reads the current pointer via `getActiveEmbedder()`.
+  - Skips the cascade when the pointer is a known concrete manifest.
+  - Invokes the shared `autoSelectActiveEmbedder()` cascade when the pointer is `'auto'` OR when the pointer references a manifest the shared registry no longer knows about (orphan migration from a pre-phase-007 install).
+  - Persists the winner via `setActiveEmbedder(db, name, dim)`.
+  - Supports test injection via an optional `autoSelect` mock.
+  - Defaults the lock path to `os.tmpdir()/skill-advisor-auto-select-<digest>.lock`.
+
+### Bootstrap wiring (Step 4)
+
+- Updated `system-skill-advisor/mcp_server/advisor-server.ts` `main()` to call `await ensureActiveEmbedder(getSkillGraphDb(), { contentType: 'text' })` between `initSkillGraphDb()` and `startupSkillGraphScan()`.
+- Errors degrade gracefully with a `console.warn`, not a process abort — the daemon stays up even if the cascade fails (semantic-shadow may degrade until the operator runs the swap runbook).
+- The first scan or watcher tick after this call routes through `refreshSkillEmbeddingsViaAdapter` because `hasActiveEmbedderPointer` now returns true.
+
+### Docs (Step 5)
+
+- Rewrote `system-skill-advisor/INSTALL_GUIDE.md` section 12 (six subsections) to describe the new `'auto'` default, the cascade tier table, the shared registry of 7 text manifests, the content-type split rationale and the now-safe operator swap workflow.
+- Updated `system-skill-advisor/README.md` pluggable-layer subsection accordingly.
+
+### Tests
+
+- `system-skill-advisor/mcp_server/tests/embedders/ensure-active-embedder.vitest.ts` (5 new tests) covering: auto sentinel cascade fires, concrete-pointer cascade skipped, orphan pointer migration, `contentType` parameter wiring, idempotency on second call.
+- `system-skill-advisor/mcp_server/tests/embedders/registry.vitest.ts` updated to assert the shared canonical registry shape + parity gate for purged manifests.
+- `system-skill-advisor/mcp_server/tests/embedders/schema.vitest.ts` updated to expect `{ name: 'auto', dim: 0 }` as the unpopulated default.
+
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -57,7 +108,21 @@ This scaffold itself created the canonical packet files: `spec.md`, `plan.md`, `
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The packet was created from the Level 1 structural contract and the requested 008 structural template. No runtime source code was changed in this scaffold. Future implementation should follow `plan.md` Phase A-D and preserve the predecessor links in `spec.md`.
+Five ordered steps per the approved plan, with verification between each:
+
+1. **Step 1 — shared contract surface + shims**: copy → convert → typecheck both skills. PASSED.
+2. **Step 2 — llama-cpp purge**: delete adapter + manifest entries + update barrel + update tests. PASSED.
+3. **Step 3 — cascade integration**: `contentType` param + `ensureActiveEmbedder()` + 5 new vitests. PASSED (11/11 embedder tests).
+4. **Step 4 — bootstrap wiring**: `advisor-server.ts` calls `ensureActiveEmbedder()` at startup. Typecheck PASSED.
+5. **Step 5 — docs + parity grep**: INSTALL_GUIDE section 12 rewritten + README updated. Parity grep shows only legitimate explanatory comments + parity assertions, no runtime refs.
+
+Final end-to-end gate:
+
+- Shared workspace builds clean.
+- Both skills typecheck + build clean.
+- Skill-advisor vitests: **415 passed, 7 skipped, 3 pre-existing failures unrelated to this work** (missing plugin path, renamed spec folders in lane-weight-sweep, playbook corpus drift in manual-testing-playbook).
+- `validate.sh --strict` on this packet: PASSED with 0 errors, 0 warnings.
+
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -65,13 +130,26 @@ The packet was created from the Level 1 structural contract and the requested 00
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-### D-001
+### D-001 — Override scaffold's CodeRankEmbed target
 
-Do not touch CocoIndex in this packet because operator states it is already on the same model.
+The original scaffold named `sbert/nomic-ai/CodeRankEmbed` as the alignment target. This is CocoIndex's code-tuned default. Skill-advisor indexes prose skill metadata, so the right target is the text-tuned model. Operator directive ("mk-spec-memory is most recently updated") confirmed the alignment is to mk-spec-memory's actual current state, which uses the `'auto'` sentinel + cascade landing on `nomic-embed-text-v1.5` in local-only environments.
 
-### D-002
+### D-002 — Shim-based extraction (not in-place move)
 
-Prefer one shared factory contract over two synchronized registries; duplicated defaults are the failure mode.
+Both skills' local `mcp_server/lib/embedders/{adapter, types, registry, adapters/ollama}.ts` files were converted to thin `export * from '@spec-kit/shared/embeddings/...'` re-export shims rather than deleted entirely. This preserves all existing relative-path imports inside each skill without forcing a broad import-path migration.
+
+### D-003 — Promote skill-advisor's wider EmbedderAdapter interface
+
+The shared interface adopts skill-advisor's wider `embed(texts, options?)` signature (with optional `EmbedderOptions` containing `inputType`) instead of mk-spec-memory's narrower `embed(texts)`. The wider signature is backward-compatible with all existing callers and matches what mk-spec-memory's concrete `OllamaAdapter` already accepts.
+
+### D-004 — Defer legacy BLOB column removal to 003 follow-up #3
+
+The `skill_nodes.embedding` BLOB column stays in place. The phase 004 dispatcher routes new writes to `vec_<active.dim>` when a pointer is set, falling back to the legacy column when no pointer exists. Removing the legacy column safely requires production confirmation that no installation still uses the legacy path; that confirmation is the prerequisite for 003 follow-up #3.
+
+### D-005 — contentType parameter is forward-looking documentation, not behaviour change
+
+The shared `auto-select.ts` cascade is text-tuned by design (Voyage/OpenAI/Ollama/hf-local probe chain returns text models even though `voyage-code-3` is technically code-tuned). The `contentType` parameter is added to the API surface but does not branch cascade behaviour today. CocoIndex's code-tuned cascade stays in Python and is out of scope. A future TS code consumer would either parametrise the cascade further or add a separate `CODE_MANIFESTS` registry.
+
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -79,17 +157,33 @@ Prefer one shared factory contract over two synchronized registries; duplicated 
 <!-- ANCHOR:verification -->
 ## Verification
 
-Planned verification:
-
-- New parity regression exits 0.
-- Existing embedder registry tests exit 0.
-- Strict-validate exits 0.
-
-Scaffold verification must run:
-
 ```bash
-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack/006-shared-embedder-logic-with-spec-memory --strict
+# Workspace integrity (PASSED)
+npm --prefix .opencode/skills/system-spec-kit/shared run build
+npm --prefix .opencode/skills/system-spec-kit/mcp_server run typecheck
+npm --prefix .opencode/skills/system-spec-kit/mcp_server run build
+npm --prefix .opencode/skills/system-skill-advisor/mcp_server run typecheck
+npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build
+
+# Embedder vitests (PASSED, 11/11)
+cd .opencode/skills/system-skill-advisor/mcp_server && npx vitest run tests/embedders/
+
+# Parity gate (only explanatory comments + parity assertions remain)
+git grep -l 'llama-cpp\|LlamaCppProvider\|embeddinggemma' .opencode/skills/system-skill-advisor/
+
+# Spec validation (PASSED, 0 errors, 0 warnings)
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
+  .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack/006-shared-embedder-logic-with-spec-memory \
+  --strict
 ```
+
+Live daemon smoke (pending operator action):
+
+1. Cold daemon restart with no `vec_metadata` rows.
+2. Observe pointer flip via `sqlite3 skill-graph.sqlite "SELECT key, value FROM vec_metadata"` — expect `nomic-embed-text-v1.5` and `768`.
+3. Trigger a scan via `mcp__mk_skill_advisor__advisor_recommend` and confirm `vec_768` row count matches indexed-skills count.
+4. Semantic-shadow probe with three queries (`"memory save"`, `"code search"`, `"spec folder"`); confirm sane top-3.
+
 <!-- /ANCHOR:verification -->
 
 ---
@@ -97,6 +191,22 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/s
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. No shared module is implemented by this scaffold.
-2. Exact module path may need adjustment after reading package exports.
+1. **Legacy `skill_nodes.embedding` BLOB column stays.** Removal is 003 follow-up #3, deferred until production confirms no consumer still uses the legacy path.
+2. **`contentType` parameter does not branch behaviour today.** Reserved for a future TS code consumer.
+3. **Live daemon smoke not yet collected on this machine.** The end-to-end gate confirms typecheck + build + vitest + strict-validate; the operator-side smoke remains as the next step.
+4. **3 pre-existing vitest failures inherited.** None are caused by this work: `tests/skill-graph-diagnostic-redaction.vitest.ts` references a missing plugin file; `tests/scorer/lane-weight-sweep.vitest.ts` references renamed spec folders; `tests/manual-testing-playbook.vitest.ts` has corpus drift. All three should be triaged separately.
+
 <!-- /ANCHOR:limitations -->
+
+---
+
+<!-- ANCHOR:cross-refs -->
+## Cross-References
+
+- Shared host: [`@spec-kit/shared/embeddings/`](../../../../../../../skills/system-spec-kit/shared/embeddings/)
+- Shared cascade: [`auto-select.ts`](../../../../../../../skills/system-spec-kit/shared/embeddings/auto-select.ts)
+- Bootstrap wiring: [`advisor-server.ts`](../../../../../../../skills/system-skill-advisor/mcp_server/advisor-server.ts) (`ensureActiveEmbedder` call between `initSkillGraphDb` and `startupSkillGraphScan`)
+- Docs: [`system-skill-advisor/INSTALL_GUIDE.md` §12](../../../../../../../skills/system-skill-advisor/INSTALL_GUIDE.md)
+- Predecessor (writer cross-wire): `../004-skill-graph-db-writer-cross-wire/`
+- Sibling follow-ups: `003-skill-advisor-stack/FOLLOW-UPS.md` (this work closes #1 shared-factory, partially closes #2 production active pointer)
+<!-- /ANCHOR:cross-refs -->

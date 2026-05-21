@@ -17,10 +17,12 @@ import {
 
 import {
   closeDb as closeSkillGraphDb,
+  getDb as getSkillGraphDb,
   indexSkillMetadata,
   initDb as initSkillGraphDb,
   resolveSkillGraphDbDir,
 } from './lib/skill-graph/skill-graph-db.js';
+import { ensureActiveEmbedder } from './lib/embedders/schema.js';
 import { computeAdvisorSourceSignature } from './lib/freshness.js';
 import { publishSkillGraphGeneration } from './lib/freshness/generation.js';
 import { startSkillGraphDaemon, type SkillGraphDaemon } from './lib/daemon/lifecycle.js';
@@ -252,6 +254,25 @@ const server = createAdvisorMcpServer();
 export async function main(): Promise<void> {
   console.error(`[mk-skill-advisor-launcher] DB: ${resolveSkillGraphDbPath()}`);
   initSkillGraphDb(resolveSkillGraphDbDir());
+
+  // Phase 003/006: resolve the active embedder via the shared cascade if the
+  // persisted pointer is the `'auto'` sentinel or references a manifest the
+  // shared registry no longer knows about (legacy `embeddinggemma-300m`
+  // pointer from a pre-phase-007 install). The first scan or watcher tick
+  // after this call routes through `refreshSkillEmbeddingsViaAdapter`
+  // because `hasActiveEmbedderPointer` now returns true.
+  try {
+    const resolved = await ensureActiveEmbedder(getSkillGraphDb(), { contentType: 'text' });
+    console.error(
+      `[mk-skill-advisor-launcher] Active embedder: ${resolved.name} (${resolved.dim}-dim)`,
+    );
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn(
+      `[mk-skill-advisor-launcher] ensureActiveEmbedder failed: ${message}. Semantic-shadow scoring may degrade until the operator runs the swap runbook.`,
+    );
+  }
+
   await startupSkillGraphScan();
   const watchFactory = await loadSkillGraphWatchFactory();
   skillGraphDaemon = await startSkillGraphDaemon({

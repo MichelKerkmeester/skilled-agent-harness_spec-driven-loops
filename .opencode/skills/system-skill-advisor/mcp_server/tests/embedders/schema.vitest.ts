@@ -32,9 +32,10 @@ describe('skill-advisor embedder schema', () => {
   it('round-trips the active embedder pointer', () => {
     const database = memoryDb();
 
+    // Phase 003/006: default is the 'auto' sentinel until the cascade runs.
     expect(getActiveEmbedder(database)).toEqual({
-      name: 'embeddinggemma-300m',
-      dim: 768,
+      name: 'auto',
+      dim: 0,
     });
 
     setActiveEmbedder(database, 'jina-embeddings-v3', 1024);

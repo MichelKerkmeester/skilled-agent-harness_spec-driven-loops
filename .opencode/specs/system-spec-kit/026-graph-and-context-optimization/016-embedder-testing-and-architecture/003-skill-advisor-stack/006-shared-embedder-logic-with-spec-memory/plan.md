@@ -52,7 +52,11 @@ Extract one shared embedder factory contract and make skill-advisor use it, with
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-The shared module should own manifest/default resolution and adapter construction. Skill-advisor should keep only skill-specific database/indexing code; it should not define a second competing default for the same embedder family. The parity test should exercise both public entrypoints, not a private helper only.
+The shared contract surface (`adapter.ts`, `types.ts`, `registry.ts`, `adapters/ollama.ts`) lives at `.opencode/skills/system-spec-kit/shared/embeddings/`. mk-spec-memory's versions are the canonical source per the operator directive ("mk-spec-memory is most recently updated"). Both skills' local `mcp_server/lib/embedders/` files become thin re-export shims so existing relative-path imports inside each skill continue to resolve. Skill-advisor's `schema.ts` stays local because it integrates with `skill-graph.sqlite` (distinct from mk-spec-memory's database).
+
+The shared `auto-select.ts` cascade already exists with file-based locking. This work adds a `contentType: 'text' \| 'code'` parameter defaulting to `'text'`. CocoIndex stays in Python with its own code-tuned registry — the parameter preserves the text/code split conceptually even though there is no TS code consumer today.
+
+The parity test exercises both public skill surfaces (mk-spec-memory's embedder and skill-advisor's embedder via the same shared registry). It asserts identical Float32Array values for the same input, proving the registry behaves the same across consumers.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -68,10 +72,12 @@ The shared module should own manifest/default resolution and adapter constructio
 
 ### Phase B - Implementation
 
-1. Extract or expose shared factory/registry from the spec-memory embedder implementation.
-2. Flip skill-advisor default selection to `sbert/nomic-ai/CodeRankEmbed`.
-3. Replace skill-advisor-specific factory logic with imports/wrappers around the shared module.
-4. Add cross-skill embedding parity regression.
+1. **Step 1**: Copy `adapter.ts`, `types.ts`, `registry.ts`, `adapters/ollama.ts` from `system-spec-kit/mcp_server/lib/embedders/` to `system-spec-kit/shared/embeddings/`. Promote skill-advisor's wider `EmbedderAdapter` interface (with optional `options?: EmbedderOptions`) since it is backward-compatible with mk-spec-memory's narrower interface. Convert both skills' local files to thin re-export shims.
+2. **Step 2**: Delete `system-skill-advisor/mcp_server/lib/embedders/adapters/llama-cpp-baseline.ts`. Remove `embeddinggemma-300m` manifest entry from skill-advisor's local overrides (it should disappear entirely since Step 3 flips the default to `'auto'`).
+3. **Step 3**: Add `contentType: 'text' \| 'code'` parameter to shared `auto-select.ts` (default `'text'`, no behaviour change for mk-spec-memory). Flip skill-advisor's `DEFAULT_ACTIVE_EMBEDDER` from `embeddinggemma-300m` to `{ name: 'auto', dim: 0 }`. Add `ensureActiveEmbedder(db, { contentType: 'text' })` helper that calls the shared cascade and persists the winner via existing `setActiveEmbedder()`.
+4. **Step 4**: Wire skill-advisor daemon bootstrap (`advisor-server.ts`) to call `ensureActiveEmbedder()` before first read/write. Trigger one-shot `refreshSkillEmbeddings()` after pointer flip (already routes via dispatcher from phase 004).
+5. **Step 5**: Update skill-advisor `INSTALL_GUIDE.md` section 12 (all subsections) and `README.md` pluggable-layer subsection to reflect the shared registry and `'auto'` sentinel default. Final parity grep across skill-advisor tree for `embeddinggemma` and `llama-cpp`.
+6. Add cross-skill embedding parity regression and `ensureActiveEmbedder` cascade tests.
 
 ### Phase C - Verification
 

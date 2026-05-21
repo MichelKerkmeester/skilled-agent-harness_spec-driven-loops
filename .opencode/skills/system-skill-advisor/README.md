@@ -219,11 +219,13 @@ Per-call options on `advisor_recommend` (`topK`, `includeAttribution`) override 
 
 ### Pluggable embedder layer
 
-The `semantic_shadow` lane (lowest live weight at `0.05`) runs against a pluggable embedder layer mirroring `mk-spec-memory`. The contract lives in `mcp_server/lib/embedders/`: an `EmbedderAdapter` interface, a frozen `MANIFESTS` registry of six vetted candidates (`embeddinggemma-300m`, `jina-embeddings-v3`, `nomic-embed-text-v1.5`, `jina-embeddings-v2-base-code`, `mxbai-embed-large-v1`, `bge-m3`), and a `setActiveEmbedder(db, name, dim)` helper that writes the active pointer into the package-local `skill-graph.sqlite`.
+The `semantic_shadow` lane (lowest live weight at `0.05`) runs against a pluggable embedder layer shared with `mk-spec-memory`. The contract lives in `@spec-kit/shared/embeddings/`: an `EmbedderAdapter` interface, a frozen `MANIFESTS` registry of seven text-tuned candidates (`nomic-embed-text-v1.5`, `mxbai-embed-large-v1`, `bge-small-en-v1.5`, `bge-large-en-v1.5`, `jina-embeddings-v3`, `bge-m3`, `snowflake-arctic-embed-l-v2.0`) and a `setActiveEmbedder(db, name, dim)` helper that writes the active pointer into the package-local `skill-graph.sqlite`. Skill-advisor's local `mcp_server/lib/embedders/` files are thin re-export shims.
 
-The current active production default is `embeddinggemma-300m` @ 768d via the `llama-cpp` baseline. Writer wiring has shipped, but `jina-embeddings-v3` and the other registered alternatives remain inactive in production until the separate `003/006-shared-embedder-logic` alignment packet executes the pointer flip, reindex, and smoke evidence. The swap mechanism is the `setActiveEmbedder()` database helper — there is no environment variable for this and no `embedder_set` MCP tool.
+The persisted default is the `'auto'` sentinel. On daemon startup, `ensureActiveEmbedder()` invokes the shared cascade (Ollama → hf-local → OpenAI → Voyage) and persists the winner. In local-only environments the cascade picks `nomic-embed-text-v1.5` at 768 dim. Manual `setActiveEmbedder()` calls pin the pointer and skip the cascade on subsequent restarts. There is no environment variable for embedder selection and no `embedder_set` MCP tool — the surface is one database helper plus the cascade sentinel.
 
-See [INSTALL_GUIDE.md §12 "Choosing an embedder"](./INSTALL_GUIDE.md#12--choosing-an-embedder) for the chooser table, swap workflow, and known architecture gap. See [`embedder-pluggability.md`](../system-spec-kit/references/embedder-pluggability.md) for the canonical multi-MCP narrative covering mk-spec-memory and CocoIndex alongside skill-advisor.
+CocoIndex uses a separate code-tuned embedder cascade in Python (out of scope here). The TS shared cascade is text-only by design; a `contentType: 'text' \| 'code'` parameter on the shared cascade preserves the conceptual split for any future TS code consumer.
+
+See [INSTALL_GUIDE.md §12 "Choosing an embedder"](./INSTALL_GUIDE.md#12--choosing-an-embedder) for the cascade tier table, swap workflow, and content-type rationale. See [`embedder-pluggability.md`](../system-spec-kit/references/embedder-pluggability.md) for the canonical multi-MCP narrative covering mk-spec-memory and CocoIndex alongside skill-advisor.
 
 <!-- /ANCHOR:configuration -->
 
