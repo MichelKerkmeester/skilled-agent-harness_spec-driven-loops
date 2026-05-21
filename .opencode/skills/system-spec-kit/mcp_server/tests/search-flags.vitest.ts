@@ -68,11 +68,11 @@ describe('Search Feature Flags', () => {
     crossEncoder.resetProvider();
   });
 
-  it('defaults all graduated gates on including reconsolidation', () => {
+  it('defaults graduated gates on while cross-encoder remains opt-in', () => {
     expect(isMMREnabled()).toBe(true);
     expect(isTRMEnabled()).toBe(true);
     expect(isMultiQueryEnabled()).toBe(true);
-    expect(isCrossEncoderEnabled()).toBe(true);
+    expect(isCrossEncoderEnabled()).toBe(false);
     expect(isContextHeadersEnabled()).toBe(true);
     expect(isReconsolidationEnabled()).toBe(true);
   });
@@ -127,7 +127,7 @@ describe('Search Feature Flags', () => {
   });
 
   it('cross-encoder provider resolution is blocked when SPECKIT_CROSS_ENCODER=false', () => {
-    process.env.VOYAGE_API_KEY = 'test-key';
+    process.env.VOYAGE_API_KEY = 'test-voyage-api-key-XXXXXXXXX'; // >= 20 chars per looksLikeValidApiKey() contract
     process.env.SPECKIT_CROSS_ENCODER = 'false';
     crossEncoder.resetProvider();
 
@@ -136,7 +136,7 @@ describe('Search Feature Flags', () => {
   });
 
   it('cross-encoder provider resolution works when gate is enabled and provider key exists', () => {
-    process.env.VOYAGE_API_KEY = 'test-key';
+    process.env.VOYAGE_API_KEY = 'test-voyage-api-key-XXXXXXXXX'; // >= 20 chars per looksLikeValidApiKey() contract
     process.env.SPECKIT_CROSS_ENCODER = 'true';
     crossEncoder.resetProvider();
 

@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import {
   assessRequestQuality,
   computeResultConfidence,
@@ -12,7 +12,7 @@ const ENV_KEYS = [
   'COHERE_API_KEY',
 ] as const;
 
-const ORIGINAL_ENV: Partial<Record<typeof ENV_KEYS[number], string | undefined>> = {};
+let originalEnv: Partial<Record<typeof ENV_KEYS[number], string | undefined>> = {};
 
 function resetRerankerEnv(): void {
   for (const key of ENV_KEYS) {
@@ -22,10 +22,10 @@ function resetRerankerEnv(): void {
 
 function restoreRerankerEnv(): void {
   for (const key of ENV_KEYS) {
-    if (ORIGINAL_ENV[key] === undefined) {
+    if (originalEnv[key] === undefined) {
       delete process.env[key];
     } else {
-      process.env[key] = ORIGINAL_ENV[key];
+      process.env[key] = originalEnv[key];
     }
   }
 }
@@ -59,13 +59,16 @@ function topConfidenceValue(results: ScoredResult[]): number {
 }
 
 describe('scoring opt-in reranker semantics', () => {
+  beforeEach(() => {
+    originalEnv = {};
+    for (const key of ENV_KEYS) {
+      originalEnv[key] = process.env[key];
+    }
+  });
+
   afterEach(() => {
     restoreRerankerEnv();
   });
-
-  for (const key of ENV_KEYS) {
-    ORIGINAL_ENV[key] = process.env[key];
-  }
 
   it('does not make retrieval-quality results weak when reranking is not opted in', () => {
     resetRerankerEnv();
@@ -94,7 +97,7 @@ describe('scoring opt-in reranker semantics', () => {
 
   it('applies the existing missing-reranker confidence gap when cloud rerank is configured', () => {
     resetRerankerEnv();
-    process.env.VOYAGE_API_KEY = 'fake-key';
+    process.env.VOYAGE_API_KEY = 'fake-voyage-key-XXXXXXXXXXXXX'; // >= 20 chars per looksLikeValidApiKey() contract
 
     const withoutReranker = makeRetrievalQualityResults();
     const withReranker = makeRetrievalQualityResults().map((result) => ({

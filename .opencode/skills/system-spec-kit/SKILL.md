@@ -378,6 +378,13 @@ Spec Kit Memory provides context retrieval, search, save, checkpoint, health, an
 
 Cross-encoder reranking is opt-in. Default is OFF based on the 011 decision arc (evidence: 011/001 OFF baseline + 011/002 bge-v2-m3 trial). To enable, set `SPECKIT_CROSS_ENCODER=true` (or `RERANKER_LOCAL=true`) and ensure the system-rerank-sidecar is running at `http://localhost:8765`. Cocoindex consumes the sidecar by default; spec-memory consumes it opt-in only.
 
+## Security
+
+- `VOYAGE_API_KEY` and `COHERE_API_KEY` are read from the process environment only. They must never be logged, written into spec docs, or persisted to disk by Spec Kit. Operators should set them in shell init files owned by the operator with mode `600`.
+- The opt-in model trusts that only the operator can write to the MCP process environment. A co-located malicious process with env-set access can flip reranking gates. Mitigate by running the MCP server under a dedicated user and restricting shell access.
+- When the local sidecar is enabled, it binds to `127.0.0.1` only. See `system-rerank-sidecar/SKILL.md` Security for the full endpoint trust model.
+- Tests may mutate env vars, but must restore them in `afterEach`. Production code paths should not treat mutable process env as request-time configuration.
+
 ### Validation and Recovery
 
 Run `.opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` before completion claims. Validation errors block completion; warnings must be addressed or documented. Startup, resume, hook, code graph, and CocoIndex readiness details live in `references/config/hook_system.md`, `mcp_server/hooks/copilot/README.md`, and the code graph references.

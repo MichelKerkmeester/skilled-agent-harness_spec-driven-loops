@@ -13,6 +13,7 @@ Additional models must be in the ``RERANK_ALLOWED_MODELS`` allowlist.
 from __future__ import annotations
 
 import asyncio
+import collections
 import json
 import logging
 import math
@@ -21,9 +22,20 @@ import time
 from contextlib import asynccontextmanager
 from typing import Optional
 
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
+from fastapi import Depends, FastAPI, Header, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel, Field
 from sentence_transformers import CrossEncoder
+
+# TRUST MODEL: this server binds to 127.0.0.1 only. All security is
+# defense-in-depth on top of localhost binding:
+#   - Optional X-Rerank-Secret header (RERANK_API_KEY env)
+#   - Rate limiting (RERANK_RATE_LIMIT_PER_MIN env, default 100/min)
+#   - Payload size caps (10K char query, 1000 docs max)
+#   - CORS restricted to localhost origins
+# No TLS -- relies on OS process-isolation. If you need transit encryption
+# (e.g. proxy through a TLS terminator), do it externally; this sidecar
+# is designed for trusted local consumers only.
 
 DEFAULT_MODEL_NAME = os.environ.get("RERANK_MODEL_NAME", "Qwen/Qwen3-Reranker-0.6B")
 DEFAULT_MODEL_REVISION = os.environ.get(
@@ -34,6 +46,8 @@ PORT = int(os.environ.get("RERANK_SIDECAR_PORT", "8765"))
 LOG_PATH = os.environ.get("RERANK_LOG_PATH", "").strip()
 DEVICE = os.environ.get("RERANK_DEVICE", "").strip()
 DTYPE = os.environ.get("RERANK_TORCH_DTYPE", "").strip().lower()
+RATE_LIMIT = int(os.environ.get("RERANK_RATE_LIMIT_PER_MIN", "100"))
+_request_log: collections.deque[float] = collections.deque()
 
 # Allowlist of model names the sidecar will load on request. The default is
 # always implicitly allowed. Operators add more via env:
@@ -68,6 +82,31 @@ def sigmoid(x: float) -> float:
         return 1.0 / (1.0 + math.exp(-x))
     z = math.exp(x)
     return z / (1.0 + z)
+
+
+def verify_rerank_secret(x_rerank_secret: str | None = Header(default=None)):
+    required = os.environ.get("RERANK_API_KEY", "").strip()
+    if not required:
+        return
+    if x_rerank_secret != required:
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid or missing X-Rerank-Secret header",
+        )
+
+
+def check_rate_limit() -> None:
+    if RATE_LIMIT <= 0:
+        return
+    now = time.time()
+    while _request_log and _request_log[0] < now - 60:
+        _request_log.popleft()
+    if len(_request_log) >= RATE_LIMIT:
+        raise HTTPException(
+            status_code=429,
+            detail=f"Rate limit exceeded ({RATE_LIMIT}/min)",
+        )
+    _request_log.append(now)
 
 
 def _get_lock(model_name: str) -> asyncio.Lock:
@@ -114,8 +153,8 @@ def _resolve_model_name(requested: Optional[str]) -> str:
 
 
 class RerankRequest(BaseModel):
-    query: str
-    documents: list[str]
+    query: str = Field(..., max_length=10000)
+    documents: list[str] = Field(..., min_length=1, max_length=1000)
     top_k: Optional[int] = None
     model: Optional[str] = None  # optional; defaults to RERANK_MODEL_NAME
 
@@ -144,6 +183,12 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(lifespan=lifespan, title="system-rerank-sidecar", version="0.2.0")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origin_regex=r"^https?://(localhost|127\.0\.0\.1)(:\d+)?$",
+    allow_methods=["POST", "GET"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/health")
@@ -176,10 +221,13 @@ async def warmup(req: Optional[WarmupRequest] = None):
     return {"status": "warmed", "model": model_name, "revision": revision}
 
 
-@app.post("/rerank", response_model=RerankResponse)
+@app.post(
+    "/rerank",
+    response_model=RerankResponse,
+    dependencies=[Depends(verify_rerank_secret)],
+)
 async def rerank(req: RerankRequest):
-    if not req.documents:
-        raise HTTPException(status_code=400, detail="documents must be non-empty")
+    check_rate_limit()
     if req.top_k is not None and req.top_k < 0:
         raise HTTPException(status_code=400, detail="top_k must be non-negative")
 

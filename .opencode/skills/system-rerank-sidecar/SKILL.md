@@ -192,6 +192,16 @@ bash scripts/start.sh
 
 `scripts/start.sh` loads `.env` first and `.env.local` second so operators can keep local overrides out of version control. `scripts/start.sh` also clears all parent-shell env vars except a `HOME`/`PATH`/`LANG`/`TMPDIR`/`HF_*`/`RERANK_*` allowlist before exec'ing uvicorn (env-var leak mitigation).
 
+## Security
+
+- The sidecar binds to `127.0.0.1:8765` only and is not reachable from the external network.
+- Set `RERANK_API_KEY` to require `X-Rerank-Secret: <value>` on `/rerank` requests. When unset, requests are unauthenticated by default.
+- `RERANK_RATE_LIMIT_PER_MIN` caps requests per minute. Default is `100`; set `0` to disable rate limiting.
+- Payload caps are enforced: query <= 10000 characters and documents <= 1000 items. Oversized payloads return HTTP 422.
+- CORS is locked to localhost origins by default.
+- No TLS is served by the sidecar. It relies on OS process isolation; put a TLS terminator such as nginx in front if transit encryption is required.
+- Trust model: localhost only. Any local process can invoke the sidecar when no API key is set, so set `RERANK_API_KEY` for defense-in-depth.
+
 ### Switching Reranker Models
 
 `scripts/use-model.sh` is the one-step model swapper. It updates `.env.local`, downloads weights if missing, restarts the sidecar, and probes `/health` + `/warmup` in a single invocation:

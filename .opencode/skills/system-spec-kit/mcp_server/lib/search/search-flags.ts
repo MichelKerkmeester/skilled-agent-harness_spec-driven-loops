@@ -18,9 +18,45 @@ import { isFeatureEnabled } from '../cognitive/rollout-policy.js';
 
 export type SavePlannerMode = 'plan-only' | 'full-auto' | 'hybrid';
 
+const TRUTHY_OPT_IN = new Set(['true', '1', 'yes', 'on', 'enabled']);
+const FALSY_OPT_OUT = new Set(['false', '0', 'no', 'off', 'disabled']);
+
+/**
+ * Returns true for explicit opt-in values: true, 1, yes, on, enabled.
+ * Undefined, empty, unrecognized, and explicit false-like values are treated as false.
+ */
 function isOptInEnabled(variableName: string): boolean {
-  const raw = process.env[variableName]?.trim().toLowerCase();
-  return raw === 'true' || raw === '1';
+  const value = process.env[variableName]?.toLowerCase().trim();
+  return value !== undefined && TRUTHY_OPT_IN.has(value);
+}
+
+/**
+ * Returns true when the env var is explicitly set to a falsy value
+ * (false, 0, no, off, disabled). This is the veto signal — used to
+ * hard-disable a feature even when other opt-in signals are present
+ * (e.g. SPECKIT_CROSS_ENCODER=false vetos cross-encoder even with
+ * a valid VOYAGE_API_KEY set).
+ */
+function isOptOutExplicit(variableName: string): boolean {
+  const value = process.env[variableName]?.toLowerCase().trim();
+  return value !== undefined && FALSY_OPT_OUT.has(value);
+}
+
+function looksLikeValidApiKey(value: string | undefined): boolean {
+  if (!value) return false;
+  const trimmed = value.trim();
+  if (trimmed.length < 20) return false;
+  return true;
+}
+
+function hasAnyRerankerOptInSignal(): boolean {
+  // Explicit veto: SPECKIT_CROSS_ENCODER=false hard-disables regardless of other signals
+  if (isOptOutExplicit('SPECKIT_CROSS_ENCODER')) return false;
+  if (looksLikeValidApiKey(process.env.VOYAGE_API_KEY)) return true;
+  if (looksLikeValidApiKey(process.env.COHERE_API_KEY)) return true;
+  if (isOptInEnabled('SPECKIT_CROSS_ENCODER')) return true;
+  if (process.env.RERANKER_LOCAL?.toLowerCase().trim() === 'true') return true;
+  return false;
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -96,19 +132,31 @@ export function isMultiQueryEnabled(): boolean {
 }
 
 /**
+ * Both reranker opt-in helpers check operator-intent signals and delegate to
+ * hasAnyRerankerOptInSignal() for consistency.
+ *
+ * isCrossEncoderEnabled() is the legacy alias used by cross-encoder.ts for
+ * provider selection. isRerankerExpected() is the canonical detector used by
+ * confidence-scoring.ts for the conditional missing-reranker penalty.
+ * Prefer isRerankerExpected() for new code.
+ *
  * Cross-encoder reranking gate.
  * Default: FALSE (opt-in). See 011 arc 011/005-opt-in-only-closure
  * for the evidence + decision.
  */
 export function isCrossEncoderEnabled(): boolean {
-  if (isOptInEnabled('SPECKIT_CROSS_ENCODER')) return true;
-  if (process.env.VOYAGE_API_KEY?.trim()) return true;
-  if (process.env.COHERE_API_KEY?.trim()) return true;
-  if (process.env.RERANKER_LOCAL?.toLowerCase().trim() === 'true') return true;
-  return false;
+  return hasAnyRerankerOptInSignal();
 }
 
 /**
+ * Both reranker opt-in helpers check operator-intent signals and delegate to
+ * hasAnyRerankerOptInSignal() for consistency.
+ *
+ * isCrossEncoderEnabled() is the legacy alias used by cross-encoder.ts for
+ * provider selection. isRerankerExpected() is the canonical detector used by
+ * confidence-scoring.ts for the conditional missing-reranker penalty.
+ * Prefer isRerankerExpected() for new code.
+ *
  * Returns true when reranker was opted-in by operator intent
  * (cloud API key set OR SPECKIT_CROSS_ENCODER explicitly true
  * OR RERANKER_LOCAL explicitly true). False for default-off.
@@ -118,11 +166,7 @@ export function isCrossEncoderEnabled(): boolean {
  * versus an expected absence (correctly off-by-default).
  */
 export function isRerankerExpected(): boolean {
-  if (process.env.VOYAGE_API_KEY?.trim()) return true;
-  if (process.env.COHERE_API_KEY?.trim()) return true;
-  if (process.env.SPECKIT_CROSS_ENCODER?.toLowerCase().trim() === 'true') return true;
-  if (process.env.RERANKER_LOCAL?.toLowerCase().trim() === 'true') return true;
-  return false;
+  return hasAnyRerankerOptInSignal();
 }
 
 /**
