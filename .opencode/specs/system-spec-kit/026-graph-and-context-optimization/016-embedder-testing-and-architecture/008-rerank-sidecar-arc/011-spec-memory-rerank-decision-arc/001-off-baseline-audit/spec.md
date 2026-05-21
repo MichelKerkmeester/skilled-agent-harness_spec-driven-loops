@@ -10,10 +10,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/001-off-baseline-audit"
-    last_updated_at: "2026-05-21T13:00:00Z"
-    last_updated_by: "main_agent"
-    recent_action: "Scaffolded — execution pending"
-    next_safe_action: "Dispatch per plan.md"
+    last_updated_at: "2026-05-21T12:57:39Z"
+    last_updated_by: "cli-codex"
+    recent_action: "OFF baseline measured; verdict OFF_DEFICIENT"
+    next_safe_action: "Dispatch Phase 2 bge-v2-m3 trial with Phase 1 targets"
     blockers: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
@@ -29,7 +29,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Level** | 1 |
-| **Status** | Planned (scaffolded; ready to execute) |
+| **Status** | Complete (OFF_DEFICIENT; no scoring patch) |
 | **Created** | 2026-05-21 |
 | **Branch** | `main` |
 | **Parent Arc** | `011-spec-memory-rerank-decision-arc` |

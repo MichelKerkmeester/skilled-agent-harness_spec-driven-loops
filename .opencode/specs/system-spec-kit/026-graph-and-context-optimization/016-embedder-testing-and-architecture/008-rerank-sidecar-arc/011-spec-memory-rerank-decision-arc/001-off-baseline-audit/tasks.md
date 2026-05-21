@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/001-off-baseline-audit"
-    last_updated_at: "2026-05-21T13:00:00Z"
-    last_updated_by: "main_agent"
-    recent_action: "Tasks scaffolded"
-    next_safe_action: "Dispatch cli-codex to execute Phase A"
+    last_updated_at: "2026-05-21T12:57:39Z"
+    last_updated_by: "cli-codex"
+    recent_action: "OFF baseline measured; OFF_DEFICIENT path documented"
+    next_safe_action: "Dispatch Phase 2 bge-v2-m3 trial"
     blockers: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
@@ -34,9 +34,9 @@ _memory:
 
 | Task | P | Description | Status | Evidence |
 |------|---|-------------|--------|----------|
-| T001 | P0 | Locate rerank benchmark harness via grep in skills/system-spec-kit/ | `[ ]` | (pending) |
-| T002 | P0 | Identify how to run with reranker OFF (env, CLI arg, or harness mode flag) | `[ ]` | (pending) |
-| T003 | P1 | Inspect 50-probe fixture for known-weak probe categories (short query → long doc, etc.) | `[ ]` | (pending) |
+| T001 | P0 | Locate rerank benchmark harness via grep in skills/system-spec-kit/ | `[x]` | Harness found at `mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run_arm.py`; package has no `bench:rerank` script |
+| T002 | P0 | Identify how to run with reranker OFF (env, CLI arg, or harness mode flag) | `[x]` | OFF mode is `SPECKIT_CROSS_ENCODER=false RERANKER_LOCAL=false --cross-encoder false --reranker-local false` |
+| T003 | P1 | Inspect 50-probe fixture for known-weak probe categories (short query → long doc, etc.) | `[x]` | Fixture categories: arc-context 12, paraphrase 27, terminology 11 |
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -46,13 +46,13 @@ _memory:
 
 | Task | P | Description | Status | Evidence |
 |------|---|-------------|--------|----------|
-| T004 | P0 | Run OFF baseline; output to evidence/off-baseline-<date>.json | `[ ]` | evidence/ path |
-| T005 | P0 | Compute summary stats (hit-rate@5, NDCG@10, recall@5, per-category) | `[ ]` | impl-summary §Baseline Numbers |
-| T006 | P0 | Apply verdict thresholds → OFF_ACCEPTABLE / OFF_DEFICIENT | `[ ]` | impl-summary §Verdict |
-| T007 | P0 | (Patch path) Locate WEIGHT_RERANKER penalty site | `[ ]` | impl-summary §Penalty Site (file:line) |
-| T008 | P0 | (Patch path) Apply conditional patch + add isRerankerExpected() helper | `[ ]` | git diff |
-| T009 | P0 | (Patch path) New vitest asserting requestQuality reflects retrieval quality | `[ ]` | tests/<new-file> exit 0 |
-| T010 | P0 | (Escalate path) Categorize failures; update Phase 2 spec's §Scope with target metrics | `[ ]` | 002-bge-v2-m3-trial/spec.md diff |
+| T004 | P0 | Run OFF baseline; output to evidence/off-baseline-<date>.json | `[x]` | `evidence/off-baseline-2026-05-21.json` |
+| T005 | P0 | Compute summary stats (hit-rate@5, NDCG@10, recall@5, per-category) | `[x]` | hit-rate@5 0.12, NDCG@10 0.11, recall@5 0.12 |
+| T006 | P0 | Apply verdict thresholds → OFF_ACCEPTABLE / OFF_DEFICIENT | `[x]` | `OFF_DEFICIENT` |
+| T007 | P0 | (Patch path) Locate WEIGHT_RERANKER penalty site | `[x]` | Located in `lib/search/confidence-scoring.ts:38` and `:258`; patch skipped due OFF_DEFICIENT |
+| T008 | P0 | (Patch path) Apply conditional patch + add isRerankerExpected() helper | `[x]` | N/A — OFF_DEFICIENT path, no source patch |
+| T009 | P0 | (Patch path) New vitest asserting requestQuality reflects retrieval quality | `[x]` | N/A — OFF_DEFICIENT path, no vitest added |
+| T010 | P0 | (Escalate path) Categorize failures; update Phase 2 spec's §Scope with target metrics | `[x]` | 44 recall misses, 0 ranking inversions, 0 empty results; Phase 2 target table updated |
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -62,10 +62,10 @@ _memory:
 
 | Task | P | Description | Status | Evidence |
 |------|---|-------------|--------|----------|
-| T011 | P0 | (Patch path) Vitest exit 0 + focused vitest suites still PASS | `[ ]` | exit codes captured |
-| T012 | P0 | Strict-validate this packet + arc parent | `[ ]` | both exit 0 |
-| T013 | P0 | Update arc parent _memory.continuity and phase-map | `[ ]` | 011 spec.md diff |
-| T014 | P0 | Commit handoff list: exact paths modified | `[ ]` | impl-summary §Commit Handoff |
+| T011 | P0 | (Patch path) Vitest exit 0 + focused vitest suites still PASS | `[x]` | N/A — OFF_DEFICIENT path, no patch test required |
+| T012 | P0 | Strict-validate this packet + arc parent | `[x]` | packet exit 0; arc parent exit 0 |
+| T013 | P0 | Update arc parent _memory.continuity and phase-map | `[x]` | Parent `spec.md` updated; `001` marked Complete |
+| T014 | P0 | Commit handoff list: exact paths modified | `[x]` | impl-summary §Commit Handoff |
 <!-- /ANCHOR:phase-3 -->
 
 ---

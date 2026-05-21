@@ -8,21 +8,21 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/003-domain-tuned-finetune"
-    last_updated_at: "2026-05-21T13:00:00Z"
-    last_updated_by: "main_agent"
-    recent_action: "Scaffold authored; supersedes 010"
-    next_safe_action: "Cli-codex Phase A dispatch (gated on Phase 2 HOLD)"
+    last_updated_at: "2026-05-21T12:55:17Z"
+    last_updated_by: "cli-codex"
+    recent_action: "Phase A/B setup complete"
+    next_safe_action: "Phase C triple generation follow-on dispatch"
     blockers:
       - "Phase 1 OFF_DEFICIENT required"
       - "Phase 2 HOLD required"
-    completion_state: "scaffold-only"
+    completion_state: "phase-a-b-complete"
 ---
 # Implementation Summary: domain-tuned reranker fine-tune
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
 
-> **Status: SCAFFOLD.** Path of last resort. Gated on Phases 1+2.
+> **Status: Phase A/B complete.** Skeleton scripts and template stripping are in place. Triple generation, training, eval, and publishing are pending follow-on dispatches.
 
 ---
 
@@ -32,7 +32,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Level** | 1 |
-| **Status** | Scaffold (gated) |
+| **Status** | Phase A/B complete |
 | **Created** | 2026-05-21 |
 | **Branch** | `main` |
 | **Parent Arc** | `011-spec-memory-rerank-decision-arc` |
@@ -45,15 +45,83 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-To be filled. Expected sections:
+### Phase A - Scripts Skeleton
 
-- §Phase A: scripts skeleton + layout decision
-- §Phase B: strip_templates() + tests + sample inspection
-- §Phase C: triples count, train/test split numbers, sample inspection at milestones
-- §Phase D: base model, hyperparams, training logs, best checkpoint NDCG
-- §Phase E: eval results table (vs OFF, vs bge-v2-m3), anti-overfit-to-template gate result, verdict
-- §Phase F (PROMOTE only): publish path, revision SHA, cross-encoder.ts patch, live verification
-- §Commit Handoff: exact paths modified
+Layout decision: Option A from `plan.md` was selected. The scripts live under `.opencode/skills/system-rerank-sidecar/scripts/finetune/` because the setup is a compact sidecar-local helper tree, well below the ~2k LOC escalation threshold for a new `system-rerank-finetune` skill.
+
+Skeleton files created:
+
+- `.opencode/skills/system-rerank-sidecar/scripts/finetune/__init__.py`
+- `.opencode/skills/system-rerank-sidecar/scripts/finetune/strip_templates.py`
+- `.opencode/skills/system-rerank-sidecar/scripts/finetune/generate_triples.py`
+- `.opencode/skills/system-rerank-sidecar/scripts/finetune/verify_split.py`
+- `.opencode/skills/system-rerank-sidecar/scripts/finetune/train.py`
+- `.opencode/skills/system-rerank-sidecar/scripts/finetune/eval_on_fixture.py`
+- `.opencode/skills/system-rerank-sidecar/scripts/finetune/publish.py`
+- `.opencode/skills/system-rerank-sidecar/scripts/finetune/README.md`
+
+The non-Phase-B modules contain module docstrings, planned function signatures, argparse `--help` entrypoints, and `NotImplementedError` stubs for later dispatches. Import and module execution wiring is local to `scripts/finetune/`; no sidecar `pyproject.toml` edit was made because the dispatch allowed writes only under `scripts/finetune/**` and this packet's spec docs.
+
+README: `.opencode/skills/system-rerank-sidecar/scripts/finetune/README.md` describes each script's responsibility and links back to this packet's `spec.md` and `plan.md`.
+
+### Phase B - Template Stripping
+
+Implemented `strip_templates(doc: str) -> str` in `.opencode/skills/system-rerank-sidecar/scripts/finetune/strip_templates.py`.
+
+Behavior covered:
+
+- Removes YAML frontmatter at document start.
+- Removes ANCHOR open/close HTML comments outside code fences.
+- Removes `<!-- SPECKIT_* -->` comments outside code fences.
+- Removes numbered all-caps template headers like `## 1. METADATA`.
+- Converts language-tagged code fences to untagged fences so code content is preserved and a second stripping pass does not remove anchor-like strings inside code.
+- Preserves untagged fences, inline backticks, paragraphs, lists, and tables.
+
+Test coverage lives at `.opencode/skills/system-rerank-sidecar/scripts/finetune/tests/test_strip_templates.py` and includes one test per removal type plus nested anchors, unterminated tagged fences, multi-line frontmatter, anchors inside code fences, and idempotency.
+
+### Sample Inspection
+
+Five deterministic random `spec.md` files were sampled from `.opencode/specs/system-spec-kit/` with `random.Random(20260521)`. Before/after snippets below show frontmatter and template scaffolding removed while document content remains.
+
+| Sample | Before | After |
+|---|---|---|
+| `000-release-cleanup/.../001-sk-code-opencode-standards-audit/spec.md` | `---`<br>`title: "Feature Specification: 037/001 sk-code-opencode Audit"`<br>`template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core \| v2.2"` | `# Feature Specification: 037/001 sk-code-opencode Audit`<br>`---`<br>`\| Field \| Value \|` |
+| `005-cross-cutting-quality/002-deep-review-stack/spec.md` | `---`<br>`title: "Spec: 020 Deep-review of 016-019 stack via cli-devin SWE 1.6"`<br>`trigger_phrases:` | `# Spec: 020 Deep-review of 016-019 stack via cli-devin SWE 1.6`<br>`\| Field \| Value \|`<br>`\|---\|---\|` |
+| `027-xce-research-based-refinement/003-memoization-dependency-dag-foundation/spec.md` | `---`<br>`title: "Memoization dependency DAG foundation"`<br>`description: "Introduce canonical-input memoization...` | `# Memoization dependency DAG foundation`<br>`---`<br>`\| Field \| Value \|` |
+| `008-rerank-sidecar-arc/009-fp16-rerank/spec.md` | `---`<br>`title: "Spec: fp16 cross-encoder weights on MPS [template:level_1/spec.md]"`<br>`trigger_phrases:` | `# Spec: fp16 cross-encoder weights on MPS`<br>`---`<br>`\| Field \| Value \|` |
+| `010-code-graph-adoption-eval/004-report-generator/spec.md` | `---`<br>`title: "Feature Specification: 004 Report Generator"`<br>`description: "Markdown report generator...` | `# Feature Specification: 004 Report Generator`<br>`---`<br>`\| Field \| Value \|` |
+
+### Phase C - Pending Follow-On Dispatch
+
+Pending. No triple generation was executed in this dispatch.
+
+### Phase D - Pending Follow-On Dispatch
+
+Pending. No model training, HF download, or compute-bound work was executed in this dispatch.
+
+### Phase E - Pending Follow-On Dispatch
+
+Pending. No 50-probe fixture evaluation was executed in this dispatch.
+
+### Phase F - Pending Follow-On Dispatch
+
+Pending. No publishing, sidecar env update, or `cross-encoder.ts` default flip was executed in this dispatch.
+
+### Commit Handoff
+
+Exact paths modified:
+
+- `.opencode/skills/system-rerank-sidecar/scripts/finetune/__init__.py`
+- `.opencode/skills/system-rerank-sidecar/scripts/finetune/strip_templates.py`
+- `.opencode/skills/system-rerank-sidecar/scripts/finetune/generate_triples.py`
+- `.opencode/skills/system-rerank-sidecar/scripts/finetune/verify_split.py`
+- `.opencode/skills/system-rerank-sidecar/scripts/finetune/train.py`
+- `.opencode/skills/system-rerank-sidecar/scripts/finetune/eval_on_fixture.py`
+- `.opencode/skills/system-rerank-sidecar/scripts/finetune/publish.py`
+- `.opencode/skills/system-rerank-sidecar/scripts/finetune/README.md`
+- `.opencode/skills/system-rerank-sidecar/scripts/finetune/tests/test_strip_templates.py`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/003-domain-tuned-finetune/implementation-summary.md`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/003-domain-tuned-finetune/tasks.md`
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -61,7 +129,7 @@ To be filled. Expected sections:
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-To be filled. Expected: multiple cli-codex gpt-5.5 high fast dispatches, one per logical phase (A-F).
+Delivered by cli-codex gpt-5.5 high fast, network=false, in parallel with Phase 1 and Phase 2 prep dispatches. Scope was limited to plan.md Phase A and Phase B: scripts skeleton, `strip_templates()`, unit tests, sample inspection, and packet documentation updates.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -90,39 +158,54 @@ To be filled. Expected: multiple cli-codex gpt-5.5 high fast dispatches, one per
 <!-- ANCHOR:verification -->
 ## Verification
 
-To be filled. Expected commands:
+Commands run:
 
 ```bash
-# Phase B verification
 cd .opencode/skills/system-rerank-sidecar
-.venv/bin/python -m pytest scripts/finetune/tests/test_strip_templates.py
-
-# Phase C verification
-.venv/bin/python scripts/finetune/verify_split.py train.jsonl test.jsonl
-# Expected: no packet_id appears in both
-
-# Phase D training (long-running)
-.venv/bin/python scripts/finetune/train.py --base ms-marco-MiniLM-L-6-v2 \
-  --epochs 3 --batch 16 --lr 2e-5 \
-  --train train.jsonl --test test.jsonl --output ./checkpoints/
-
-# Phase E eval
-.venv/bin/python scripts/finetune/eval_on_fixture.py \
-  --model ./checkpoints/best/ --fixture <50-probe-path> \
-  --output evidence/finetune-bench-<date>.json
-.venv/bin/python scripts/finetune/eval_on_fixture.py \
-  --model ./checkpoints/best/ --eval-set structural-neighbors.jsonl \
-  --output evidence/anti-overfit-<date>.json
-
-# Phase F (PROMOTE only) — live memory_search
-# (via MCP, captured as snippets in this summary)
-
-# Strict-validate
-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
-  .opencode/specs/.../011-spec-memory-rerank-decision-arc/003-domain-tuned-finetune --strict
-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
-  .opencode/specs/.../011-spec-memory-rerank-decision-arc --strict
+.venv/bin/python -m pytest scripts/finetune/tests/test_strip_templates.py -v
+.venv/bin/python -m py_compile scripts/finetune/*.py scripts/finetune/tests/*.py
+for module in strip_templates generate_triples verify_split train eval_on_fixture publish; do .venv/bin/python -m scripts.finetune.${module} --help >/tmp/finetune_${module}_help.txt || exit 1; done
+python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-rerank-sidecar/scripts/finetune
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/003-domain-tuned-finetune --strict
 ```
+
+Pytest output:
+
+```text
+============================= test session starts ==============================
+platform darwin -- Python 3.11.14, pytest-9.0.3, pluggy-1.6.0 -- .../.venv/bin/python
+collected 10 items
+
+scripts/finetune/tests/test_strip_templates.py::test_removes_yaml_frontmatter PASSED [ 10%]
+scripts/finetune/tests/test_strip_templates.py::test_removes_anchor_comments_only PASSED [ 20%]
+scripts/finetune/tests/test_strip_templates.py::test_removes_speckit_comments PASSED [ 30%]
+scripts/finetune/tests/test_strip_templates.py::test_removes_numbered_all_caps_section_headers PASSED [ 40%]
+scripts/finetune/tests/test_strip_templates.py::test_removes_language_tagged_fence_delimiters_and_preserves_content PASSED [ 50%]
+scripts/finetune/tests/test_strip_templates.py::test_keeps_untagged_fences_and_does_not_strip_anchor_strings_inside PASSED [ 60%]
+scripts/finetune/tests/test_strip_templates.py::test_nested_anchors_are_removed_without_removing_content PASSED [ 70%]
+scripts/finetune/tests/test_strip_templates.py::test_unterminated_language_tagged_fence_preserves_remaining_content PASSED [ 80%]
+scripts/finetune/tests/test_strip_templates.py::test_multiline_frontmatter_is_removed PASSED [ 90%]
+scripts/finetune/tests/test_strip_templates.py::test_idempotent PASSED   [100%]
+
+============================== 10 passed in 0.01s ==============================
+```
+
+Additional verification:
+
+```text
+[alignment-drift] PASS
+Scanned files: 8
+Findings: 0
+Errors: 0
+Warnings: 0
+Violations: 0
+
+Spec Folder Validation v3.0.0
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+```
+
+This dispatch does not claim full packet completion because Phases C-F are intentionally pending.
 <!-- /ANCHOR:verification -->
 
 ---

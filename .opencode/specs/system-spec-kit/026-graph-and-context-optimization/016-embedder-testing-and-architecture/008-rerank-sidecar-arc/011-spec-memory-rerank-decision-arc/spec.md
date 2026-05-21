@@ -12,10 +12,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc"
-    last_updated_at: "2026-05-21T13:00:00Z"
-    last_updated_by: "main_agent"
-    recent_action: "Scaffolded phased decision arc"
-    next_safe_action: "Execute Phase 1 (OFF baseline audit) — cheapest, may close arc"
+    last_updated_at: "2026-05-21T12:57:39Z"
+    last_updated_by: "cli-codex"
+    recent_action: "Phase 1 complete: OFF_DEFICIENT"
+    next_safe_action: "Execute Phase 2 bge-v2-m3 trial using Phase 1 targets"
     blockers: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-phase-parent | v2.2 -->
@@ -50,8 +50,8 @@ The 010 packet that previously scaffolded "domain-tuned-reranker-finetune" is su
 
 | Phase | Focus | Status | Effort | Gate to next |
 |---|---|---|---|---|
-| `001-off-baseline-audit/` | Quantify OFF baseline on the 50-probe fixture; remove WEIGHT_RERANKER penalty if OFF is acceptable | Planned | ~1 hour | OFF deficient → Phase 2 |
-| `002-bge-v2-m3-trial/` | Add `BAAI/bge-reranker-v2-m3` to sidecar allowlist; A/B vs OFF on the same fixture | Planned | ~4-6 hours | bge-v2-m3 HOLDs → Phase 3 |
+| `001-off-baseline-audit/` | Quantify OFF baseline on the 50-probe fixture; remove WEIGHT_RERANKER penalty if OFF is acceptable | Complete (OFF_DEFICIENT; no patch) | ~1 hour | OFF deficient → Phase 2 |
+| `002-bge-v2-m3-trial/` | Add `BAAI/bge-reranker-v2-m3` to sidecar allowlist; A/B vs OFF on the same fixture | Planned (next) | ~4-6 hours | bge-v2-m3 HOLDs → Phase 3 |
 | `003-domain-tuned-finetune/` | Synthetic triples (with template-stripping) → fine-tune ms-marco or bge-base → publish artifact → A/B | Planned (gated) | ~3-5 days | — (arc terminus) |
 <!-- /ANCHOR:phase-map -->
 

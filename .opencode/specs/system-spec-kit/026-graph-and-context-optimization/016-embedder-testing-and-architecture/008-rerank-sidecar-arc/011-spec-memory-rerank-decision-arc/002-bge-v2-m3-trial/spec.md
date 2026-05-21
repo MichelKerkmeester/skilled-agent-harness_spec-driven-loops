@@ -85,9 +85,10 @@ Determine whether a single allowlist + sidecar config change closes the rerank g
 
 | Target metric | Phase 1 measured | Phase 2 must reach |
 |---|---|---|
-| Recall@5 (overall) | (TBD by Phase 1) | OFF + 0.05 |
-| Probes with zero recall | (TBD by Phase 1) | reduce by ≥50% |
-| Ranking inversions in top-3 | (TBD by Phase 1) | reduce by ≥30% |
+| Recall@5 (overall) | 0.12 | >= 0.17 (OFF + 0.05) |
+| Probe-level recall misses | 44/50 probes missed at @5 | <= 22 misses (reduce by >=50%) |
+| Ranking inversions in top-10 but outside top-5 | 0 probes | keep at 0 |
+| Empty results | 0 probes | keep at 0 |
 
 ### Out of Scope
 

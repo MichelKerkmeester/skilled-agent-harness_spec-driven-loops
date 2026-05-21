@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/003-domain-tuned-finetune"
-    last_updated_at: "2026-05-21T13:00:00Z"
-    last_updated_by: "main_agent"
-    recent_action: "Tasks scaffolded"
-    next_safe_action: "Hold until Phase 2 HOLD verdict"
+    last_updated_at: "2026-05-21T12:55:17Z"
+    last_updated_by: "cli-codex"
+    recent_action: "T001-T008 complete"
+    next_safe_action: "Phase C triple generation follow-on dispatch"
     blockers:
       - "Phase 1 + Phase 2 must complete"
 ---
@@ -37,10 +37,10 @@ _memory:
 
 | Task | P | Description | Status | Evidence |
 |------|---|-------------|--------|----------|
-| T001 | P0 | Decide scripts location (sidecar/finetune/ vs new skill) | `[ ]` | impl-summary §Phase A decision |
-| T002 | P0 | Create directory + skeleton .py files | `[ ]` | ls output |
-| T003 | P0 | Wire pyproject/setup integration | `[ ]` | sidecar/.venv/bin/python -m scripts.finetune.<x> --help works |
-| T004 | P1 | README.md for finetune/ describing each script | `[ ]` | README path |
+| T001 | P0 | Decide scripts location (sidecar/finetune/ vs new skill) | `[x]` | implementation-summary.md §Phase A - Option A selected under `.opencode/skills/system-rerank-sidecar/scripts/finetune/` |
+| T002 | P0 | Create directory + skeleton .py files | `[x]` | `scripts/finetune/{strip_templates.py,generate_triples.py,verify_split.py,train.py,eval_on_fixture.py,publish.py}` plus `__init__.py` |
+| T003 | P0 | Wire pyproject/setup integration | `[x]` | `.venv/bin/python -m scripts.finetune.<module> --help` passed for all six modules; local namespace package used, no pyproject edit due allowed write scope |
+| T004 | P1 | README.md for finetune/ describing each script | `[x]` | `.opencode/skills/system-rerank-sidecar/scripts/finetune/README.md` |
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -52,10 +52,10 @@ _memory:
 
 | Task | P | Description | Status | Evidence |
 |------|---|-------------|--------|----------|
-| T005 | P0 | Implement strip_templates() per plan §Architecture | `[ ]` | code citation |
-| T006 | P0 | Pytest cases for each removal type | `[ ]` | pytest exit 0 |
-| T007 | P0 | Edge case tests (nested anchors, unterminated fences, multi-line frontmatter) | `[ ]` | pytest exit 0 |
-| T008 | P1 | Manual sample inspection on 20 random docs | `[ ]` | impl-summary §Sample Inspection |
+| T005 | P0 | Implement strip_templates() per plan §Architecture | `[x]` | `.opencode/skills/system-rerank-sidecar/scripts/finetune/strip_templates.py` |
+| T006 | P0 | Pytest cases for each removal type | `[x]` | `.venv/bin/python -m pytest scripts/finetune/tests/test_strip_templates.py -v` exit 0, 10 passed |
+| T007 | P0 | Edge case tests (nested anchors, unterminated fences, multi-line frontmatter) | `[x]` | Edge cases covered in `test_strip_templates.py`; pytest exit 0, 10 passed |
+| T008 | P1 | Manual sample inspection on random docs | `[x]` | implementation-summary.md §Sample Inspection records 5 random docs per Phase A/B dispatch scope |
 
 ### Plan Phase C — triple generation
 
