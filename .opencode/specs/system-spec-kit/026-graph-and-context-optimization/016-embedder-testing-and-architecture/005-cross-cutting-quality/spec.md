@@ -51,7 +51,7 @@ The grouping mirrors the per-stack pattern (e.g., 002-mk-spec-memory-stack, 004-
 | `004-skill-local-benchmarks-format/` | 016/005/004: Skill-local `benchmarks/` folder format + report promotion | IN PROGRESS — folder scaffolding + FORMAT.md shipped; benchmark_report.md + READMEs pending sk-doc agent dispatch |
 | `005-cocoindex-install-hygiene/` | 016/005/005: CocoIndex install hygiene | BLOCKED - pipx repair cannot modify `~/.local/pipx` inside this sandbox |
 | `006-benchmark-format-to-sk-doc/` | Consolidate benchmark format mechanics into a single sk-doc reference following the *_creation.md pattern | Complete |
-| `006-cocoindex-install-hygiene-pipx-repair/` | Apply the open pipx editable repair after operator-side pipx config is available | Planned - blocked on operator pipx config |
+| `007-cocoindex-install-hygiene-pipx-repair/` | Apply the open pipx editable repair after operator-side pipx config is available | Planned - blocked on operator pipx config |
 <!-- /ANCHOR:phase-map -->
 
 <!-- ANCHOR:cross-refs -->

@@ -20,7 +20,7 @@
     ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py",
     ".opencode/skills/mcp-coco-index/mcp_server/tests/test_code_aware_chunker.py"
   ],
-  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/015-code-aware-chunking-tree-sitter-stage-b",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/015-code-aware-chunking-tree-sitter",
   "description": "Spec: 016/004/015 Code-Aware (Tree-Sitter) Chunking — Stage B",
   "keywords": [
     "spec",

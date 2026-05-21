@@ -46,7 +46,7 @@ Located under: `.opencode/specs/system-spec-kit/026-graph-and-context-optimizati
 |---|---|---|
 | 013-bench-harness-and-fixture-audit | `c801b53f2` | `evidence/phase2-comparison-013-bench-corrected.md` |
 | 014-mirror-dedup-canonical-preference | `872b3be47` | `evidence/phase2-comparison-014-dedup.md` |
-| 015-code-aware-chunking-tree-sitter-stage-b | `cd8f04bc3` | `evidence/phase2-comparison-015-treesitter.md` + delta |
+| 015-code-aware-chunking-tree-sitter | `cd8f04bc3` | `evidence/phase2-comparison-015-treesitter.md` + delta |
 | 016-query-expansion-identifier-bridging | `1638f6835` | `evidence/phase2-comparison-016-query-expansion.md` |
 | 017-hybrid-fusion-empirical-recalibration | `24471c843` + `ee788254d` | `evidence/cells/*.json` + `sweep-results.md` + `phase2-comparison-017-recalibrated.md` |
 | 018-rerank-matrix-rebench | `38d4e2d62` | `evidence/rerank-matrix-results.md` + `phase2-comparison-018-final.md` + `evidence/nomic-coderankembed/phase2-comparison-nomic.md` |

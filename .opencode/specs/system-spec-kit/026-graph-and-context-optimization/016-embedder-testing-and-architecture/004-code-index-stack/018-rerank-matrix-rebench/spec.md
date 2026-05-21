@@ -268,7 +268,7 @@ Dependencies:
 ## 9. CROSS-LINKS
 
 - Arc parent: `../spec.md` (004-code-index-stack)
-- Predecessor packets (shipped): `../013-bench-harness-and-fixture-audit/`, `../014-mirror-dedup-canonical-preference/`, `../015-code-aware-chunking-tree-sitter-stage-b/`, `../016-query-expansion-identifier-bridging/`, `../017-hybrid-fusion-empirical-recalibration/`
+- Predecessor packets (shipped): `../013-bench-harness-and-fixture-audit/`, `../014-mirror-dedup-canonical-preference/`, `../015-code-aware-chunking-tree-sitter/`, `../016-query-expansion-identifier-bridging/`, `../017-hybrid-fusion-empirical-recalibration/`
 - Origin of reranker candidates: `../011-rerank-model-fit-investigation/research/` (10-iter deep-research + Phase 2 bench)
 - Existing reranker code: `cocoindex_code/reranker.py` (BGE + path-class), `cocoindex_code/rerankers_jina_v3.py` (jina-v3)
 - ADR target: `../../002-spec-memory-stack/004-spec-memory-embedder-bake-off/decision-record.md` (append ADR-021)

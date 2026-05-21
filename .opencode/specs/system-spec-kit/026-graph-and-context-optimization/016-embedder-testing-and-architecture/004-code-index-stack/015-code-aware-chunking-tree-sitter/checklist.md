@@ -6,7 +6,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/015-code-aware-chunking-tree-sitter-stage-b"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/015-code-aware-chunking-tree-sitter"
     last_updated_at: "2026-05-19T15:35:00Z"
     last_updated_by: "main-agent"
     recent_action: "Bench gate completed via main agent recovery; CHK-024 + CHK-025 closed"
@@ -125,7 +125,7 @@ _memory:
 ## File Organization
 
 - [x] CHK-050 [P0] New evidence lives under the scoped 015 packet.
-  - **Evidence**: blocked comparison and delta placeholders live under `015-code-aware-chunking-tree-sitter-stage-b/evidence/`.
+  - **Evidence**: blocked comparison and delta placeholders live under `015-code-aware-chunking-tree-sitter/evidence/`.
 - [x] CHK-051 [P1] Historical 014 artifacts preserved.
   - **Evidence**: no 014 evidence files were edited.
 <!-- /ANCHOR:file-org -->

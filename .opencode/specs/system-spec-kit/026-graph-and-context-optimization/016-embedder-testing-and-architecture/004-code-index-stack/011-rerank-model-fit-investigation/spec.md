@@ -80,7 +80,7 @@ Out of scope:
 - Training a custom reranker (not in this packet's budget; could be a future packet if no off-the-shelf model wins).
 - Full 18-pair re-bench across all candidates (use targeted 8-probe to keep wall under 30 min total).
 - Changing the embedder default (separate decision — `007/003` handles that).
-- Fixture rewrites (separate packet — `012-fixture-audit-probe-10`).
+- Fixture rewrites (separate packet — `012-fixture-audit-10-probes`).
 - Path-class re-weighting / boost approach (a different mitigation; can scaffold as 016/004/013 later if reranker swap doesn't fully solve).
 <!-- /ANCHOR:scope -->
 
@@ -142,7 +142,7 @@ Dependencies:
 ## 8. CROSS-LINKS
 
 - **Failure-mode source:** `../../007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md` §4 (Failure Mode Pattern)
-- **Sibling investigation:** `../012-fixture-audit-probe-10/` — orthogonal angle on the same data (does the fixture have wrong expected paths)
+- **Sibling investigation:** `../012-fixture-audit-10-probes/` — orthogonal angle on the same data (does the fixture have wrong expected paths)
 - **Risk analysis context:** `004-extended-bake-off/risk-analysis-rerank-nondeterminism.md` (predates this finding; the structural problem is bigger than non-determinism)
 - **Install hygiene fix that made this measurable:** `../../005-cross-cutting-quality/005-cocoindex-install-hygiene/`
 <!-- /ANCHOR:cross-links -->

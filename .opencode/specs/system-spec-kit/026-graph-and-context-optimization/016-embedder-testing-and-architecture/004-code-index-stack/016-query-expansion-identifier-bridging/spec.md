@@ -276,7 +276,7 @@ Dependencies:
 ## 9. CROSS-LINKS
 
 - Arc parent: `../spec.md` (004-code-index-stack)
-- Predecessor packets (shipped): `../013-bench-harness-and-fixture-audit/`, `../014-mirror-dedup-canonical-preference/`, `../015-code-aware-chunking-tree-sitter-stage-b/`
+- Predecessor packets (shipped): `../013-bench-harness-and-fixture-audit/`, `../014-mirror-dedup-canonical-preference/`, `../015-code-aware-chunking-tree-sitter/`
 - Trigger evidence: `../011-rerank-model-fit-investigation/research/phase2-bench/phase2-comparison-corrected.md` (probes 1, 5, 12, 15 are NL→identifier gap)
 - Successor packets: `../017-hybrid-fusion-empirical-recalibration/`, `../018-rerank-matrix-rebench/`
 - ADR target: `../../002-spec-memory-stack/004-spec-memory-embedder-bake-off/decision-record.md` (append ADR-019)

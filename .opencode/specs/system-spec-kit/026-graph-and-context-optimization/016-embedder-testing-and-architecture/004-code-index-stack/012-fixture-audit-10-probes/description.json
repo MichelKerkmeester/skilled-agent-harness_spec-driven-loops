@@ -1,6 +1,6 @@
 {
   "level": "feature",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-probe-10",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-10-probes",
   "description": "Spec: 016/004/012 Fixture Audit (probe 10 first; full 18 second)",
   "keywords": [
     "spec",

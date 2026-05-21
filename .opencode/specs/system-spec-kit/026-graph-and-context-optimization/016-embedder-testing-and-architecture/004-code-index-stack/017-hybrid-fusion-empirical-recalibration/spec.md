@@ -259,7 +259,7 @@ Dependencies:
 ## 9. CROSS-LINKS
 
 - Arc parent: `../spec.md` (004-code-index-stack)
-- Predecessor packets (shipped): `../013-bench-harness-and-fixture-audit/`, `../014-mirror-dedup-canonical-preference/`, `../015-code-aware-chunking-tree-sitter-stage-b/`, `../016-query-expansion-identifier-bridging/`
+- Predecessor packets (shipped): `../013-bench-harness-and-fixture-audit/`, `../014-mirror-dedup-canonical-preference/`, `../015-code-aware-chunking-tree-sitter/`, `../016-query-expansion-identifier-bridging/`
 - Trigger evidence: current RRF defaults `(60, 0.7, 0.7)` documented in `cocoindex_code/query.py` + 011 phase-2 bench shows the candidate set is the bottleneck; fusion tuning is the leverage on the cleaned candidate set.
 - Successor packet: `../018-rerank-matrix-rebench/` (depends on stable hybrid config from 017)
 - ADR target: `../../002-spec-memory-stack/004-spec-memory-embedder-bake-off/decision-record.md` (append ADR-020)

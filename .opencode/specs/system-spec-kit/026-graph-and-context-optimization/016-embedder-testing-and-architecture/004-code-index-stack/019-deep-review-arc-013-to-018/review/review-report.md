@@ -19,7 +19,7 @@
 |--------|--------|------------------|------------|
 | 013-bench-harness-and-fixture-audit | c801b53f2 | PASS | No critical issues found |
 | 014-mirror-dedup-canonical-preference | 872b3be47 | PASS | No critical issues found |
-| 015-code-aware-chunking-tree-sitter-stage-b | cd8f04bc3 | PASS | P2: silent fallback on all exceptions |
+| 015-code-aware-chunking-tree-sitter | cd8f04bc3 | PASS | P2: silent fallback on all exceptions |
 | 016-query-expansion-identifier-bridging | 1638f6835 | CONDITIONAL | P1: shipped opt-in without root cause analysis |
 | 017-hybrid-fusion-empirical-recalibration | 24471c843 + ee788254d | PASS | No critical issues found |
 | 018-rerank-matrix-rebench | 38d4e2d62 | PASS | P2: Lane A bug not tracked in spec artifacts |

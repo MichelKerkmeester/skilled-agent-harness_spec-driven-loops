@@ -6,7 +6,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/015-code-aware-chunking-tree-sitter-stage-b"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/015-code-aware-chunking-tree-sitter"
     last_updated_at: "2026-05-19T15:35:00Z"
     last_updated_by: "main-agent"
     recent_action: "Bench gate ran; 015 result documented"
@@ -151,7 +151,7 @@ Then run the corrected Phase 2 bench with:
 ```bash
 FIXTURE_OVERRIDE=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/code-retrieval-fixture-corrected.json \
 OUTPUT_TAG=-015-treesitter \
-COMPARISON_OUTPUT=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/015-code-aware-chunking-tree-sitter-stage-b/evidence/phase2-comparison-015-treesitter.md \
+COMPARISON_OUTPUT=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/015-code-aware-chunking-tree-sitter/evidence/phase2-comparison-015-treesitter.md \
 bash .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/run-phase2-smoke.sh
 ```
 <!-- /ANCHOR:retry -->

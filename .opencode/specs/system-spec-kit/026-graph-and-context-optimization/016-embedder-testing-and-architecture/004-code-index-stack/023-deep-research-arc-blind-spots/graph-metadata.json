@@ -19,7 +19,7 @@
     "depends_on": [],
     "supersedes": [],
     "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/019-deep-review-013-018-arc",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/019-deep-review-arc-013-to-018",
       "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/022-verification-p1-p2-remediation"
     ]
   },

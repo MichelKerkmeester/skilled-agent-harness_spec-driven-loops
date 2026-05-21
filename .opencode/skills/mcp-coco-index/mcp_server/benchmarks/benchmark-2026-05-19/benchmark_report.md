@@ -397,7 +397,7 @@ bash .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embe
 
 - `013-bench-harness-and-fixture-audit`
 - `014-mirror-dedup-canonical-preference`
-- `015-code-aware-chunking-tree-sitter-stage-b`
+- `015-code-aware-chunking-tree-sitter`
 - `016-query-expansion-identifier-bridging`
 - `017-hybrid-fusion-empirical-recalibration`
 - `018-rerank-matrix-rebench`

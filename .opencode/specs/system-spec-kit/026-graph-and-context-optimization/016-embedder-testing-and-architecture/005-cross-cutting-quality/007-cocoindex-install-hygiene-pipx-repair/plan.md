@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/006-cocoindex-install-hygiene-pipx-repair"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/007-cocoindex-install-hygiene-pipx-repair"
     last_updated_at: "2026-05-21T10:16:26Z"
     last_updated_by: "codex"
     recent_action: "Authored implementation plan stub"
@@ -44,7 +44,7 @@ Wait for operator-side pipx write access, apply the editable install repair, pro
 - All P0 requirements in `spec.md` have direct test or command evidence.
 - The focused test command for this packet exits 0.
 - No production data, runtime DB, or operator-local config is changed without an explicit operator step.
-- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/006-cocoindex-install-hygiene-pipx-repair --strict` exits 0.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/007-cocoindex-install-hygiene-pipx-repair --strict` exits 0.
 <!-- /ANCHOR:quality-gates -->
 
 ---

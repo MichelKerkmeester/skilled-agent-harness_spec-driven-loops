@@ -145,7 +145,7 @@ In order from oldest to most recent:
 ├── 004-code-index-stack/                     (CODE side — sbert backend, CocoIndex)
 │   ├── 004-extended-bake-off/               (May 18 morning bench; 11/18 result INVALIDATED by reraking analysis — see Section 0 ERRATUM in benchmark-results.md)
 │   ├── 011-rerank-model-fit-investigation/  (research-only scaffold; not started)
-│   └── 012-fixture-audit-probe-10/          (research-only scaffold; not started)
+│   └── 012-fixture-audit-10-probes/          (research-only scaffold; not started)
 ├── 005-cross-cutting-quality/
 │   ├── 004-skill-local-benchmarks-format/   (skill-local benchmarks/ format convention shipped)
 │   └── 005-cocoindex-install-hygiene/       (pipx editable + harness $CCC pin shipped; scratch/ may receive MCP RCA from codex)

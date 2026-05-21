@@ -774,7 +774,7 @@ Evidence files:
 
 **Date**: 2026-05-19
 **Status**: Accepted, code shipped; live re-index blocked in current sandbox
-**Packet**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/015-code-aware-chunking-tree-sitter-stage-b/`
+**Packet**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/015-code-aware-chunking-tree-sitter/`
 
 ### Defect
 

@@ -15,7 +15,7 @@
     "reranker-agnosticism",
     "reproducibility"
   ],
-  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/019-deep-review-013-018-arc",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/019-deep-review-arc-013-to-018",
   "maxIterations": 20,
   "convergenceThreshold": 0.10,
   "convergenceConsecutiveStableIters": 3,

@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-probe-10"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-10-probes"
     last_updated_at: "2026-05-18T20:42:02Z"
     last_updated_by: "main_agent"
     recent_action: "Completed fixture audit"
@@ -51,7 +51,7 @@ _memory:
 ## 4. PHASE 3: VERIFICATION
 
 - [x] T004 - Write `research.md` with verdict + recommendation. Evidence: `research.md` §4 recommends changing probe 10 only and keeping probe 18 as clarification-needed.
-- [x] T005 - Run strict-validate; hand off commit if PASSED. Evidence: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-probe-10 --strict` returned `RESULT: PASSED` with 0 errors / 0 warnings.
+- [x] T005 - Run strict-validate; hand off commit if PASSED. Evidence: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-10-probes --strict` returned `RESULT: PASSED` with 0 errors / 0 warnings.
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->

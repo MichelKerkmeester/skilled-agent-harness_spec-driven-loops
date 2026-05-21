@@ -130,7 +130,7 @@ Use separate follow-on packets, not a larger 011:
 
 1. **Path-role calibration packet:** implement query-intent detection, `reference/` classification, factor tuning, and control-aware path priors.
 2. **Custom reranker adapter packet:** add causal-LM scoring, chat-template support, explicit warmup, and error surfacing for mxbai/Qwen3.
-3. **Fixture audit packet:** continue the existing 012 packet for probe 10 first and full-18 expected-path review second. <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-probe-10/spec.md" lines="48-76" />
+3. **Fixture audit packet:** continue the existing 012 packet for probe 10 first and full-18 expected-path review second. <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-10-probes/spec.md" lines="48-76" />
 
 Convergence status: **research complete; Phase 2 should measure.**
 
