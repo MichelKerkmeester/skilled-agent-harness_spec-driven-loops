@@ -51,12 +51,12 @@ _memory:
 | T005 | P0 | Restart sidecar; confirm /health includes bge-v2-m3 | `[ ]` | curl output |
 | T006 | P0 | Pre-fetch via /warmup; record load time + RSS | `[ ]` | impl-summary §Warmup |
 | T007 | P0 | Direct /rerank smoke test (5 dummy candidates + 1 probe query) | `[ ]` | curl output, sigmoid scores in [0,1] |
-| T008 | P0 | Run 50-probe fixture with sidecar pointed at bge-v2-m3 | `[ ]` | evidence/bge-v2-m3-bench-<date>.json |
-| T009 | P0 | Compute per-probe deltas vs Phase 1 OFF baseline | `[ ]` | impl-summary §Benchmark Results table |
-| T010 | P0 | Populate Phase 1 targets table with PASS/FAIL outcomes | `[ ]` | impl-summary §Targets vs Achieved |
-| T011 | P0 | Apply arc invariant gates → verdict (PROMOTE / HOLD) | `[ ]` | impl-summary §Verdict |
-| T012 | P0 | (PROMOTE only) Patch cross-encoder.ts:54 to bge-v2-m3 | `[ ]` | git diff |
-| T013 | P0 | (PROMOTE only) Live memory_search showing cross_encoder_rerank signal | `[ ]` | MCP output snippet |
+| T008 | P0 | Run 50-probe fixture with sidecar pointed at bge-v2-m3 | `[x]` | `evidence/bge-v2-m3-bench-2026-05-21.json`; direct-handler replay completed 50 probes |
+| T009 | P0 | Compute per-probe deltas vs Phase 1 OFF baseline | `[x]` | impl-summary §Per-Probe Deltas vs OFF |
+| T010 | P0 | Populate Phase 1 targets table with PASS/FAIL outcomes | `[x]` | impl-summary §Targets vs Achieved |
+| T011 | P0 | Apply arc invariant gates → verdict (PROMOTE / HOLD) | `[x]` | impl-summary §Verdict = HOLD |
+| T012 | P0 | (PROMOTE only) Patch cross-encoder.ts:54 to bge-v2-m3 | `[x]` | Not applicable: HOLD path; no source patch |
+| T013 | P0 | (PROMOTE only) Live memory_search showing cross_encoder_rerank signal | `[x]` | Not applicable: HOLD path |
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -66,9 +66,9 @@ _memory:
 
 | Task | P | Description | Status | Evidence |
 |------|---|-------------|--------|----------|
-| T014 | P0 | Strict-validate this packet + arc parent | `[ ]` | both exit 0 |
-| T015 | P0 | (HOLD only) Update Phase 3 spec with bge-v2-m3 baseline row in target metrics | `[ ]` | 003 spec diff |
-| T016 | P0 | Commit handoff: exact paths | `[ ]` | impl-summary §Commit Handoff |
+| T014 | P0 | Strict-validate this packet + arc parent | `[x]` | `validate.sh <packet> --strict` exit 0; `validate.sh <arc-parent> --strict` exit 0 |
+| T015 | P0 | (HOLD only) Update Phase 3 spec with bge-v2-m3 baseline row in target metrics | `[x]` | 003 spec §Open Questions Q1 updated with HOLD baseline |
+| T016 | P0 | Commit handoff: exact paths | `[x]` | impl-summary §Commit Handoff |
 <!-- /ANCHOR:phase-3 -->
 
 ---

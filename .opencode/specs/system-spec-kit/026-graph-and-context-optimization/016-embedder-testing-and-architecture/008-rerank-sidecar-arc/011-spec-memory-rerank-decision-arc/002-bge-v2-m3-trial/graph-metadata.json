@@ -29,7 +29,7 @@
       "spec-memory"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -40,6 +40,6 @@
       ".opencode/skills/system-rerank-sidecar/",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts"
     ],
-    "last_indexed_at": "2026-05-21T13:00:00Z"
+    "last_indexed_at": "2026-05-21T14:30:00Z"
   }
 }

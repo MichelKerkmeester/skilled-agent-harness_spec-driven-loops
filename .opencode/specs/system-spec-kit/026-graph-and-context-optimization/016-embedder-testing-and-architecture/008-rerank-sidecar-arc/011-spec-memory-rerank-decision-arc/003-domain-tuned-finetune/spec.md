@@ -193,7 +193,7 @@ Dependencies:
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- **Q1**: Base model — ms-marco-MiniLM-L-6-v2 (33M, fast, but underpowered for diverse markdown) or bge-reranker-base (~110M, stronger baseline, slightly slower)? Phase 2's latency numbers settle this.
+- **Q1**: Base model — ms-marco-MiniLM-L-6-v2 (33M, fast, but underpowered for diverse markdown) or bge-reranker-base (~110M, stronger baseline, slightly slower)? Phase 2 verdict: HOLD; bge-v2-m3 baseline numbers below. bge-v2-m3 reached hit-rate@5 `0.12`, NDCG@10 `0.11`, Recall@5 `0.12`, recall misses `44/50`, ranking inversions `0`, p50 latency `609.126 ms`, p95 latency `10591.245 ms`, and post-run sidecar health timed out. Phase 3 must beat this floor and OFF.
 - **Q2**: Where do the finetune scripts live? Options: (a) inside `system-rerank-sidecar/` as `scripts/finetune/`; (b) new top-level skill `system-rerank-finetune/`. Decision in plan.md §Phase A; option (a) is the lean default unless the scripts grow large.
 - **Q3**: Template-strip should also remove code blocks? Pro: code blocks are content noise for natural-language rerankers. Con: some specs have load-bearing code (config snippets, command outputs). Tentative: strip language-tagged code fences (` ```bash`, ` ```ts`) but keep untagged fences and inline backticks.
 - **Q4**: Publish to HF private repo or just local `~/.cache/huggingface/hub/`? Local is simpler; HF private gives the option to share across machines later. Default: local first, HF as follow-on.
