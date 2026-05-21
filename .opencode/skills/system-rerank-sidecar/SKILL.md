@@ -112,7 +112,12 @@ curl -sf -X POST http://127.0.0.1:8765/warmup
 #### `POST /rerank`
 
 ```json
-{"query": "apple", "documents": ["apple", "quantum chromodynamics"], "top_k": 2}
+{
+  "query": "apple",
+  "documents": ["apple", "quantum chromodynamics"],
+  "top_k": 2,
+  "model": "Qwen/Qwen3-Reranker-0.6B"
+}
 ```
 
 Returns sigmoid-normalized results sorted descending by `relevance_score`:
@@ -131,7 +136,16 @@ curl -sf -X POST http://127.0.0.1:8765/rerank \
   -d '{"query":"apple","documents":["apple","quantum chromodynamics"]}'
 ```
 
-Validation: `documents` must be non-empty; `top_k` is optional and zero-or-greater when set; `index` is the original zero-based document position.
+Validation: `documents` must be non-empty; `top_k` is optional and zero-or-greater when set; `index` is the original zero-based document position; `model` is optional and defaults to `RERANK_MODEL_NAME`. If set, the model must be in the allowlist (`RERANK_ALLOWED_MODELS` env or the default-only set) or the request returns HTTP 400 with the allowed list.
+
+**Multi-model serving** (since v0.2.0): the sidecar can hold multiple cross-encoder models in memory simultaneously, one per consumer. Each model has its own `asyncio.Lock`, so concurrent calls to different models do NOT queue on each other (only same-model calls serialize). Add models via:
+
+```bash
+RERANK_ALLOWED_MODELS="Qwen/Qwen3-Reranker-0.6B,cross-encoder/ms-marco-MiniLM-L-6-v2" \
+  bash scripts/start.sh
+```
+
+mk-spec-memory's `cross-encoder.ts:54` and mcp-coco-index's `HttpSidecarRerankerAdapter.model_name` each send their preferred model on the wire. Spec-memory picks ms-marco-MiniLM (small + fast for opt-in inspection); cocoindex picks Qwen (best quality for code chunks). One sidecar process serves both.
 
 ### Lifecycle
 
@@ -187,7 +201,7 @@ bash .opencode/skills/system-rerank-sidecar/scripts/use-model.sh \
   Qwen/Qwen3-Reranker-0.6B --device mps
 ```
 
-Both consumers (mk-spec-memory + mcp-coco-index) inherit the change automatically — the `/rerank` HTTP contract carries no model field, so swapping the sidecar's model swaps it for everyone.
+Both consumers (mk-spec-memory + mcp-coco-index) inherit the change automatically when they don't specify a `model` field. Since v0.2.0 they DO specify the model (each picks its preferred one), so `use-model.sh` only changes which model the sidecar will load on request — not which one each consumer asks for. To change a consumer's preferred model, edit its config: `cross-encoder.ts:54` for spec-memory, `HttpSidecarRerankerAdapter.model_name` (or `_DEFAULT_RERANK_MODEL`) for cocoindex.
 
 ### Consumers
 

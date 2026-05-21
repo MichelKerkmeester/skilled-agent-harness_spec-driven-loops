@@ -90,6 +90,7 @@ def test_happy_path_returns_reranked_results():
         payload = json.loads(request.content)
         assert payload["query"] == "alpha query"
         assert len(payload["documents"]) == 3
+        assert payload["model"] == _DEFAULT_MODEL  # adapter sends its model_name
         return httpx.Response(
             200,
             json={

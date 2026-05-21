@@ -302,6 +302,7 @@ class HttpSidecarRerankerAdapter:
                     "query": query,
                     "documents": documents,
                     "top_k": rerank_count,
+                    "model": self.model_name,
                 },
             )
         except Exception as exc:

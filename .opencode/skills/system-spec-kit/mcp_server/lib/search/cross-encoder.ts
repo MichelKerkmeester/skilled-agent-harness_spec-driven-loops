@@ -384,6 +384,7 @@ async function rerankLocal(
     body: JSON.stringify({
       query,
       documents: documents.map(d => d.content),
+      model: config.model,
     }),
     signal: AbortSignal.timeout(config.timeout),
   });

@@ -160,7 +160,7 @@ bash scripts/use-model.sh Qwen/Qwen3-Reranker-0.6B --device mps
 bash scripts/use-model.sh <model> --no-restart
 ```
 
-Both consumers (mk-spec-memory + mcp-coco-index) automatically inherit the change — `/rerank` carries no model field, so swapping the sidecar swaps everyone.
+**Multi-model serving** (since v0.2.0): the sidecar can hold multiple cross-encoders simultaneously. Add to the allowlist via `RERANK_ALLOWED_MODELS=modelA,modelB`. Consumers send their preferred model in the `/rerank` body's `model` field; each model has its own lock, so different-model calls don't queue on each other.
 
 ---
 
