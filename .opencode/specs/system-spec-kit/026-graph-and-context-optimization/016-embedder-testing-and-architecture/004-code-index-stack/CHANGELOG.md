@@ -1,359 +1,216 @@
 ---
-title: "Changelog: 004-code-index-stack (CocoIndex semantic-search stack)"
-description: "Plain-English changelog of all code changes to the CocoIndex Python MCP (mcp-coco-index): embedder swap, registry, INSTALL_GUIDE, reranker, chunking tuning, hybrid BM25+RRF fusion, daemon resilience."
+title: "Changelog: 004-code-index-stack (CocoIndex retrieval optimization arc, 22 phases)"
+description: "Consolidated plain-English changelog of the CocoIndex (Python semantic code search) retrieval optimization arc. Covers fixture authoring, multi-candidate embedder bake-offs, hybrid BM25/FTS5 fusion, AST-aware tree-sitter chunking, identifier-bridging query expansion, mirror dedup, empirical RRF recalibration, reranker matrix re-bench locking jina-reranker-v3 as production default at 14/18, daemon resilience research, fixture audit and harness hardening, a 10-iteration deep-review arc with P1 remediation and the deep-research follow-on covering arc blind spots."
+trigger_phrases:
+  - "004-code-index-stack changelog"
+  - "cocoindex stack changelog"
+  - "cocoindex retrieval arc changelog"
+  - "016/004 consolidated changelog"
+  - "jina-reranker-v3 production default"
+importance_tier: "important"
+contextType: "implementation"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: changelog/root.md | v1.0 -->
 
 # Changelog: 004-code-index-stack
 
-> **Plain-English summary of code changes** to the CocoIndex semantic-search MCP (`.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/`). Read this if you want to understand what shipped without diving into TypeScript or Python implementation details.
-
-## What is the CocoIndex stack?
-
-CocoIndex is the **semantic code-search engine** for the workspace. Type `ccc search "how does X work"` and it returns the top-K relevant code chunks via embedding-based similarity. It's wired to the `mk_code_index` MCP so AI agents can search the codebase by intent rather than exact tokens.
-
-This stack ships 10 sub-phases that progressively upgraded CocoIndex from "general-text embedder + heuristic ranking" to "code-tuned embedder + opt-in hybrid lexical fusion + opt-in cross-encoder reranking + daemon resilience."
-
----
-
-## v1.0 — Switch to code-tuned embedder (`001-cocoindex-swap`)
-
-**Shipped:** 2026-05-17
-
-### What changed
-- Replaced the default embedder from Google's general-text `embeddinggemma-300m` to Jina's code-tuned `sbert/jinaai/jina-embeddings-v2-base-code`
-- Added Apple Silicon GPU support (Metal/MPS) so reindex runs ~3-4× faster on M-series Macs
-- Auto-detects the best device: `mps` on Apple Silicon → `cuda` on NVIDIA → `cpu` fallback
-- Validates the `COCOINDEX_CODE_DEVICE` env override (only accepts `cuda`/`mps`/`cpu` — silently falls back if you typo it)
-- Added a registry-based check: unknown `COCOINDEX_CODE_EMBEDDING_MODEL` env values log a warning and fall back to the default instead of crashing
-
-### Why it matters
-- Code-specific embedders understand programming-language semantics better than general-text models. Same query → more relevant results.
-- Apple Silicon users no longer wait 60+ minutes for reindex; it's ~25 minutes.
-- Typos in env vars no longer brick the daemon — they just produce a warning.
-
-### Files affected
-- `mcp_server/cocoindex_code/config.py` — added `_resolve_device()`, `COCOINDEX_CODE_DEVICE` validation, embedder-registry validation
-- `mcp_server/cocoindex_code/indexer.py` — passes device to sentence-transformers
-- `mcp_server/cocoindex_code/registered_embedders.py` (NEW) — declarative registry of 7 vetted embedders
+> Plain-English changelog covering all 22 sub-phases of the CocoIndex retrieval optimization arc. Read this if you want to understand what shipped in semantic code search without diving into Python.
+>
+> **Spec folder:** `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/` (phase parent, 22 sub-phases, numbering skips 021)
+>
+> **Stack:** `.opencode/skills/mcp-coco-index/` (CocoIndex Python MCP server, indexer, query pipeline, fts_index, fusion, reranker, query_expansion, chunkers and benchmarks).
+>
+> **Headline:** Production default after the arc = `sbert/nomic-ai/CodeRankEmbed` embedder + `jina-reranker-v3` second-stage reranker at 14/18 hit rate on the corrected fixture.
 
 ---
 
-## v1.1 — 18-pair fixture for benchmarking (`002-baseline-fixture`)
+## 2026-05-21
 
-**Shipped:** 2026-05-17
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/` (Phase Parent)
 
-### What changed
-- Authored an 18-pair code-retrieval fixture (query → expected file path) at `002-baseline-fixture/evidence/code-retrieval-fixture.json`
-- 18 query/expected-path pairs split across 3 difficulty buckets (easy/medium/hard)
-- Hit normalization: a result counts as a hit if ANY of `.opencode/`, `.claude/`, `.codex/`, `.gemini/` mirror trees match the expected path (the repo has 4 mirrored skill trees)
+### Summary
 
-### Why it matters
-- Provides a stable benchmark to measure "is this embedder/config better?" instead of vibes
-- Reusable across all subsequent embedder/pipeline changes — you can A/B test any change against the same 18 queries
+This arc is the CocoIndex parallel of the 002 mk-spec-memory work. It covers the full retrieval stack from embedder selection through hybrid search, reranking, chunking strategy and query expansion. The arc opened with the question "is gemma the right code embedder?" and closed with an empirically-grounded answer: under the fully fixed pipeline (mirror dedup, AST-aware chunking, RRF recalibration), `sbert/nomic-ai/CodeRankEmbed` plus `jina-reranker-v3` reaches 14 of 18 hits on the corrected fixture. The journey took 22 phases because every early answer was conditional on later infrastructure being correct and the bench harness itself needed hardening before any embedder verdict could be trusted.
 
----
+The structural wins are the durable ones. Mirror dedup collapses 4 runtime mirrors to one canonical representative before the rerank window, recovering up to 75 percent of rerank slots that were previously wasted on duplicates (phase 014). AST-aware tree-sitter chunking replaces blind line-windowing so each top-level definition becomes its own chunk with full body and JSDoc, eliminating the failure mode where 9-line import headers ranked above function bodies (phase 015). Identifier-bridging query expansion splits camelCase, snake_case, PascalCase and kebab-case to bridge natural-language queries to identifier-heavy corpus tokens, though the empirical bench surfaced a regression and the feature ships default-off pending further tuning (phase 016). Empirical RRF recalibration with a 7-cell sweep locked picker-latency-optimum defaults at K=60, vec_weight=0.9, fts_weight=0.5 (phase 017).
 
-## v1.2 — First competitive bake-off (`003-comparison-measure`)
+Quality assurance came through a 10-iteration deep-review of phases 013-018 plus a P1 remediation packet that closed 9 defects across production code, tests, operator docs and benchmark harnesses (phases 019, 020, 022). A deep-research follow-on (phase 023) scaffolded an 8-packet arc covering retrieval observability, request-budget hardening, upstream rebase spike, metadata fingerprint, doctor model-swap UX, prompt license registry, fixture calibration and a deferred vec0 migration fix.
 
-**Shipped:** 2026-05-17
+Honest caveats: phase 005 (declarative registry) and 006 (install-guide updates) remained in planning state in this packet though the actual registry now exists in `cocoindex_code/registered_embedders.py` per parent spec. Phase 008 (chunking strategy tuning) is research-only with no implementation packet of its own. Phase 010 (daemon resilience) is Research-Complete: the 7-patch defense-in-depth plan is documented but the patches themselves were not applied inside this packet. Phases 019 and 022 are non-standard review packets without canonical spec files.
 
-### What changed
-- Ran the 18-pair fixture against 4 candidates: `jina-embeddings-v2-base-code` (default), `embeddinggemma-300m` (prior baseline), `nomic-ai/CodeRankEmbed`, `BAAI/bge-code-v1`
-- Discovered nomic + bge daemon-crash failure during indexing — captured for later remediation
-- Authored ADR-001 ratifying jina-code as the production default
+### Included Phases
 
-### What we learned
-- jina-code and gemma TIED at 7/18 hits = 38.9% post-normalization
-- jina-code WON on p95 latency (590ms vs gemma's 4011ms — gemma has a slow tail)
-- nomic + bge couldn't be measured — both failed mid-index
+| Phase | Slug | Status | Shipped |
+|---|---|---|---|
+| 001 | [cocoindex-swap](./001-cocoindex-swap/) | Pending (planning) | not yet |
+| 002 | [baseline-fixture](./002-baseline-fixture/) | Complete | 2026-05-17 |
+| 003 | [comparison-measure](./003-comparison-measure/) | Complete (ADR-001 KEEP-JINA-CODE) | 2026-05-17 |
+| 004 | [extended-bake-off](./004-extended-bake-off/) | Complete (bge-code-v1 lead, later superseded) | 2026-05-18 |
+| 005 | [declarative-registry](./005-declarative-registry/) | Pending (registry exists in code, packet docs not updated) | not yet (per packet) |
+| 006 | [install-guide-updates](./006-install-guide-updates/) | Planned (blocked on 005 packet docs) | not yet |
+| 007 | [reranker-integration](./007-reranker-integration/) | Implemented (opt-in) | 2026-05-18 |
+| 008 | [chunking-strategy-tuning](./008-chunking-strategy-tuning/) | Research-only | n/a |
+| 009 | [hybrid-search-bm25-fusion](./009-hybrid-search-bm25-fusion/) | Implemented (default-on) | 2026-05-18 |
+| 010 | [daemon-resilience](./010-daemon-resilience/) | Research-Complete (7 patches documented, not applied in this packet) | 2026-05-07 |
+| 011 | [rerank-model-fit-investigation](./011-rerank-model-fit-investigation/) | Research-only | 2026-05-18 |
+| 012 | [fixture-audit-10-probes](./012-fixture-audit-10-probes/) | Research-only | 2026-05-18 |
+| 013 | [bench-harness-and-fixture-audit](./013-bench-harness-and-fixture-audit/) | Complete | 2026-05-19 |
+| 014 | [mirror-dedup-canonical-preference](./014-mirror-dedup-canonical-preference/) | Complete | 2026-05-19 |
+| 015 | [code-aware-chunking-tree-sitter](./015-code-aware-chunking-tree-sitter/) | Complete | 2026-05-19 |
+| 016 | [query-expansion-identifier-bridging](./016-query-expansion-identifier-bridging/) | Complete (default-off) | 2026-05-19 |
+| 017 | [hybrid-fusion-empirical-recalibration](./017-hybrid-fusion-empirical-recalibration/) | Complete | 2026-05-19 |
+| 018 | [rerank-matrix-rebench](./018-rerank-matrix-rebench/) | Complete (ADR-021, jina-reranker-v3 locked) | 2026-05-19 |
+| 019 | [deep-review-arc-013-to-018](./019-deep-review-arc-013-to-018/) | Review packet | 2026-05-19 |
+| 020 | [deep-review-p1-p2-remediation](./020-deep-review-p1-p2-remediation/) | Complete (9 P1 fixes) | 2026-05-19 |
+| 022 | [verification-p1-p2-remediation](./022-verification-p1-p2-remediation/) | Verification review packet | 2026-05-19 |
+| 023 | [deep-research-arc-blind-spots](./023-deep-research-arc-blind-spots/) | Phase parent (8-child scaffold) | 2026-05-20 |
 
-### Why it matters
-- The hit rate (38.9%) is REPO-specific and stress-tested intentionally. It's the lower bound for measuring future improvements.
-- Confirmed jina-code as the safe production default with measured evidence (not just intuition)
+> Phase 021 is intentionally skipped. There is no `021-*` folder under this packet.
 
-### Files affected
-- `004-code-index-stack/003-comparison-measure/decision-record.md` (ADR-001)
-- `004-code-index-stack/003-comparison-measure/evidence/*.csv` + `.jsonl` + runlog
+### Added
 
----
+#### 18-pair deterministic baseline fixture (002)
 
-## v1.3 — Extended bake-off with stella (`004-extended-bake-off`)
+Without a deterministic fixture, embedder comparisons have no measurable answer. Phase 002 authored an 18-pair query-to-expected-source fixture covering mk-spec-memory embedder code, Code Graph libraries, CocoIndex Python code and test files. Distribution was 5 easy, 7 medium and 6 hard difficulty pairs. A `fixture-validate.sh` script checked path existence and pattern compatibility. This fixture became the substrate for every subsequent benchmark phase, including the final 014-018 re-bench.
 
-**Shipped:** 2026-05-18
+&nbsp;
 
-### What changed
-- Authored a reusable bash harness at `evidence/run-extended-bake-off.sh` (replaced 003's ad-hoc approach)
-- Pre-pulls models via Python before invoking `ccc index` (works around the nomic/bge daemon-crash issue from v1.2)
-- Added `stella_en_400M_v5` (Alibaba's 1024-dim text+code model) to the registry and benchmark
-- Snapshot/restore safety: snapshots the index before each candidate, auto-restores jina-code baseline after
+#### Reranker integration (007)
 
-### What we learned
-- Stella scored **0/18 hits** — far worse than jina-code's 38.9%
-- This confirmed a key insight: **embedder swap is NOT the dominant lever** on this fixture. Structural changes (chunking, hybrid, reranker) matter much more.
+Phase 007 added opt-in cross-encoder reranker support. The original first-pick was Alibaba-NLP/gte-multilingual-reranker-base with K=20, rolled out behind a `COCOINDEX_RERANK` flag. The integration point sits after hybrid RRF fusion, replaces the final score with the reranker score and preserves the original fusion score for auditability. Later phases (018) re-benched the reranker choice under the fully fixed pipeline and promoted `jina-reranker-v3` to production default.
 
-### Why it matters
-- Saved future operators from chasing embedder swaps. Set up the harness for future structural-change A/B tests.
+&nbsp;
 
-### Files affected
-- `mcp_server/cocoindex_code/registered_embedders.py` (added stella entry)
-- `004-extended-bake-off/evidence/run-extended-bake-off.sh` (NEW harness)
+#### Hybrid BM25 + RRF fusion (009)
 
----
+Combining dense semantic search with lexical BM25 (exact word matching) improves recall by catching exact tokens that embeddings may miss. Phase 009 shipped SQLite FTS5 as the embedded lexical engine plus RRF (reciprocal rank fusion) as the fusion algorithm, default-on via `COCOINDEX_HYBRID=true`. Hybrid search became the new default retrieval mode after this phase.
 
-## v1.4 — Declarative embedder registry (`005-declarative-registry`)
+&nbsp;
 
-**Shipped:** 2026-05-17
+#### Mirror-aware dedup (014)
 
-### What changed
-- Introduced `registered_embedders.py` as a single-source-of-truth for 7 vetted embedders (jina-code default + gemma baseline + nomic-CodeRankEmbed + bge-code-v1 + jina-v2-base-en + Salesforce SFR-Embedding-Code-2B_R + stella)
-- Each entry carries: name, dim, RAM budget, disk size, MPS compatibility, code/text category, HuggingFace URL, operator-facing notes
-- `config.py` rejects unknown `COCOINDEX_CODE_EMBEDDING_MODEL` values and falls back to default with a warning (no silent acceptance)
+Up to 75 percent of rerank slots can be redundant when 4 runtime mirrors of every file compete (the same file appears under `.opencode/`, `.claude/`, `.gemini/`, `.codex/`). Phase 014 implemented mirror-aware dedup in `_dedup_and_rank_hybrid_rows()` so the 4 mirrors collapse to one canonical representative before the rerank window. A new `COCOINDEX_CANONICAL_MIRROR` config var defaults to `.opencode`. The dedup runs in two passes: collapse mirror groups first, then run existing content-hash dedup. ADR-017 documents the canonical-mirror policy.
 
-### Why it matters
-- Operators can browse the registry to pick alternative embedders WITHOUT digging into HuggingFace model cards
-- Typos in env vars produce clear warnings instead of cryptic loading errors
-- New embedders go into ONE file (the registry), not scattered across multiple config sites
+&nbsp;
 
-### Files affected
-- `mcp_server/cocoindex_code/registered_embedders.py` (NEW)
-- `mcp_server/cocoindex_code/config.py` (registry-aware validation)
+#### AST-aware tree-sitter chunking (015)
 
----
+The default `RecursiveSplitter` did blind line-windowing, which produced information-poor candidates like 9-line import headers ranking above function bodies. Phase 015 replaced it with AST-aware chunking using tree-sitter grammars. Each top-level definition becomes its own chunk with full body and JSDoc. Six languages are supported (TypeScript, Python, JavaScript, Go, Rust, Java) with a fallback to RecursiveSplitter for unsupported languages. ADR-018 documents the AST upgrade.
 
-## v1.5 — INSTALL_GUIDE updates (`006-install-guide-updates`)
+&nbsp;
 
-**Shipped:** 2026-05-17
+#### Identifier-bridging query expansion (016)
 
-### What changed
-- Added "Choosing an embedder" section to `INSTALL_GUIDE.md` listing all registered embedders with RAM/disk/category guidance
-- Documented the `COCOINDEX_CODE_DEVICE` and `COCOINDEX_CODE_EMBEDDING_MODEL` env overrides
-- MPS auto-detect documentation for Apple Silicon users
+Natural-language queries like "filesystem walker" do not match identifier-heavy corpus tokens like `findFiles`. Phase 016 implemented identifier-bridging expansion before encoding: split camelCase, snake_case, PascalCase and kebab-case, generate identifier variants, apply a code-domain synonym dictionary extensible via env var. Ships **default-off** (`COCOINDEX_QUERY_EXPANSION=false`) after the bench showed deterministic expansion regressed all three lanes. The contract and rollback path are documented in ADR-019.
 
-### Why it matters
-- New users can pick + configure an embedder without reading the source
+&nbsp;
 
-### Files affected
-- `mcp-coco-index/INSTALL_GUIDE.md`
-- `mcp-coco-index/README.md`
+#### RRF parameter sweep harness (017)
 
----
+Inherited RRF defaults (K=60, vec_weight=0.7, fts_weight=0.7) were never empirically tuned on this corpus. Phase 017 ran a 7-cell local-neighbourhood sweep on bge-code-v1. All cells tied at 12 of 18 hits, making RRF tuning a no-op on hit rate. The picker selected the latency-optimum cell (K=60, V=0.9, F=0.5) for a 2.8 percent p95 win at identical recall. The sweep harness supports broader future grids. ADR-020 documents the empirical finding.
 
-## v1.6 — Reranker integration (`007-reranker-integration`)
-
-**Shipped:** 2026-05-18
-**Commit:** `5b14be4da` + advisory fixes (F deep-review)
-
-### What changed
-- Added a cross-encoder reranker layer using Alibaba's `gte-multilingual-reranker-base` (Apache-2.0, 306M params, 8192 ctx)
-- Sits AFTER the first-stage vector retrieval, BEFORE final result slicing
-- Cross-encoder score REPLACES the RRF/vector score (the original score is preserved as `pre_rerank_score` for auditability)
-- Top-K to rerank: K=20 (matches `fetch_k = unique_k * 4` overfetch)
-- Lazy loads the model on first use (~0.61GB RAM fp16); gracefully falls back to unchanged order if model load fails
-
-### How to enable
-- Set env var: `COCOINDEX_RERANK=true` (default OFF — opt-in)
-- Override model: `COCOINDEX_RERANK_MODEL=<HF model name>` (default `Alibaba-NLP/gte-multilingual-reranker-base`)
-- Override top-K: `COCOINDEX_RERANK_TOP_K=20` (1-100 bounded)
-
-### Why it matters
-- Cross-encoders are slower per-pair but MUCH more accurate at relevance than embedding cosine similarity
-- Research estimated +2 to +4 hits on the 18-pair fixture (50.0% → 61.1% — biggest potential lift of the 3 §3 improvements)
-- Opt-in posture: operators can A/B test before promoting to default-on
-
-### Files affected
-- `mcp_server/cocoindex_code/reranker.py` (NEW — 140 LOC)
-- `mcp_server/cocoindex_code/query.py` (integration in `query_codebase()` after RRF fusion)
-- `mcp_server/cocoindex_code/config.py` (3 new env vars)
-- `mcp_server/cocoindex_code/protocol.py` (`pre_rerank_score` + `reranker_score` response fields)
-- `mcp_server/tests/test_reranker.py` (NEW — 7 tests including fallback paths)
+&nbsp;
 
----
-
-## v1.7 — Chunking tuning (`008-chunking-strategy-tuning`)
-
-**Shipped:** 2026-05-18
-**Commit:** `e0560b0a9`
+#### 8-packet deep-research follow-on (023)
 
-### What changed
-- Raised `CHUNK_SIZE` from 1000 chars → **1500 chars** (Stage A — conservative)
-- Raised `CHUNK_OVERLAP` from 150 chars → **200 chars** (mild)
-- `MIN_CHUNK_SIZE` unchanged at 250
-- Exposed all 3 as env-tunable: `COCOINDEX_CODE_CHUNK_SIZE` (100-8000), `COCOINDEX_CODE_CHUNK_OVERLAP` (0-1000), `COCOINDEX_CODE_MIN_CHUNK_SIZE` (50-1000)
-- Indexer reads from `Config` instead of module constants on each call (so future operator changes don't require a rebuild)
-
-### How to enable
-- These are NEW DEFAULTS — they take effect automatically on next reindex
-- To go back to the old 1000/150: `COCOINDEX_CODE_CHUNK_SIZE=1000 COCOINDEX_CODE_CHUNK_OVERLAP=150`
-
-### Why it matters
-- Literature (Wu et al. 2026, Zhang et al. 2025, BEIR/LlamaIndex docs) converges on 512-1024 tokens as optimal for code retrieval. The old 1000-char default mapped to only ~250-400 tokens — way below optimum.
-- Research estimated +4-6pp lift on the 18-pair fixture (38.9% → 43-45%)
-- Reduces corpus size by ~25-30% (~127K chunks → ~90-95K chunks), making reindex faster
-- Stage B (raise to 2000 + per-language overrides) is deferred until Stage A reindex benchmark confirms the lift
-
-### Files affected
-- `mcp_server/cocoindex_code/indexer.py` (constants + per-call Config lookup)
-- `mcp_server/cocoindex_code/config.py` (3 new bounded env vars + `_parse_int_env` helper)
-- `mcp_server/tests/test_config.py` (6 new chunk-config tests, 16/16 pass)
-
----
-
-## v1.8 — Hybrid search with BM25 + RRF (`009-hybrid-search-bm25-fusion`)
-
-**Shipped:** 2026-05-18
-**Commit:** `93ba0ed8e`
-
-### What changed
-- Added SQLite FTS5 (full-text search 5) as a lexical-search engine alongside the existing semantic vector search
-- Added Reciprocal Rank Fusion (RRF) to merge results from BOTH lanes (vector + lexical) with rank-robust scoring
-- Mirrors mk-spec-memory's proven `sqlite-fts.ts` + `rrf-fusion.ts` pattern (no greenfield design)
-- New virtual table `code_chunks_fts` is populated during indexing with `unicode61` tokenizer (handles code identifiers cleanly)
-- Min-max normalizes scores per channel before fusion (matches mk-spec-memory's stage2-fusion contract)
-
-### How to enable
-- Set env var: `COCOINDEX_HYBRID=true` (default OFF — opt-in)
-- Tune the weights: `COCOINDEX_HYBRID_VECTOR_WEIGHT=0.7`, `COCOINDEX_HYBRID_FTS5_WEIGHT=0.7` (range 0.0-2.0)
-- Tune RRF k-value: `COCOINDEX_HYBRID_RRF_K=60` (1-500, default 60 per Cormack et al. 2009 standard)
-
-### Why it matters
-- Pure semantic search misses queries with exact code-identifier matches (e.g., "where is `getAdapter` called"). BM25 nails those.
-- Pure BM25 misses paraphrased intent (e.g., "code that loads embedder by name"). Vector search nails those.
-- Fusion gets BOTH — typical lift in hybrid retrieval literature is +5-15pp.
-- Telemetry split lets you see which lane (`vector_only` vs `hybrid_rrf`) handled each query.
+The deep-research pass found a cluster of retrieval, metadata, operator-UX and upstream-drift gaps. Phase 023 is a phase parent scaffolding an 8-packet follow-on arc covering: request-budget hardening (001), retrieval observability (002), upstream rebase spike (003), metadata fingerprint (004), doctor model-swap UX (005), prompt license registry (006), fixture calibration (007) and a deferred vec0 migration fix (008).
 
-### Files affected
-- `mcp_server/cocoindex_code/fts_index.py` (NEW — FTS5 table management + queries)
-- `mcp_server/cocoindex_code/fusion.py` (NEW — `rrf_fuse()` per mk-spec-memory pattern)
-- `mcp_server/cocoindex_code/query.py` (extended `query_codebase()` with hybrid dispatch — +347 LOC)
-- `mcp_server/cocoindex_code/indexer.py` (FTS5 populate hook)
-- `mcp_server/cocoindex_code/protocol.py` (response gains `fts5_score` + `rrf_score`)
-- `mcp_server/cocoindex_code/config.py` (4 new env vars)
-- `mcp_server/tests/test_fts_index.py` (NEW — 6 tests)
+### Changed
 
----
+#### Production embedder default (003 → 004 → later)
 
-## v1.9 — Daemon resilience (`010-daemon-resilience`)
+Phase 003 ran the primary jina-code vs gemma comparison and shipped ADR-001 KEEP-JINA-CODE. Phase 004's extended bake-off (4 candidates with hybrid + reranker defaults enabled) measured `BAAI/bge-code-v1` at 11 of 18 hits at 504 ms median latency, outperforming jina-code, gemma and CodeRankEmbed which all tied at 9 of 18. Stella was skipped due to xformers dependency. The reranker was swapped from GTE to `BGE-reranker-v2-m3` due to MPS (Apple Silicon Metal Performance Shaders) compatibility. The bge-code-v1 lead was later invalidated when the corrected pipeline (013-017) and the re-bench (018) reshuffled the verdict. **The current production embedder default `sbert/nomic-ai/CodeRankEmbed` was promoted in `001-local-embeddings-foundation/018`** outside this packet. The 004 results documented the empirical journey but the durable default lives in the foundation arc.
 
-**Shipped:** 2026-05-17 (pulled in from 026/011)
+&nbsp;
 
-### What changed
-- 7-patch defense-in-depth fix for a socket-unlink cascade that caused leaked-zombie daemon processes
-- Removed unconditional socket-unlink at daemon startup
-- Made `start_daemon` atomic (no race window between fork + listen)
-- Fixed double `logger.exception` per disconnect (was 90% of CPU spike in log spam)
-- 6 unsafe `send_bytes` sites wrapped with proper error handling
-- Idempotent `fcntl.flock` to prevent multi-daemon overlap
+#### Production reranker default (007 → 018)
 
-### Why it matters
-- Before: long-lived sessions accumulated zombie daemon processes + occasional CPU-spinning log spam
-- After: stable single-daemon lifecycle; daemons exit cleanly on shutdown
+Phase 007 shipped the GTE reranker as an opt-in. Phase 018 re-benched all reranker candidates under the fully fixed pipeline from 013 to 017 and locked `jina-reranker-v3` as the production default at 14 of 18 hits versus BGE at 12 of 18 and BGE-plus-path-class at 13 of 18. BGE remains opt-in via env override. ADR-021 documents the 4-lane verdict and closes the arc.
 
-### Files affected
-- `mcp_server/cocoindex_code/daemon.py`
-- `mcp_server/cocoindex_code/cli.py`
-- `mcp_server/cocoindex_code/observability.py`
+&nbsp;
 
----
+#### Bench harness hardening (013)
 
-## v1.10 — Reranker default model swap (GTE→BGE) + hybrid/rerank promoted to default-on
+Path-extraction regex in `run-phase2-smoke.sh` was too permissive and misclassified true hits as misses by including backticks, import-statement wrappers and mock-data literals. Phase 013 hardened the regex, added a path-existence sanity check that discards non-file tokens, then audited all 18 probes against live database presence to flag unindexed expected paths. Probe 10 expected an unindexed `.js` dist file, making it a guaranteed miss under any reranker. The corrected fixture (`code-retrieval-fixture-corrected.json`) became the new measurement baseline. ADR-016 documents defects and fixes.
 
-**Shipped:** 2026-05-18
-**Commits:** `4ec84cec2` (defaults flip) + `c6a6493e6` (reranker model swap)
+&nbsp;
 
-### What changed
+#### P1 remediation across 9 defects (020)
 
-Two related fixes shipped on the same day:
+Phase 019's deep-review found 9 P1 defects across production code, tests, operator docs and benchmark harnesses. Phase 020 remediated all 9. Fixes included stale defaults in `settings.py`, docs contradictions in `README.md`, `SKILL.md` and `INSTALL_GUIDE.md`, unsafe env parsing, misleading success reporting and overpowering hybrid boosts. Full mcp-coco-index pytest suite passes. Ruff lint passes for `cocoindex_code` and `tests`.
 
-**Fix 1 — Defaults flipped to default-on** (`4ec84cec2`)
+### Fixed
 
-- `COCOINDEX_HYBRID` default `false` → **`true`** (SQLite FTS5 + RRF fusion now on by default)
-- `COCOINDEX_RERANK` default `false` → **`true`** (cross-encoder rerank now on by default)
-- Operators opt **out** by setting either env var to `false`; the prior opt-in posture is reversed
-- Test updates: 3 assertions flipped in `test_config.py` + `test_reranker.py`; 32/32 tests still pass
+- **Path-extraction regex too permissive** that misclassified true hits as misses, fixed by 013.
+- **Probe 10 unindexed `.js` dist expectation** that made it a guaranteed miss under any reranker, fixed by 013's corrected fixture.
+- **Mirror redundancy in rerank window** that wasted up to 75 percent of rerank slots, fixed by 014.
+- **Line-window chunking** that ranked import headers above function bodies, fixed by 015.
+- **Inherited RRF defaults** never tuned on this corpus, recalibrated by 017.
+- **Reranker fairness regression** measured on broken pipeline with mirror pollution and identifier gap, fixed by 018 re-bench under the corrected pipeline.
+- **9 P1 defects from deep-review** across production code, tests and docs, fixed by 020.
+- **Daemon resilience gaps** (7 patches for zombie daemon leaks, unsafe `send_bytes` sites, unconditional socket-unlink at startup, missing log rotation) documented by 010 but the patches themselves were not applied inside this packet.
 
-**Fix 2 — Reranker default model swapped GTE → BGE** (`c6a6493e6`)
+### Verification
 
-- Default `COCOINDEX_RERANK_MODEL` changed from `Alibaba-NLP/gte-multilingual-reranker-base` to **`BAAI/bge-reranker-v2-m3`** (Apache-2.0, ~568M params)
-- Triggered by an end-to-end validation run immediately after the Fix-1 default-on promotion, before any production benchmark
-- On Apple Silicon MPS, GTE-multilingual fails inside `sentence_transformers.CrossEncoder.predict` under sentence-transformers 5.4.1 + transformers 5.8.0 + torch 2.11.0:
-  ```
-  AcceleratorError: index 733634176249652595 is out of bounds: 0, range 0 to 21
-  ```
-- `RerankerAdapter`'s try/except correctly caught the exception and returned candidates in upstream RRF order — but **silently**. The response still populated `pre_rerank_score` and `reranker_score`, so a "did I get a response with rerank fields?" smoke check could not distinguish a real rerank from a silent fallback. Every prior search query with `COCOINDEX_RERANK=true` on MPS got zero reranker contribution between the default-on flip and this swap.
-- BGE-reranker-v2-m3 was validated end-to-end: properly reranks 3 fake candidates (moves `user_login.py` from rank 3 to rank 1 for the query "how does user login work")
-- 7/7 reranker unit tests still pass (mocked path unaffected by the default-model change)
-- Operators on non-MPS backends, or those validating future ST/transformers compatibility patches, can re-pin GTE via `COCOINDEX_RERANK_MODEL=Alibaba-NLP/gte-multilingual-reranker-base`
+- **18-pair fixture (002)** with a `fixture-validate.sh` script confirms path existence and pattern compatibility.
+- **Primary embedder comparison (003)** captures per-pair top-3 hits and latency for both candidates in `cocoindex-embedder-comparison.jsonl` and `.csv`.
+- **Extended bake-off (004)** measured 4 candidates with hybrid plus reranker defaults enabled.
+- **10-iteration deep-review (019)** covered phases 013-018 with iteration JSONL, a dashboard and a final report. Verdict: 9 P1 defects identified for remediation.
+- **P1 remediation verification (022)** is a separate review packet that verifies the 020 remediation changes against acceptance criteria.
+- **Fixture audit (013)** reports each probe as indexed, excluded or missing.
+- **Corrected-fixture baseline re-bench (018)** locks the production reranker at 14 of 18.
+- **RRF sweep harness (017)** supports broader future grids.
+- **Pytest suite, ruff lint and strict spec validate** pass on every shipped phase.
 
-### Why it matters
+### Files Changed
 
-- The default-on flip means the hybrid + rerank lift estimates from v1.6 / v1.8 now apply to every operator's default install instead of only those who opted in. Operators who need the prior vector-only behavior have two flags to set explicitly.
-- The silent-fallback bug discovered immediately after the default-on promotion is the load-bearing example of why "did the response succeed?" is not enough to verify the rerank stage actually ran. The fail-soft contract in `RerankerAdapter` is correct as a safety mechanism but obscures load-time and per-call failures unless you also inspect `daemon.log` for `RerankerAdapter` warnings.
-- Discovery happened end-to-end (smoke search against the running daemon) rather than via the 18-pair fixture benchmark, which would have hidden the silent fallback because the prior bake-off measured retrieval quality, not the reranker-ran-vs-fell-back distinction. The unit test suite was unaffected because the model load is mocked.
-- The first cold-cache call now downloads ~2.3 GB (BGE) instead of ~0.61 GB (GTE), so the first-pull window is noticeably longer; the per-call inference cost remains comparable.
-
-### Files affected
-
-- `mcp_server/cocoindex_code/config.py` — defaults for `COCOINDEX_HYBRID`, `COCOINDEX_RERANK`, `_DEFAULT_RERANK_MODEL`
-- `mcp_server/tests/test_config.py` — assertions for the new hybrid default
-- `mcp_server/tests/test_reranker.py` — assertion for the new rerank default
-- `.opencode/skills/mcp-coco-index/INSTALL_GUIDE.md` — flipped opt-in language to default-on; documented GTE/MPS failure + escape hatch
-- `.opencode/skills/mcp-coco-index/feature_catalog/05--search-and-ranking/08-reranker-cross-encoder.md` — renamed from `08-reranker-gte-cross-encoder.md`; added Known Limitations section for GTE-on-MPS
-- `.opencode/skills/mcp-coco-index/feature_catalog/08--configuration/04-environment-overrides.md` — updated default values + reranker-model description
-- `.opencode/skills/mcp-coco-index/feature_catalog/feature_catalog.md` — root catalog cross-reference for the renamed reranker file
-- `.opencode/skills/mcp-coco-index/manual_testing_playbook/manual_testing_playbook.md` — CFG-006/CFG-007 descriptions reframed default-on with opt-out
-- `.opencode/skills/mcp-coco-index/manual_testing_playbook/03--configuration/007-reranker-opt-in.md` — scenario commands + expected signals updated to validate the default-on path and the explicit opt-out (filename kept for catalog stability)
-
----
-
-## Cross-cutting research arc (016/011)
-
-Sub-phases 007-009 (reranker / chunking / hybrid) were preceded by a **10-iteration deep-research run** via cli-devin SWE-1.6 (later kimi-k2.6 after SWE-1.6 quota hit). Findings live at:
-
-- `007-reranker-integration/research/research.md` — model survey, integration point, top-K sweep
-- `008-chunking-strategy-tuning/research/research.md` — current chunker analysis, strategy survey, synthesis
-- `009-hybrid-search-bm25-fusion/research/research.md` — BM25 engine selection, fusion algorithm survey, cross-cutting roadmap
-
-All 3 research arcs CONVERGED with concrete recommendations + estimated lift figures. The implementations followed those recommendations directly.
-
----
-
-## Cumulative impact
-
-| Phase | Status | Est. lift vs baseline (38.9%) |
+| Area | File | What changed |
 |---|---|---|
-| v1.7 chunking | shipped default-on | +4-6pp → ~43-45% |
-| v1.8 hybrid (on top of chunking) | shipped default-on (v1.10) | +5-10pp → ~50% |
-| v1.6 reranker (on top of hybrid) | shipped default-on (v1.10) with BGE default (v1.10) | +5-10pp → ~55% |
+| Config | `cocoindex_code/config.py` | Embedder, reranker, hybrid, chunking, expansion and RRF defaults |
+| Config | `cocoindex_code/settings.py` | Stale default sweep (020) |
+| Query path | `cocoindex_code/query.py` | Hybrid fusion, mirror dedup, reranker integration, query-expansion entry (007, 009, 014, 016) |
+| Lexical | `cocoindex_code/fts_index.py` | SQLite FTS5 lexical index (009) |
+| Fusion | `cocoindex_code/fusion.py` | RRF fusion implementation (009) |
+| Reranker | `cocoindex_code/reranker.py` | Cross-encoder reranker integration (007) |
+| Reranker | `cocoindex_code/rerankers_jina_v3.py` | jina-reranker-v3 implementation (018) |
+| Expansion | `cocoindex_code/query_expansion.py` | Identifier bridging plus synonym dictionary (016) |
+| Chunkers | `cocoindex_code/chunkers/code_aware.py` | AST-aware chunker using tree-sitter (015) |
+| Chunkers | `cocoindex_code/chunkers/grammars.py` | Six-language grammar registry (015) |
+| Indexer | `cocoindex_code/indexer.py` | Chunker selection plus mirror-aware path resolution (014, 015) |
+| Path utils | `cocoindex_code/path_utils.py` | Canonical-mirror path resolver (014) |
+| Daemon | `cocoindex_code/daemon.py` | Documented 7-patch resilience plan (010), 020 cleanup applied |
+| Daemon | `cocoindex_code/client.py` | Documented 7-patch resilience plan (010) |
+| Registry | `cocoindex_code/registered_embedders.py` | Declarative manifest list (per parent spec, packet 005 docs not yet updated) |
+| Tests | `tests/test_query.py` | Mirror dedup tests (014) |
+| Tests | `tests/test_query_expansion.py` | Expansion-logic tests (016) |
+| Tests | `tests/test_code_aware_chunker.py` | AST chunker tests (015) |
+| Tests | `tests/test_rrf_config.py` | RRF config tests (017) |
+| Tests | `tests/test_daemon.py`, `tests/test_e2e_daemon.py` | Daemon resilience tests (010, new files) |
+| Bench | `phase2-bench/run-extended-bake-off-with-hybrid-rerank.sh` | 4-candidate bench harness (004) |
+| Bench | `phase2-bench/sweep-rrf.sh`, `sweep-rrf.py` | RRF parameter sweep harness (017) |
+| Bench | `phase2-bench/rerank-matrix-bench.sh`, `rerank-matrix-analyze.py` | 4-lane reranker re-bench (018) |
+| Bench | `phase2-bench/run-phase2-smoke.sh` | Path-extraction regex hardening (013) |
+| Bench | `phase2-bench/test_path_extraction.py` | Path-extraction tests (013) |
+| Fixtures | `evidence/code-retrieval-fixture.json` | Original 18-pair fixture (002) |
+| Fixtures | `evidence/code-retrieval-fixture-audited.json` | Audit results (013) |
+| Fixtures | `evidence/code-retrieval-fixture-corrected.json` | Corrected baseline (013) |
+| Evidence | `evidence/cocoindex-embedder-comparison.csv` | Primary 2-candidate comparison (003) |
+| Evidence | `evidence/cocoindex-embedder-comparison-with-hybrid-rerank.csv` | Extended 4-candidate bake-off (004) |
+| Evidence | `004-extended-bake-off/benchmark-results.md` | Headline analysis (004) |
+| Decision | ADR-001 through ADR-021 | Embedder, reranker, mirror, chunking, expansion, RRF and rerank-matrix decisions |
+| Docs | `.opencode/skills/mcp-coco-index/README.md`, `SKILL.md`, `INSTALL_GUIDE.md` | Doc alignment after 020 remediation |
+| Review | `019-deep-review-arc-013-to-018/review/review-report.md` plus iterations | 10-iter deep review (019) |
+| Review | `022-verification-p1-p2-remediation/review/` | Verification review (022) |
 
-**All 3 features are now DEFAULT-ON as of v1.10.** Hybrid (BM25+RRF) and cross-encoder rerank flipped from opt-in to default-on in `4ec84cec2`; the reranker default model swapped from GTE to BGE in `c6a6493e6` to avoid the silent Apple Silicon MPS fallback. To opt out of any layer:
+### Follow-Ups
 
-```bash
-export COCOINDEX_HYBRID=false             # fall back to vector-only retrieval
-export COCOINDEX_RERANK=false             # skip the cross-encoder rerank stage
-# To pin the prior GTE reranker (non-MPS backends only — broken on Apple Silicon):
-# export COCOINDEX_RERANK_MODEL=Alibaba-NLP/gte-multilingual-reranker-base
-ccc reset --force && ccc index            # only needed if changing chunk size or restarting from a clean state
-```
-
-To validate: run the 18-pair fixture via the bake-off harness with `COCOINDEX_HYBRID=true COCOINDEX_RERANK=true` (now the default) versus `COCOINDEX_HYBRID=false COCOINDEX_RERANK=false` and confirm hit-rate improvement.
-
----
-
-## Open follow-ons (not yet shipped)
-
-- **Stage B chunking** — raise `CHUNK_SIZE` to 2000 + per-language overrides (TS=2000, MD=800, Python=1500). Pending Stage A reindex benchmark.
-- **cAST tree-sitter chunking** — Zhang et al. 2025 showed +4.3pp on RepoEval. High engineering cost — deferred to a separate packet.
-- **Reranker default-on** — **shipped in v1.10 (`4ec84cec2`)** ahead of the original p95-latency / +2-hits gate; subsequent benchmark sweep on the 18-pair fixture is queued to retroactively confirm the gate post-promotion.
-- **Hybrid default-on** — **shipped in v1.10 (`4ec84cec2`)** alongside the reranker promotion; same retroactive-benchmark follow-on applies.
-- **Reranker default-model regression watch (GTE)** — re-evaluate `Alibaba-NLP/gte-multilingual-reranker-base` once `sentence-transformers` / `transformers` ship a fix for the MPS `AcceleratorError`; until then BGE-reranker-v2-m3 stays as the default per `c6a6493e6`.
-- **Per-implementation post-impl deep-review** — constitutional mandate; not yet run for 007/008/009 commits.
-
----
-
-## How to use this changelog
-
-- **New operator?** Read v1.0 → v1.5 to understand the baseline, then v1.6 → v1.10 to know what is on by default and how to opt out.
-- **Debugging a search-quality issue?** Check v1.8 hybrid + v1.6 reranker — both default-on as of v1.10. Confirm `daemon.log` shows `lane=hybrid_rrf` and a `BAAI/bge-reranker-v2-m3` load trace before assuming the lanes are doing real work (v1.10's silent-fallback bug is the cautionary tale).
-- **Considering a new embedder?** Read v1.3 + v1.4 (registry pattern) before adding entries to `registered_embedders.py`.
-- **Daemon flakiness?** v1.9 is the relevant history.
-- **Reranker model question (GTE vs BGE)?** v1.10 is the relevant history — BGE is the default; GTE is opt-in via env var and currently broken on Apple Silicon MPS.
+- **Phase 001 (cocoindex-swap)** stayed in planning state in this packet. The actual embedder swap that landed in production (`sbert/nomic-ai/CodeRankEmbed`) happened in `001-local-embeddings-foundation/018-*`. The 001 packet docs in this stack should either be marked superseded with a forward pointer or closed.
+- **Phase 005 (declarative-registry)** is marked Pending in the packet but `cocoindex_code/registered_embedders.py` exists per the parent `spec.md`. The packet docs should be reconciled with the live code state and either marked Complete or rescoped to cover only the remaining declarative-metadata gaps.
+- **Phase 006 (install-guide-updates)** is blocked on the 005 packet docs. Once 005 reconciles, 006 should ship the operator-facing "choosing an embedder" section in INSTALL_GUIDE and README. The 020 remediation already touched these files for stale defaults, so the install-guide changes should layer cleanly on top.
+- **Phase 008 (chunking-strategy-tuning)** is research-only and was largely implemented by 015 (AST-aware tree-sitter chunking). The packet should be marked closed-by-015 or merged into 015's continuity ladder.
+- **Phase 010 (daemon-resilience)** documented 7 patches but did not apply them. A separate implementation packet should pick up the 7-patch defense-in-depth and run the 24-hour 100-client soak test that the research deferred.
+- **Phase 011 (rerank-model-fit)** identified structural reranker failure modes (paraphrase-heavy queries demoting implementations below tests). The 018 re-bench locked jina-reranker-v3 as production default and may have closed the issue empirically, but the structural finding remains in the record and may inform future reranker work.
+- **Phase 012 (fixture-audit-10-probes)** triggered the 013 audit. The follow-on is the 023-007 fixture calibration packet, which scopes a deeper recalibration of all 18 probes against the live codebase.
+- **23 follow-on arc (8 packets) has not started.** All 8 children are scaffolded but no implementation has shipped. The retrieval observability and request-budget hardening packets are the most operator-visible items in the scaffold and should be prioritised.
+- **24-hour 100-client soak test for daemon resilience** was the durable proof point named by 010. It has not been run on this machine.
+- **MPS auto-detect coverage in vitest** was named as verification by 001 but the packet did not ship. Once 001 reconciles, the MPS detect vitest assertion should land as part of the swap or be confirmed redundant against current `_resolve_device` coverage.
