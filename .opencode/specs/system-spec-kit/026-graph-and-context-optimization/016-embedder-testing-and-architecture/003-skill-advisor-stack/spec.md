@@ -1,6 +1,6 @@
 ---
-title: "022: Skill-advisor embedder parity — pluggable + jina default (phase parent)"
-description: "Bring skill-advisor up to the 016+019 pattern. Today skill-advisor's embedding stack is a symlink to the pre-016 shared cascade (defaults to gemma via llama-cpp.ts). User directive: pluggable like spec-memory + auto-detect Metal/CUDA/CPU + jina-v3 as current default."
+title: "022: Skill-advisor pluggable architecture and writer wiring (phase parent)"
+description: "Skill-advisor embedder work delivered the pluggable architecture, registry, schema, and writer wiring. The active runtime remains gemma; default alignment to mk-spec-memory Nomic is deferred to 003/006-shared-embedder-logic."
 trigger_phrases:
   - "022 skill advisor embedder parity"
   - "skill-advisor jina swap"
@@ -46,7 +46,7 @@ The 020 deep-review's legacy-DB audit surfaced a gap: **skill-advisor is the onl
 
 User directive: make skill-advisor "work with all possible embedding setups and auto-detected just like spec memory and use jina for us atm".
 
-This packet brings skill-advisor up to the 016+019 pattern: pluggable registry + adapter interface + auto-detect device + jina-v3 as the production default. Three children.
+This packet delivered the pluggable registry, adapter interface, schema, and writer wiring needed for skill-advisor embedder parity. The production pointer flip did not land here: skill-advisor remains gemma-active, and alignment to mk-spec-memory's Nomic default is deferred to `003/006-shared-embedder-logic`.
 <!-- /ANCHOR:overview -->
 
 <!-- ANCHOR:scope -->
@@ -69,11 +69,13 @@ Out of scope:
 <!-- ANCHOR:children -->
 ## 3. CHILDREN
 
-| Child | Purpose |
-|---|---|
-| `001-pluggable-architecture` | Author `mcp_server/lib/embedders/` module mirroring 016 pattern: `EmbedderAdapter` interface + `MANIFESTS` registry + `OllamaAdapter` + dim-tagged `vec_<dim>` schema + `vec_metadata` pointer |
-| `002-jina-swap-and-reindex` | Flip default to jina-embeddings-v3, run skill-graph reindex, smoke-test semantic-shadow lane queries |
-| `003-install-guide-docs` | INSTALL_GUIDE + README updates explaining the new pluggable mechanism + swap runbook + auto-detect note |
+| Child | Purpose | Status |
+|---|---|---|
+| `001-pluggable-architecture/` | 022/001 Pluggable embedder architecture for skill-advisor | Complete |
+| `002-jina-swap-and-reindex/` | 022/002 Jina-v3 swap + skill-graph reindex | Planned (blocked on 022/001) |
+| `003-install-guide-docs/` | 022/003 Skill-advisor INSTALL_GUIDE + README docs | Planned (blocked on 022/001+002) |
+| `004-skill-graph-db-writer-cross-wire/` | 010/004 skill-graph-db Writer Cross-Wire to EmbedderAdapter Layer | Planned (created 2026-05-18 from 010/002 discovery) |
+| `006-shared-embedder-logic-with-spec-memory/` | Extract shared embedder factory/registry and align skill-advisor default with spec-memory `sbert/nomic-ai/CodeRankEmbed` | Planned |
 <!-- /ANCHOR:children -->
 
 <!-- ANCHOR:dependencies -->
@@ -88,9 +90,9 @@ Out of scope:
 <!-- ANCHOR:success -->
 ## 5. SUCCESS CRITERIA
 
-- skill-advisor's `vec_metadata.active_embedder_name` reports `jina-embeddings-v3` after daemon restart
-- Semantic-shadow lane queries return non-empty results post-reindex
+- skill-advisor has pluggable registry, schema, and writer/read path wiring without breaking the gemma-active runtime
+- Semantic-shadow lane continues to return non-empty results under the active gemma runtime
 - `skill_advisor.py` recommend tool still scores skills correctly (smoke regression — top-3 picks for "memory save" / "code search" / "spec folder" stay sane)
-- Operator can swap embedders via env var + daemon restart per INSTALL_GUIDE
+- Operator docs distinguish writer wiring shipped from production pointer flip deferred
 - All packets strict-validate PASSED
 <!-- /ANCHOR:success -->

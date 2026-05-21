@@ -9,9 +9,9 @@
     "token",
     "telemetry"
   ],
-  "lastUpdated": "2026-05-16T21:09:37.375Z",
+  "lastUpdated": "2026-05-21T10:22:37.845Z",
   "specId": "003",
-  "folderSlug": "memory-context-truncation-contract",
+  "folderSlug": "memory-context-truncation-telemetry-contract",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",

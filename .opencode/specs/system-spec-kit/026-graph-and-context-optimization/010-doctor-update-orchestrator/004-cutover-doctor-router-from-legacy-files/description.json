@@ -1,21 +1,18 @@
 {
   "childTopology": [],
-  "specFolder": "004-cutover-doctor-router-from-legacy-files",
-  "description": "Phase 2 of the doctor command consolidation: hard cutover from legacy /doctor:* commands to the shipped /doctor router. Deletes 9 old .opencode markdown files and 9 old .gemini TOML files, rewrites manual playbook and sandbox invocations, annotates 013 historical records, rebuilds advisor indexing, and closes the 013 parent.",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/004-cutover-doctor-router-from-legacy-files",
+  "description": "Feature Specification: Doctor Cutover Phase 2 (Hard Cutover)",
   "keywords": [
-    "cutover-phase",
-    "doctor-cutover",
-    "hard-delete",
-    "legacy-command-delete",
-    "10-to-3",
-    "playbook-sed",
-    "advisor-rebuild",
-    "phase-2",
-    "router-final-state"
+    "feature",
+    "specification",
+    "doctor",
+    "cutover",
+    "phase",
+    "hard"
   ],
-  "lastUpdated": "2026-05-12T04:55:46Z",
-  "specId": "005",
-  "folderSlug": "cutover-phase",
+  "lastUpdated": "2026-05-21T10:22:38.412Z",
+  "specId": "004",
+  "folderSlug": "cutover-doctor-router-from-legacy-files",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",

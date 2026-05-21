@@ -19,9 +19,9 @@
     "design",
     "sub-phase"
   ],
-  "lastUpdated": "2026-05-16T21:09:37.360Z",
+  "lastUpdated": "2026-05-21T10:22:37.830Z",
   "specId": "001",
-  "folderSlug": "scenario-design",
+  "folderSlug": "search-scenario-design",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",

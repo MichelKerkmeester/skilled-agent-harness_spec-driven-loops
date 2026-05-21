@@ -1,16 +1,17 @@
 {
   "level": "3",
   "specFolder": "skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/001-council-design",
-  "description": "Deep-ai-council deliberation that ratifies the 5-dim rubric, fixture catalog, knob set, and bespoke loop shape for cli-devin SWE 1.6 prompt optimization. Three seats (pragmatist, skeptic, optimizer) routed to cli-codex / cli-claude-code / cli-gemini, two-of-three convergence, packet-local ai-council/** scope-writes only.",
+  "description": "Feature Specification: Council Design for cli-devin SWE 1.6 Optimization",
   "keywords": [
-    "deep-ai-council",
-    "rubric-design",
-    "fixture-catalog",
-    "knob-enumeration",
-    "loop-shape",
-    "two-of-three-convergence"
+    "feature",
+    "specification",
+    "council",
+    "design",
+    "cli-devin",
+    "swe",
+    "optimization"
   ],
-  "lastUpdated": "2026-05-16T19:10:00Z",
+  "lastUpdated": "2026-05-21T10:22:37.564Z",
   "specId": "001",
   "folderSlug": "council-design",
   "parentChain": [

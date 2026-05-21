@@ -1,22 +1,22 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/055-root-readme-realignment",
-  "description": "Phase D of the 4-phase code-folder README pipeline. Audits the project root ./README.md against current reality (post-mk-spec-memory rename, mk-code-index/mk-skill-advisor extractions, local-embedding migration, tool-surface trim) and applies surgical edits to drifted sections. 3-pass pipeline: cli-devin context, cli-opencode cross-check, sonnet @markdown writer.",
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/014-local-embeddings-migration-055-root-readme-realignment",
+  "description": "Phase D: Root README realignment",
   "keywords": [
-    "root-readme",
-    "realignment",
-    "drift-audit",
-    "sonnet-markdown-writer",
-    "phase-D"
+    "phase",
+    "root",
+    "readme",
+    "realignment"
   ],
-  "lastUpdated": "2026-05-15T12:55:00Z",
-  "specId": "055",
-  "folderSlug": "root-readme-realignment",
+  "lastUpdated": "2026-05-21T10:22:38.873Z",
+  "specId": "014",
+  "folderSlug": "local-embeddings-migration-055-root-readme-realignment",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "014-local-embeddings-migration"
+    "z_archive",
+    "wave-2-merges"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -40,9 +40,9 @@
     "4-7",
     "remediation"
   ],
-  "lastUpdated": "2026-05-09T07:57:32.842Z",
+  "lastUpdated": "2026-05-21T10:22:38.087Z",
   "specId": "006",
-  "folderSlug": "memory-search-clusters-4-7-remediation",
+  "folderSlug": "fix-memory-search-health-fallback-stability",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",

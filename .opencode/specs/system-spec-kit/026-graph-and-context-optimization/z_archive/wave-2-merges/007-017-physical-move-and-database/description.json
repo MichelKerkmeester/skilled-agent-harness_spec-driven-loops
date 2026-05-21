@@ -1,18 +1,28 @@
 {
   "level": "2",
-  "specFolder": "003-physical-move-and-database",
-  "description": "Phase 003 moves the code_graph source tree and code-graph stress tests from system-spec-kit into the system-code-graph skill, copies the live code-graph SQLite database files into the new skill database directory without deleting the old DB fallback, and updates the moved code-graph DB module to resolve DATABASE_DIR from the new skill config with SPECKIT_CODE_GRAPH_DB_DIR override.",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/007-017-physical-move-and-database",
+  "description": "Feature Specification: Physical move: code_graph source tree + database to system-code-graph (no consumer rewiring)",
   "keywords": [
-    "code-graph-physical-move",
-    "system-code-graph-source-tree",
-    "code-graph-db-copy",
-    "speckit-code-graph-db-dir",
-    "phase-003"
+    "feature",
+    "specification",
+    "physical",
+    "move",
+    "source",
+    "tree",
+    "database",
+    "system-code-graph",
+    "consumer",
+    "rewiring"
   ],
-  "lastUpdated": "2026-05-14T08:15:39Z",
-  "specId": "003",
-  "folderSlug": "physical-move-and-database",
+  "lastUpdated": "2026-05-21T10:22:38.842Z",
+  "specId": "007",
+  "folderSlug": "017-physical-move-and-database",
   "parentChain": [
-    "013-system-code-graph-extraction"
-  ]
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "z_archive",
+    "wave-2-merges"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

@@ -1,6 +1,6 @@
 ---
 title: "Spec: 016/011/003-hybrid-search-bm25-fusion — Hybrid Search (BM25 + Semantic Fusion)"
-description: "Implemented opt-in SQLite FTS5 + RRF fusion for CocoIndex retrieval."
+description: "Implemented default-on SQLite FTS5 + RRF fusion for CocoIndex retrieval."
 trigger_phrases:
   - "016/011/003"
   - "hybrid search (bm25 + semantic fusion) research"
@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/009-hybrid-search-bm25-fusion"
     last_updated_at: "2026-05-18T00:35:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Implemented opt-in SQLite FTS5 + RRF hybrid search"
+    recent_action: "Implemented default-on SQLite FTS5 + RRF hybrid search"
     next_safe_action: "Run fixture and latency validation before default-on promotion"
     blockers: ["fixture benchmark pending", "latency benchmark pending"]
     key_files: ["spec.md", "research/research.md", "cocoindex_code/query.py", "cocoindex_code/fts_index.py", "cocoindex_code/fusion.py"]
@@ -24,11 +24,11 @@ _memory:
     open_questions:
       - "Is sqlite-fts5 sufficient for our corpus scale (127K chunks)"
       - "Best fusion algorithm for code retrieval specifically"
-      - "Whether to expose hybrid as opt-in or default-on"
+      - "Whether to expose hybrid as default-on or default-on"
     answered_questions:
       - "SQLite FTS5 selected as embedded lexical engine"
       - "RRF selected as fusion algorithm"
-      - "Hybrid remains opt-in until fixture validation"
+      - "Hybrid remains default-on until fixture validation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->
@@ -51,7 +51,8 @@ _memory:
 
 **Research question**: Does adding BM25 lexical search + fusion (RRF or weighted-linear) to CocoIndex's semantic retrieval improve hit-rate on the 18-pair fixture? What weights/normalization?
 
-This packet is part of §3 structural improvements identified in the 018/003 follow-up discussion (38.9% baseline hit rate, embedder swap unlikely to be the dominant lever). Research converged on SQLite FTS5 + weighted RRF; implementation is now opt-in behind `COCOINDEX_HYBRID=true`.
+This packet is part of §3 structural improvements identified in the 018/003 follow-up discussion (38.9% baseline hit rate, embedder swap unlikely to be the dominant lever). Research converged on SQLite FTS5 + weighted RRF; implementation is now default-on behind `COCOINDEX_HYBRID=true`.
+Dispatch A correction: source config now has `COCOINDEX_HYBRID=true` by default (`config/config.py`), so any older opt-in/default-off language in this packet is superseded.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -110,7 +111,7 @@ Dependencies:
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Answered: SQLite FTS5 is sufficient for opt-in implementation and avoids new dependencies.
+- Answered: SQLite FTS5 is sufficient for default-on implementation and avoids new dependencies.
 - Answered: weighted Reciprocal Rank Fusion is the selected fusion algorithm.
-- Answered: hybrid is exposed as env opt-in and remains default-off until fixture validation.
+- Answered: hybrid is exposed as env default-on and remains default-off until fixture validation.
 <!-- /ANCHOR:questions -->

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-fix-deep-research-findings",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/004-fix-deep-research-findings",
   "description": "Feature Specification: 049 Deep-Research Finding Remediation (Phase Parent)",
   "keywords": [
     "feature",
@@ -11,13 +11,14 @@
     "phase",
     "parent"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.438Z",
-  "specId": "049",
-  "folderSlug": "deep-research-finding-remediation",
+  "lastUpdated": "2026-05-21T10:22:38.000Z",
+  "specId": "004",
+  "folderSlug": "fix-deep-research-findings",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup"
+    "000-release-cleanup",
+    "006-research"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

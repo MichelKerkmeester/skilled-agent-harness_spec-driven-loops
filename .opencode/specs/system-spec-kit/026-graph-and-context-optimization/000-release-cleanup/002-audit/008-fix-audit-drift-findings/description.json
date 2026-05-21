@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/008-fix-audit-drift-findings",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/008-fix-audit-drift-findings",
   "description": "Spec: Drift Finding Fixes",
   "keywords": [
     "spec",
@@ -7,14 +7,14 @@
     "finding",
     "fixes"
   ],
-  "lastUpdated": "2026-05-01T03:43:33.084Z",
-  "specId": "045",
-  "folderSlug": "drift-finding-fixes",
+  "lastUpdated": "2026-05-21T10:22:37.716Z",
+  "specId": "008",
+  "folderSlug": "fix-audit-drift-findings",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "000-release-cleanup",
-    "005-review-remediation"
+    "002-audit"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

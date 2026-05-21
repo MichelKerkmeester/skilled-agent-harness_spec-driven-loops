@@ -108,7 +108,7 @@ model_reasoning_effort = "xhigh"
 sandbox_mode = "workspace-write"
 model_reasoning_effort = "xhigh"
 
-[profiles.multi-ai-council]
+[profiles.ai-council]
 sandbox_mode = "read-only"
 model_reasoning_effort = "xhigh"
 ```
@@ -254,7 +254,7 @@ codex exec -p review \
 
 ---
 
-### @multi-ai-council — Multi-Strategy Planner
+### @ai-council — Multi-Strategy Planner
 
 | Property           | Value                                                |
 | ------------------ | ---------------------------------------------------- |
@@ -268,9 +268,9 @@ codex exec -p review \
 **Delegate when:** You need a fundamentally different planning approach from a different model, or want to compare Codex's architectural thinking with the calling AI's plan.
 
 ```bash
-codex exec -p multi-ai-council -s read-only \
+codex exec -p ai-council -s read-only \
   "Design the caching strategy for this API. Consider Redis, in-memory, and CDN approaches." \
-  --model gpt-5.5 > /tmp/multi-ai-council-output.txt
+  --model gpt-5.5 > /tmp/ai-council-output.txt
 ```
 
 ---

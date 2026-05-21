@@ -35,10 +35,10 @@ _memory:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-This session shipped large architectural changes (pluggable embedders 016, retrieval rescue 016/004 ADR-009/010/011, jina-v3 ratification ADR-012, CocoIndex jina-code swap 018/001, registered_embedders + INSTALL_GUIDE 019/001+002) but the broader documentation surface — skill MDs, references/, assets/, the root README — wasn't audited for stale references.
+This session shipped large architectural changes (pluggable embedders 016, retrieval rescue 016/004 ADR-009/010/011, Nomic/CodeRankEmbed current default, CocoIndex CodeRankEmbed swap, registered_embedders + INSTALL_GUIDE 019/001+002) but the broader documentation surface — skill MDs, references/, assets/, the root README — wasn't audited for stale references.
 
 Two failure modes:
-1. **Stale defaults**: skill docs still say "gemma" or "nomic" in places where current state is "jina-v3" (mk-spec-memory) or "jina-code" (CocoIndex)
+1. **Stale defaults**: skill docs still say "gemma" or "nomic" in places where current state is Nomic/CodeRankEmbed for mk-spec-memory and CocoIndex, Qwen sidecar rerank for CocoIndex, and gemma-active/deferred-alignment for skill-advisor
 2. **Missing architecture narrative**: nowhere documents the unified "pluggable embedder out-of-box for new users" story across both MCPs
 
 This packet closes both gaps via three parallel children dispatched as native Opus/Sonnet agents.
@@ -90,7 +90,7 @@ Out of scope:
 - Stale refs in skill MDs/READMEs fixed in-place
 - Root README has current embedder defaults + 1-paragraph architecture summary + link to canonical narrative
 - Canonical `embedder-pluggability.md` exists, ≤ 600 LOC, covers both MCPs, includes:
-  - Default for each MCP (jina-v3 text + jina-code)
+  - Default for each MCP (Nomic/CodeRankEmbed bi-encoder paths, CocoIndex Qwen rerank sidecar, mk-spec-memory reranker opt-in)
   - Registry mechanism (MANIFESTS for mk-spec-memory, registered_embedders for CocoIndex)
   - Swap mechanism (MCP tool for mk-spec-memory, env var + reset for CocoIndex)
   - Operating modes (rescue layer, MPS auto-detect, kill switches)

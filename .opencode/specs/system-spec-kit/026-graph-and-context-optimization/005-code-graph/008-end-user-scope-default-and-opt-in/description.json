@@ -12,9 +12,9 @@
     "graph",
     "indexing"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.663Z",
-  "specId": "009",
-  "folderSlug": "end-user-scope-default",
+  "lastUpdated": "2026-05-21T10:22:38.144Z",
+  "specId": "008",
+  "folderSlug": "end-user-scope-default-and-opt-in",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",

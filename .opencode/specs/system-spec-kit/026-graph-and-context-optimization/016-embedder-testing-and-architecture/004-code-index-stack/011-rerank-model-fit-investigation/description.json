@@ -1,12 +1,26 @@
 {
   "level": "feature",
-  "specFolder": "011-rerank-model-fit-investigation",
-  "description": "Research-only HF survey + targeted bench (only the 4 failure probes) to investigate whether BAAI/bge-reranker-v2-m3 should be swapped for a code-aware cross-encoder. Triggered by 016/007/003 pre-confirmation margin analysis surfacing systematic rerank failure on paraphrase-heavy queries (lexical-cue density rewarded over semantic role).",
-  "keywords": ["rerank-model-fit","cross-encoder","code-retrieval","bge-reranker-v2-m3","rerank-swap-investigation","research"],
-  "lastUpdated": "2026-05-18T19:21:19.000Z",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation",
+  "description": "Spec: 016/004/011 Rerank Model Fit Investigation",
+  "keywords": [
+    "spec",
+    "016",
+    "004",
+    "011",
+    "rerank",
+    "model",
+    "fit",
+    "investigation"
+  ],
+  "lastUpdated": "2026-05-21T10:22:38.579Z",
   "specId": "011",
   "folderSlug": "rerank-model-fit-investigation",
-  "parentChain": ["system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture","system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack"],
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "004-code-index-stack"
+  ],
   "memorySequence": 1,
   "memoryNameHistory": []
 }

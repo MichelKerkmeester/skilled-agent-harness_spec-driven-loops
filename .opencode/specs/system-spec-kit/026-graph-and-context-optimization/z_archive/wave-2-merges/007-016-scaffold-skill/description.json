@@ -1,18 +1,28 @@
 {
   "level": "2",
-  "specFolder": "002-scaffold-skill",
-  "description": "Create the empty .opencode/skills/system-code-graph/ skill scaffold and Phase 002 packet docs. No code moves; system-spec-kit/mcp_server/code_graph remains untouched until Phase 003. Documents ADR-001 Q3 co-resident MCP topology under spec_kit_memory.",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/007-016-scaffold-skill",
+  "description": "Feature Specification: Scaffold system-code-graph skill folder (empty shape; no code moves)",
   "keywords": [
-    "code graph skill scaffold",
-    "system-code-graph scaffold",
-    "002 scaffold-skill",
-    "empty skill folder",
-    "co-resident mcp topology"
+    "feature",
+    "specification",
+    "scaffold",
+    "system-code-graph",
+    "skill",
+    "folder",
+    "empty",
+    "shape",
+    "code",
+    "moves"
   ],
-  "lastUpdated": "2026-05-14T07:54:11Z",
-  "specId": "002",
-  "folderSlug": "scaffold-skill",
+  "lastUpdated": "2026-05-21T10:22:38.837Z",
+  "specId": "007",
+  "folderSlug": "016-scaffold-skill",
   "parentChain": [
-    "013-system-code-graph-extraction"
-  ]
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "z_archive",
+    "wave-2-merges"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

@@ -1,34 +1,26 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/003-upstream-rebase-spike",
-  "description": "Upstream cocoindex-code rebase/import spike comparing local fork to upstream v0.2.33, with scoped language/pin wins and cross-packet handoff.",
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/003-upstream-rebase-spike",
+  "description": "Feature Specification: 023F Upstream cocoindex-code Rebase Spike",
   "keywords": [
+    "feature",
+    "specification",
+    "023f",
     "upstream",
     "cocoindex-code",
     "rebase",
-    "import",
-    "spike",
-    "comparing",
-    "local",
-    "fork",
-    "scoped",
-    "language",
-    "pin",
-    "wins",
-    "cross-packet",
-    "handoff"
+    "spike"
   ],
-  "lastUpdated": "2026-05-19T20:25:48.078Z",
-  "specId": "023F",
+  "lastUpdated": "2026-05-21T10:22:38.622Z",
+  "specId": "003",
   "folderSlug": "upstream-rebase-spike",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "016-embedder-testing-and-architecture",
-    "004-code-index-stack"
+    "004-code-index-stack",
+    "023-deep-research-arc-blind-spots"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

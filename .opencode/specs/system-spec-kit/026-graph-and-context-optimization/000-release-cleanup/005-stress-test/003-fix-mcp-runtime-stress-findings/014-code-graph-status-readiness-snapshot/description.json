@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-fix-mcp-runtime-stress-findings/014-code-graph-status-readiness-snapshot",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/014-code-graph-status-readiness-snapshot",
   "description": "Feature Specification: code_graph_status read-only readiness snapshot",
   "keywords": [
     "feature",
@@ -8,13 +8,14 @@
     "readiness",
     "snapshot"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.182Z",
+  "lastUpdated": "2026-05-21T10:22:37.905Z",
   "specId": "014",
-  "folderSlug": "graph-status-readiness-snapshot",
+  "folderSlug": "code-graph-status-readiness-snapshot",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "000-release-cleanup",
+    "005-stress-test",
     "003-fix-mcp-runtime-stress-findings"
   ],
   "memorySequence": 0,

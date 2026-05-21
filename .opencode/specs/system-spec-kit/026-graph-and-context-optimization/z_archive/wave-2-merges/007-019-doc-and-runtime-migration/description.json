@@ -1,19 +1,30 @@
 {
   "level": "2",
-  "specFolder": "005-doc-and-runtime-migration",
-  "description": "Phase 005 migrates code-graph-owned category-22 docs into system-code-graph, keeps shared context/hook docs in system-spec-kit, updates agents, commands, top-level docs, skill cross-refs, constitutional/config references, and refreshes system-code-graph SKILL/README status. Tool IDs stay unchanged.",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/007-019-doc-and-runtime-migration",
+  "description": "Feature Specification: Doc migration: category-22 split, agents, commands, top-level docs, skill cross-refs",
   "keywords": [
-    "code-graph-doc-migration",
-    "category-22-split",
-    "system-code-graph-docs",
-    "agent-command-reference-update",
-    "speckit-code-graph-db-dir",
-    "phase-005"
+    "feature",
+    "specification",
+    "doc",
+    "migration",
+    "category-22",
+    "split",
+    "agents",
+    "commands",
+    "top-level",
+    "docs",
+    "skill",
+    "cross-refs"
   ],
-  "lastUpdated": "2026-05-14T08:21:27Z",
-  "specId": "005",
-  "folderSlug": "doc-and-runtime-migration",
+  "lastUpdated": "2026-05-21T10:22:38.852Z",
+  "specId": "007",
+  "folderSlug": "019-doc-and-runtime-migration",
   "parentChain": [
-    "013-system-code-graph-extraction"
-  ]
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "z_archive",
+    "wave-2-merges"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Council Graph Database
 // ───────────────────────────────────────────────────────────────
-// Dedicated SQLite projection for Deep AI Council graph state. This is a
+// Dedicated SQLite projection for AI Council graph state. This is a
 // derived index: packet-local ai-council artifacts remain source-of-truth.
 
 import Database from 'better-sqlite3';

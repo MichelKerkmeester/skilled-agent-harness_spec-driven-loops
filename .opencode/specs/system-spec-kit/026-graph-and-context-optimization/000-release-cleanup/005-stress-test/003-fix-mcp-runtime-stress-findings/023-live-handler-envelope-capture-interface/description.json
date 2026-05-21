@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-fix-mcp-runtime-stress-findings/023-live-handler-envelope-capture-interface",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/023-live-handler-envelope-capture-interface",
   "description": "Spec: Live Handler Envelope Capture Seam",
   "keywords": [
     "spec",
@@ -9,13 +9,14 @@
     "capture",
     "seam"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.213Z",
+  "lastUpdated": "2026-05-21T10:22:37.948Z",
   "specId": "023",
-  "folderSlug": "live-handler-envelope-capture-seam",
+  "folderSlug": "live-handler-envelope-capture-interface",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "000-release-cleanup",
+    "005-stress-test",
     "003-fix-mcp-runtime-stress-findings"
   ],
   "memorySequence": 1,

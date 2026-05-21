@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-fix-mcp-runtime-stress-findings/028-deep-review-research-skill-contract-fixes",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/028-deep-review-research-skill-contract-fixes",
   "description": "Spec: Deep-Review/Research Skill Contract Fixes",
   "keywords": [
     "spec",
@@ -9,13 +9,14 @@
     "contract",
     "fixes"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.229Z",
+  "lastUpdated": "2026-05-21T10:22:37.973Z",
   "specId": "028",
-  "folderSlug": "deep-review-skill-contract-fixes",
+  "folderSlug": "deep-review-research-skill-contract-fixes",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "000-release-cleanup",
+    "005-stress-test",
     "003-fix-mcp-runtime-stress-findings"
   ],
   "memorySequence": 1,

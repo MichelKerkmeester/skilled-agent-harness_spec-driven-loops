@@ -1,5 +1,5 @@
 ---
-title: "Deep AI Council Output Schema"
+title: "AI Council Output Schema"
 description: "Markdown contract for @sk-ai-council §8 OUTPUT FORMAT and the persist-artifacts.cjs parser."
 trigger_phrases:
   - "sk-ai-council output schema"
@@ -9,9 +9,9 @@ importance_tier: "normal"
 contextType: "reference"
 ---
 
-# Deep AI Council Output Schema
+# AI Council Output Schema
 
-Markdown contract for Deep AI Council report sections and the persistence helper parser.
+Markdown contract for AI Council report sections and the persistence helper parser.
 
 ---
 
@@ -128,7 +128,7 @@ Changes to this schema require lockstep updates in the same commit:
 1. Update this `output_schema.md` contract.
 2. Update `@sk-ai-council` agent body §8 in all four runtime mirrors.
 3. Update `.opencode/skills/sk-ai-council/scripts/persist-artifacts.cjs`.
-4. Update fixtures and `multi-ai-council-persist-artifacts.vitest.ts` when parser behavior changes.
+4. Update fixtures and `ai-council-persist-artifacts.vitest.ts` when parser behavior changes.
 5. Run the mirror parity test and helper fixture test.
 
 Do not change one surface alone. Split-brain between §8 prose, parser behavior, and fixtures makes persisted council artifacts unreliable.

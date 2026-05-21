@@ -12,6 +12,7 @@
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/006-prompt-license-registry",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/007-fixture-calibration",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/008-vec0-migration-fix-deferred",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/009-post-arc-deep-review",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/010-public-repo-docs-alignment"
   ],
   "manual": {
@@ -37,7 +38,7 @@
       "metadata"
     ],
     "importance_tier": "high",
-    "status": "active",
+    "status": "in_progress",
     "key_files": [
       "spec.md"
     ],
@@ -57,6 +58,7 @@
     "source_docs": [
       "spec.md"
     ],
-    "last_active_at": "2026-05-20T15:26:03.152Z"
+    "last_active_at": "2026-05-21T11:00:00Z",
+    "last_indexed_at": "2026-05-21T11:00:00Z"
   }
 }

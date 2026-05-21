@@ -1,27 +1,22 @@
 {
-  "specFolder": "002-spec-memory-stack",
-  "description": "Migration runner: normalize importance_tier enum, upgrade v0 graph-metadata.json to v1, repair E_LINEAGE alias divergences across active + z_archive s",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack",
+  "description": "016/001: mk-spec-memory stack (phase parent)",
   "keywords": [
-    "migration",
-    "runner",
-    "normalize",
-    "enum",
-    "upgrade",
-    "graph-metadata",
-    "json",
-    "repair",
-    "alias",
-    "divergences",
-    "across",
-    "active",
-    "specs"
+    "016",
+    "001",
+    "mk-spec-memory",
+    "stack",
+    "phase",
+    "parent"
   ],
-  "lastUpdated": "2026-05-19T19:41:49.727Z",
+  "lastUpdated": "2026-05-21T10:22:38.467Z",
   "specId": "002",
   "folderSlug": "spec-memory-stack",
-  "parentChain": [],
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture"
+  ],
   "memorySequence": 1,
-  "memoryNameHistory": [
-    "18-05-26_08-50__created-mk-spec-memory-stack-phase-parent.md"
-  ]
+  "memoryNameHistory": []
 }

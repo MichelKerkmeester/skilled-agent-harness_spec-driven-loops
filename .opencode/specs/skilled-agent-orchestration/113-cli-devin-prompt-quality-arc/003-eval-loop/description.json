@@ -1,16 +1,17 @@
 {
   "level": "3",
   "specFolder": "skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/003-eval-loop",
-  "description": "Run the bespoke deep-loop: council-seeded hill-climbing across prompt variants, real SWE 1.6 dispatches per fixture, deterministic + grader scoring, 3-signal weighted-vote convergence (top-score plateau, mutation exhaustion, MAD noise floor). State in eval-loop-state.jsonl; iteration files per N. Synthesis ranks variants. Depends on 002 rig green.",
+  "description": "Feature Specification: Eval Loop for cli-devin SWE 1.6 Optimization",
   "keywords": [
-    "deep-loop",
-    "hill-climbing",
-    "real-model-evaluation",
-    "convergence-detection",
-    "rate-limit-recovery",
-    "synthesis"
+    "feature",
+    "specification",
+    "eval",
+    "loop",
+    "cli-devin",
+    "swe",
+    "optimization"
   ],
-  "lastUpdated": "2026-05-16T19:10:00Z",
+  "lastUpdated": "2026-05-21T10:22:37.572Z",
   "specId": "003",
   "folderSlug": "eval-loop",
   "parentChain": [

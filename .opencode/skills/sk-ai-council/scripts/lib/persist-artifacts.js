@@ -76,7 +76,7 @@ function metadataEvent(event) {
 function parseStateLine(line) {
   const event = JSON.parse(line);
   if (typeof event !== 'object' || event === null || Array.isArray(event)) {
-    throw new Error('[multi-ai-council] Expected object state event');
+    throw new Error('[ai-council] Expected object state event');
   }
   return {
     schema_version: '1',
@@ -476,7 +476,7 @@ function writeFileScoped(aiCouncilRoot, relativePath, content, options = {}) {
 }
 
 function councilRootFor(packetSpecFolder) {
-  if (!packetSpecFolder) throw new Error('[multi-ai-council] packet spec folder is required');
+  if (!packetSpecFolder) throw new Error('[ai-council] packet spec folder is required');
   const packetRoot = path.resolve(packetSpecFolder);
   const aiCouncilRoot = path.resolve(packetRoot, 'ai-council');
   assertInside(packetRoot, aiCouncilRoot);
@@ -668,13 +668,13 @@ function parseArgs(argv) {
     else if (flag === '--memory-save-payload-out') args.memorySavePayloadOut = rest.shift();
     else if (flag === '--strict-output') args.strictOutput = true;
     else if (flag === '--force') args.force = true;
-    else throw new Error(`[multi-ai-council] Unknown argument: ${flag}`);
+    else throw new Error(`[ai-council] Unknown argument: ${flag}`);
   }
   if (!args.packetSpecFolder) {
     throw new Error('Usage: node persist-artifacts.cjs <packet-spec-folder> [--round NNN] [--input-file FILE] [--memory-save-payload-out FILE] [--strict-output] [--force]');
   }
   if (args.memorySavePayloadOut === undefined) {
-    throw new Error('[multi-ai-council] --memory-save-payload-out requires a file path');
+    throw new Error('[ai-council] --memory-save-payload-out requires a file path');
   }
   roundLabel(args.round);
   return args;
@@ -696,10 +696,10 @@ function main(argv = process.argv.slice(2)) {
   try {
     args = parseArgs(argv);
     const markdown = readInput(args.inputFile);
-    if (!normalizeText(markdown)) throw new Error('[multi-ai-council] No council report input provided');
+    if (!normalizeText(markdown)) throw new Error('[ai-council] No council report input provided');
     const parsed = parseCouncilReport(markdown);
     if (!parsed.ok) {
-      console.error(`[multi-ai-council] Missing required section(s): ${parsed.missing.join(', ')}`);
+      console.error(`[ai-council] Missing required section(s): ${parsed.missing.join(', ')}`);
       return 1;
     }
     const rendered = renderArtifacts(parsed, {
@@ -709,7 +709,7 @@ function main(argv = process.argv.slice(2)) {
     });
     const result = writeArtifacts(args.packetSpecFolder, rendered, { force: args.force });
     if (result.conflicts.length) {
-      console.error(`[multi-ai-council] Partial write failure:\n${result.conflicts.join('\n')}`);
+      console.error(`[ai-council] Partial write failure:\n${result.conflicts.join('\n')}`);
       return 2;
     }
     if (args.memorySavePayloadOut) {
@@ -718,11 +718,11 @@ function main(argv = process.argv.slice(2)) {
         fs.mkdirSync(path.dirname(path.resolve(args.memorySavePayloadOut)), { recursive: true });
         fs.writeFileSync(path.resolve(args.memorySavePayloadOut), `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
       } catch (payloadError) {
-        console.warn(`[multi-ai-council] Failed to write memory-save payload: ${payloadError instanceof Error ? payloadError.message : String(payloadError)}`);
+        console.warn(`[ai-council] Failed to write memory-save payload: ${payloadError instanceof Error ? payloadError.message : String(payloadError)}`);
         return 2;
       }
     }
-    console.log(`[multi-ai-council] Wrote ${result.written.length} artifact(s) to ${path.resolve(args.packetSpecFolder, 'ai-council')}`);
+    console.log(`[ai-council] Wrote ${result.written.length} artifact(s) to ${path.resolve(args.packetSpecFolder, 'ai-council')}`);
     return 0;
   } catch (error) {
     console.error(error instanceof Error ? error.message : String(error));

@@ -52,7 +52,7 @@ function readStateEvents(statePath) {
   try {
     return parseStateLog(fs.readFileSync(statePath, 'utf8'));
   } catch (error) {
-    console.warn(`[multi-ai-council] State log parse failed: ${error.message}`);
+    console.warn(`[ai-council] State log parse failed: ${error.message}`);
     return [];
   }
 }

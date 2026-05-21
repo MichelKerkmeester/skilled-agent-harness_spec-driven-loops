@@ -79,6 +79,7 @@ _memory:
 - [x] T011 Run Python syntax compilation on changed Python files.
 - [x] T012 Probe local Ollama availability for optional smoke testing.
 - [x] T013 Run strict spec validation.
+- [ ] T014 P1 Worktree e2e validation captured.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -87,6 +88,7 @@ _memory:
 ## Completion Criteria
 
 - [x] All tasks marked `[x]`.
+- [ ] P1 follow-on T014 captured in a separate worktree commit.
 - [x] No `[B]` blocked tasks remaining.
 - [x] Verification evidence recorded in `implementation-summary.md` and `checklist.md`.
 <!-- /ANCHOR:completion -->

@@ -1,6 +1,6 @@
 ---
-title: "Deep AI Council Seat Diversity Patterns"
-description: "Lens combinations and vantage targets for diverse Deep AI Council seats."
+title: "AI Council Seat Diversity Patterns"
+description: "Lens combinations and vantage targets for diverse AI Council seats."
 trigger_phrases:
   - "sk-ai-council seat diversity"
   - "council lens combinations"
@@ -13,7 +13,7 @@ importance_tier: "normal"
 contextType: "reference"
 ---
 
-# Deep AI Council Seat Diversity Patterns
+# AI Council Seat Diversity Patterns
 
 Each round uses at most 3 seats. The goal is useful disagreement, not more copies of the same answer.
 

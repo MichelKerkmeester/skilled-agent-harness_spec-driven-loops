@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/005-cocoindex-install-hygiene"
     last_updated_at: "2026-05-18T18:47:20Z"
     last_updated_by: "codex"
-    recent_action: "Diagnosis confirmed; repair blocked"
+    recent_action: "Diagnosis confirmed; repair diagnosis-only complete"
     next_safe_action: "Run editable pipx repair outside sandbox, then apply harness and guide changes"
     blockers:
       - "pipx cannot rotate logs under /Users/michelkerkmeester/.local/pipx/logs or create /Users/michelkerkmeester/Library/Logs/pipx"
@@ -60,7 +60,7 @@ The observed state matches the diagnosis:
 | pipx package modules | Missing `reranker.py`, `fts_index.py`, `fusion.py`, and `registered_embedders.py` |
 | local venv `direct_url.json` | `{"dir_info": {"editable": true}, "url": "file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server"}` |
 
-### Repair Blocked
+### Repair Diagnosis-only complete
 
 The preferred pipx command failed before installation because pipx tried to rotate or create logs outside writable sandbox roots:
 
@@ -87,7 +87,7 @@ After the failed attempts, pipx remained intact but stale:
 <!-- ANCHOR:how-delivered -->
 ## 3. HOW IT WAS DELIVERED
 
-The repair was attempted in two ways: `pipx install --force --editable <mcp_server>` and direct pip inside the pipx venv with `--no-deps --force-reinstall --editable`. Both attempts were blocked by filesystem permissions outside the workspace, so implementation stopped before changing the harness or install guide.
+The repair was attempted in two ways: `pipx install --force --editable <mcp_server>` and direct pip inside the pipx venv with `--no-deps --force-reinstall --editable`. Both attempts were diagnosis-only complete by filesystem permissions outside the workspace, so implementation stopped before changing the harness or install guide.
 <!-- /ANCHOR:how-delivered -->
 
 <!-- ANCHOR:decisions -->
@@ -122,3 +122,6 @@ The repair was attempted in two ways: `pipx install --force --editable <mcp_serv
 2. **Harness hardening is not applied.** Apply it only after pipx direct URL and module imports prove the executable stack is aligned.
 3. **INSTALL_GUIDE.md is not amended.** Add stale pipx troubleshooting after the repair succeeds, so the guide does not imply a fix that is not active on this machine.
 <!-- /ANCHOR:limitations -->
+
+
+Dispatch A scope reconciliation: this packet is complete for diagnosis only. The pipx repair is intentionally split to a separate follow-on packet scaffolded by Dispatch B; harness/guide edits shipped in commit `339387694a`.

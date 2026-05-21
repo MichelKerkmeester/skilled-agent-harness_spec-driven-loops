@@ -1,36 +1,24 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/004-metadata-fingerprint",
-  "description": "Metadata fingerprint compatibility for mcp-coco-index, persisting embedder prompt dimension chunking corpus and daemon isolation metadata with hard refusal for unsafe mismatches.",
+  "level": "3",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/004-metadata-fingerprint",
+  "description": "Feature Specification: 023A1 Metadata Fingerprint",
   "keywords": [
+    "feature",
+    "specification",
+    "023a1",
     "metadata",
-    "fingerprint",
-    "compatibility",
-    "mcp-coco-index",
-    "persisting",
-    "embedder",
-    "prompt",
-    "dimension",
-    "chunking",
-    "corpus",
-    "daemon",
-    "isolation",
-    "hard",
-    "refusal",
-    "unsafe",
-    "mismatches"
+    "fingerprint"
   ],
-  "lastUpdated": "2026-05-19T20:42:27.067Z",
-  "specId": "023A1",
+  "lastUpdated": "2026-05-21T10:22:38.631Z",
+  "specId": "004",
   "folderSlug": "metadata-fingerprint",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "016-embedder-testing-and-architecture",
-    "004-code-index-stack"
+    "004-code-index-stack",
+    "023-deep-research-arc-blind-spots"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

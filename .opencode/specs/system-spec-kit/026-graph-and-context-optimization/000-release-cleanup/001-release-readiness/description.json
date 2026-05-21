@@ -1,17 +1,14 @@
 {
   "level": "3",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness",
-  "description": "Phase parent for release readiness validation across 6 children. Coordinates deep review programs, synthesis of readiness findings, and P1/P2 remediation including stress-test coverage gaps and tier2 issues.",
+  "description": "Phase Parent: 000-release-cleanup/001-release-readiness",
   "keywords": [
-    "release-readiness",
-    "001-release-readiness",
-    "deep-review",
-    "p1-p2-remediation",
-    "stress-test",
-    "synthesis",
-    "tier2-remediation"
+    "phase",
+    "parent",
+    "000-release-cleanup",
+    "001-release-readiness"
   ],
-  "lastUpdated": "2026-05-16T09:00:00Z",
+  "lastUpdated": "2026-05-21T10:22:37.663Z",
   "specId": "001",
   "folderSlug": "release-readiness",
   "parentChain": [

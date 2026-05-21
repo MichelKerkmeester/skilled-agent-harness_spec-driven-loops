@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack/006-shared-embedder-logic-with-spec-memory",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack/006-shared-embedder-logic-with-spec-memory",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack/001-pluggable-architecture"
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "shared embedder logic skill-advisor",
+      "skill-advisor spec-memory embedder parity",
+      "CodeRankEmbed default"
+    ],
+    "key_topics": [
+      "skill-advisor",
+      "embedder-factory",
+      "spec-memory",
+      "nomic",
+      "regression-test"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "last_indexed_at": "2026-05-21T10:16:26Z"
+  }
+}

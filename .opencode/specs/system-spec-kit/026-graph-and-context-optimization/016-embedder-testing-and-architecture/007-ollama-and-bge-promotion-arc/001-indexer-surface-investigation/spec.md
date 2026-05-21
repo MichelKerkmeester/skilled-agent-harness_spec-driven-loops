@@ -19,7 +19,7 @@ contextType: "research"
 
 | Field | Value |
 |---|---|
-| Status | Planned (2026-05-18) |
+| Status | Complete |
 | Type | Research-only (no code changes) |
 | Owner | Main agent or @context agent |
 | Parent | `../spec.md` (007-ollama-and-bge-promotion-arc) |

@@ -41,8 +41,8 @@ _memory:
 ## 2. WHAT WAS BUILT
 
 ### Phase A — Convention layer
-- `system-spec-kit/mcp_server/benchmarks/FORMAT.md` — single-source convention doc
-- `mcp-coco-index/mcp_server/benchmarks/FORMAT.md` — relative symlink to system-spec-kit's copy
+- `system-spec-kit/mcp_server/benchmarks/historical FORMAT.md` — single-source convention doc
+- `mcp-coco-index/mcp_server/benchmarks/historical FORMAT.md` — relative symlink to system-spec-kit's copy
 
 ### Phase B — Evidence promotion
 - mk-spec-memory: `benchmarks/benchmark-2026-05-17/` with `results.csv`, `per-probe-with-rescue.jsonl`, `runtime-measurements.md`, `SOURCE.md`
@@ -63,8 +63,8 @@ Folder scaffolding + evidence promotion happened directly via Bash/Write. The sk
 ## 4. KEY DECISIONS
 
 - **D1 — Date-folder over topic-folder:** initial sketch used `code-embedder-bake-off/` topic folders, but user request switched to `benchmark-<YYYY-MM-DD>/` for clean chronology. Multiple benchmarks under one MCP can still live side-by-side with ISO date sorting.
-- **D2 — FORMAT.md single source via symlink:** rather than duplicating the format doc per skill, keep one canonical copy in system-spec-kit and symlink from sibling skills. Avoids drift.
-- **D3 — Spec packets remain authoritative:** the skill-local `benchmark_report.md` curates; the spec packet's `decision-record.md` decides. Authority hierarchy stated explicitly in FORMAT.md.
+- **D2 — historical FORMAT.md single source via symlink:** rather than duplicating the format doc per skill, keep one canonical copy in system-spec-kit and symlink from sibling skills. Avoids drift.
+- **D3 — Spec packets remain authoritative:** the skill-local `benchmark_report.md` curates; the spec packet's `decision-record.md` decides. Authority hierarchy stated explicitly in historical FORMAT.md.
 - **D4 — sk-doc compliance for reports:** advisor recommended sk-doc at 0.92 confidence; `@markdown` agents handle the actual writes so sk-doc standards (anchors, frontmatter, validate.py) are applied uniformly.
 - **D5 — Retroactive sub-phase:** work began before the packet existed; user explicitly requested retroactive formalization so the cross-cutting nature is visible from the umbrella spec.
 <!-- /ANCHOR:decisions -->
@@ -89,14 +89,14 @@ bash .opencode/skills/sk-doc/scripts/validate_document.py \
 bash .opencode/skills/sk-doc/scripts/validate_document.py \
   .opencode/skills/sk-doc/assets/benchmark/benchmark_report_template.md
 
-# Symlink integrity for the cross-skill FORMAT.md
-readlink .opencode/skills/mcp-coco-index/mcp_server/benchmarks/FORMAT.md
-test -e .opencode/skills/mcp-coco-index/mcp_server/benchmarks/FORMAT.md && echo "OK"
+# Symlink integrity for the cross-skill historical FORMAT.md
+readlink .opencode/skills/mcp-coco-index/mcp_server/benchmarks/historical FORMAT.md
+test -e .opencode/skills/mcp-coco-index/mcp_server/benchmarks/historical FORMAT.md && echo "OK"
 ```
 
 Checklist:
 
-- [x] FORMAT.md exists in both skills (one real, one symlink); symlink resolves
+- [x] historical FORMAT.md exists in both skills (one real, one symlink); symlink resolves
 - [x] benchmark-2026-05-17/ contents present (results.csv, per-probe-with-rescue.jsonl, runtime-measurements.md, SOURCE.md, benchmark_report.md)
 - [x] benchmark-2026-05-18/ contents present (results.csv, per-probe.jsonl, SOURCE.md, benchmark_report.md)
 - [x] benchmark_report.md sk-doc-validated for both skills (zero blocking errors)
@@ -110,9 +110,12 @@ Checklist:
 
 - **Only 2 skills adopted so far.** Other MCPs in the repo (mk-skill-advisor) don't yet have benchmarks to promote. mk-code-index doesn't use embeddings (structural only), so no benchmarks folder needed.
 - **No promotion script automation.** Future bench results must be manually promoted (CSV copy + benchmark_report.md re-write). A `promote-benchmark.sh` helper could be a Tier 3 follow-on.
-- **Historical note (added by packet 006):** FORMAT.md relocated to sk-doc in packet `005-cross-cutting-quality/006-benchmark-format-to-sk-doc`. The canonical mechanics document is now `.opencode/skills/sk-doc/references/benchmark_creation.md` (consolidated from FORMAT.md + benchmarks_format.md). The legacy `references/benchmarks/` directory and `references/benchmarks_format.md` were deleted as part of that packet.
+- **Historical note (added by packet 006):** historical FORMAT.md relocated to sk-doc in packet `005-cross-cutting-quality/006-benchmark-format-to-sk-doc`. The canonical mechanics document is now `.opencode/skills/sk-doc/references/benchmark_creation.md` (consolidated from historical FORMAT.md + benchmarks_format.md). The legacy `references/benchmarks/` directory and `references/benchmarks_format.md` were deleted as part of that packet.
 <!-- /ANCHOR:limitations -->
 
 ---
 
-> NOTE (2026-05-19): FORMAT.md was relocated to .opencode/skills/sk-doc/references/benchmarks/ in packet 006-benchmark-format-to-sk-doc. The original system-spec-kit and mcp-coco-index paths now hold relative symlinks to the new sk-doc canonical.
+> NOTE (2026-05-19): historical FORMAT.md was relocated to .opencode/skills/sk-doc/references/benchmarks/ in packet 006-benchmark-format-to-sk-doc. The original system-spec-kit and mcp-coco-index paths now hold relative symlinks to the new sk-doc canonical.
+
+
+Dispatch A correction: older `FORMAT.md` language is historical/superseded. Benchmark-format mechanics now belong under sk-doc benchmark creation guidance.

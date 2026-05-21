@@ -19,7 +19,7 @@ const path = require('node:path');
 // ────────────────────────────────────────────────────────────────────────────
 
 const SCHEMA_VERSION = '1.2';
-const PROTOCOL = 'multi-ai-council';
+const PROTOCOL = 'ai-council';
 const PRODUCER_VERSION = 'persist-artifacts@1.2.0';
 const DEFAULT_MAX_BYTES = 10 * 1024 * 1024;
 
@@ -50,7 +50,7 @@ function normalizeRoundId(roundId) {
   if (typeof roundId === 'string' && /^round-\d{3}$/.test(roundId)) return roundId;
   const parsed = Number(roundId || 1);
   if (!Number.isInteger(parsed) || parsed < 1 || parsed > 99) {
-    throw new Error('[multi-ai-council] round_id must be round-NNN or an integer from 1 to 99');
+    throw new Error('[ai-council] round_id must be round-NNN or an integer from 1 to 99');
   }
   return `round-${String(parsed).padStart(3, '0')}`;
 }

@@ -29,8 +29,8 @@ Two MCP servers each run their own vector index and pick their own embedder:
 
 | MCP server | Default embedder | Dim | Backend | Pluggable via | Index store |
 |---|---|---:|---|---|---|
-| `mk-spec-memory` (Spec Kit Memory) | `jina-embeddings-v3` | 1024 | Ollama (GGUF Q4_K_M) | MCP tools + MANIFESTS registry | sqlite-vec `vec_<dim>` tables |
-| `mcp-coco-index` (CocoIndex Code) | `sbert/jinaai/jina-embeddings-v2-base-code` | 768 | sentence-transformers (PyTorch) | `COCOINDEX_CODE_EMBEDDING_MODEL` env var + registered_embedders.py | sqlite-vec inside `.cocoindex_code/` |
+| `mk-spec-memory` (Spec Kit Memory) | `sbert/nomic-ai/CodeRankEmbed` | 768 | `auto` cascade: Ollama -> hf-local Nomic | MCP tools + MANIFESTS registry | sqlite-vec `vec_<dim>` tables |
+| `mcp-coco-index` (CocoIndex Code) | `sbert/nomic-ai/CodeRankEmbed` | 768 | sentence-transformers (PyTorch) | `COCOINDEX_CODE_EMBEDDING_MODEL` env var + registered_embedders.py | sqlite-vec inside `.cocoindex_code/` |
 
 Both are pluggable. They use different mechanisms because they index different content classes and have different runtime constraints.
 
@@ -40,7 +40,7 @@ Both are pluggable. They use different mechanisms because they index different c
 
 `mcp-coco-index` indexes source code: function bodies, import graphs, identifiers, doc-comments. Code recall benefits from code-tuned embedders trained on `<query, source-snippet>` pairs across languages.
 
-Trying to share one embedder across both was rejected empirically. The pre-018 baseline used `bge-base-en-v1.5` (general-text) for both, and CocoIndex code recall lagged measurably. Packet 018 swapped CocoIndex to a code-tuned model; packet 016/004 settled mk-spec-memory on a text-tuned Jina variant after a five-candidate sweep.
+Trying to share one embedder across both was rejected empirically. The pre-018 baseline used `bge-base-en-v1.5` (general-text) for both, and CocoIndex code recall lagged measurably. Packet 018 and follow-ons moved CocoIndex to Nomic CodeRankEmbed; mk-spec-memory also now follows the Nomic/CodeRankEmbed local cascade. Jina-v3 remains important historical bake-off evidence, not the current default.
 
 ### What "out-of-box for any embedder" means
 
@@ -62,7 +62,7 @@ Ollama (tier 1, local)  ->  hf-local (tier 2, local Python)  ->  OpenAI (tier 3,
 
 ADR-014 (2026-05-19) supersedes the cascade clause of ADR-013 — earlier cascade was cloud-first (`voyage > openai > ollama > hf-local`); the new order keeps embeddings local by default unless the operator explicitly chooses a cloud tier (`EMBEDDINGS_PROVIDER=openai|voyage`).
 
-Within tier 1 (Ollama), the priority order is ADR-013: `nomic-embed-text-v1.5`, `jina-embeddings-v3`, `bge-m3`, `mxbai-embed-large-v1`. Within tier 2 (hf-local), the default fallback model is `nomic-ai/nomic-embed-text-v1.5` (same family as the Ollama default — ADR-014).
+Within tier 1 (Ollama), the priority order is ADR-013: `nomic-embed-text-v1.5`, `jina-embeddings-v3`, `bge-m3`, `mxbai-embed-large-v1`. Within tier 2 (hf-local), the default fallback model is `nomic-ai/CodeRankEmbed` (same family as the Ollama default — ADR-014).
 
 ### Current default: nomic-embed-text-v1.5 (768d via Ollama; ADR-013)
 
@@ -97,7 +97,7 @@ Source of truth: `.opencode/skills/system-spec-kit/mcp_server/lib/embedders/regi
 }
 ```
 
-Eight candidates are registered today (in declaration order): `bge-base-en-v1.5` (legacy baseline, `ollama` backend), `nomic-embed-text-v1.5`, `mxbai-embed-large-v1`, `bge-small-en-v1.5`, `bge-large-en-v1.5`, `jina-embeddings-v3` (active default), `bge-m3`, `snowflake-arctic-embed-l-v2.0`.
+Eight candidates are registered today (in declaration order): `bge-base-en-v1.5` (legacy baseline, `ollama` backend), `nomic-embed-text-v1.5`, `mxbai-embed-large-v1`, `bge-small-en-v1.5`, `bge-large-en-v1.5`, `jina-embeddings-v3` (historical Jina default candidate), `bge-m3`, `snowflake-arctic-embed-l-v2.0`.
 
 Adding a new candidate is a single registry row plus, if the backend is new, a single adapter file under `.opencode/skills/system-spec-kit/mcp_server/lib/embedders/adapters/`. No call sites change. The adapter contract is small (see §2: EmbedderAdapter interface).
 
@@ -176,13 +176,13 @@ Per-row empirical results live in `evidence/embedder-comparison-with-rescue.json
 
 ## 3. COCOINDEX SIDE
 
-### Current default: sbert/jinaai/jina-embeddings-v2-base-code (768d code-tuned)
+### Current default: sbert/nomic-ai/CodeRankEmbed (768d code-tuned)
 
 Production default per packet 018 ADR-001 (commit `8f909d229`):
 
 ```python
 # .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py
-_DEFAULT_MODEL = "sbert/jinaai/jina-embeddings-v2-base-code"
+_DEFAULT_MODEL = "sbert/nomic-ai/CodeRankEmbed"
 ```
 
 768 dimensions, code-tuned (Python/JS/Go/Java/Ruby/PHP), 8192-token context, ~280 MB on disk, Metal-accelerated on Apple Silicon. The dim matches the pre-swap gemma baseline (also 768), so the existing CocoIndex index schema did not need migration when the default flipped.
@@ -266,7 +266,7 @@ The override is unconditional. It bypasses the probe and is passed straight thro
 
 - **018/001** (`8f909d229`) — Default flip from `bge-base-en-v1.5` to `jinaai/jina-embeddings-v2-base-code`; MPS auto-detect branch added; unit test covers the MPS fallback.
 - **018/002** — Code-retrieval fixture (10–20 deterministic query→source pairs) for benchmarking the swap.
-- **018/003** — Benchmark gemma baseline vs jina-code on the fixture; ADR-001 ratifies the production choice.
+- **018/003** — Benchmark gemma/Jina/BGE/Nomic lanes on the fixture; follow-ons ratify `sbert/nomic-ai/CodeRankEmbed` as the production choice.
 - **019/001** (`49e3338ff`) — `registered_embedders.py` declarative registry + parity test against `config.py`.
 - **019/002** — `INSTALL_GUIDE.md` §4 "Choosing an embedder" + README cross-link, so a first-install operator can see the full chooser table without diving into Python.
 
@@ -281,8 +281,8 @@ The 019 packet is explicit about scope: minimal viable parity with 016. MCP-tool
 | Step | mk-spec-memory | mcp-coco-index |
 |---|---|---|
 | 1 | Install the MCP server (per skill INSTALL_GUIDE). | Run `bash .opencode/skills/mcp-coco-index/scripts/install.sh`. |
-| 2 | Pull the default Ollama model: `ollama pull hf.co/gaianet/jina-embeddings-v3-GGUF:Q4_K_M`. | First `ccc index` triggers sentence-transformers to download the default jina-code model (~280 MB) from HuggingFace. |
-| 3 | Start the MCP server; first `embedder_status` call returns `jina-embeddings-v3 / 1024`. | `ccc init` creates `.cocoindex_code/`; `ccc index` builds the vector store. |
+| 2 | Pull the default Ollama model: `ollama pull hf.co/gaianet/jina-embeddings-v3-GGUF:Q4_K_M`. | First `ccc index` triggers sentence-transformers to download the default Nomic CodeRankEmbed model from HuggingFace. |
+| 3 | Start the MCP server; first `embedder_status` call returns the active Nomic/CodeRankEmbed profile. | `ccc init` creates `.cocoindex_code/`; `ccc index` builds the vector store. |
 | 4 | Optional: confirm `SPECKIT_RERANK_LAYER` unset (default-on). | Optional: confirm `_resolve_device()` picked `mps` on Apple Silicon via `ccc status`. |
 
 No code changes. No schema migrations. A fresh clone reaches a ready state from the documented commands above.
@@ -338,11 +338,11 @@ The table below lists embedders that work in either MCP without any code changes
 | Embedder | mk-spec-memory backend | mcp-coco-index backend | Dim | Approx RAM | MPS | Notes |
 |---|---|---|---:|---:|:---:|---|
 | `bge-base-en-v1.5` | ollama (baseline) | sbert (legacy baseline) | 768 | ~600 MB | Yes | General-text; baseline on both sides pre-swap. |
-| `jina-embeddings-v3` | ollama (DEFAULT) | — (not in registry) | 1024 | ~600 MB (GGUF Q4_K_M) | n/a | Text-tuned; production memory default per ADR-012. |
-| `jinaai/jina-embeddings-v2-base-code` | — (not in registry) | sbert (DEFAULT) | 768 | ~600 MB | Yes | Code-tuned, 8192 ctx; production CocoIndex default per 018 ADR-001. |
+| `jina-embeddings-v3` | ollama (historical/default candidate) | — (not in registry) | 1024 | ~600 MB (GGUF Q4_K_M) | n/a | Text-tuned; production memory default per ADR-012. |
+| `jinaai/jina-embeddings-v2-base-code` | — (not in registry) | sbert (historical) | 768 | ~600 MB | Yes | Code-tuned, 8192 ctx; production CocoIndex default per 018 ADR-001. |
 | `jinaai/jina-embeddings-v2-base-en` | — | sbert | 768 | ~600 MB | Yes | English-text variant for docs-heavy repos. |
 | `nomic-embed-text-v1.5` | ollama | — | 768 | ~600 MB | n/a | Text retrieval specialist; 5–8/10 on 409 leaderboard. |
-| `nomic-ai/CodeRankEmbed` | — | sbert | 768 | ~550 MB | Yes | Code-tuned alternative; Python-leaning training. |
+| `nomic-ai/CodeRankEmbed` | auto/hf-local Nomic | sbert (DEFAULT) | 768 | ~550 MB | Yes | Code-tuned alternative; Python-leaning training. |
 | `BAAI/bge-code-v1` | — | sbert | 768 | ~700 MB | Yes | Multilingual code coverage emphasis. |
 | `bge-small-en-v1.5` | ollama | — | 384 | small | n/a | Compact 33M-param text baseline; `vec_384` schema. |
 | `bge-large-en-v1.5` | ollama | — | 1024 | ~1.5 GB | n/a | BAAI flagship text retrieval. |

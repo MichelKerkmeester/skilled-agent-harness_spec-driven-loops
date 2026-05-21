@@ -1,23 +1,24 @@
 {
-  "specFolder": "044-suite-revalidation",
-  "description": "Post-substrate-wave revalidation of the 24-- local LLM query intelligence scenario suite, comparing scenarios 401-415 against the 032/002 baseline.",
+  "level": "2",
+  "status": "fail",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/044-suite-revalidation",
+  "description": "Feature Specification: 043 Suite Revalidation",
   "keywords": [
-    "suite-revalidation",
-    "24--local-llm-query-intelligence",
-    "post-substrate-wave",
-    "scenario-runner",
-    "memory-substrate"
+    "feature",
+    "specification",
+    "043",
+    "suite",
+    "revalidation"
   ],
-  "lastUpdated": "2026-05-14T16:35:00Z",
-  "specId": "043",
+  "lastUpdated": "2026-05-21T10:22:38.455Z",
+  "specId": "044",
   "folderSlug": "suite-revalidation",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "014-local-embeddings-migration"
+    "016-embedder-testing-and-architecture",
+    "001-local-embeddings-foundation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2",
-  "status": "fail"
+  "memoryNameHistory": []
 }

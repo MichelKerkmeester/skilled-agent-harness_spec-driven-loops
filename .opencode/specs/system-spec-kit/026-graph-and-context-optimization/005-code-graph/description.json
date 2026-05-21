@@ -1,32 +1,21 @@
 {
   "level": "phase",
-  "specFolder": "005-code-graph",
-  "description": "Cross-skill doc polish: fix tool counts, restructure system-code-graph SKILL.md to canonical sk-doc shape, add new reference docs, sync upstream metad",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph",
+  "description": "Feature Specification: Code Graph Package",
   "keywords": [
-    "cross-skill",
-    "doc",
-    "polish",
-    "fix",
-    "tool",
-    "counts",
-    "restructure",
-    "system-code-graph",
-    "skill",
-    "canonical",
-    "sk-doc",
-    "shape",
-    "add",
-    "new",
-    "reference",
-    "docs",
-    "sync",
-    "upstream",
-    "metadata"
+    "feature",
+    "specification",
+    "code",
+    "graph",
+    "package"
   ],
-  "lastUpdated": "2026-05-16T14:47:30.905Z",
-  "specId": "007",
+  "lastUpdated": "2026-05-21T10:22:38.108Z",
+  "specId": "005",
   "folderSlug": "code-graph",
-  "parentChain": [],
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization"
+  ],
   "memorySequence": 1,
   "memoryNameHistory": [
     "Feature Specification: Code Graph Package"

@@ -1,18 +1,19 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/010-half-auto-upgrade-doc-alignment",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/010-half-auto-upgrade-doc-alignment",
   "description": "Spec: Half-Auto Upgrades",
   "keywords": [
     "spec",
     "half-auto",
     "upgrades"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.255Z",
-  "specId": "021",
-  "folderSlug": "half-auto-upgrades",
+  "lastUpdated": "2026-05-21T10:22:37.751Z",
+  "specId": "010",
+  "folderSlug": "half-auto-upgrade-doc-alignment",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup"
+    "000-release-cleanup",
+    "003-cross-cutting-cleanup-pass"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [

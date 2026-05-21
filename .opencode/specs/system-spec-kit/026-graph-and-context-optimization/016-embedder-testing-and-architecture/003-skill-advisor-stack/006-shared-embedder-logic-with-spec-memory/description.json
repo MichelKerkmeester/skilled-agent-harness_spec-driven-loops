@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack/006-shared-embedder-logic-with-spec-memory",
+  "description": "Spec: shared embedder logic with spec-memory",
+  "keywords": [
+    "spec",
+    "shared",
+    "embedder",
+    "logic",
+    "spec-memory"
+  ],
+  "lastUpdated": "2026-05-21T10:22:38.557Z",
+  "specId": "006",
+  "folderSlug": "shared-embedder-logic-with-spec-memory",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "003-skill-advisor-stack"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

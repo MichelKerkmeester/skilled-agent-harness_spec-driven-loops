@@ -28,7 +28,7 @@ Orchestrate OpenCode's `opencode run` from external AI assistants (Claude Code, 
 - **Full plugin / skill / MCP runtime** (use case 1) — calling AI is Claude Code / Codex / Copilot / Gemini / raw shell AND the task needs the project's full Spec Kit Memory database, CocoIndex semantic index, structural code graph, or every plugin/skill/MCP tool in a one-shot dispatch. Includes `@deep-research` / `@deep-review` agent loops with externalized state under `.opencode/specs/`.
 - **Parallel detached session** (use case 2) — operator already inside OpenCode (TUI / web / serve / acp) AND wants a SEPARATE session with its own session id and state directory for ablation, worker farm, or parallel research. Prompt explicitly mentions "parallel detached", "ablation suite", "worker farm", "parallel research", "spawn detached", or "share URL".
 - **Cross-AI orchestration handback** (use case 3) — calling AI is non-Anthropic (Codex / Copilot / Gemini), task targets a project-specific subsystem (spec-kit, memory, code-graph, advisor), and the non-Anthropic CLI cannot load the project's plugin/skill/MCP runtime on its own and needs OpenCode as a bridge.
-- **Agent dispatch** — task matches a specialized OpenCode agent. Primary agents (directly invokable via `--agent`): `general`, `plan` (built-in), `orchestrate`, `multi-ai-council`. Subagents dispatched via the orchestrate primary: `context`, `review`, `write`, `debug`, `deep-research`, `deep-review`, `deep-agent-improvement`, `prompt-improver`.
+- **Agent dispatch** — task matches a specialized OpenCode agent. Primary agents (directly invokable via `--agent`): `general`, `plan` (built-in), `orchestrate`, `ai-council`. Subagents dispatched via the orchestrate primary: `context`, `review`, `write`, `debug`, `deep-research`, `deep-review`, `deep-agent-improvement`, `prompt-improver`.
 - **Cross-repo dispatch** — session in repo A dispatches into repo B's plugin/skill/MCP runtime via `--dir <path>` or remote OpenCode server via `--attach <url>`.
 
 ### When NOT to Use
@@ -117,7 +117,7 @@ INTENT_SIGNALS = {
     "EXTERNAL_DISPATCH":  {"weight": 4, "keywords": ["delegate to opencode", "opencode run", "from claude code", "from codex", "from gemini", "from copilot", "external runtime", "full plugin runtime"]},
     "PARALLEL_DETACHED":  {"weight": 4, "keywords": ["parallel detached", "ablation suite", "worker farm", "parallel research", "spawn detached", "share url", "share-url", "detached session"]},
     "CROSS_AI_HANDBACK":  {"weight": 4, "keywords": ["spec kit", "spec-kit", "spec_kit", "code graph", "memory_search", "session_bootstrap", "skill advisor", "cross-ai handback"]},
-    "AGENT_DISPATCH":     {"weight": 4, "keywords": ["delegate", "agent", "deep-research", "deep-review", "multi-ai-council", "review agent", "context agent"]},
+    "AGENT_DISPATCH":     {"weight": 4, "keywords": ["delegate", "agent", "deep-research", "deep-review", "ai-council", "review agent", "context agent"]},
     "CROSS_REPO":         {"weight": 3, "keywords": ["cross-repo", "different repo", "--dir", "another repository", "remote opencode"]},
     "TEMPLATES":          {"weight": 3, "keywords": ["template", "prompt", "how to ask", "opencode prompt"]},
     "PATTERNS":           {"weight": 3, "keywords": ["pattern", "workflow", "orchestrate", "session continue", "resume session"]},
@@ -247,7 +247,7 @@ The calling AI is the conductor. OpenCode distinguishes **primary agents** (dire
 
 #### Primary agents — directly invokable via `--agent`
 
-Direct agents are `general`, `plan`, `orchestrate`, and `multi-ai-council`. Pin one explicitly when the task needs planning, orchestration, or multi-strategy planning.
+Direct agents are `general`, `plan`, `orchestrate`, and `ai-council`. Pin one explicitly when the task needs planning, orchestration, or multi-strategy planning.
 
 #### Subagents — dispatched as Task subagents from a primary
 

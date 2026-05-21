@@ -19,8 +19,8 @@ _memory:
     key_files: ["evidence/swap-runbook.md", "../001-pluggable-architecture/review/review-report.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000022002"
-      session_id: "010-002-jina-swap-and-reindex-impl"
-      parent_session_id: "010-002-jina-swap-and-reindex"
+      session_id: "022-002-jina-swap-and-reindex-impl"
+      parent_session_id: "022-002-jina-swap-and-reindex"
     completion_pct: 40
     open_questions:
       - "Should 010/004 wire writer to use NEW adapter exclusively, or keep dual-path for backward compat?"

@@ -9,7 +9,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 
 const TEST_DIR = dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = resolve(TEST_DIR, '../../../../../');
-const FIXTURE_DIR = join(TEST_DIR, 'fixtures/multi-ai-council');
+const FIXTURE_DIR = join(TEST_DIR, 'fixtures/ai-council');
 const HELPER_PATH = join(
   WORKSPACE_ROOT,
   '.opencode/skills/sk-ai-council/scripts/persist-artifacts.cjs',
@@ -36,7 +36,7 @@ const helper = require(HELPER_PATH) as {
 const tempDirs: string[] = [];
 
 function makeTempPacket(): string {
-  const dir = mkdtempSync(join(tmpdir(), 'multi-ai-council-persist-'));
+  const dir = mkdtempSync(join(tmpdir(), 'ai-council-persist-'));
   tempDirs.push(dir);
   return dir;
 }
@@ -51,7 +51,7 @@ afterEach(() => {
   }
 });
 
-describe('multi-ai-council persist-artifacts helper', () => {
+describe('ai-council persist-artifacts helper', () => {
   it('writes all artifacts for full council output', () => {
     const packet = makeTempPacket();
     const parsed = helper.parseCouncilReport(fixture('council-output-full.md'));
@@ -157,7 +157,7 @@ describe('multi-ai-council persist-artifacts helper', () => {
       payloadPath,
     ], { encoding: 'utf8', stdio: 'pipe' });
 
-    expect(stdout).toContain('[multi-ai-council] Wrote');
+    expect(stdout).toContain('[ai-council] Wrote');
     expect(existsSync(payloadPath)).toBe(true);
     const payload = JSON.parse(readFileSync(payloadPath, 'utf8'));
     expect(payload).toMatchObject({

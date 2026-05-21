@@ -160,7 +160,7 @@ The free tier removes the cost barrier for exploratory use. Google OAuth gives y
 | `@context` | Architecture exploration | `gemini "As @context agent: Analyze project" -o text` |
 | `@deep-research` | Technical research | `gemini "As @deep-research agent: Research X" -o text` |
 | `@debug` | Fresh-perspective debugging via Task-tool dispatch | `gemini "As @debug agent: Debug error X" -o text` |
-| `@multi-ai-council` | Multi-strategy planning | `gemini "As @multi-ai-council agent: Plan redesign" -o text` |
+| `@ai-council` | Multi-strategy planning | `gemini "As @ai-council agent: Plan redesign" -o text` |
 
 ### 3.3 CLI COMPARISON
 

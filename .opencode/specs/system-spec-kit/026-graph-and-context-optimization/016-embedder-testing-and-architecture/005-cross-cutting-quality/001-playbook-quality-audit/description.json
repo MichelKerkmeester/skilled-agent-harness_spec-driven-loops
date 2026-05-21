@@ -1,16 +1,22 @@
 {
   "level": "phase",
-  "specFolder": "017-playbook-quality-audit",
-  "description": "Playbook quality audit",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit",
+  "description": "017: Playbook quality audit",
   "keywords": [
+    "017",
     "playbook",
     "quality",
     "audit"
   ],
-  "lastUpdated": "2026-05-17T13:05:56.806Z",
-  "specId": "017",
+  "lastUpdated": "2026-05-21T10:22:38.663Z",
+  "specId": "001",
   "folderSlug": "playbook-quality-audit",
-  "parentChain": [],
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "005-cross-cutting-quality"
+  ],
   "memorySequence": 1,
   "memoryNameHistory": [
     "17-05-26_14-05__audited-345-pre-expansion-manual-testing-playbook.md"

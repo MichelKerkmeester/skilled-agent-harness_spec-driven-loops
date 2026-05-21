@@ -10,9 +10,9 @@
     "parity",
     "remediation"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.759Z",
+  "lastUpdated": "2026-05-21T10:22:38.336Z",
   "specId": "002",
-  "folderSlug": "copilot-hook-parity-remediation",
+  "folderSlug": "copilot-custom-instructions-hook-parity",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",

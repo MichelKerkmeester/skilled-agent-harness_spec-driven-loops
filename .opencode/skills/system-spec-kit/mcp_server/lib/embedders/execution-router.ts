@@ -26,7 +26,7 @@ interface EmbedOptions {
 // 2. CONSTANTS
 // ───────────────────────────────────────────────────────────────
 
-const SIDECAR_LOCAL_PROVIDERS = new Set(['hf-local', 'sentence-transformers', 'llama-cpp']);
+const SIDECAR_LOCAL_PROVIDERS = new Set(['hf-local', 'sentence-transformers']);
 const directAdapters = new Map<string, EmbedderAdapter>();
 const sidecarClients = new Map<string, SidecarClient>();
 let shutdownHooksRegistered = false;

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/017-hook-test-sandbox-fix",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/017-hook-test-sandbox-fix",
   "description": "Spec: Hook Test Sandbox Fix",
   "keywords": [
     "spec",
@@ -8,13 +8,14 @@
     "sandbox",
     "fix"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.333Z",
-  "specId": "031",
+  "lastUpdated": "2026-05-21T10:22:37.765Z",
+  "specId": "017",
   "folderSlug": "hook-test-sandbox-fix",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup"
+    "000-release-cleanup",
+    "003-cross-cutting-cleanup-pass"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

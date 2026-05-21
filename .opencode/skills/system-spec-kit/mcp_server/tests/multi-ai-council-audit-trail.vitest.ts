@@ -55,7 +55,7 @@ describe('ai-council audit trail v1.2', () => {
     expect(events).toHaveLength(1);
     expect(events[0]).toMatchObject({
       schema_version: '1.2',
-      protocol: 'multi-ai-council',
+      protocol: 'ai-council',
       event: 'artifact_written',
       path: 'council-report.md',
       bytes: Buffer.byteLength(content),

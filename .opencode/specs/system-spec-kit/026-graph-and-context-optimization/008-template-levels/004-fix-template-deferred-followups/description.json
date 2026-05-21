@@ -7,9 +7,9 @@
     "specification",
     "deferred-followups"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.789Z",
+  "lastUpdated": "2026-05-21T10:22:38.361Z",
   "specId": "004",
-  "folderSlug": "deferred-followups",
+  "folderSlug": "fix-template-deferred-followups",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",

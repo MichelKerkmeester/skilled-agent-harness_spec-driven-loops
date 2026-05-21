@@ -1,5 +1,5 @@
 {
-  "specFolder": "004-extended-bake-off",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off",
   "description": "Spec: 016/006/004 Extended Code-Embedder Bake-Off",
   "keywords": [
     "spec",
@@ -10,13 +10,10 @@
     "code-embedder",
     "bake-off"
   ],
-  "lastUpdated": "2026-05-18T05:13:47.028Z",
+  "lastUpdated": "2026-05-21T10:22:38.568Z",
   "specId": "004",
   "folderSlug": "extended-bake-off",
   "parentChain": [
-    "..",
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "016-embedder-testing-and-architecture",

@@ -1,18 +1,29 @@
 {
   "level": "2",
-  "specFolder": "004-rewire-consumers-and-tool-registration",
-  "description": "Phase 004 rewires system-spec-kit handlers, hooks, context-server, tool registration, tests, session utilities, skill_advisor references, Vitest discovery, and the compact code-graph plugin bridge path after the Phase 003 source move. MCP topology remains co-resident under spec_kit_memory and code_graph_*/ccc_*/detect_changes tool IDs stay stable.",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/007-018-rewire-consumers-and-tool-registration",
+  "description": "Feature Specification: Rewire consumers: cross-subsystem imports, hooks, vitest config, plugin bridge",
   "keywords": [
-    "code-graph-consumer-rewire",
-    "sibling-skill-imports",
-    "stable-code-graph-tool-ids",
-    "co-resident-mcp",
-    "phase-004"
+    "feature",
+    "specification",
+    "rewire",
+    "consumers",
+    "cross-subsystem",
+    "imports",
+    "hooks",
+    "vitest",
+    "config",
+    "plugin",
+    "bridge"
   ],
-  "lastUpdated": "2026-05-14T08:15:39Z",
-  "specId": "004",
-  "folderSlug": "rewire-consumers-and-tool-registration",
+  "lastUpdated": "2026-05-21T10:22:38.847Z",
+  "specId": "007",
+  "folderSlug": "018-rewire-consumers-and-tool-registration",
   "parentChain": [
-    "013-system-code-graph-extraction"
-  ]
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "z_archive",
+    "wave-2-merges"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

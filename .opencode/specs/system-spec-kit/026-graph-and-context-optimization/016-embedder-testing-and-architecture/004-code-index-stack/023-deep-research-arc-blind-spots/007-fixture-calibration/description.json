@@ -1,33 +1,24 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/007-fixture-calibration",
-  "description": "Expanded mcp-coco-index retrieval fixture calibration, repeated-run sweeps, residual miss taxonomy, and ROBUST verdict gates.",
+  "level": "3",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/007-fixture-calibration",
+  "description": "Feature Specification: 023B Fixture Calibration",
   "keywords": [
-    "expanded",
-    "mcp-coco-index",
-    "retrieval",
+    "feature",
+    "specification",
+    "023b",
     "fixture",
-    "calibration",
-    "repeated-run",
-    "sweeps",
-    "residual",
-    "miss",
-    "taxonomy",
-    "robust",
-    "verdict",
-    "gates"
+    "calibration"
   ],
-  "lastUpdated": "2026-05-19T21:16:42.266Z",
-  "specId": "023",
-  "folderSlug": "b-fixture-calibration",
+  "lastUpdated": "2026-05-21T10:22:38.647Z",
+  "specId": "007",
+  "folderSlug": "fixture-calibration",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "016-embedder-testing-and-architecture",
-    "004-code-index-stack"
+    "004-code-index-stack",
+    "023-deep-research-arc-blind-spots"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

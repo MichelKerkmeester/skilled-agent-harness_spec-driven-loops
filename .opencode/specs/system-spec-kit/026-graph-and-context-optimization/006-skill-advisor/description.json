@@ -1,29 +1,19 @@
 {
-  "specFolder": "006-skill-advisor",
-  "description": "Close all 14 P2 findings from 006+007 parallel review — diagnostics, signal handlers, readonly probe, DELETE-mode log, integrity-check timeout, test h",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor",
+  "description": "Feature Specification: Skill Advisor",
   "keywords": [
-    "close",
-    "findings",
-    "006",
-    "007",
-    "parallel",
-    "review",
-    "diagnostics",
-    "signal",
-    "handlers",
-    "readonly",
-    "probe",
-    "delete-mode",
-    "log",
-    "integrity-check",
-    "timeout",
-    "test",
-    "hygiene"
+    "feature",
+    "specification",
+    "skill",
+    "advisor"
   ],
-  "lastUpdated": "2026-05-18T06:42:51.159Z",
-  "specId": "008",
+  "lastUpdated": "2026-05-21T10:22:38.200Z",
+  "specId": "006",
   "folderSlug": "skill-advisor",
-  "parentChain": [],
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization"
+  ],
   "memorySequence": 0,
   "memoryNameHistory": []
 }

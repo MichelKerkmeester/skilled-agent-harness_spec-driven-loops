@@ -62,7 +62,7 @@ ADR-013 made `nomic-embed-text-v1.5` the within-Ollama default. But the **outer 
 1. A user with `VOYAGE_API_KEY` set silently gets Voyage even when they prefer local-first execution.
 2. The `hf-local` fallback uses `BAAI/bge-base-en-v1.5` (768d) — different from the in-Ollama nomic default. New users without Ollama get a different embedder than users with Ollama, which fragments the production characteristic profile.
 
-The operator's stated intent (2026-05-19) is **local-first**: prefer Ollama when available, fall through to local Python/HF, only escalate to cloud APIs when nothing local works.
+The operator's stated intent (2026-05-19) is **local-first** for the auto-bootstrap path: prefer Ollama when available, fall through to hf-local Nomic, only escalate to cloud APIs when nothing local works. Dispatch A records the remaining regression explicitly: explicit `EMBEDDINGS_PROVIDER=hf-local` paths outside the auto bootstrap were not migrated in this packet and may still default differently. Source-code fixes for explicit-provider parity belong to Dispatch C.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->

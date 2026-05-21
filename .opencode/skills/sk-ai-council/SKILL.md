@@ -1,13 +1,13 @@
 ---
 name: sk-ai-council
-description: "Deep AI Council: multi-seat planning, artifact persistence, convergence checks, packet-local ai-council outputs."
+description: "AI Council: multi-seat planning, artifact persistence, convergence checks, packet-local ai-council outputs."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 version: 1.0.0
 ---
 
 <!-- Keywords: sk-ai-council, ai council, council deliberation, multi-seat planning, ai-council artifacts, council convergence, planning council, council artifact persistence -->
 
-# Deep AI Council
+# AI Council
 
 Planning-only council deliberation with diverse seats, convergence checks, and packet-local `ai-council/**` artifact persistence.
 
@@ -222,7 +222,7 @@ def get_routing_key(task, intents: list[str]) -> str:
         return intent
     return intents[0] if intents else "UNKNOWN"
 
-def route_deep_ai_council_resources(user_request, task=None):
+def route_sk_ai_council_resources(user_request, task=None):
     inventory = discover_markdown_resources()
     primary, secondary, scores = classify_intents(user_request, task)
     intents = [primary] + ([secondary] if secondary else [])
@@ -376,7 +376,7 @@ node .opencode/skills/sk-ai-council/scripts/advise-council-completion.cjs <packe
 2. **ESCALATE IF required report sections are missing and persistence would be lossy**
    - Fix the report or fail before writes.
 
-3. **ESCALATE IF a caller still depends on the old `multi-ai-council` runtime name and cannot be renamed**
+3. **ESCALATE IF a caller still depends on the old `ai-council` runtime name and cannot be renamed**
    - Compatibility requires explicit user direction.
 
 4. **ESCALATE IF a caller asks the council agent itself to mutate graph storage**
@@ -412,7 +412,7 @@ Council alignment is complete when:
 - ✅ Council requests route to `sk-ai-council` surfaces.
 - ✅ Runtime mirrors use `@sk-ai-council` as the primary agent identity.
 - ✅ Council references and scripts live inside this skill package.
-- ✅ Scoped grep shows no active runtime/config dispatch references to `multi-ai-council`.
+- ✅ Scoped grep shows no active runtime/config dispatch references to `ai-council`.
 - ✅ Persistence helpers parse and write the existing council artifact contract while graph support remains a derived projection.
 
 ### Quality Targets

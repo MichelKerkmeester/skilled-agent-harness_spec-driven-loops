@@ -8,10 +8,10 @@ const TEST_DIR = dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = resolve(TEST_DIR, '../../../../../');
 
 const mirrors = [
-  '.opencode/agents/multi-ai-council.md',
-  '.claude/agents/multi-ai-council.md',
-  '.gemini/agents/multi-ai-council.md',
-  '.codex/agents/multi-ai-council.toml',
+  '.opencode/agents/ai-council.md',
+  '.claude/agents/ai-council.md',
+  '.gemini/agents/ai-council.md',
+  '.codex/agents/ai-council.toml',
 ];
 
 function stripMarkdownFrontmatter(text: string): string {
@@ -58,7 +58,7 @@ function firstHeaderDrift(expected: string[], actual: string[]): string {
   return 'no header drift';
 }
 
-describe('multi-ai-council runtime mirror parity', () => {
+describe('ai-council runtime mirror parity', () => {
   // followup-actual: 026/000/002-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
   it.fails.skip('keeps section headers, markers, and body size aligned across 4 runtimes', () => {
     const canonicalFile = mirrors[0];

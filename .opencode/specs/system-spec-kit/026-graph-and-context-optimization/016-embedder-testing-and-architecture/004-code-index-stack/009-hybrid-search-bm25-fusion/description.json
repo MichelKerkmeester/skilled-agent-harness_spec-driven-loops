@@ -1,5 +1,5 @@
 {
-  "specFolder": "003-hybrid-search-bm25-fusion",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/009-hybrid-search-bm25-fusion",
   "description": "Spec: 016/011/003-hybrid-search-bm25-fusion — Hybrid Search (BM25 + Semantic Fusion)",
   "keywords": [
     "spec",
@@ -12,13 +12,10 @@
     "semantic",
     "fusion"
   ],
-  "lastUpdated": "2026-05-18T05:13:46.575Z",
-  "specId": "003",
+  "lastUpdated": "2026-05-21T10:22:38.574Z",
+  "specId": "009",
   "folderSlug": "hybrid-search-bm25-fusion",
   "parentChain": [
-    "..",
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "016-embedder-testing-and-architecture",

@@ -49,7 +49,7 @@ The numeric gap at `05` is intentional. cli-gemini has no first-class session-co
 
 This playbook provides 19 deterministic scenarios across 6 categories validating the `cli-gemini` skill surface. Each feature keeps its stable `CG-NNN` ID and links to a dedicated feature file with the full execution contract.
 
-Coverage note (2026-04-26): the playbook covers cli-gemini's documented behaviour at SKILL.md v1.2.3, including non-interactive invocation, output formats, the `gemini-3.1-pro-preview` model lock, `--yolo` and approval modes, the three Gemini-only tools (`google_web_search`, `codebase_investigator`, `save_memory`) plus the `@` file-reference syntax, agent routing for `@context` / `@review` / `@deep-research` / `@multi-ai-council` (with documented Task-tool routing for `@debug`), three core integration patterns (generate-review-fix, JSON output processing, parallel background execution) and the two ALWAYS-loaded prompt assets. Position `05` is reserved across the cli-* playbook family for session-continuity surfaces. cli-gemini does not expose one and skips that slot intentionally.
+Coverage note (2026-04-26): the playbook covers cli-gemini's documented behaviour at SKILL.md v1.2.3, including non-interactive invocation, output formats, the `gemini-3.1-pro-preview` model lock, `--yolo` and approval modes, the three Gemini-only tools (`google_web_search`, `codebase_investigator`, `save_memory`) plus the `@` file-reference syntax, agent routing for `@context` / `@review` / `@deep-research` / `@ai-council` (with documented Task-tool routing for `@debug`), three core integration patterns (generate-review-fix, JSON output processing, parallel background execution) and the two ALWAYS-loaded prompt assets. Position `05` is reserved across the cli-* playbook family for session-continuity surfaces. cli-gemini does not expose one and skips that slot intentionally.
 
 ### Realistic Test Model
 
@@ -361,7 +361,7 @@ Desired user-visible outcome: PASS verdict + a one-line quote naming the support
 
 ## 10. AGENT ROUTING
 
-This category covers 4 scenario summaries while the linked feature files remain the canonical execution contract. Coverage spans all 6 documented Gemini agents (`@context`, `@review`, `@deep-research`, `@multi-ai-council`, `@debug`). CG-013 documents the `@debug` Task-tool routing path and CG-019 closes the deferred surface gap by exercising an inline `As @debug agent:` dispatch end to end.
+This category covers 4 scenario summaries while the linked feature files remain the canonical execution contract. Coverage spans all 6 documented Gemini agents (`@context`, `@review`, `@deep-research`, `@ai-council`, `@debug`). CG-013 documents the `@debug` Task-tool routing path and CG-019 closes the deferred surface gap by exercising an inline `As @debug agent:` dispatch end to end.
 
 ### CG-010 | @context agent for codebase exploration
 

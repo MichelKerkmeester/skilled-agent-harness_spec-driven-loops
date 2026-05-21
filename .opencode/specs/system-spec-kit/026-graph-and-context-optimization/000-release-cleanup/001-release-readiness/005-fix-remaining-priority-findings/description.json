@@ -8,7 +8,7 @@
   ],
   "contextType": "implementation",
   "importance_tier": "important",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-fix-remaining-priority-findings",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/005-fix-remaining-priority-findings",
   "description": "Feature Specification: 048 Remaining P1/P2 Remediation",
   "keywords": [
     "feature",
@@ -17,13 +17,14 @@
     "remaining",
     "remediation"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.394Z",
-  "specId": "035",
-  "folderSlug": "remaining-p1-p2-remediation",
+  "lastUpdated": "2026-05-21T10:22:37.683Z",
+  "specId": "005",
+  "folderSlug": "fix-remaining-priority-findings",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup"
+    "000-release-cleanup",
+    "001-release-readiness"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

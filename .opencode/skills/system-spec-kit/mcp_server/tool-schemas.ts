@@ -740,7 +740,7 @@ const deepLoopGraphConvergence: ToolDefinition = {
   },
 };
 
-// L9: Council Graph - Deep AI Council derived graph projection tools
+// L9: Council Graph - AI Council derived graph projection tools
 const councilGraphUpsert: ToolDefinition = {
   name: 'council_graph_upsert',
   description: '[L9:CouncilGraph] Idempotent upsert for dedicated council graph nodes and edges. This graph is a derived projection from packet-local ai-council artifacts, not the source of truth. Rejects self-loops, clamps weights to [0.0, 2.0], and requires specFolder plus sessionId for namespace isolation.',

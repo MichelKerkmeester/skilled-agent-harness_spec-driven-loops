@@ -49,7 +49,7 @@ The skill includes a self-invocation guard: if you are already running inside Cl
 
 ### Key Statistics
 
-The skill supports 3 models (Opus 4.6, Sonnet 4.6, Haiku 4.5), 9 specialized agents (context, debug, handover, orchestrate, research, review, speckit, multi-ai-council, write), 3 permission modes (plan for read-only, default for interactive approval, bypassPermissions for auto-approve), 3 output formats (text, json, stream-json), 4 reference documents (cli_reference, claude_tools, agent_delegation, integration_patterns), and is at version 1.1.1.
+The skill supports 3 models (Opus 4.6, Sonnet 4.6, Haiku 4.5), 9 specialized agents (context, debug, handover, orchestrate, research, review, speckit, ai-council, write), 3 permission modes (plan for read-only, default for interactive approval, bypassPermissions for auto-approve), 3 output formats (text, json, stream-json), 4 reference documents (cli_reference, claude_tools, agent_delegation, integration_patterns), and is at version 1.1.1.
 
 ### Key Features at a Glance
 
@@ -165,7 +165,7 @@ The agent system adds specialization on top of these foundations. Nine agents co
 | `research` | Evidence gathering | `--agent research` |
 | `review` | Code review and audit | `--agent review --permission-mode plan` |
 | `speckit` | Spec documentation | `--agent speckit` |
-| `multi-ai-council` | Multi-strategy planning | `--agent multi-ai-council --permission-mode plan` |
+| `ai-council` | Multi-strategy planning | `--agent ai-council --permission-mode plan` |
 | `write` | Documentation generation | `--agent write` |
 
 <!-- /ANCHOR:features -->

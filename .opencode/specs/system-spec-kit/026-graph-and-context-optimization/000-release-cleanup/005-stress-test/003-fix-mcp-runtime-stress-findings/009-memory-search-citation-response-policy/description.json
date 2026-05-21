@@ -9,9 +9,9 @@
     "policy",
     "citation"
   ],
-  "lastUpdated": "2026-05-16T21:09:37.409Z",
+  "lastUpdated": "2026-05-21T10:22:37.874Z",
   "specId": "009",
-  "folderSlug": "memory-search-response-policy",
+  "folderSlug": "memory-search-citation-response-policy",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",

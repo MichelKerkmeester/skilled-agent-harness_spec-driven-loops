@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/001-clean-room-license-audit",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption/001-clean-room-license-audit",
   "description": "Feature Specification: Clean-Room License Audit (012/001)",
   "keywords": [
     "feature",
@@ -10,13 +10,13 @@
     "012",
     "001"
   ],
-  "lastUpdated": "2026-04-26T07:03:47.547Z",
+  "lastUpdated": "2026-05-21T10:22:38.098Z",
   "specId": "001",
   "folderSlug": "clean-room-license-audit",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "010-graph-impact-and-affordance-uplift"
+    "004-external-project-adoption"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

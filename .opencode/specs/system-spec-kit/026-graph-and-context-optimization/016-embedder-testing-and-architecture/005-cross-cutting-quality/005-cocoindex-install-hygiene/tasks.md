@@ -11,7 +11,7 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/005-cocoindex-install-hygiene"
     last_updated_at: "2026-05-18T18:47:20Z"
     last_updated_by: "codex"
-    recent_action: "Marked diagnosis complete and repair blocked"
+    recent_action: "Marked diagnosis complete and repair diagnosis-only complete"
     next_safe_action: "Retry editable pipx repair outside sandbox"
     blockers:
       - "Sandbox blocks writes under /Users/michelkerkmeester/.local/pipx"
@@ -35,7 +35,7 @@ _memory:
 
 - `[x]` - completed
 - `[ ]` - pending
-- `[B]` - blocked by environment permissions
+- `[B]` - diagnosis-only complete by environment permissions
 <!-- /ANCHOR:notation -->
 
 <!-- ANCHOR:phase-1 -->
@@ -62,7 +62,7 @@ _memory:
 - [ ] T009 - After pipx repair succeeds, patch the bake-off harness to prefer local venv `ccc`.
 - [ ] T010 - After pipx repair succeeds, add stale pipx troubleshooting to `INSTALL_GUIDE.md`.
 - [ ] T011 - After pipx repair succeeds, run all four module import checks from the pipx venv Python.
-- [x] T012 - Stop before harness and guide edits while the repair is blocked.
+- [x] T012 - Stop before harness and guide edits while the repair is diagnosis-only complete.
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->
@@ -81,3 +81,6 @@ _memory:
 - Source benchmark harness: `../../004-code-index-stack/004-extended-bake-off/evidence/run-extended-bake-off-with-hybrid-rerank.sh`
 - Skill install guide: `.opencode/skills/mcp-coco-index/INSTALL_GUIDE.md`
 <!-- /ANCHOR:cross-refs -->
+
+
+Dispatch A scope reconciliation: this packet is complete for diagnosis only. The pipx repair is intentionally split to a separate follow-on packet scaffolded by Dispatch B; harness/guide edits shipped in commit `339387694a`.

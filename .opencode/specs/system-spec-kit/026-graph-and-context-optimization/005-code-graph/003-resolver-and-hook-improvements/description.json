@@ -10,9 +10,9 @@
     "improvement",
     "investigation"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.642Z",
-  "specId": "004",
-  "folderSlug": "code-graph-hook-improvements",
+  "lastUpdated": "2026-05-21T10:22:38.118Z",
+  "specId": "003",
+  "folderSlug": "resolver-and-hook-improvements",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",

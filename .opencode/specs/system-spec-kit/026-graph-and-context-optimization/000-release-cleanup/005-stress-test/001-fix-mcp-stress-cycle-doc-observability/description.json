@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-fix-mcp-stress-cycle-doc-observability",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/001-fix-mcp-stress-cycle-doc-observability",
   "description": "Feature Specification: MCP Stress-Cycle Doc/Observability Cleanup",
   "keywords": [
     "feature",
@@ -10,13 +10,14 @@
     "observability",
     "cleanup"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.074Z",
-  "specId": "002",
-  "folderSlug": "mcp-stress-cycle-cleanup",
+  "lastUpdated": "2026-05-21T10:22:37.811Z",
+  "specId": "001",
+  "folderSlug": "fix-mcp-stress-cycle-doc-observability",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup"
+    "000-release-cleanup",
+    "005-stress-test"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

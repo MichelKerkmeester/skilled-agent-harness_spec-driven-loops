@@ -169,3 +169,6 @@ PRODUCTION_BUG_FOUND=no
 PUSH_TO_ORIGIN=NO
 NOTES=048 local report count differs from dispatch; broad P2 runner/security/refactor work deferred by named packet.
 ```
+
+
+These three follow-on packets were deferred indefinitely; if/when reopened, they should be created under the current track structure. WAIVED 2026-05-21.

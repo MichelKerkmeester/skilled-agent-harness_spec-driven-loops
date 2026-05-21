@@ -131,7 +131,7 @@ Recent work also tightened the public surface without turning this README into a
 
 ### Embedder Architecture
 
-Both native MCPs are pluggable out of the box, no code change to swap. **mk-spec-memory** defaults to `nomic-embed-text-v1.5` (768 dim, Ollama-served) per ADR-013/014 local-first cascade (2026-05-19); `jina-embeddings-v3` (1024 dim) is the second-priority fallback. The retrieval-rescue layer is default-on per ADR-011 (kill switch: `SPECKIT_RERANK_LAYER=false`). **CocoIndex** ships a two-stage pipeline: Stage 1 embedder default `sbert/nomic-ai/CodeRankEmbed` (768 dim, MIT, code-tuned bi-encoder, MPS auto-detect on Apple Silicon — promoted 2026-05-19); Stage 2 cross-encoder reranker default `Qwen/Qwen3-Reranker-0.6B` (Apache-2.0 — promoted 2026-05-20 per ADR-027 after a head-to-head bench against jina-reranker-v3, which is kept as opt-in fallback). The Code Graph rides on CocoIndex's embedder choice via a shared bridge. See the canonical narrative at [embedder-pluggability.md](.opencode/skills/system-spec-kit/references/embedder-pluggability.md) and the swap runbook in [CocoIndex INSTALL_GUIDE §4 "Choosing an embedder"](.opencode/skills/mcp-coco-index/INSTALL_GUIDE.md).
+Both native MCPs are pluggable out of the box, no code change to swap. **mk-spec-memory** defaults to `sbert/nomic-ai/CodeRankEmbed` (768 dim, MIT) through the Ollama -> hf-local Nomic cascade; `SPECKIT_CROSS_ENCODER` remains default-off, with configured opt-in reranker `cross-encoder/ms-marco-MiniLM-L-6-v2`. **CocoIndex** ships a two-stage pipeline: Stage 1 embedder default `sbert/nomic-ai/CodeRankEmbed` (768 dim, MIT, code-tuned bi-encoder, MPS auto-detect on Apple Silicon — promoted 2026-05-19); Stage 2 cross-encoder reranker default `Qwen/Qwen3-Reranker-0.6B` (Apache-2.0 — promoted 2026-05-20 per ADR-027 after a head-to-head bench against jina-reranker-v3, which is kept as opt-in fallback). The Code Graph rides on CocoIndex's embedder choice via a shared bridge. See the canonical narrative at [embedder-pluggability.md](.opencode/skills/system-spec-kit/references/embedder-pluggability.md) and the swap runbook in [CocoIndex INSTALL_GUIDE §4 "Choosing an embedder"](.opencode/skills/mcp-coco-index/INSTALL_GUIDE.md).
 
 <!-- /ANCHOR:overview -->
 
@@ -416,7 +416,7 @@ The `mk-spec-memory` tools are organized into a layered architecture. Code graph
 | **L7** | Maintenance     | 5      | 1,000        | Memory index scans, async ingest and learning history                        |
 | **L8** | Moved Surfaces  | 0      | -            | Code graph lives in `mk_code_index`. Advisor and skill graph live in `mk_skill_advisor` |
 | **L9** | Coverage Graph  | 4      | 700          | Deep-loop coverage graph operations                                          |
-| **L9** | Council Graph   | 4      | 700          | Deep AI Council graph operations                                             |
+| **L9** | Council Graph   | 4      | 700          | AI Council graph operations                                             |
 |        | **Total**       | **39** | **~10,180**  |                                                                              |
 
 Lower layers load only when needed. L1 is always available. L2 loads for any search. L3-L7 load based on the specific command being used.
@@ -909,34 +909,23 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 - DEPTH thinking methodology with 3-10 iteration rounds of progressive refinement
 - CLEAR quality scoring: Clarity, Logic, Expression, Reliability (40+/50 pass threshold)
 
-**sk-ai-small-model**
-- Sentinel skill for small-model optimization patterns. Discovery anchor only — routes operators to executor-owned pattern files instead of hosting logic.
-- Active dispatch matrix:
-  - **cli-devin**: SWE-1.6 (Cognition free tier) + DeepSeek-v4-pro / Kimi-k2.6 / GLM-5.1 (Cognition Pro plan).
-  - **cli-opencode + DeepSeek API provider**: DeepSeek-v4-pro (direct `DEEPSEEK_API_KEY`; requires `--pure`).
-  - **cli-opencode + opencode-go provider**: DeepSeek-v4-pro / Kimi-k2.6 / Qwen3.6 / GLM-5.1 (workspace-wide opencode-go credit pool).
-  - Optional stubs ready for Claude Haiku and Gemini Flash.
-- Each model in `sk-prompt/assets/model-profiles.json` declares its dispatch paths through an `executors` array (executor + provider + `quota_pool`), so the fallback engine can pick a different pool when one is exhausted.
-- Co-surfaces alongside `cli-devin` and `cli-opencode` via `enhances` edges (weight 0.5). Lexical trigger phrases match model names + pattern names (`swe-1.6`, `kimi`, `deepseek`, `qwen`, `glm-5.1`, `opencode-go`, `deepseek-api`, `haiku`, `gemini flash`, `context budget`, `output verification`, `permissions matrix`, `quota fallback`, `model profile`, `tool scoring`).
-- `references/pattern-index.md` maps each pattern to its canonical executor-owned location: context budget engine + output verification + per-model budgets + confidence rubric (`cli-devin/`), permissions matrix schema + structured permissions (`cli-opencode/`), unified model registry + cross-CLI budget awareness (`sk-prompt/`), runtime helpers (`system-spec-kit/mcp_server/lib/deep-loop/`).
-- Frontier models (Opus, Sonnet, gpt-5.5) are explicitly out of scope. Quota fallback is pool-aware (different-pool target only; same-pool retries forbidden), not tier-based escalation.
-- Adopting Haiku or Gemini Flash later is metadata-first: populate the registry stub, optionally set `fallback_target`, add trigger phrases, re-index the advisor. No code edits required when the new provider fits an existing quota-pool category.
-
-**deep-agent-improvement** 
-- Evaluator-first agent improvement with 5-dimension integration-aware scoring (structural, ruleCoherence, integration, outputQuality, systemFitness)
-- Integration scanner discovers all surfaces an agent touches (canonical, mirrors, commands, YAML, skills)
-- Dynamic profile generator derives scoring rubric from any agent's own rules, no hardcoded profiles needed
-- Proposal-first: candidates written to packet-local runtime areas, canonical target untouched until guarded promotion
-- Guarded promotion with scoring, benchmark, repeatability and operator approval gates. Rollback support.
-- Dimensional progress tracking with plateau detection (3+ identical scores triggers stop)
-- All scoring is deterministic (regex/string/file-existence), no LLM-as-judge, safe for promotion gates
-- Legal-stop events, session-boundary gate, `plateau` stop reason, dashboard sections for journal/lineage/coverage
-
 **sk-ai-council**
 - Multi-seat planning council dispatching diverse AI reasoning seats for strategic decisions
 - Cross-seat critique and convergence checks produce evidence-backed recommendations
 - Packet-local artifact persistence via `ai-council/**` output directory
 - Planning-only scope. Agent counterpart listed in the Agent Network section below
+
+**sk-ai-small-model**
+- Sentinel skill for small-model optimization patterns. Discovery anchor only — routes operators to executor-owned pattern files instead of hosting logic
+- Active dispatch matrix: SWE-1.6, DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, GLM-5.1 across `cli-devin` + `cli-opencode` (DeepSeek API direct + opencode-go pool). Optional stubs for Claude Haiku and Gemini Flash
+- `references/pattern-index.md` maps each pattern (context budget, output verification, permissions matrix, quota fallback, model profiles, tool scoring) to its canonical executor-owned location
+- Pool-aware quota fallback (different-pool target only; no same-pool retries). Frontier models (Opus, Sonnet, gpt-5.5) explicitly out of scope. Adopting Haiku/Gemini Flash is metadata-first via `sk-prompt/assets/model-profiles.json`
+
+**deep-agent-improvement**
+- Evaluator-first 5-dimension scoring: structural, ruleCoherence, integration, outputQuality, systemFitness — with integration scanner that discovers every surface an agent touches (canonical, mirrors, commands, YAML, skills)
+- Dynamic profile generator derives the scoring rubric from each agent's own rules; no hardcoded profiles needed
+- Proposal-first: candidates written to packet-local runtime; canonical target untouched until guarded promotion (scoring + benchmark + repeatability + operator approval gates, with rollback support)
+- Deterministic scoring (regex/string/file-existence; no LLM-as-judge) and plateau detection (3+ identical scores triggers stop)
 
 ---
 
@@ -992,7 +981,7 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 - Returns a structured prompt package with `FRAMEWORK`, `CLEAR_SCORE`, `RATIONALE`, `ENHANCED_PROMPT` and `ESCALATION_NOTES`
 - Used by the CLI mirror-card pipeline and `/improve:prompt` agent mode when complexity, compliance or stakeholder spread makes inline prompting too weak
 
-**Deep AI Council**
+**AI Council**
 - Multi-strategy planning architect dispatching diverse AI vantage points and strategy lenses
 - Seeks distinct reasoning strategies across multiple AIs (cli-codex, cli-gemini, cli-claude-code + native)
 - Multi-round deliberation before recommending a plan. Planning-only (never modifies files)

@@ -50,20 +50,20 @@ A second-opinion pass from `cli-codex gpt-5.5 xhigh` (recorded in the arc's rese
 ---
 
 <!-- ANCHOR:phase-map -->
-## 2. SUB-PHASE CONTROL FILE
+## 2. PHASE MAP
 
-| # | Phase | Status | What it ships |
-|---|-------|--------|---------------|
-| 001 | `001-flag-routing-fix-for-cross-encoder/` | Planned | Split `SPECKIT_CROSS_ENCODER` from `RERANKER_LOCAL` so the HTTP `cross-encoder.ts:local` provider is actually reachable. Today `RERANKER_LOCAL=true` activates the no-op `local-reranker.ts` shim and shadows the HTTP path. Prerequisite for all downstream phases. |
-| 002 | `002-system-rerank-sidecar-skill/` | Planned | Create the new `.opencode/skills/system-rerank-sidecar/` skill: Python sidecar (FastAPI + `sentence_transformers.CrossEncoder('Qwen/Qwen3-Reranker-0.6B', trust_remote_code=True)`) with `asyncio.Lock` serialization, sigmoid-normalized output, `/health` endpoint, and bounded warmup. Includes SKILL.md, scripts, pyproject.toml, .env.example. |
-| 003 | `003-ensure-sidecar-from-launchers/` | Planned | Add `ensureRerankSidecar({ port })` self-electing-primary helper to both `mk-spec-memory-launcher.cjs` and `mk-code-index-launcher.cjs` (or cocoindex's equivalent). Probe `/health`; spawn detached if absent; attach as HTTP client if present. Mirrors the lease-based bridge attachment from packet 010/012 but at port level. |
-| 004 | `004-spec-memory-rerank-benchmark/` | Planned | Run an A/B benchmark on spec-memory's own corpus (paraphrase recall fixtures cat-24/409, 416/417/418 playbook scenarios). Quantify the actual lift vs positional fallback before claiming a quality win — cocoindex's `+1/73` on code chunks is not transferable evidence for memory text. |
-| 005 | `005-promote-qwen-as-default/` | Complete (HOLD) | Phase 004 benchmark gates failed (p95 +9832ms; hit-rate Δ +0.4pp); sidecar ships opt-in only. Default model in `cross-encoder.ts:55` stays `cross-encoder/ms-marco-MiniLM-L-6-v2`. |
-| 006 | `006-cocoindex-dedup-from-shared-sidecar/` | Complete (PROMOTE) | Closes the arc's deduplication intent. `HttpSidecarRerankerAdapter` routes cocoindex's Stage 2 rerank through `system-rerank-sidecar` over HTTP by default (`COCOINDEX_RERANK_VIA_SIDECAR=true`); bundled `CrossEncoderRerankerAdapter` retained as fallback. A/B benchmark (`benchmark-2026-05-20-cocoindex-via-sidecar/`) confirmed hit-rate parity (15/73 = 15/73) and bounded p95 latency cost (+18 ms). |
-| 007 | `007-spec-memory-mps-rerank-promotion/` | Complete (HOLD) | Tested whether `RERANK_DEVICE=mps` could unblock spec-memory's default flip. Phase A smoke: Qwen-on-MPS at 155 ms / 3-doc rerank (~19x speedup vs CPU). Phase C bench: 20-doc batch shape (Stage 3 top_k) exhausts MPS GPU memory in Qwen attention; sidecar crashes mid-run with `MPS backend out of memory ... failed assertion 'Failed to allocate private MTLBuffer for size 76 GB'`. All three gates fail. Default stays off; `cross-encoder.ts:54` reverted to `cross-encoder/ms-marco-MiniLM-L-6-v2`. Follow-ons identified: cap-top_k, ms-marco-on-MPS, quantized Qwen, domain fine-tune. |
-| 008 | `008-cap-rerank-top-k/` | Complete (HOLD) | Tested whether `SPECKIT_RERANK_LOCAL_MAX_DOCS=10` (cap the local-provider batch) avoids the MPS OOM. Verdict HOLD — falsified the batch-size hypothesis. Cap=10 reproduced (and worsened) the OOM at 135 GiB allocations; reach 14.7% vs packet 007's 23%. MPS framework appears to reserve full-attention-graph buffers regardless of input batch size. Env override stays in code as a useful tunable for cloud providers. |
-| 009 | `009-fp16-rerank/` | Complete (HOLD) | Tested whether `RERANK_TORCH_DTYPE=float16` halves the model memory enough to fit on MPS at the default 50-doc batch. Phase A smoke surprised positively (fp16 fit 50 short lorem-ipsum docs in 1.1s, no OOM). Phase C bench reproduced the OOM pattern under spec-memory's actual load (production docs are 4-8x longer than the smoke's). fp16 cuts WEIGHT memory but the MPS kernel-scratch allocations (76 + 135 GiB attempted) are independent of weight dtype. Third orthogonal MPS lever falsified. Sidecar env handler (`RERANK_TORCH_DTYPE`) stays in code as a useful tunable. |
-| 010 | `010-domain-tuned-reranker-finetune/` | Scaffolded (execution deferred) | Scaffold-only spec for the multi-day fine-tune path. Execution gated on packets 008 + 009 verdicts AND the deep-research convergence. The 2026-05-21 ms-marco bench showed off-the-shelf cross-encoders reorder spec-memory's structured-markdown docs WORSE than positional fallback; a domain fine-tune is the remaining untested hypothesis if the runtime-level packets (007-009) all HOLD. |
+| Phase | Focus | Status |
+|---|---|---|
+| `001-flag-routing-fix-for-cross-encoder/` | Flag-routing fix for cross-encoder HTTP local provider | Planned |
+| `002-system-rerank-sidecar-skill/` | system-rerank-sidecar skill | Complete |
+| `003-ensure-sidecar-from-launchers/` | Ensure rerank sidecar from launchers | Planned |
+| `004-spec-memory-rerank-benchmark/` | spec-memory rerank A/B benchmark | Complete — HOLD |
+| `005-promote-qwen-as-default/` | Promote Qwen3-Reranker-0.6B as the spec-memory default | Complete (HOLD) |
+| `006-cocoindex-dedup-from-shared-sidecar/` | Cocoindex dedup from shared rerank sidecar | Planned |
+| `007-spec-memory-mps-rerank-promotion/` | spec-memory MPS rerank promotion candidate | Planned |
+| `008-cap-rerank-top-k/` | cap spec-memory rerank top-k | Planned |
+| `009-fp16-rerank/` | fp16 cross-encoder weights on MPS | Planned |
+| `010-domain-tuned-reranker-finetune/` | domain-tuned reranker fine-tune for spec-memory corpus | Scaffolded (execution deferred) |
 <!-- /ANCHOR:phase-map -->
 
 ---

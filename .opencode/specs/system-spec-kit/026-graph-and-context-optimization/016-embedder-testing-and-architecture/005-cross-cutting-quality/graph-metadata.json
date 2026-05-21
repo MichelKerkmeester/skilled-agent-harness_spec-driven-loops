@@ -7,8 +7,10 @@
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/002-deep-review-stack",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/004-skill-local-benchmarks-format",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/005-cocoindex-install-hygiene",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/006-benchmark-format-to-sk-doc"
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/006-benchmark-format-to-sk-doc",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/006-cocoindex-install-hygiene-pipx-repair"
   ],
   "manual": {
     "depends_on": [],
@@ -36,7 +38,7 @@
       "phase"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md"
     ],
@@ -92,7 +94,8 @@
     "source_docs": [
       "spec.md"
     ],
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/006-benchmark-format-to-sk-doc",
-    "last_active_at": "2026-05-19T12:49:55.815Z"
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/006-cocoindex-install-hygiene-pipx-repair",
+    "last_active_at": "2026-05-21T10:16:26Z",
+    "last_indexed_at": "2026-05-21T11:00:00Z"
   }
 }

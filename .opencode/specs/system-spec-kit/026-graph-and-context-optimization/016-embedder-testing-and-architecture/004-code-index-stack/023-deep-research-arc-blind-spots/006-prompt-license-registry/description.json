@@ -1,28 +1,25 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/006-prompt-license-registry",
-  "description": "Typed CocoIndex prompt and license registry accessors with startup validation.",
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/006-prompt-license-registry",
+  "description": "Feature Specification: 023A2 Prompt License Registry",
   "keywords": [
-    "typed",
-    "cocoindex",
+    "feature",
+    "specification",
+    "023a2",
     "prompt",
     "license",
-    "registry",
-    "accessors",
-    "startup",
-    "validation"
+    "registry"
   ],
-  "lastUpdated": "2026-05-19T20:49:15.816Z",
-  "specId": "023",
-  "folderSlug": "a2-prompt-license-registry",
+  "lastUpdated": "2026-05-21T10:22:38.642Z",
+  "specId": "006",
+  "folderSlug": "prompt-license-registry",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "016-embedder-testing-and-architecture",
-    "004-code-index-stack"
+    "004-code-index-stack",
+    "023-deep-research-arc-blind-spots"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

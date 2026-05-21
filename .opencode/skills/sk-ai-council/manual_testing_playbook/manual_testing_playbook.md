@@ -185,7 +185,7 @@ This section records wave planning and capacity guidance for the manual testing 
 
 ### DAC-001 | Runtime agent renamed to sk-ai-council
 
-Verify runtime mirrors expose `sk-ai-council` and active mirror paths do not retain `multi-ai-council` as the primary identity.
+Verify runtime mirrors expose `sk-ai-council` and active mirror paths do not retain `ai-council` as the primary identity.
 
 Feature file: [DAC-001](01--runtime-routing-and-rename/001-runtime-agent-renamed-to-sk-ai-council.md)
 
@@ -415,12 +415,12 @@ Feature file: [DAC-032](09--council-graph-value-comparison/006-mid-run-interrupt
 
 | Test File | Scenario IDs |
 | --- | --- |
-| `.opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-runtime-parity.vitest.ts` | DAC-001 |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/ai-council-runtime-parity.vitest.ts` | DAC-001 |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/scorer/native-scorer.vitest.ts` | DAC-002 |
-| `.opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-permission-scope.vitest.ts` | DAC-003, DAC-004, DAC-011, DAC-012, DAC-017 |
-| `.opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-audit-trail.vitest.ts` | DAC-005, DAC-006, DAC-013 |
-| `.opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-rollback.vitest.ts` | DAC-010 |
-| `.opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-persist-artifacts.vitest.ts` | DAC-005, DAC-007 |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/ai-council-permission-scope.vitest.ts` | DAC-003, DAC-004, DAC-011, DAC-012, DAC-017 |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/ai-council-audit-trail.vitest.ts` | DAC-005, DAC-006, DAC-013 |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/ai-council-rollback.vitest.ts` | DAC-010 |
+| `.opencode/skills/system-spec-kit/scripts/tests/ai-council-persist-artifacts.vitest.ts` | DAC-005, DAC-007 |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/council-graph.vitest.ts` | DAC-019, DAC-020, DAC-021, DAC-022, DAC-023, DAC-024 |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/council-graph-value-scenarios.vitest.ts` | DAC-027, DAC-028, DAC-029, DAC-030, DAC-031, DAC-032 |
 | Operator A/B comparison (with-graph vs no-graph baseline) | Operator-runnable contract mirrors the automated DAC-027..DAC-032 fixtures |

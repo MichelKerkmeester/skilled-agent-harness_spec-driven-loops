@@ -1,14 +1,24 @@
 {
   "level": "feature",
-  "specFolder": "001-indexer-surface-investigation",
-  "description": "Map each retrieval/dispatch system (CocoIndex, mk-spec-memory, code-graph, AI council, deep-research, deep-review, sk-doc, skill-advisor) to its indexer + content type",
-  "keywords": ["indexer-investigation","ai-council","deep-research","deep-review","content-type-mapping","research"],
-  "lastUpdated": "2026-05-18T15:59:11.000Z",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/001-indexer-surface-investigation",
+  "description": "Spec: 016/013/001 Indexer Surface Investigation",
+  "keywords": [
+    "spec",
+    "016",
+    "013",
+    "001",
+    "indexer",
+    "surface",
+    "investigation"
+  ],
+  "lastUpdated": "2026-05-21T10:22:38.772Z",
   "specId": "001",
-  "folderSlug": "001-indexer-surface-investigation",
+  "folderSlug": "indexer-surface-investigation",
   "parentChain": [
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc"
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "007-ollama-and-bge-promotion-arc"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

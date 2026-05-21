@@ -1,17 +1,22 @@
 {
-  "specFolder": "016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/001-concurrent-daemon-corruption-fix",
-  "description": "Phase 1: concurrent-daemon-corruption-fix",
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/001-concurrent-daemon-corruption-fix",
+  "description": "Concurrent Daemon Corruption Fix",
   "keywords": [
-    "phase",
-    "concurrent-daemon-corruption-fix"
+    "concurrent",
+    "daemon",
+    "corruption",
+    "fix"
   ],
-  "lastUpdated": "2026-05-18T04:46:08.668Z",
-  "specId": "006",
+  "lastUpdated": "2026-05-21T10:22:38.716Z",
+  "specId": "001",
   "folderSlug": "concurrent-daemon-corruption-fix",
   "parentChain": [
-    "006-skill-advisor"
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "006-mcp-launcher-concurrency-arc"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

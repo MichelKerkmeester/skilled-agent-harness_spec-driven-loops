@@ -4,11 +4,30 @@ description: "Phase parent. 4 sub-phases: (001) investigate what each retrieval 
 trigger_phrases:
   - "016/013 ollama and bge promotion"
   - "ollama adapter cocoindex"
-  - "bge-code-v1 default promotion"
+  - "superseded BGE promotion arc"
   - "newer text embedders survey"
   - "indexer surface investigation"
 importance_tier: "important"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc"
+    last_updated_at: "2026-05-21T11:00:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "Dispatch A marked arc superseded."
+    next_safe_action: "Use Nomic default docs; no BGE promotion."
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "graph-metadata.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000016007"
+      session_id: "016-007-superseded-cleanup"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "BGE promotion superseded by Nomic CodeRankEmbed."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->
@@ -20,7 +39,7 @@ contextType: "implementation"
 
 | Field | Value |
 |---|---|
-| Status | Planned (scaffolded 2026-05-18) |
+| Status | Closed / Superseded |
 | Level | Phase Parent (light scaffold — spec.md + description.json + graph-metadata.json only at this level) |
 | Owner | Main agent |
 | Parent | `../spec.md` (016-embedder-testing-and-architecture) |
@@ -32,7 +51,7 @@ contextType: "implementation"
 The 004-extended-bake-off (just shipped) surfaced three follow-ons that this arc addresses:
 
 1. **No Ollama support in CocoIndex.** Registry is sbert-only. Operators with an Ollama daemon already running can't share the model load between systems. mk-spec-memory's TS-side registry has Ollama; CocoIndex's Python-side does not.
-2. **bge-code-v1 won the bench (11/18 = 61.1%) but only with single-run signal.** Per the `113/005` noise-floor lesson, single-sample wins under ~2% are noise; 11.1pp is well above noise but the 4 unique probes need confirming before swapping the default.
+2. **BGE-code-v1 promotion was superseded.** The corrected path closed on Nomic CodeRankEmbed promotion in phase 018 of `001-local-embeddings-foundation/`; this parent is now historical.
 3. **mk-spec-memory's text-embedder default may be stale.** Investigation surfaced an existing 6-candidate bake-off at `../002-spec-memory-stack/004-spec-memory-embedder-bake-off/` — production is `jina-embeddings-v3 + rescue layer` per ADR-012 (May 17, 2026). Worth checking whether anything stronger has shipped since.
 
 Plus one foundational gap:
@@ -49,7 +68,7 @@ In scope (4 sub-phases):
 |---|---|---|
 | `001-indexer-surface-investigation/` | Map each retrieval/dispatch system to its indexer + content type. AI council, deep-research, deep-review, sk-doc, skill-advisor, CocoIndex, mk-spec-memory, code-graph. | Research-only |
 | `002-cocoindex-ollama-adapter/` | Add Ollama provider to CocoIndex's `registered_embedders.py` via LiteLLM ollama path. Verify glue end-to-end. | Implementation |
-| `003-bge-code-v1-confirmation-and-promote/` | Re-run the 4-candidate bench 3× to confirm bge-code-v1's 11/18 holds. If yes, swap `_DEFAULT_MODEL` jina-code → bge-code-v1 in CocoIndex config. | Implementation |
+| `003-bge-code-v1-confirmation-and-promote/` | Historical BGE confirmation packet; closed as superseded by Nomic CodeRankEmbed promotion in `001-local-embeddings-foundation/018` evidence. | Superseded |
 | `004-newer-text-embedders-survey/` | HF crawl for text embedders released after 2026-05-01 (post-ADR-012). Triage SKIP / CONSIDER / MEASURE per candidate. Only bench if a clearly stronger candidate emerges than jina-embeddings-v3 + rescue (current production). | Research (may trigger follow-on bench) |
 
 Out of scope:
@@ -68,7 +87,7 @@ Out of scope:
 | R1 | 001's research.md documents which content type (code / text / both) each consumer system uses, with file evidence. |
 | R2 | 002 ships a working Ollama adapter that can index the repo with `ollama/<model>` (smoke-tested with at least one Ollama embedder, e.g., `nomic-embed-text`). |
 | R3 | 003 produces 3-run CSV evidence with hit-rate variance for bge-code-v1. Promotion to default only if 3/3 runs sit at ≥10/18. |
-| R4 | 004 ships a text fixture, 4-candidate benchmark CSV/JSONL, and a recommendation (swap or hold) backed by hit-rate evidence. |
+| R4 | 004 is research-only HOLD/no-bench: survey newer text embedders and only recommend a follow-on bench if a clearly stronger candidate appears. |
 | R5 | Each sub-phase passes `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <sub-phase> --strict` on completion. |
 <!-- /ANCHOR:requirements -->
 
@@ -94,7 +113,7 @@ Out of scope:
 
 - All 4 sub-phases reach `completion_pct=100` with strict-validate PASSED.
 - 001 produces a clear table mapping system → indexer → content type — used as input by 002 and 004.
-- Either bge-code-v1 is promoted to CocoIndex default (with 3-run evidence) OR there's a documented decision to hold at jina-code, with reasoning.
+- BGE-code promotion is closed/superseded; current CocoIndex default is `sbert/nomic-ai/CodeRankEmbed`.
 - 004 produces a documented survey result: either a "MEASURE-tier" candidate gets a follow-on bench packet, or ADR-012 (jina-v3 + rescue) is confirmed as still-holds.
 - An Ollama embedder can actually power CocoIndex search end-to-end if the operator wants to switch.
 <!-- /ANCHOR:success-criteria -->

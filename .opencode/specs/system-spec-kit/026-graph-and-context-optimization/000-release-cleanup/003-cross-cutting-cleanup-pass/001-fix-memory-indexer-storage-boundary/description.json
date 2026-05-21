@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-fix-memory-indexer-storage-boundary",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/001-fix-memory-indexer-storage-boundary",
   "description": "Feature Specification: Memory-Indexer Storage-Boundary Remediation",
   "keywords": [
     "feature",
@@ -8,13 +8,14 @@
     "storage-boundary",
     "remediation"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.069Z",
+  "lastUpdated": "2026-05-21T10:22:37.721Z",
   "specId": "001",
-  "folderSlug": "memory-indexer-storage-boundary",
+  "folderSlug": "fix-memory-indexer-storage-boundary",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup"
+    "000-release-cleanup",
+    "003-cross-cutting-cleanup-pass"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

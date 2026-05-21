@@ -1,21 +1,17 @@
 {
+  "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/012-daemon-bridge-socket-for-skill-advisor-and-code-index",
-  "description": "Lift socket-server.ts pattern from mk-spec-memory into skill-advisor and code-index daemons. Closes packet 010's daemon-side gap. Both daemons now bind /tmp/<service>/daemon-ipc.sock so secondary launchers (including OpenCode plugin bridge) attach via the socket instead of failing with LEASE_HELD_BY garbage.",
+  "description": "Feature Specification: Daemon bridge socket for skill-advisor and code-index",
   "keywords": [
-    "012",
-    "daemon-bridge-socket",
+    "feature",
+    "specification",
+    "daemon",
+    "bridge",
+    "socket",
     "skill-advisor",
-    "code-index",
-    "socket-server",
-    "advisor-server",
-    "code-graph",
-    "ipc-bridge",
-    "launcher-attach",
-    "secondary-launcher",
-    "lease-holder",
-    "opencode-plugin"
+    "code-index"
   ],
-  "lastUpdated": "2026-05-20T00:00:00Z",
+  "lastUpdated": "2026-05-21T10:22:38.758Z",
   "specId": "012",
   "folderSlug": "daemon-bridge-socket-for-skill-advisor-and-code-index",
   "parentChain": [
@@ -25,6 +21,5 @@
     "006-mcp-launcher-concurrency-arc"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

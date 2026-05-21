@@ -1,22 +1,26 @@
 {
   "level": "feature",
-  "specFolder": "004-skill-local-benchmarks-format",
-  "description": "Cross-cutting introduction of mcp_server/benchmarks/ convention for any MCP server (ours + forks). Promotes spec-packet bake-off evidence into skill-local discoverable folders with date-based subfolders (benchmark-YYYY-MM-DD/) and sk-doc-compliant benchmark_report.md. First two adopters: mk-spec-memory (May 17, 2026) and mcp-coco-index (May 18, 2026).",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/004-skill-local-benchmarks-format",
+  "description": "016/005/004: Skill-local `benchmarks/` folder format + report promotion",
   "keywords": [
-    "skill-local-benchmarks",
-    "benchmark-promotion",
-    "format-convention",
-    "mcp-discoverability",
-    "sk-doc-compliance",
-    "benchmark-report",
-    "date-folder-format"
+    "016",
+    "005",
+    "004",
+    "skill-local",
+    "benchmarks",
+    "folder",
+    "format",
+    "report",
+    "promotion"
   ],
-  "lastUpdated": "2026-05-18T19:05:00.000Z",
+  "lastUpdated": "2026-05-21T10:22:38.695Z",
   "specId": "004",
   "folderSlug": "skill-local-benchmarks-format",
   "parentChain": [
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality"
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "005-cross-cutting-quality"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

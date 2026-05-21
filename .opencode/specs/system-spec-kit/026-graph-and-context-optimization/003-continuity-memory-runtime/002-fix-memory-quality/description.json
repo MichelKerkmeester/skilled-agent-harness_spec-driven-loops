@@ -28,9 +28,9 @@
     "backend",
     "improvements"
   ],
-  "lastUpdated": "2026-04-26T07:03:47.473Z",
+  "lastUpdated": "2026-05-21T10:22:38.072Z",
   "specId": "002",
-  "folderSlug": "memory-quality-remediation",
+  "folderSlug": "fix-memory-quality",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",

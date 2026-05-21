@@ -124,3 +124,8 @@ Dependencies:
 - If review surfaces P0 in 016/004's retrieval-rescue layer (which is now load-bearing for cat-24/409 closure), how aggressive should rollback be? Defer to verdict-time decision.
 - Whether to chain 020's findings into automatic remediation dispatch (cli-codex) vs operator-driven. Default = operator-driven for safety.
 <!-- /ANCHOR:questions -->
+
+
+## Dispatch A evidence
+
+Review artifacts exist under `review/`; parent `005-cross-cutting-quality` treats this child as shipped. Task evidence cells were reconciled in this cleanup pass.

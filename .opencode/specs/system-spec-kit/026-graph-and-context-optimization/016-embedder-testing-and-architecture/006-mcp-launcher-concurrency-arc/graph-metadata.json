@@ -15,7 +15,8 @@
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/009-launcher-eperm-parity-fix",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/010-multi-client-stdio-socket-bridge",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/011-sun-path-and-stale-lease-followups",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/012-daemon-bridge-socket-for-skill-advisor-and-code-index"
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/012-daemon-bridge-socket-for-skill-advisor-and-code-index",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/013-launcher-lease-acquisition-reclaim"
   ],
   "manual": {
     "depends_on": [],
@@ -39,7 +40,7 @@
       "mcp"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md"
     ],
@@ -56,10 +57,11 @@
     "last_save_at": "2026-05-18T20:00:12.293Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/012-daemon-bridge-socket-for-skill-advisor-and-code-index",
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/013-launcher-lease-acquisition-reclaim",
     "source_docs": [
       "spec.md"
     ],
-    "last_active_at": "2026-05-18T20:00:12.293Z"
+    "last_active_at": "2026-05-21T10:16:26Z",
+    "last_indexed_at": "2026-05-21T11:00:00Z"
   }
 }

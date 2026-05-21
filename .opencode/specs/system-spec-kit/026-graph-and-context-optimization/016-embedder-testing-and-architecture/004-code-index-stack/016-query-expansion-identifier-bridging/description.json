@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/016-query-expansion-identifier-bridging",
   "description": "Spec: 016/004/016 Query Expansion — Identifier Bridging",
   "keywords": [
@@ -10,7 +11,7 @@
     "identifier",
     "bridging"
   ],
-  "lastUpdated": "2026-05-19T13:53:16.253Z",
+  "lastUpdated": "2026-05-21T10:22:38.601Z",
   "specId": "016",
   "folderSlug": "query-expansion-identifier-bridging",
   "parentChain": [
@@ -20,6 +21,5 @@
     "004-code-index-stack"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -89,6 +89,7 @@ Both `npm run build` invocations exit 0. Built outputs:
 - `.opencode/skills/system-skill-advisor/mcp_server/dist/system-skill-advisor/mcp_server/advisor-server.js` (now has socket-server import + ipc-bridge close lines)
 - `.opencode/skills/system-code-graph/dist/system-code-graph/mcp_server/index.js` (same)
 - `.opencode/skills/system-{skill-advisor,code-graph}/{mcp_server/,}dist/.../lib/ipc/socket-server.js` (new modules)
+
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -187,11 +188,21 @@ Both `bridging to lease holder` lines confirm that secondary launchers are using
 ## Verification
 
 ### Strict validate (this packet)
-```bash
-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
-  .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/012-daemon-bridge-socket-for-skill-advisor-and-code-index \
-  --strict
-# Expect: Exit 0
+Observed 2026-05-21T10:17:49Z:
+
+```text
+$ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/012-daemon-bridge-socket-for-skill-advisor-and-code-index --strict
+exit 0
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
 ```
 
 ### Built file integrity

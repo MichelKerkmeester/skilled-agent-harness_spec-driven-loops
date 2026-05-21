@@ -1,27 +1,24 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/002-retrieval-observability",
-  "description": "Add retrieval-stage diagnostics and effective configuration fingerprints to mcp-coco-index.",
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/002-retrieval-observability",
+  "description": "Feature Specification: 023C Retrieval Observability",
   "keywords": [
-    "add",
-    "retrieval-stage",
-    "diagnostics",
-    "effective",
-    "configuration",
-    "fingerprints",
-    "mcp-coco-index"
+    "feature",
+    "specification",
+    "023c",
+    "retrieval",
+    "observability"
   ],
-  "lastUpdated": "2026-05-19T20:13:02.705Z",
-  "specId": "023",
-  "folderSlug": "c-retrieval-observability",
+  "lastUpdated": "2026-05-21T10:22:38.611Z",
+  "specId": "002",
+  "folderSlug": "retrieval-observability",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "016-embedder-testing-and-architecture",
-    "004-code-index-stack"
+    "004-code-index-stack",
+    "023-deep-research-arc-blind-spots"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

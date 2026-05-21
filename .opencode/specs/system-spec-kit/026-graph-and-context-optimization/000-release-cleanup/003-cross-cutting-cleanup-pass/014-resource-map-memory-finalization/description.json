@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/014-resource-map-memory-finalization",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/014-resource-map-memory-finalization",
   "description": "Feature Specification: 041 Resource Maps and Memory Finalization",
   "keywords": [
     "feature",
@@ -10,13 +10,14 @@
     "memory",
     "finalization"
   ],
-  "lastUpdated": "2026-05-02T10:39:48.448Z",
-  "specId": "028",
-  "folderSlug": "resource-maps-and-memory-finalization",
+  "lastUpdated": "2026-05-21T10:22:37.760Z",
+  "specId": "014",
+  "folderSlug": "resource-map-memory-finalization",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup"
+    "000-release-cleanup",
+    "003-cross-cutting-cleanup-pass"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [

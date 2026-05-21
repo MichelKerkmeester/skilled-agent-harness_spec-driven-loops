@@ -1,23 +1,21 @@
 {
-  "specFolder": "008-template-levels",
-  "description": "RM-8 prompt hardening: explicit allowed-write list and rm/mv/sed -i ban in deep-review iteration prompt template",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-template-levels",
+  "description": "Feature Specification: Template Levels — Phase Parent",
   "keywords": [
-    "rm-8",
-    "prompt",
-    "hardening",
-    "explicit",
-    "allowed-write",
-    "list",
-    "sed",
-    "ban",
-    "deep-review",
-    "iteration",
-    "template"
+    "feature",
+    "specification",
+    "template",
+    "levels",
+    "phase",
+    "parent"
   ],
-  "lastUpdated": "2026-05-11T05:45:02.910Z",
-  "specId": "010",
+  "lastUpdated": "2026-05-21T10:22:38.356Z",
+  "specId": "008",
   "folderSlug": "template-levels",
-  "parentChain": [],
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization"
+  ],
   "memorySequence": 0,
   "memoryNameHistory": []
 }

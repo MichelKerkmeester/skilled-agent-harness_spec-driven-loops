@@ -1,6 +1,6 @@
 ---
-title: "Deep AI Council Command Wiring"
-description: "Canonical post-dispatch wiring for persisting Deep AI Council packet artifacts."
+title: "AI Council Command Wiring"
+description: "Canonical post-dispatch wiring for persisting AI Council packet artifacts."
 trigger_phrases:
   - "sk-ai-council command wiring"
   - "council persistence helper"
@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "reference"
 ---
 
-# Deep AI Council Command Wiring
+# AI Council Command Wiring
 
 This reference defines the canonical post-dispatch wiring for callers that run `@sk-ai-council` and need durable packet artifacts.
 

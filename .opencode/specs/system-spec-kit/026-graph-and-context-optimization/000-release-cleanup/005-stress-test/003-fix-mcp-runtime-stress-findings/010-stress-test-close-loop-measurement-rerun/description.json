@@ -18,9 +18,9 @@
     "close-the-loop",
     "measurement"
   ],
-  "lastUpdated": "2026-05-16T21:09:37.414Z",
+  "lastUpdated": "2026-05-21T10:22:37.883Z",
   "specId": "010",
-  "folderSlug": "stress-test-rerun-v1-0-2",
+  "folderSlug": "stress-test-close-loop-measurement-rerun",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",

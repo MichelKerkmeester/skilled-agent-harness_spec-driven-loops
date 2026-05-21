@@ -1,24 +1,26 @@
 {
-  "specFolder": "043-cocoindex-refresh-split",
-  "description": "Changes CocoIndex MCP search to default refresh_index=false and adds explicit cocoindex_refresh_index for refresh without search.",
+  "level": "3",
+  "status": "complete",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/043-cocoindex-refresh-split",
+  "description": "Feature Specification: 042 CocoIndex Refresh/Search Split",
   "keywords": [
+    "feature",
+    "specification",
+    "042",
     "cocoindex",
-    "mcp",
-    "refresh_index",
-    "cocoindex_refresh_index",
-    "search latency",
-    "explicit refresh"
+    "refresh",
+    "search",
+    "split"
   ],
-  "lastUpdated": "2026-05-14T16:45:00Z",
-  "specId": "042",
+  "lastUpdated": "2026-05-21T10:22:38.449Z",
+  "specId": "043",
   "folderSlug": "cocoindex-refresh-split",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "014-local-embeddings-migration"
+    "016-embedder-testing-and-architecture",
+    "001-local-embeddings-foundation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3",
-  "status": "complete"
+  "memoryNameHistory": []
 }

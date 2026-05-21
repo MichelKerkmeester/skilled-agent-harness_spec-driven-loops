@@ -159,3 +159,6 @@ After `010-multi-client-stdio-socket-bridge` shipped (`feat(016/006/010)` at `08
 - Should the daemon-lease reclaim path call `process.kill(pid, 0)` before honoring a `skill_graph_daemon_lease` row? **PROPOSED: yes, as REQ-006 follow-on. The current behavior of trusting the row indefinitely is the root cause of the second failure mode observed in §2.**
 - Should we pre-create `/tmp/mk-*` directories at install time? **DEFERRED: the mkdir-on-listen follow-on solves this more cleanly.**
 <!-- /ANCHOR:questions -->
+
+
+Dispatch A correction: read-path liveness probing already exists in `lease.ts`; the remaining follow-on is acquisition-time stale-owner reclaim semantics, not another passive liveness probe.

@@ -1,12 +1,23 @@
 {
   "level": "phase",
-  "specFolder": "022-skill-advisor-embedder-parity",
-  "description": "Skill-advisor embedder parity with 016+019",
-  "keywords": ["skill-advisor", "embedder", "parity", "jina", "pluggable", "auto-detect", "vec-metadata"],
-  "lastUpdated": "2026-05-17T21:25:00.000Z",
-  "specId": "022",
-  "folderSlug": "skill-advisor-embedder-parity",
-  "parentChain": [],
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack",
+  "description": "022: Skill-advisor embedder parity (phase parent)",
+  "keywords": [
+    "022",
+    "skill-advisor",
+    "embedder",
+    "parity",
+    "phase",
+    "parent"
+  ],
+  "lastUpdated": "2026-05-21T10:22:38.544Z",
+  "specId": "003",
+  "folderSlug": "skill-advisor-stack",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture"
+  ],
   "memorySequence": 1,
   "memoryNameHistory": []
 }

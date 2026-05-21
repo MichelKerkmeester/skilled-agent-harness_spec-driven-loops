@@ -1,21 +1,15 @@
 {
+  "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/004-spec-memory-rerank-benchmark",
-  "description": "Phase 004 of the 008 rerank-sidecar arc. Controlled A/B benchmark comparing today's positional-fallback vs Qwen3-Reranker-0.6B on spec-memory's own corpus. 50-60 paraphrase probes, n=5 per arm, paired bootstrap CIs, sk-doc-compliant report with explicit go/no-go decision for phase 005 promotion.",
+  "description": "Feature Specification: spec-memory rerank A/B benchmark",
   "keywords": [
-    "004",
-    "rerank-benchmark",
-    "ab-test",
-    "paraphrase-recall",
-    "cat-24/409",
-    "qwen-vs-positional",
-    "mrr-at-10",
-    "hit-rate",
-    "wilson-ci",
-    "paired-bootstrap",
-    "sk-doc-benchmark",
-    "promotion-decision"
+    "feature",
+    "specification",
+    "spec-memory",
+    "rerank",
+    "benchmark"
   ],
-  "lastUpdated": "2026-05-20T00:00:00Z",
+  "lastUpdated": "2026-05-21T10:22:38.810Z",
   "specId": "004",
   "folderSlug": "spec-memory-rerank-benchmark",
   "parentChain": [
@@ -25,6 +19,5 @@
     "008-rerank-sidecar-arc"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

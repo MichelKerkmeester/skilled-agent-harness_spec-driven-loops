@@ -156,3 +156,6 @@ Authority and mechanics (load only if a follow-on bench is actually triggered):
 
 Convention provenance: `../../005-cross-cutting-quality/004-skill-local-benchmarks-format/`.
 <!-- /ANCHOR:skill-local-promotion -->
+
+
+Dispatch A correction: child 004 was rescoped to survey-only HOLD/no-bench. Parent requirements should not demand benchmark outputs from this child.

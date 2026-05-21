@@ -1,6 +1,6 @@
 ---
-title: "Deep AI Council Anti-Patterns"
-description: "Anti-patterns, detection cues, and recovery actions for preserving Deep AI Council quality."
+title: "AI Council Anti-Patterns"
+description: "Anti-patterns, detection cues, and recovery actions for preserving AI Council quality."
 trigger_phrases:
   - "sk-ai-council anti-patterns"
   - "council fake consensus"
@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "reference"
 ---
 
-# Deep AI Council Anti-Patterns
+# AI Council Anti-Patterns
 
 These patterns degrade council quality by replacing deliberation with repetition, overclaiming, or scope drift. Use this reference to detect and recover from them.
 
@@ -18,7 +18,7 @@ These patterns degrade council quality by replacing deliberation with repetition
 
 ## 1. OVERVIEW
 
-The Deep AI Council exists to produce better plans through diverse lenses, real critique, scoring, and scoped persistence.
+The AI Council exists to produce better plans through diverse lenses, real critique, scoring, and scoped persistence.
 
 Anti-patterns break that contract. They make the council look rigorous while removing the evidence, disagreement, or boundary discipline that makes it useful.
 

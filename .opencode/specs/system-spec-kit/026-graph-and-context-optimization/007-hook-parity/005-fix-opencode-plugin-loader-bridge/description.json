@@ -9,9 +9,9 @@
     "loader",
     "remediation"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.773Z",
+  "lastUpdated": "2026-05-21T10:22:38.351Z",
   "specId": "005",
-  "folderSlug": "opencode-plugin-loader-remediation",
+  "folderSlug": "fix-opencode-plugin-loader-bridge",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",

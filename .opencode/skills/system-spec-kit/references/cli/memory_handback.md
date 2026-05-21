@@ -5,7 +5,7 @@ description: Canonical 7-step Memory Handback procedure shared across the five c
 
 # Memory Handback Protocol (cli-* family)
 
-When a calling AI delegates a task to one of the cli-* skills (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`) and needs to preserve the resulting session context, the agent runs the same 7-step procedure documented below. This procedure is byte-identical across all five sibling skills; this reference holds the canonical copy. Each cli-* SKILL.md cites the prompt_templates.md §N anchor for its own Memory Epilogue template — see the skill's SKILL.md §4 Memory Handback Protocol for the file-specific anchor reference.
+When a calling AI delegates a task to one of the cli-* skills (`cli-claude-code`, `cli-codex`, `cli-devin`, `cli-gemini`, `cli-opencode`) and needs to preserve the resulting session context, the agent runs the same 7-step procedure documented below. This procedure is byte-identical across all five sibling skills; this reference holds the canonical copy. Each cli-* SKILL.md cites the prompt_templates.md §N anchor for its own Memory Epilogue template — see the skill's SKILL.md §4 Memory Handback Protocol for the file-specific anchor reference.
 
 ---
 

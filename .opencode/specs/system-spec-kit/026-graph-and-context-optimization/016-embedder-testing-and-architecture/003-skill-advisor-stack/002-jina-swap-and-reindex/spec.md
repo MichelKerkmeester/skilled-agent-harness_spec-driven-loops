@@ -49,7 +49,7 @@ After 022/001 ships the pluggable layer, skill-graph.sqlite still has gemma-enco
 ## 3. SCOPE
 
 In scope:
-- Operator runbook: stop daemon, set env var or call `setActiveEmbedder('jina-embeddings-v3')`, reindex
+- Operator runbook: stop daemon, call `setActiveEmbedder('jina-embeddings-v3')`, reindex
 - Reindex script (or one-shot CLI) that re-embeds all skill metadata
 - Smoke test: `skill_advisor.py recommend "memory save"` returns sane top-3 → expected to include system-spec-kit memory tools
 - Smoke test: `lane-weight-sweep.vitest.ts` regression baseline still passes
@@ -97,5 +97,5 @@ Dependencies:
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Whether to auto-promote on daemon startup (read env, swap if needed) or require explicit operator action. Default: explicit operator action via `setActiveEmbedder()` call.
+- Resolved 2026-05-21: no env-var bridge or daemon-startup auto-promotion will be built. Programmatic swap via `setActiveEmbedder()` is sufficient for all operator paths; an env-var bridge is not useful because no demonstrated need survived implementation and review.
 <!-- /ANCHOR:questions -->

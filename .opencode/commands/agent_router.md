@@ -90,10 +90,13 @@ Systems are discovered at runtime by scanning the filesystem. A **system** is an
 Derive `ai_systems_root` from the current workspace path. Do not hardcode user-specific absolute paths.
 
 1. Start from the current working directory.
-2. Find the nearest ancestor directory named `AI Systems`.
-3. Set `ai_systems_root` to that directory.
-   - Example: `/Users/alex/MEGA/Development/AI Systems/Barter` -> `/Users/alex/MEGA/Development/AI Systems`
-4. If no `AI Systems` ancestor exists, use a `path:` override from the user.
+2. Find the nearest ancestor that represents the active Barter workspace:
+   - Prefer an ancestor containing this `agent_router.md` and `z — Global (Shared)/`.
+   - Otherwise, use the nearest ancestor named `Barter`.
+   - Accept both parent naming styles, `AI_Systems` and `AI Systems`, as broader workspace containers, but do not scan sibling workspaces when already inside `Barter`.
+3. Set `ai_systems_root` to the Barter workspace root.
+   - Example: `/Users/alex/MEGA/Development/AI_Systems/Barter` -> `/Users/alex/MEGA/Development/AI_Systems/Barter`
+4. If no Barter workspace root can be derived, use a `path:` override from the user.
 
 ### Discovery Procedure
 
@@ -105,15 +108,15 @@ Derive `ai_systems_root` from the current workspace path. Do not hardcode user-s
    ```
 
 2. For each result, extract:
-   - `agent_folder` — the parent directory of the AGENTS.md file
-   - `system_name` — the folder name, with number prefix stripped (e.g., `1. Copywriter` → `Copywriter`)
-   - `group` — the top-level directory under AI Systems (e.g., `Barter`, `Public`)
+    - `agent_folder` — the parent directory of the AGENTS.md file
+    - `system_name` — the folder name, with number prefix stripped (e.g., `1. Copywriter` → `Copywriter`)
+    - `group` — the first directory under `ai_systems_root` for nested systems (e.g., `MCP`), otherwise the workspace name (e.g., `Barter`)
 
-3. **Deduplication:** If the same system name exists under multiple groups (e.g., `Barter/CapCut` and `Public/6. CapCut`), prefer the `Barter/` version.
+3. **Deduplication:** If the same system name exists in multiple locations, prefer the shallower path under `ai_systems_root`. If depth is equal, prefer the non-archive/non-backup path.
 
 4. **Exclusions:** Skip directories where the folder name starts with:
    - `z` (backups, e.g., `z — Back-up`)
-   - `0.` (shared resources, e.g., `0. Global (Shared)`)
+   - `0.` (shared resources, e.g., `z — Global (Shared)`)
 
 ### Name Normalization
 
@@ -220,12 +223,14 @@ Reply with letter:
 1. Resolve `ai_systems_root` using the dynamic base scan path rules above
 2. Run Glob: `Glob("{ai_systems_root}/**/AGENTS.md")`
 3. For each result:
-   - Extract `agent_folder` (parent directory of AGENTS.md)
-   - Extract `group` (first directory under `AI Systems/`, e.g., `Barter` or `Public`)
-   - Extract raw folder name and normalize to `system_name`:
-     - Strip leading number prefix: `\d+\.\s*` → empty (e.g., `3. TikTok SEO & Creative Strategy` → `TikTok SEO & Creative Strategy`)
+    - Extract `agent_folder` (parent directory of AGENTS.md)
+    - Extract `group`:
+      - If `agent_folder` is a direct child of `ai_systems_root`, use the workspace folder name (for this repo: `Barter`)
+      - If nested, use the first directory under `ai_systems_root` (for example, `MCP`)
+    - Extract raw folder name and normalize to `system_name`:
+      - Strip leading number prefix: `\d+\.\s*` → empty (e.g., `3. TikTok SEO & Creative Strategy` → `TikTok SEO & Creative Strategy`)
 4. **Exclude** folders where the name starts with `z` or `0.`
-5. **Deduplicate** by `system_name`: if same name appears in multiple groups, prefer `Barter/` over `Public/`
+5. **Deduplicate** by `system_name`: prefer the shallower path under `ai_systems_root`; avoid archive/backup paths
 6. Store as `discovered_systems[]`
 
 **Validation checkpoint:**
@@ -283,12 +288,19 @@ Reply with letter:
 **Purpose:** Find and read the COMPLETE System Prompt that defines the agent's identity
 
 **Activities:**
-- Use Glob to find System Prompt:
-  - Pattern: `{agent_scope_root}/knowledge base/*System Prompt*.md`
-- If multiple versions exist:
+- Prefer the explicit routing directive in AGENTS.md:
+  - Extract backticked paths from `GO TO:` / `THEN:` directives.
+  - Read those files in the listed order when they exist.
+  - This supports systems that start with a Flight Manual before the full System Prompt.
+- If no explicit directive exists, use Glob to find prompt files:
+  - Pattern: `{agent_scope_root}/knowledge base/system/*System - Prompt*.md`
+  - Fallback pattern: `{agent_scope_root}/knowledge base/system/*System Prompt*.md`
+  - Fallback pattern: `{agent_scope_root}/knowledge base/*System - Prompt*.md`
+  - Fallback pattern: `{agent_scope_root}/knowledge base/*System Prompt*.md`
+- If multiple prompt versions exist for the same prompt family:
   - Select the one with the highest version number
   - Example: "v0.960" takes precedence over "v0.954"
-- Read the System Prompt file COMPLETELY
+- Read the selected System Prompt file COMPLETELY, plus any explicitly required preceding directive file (for example, Flight Manual)
 - Store content as `system_prompt_content`
 
 **Fallback:** If no System Prompt file found:
@@ -433,7 +445,11 @@ Or use: path:/custom/path
 System Prompt not found in knowledge base.
 
 AGENTS.md location: {agents_md_path}
-Search pattern: {agent_scope_root}/knowledge base/*System Prompt*.md
+Search patterns:
+- {agent_scope_root}/knowledge base/system/*System - Prompt*.md
+- {agent_scope_root}/knowledge base/system/*System Prompt*.md
+- {agent_scope_root}/knowledge base/*System - Prompt*.md
+- {agent_scope_root}/knowledge base/*System Prompt*.md
 
 The AGENTS.md was found but no System Prompt file exists.
 

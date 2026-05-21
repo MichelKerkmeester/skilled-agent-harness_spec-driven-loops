@@ -1,17 +1,21 @@
 {
-  "specFolder": "005-code-graph/021-cross-skill-doc-polish",
-  "description": "Phase 1: cross-skill-doc-polish",
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/021-cross-skill-doc-polish",
+  "description": "Feature Specification: Phase 1: cross-skill-doc-polish",
   "keywords": [
+    "feature",
+    "specification",
     "phase",
     "cross-skill-doc-polish"
   ],
-  "lastUpdated": "2026-05-16T14:47:31.803Z",
+  "lastUpdated": "2026-05-21T10:22:38.195Z",
   "specId": "021",
   "folderSlug": "cross-skill-doc-polish",
   "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
     "005-code-graph"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

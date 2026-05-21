@@ -1,20 +1,24 @@
 {
-  "specFolder": "002-spec-memory-stack/019-lineage-and-metadata-repair-runner",
-  "description": "Migration runner for graph metadata v1 repair, importance tier normalization, V8-safe archived metadata, and scan-proven memory lineage repair.",
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/019-lineage-and-metadata-repair-runner",
+  "description": "Feature Specification: Lineage and Metadata Repair Runner",
   "keywords": [
-    "lineage metadata repair",
-    "graph metadata v1",
-    "importance_tier migration",
-    "E_LINEAGE repair",
-    "memory index scan"
+    "feature",
+    "specification",
+    "lineage",
+    "metadata",
+    "repair",
+    "runner"
   ],
-  "lastUpdated": "2026-05-19T20:08:00.000Z",
+  "lastUpdated": "2026-05-21T10:22:38.538Z",
   "specId": "019",
   "folderSlug": "lineage-and-metadata-repair-runner",
   "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
     "002-spec-memory-stack"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

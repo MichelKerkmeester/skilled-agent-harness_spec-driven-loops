@@ -1,6 +1,6 @@
 ---
-title: "Deep AI Council Scoring Rubric"
-description: "Five-dimension scoring, deliberation rounds, adversarial critique, conflict resolution, and attribution rules for Deep AI Council synthesis."
+title: "AI Council Scoring Rubric"
+description: "Five-dimension scoring, deliberation rounds, adversarial critique, conflict resolution, and attribution rules for AI Council synthesis."
 trigger_phrases:
   - "sk-ai-council scoring rubric"
   - "five-dimension council scoring"
@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "reference"
 ---
 
-# Deep AI Council Scoring Rubric
+# AI Council Scoring Rubric
 
 Use this reference when synthesizing council seats into a scored, attributed planning recommendation. It mirrors the agent body synthesis protocol.
 
@@ -20,7 +20,7 @@ Use this reference when synthesizing council seats into a scored, attributed pla
 
 Subjective picking is the failure mode this rubric prevents.
 
-A Deep AI Council run should not adopt the first plausible plan, the most familiar plan, or the plan with the most confident language. It should score every returned seat against the same planning rubric, run cross-critique when disagreement is close or suspiciously absent, and compose a final plan from supported elements.
+A AI Council run should not adopt the first plausible plan, the most familiar plan, or the plan with the most confident language. It should score every returned seat against the same planning rubric, run cross-critique when disagreement is close or suspiciously absent, and compose a final plan from supported elements.
 
 This reference applies to planning-only council synthesis.
 

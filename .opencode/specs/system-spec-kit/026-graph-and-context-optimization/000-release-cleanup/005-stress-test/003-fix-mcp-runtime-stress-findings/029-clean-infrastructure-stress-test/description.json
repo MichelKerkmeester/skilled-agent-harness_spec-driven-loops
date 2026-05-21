@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-fix-mcp-runtime-stress-findings/029-clean-infrastructure-stress-test",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/029-clean-infrastructure-stress-test",
   "description": "Spec: v1.0.4 Stress Test on Clean Infrastructure",
   "keywords": [
     "spec",
@@ -8,13 +8,14 @@
     "clean",
     "infrastructure"
   ],
-  "lastUpdated": "2026-05-02T10:39:48.269Z",
+  "lastUpdated": "2026-05-21T10:22:37.978Z",
   "specId": "029",
-  "folderSlug": "stress-test-v1-0-4",
+  "folderSlug": "clean-infrastructure-stress-test",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "000-release-cleanup",
+    "005-stress-test",
     "003-fix-mcp-runtime-stress-findings"
   ],
   "memorySequence": 1,

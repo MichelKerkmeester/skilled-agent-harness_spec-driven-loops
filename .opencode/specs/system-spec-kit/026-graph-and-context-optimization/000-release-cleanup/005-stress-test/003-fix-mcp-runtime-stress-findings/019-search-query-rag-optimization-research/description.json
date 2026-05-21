@@ -6,7 +6,7 @@
     "MCP runtime search optimization",
     "query intelligence RAG fusion"
   ],
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-fix-mcp-runtime-stress-findings/019-search-query-rag-optimization-research",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/019-search-query-rag-optimization-research",
   "description": "Feature Specification: Search Query RAG Optimization Research",
   "keywords": [
     "feature",
@@ -17,13 +17,14 @@
     "optimization",
     "research"
   ],
-  "lastUpdated": "2026-05-02T10:39:48.174Z",
+  "lastUpdated": "2026-05-21T10:22:37.928Z",
   "specId": "019",
   "folderSlug": "search-query-rag-optimization-research",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "000-release-cleanup",
+    "005-stress-test",
     "003-fix-mcp-runtime-stress-findings"
   ],
   "memorySequence": 0,

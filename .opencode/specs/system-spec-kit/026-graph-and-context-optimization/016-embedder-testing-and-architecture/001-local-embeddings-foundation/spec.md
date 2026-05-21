@@ -46,7 +46,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-05-12 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -69,7 +69,7 @@ Keep parent documentation lean while child phases own detailed plans, tasks, che
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
 
-Closing summary: Setup A began as a Voyage-to-local embeddings migration and concludes with `EMBEDDINGS_PROVIDER=auto` cascading Voyage -> OpenAI -> llama-cpp (when GGUF runtime is installed) -> hf-local, plus CocoIndex on local EmbeddingGemma. The final llama-cpp line ships the faster GGUF backend as an availability-probed automatic selection, with explicit override via `EMBEDDINGS_PROVIDER=<provider>` still available. The evidence chain is now explicit: 014/014 ONNX was too slow for CocoIndex, 015 showed llama-cpp speed and RSS wins with vector parity miss, 016 showed a smaller retrieval-equivalent result, and 017's larger rerun returned MILD_DIVERGENCE but the operator accepted the flip with hf-local retained as the health-checked fallback.
+Closing summary: Setup A is now a historical foundation arc. The live `auto` cascade is Ollama -> hf-local Nomic, with llama-cpp superseded by the Ollama cascade. Several later child packets remain in progress or planned, so the parent aggregate status is in progress.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -97,51 +97,64 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 <!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
-> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children.
-
-| Phase | Folder | Focus | Status |
-|-------|--------|-------|--------|
-| 1 | 001-prefix-registry-architecture/ | Prefix registry architecture | Complete |
-| 2 | 002-model-installation-and-compat/ | Model installation and runtime compatibility | Complete |
-| 3 | 003-mcp-config-rollout/ | MCP config rollout | Complete |
-| 4 | 004-vec-store-rebuild/ | Vec-store rebuild | Complete |
-| 5 | 005-q4-quantization/ | Quantized hf-local dtype plumbing | Complete |
-| 6 | 006-bge-m3-hybrid-evaluation/ | bge-m3 hybrid evaluation plan | Complete |
-| 7 | 007-voyage-cleanup-and-egress-monitoring/ | Voyage cleanup and egress monitoring | Complete |
-| 8 | 008-finalize-and-commit/ | Finalize and commit bundle | Complete |
-| 9 | 009-cocoindex-ipc-fix/ | CocoIndex IPC/search fix | Complete |
-| 10 | 010-cocoindex-code-only-patterns/ | CocoIndex code-only pattern cleanup | Complete |
-| 11 | 011-embeddinggemma-unification/ | EmbeddingGemma default unification | Complete |
-| 12 | 012-v3-remediation/ | v3 deep-review remediation and q8 system default | Complete |
-
-| 37 | 037-llama-cpp-embedding-worker-deep-dive/ | Confirm contextSize:512 hypothesis + minimal worker fix | Pending |
-| 38 | 038-embedding-error-propagation/ | Propagate real embedding provider errors instead of catching as null | Complete |
-| 39 | 039-token-aware-chunking/ | Token-aware llama-cpp truncation bounded by model trainContextSize | Complete |
-### Phase Transition Rules
-
-- Each phase MUST pass `validate.sh` independently before the next phase begins
-- Parent spec tracks aggregate progress via this map
-- Use `/spec_kit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
-- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
-
-### Phase Handoff Criteria
-
-| From | To | Criteria | Verification |
-|------|-----|----------|--------------|
-| 001-prefix-registry-architecture | 002-model-installation-and-compat | [Criteria TBD] | [Verification TBD] |
-| 002-model-installation-and-compat | 003-mcp-config-rollout | [Criteria TBD] | [Verification TBD] |
-| 003-mcp-config-rollout | 004-vec-store-rebuild | [Criteria TBD] | [Verification TBD] |
-| 004-vec-store-rebuild | 005-q4-quantization | [Criteria TBD] | [Verification TBD] |
-| 005-q4-quantization | 006-bge-m3-hybrid-evaluation | [Criteria TBD] | [Verification TBD] |
-| 006-bge-m3-hybrid-evaluation | 007-voyage-cleanup-and-egress-monitoring | [Criteria TBD] | [Verification TBD] |
-| 007-voyage-cleanup-and-egress-monitoring | 008-finalize-and-commit | Egress script and cleanup docs land | strict validate |
-| 008-finalize-and-commit | 009-cocoindex-ipc-fix | Post-merge review exposes IPC search failure | search-path validation |
-| 009-cocoindex-ipc-fix | 010-cocoindex-code-only-patterns | Search works and code-only index quality issue is visible | sqlite row counts |
-| 010-cocoindex-code-only-patterns | 011-embeddinggemma-unification | Code-only baseline stabilized | default config sweep |
-| 011-embeddinggemma-unification | 012-v3-remediation | v3 deep-review findings remain valid | strict validate |
-| 032-substrate-repair-followups | 037-llama-cpp-embedding-worker-deep-dive | 032 left 2/5 children blocked on embedding worker health | Phase 3 falsify/confirm + Phase 5 live round-trip |
-| 037-llama-cpp-embedding-worker-deep-dive | 038-embedding-error-propagation | Embedding-worker fix shipped; propagation gap surfaces | Vitest T029-error-propagation 4/4 PASS |
-| 038-embedding-error-propagation | 039-token-aware-chunking | Errors propagate cleanly; token-budget truncation closes the worker bug | Vitest T030-XX 4/4 PASS incl. real-model smoke |
+| Phase | Focus | Status |
+|---|---|---|
+| `001-prefix-registry-architecture/` | Phase 1 — Prefix Registry Architecture | Complete |
+| `002-model-installation-and-compat/` | Phase 2 — Model Installation & Compatibility | Complete |
+| `003-mcp-config-rollout/` | Phase 3 — MCP Config Rollout | Complete |
+| `004-vec-store-rebuild/` | Phase 4 — Vec-Store Rebuild | In Progress (memory ✓ complete; cocoindex schema ✓; cocoindex search blocked by upstream msgspec truncation — follow-on packet) |
+| `005-q4-quantization/` | Phase 5 — Q4 Quantization | In Progress (code shipped; benchmark deferred pending ground-truth queries) |
+| `006-bge-m3-hybrid-evaluation/` | Phase 6 — bge-m3 Hybrid Evaluation | Planned (execution gated on 009) |
+| `007-voyage-cleanup-and-egress-monitoring/` | Phase 7 — Voyage Cleanup + Egress Monitoring | In Progress (deletes shipped; egress guard pending) |
+| `008-finalize-and-commit/` | Phase 8 — Finalize + Commit | Planned |
+| `009-cocoindex-ipc-fix/` | Phase 9 — Cocoindex IPC Fix | Root cause documented |
+| `010-cocoindex-code-only-patterns/` | Phase 10 — Cocoindex Code-Only Patterns | In Progress (settings shipped; clean rebuild in flight) |
+| `011-embeddinggemma-unification/` | Phase 11 - EmbeddingGemma Unification | Complete (shipped 2026-05-13 in commit d76f3b795) |
+| `012-v3-remediation/` | Phase 12 - v3 Remediation | Complete (shipped 2026-05-13 in 42aa114e3) |
+| `013-v4-cleanup/` | Phase 13 - v4 Cleanup | Complete |
+| `014-onnx-cross-platform-backend/` | 014/014 ONNX Runtime cross-platform embedding backend | Complete |
+| `015-node-llama-cpp-evaluation/` | 015 node-llama-cpp Memory MCP embedding evaluation | Complete |
+| `016-llama-cpp-retrieval-quality-probe/` | 016 llama-cpp retrieval quality probe | Complete |
+| `017-llama-cpp-default-flip/` | 017 llama-cpp default flip | Complete |
+| `018-llama-cpp-auto-migration/` | 018 llama-cpp auto-migration | Complete |
+| `019-readme-resource-map/` | 019 README Resource Map and Post-014 Doc Cleanup | In progress |
+| `020-catalog-playbook-alignment-audit/` | Catalog/playbook alignment audit for local embeddings default set | Complete |
+| `021-local-llm-legacy-review/` | Local-LLM legacy and outdated-docs/config-drift review (post-014) | In Progress |
+| `022-local-llm-legacy-remediation/` | Local-LLM legacy remediation (post-021 review) | Draft |
+| `023-post-remediation-re-review/` | Post-remediation confirmatory re-review: 10-iter /spec_kit:deep-review:auto against the same scope as 021 to confirm FAIL -> PASS transition after 022's 5-batch remediation lands. Same executor: cli-codex gpt-5.5 reasoning=high service_tier=fast. | [Draft/In Progress/Review/Complete] |
+| `024-post-remediation-v2-re-review/` | 024-post-remediation-v2-re-review | Unknown |
+| `025-llm-model-runtime-inventory/` | LLM and embedding-model runtime inventory per subsystem | Complete |
+| `026-post-batch-11-re-review/` | 026-post-batch-11-re-review | Unknown |
+| `027-post-batch-12-final-re-review/` | 027-post-batch-12-final-re-review | Unknown |
+| `028-local-llm-feature-test-suite/` | Local-LLM feature test suite (post-014) | In Progress |
+| `029-local-llm-feature-test-suite-completion/` | Complete the 10 functional groups + 4 perf benches promised by 028 | Planned |
+| `029-post-027-findings-remediation/` | Fix all 21 P1 + 16 P2 findings from 027 deep-review. 6 workstreams: profile identity & dtype contract, provider fallback correctness, profile-keyed DB naming cleanup, operator docs & catalog drift, fixture refresh, legacy dependency/comment residue. cli-codex gpt-5.5 reasoning=high service_tier=standard (NOT fast). | [Draft/In Progress/Review/Complete] |
+| `030-post-029-final-re-review/` | 030-post-029-final-re-review | Unknown |
+| `031-post-batch-15-final-re-review/` | 031-post-batch-15-final-re-review | Unknown |
+| `032-substrate-repair-followups/` | 032 — Substrate-repair Follow-ups (Phase Parent) |  |
+| `033-system-code-graph-import-path-cleanup/` | System Code Graph Import Path Cleanup | Complete |
+| `034-query-expansion-context-size/` | 034 Query Expansion Context Size | Complete |
+| `035-cocoindex-mcp-reliability/` | 035 CocoIndex MCP Reliability | Complete |
+| `036-failed-embedding-cleanup-retry/` | 036 Failed Embedding Cleanup Retry | Complete |
+| `037-llama-cpp-embedding-worker-deep-dive/` | 037 llama-cpp embedding worker deep-dive | In Progress |
+| `038-embedding-error-propagation/` | Embedding Provider Error Propagation | Complete |
+| `039-token-aware-chunking/` | Token-Aware Chunking for LlamaCppProvider | Complete |
+| `040-reset-stuck-embedding-rows/` | Reset Stuck Embedding Rows | Complete |
+| `041-v-rule-cross-spec-overreach/` | 040 V-rule cross-spec overreach fix | In Progress |
+| `042-cocoindex-ipc-observability/` | 041 CocoIndex IPC Observability | Complete |
+| `043-cocoindex-refresh-split/` | 042 CocoIndex Refresh/Search Split | Complete |
+| `044-suite-revalidation/` | 043 Suite Revalidation | Fail: runner blocked before scenario logic |
+| `045-template-contract-divergence/` | 044 Template contract divergence | Complete |
+| `046-shared-daemon-suite-runner/` | 045 Shared Daemon Suite Runner | Shipped |
+| `047-handover-anchor-naming/` | Handover Anchor Naming Alignment | Complete |
+| `048-v8-dominates-relaxation/` | 047 V8 Dominates Relaxation | Complete |
+| `049-substrate-stress-coverage/` | 049 Substrate Stress Coverage | Shipped |
+| `050-all-skills-alignment-sweep/` | All Skills Alignment Sweep | Completed |
+| `051-runtime-config-mk-code-index-parity-plus-findings/` | Runtime config mk-code-index parity plus findings | Complete |
+| `052-mk-spec-memory-rename/` | Rename MCP namespace to mk-spec-memory | Shipped |
+| `053-mk-spec-memory-rename-remediation/` | Remediate 052 Deep-Review Findings | Complete |
+| `054-root-readme-deep-research/` | 056: Root README deep-research realignment | Planned |
+| `055-cli-devin-deep-loop-alignment/` | 059: cli-devin deep-loop alignment across 6 surfaces | Planned |
 <!-- /ANCHOR:phase-map -->
 
 ---

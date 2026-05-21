@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-fix-deep-research-findings/002-fix-deep-loop-workflow-state",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/004-fix-deep-research-findings/002-fix-deep-loop-workflow-state",
   "description": "Feature Specification: 002 Deep-Loop Workflow State-Machine Remediation",
   "keywords": [
     "feature",
@@ -10,13 +10,14 @@
     "state-machine",
     "remediation"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.446Z",
+  "lastUpdated": "2026-05-21T10:22:38.009Z",
   "specId": "002",
-  "folderSlug": "deep-loop-workflow-state",
+  "folderSlug": "fix-deep-loop-workflow-state",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "000-release-cleanup",
+    "006-research",
     "004-fix-deep-research-findings"
   ],
   "memorySequence": 1,

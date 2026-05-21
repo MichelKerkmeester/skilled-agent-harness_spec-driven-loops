@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-fix-release-readiness-findings-synthesis",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/004-fix-release-readiness-findings-synthesis",
   "description": "Feature Specification: 046 Release Readiness Synthesis and Remediation",
   "keywords": [
     "feature",
@@ -10,13 +10,14 @@
     "synthesis",
     "remediation"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.386Z",
-  "specId": "033",
-  "folderSlug": "release-readiness-synthesis-and-remediation",
+  "lastUpdated": "2026-05-21T10:22:37.678Z",
+  "specId": "004",
+  "folderSlug": "fix-release-readiness-findings-synthesis",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup"
+    "000-release-cleanup",
+    "001-release-readiness"
   ],
   "memorySequence": 46,
   "memoryNameHistory": []

@@ -1,7 +1,10 @@
 {
-  "specFolder": "032-public-doc-internal-spec-reference-removal",
-  "description": "Public Doc Internal Spec Reference Removal",
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/032-public-doc-internal-spec-reference-removal",
+  "description": "Feature Specification: Public Doc Internal Spec Reference Removal",
   "keywords": [
+    "feature",
+    "specification",
     "public",
     "doc",
     "internal",
@@ -9,11 +12,15 @@
     "reference",
     "removal"
   ],
-  "lastUpdated": "2026-05-18T09:56:05Z",
+  "lastUpdated": "2026-05-21T10:22:37.784Z",
   "specId": "032",
   "folderSlug": "public-doc-internal-spec-reference-removal",
-  "parentChain": [],
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup",
+    "003-cross-cutting-cleanup-pass"
+  ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

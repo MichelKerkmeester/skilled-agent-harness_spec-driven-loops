@@ -10,9 +10,9 @@
     "parity",
     "remediation"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.754Z",
+  "lastUpdated": "2026-05-21T10:22:38.331Z",
   "specId": "001",
-  "folderSlug": "hook-parity-remediation",
+  "folderSlug": "fix-runtime-hook-parity-findings",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",

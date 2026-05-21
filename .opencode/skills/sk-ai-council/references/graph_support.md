@@ -1,5 +1,5 @@
 ---
-title: "Deep AI Council Graph Support"
+title: "AI Council Graph Support"
 description: "Derived council graph support boundaries, MCP tool surface, and recovery rules."
 trigger_phrases:
   - "sk-ai-council graph support"
@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "reference"
 ---
 
-# Deep AI Council Graph Support
+# AI Council Graph Support
 
 Dedicated council graph support is available as a derived MCP projection. It does not replace packet-local `ai-council/**` artifacts or append-only state.
 

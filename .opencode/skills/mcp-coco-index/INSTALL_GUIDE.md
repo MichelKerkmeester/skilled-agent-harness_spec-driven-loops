@@ -326,7 +326,7 @@ The variables below have safe defaults. Hybrid (BM25+RRF), cross-encoder rerank,
 | `COCOINDEX_CODE_AWARE_CHUNKING` | `true` | bool | Enable tree-sitter AST chunking for Python, TypeScript/TSX, JavaScript, Go, Rust, and Java. Set `false` to restore blind `RecursiveSplitter` chunking. |
 | `COCOINDEX_TREE_SITTER_LANGUAGES` | `{}` | JSON object | Optional grammar registry extension. Each entry can provide `module`, `function`, `top_level_node_types`, `doc_comment_node_types`, and optional wrapper/alias fields. |
 
-See [`feature_catalog/chunking.md`](feature_catalog/chunking.md) for the tuning rationale and benchmark methodology.
+See [`feature_catalog/03--indexing-pipeline/03-chunking-and-language-detection.md`](feature_catalog/03--indexing-pipeline/03-chunking-and-language-detection.md) for chunking behavior.
 
 Tree-sitter support is installed with the local fork:
 
@@ -347,7 +347,7 @@ Adds SQLite FTS5 lexical channel fused with vector channel via Reciprocal Rank F
 | `COCOINDEX_HYBRID_FTS5_WEIGHT` | `0.5` | 0.0–2.0 | RRF weight for the FTS5 lexical channel. |
 | `COCOINDEX_HYBRID_RRF_K` | `60` | 1–500 | RRF dampening constant; higher k flattens the influence of top-ranked hits. |
 
-See [`feature_catalog/hybrid-search.md`](feature_catalog/hybrid-search.md) for activation guidance and tuning notes.
+See [`feature_catalog/05--search-and-ranking/07-hybrid-search-bm25-rrf.md`](feature_catalog/05--search-and-ranking/07-hybrid-search-bm25-rrf.md) for hybrid-search behavior.
 
 **Cross-encoder reranker (default ON):**
 
@@ -362,7 +362,7 @@ Applies a local cross-encoder rerank to the top-K candidates after retrieval. Hi
 
 > **Model swap (2026-05-20):** the default reranker is `Qwen/Qwen3-Reranker-0.6B`, promoted by the 023B head-to-head expanded fixture after beating `jinaai/jina-reranker-v3` on hits, p95 latency, and license posture. `jinaai/jina-reranker-v3` remains available as an opt-in fallback via `COCOINDEX_RERANK_MODEL=jinaai/jina-reranker-v3`; BGE and GTE can still be pinned for compatibility experiments.
 
-> **Shared sidecar dispatch (2026-05-20, arc 008 phase 006):** cocoindex now consumes `Qwen/Qwen3-Reranker-0.6B` through the shared `system-rerank-sidecar` skill by default (`COCOINDEX_RERANK_VIA_SIDECAR=true`). The MCP launcher auto-ensures the sidecar via `cli.py::_ensure_rerank_sidecar_for_mcp`, so MCP-mode operators get this for free. CLI-only operators running `ccc search` without spawning the sidecar will hit the HTTP path, fail, and fall back to the bundled in-process model — set `COCOINDEX_RERANK_VIA_SIDECAR=false` to skip the failed HTTP call and go straight to bundled. Benchmark evidence: `mcp_server/benchmarks/benchmark-2026-05-20-cocoindex-via-sidecar/benchmark_report.md`.
+> **Shared sidecar dispatch (2026-05-20, arc 008 phase 006):** cocoindex now consumes `Qwen/Qwen3-Reranker-0.6B` through the shared `system-rerank-sidecar` skill by default (`COCOINDEX_RERANK_VIA_SIDECAR=true`). The MCP launcher auto-ensures the sidecar via `cli.py::_ensure_rerank_sidecar_for_mcp`, so MCP-mode operators get this for free. CLI-only operators running `ccc search` without spawning the sidecar will hit the HTTP path, fail, and fall back to the bundled in-process model — set `COCOINDEX_RERANK_VIA_SIDECAR=false` to skip the failed HTTP call and go straight to bundled. Benchmark evidence: sidecar-specific path is pending regeneration; current reranker benchmark evidence lives in `mcp_server/benchmarks/benchmark-2026-05-20/benchmark_report.md` and `mcp_server/benchmarks/benchmark-2026-05-21/benchmark_report.md`.
 
 See [`feature_catalog/reranker.md`](feature_catalog/reranker.md) for model trade-offs, RAM requirements, and when to tune or disable reranking.
 
@@ -1085,7 +1085,7 @@ ccc daemon status             # Check daemon status
 
 | Version | Date       | Changes                                                      |
 | ------- | ---------- | ------------------------------------------------------------ |
-| 1.2.4   | 2026-05-20 | Default cocoindex rerank dispatch through shared `system-rerank-sidecar` HTTP path (`COCOINDEX_RERANK_VIA_SIDECAR=true`); bundled `CrossEncoderRerankerAdapter` kept as HTTP fallback. Closes arc 008 deduplication intent. Benchmark: `benchmark-2026-05-20-cocoindex-via-sidecar/`. |
+| 1.2.4   | 2026-05-20 | Default cocoindex rerank dispatch through shared `system-rerank-sidecar` HTTP path (`COCOINDEX_RERANK_VIA_SIDECAR=true`); bundled `CrossEncoderRerankerAdapter` kept as HTTP fallback. Closes arc 008 deduplication intent. Benchmark evidence: `benchmark-2026-05-20/` plus `benchmark-2026-05-21/`; the old `benchmark-2026-05-20-cocoindex-via-sidecar/` link was removed because the folder does not exist. |
 | 1.2.3   | 2026-05-20 | Promote default reranker to `Qwen/Qwen3-Reranker-0.6B` (Apache-2.0); jina-v3 demoted to opt-in fallback per 023B head-to-head bench |
 | 1.2.2   | 2026-05-19 | Promote default embedder to `nomic-ai/CodeRankEmbed` and reranker to `jinaai/jina-reranker-v3`; lock RRF defaults at K=60, vector=0.9, FTS5=0.5 |
 | 1.2.1   | 2026-05-18 | Promote hybrid + reranker to default-on; swap reranker default GTE → `BAAI/bge-reranker-v2-m3` (GTE/MPS incompatibility) |

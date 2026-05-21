@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-fix-stress-test-coverage-gap",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/006-fix-stress-test-coverage-gap",
   "description": "Spec: P1 + P2 Stress-Test Remediation — Close 36 Remaining Coverage Gaps",
   "keywords": [
     "spec",
@@ -10,14 +10,14 @@
     "coverage",
     "gaps"
   ],
-  "lastUpdated": "2026-04-30T20:13:02.895Z",
-  "specId": "044",
-  "folderSlug": "p1-p2-stress-remediation",
+  "lastUpdated": "2026-05-21T10:22:37.688Z",
+  "specId": "006",
+  "folderSlug": "fix-stress-test-coverage-gap",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "000-release-cleanup",
-    "005-review-remediation"
+    "001-release-readiness"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

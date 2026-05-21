@@ -183,3 +183,6 @@ These three combined are ~15 LOC + 2-3 test cases. Could ship as a cleanup commi
 - Iter 5 (architecture-fit) explicitly confirmed module boundaries + read-write shape alignment — the strongest signal the refactor is structurally sound.
 
 **Next action**: Address P1-1 + P2-1 + P2-2 in a small cleanup commit (~15 LOC), OR defer to 010/002 swap-execution batch. Either way, 010/004 is shipped and verified.
+
+
+Dispatch A reconciliation: review work previously listed as pending is complete; metadata fields now match the completed review artifacts.

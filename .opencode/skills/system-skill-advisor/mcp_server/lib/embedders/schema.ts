@@ -94,16 +94,23 @@ export function getActiveEmbedder(db: Database.Database): ActiveEmbedder {
   return { name, dim };
 }
 
-export function setActiveEmbedder(db: Database.Database, name: string, dim: number): void {
+function setActiveEmbedderTransactional(
+  db: Database.Database,
+  name: string,
+  dim: number,
+  afterSchemaCreated?: () => void,
+): void {
   const trimmedName = name.trim();
   if (trimmedName.length === 0) {
     throw new TypeError('Active embedder name must be non-empty');
   }
   validateDim(dim);
-  ensureVecMetadataTable(db);
-  ensureVecTableForDim(db, dim);
 
-  const writePointer = db.transaction(() => {
+  const writeActiveEmbedder = db.transaction(() => {
+    ensureVecMetadataTable(db);
+    ensureVecTableForDim(db, dim);
+    afterSchemaCreated?.();
+
     db.prepare(`
       INSERT INTO vec_metadata (key, value)
       VALUES (?, ?)
@@ -117,5 +124,13 @@ export function setActiveEmbedder(db: Database.Database, name: string, dim: numb
     `).run(ACTIVE_EMBEDDER_DIM_KEY, String(dim));
   });
 
-  writePointer();
+  writeActiveEmbedder();
 }
+
+export function setActiveEmbedder(db: Database.Database, name: string, dim: number): void {
+  setActiveEmbedderTransactional(db, name, dim);
+}
+
+export const __embedderSchemaTestables = {
+  setActiveEmbedderTransactional,
+};

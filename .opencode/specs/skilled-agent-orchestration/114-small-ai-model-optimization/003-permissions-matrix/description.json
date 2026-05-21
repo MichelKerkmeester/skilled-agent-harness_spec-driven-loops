@@ -1,5 +1,5 @@
 {
-  "specFolder": "003-permissions-matrix",
+  "specFolder": "skilled-agent-orchestration/114-small-ai-model-optimization/003-permissions-matrix",
   "description": "Feature Specification: cli-opencode permissions-matrix",
   "keywords": [
     "feature",
@@ -7,13 +7,10 @@
     "cli-opencode",
     "permissions-matrix"
   ],
-  "lastUpdated": "2026-05-18T12:32:47.354Z",
+  "lastUpdated": "2026-05-21T10:22:37.599Z",
   "specId": "003",
   "folderSlug": "permissions-matrix",
   "parentChain": [
-    "..",
-    ".opencode",
-    "specs",
     "skilled-agent-orchestration",
     "114-small-ai-model-optimization"
   ],

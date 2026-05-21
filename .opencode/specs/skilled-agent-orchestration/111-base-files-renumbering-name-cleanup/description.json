@@ -1,18 +1,20 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/111-base-files-renumbering-name-cleanup",
-  "description": "Wave 3 cleanup: author 33 sub-phase base files (cli-devin SWE-1.6 × 11), renumber 86 sub-phase + 22 parent children sequentially, resolve 2 dup-prefix pairs under 014, shorten ~25 verbose names, sync 17 phase-parent graph-metadata + spec.md tables.",
+  "description": "111: 026 cleanup remediation (Wave 3)",
   "keywords": [
-    "111-cleanup-wave-3",
-    "026-cleanup-remediation",
-    "sub-phase-base-files",
-    "sequential-renumber",
-    "verbose-name-cleanup"
+    "111",
+    "026",
+    "cleanup",
+    "remediation",
+    "wave"
   ],
-  "lastUpdated": "2026-05-16T09:00:00Z",
+  "lastUpdated": "2026-05-21T10:22:37.559Z",
   "specId": "111",
-  "folderSlug": "026-cleanup-remediation",
-  "parentChain": ["skilled-agent-orchestration"],
+  "folderSlug": "base-files-renumbering-name-cleanup",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
   "memorySequence": 1,
   "memoryNameHistory": []
 }

@@ -1,12 +1,28 @@
 {
   "level": "feature",
-  "specFolder": "012-fixture-audit-probe-10",
-  "description": "Audit the 18-pair code-retrieval fixture's expected_source_path correctness. Probe 10 (dist .js vs source .ts) is the immediate trigger; 5 universal-ceiling probes (1, 6, 11, 12, 15) get priority. Output: KEEP/CHANGE/AMBIGUOUS verdict per probe with rationale; fixture diff if any changes warranted.",
-  "keywords": ["fixture-audit","expected_source_path","probe-10","dist-vs-source","universal-ceiling","research"],
-  "lastUpdated": "2026-05-18T19:21:19.000Z",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-probe-10",
+  "description": "Spec: 016/004/012 Fixture Audit (probe 10 first; full 18 second)",
+  "keywords": [
+    "spec",
+    "016",
+    "004",
+    "012",
+    "fixture",
+    "audit",
+    "probe",
+    "first",
+    "full",
+    "second"
+  ],
+  "lastUpdated": "2026-05-21T10:22:38.584Z",
   "specId": "012",
   "folderSlug": "fixture-audit-probe-10",
-  "parentChain": ["system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture","system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack"],
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "004-code-index-stack"
+  ],
   "memorySequence": 1,
   "memoryNameHistory": []
 }

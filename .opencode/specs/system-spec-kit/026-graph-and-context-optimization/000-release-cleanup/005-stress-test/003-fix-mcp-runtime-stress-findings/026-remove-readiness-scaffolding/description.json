@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-fix-mcp-runtime-stress-findings/026-remove-readiness-scaffolding",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/026-remove-readiness-scaffolding",
   "description": "Spec: Readiness Scaffolding Cleanup",
   "keywords": [
     "spec",
@@ -7,13 +7,14 @@
     "scaffolding",
     "cleanup"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.225Z",
+  "lastUpdated": "2026-05-21T10:22:37.963Z",
   "specId": "026",
-  "folderSlug": "readiness-scaffolding-cleanup",
+  "folderSlug": "remove-readiness-scaffolding",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "000-release-cleanup",
+    "005-stress-test",
     "003-fix-mcp-runtime-stress-findings"
   ],
   "memorySequence": 1,

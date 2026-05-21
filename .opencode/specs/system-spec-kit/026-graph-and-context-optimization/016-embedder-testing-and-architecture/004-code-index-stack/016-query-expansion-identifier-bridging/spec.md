@@ -81,6 +81,7 @@ Examples (target behavior):
 Result: dense retrieval gets more identifier-flavored vectors per query, FTS5 gets more terms to match against tokenized identifier splits, and the rerank candidate set sees the relevant body chunks instead of dropping them at recall stage.
 
 This is THE leverage point for the 4 remaining failure probes once 015 (tree-sitter chunking) lands. After 015 every file is chunked into body-bearing units; 016 makes sure the BODY chunk actually enters the candidate set.
+Dispatch A correction: query expansion is currently default-off (`COCOINDEX_QUERY_EXPANSION=false`). Corrected-fixture benches showed deterministic expansion regressed top-K by displacing implementation files with tests/docs. Keep it opt-in until a follow-on bench reverses that result.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->

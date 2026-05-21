@@ -1,24 +1,26 @@
 {
-  "specFolder": "046-shared-daemon-suite-runner",
-  "description": "Direct MCP shared-daemon runner for the 24-- local LLM query intelligence suite, closing 043's per-child daemon contention gap for memory and CocoIndex scenarios.",
+  "level": "2",
+  "status": "complete",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/046-shared-daemon-suite-runner",
+  "description": "Feature Specification: 045 Shared Daemon Suite Runner",
   "keywords": [
-    "shared-daemon",
-    "mcp-client",
-    "24--local-llm-query-intelligence",
-    "scenario-runner",
-    "memory-substrate",
-    "cocoindex-wired"
+    "feature",
+    "specification",
+    "045",
+    "shared",
+    "daemon",
+    "suite",
+    "runner"
   ],
-  "lastUpdated": "2026-05-14T17:53:33Z",
-  "specId": "045",
+  "lastUpdated": "2026-05-21T10:22:38.460Z",
+  "specId": "046",
   "folderSlug": "shared-daemon-suite-runner",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "014-local-embeddings-migration"
+    "016-embedder-testing-and-architecture",
+    "001-local-embeddings-foundation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2",
-  "status": "complete"
+  "memoryNameHistory": []
 }

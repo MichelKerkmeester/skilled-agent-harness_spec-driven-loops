@@ -103,7 +103,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Deep AI Council owns multi-seat planning deliberation, packet-local ai-council artifact persistence, lightweight convergence checks, derived council graph guidance, and council recovery/audit guidance. It matters because council behavior can evolve independently from system-spec-kit while preserving scoped-write packet artifacts as source-of-truth.",
+    "causal_summary": "AI Council owns multi-seat planning deliberation, packet-local ai-council artifact persistence, lightweight convergence checks, derived council graph guidance, and council recovery/audit guidance. It matters because council behavior can evolve independently from system-spec-kit while preserving scoped-write packet artifacts as source-of-truth.",
     "source_docs": [
       "SKILL.md",
       "references/output_schema.md",

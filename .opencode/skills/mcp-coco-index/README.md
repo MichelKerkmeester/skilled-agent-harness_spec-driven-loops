@@ -101,7 +101,7 @@ Three retrieval-quality capabilities ship in v1.2.0. Chunking tunables are alway
 
 - **Chunking tunables** — `CHUNK_SIZE` raised 1000 → 1500 for better function-boundary preservation; new env overrides `COCOINDEX_CODE_CHUNK_SIZE`, `COCOINDEX_CODE_CHUNK_OVERLAP`, `COCOINDEX_CODE_MIN_CHUNK_SIZE`.
 - **Hybrid search** (`COCOINDEX_HYBRID=true`) — SQLite FTS5 lexical channel fused with the vector channel via Reciprocal Rank Fusion. Mirrors the retrieval stack used by `mk-spec-memory`. Tunable via `COCOINDEX_HYBRID_VECTOR_WEIGHT`, `COCOINDEX_HYBRID_FTS5_WEIGHT`, `COCOINDEX_HYBRID_RRF_K`; set `COCOINDEX_HYBRID=false` for vector-only rollback.
-- **Cross-encoder rerank** (`COCOINDEX_RERANK=true`) — Local Jina v3 reranker applied to the top-K candidates. Tunable via `COCOINDEX_RERANK_MODEL`, `COCOINDEX_RERANK_TOP_K`. First use downloads the model to `~/.cache/huggingface/hub/`; set `COCOINDEX_RERANK=false` for no-rerank ablations.
+- **Cross-encoder rerank** (`COCOINDEX_RERANK=true`) — Qwen/Qwen3-Reranker-0.6B applied to the top-K candidates via system-rerank-sidecar by default (`COCOINDEX_RERANK_VIA_SIDECAR=true`). Tunable via `COCOINDEX_RERANK_MODEL`, `COCOINDEX_RERANK_TOP_K`. First use downloads the model to `~/.cache/huggingface/hub/`; set `COCOINDEX_RERANK=false` for no-rerank ablations.
 
 Full env-var matrix with defaults and valid ranges: [INSTALL_GUIDE.md §4 "Tuning + optional retrieval features"](INSTALL_GUIDE.md).
 

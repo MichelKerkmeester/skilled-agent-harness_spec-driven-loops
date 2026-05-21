@@ -7,9 +7,9 @@
     "specification",
     "z-archive-marker-validation-sweep"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.805Z",
+  "lastUpdated": "2026-05-21T10:22:38.371Z",
   "specId": "008",
-  "folderSlug": "z-archive-marker-validation-sweep",
+  "folderSlug": "archive-fleet-marker-validation-scaffold",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",

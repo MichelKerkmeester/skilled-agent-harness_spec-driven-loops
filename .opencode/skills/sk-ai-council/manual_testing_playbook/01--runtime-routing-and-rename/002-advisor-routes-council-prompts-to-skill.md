@@ -1,6 +1,6 @@
 ---
 title: "DAC-002 -- Advisor routes council prompts to skill"
-description: "This scenario validates advisor routing for explicit Deep AI Council prompts."
+description: "This scenario validates advisor routing for explicit AI Council prompts."
 ---
 
 # DAC-002 -- Advisor routes council prompts to skill

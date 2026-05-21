@@ -392,7 +392,7 @@ describe('027/003 native scorer units', () => {
     const projection = createFixtureProjection([
       skill({
         id: 'sk-ai-council',
-        description: 'Deep AI Council deliberation workflow for multi-seat planning and council artifact persistence.',
+        description: 'AI Council deliberation workflow for multi-seat planning and council artifact persistence.',
         domains: ['planning', 'deliberation', 'ai-council', 'artifact-persistence'],
         intentSignals: ['ai council', 'council deliberation', 'persist council artifacts'],
         derivedTriggers: ['ai council deliberation'],

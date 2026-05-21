@@ -9,9 +9,9 @@
     "findings",
     "remediation"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.769Z",
+  "lastUpdated": "2026-05-21T10:22:38.346Z",
   "specId": "004",
-  "folderSlug": "claude-hook-findings-remediation",
+  "folderSlug": "fix-claude-freshness-schema-harness",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",

@@ -1,6 +1,6 @@
 ---
-title: "Feature Specification: 018 llama-cpp auto-migration"
-description: "Upgrade Memory MCP startup from warn-only hf-local migration detection to synchronous llama-cpp auto-migrate, validate, delete, and fallback handling."
+title: "Feature Specification: 018 llama-cpp auto-migration (SUPERSEDED)"
+description: "Historical llama-cpp auto-migration packet. SUPERSEDED by the Ollama -> hf-local Nomic cascade work under the local embeddings foundation arc."
 trigger_phrases:
   - "018 llama cpp auto migration"
   - "MEMORY_AUTO_MIGRATE_HF_TO_LLAMA"
@@ -36,7 +36,7 @@ _memory:
       - "Opt-out behavior? -> MEMORY_AUTO_MIGRATE_HF_TO_LLAMA=false preserves the pre-018 warning."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
-# Feature Specification: 018 llama-cpp auto-migration
+# Feature Specification: 018 llama-cpp auto-migration (SUPERSEDED)
 
 <!-- SPECKIT_LEVEL: 2 -->
 
@@ -49,7 +49,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Complete |
+| **Status** | SUPERSEDED (by 001-local-embeddings-foundation's Ollama cascade work) |
 | **Created** | 2026-05-13 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -66,7 +66,9 @@ _memory:
 After the llama-cpp provider became the local default candidate, startup only warned when a populated `hf-local` sqlite existed while the active profile pointed at the llama-cpp store. That left operators with a manual migration step and a stale source sqlite that could keep being rediscovered.
 
 ### Purpose
-Make Memory MCP startup self-healing for upgrades: detect the largest populated `context-index__hf-local__*.sqlite`, migrate it into the llama-cpp profile store, validate row count and sample vectors, delete the source sqlite plus `-shm` and `-wal` companions on success, and fall back to `hf-local` for the current run on any migration failure.
+Historical purpose before supersession: make Memory MCP startup self-healing for upgrades: detect the largest populated `context-index__hf-local__*.sqlite`, migrate it into the llama-cpp profile store, validate row count and sample vectors, delete the source sqlite plus `-shm` and `-wal` companions on success, and fall back to `hf-local` for the current run on any migration failure.
+### Supersession note
+This phase is historical. The live local-first path is now Ollama -> hf-local Nomic; llama-cpp is not the active auto-migration target. Do not treat this packet as current implementation guidance.
 <!-- /ANCHOR:problem -->
 
 ---

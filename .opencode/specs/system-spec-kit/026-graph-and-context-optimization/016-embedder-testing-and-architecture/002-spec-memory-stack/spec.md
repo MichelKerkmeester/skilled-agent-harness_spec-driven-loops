@@ -1,6 +1,6 @@
 ---
 title: "016/001: mk-spec-memory stack (phase parent)"
-description: "Phase parent grouping all mk-spec-memory (TypeScript MCP) embedder + architecture work: adapter interface, Ollama backend + multi-dim schema, MCP tools + reindex, mxbai swap + cat-24 closure."
+description: "mk-spec-memory stack parent for adapter architecture, Ollama + hf-local Nomic cascade, Nomic/CodeRankEmbed default, retrieval-rescue closure, and later metadata repair packets. mxbai was tested and rolled back."
 trigger_phrases:
   - "016/001 mk-spec-memory stack"
   - "mk-spec-memory pluggable embedder"
@@ -10,28 +10,14 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack"
-    last_updated_at: "2026-05-19T05:50:00Z"
+    last_updated_at: "2026-05-21T11:00:00Z"
     last_updated_by: "main_agent"
-    recent_action: "2026-05-19 swept: ADR-013 (nomic OLLAMA_PRIORITY first, commit 847333a8f) + nomic re-index complete (job emb-swap-2026-05-19T05-41-40-358Z-86e029d6, 3808/3808, ~1:51 min, vector search verified at semantic sim 85.83) + jina shard + .jina-backup deleted (~148 MB freed); 015 packet scaffolded for ADR-014 cascade reorder + nomic hf-local default, dispatched to fresh Opus agent."
-    next_safe_action: "Await fresh Opus agent (015 packet) completion; on commit-handoff, main agent stages + commits the cascade reorder + doc sweep."
+    recent_action: "Dispatch A reconciled parent map and defaults."
+    next_safe_action: "Resume active child from graph metadata."
     blockers: []
     key_files:
-      - "001-adapter-interface/spec.md"
-      - "002-ollama-backend-and-multi-dim-schema/spec.md"
-      - "003-mcp-tools-and-reindex/spec.md"
-      - "004-spec-memory-embedder-bake-off/spec.md"
-      - "004-spec-memory-embedder-bake-off/decision-record.md"
-      - "005-context-server-memory-reduction-research/spec.md"
-      - "006-ollama-encode-path-wiring/spec.md"
-      - "007-auto-embedder-selection-and-llama-cpp-purge/spec.md"
-      - "008-byte-aware-health-telemetry/spec.md"
-      - "009-byte-bounded-embedding-cache/spec.md"
-      - "010-embedder-sidecar-execution/spec.md"
-      - "011-lazy-startup-gating/spec.md"
-      - "012-canonical-vector-shard-split/spec.md"
-      - "013-bm25-fts5-rag-fusion-investigation/spec.md"
-      - "014-fts5-default-lexical-with-guardrails/spec.md"
-      - "015-cascade-reorder-and-nomic-hf-local-default/spec.md"
+      - "spec.md"
+      - "graph-metadata.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000016001"
       session_id: "016-mk-spec-memory-stack"
@@ -39,10 +25,7 @@ _memory:
     completion_pct: 95
     open_questions: []
     answered_questions:
-      - "What's the production active embedder? nomic-embed-text-v1.5 (768d, Ollama), set by ADR-013 + verified via embedder_set job emb-swap-2026-05-19T05-41-40-358Z-86e029d6 on 2026-05-19."
-      - "What's the outer cascade tier order? Currently [Voyage, OpenAI, Ollama, hf-local] (cloud-first); ADR-014 in flight to flip to [Ollama, hf-local, OpenAI, Voyage] (local-first)."
-      - "What's the rollback path for ADR-013? Checkpoint pre-nomic-swap-2026-05-19-073000 in checkpoints table (54 MB, 3808 memories). jina vector shard + .jina-backup were deleted 2026-05-19 (~148 MB freed) after vector search verified working under nomic."
-      - "What was the jina production state pre-swap? BROKEN — 3808 rows with embedding_status='success' but the prior swap (emb-swap-2026-05-18T19-38-28-209Z) completed only 227/3808. Production was running BM25/FTS5 only for the remaining 94% of rows."
+      - "Current default: Nomic/CodeRankEmbed auto cascade."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-phase-parent | v1.0 -->
 <!-- SPECKIT_LEVEL: phase-parent -->
@@ -67,16 +50,27 @@ All 4 sub-phases shipped before this restructure landed. The restructure is pure
 <!-- ANCHOR:phase-map -->
 ## 2. PHASE MAP
 
-| Phase | Title | Status |
+| Phase | Focus | Status |
 |---|---|---|
-| 001-adapter-interface | EmbedderAdapter contract + MANIFESTS registry | Shipped |
-| 002-ollama-backend-and-multi-dim-schema | OllamaAdapter + vec_<dim> schema | Shipped |
-| 003-mcp-tools-and-reindex | embedder_list/set/status + reindex orchestrator | Shipped |
-| 004-spec-memory-embedder-bake-off | mxbai swap + cat-24/409 closure | Shipped |
-| 015-cascade-reorder-and-nomic-hf-local-default | 016-reindex-populates-vec-memories-knn-table | [Criteria TBD] | [Verification TBD] |
-| 016-reindex-populates-vec-memories-knn-table | 017-factory-shard-fallback-for-hf-voyage-openai | Confirm whether hf-local, voyage, and openai have active-embedder DB resolvers needing ADR-012 shard fallback. | Source audit documents that no analogous functions exist; shared and MCP server builds pass. |
-| 017-factory-shard-fallback-for-hf-voyage-openai | 018-constitutional-quality-gate-exemption | [Criteria TBD] | [Verification TBD] |
-| 018-constitutional-quality-gate-exemption | 019-lineage-and-metadata-repair-runner | [Criteria TBD] | [Verification TBD] |
+| `001-adapter-interface/` | 016/001: EmbedderAdapter interface + EmbedderRegistry | Scaffolded |
+| `002-ollama-backend-and-multi-dim-schema/` | 016/002: Ollama backend adapter + dim-tagged vec schema | Implemented |
+| `003-mcp-tools-and-reindex/` | 016/003: Embedder MCP tools + re-index orchestrator | Shipped |
+| `004-spec-memory-embedder-bake-off/` | 016/004: mk-spec-memory text-embedder bake-off (6 candidates) + retrieval-rescue layer + cat-24/409 closure | SHIPPED - ADR-012 selects jina-embeddings-v3 + rescue layer as production default; cat-24/409 closed at 9/10 under jina-v3 (was 8/10 under nomic) |
+| `005-context-server-memory-reduction-research/` | 005-context-server-memory-reduction-research | Unknown |
+| `006-ollama-encode-path-wiring/` | 016/002/006: Ollama encode-path wiring | Implemented |
+| `007-auto-embedder-selection-and-llama-cpp-purge/` | 016/002/007 Auto-Embedder Selection + llama-cpp Purge | Planned (2026-05-18 evening; just-after 006 ship) |
+| `008-byte-aware-health-telemetry/` | Byte-Aware Health Telemetry | Complete |
+| `009-byte-bounded-embedding-cache/` | Byte-Bounded Embedding Cache | Complete |
+| `010-embedder-sidecar-execution/` | Embedder Sidecar Execution | Complete |
+| `011-lazy-startup-gating/` | Lazy Startup Gating | Implemented - Handler Verification Blocked |
+| `012-canonical-vector-shard-split/` | Canonical Vector Shard Split | Implemented - Verified |
+| `013-bm25-fts5-rag-fusion-investigation/` | BM25 FTS5 RAG Fusion Investigation | Complete |
+| `014-fts5-default-lexical-with-guardrails/` | FTS5 Default Lexical With Guardrails | Implemented, verification pending |
+| `015-cascade-reorder-and-nomic-hf-local-default/` | 016/002/015 Local-First Cascade Reorder + Nomic hf-local Default (ADR-014) | Planned (one partial edit landed pre-scaffold) |
+| `016-reindex-populates-vec-memories-knn-table/` | Phase 1: reindex-populates-vec-memories-knn-table | Complete |
+| `017-factory-shard-fallback-for-hf-voyage-openai/` | factory-shard-fallback-for-hf-voyage-openai | Complete |
+| `018-constitutional-quality-gate-exemption/` | Phase 1: constitutional-quality-gate-exemption | Complete |
+| `019-lineage-and-metadata-repair-runner/` | Lineage and Metadata Repair Runner | Complete |
 <!-- /ANCHOR:phase-map -->
 
 <!-- ANCHOR:cross-refs -->

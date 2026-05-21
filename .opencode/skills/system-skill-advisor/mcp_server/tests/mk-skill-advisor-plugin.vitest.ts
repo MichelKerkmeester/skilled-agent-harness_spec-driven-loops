@@ -328,6 +328,24 @@ describe('mk-skill-advisor OpenCode plugin', () => {
     expect(status).toContain('last_error_code=TIMEOUT');
   });
 
+  it('default bridge timeout allows a slow bridge response to return', async () => {
+    vi.useFakeTimers();
+    mockedBridge.spawn.mockImplementation(() => makeChild(bridgeResponse(), 5000));
+    const hooks = await makePlugin();
+
+    const outputPromise = runPrompt(hooks, { prompt: 'implement feature X' });
+    await vi.advanceTimersByTimeAsync(5000);
+    const output = await outputPromise;
+
+    expect(output.additionalContext).toContain('sk-code');
+    expect(output.output.system).toHaveLength(1);
+    const child = mockedBridge.spawn.mock.results[0]?.value;
+    expect(child.kill).not.toHaveBeenCalled();
+    const status = await hooks.tool?.spec_kit_skill_advisor_status.execute({});
+    expect(status).toContain('bridge_timeout_ms=10000');
+    expect(status).toContain('last_bridge_status=ok');
+  });
+
   it('bridge error returns null context and never throws', async () => {
     mockedBridge.spawn.mockImplementation(() => {
       const child = makeChild('', 1000);

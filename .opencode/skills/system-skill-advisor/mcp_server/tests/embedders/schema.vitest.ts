@@ -5,6 +5,7 @@
 import Database from 'better-sqlite3';
 import { afterEach, describe, expect, it } from 'vitest';
 import {
+  __embedderSchemaTestables,
   ensureVecTableForDim,
   getActiveEmbedder,
   setActiveEmbedder,
@@ -58,5 +59,31 @@ describe('skill-advisor embedder schema', () => {
     `).get();
 
     expect(table).toEqual({ name: 'vec_1024' });
+  });
+
+  it('rolls back table creation when active embedder setup fails mid-transaction', () => {
+    const database = memoryDb();
+
+    expect(() => {
+      __embedderSchemaTestables.setActiveEmbedderTransactional(database, 'jina-embeddings-v3', 1024, () => {
+        throw new Error('simulated crash after schema creation');
+      });
+    }).toThrow('simulated crash after schema creation');
+
+    const vecTable = database.prepare(`
+      SELECT name
+      FROM sqlite_master
+      WHERE type = 'table'
+        AND name = 'vec_1024'
+    `).get();
+    const metadataTable = database.prepare(`
+      SELECT name
+      FROM sqlite_master
+      WHERE type = 'table'
+        AND name = 'vec_metadata'
+    `).get();
+
+    expect(vecTable).toBeUndefined();
+    expect(metadataTable).toBeUndefined();
   });
 });

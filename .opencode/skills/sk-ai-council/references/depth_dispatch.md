@@ -1,6 +1,6 @@
 ---
-title: "Deep AI Council Depth Dispatch"
-description: "Adaptive Depth 0 and Depth 1 dispatch rules for Deep AI Council execution without recursive counciling."
+title: "AI Council Depth Dispatch"
+description: "Adaptive Depth 0 and Depth 1 dispatch rules for AI Council execution without recursive counciling."
 trigger_phrases:
   - "sk-ai-council depth dispatch"
   - "depth 0 council dispatch"
@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "reference"
 ---
 
-# Deep AI Council Depth Dispatch
+# AI Council Depth Dispatch
 
 Depth controls whether a council may launch seats in parallel or must deliberate inline. The goal is useful diversity without illegal nesting.
 
@@ -235,7 +235,7 @@ If a seat needs critique, run the critique in the current council's deliberation
 Seat prompts must not include:
 
 ```text
-Invoke the Deep AI Council...
+Invoke the AI Council...
 ```
 
 or:

@@ -1,14 +1,27 @@
 {
   "level": "feature",
-  "specFolder": "003-bge-code-v1-confirmation-and-promote",
-  "description": "3-run replay of the 4-candidate bench to confirm bge-code-v1's 11/18 lead. If reproducible, promote to CocoIndex default",
-  "keywords": ["bge-code-v1","default-promotion","3-run-confirmation","cocoindex"],
-  "lastUpdated": "2026-05-18T15:59:11.000Z",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote",
+  "description": "Spec: 016/007/003 4-Candidate Re-Baseline (Corrected Pipeline) + Promote Decision",
+  "keywords": [
+    "spec",
+    "016",
+    "007",
+    "003",
+    "4-candidate",
+    "re-baseline",
+    "corrected",
+    "pipeline",
+    "promote",
+    "decision"
+  ],
+  "lastUpdated": "2026-05-21T10:22:38.782Z",
   "specId": "003",
-  "folderSlug": "003-bge-code-v1-confirmation-and-promote",
+  "folderSlug": "bge-code-v1-confirmation-and-promote",
   "parentChain": [
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc"
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "007-ollama-and-bge-promotion-arc"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

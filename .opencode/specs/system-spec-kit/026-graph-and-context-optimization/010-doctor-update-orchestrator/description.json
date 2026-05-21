@@ -6,28 +6,22 @@
     "003-skill-advisor-routing-engine-consolidation",
     "004-cutover-doctor-router-from-legacy-files"
   ],
-  "specFolder": "010-doctor-update-orchestrator",
-  "description": "Phase parent for the doctor command surface and the manual testing playbook that exercises it. 5 isolated /doctor:* commands plus the unified /doctor:update orchestrator (child 001) ship the runtime; a Docker sandbox + 23-scenario manual playbook (child 002) ships the validation harness; doc-honesty + security hardening + cross-runtime mirror remediation (child 003) closed the deep-review CONDITIONAL findings. Router consolidation (child 004) and hard cutover (child 005) now complete the timeline after dissolving 014.",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator",
+  "description": "Feature Specification: Doctor Update Orchestrator",
   "keywords": [
+    "feature",
+    "specification",
     "doctor",
-    "doctor-update",
-    "orchestrator",
-    "phase-parent",
-    "doctor-commands",
-    "sandbox-testing-playbook",
-    "manual-testing",
-    "spec-kit-version-migration",
-    "doctor-runtime-bootstrap",
-    "remediation",
-    "router-phase",
-    "cutover-phase",
-    "doctor-router",
-    "doctor-cutover"
+    "update",
+    "orchestrator"
   ],
-  "lastUpdated": "2026-05-12T04:55:46Z",
-  "specId": "013",
+  "lastUpdated": "2026-05-21T10:22:38.392Z",
+  "specId": "010",
   "folderSlug": "doctor-update-orchestrator",
-  "parentChain": [],
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization"
+  ],
   "memorySequence": 3,
   "memoryNameHistory": [
     "10-05-26_07-23__root-cause-invent-a-smart-solution-to-this.md",

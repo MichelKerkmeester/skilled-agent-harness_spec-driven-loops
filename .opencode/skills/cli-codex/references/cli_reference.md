@@ -375,7 +375,7 @@ Place an `instructions.md` in `.codex/` to inject persistent project context int
     ├── deep-research.toml
     ├── review.toml
     ├── speckit.toml
-    ├── multi-ai-council.toml
+    ├── ai-council.toml
     └── write.toml
 ```
 

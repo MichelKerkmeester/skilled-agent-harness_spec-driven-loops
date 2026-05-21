@@ -1,15 +1,16 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture",
-  "description": "016: Pluggable embedder architecture",
+  "description": "016: Embedder testing and architecture (umbrella)",
   "keywords": [
     "016",
-    "pluggable",
     "embedder",
-    "architecture"
+    "testing",
+    "architecture",
+    "umbrella"
   ],
-  "lastUpdated": "2026-05-18T20:38:48.981Z",
+  "lastUpdated": "2026-05-21T10:22:38.417Z",
   "specId": "016",
-  "folderSlug": "pluggable-embedder_architecture",
+  "folderSlug": "embedder-testing-and-architecture",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization"

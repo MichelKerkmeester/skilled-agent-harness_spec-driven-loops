@@ -1,6 +1,6 @@
 ---
-title: "Deep AI Council Folder Layout"
-description: "Packet-local artifact layout for Deep AI Council runs."
+title: "AI Council Folder Layout"
+description: "Packet-local artifact layout for AI Council runs."
 trigger_phrases:
   - "sk-ai-council folder layout"
   - "ai-council artifacts"
@@ -10,9 +10,9 @@ importance_tier: "normal"
 contextType: "reference"
 ---
 
-# Deep AI Council Folder Layout
+# AI Council Folder Layout
 
-Packet-local artifact layout for completed Deep AI Council runs.
+Packet-local artifact layout for completed AI Council runs.
 
 ---
 

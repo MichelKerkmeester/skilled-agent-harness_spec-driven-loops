@@ -68,7 +68,7 @@ _memory:
 | T012 | P0 | Smoke: primary code-index binds `/tmp/mk-code-index/daemon-ipc.sock` | `[x]` | same evidence for code-index — note: needs ~10s warmup before socket bind, not 5s |
 | T013 | P0 | Smoke: secondary skill-advisor launcher bridges via socket | `[x]` | `[mk-skill-advisor-launcher] bridging to lease holder pid=86629 socket=/tmp/mk-skill-advisor/daemon-ipc.sock` |
 | T014 | P0 | Smoke: secondary code-index launcher bridges via socket | `[x]` | `[mk-code-index-launcher] bridging to lease holder pid=87044 socket=/tmp/mk-code-index/daemon-ipc.sock` |
-| T015 | P0 | Strict validate on this packet | `[x]` | (pending — run after this file is authored) |
+| T015 | P0 | Strict validate on this packet | `[x]` | 2026-05-21T10:17:49Z: `validate.sh <packet> --strict` exit 0; `Summary: Errors: 0  Warnings: 0`; `RESULT: PASSED` |
 | T016 | P1 | Update arc parent: phase-map row + children_ids + last_active_child_id | `[x]` | (this commit) |
 <!-- /ANCHOR:phase-3 -->
 

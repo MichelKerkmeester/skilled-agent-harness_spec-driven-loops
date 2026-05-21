@@ -1,17 +1,23 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/115-deep-ai-council-rename/004-cross-skill-edges-and-code",
-  "description": "Phase 4: cross-skill-edges-and-code",
+  "description": "Feature Specification: 115/004 — cross-skill edges + TypeScript",
   "keywords": [
-    "phase",
-    "cross-skill-edges-and-code"
+    "feature",
+    "specification",
+    "115",
+    "004",
+    "cross-skill",
+    "edges",
+    "typescript"
   ],
-  "lastUpdated": "2026-05-21T06:57:10.626Z",
+  "lastUpdated": "2026-05-21T10:22:37.625Z",
   "specId": "004",
   "folderSlug": "cross-skill-edges-and-code",
   "parentChain": [
-    "skilled-agent-orchestration/115-deep-ai-council-rename"
+    "skilled-agent-orchestration",
+    "115-deep-ai-council-rename"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -11,9 +11,9 @@
     "auto-edge",
     "caps"
   ],
-  "lastUpdated": "2026-05-16T21:09:37.389Z",
+  "lastUpdated": "2026-05-21T10:22:37.859Z",
   "specId": "006",
-  "folderSlug": "causal-graph-window-metrics",
+  "folderSlug": "causal-graph-relation-window-metrics",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",

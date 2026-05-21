@@ -1,24 +1,25 @@
 {
   "level": "phase",
-  "specFolder": "014-local-embeddings-migration",
-  "description": "Llama-cpp embedding worker deep-dive: confirm contextSize 512 hypothesis and apply minimal fix",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "description": "Feature Specification: Local embeddings Setup A — EmbeddingGemma-300m for code, EmbeddingGemma-300m for memory",
   "keywords": [
-    "llama-cpp",
-    "embedding",
-    "worker",
-    "deep-dive",
-    "confirm",
-    "contextsize",
-    "512",
-    "hypothesis",
-    "apply",
-    "minimal",
-    "fix"
+    "feature",
+    "specification",
+    "local",
+    "embeddings",
+    "setup",
+    "embeddinggemma-300m",
+    "code",
+    "memory"
   ],
-  "lastUpdated": "2026-05-14T14:09:05.448Z",
-  "specId": "014",
-  "folderSlug": "local-llama-cpp",
-  "parentChain": [],
+  "lastUpdated": "2026-05-21T10:22:38.422Z",
+  "specId": "001",
+  "folderSlug": "local-embeddings-foundation",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture"
+  ],
   "memorySequence": 0,
   "memoryNameHistory": []
 }

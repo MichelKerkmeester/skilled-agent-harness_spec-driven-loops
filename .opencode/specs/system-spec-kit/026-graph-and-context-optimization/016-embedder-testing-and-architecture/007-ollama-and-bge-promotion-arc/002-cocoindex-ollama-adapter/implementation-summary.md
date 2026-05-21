@@ -16,7 +16,7 @@ _memory:
     next_safe_action: "Review scoped diff and commit handoff paths"
     blockers: []
     key_files:
-      - ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py"
+      - ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/embedders/registered_embedders.py"
       - ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/shared.py"
       - ".opencode/skills/mcp-coco-index/mcp_server/tests/test_ollama_routing.py"
       - ".opencode/skills/mcp-coco-index/INSTALL_GUIDE.md"
@@ -69,7 +69,7 @@ The first finding: LiteLLM was already present through `cocoindex[litellm]==1.0.
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py` | Modified | Add daemon metadata and register `ollama/nomic-embed-text`. |
+| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/embedders/registered_embedders.py` | Modified | Add daemon metadata and register `ollama/nomic-embed-text`. |
 | `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/shared.py` | Modified | Add Ollama daemon/model readiness checks and pass `api_base` into LiteLLM. |
 | `.opencode/skills/mcp-coco-index/mcp_server/tests/test_ollama_routing.py` | Created | Mock `litellm.aembedding` and exercise the Ollama-prefix route. |
 | `.opencode/skills/mcp-coco-index/mcp_server/tests/test_registered_embedders.py` | Modified | Accept the `ollama/` prefix and assert Ollama metadata. |
@@ -95,7 +95,7 @@ The change reused CocoIndex's existing LiteLLM abstraction instead of adding a n
 Commit handoff path list:
 
 ```text
-.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/registered_embedders.py
+.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/embedders/registered_embedders.py
 .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/shared.py
 .opencode/skills/mcp-coco-index/mcp_server/tests/test_ollama_routing.py
 .opencode/skills/mcp-coco-index/mcp_server/tests/test_registered_embedders.py
@@ -139,9 +139,19 @@ Commit handoff path list:
 | `.venv/bin/python -m compileall -q ...` | PASS. |
 | `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/mcp-coco-index` | PASS with 24 pre-existing warnings, no errors. |
 | `curl http://localhost:11434/api/tags` | PASS. Ollama reachable and `nomic-embed-text:latest` plus `nomic-embed-text:v1.5` were present. |
-| Direct LiteLLM smoke: `litellm.aembedding(model="ollama/nomic-embed-text", input=["CocoIndex Ollama smoke check"], api_base="http://localhost:11434")` | PASS. Returned `dim=768`. |
+| Direct LiteLLM smoke: `litellm.aembedding(model="ollama/nomic-embed-text", input=["CocoIndex Ollama smoke check"], api_base="http://localhost:11434")` | SANDBOXED E2E ATTEMPTED. Production e2e validation deferred to worktree run on 2026-05-21 (Dispatch D evidence pending). |
 | Isolated temp-project `ccc init && ccc reset && ccc index && ccc search` with `COCOINDEX_CODE_DIR=/private/tmp/...` | FAIL. `ccc index` returned `Daemon error: Operation not permitted (os error 1)` before search. Daemon was stopped and the failure is recorded as an environment-level full smoke blocker. |
 | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict --verbose` | PASS. 0 errors, 0 warnings. |
+
+Worktree e2e (planned, 2026-05-21):
+```text
+$ git worktree add /tmp/wt-ollama-e2e HEAD
+$ cd /tmp/wt-ollama-e2e/.opencode/skills/mcp-coco-index/mcp_server
+$ .venv/bin/ccc index --dir <test-corpus>
+$ .venv/bin/ccc search "test query"
+# Expected: indexing completes + search returns reranked results via Ollama adapter.
+# Will be captured in a follow-on commit; orchestrator runs the worktree e2e separately.
+```
 <!-- /ANCHOR:verification -->
 
 ---

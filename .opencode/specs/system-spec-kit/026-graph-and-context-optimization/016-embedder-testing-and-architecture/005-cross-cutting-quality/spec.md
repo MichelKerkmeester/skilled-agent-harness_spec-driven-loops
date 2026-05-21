@@ -43,11 +43,15 @@ The grouping mirrors the per-stack pattern (e.g., 002-mk-spec-memory-stack, 004-
 <!-- ANCHOR:phase-map -->
 ## 2. PHASE MAP
 
-| Phase | Title | Status |
+| Phase | Focus | Status |
 |---|---|---|
-| 001-playbook-quality-audit | Audit the manual_testing_playbook structure across skills | Shipped |
-| 002-deep-review-stack | 20-iter cli-devin SWE-1.6 deep-review of 016-019 code stack | Shipped (+ review-002 remediation) |
-| 003-skill-docs-alignment | Sweep skill SKILL.md / README / references for stale claims | Shipped |
+| `001-playbook-quality-audit/` | 017: Playbook quality audit | Complete |
+| `002-deep-review-stack/` | 020 Deep-review of 016-019 stack via cli-devin SWE 1.6 | Planned |
+| `003-skill-docs-alignment/` | 021: Skill docs alignment for 016-019 changes (phase parent) | planned |
+| `004-skill-local-benchmarks-format/` | 016/005/004: Skill-local `benchmarks/` folder format + report promotion | IN PROGRESS — folder scaffolding + FORMAT.md shipped; benchmark_report.md + READMEs pending sk-doc agent dispatch |
+| `005-cocoindex-install-hygiene/` | 016/005/005: CocoIndex install hygiene | BLOCKED - pipx repair cannot modify `~/.local/pipx` inside this sandbox |
+| `006-benchmark-format-to-sk-doc/` | Consolidate benchmark format mechanics into a single sk-doc reference following the *_creation.md pattern | Complete |
+| `006-cocoindex-install-hygiene-pipx-repair/` | Apply the open pipx editable repair after operator-side pipx config is available | Planned - blocked on operator pipx config |
 <!-- /ANCHOR:phase-map -->
 
 <!-- ANCHOR:cross-refs -->

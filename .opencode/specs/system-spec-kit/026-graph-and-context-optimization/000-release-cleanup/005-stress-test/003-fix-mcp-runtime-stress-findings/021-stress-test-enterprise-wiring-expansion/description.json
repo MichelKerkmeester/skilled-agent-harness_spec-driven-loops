@@ -7,7 +7,7 @@
     "decision audit stress run",
     "shadow sink stress run"
   ],
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-fix-mcp-runtime-stress-findings/021-stress-test-enterprise-wiring-expansion",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/021-stress-test-enterprise-wiring-expansion",
   "description": "Feature Specification: Stress-Test v1.0.3 with W3-W13 Wiring",
   "keywords": [
     "feature",
@@ -16,13 +16,14 @@
     "w3-w13",
     "wiring"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.209Z",
+  "lastUpdated": "2026-05-21T10:22:37.938Z",
   "specId": "021",
-  "folderSlug": "stress-test-v1-0-3-with-w3-w13-wiring",
+  "folderSlug": "stress-test-enterprise-wiring-expansion",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "000-release-cleanup",
+    "005-stress-test",
     "003-fix-mcp-runtime-stress-findings"
   ],
   "memorySequence": 0,

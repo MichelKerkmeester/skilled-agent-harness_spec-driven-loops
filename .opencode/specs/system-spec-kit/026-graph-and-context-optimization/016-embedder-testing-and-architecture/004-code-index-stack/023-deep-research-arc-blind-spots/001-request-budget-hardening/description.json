@@ -1,26 +1,24 @@
 {
-  "specFolder": "023-deep-research-arc-blind-spots/001-request-budget-hardening",
-  "description": "Harden mcp-coco-index search request budgets with central validation for offset, limit, fetch_k, language fanout, global wildcard path fullscans, and soft timeout behavior.",
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/001-request-budget-hardening",
+  "description": "Spec: 023E Request Budget Hardening",
   "keywords": [
-    "mcp-coco-index",
-    "SearchBudget",
-    "SearchBudgetExceeded",
-    "request budget",
-    "fetch_k",
-    "offset",
-    "path fullscan",
-    "language fanout"
+    "spec",
+    "023e",
+    "request",
+    "budget",
+    "hardening"
   ],
-  "lastUpdated": "2026-05-19T20:10:29Z",
-  "specId": "023E",
+  "lastUpdated": "2026-05-21T10:22:38.607Z",
+  "specId": "001",
   "folderSlug": "request-budget-hardening",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "016-embedder-testing-and-architecture",
-    "004-code-index-stack"
+    "004-code-index-stack",
+    "023-deep-research-arc-blind-spots"
   ],
   "memorySequence": 23,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

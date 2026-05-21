@@ -1,6 +1,6 @@
 ---
 title: "CC-014 -- Ultra-think multi-strategy planning"
-description: "This scenario validates Ultra-think multi-strategy planning for `CC-014`. It focuses on confirming `--agent multi-ai-council --model claude-opus-4-6 --permission-mode plan` produces multiple distinct scored strategies."
+description: "This scenario validates Ultra-think multi-strategy planning for `CC-014`. It focuses on confirming `--agent ai-council --model claude-opus-4-6 --permission-mode plan` produces multiple distinct scored strategies."
 ---
 
 # CC-014 -- Ultra-think multi-strategy planning
@@ -11,11 +11,11 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates Ultra-think multi-strategy planning for `CC-014`. It focuses on confirming `--agent multi-ai-council --model claude-opus-4-6 --permission-mode plan` produces multiple distinct scored strategies.
+This scenario validates Ultra-think multi-strategy planning for `CC-014`. It focuses on confirming `--agent ai-council --model claude-opus-4-6 --permission-mode plan` produces multiple distinct scored strategies.
 
 ### Why This Matters
 
-The `multi-ai-council` agent is the cli-claude-code skill's heaviest planner - it pairs Opus's extended thinking with multi-strategy generation and rubric scoring. The agent_delegation.md routing guide explicitly maps "PLAN ARCHITECTURE" intents to multi-ai-council + Opus. If the agent collapses to a single recommendation without multi-strategy scoring, the cross-AI deep-planning workflow loses its differentiating value.
+The `ai-council` agent is the cli-claude-code skill's heaviest planner - it pairs Opus's extended thinking with multi-strategy generation and rubric scoring. The agent_delegation.md routing guide explicitly maps "PLAN ARCHITECTURE" intents to ai-council + Opus. If the agent collapses to a single recommendation without multi-strategy scoring, the cross-AI deep-planning workflow loses its differentiating value.
 
 ---
 
@@ -23,9 +23,9 @@ The `multi-ai-council` agent is the cli-claude-code skill's heaviest planner - i
 
 Operators run the exact prompt and command sequence for `CC-014` and confirm the expected signals without contradictory evidence.
 
-- Objective: Confirm `--agent multi-ai-council --model claude-opus-4-6 --permission-mode plan` generates at least 3 distinct strategies, scores each across at least 3 dimensions and recommends one with rationale.
-- Real user request: `Use Claude Code's multi-ai-council agent to plan a MongoDB-to-PostgreSQL migration - give me at least 3 distinct strategies, score each on risk/effort/timeline/rollback, and recommend one with reasoning.`
-- RCAF Prompt: `As an external-AI conductor planning a complex migration (for example MongoDB to PostgreSQL) and wanting multiple strategies evaluated by rubric, dispatch claude -p --agent multi-ai-council --model claude-opus-4-6 --permission-mode plan and capture the structured plan. Verify the response generates at least 3 distinct strategies (for example big-bang, gradual, dual-write), scores each across risk/effort/timeline/rollback, and recommends one with rationale. Return a concise user-facing pass/fail verdict with the main reason.`
+- Objective: Confirm `--agent ai-council --model claude-opus-4-6 --permission-mode plan` generates at least 3 distinct strategies, scores each across at least 3 dimensions and recommends one with rationale.
+- Real user request: `Use Claude Code's ai-council agent to plan a MongoDB-to-PostgreSQL migration - give me at least 3 distinct strategies, score each on risk/effort/timeline/rollback, and recommend one with reasoning.`
+- RCAF Prompt: `As an external-AI conductor planning a complex migration (for example MongoDB to PostgreSQL) and wanting multiple strategies evaluated by rubric, dispatch claude -p --agent ai-council --model claude-opus-4-6 --permission-mode plan and capture the structured plan. Verify the response generates at least 3 distinct strategies (for example big-bang, gradual, dual-write), scores each across risk/effort/timeline/rollback, and recommends one with rationale. Return a concise user-facing pass/fail verdict with the main reason.`
 - Expected execution process: External-AI orchestrator dispatches with explicit "generate 3 strategies, score each on N dimensions" structure in the prompt, applies a budget cap (`--max-budget-usd 1.50`), then parses the response for distinct strategies, dimensional scores and recommendation clarity.
 - Expected signals: Response presents at least 3 distinct strategies. Each strategy scored across at least 3 dimensions (risk/effort/timeline/rollback). Explicit recommendation with rationale. Uses `--effort high` style depth (multi-paragraph reasoning per strategy).
 - Desired user-visible outcome: Verdict naming the recommended strategy, the scoring dimensions used and the rationale summary.
@@ -38,18 +38,18 @@ Operators run the exact prompt and command sequence for `CC-014` and confirm the
 ### Recommended Orchestration Process
 
 1. Restate the user request in plain user language.
-2. Apply `--max-budget-usd 1.50` cost cap (Opus + multi-ai-council is expensive).
+2. Apply `--max-budget-usd 1.50` cost cap (Opus + ai-council is expensive).
 3. Frame the prompt to explicitly request N strategies and named scoring dimensions.
 4. Parse the response for distinct strategies and dimensional scores.
 5. Return a verdict naming the recommendation and rationale.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CC-014 | Ultra-think multi-strategy planning | Confirm `--agent multi-ai-council --model claude-opus-4-6 --permission-mode plan` generates >=3 distinct scored strategies | `As an external-AI conductor planning a complex migration (for example MongoDB to PostgreSQL) and wanting multiple strategies evaluated by rubric, dispatch claude -p --agent multi-ai-council --model claude-opus-4-6 --permission-mode plan and capture the structured plan. Verify the response generates at least 3 distinct strategies (for example big-bang, gradual, dual-write), scores each across risk/effort/timeline/rollback, and recommends one with rationale. Return a concise user-facing pass/fail verdict with the main reason.` | 1. `bash: claude -p "Plan a MongoDB-to-PostgreSQL migration for a production e-commerce platform with 50M documents. Generate exactly 3 distinct strategies (for example big-bang, gradual, dual-write). For each strategy, score 1-10 across risk, effort, timeline, and rollback ability. Then recommend one with explicit rationale. Use markdown tables for the score matrix." --agent multi-ai-council --model claude-opus-4-6 --permission-mode plan --max-budget-usd 1.50 --output-format text 2>&1 \| tee /tmp/cc-014-output.txt` -> 2. `bash: grep -cE '(Strategy [0-9]\|## Strategy\|^### )' /tmp/cc-014-output.txt` -> 3. `bash: grep -ciE '(risk\|effort\|timeline\|rollback)' /tmp/cc-014-output.txt` -> 4. `bash: grep -iE '(recommend\|conclusion)' /tmp/cc-014-output.txt \| head -3` -> 5. `bash: wc -w /tmp/cc-014-output.txt` | Step 1: dispatch completes; Step 2: count of strategy-section markers >= 3; Step 3: count of dimension-keyword mentions >= 8 (i.e., 4 dimensions x 3 strategies, with some give); Step 4: explicit recommendation appears; Step 5: total word count > 800 (Opus + multi-ai-council depth) | `/tmp/cc-014-output.txt`, terminal grep counts | PASS if >=3 strategies AND >=3 dimensions scored per strategy AND explicit recommendation; FAIL if fewer than 3 strategies, scoring incomplete, or recommendation missing | 1. If strategy count is < 3, re-run with "MUST generate exactly 3 strategies" stronger framing; 2. If scoring dimensions are missing, the prompt may have been interpreted as prose - request "markdown table with rows per strategy and columns per dimension"; 3. If `--agent multi-ai-council` is rejected, run `claude agents list`; 4. If runtime is excessive, lower `--max-budget-usd` and accept shallower depth |
+| CC-014 | Ultra-think multi-strategy planning | Confirm `--agent ai-council --model claude-opus-4-6 --permission-mode plan` generates >=3 distinct scored strategies | `As an external-AI conductor planning a complex migration (for example MongoDB to PostgreSQL) and wanting multiple strategies evaluated by rubric, dispatch claude -p --agent ai-council --model claude-opus-4-6 --permission-mode plan and capture the structured plan. Verify the response generates at least 3 distinct strategies (for example big-bang, gradual, dual-write), scores each across risk/effort/timeline/rollback, and recommends one with rationale. Return a concise user-facing pass/fail verdict with the main reason.` | 1. `bash: claude -p "Plan a MongoDB-to-PostgreSQL migration for a production e-commerce platform with 50M documents. Generate exactly 3 distinct strategies (for example big-bang, gradual, dual-write). For each strategy, score 1-10 across risk, effort, timeline, and rollback ability. Then recommend one with explicit rationale. Use markdown tables for the score matrix." --agent ai-council --model claude-opus-4-6 --permission-mode plan --max-budget-usd 1.50 --output-format text 2>&1 \| tee /tmp/cc-014-output.txt` -> 2. `bash: grep -cE '(Strategy [0-9]\|## Strategy\|^### )' /tmp/cc-014-output.txt` -> 3. `bash: grep -ciE '(risk\|effort\|timeline\|rollback)' /tmp/cc-014-output.txt` -> 4. `bash: grep -iE '(recommend\|conclusion)' /tmp/cc-014-output.txt \| head -3` -> 5. `bash: wc -w /tmp/cc-014-output.txt` | Step 1: dispatch completes; Step 2: count of strategy-section markers >= 3; Step 3: count of dimension-keyword mentions >= 8 (i.e., 4 dimensions x 3 strategies, with some give); Step 4: explicit recommendation appears; Step 5: total word count > 800 (Opus + ai-council depth) | `/tmp/cc-014-output.txt`, terminal grep counts | PASS if >=3 strategies AND >=3 dimensions scored per strategy AND explicit recommendation; FAIL if fewer than 3 strategies, scoring incomplete, or recommendation missing | 1. If strategy count is < 3, re-run with "MUST generate exactly 3 strategies" stronger framing; 2. If scoring dimensions are missing, the prompt may have been interpreted as prose - request "markdown table with rows per strategy and columns per dimension"; 3. If `--agent ai-council` is rejected, run `claude agents list`; 4. If runtime is excessive, lower `--max-budget-usd` and accept shallower depth |
 
 ### Optional Supplemental Checks
 
-For comparison with the `--effort high` baseline (CC-008), note that `--agent multi-ai-council` already implies extended reasoning - some agent definitions inject `--effort high` automatically, others require it explicitly. Document the observed token usage for future calibration.
+For comparison with the `--effort high` baseline (CC-008), note that `--agent ai-council` already implies extended reasoning - some agent definitions inject `--effort high` automatically, others require it explicitly. Document the observed token usage for future calibration.
 
 ---
 
@@ -76,4 +76,4 @@ For comparison with the `--effort high` baseline (CC-008), note that `--agent mu
 - Group: Agent Routing
 - Playbook ID: CC-014
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `04--agent-routing/004-multi-ai-council-multi-strategy-planning.md`
+- Feature file path: `04--agent-routing/004-ai-council-multi-strategy-planning.md`

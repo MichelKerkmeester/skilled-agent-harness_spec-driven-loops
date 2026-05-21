@@ -10,13 +10,13 @@ const TEST_DIR = dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = resolve(TEST_DIR, '../../../../../');
 const ADVISOR_PATH = join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-spec-kit/scripts/multi-ai-council/advise-council-completion.cjs',
+  '.opencode/skills/system-spec-kit/scripts/ai-council/advise-council-completion.cjs',
 );
 
 const tempDirs: string[] = [];
 
 function makeTempPacket(): string {
-  const dir = mkdtempSync(join(tmpdir(), 'multi-ai-council-advise-'));
+  const dir = mkdtempSync(join(tmpdir(), 'ai-council-advise-'));
   tempDirs.push(dir);
   return dir;
 }
@@ -55,7 +55,7 @@ afterEach(() => {
   }
 });
 
-describe('multi-ai-council completion advisor', () => {
+describe('ai-council completion advisor', () => {
   it('reports no advisories for a complete packet and exits 0', () => {
     const packet = makeTempPacket();
     writeCompleteCouncil(packet);

@@ -1,6 +1,6 @@
 ---
-title: "018: Code embedder swap to jinaai/jina-embeddings-v2-base-code (phase parent)"
-description: "Phase parent for swapping CocoIndex (and transitively Code Graph's semantic bridge) from sbert/google/embeddinggemma-300m to jina's code-tuned embedder. Three children: cocoindex swap implementation, code-retrieval fixture authoring, embedder comparison + ADR ratification."
+title: "018: Code embedder swap to nomic-ai/CodeRankEmbed (phase parent)"
+description: "CocoIndex code embedder stack parent. Current default is sbert/nomic-ai/CodeRankEmbed (768d, MIT) with hybrid search default-on, query expansion default-off, and Qwen rerank via sidecar default-on."
 trigger_phrases:
   - "018 code embedder coderank"
   - "cocoindex embedder swap"
@@ -37,16 +37,16 @@ _memory:
 
 CocoIndex (semantic code search) currently uses `sbert/google/embeddinggemma-300m` — a general-text embedder, not code-tuned. Code Graph's `mk-code-index` reaches CocoIndex through a bridge in `lib/`, so swapping CocoIndex's embedder also affects Code Graph's semantic queries.
 
-This packet swaps to `sbert/jinaai/jina-embeddings-v2-base-code` (161M params, 768 dim, code-tuned, Metal-ready via PyTorch MPS) after measuring against the current gemma baseline. Dim matches gemma (768) — no schema migration needed inside CocoIndex's index.
+The live default is `sbert/nomic-ai/CodeRankEmbed` (768d, MIT, code-tuned) per `registered_embedders.py` and `config/config.py`. Earlier Jina-code and BGE-code lanes are historical benchmark candidates, not the current production default.
 
-mk-spec-memory uses `jina-embeddings-v3` (text-tuned, 1024 dim, Q4_K_M via Ollama) set by 016/004 ADR-012 + rescue layer per ADR-010/011. Both systems on the jina family but distinct variants: text-v3 for prose memory entries (mk-spec-memory) + v2-base-code for source code (CocoIndex).
+mk-spec-memory uses `jina-embeddings-v3` (text-tuned, 1024 dim, Q4_K_M via Ollama) set by 016/004 ADR-012 + rescue layer per ADR-010/011. The two systems now use distinct local defaults: mk-spec-memory follows the Nomic/CodeRankEmbed local cascade for prose memory, while CocoIndex uses Nomic CodeRankEmbed for code search.
 <!-- /ANCHOR:overview -->
 
 <!-- ANCHOR:scope -->
 ## 2. SCOPE
 
 In scope:
-- CocoIndex embedder swap from `embeddinggemma-300m` to `jinaai/jina-embeddings-v2-base-code` via `COCOINDEX_CODE_EMBEDDING_MODEL` env var
+- CocoIndex embedder swap from `embeddinggemma-300m`/historical Jina lanes to `sbert/nomic-ai/CodeRankEmbed` via `COCOINDEX_CODE_EMBEDDING_MODEL` env var
 - MPS device auto-detection patch (current code only auto-detects CUDA; add MPS branch for Apple Silicon)
 - Code-retrieval fixture (10-20 deterministic query/expected-source pairs scoped to actual repo code)
 - Benchmark gemma baseline vs jina-code (and optionally CodeRankEmbed, bge-code) on the fixture

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-skill-graph-daemon-native-advisor-tools",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/002-skill-graph-daemon-native-advisor-tools",
   "description": "Feature Specification: 027 - Skill Graph Daemon and Advisor Unification",
   "keywords": [
     "feature",
@@ -11,13 +11,14 @@
     "advisor",
     "unification"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.730Z",
-  "specId": "008",
-  "folderSlug": "skill-graph-daemon-and-advisor-unification",
+  "lastUpdated": "2026-05-21T10:22:38.211Z",
+  "specId": "002",
+  "folderSlug": "skill-graph-daemon-native-advisor-tools",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "006-skill-advisor"
+    "006-skill-advisor",
+    "001-skill-graph"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

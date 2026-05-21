@@ -1,22 +1,18 @@
 {
   "childTopology": [],
-  "specFolder": "003-skill-advisor-routing-engine-consolidation",
-  "description": "Phase 1 of the doctor command consolidation: author .opencode/commands/doctor.md (router, ~250-300 LOC) + .opencode/commands/doctor/mcp.md (~150 LOC) + .opencode/commands/doctor/_routes.yaml (canonical route manifest) + .opencode/commands/doctor/scripts/route-validate.sh (CI assertion). Ships ADDITIVELY alongside the existing 10 commands. Mirrors land in .claude / .gemini / .codex. No YAML modifications, no deletes, no playbook touch — those are Phase 2.",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/003-consolidate-doctor-router-implementations",
+  "description": "Feature Specification: Doctor Router Phase 1 (Additive)",
   "keywords": [
-    "router-phase",
-    "doctor-router",
-    "argv-positional",
-    "_routes.yaml",
-    "route-validate.sh",
-    "additive",
-    "phase-1",
-    "manifest-driven",
-    "skill-advisor-trigger-phrases",
-    "4-runtime-mirrors"
+    "feature",
+    "specification",
+    "doctor",
+    "router",
+    "phase",
+    "additive"
   ],
-  "lastUpdated": "2026-05-12T04:55:46Z",
-  "specId": "004",
-  "folderSlug": "router-phase",
+  "lastUpdated": "2026-05-21T10:22:38.407Z",
+  "specId": "003",
+  "folderSlug": "consolidate-doctor-router-implementations",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",

@@ -1,23 +1,23 @@
 {
   "level": "phase",
-  "specFolder": "007-ollama-and-bge-promotion-arc",
-  "description": "Phase parent: investigate indexer surfaces + add Ollama support to CocoIndex + 3-run-confirm bge-code-v1 + benchmark mk-spec-memory text embedders (jina-code vs bge-m3 / bge-large-en-v1.5)",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc",
+  "description": "Spec: 016/013 Ollama + BGE Promotion Arc",
   "keywords": [
-    "ollama-adapter",
-    "bge-code-v1",
-    "bge-m3",
-    "cocoindex",
-    "mk-spec-memory",
-    "embedder-promotion",
-    "indexer-investigation",
-    "litellm",
-    "phase-parent"
+    "spec",
+    "016",
+    "013",
+    "ollama",
+    "bge",
+    "promotion",
+    "arc"
   ],
-  "lastUpdated": "2026-05-18T17:30:00.000Z",
-  "specId": "013",
+  "lastUpdated": "2026-05-21T10:22:38.768Z",
+  "specId": "007",
   "folderSlug": "ollama-and-bge-promotion-arc",
   "parentChain": [
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture"
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

@@ -27,9 +27,14 @@
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/021-local-llm-legacy-review",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/022-local-llm-legacy-remediation",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/023-post-remediation-re-review",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/024-post-remediation-v2-re-review",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/025-llm-model-runtime-inventory",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/026-post-batch-11-re-review",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/027-post-batch-12-final-re-review",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/028-local-llm-feature-test-suite",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/029-post-027-findings-remediation",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/030-post-029-final-re-review",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/031-post-batch-15-final-re-review",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/033-system-code-graph-import-path-cleanup",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/034-query-expansion-context-size",
@@ -53,7 +58,8 @@
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/052-mk-spec-memory-rename",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/053-mk-spec-memory-rename-remediation",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/054-root-readme-deep-research",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/055-cli-devin-deep-loop-alignment"
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/055-cli-devin-deep-loop-alignment",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/029-local-llm-feature-test-suite-completion"
   ],
   "manual": {
     "depends_on": [],
@@ -106,6 +112,9 @@
       "spec.md",
       "handover.md",
       "SETUP_A_RECIPE.md"
-    ]
+    ],
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/029-local-llm-feature-test-suite-completion",
+    "last_active_at": "2026-05-21T10:16:26Z",
+    "last_indexed_at": "2026-05-21T11:00:00Z"
   }
 }

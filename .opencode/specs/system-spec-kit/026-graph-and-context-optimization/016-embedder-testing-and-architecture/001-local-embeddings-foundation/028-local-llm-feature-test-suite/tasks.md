@@ -26,7 +26,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Comprehensive local-LLM (hf-local + llama-cpp) feature test suite. 10 functional vitest groups + perf benchmarks (embedding latency, throughput, cold-start, migration throughput). Validates every feature claim in shared/README, embedding_resilience, INSTALL_GUIDE, ENV_REFERENCE, feature_catalog 23/05-5. Acceptance: 0 failed assertions; perf baseline captured for regression tracking.
+# Tasks: Partial local-LLM feature test suite; remaining completion moves to 029-local-llm-feature-test-suite-completion
 
 <!-- SPECKIT_LEVEL: 2 -->
 
@@ -60,10 +60,9 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T004 Record shipped partial local-LLM feature coverage from the remediation stream
+- [x] T005 Mark comprehensive 10-group suite and 4 perf benches as not shipped here
+- [ ] T006 Defer remaining coverage to `029-local-llm-feature-test-suite-completion/`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +70,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T008 Verify this packet no longer claims full suite completion
+- [ ] T009 Completion packet validates remaining suite and perf benches
 <!-- /ANCHOR:phase-3 -->
 
 ---

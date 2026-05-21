@@ -1,6 +1,6 @@
 ---
-title: "Deep AI Council Failure Handling"
-description: "Timeout, all-seat failure, contradiction, insufficient vantage diversity, and state-log treatment rules for Deep AI Council runs."
+title: "AI Council Failure Handling"
+description: "Timeout, all-seat failure, contradiction, insufficient vantage diversity, and state-log treatment rules for AI Council runs."
 trigger_phrases:
   - "sk-ai-council failure handling"
   - "council seat timeout"
@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "reference"
 ---
 
-# Deep AI Council Failure Handling
+# AI Council Failure Handling
 
 Council failures are first-class planning signals. Record them honestly instead of fabricating convergence.
 

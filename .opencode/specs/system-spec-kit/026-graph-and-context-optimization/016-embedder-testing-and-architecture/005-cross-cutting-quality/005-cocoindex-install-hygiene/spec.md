@@ -43,7 +43,7 @@ _memory:
 |---|---|
 | Level | 1 |
 | Priority | P0 |
-| Status | BLOCKED - pipx repair cannot modify `~/.local/pipx` inside this sandbox |
+| Status | Complete (diagnosis only) |
 | Created | 2026-05-18 |
 | Branch | main |
 | Parent | `../spec.md` (005-cross-cutting-quality) |
@@ -101,7 +101,7 @@ Make every shell invocation of `ccc` load the same local source as the productio
 | REQ-002 | Confirm pipx install is stale and non-editable | pipx `direct_url.json` has `dir_info: {}` and import lookup cannot find `cocoindex_code.reranker` |
 | REQ-003 | Confirm production local venv is editable | local venv `direct_url.json` has `{"editable": true}` |
 | REQ-004 | Repair pipx editable install | `cocoindex_code.reranker` imports from the local source path and pipx `direct_url.json` has `{"editable": true}` |
-| REQ-005 | If repair is blocked, stop scoped implementation | Leave harness and INSTALL_GUIDE unchanged; document the exact blocker in `implementation-summary.md` |
+| REQ-005 | If repair is diagnosis-only complete, stop scoped implementation | Leave harness and INSTALL_GUIDE unchanged; document the exact blocker in `implementation-summary.md` |
 
 ### P1 - Required after blocker clears
 
@@ -137,3 +137,6 @@ Make every shell invocation of `ccc` load the same local source as the productio
 
 None. The next action is operational: run the editable pipx repair where `~/.local/pipx` is writable.
 <!-- /ANCHOR:questions -->
+
+
+Dispatch A scope reconciliation: this packet is complete for diagnosis only. The pipx repair is intentionally split to a separate follow-on packet scaffolded by Dispatch B; harness/guide edits shipped in commit `339387694a`.

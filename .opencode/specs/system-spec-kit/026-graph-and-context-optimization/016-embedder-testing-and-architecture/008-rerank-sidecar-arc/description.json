@@ -1,21 +1,12 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc",
-  "description": "Phase parent for the 5-phase arc that brings a shared Qwen3-Reranker-0.6B Python sidecar to both mk-spec-memory and mk-coco-index via a new system-rerank-sidecar skill. Closes the empty HTTP local-provider slot in cross-encoder.ts. Includes flag-routing fix, sidecar skill creation, launcher ensure logic, spec-memory A/B benchmark, and default promotion if benchmark proves out.",
+  "description": "Rerank Sidecar Arc",
   "keywords": [
-    "008",
     "rerank",
     "sidecar",
-    "qwen",
-    "cross-encoder",
-    "shared-daemon",
-    "system-rerank-sidecar",
-    "spec-memory",
-    "cocoindex",
-    "sentence-transformers",
-    "apache-2.0",
-    "stage3-rerank"
+    "arc"
   ],
-  "lastUpdated": "2026-05-20T00:00:00Z",
+  "lastUpdated": "2026-05-21T10:22:38.793Z",
   "specId": "008",
   "folderSlug": "rerank-sidecar-arc",
   "parentChain": [

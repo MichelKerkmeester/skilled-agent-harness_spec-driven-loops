@@ -1,24 +1,23 @@
 {
   "level": "2",
-  "specFolder": "000-release-cleanup/004-runtime-root-memory-cleanup-followup-fixes",
-  "description": "Three follow-on cleanups after packet 096: harden findAdvisorWorkspaceRoot against false sentinels, diagnose 50 FTS/vec mismatched IDs in memory_health, bulk-delete 2,751 deprecated-tier records.",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/004-runtime-root-memory-cleanup-followup-fixes",
+  "description": "Feature Specification: 054 Runtime Cleanup Followups",
   "keywords": [
-    "advisor",
-    "resolver",
-    "sentinel",
-    "workspace-root",
-    "fts-vec",
-    "memory-consistency",
-    "bulk-delete",
-    "deprecated-tier",
-    "packet-096-followup",
-    "runtime-cleanup"
+    "feature",
+    "specification",
+    "054",
+    "runtime",
+    "cleanup",
+    "followups"
   ],
-  "lastUpdated": "2026-05-08T09:53:17.915Z",
-  "specId": "054",
-  "folderSlug": "runtime-cleanup-followups",
+  "lastUpdated": "2026-05-21T10:22:37.802Z",
+  "specId": "004",
+  "folderSlug": "runtime-root-memory-cleanup-followup-fixes",
   "parentChain": [
-    "000-release-cleanup"
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup",
+    "004-followup-post-program"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

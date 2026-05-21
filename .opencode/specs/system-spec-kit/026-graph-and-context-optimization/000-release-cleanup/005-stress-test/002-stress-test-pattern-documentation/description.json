@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-stress-test-pattern-documentation",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/002-stress-test-pattern-documentation",
   "description": "Feature Specification: Stress Test Pattern Documentation",
   "keywords": [
     "feature",
@@ -9,13 +9,14 @@
     "pattern",
     "documentation"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.102Z",
-  "specId": "009",
+  "lastUpdated": "2026-05-21T10:22:37.816Z",
+  "specId": "002",
   "folderSlug": "stress-test-pattern-documentation",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup"
+    "000-release-cleanup",
+    "005-stress-test"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

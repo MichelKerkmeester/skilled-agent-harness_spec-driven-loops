@@ -1,6 +1,6 @@
 ---
 title: sk-ai-council
-description: "Deep AI Council: multi-seat planning, artifact persistence, convergence checks, packet-local ai-council outputs."
+description: "AI Council: multi-seat planning, artifact persistence, convergence checks, packet-local ai-council outputs."
 trigger_phrases:
   - "deep ai council"
   - "ai council deliberation"

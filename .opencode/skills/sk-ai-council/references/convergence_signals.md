@@ -1,6 +1,6 @@
 ---
-title: "Deep AI Council Convergence Signals"
-description: "Convergence rules and escape hatches for Deep AI Council planning rounds."
+title: "AI Council Convergence Signals"
+description: "Convergence rules and escape hatches for AI Council planning rounds."
 trigger_phrases:
   - "sk-ai-council convergence"
   - "two-of-three-agree"
@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "reference"
 ---
 
-# Deep AI Council Convergence Signals
+# AI Council Convergence Signals
 
 This reference defines the lightweight v1 convergence signal and the conditions that prevent a council round from being called converged.
 

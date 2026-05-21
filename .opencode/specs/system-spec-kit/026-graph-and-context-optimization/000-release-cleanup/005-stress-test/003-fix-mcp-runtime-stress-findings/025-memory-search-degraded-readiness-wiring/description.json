@@ -1,18 +1,19 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-fix-mcp-runtime-stress-findings/025-memory-search-degraded-readiness-wiring",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/025-memory-search-degraded-readiness-wiring",
   "description": "Spec: memory_search degradedReadiness Wiring",
   "keywords": [
     "spec",
     "degradedreadiness",
     "wiring"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.221Z",
+  "lastUpdated": "2026-05-21T10:22:37.958Z",
   "specId": "025",
   "folderSlug": "memory-search-degraded-readiness-wiring",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "000-release-cleanup",
+    "005-stress-test",
     "003-fix-mcp-runtime-stress-findings"
   ],
   "memorySequence": 1,

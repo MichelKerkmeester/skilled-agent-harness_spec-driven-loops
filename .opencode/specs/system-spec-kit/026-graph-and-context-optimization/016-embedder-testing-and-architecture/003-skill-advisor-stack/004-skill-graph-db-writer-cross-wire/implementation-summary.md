@@ -1,6 +1,6 @@
 ---
 title: "Summary: 010/004 writer cross-wire"
-description: "Pending — scaffolded 2026-05-18 to unblock 010/002 swap execution"
+description: "Complete — scaffolded 2026-05-18 to unblock 010/002 swap execution"
 trigger_phrases:
   - "010/004 summary"
   - "writer cross-wire implementation"
@@ -34,10 +34,10 @@ _memory:
 
 | Field | Value |
 |---|---|
-| Status | IMPLEMENTED 2026-05-18T00:15 (pending post-impl deep-review) |
+| Status | IMPLEMENTED 2026-05-18T00:15 (complete post-impl deep-review) |
 | Artifact | Refactored `lib/skill-graph/skill-graph-db.ts:refreshSkillEmbeddings` (+~140 LOC for new adapter branch + helper extraction) + new round-trip test `tests/skill-graph/refresh-roundtrip.vitest.ts` (4/4 passing) |
 | Owner | Main agent (autonomous overnight session) |
-| Blockers | None for impl. Post-impl deep-review (5-iter) still pending. |
+| Blockers | None for impl. Post-impl deep-review (5-iter) still complete. |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:what-built -->
@@ -60,7 +60,7 @@ _memory:
 - spec.md, plan.md, tasks.md, implementation-summary.md (this file)
 - description.json, graph-metadata.json (auto-generated via generate-context.js)
 
-**Pending:**
+**Complete:**
 - Post-impl 5-iter deep-review (cli-devin SWE-1.6 — single-commit tier)
 - 010/002 implementation-summary update to mark dependency RESOLVED
 - 010/002 swap execution itself (separate effort; uses this packet's wiring)
@@ -121,3 +121,6 @@ Anticipated limitations to document post-implementation:
 - 010/004 does NOT remove the legacy `skill_nodes.embedding` BLOB column (deferred to a future "legacy embedding column deprecation" packet — separate scope)
 - 010/004 does NOT change the OLD `createEmbeddingsProvider` factory itself (out of bounds — other consumers depend on it)
 <!-- /ANCHOR:limitations -->
+
+
+Dispatch A reconciliation: review work previously listed as pending is complete; metadata fields now match the completed review artifacts.

@@ -336,7 +336,7 @@ backend              -> llama-cpp (shared embedding provider cascade)
 
 The pluggable layer (`lib/embedders/`) shipped in packet `010/001` and is wired into the **read path**: `lib/scorer/lanes/semantic-shadow.ts` resolves query embeddings through `getAdapter(active.name)` and `lib/skill-graph/skill-graph-db.ts:loadSkillEmbeddings()` reads from `vec_<active.dim>` whenever an active pointer is set. The **write path** (`refreshSkillEmbeddings()`) still uses the legacy `createEmbeddingsProvider` factory and writes only the legacy `skill_nodes.embedding` BLOB column.
 
-This means `jina-embeddings-v3` (and every other non-baseline manifest) is **registered but not yet active by default**. Flipping the pointer in production is deferred to packet `010/004`, which closes the writer cross-wiring so a swap stays consistent across the read and write paths. Until then, the registered alternatives are usable for diagnostics, parity testing, and out-of-band experiments — see §12.4 for the operator-discipline runbook.
+This means `jina-embeddings-v3` (and every other non-baseline manifest) is **registered but not yet active by default**. Flipping the pointer in production is deferred to packet `003/006-shared-embedder-logic`, which tracks the production pointer flip; writer wiring has shipped, but the active default remains gemma until the separate alignment packet executes. Until then, the registered alternatives are usable for diagnostics, parity testing, and out-of-band experiments — see §12.4 for the operator-discipline runbook.
 
 ### 12.2 Registered alternatives
 
@@ -345,7 +345,7 @@ Source of truth: [`mcp_server/lib/embedders/registry.ts`](./mcp_server/lib/embed
 | Name | Dim | Backend | Ollama tag / GGUF path | Max input | Notes |
 | --- | ---: | --- | --- | ---: | --- |
 | `embeddinggemma-300m` | 768 | `llama-cpp` | `unsloth-embeddinggemma-300m-GGUF/embeddinggemma-300m-Q8_0.gguf` | n/a | Legacy semantic-shadow baseline via shared provider cascade. **Current active default.** |
-| `jina-embeddings-v3` | 1024 | `ollama` | `hf.co/gaianet/jina-embeddings-v3-GGUF:Q4_K_M` | 8000 | Default for skill-advisor parity per `016/004` ADR-012; active swap deferred to `010/004`. |
+| `jina-embeddings-v3` | 1024 | `ollama` | `hf.co/gaianet/jina-embeddings-v3-GGUF:Q4_K_M` | 8000 | Default for skill-advisor parity per `016/004` ADR-012; active swap deferred to `003/006-shared-embedder-logic`. |
 | `nomic-embed-text-v1.5` | 768 | `ollama` | `nomic-embed-text:v1.5` | 5000 | 768-dim retrieval specialist. Uses `search_query: ` / `search_document: ` prefix tokens. |
 | `jina-embeddings-v2-base-code` | 768 | `ollama` | `jina/jina-embeddings-v2-base-code:latest` | 8000 | Code-oriented Jina alternative for tool and script-heavy skill metadata. |
 | `mxbai-embed-large-v1` | 1024 | `ollama` | `mxbai-embed-large:latest` | 1200 | Paraphrase-strong 1024-dim candidate from the 016 comparison stack. |
@@ -376,7 +376,7 @@ The mk-spec-memory `embedder_set` / `embedder_status` MCP tools are intentionall
 
 ### 12.4 Operator-safe swap runbook
 
-Until packet `010/004` closes the writer cross-wiring, **do not flip the active pointer in production**. The writer (`refreshSkillEmbeddings()`) still targets the legacy embeddings column and the new adapter, so flipping the pointer reads from an empty `vec_<new-dim>` table and silently degrades the `semantic_shadow` lane to zero results.
+Writer wiring has shipped, but **do not flip the active pointer in production** until the separate default-alignment packet executes and validates the reindex. The writer (`refreshSkillEmbeddings()`) still targets the legacy embeddings column and the new adapter, so flipping the pointer reads from an empty `vec_<new-dim>` table and silently degrades the `semantic_shadow` lane to zero results.
 
 The full operator runbook (snapshot + stop daemon + set pointer + rebuild + restart + smoke test + rollback) is documented at [`002-jina-swap-and-reindex/evidence/swap-runbook.md`](../../<spec-folder>). Read the "Architecture Context" and "Half-wired state" sections before any swap attempt.
 
@@ -397,7 +397,7 @@ If you need MPS-style auto-detect for the gemma baseline, that lives on the Coco
 - Memory-side analog (full MCP tool surface): [`system-spec-kit/mcp_server/INSTALL_GUIDE.md`](../system-spec-kit/mcp_server/INSTALL_GUIDE.md).
 - Skill-advisor adapter contract: [`mcp_server/lib/embedders/adapter.ts`](./mcp_server/lib/embedders/adapter.ts).
 - Skill-advisor schema helpers: [`mcp_server/lib/embedders/schema.ts`](./mcp_server/lib/embedders/schema.ts).
-- Architecture-gap follow-on: packet `010/004` (writer cross-wiring).
+- Architecture-gap follow-on: packet `003/006-shared-embedder-logic` (writer cross-wiring).
 
 <!-- /ANCHOR:12-choosing-an-embedder -->
 

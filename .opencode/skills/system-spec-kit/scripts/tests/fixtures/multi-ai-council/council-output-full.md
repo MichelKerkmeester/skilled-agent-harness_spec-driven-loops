@@ -122,7 +122,7 @@ Building a dedicated skill folder was rejected as maintenance overhead.
 
 ## Recommended Plan
 
-Implement `persist-artifacts.cjs` as a parse-and-write helper under `system-spec-kit/scripts/multi-ai-council/`. Add the markdown schema reference and fixture-driven tests. Then update the agent body and runtime mirrors with a caller-owned persistence protocol.
+Implement `persist-artifacts.cjs` as a parse-and-write helper under `system-spec-kit/scripts/ai-council/`. Add the markdown schema reference and fixture-driven tests. Then update the agent body and runtime mirrors with a caller-owned persistence protocol.
 
 ## Implementation Steps
 
@@ -145,8 +145,8 @@ Implement `persist-artifacts.cjs` as a parse-and-write helper under `system-spec
 
 ## Cross-References
 
-- `.opencode/agents/multi-ai-council.md` §8
-- `.opencode/skills/system-spec-kit/references/multi-ai-council/output-schema.md`
+- `.opencode/agents/ai-council.md` §8
+- `.opencode/skills/system-spec-kit/references/ai-council/output-schema.md`
 
 ## Dropped Alternatives
 

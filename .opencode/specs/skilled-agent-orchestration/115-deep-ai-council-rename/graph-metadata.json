@@ -24,7 +24,6 @@
       "deep ai council rename arc",
       "council skill rename"
     ],
-    "status": "complete",
     "key_topics": [
       "rename",
       "deep-ai-council",
@@ -40,6 +39,7 @@
       "co-named"
     ],
     "importance_tier": "important",
+    "status": "complete",
     "key_files": [
       "changelog/v3.0.0.0.md",
       "system-spec-kit/graph-metadata.json",
@@ -131,13 +131,13 @@
     ],
     "causal_summary": "The `deep-ai-council` skill (shipped from `101-deep-multi-ai-council-skill/`) and the co-named `@deep-ai-council` agent share a `deep-*` naming pattern that conflates two different conventions:",
     "created_at": "2026-05-21T06:57:07Z",
-    "last_save_at": "2026-05-21T09:37:37.165Z",
+    "last_save_at": "2026-05-21T10:50:53.251Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "last_active_at": "2026-05-21T09:37:37.165Z",
-    "last_active_child_id": "skilled-agent-orchestration/115-deep-ai-council-rename/006-reindex-validate-reconcile"
+    "last_active_child_id": "skilled-agent-orchestration/115-deep-ai-council-rename/006-reindex-validate-reconcile",
+    "last_active_at": "2026-05-21T10:50:53.251Z"
   }
 }

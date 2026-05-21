@@ -1,17 +1,23 @@
 {
-  "specFolder": "017-playbook-quality-audit/003-scenario-expansion",
-  "description": "Phase 3: scenario-expansion",
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/003-scenario-expansion",
+  "description": "017/003: Scenario expansion",
   "keywords": [
-    "phase",
-    "scenario-expansion"
+    "017",
+    "003",
+    "scenario",
+    "expansion"
   ],
-  "lastUpdated": "2026-05-17T13:00:00.496Z",
+  "lastUpdated": "2026-05-21T10:22:38.679Z",
   "specId": "003",
   "folderSlug": "scenario-expansion",
   "parentChain": [
-    "017-playbook-quality-audit"
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "005-cross-cutting-quality",
+    "001-playbook-quality-audit"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }
