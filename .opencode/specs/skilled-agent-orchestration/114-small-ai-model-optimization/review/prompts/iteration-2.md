@@ -68,11 +68,11 @@ All paths relative to repo root `/Users/michelkerkmeester/MEGA/Development/Code_
 5. Flag P2 if impl-summary's Built list contains a file NOT in §3 (potential scope creep; might be legitimate codex deviation).
 
 **Phase paths**:
-- `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/002-foundation-routing/`
-- `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/003-permissions-matrix/`
-- `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/004-cli-devin-quality/`
-- `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/005-shared-intelligence/`
-- `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/006-cross-skill-propagation/`
+- `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/002-sentinel-skill-foundation/`
+- `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/003-structured-permissions-matrix/`
+- `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/004-budget-and-output-verification/`
+- `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/005-model-profiles-and-fallback/`
+- `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/006-budget-pattern-propagation/`
 
 **Expected output**: a clear table per phase listing each §3 file + disk status + impl-summary status. Findings emerge if rows disagree.
 

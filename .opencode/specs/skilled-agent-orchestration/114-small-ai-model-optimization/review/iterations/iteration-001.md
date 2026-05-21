@@ -17,11 +17,11 @@ Correctness — verification that implemented files match spec.md §3 "Files to 
 ## Files Reviewed
 
 ### Phase Specs (§3 Files to Change extraction)
-- `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/002-foundation-routing/spec.md`
-- `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/003-permissions-matrix/spec.md`
-- `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/004-cli-devin-quality/spec.md`
-- `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/005-shared-intelligence/spec.md`
-- `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/006-cross-skill-propagation/spec.md`
+- `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/002-sentinel-skill-foundation/spec.md`
+- `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/003-structured-permissions-matrix/spec.md`
+- `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/004-budget-and-output-verification/spec.md`
+- `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/005-model-profiles-and-fallback/spec.md`
+- `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/006-budget-pattern-propagation/spec.md`
 
 ### TypeScript Code (correctness review)
 - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/permissions-gate.ts`

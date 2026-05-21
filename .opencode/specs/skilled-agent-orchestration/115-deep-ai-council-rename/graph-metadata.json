@@ -4,12 +4,12 @@
   "spec_folder": "skilled-agent-orchestration/115-deep-ai-council-rename",
   "parent_id": null,
   "children_ids": [
-    "skilled-agent-orchestration/115-deep-ai-council-rename/001-preflight-scope-map",
-    "skilled-agent-orchestration/115-deep-ai-council-rename/002-skill-dir-rename",
-    "skilled-agent-orchestration/115-deep-ai-council-rename/003-agent-runtime-rename",
-    "skilled-agent-orchestration/115-deep-ai-council-rename/004-cross-skill-edges-and-code",
-    "skilled-agent-orchestration/115-deep-ai-council-rename/005-root-docs-hooks-and-readmes",
-    "skilled-agent-orchestration/115-deep-ai-council-rename/006-reindex-validate-reconcile"
+    "skilled-agent-orchestration/115-deep-ai-council-rename/001-preflight-and-rename-plan",
+    "skilled-agent-orchestration/115-deep-ai-council-rename/002-sk-ai-council-skill-rename",
+    "skilled-agent-orchestration/115-deep-ai-council-rename/003-ai-council-agent-4-runtime-rename",
+    "skilled-agent-orchestration/115-deep-ai-council-rename/004-sibling-edges-and-typescript",
+    "skilled-agent-orchestration/115-deep-ai-council-rename/005-root-docs-hooks-and-index",
+    "skilled-agent-orchestration/115-deep-ai-council-rename/006-reindex-and-validate"
   ],
   "manual": {
     "depends_on": [],
@@ -137,7 +137,7 @@
     "source_docs": [
       "spec.md"
     ],
-    "last_active_child_id": "skilled-agent-orchestration/115-deep-ai-council-rename/006-reindex-validate-reconcile",
+    "last_active_child_id": "skilled-agent-orchestration/115-deep-ai-council-rename/006-reindex-and-validate",
     "last_active_at": "2026-05-21T10:50:53.251Z"
   }
 }

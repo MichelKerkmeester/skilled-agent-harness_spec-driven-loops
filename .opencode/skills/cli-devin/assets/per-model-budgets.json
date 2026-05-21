@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "source": "114-small-ai-model-optimization/004-cli-devin-quality",
+  "source": "114-small-ai-model-optimization/004-budget-and-output-verification",
   "defaults": {
     "max_budget_pct": 70,
     "working_memory_tokens": 500,

@@ -5,7 +5,7 @@ description: "Reusable pattern + checklist for repo-wide rename refactors. First
 
 # Rename Pattern — mechanical refactor template
 
-For any rename refactor that touches multiple surfaces (skill dir, agent files, sibling references, root docs, memory, compiled indexes), follow this pattern. First fully proven in `114-small-ai-model-optimization/007-rename-sk-ai-small-model/` (2026-05-21).
+For any rename refactor that touches multiple surfaces (skill dir, agent files, sibling references, root docs, memory, compiled indexes), follow this pattern. First fully proven in `114-small-ai-model-optimization/007-sk-ai-small-model-rename/` (2026-05-21).
 
 ---
 
@@ -98,7 +98,7 @@ When the rename arc is a phase-parent with multiple children:
 
 ## 7. WORKED EXAMPLE — 114/007
 
-See `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-rename-sk-ai-small-model/` for the full applied pattern:
+See `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-ai-small-model-rename/` for the full applied pattern:
 - spec.md §3 In Scope / Out of Scope is the model classifier
 - plan.md §4 IMPLEMENTATION PHASES (A through G) is the workflow timeline
 - implementation-summary.md §What Was Built lists the actual surface counts (22 live files, 5 dir/file renames, 1 new changelog)

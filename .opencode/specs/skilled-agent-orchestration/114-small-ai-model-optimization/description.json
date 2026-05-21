@@ -1,23 +1,18 @@
 {
-  "specFolder": "114-small-ai-model-optimization",
-  "description": "Phase parent for the small-AI-model optimization arc: mined smallcode-master research, shipped sentinel skill sk-ai-small-model (originally sk-small-model in phase 002, renamed phase 007 on 2026-05-21), structured permissions matrix (phase 003), per-model token-budget engine + output verification (phase 004), unified model-profile registry + quota-pool-aware fallback (phase 005), and cross-skill budget propagation (phase 006).",
+  "specFolder": "skilled-agent-orchestration/114-small-ai-model-optimization",
+  "description": "Feature Specification: small-AI-model optimization",
   "keywords": [
+    "feature",
+    "specification",
     "small-ai-model",
-    "optimization",
-    "smallcode-master",
-    "research",
-    "sentinel-skill",
-    "sk-ai-small-model",
-    "context-budget",
-    "output-verification",
-    "permissions-matrix",
-    "quota-pool-fallback",
-    "model-profiles"
+    "optimization"
   ],
-  "lastUpdated": "2026-05-21T07:30:00.000Z",
+  "lastUpdated": "2026-05-21T10:57:41.514Z",
   "specId": "114",
   "folderSlug": "small-ai-model-optimization",
-  "parentChain": [],
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
   "memorySequence": 5,
   "memoryNameHistory": [
     "18-05-26_09-50__which-executor-for-the-20-iter-deep-research-run.md",

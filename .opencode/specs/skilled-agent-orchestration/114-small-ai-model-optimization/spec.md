@@ -143,7 +143,7 @@ This phase decomposition mines smallcode-master systematically (20 deep-research
 - 001 MUST pass `validate.sh --strict` independently before any 002+ packet is created
 - Convergence of the deep-research loop (`newInfoRatio < 0.15` × 3 consecutive iters, or iteration cap 20) is the gate for synthesis
 - Synthesis (`research/research.md`) MUST surface per-RQ candidate deltas with file paths + acceptance criteria before follow-on packets are spec'd
-- Use `/spec_kit:resume 114-small-ai-model-optimization/001-research-smallcode` to resume the research loop
+- Use `/spec_kit:resume 114-small-ai-model-optimization/001-smallcode-deep-research` to resume the research loop
 
 ### Phase Handoff Criteria
 

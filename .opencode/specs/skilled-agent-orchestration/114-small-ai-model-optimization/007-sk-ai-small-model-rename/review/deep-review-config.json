@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "reviewTarget": ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-ai-small-model-rename",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-ai-small-model-rename",
+  "artifactDir": ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-ai-small-model-rename/review",
+  "maxIterations": 109,
+  "convergenceThreshold": 0.15,
+  "convergenceConsecutive": 3,
+  "executionMode": "auto",
+  "config": {
+    "executor": {
+      "type": "cli-devin",
+      "model": "swe-1.6",
+      "permissionMode": "auto",
+      "timeoutSeconds": 900
+    },
+    "resource_map": {
+      "emit": true
+    }
+  },
+  "createdAt": "2026-05-21T07:00:00Z",
+  "createdBy": "main_agent",
+  "notes": "User-requested 109-iteration cap (vs default 7); cli-devin SWE-1.6 executor; convergence expected well before 109 for this small mostly-mechanical rename packet."
+}

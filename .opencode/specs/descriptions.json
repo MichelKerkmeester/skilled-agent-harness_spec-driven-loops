@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-05-21T10:22:39.255Z",
+  "generated": "2026-05-21T10:58:47.065Z",
   "folders": [
     {
       "specFolder": "00--ai-systems/001-global-shared",
@@ -641,7 +641,7 @@
         "dropdown",
         "fix"
       ],
-      "lastUpdated": "2026-05-21T10:22:39.255Z"
+      "lastUpdated": "2026-05-21T10:58:47.065Z"
     },
     {
       "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/019-form-attribute-audit",
@@ -691,7 +691,7 @@
         "anobel",
         "com"
       ],
-      "lastUpdated": "2026-05-21T10:22:39.255Z"
+      "lastUpdated": "2026-05-21T10:58:47.065Z"
     },
     {
       "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/023-performance-review",
@@ -863,7 +863,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/101-deep-multi-ai-council-skill",
-      "description": "Feature Specification: AI Council Skill Extraction",
+      "description": "Feature Specification: Deep AI Council Skill Extraction",
       "keywords": [
         "feature",
         "specification",
@@ -876,7 +876,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/001-deep-ai-council-skill-creation",
-      "description": "Feature Specification: 101/001 AI Council Skill Creation",
+      "description": "Feature Specification: 101/001 Deep AI Council Skill Creation",
       "keywords": [
         "feature",
         "specification",
@@ -891,7 +891,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/002-deep-ai-council-reference-expansion",
-      "description": "Feature Specification: 101/004 AI Council Reference Expansion",
+      "description": "Feature Specification: 101/004 Deep AI Council Reference Expansion",
       "keywords": [
         "feature",
         "specification",
@@ -906,7 +906,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support",
-      "description": "Feature Specification: 101/003 AI Council Graph Support",
+      "description": "Feature Specification: 101/003 Deep AI Council Graph Support",
       "keywords": [
         "feature",
         "specification",
@@ -921,7 +921,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/004-deep-ai-council-playbook-graph-coverage",
-      "description": "Feature Specification: 101/004 AI Council Playbook Graph Coverage",
+      "description": "Feature Specification: 101/004 Deep AI Council Playbook Graph Coverage",
       "keywords": [
         "feature",
         "specification",
@@ -937,7 +937,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/005-deep-ai-council-fixups-and-graph-value-scenarios",
-      "description": "Feature Specification: 101/005 AI Council Fix-ups and Graph Value Scenarios",
+      "description": "Feature Specification: 101/005 Deep AI Council Fix-ups and Graph Value Scenarios",
       "keywords": [
         "feature",
         "specification",
@@ -1486,24 +1486,17 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/114-small-ai-model-optimization",
-      "description": "Phase parent for the small-AI-model optimization arc: mined smallcode-master research, shipped sentinel skill sk-ai-small-model (originally sk-small-model in phase 002, renamed phase 007 on 2026-05-21), structured permissions matrix (phase 003), per-model token-budget engine + output verification (phase 004), unified model-profile registry + quota-pool-aware fallback (phase 005), and cross-skill budget propagation (phase 006).",
+      "description": "Feature Specification: small-AI-model optimization",
       "keywords": [
+        "feature",
+        "specification",
         "small-ai-model",
-        "optimization",
-        "smallcode-master",
-        "research",
-        "sentinel-skill",
-        "sk-ai-small-model",
-        "context-budget",
-        "output-verification",
-        "permissions-matrix",
-        "quota-pool-fallback",
-        "model-profiles"
+        "optimization"
       ],
-      "lastUpdated": "2026-05-21T07:30:00.000Z"
+      "lastUpdated": "2026-05-21T10:57:41.514Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/114-small-ai-model-optimization/001-research-smallcode",
+      "specFolder": "skilled-agent-orchestration/114-small-ai-model-optimization/001-smallcode-deep-research",
       "description": "Feature Specification: deep-research mining smallcode-master for small-model patterns",
       "keywords": [
         "feature",
@@ -1514,10 +1507,10 @@
         "small-model",
         "patterns"
       ],
-      "lastUpdated": "2026-05-18T11:12:19.323Z"
+      "lastUpdated": "2026-05-21T10:57:41.519Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/114-small-ai-model-optimization/002-foundation-routing",
+      "specFolder": "skilled-agent-orchestration/114-small-ai-model-optimization/002-sentinel-skill-foundation",
       "description": "Feature Specification: foundation routing",
       "keywords": [
         "feature",
@@ -1528,7 +1521,7 @@
       "lastUpdated": "2026-05-21T10:22:37.594Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/114-small-ai-model-optimization/003-permissions-matrix",
+      "specFolder": "skilled-agent-orchestration/114-small-ai-model-optimization/003-structured-permissions-matrix",
       "description": "Feature Specification: cli-opencode permissions-matrix",
       "keywords": [
         "feature",
@@ -1539,7 +1532,7 @@
       "lastUpdated": "2026-05-21T10:22:37.599Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/114-small-ai-model-optimization/004-cli-devin-quality",
+      "specFolder": "skilled-agent-orchestration/114-small-ai-model-optimization/004-budget-and-output-verification",
       "description": "Feature Specification: cli-devin quality optimization",
       "keywords": [
         "feature",
@@ -1551,20 +1544,19 @@
       "lastUpdated": "2026-05-21T10:22:37.604Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/114-small-ai-model-optimization/005-shared-intelligence",
-      "description": "Feature Specification: shared model intelligence — registry, Bayesian scoring, and quota-pool-aware fallback",
+      "specFolder": "skilled-agent-orchestration/114-small-ai-model-optimization/005-model-profiles-and-fallback",
+      "description": "Feature Specification: shared model intelligence",
       "keywords": [
         "feature",
         "specification",
         "shared",
         "model",
-        "intelligence",
-        "fallback"
+        "intelligence"
       ],
-      "lastUpdated": "2026-05-18T16:58:00.000Z"
+      "lastUpdated": "2026-05-21T10:57:41.524Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/114-small-ai-model-optimization/006-cross-skill-propagation",
+      "specFolder": "skilled-agent-orchestration/114-small-ai-model-optimization/006-budget-pattern-propagation",
       "description": "Feature Specification: cross-skill propagation",
       "keywords": [
         "feature",
@@ -1575,7 +1567,7 @@
       "lastUpdated": "2026-05-21T10:22:37.608Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/114-small-ai-model-optimization/007-rename-sk-ai-small-model",
+      "specFolder": "skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-ai-small-model-rename",
       "description": "Phase 1: rename-sk-ai-small-model",
       "keywords": [
         "phase",
@@ -1585,25 +1577,21 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/115-deep-ai-council-rename",
-      "description": "Rename deep-ai-council skill to sk-ai-council and deep-ai-council agent to ai-council across 4 runtimes plus propagate references repo-wide",
+      "description": "Feature Specification: 115 — rename deep-ai-council (skill + agent) repo-wide",
       "keywords": [
+        "feature",
+        "specification",
+        "115",
         "rename",
         "deep-ai-council",
         "skill",
-        "sk-ai-council",
         "agent",
-        "ai-council",
-        "across",
-        "runtimes",
-        "plus",
-        "propagate",
-        "references",
         "repo-wide"
       ],
-      "lastUpdated": "2026-05-21T09:37:34.093Z"
+      "lastUpdated": "2026-05-21T10:57:41.528Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/115-deep-ai-council-rename/001-preflight-scope-map",
+      "specFolder": "skilled-agent-orchestration/115-deep-ai-council-rename/001-preflight-and-rename-plan",
       "description": "Feature Specification: 115/001 — preflight scope-map",
       "keywords": [
         "feature",
@@ -1616,7 +1604,7 @@
       "lastUpdated": "2026-05-21T10:22:37.612Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/115-deep-ai-council-rename/002-skill-dir-rename",
+      "specFolder": "skilled-agent-orchestration/115-deep-ai-council-rename/002-sk-ai-council-skill-rename",
       "description": "Feature Specification: 115/002 — skill dir rename",
       "keywords": [
         "feature",
@@ -1630,7 +1618,7 @@
       "lastUpdated": "2026-05-21T10:22:37.617Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/115-deep-ai-council-rename/003-agent-runtime-rename",
+      "specFolder": "skilled-agent-orchestration/115-deep-ai-council-rename/003-ai-council-agent-4-runtime-rename",
       "description": "Feature Specification: 115/003 — agent runtime rename",
       "keywords": [
         "feature",
@@ -1644,7 +1632,7 @@
       "lastUpdated": "2026-05-21T10:22:37.621Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/115-deep-ai-council-rename/004-cross-skill-edges-and-code",
+      "specFolder": "skilled-agent-orchestration/115-deep-ai-council-rename/004-sibling-edges-and-typescript",
       "description": "Feature Specification: 115/004 — cross-skill edges + TypeScript",
       "keywords": [
         "feature",
@@ -1658,7 +1646,7 @@
       "lastUpdated": "2026-05-21T10:22:37.625Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/115-deep-ai-council-rename/005-root-docs-hooks-and-readmes",
+      "specFolder": "skilled-agent-orchestration/115-deep-ai-council-rename/005-root-docs-hooks-and-index",
       "description": "Feature Specification: 115/005 — root docs + hooks + skills index",
       "keywords": [
         "feature",
@@ -1674,7 +1662,7 @@
       "lastUpdated": "2026-05-21T10:22:37.629Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/115-deep-ai-council-rename/006-reindex-validate-reconcile",
+      "specFolder": "skilled-agent-orchestration/115-deep-ai-council-rename/006-reindex-and-validate",
       "description": "Feature Specification: 115/006 — reindex + validate + reconcile",
       "keywords": [
         "feature",
@@ -2511,7 +2499,7 @@
         "folder",
         "convention"
       ],
-      "lastUpdated": "2026-05-21T10:22:39.255Z"
+      "lastUpdated": "2026-05-21T10:58:47.065Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/043-cli-skill-improved-prompting",
@@ -5183,7 +5171,7 @@
         "standards",
         "contract"
       ],
-      "lastUpdated": "2026-05-21T10:22:39.255Z"
+      "lastUpdated": "2026-05-21T10:58:47.065Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/023-fix-baseline-test-failures",
@@ -5209,7 +5197,7 @@
         "concurrency",
         "fixes"
       ],
-      "lastUpdated": "2026-05-21T10:22:39.255Z"
+      "lastUpdated": "2026-05-21T10:58:47.065Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/025-readme-architecture-diagrams-topology",
@@ -6970,7 +6958,7 @@
         "isolation",
         "finalize"
       ],
-      "lastUpdated": "2026-05-21T10:22:39.255Z"
+      "lastUpdated": "2026-05-21T10:58:47.065Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/019-system-code-graph-uplift-phase-parent",
@@ -7461,7 +7449,7 @@
         "coverage",
         "audit"
       ],
-      "lastUpdated": "2026-05-21T10:22:39.255Z"
+      "lastUpdated": "2026-05-21T10:58:47.065Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/027-typescript-header-normalization",
@@ -10350,7 +10338,7 @@
         "promote",
         "decision"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.782Z"
+      "lastUpdated": "2026-05-21T10:55:37.988Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/004-newer-text-embedders-survey",
@@ -10939,7 +10927,7 @@
         "deep-review",
         "remediation"
       ],
-      "lastUpdated": "2026-05-21T10:22:39.255Z"
+      "lastUpdated": "2026-05-21T10:58:47.065Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-039-system-code-graph-deferred-followon",
@@ -11542,7 +11530,7 @@
         "knowledge",
         "base"
       ],
-      "lastUpdated": "2026-05-21T10:22:39.255Z"
+      "lastUpdated": "2026-05-21T10:58:47.065Z"
     },
     {
       "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch",
@@ -15797,7 +15785,7 @@
         "obsidian-export",
         "specification"
       ],
-      "lastUpdated": "2026-05-21T10:22:39.255Z"
+      "lastUpdated": "2026-05-21T10:58:47.065Z"
     },
     {
       "specFolder": "z_future/hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/openspec/specs/obsidian-plugin",
@@ -15806,7 +15794,7 @@
         "obsidian-plugin",
         "specification"
       ],
-      "lastUpdated": "2026-05-21T10:22:39.255Z"
+      "lastUpdated": "2026-05-21T10:58:47.065Z"
     },
     {
       "specFolder": "z_future/hybrid-rag-fusion-upgrade/002-hybrid-rag-adoption",

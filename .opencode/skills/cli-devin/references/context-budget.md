@@ -17,8 +17,8 @@ Source evidence:
 
 | Source | Evidence |
 | --- | --- |
-| Research RQ1 | `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-research-smallcode/research/research.md:27-110` |
-| Deepening iter | `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-research-smallcode/research/iterations/iteration-006.md:18-149` |
+| Research RQ1 | `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-smallcode-deep-research/research/research.md:27-110` |
+| Deepening iter | `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-smallcode-deep-research/research/iterations/iteration-006.md:18-149` |
 | Context card | `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/preflight/context-card.md:9-102` |
 | Smallcode source | `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/external/smallcode-master/src/context/budget.ms:9-193` |
 

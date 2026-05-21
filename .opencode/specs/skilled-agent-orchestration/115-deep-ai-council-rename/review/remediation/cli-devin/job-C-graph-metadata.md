@@ -15,13 +15,13 @@ The 7 files to fix:
 
 | # | Path | Set `parent_id` to | Set `derived.status` to |
 |---|------|----|----|
-| 1 | `.opencode/specs/skilled-agent-orchestration/115-deep-ai-council-rename/001-preflight-scope-map/graph-metadata.json` | `"skilled-agent-orchestration/115-deep-ai-council-rename"` | `"complete"` |
-| 2 | `.opencode/specs/skilled-agent-orchestration/115-deep-ai-council-rename/002-skill-dir-rename/graph-metadata.json` | same | `"complete"` |
-| 3 | `.opencode/specs/skilled-agent-orchestration/115-deep-ai-council-rename/003-agent-runtime-rename/graph-metadata.json` | same | `"complete"` |
-| 4 | `.opencode/specs/skilled-agent-orchestration/115-deep-ai-council-rename/004-cross-skill-edges-and-code/graph-metadata.json` | same | `"complete"` |
-| 5 | `.opencode/specs/skilled-agent-orchestration/115-deep-ai-council-rename/005-root-docs-hooks-and-readmes/graph-metadata.json` | same | `"complete"` |
-| 6 | `.opencode/specs/skilled-agent-orchestration/115-deep-ai-council-rename/006-reindex-validate-reconcile/graph-metadata.json` | same | `"complete"` |
-| 7 | `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-rename-sk-ai-small-model/graph-metadata.json` | `"skilled-agent-orchestration/114-small-ai-model-optimization"` | `"complete"` |
+| 1 | `.opencode/specs/skilled-agent-orchestration/115-deep-ai-council-rename/001-preflight-and-rename-plan/graph-metadata.json` | `"skilled-agent-orchestration/115-deep-ai-council-rename"` | `"complete"` |
+| 2 | `.opencode/specs/skilled-agent-orchestration/115-deep-ai-council-rename/002-sk-ai-council-skill-rename/graph-metadata.json` | same | `"complete"` |
+| 3 | `.opencode/specs/skilled-agent-orchestration/115-deep-ai-council-rename/003-ai-council-agent-4-runtime-rename/graph-metadata.json` | same | `"complete"` |
+| 4 | `.opencode/specs/skilled-agent-orchestration/115-deep-ai-council-rename/004-sibling-edges-and-typescript/graph-metadata.json` | same | `"complete"` |
+| 5 | `.opencode/specs/skilled-agent-orchestration/115-deep-ai-council-rename/005-root-docs-hooks-and-index/graph-metadata.json` | same | `"complete"` |
+| 6 | `.opencode/specs/skilled-agent-orchestration/115-deep-ai-council-rename/006-reindex-and-validate/graph-metadata.json` | same | `"complete"` |
+| 7 | `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-ai-small-model-rename/graph-metadata.json` | `"skilled-agent-orchestration/114-small-ai-model-optimization"` | `"complete"` |
 
 **Why python3, not sed/jq**: The JSON files contain nested structures + may have duplicate keys (a known quirk per memory). Python with `json.load` / `json.dump` indent=2 normalizes structure; sed risks string-corruption inside arrays. `jq` works too but `python3` is the canonical approach in this repo.
 
@@ -45,8 +45,8 @@ Run the python script once per file from the table above. Verify after each:
 
 ### Step 3: Re-validate spec folders
 - Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/115-deep-ai-council-rename --strict`. Expect exit 0.
-- Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/115-deep-ai-council-rename/001-preflight-scope-map --strict` through `006-reindex-validate-reconcile --strict` (6 child validations). Expect exit 0 each.
-- Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-rename-sk-ai-small-model --strict`. Expect exit 0.
+- Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/115-deep-ai-council-rename/001-preflight-and-rename-plan --strict` through `006-reindex-validate-reconcile --strict` (6 child validations). Expect exit 0 each.
+- Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-ai-small-model-rename --strict`. Expect exit 0.
 
 **Acceptance**: all 8 validate runs (parent + 6 children + 007) report `RESULT: PASSED`.
 

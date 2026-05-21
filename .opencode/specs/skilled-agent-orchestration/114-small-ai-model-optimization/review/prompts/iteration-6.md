@@ -88,7 +88,7 @@ If tool-budget allows: read 1 spec.md per phase and spot-check 2 REQ-NNN entries
 
 1. sequential_thinking 5+ thoughts.
 2. Read CLAUDE.md §3 (Documentation Levels) — search for "Level 2" + "decision-record" + "Required Files" via Grep first to save tokens.
-3. Bash `ls .opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/002-foundation-routing/` and 006/.
+3. Bash `ls .opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/002-sentinel-skill-foundation/` and 006/.
 4. Read each ADR decision-record.md (3 files: 003, 004, 005).
 5. Verify ADR artifacts via Bash `ls` (batch one find or multiple ls calls).
 6. Read 114/spec.md and confirm status drift.

@@ -99,4 +99,4 @@ There is no automated CI check for staleness (Phase 007 was deleted 2026-05-18 p
 - [`../README.md`](../README.md) — Human-facing overview + quick start
 - [`../graph-metadata.json`](../graph-metadata.json) — `enhances` edges + trigger phrases
 - [`../../../specs/skilled-agent-orchestration/114-small-ai-model-optimization/spec.md`](../../../specs/skilled-agent-orchestration/114-small-ai-model-optimization/spec.md) — Phase parent + roadmap
-- [`../../../specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-research-smallcode/research/research.md`](../../../specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-research-smallcode/research/research.md) — Research synthesis (HYBRID-with-Anchor verdict in §RQ5)
+- [`../../../specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-smallcode-deep-research/research/research.md`](../../../specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-smallcode-deep-research/research/research.md) — Research synthesis (HYBRID-with-Anchor verdict in §RQ5)

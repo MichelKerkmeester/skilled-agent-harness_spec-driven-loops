@@ -10,14 +10,14 @@
       "rationale": "Implementation needs read access across the repository for evidence gathering."
     },
     {
-      "target_glob": ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/003-permissions-matrix/**",
+      "target_glob": ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/003-structured-permissions-matrix/**",
       "operation_class": "write",
       "scope": "packet-local",
       "effect": "allow",
       "rationale": "Phase 003 packet docs are the approved documentation write scope."
     },
     {
-      "target_glob": ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/003-permissions-matrix/**",
+      "target_glob": ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/003-structured-permissions-matrix/**",
       "operation_class": "edit",
       "scope": "packet-local",
       "effect": "allow",

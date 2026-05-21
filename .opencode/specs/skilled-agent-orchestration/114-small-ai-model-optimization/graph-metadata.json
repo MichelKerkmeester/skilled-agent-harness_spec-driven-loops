@@ -4,13 +4,13 @@
   "spec_folder": "skilled-agent-orchestration/114-small-ai-model-optimization",
   "parent_id": null,
   "children_ids": [
-    "skilled-agent-orchestration/114-small-ai-model-optimization/001-research-smallcode",
-    "skilled-agent-orchestration/114-small-ai-model-optimization/002-foundation-routing",
-    "skilled-agent-orchestration/114-small-ai-model-optimization/003-permissions-matrix",
-    "skilled-agent-orchestration/114-small-ai-model-optimization/004-cli-devin-quality",
-    "skilled-agent-orchestration/114-small-ai-model-optimization/005-shared-intelligence",
-    "skilled-agent-orchestration/114-small-ai-model-optimization/006-cross-skill-propagation",
-    "skilled-agent-orchestration/114-small-ai-model-optimization/007-rename-sk-ai-small-model"
+    "skilled-agent-orchestration/114-small-ai-model-optimization/001-smallcode-deep-research",
+    "skilled-agent-orchestration/114-small-ai-model-optimization/002-sentinel-skill-foundation",
+    "skilled-agent-orchestration/114-small-ai-model-optimization/003-structured-permissions-matrix",
+    "skilled-agent-orchestration/114-small-ai-model-optimization/004-budget-and-output-verification",
+    "skilled-agent-orchestration/114-small-ai-model-optimization/005-model-profiles-and-fallback",
+    "skilled-agent-orchestration/114-small-ai-model-optimization/006-budget-pattern-propagation",
+    "skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-ai-small-model-rename"
   ],
   "manual": {
     "depends_on": [],
@@ -40,7 +40,7 @@
       "small-model"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "preflight/context-card.md",
       "roadmap/follow-on-phases.md",
@@ -102,7 +102,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Our cli-* dispatch surface (`cli-devin` for SWE-1.6, `cli-opencode` for DeepSeek-v4-pro / Kimi-k2.6 / Qwen3.6 / GLM-5.1) and `sk-prompt`'s framework selection got measurably better through the 113 arc — RCAF default, medium pre-plan, standard bundle-gate, cross-model validation. But that arc optimized **prompt composition**. We have not yet addressed **runtime patterns** that small models need to produce reliable output: token-aware context budgets, output verification pipelines, per-model profile registries, escalation policies, and structured (non-prose) permission boundaries.",
+    "causal_summary": "Our cli-* dispatch surface (`cli-devin` for SWE-1.6, `cli-opencode` for DeepSeek-v4-pro / Kimi-k2.6 / Qwen3.6 / GLM-5.1) and `sk-prompt`'s framework selection got measurably better through the 113 arc \u2014 RCAF default, medium pre-plan, standard bundle-gate, cross-model validation. But that arc optimized **prompt composition**. We have not yet addressed **runtime patterns** that small models need to produce reliable output: token-aware context budgets, output verification pipelines, per-model profile registries, escalation policies, and structured (non-prose) permission boundaries.",
     "created_at": "2026-05-18T08:50:24.230Z",
     "last_save_at": "2026-05-21T06:51:18.396Z",
     "save_lineage": "same_pass",
@@ -110,7 +110,7 @@
     "source_docs": [
       "spec.md"
     ],
-    "last_active_child_id": "skilled-agent-orchestration/114-small-ai-model-optimization/007-rename-sk-ai-small-model",
+    "last_active_child_id": "skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-ai-small-model-rename",
     "last_active_at": "2026-05-21T06:51:18.396Z"
   }
 }

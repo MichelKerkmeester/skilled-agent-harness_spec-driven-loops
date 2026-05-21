@@ -278,7 +278,7 @@ Rename the skill `deep-ai-council` → `sk-ai-council` (sk-util family) and the 
 ## RELATED DOCUMENTS
 
 - **Phase children**: `001-preflight-scope-map/`, `002-skill-dir-rename/`, `003-agent-runtime-rename/`, `004-cross-skill-edges-and-code/`, `005-root-docs-hooks-and-readmes/`, `006-reindex-validate-reconcile/`
-- **Predecessor**: `../114-small-ai-model-optimization/007-rename-sk-ai-small-model/` (sister rename arc; pattern reference)
+- **Predecessor**: `../114-small-ai-model-optimization/007-sk-ai-small-model-rename/` (sister rename arc; pattern reference)
 - **Skill origin**: `../101-deep-multi-ai-council-skill/**`
 - **Research track citing the skill**: `../../system-spec-kit/026-graph-and-context-optimization/**`
 - **Memory rules**: [[feedback_skill_graph_compiler_rebuild]], [[feedback_cli_devin_bundle_verification]], [[feedback_bundle_gate_smoke_run]], [[feedback_cli_dispatch_unreliability]], [[feedback_stay_on_main_no_feature_branches]], [[feedback_delete_not_archive_or_comment]], [[feedback_new_agent_mirror_all_runtimes]], [[feedback_rename_grep_case_insensitive]]

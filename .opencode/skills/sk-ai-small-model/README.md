@@ -282,7 +282,7 @@ A: There isn't one. Phase 007 (hardening CI) was deleted 2026-05-18 per user dir
 | [`graph-metadata.json`](./graph-metadata.json) | `enhances` edges and trigger phrases consumed by the advisor |
 | [`description.json`](./description.json) | Spec-kit memory metadata |
 | [`../../../specs/skilled-agent-orchestration/114-small-ai-model-optimization/spec.md`](../../../specs/skilled-agent-orchestration/114-small-ai-model-optimization/spec.md) | Phase parent with the full roadmap |
-| [`../../../specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-research-smallcode/research/research.md`](../../../specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-research-smallcode/research/research.md) | Research synthesis (HYBRID-with-Anchor verdict in §RQ5) |
+| [`../../../specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-smallcode-deep-research/research/research.md`](../../../specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-smallcode-deep-research/research/research.md) | Research synthesis (HYBRID-with-Anchor verdict in §RQ5) |
 | [`../cli-devin/SKILL.md`](../cli-devin/SKILL.md) | SWE-1.6 dispatch surface — owns budget, verification, fallback patterns |
 | [`../cli-opencode/SKILL.md`](../cli-opencode/SKILL.md) | DeepSeek / Kimi / Qwen dispatch surface — owns permissions matrix, budget propagation |
 | [`../sk-prompt/SKILL.md`](../sk-prompt/SKILL.md) | Cross-CLI prompt quality + model registry owner |

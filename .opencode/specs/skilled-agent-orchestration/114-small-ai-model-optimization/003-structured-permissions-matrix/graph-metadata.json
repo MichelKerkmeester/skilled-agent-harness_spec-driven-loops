@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/114-small-ai-model-optimization/003-structured-permissions-matrix",
+  "spec_folder": "skilled-agent-orchestration/114-small-ai-model-optimization/003-structured-permissions-matrix",
+  "parent_id": "skilled-agent-orchestration/114-small-ai-model-optimization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "permissions matrix cli-opencode",
+      "RM-8 structured replacement",
+      "pre-tool-call gate",
+      "structured permissions schema",
+      "permissions-matrix plan",
+      "permissions-matrix tasks",
+      "permissions-matrix checklist",
+      "permissions-matrix ADRs",
+      "permissions-matrix summary"
+    ],
+    "key_topics": [
+      "permissions",
+      "matrix",
+      "cli-opencode",
+      "rm-8",
+      "structured",
+      "replacement",
+      "pre-tool-call",
+      "gate",
+      "schema",
+      "permissions-matrix",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/cli-opencode/assets/permissions-matrix.schema.json",
+      ".opencode/skills/cli-opencode/references/permissions-matrix.md",
+      ".opencode/skills/cli-opencode/assets/permissions-matrix.example-readonly.json",
+      ".opencode/skills/cli-opencode/assets/permissions-matrix.example-packet-local.json",
+      ".opencode/skills/cli-opencode/assets/permissions-matrix.example-repo-wide.json",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/permissions-gate.ts",
+      ".opencode/skills/cli-opencode/SKILL.md",
+      ".opencode/skills/sk-ai-small-model/references/pattern-index.md",
+      ".opencode/skills/cli-opencode/references/destructive_scope_violations.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "permissions-matrix.schema.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-opencode/assets/permissions-matrix.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "permissions-matrix.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/references/permissions-matrix.md",
+        "source": "derived"
+      },
+      {
+        "name": "permissions-matrix.example-readonly.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-opencode/assets/permissions-matrix.example-readonly.json",
+        "source": "derived"
+      },
+      {
+        "name": "permissions-matrix.example-packet-local.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-opencode/assets/permissions-matrix.example-packet-local.json",
+        "source": "derived"
+      },
+      {
+        "name": "permissions-matrix.example-repo-wide.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-opencode/assets/permissions-matrix.example-repo-wide.json",
+        "source": "derived"
+      },
+      {
+        "name": "permissions-gate.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/permissions-gate.ts",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "pattern-index.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-ai-small-model/references/pattern-index.md",
+        "source": "derived"
+      },
+      {
+        "name": "destructive_scope_violations.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/references/destructive_scope_violations.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Ship",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Ship",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase B of the 114 follow-on roadmap. Replace the four-layer prose mitigation shipped to cli-opencode after the RM-8 2026-05-04 incident (44 files deleted by deepseek-v4-pro under `--dangerously-skip-permissions`) with a structured JSON permissions-matrix that a runtime pre-tool-call gate enforces deterministically. The schema encodes file-glob × operation-class × scope tuples; the enforcer rejects any tool call falling outside the allowlist BEFORE execution. Effort: ~12 hours. Highest blast-radius prevention in the 114 arc — proven against the RM-8 replay scenario in 001-research-smallcode/iter-009.",
+    "created_at": "2026-05-18T12:32:47.354Z",
+    "last_save_at": "2026-05-19T13:51:38.411Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "specFolder": "skilled-agent-orchestration/114-small-ai-model-optimization/001-smallcode-deep-research",
+  "description": "Feature Specification: deep-research mining smallcode-master for small-model patterns",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep-research",
+    "mining",
+    "smallcode-master",
+    "small-model",
+    "patterns"
+  ],
+  "lastUpdated": "2026-05-21T10:57:41.519Z",
+  "specId": "001",
+  "folderSlug": "smallcode-deep-research",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "114-small-ai-model-optimization"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "18-05-26_10-01__authored-spec-md-plan-md-tasks-md-checklist-md.md",
+    "18-05-26_11-34__20-iter-deep-research-loop-completed-early-via.md",
+    "18-05-26_12-12__all-20-iters-complete.md"
+  ]
+}

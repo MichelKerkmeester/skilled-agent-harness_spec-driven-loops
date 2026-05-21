@@ -10,7 +10,7 @@ four-layer prose mitigation as the primary defense when a cli-opencode deep-loop
 dispatch has a permissions matrix configured.
 
 The design follows ADR-001 in
-`.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/003-permissions-matrix/decision-record.md`:
+`.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/003-structured-permissions-matrix/decision-record.md`:
 a flat `rules[]` array, most-specific glob wins, and first-in-array breaks exact
 ties.
 
@@ -178,11 +178,11 @@ Incident source:
 
 Research source:
 
-`.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-research-smallcode/research/research.md`
+`.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-smallcode-deep-research/research/research.md`
 
 Patch-ready deepening source:
 
-`.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-research-smallcode/research/iterations/iteration-009.md`
+`.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-smallcode-deep-research/research/iterations/iteration-009.md`
 
 The incident doc records:
 
@@ -314,5 +314,5 @@ npx vitest run tests/deep-loop/permissions-gate.vitest.ts
 Packet validation:
 
 ```bash
-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/003-permissions-matrix --strict
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/003-structured-permissions-matrix --strict
 ```

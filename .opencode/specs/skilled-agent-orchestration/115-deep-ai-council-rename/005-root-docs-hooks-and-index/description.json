@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/115-deep-ai-council-rename/005-root-docs-hooks-and-index",
+  "description": "Feature Specification: 115/005 — root docs + hooks + skills index",
+  "keywords": [
+    "feature",
+    "specification",
+    "115",
+    "005",
+    "root",
+    "docs",
+    "hooks",
+    "skills",
+    "index"
+  ],
+  "lastUpdated": "2026-05-21T10:22:37.629Z",
+  "specId": "005",
+  "folderSlug": "root-docs-hooks-and-readmes",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "115-deep-ai-council-rename"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
