@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-05-21T10:58:47.065Z",
+  "generated": "2026-05-21T11:50:58.196Z",
   "folders": [
     {
       "specFolder": "00--ai-systems/001-global-shared",
@@ -641,7 +641,7 @@
         "dropdown",
         "fix"
       ],
-      "lastUpdated": "2026-05-21T10:58:47.065Z"
+      "lastUpdated": "2026-05-21T11:50:58.196Z"
     },
     {
       "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/019-form-attribute-audit",
@@ -691,7 +691,7 @@
         "anobel",
         "com"
       ],
-      "lastUpdated": "2026-05-21T10:58:47.065Z"
+      "lastUpdated": "2026-05-21T11:50:58.196Z"
     },
     {
       "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/023-performance-review",
@@ -2499,7 +2499,7 @@
         "folder",
         "convention"
       ],
-      "lastUpdated": "2026-05-21T10:58:47.065Z"
+      "lastUpdated": "2026-05-21T11:50:58.196Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/043-cli-skill-improved-prompting",
@@ -5171,7 +5171,7 @@
         "standards",
         "contract"
       ],
-      "lastUpdated": "2026-05-21T10:58:47.065Z"
+      "lastUpdated": "2026-05-21T11:50:58.196Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/023-fix-baseline-test-failures",
@@ -5197,7 +5197,7 @@
         "concurrency",
         "fixes"
       ],
-      "lastUpdated": "2026-05-21T10:58:47.065Z"
+      "lastUpdated": "2026-05-21T11:50:58.196Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/025-readme-architecture-diagrams-topology",
@@ -6958,7 +6958,7 @@
         "isolation",
         "finalize"
       ],
-      "lastUpdated": "2026-05-21T10:58:47.065Z"
+      "lastUpdated": "2026-05-21T11:50:58.196Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/019-system-code-graph-uplift-phase-parent",
@@ -7449,7 +7449,7 @@
         "coverage",
         "audit"
       ],
-      "lastUpdated": "2026-05-21T10:58:47.065Z"
+      "lastUpdated": "2026-05-21T11:50:58.196Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/027-typescript-header-normalization",
@@ -9672,10 +9672,10 @@
         "fit",
         "investigation"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.579Z"
+      "lastUpdated": "2026-05-21T11:50:58.196Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-probe-10",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-10-probes",
       "description": "Spec: 016/004/012 Fixture Audit (probe 10 first; full 18 second)",
       "keywords": [
         "spec",
@@ -9689,7 +9689,7 @@
         "full",
         "second"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.584Z"
+      "lastUpdated": "2026-05-21T11:50:58.196Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit",
@@ -9724,7 +9724,7 @@
       "lastUpdated": "2026-05-21T10:22:38.596Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/015-code-aware-chunking-tree-sitter-stage-b",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/015-code-aware-chunking-tree-sitter",
       "description": "Spec: 016/004/015 Code-Aware (Tree-Sitter) Chunking — Stage B",
       "keywords": [
         "spec",
@@ -9736,7 +9736,7 @@
         "chunking",
         "stage"
       ],
-      "lastUpdated": "2026-05-20T05:03:42.687Z"
+      "lastUpdated": "2026-05-21T11:50:58.196Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/016-query-expansion-identifier-bridging",
@@ -9750,7 +9750,7 @@
         "identifier",
         "bridging"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.601Z"
+      "lastUpdated": "2026-05-21T11:50:58.196Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/017-hybrid-fusion-empirical-recalibration",
@@ -9766,7 +9766,7 @@
         "rrf",
         "recalibration"
       ],
-      "lastUpdated": "2026-05-20T05:03:42.965Z"
+      "lastUpdated": "2026-05-21T11:50:58.196Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/018-rerank-matrix-rebench",
@@ -9780,7 +9780,7 @@
         "matrix",
         "re-bench"
       ],
-      "lastUpdated": "2026-05-20T05:03:43.233Z"
+      "lastUpdated": "2026-05-21T11:50:58.196Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/020-deep-review-p1-p2-remediation",
@@ -9938,7 +9938,7 @@
         "phase",
         "parent"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.658Z"
+      "lastUpdated": "2026-05-21T11:50:58.196Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit",
@@ -10108,7 +10108,7 @@
       "lastUpdated": "2026-05-19T12:49:55.502Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/006-cocoindex-install-hygiene-pipx-repair",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/007-cocoindex-install-hygiene-pipx-repair",
       "description": "Spec: CocoIndex install hygiene pipx repair",
       "keywords": [
         "spec",
@@ -10119,6 +10119,19 @@
         "repair"
       ],
       "lastUpdated": "2026-05-21T10:22:38.705Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/008-spec-memory-vitest-stabilization",
+      "description": "Spec: spec-memory vitest suite stabilization (scaffold-only)",
+      "keywords": [
+        "vitest",
+        "test-stabilization",
+        "spec-memory",
+        "mock-exports",
+        "fixture-drift",
+        "scaffold-only"
+      ],
+      "lastUpdated": "2026-05-21T13:50:00Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc",
@@ -10927,7 +10940,7 @@
         "deep-review",
         "remediation"
       ],
-      "lastUpdated": "2026-05-21T10:58:47.065Z"
+      "lastUpdated": "2026-05-21T11:50:58.196Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-039-system-code-graph-deferred-followon",
@@ -11530,7 +11543,7 @@
         "knowledge",
         "base"
       ],
-      "lastUpdated": "2026-05-21T10:58:47.065Z"
+      "lastUpdated": "2026-05-21T11:50:58.196Z"
     },
     {
       "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch",
@@ -15785,7 +15798,7 @@
         "obsidian-export",
         "specification"
       ],
-      "lastUpdated": "2026-05-21T10:58:47.065Z"
+      "lastUpdated": "2026-05-21T11:50:58.196Z"
     },
     {
       "specFolder": "z_future/hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/openspec/specs/obsidian-plugin",
@@ -15794,7 +15807,7 @@
         "obsidian-plugin",
         "specification"
       ],
-      "lastUpdated": "2026-05-21T10:58:47.065Z"
+      "lastUpdated": "2026-05-21T11:50:58.196Z"
     },
     {
       "specFolder": "z_future/hybrid-rag-fusion-upgrade/002-hybrid-rag-adoption",
