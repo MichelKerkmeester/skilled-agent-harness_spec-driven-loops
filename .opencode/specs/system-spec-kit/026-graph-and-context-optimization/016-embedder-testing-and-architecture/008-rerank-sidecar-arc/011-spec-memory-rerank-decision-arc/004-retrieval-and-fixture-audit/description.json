@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/004-retrieval-and-fixture-audit",
+  "description": "Phase 0 decision gate: retrieval + fixture audit before Phase 3 fine-tune (AI Council 3-1 verdict)",
+  "keywords": [
+    "retrieval-audit",
+    "fixture-freshness",
+    "candidate-coverage",
+    "handler-parity",
+    "rerank-effect",
+    "branch-decision",
+    "decision-gate"
+  ],
+  "lastUpdated": "2026-05-21T14:30:00Z",
+  "specId": "004",
+  "folderSlug": "004-retrieval-and-fixture-audit",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "008-rerank-sidecar-arc",
+    "011-spec-memory-rerank-decision-arc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

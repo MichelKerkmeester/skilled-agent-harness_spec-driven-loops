@@ -12,10 +12,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc"
-    last_updated_at: "2026-05-21T14:30:00Z"
-    last_updated_by: "cli-codex"
-    recent_action: "Phase 2 complete: bge-v2-m3 HOLD (no quality lift; p95/lifecycle gates failed)"
-    next_safe_action: "Execute Phase 3 triple-gen with bge-v2-m3 baseline as the gate floor"
+    last_updated_at: "2026-05-21T14:35:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "AI Council inserted 004 audit gate"
+    next_safe_action: "Dispatch 004 retrieval+fixture audit"
     blockers: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-phase-parent | v2.2 -->
@@ -51,8 +51,9 @@ The 010 packet that previously scaffolded "domain-tuned-reranker-finetune" is su
 | Phase | Focus | Status | Effort | Gate to next |
 |---|---|---|---|---|
 | `001-off-baseline-audit/` | Quantify OFF baseline on the 50-probe fixture; remove WEIGHT_RERANKER penalty if OFF is acceptable | Complete (OFF_DEFICIENT; no patch) | ~1 hour | OFF deficient → Phase 2 |
-| `002-bge-v2-m3-trial/` | Add `BAAI/bge-reranker-v2-m3` to sidecar allowlist; A/B vs OFF on the same fixture | Complete (HOLD; no patch) | ~4-6 hours | bge-v2-m3 HOLDs → Phase 3 |
-| `003-domain-tuned-finetune/` | Synthetic triples (with template-stripping) → fine-tune ms-marco or bge-base → publish artifact → A/B | Planned (next; bge-v2-m3 floor established) | ~3-5 days | — (arc terminus) |
+| `002-bge-v2-m3-trial/` | Add `BAAI/bge-reranker-v2-m3` to sidecar allowlist; A/B vs OFF on the same fixture | Complete (HOLD; identical numbers to OFF) | ~4-6 hours | HOLD with identical numbers → 004 audit (new gate) |
+| `004-retrieval-and-fixture-audit/` | **Decision gate inserted 2026-05-21 after AI Council 3-1 verdict.** Probe classification + candidate coverage + handler parity + rerank effect → mechanical branch decision | Planned (next) | ~1-2 hours | Branches: RETRIEVAL_WORK / SCORING_INTEGRATION_WORK / PHASE_3_JUSTIFIED |
+| `003-domain-tuned-finetune/` | Synthetic triples (with template-stripping) → fine-tune ms-marco or bge-base → publish artifact → A/B | Blocked by 004 (fires only on PHASE_3_JUSTIFIED branch) | ~3-5 days | — (arc terminus IF triggered) |
 <!-- /ANCHOR:phase-map -->
 
 ---
