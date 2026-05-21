@@ -11,11 +11,12 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/004-retrieval-and-fixture-audit"
-    last_updated_at: "2026-05-21T14:30:00Z"
-    last_updated_by: "main_agent"
-    recent_action: "Scaffolded after AI Council verdict"
-    next_safe_action: "Dispatch cli-codex audit"
-    blockers: []
+    last_updated_at: "2026-05-21T15:30:00Z"
+    last_updated_by: "cli-codex"
+    recent_action: "Superseded by 011/005 opt-in closure"
+    next_safe_action: "Use 011/005 instead"
+    blockers:
+      - "Superseded — do not execute"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Spec: retrieval + fixture audit (decision gate before Phase 3)

@@ -10,11 +10,12 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/008-cap-rerank-top-k"
-    last_updated_at: "2026-05-21T09:00:00Z"
-    last_updated_by: "main_agent"
-    recent_action: "Spec authored; arc re-opened for follow-on tests"
-    next_safe_action: "Add SPECKIT_RERANK_LOCAL_MAX_DOCS env override; rebuild; run A/B"
-    blockers: []
+    last_updated_at: "2026-05-21T15:30:00Z"
+    last_updated_by: "cli-codex"
+    recent_action: "Superseded by 011/005 opt-in closure"
+    next_safe_action: "Use 011/005 instead"
+    blockers:
+      - "Superseded — do not execute"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Spec: cap spec-memory rerank top-k

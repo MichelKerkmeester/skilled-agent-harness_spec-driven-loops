@@ -12,6 +12,9 @@
     "supersedes": [],
     "related_to": [
       "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/006-cocoindex-dedup-from-shared-sidecar"
+    ],
+    "superseded_by": [
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/005-opt-in-only-closure"
     ]
   },
   "derived": {
@@ -29,7 +32,7 @@
       "rerank-gate-timeout"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "superseded",
     "key_files": [
       "spec.md",
       "plan.md",

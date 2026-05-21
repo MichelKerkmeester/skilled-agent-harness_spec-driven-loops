@@ -9,7 +9,10 @@
       "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/004-spec-memory-rerank-benchmark"
     ],
     "supersedes": [],
-    "related_to": []
+    "related_to": [],
+    "superseded_by": [
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/005-opt-in-only-closure"
+    ]
   },
   "derived": {
     "trigger_phrases": [
@@ -26,7 +29,7 @@
       "arc-close"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "superseded",
     "key_files": [
       "spec.md",
       "plan.md",

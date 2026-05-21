@@ -11,11 +11,12 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/007-spec-memory-mps-rerank-promotion"
-    last_updated_at: "2026-05-21T00:00:00Z"
-    last_updated_by: "main_agent"
-    recent_action: "Spec authored; arc re-opened"
-    next_safe_action: "Start sidecar with RERANK_DEVICE=mps; run 50-probe A/B"
-    blockers: []
+    last_updated_at: "2026-05-21T15:30:00Z"
+    last_updated_by: "cli-codex"
+    recent_action: "Superseded by 011/005 opt-in closure"
+    next_safe_action: "Use 011/005 instead"
+    blockers:
+      - "Superseded — do not execute"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Spec: spec-memory MPS rerank promotion candidate

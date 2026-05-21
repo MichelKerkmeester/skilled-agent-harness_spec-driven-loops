@@ -374,6 +374,10 @@ def route_speckit_resources(task):
 
 Spec Kit Memory provides context retrieval, search, save, checkpoint, health, and indexing surfaces. Use `memory_context()` or `/spec_kit:resume` for recovery; use `memory_search()` for targeted retrieval; use `generate-context.js` for canonical saves. Detailed behavior, flags, scoring, and MCP tool reference live in `references/memory/memory_system.md`, `references/memory/save_workflow.md`, and `mcp_server/ENV_REFERENCE.md`.
 
+### Reranking (opt-in)
+
+Cross-encoder reranking is opt-in. Default is OFF based on the 011 decision arc (evidence: 011/001 OFF baseline + 011/002 bge-v2-m3 trial). To enable, set `SPECKIT_CROSS_ENCODER=true` (or `RERANKER_LOCAL=true`) and ensure the system-rerank-sidecar is running at `http://localhost:8765`. Cocoindex consumes the sidecar by default; spec-memory consumes it opt-in only.
+
 ### Validation and Recovery
 
 Run `.opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` before completion claims. Validation errors block completion; warnings must be addressed or documented. Startup, resume, hook, code graph, and CocoIndex readiness details live in `references/config/hook_system.md`, `mcp_server/hooks/copilot/README.md`, and the code graph references.

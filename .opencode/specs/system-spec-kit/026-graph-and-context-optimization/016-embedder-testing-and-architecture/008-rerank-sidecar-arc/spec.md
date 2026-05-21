@@ -15,7 +15,7 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc"
     last_updated_at: "2026-05-20T19:00:00Z"
     last_updated_by: "main_agent"
-    recent_action: "008+009 HOLD; 010 scaffolded; arc closes"
+    recent_action: "Arc 011 closed; rerank work for spec-memory deferred to opt-in"
     next_safe_action: "Decide 010 execution or accept rerank as non-load-bearing"
     blockers: []
     key_files:
@@ -58,13 +58,13 @@ A second-opinion pass from `cli-codex gpt-5.5 xhigh` (recorded in the arc's rese
 | `002-system-rerank-sidecar-skill/` | system-rerank-sidecar skill | Complete |
 | `003-ensure-sidecar-from-launchers/` | Ensure rerank sidecar from launchers | Planned |
 | `004-spec-memory-rerank-benchmark/` | spec-memory rerank A/B benchmark | Complete — HOLD |
-| `005-promote-qwen-as-default/` | Promote Qwen3-Reranker-0.6B as the spec-memory default | Complete (HOLD) |
+| `005-promote-qwen-as-default/` | Promote Qwen3-Reranker-0.6B as the spec-memory default | Superseded by 011/005 |
 | `006-cocoindex-dedup-from-shared-sidecar/` | Cocoindex dedup from shared rerank sidecar | Planned |
-| `007-spec-memory-mps-rerank-promotion/` | spec-memory MPS rerank promotion candidate | Planned |
-| `008-cap-rerank-top-k/` | cap spec-memory rerank top-k | Planned |
-| `009-fp16-rerank/` | fp16 cross-encoder weights on MPS | Planned |
+| `007-spec-memory-mps-rerank-promotion/` | spec-memory MPS rerank promotion candidate | Superseded by 011/005 |
+| `008-cap-rerank-top-k/` | cap spec-memory rerank top-k | Superseded by 011/005 |
+| `009-fp16-rerank/` | fp16 cross-encoder weights on MPS | Superseded by 011/005 |
 | `010-domain-tuned-reranker-finetune/` | domain-tuned reranker fine-tune for spec-memory corpus | **Superseded by `011/003-domain-tuned-finetune/`** (2026-05-21; added template-stripping refinement) |
-| `011-spec-memory-rerank-decision-arc/` | Phased decision: audit OFF baseline → try bge-v2-m3 → fine-tune with template-stripping | Planned (phase parent; 3 children) |
+| `011-spec-memory-rerank-decision-arc/` | Phased decision: audit OFF baseline → try bge-v2-m3 → fine-tune with template-stripping | Complete (opt-in only verdict) |
 <!-- /ANCHOR:phase-map -->
 
 ---

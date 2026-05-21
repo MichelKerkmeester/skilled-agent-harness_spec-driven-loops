@@ -11,11 +11,12 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/005-promote-qwen-as-default"
-    last_updated_at: "2026-05-20T00:00:00Z"
-    last_updated_by: "main_agent"
-    recent_action: "HOLD path executed per phase 004 verdict"
-    next_safe_action: "Arc 008 closed; follow-on requires CPU to MPS device tuning before re-benchmark"
-    blockers: []
+    last_updated_at: "2026-05-21T15:30:00Z"
+    last_updated_by: "cli-codex"
+    recent_action: "Superseded by 011/005 opt-in closure"
+    next_safe_action: "Use 011/005 instead"
+    blockers:
+      - "Superseded — do not execute"
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md"

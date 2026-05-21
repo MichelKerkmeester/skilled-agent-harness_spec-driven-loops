@@ -15,6 +15,9 @@
     "related_to": [
       "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/002-system-rerank-sidecar-skill",
       "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/004-spec-memory-rerank-benchmark"
+    ],
+    "superseded_by": [
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/005-opt-in-only-closure"
     ]
   },
   "derived": {
@@ -35,7 +38,7 @@
       "anti-overfit"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "superseded",
     "key_files": [
       "spec.md",
       "plan.md",

@@ -24,6 +24,7 @@
 // IMPORTANT: This module only models ranking confidence for retrieval ordering.
 // It is not freshness authority and it is not a substitute for StructuralTrust.
 import { resolveEffectiveScore, type PipelineRow } from './pipeline/types.js';
+import { isRerankerExpected } from './search-flags.js';
 
 declare const rankingConfidenceBrand: unique symbol;
 
@@ -252,10 +253,12 @@ export function computeResultConfidence(results: ScoredResult[]): ResultConfiden
     // Anchor density: 1 anchor → 0.3, 2 → 0.6, 3+ → 1.0
     const anchorFactor = Math.min(1, anchorCount * 0.33);
 
+    const rerankerPenalty = isRerankerExpected() ? WEIGHT_RERANKER * rerankerFactor : 0;
+
     const rawValue =
       WEIGHT_MARGIN * marginFactor +
       WEIGHT_CHANNEL_AGREEMENT * channelFactor +
-      WEIGHT_RERANKER * rerankerFactor +
+      rerankerPenalty +
       WEIGHT_ANCHOR_DENSITY * anchorFactor;
 
     // Base score is a strong prior: if the score itself is very high, confidence

@@ -11,12 +11,12 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/003-domain-tuned-finetune"
-    last_updated_at: "2026-05-21T14:35:00Z"
-    last_updated_by: "main_agent"
-    recent_action: "Blocked by 004 audit (new gate from AI Council)"
-    next_safe_action: "Wait for 004 PHASE_3_JUSTIFIED branch"
+    last_updated_at: "2026-05-21T15:30:00Z"
+    last_updated_by: "cli-codex"
+    recent_action: "Superseded by 011/005 opt-in closure"
+    next_safe_action: "Use 011/005 instead"
     blockers:
-      - "011/004 retrieval+fixture audit must return PHASE_3_JUSTIFIED branch"
+      - "Superseded — do not execute"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Spec: domain-tuned reranker fine-tune for spec-memory (with template-stripping)

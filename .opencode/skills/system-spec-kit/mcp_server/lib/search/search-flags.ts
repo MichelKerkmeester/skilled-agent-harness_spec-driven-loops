@@ -97,10 +97,32 @@ export function isMultiQueryEnabled(): boolean {
 
 /**
  * Cross-encoder reranking gate.
- * Default: TRUE (enabled). Set SPECKIT_CROSS_ENCODER=false to disable.
+ * Default: FALSE (opt-in). See 011 arc 011/005-opt-in-only-closure
+ * for the evidence + decision.
  */
 export function isCrossEncoderEnabled(): boolean {
-  return isFeatureEnabled('SPECKIT_CROSS_ENCODER');
+  if (isOptInEnabled('SPECKIT_CROSS_ENCODER')) return true;
+  if (process.env.VOYAGE_API_KEY?.trim()) return true;
+  if (process.env.COHERE_API_KEY?.trim()) return true;
+  if (process.env.RERANKER_LOCAL?.toLowerCase().trim() === 'true') return true;
+  return false;
+}
+
+/**
+ * Returns true when reranker was opted-in by operator intent
+ * (cloud API key set OR SPECKIT_CROSS_ENCODER explicitly true
+ * OR RERANKER_LOCAL explicitly true). False for default-off.
+ *
+ * Used by confidence-scoring to decide whether a missing
+ * reranker counts as a penalty (opted-in but unavailable)
+ * versus an expected absence (correctly off-by-default).
+ */
+export function isRerankerExpected(): boolean {
+  if (process.env.VOYAGE_API_KEY?.trim()) return true;
+  if (process.env.COHERE_API_KEY?.trim()) return true;
+  if (process.env.SPECKIT_CROSS_ENCODER?.toLowerCase().trim() === 'true') return true;
+  if (process.env.RERANKER_LOCAL?.toLowerCase().trim() === 'true') return true;
+  return false;
 }
 
 /**

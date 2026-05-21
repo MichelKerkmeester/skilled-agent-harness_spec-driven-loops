@@ -9,7 +9,7 @@ version: 0.1.0
 
 # Rerank Sidecar — Shared Local Cross-Encoder HTTP Service
 
-Dedicated local HTTP sidecar that owns model loading, request serialization, sigmoid normalization, and the operator lifecycle for `Qwen/Qwen3-Reranker-0.6B`. Consumed by mk-spec-memory (opt-in per arc 008 phase 005 HOLD) and available to any MCP that wants shared cross-encoder rerank without bundling its own model.
+Dedicated local HTTP sidecar that owns model loading, request serialization, sigmoid normalization, and the operator lifecycle for `Qwen/Qwen3-Reranker-0.6B`. Consumers: cocoindex (default), spec-memory (opt-in only via `SPECKIT_CROSS_ENCODER=true` or `RERANKER_LOCAL=true`).
 
 ---
 
@@ -219,7 +219,7 @@ Both consumers (mk-spec-memory + mcp-coco-index) inherit the change automaticall
 
 ### Consumers
 
-- **mk-spec-memory** consumes via `mcp_server/lib/search/cross-encoder.ts:local` when `SPECKIT_CROSS_ENCODER=true`. Per arc 008 phase 005 HOLD, this is opt-in (not default).
+- **mk-spec-memory** consumes via `mcp_server/lib/search/cross-encoder.ts:local` when `SPECKIT_CROSS_ENCODER=true` or `RERANKER_LOCAL=true`. Per the 011/005 opt-in closure, this is opt-in only (not default).
 - **mcp-coco-index** consumes via `HttpSidecarRerankerAdapter` (`cocoindex_code/rerankers/reranker.py`). Default-on as of arc 008 phase 006 (`COCOINDEX_RERANK_VIA_SIDECAR=true`); bundled `CrossEncoderRerankerAdapter` is retained as the HTTP-failure fallback. The cocoindex MCP startup auto-ensures the sidecar via `cli.py::_ensure_rerank_sidecar_for_mcp`.
 
 ### RAM Budget + macOS Notes

@@ -12,9 +12,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc"
-    last_updated_at: "2026-05-21T14:35:00Z"
-    last_updated_by: "main_agent"
-    recent_action: "AI Council inserted 004 audit gate"
+    last_updated_at: "2026-05-21T15:30:00Z"
+    last_updated_by: "cli-codex"
+    recent_action: "Arc closed with opt-in only verdict (011/005)"
     next_safe_action: "Dispatch 004 retrieval+fixture audit"
     blockers: []
 ---
@@ -41,6 +41,8 @@ This arc replaces the runtime-tweak path with a 3-phase decision sequence that e
 3. **Fine-tune only if Phases 1+2 both HOLD.** Multi-day. Includes a template-stripping step in the triple-generation pipeline so the model doesn't overfit to anchor/frontmatter scaffolding.
 
 The 010 packet that previously scaffolded "domain-tuned-reranker-finetune" is superseded by Phase 3 of this arc. 007/008/009 stay planned but are no longer on the critical path — they remain available if a future operator wants to revisit runtime tuning after the rank-quality question is settled.
+
+Operator decision on 2026-05-21: close this arc through `005-opt-in-only-closure/`. Spec-memory keeps the shared sidecar integration as an explicit opt-in path, while default search confidence stops treating the absent reranker as a required signal.
 <!-- /ANCHOR:root-purpose -->
 
 ---
@@ -51,10 +53,10 @@ The 010 packet that previously scaffolded "domain-tuned-reranker-finetune" is su
 | Phase | Focus | Status | Effort | Gate to next |
 |---|---|---|---|---|
 | `001-off-baseline-audit/` | Quantify OFF baseline on the 50-probe fixture; remove WEIGHT_RERANKER penalty if OFF is acceptable | Complete (OFF_DEFICIENT; no patch) | ~1 hour | OFF deficient → Phase 2 |
-| `002-bge-v2-m3-trial/` | Add `BAAI/bge-reranker-v2-m3` to sidecar allowlist; A/B vs OFF on the same fixture | Complete (HOLD; identical numbers to OFF) | ~4-6 hours | HOLD with identical numbers → 004 audit (new gate) |
-| `004-retrieval-and-fixture-audit/` | **Decision gate inserted 2026-05-21 after AI Council 3-1 verdict.** Probe classification + candidate coverage + handler parity + rerank effect → mechanical branch decision | Planned (next) | ~1-2 hours | Branches: RETRIEVAL_WORK / SCORING_INTEGRATION_WORK / PHASE_3_JUSTIFIED |
-| `003-domain-tuned-finetune/` | Synthetic triples (with template-stripping) → fine-tune ms-marco or bge-base → publish artifact → A/B | Blocked by 004 (fires only on PHASE_3_JUSTIFIED branch) | ~3-5 days | — (arc terminus IF triggered) |
-| `005-opt-in-only-closure/` | **Terminal closure (operator decision 2026-05-21).** Keep shared sidecar framework for cocoindex; spec-memory rerank becomes opt-in only. Flip SPECKIT_CROSS_ENCODER default true→false, condition WEIGHT_RERANKER penalty on isRerankerExpected(), supersede 002/003/004 + arc-008 spec-memory tuning packets. | Planned (next) | ~30-45 min | Arc closes |
+| `002-bge-v2-m3-trial/` | Add `BAAI/bge-reranker-v2-m3` to sidecar allowlist; A/B vs OFF on the same fixture | Superseded by 011/005 | ~4-6 hours | Closed by opt-in-only verdict |
+| `004-retrieval-and-fixture-audit/` | **Decision gate inserted 2026-05-21 after AI Council 3-1 verdict.** Probe classification + candidate coverage + handler parity + rerank effect → mechanical branch decision | Superseded by 011/005 | ~1-2 hours | Closed by opt-in-only verdict |
+| `003-domain-tuned-finetune/` | Synthetic triples (with template-stripping) → fine-tune ms-marco or bge-base → publish artifact → A/B | Superseded by 011/005 | ~3-5 days | Closed by opt-in-only verdict |
+| `005-opt-in-only-closure/` | **Terminal closure (operator decision 2026-05-21).** Keep shared sidecar framework for cocoindex; spec-memory rerank becomes opt-in only. Flip SPECKIT_CROSS_ENCODER default true→false, condition WEIGHT_RERANKER penalty on isRerankerExpected(), supersede 002/003/004 + arc-008 spec-memory tuning packets. | Complete | ~30-45 min | Arc closed |
 <!-- /ANCHOR:phase-map -->
 
 ---
