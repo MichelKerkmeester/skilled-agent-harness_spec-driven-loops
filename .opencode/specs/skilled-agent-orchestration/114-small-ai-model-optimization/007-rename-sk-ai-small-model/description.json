@@ -1,0 +1,19 @@
+{
+  "level": "1",
+  "specFolder": "114-small-ai-model-optimization/007-rename-sk-ai-small-model",
+  "description": "Phase 1: rename-sk-ai-small-model",
+  "keywords": [
+    "phase",
+    "rename-sk-ai-small-model"
+  ],
+  "lastUpdated": "2026-05-21T06:51:17.052Z",
+  "specId": "007",
+  "folderSlug": "rename-sk-ai-small-model",
+  "parentChain": [
+    "114-small-ai-model-optimization"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "21-05-26_07-51__phase-7-of-114-arc-renamed-sk-small-model-sk-ai.md"
+  ]
+}

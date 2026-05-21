@@ -154,7 +154,7 @@
     ],
     "causal_summary": "The `sk-git` skill documents conventional-commit-style standards at `.opencode/skills/sk-git/SKILL.md` §3 and `assets/commit_message_template.md`, but the git log itself does not follow them. A 30-commit sample of recent HEAD shows 100% of commits prefixed with internal packet IDs (`111 W3.C:`, `111 W3.D-A:`), no message bodies, no Co-Authored-By trailers on the most recent activity (older history carries 3,498 Claude trailers in various forms), and free-form subjects that violate the imperative-mood + length rules. The standards exist on paper but nothing enforces them at commit time, and no retroactive normalization has been performed.",
     "created_at": "2026-05-16T09:42:32Z",
-    "last_save_at": "2026-05-18T15:17:56.768Z",
+    "last_save_at": "2026-05-19T13:51:38.382Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

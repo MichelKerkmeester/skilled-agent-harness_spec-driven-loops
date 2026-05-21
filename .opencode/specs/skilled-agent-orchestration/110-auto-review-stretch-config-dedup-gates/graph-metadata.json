@@ -131,7 +131,7 @@
     ],
     "causal_summary": "Packet 108 shipped 5 quick-win teachings (H-1, H-2, H-3, H-4, H-6) from 106's auto-review research, but 6 stretch teachings remain unadopted: H-5 (3-tier config for mk-* plugins), H-7 (marker-based dedup for deep-review multi-dimensional loops), M-1 (PR state dedup for sk-code-review), M-2 (optional min-evidence gate for sk-code-review), M-3 (mutation signature dedup for deep-agent-improvement), M-6 (async config init for mk-* plugins). The 108 packet deferred these to a stretch packet (now this packet 110 — number `109` was taken by parallel `109-subphase-recatalog-and-archive`). Per 110 council verdict (5/5 REQUEST-CHANGES → revisions applied), **H-9 (bounded evidence interpolation) is deferred** — current deep-review prompt packs use state/metadata pointers, not embedded file contents, so H-9's described interpolation point doesn't exist in the current architecture (H-9 may be revisited in a future packet 111+ if a real interpolation path is identified). Implementation cost (post-council revisions): MEDIUM (3-4h) for HIGH-impact items, LOW (~1h) for MEDIUM-impact items — total **~8-10h** after H-9 defer.",
     "created_at": "2026-05-16T11:00:00Z",
-    "last_save_at": "2026-05-18T15:17:56.762Z",
+    "last_save_at": "2026-05-19T13:51:38.375Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

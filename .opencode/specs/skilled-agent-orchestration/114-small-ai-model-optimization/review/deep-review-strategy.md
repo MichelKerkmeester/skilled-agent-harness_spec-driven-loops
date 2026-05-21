@@ -141,7 +141,7 @@ Synthesis pass runs unconditionally after stop trigger. Must cover all 4 dimensi
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
 
-**Iter 7 — Traceability, dimension 3/4 (REQ + adjudication).** Iter 5 retracted: F1+F2 (decision-record missing for L2 phases). Iter 6 confirmed: F4 phase-parent status drift P2. Iter 6 false-positive: F3 ADR-artifacts-missing — agent searched 114/ but artifacts live in `.opencode/skills/`; correctness iter 2 already verified all 39 files exist. Iter 7: (a) adjudicate F3-iter6 as RETRACTED; (b) REQ-NNN spot-check per phase — for each of 5 phases, read spec.md §2 Functional Requirements, pick 2 REQ-NNN entries, verify each maps to a shipped artifact using ABSOLUTE paths.
+**Iter 9 — Cross-cutting, integration-risk pass.** 8/20 iters done. Convergence math reached (newFindingsRatio ≈ 0.08 over last 3 iters, all 4 dims covered, 0 P0). User requested full 20 iters, so continue with broader cross-cutting integration checks where new signal can emerge. Iter 9: Sentinel HYBRID-with-Anchor architecture compliance — does sk-small-model SKILL.md anchor match research.md HYBRID-with-Anchor spec? Do `enhances` edges in graph-metadata.json have correct weight + target paths? Does skill-advisor 5-lane scorer actually surface sk-small-model on small-model prompts (smoke-test reasoning)?
 
 ## 6. OPEN FINDINGS (post-iter-4 adjudication)
 

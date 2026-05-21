@@ -209,7 +209,7 @@
     ],
     "causal_summary": "Packet 113/006 records completed cross-CLI propagation of the 113/003 eval-loop finding that medium-density pre-planning beats dense pre-planning on SWE 1.6. The work updates the sk-prompt master CLI prompt quality card, mirrors the same guidance into four sibling CLI prompt quality cards, bumps sibling skill frontmatter versions, and adds sibling changelog entries.",
     "created_at": "2026-05-17T12:18:18Z",
-    "last_save_at": "2026-05-18T15:17:56.783Z",
+    "last_save_at": "2026-05-19T13:51:38.401Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -7,7 +7,7 @@ import { describe, expect, it } from 'vitest';
 const TEST_DIR = dirname(fileURLToPath(import.meta.url));
 const MCP_SERVER_ROOT = resolve(TEST_DIR, '..');
 const WORKSPACE_ROOT = resolve(TEST_DIR, '../../../../../');
-const PLAYBOOK_ROOT = join(WORKSPACE_ROOT, '.opencode/skills/deep-ai-council/manual_testing_playbook');
+const PLAYBOOK_ROOT = join(WORKSPACE_ROOT, '.opencode/skills/sk-ai-council/manual_testing_playbook');
 
 const TEST_FILE_REF =
   /(?:(?:\.opencode\/skills\/system-spec-kit\/)?(?:mcp_server\/tests|scripts\/tests)|\.\.\/scripts\/tests)\/[A-Za-z0-9._/-]+?\.vitest\.ts/g;

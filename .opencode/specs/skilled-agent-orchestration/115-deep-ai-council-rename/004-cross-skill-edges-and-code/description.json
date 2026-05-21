@@ -1,0 +1,17 @@
+{
+  "specFolder": "skilled-agent-orchestration/115-deep-ai-council-rename/004-cross-skill-edges-and-code",
+  "description": "Phase 4: cross-skill-edges-and-code",
+  "keywords": [
+    "phase",
+    "cross-skill-edges-and-code"
+  ],
+  "lastUpdated": "2026-05-21T06:57:10.626Z",
+  "specId": "004",
+  "folderSlug": "cross-skill-edges-and-code",
+  "parentChain": [
+    "skilled-agent-orchestration/115-deep-ai-council-rename"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

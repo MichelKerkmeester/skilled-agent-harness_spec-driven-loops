@@ -37,7 +37,7 @@
         "context": "provides co-resident MCP registration and extraction parent"
       },
       {
-        "target": "deep-ai-council",
+        "target": "sk-ai-council",
         "weight": 0.7,
         "context": "provides spec-folder packet context and memory-save workflows for council artifact handoff"
       }

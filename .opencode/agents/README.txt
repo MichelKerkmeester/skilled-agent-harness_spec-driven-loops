@@ -19,4 +19,4 @@ Agents:
   prompt-improver — Prompt engineering
   orchestrate   — Multi-agent coordination
   review        — Code review (read-only)
-  deep-ai-council   — Multi-strategy planning
+  ai-council   — Multi-strategy planning

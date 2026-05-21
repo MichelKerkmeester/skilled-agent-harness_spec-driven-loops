@@ -34,13 +34,13 @@
     "context",
     "optimization"
   ],
-  "lastUpdated": "2026-05-09T07:57:32.792Z",
+  "lastUpdated": "2026-05-19T17:44:04.016Z",
   "specId": "026",
   "folderSlug": "graph-and-context-optimization",
   "parentChain": [
     "system-spec-kit"
   ],
-  "memorySequence": 8,
+  "memorySequence": 10,
   "memoryNameHistory": [
     "09-04-26_07-37__ran-15-deep-review-iterations-on-the-full-026.md",
     "09-04-26_20-18__post-compaction-continuation-session-that-landed.md",
@@ -49,6 +49,8 @@
     "18-04-26_17-45__refresh-description-json-graph-metadata-json.md",
     "25-04-26_11-30__metadata-refresh-rewrite-children-ids-in-graph.md",
     "25-04-26_11-48__refresh-026-root-graph-metadata-json-children-ids.md",
-    "28-04-26_18-20__multi-hour-autonomous-deep-review-release.md"
+    "28-04-26_18-20__multi-hour-autonomous-deep-review-release.md",
+    "19-05-26_18-43__m-005-worker-probe-test-outsourced-agent-memory.md",
+    "19-05-26_18-44__m-005-worker-probe-test-outsourced-agent-memory.md"
   ]
 }

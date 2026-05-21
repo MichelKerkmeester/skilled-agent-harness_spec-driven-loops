@@ -24,9 +24,9 @@ const RAW_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> = Object.fre
     'deep-review',
     'sk-deep-review',
   ],
-  'deep-ai-council': [
-    '@deep-ai-council',
-    'deep-ai-council',
+  'sk-ai-council': [
+    '@sk-ai-council',
+    'sk-ai-council',
     'deep ai council',
     'ai council',
     'planning council',

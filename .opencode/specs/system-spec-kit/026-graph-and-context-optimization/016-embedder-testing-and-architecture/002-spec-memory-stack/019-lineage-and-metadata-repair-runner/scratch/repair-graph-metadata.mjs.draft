@@ -1,0 +1,616 @@
+#!/usr/bin/env node
+// Repair stale spec graph metadata and scan-discovered lineage keys.
+
+import crypto from 'node:crypto';
+import { execFileSync } from 'node:child_process';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+
+const VALID_IMPORTANCE_TIERS = new Set([
+  'constitutional',
+  'critical',
+  'important',
+  'normal',
+  'temporary',
+  'deprecated',
+]);
+const CANONICAL_PACKET_DOCS = [
+  'spec.md',
+  'plan.md',
+  'tasks.md',
+  'checklist.md',
+  'decision-record.md',
+  'implementation-summary.md',
+  'research/research.md',
+  'research.md',
+  'handover.md',
+  'resource-map.md',
+];
+const GRAPH_FILENAME = 'graph-metadata.json';
+const DEFAULT_SCAN_LOG = '/tmp/scan-stdout.log';
+const DB_PATH = '.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite';
+
+function parseArgs(argv) {
+  const args = {
+    dryRun: false,
+    root: '.opencode/specs',
+    scanLog: DEFAULT_SCAN_LOG,
+    repairLineage: true,
+  };
+  for (let index = 0; index < argv.length; index += 1) {
+    const arg = argv[index];
+    if (arg === '--dry-run') args.dryRun = true;
+    else if (arg === '--root') args.root = argv[++index] ?? args.root;
+    else if (arg === '--scan-log') args.scanLog = argv[++index] ?? args.scanLog;
+    else if (arg === '--no-lineage') args.repairLineage = false;
+    else if (arg === '--help' || arg === '-h') {
+      process.stdout.write([
+        'Usage: node repair-graph-metadata.mjs [--dry-run] [--root .opencode/specs] [--scan-log /tmp/scan-stdout.log] [--no-lineage]',
+        '',
+        'Repairs graph-metadata.json files and scan-discovered stale memory_lineage keys.',
+      ].join('\n') + '\n');
+      process.exit(0);
+    }
+  }
+  return args;
+}
+
+function repoRoot() {
+  let current = process.cwd();
+  while (true) {
+    if (fs.existsSync(path.join(current, '.opencode', 'specs'))) return current;
+    const parent = path.dirname(current);
+    if (parent === current) return process.cwd();
+    current = parent;
+  }
+}
+
+function readJson(filePath) {
+  return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+}
+
+function stableJson(value) {
+  return `${JSON.stringify(value, null, 2)}\n`;
+}
+
+function toPosix(value) {
+  return value.replace(/\\/g, '/');
+}
+
+function uniqueStrings(values, limit = Infinity) {
+  const seen = new Set();
+  const result = [];
+  for (const value of values) {
+    if (typeof value !== 'string') continue;
+    const trimmed = value.trim();
+    if (!trimmed || seen.has(trimmed)) continue;
+    seen.add(trimmed);
+    result.push(trimmed);
+    if (result.length >= limit) break;
+  }
+  return result;
+}
+
+function normalizeStatus(value) {
+  if (typeof value !== 'string' || value.trim().length === 0) return 'planned';
+  const normalized = value.trim().toLowerCase().replace(/[\s-]+/g, '_');
+  if (['done', 'completed'].includes(normalized)) return 'complete';
+  if (['active', 'in_progress'].includes(normalized)) return 'in_progress';
+  return normalized;
+}
+
+function normalizeImportanceTier(value) {
+  if (value === 'high') return 'important';
+  return VALID_IMPORTANCE_TIERS.has(value) ? value : 'normal';
+}
+
+function isIso(value) {
+  return typeof value === 'string' && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z$/.test(value);
+}
+
+function isoOr(value, fallback) {
+  return isIso(value) ? value : fallback;
+}
+
+function collectGraphFiles(rootDir) {
+  const files = [];
+  const excluded = new Set(['node_modules', '.git', 'scratch', 'memory']);
+  function walk(current) {
+    let entries;
+    try {
+      entries = fs.readdirSync(current, { withFileTypes: true });
+    } catch {
+      return;
+    }
+    for (const entry of entries) {
+      const next = path.join(current, entry.name);
+      if (entry.isDirectory()) {
+        if (!excluded.has(entry.name) && !entry.name.startsWith('.')) walk(next);
+        continue;
+      }
+      if (entry.isFile() && entry.name === GRAPH_FILENAME && fs.existsSync(path.join(current, 'spec.md'))) {
+        files.push(next);
+      }
+    }
+  }
+  walk(rootDir);
+  return files.sort();
+}
+
+function specFolderForGraph(filePath, specsRoot) {
+  return toPosix(path.relative(specsRoot, path.dirname(filePath)));
+}
+
+function parentIdForSpecFolder(specFolder, specsRoot) {
+  const parts = specFolder.split('/');
+  for (let end = parts.length - 1; end > 0; end -= 1) {
+    const candidate = parts.slice(0, end).join('/');
+    if (fs.existsSync(path.join(specsRoot, candidate, 'spec.md'))) return candidate;
+  }
+  return null;
+}
+
+function childIdsForSpecFolder(folderPath, specsRoot) {
+  let entries = [];
+  try {
+    entries = fs.readdirSync(folderPath, { withFileTypes: true });
+  } catch {
+    return [];
+  }
+  return entries
+    .filter((entry) => entry.isDirectory() && /^\d{3}(?:[-_].+)?$/.test(entry.name))
+    .map((entry) => path.join(folderPath, entry.name))
+    .filter((childPath) => fs.existsSync(path.join(childPath, GRAPH_FILENAME)))
+    .map((childPath) => toPosix(path.relative(specsRoot, childPath)))
+    .sort();
+}
+
+function readDocHints(folderPath) {
+  const docs = [];
+  for (const doc of CANONICAL_PACKET_DOCS) {
+    const docPath = path.join(folderPath, doc);
+    if (!fs.existsSync(docPath)) continue;
+    const content = fs.readFileSync(docPath, 'utf8');
+    docs.push({ relativePath: toPosix(doc), content });
+  }
+  const joined = docs.map((doc) => doc.content).join('\n');
+  const title = joined.match(/^title:\s*["']?([^"'\n]+)["']?/m)?.[1]
+    ?? joined.match(/^#\s+(.+)$/m)?.[1]
+    ?? null;
+  const description = joined.match(/^description:\s*["']?([^"'\n]+)["']?/m)?.[1] ?? null;
+  const triggerMatches = [...joined.matchAll(/trigger_phrases:\s*\[([^\]]+)\]/g)]
+    .flatMap((match) => match[1].split(',').map((value) => value.replace(/^['"\s]+|['"\s]+$/g, '')));
+  const tier = joined.match(/^importance_tier:\s*["']?([^"'\n]+)["']?/m)?.[1] ?? null;
+  const status = joined.match(/^status:\s*["']?([^"'\n]+)["']?/im)?.[1] ?? null;
+  return {
+    title,
+    description,
+    triggerPhrases: uniqueStrings(triggerMatches, 12),
+    importanceTier: tier,
+    status,
+    sourceDocs: docs.map((doc) => doc.relativePath),
+  };
+}
+
+function topicize(...inputs) {
+  const text = inputs.filter(Boolean).join(' ').toLowerCase();
+  const stop = new Set(['the', 'and', 'for', 'with', 'from', 'this', 'that', 'into', 'spec', 'phase', 'packet']);
+  return uniqueStrings(
+    text
+      .split(/[^a-z0-9._-]+/)
+      .filter((token) => token.length >= 3 && !stop.has(token)),
+    12,
+  );
+}
+
+function cleanPacketName(specFolder) {
+  return path.basename(specFolder)
+    .replace(/^\d{3}[-_]/, '')
+    .replace(/[-_]+/g, ' ')
+    .replace(/\b\d{3}\b/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+    || 'current packet';
+}
+
+function sanitizeKeyFiles(values, specFolder) {
+  return uniqueStrings(values, 40)
+    .filter((value) => {
+      const normalized = toPosix(value);
+      if (/^(spec|plan|tasks|checklist|decision-record|implementation-summary|research|handover|resource-map)\.md$/.test(normalized)) return true;
+      if (normalized === 'research/research.md') return true;
+      if (normalized.startsWith('.opencode/specs/') || normalized.startsWith('specs/')) {
+        return normalized.includes(`/${specFolder}/`);
+      }
+      return !/^\d{3}[-_][a-z0-9._-]+\/.+/.test(normalized);
+    })
+    .slice(0, 20);
+}
+
+function sanitizeEntities(values, specFolder) {
+  if (!Array.isArray(values)) return [];
+  return values
+    .filter((entity) => entity && typeof entity === 'object')
+    .map((entity) => ({
+      name: String(entity.name ?? '').trim(),
+      kind: String(entity.kind ?? 'unknown').trim(),
+      path: String(entity.path ?? '').trim(),
+      source: String(entity.source ?? 'derived').trim(),
+    }))
+    .filter((entity) => entity.name && entity.kind && entity.path && entity.source)
+    .filter((entity) => {
+      const normalized = toPosix(entity.path);
+      if (normalized.startsWith('.opencode/specs/') || normalized.startsWith('specs/')) {
+        return normalized.includes(`/${specFolder}/`);
+      }
+      return true;
+    })
+    .slice(0, 24);
+}
+
+function normalizeManual(manual) {
+  const normalizeRefs = (values) => Array.isArray(values)
+    ? values
+      .filter((entry) => entry && typeof entry === 'object' && typeof entry.packet_id === 'string' && entry.packet_id.trim())
+      .map((entry) => ({
+        packet_id: entry.packet_id.trim(),
+        reason: typeof entry.reason === 'string' && entry.reason.trim() ? entry.reason.trim() : 'Imported relationship',
+        source: typeof entry.source === 'string' && entry.source.trim() ? entry.source.trim() : 'repair-graph-metadata',
+        ...(typeof entry.spec_folder === 'string' && entry.spec_folder.trim() ? { spec_folder: entry.spec_folder.trim() } : {}),
+        ...(typeof entry.title === 'string' && entry.title.trim() ? { title: entry.title.trim() } : {}),
+      }))
+    : [];
+  return {
+    depends_on: normalizeRefs(manual?.depends_on),
+    supersedes: normalizeRefs(manual?.supersedes),
+    related_to: normalizeRefs(manual?.related_to),
+  };
+}
+
+function currentSchemaIssues(metadata) {
+  const issues = [];
+  if (metadata?.schema_version !== 1) issues.push('schema_version');
+  for (const key of ['packet_id', 'spec_folder']) {
+    if (typeof metadata?.[key] !== 'string' || !metadata[key].trim()) issues.push(key);
+  }
+  if (!(typeof metadata?.parent_id === 'string' || metadata?.parent_id === null)) issues.push('parent_id');
+  if (!Array.isArray(metadata?.children_ids)) issues.push('children_ids');
+  if (!metadata?.manual || typeof metadata.manual !== 'object') issues.push('manual');
+  const derived = metadata?.derived;
+  if (!derived || typeof derived !== 'object') issues.push('derived');
+  for (const key of ['trigger_phrases', 'key_topics', 'key_files', 'entities', 'source_docs']) {
+    if (!Array.isArray(derived?.[key])) issues.push(`derived.${key}`);
+  }
+  for (const key of ['importance_tier', 'status', 'causal_summary', 'created_at', 'last_save_at']) {
+    if (typeof derived?.[key] !== 'string') issues.push(`derived.${key}`);
+  }
+  if (!VALID_IMPORTANCE_TIERS.has(derived?.importance_tier)) issues.push('derived.importance_tier.enum');
+  if (!isIso(derived?.created_at)) issues.push('derived.created_at.iso');
+  if (!isIso(derived?.last_save_at)) issues.push('derived.last_save_at.iso');
+  if (!(derived?.last_accessed_at === null || isIso(derived?.last_accessed_at))) issues.push('derived.last_accessed_at');
+  return issues;
+}
+
+function repairGraphMetadata(filePath, specsRoot, nowIso, scanFailedGraphReasons) {
+  const original = fs.readFileSync(filePath, 'utf8');
+  let existing = {};
+  let parseError = null;
+  try {
+    existing = JSON.parse(original);
+  } catch (error) {
+    parseError = error.message;
+  }
+
+  const folderPath = path.dirname(filePath);
+  const specFolder = specFolderForGraph(filePath, specsRoot);
+  const scanFailureReason = scanFailedGraphReasons.get(path.resolve(filePath)) ?? '';
+  const compactForV8 = scanFailureReason.includes('V-rule hard block: V8');
+  const hints = readDocHints(folderPath);
+  const derived = existing.derived && typeof existing.derived === 'object' ? existing.derived : {};
+  const issuesBefore = parseError ? ['json_parse'] : currentSchemaIssues(existing);
+
+  const existingTriggers = Array.isArray(derived.trigger_phrases) ? derived.trigger_phrases : [];
+  const existingTopics = Array.isArray(derived.key_topics) ? derived.key_topics : [];
+  const fallbackTopics = topicize(specFolder, hints.title, hints.description, derived.causal_summary, existing.title);
+  const keyFiles = compactForV8 ? hints.sourceDocs : sanitizeKeyFiles([
+    ...(Array.isArray(derived.key_files) ? derived.key_files : []),
+    ...hints.sourceDocs,
+  ], specFolder);
+  const sourceDocs = uniqueStrings([
+    ...(Array.isArray(derived.source_docs) ? derived.source_docs : []),
+    ...hints.sourceDocs,
+  ]);
+  const createdFallback = fs.statSync(filePath).mtime.toISOString();
+  const candidateSummary = compactForV8 ? 'Graph metadata for the current packet.' : derived.causal_summary
+    ?? existing.summary
+    ?? hints.description
+    ?? hints.title
+    ?? `Packet metadata for ${specFolder}.`;
+  const compactName = cleanPacketName(specFolder);
+
+  const repaired = {
+    schema_version: 1,
+    packet_id: compactForV8
+      ? specFolder
+      : (typeof existing.packet_id === 'string' && existing.packet_id.trim() ? existing.packet_id.trim() : specFolder),
+    spec_folder: specFolder,
+    parent_id: parentIdForSpecFolder(specFolder, specsRoot),
+    children_ids: childIdsForSpecFolder(folderPath, specsRoot),
+    ...(existing.migrated === true || existing.schema_version !== 1 ? { migrated: true, migration_source: 'legacy' } : {}),
+    manual: compactForV8 ? { depends_on: [], supersedes: [], related_to: [] } : normalizeManual(existing.manual),
+    derived: {
+      trigger_phrases: compactForV8 ? uniqueStrings([
+        compactName,
+        `${compactName} graph metadata`,
+      ], 12) : uniqueStrings([
+        ...existingTriggers,
+        ...hints.triggerPhrases,
+        specFolder,
+        ...fallbackTopics,
+      ], 12),
+      key_topics: compactForV8 ? topicize(compactName) : uniqueStrings([...existingTopics, ...fallbackTopics], 12),
+      importance_tier: normalizeImportanceTier(derived.importance_tier ?? hints.importanceTier),
+      status: normalizeStatus(derived.status ?? existing.status ?? hints.status),
+      key_files: keyFiles,
+      entities: compactForV8 ? [] : sanitizeEntities(derived.entities, specFolder),
+      causal_summary: String(candidateSummary).trim(),
+      created_at: isoOr(derived.created_at, createdFallback),
+      last_save_at: isoOr(derived.last_save_at ?? existing.updated_at, nowIso),
+      ...(typeof derived.save_lineage === 'string' && ['description_only', 'graph_only', 'same_pass'].includes(derived.save_lineage)
+        ? { save_lineage: derived.save_lineage }
+        : {}),
+      last_accessed_at: derived.last_accessed_at === null || isIso(derived.last_accessed_at) ? derived.last_accessed_at : null,
+      source_docs: sourceDocs,
+    },
+  };
+
+  const repairedIssues = currentSchemaIssues(repaired);
+  const next = stableJson(repaired);
+  const fixes = [];
+  if (parseError) fixes.push('parse_error_rewritten');
+  if (issuesBefore.includes('schema_version')) fixes.push('schema_v1_upgrade');
+  if (derived.importance_tier === 'high') fixes.push('importance_high_to_important');
+  if (issuesBefore.some((issue) => issue.startsWith('derived.') || ['packet_id', 'spec_folder', 'parent_id', 'children_ids', 'manual'].includes(issue))) {
+    fixes.push('required_fields_normalized');
+  }
+  if (scanFailureReason && fixes.length === 0) {
+    fixes.push('scan_reported_graph_metadata_normalized');
+  }
+  if (compactForV8) fixes.push('v8_foreign_reference_compaction');
+  const shouldRepair = fixes.length > 0;
+  const changed = shouldRepair && next !== original;
+
+  return {
+    filePath,
+    changed,
+    content: next,
+    fixes,
+    issuesBefore,
+    issuesAfter: repairedIssues,
+  };
+}
+
+function extractScanText(scanLog) {
+  if (!fs.existsSync(scanLog)) return null;
+  const raw = fs.readFileSync(scanLog, 'utf8');
+  const match = raw.match(/"text":"([\s\S]*)"\}\],"isError"/);
+  if (!match) return raw;
+  return JSON.parse(`"${match[1]}"`);
+}
+
+function extractLineagePredecessorIds(scanLog) {
+  const text = extractScanText(scanLog);
+  if (!text) return [];
+  let parsed;
+  try {
+    parsed = JSON.parse(text);
+  } catch {
+    return [];
+  }
+  const ids = new Set();
+  for (const file of parsed?.data?.files ?? []) {
+    const detail = file.errorDetail ?? '';
+    const match = detail.match(/E_LINEAGE: predecessor (\d+) logical identity/);
+    if (match) ids.add(Number(match[1]));
+  }
+  return [...ids].sort((a, b) => a - b);
+}
+
+function extractFailedGraphMetadataReasons(scanLog) {
+  const text = extractScanText(scanLog);
+  if (!text) return new Set();
+  let parsed;
+  try {
+    parsed = JSON.parse(text);
+  } catch {
+    return new Set();
+  }
+  const paths = new Map();
+  for (const file of parsed?.data?.files ?? []) {
+    if (path.basename(file.filePath ?? '') !== GRAPH_FILENAME) continue;
+    if (file.status !== 'failed' && file.status !== 'rejected') continue;
+    paths.set(path.resolve(file.filePath), file.errorDetail ?? file.rejectionReason ?? 'scan reported graph metadata failure');
+  }
+  return paths;
+}
+
+function sqliteJson(dbPath, sql) {
+  const output = execFileSync('sqlite3', ['-json', dbPath, sql], { encoding: 'utf8' }).trim();
+  return output ? JSON.parse(output) : [];
+}
+
+function sqliteExec(dbPath, sql) {
+  execFileSync('sqlite3', [dbPath, sql], { stdio: 'pipe' });
+}
+
+function sqlString(value) {
+  if (value === null || value === undefined) return 'NULL';
+  return `'${String(value).replace(/'/g, "''")}'`;
+}
+
+function scopePrefix(row) {
+  const tuple = [
+    ['tenant', row.tenant_id],
+    ['user', row.user_id],
+    ['agent', row.agent_id],
+    ['session', row.session_id],
+  ].filter((entry) => typeof entry[1] === 'string' && entry[1].trim().length > 0);
+  if (tuple.length === 0) return null;
+  return `scope-sha256:${crypto.createHash('sha256').update(JSON.stringify(tuple)).digest('hex').slice(0, 24)}`;
+}
+
+function buildLogicalKey(row) {
+  const canonicalPath = String(row.canonical_file_path || row.file_path).replace(/\\/g, '/');
+  const anchorId = typeof row.anchor_id === 'string' && row.anchor_id.trim() ? row.anchor_id.trim() : '_';
+  const scope = scopePrefix(row);
+  if ([row.spec_folder, canonicalPath, anchorId].some((value) => String(value).includes('::'))) {
+    const payload = JSON.stringify({
+      version: 2,
+      specFolder: row.spec_folder,
+      scopePrefix: scope,
+      canonicalPath,
+      anchorId,
+    });
+    return `logical-sha256:${crypto.createHash('sha256').update(payload).digest('hex')}`;
+  }
+  return scope
+    ? `${row.spec_folder}::${scope}::${canonicalPath}::${anchorId}`
+    : `${row.spec_folder}::${canonicalPath}::${anchorId}`;
+}
+
+function repairLineage(dbPath, scanLog, dryRun, backupDir) {
+  const ids = extractLineagePredecessorIds(scanLog);
+  const summary = { candidates: ids.length, changed: 0, skipped: 0, failures: [] };
+  if (ids.length === 0 || !fs.existsSync(dbPath)) return summary;
+
+  if (!dryRun) {
+    for (const suffix of ['', '-wal', '-shm']) {
+      const source = `${dbPath}${suffix}`;
+      if (fs.existsSync(source)) {
+        fs.copyFileSync(source, path.join(backupDir, path.basename(source)));
+      }
+    }
+  }
+
+  for (const id of ids) {
+    try {
+      const rows = sqliteJson(dbPath, `
+        SELECT id, spec_folder, file_path, canonical_file_path, anchor_id,
+               tenant_id, user_id, agent_id, session_id, updated_at
+        FROM memory_index
+        WHERE id = ${id};
+      `);
+      const lineageRows = sqliteJson(dbPath, `
+        SELECT memory_id, logical_key, version_number, root_memory_id, predecessor_memory_id
+        FROM memory_lineage
+        WHERE memory_id = ${id};
+      `);
+      if (rows.length !== 1 || lineageRows.length !== 1) {
+        summary.skipped += 1;
+        continue;
+      }
+      const row = rows[0];
+      const lineage = lineageRows[0];
+      if (lineage.version_number !== 1 || lineage.predecessor_memory_id !== null) {
+        summary.skipped += 1;
+        continue;
+      }
+      const nextKey = buildLogicalKey(row);
+      if (lineage.logical_key === nextKey && lineage.root_memory_id === id) {
+        summary.skipped += 1;
+        continue;
+      }
+      summary.changed += 1;
+      if (dryRun) continue;
+      const updatedAt = row.updated_at || new Date().toISOString();
+      sqliteExec(dbPath, `
+        BEGIN;
+        DELETE FROM active_memory_projection WHERE logical_key = ${sqlString(lineage.logical_key)};
+        DELETE FROM active_memory_projection WHERE active_memory_id = ${id} AND logical_key != ${sqlString(nextKey)};
+        UPDATE memory_lineage
+        SET logical_key = ${sqlString(nextKey)}, root_memory_id = ${id}
+        WHERE memory_id = ${id};
+        INSERT INTO active_memory_projection (logical_key, root_memory_id, active_memory_id, updated_at)
+        VALUES (${sqlString(nextKey)}, ${id}, ${id}, ${sqlString(updatedAt)})
+        ON CONFLICT(logical_key) DO UPDATE SET
+          root_memory_id = excluded.root_memory_id,
+          active_memory_id = excluded.active_memory_id,
+          updated_at = excluded.updated_at;
+        COMMIT;
+      `);
+    } catch (error) {
+      summary.failures.push({ id, error: error.message });
+    }
+  }
+  return summary;
+}
+
+function summarizeGraphRepairs(repairs) {
+  const counts = {};
+  for (const repair of repairs) {
+    for (const fix of repair.fixes) counts[fix] = (counts[fix] ?? 0) + 1;
+  }
+  return counts;
+}
+
+function run() {
+  const args = parseArgs(process.argv.slice(2));
+  const root = repoRoot();
+  const specsRoot = path.resolve(root, args.root);
+  const nowIso = new Date().toISOString();
+  const backupDir = path.join(os.tmpdir(), `repair-graph-metadata-${nowIso.replace(/[:.]/g, '-')}`);
+  const graphFiles = collectGraphFiles(specsRoot);
+  const scanFailedGraphReasons = extractFailedGraphMetadataReasons(args.scanLog);
+  const repairs = graphFiles.map((file) => repairGraphMetadata(file, specsRoot, nowIso, scanFailedGraphReasons));
+  const changedRepairs = repairs.filter((repair) => repair.changed);
+  const failedRepairs = repairs.filter((repair) => repair.issuesAfter.length > 0);
+
+  if (!args.dryRun && (changedRepairs.length > 0 || args.repairLineage)) {
+    fs.mkdirSync(backupDir, { recursive: true });
+  }
+  if (!args.dryRun) {
+    for (const repair of changedRepairs) {
+      const backupPath = path.join(backupDir, path.relative(root, repair.filePath));
+      fs.mkdirSync(path.dirname(backupPath), { recursive: true });
+      fs.copyFileSync(repair.filePath, backupPath);
+      fs.writeFileSync(repair.filePath, repair.content);
+    }
+  }
+
+  const lineage = args.repairLineage
+    ? repairLineage(path.resolve(root, DB_PATH), args.scanLog, args.dryRun, backupDir)
+    : { candidates: 0, changed: 0, skipped: 0, failures: [] };
+
+  const report = {
+    dryRun: args.dryRun,
+    root: specsRoot,
+    backupDir: args.dryRun ? null : backupDir,
+    graphMetadata: {
+      scanned: graphFiles.length,
+      changed: changedRepairs.length,
+      failedValidationAfterRepair: failedRepairs.length,
+      scanFailedGraphMetadataFiles: scanFailedGraphReasons.size,
+      fixes: summarizeGraphRepairs(changedRepairs),
+      failures: failedRepairs.slice(0, 20).map((repair) => ({
+        filePath: path.relative(root, repair.filePath),
+        issuesAfter: repair.issuesAfter,
+      })),
+      changedFiles: changedRepairs.map((repair) => path.relative(root, repair.filePath)),
+    },
+    lineage,
+    beforeAfter: {
+      graphFilesNeedingRepairBefore: repairs.filter((repair) => repair.issuesBefore.length > 0 || repair.fixes.length > 0).length,
+      graphFilesNeedingRepairAfter: failedRepairs.length,
+      lineageRowsNeedingRepairBefore: lineage.candidates,
+      lineageRowsNeedingRepairAfter: lineage.failures.length,
+    },
+  };
+
+  process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+  if (failedRepairs.length > 0 || lineage.failures.length > 0) {
+    process.exitCode = 2;
+  }
+}
+
+run();

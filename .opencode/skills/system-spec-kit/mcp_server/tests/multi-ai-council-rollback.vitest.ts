@@ -11,14 +11,14 @@ const WORKSPACE_ROOT = resolve(TEST_DIR, '../../../../../');
 const require = createRequire(import.meta.url);
 const rollback = require(join(
   WORKSPACE_ROOT,
-  '.opencode/skills/deep-ai-council/scripts/lib/rollback.js',
+  '.opencode/skills/sk-ai-council/scripts/lib/rollback.js',
 )) as {
   moveRoundToFailed: (packet: string, round: string, options?: Record<string, unknown>) => { moved: string[] };
   markSuperseded: (statePath: string, options?: Record<string, unknown>) => { superseded: string[] };
 };
 const audit = require(join(
   WORKSPACE_ROOT,
-  '.opencode/skills/deep-ai-council/scripts/lib/audit-trail.js',
+  '.opencode/skills/sk-ai-council/scripts/lib/audit-trail.js',
 )) as {
   appendArtifactWrittenEvent: (statePath: string, event: Record<string, unknown>) => string;
   computeChecksum: (content: string) => string;
@@ -36,7 +36,7 @@ afterEach(() => {
   while (tempDirs.length) rmSync(tempDirs.pop()!, { recursive: true, force: true });
 });
 
-describe('deep-ai-council round rollback', () => {
+describe('ai-council round rollback', () => {
   it('moves round artifacts to failed/ and appends rollback supersede markers', () => {
     const packet = makePacket();
     const seatDir = join(packet, 'ai-council/seats/round-001');

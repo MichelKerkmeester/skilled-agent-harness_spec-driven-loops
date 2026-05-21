@@ -13,7 +13,7 @@
         "context": "autonomous loop peer with shared externalized-state workflow"
       },
       {
-        "target": "deep-ai-council",
+        "target": "sk-ai-council",
         "weight": 0.4,
         "context": "planning council can request evidence-first research vantage"
       }
@@ -27,7 +27,7 @@
     ],
     "related_to": [
       "deep-review",
-      "deep-ai-council",
+      "sk-ai-council",
       "mcp-coco-index"
     ]
   },

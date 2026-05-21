@@ -1,0 +1,43 @@
+{
+  "name": "sk-ai-small-model",
+  "description": "Sentinel for small-model optimization patterns covering SWE-1.6 + DeepSeek-v4-pro + Kimi-k2.6 + Qwen3.6 + GLM-5.1 across cli-devin and cli-opencode (DeepSeek API + opencode-go provider) dispatch paths. Points at real patterns in cli-devin/references/ and cli-opencode/references/ while giving the skill advisor one discoverable routing anchor for small-model dispatch.",
+  "version": "0.2.0",
+  "importance_tier": "important",
+  "keywords": [
+    "sk-ai-small-model",
+    "small-model",
+    "small model",
+    "small-model dispatch",
+    "swe-1.6",
+    "swe 1.6",
+    "deepseek-v4",
+    "deepseek-v4-pro",
+    "deepseek-api",
+    "kimi-k2.6",
+    "qwen3.6",
+    "glm-5.1",
+    "opencode-go",
+    "cognition free",
+    "cognition pro",
+    "haiku",
+    "claude haiku",
+    "gemini flash",
+    "context budget",
+    "output verification",
+    "model profile",
+    "structured permissions",
+    "tool scoring",
+    "small-model optimization"
+  ],
+  "trigger_examples": [
+    "dispatch SWE-1.6 to read smallcode-master/PLAN.md",
+    "use cli-devin for SWE-1.6 code review with output verification",
+    "what is the small-model output verification pattern",
+    "route Kimi-k2.6 through cli-opencode opencode-go with a context budget",
+    "dispatch DeepSeek-v4-pro through DeepSeek API direct",
+    "run GLM-5.1 via cli-devin Cognition Pro with structured permissions",
+    "check structured permissions before DeepSeek-v4-pro dispatch"
+  ],
+  "lastUpdated": "2026-05-18T00:00:00Z",
+  "pattern_index": ".opencode/skills/sk-ai-small-model/references/pattern-index.md"
+}

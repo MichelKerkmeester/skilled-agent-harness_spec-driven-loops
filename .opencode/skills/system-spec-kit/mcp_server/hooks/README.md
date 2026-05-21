@@ -52,14 +52,14 @@ Current state:
 ╰──────────────────────────────────────────────────────────────────╯
 
 ┌────────────────┐      ┌────────────────────┐      ┌────────────────────┐
-│ Claude         │ ───▶ │ runtime hook files │ ───▶ │ startup or prompt  │
+│ Claude         │ ───▶ │ runtime hook files │ ───▶ │ startup or prompt   │
 │ Gemini         │      │ per runtime        │      │ context transport  │
 │ Codex          │      └─────────┬──────────┘      └─────────┬──────────┘
 └────────────────┘                │                           │
                                   ▼                           ▼
                          ┌────────────────────┐      ┌────────────────────┐
                          │ native advisor     │      │ managed context    │
-                         │ and startup brief  │      │ stdout, file, hook │
+                         │ and startup brief  │      │ stdout, file, hook  │
                          └─────────┬──────────┘      └─────────┬──────────┘
                                    │                           │
                                    ▼                           ▼
@@ -134,7 +134,7 @@ Main flow:
                   │
                   ▼
 ┌──────────────────────────────────────────┐
-│ Runtime-specific hook script runs        │
+│ Runtime-specific hook script runs         │
 └──────────────────────────────────────────┘
                   │
                   ▼

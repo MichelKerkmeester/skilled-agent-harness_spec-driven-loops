@@ -11,7 +11,7 @@ const WORKSPACE_ROOT = resolve(TEST_DIR, '../../../../../');
 
 const REPLAY_HELPER = join(
   WORKSPACE_ROOT,
-  '.opencode/skills/deep-ai-council/scripts/replay-graph-from-artifacts.cjs',
+  '.opencode/skills/sk-ai-council/scripts/replay-graph-from-artifacts.cjs',
 );
 const TEST_COUNCIL_MATRIX = join(
   WORKSPACE_ROOT,
@@ -103,7 +103,7 @@ describe('council helper script smoke coverage', () => {
     const body = readFileSync(PRE_PUSH_HOOK, 'utf8');
     // The hook must (a) detect council-relevant diffs, (b) invoke the matrix runner.
     expect(body, 'inspects git diff for the pushed range').toMatch(/git diff/);
-    expect(body, 'matches council-touching paths').toMatch(/deep-ai-council|council-graph|101-deep-multi-ai-council-skill/);
+    expect(body, 'matches council-touching paths').toMatch(/ai-council|council-graph|101-deep-multi-ai-council-skill/);
     expect(body, 'invokes the matrix runner').toContain('test-council-matrix.sh');
   });
 });

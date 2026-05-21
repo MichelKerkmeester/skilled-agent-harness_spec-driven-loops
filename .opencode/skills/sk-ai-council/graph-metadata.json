@@ -1,0 +1,118 @@
+{
+  "schema_version": 2,
+  "skill_id": "sk-ai-council",
+  "family": "sk-util",
+  "category": "utility",
+  "edges": {
+    "depends_on": [
+      {
+        "target": "system-spec-kit",
+        "weight": 0.7,
+        "context": "uses spec-folder packet context and memory-save workflows for council artifact handoff"
+      }
+    ],
+    "enhances": [],
+    "siblings": [
+      {
+        "target": "deep-research",
+        "weight": 0.4,
+        "context": "planning council can request evidence-first research vantage"
+      }
+    ],
+    "conflicts_with": [],
+    "prerequisite_for": []
+  },
+  "manual": {
+    "depends_on": [
+      "system-spec-kit"
+    ],
+    "related_to": [
+      "deep-research",
+      "deep-agent-improvement",
+      "sk-prompt"
+    ]
+  },
+  "domains": [
+    "planning",
+    "deliberation",
+    "ai-council",
+    "convergence",
+    "artifact-persistence",
+    "derived-graph"
+  ],
+  "intent_signals": [
+    "deep ai council",
+    "ai council",
+    "planning council",
+    "council deliberation",
+    "persist council artifacts",
+    "ai-council artifacts",
+    "council graph",
+    "derived council graph"
+  ],
+  "derived": {
+    "trigger_phrases": [
+      "sk-ai-council",
+      "deep ai council",
+      "ai council deliberation",
+      "multi-seat planning council",
+      "multi-seat strategy deliberation",
+      "council decision comparison",
+      "ai council planning artifacts",
+      "council convergence check",
+      "council convergence",
+      "ai-council artifact persistence",
+      "council graph support"
+    ],
+    "key_topics": [
+      "seat-perspectives",
+      "decision-matrix",
+      "council-state-artifacts",
+      "strategy-deliberation",
+      "planning-convergence",
+      "append-only state",
+      "council-artifact-persistence",
+      "derived-council-graph"
+    ],
+    "intent_signals": [
+      "multi-seat planning",
+      "deliberate options",
+      "compare decisions",
+      "persist council artifacts",
+      "check convergence"
+    ],
+    "key_files": [
+      ".opencode/skills/sk-ai-council/SKILL.md",
+      ".opencode/skills/sk-ai-council/references/output_schema.md",
+      ".opencode/skills/sk-ai-council/references/state_format.md",
+      ".opencode/skills/sk-ai-council/references/graph_support.md",
+      ".opencode/skills/sk-ai-council/scripts/persist-artifacts.cjs",
+      ".opencode/agents/ai-council.md"
+    ],
+    "entities": [
+      {
+        "name": "sk-ai-council",
+        "kind": "skill",
+        "path": ".opencode/skills/sk-ai-council/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "@sk-ai-council",
+        "kind": "agent",
+        "path": ".opencode/agents/ai-council.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Deep AI Council owns multi-seat planning deliberation, packet-local ai-council artifact persistence, lightweight convergence checks, derived council graph guidance, and council recovery/audit guidance. It matters because council behavior can evolve independently from system-spec-kit while preserving scoped-write packet artifacts as source-of-truth.",
+    "source_docs": [
+      "SKILL.md",
+      "references/output_schema.md",
+      "references/state_format.md",
+      "references/graph_support.md",
+      "references/folder_layout.md",
+      "references/command_wiring.md"
+    ],
+    "created_at": "2026-05-10T07:59:08Z",
+    "last_updated_at": "2026-05-10T12:40:00Z"
+  }
+}

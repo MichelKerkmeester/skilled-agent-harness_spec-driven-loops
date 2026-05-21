@@ -7,9 +7,9 @@
   "chat.includeReferencedInstructions": true,
   "chat.includeApplyingInstructions": true,
   "chat.agentSkillsLocations": [
-    ".opencode/skill"
+    ".opencode/skills"
   ],
   "chat.agentFilesLocations": [
-    ".opencode/agent"
+    ".opencode/agents"
   ]
 }

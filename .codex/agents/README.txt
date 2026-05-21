@@ -18,5 +18,5 @@ Agents:
   orchestrate   — Multi-agent coordination
   review        — Code review (read-only)
   speckit       — Spec folder documentation
-  deep-ai-council   — Multi-strategy planning
+  ai-council   — Multi-strategy planning
   prompt-improver — Prompt engineering

@@ -2,7 +2,7 @@
   "schema_version": 2,
   "skill_id": "system-rerank-sidecar",
   "family": "system",
-  "category": "skill",
+  "category": "system",
   "edges": {
     "depends_on": [],
     "enhances": [

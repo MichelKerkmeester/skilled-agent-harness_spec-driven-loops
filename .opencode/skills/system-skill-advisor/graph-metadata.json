@@ -98,9 +98,9 @@
         "context": "routes opencode delegation requests"
       },
       {
-        "target": "deep-ai-council",
+        "target": "sk-ai-council",
         "weight": 0.7,
-        "context": "routes deep-ai-council delegation requests",
+        "context": "routes sk-ai-council delegation requests",
         "auto_added_at": "2026-05-15T14:10:44.259Z",
         "auto_added_reason": "family-inference:0.45 + asset-shape:0.30 + sibling-transitivity:0.15"
       }

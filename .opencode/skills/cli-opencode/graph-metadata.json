@@ -7,7 +7,7 @@
     "depends_on": [],
     "enhances": [
       {
-        "target": "sk-small-model",
+        "target": "sk-ai-small-model",
         "weight": 0.5,
         "context": "small-model patterns sentinel"
       }

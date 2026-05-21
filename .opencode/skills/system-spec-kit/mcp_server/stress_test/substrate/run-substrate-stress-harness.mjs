@@ -672,6 +672,11 @@ async function main() {
         cwd: REPO_ROOT,
         env: buildDaemonEnv({
           SPECKIT_RETRY_ENABLED: 'false',
+          // Test isolation: spawn a dedicated child daemon instead of bridging to
+          // a long-running operator daemon. Also avoids macOS sun_path overflow
+          // when the default bridge socket path exceeds 104 chars (the default
+          // path under mcp_server/database/ is ~134 chars from this repo root).
+          SPECKIT_LAUNCHER_BRIDGE_DISABLED: '1',
         }),
       },
       stderrLog: options.stderrLog ? MEMORY_DAEMON_STDERR_LOG : null,

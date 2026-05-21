@@ -1,6 +1,10 @@
 {
   "derived": {
-    "last_active_child_id": "051-cli-opencode-providers",
-    "last_active_at": "2026-04-29T12:03:53.724Z"
-  }
+    "last_active_child_id": "999-test-sandbox",
+    "last_active_at": "2026-05-19T17:44:23.440Z",
+    "last_save_at": "2026-05-19T17:44:23.440Z"
+  },
+  "children_ids": [
+    "999-test-sandbox"
+  ]
 }

@@ -12,7 +12,13 @@
         "context": "semantic search for spec context"
       }
     ],
-    "siblings": [],
+    "siblings": [
+      {
+        "target": "system-rerank-sidecar",
+        "weight": 0.4,
+        "context": "mirrors CocoIndex CrossEncoder reranker semantics behind a shared sidecar"
+      }
+    ],
     "conflicts_with": [],
     "prerequisite_for": [
       {

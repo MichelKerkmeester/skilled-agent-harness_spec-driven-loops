@@ -29,7 +29,7 @@ const CATEGORY_HINTS: Readonly<Record<string, readonly string[]>> = {
   'mcp-coco-index': ['semantic search', 'vector search', 'grep not enough', 'find code', 'where logic'],
   'deep-research': ['deep research', 'research loop', 'overnight research', 'delta record', 'state log', 'lineage'],
   'deep-review': ['deep review', 'review loop', 'release readiness', 'canonical jsonl', 'convergence tracked', 'iterative review', 'iterative review loop', 'spec folder audit', 'iterative audit', 'multi-pass review', 'review iteration', 'convergence detection', 'review packet', 'spec folder review'],
-  'deep-ai-council': ['deep ai council', 'ai council', 'planning council', 'council deliberation', 'multi-seat planning', 'ai-council artifacts', 'persist council artifacts', 'multi-ai-council'],
+  'sk-ai-council': ['deep ai council', 'ai council', 'planning council', 'council deliberation', 'multi-seat planning', 'ai-council artifacts', 'persist council artifacts', 'multi-ai-council'],
   'mcp-chrome-devtools': ['chrome devtools', 'har', 'console errors', 'staging'],
   'sk-prompt': ['better prompt', 'cleaner prompt', 'prompt package', 'system prompt', 'prompt variant'],
   'sk-git': ['git worktree', 'experiment branch', 'clean branch'],

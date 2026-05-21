@@ -1,0 +1,12 @@
+{"type":"iter-start","iter":1,"dimension":"correctness","startedAt":"2026-05-21T07:47:42Z","executor":"cli-devin","model":"swe-1.6"}
+{"type":"iter-start","iter":2,"dimension":"traceability","startedAt":"2026-05-21T07:50:22Z","executor":"cli-devin","model":"swe-1.6"}
+{"type":"iter-complete","iter":1,"dimension":"correctness","completedAt":"2026-05-21T07:50:22Z","newFindingsRatio":1.0,"P0":0,"P1":0,"P2":0,"stop_recommendation":"converged"}
+{"type":"iter-complete","iter":2,"dimension":"traceability","completedAt":"2026-05-21T07:51:18Z"}
+{"type":"iter-complete","iter":4,"dimension":"maintainability","completedAt":"2026-05-21T07:52:37Z"}
+{"type":"iter-complete","iter":3,"dimension":"security","completedAt":"2026-05-21T07:52:54Z"}
+{"type":"iter-complete","iter":5,"dimension":"adversarial","completedAt":"2026-05-21T07:53:04Z"}
+{"type":"iter-complete","iter":6,"dimension":"h5-re-verify","completedAt":"2026-05-21T07:55:54Z"}
+{"type":"iter-complete","iter":8,"dimension":"synthesis","completedAt":"2026-05-21T07:56:23Z"}
+{"type":"iter-complete","iter":7,"dimension":"adversarial-r2","completedAt":"2026-05-21T07:56:33Z"}
+{"type":"iter-complete","iter":9,"dimension":"final-synthesis","completedAt":"2026-05-21T07:58:39Z"}
+{"type":"converged","finalIter":9,"verdict":"PASS","hasAdvisories":true,"findings":{"P0":0,"P1":0,"P2_in_scope":1,"P2_out_of_scope":4,"P2_resolved":2},"convergedAt":"2026-05-21T08:00:28Z","reason":"newFindingsRatio<0.15 × 3 consecutive iters (6, 7, 9)","capCeiling":109,"itersExecuted":9}

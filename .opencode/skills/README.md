@@ -57,7 +57,7 @@ Adding a skill is intentional. Every new skill goes through `sk-doc`'s scaffoldi
 | CLI orchestrator skills | 5 | cli-claude-code, cli-codex, cli-devin, cli-gemini, cli-opencode |
 | MCP integration skills | 3 | mcp-chrome-devtools, mcp-coco-index, mcp-code-mode |
 | Code workflow and review skills | 2 | sk-code, sk-code-review |
-| Documentation, research, review, and improvement skills | 6 | deep-agent-improvement, deep-ai-council, deep-research, deep-review, sk-doc, sk-prompt |
+| Documentation, research, review, and improvement skills | 6 | deep-agent-improvement, sk-ai-council, deep-research, deep-review, sk-doc, sk-prompt |
 | Git and system skills | 4 | sk-git, system-code-graph, system-skill-advisor, system-spec-kit |
 | Skills with local scripts/ | 9 | See Section 4 for the current script-bearing folders |
 | Native advisor tools | 8 | `advisor_*` plus `skill_graph_*` tools exposed by `mk_skill_advisor` |
@@ -171,7 +171,7 @@ The skill system covers four distinct workflow domains.
 | Skill | Version | Description |
 | --- | --- | --- |
 | `deep-agent-improvement` | 1.0.0.0 | Evaluator-first agent improvement with 5-dimension integration-aware scoring, dynamic profiling, deterministic benchmarks, and guarded promotion |
-| `deep-ai-council` | 1.0.0.0 | Multi-seat planning council for complex scoped-write decisions and convergence artifacts |
+| `sk-ai-council` | 1.0.0.0 | Multi-seat planning council for complex scoped-write decisions and convergence artifacts |
 | `deep-research` | 1.2.0 | Autonomous research loop with iterative investigation, externalized state, and convergence detection |
 | `deep-review` | 1.0.0 | Autonomous iterative code review with severity-weighted findings, dimension coverage, convergence detection, and release readiness verdicts |
 | `sk-doc` | 1.3.0.0 | Markdown quality enforcement, component templates, validation scripts, and DQI scoring |
@@ -204,7 +204,7 @@ The skill system covers four distinct workflow domains.
 ├── mcp-coco-index/         # Semantic code search via vector embeddings
 ├── mcp-code-mode/          # MCP orchestration hub (TypeScript)
 ├── deep-agent-improvement/       # Evaluator-first agent improvement loop
-├── deep-ai-council/        # Multi-seat planning council
+├── sk-ai-council/        # Multi-seat planning council
 ├── sk-code/                # Multi-stack coding standards, references, assets
 ├── sk-code-review/         # Findings-first code review baseline
 ├── deep-research/       # Autonomous deep research loop
@@ -252,7 +252,7 @@ For the full system-spec-kit script inventory, see `system-spec-kit/scripts/scri
 | `mcp-coco-index` | Yes | No | No |
 | `mcp-code-mode` | Yes | Yes | Yes |
 | `deep-agent-improvement` | Yes | No | Yes |
-| `deep-ai-council` | Yes | No | Yes |
+| `sk-ai-council` | Yes | No | Yes |
 | `sk-code` | Varies | Varies | Varies |
 | `sk-code-review` | Varies | Varies | Varies |
 | `deep-research` | Yes | No | Yes |

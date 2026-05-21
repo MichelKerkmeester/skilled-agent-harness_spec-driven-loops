@@ -132,16 +132,14 @@ describe('handleMemoryHealth Edge Cases (T007b)', () => {
     );
   });
 
-  it('T007b-H9: checkDatabaseUpdated failures return MCP error response with requestId', async () => {
-    vi.spyOn(core, 'checkDatabaseUpdated').mockRejectedValue(new Error('marker read failed'));
+  it('T007b-H9: cold runtime health does not force database refresh', async () => {
+    const refreshSpy = vi.spyOn(core, 'checkDatabaseUpdated').mockRejectedValue(new Error('marker read failed'));
 
     const result = await handler.handleMemoryHealth({});
     const parsed = parseResponse(result);
-    const details = getDetails(parsed);
 
-    expect(result.isError).toBe(true);
-    expect(getErrorMessage(parsed)).toMatch(/Database refresh failed before diagnostics completed/);
-    expect(parsed.data.code).toBe('E021');
-    expect(typeof details?.requestId).toBe('string');
+    expect(result.isError).toBe(false);
+    expect(parsed.data.runtime_initialized).toBe(false);
+    expect(refreshSpy).not.toHaveBeenCalled();
   });
 });

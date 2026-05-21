@@ -638,7 +638,6 @@ The indexed-continuity store converts text to numerical embeddings for vector se
 | `OPENAI_API_KEY`     | No          | OpenAI cloud embeddings (opt-in)                     |
 | `OLLAMA_EMBEDDINGS_MODEL` | No     | Override Ollama model (default: first pulled in ADR-013 priority order) |
 | `HF_EMBEDDINGS_MODEL` | No         | Override hf-local model (default: `nomic-ai/nomic-embed-text-v1.5`) |
-| `MEMORY_AUTO_MIGRATE_HF_TO_LLAMA` | No | Set to `false` to disable 018 auto-migration on first startup |
 | `SPEC_KIT_DB_DIR` / `SPECKIT_DB_DIR` | No | Preferred database-directory override; runtime derives the sqlite filename from the active embedding profile |
 | `MEMORY_DB_PATH`     | No          | Explicit file override for the active SQLite database path |
 | `SPEC_KIT_LOG_LEVEL` | No          | Log verbosity: `debug`, `info`, `warn`, `error`      |

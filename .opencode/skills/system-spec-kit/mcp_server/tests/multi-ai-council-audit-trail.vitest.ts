@@ -11,14 +11,14 @@ const WORKSPACE_ROOT = resolve(TEST_DIR, '../../../../../');
 const require = createRequire(import.meta.url);
 const audit = require(join(
   WORKSPACE_ROOT,
-  '.opencode/skills/deep-ai-council/scripts/lib/audit-trail.js',
+  '.opencode/skills/sk-ai-council/scripts/lib/audit-trail.js',
 )) as {
   computeChecksum: (content: string) => string;
   appendArtifactWrittenEvent: (statePath: string, event: Record<string, unknown>) => string;
 };
 const helper = require(join(
   WORKSPACE_ROOT,
-  '.opencode/skills/deep-ai-council/scripts/persist-artifacts.cjs',
+  '.opencode/skills/sk-ai-council/scripts/persist-artifacts.cjs',
 )) as {
   parseStateLog: (jsonl: string) => Array<Record<string, unknown>>;
 };
@@ -35,7 +35,7 @@ afterEach(() => {
   while (tempDirs.length) rmSync(tempDirs.pop()!, { recursive: true, force: true });
 });
 
-describe('deep-ai-council audit trail v1.2', () => {
+describe('ai-council audit trail v1.2', () => {
   it('writes artifact_written events with checksum and v1 reader tolerance', () => {
     const root = makeDir();
     const statePath = join(root, 'ai-council-state.jsonl');

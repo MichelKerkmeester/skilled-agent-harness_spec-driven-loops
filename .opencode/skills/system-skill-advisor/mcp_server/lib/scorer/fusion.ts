@@ -229,7 +229,7 @@ function readOnlyRouteAllowed(promptLower: string, skillId: string): boolean {
   if (skillId === 'sk-deep-research' && /\b(deep-loop prompts|ordinary file-write prompts|research cycle|same corpus)\b/.test(promptLower)) {
     return true;
   }
-  if (skillId === 'deep-ai-council' && /\b(ai council|planning council|council deliberation|council artifacts|multi-seat planning)\b/.test(promptLower)) {
+  if (skillId === 'sk-ai-council' && /\b(ai council|planning council|council deliberation|council artifacts|multi-seat planning)\b/.test(promptLower)) {
     return true;
   }
   if (skillId === 'mcp-chrome-devtools' && /\b(\.codex\/agents|state log|predictions schema|current labels|gate-3-classifier\.ts)\b/.test(promptLower)) {

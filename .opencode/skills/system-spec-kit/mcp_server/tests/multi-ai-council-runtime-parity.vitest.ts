@@ -8,9 +8,9 @@ const TEST_DIR = dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = resolve(TEST_DIR, '../../../../../');
 
 const markdownMirrors = [
-  '.opencode/agents/deep-ai-council.md',
-  '.claude/agents/deep-ai-council.md',
-  '.gemini/agents/deep-ai-council.md',
+  '.opencode/agents/ai-council.md',
+  '.claude/agents/ai-council.md',
+  '.gemini/agents/ai-council.md',
 ];
 
 function read(path: string): string {
@@ -30,7 +30,7 @@ function normalizeProse(text: string): string {
   return text.replace(/\\"/g, '"').replace(/\\'/g, "'").replace(/\s+/g, ' ').trim();
 }
 
-describe('deep-ai-council runtime mirror parity', () => {
+describe('ai-council runtime mirror parity', () => {
   it('keeps markdown mirror permission YAML byte-equivalent', () => {
     const canonical = frontmatter(read(markdownMirrors[0]));
     // OpenCode permission schema accepts `allow` | `ask` | `deny` strings or
@@ -43,14 +43,14 @@ describe('deep-ai-council runtime mirror parity', () => {
     expect(canonical).toContain('patch: deny');
 
     // Gemini uses the OpenCode frontmatter schema verbatim — full byte-equivalence required.
-    expect(frontmatter(read('.gemini/agents/deep-ai-council.md')), '.gemini').toBe(canonical);
+    expect(frontmatter(read('.gemini/agents/ai-council.md')), '.gemini').toBe(canonical);
 
     // Claude uses a translated frontmatter schema (commit 85bd60b9f) — `tools:` list
     // instead of the OpenCode `mode:`/`temperature:`/`permission:` block. Path-scope
     // is enforced by the same OUT_OF_SCOPE_WRITE rejection in the helper library.
     // Assert the shared identity fields (name + description prose) match and that
     // the Claude-specific tools whitelist is present.
-    const claudeFM = frontmatter(read('.claude/agents/deep-ai-council.md'));
+    const claudeFM = frontmatter(read('.claude/agents/ai-council.md'));
     const nameMatch = canonical.match(/^name:\s*(.+)$/m);
     const descMatch = canonical.match(/^description:\s*"?(.+?)"?$/m);
     expect(nameMatch, 'canonical name field').not.toBeNull();
@@ -74,7 +74,7 @@ describe('deep-ai-council runtime mirror parity', () => {
       expect(body(read(mirror)), mirror).toBe(canonicalBody);
     }
 
-    const codex = read('.codex/agents/deep-ai-council.toml');
+    const codex = read('.codex/agents/ai-council.toml');
     expect(codex).toContain(`name = "${nameMatch![1]}"`);
     expect(normalizeProse(codex)).toContain(normalizeProse(descMatch![1]));
     expect(codex).toContain('sandbox_mode = "workspace-write"');

@@ -12,34 +12,25 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/114-small-ai-model-optimization"
-    last_updated_at: "2026-05-18T00:00:00Z"
+    last_updated_at: "2026-05-21T00:00:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Authored phase-parent shell + scoped 5 research questions for 001 deep-research child"
-    next_safe_action: "Run preflight SWE-1.6 context-card pass, then author 001-research-smallcode Level 3 docs"
+    recent_action: "Phase 7 rename packet shipped"
+    next_safe_action: "Close arc or start 115"
     blockers: []
     key_files:
-      - "external/smallcode-master/README.md"
-      - "external/smallcode-master/PLAN.md"
-      - "external/smallcode-master/COMPARISON.md"
-      - "external/smallcode-master/src/context/budget.ms"
-      - "external/smallcode-master/src/governor/verifier.ms"
-      - "external/smallcode-master/src/governor/hard_fail.ms"
-      - "external/smallcode-master/src/governor/tool_scorer.ms"
-      - "external/smallcode-master/src/model/profiles.ms"
-      - "external/smallcode-master/bin/escalation.js"
-      - "001-research-smallcode/spec.md"
+      - "spec.md"
+      - "007-rename-sk-ai-small-model/implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000114"
       session_id: "114-phase-parent-init"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "RQ5 outcome: new sk-small-model skill vs distributed references vs hybrid?"
-      - "Whether bayesian tool-scoring belongs in cli-* skills or in mcp-code-mode"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "Executor for the 20-iter research loop: cli-devin SWE-1.6 (full dogfood) — locked via ADR-001 in 001-research-smallcode/decision-record.md"
       - "RQ scope: 5 questions (RQ1 budget, RQ2 verification, RQ3 profiles+escalation, RQ4 structured permissions, RQ5 architecture) — locked via ADR-002"
       - "Convergence math: newInfoRatio<0.15 × 3 OR cap 20 — locked via ADR-003"
+      - "RQ5 outcome (post-synthesis): new sk-small-model skill (renamed sk-ai-small-model via Phase 7 on 2026-05-21) with enhances edges to cli-devin + cli-opencode — shipped via 002-foundation-routing"
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
@@ -133,6 +124,7 @@ This phase decomposition mines smallcode-master systematically (20 deep-research
 | 004 | `004-cli-devin-quality/` | Phase C: per-model token-budget engine + output-verification pipeline (compile/run/test/lint + hard-fail) for cli-devin SWE-1.6. P1 (daily quality lift). ~28 hrs. | **Complete** (shipped 2026-05-18) |
 | 005 | `005-shared-intelligence/` | Phase D: unified model-profile registry + bayesian per-tool scoring + quota-pool-aware FALLBACK engine (NOT small→frontier escalator; user's rotation is small-only). P2. ~20 hrs. | **Complete** (shipped 2026-05-18) |
 | 006 | `006-cross-skill-propagation/` | Phase E: propagate budget patterns to cli-opencode + sk-prompt. P3 (lower priority). ~5 hrs. | **Complete** (shipped 2026-05-18) |
+| 007 | `007-rename-sk-ai-small-model/` | Post-completion rename: `sk-small-model` skill → `sk-ai-small-model` (filesystem + frontmatter + sibling enhances edges + manual playbooks + root behavioral docs + auto-memory + advisor reindex). Identity-only refactor; behavior unchanged. P1. ~35 min. | **In progress** (started 2026-05-21) |
 
 **Model scope (confirmed 2026-05-18, refined post-implementation)**: Active small-model rotation is **SWE-1.6, DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, GLM-5.1**. Dispatch matrix:
 - **cli-devin** runs SWE-1.6 (Cognition free) + DeepSeek-v4-pro / Kimi-k2.6 / GLM-5.1 (Cognition Pro plan).
@@ -144,7 +136,7 @@ This phase decomposition mines smallcode-master systematically (20 deep-research
 
 **Recommended execution order**: A → B + C (parallel) → D → E. Phase A (002) is the gating foundation; B (003) and C (004) can run in parallel once A's routing is in place. D (005) needs at least one of B/C shipped. E (006) needs C.
 
-**Phase F (007-hardening-ci) was deleted 2026-05-18** per user direction — CI staleness checks and over-broad-glob lints will be handled manually or deferred to a future packet if/when needed.
+**Phase F (007-hardening-ci) was deleted 2026-05-18** per user direction — CI staleness checks and over-broad-glob lints will be handled manually or deferred to a future packet if/when needed. The 007 slot was reused 2026-05-21 by the `sk-ai-small-model` rename packet (Phase 7 row above) — a different scope from the original hardening-CI plan.
 
 ### Phase Transition Rules
 
@@ -159,6 +151,7 @@ This phase decomposition mines smallcode-master systematically (20 deep-research
 |------|-----|----------|--------------|
 | Parent (114) | 001-research-smallcode | Phase-parent lean trio validates; preflight context-card present; 5 RQs locked in 001/spec.md | `validate.sh --strict 114` exit 0; `ls 114/preflight/context-card.md`; `grep -c '^### RQ' 001/spec.md` = 5 |
 | 001-research-smallcode | 002+ remediation packets | `research/research.md` exists; per-RQ deltas listed with file paths + acceptance criteria; convergence event in `deep-research-state.jsonl` | `jq '.type' research/deep-research-state.jsonl \| grep converged`; review-report or human read of research.md |
+| 006-cross-skill-propagation | 007-rename-sk-ai-small-model | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

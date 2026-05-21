@@ -84,7 +84,7 @@
     ],
     "causal_summary": "This phased decomposition tracks mcp-figma transfer (tri-repo): withdraw mcp-figma developer skill from Code_Environment/Public, reframe as a Figma MCP Agent in AI_Systems/Barter (mirroring ClickUp), dual-publish a sanitized duplicate to AI_Systems/Public, and register it in the Public README across independently executable child phase folders.",
     "created_at": "2026-05-05T07:49:57Z",
-    "last_save_at": "2026-05-18T15:17:56.955Z",
+    "last_save_at": "2026-05-19T13:51:38.643Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

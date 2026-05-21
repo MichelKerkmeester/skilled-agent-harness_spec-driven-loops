@@ -1,0 +1,252 @@
+{
+  "sessionId": "2026-05-20T20:30:00Z",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "id": "DR-002-P1-001",
+      "iteration": 2,
+      "severity": "P1",
+      "dimension": "correctness",
+      "status": "active",
+      "findingClass": "cross-consumer",
+      "title": "PROMOTE default does not reach runtime dispatch",
+      "file": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/rerankers/reranker.py:24",
+      "evidenceRefs": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config/config.py:770",
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config/config.py:855",
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/rerankers/reranker.py:24",
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/rerankers/reranker.py:390",
+        ".opencode/skills/mcp-coco-index/mcp_server/tests/test_http_sidecar_adapter.py:240",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/006-cocoindex-dedup-from-shared-sidecar/implementation-summary.md:47"
+      ],
+      "recommendation": "Reconcile the dispatch source of truth: make the raw-env helper default true / consume Config.rerank_via_sidecar, or revert the PROMOTE/default docs and config default."
+    },
+    {
+      "id": "DR-002-P1-002",
+      "iteration": 2,
+      "severity": "P1",
+      "dimension": "correctness",
+      "status": "active",
+      "findingClass": "cross-consumer",
+      "title": "CocoIndex MCP auto-ensure is still gated by spec-memory's opt-in flag",
+      "file": ".opencode/skills/system-rerank-sidecar/scripts/ensure_rerank_sidecar.py:90",
+      "evidenceRefs": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py:151",
+        ".opencode/skills/system-rerank-sidecar/scripts/ensure_rerank_sidecar.py:85",
+        ".opencode/skills/system-rerank-sidecar/scripts/ensure_rerank_sidecar.py:90",
+        ".opencode/skills/system-rerank-sidecar/scripts/ensure_rerank_sidecar.py:92",
+        ".opencode/skills/system-rerank-sidecar/feature_catalog/feature_catalog.md:198",
+        ".opencode/skills/system-rerank-sidecar/manual_testing_playbook/manual_testing_playbook.md:159",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/006-cocoindex-dedup-from-shared-sidecar/implementation-summary.md:97"
+      ],
+      "recommendation": "Make the CocoIndex call site pass skip_if_disabled=false, or make the helper gate on COCOINDEX_RERANK_VIA_SIDECAR separately from SPECKIT_CROSS_ENCODER."
+    },
+    {
+      "id": "DR-002-P2-001",
+      "iteration": 2,
+      "severity": "P2",
+      "dimension": "correctness",
+      "status": "active",
+      "findingClass": "matrix/evidence",
+      "title": "REQ-006 still says to remove the bundled CrossEncoder despite D-004 preserving it as fallback",
+      "file": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/006-cocoindex-dedup-from-shared-sidecar/spec.md:139",
+      "evidenceRefs": [
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/006-cocoindex-dedup-from-shared-sidecar/spec.md:139",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/006-cocoindex-dedup-from-shared-sidecar/spec.md:160",
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/rerankers/reranker.py:125",
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/rerankers/reranker.py:149",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/006-cocoindex-dedup-from-shared-sidecar/implementation-summary.md:87"
+      ],
+      "recommendation": "Rewrite REQ-006/SC-005 to require no eager bundled model load on the default path while preserving the lazy fallback class."
+    },
+    {
+      "id": "DR-003-P1-001",
+      "iteration": 3,
+      "severity": "P2",
+      "priorSeverity": "P1",
+      "dimension": "security",
+      "status": "downgraded",
+      "downgradeTrigger": true,
+      "findingClass": "cross-consumer",
+      "title": "Localhost sidecar identity is unauthenticated, so a same-host user can spoof or directly consume the rerank channel",
+      "file": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/rerankers/reranker.py:248",
+      "evidenceRefs": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/rerankers/reranker.py:237",
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/rerankers/reranker.py:248",
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/rerankers/reranker.py:294",
+        ".opencode/skills/system-rerank-sidecar/scripts/rerank_sidecar.py:82",
+        ".opencode/skills/system-rerank-sidecar/scripts/rerank_sidecar.py:108",
+        ".opencode/skills/system-rerank-sidecar/scripts/start.sh:25",
+        ".opencode/skills/system-rerank-sidecar/scripts/ensure_rerank_sidecar.py:49",
+        ".opencode/skills/system-rerank-sidecar/scripts/ensure_rerank_sidecar.py:98"
+      ],
+      "recommendation": "Keep as a solo-Mac hardening advisory unless supported deployment expands beyond single-user localhost; then add per-session credentialing or owner verification."
+    },
+    {
+      "id": "DR-003-P1-002",
+      "iteration": 3,
+      "severity": "P2",
+      "priorSeverity": "P1",
+      "dimension": "security",
+      "status": "downgraded",
+      "downgradeTrigger": true,
+      "findingClass": "cross-consumer",
+      "title": "/rerank accepts unbounded local payloads, allowing same-host callers to exhaust sidecar memory/compute",
+      "file": ".opencode/skills/system-rerank-sidecar/scripts/rerank_sidecar.py:56",
+      "evidenceRefs": [
+        ".opencode/skills/system-rerank-sidecar/scripts/rerank_sidecar.py:56",
+        ".opencode/skills/system-rerank-sidecar/scripts/rerank_sidecar.py:110",
+        ".opencode/skills/system-rerank-sidecar/scripts/rerank_sidecar.py:121",
+        ".opencode/skills/system-rerank-sidecar/scripts/rerank_sidecar.py:126",
+        ".opencode/skills/system-rerank-sidecar/tests/test_rerank_sidecar.py:48",
+        ".opencode/skills/system-rerank-sidecar/tests/test_rerank_sidecar.py:65"
+      ],
+      "recommendation": "Keep as a solo-Mac hardening advisory; add max document count, query length, document length/bytes, total payload size, and top_k bounds when scheduling sidecar hardening."
+    },
+    {
+      "id": "DR-003-P2-001",
+      "iteration": 3,
+      "severity": "P2",
+      "dimension": "security",
+      "status": "active",
+      "findingClass": "instance-only",
+      "title": "Sidecar child process inherits the full parent environment, including unrelated secrets",
+      "file": ".opencode/skills/system-rerank-sidecar/scripts/ensure_rerank_sidecar.py:108",
+      "evidenceRefs": [
+        ".opencode/skills/system-rerank-sidecar/scripts/ensure_rerank_sidecar.py:107",
+        ".opencode/skills/system-rerank-sidecar/scripts/ensure_rerank_sidecar.py:114",
+        ".opencode/skills/system-rerank-sidecar/scripts/start.sh:14",
+        ".opencode/skills/system-rerank-sidecar/scripts/start.sh:15",
+        ".opencode/skills/system-rerank-sidecar/feature_catalog/feature_catalog.md:178",
+        ".opencode/skills/system-rerank-sidecar/manual_testing_playbook/manual_testing_playbook.md:201"
+      ],
+      "recommendation": "Spawn the sidecar with a minimal allowlist and explicitly exclude common API key names."
+    },
+    {
+      "id": "DR-004-P2-001",
+      "iteration": 4,
+      "severity": "P2",
+      "dimension": "traceability",
+      "status": "active",
+      "findingClass": "matrix/evidence",
+      "title": "Task ledger remains unchecked and stale after the packet claims SHIPPED/PROMOTE",
+      "file": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/006-cocoindex-dedup-from-shared-sidecar/tasks.md:40",
+      "evidenceRefs": [
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/006-cocoindex-dedup-from-shared-sidecar/tasks.md:40",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/006-cocoindex-dedup-from-shared-sidecar/tasks.md:82",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/006-cocoindex-dedup-from-shared-sidecar/implementation-summary.md:23",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/006-cocoindex-dedup-from-shared-sidecar/implementation-summary.md:44",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/006-cocoindex-dedup-from-shared-sidecar/implementation-summary.md:107"
+      ],
+      "recommendation": "Either mark T001-T025 with shipped evidence and links to the actual artifacts, or add an explicit note that the task ledger was superseded by implementation-summary.md evidence for this Level 1 packet."
+    },
+    {
+      "id": "DR-004-P2-002",
+      "iteration": 4,
+      "severity": "P2",
+      "dimension": "traceability",
+      "status": "active",
+      "findingClass": "matrix/evidence",
+      "title": "system-rerank-sidecar SKILL.md still says CocoIndex repointing is future work",
+      "file": ".opencode/skills/system-rerank-sidecar/SKILL.md:170",
+      "evidenceRefs": [
+        ".opencode/skills/system-rerank-sidecar/SKILL.md:167",
+        ".opencode/skills/system-rerank-sidecar/SKILL.md:170",
+        ".opencode/skills/system-rerank-sidecar/feature_catalog/feature_catalog.md:46",
+        ".opencode/skills/system-rerank-sidecar/feature_catalog/feature_catalog.md:273",
+        ".opencode/skills/system-rerank-sidecar/feature_catalog/feature_catalog.md:276",
+        ".opencode/skills/system-rerank-sidecar/manual_testing_playbook/manual_testing_playbook.md:40",
+        ".opencode/skills/system-rerank-sidecar/manual_testing_playbook/manual_testing_playbook.md:43",
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/rerankers/reranker.py:221"
+      ],
+      "recommendation": "Update the system-rerank-sidecar SKILL.md Consumers section to describe the current CocoIndex HTTP adapter/default claim and carry the current P1 caveats until fixed."
+    },
+    {
+      "id": "DR-005-P2-001",
+      "iteration": 5,
+      "severity": "P2",
+      "dimension": "maintainability",
+      "status": "active",
+      "findingClass": "cross-consumer",
+      "title": "httpx is a hidden mcp-coco-index dependency",
+      "file": ".opencode/skills/mcp-coco-index/mcp_server/pyproject.toml:28",
+      "evidenceRefs": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/rerankers/reranker.py:246",
+        ".opencode/skills/mcp-coco-index/mcp_server/tests/test_http_sidecar_adapter.py:15",
+        ".opencode/skills/mcp-coco-index/mcp_server/pyproject.toml:28",
+        ".opencode/skills/mcp-coco-index/mcp_server/pyproject.toml:46",
+        ".opencode/skills/mcp-coco-index/mcp_server/pyproject.toml:64",
+        ".opencode/skills/mcp-coco-index/mcp_server/pyproject.toml:71",
+        ".opencode/skills/system-rerank-sidecar/pyproject.toml:13"
+      ],
+      "recommendation": "Add httpx as a direct runtime dependency of mcp-coco-index, pinned or ranged deliberately instead of relying on a sibling skill's environment."
+    },
+    {
+      "id": "DR-005-P2-002",
+      "iteration": 5,
+      "severity": "P2",
+      "dimension": "maintainability",
+      "status": "active",
+      "findingClass": "matrix/evidence",
+      "title": "Sidecar catalog/playbook diverge from sk-doc split-package and evergreen contracts",
+      "file": ".opencode/skills/system-rerank-sidecar/feature_catalog/feature_catalog.md:46",
+      "evidenceRefs": [
+        ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md:18",
+        ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md:27",
+        ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md:18",
+        ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md:30",
+        ".opencode/skills/system-rerank-sidecar/manual_testing_playbook/manual_testing_playbook.md:14",
+        ".opencode/skills/system-rerank-sidecar/feature_catalog/feature_catalog.md:46",
+        ".opencode/skills/system-rerank-sidecar/feature_catalog/feature_catalog.md:233",
+        ".opencode/skills/system-rerank-sidecar/feature_catalog/feature_catalog.md:275",
+        ".opencode/skills/system-rerank-sidecar/feature_catalog/feature_catalog.md:276",
+        ".opencode/skills/system-rerank-sidecar/manual_testing_playbook/manual_testing_playbook.md:43",
+        ".opencode/skills/system-rerank-sidecar/manual_testing_playbook/manual_testing_playbook.md:201"
+      ],
+      "recommendation": "Migrate to the sk-doc split package or document a lightweight exception, and remove mutable packet-history phrasing from evergreen catalog/playbook claims."
+    }
+  ],
+  "resolvedFindings": [],
+  "downgradedFindings": [
+    {
+      "id": "DR-003-P1-001",
+      "iteration": 6,
+      "fromSeverity": "P1",
+      "toSeverity": "P2",
+      "status": "downgraded",
+      "downgradeTrigger": true,
+      "reason": "Solo-Mac single-user deployment makes same-host spoofing advisory hardening rather than a required P1 fix."
+    },
+    {
+      "id": "DR-003-P1-002",
+      "iteration": 6,
+      "fromSeverity": "P1",
+      "toSeverity": "P2",
+      "status": "downgraded",
+      "downgradeTrigger": true,
+      "reason": "Solo-Mac single-user deployment makes direct localhost payload abuse self-DoS rather than a required P1 security fix."
+    }
+  ],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 8
+  },
+  "openFindingsCount": 10,
+  "resolvedFindingsCount": 0,
+  "newFindingsRatio": 0,
+  "convergenceScore": 1,
+  "weightedStopScore": 1,
+  "hasAdvisories": false,
+  "provisionalVerdict": "CONDITIONAL",
+  "nextFocus": "complete",
+  "updatedAt": "2026-05-20T19:02:03Z"
+}

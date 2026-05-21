@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/114-small-ai-model-optimization/007-rename-sk-ai-small-model",
+  "spec_folder": "skilled-agent-orchestration/114-small-ai-model-optimization/007-rename-sk-ai-small-model",
+  "parent_id": "skilled-agent-orchestration/114-small-ai-model-optimization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "rename sk-small-model",
+      "sk-ai-small-model",
+      "small-model sentinel rename",
+      "skill rename propagation",
+      "skill-advisor reindex after rename",
+      "sk-ai-small-model implementation",
+      "skill rename plan",
+      "skill-advisor reindex",
+      "rename tasks",
+      "sk-ai-small-model tasks",
+      "skill rename task breakdown",
+      "rename verification"
+    ],
+    "key_topics": [
+      "rename",
+      "sk-small-model",
+      "sk-ai-small-model",
+      "small-model",
+      "sentinel",
+      "skill",
+      "propagation",
+      "skill-advisor",
+      "reindex",
+      "implementation",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-ai-small-model/changelog/v0.3.0.0.md",
+      ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/spec.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json",
+      ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/roadmap/follow-on-phases.md",
+      ".opencode/skills/system-rerank-sidecar/graph-metadata.json",
+      ".opencode/skills/mcp-coco-index/graph-metadata.json",
+      "checklist.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py",
+      ".opencode/skills/cli-devin/graph-metadata.json",
+      ".opencode/skills/cli-opencode/graph-metadata.json",
+      ".opencode/skills/cli-opencode/references/permissions-matrix.md",
+      ".opencode/skills/cli-opencode/assets/permissions-matrix.example-packet-local.json",
+      ".opencode/skills/cli-devin/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/sk-ai-small-model/SKILL.md",
+      ".opencode/skills/sk-ai-small-model/README.md",
+      ".opencode/skills/sk-ai-small-model/description.json",
+      ".opencode/skills/sk-ai-small-model/graph-metadata.json",
+      ".opencode/skills/sk-ai-small-model/references/pattern-index.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite"
+    ],
+    "entities": [
+      {
+        "name": "v0.3.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-ai-small-model/changelog/v0.3.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json",
+        "source": "derived"
+      },
+      {
+        "name": "follow-on-phases.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/roadmap/follow-on-phases.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-rerank-sidecar/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill_graph_compiler.py",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py",
+        "source": "derived"
+      },
+      {
+        "name": "permissions-matrix.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/references/permissions-matrix.md",
+        "source": "derived"
+      },
+      {
+        "name": "permissions-matrix.example-packet-local.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-opencode/assets/permissions-matrix.example-packet-local.json",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-devin/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-ai-small-model/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-ai-small-model/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-ai-small-model/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "pattern-index.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-ai-small-model/references/pattern-index.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.sqlite",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Rename",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This is **Phase 7** of the 114-small-ai-model-optimization arc. Phases 001-006 shipped on 2026-05-18 and **created** the sentinel skill `sk-small-model` along with every cross-skill `enhances` edge, dispatch-matrix doc, and runtime helper. This phase performs a pure rename of that skill and propagates the new identity across every live reference surface.",
+    "created_at": "2026-05-21T06:22:25Z",
+    "last_save_at": "2026-05-21T06:51:17.052Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
+  }
+}

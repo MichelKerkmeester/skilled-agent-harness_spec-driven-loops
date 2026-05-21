@@ -909,7 +909,7 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 - DEPTH thinking methodology with 3-10 iteration rounds of progressive refinement
 - CLEAR quality scoring: Clarity, Logic, Expression, Reliability (40+/50 pass threshold)
 
-**sk-small-model**
+**sk-ai-small-model**
 - Sentinel skill for small-model optimization patterns. Discovery anchor only — routes operators to executor-owned pattern files instead of hosting logic.
 - Active dispatch matrix:
   - **cli-devin**: SWE-1.6 (Cognition free tier) + DeepSeek-v4-pro / Kimi-k2.6 / GLM-5.1 (Cognition Pro plan).
@@ -932,7 +932,7 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 - All scoring is deterministic (regex/string/file-existence), no LLM-as-judge, safe for promotion gates
 - Legal-stop events, session-boundary gate, `plateau` stop reason, dashboard sections for journal/lineage/coverage
 
-**deep-ai-council**
+**sk-ai-council**
 - Multi-seat planning council dispatching diverse AI reasoning seats for strategic decisions
 - Cross-seat critique and convergence checks produce evidence-backed recommendations
 - Packet-local artifact persistence via `ai-council/**` output directory

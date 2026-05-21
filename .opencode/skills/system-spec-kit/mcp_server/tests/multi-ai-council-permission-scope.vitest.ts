@@ -11,7 +11,7 @@ const WORKSPACE_ROOT = resolve(TEST_DIR, '../../../../../');
 const require = createRequire(import.meta.url);
 const writers = require(join(
   WORKSPACE_ROOT,
-  '.opencode/skills/deep-ai-council/scripts/lib/persist-artifacts.js',
+  '.opencode/skills/sk-ai-council/scripts/lib/persist-artifacts.js',
 )) as {
   writeSeat: (packet: string, relativePath: string, content: string) => string;
 };
@@ -28,7 +28,7 @@ afterEach(() => {
   while (tempDirs.length) rmSync(tempDirs.pop()!, { recursive: true, force: true });
 });
 
-describe('deep-ai-council path-scoped write authority', () => {
+describe('ai-council path-scoped write authority', () => {
   it('allows writes under ai-council/** through council writers', () => {
     const packet = makePacket();
     const written = writers.writeSeat(packet, 'round-001/seat-001-cli-codex.md', '# Seat\n');

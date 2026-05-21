@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-18T18:19:45.411919+00:00",
-  "skill_count": 21,
+  "generated_at": "2026-05-21T09:36:15.407820+00:00",
+  "skill_count": 22,
   "families": {
     "cli": [
       "cli-claude-code",
@@ -11,7 +11,6 @@
       "cli-opencode"
     ],
     "deep-loop": [
-      "deep-ai-council",
       "deep-research",
       "deep-review"
     ],
@@ -26,13 +25,15 @@
     ],
     "sk-util": [
       "deep-agent-improvement",
+      "sk-ai-council",
+      "sk-ai-small-model",
       "sk-doc",
       "sk-git",
-      "sk-prompt",
-      "sk-small-model"
+      "sk-prompt"
     ],
     "system": [
       "system-code-graph",
+      "system-rerank-sidecar",
       "system-skill-advisor",
       "system-spec-kit"
     ]
@@ -56,7 +57,7 @@
     },
     "cli-devin": {
       "enhances": {
-        "sk-small-model": 0.5
+        "sk-ai-small-model": 0.5
       },
       "siblings": {
         "cli-claude-code": 0.5,
@@ -75,7 +76,7 @@
     },
     "cli-opencode": {
       "enhances": {
-        "sk-small-model": 0.5
+        "sk-ai-small-model": 0.5
       },
       "siblings": {
         "cli-claude-code": 0.5,
@@ -89,18 +90,10 @@
         "sk-prompt": 0.4
       }
     },
-    "deep-ai-council": {
-      "depends_on": {
-        "system-spec-kit": 0.7
-      },
-      "siblings": {
-        "deep-research": 0.4
-      }
-    },
     "deep-research": {
       "siblings": {
         "deep-review": 0.5,
-        "deep-ai-council": 0.4
+        "sk-ai-council": 0.4
       }
     },
     "deep-review": {
@@ -123,6 +116,9 @@
       "enhances": {
         "system-spec-kit": 0.3
       },
+      "siblings": {
+        "system-rerank-sidecar": 0.4
+      },
       "prerequisite_for": {
         "system-skill-advisor": 0.7
       }
@@ -130,6 +126,20 @@
     "mcp-code-mode": {
       "prerequisite_for": {
         "mcp-chrome-devtools": 0.7
+      }
+    },
+    "sk-ai-council": {
+      "depends_on": {
+        "system-spec-kit": 0.7
+      },
+      "siblings": {
+        "deep-research": 0.4
+      }
+    },
+    "sk-ai-small-model": {
+      "enhances": {
+        "cli-devin": 0.5,
+        "cli-opencode": 0.5
       }
     },
     "sk-code": {
@@ -180,12 +190,6 @@
         "deep-agent-improvement": 0.4
       }
     },
-    "sk-small-model": {
-      "enhances": {
-        "cli-devin": 0.5,
-        "cli-opencode": 0.5
-      }
-    },
     "system-code-graph": {
       "depends_on": {
         "system-spec-kit": 0.8
@@ -196,6 +200,18 @@
       },
       "siblings": {
         "system-spec-kit": 0.5
+      }
+    },
+    "system-rerank-sidecar": {
+      "enhances": {
+        "system-spec-kit": 0.5,
+        "mcp-coco-index": 0.5
+      },
+      "siblings": {
+        "mcp-coco-index": 0.4
+      },
+      "prerequisite_for": {
+        "system-spec-kit": 0.3
       }
     },
     "system-skill-advisor": {
@@ -220,7 +236,7 @@
         "system-spec-kit": 0.7,
         "cli-devin": 0.7,
         "cli-opencode": 0.7,
-        "deep-ai-council": 0.7
+        "sk-ai-council": 0.7
       }
     },
     "system-spec-kit": {
@@ -234,7 +250,7 @@
       },
       "prerequisite_for": {
         "system-code-graph": 0.8,
-        "deep-ai-council": 0.7
+        "sk-ai-council": 0.7
       }
     }
   },
@@ -276,16 +292,6 @@
       "evaluate agent",
       "agent scoring"
     ],
-    "deep-ai-council": [
-      "deep ai council",
-      "ai council",
-      "planning council",
-      "council deliberation",
-      "persist council artifacts",
-      "ai-council artifacts",
-      "council graph",
-      "derived council graph"
-    ],
     "deep-research": [
       "deep research",
       "research loop",
@@ -322,6 +328,30 @@
       "code mode",
       "mcp tool",
       "call tool chain"
+    ],
+    "sk-ai-council": [
+      "deep ai council",
+      "ai council",
+      "planning council",
+      "council deliberation",
+      "persist council artifacts",
+      "ai-council artifacts",
+      "council graph",
+      "derived council graph"
+    ],
+    "sk-ai-small-model": [
+      "small model",
+      "small-model dispatch",
+      "swe-1.6",
+      "deepseek-v4",
+      "kimi-k2.6",
+      "qwen3.6",
+      "glm-5.1",
+      "opencode-go",
+      "deepseek-api",
+      "context budget",
+      "output verification",
+      "structured permissions"
     ],
     "sk-code": [
       "code work",
@@ -424,20 +454,6 @@
       "prompt framework",
       "clear score"
     ],
-    "sk-small-model": [
-      "small model",
-      "small-model dispatch",
-      "swe-1.6",
-      "deepseek-v4",
-      "kimi-k2.6",
-      "qwen3.6",
-      "glm-5.1",
-      "opencode-go",
-      "deepseek-api",
-      "context budget",
-      "output verification",
-      "structured permissions"
-    ],
     "system-code-graph": [
       "code graph",
       "code-graph",
@@ -448,6 +464,12 @@
       "blast radius",
       "impact analysis",
       "detect changes"
+    ],
+    "system-rerank-sidecar": [
+      "rerank sidecar",
+      "cross encoder sidecar",
+      "qwen reranker",
+      "localhost 8765 rerank"
     ],
     "system-skill-advisor": [
       "skill routing",
@@ -470,9 +492,14 @@
     "cli-devin",
     "cli-gemini",
     "cli-opencode",
+    "mcp-coco-index",
     "sk-code",
     "sk-code-review",
     "system-spec-kit"
   ],
-  "topology_warnings": {}
+  "topology_warnings": {
+    "weight_band": [
+      "WEIGHT-BAND: system-rerank-sidecar edges.prerequisite_for[0] weight 0.3 outside recommended band [0.7, 1.0]"
+    ]
+  }
 }

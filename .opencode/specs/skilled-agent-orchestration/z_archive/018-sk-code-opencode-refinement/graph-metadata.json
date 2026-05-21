@@ -203,7 +203,7 @@
     ],
     "causal_summary": "SPECKIT_TEMPLATE_SOURCE: \"spec-core + level2-verify + level3-arch + level3plus-govern | v2.2\"",
     "created_at": "2026-04-12T09:02:50.219Z",
-    "last_save_at": "2026-05-18T15:17:56.815Z",
+    "last_save_at": "2026-05-19T13:51:38.444Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

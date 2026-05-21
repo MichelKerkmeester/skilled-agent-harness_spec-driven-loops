@@ -388,10 +388,10 @@ describe('027/003 native scorer units', () => {
     expect(result.topSkill).toBe('sk-code');
   });
 
-  it('routes natural council deliberation prompts to deep-ai-council despite compare wording', () => {
+  it('routes natural council deliberation prompts to sk-ai-council despite compare wording', () => {
     const projection = createFixtureProjection([
       skill({
-        id: 'deep-ai-council',
+        id: 'sk-ai-council',
         description: 'Deep AI Council deliberation workflow for multi-seat planning and council artifact persistence.',
         domains: ['planning', 'deliberation', 'ai-council', 'artifact-persistence'],
         intentSignals: ['ai council', 'council deliberation', 'persist council artifacts'],
@@ -405,7 +405,7 @@ describe('027/003 native scorer units', () => {
       projection,
     });
 
-    expect(result.topSkill).toBe('deep-ai-council');
+    expect(result.topSkill).toBe('sk-ai-council');
     expect(result.recommendations[0].confidence).toBeGreaterThanOrEqual(0.8);
   });
 

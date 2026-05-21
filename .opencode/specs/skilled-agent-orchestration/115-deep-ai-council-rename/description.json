@@ -1,0 +1,27 @@
+{
+  "level": "phase",
+  "specFolder": "skilled-agent-orchestration/115-deep-ai-council-rename",
+  "description": "Rename deep-ai-council skill to sk-ai-council and deep-ai-council agent to ai-council across 4 runtimes plus propagate references repo-wide",
+  "keywords": [
+    "rename",
+    "deep-ai-council",
+    "skill",
+    "sk-ai-council",
+    "agent",
+    "ai-council",
+    "across",
+    "runtimes",
+    "plus",
+    "propagate",
+    "references",
+    "repo-wide"
+  ],
+  "lastUpdated": "2026-05-21T09:37:34.093Z",
+  "specId": "115",
+  "folderSlug": "deep-ai-council-rename",
+  "parentChain": [],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "21-05-26_10-37__115-deep-ai-council-rename-arc-100-complete-in.md"
+  ]
+}

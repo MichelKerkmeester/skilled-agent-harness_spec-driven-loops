@@ -1496,7 +1496,8 @@ describe('Context Server', () => {
       const triggerMatcherClearMock = vi.fn()
       const dispatchToolMock = vi.fn(async () => ({ content: [{ type: 'text', text: '{}' }] }))
 
-      expect(sourceCode).toContain('const dbReinitialized = await checkDatabaseUpdated()')
+      expect(sourceCode).toContain('const dbReinitialized = memoryRuntimeRequired')
+      expect(sourceCode).toContain('await checkDatabaseUpdated()')
       expect(sourceCode).toContain('await invalidateReinitializedDbCaches()')
 
       const invalidateReinitializedDbCaches = async (): Promise<void> => {
@@ -1516,7 +1517,7 @@ describe('Context Server', () => {
     })
 
     it('T000f: memory-aware tools keep SK-004 path and skip TM-05 dispatch hook', async () => {
-      expect(sourceCode).toContain('if (MEMORY_AWARE_TOOLS.has(name))')
+      expect(sourceCode).toContain('if (MEMORY_AWARE_TOOLS.has(name) && memoryRuntimeAvailable)')
       expect(sourceCode).toContain('autoSurfaceMemories')
       expect(sourceCode).toContain('autoSurfaceAtToolDispatch')
 
@@ -2544,9 +2545,10 @@ describe('Context Server', () => {
       expect(sourceCode).toMatch(/vectorIndex\.initializeDb\(\)/)
     })
 
-    // T52: dbInitialized guard for lazy init
-    it('T52: dbInitialized guard in dispatch', () => {
-      expect(sourceCode).toMatch(/if\s*\(!dbInitialized\)/)
+    // T52: memory runtime guard for lazy init
+    it('T52: memory runtime guard in dispatch', () => {
+      expect(sourceCode).toContain('const memoryRuntimeRequired = MEMORY_RUNTIME_TOOL_NAMES.has(name)')
+      expect(sourceCode).toContain('await ensureMemoryRuntimeInitialized(`handler:${name}`)')
     })
 
     // T53: detectNodeVersionMismatch called
