@@ -10,7 +10,10 @@
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/004-spec-memory-rerank-benchmark",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/005-promote-qwen-as-default",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/006-cocoindex-dedup-from-shared-sidecar",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/007-spec-memory-mps-rerank-promotion"
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/007-spec-memory-mps-rerank-promotion",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/008-cap-rerank-top-k",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/009-fp16-rerank",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/010-domain-tuned-reranker-finetune"
   ],
   "manual": {
     "depends_on": [
@@ -30,7 +33,10 @@
       "008 arc rerank",
       "qwen3-reranker-0.6b",
       "cocoindex dedup shared sidecar",
-      "spec-memory mps rerank"
+      "spec-memory mps rerank",
+      "cap top-k rerank",
+      "fp16 rerank mps",
+      "domain fine-tune reranker"
     ],
     "key_topics": [
       "rerank",
@@ -40,7 +46,9 @@
       "shared-skill",
       "stage3-rerank",
       "deduplication",
-      "mps"
+      "mps",
+      "fp16",
+      "fine-tune"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -53,8 +61,8 @@
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts",
       ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/rerankers/reranker.py"
     ],
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/007-spec-memory-mps-rerank-promotion",
-    "last_active_at": "2026-05-21T08:30:00Z",
-    "last_indexed_at": "2026-05-21T08:30:00Z"
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/009-fp16-rerank",
+    "last_active_at": "2026-05-21T10:00:00Z",
+    "last_indexed_at": "2026-05-21T10:00:00Z"
   }
 }

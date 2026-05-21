@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/009-fp16-rerank",
+  "description": "Phase 009 of the 008 rerank-sidecar arc. Independent lever from packet 008 — cuts Qwen's memory footprint via fp16 weights so the same 50-doc batch may fit on Apple Silicon MPS without OOM. Adds RERANK_TORCH_DTYPE env var to the sidecar. PROMOTE iff hit-rate +3, p95 ≤ +500ms, sidecar reach ≥ 95%.",
+  "keywords": [
+    "009",
+    "fp16",
+    "torch-dtype",
+    "rerank_torch_dtype",
+    "qwen3-reranker",
+    "mps",
+    "spec-memory",
+    "promote-or-hold"
+  ],
+  "lastUpdated": "2026-05-21T09:00:00Z",
+  "specId": "009",
+  "folderSlug": "fp16-rerank",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "008-rerank-sidecar-arc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

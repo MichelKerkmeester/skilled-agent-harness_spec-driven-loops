@@ -15,8 +15,8 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc"
     last_updated_at: "2026-05-20T19:00:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Phase 007 MPS bench HOLD; arc closes again"
-    next_safe_action: "Optional follow-ons: cap-top_k bench, ms-marco-MPS bench, quantized Qwen"
+    recent_action: "008+009 HOLD; 010 scaffolded; arc closes"
+    next_safe_action: "Decide 010 execution or accept rerank as non-load-bearing"
     blockers: []
     key_files:
       - "006-cocoindex-dedup-from-shared-sidecar/spec.md"
@@ -61,6 +61,9 @@ A second-opinion pass from `cli-codex gpt-5.5 xhigh` (recorded in the arc's rese
 | 005 | `005-promote-qwen-as-default/` | Complete (HOLD) | Phase 004 benchmark gates failed (p95 +9832ms; hit-rate Δ +0.4pp); sidecar ships opt-in only. Default model in `cross-encoder.ts:55` stays `cross-encoder/ms-marco-MiniLM-L-6-v2`. |
 | 006 | `006-cocoindex-dedup-from-shared-sidecar/` | Complete (PROMOTE) | Closes the arc's deduplication intent. `HttpSidecarRerankerAdapter` routes cocoindex's Stage 2 rerank through `system-rerank-sidecar` over HTTP by default (`COCOINDEX_RERANK_VIA_SIDECAR=true`); bundled `CrossEncoderRerankerAdapter` retained as fallback. A/B benchmark (`benchmark-2026-05-20-cocoindex-via-sidecar/`) confirmed hit-rate parity (15/73 = 15/73) and bounded p95 latency cost (+18 ms). |
 | 007 | `007-spec-memory-mps-rerank-promotion/` | Complete (HOLD) | Tested whether `RERANK_DEVICE=mps` could unblock spec-memory's default flip. Phase A smoke: Qwen-on-MPS at 155 ms / 3-doc rerank (~19x speedup vs CPU). Phase C bench: 20-doc batch shape (Stage 3 top_k) exhausts MPS GPU memory in Qwen attention; sidecar crashes mid-run with `MPS backend out of memory ... failed assertion 'Failed to allocate private MTLBuffer for size 76 GB'`. All three gates fail. Default stays off; `cross-encoder.ts:54` reverted to `cross-encoder/ms-marco-MiniLM-L-6-v2`. Follow-ons identified: cap-top_k, ms-marco-on-MPS, quantized Qwen, domain fine-tune. |
+| 008 | `008-cap-rerank-top-k/` | Complete (HOLD) | Tested whether `SPECKIT_RERANK_LOCAL_MAX_DOCS=10` (cap the local-provider batch) avoids the MPS OOM. Verdict HOLD — falsified the batch-size hypothesis. Cap=10 reproduced (and worsened) the OOM at 135 GiB allocations; reach 14.7% vs packet 007's 23%. MPS framework appears to reserve full-attention-graph buffers regardless of input batch size. Env override stays in code as a useful tunable for cloud providers. |
+| 009 | `009-fp16-rerank/` | Complete (HOLD) | Tested whether `RERANK_TORCH_DTYPE=float16` halves the model memory enough to fit on MPS at the default 50-doc batch. Phase A smoke surprised positively (fp16 fit 50 short lorem-ipsum docs in 1.1s, no OOM). Phase C bench reproduced the OOM pattern under spec-memory's actual load (production docs are 4-8x longer than the smoke's). fp16 cuts WEIGHT memory but the MPS kernel-scratch allocations (76 + 135 GiB attempted) are independent of weight dtype. Third orthogonal MPS lever falsified. Sidecar env handler (`RERANK_TORCH_DTYPE`) stays in code as a useful tunable. |
+| 010 | `010-domain-tuned-reranker-finetune/` | Scaffolded (execution deferred) | Scaffold-only spec for the multi-day fine-tune path. Execution gated on packets 008 + 009 verdicts AND the deep-research convergence. The 2026-05-21 ms-marco bench showed off-the-shelf cross-encoders reorder spec-memory's structured-markdown docs WORSE than positional fallback; a domain fine-tune is the remaining untested hypothesis if the runtime-level packets (007-009) all HOLD. |
 <!-- /ANCHOR:phase-map -->
 
 ---

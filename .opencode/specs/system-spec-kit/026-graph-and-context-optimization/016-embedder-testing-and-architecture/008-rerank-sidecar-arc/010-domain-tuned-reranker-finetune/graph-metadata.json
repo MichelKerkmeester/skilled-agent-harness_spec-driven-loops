@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/010-domain-tuned-reranker-finetune",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/010-domain-tuned-reranker-finetune",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/008-cap-rerank-top-k",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/009-fp16-rerank"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/007-spec-memory-mps-rerank-promotion"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "010 domain fine-tune",
+      "spec-memory reranker fine-tune",
+      "cross-encoder fine-tune",
+      "domain-tuned reranker"
+    ],
+    "key_topics": [
+      "fine-tune",
+      "domain-tuned",
+      "spec-memory",
+      "cross-encoder",
+      "scaffold-only",
+      "execution-deferred"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts",
+      ".opencode/skills/system-rerank-sidecar/scripts/rerank_sidecar.py"
+    ],
+    "last_indexed_at": "2026-05-21T09:00:00Z"
+  }
+}

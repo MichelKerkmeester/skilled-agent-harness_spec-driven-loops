@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/010-domain-tuned-reranker-finetune",
+  "description": "Phase 010 of the 008 rerank-sidecar arc. SCAFFOLD ONLY — execution gated on packets 008 + 009 verdicts plus the deep-research convergence on the 016 umbrella. Fine-tunes a small cross-encoder (ms-marco-base or BGE-base) on (query, spec-doc) triples drawn from spec-memory's corpus. The 2026-05-21 ms-marco bench showed off-the-shelf models reorder spec-memory's structured-markdown docs WORSE than positional fallback; this packet tests whether a domain-targeted fine-tune addresses that. If gates fail, rerank slot is documented as permanently non-load-bearing for this corpus.",
+  "keywords": [
+    "010",
+    "fine-tune",
+    "domain-tuned",
+    "cross-encoder",
+    "ms-marco",
+    "bge-reranker-base",
+    "spec-memory",
+    "scaffold-only",
+    "execution-deferred"
+  ],
+  "lastUpdated": "2026-05-21T09:00:00Z",
+  "specId": "010",
+  "folderSlug": "domain-tuned-reranker-finetune",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "008-rerank-sidecar-arc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

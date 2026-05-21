@@ -33,6 +33,7 @@ DEFAULT_MODEL_REVISION = os.environ.get(
 PORT = int(os.environ.get("RERANK_SIDECAR_PORT", "8765"))
 LOG_PATH = os.environ.get("RERANK_LOG_PATH", "").strip()
 DEVICE = os.environ.get("RERANK_DEVICE", "").strip()
+DTYPE = os.environ.get("RERANK_TORCH_DTYPE", "").strip().lower()
 
 # Allowlist of model names the sidecar will load on request. The default is
 # always implicitly allowed. Operators add more via env:
@@ -78,7 +79,7 @@ def _get_lock(model_name: str) -> asyncio.Lock:
 
 
 def _load_model(model_name: str) -> CrossEncoder:
-    kwargs: dict[str, str | bool] = {
+    kwargs: dict[str, object] = {
         "trust_remote_code": True,
         "local_files_only": True,
     }
@@ -87,6 +88,13 @@ def _load_model(model_name: str) -> CrossEncoder:
         kwargs["revision"] = revision
     if DEVICE:
         kwargs["device"] = DEVICE
+    # arc 008/009 — cut model memory ~2x on MPS via fp16; bfloat16 alt for ops that need wider range
+    if DTYPE in {"float16", "fp16", "half"}:
+        import torch
+        kwargs["model_kwargs"] = {"torch_dtype": torch.float16}
+    elif DTYPE in {"bfloat16", "bf16"}:
+        import torch
+        kwargs["model_kwargs"] = {"torch_dtype": torch.bfloat16}
     return CrossEncoder(model_name, **kwargs)
 
 

@@ -475,7 +475,18 @@ async function rerankResults(
   // that those rows did NOT receive a neural score). Documents arrive in
   // upstream-ranked order (Stage 3 sorts by effective score before calling),
   // so the natural head is the higher-quality slice.
-  const providerCap = PROVIDER_CONFIG[provider]?.maxDocuments ?? documents.length;
+  let providerCap = PROVIDER_CONFIG[provider]?.maxDocuments ?? documents.length;
+  // arc 008/008 — operator can cap the local provider's batch via env to fit
+  // smaller GPU memory budgets (e.g. Apple Silicon MPS at small Qwen batches).
+  if (provider === 'local') {
+    const override = process.env.SPECKIT_RERANK_LOCAL_MAX_DOCS;
+    if (override) {
+      const parsed = Number.parseInt(override.trim(), 10);
+      if (Number.isFinite(parsed) && parsed > 0) {
+        providerCap = Math.min(providerCap, parsed);
+      }
+    }
+  }
   const head = documents.length > providerCap
     ? documents.slice(0, providerCap)
     : documents;
