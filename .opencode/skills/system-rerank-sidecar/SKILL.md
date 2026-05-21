@@ -87,10 +87,19 @@ The sidecar mirrors CocoIndex's `CrossEncoderRerankerAdapter` core: build `(quer
 
 #### `GET /health`
 
-Cheap readiness probe. Does NOT load the model.
+Cheap readiness probe. Does NOT load the model. Since v0.2.0 the response includes multi-model fields (`default_model`, `allowed_models`, `loaded_models`) alongside the legacy `model_loaded`/`model_name` (which describe the default model only, kept for back-compat).
 
 ```json
-{"status": "ok", "model_loaded": false, "model_name": "Qwen/Qwen3-Reranker-0.6B", "queue_depth": 0, "uptime_s": 1.25}
+{
+  "status": "ok",
+  "model_loaded": false,
+  "model_name": "Qwen/Qwen3-Reranker-0.6B",
+  "default_model": "Qwen/Qwen3-Reranker-0.6B",
+  "allowed_models": ["Qwen/Qwen3-Reranker-0.6B"],
+  "loaded_models": [],
+  "queue_depth": 0,
+  "uptime_s": 1.25
+}
 ```
 
 ```bash
@@ -138,14 +147,19 @@ curl -sf -X POST http://127.0.0.1:8765/rerank \
 
 Validation: `documents` must be non-empty; `top_k` is optional and zero-or-greater when set; `index` is the original zero-based document position; `model` is optional and defaults to `RERANK_MODEL_NAME`. If set, the model must be in the allowlist (`RERANK_ALLOWED_MODELS` env or the default-only set) or the request returns HTTP 400 with the allowed list.
 
-**Multi-model serving** (since v0.2.0): the sidecar can hold multiple cross-encoder models in memory simultaneously, one per consumer. Each model has its own `asyncio.Lock`, so concurrent calls to different models do NOT queue on each other (only same-model calls serialize). Add models via:
+**Multi-model serving** (since v0.2.0): the sidecar can hold multiple cross-encoder models in memory simultaneously, one per consumer. Each model has its own `asyncio.Lock`, so concurrent calls to different models do NOT queue on each other (only same-model calls serialize).
+
+**Allowlist scope and operator setup.** The default sidecar startup permits ONLY the default model (`RERANK_MODEL_NAME`). Multi-consumer setups MUST set `RERANK_ALLOWED_MODELS` explicitly before either consumer can request a different model — otherwise the second model's `/rerank` call returns HTTP 400. Use `scripts/use-model.sh` to add a model + its revision in one step, or set the env vars by hand:
 
 ```bash
 RERANK_ALLOWED_MODELS="Qwen/Qwen3-Reranker-0.6B,cross-encoder/ms-marco-MiniLM-L-6-v2" \
+RERANK_MODEL_REVISIONS='{"cross-encoder/ms-marco-MiniLM-L-6-v2":"c5ee24cb16019beea0893ab7796b1df96625c6b8"}' \
   bash scripts/start.sh
 ```
 
-mk-spec-memory's `cross-encoder.ts:54` and mcp-coco-index's `HttpSidecarRerankerAdapter.model_name` each send their preferred model on the wire. Spec-memory picks ms-marco-MiniLM (small + fast for opt-in inspection); cocoindex picks Qwen (best quality for code chunks). One sidecar process serves both.
+**Revision-pin scope.** `RERANK_MODEL_REVISION` pins ONLY the default model. Additional allowlisted models load from the latest local snapshot unless their revision is set explicitly in `RERANK_MODEL_REVISIONS` (JSON map). Operators who need a deterministic revision for every allowlisted model should populate that map; otherwise the latest local cache is used and the loaded revision may drift across `huggingface_hub` snapshot updates.
+
+mk-spec-memory's `cross-encoder.ts:54` and mcp-coco-index's `HttpSidecarRerankerAdapter.model_name` each send their preferred model on the wire. Spec-memory currently points at `cross-encoder/ms-marco-MiniLM-L-6-v2`; cocoindex points at `Qwen/Qwen3-Reranker-0.6B`. One sidecar process serves both when both are allowlisted.
 
 ### Lifecycle
 

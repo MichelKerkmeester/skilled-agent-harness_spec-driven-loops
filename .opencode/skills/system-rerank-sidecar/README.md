@@ -64,11 +64,22 @@ The sidecar binds `127.0.0.1:8765`. Probe with:
 curl -sf http://127.0.0.1:8765/health
 ```
 
-Expected shape before warmup:
+Expected shape before warmup (v0.2.0 multi-model fields included):
 
 ```json
-{"status":"ok","model_loaded":false,"model_name":"Qwen/Qwen3-Reranker-0.6B","queue_depth":0,"uptime_s":1.0}
+{
+  "status": "ok",
+  "model_loaded": false,
+  "model_name": "Qwen/Qwen3-Reranker-0.6B",
+  "default_model": "Qwen/Qwen3-Reranker-0.6B",
+  "allowed_models": ["Qwen/Qwen3-Reranker-0.6B"],
+  "loaded_models": [],
+  "queue_depth": 0,
+  "uptime_s": 1.0
+}
 ```
+
+`model_loaded` and `model_name` are legacy fields describing the default model only (kept for clients written against v0.1.x). `default_model`, `allowed_models`, and `loaded_models` are authoritative for multi-model serving.
 
 Warm the model (avoids cold-start tax on the first user-facing rerank):
 
