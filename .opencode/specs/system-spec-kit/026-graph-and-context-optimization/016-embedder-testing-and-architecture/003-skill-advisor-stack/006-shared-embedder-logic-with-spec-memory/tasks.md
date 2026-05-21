@@ -56,7 +56,7 @@ _memory:
 | T008 | P0 | Step 3: Flip skill-advisor `DEFAULT_ACTIVE_EMBEDDER` to `{ name: 'auto', dim: 0 }`. Add `ensureActiveEmbedder()` helper. | `[ ]` | Planned |
 | T009 | P0 | Step 4: Wire `advisor-server.ts` bootstrap to call `ensureActiveEmbedder()` then `refreshSkillEmbeddings()` if pointer just flipped. | `[ ]` | Planned |
 | T010 | P0 | Step 5: Update skill-advisor `INSTALL_GUIDE.md` section 12 + `README.md` pluggable-layer subsection. | `[ ]` | Planned |
-| T011 | P0 | Add `shared-factory-parity.vitest.ts` regression test. | `[ ]` | Planned |
+| T011 | P0 | Add `shared-factory-parity.vitest.ts` regression test. | `[x]` | Shipped in remediation commit — 9 cases covering MANIFESTS reference identity, manifest lookups, adapter shape parity for jina-v3 + nomic, listManifests/listSupportedDimensions identity, unknown-name + purged-baseline negative cases. |
 | T012 | P0 | Add `ensure-active-embedder.vitest.ts` (cascade idempotency, pointer persistence, content-type parameter). | `[ ]` | Planned |
 <!-- /ANCHOR:phase-2 -->
 

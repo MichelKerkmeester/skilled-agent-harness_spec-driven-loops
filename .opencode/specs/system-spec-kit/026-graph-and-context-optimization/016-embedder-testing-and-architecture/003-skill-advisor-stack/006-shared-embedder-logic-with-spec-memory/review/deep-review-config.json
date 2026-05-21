@@ -1,0 +1,24 @@
+{
+  "reviewTarget": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack/006-shared-embedder-logic-with-spec-memory",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack/006-shared-embedder-logic-with-spec-memory",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.10,
+  "executionMode": "auto",
+  "config": {
+    "executor": {
+      "type": "cli-devin",
+      "model": "swe-1.6",
+      "timeoutSeconds": 900
+    },
+    "resource_map": {
+      "emit": true
+    }
+  },
+  "commitContext": {
+    "headSha": "5d1ed78ae",
+    "headMessage": "feat(016/003/006): shared embedder factory + skill-advisor 'auto' default"
+  },
+  "createdAt": "2026-05-21T17:45:00Z"
+}

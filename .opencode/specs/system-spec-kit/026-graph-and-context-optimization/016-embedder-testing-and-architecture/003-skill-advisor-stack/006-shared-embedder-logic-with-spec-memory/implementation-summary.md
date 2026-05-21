@@ -24,7 +24,29 @@ _memory:
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
 
-> **Status: SHIPPED.** Code, tests, docs and strict validation complete. Live daemon smoke remains as the final operator-side check.
+> **Status: SHIPPED (with remediation).** Code, tests, docs and strict validation complete after the deep-review remediation commit. Live daemon smoke remains as the final operator-side check.
+
+### Remediation commit (after deep-review iter-001)
+
+A single follow-up commit closed all three P1 advisories and three P2 cleanup items surfaced by the deep-review:
+
+- **P1-1 → fixed.** Shipped `mcp_server/tests/embedders/shared-factory-parity.vitest.ts` with 9 cases covering MANIFESTS reference identity, `NotImplementedError` class identity, manifest-lookup parity, adapter-shape parity for the production default `jina-embeddings-v3` plus the local-cascade default `nomic-embed-text-v1.5`, `listManifests` / `listSupportedDimensions` identity, and negative cases for unknown names and the purged baseline. Tasks T011 checked.
+- **P1-2 → fixed.** `INSTALL_GUIDE.md:414` now reads "Ollama → hf-local → OpenAI → Voyage probe chain (ADR-014 local-first)", matching §12.1, auto-select.ts and README.
+- **P1-3 → fixed.** Hardcoded `provider: 'ollama'` in `schema.ts` replaced with `backendToProvider(manifest?.backend)` that maps `BackendKind` to `AutoSelectedEmbedderProvider` (`ollama` → `'ollama'`, `sentence-transformers` → `'hf-local'`, `api` → `'openai'`). Self-documenting and future-proof for any non-Ollama manifest added later.
+- **P2-3 → fixed.** `mcp_server/lib/embedders/index.ts` barrel preamble now names `ensureActiveEmbedder()` and the `'auto'` sentinel cascade.
+- **P2-4 → fixed.** Dropped `pointerNeedsResolution` from `__embedderSchemaTestables` — it had no test consumer.
+- **P2-5 → fixed.** README `setActiveEmbedder` sentence now annotates the 3-arg vs 4-arg cross-skill divergence and points at `embedder-pluggability.md`.
+- **P2-1 + P2-2 → kept.** Both were intentional design choices (test-mock convenience for double-persist, forward-looking documentation for `contentType`). Comments in source make the intent explicit.
+
+Post-remediation gate:
+
+- `@spec-kit/shared` builds clean.
+- `system-skill-advisor` typecheck clean.
+- Embedder vitests: **20 of 20 pass** across `registry.vitest.ts`, `schema.vitest.ts`, `ensure-active-embedder.vitest.ts` (5 cases) and the new `shared-factory-parity.vitest.ts` (9 cases).
+- `validate.sh --strict` on this packet: 0 errors, 0 warnings.
+- 4 shim test failures in `tests/compat/shim.vitest.ts` confirmed PRE-EXISTING (reproduced at HEAD without my changes applied) — unrelated to this work, listed in section "Known Limitations" below.
+
+Verdict moves from CONDITIONAL to PASS (PASS-with-advisories for the P2-1 and P2-2 intentional-design notes only). Deep-review report and resource map at `review/`.
 
 ---
 
@@ -194,7 +216,11 @@ Live daemon smoke (pending operator action):
 1. **Legacy `skill_nodes.embedding` BLOB column stays.** Removal is 003 follow-up #3, deferred until production confirms no consumer still uses the legacy path.
 2. **`contentType` parameter does not branch behaviour today.** Reserved for a future TS code consumer.
 3. **Live daemon smoke not yet collected on this machine.** The end-to-end gate confirms typecheck + build + vitest + strict-validate; the operator-side smoke remains as the next step.
-4. **3 pre-existing vitest failures inherited.** None are caused by this work: `tests/skill-graph-diagnostic-redaction.vitest.ts` references a missing plugin file; `tests/scorer/lane-weight-sweep.vitest.ts` references renamed spec folders; `tests/manual-testing-playbook.vitest.ts` has corpus drift. All three should be triaged separately.
+4. **Pre-existing vitest failures inherited.** None are caused by this work (confirmed by reproducing on HEAD~ without the remediation applied):
+   - `tests/skill-graph-diagnostic-redaction.vitest.ts` references a missing plugin file path.
+   - `tests/scorer/lane-weight-sweep.vitest.ts` references renamed spec folders.
+   - `tests/manual-testing-playbook.vitest.ts` has corpus drift (`24-scenario` vs the live 45-scenario corpus).
+   - `tests/compat/shim.vitest.ts` (4 of 8 cases) returns exit 2 for `--force-native` cases because the test's expected database state has drifted (the test corpus expects specific top-3 skills that the live `skill-graph.sqlite` no longer surfaces under the current scorer weights). All 4 cases that don't use `--force-native` continue to pass. Confirmed pre-existing at HEAD by stashing remediation and re-running. Belongs in a separate test-stabilisation packet.
 
 <!-- /ANCHOR:limitations -->
 

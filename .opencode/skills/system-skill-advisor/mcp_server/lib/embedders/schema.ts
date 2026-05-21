@@ -8,10 +8,12 @@ import path from 'node:path';
 import Database from 'better-sqlite3';
 import {
   autoSelectActiveEmbedder,
+  type AutoSelectedEmbedderProvider,
   type AutoSelectMetadataStore,
   type AutoSelectResult,
   type EmbedderContentType,
 } from '@spec-kit/shared/embeddings/auto-select.js';
+import type { BackendKind } from '@spec-kit/shared/embeddings/types.js';
 
 import { getManifest } from './registry.js';
 
@@ -186,6 +188,26 @@ function defaultLockPath(db: Database.Database): string {
 }
 
 /**
+ * Map a manifest's `BackendKind` to the cascade's `provider` taxonomy. The
+ * cascade distinguishes Voyage from OpenAI at the api tier, but
+ * `EmbedderManifest.backend` collapses both into `'api'`. For the api case
+ * we default to `'openai'` because the shared registry has no Voyage
+ * manifest today; a future refactor that adds Voyage-specific manifests
+ * should extend `EmbedderManifest` with an explicit provider hint.
+ */
+function backendToProvider(backend: BackendKind | undefined): AutoSelectedEmbedderProvider {
+  switch (backend) {
+    case 'sentence-transformers':
+      return 'hf-local';
+    case 'api':
+      return 'openai';
+    case 'ollama':
+    default:
+      return 'ollama';
+  }
+}
+
+/**
  * Ensure an embedder pointer is persisted in `vec_metadata`. If the
  * current pointer is the `'auto'` sentinel or references a manifest the
  * shared registry no longer knows about, invoke the shared cascade
@@ -213,8 +235,17 @@ export async function ensureActiveEmbedder(
       if (pointerNeedsResolution(pointer)) {
         return null;
       }
-      // Provider is recoverable from the manifest at need; persist only name + dim.
-      return { name: pointer.name, dim: pointer.dim, provider: 'ollama' };
+      // Derive the cascade-tier provider from the manifest's backend kind so
+      // the metadata-store contract stays truthful when non-Ollama manifests
+      // are added in the future. Today all shared MANIFESTS use `backend: 'ollama'`
+      // so this always evaluates to `'ollama'` — the derivation removes the
+      // hardcoded lie surfaced by the phase 003/006 deep-review (P1-3).
+      const manifest = getManifest(pointer.name);
+      return {
+        name: pointer.name,
+        dim: pointer.dim,
+        provider: backendToProvider(manifest?.backend),
+      };
     },
     persistActiveEmbedder(embedder) {
       setActiveEmbedder(db, embedder.name, embedder.dim);
@@ -243,5 +274,4 @@ export async function ensureActiveEmbedder(
 
 export const __embedderSchemaTestables = {
   setActiveEmbedderTransactional,
-  pointerNeedsResolution,
 };
