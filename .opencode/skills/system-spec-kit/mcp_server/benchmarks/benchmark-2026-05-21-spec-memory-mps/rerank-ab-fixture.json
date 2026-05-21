@@ -1,0 +1,609 @@
+{
+  "version": "1.0",
+  "memory_index_hash": "sha256:27063843a74a89517afb0b5aa1e5355ca4bf67053f7ea2d97656cb7a4964ba1b",
+  "memory_index_size": 8537,
+  "captured_at": "2026-05-20T14:14:37.674710Z",
+  "doc_id_scheme": "repo-relative path under .opencode/specs, plus gold_memory_ids for direct memory_index verification",
+  "probes": [
+    {
+      "id": "fixture-001",
+      "query": "documentation verification checklist for the CocoIndex complete-fork author docs phase",
+      "gold_doc_ids": [
+        "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/004-docs/checklist.md"
+      ],
+      "gold_memory_ids": [
+        2000
+      ],
+      "difficulty": "easy",
+      "category": "paraphrase"
+    },
+    {
+      "id": "fixture-002",
+      "query": "checklist for fixing V8 cross-spec contamination and ADR numeric prefix overreach in the local embeddings migration",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/041-v-rule-cross-spec-overreach/spec.md"
+      ],
+      "gold_memory_ids": [
+        1620
+      ],
+      "difficulty": "medium",
+      "category": "paraphrase"
+    },
+    {
+      "id": "fixture-003",
+      "query": "deep-research summary comparing Contextador's retrieval ergonomics and MCP query surface against Public's existing substrate",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/003-contextador/implementation-summary.md"
+      ],
+      "gold_memory_ids": [
+        954
+      ],
+      "difficulty": "medium",
+      "category": "paraphrase"
+    },
+    {
+      "id": "fixture-004",
+      "query": "ADR about consolidating spec-kit templates into the level and addendum generator instead of leaving compose scripts separate",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/008-template-levels/001-template-level-consolidation-research/decision-record.md"
+      ],
+      "gold_memory_ids": [
+        1404
+      ],
+      "difficulty": "medium",
+      "category": "paraphrase"
+    },
+    {
+      "id": "fixture-005",
+      "query": "research packet for turning review findings into fix-completeness inventories and cross-surface planner checks",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/005-code-graph/009-fix-iteration-quality-meta-research/spec.md"
+      ],
+      "gold_memory_ids": [
+        1047
+      ],
+      "difficulty": "hard",
+      "category": "paraphrase"
+    },
+    {
+      "id": "fixture-006",
+      "query": "implementation summary for the FIX-010-v2 remediation of packet docs, review strategy state, and inert planner imports",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/005-code-graph/009-fix-iteration-quality-meta-research/implementation-summary.md"
+      ],
+      "gold_memory_ids": [
+        1046
+      ],
+      "difficulty": "easy",
+      "category": "paraphrase"
+    },
+    {
+      "id": "fixture-007",
+      "query": "file ledger resource map for the testing playbook trio follow-up quality pass",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/003-post-program-quality-pass/003-testing-playbook-trio-alignment/resource-map.md"
+      ],
+      "gold_memory_ids": [
+        729
+      ],
+      "difficulty": "easy",
+      "category": "paraphrase"
+    },
+    {
+      "id": "fixture-008",
+      "query": "plan covering memory indexer invariants, PE lineage guardrails, scan recheck bypass, and constitutional tier cleanup",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/010-memory-indexer-invariants/plan.md"
+      ],
+      "gold_memory_ids": [
+        1007
+      ],
+      "difficulty": "hard",
+      "category": "paraphrase"
+    },
+    {
+      "id": "fixture-009",
+      "query": "stress-test task list tracking cat-14 pipeline gaps, cat-16 tooling fixes, and the remaining cat-24 memory-recall failure",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/005-stress-test-expansion-alignment/tasks.md"
+      ],
+      "gold_memory_ids": [
+        908
+      ],
+      "difficulty": "hard",
+      "category": "paraphrase"
+    },
+    {
+      "id": "fixture-010",
+      "query": "task checklist for the mxbai swap that planned a 20-scenario PASS sample across cat-01, cat-11, cat-15, cat-13, and cat-23",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/checklist.md"
+      ],
+      "gold_memory_ids": [
+        1096
+      ],
+      "difficulty": "medium",
+      "category": "paraphrase"
+    },
+    {
+      "id": "fixture-011",
+      "query": "validate vec_memories KNN dual-write into the active embedder shard after reindex",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/016-reindex-populates-vec-memories-knn-table/spec.md"
+      ],
+      "gold_memory_ids": [
+        4849
+      ],
+      "difficulty": "medium",
+      "category": "terminology"
+    },
+    {
+      "id": "fixture-012",
+      "query": "implementation notes for ensuring every vec_<dim> row also exists in vec_memories",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/016-reindex-populates-vec-memories-knn-table/implementation-summary.md"
+      ],
+      "gold_memory_ids": [
+        4846
+      ],
+      "difficulty": "hard",
+      "category": "paraphrase"
+    },
+    {
+      "id": "fixture-013",
+      "query": "factory should resolve the active ollama embedder from the populated shard when the main DB lacks the dim table",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/017-factory-shard-fallback-for-hf-voyage-openai/spec.md"
+      ],
+      "gold_memory_ids": [
+        8184
+      ],
+      "difficulty": "hard",
+      "category": "paraphrase"
+    },
+    {
+      "id": "fixture-014",
+      "query": "plan for factory shard fallback parity across hf-local voyage openai and ollama",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/017-factory-shard-fallback-for-hf-voyage-openai/plan.md"
+      ],
+      "gold_memory_ids": [
+        8183
+      ],
+      "difficulty": "medium",
+      "category": "terminology"
+    },
+    {
+      "id": "fixture-015",
+      "query": "constitutional markdown should warn-only through memory_index_scan instead of hard rejecting insufficient context",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/018-constitutional-quality-gate-exemption/spec.md"
+      ],
+      "gold_memory_ids": [
+        8189
+      ],
+      "difficulty": "easy",
+      "category": "terminology"
+    },
+    {
+      "id": "fixture-016",
+      "query": "implementation summary for the constitutional quality gate exemption that kept strict rejection for normal docs",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/018-constitutional-quality-gate-exemption/implementation-summary.md"
+      ],
+      "gold_memory_ids": [
+        8186
+      ],
+      "difficulty": "medium",
+      "category": "paraphrase"
+    },
+    {
+      "id": "fixture-017",
+      "query": "task list proving constitutional files no longer hit INSUFFICIENT_CONTEXT_ABORT while controls still fail",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/018-constitutional-quality-gate-exemption/tasks.md"
+      ],
+      "gold_memory_ids": [
+        8192
+      ],
+      "difficulty": "medium",
+      "category": "terminology"
+    },
+    {
+      "id": "fixture-018",
+      "query": "graph metadata repair runner that normalizes v1, fixes importance_tier enum values, and realigns lineage keys",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/019-lineage-and-metadata-repair-runner/spec.md"
+      ],
+      "gold_memory_ids": [
+        8406
+      ],
+      "difficulty": "easy",
+      "category": "terminology"
+    },
+    {
+      "id": "fixture-019",
+      "query": "lineage and metadata repair runner implementation summary with idempotency and backup evidence",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/019-lineage-and-metadata-repair-runner/implementation-summary.md"
+      ],
+      "gold_memory_ids": [
+        8409
+      ],
+      "difficulty": "medium",
+      "category": "paraphrase"
+    },
+    {
+      "id": "fixture-020",
+      "query": "checklist for graph metadata v1 repair, V8-safe archived metadata, and memory lineage repair validation",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/019-lineage-and-metadata-repair-runner/checklist.md"
+      ],
+      "gold_memory_ids": [
+        8404
+      ],
+      "difficulty": "medium",
+      "category": "terminology"
+    },
+    {
+      "id": "fixture-021",
+      "query": "tasks for confirming the graph metadata repair runner is idempotent after a second dry run",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/019-lineage-and-metadata-repair-runner/tasks.md"
+      ],
+      "gold_memory_ids": [
+        8407
+      ],
+      "difficulty": "hard",
+      "category": "paraphrase"
+    },
+    {
+      "id": "fixture-022",
+      "query": "plan for the lineage repair runner that uses a baseline scan log then dry-run, real run, and follow-up scan",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/019-lineage-and-metadata-repair-runner/plan.md"
+      ],
+      "gold_memory_ids": [
+        8405
+      ],
+      "difficulty": "hard",
+      "category": "paraphrase"
+    },
+    {
+      "id": "fixture-023",
+      "query": "arc parent for the five-phase rerank sidecar rollout and promotion gate",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/spec.md"
+      ],
+      "gold_memory_ids": [
+        8553
+      ],
+      "difficulty": "easy",
+      "category": "arc-context"
+    },
+    {
+      "id": "fixture-024",
+      "query": "phase 001 fixed cross encoder flag routing so HTTP local provider can be selected",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/001-flag-routing-fix-for-cross-encoder/spec.md"
+      ],
+      "gold_memory_ids": [
+        8548
+      ],
+      "difficulty": "medium",
+      "category": "arc-context"
+    },
+    {
+      "id": "fixture-025",
+      "query": "phase 002 created the FastAPI system rerank sidecar skill around Qwen3-Reranker-0.6B",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/002-system-rerank-sidecar-skill/spec.md"
+      ],
+      "gold_memory_ids": [
+        8549
+      ],
+      "difficulty": "easy",
+      "category": "arc-context"
+    },
+    {
+      "id": "fixture-026",
+      "query": "phase 003 made launchers self-electing and able to ensure the rerank sidecar",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/003-ensure-sidecar-from-launchers/spec.md"
+      ],
+      "gold_memory_ids": [
+        8550
+      ],
+      "difficulty": "medium",
+      "category": "arc-context"
+    },
+    {
+      "id": "fixture-027",
+      "query": "phase 004 benchmark comparing positional fallback with Qwen reranking on spec-memory",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/004-spec-memory-rerank-benchmark/spec.md"
+      ],
+      "gold_memory_ids": [
+        8551
+      ],
+      "difficulty": "easy",
+      "category": "arc-context"
+    },
+    {
+      "id": "fixture-028",
+      "query": "phase 005 consumes the rerank benchmark verdict to decide whether to promote Qwen as default",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/005-promote-qwen-as-default/spec.md"
+      ],
+      "gold_memory_ids": [
+        8552
+      ],
+      "difficulty": "easy",
+      "category": "arc-context"
+    },
+    {
+      "id": "fixture-029",
+      "query": "MCP launcher concurrency arc parent covering lease safety and multi-client daemon startup",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/spec.md"
+      ],
+      "gold_memory_ids": [
+        8547
+      ],
+      "difficulty": "medium",
+      "category": "arc-context"
+    },
+    {
+      "id": "fixture-030",
+      "query": "daemon bridge socket for skill-advisor and code-index launcher clients",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/012-daemon-bridge-socket-for-skill-advisor-and-code-index/spec.md"
+      ],
+      "gold_memory_ids": [
+        8546
+      ],
+      "difficulty": "medium",
+      "category": "arc-context"
+    },
+    {
+      "id": "fixture-031",
+      "query": "implementation summary for the daemon bridge socket added to launcher clients",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/012-daemon-bridge-socket-for-skill-advisor-and-code-index/implementation-summary.md"
+      ],
+      "gold_memory_ids": [
+        8544
+      ],
+      "difficulty": "hard",
+      "category": "paraphrase"
+    },
+    {
+      "id": "fixture-032",
+      "query": "sun_path socket directory and stale lease reclaim follow-up plan",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/011-sun-path-and-stale-lease-followups/plan.md"
+      ],
+      "gold_memory_ids": [
+        8542
+      ],
+      "difficulty": "medium",
+      "category": "arc-context"
+    },
+    {
+      "id": "fixture-033",
+      "query": "sun_path socket-dir plus stale lease reclaim feature specification",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/011-sun-path-and-stale-lease-followups/spec.md"
+      ],
+      "gold_memory_ids": [
+        8543
+      ],
+      "difficulty": "medium",
+      "category": "arc-context"
+    },
+    {
+      "id": "fixture-034",
+      "query": "multi-client stdio socket bridge for MCP launchers before the daemon bridge phase",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/010-multi-client-stdio-socket-bridge/spec.md"
+      ],
+      "gold_memory_ids": [
+        4578
+      ],
+      "difficulty": "hard",
+      "category": "paraphrase"
+    },
+    {
+      "id": "fixture-035",
+      "query": "canonical vector shard split that separated context-index metadata from per-profile vector storage",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/012-canonical-vector-shard-split/spec.md"
+      ],
+      "gold_memory_ids": [
+        3793
+      ],
+      "difficulty": "medium",
+      "category": "terminology"
+    },
+    {
+      "id": "fixture-036",
+      "query": "implementation summary for canonical vector shard split in spec-memory",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/012-canonical-vector-shard-split/implementation-summary.md"
+      ],
+      "gold_memory_ids": [
+        3791
+      ],
+      "difficulty": "medium",
+      "category": "paraphrase"
+    },
+    {
+      "id": "fixture-037",
+      "query": "local-first cascade reorder and nomic hf-local default for embeddings",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/015-cascade-reorder-and-nomic-hf-local-default/spec.md"
+      ],
+      "gold_memory_ids": [
+        4546
+      ],
+      "difficulty": "easy",
+      "category": "terminology"
+    },
+    {
+      "id": "fixture-038",
+      "query": "implementation summary for local-first cascade reorder and Nomic hf-local default",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/015-cascade-reorder-and-nomic-hf-local-default/implementation-summary.md"
+      ],
+      "gold_memory_ids": [
+        4544
+      ],
+      "difficulty": "medium",
+      "category": "paraphrase"
+    },
+    {
+      "id": "fixture-039",
+      "query": "mxbai swap decision record from the spec-memory embedder bake-off",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/decision-record.md"
+      ],
+      "gold_memory_ids": [
+        8514
+      ],
+      "difficulty": "easy",
+      "category": "terminology"
+    },
+    {
+      "id": "fixture-040",
+      "query": "023B fixture calibration packet used for expanded code-index reranker benchmarking",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/007-fixture-calibration/spec.md"
+      ],
+      "gold_memory_ids": [
+        8537
+      ],
+      "difficulty": "medium",
+      "category": "arc-context"
+    },
+    {
+      "id": "fixture-041",
+      "query": "retrieval observability packet for code-index deep research blind spots",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/002-retrieval-observability/spec.md"
+      ],
+      "gold_memory_ids": [
+        8519
+      ],
+      "difficulty": "medium",
+      "category": "paraphrase"
+    },
+    {
+      "id": "fixture-042",
+      "query": "prompt license registry tasks for the 023A2 code-index research branch",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/006-prompt-license-registry/tasks.md"
+      ],
+      "gold_memory_ids": [
+        8534
+      ],
+      "difficulty": "hard",
+      "category": "paraphrase"
+    },
+    {
+      "id": "fixture-043",
+      "query": "doctor model swap UX tasks in the code-index blind spots sequence",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/005-doctor-model-swap-ux/tasks.md"
+      ],
+      "gold_memory_ids": [
+        8530
+      ],
+      "difficulty": "hard",
+      "category": "paraphrase"
+    },
+    {
+      "id": "fixture-044",
+      "query": "upstream cocoindex-code rebase spike tasks from 023F",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/003-upstream-rebase-spike/tasks.md"
+      ],
+      "gold_memory_ids": [
+        8523
+      ],
+      "difficulty": "hard",
+      "category": "paraphrase"
+    },
+    {
+      "id": "fixture-045",
+      "query": "runtime cleanup followups after release cleanup root memory cleanup",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/004-runtime-root-memory-cleanup-followup-fixes/spec.md"
+      ],
+      "gold_memory_ids": [
+        8488
+      ],
+      "difficulty": "medium",
+      "category": "paraphrase"
+    },
+    {
+      "id": "fixture-046",
+      "query": "scenario execution plan for MCP runtime stress findings and search intelligence playbook",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/002-search-scenario-execution/plan.md"
+      ],
+      "gold_memory_ids": [
+        8497
+      ],
+      "difficulty": "hard",
+      "category": "paraphrase"
+    },
+    {
+      "id": "fixture-047",
+      "query": "MCP stress-cycle documentation and observability cleanup implementation summary",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/001-fix-mcp-stress-cycle-doc-observability/implementation-summary.md"
+      ],
+      "gold_memory_ids": [
+        8490
+      ],
+      "difficulty": "medium",
+      "category": "paraphrase"
+    },
+    {
+      "id": "fixture-048",
+      "query": "feature catalog entry for the four-stage retrieval pipeline with cross encoder reranking",
+      "gold_doc_ids": [
+        "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/014-pipeline-architecture/spec.md"
+      ],
+      "gold_memory_ids": [
+        6806
+      ],
+      "difficulty": "hard",
+      "category": "terminology"
+    },
+    {
+      "id": "fixture-049",
+      "query": "environment reference row for SPECKIT_CROSS_ENCODER as the Stage 3 rerank gate",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/001-flag-routing-fix-for-cross-encoder/spec.md"
+      ],
+      "gold_memory_ids": [
+        8548
+      ],
+      "difficulty": "medium",
+      "category": "terminology"
+    },
+    {
+      "id": "fixture-050",
+      "query": "Qwen sidecar benchmark should decide PROMOTE or HOLD for default spec-memory reranking",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/004-spec-memory-rerank-benchmark/spec.md"
+      ],
+      "gold_memory_ids": [
+        8551
+      ],
+      "difficulty": "hard",
+      "category": "arc-context"
+    }
+  ]
+}

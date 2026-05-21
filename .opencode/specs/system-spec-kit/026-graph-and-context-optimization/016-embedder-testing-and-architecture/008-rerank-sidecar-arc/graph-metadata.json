@@ -9,7 +9,8 @@
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/003-ensure-sidecar-from-launchers",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/004-spec-memory-rerank-benchmark",
     "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/005-promote-qwen-as-default",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/006-cocoindex-dedup-from-shared-sidecar"
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/006-cocoindex-dedup-from-shared-sidecar",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/007-spec-memory-mps-rerank-promotion"
   ],
   "manual": {
     "depends_on": [
@@ -28,7 +29,8 @@
       "shared cross-encoder daemon",
       "008 arc rerank",
       "qwen3-reranker-0.6b",
-      "cocoindex dedup shared sidecar"
+      "cocoindex dedup shared sidecar",
+      "spec-memory mps rerank"
     ],
     "key_topics": [
       "rerank",
@@ -37,7 +39,8 @@
       "qwen",
       "shared-skill",
       "stage3-rerank",
-      "deduplication"
+      "deduplication",
+      "mps"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -50,8 +53,8 @@
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts",
       ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/rerankers/reranker.py"
     ],
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/006-cocoindex-dedup-from-shared-sidecar",
-    "last_active_at": "2026-05-20T19:30:00Z",
-    "last_indexed_at": "2026-05-20T19:30:00Z"
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/007-spec-memory-mps-rerank-promotion",
+    "last_active_at": "2026-05-21T08:30:00Z",
+    "last_indexed_at": "2026-05-21T08:30:00Z"
   }
 }

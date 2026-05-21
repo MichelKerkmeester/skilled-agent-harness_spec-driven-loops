@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/007-spec-memory-mps-rerank-promotion",
+  "description": "Phase 007 of the 008 rerank-sidecar arc. Re-evaluates whether spec-memory's SPECKIT_CROSS_ENCODER default can flip ON when Qwen3-Reranker-0.6B runs on Apple Silicon MPS instead of CPU. Phase 004 and the 2026-05-20 re-run both showed CPU's per-probe latency triggers MCP-side rerank-gate timeouts on most probes; MPS is the cheapest experiment that could clear the +500ms p95 + +3 hits + 95% sidecar-reach gates. Single-consumer bench, same 50-probe fixture, same harness as phase 004.",
+  "keywords": [
+    "007",
+    "spec-memory",
+    "mps",
+    "qwen3-reranker",
+    "speckit_cross_encoder",
+    "promote-or-hold",
+    "apple-silicon",
+    "rerank-gate-timeout"
+  ],
+  "lastUpdated": "2026-05-21T00:00:00Z",
+  "specId": "007",
+  "folderSlug": "spec-memory-mps-rerank-promotion",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "008-rerank-sidecar-arc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

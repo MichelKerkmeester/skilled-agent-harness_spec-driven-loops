@@ -15,8 +15,8 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc"
     last_updated_at: "2026-05-20T19:00:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Phase 006 shipped PROMOTE; arc closes (dedup complete)"
-    next_safe_action: "Author system-rerank-sidecar feature catalog + manual testing playbook"
+    recent_action: "Phase 007 MPS bench HOLD; arc closes again"
+    next_safe_action: "Optional follow-ons: cap-top_k bench, ms-marco-MPS bench, quantized Qwen"
     blockers: []
     key_files:
       - "006-cocoindex-dedup-from-shared-sidecar/spec.md"
@@ -60,6 +60,7 @@ A second-opinion pass from `cli-codex gpt-5.5 xhigh` (recorded in the arc's rese
 | 004 | `004-spec-memory-rerank-benchmark/` | Planned | Run an A/B benchmark on spec-memory's own corpus (paraphrase recall fixtures cat-24/409, 416/417/418 playbook scenarios). Quantify the actual lift vs positional fallback before claiming a quality win — cocoindex's `+1/73` on code chunks is not transferable evidence for memory text. |
 | 005 | `005-promote-qwen-as-default/` | Complete (HOLD) | Phase 004 benchmark gates failed (p95 +9832ms; hit-rate Δ +0.4pp); sidecar ships opt-in only. Default model in `cross-encoder.ts:55` stays `cross-encoder/ms-marco-MiniLM-L-6-v2`. |
 | 006 | `006-cocoindex-dedup-from-shared-sidecar/` | Complete (PROMOTE) | Closes the arc's deduplication intent. `HttpSidecarRerankerAdapter` routes cocoindex's Stage 2 rerank through `system-rerank-sidecar` over HTTP by default (`COCOINDEX_RERANK_VIA_SIDECAR=true`); bundled `CrossEncoderRerankerAdapter` retained as fallback. A/B benchmark (`benchmark-2026-05-20-cocoindex-via-sidecar/`) confirmed hit-rate parity (15/73 = 15/73) and bounded p95 latency cost (+18 ms). |
+| 007 | `007-spec-memory-mps-rerank-promotion/` | Complete (HOLD) | Tested whether `RERANK_DEVICE=mps` could unblock spec-memory's default flip. Phase A smoke: Qwen-on-MPS at 155 ms / 3-doc rerank (~19x speedup vs CPU). Phase C bench: 20-doc batch shape (Stage 3 top_k) exhausts MPS GPU memory in Qwen attention; sidecar crashes mid-run with `MPS backend out of memory ... failed assertion 'Failed to allocate private MTLBuffer for size 76 GB'`. All three gates fail. Default stays off; `cross-encoder.ts:54` reverted to `cross-encoder/ms-marco-MiniLM-L-6-v2`. Follow-ons identified: cap-top_k, ms-marco-on-MPS, quantized Qwen, domain fine-tune. |
 <!-- /ANCHOR:phase-map -->
 
 ---
