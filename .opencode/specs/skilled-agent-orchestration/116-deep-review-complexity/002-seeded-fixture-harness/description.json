@@ -1,12 +1,29 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "skilled-agent-orchestration/116-deep-review-complexity/002-seeded-fixture-harness",
-  "description": "Seeded fixture harness for review-depth hardening before production changes.",
-  "keywords": ["116", "002", "seeded", "fixtures", "deep-review", "searchLedger"],
-  "lastUpdated": "2026-05-22T00:00:00.000Z",
+  "description": "Seeded vitest fixtures encoding the frozen v2 review-depth contract; fixtures fail today and pass after phases C-G ship.",
+  "keywords": [
+    "116",
+    "review-depth",
+    "fixtures",
+    "searchLedger",
+    "vitest"
+  ],
+  "trigger_phrases": [
+    "deep-review seeded fixtures",
+    "review-depth fixture harness"
+  ],
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "lastUpdated": "2026-05-22T11:23:51.035Z",
   "specId": "002",
   "folderSlug": "seeded-fixture-harness",
-  "parentChain": ["skilled-agent-orchestration", "116-deep-review-complexity"],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "116-deep-review-complexity"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "22-05-26_12-23__created-review-depth-validator-vitest-ts-with.md"
+  ]
 }
