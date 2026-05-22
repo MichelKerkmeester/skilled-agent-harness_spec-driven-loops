@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "skilled-agent-orchestration/116-deep-review-complexity",
   "spec_folder": "skilled-agent-orchestration/116-deep-review-complexity",
-  "parent_id": "skilled-agent-orchestration",
+  "parent_id": null,
   "children_ids": [
     "skilled-agent-orchestration/116-deep-review-complexity/001-research-synthesis",
     "skilled-agent-orchestration/116-deep-review-complexity/002-seeded-fixture-harness",
@@ -13,13 +13,12 @@
     "skilled-agent-orchestration/116-deep-review-complexity/007-ledger-led-graph-vocabulary",
     "skilled-agent-orchestration/116-deep-review-complexity/008-playbooks-and-default-calibration"
   ],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "skilled-agent-orchestration/z_archive/024-sk-deep-research-refinement",
-      "skilled-agent-orchestration/z_archive/030-sk-deep-research-review-mode"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -30,40 +29,126 @@
     ],
     "key_topics": [
       "deep-review",
-      "searchLedger",
-      "searchCoverage",
-      "validator enforcement",
-      "candidate saturation",
-      "graphless fallback"
+      "search-depth",
+      "hardening",
+      "search",
+      "ledger",
+      "candidate",
+      "generation",
+      "review",
+      "coverage",
+      "gates",
+      "completed",
+      "research"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "spec.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/post-dispatch-validate.vitest.ts",
+      ".opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl",
+      ".opencode/skills/deep-review/references/state_format.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts",
+      ".opencode/skills/deep-review/scripts/reduce-state.cjs",
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
       "001-research-synthesis/research/research.md",
-      "003-review-depth-schema-and-prompt-contract/decision-record.md",
-      "004-validator-v2-enforcement/decision-record.md",
-      "005-search-ledger-persistence-and-reporting/decision-record.md",
-      "006-candidate-saturation-and-graphless-gates/decision-record.md",
-      "008-playbooks-and-default-calibration/spec.md"
+      "spec.md"
     ],
     "entities": [
-      "deep-review",
-      "searchLedger",
-      "searchCoverage",
-      "post-dispatch-validate.ts",
-      "reduce-state.cjs"
+      {
+        "name": "post-dispatch-validate.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/post-dispatch-validate.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_pack_iteration.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "state_format.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-review/references/state_format.md",
+        "source": "derived"
+      },
+      {
+        "name": "post-dispatch-validate.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-review/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec_kit_deep-review_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec_kit_deep-review_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review Search",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depth Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
     ],
-    "causal_summary": "Arc 116 complete: 8/8 children shipped. 001 research-synthesis (15-iter deep-research) + 002 fixtures + 003 v2 schema/prompt + 004 validator warnings + 005 reducer searchDebt persistence + 006 STOP gates + 007 graph vocabulary + 008 playbooks. Validator v2 ships warn-only behind DEEP_REVIEW_V2_ENFORCEMENT flag.",
+    "causal_summary": "The completed research showed that `deep-review` validates discovered findings strongly, but it does not require enough pre-finding candidate search proof before a dimension can count as covered. A clean or no-finding review needs auditable target selection, bug-class hypotheses, invariant checks, producer/consumer tracing, negative-case search, and remaining search debt.",
     "created_at": "2026-05-22T00:00:00Z",
-    "last_save_at": "2026-05-22T15:20:00Z",
-    "save_lineage": "phase_parent_initialization",
+    "last_save_at": "2026-05-22T16:17:15.814Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md",
-      "001-research-synthesis/research/research.md"
+      "spec.md"
     ],
-    "last_active_child_id": "skilled-agent-orchestration/116-deep-review-complexity/007-ledger-led-graph-vocabulary",
-    "last_active_at": "2026-05-22T12:22:54.850Z"
+    "last_active_child_id": null,
+    "last_active_at": "2026-05-22T16:17:15.814Z"
   }
 }

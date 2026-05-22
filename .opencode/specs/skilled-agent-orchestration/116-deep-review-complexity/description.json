@@ -14,14 +14,15 @@
     "graphless-fallback",
     "seeded-tests"
   ],
-  "lastUpdated": "2026-05-22T00:00:00.000Z",
+  "lastUpdated": "2026-05-22T16:17:10.184Z",
   "specId": "116",
   "folderSlug": "deep-review-complexity",
   "parentChain": [
     "skilled-agent-orchestration"
   ],
-  "memorySequence": 116,
+  "memorySequence": 117,
   "memoryNameHistory": [
-    "deep-review-complexity"
+    "deep-review-complexity",
+    "22-05-26_17-17__shipped-the-116-deep-review-complexity-arc-end-to.md"
   ]
 }
