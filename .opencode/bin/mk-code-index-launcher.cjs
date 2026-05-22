@@ -213,6 +213,22 @@ function writeOwnerLeaseFile(lease) {
   fs.renameSync(tmp, currentLeasePath);
 }
 
+function writeOwnerLeaseFileExclusive(lease) {
+  const currentLeasePath = path.join(ensureCanonicalDir(path.dirname(ownerLeasePath())), OWNER_LEASE_FILE_NAME);
+  let fd;
+  try {
+    fd = fs.openSync(currentLeasePath, 'wx', 0o600);
+    fs.writeFileSync(fd, `${JSON.stringify(lease, null, 2)}\n`, 'utf8');
+    fs.fsyncSync(fd);
+    return true;
+  } catch (error) {
+    if (error.code === 'EEXIST') return false;
+    throw error;
+  } finally {
+    if (typeof fd === 'number') fs.closeSync(fd);
+  }
+}
+
 function processLiveness(pid) {
   if (!Number.isInteger(pid) || pid <= 0) return 'dead';
   try {
@@ -286,6 +302,19 @@ function acquireOwnerLeaseFile() {
     ttlMs: 60000,
     canonicalDbDir,
   };
+  if (!existing) {
+    if (!writeOwnerLeaseFileExclusive(lease)) {
+      const holder = readOwnerLeaseFile(currentOwnerLeasePath);
+      return {
+        acquired: false,
+        holder: holder || lease,
+        classification: holder ? classifyOwnerLease(holder) : 'live-owner',
+      };
+    }
+    ownerLeasePid = process.pid;
+    return { acquired: true, lease, reclaimed: existing };
+  }
+
   writeOwnerLeaseFile(lease);
   ownerLeasePid = process.pid;
   return { acquired: true, lease, reclaimed: existing };

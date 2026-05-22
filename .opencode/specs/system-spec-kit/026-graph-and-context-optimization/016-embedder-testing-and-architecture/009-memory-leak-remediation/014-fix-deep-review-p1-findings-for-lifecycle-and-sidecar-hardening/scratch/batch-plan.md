@@ -333,3 +333,44 @@ Implement phase 014 batch B6 only. Close or explicitly defer P2 findings DR009-C
 - Benchmark helper smoke tests where practical.
 - Strict validation for any touched phase docs and phase 014.
 - Alignment drift command if docs under `.opencode/skills/` change.
+
+## B1 Commit Handoff
+
+Suggested commit: `fix(014/B1): lease/ledger race correctness — DR009-COR-001/002/013/014/015 + DR009-MNT-002`
+
+Findings closed: DR009-COR-001, DR009-COR-002, DR009-COR-013, DR009-COR-014, DR009-COR-015, DR009-MNT-002.
+
+Changed/new files:
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-runtime/lib/deep-loop/loop-lock.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/loop-lock.vitest.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-runtime-retention.vitest.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/lib/owner-lease.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/bin/mk-code-index-launcher.cjs`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/index.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/tests/lib/owner-lease.vitest.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/tests/launcher-lease.vitest.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/lifecycle/cancel_protocol.py`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/lifecycle/active_work_registry.py`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/tests/lifecycle/test_cancel_protocol.py`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-rerank-sidecar/scripts/sidecar_ledger.py`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-rerank-sidecar/tests/test_sidecar_ledger.py`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening/checklist.md`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening/decision-record.md`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening/scratch/batch-plan.md`
+
+Verification:
+- `cd .opencode/skills/system-spec-kit && node mcp_server/node_modules/vitest/vitest.mjs run mcp_server/tests/deep-loop/loop-lock.vitest.ts --config mcp_server/vitest.config.ts 2>&1 | tail -10` -> 1 file, 7 tests passed.
+- `cd .opencode/skills/system-code-graph && node node_modules/vitest/vitest.mjs run mcp_server/tests/lib/owner-lease.vitest.ts mcp_server/tests/launcher-lease.vitest.ts --config vitest.config.ts 2>&1 | tail -10` -> 2 files, 24 tests passed.
+- `cd .opencode/skills/mcp-coco-index && python3 -m pytest mcp_server/tests/lifecycle/test_cancel_protocol.py -v 2>&1 | tail -10` -> 7 tests passed.
+- `cd .opencode/skills/system-rerank-sidecar && python3 -m pytest tests/test_sidecar_ledger.py -v 2>&1 | tail -10` -> 11 tests passed.
+- `cd .opencode/skills/system-code-graph && npm run typecheck` -> passed.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening --strict` -> passed with 0 errors, 0 warnings.
+- `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-code-graph` -> passed with non-blocking pre-existing warnings.
+- `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/mcp_server/tests/deep-loop` -> passed.
+- `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/lifecycle` -> passed with non-blocking pre-existing warnings.
+- `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-rerank-sidecar/scripts` -> passed.
+
+Broader regression notes:
+- `system-spec-kit` deep-loop directory regression is blocked by the current worktree move from `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/*` to `.opencode/skills/deep-loop-runtime/lib/deep-loop/*`; unrelated imports still point at deleted old paths.
+- `mcp-coco-index` lifecycle directory regression is blocked by sibling tests missing the same local `mcp_server` import path setup that B1 added only to `test_cancel_protocol.py`.
+- `system-rerank-sidecar` full test directory is blocked by missing local dependency `httpx`; the touched ledger test passes.

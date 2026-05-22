@@ -74,6 +74,25 @@ describe('owner lease lifecycle', () => {
     });
   });
 
+  it('allows exactly one fresh concurrent acquire to win', async () => {
+    const dbDir = join(tempRoot(), 'db');
+    const liveOwner = {
+      processKill: () => true,
+      readParentPid: () => 1,
+    };
+
+    const results = await Promise.all([
+      Promise.resolve().then(() => acquireOwnerLease(dbDir, { ownerPid: 101, ppid: 1, ...liveOwner })),
+      Promise.resolve().then(() => acquireOwnerLease(dbDir, { ownerPid: 202, ppid: 1, ...liveOwner })),
+    ]);
+
+    expect(results.filter((result) => result.acquired)).toHaveLength(1);
+    expect(results.filter((result) => !result.acquired)).toHaveLength(1);
+    expect(readOwnerLease(dbDir)?.ownerPid).toBe(
+      (results.find((result) => result.acquired) as { acquired: true; lease: OwnerLeaseData }).lease.ownerPid,
+    );
+  });
+
   it('treats symlink aliases as the same owner boundary', () => {
     const root = tempRoot();
     const realDir = join(root, 'real-db');
@@ -174,6 +193,19 @@ describe('owner lease lifecycle', () => {
         now,
       })).toBe('live-owner');
     }
+  });
+
+  it('does not refresh after ownership transfers to another pid', () => {
+    const dbDir = join(tempRoot(), 'db');
+    const firstOwner = 1234;
+    const nextOwner = 5678;
+
+    writeLease(dbDir, leaseFor(dbDir, { ownerPid: firstOwner }));
+    writeLease(dbDir, leaseFor(dbDir, { ownerPid: nextOwner }));
+
+    expect(refreshOwnerLease(dbDir, firstOwner, new Date('2026-05-22T00:01:00.000Z'))).toBe(false);
+    expect(readOwnerLease(dbDir)?.ownerPid).toBe(nextOwner);
+    expect(readOwnerLease(dbDir)?.lastHeartbeatIso).toBe('2026-05-22T00:00:00.000Z');
   });
 
   it('reclaims stale-heartbeat leases by overwriting the lease file', () => {

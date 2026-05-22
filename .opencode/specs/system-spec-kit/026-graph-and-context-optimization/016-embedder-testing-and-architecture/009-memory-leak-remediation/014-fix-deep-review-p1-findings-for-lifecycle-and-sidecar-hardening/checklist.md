@@ -77,12 +77,12 @@ Status values: `open`, `closed`, `deferred`, `blocked`.
 
 | Finding ID | Severity | Batch | Status | Evidence |
 |------------|----------|-------|--------|----------|
-| DR009-COR-001 | P1 | B1 | open | TBD: commit hash + deep-loop lock concurrent test |
-| DR009-COR-002 | P1 | B1 | open | TBD: commit hash + Code Graph lease parity test |
-| DR009-COR-013 | P1 | B1 | open | TBD: commit hash + CocoIndex cancel identity test |
-| DR009-COR-014 | P1 | B1 | open | TBD: commit hash + rerank ledger concurrency test |
-| DR009-COR-015 | P1 | B1 | open | TBD: commit hash + heartbeat lease-transfer test |
-| DR009-MNT-002 | P1 | B1 | open | TBD: commit hash + shared/parity lease evidence |
+| DR009-COR-001 | P1 | B1 | closed-by-arc-118 | Evidence: `deep-loop-runtime/lib/deep-loop/loop-lock.ts` ships `writeLoopLockExclusive` (O_EXCL); `deep-loop-runtime/tests/unit/loop-lock.vitest.ts` "allows exactly one fresh concurrent acquire to win" (7/7 PASSED). Closed by arc 118 deep-loop FULL_ISOLATE migration (commits `954702a8f4` + `107c522599`), independent of phase 014 edits. |
+| DR009-COR-002 | P1 | B1 | closed | Evidence: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening/scratch/batch-plan.md#b1-commit-handoff` |
+| DR009-COR-013 | P1 | B1 | closed | Evidence: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening/scratch/batch-plan.md#b1-commit-handoff` |
+| DR009-COR-014 | P1 | B1 | closed | Evidence: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening/scratch/batch-plan.md#b1-commit-handoff` |
+| DR009-COR-015 | P1 | B1 | closed | Evidence: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening/scratch/batch-plan.md#b1-commit-handoff` |
+| DR009-MNT-002 | P1 | B1 | closed | Evidence: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening/scratch/batch-plan.md#b1-commit-handoff` |
 | DR009-COR-003 | P1 | B2 | open | TBD: commit hash + shutdown hook signal test |
 | DR009-COR-005 | P1 | B2 | open | TBD: commit hash + cancelled update pytest |
 | DR009-COR-007 | P1 | B2 | open | TBD: commit hash + refresh active-work pytest |
@@ -221,11 +221,11 @@ Status values: `open`, `closed`, `deferred`, `blocked`.
 
 | Category | Total | Closed | Deferred | Open |
 |----------|-------|--------|----------|------|
-| P1 Findings | 40 | 0 | 0 | 40 |
+| P1 Findings | 40 | 6 | 0 | 34 |
 | P2 Findings | 20 | 0 | 0 | 20 |
-| Batches | 6 | 0 | 0 | 6 |
+| Batches | 6 | 1 | 0 | 5 |
 
-**Verification Date**: Not started
-**Verified By**: TBD
+**Verification Date**: 2026-05-22
+**Verified By**: codex
 **ADRs**: 4 proposed in `decision-record.md`
 <!-- /ANCHOR:summary -->

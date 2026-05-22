@@ -31,7 +31,7 @@ class _ActiveRow(Protocol):
 
 
 def match_cancel_request(req: CancelRequest, active_row: _ActiveRow) -> bool:
-    """Return True when either supplied cancellation identity matches a row."""
-    return (req.req_id is not None and req.req_id == active_row.req_id) or (
-        req.index_id is not None and req.index_id == active_row.index_id
-    )
+    """Return True when all supplied cancellation identities match a row."""
+    req_matches = req.req_id is None or req.req_id == active_row.req_id
+    index_matches = req.index_id is None or req.index_id == active_row.index_id
+    return req_matches and index_matches

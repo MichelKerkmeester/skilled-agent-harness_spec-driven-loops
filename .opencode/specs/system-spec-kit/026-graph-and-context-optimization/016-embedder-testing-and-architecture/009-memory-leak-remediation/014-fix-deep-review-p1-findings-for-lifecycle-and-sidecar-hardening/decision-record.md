@@ -166,3 +166,70 @@ Do not modify `review/review-report.md`, `review/resource-map.md`, `review/deep-
 - The original review remains auditable.
 - Phase 014 becomes the living closure ledger.
 <!-- /ANCHOR:adr-005 -->
+
+---
+
+<!-- ANCHOR:adr-006 -->
+## ADR-006: Use Exclusive Creation for Lease Acquisition and Flock for Ledger Mutation
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-COR-001, DR009-COR-002, DR009-COR-014, DR009-MNT-002 |
+
+### Context
+The B1 races shared the same failure shape: read current owner, write a temporary file, then atomically replace the final file. That makes the write durable, but it does not make the ownership claim exclusive.
+
+### Decision
+Use exclusive creation on fresh TS/CJS lease paths and treat `EEXIST` as a losing acquisition: deep-loop lock source now uses the moved runtime path `.opencode/skills/deep-loop-runtime/lib/deep-loop/loop-lock.ts`, Code Graph TS uses `.opencode/skills/system-code-graph/mcp_server/lib/owner-lease.ts`, and the launcher mirror uses `.opencode/bin/mk-code-index-launcher.cjs`. Use `fcntl.flock` around rerank sidecar ledger read-modify-write operations in `.opencode/skills/system-rerank-sidecar/scripts/sidecar_ledger.py`.
+
+### Consequences
+- Fresh concurrent acquisition has a single winner in the targeted tests.
+- The CJS launcher remains bootstrap-safe before the TypeScript build exists.
+- DR009-MNT-002 is closed with parity coverage in `owner-lease.vitest.ts` and `launcher-lease.vitest.ts`; a generated CJS contract remains a future cleanup candidate if the launcher build pipeline changes.
+<!-- /ANCHOR:adr-006 -->
+
+---
+
+<!-- ANCHOR:adr-007 -->
+## ADR-007: Require All Supplied Cancel Identities to Match
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-COR-013 |
+
+### Context
+`CancelRequest` accepts `reqId`, `indexId`, or both. The previous OR-match let a stale `reqId` cancel the row for a fresh `indexId`, or the reverse.
+
+### Decision
+When both identities are supplied, both must match the same active or stale row. Single-identity cancellation remains supported.
+
+### Consequences
+- Mismatched identity pairs return `not-found` instead of cancelling unrelated work.
+- The rule is covered in `mcp_server/tests/lifecycle/test_cancel_protocol.py`.
+<!-- /ANCHOR:adr-007 -->
+
+---
+
+<!-- ANCHOR:adr-008 -->
+## ADR-008: Shut Down on Owner-Lease Heartbeat Mismatch
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-COR-015 |
+
+### Context
+The Code Graph child refreshed the owner lease periodically, but a failed refresh after owner transfer could be ignored while the process kept serving.
+
+### Decision
+Treat a `refreshOwnerLease()` false return in the MCP server heartbeat loop as owner-loss. The child clears its refresh timer, closes IPC/DB resources through `shutdownCodeIndex()`, and exits.
+
+### Consequences
+- A process that no longer owns the lease does not overwrite the new owner.
+- The no-op refresh behavior is covered in `owner-lease.vitest.ts`; launcher transfer behavior remains covered by `launcher-lease.vitest.ts`.
+<!-- /ANCHOR:adr-008 -->

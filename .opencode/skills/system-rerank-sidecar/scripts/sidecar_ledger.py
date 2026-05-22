@@ -6,6 +6,8 @@ from __future__ import annotations
 import json
 import os
 import tempfile
+import fcntl
+from contextlib import contextmanager
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -79,6 +81,23 @@ def ledger_path(state_dir: str | Path) -> Path:
     return Path(state_dir).expanduser().resolve() / LEDGER_FILE_NAME
 
 
+def ledger_lock_path(state_dir: str | Path) -> Path:
+    return Path(state_dir).expanduser().resolve() / f"{LEDGER_FILE_NAME}.lock"
+
+
+@contextmanager
+def _locked_ledger(state_dir: str | Path):
+    target_dir = Path(state_dir).expanduser().resolve()
+    target_dir.mkdir(parents=True, exist_ok=True)
+    lock_path = ledger_lock_path(target_dir)
+    with lock_path.open("a+", encoding="utf-8") as handle:
+        fcntl.flock(handle.fileno(), fcntl.LOCK_EX)
+        try:
+            yield
+        finally:
+            fcntl.flock(handle.fileno(), fcntl.LOCK_UN)
+
+
 def default_state_dir() -> Path:
     configured = os.environ.get("RERANK_SIDECAR_STATE_DIR", "").strip()
     if configured:
@@ -101,6 +120,10 @@ def process_liveness(pid: int) -> Literal["alive", "dead", "eperm"]:
 
 
 def read_ledger(state_dir: str | Path) -> list[SidecarLedgerRow]:
+    return _read_ledger_unlocked(state_dir)
+
+
+def _read_ledger_unlocked(state_dir: str | Path) -> list[SidecarLedgerRow]:
     path = ledger_path(state_dir)
     try:
         parsed = json.loads(path.read_text(encoding="utf-8"))
@@ -120,6 +143,11 @@ def read_ledger(state_dir: str | Path) -> list[SidecarLedgerRow]:
 
 
 def write_ledger_atomic(state_dir: str | Path, rows: list[SidecarLedgerRow]) -> Path:
+    with _locked_ledger(state_dir):
+        return _write_ledger_atomic_unlocked(state_dir, rows)
+
+
+def _write_ledger_atomic_unlocked(state_dir: str | Path, rows: list[SidecarLedgerRow]) -> Path:
     target_dir = Path(state_dir).expanduser().resolve()
     target_dir.mkdir(parents=True, exist_ok=True)
     path = ledger_path(target_dir)
@@ -155,10 +183,11 @@ def write_ledger_atomic(state_dir: str | Path, rows: list[SidecarLedgerRow]) -> 
 
 
 def add_sidecar_row(state_dir: str | Path, row: SidecarLedgerRow) -> list[SidecarLedgerRow]:
-    rows = [existing for existing in read_ledger(state_dir) if existing.pid != row.pid]
-    rows.append(row)
-    write_ledger_atomic(state_dir, rows)
-    return rows
+    with _locked_ledger(state_dir):
+        rows = [existing for existing in _read_ledger_unlocked(state_dir) if existing.pid != row.pid]
+        rows.append(row)
+        _write_ledger_atomic_unlocked(state_dir, rows)
+        return rows
 
 
 def classify_sidecar_owner(
@@ -188,11 +217,12 @@ def reclaim_stale(
     *,
     process_liveness_check: ProcessLivenessChecker = process_liveness,
 ) -> list[SidecarLedgerRow]:
-    rows = read_ledger(state_dir)
-    kept = [row for row in rows if process_liveness_check(row.pid) != "dead"]
-    if len(kept) != len(rows):
-        write_ledger_atomic(state_dir, kept)
-    return kept
+    with _locked_ledger(state_dir):
+        rows = _read_ledger_unlocked(state_dir)
+        kept = [row for row in rows if process_liveness_check(row.pid) != "dead"]
+        if len(kept) != len(rows):
+            _write_ledger_atomic_unlocked(state_dir, kept)
+        return kept
 
 
 def find_reusable_sidecar(
@@ -204,36 +234,37 @@ def find_reusable_sidecar(
     process_liveness_check: ProcessLivenessChecker = process_liveness,
     current_time_iso: str | None = None,
 ) -> tuple[SidecarLedgerRow | None, list[ClassifiedSidecar]]:
-    rows = read_ledger(state_dir)
-    classifications: list[ClassifiedSidecar] = []
-    kept: list[SidecarLedgerRow] = []
-    reusable: SidecarLedgerRow | None = None
+    with _locked_ledger(state_dir):
+        rows = _read_ledger_unlocked(state_dir)
+        classifications: list[ClassifiedSidecar] = []
+        kept: list[SidecarLedgerRow] = []
+        reusable: SidecarLedgerRow | None = None
 
-    for row in rows:
-        classification = classify_sidecar_owner(
-            row,
-            expected_owner_token=expected_owner_token,
-            canonical_config_hash=canonical_config_hash,
-            health_check=health_check,
-            process_liveness_check=process_liveness_check,
-        )
-        classifications.append(ClassifiedSidecar(row=row, classification=classification))
-        if classification == "stale-pid-reclaim":
-            continue
-        if classification == "healthy-reusable" and reusable is None:
-            reusable = SidecarLedgerRow(
-                pid=row.pid,
-                port=row.port,
-                ownerToken=row.ownerToken,
-                startedAtIso=row.startedAtIso,
-                lastHealthIso=current_time_iso or now_iso(),
-                executablePath=row.executablePath,
-                canonicalConfigHash=row.canonicalConfigHash,
+        for row in rows:
+            classification = classify_sidecar_owner(
+                row,
+                expected_owner_token=expected_owner_token,
+                canonical_config_hash=canonical_config_hash,
+                health_check=health_check,
+                process_liveness_check=process_liveness_check,
             )
-            kept.append(reusable)
-            continue
-        kept.append(row)
+            classifications.append(ClassifiedSidecar(row=row, classification=classification))
+            if classification == "stale-pid-reclaim":
+                continue
+            if classification == "healthy-reusable" and reusable is None:
+                reusable = SidecarLedgerRow(
+                    pid=row.pid,
+                    port=row.port,
+                    ownerToken=row.ownerToken,
+                    startedAtIso=row.startedAtIso,
+                    lastHealthIso=current_time_iso or now_iso(),
+                    executablePath=row.executablePath,
+                    canonicalConfigHash=row.canonicalConfigHash,
+                )
+                kept.append(reusable)
+                continue
+            kept.append(row)
 
-    if len(kept) != len(rows) or reusable is not None:
-        write_ledger_atomic(state_dir, kept)
-    return reusable, classifications
+        if len(kept) != len(rows) or reusable is not None:
+            _write_ledger_atomic_unlocked(state_dir, kept)
+        return reusable, classifications

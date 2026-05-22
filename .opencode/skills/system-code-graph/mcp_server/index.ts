@@ -29,6 +29,7 @@ import {
 const DEFAULT_OWNER_LEASE_TTL_MS = 60_000;
 const OWNER_LEASE_REFRESH_INTERVAL_MS = DEFAULT_OWNER_LEASE_TTL_MS / 3;
 let ownerLeaseRefreshTimer: ReturnType<typeof setInterval> | null = null;
+let ownerLeaseMismatchShutdownStarted = false;
 
 function clearOwnerLeaseRefreshTimer(): void {
   if (!ownerLeaseRefreshTimer) return;
@@ -40,7 +41,11 @@ function startOwnerLeaseRefreshTimer(): void {
   if (ownerLeaseRefreshTimer) return;
   ownerLeaseRefreshTimer = setInterval(() => {
     try {
-      refreshOwnerLease(DATABASE_DIR, process.pid);
+      const refreshed = refreshOwnerLease(DATABASE_DIR, process.pid);
+      if (!refreshed && !ownerLeaseMismatchShutdownStarted) {
+        ownerLeaseMismatchShutdownStarted = true;
+        void shutdownCodeIndex('owner lease moved to another process').finally(() => process.exit(0));
+      }
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : String(error);
       console.error(`[owner-lease] heartbeat refresh failed: ${message}`);

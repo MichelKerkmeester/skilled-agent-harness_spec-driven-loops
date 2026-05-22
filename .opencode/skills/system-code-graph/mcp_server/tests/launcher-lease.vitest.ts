@@ -207,6 +207,28 @@ describe('mk-code-index launcher lease', () => {
     expect(second.stdout).toMatch(new RegExp(`^LEASE_HELD_BY:${ownerPid} startedAt=\\d{4}-\\d{2}-\\d{2}T`, 'm'));
   });
 
+  it('lets exactly one concurrent launcher own the lease', async () => {
+    const workspace = createWorkspace();
+    const first = spawnLauncher(workspace.launcherPath, workspace.root);
+    const second = spawnLauncher(workspace.launcherPath, workspace.root);
+
+    await waitFor(() => readOwnerLeasePid(workspace.root) !== null, 2000, 'owner lease');
+    await waitFor(
+      () => first.child.exitCode !== null || second.child.exitCode !== null || first.stdout.includes('LEASE_HELD_BY') || second.stdout.includes('LEASE_HELD_BY'),
+      8000,
+      'one launcher to report lease held',
+    );
+
+    const ownerPid = readOwnerLeasePid(workspace.root);
+    const runs = [first, second];
+    const running = runs.filter((run) => run.child.exitCode === null && !run.stdout.includes('LEASE_HELD_BY:'));
+    const blocked = runs.filter((run) => run.stdout.includes('LEASE_HELD_BY:'));
+
+    expect(ownerPid).not.toBeNull();
+    expect(running).toHaveLength(1);
+    expect(blocked).toHaveLength(1);
+  });
+
   // 004-REQ-001: live-owner diagnostics include the recorded startedAt value.
   it('reports the lease startedAt value for a live owner', async () => {
     const workspace = createWorkspace();

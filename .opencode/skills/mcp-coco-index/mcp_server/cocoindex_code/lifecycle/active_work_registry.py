@@ -206,9 +206,9 @@ class ActiveWorkRegistry:
             self._condition.notify_all()
 
     def _matches_stale(self, req: CancelRequest) -> bool:
-        return (req.req_id is not None and req.req_id in self._stale_req_ids) or (
-            req.index_id is not None and req.index_id in self._stale_index_ids
-        )
+        req_matches = req.req_id is None or req.req_id in self._stale_req_ids
+        index_matches = req.index_id is None or req.index_id in self._stale_index_ids
+        return req_matches and index_matches
 
     def _remember_stale(self, row: ActiveWorkRow) -> None:
         self._stale_req_ids.add(row.req_id)

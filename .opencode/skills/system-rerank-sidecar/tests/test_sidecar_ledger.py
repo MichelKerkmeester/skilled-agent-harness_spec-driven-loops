@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import os
 import sys
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 SKILL_DIR = Path(__file__).resolve().parent.parent
@@ -142,6 +143,16 @@ def test_atomic_write_uses_expected_schema(tmp_path):
     payload = json.loads(ledger_path(tmp_path).read_text(encoding="utf-8"))
     assert payload["version"] == 1
     assert payload["sidecars"][0]["ownerToken"] == "owner-a"
+
+
+def test_concurrent_sidecar_adds_do_not_lose_rows(tmp_path):
+    rows = [_row(pid=100 + idx, port=8765 + idx) for idx in range(8)]
+
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        list(pool.map(lambda row: add_sidecar_row(tmp_path, row), rows))
+
+    ledger_pids = {row.pid for row in read_ledger(tmp_path)}
+    assert ledger_pids == {row.pid for row in rows}
 
 
 def test_ensure_reuses_healthy_ledger_owner(tmp_path, monkeypatch):

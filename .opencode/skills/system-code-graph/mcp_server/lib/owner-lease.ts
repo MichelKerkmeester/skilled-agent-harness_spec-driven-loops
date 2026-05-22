@@ -111,6 +111,32 @@ function writeOwnerLeaseAtomic(leasePath: string, data: OwnerLeaseData): void {
   }
 }
 
+function writeOwnerLeaseExclusive(leasePath: string, data: OwnerLeaseData): boolean {
+  let fd: number | undefined;
+  try {
+    fd = openSync(leasePath, 'wx', 0o600);
+    writeFileSync(fd, `${JSON.stringify(data, null, 2)}\n`, { encoding: 'utf8' });
+    fsyncSync(fd);
+  } catch (error: unknown) {
+    const code = error && typeof error === 'object' && 'code' in error ? (error as NodeJS.ErrnoException).code : undefined;
+    if (code === 'EEXIST') {
+      return false;
+    }
+    throw error;
+  } finally {
+    if (typeof fd === 'number') {
+      closeSync(fd);
+    }
+  }
+
+  try {
+    fsyncPath(dirname(leasePath));
+  } catch {
+    // Directory fsync is best-effort on local filesystems.
+  }
+  return true;
+}
+
 function getProcessLiveness(
   pid: number,
   processKill: (pid: number, signal: 0) => boolean = process.kill,
@@ -237,6 +263,25 @@ export function acquireOwnerLease(dbDir: string, options: OwnerLeaseOptions = {}
     ttlMs: options.ttlMs ?? DEFAULT_TTL_MS,
     canonicalDbDir,
   };
+
+  if (!existing) {
+    if (writeOwnerLeaseExclusive(leasePath, lease)) {
+      return { acquired: true, lease, leasePath };
+    }
+    const holder = readOwnerLease(canonicalDbDir);
+    return holder
+      ? {
+          acquired: false,
+          holder,
+          leasePath,
+          classification: classifyOwner(holder, {
+            processKill: options.processKill,
+            readParentPid: options.readParentPid,
+            now,
+          }),
+        }
+      : { acquired: false, holder: lease, leasePath, classification: 'live-owner' };
+  }
 
   writeOwnerLeaseAtomic(leasePath, lease);
   return existing
