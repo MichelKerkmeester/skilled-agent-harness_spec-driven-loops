@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-memory-leak-follow-ons-arc"
-    last_updated_at: "2026-05-22T15:38:39Z"
-    last_updated_by: "main_agent"
-    recent_action: "completed-arc-010-phase-003-owner-lease-heartbeat-staleness"
-    next_safe_action: "start-arc-010-phase-001-or-002"
+    last_updated_at: "2026-05-22T15:53:50Z"
+    last_updated_by: "codex"
+    recent_action: "completed-arc-010-phase-001-system-code-graph-suite-triage"
+    next_safe_action: "start-arc-010-phase-002-rss-benchmark"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0100100100100100100100100100100100100100100100100100100100100100"
       session_id: "010-memory-leak-follow-ons-arc"
       parent_session_id: null
-    completion_pct: 33
+    completion_pct: 67
     open_questions: []
     answered_questions:
       - "Three deferred items scoped from arc 009's documented out-of-scope baselines and phase 007 owner-lease gap discovered during arc closure."
@@ -59,7 +59,7 @@ The operating rule remains verification first: no cleanup path may claim memory 
 
 | Phase | Focus | Priority | Status |
 |---|---|---|---|
-| `001-system-code-graph-suite-triage/` | Triage and Close 31 Pre-existing Vitest Failures | P1 | Planned |
+| `001-system-code-graph-suite-triage/` | Triage and Close 31 Pre-existing Vitest Failures | P1 | Completed |
 | `002-adapter-resident-memory-benchmark/` | Successful-Search + Sidecar 5xx Fallback RSS Benchmark | P2 | Planned |
 | `003-owner-lease-heartbeat-staleness-detection/` | Owner-Lease Heartbeat-Staleness Gap From Phase 007 | P1 | Completed |
 

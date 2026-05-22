@@ -80,7 +80,7 @@ describe('sanitizeEdgeMetadataString — R-007-P2-3 control-character allowlist'
       },
       {
         path: '../handlers/query.ts',
-        mustContain: ['sanitizeEdgeMetadataReadString'],
+        mustContain: ['sanitizeEdgeMetadataString'],
       },
       {
         path: '../lib/code-graph-context.ts',

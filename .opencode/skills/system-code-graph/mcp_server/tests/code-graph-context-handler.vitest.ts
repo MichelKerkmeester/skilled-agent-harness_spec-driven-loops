@@ -2,7 +2,6 @@
 // MODULE: Code Graph Context Handler Tests
 // ───────────────────────────────────────────────────────────────
 
-import { performance } from 'node:perf_hooks';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 const mocks = vi.hoisted(() => ({
@@ -451,16 +450,13 @@ describe('code-graph-context handler', () => {
         : []
     ));
 
-    const nowSpy = vi.spyOn(performance, 'now');
-    nowSpy
-      .mockReturnValueOnce(0)
-      .mockReturnValueOnce(0)
-      .mockReturnValueOnce(0)
-      .mockReturnValueOnce(0)
-      .mockReturnValueOnce(0)
-      .mockReturnValueOnce(4)
-      .mockReturnValueOnce(6)
-      .mockReturnValue(6);
+    const hrtimeSpy = vi.spyOn(process.hrtime, 'bigint');
+    hrtimeSpy
+      .mockReturnValueOnce(0n)
+      .mockReturnValueOnce(0n)
+      .mockReturnValueOnce(0n)
+      .mockReturnValueOnce(6_000_000n)
+      .mockReturnValue(6_000_000n);
 
     try {
       const result = actualBuildContext({
@@ -482,7 +478,7 @@ describe('code-graph-context handler', () => {
         truncatedText: false,
       });
     } finally {
-      nowSpy.mockRestore();
+      hrtimeSpy.mockRestore();
     }
   });
 
@@ -595,15 +591,13 @@ describe('code-graph-context handler', () => {
         : []
     ));
 
-    const nowSpy = vi.spyOn(performance, 'now');
-    nowSpy
-      .mockReturnValueOnce(0)
-      .mockReturnValueOnce(0)
-      .mockReturnValueOnce(0)
-      .mockReturnValueOnce(0)
-      .mockReturnValueOnce(399)
-      .mockReturnValueOnce(401)
-      .mockReturnValue(401);
+    const hrtimeSpy = vi.spyOn(process.hrtime, 'bigint');
+    hrtimeSpy
+      .mockReturnValueOnce(0n)
+      .mockReturnValueOnce(0n)
+      .mockReturnValueOnce(0n)
+      .mockReturnValueOnce(401_000_000n)
+      .mockReturnValue(401_000_000n);
 
     try {
       const result = await handleCodeGraphContext({
@@ -628,7 +622,7 @@ describe('code-graph-context handler', () => {
         parsed.data.anchors.length - parsed.data.graphContext.length,
       );
     } finally {
-      nowSpy.mockRestore();
+      hrtimeSpy.mockRestore();
     }
   });
 });

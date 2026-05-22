@@ -61,16 +61,16 @@ describe('realpath hardening for symlinked paths', () => {
         };
       });
 
-      vi.doMock('../utils/validators.js', async (importOriginal) => {
-        const actual = await importOriginal<typeof import('../utils/validators.js')>();
+      vi.doMock('../../../system-spec-kit/mcp_server/utils/validators.js', async (importOriginal) => {
+        const actual = await importOriginal<typeof import('../../../system-spec-kit/mcp_server/utils/validators.js')>();
         return {
           ...actual,
           createFilePathValidator: vi.fn(() => ((candidatePath: string) => candidatePath)),
         };
       });
 
-      vi.doMock('../utils/index.js', async (importOriginal) => {
-        const actual = await importOriginal<typeof import('../utils/index.js')>();
+      vi.doMock('../../../system-spec-kit/mcp_server/utils/index.js', async (importOriginal) => {
+        const actual = await importOriginal<typeof import('../../../system-spec-kit/mcp_server/utils/index.js')>();
         return {
           ...actual,
           requireDb: vi.fn(() => database),

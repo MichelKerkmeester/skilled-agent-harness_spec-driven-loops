@@ -31,6 +31,14 @@ const mocks = vi.hoisted(() => ({
   getStoredCodeGraphScope: vi.fn(),
   getTrackedFiles: vi.fn(),
   getSkipListSummary: vi.fn(),
+  probeCocoIndexReadiness: vi.fn(async () => ({
+    freshness: 'error',
+    action: 'none',
+    inlineIndexPerformed: false,
+    reason: 'cocoindex_binary_missing',
+    canonicalReadiness: 'missing',
+    trustState: 'unavailable',
+  })),
   getParserHealth: vi.fn(),
   countStaleButValidParseDiagnostics: vi.fn(),
   countTrackedSkillFiles: vi.fn(),
@@ -119,6 +127,10 @@ vi.mock('../lib/code-graph-db.js', () => ({
 
 vi.mock('../lib/parser-skip-list.js', () => ({
   getSkipListSummary: mocks.getSkipListSummary,
+}));
+
+vi.mock('../lib/ccc-readiness-probe.js', () => ({
+  probeCocoIndexReadiness: mocks.probeCocoIndexReadiness,
 }));
 
 vi.mock('../lib/tree-sitter-parser.js', () => ({
@@ -254,6 +266,14 @@ describe('code-graph sibling readiness emission', () => {
       count: 0,
       lastSeenAt: null,
       sample: [],
+    });
+    mocks.probeCocoIndexReadiness.mockResolvedValue({
+      freshness: 'error',
+      action: 'none',
+      inlineIndexPerformed: false,
+      reason: 'cocoindex_binary_missing',
+      canonicalReadiness: 'missing',
+      trustState: 'unavailable',
     });
     mocks.getParserHealth.mockReturnValue('ok');
     mocks.countStaleButValidParseDiagnostics.mockReturnValue(0);

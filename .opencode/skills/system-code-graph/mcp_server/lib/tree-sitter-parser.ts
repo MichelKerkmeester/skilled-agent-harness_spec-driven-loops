@@ -847,8 +847,8 @@ export class TreeSitterParser implements ParserAdapter {
 
   /** Check if parser and grammars are loaded */
   static isReady(language?: SupportedLanguage): boolean {
-    if (!parserInstance) return false;
     if (language === 'doc') return true;
+    if (!parserInstance) return false;
     if (language) return grammarCache.has(language);
     return SUPPORTED_LANGUAGES.every(lang => grammarCache.has(lang));
   }

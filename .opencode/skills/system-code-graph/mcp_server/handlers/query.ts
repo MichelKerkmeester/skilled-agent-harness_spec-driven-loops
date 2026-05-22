@@ -1122,7 +1122,8 @@ export async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: 
   const { operation, subject } = args;
   const limit = Math.max(1, Math.min(Number(args.limit) || 50, 1000));
   const { edgeType: requestedEdgeType, error: edgeTypeError } = resolveRequestedEdgeType(args);
-  const maxDepth = Math.max(1, Math.min(Number(args.maxDepth) || 3, 20));
+  const rawMaxDepth = args.maxDepth === undefined ? 3 : Number(args.maxDepth);
+  const maxDepth = Math.max(0, Math.min(Number.isFinite(rawMaxDepth) ? rawMaxDepth : 3, 20));
 
   if (edgeTypeError) {
     return {

@@ -9,7 +9,7 @@ const mocks = vi.hoisted(() => ({
   readFileSync: vi.fn(),
 }));
 
-vi.mock('./shared/codex-hook-policy.js', () => ({
+vi.mock('../lib/shared/codex-hook-policy.js', () => ({
   detectCodexHookPolicy: mocks.codexHookPolicy,
 }));
 
@@ -164,7 +164,16 @@ describe('runtime-detection / areHooksAvailable', () => {
 
   beforeEach(() => {
     for (const key of Object.keys(process.env)) {
-      if (key.startsWith('CLAUDE_') || key === 'MCP_SERVER_NAME') {
+      if (
+        key.startsWith('CLAUDE_')
+        || key.startsWith('CODEX_')
+        || key === 'COPILOT_CLI'
+        || key === 'GITHUB_COPILOT_TOKEN'
+        || key.startsWith('GEMINI_')
+        || key.startsWith('GOOGLE_')
+        || key === 'OPENAI_API_KEY'
+        || key === 'MCP_SERVER_NAME'
+      ) {
         delete process.env[key];
       }
     }
@@ -195,7 +204,16 @@ describe('runtime-detection / getRecoveryApproach', () => {
 
   beforeEach(() => {
     for (const key of Object.keys(process.env)) {
-      if (key.startsWith('CLAUDE_') || key === 'MCP_SERVER_NAME') {
+      if (
+        key.startsWith('CLAUDE_')
+        || key.startsWith('CODEX_')
+        || key === 'COPILOT_CLI'
+        || key === 'GITHUB_COPILOT_TOKEN'
+        || key.startsWith('GEMINI_')
+        || key.startsWith('GOOGLE_')
+        || key === 'OPENAI_API_KEY'
+        || key === 'MCP_SERVER_NAME'
+      ) {
         delete process.env[key];
       }
     }

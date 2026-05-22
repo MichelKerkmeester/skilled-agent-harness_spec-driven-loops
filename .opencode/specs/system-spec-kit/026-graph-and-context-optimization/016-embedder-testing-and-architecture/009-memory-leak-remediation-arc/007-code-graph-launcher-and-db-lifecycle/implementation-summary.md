@@ -109,7 +109,7 @@ After spawning the MCP server, the launcher refreshes the owner lease from the l
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. The broader `system-code-graph` suite still has the parent-confirmed pre-existing baseline failures: 12 files / 31 tests outside this phase's launcher / owner lease / DB close lifecycle scope.
+1. The broader `system-code-graph` suite baseline from this phase is closed: 31 pre-existing failures triaged in `010-memory-leak-follow-ons-arc/001-system-code-graph-suite-triage` (commit `<TBD>`; main agent will fill). Per-test outcome table lives in that phase's `implementation-summary.md`.
 2. Read-path friction item #16 was not addressed in this phase. It remains deferred to a read-path or final regression packet rather than expanding lifecycle scope.
 3. The launcher carries a CommonJS owner-lease implementation instead of importing the TypeScript helper directly, because the launcher must run before build/bootstrap can be assumed.
 4. Heartbeat-staleness detection: phase 007's `classifyOwner` returned `live-owner` for any live PID regardless of heartbeat freshness. Closed in `010-memory-leak-follow-ons-arc/003-owner-lease-heartbeat-staleness-detection` (commit `<TBD>`; main agent will fill).

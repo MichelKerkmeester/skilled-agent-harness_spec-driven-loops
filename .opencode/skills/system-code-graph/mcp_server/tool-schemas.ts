@@ -93,6 +93,11 @@ const codeGraphContext: ToolDefinition = {
             file: { type: 'string', description: 'CocoIndex file path (provider: cocoindex)' },
             range: { type: 'object', properties: { start: { type: 'number' }, end: { type: 'number' } }, description: 'CocoIndex line range' },
             score: { type: 'number', description: 'CocoIndex relevance score' },
+            raw_score: { type: 'number', description: 'CocoIndex raw score telemetry (snake_case wire field)' },
+            rawScore: { type: 'number', description: 'CocoIndex raw score telemetry (camelCase internal field)' },
+            path_class: { type: 'string', description: 'CocoIndex path-class telemetry (snake_case wire field)' },
+            pathClass: { type: 'string', description: 'CocoIndex path-class telemetry (camelCase internal field)' },
+            rankingSignals: { type: 'array', items: { type: 'string' }, description: 'CocoIndex ranking-signal telemetry' },
             snippet: { type: 'string', description: 'CocoIndex snippet text preserved with the seed' },
             symbolName: { type: 'string', description: 'Manual seed symbol name' },
             kind: { type: 'string', description: 'Manual seed kind metadata' },
@@ -239,3 +244,14 @@ export const CODE_GRAPH_TOOL_SCHEMAS: ToolDefinition[] = [
 
 // Compatibility alias for moved tests and local schema smoke checks.
 export const TOOL_DEFINITIONS = CODE_GRAPH_TOOL_SCHEMAS;
+
+export function validateToolArgs(toolName: string, rawInput: Record<string, unknown>): Record<string, unknown> {
+  const tool = CODE_GRAPH_TOOL_SCHEMAS.find((definition) => definition.name === toolName);
+  if (!tool) {
+    throw new Error(`Unknown tool: ${toolName}`);
+  }
+  if (!rawInput || typeof rawInput !== 'object' || Array.isArray(rawInput)) {
+    throw new Error(`Invalid arguments for ${toolName}: expected object`);
+  }
+  return rawInput;
+}

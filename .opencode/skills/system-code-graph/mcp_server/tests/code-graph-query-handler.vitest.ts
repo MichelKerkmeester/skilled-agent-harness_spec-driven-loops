@@ -17,6 +17,7 @@ const mocks = vi.hoisted(() => ({
   queryFileImportDependents: vi.fn(),
   queryFileDegrees: vi.fn(),
   getLastDetectorProvenance: vi.fn(),
+  sanitizeEdgeMetadataString: vi.fn((value: unknown) => typeof value === 'string' ? value : null),
   ensureCodeGraphReady: vi.fn(async () => ({
     freshness: 'fresh',
     action: 'none',
@@ -34,6 +35,7 @@ vi.mock('../lib/code-graph-db.js', () => ({
   queryFileImportDependents: mocks.queryFileImportDependents,
   queryFileDegrees: mocks.queryFileDegrees,
   getLastDetectorProvenance: mocks.getLastDetectorProvenance,
+  sanitizeEdgeMetadataString: mocks.sanitizeEdgeMetadataString,
 }));
 
 vi.mock('../lib/ensure-ready.js', () => ({
@@ -120,6 +122,7 @@ describe('code-graph-query handler', () => {
     mocks.queryFileImportDependents.mockReturnValue([]);
     mocks.queryFileDegrees.mockReturnValue([]);
     mocks.getLastDetectorProvenance.mockReturnValue('structured');
+    mocks.sanitizeEdgeMetadataString.mockImplementation((value: unknown) => typeof value === 'string' ? value : null);
   });
 
   it('honors explicit edgeType for one-hop queries', async () => {
@@ -684,7 +687,7 @@ describe('code-graph-query handler', () => {
       step: 'resolve',
       edgeEvidenceClass: 'inferred_heuristic',
     });
-    expect(parsed.data).not.toHaveProperty('confidence');
+    expect(parsed.data).not.toHaveProperty('trust');
   });
 
   it('aggregates payload-level edge trust from the weakest returned edge', async () => {

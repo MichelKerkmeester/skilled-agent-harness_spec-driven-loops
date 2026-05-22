@@ -212,7 +212,7 @@ describe('tree-sitter-parser / parse', () => {
     expect(result.parseErrors).toContain('Tree contains syntax errors (partial parse)');
   });
 
-  it('returns error parseHealth when tree has errors and no nodes extracted', async () => {
+  it('returns error parseHealth and preserves the module sentinel when tree has errors and no symbols extracted', async () => {
     await TreeSitterParser.init();
     langLoadMock.mockResolvedValue({ language: 'javascript' });
     await TreeSitterParser.loadLanguage('javascript');
@@ -227,7 +227,12 @@ describe('tree-sitter-parser / parse', () => {
     const parser = new TreeSitterParser();
     const result = parser.parse('{{{', 'javascript');
     expect(result.parseHealth).toBe('error');
-    expect(result.nodes).toEqual([]);
+    expect(result.nodes).toEqual([
+      expect.objectContaining({
+        kind: 'module',
+        fqName: 'module',
+      }),
+    ]);
   });
 
   it('handles parser throwing an error gracefully', async () => {

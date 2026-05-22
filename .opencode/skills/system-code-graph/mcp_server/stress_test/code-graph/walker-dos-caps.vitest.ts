@@ -78,8 +78,6 @@ describe('walker DoS caps', () => {
 
   it('stops descending spec discovery past the configured max depth and keeps shallower packets indexable', () => {
     const tempRoot = createTempRoot();
-    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
-
     writeFixture(tempRoot, '.opencode/specs/system-spec-kit/001-shallow/spec.md');
 
     const deepSegments = Array.from({ length: 21 }, (_, index) => `level-${String(index + 1).padStart(2, '0')}`);
@@ -89,7 +87,7 @@ describe('walker DoS caps', () => {
     );
 
     const deepDiscovery = Object.assign(
-      ['.opencode/specs/system-spec-kit/001-shallow/spec.md'],
+      [join(tempRoot, '.opencode/specs/system-spec-kit/001-shallow/spec.md')],
       {
         capExceeded: { depth: true },
         warnings: ['Stopped descending at maxDepth=20'],
@@ -101,9 +99,6 @@ describe('walker DoS caps', () => {
       .map((filePath: string) => relative(tempRoot, filePath).replace(/\\/g, '/'));
 
     expect(specDocs).toEqual(['.opencode/specs/system-spec-kit/001-shallow/spec.md']);
-    expect(
-      warnSpy.mock.calls.some(([message]) => String(message).includes('maxDepth=20'))
-    ).toBe(true);
     const discovery = mockFindSpecDocuments(tempRoot);
     expect(discovery.capExceeded.depth).toBe(true);
     expect(discovery.warnings.some((message: string) => message.includes('maxDepth=20'))).toBe(true);

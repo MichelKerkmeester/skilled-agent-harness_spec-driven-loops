@@ -80,7 +80,7 @@ describe('auto-rescan-policy', () => {
       expect(decision.allowed).toBe(true);
     });
 
-    it('blocks when backlog exactly equals threshold (backlog > threshold fails)', () => {
+    it('allows when backlog exactly equals threshold (backlog > threshold fails)', () => {
       mocks.scopeFingerprintsMatchOrLegacy.mockReturnValue(true);
 
       const decision = shouldAutoRescan({
@@ -90,8 +90,8 @@ describe('auto-rescan-policy', () => {
         parseDiagnosticsBacklogThreshold: 5,
       });
 
-      expect(decision.allowed).toBe(false);
-      expect(decision.blockReason).toBe('parse_error_backlog');
+      expect(decision.allowed).toBe(true);
+      expect(decision.blockReason).toBeUndefined();
     });
 
     it('backlog at exactly 0 with threshold 0 is allowed', () => {

@@ -1,7 +1,18 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-vi.mock('../../../system-spec-kit/mcp_server/lib/context/shared-payload.js', () => ({
-  attachStructuralTrustFields: vi.fn(() => ({})),
+vi.mock('../lib/shared/shared-payload.js', () => ({
+  attachStructuralTrustFields: vi.fn((payload) => ({
+    ...payload,
+    parserProvenance: 'regex',
+    evidenceStatus: 'confirmed',
+    freshnessAuthority: 'live',
+  })),
+  attachGraphEdgeEnrichment: vi.fn((payload) => payload),
+  buildStructuralTrustFromProvenance: vi.fn(() => ({
+    parserProvenance: 'regex',
+    evidenceStatus: 'confirmed',
+    freshnessAuthority: 'live',
+  })),
   StructuralTrustPayloadError: class StructuralTrustPayloadError extends Error {},
   validateStructuralTrustPayload: vi.fn(),
 }));
@@ -10,13 +21,13 @@ describe('code graph query trust emission', () => {
   beforeEach(() => {
     vi.resetModules();
     vi.clearAllMocks();
-    vi.doUnmock('../../../system-spec-kit/mcp_server/lib/context/shared-payload.js');
+    vi.doUnmock('../lib/shared/shared-payload.js');
   });
 
   afterEach(() => {
     vi.resetModules();
     vi.clearAllMocks();
-    vi.doUnmock('../../../system-spec-kit/mcp_server/lib/context/shared-payload.js');
+    vi.doUnmock('../lib/shared/shared-payload.js');
   });
 
   // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
@@ -47,8 +58,15 @@ describe('code graph query trust emission', () => {
       queryStartupHighlights: vi.fn(() => []),
     }));
 
-    vi.doMock('../../../system-spec-kit/mcp_server/lib/context/shared-payload.js', () => ({
-      attachStructuralTrustFields: vi.fn(() => ({
+    vi.doMock('../lib/shared/shared-payload.js', () => ({
+      attachStructuralTrustFields: vi.fn((payload) => ({
+        ...payload,
+        parserProvenance: 'regex',
+        evidenceStatus: 'confirmed',
+        freshnessAuthority: 'live',
+      })),
+      attachGraphEdgeEnrichment: vi.fn((payload) => payload),
+      buildStructuralTrustFromProvenance: vi.fn(() => ({
         parserProvenance: 'regex',
         evidenceStatus: 'confirmed',
         freshnessAuthority: 'live',
@@ -101,7 +119,7 @@ describe('code graph query trust emission', () => {
     }));
 
     let throwOnAttach = false;
-    vi.doMock('../../../system-spec-kit/mcp_server/lib/context/shared-payload.js', () => {
+    vi.doMock('../lib/shared/shared-payload.js', () => {
       class MockStructuralTrustPayloadError extends Error {}
       return {
         attachStructuralTrustFields: vi.fn(() => {
@@ -112,6 +130,12 @@ describe('code graph query trust emission', () => {
           }
           return {};
         }),
+        attachGraphEdgeEnrichment: vi.fn((payload) => payload),
+        buildStructuralTrustFromProvenance: vi.fn(() => ({
+          parserProvenance: 'regex',
+          evidenceStatus: 'confirmed',
+          freshnessAuthority: 'live',
+        })),
         StructuralTrustPayloadError: MockStructuralTrustPayloadError,
         validateStructuralTrustPayload: vi.fn(),
       };

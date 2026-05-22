@@ -50,11 +50,11 @@ vi.mock('../lib/ensure-ready.js', () => ({
   })),
 }));
 
-vi.mock('../../../system-spec-kit/mcp_server/hooks/claude/hook-state.js', () => ({
+vi.mock('../lib/shared/hook-state.js', () => ({
   loadMostRecentState: mockLoadMostRecentState,
 }));
 
-vi.mock('../../../system-spec-kit/mcp_server/lib/utils/cocoindex-path.js', () => ({
+vi.mock('../lib/shared/cocoindex-path.js', () => ({
   isCocoIndexAvailable: mockIsCocoIndexAvailable,
 }));
 

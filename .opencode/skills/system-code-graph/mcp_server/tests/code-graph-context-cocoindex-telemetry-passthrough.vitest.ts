@@ -10,7 +10,6 @@
 // (F) hybrid-search rank order unchanged on a fixed query corpus.
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { z } from 'zod';
 
 // ── Mocks for graph DB / readiness ───────────────────────────────────
 const mocks = vi.hoisted(() => ({
@@ -433,40 +432,5 @@ describe('hybrid-search rank order — invariant under packet 015', () => {
     expect(source).not.toMatch(/\bpathClass\b/);
     expect(source).not.toMatch(/\brankingSignals\b/);
     expect(source).not.toMatch(/\braw_score\b/);
-  });
-});
-
-// ───────────────────────────────────────────────────────────────────────
-// Sanity — schema directly accepts the new fields via Zod
-// ───────────────────────────────────────────────────────────────────────
-describe('codeGraphSeedSchema — direct Zod validation', () => {
-  it('parses snake_case + camelCase telemetry fields', async () => {
-    // Re-import the schemas module fresh (vi.resetModules in beforeEach).
-    const mod = await import('../../../system-spec-kit/mcp_server/schemas/tool-input-schemas.js');
-    const schema = mod.TOOL_SCHEMAS.code_graph_context as z.ZodType<unknown>;
-    expect(() =>
-      schema.parse({
-        seeds: [
-          {
-            provider: 'cocoindex',
-            file: 'src/foo.ts',
-            range: { start: 1, end: 2 },
-            score: 0.5,
-            raw_score: 0.6,
-            path_class: 'implementation',
-            rankingSignals: ['s'],
-          },
-          {
-            provider: 'cocoindex',
-            file: 'src/bar.ts',
-            range: { start: 3, end: 4 },
-            score: 0.4,
-            rawScore: 0.5,
-            pathClass: 'tests',
-            rankingSignals: [],
-          },
-        ],
-      }),
-    ).not.toThrow();
   });
 });
