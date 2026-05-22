@@ -5,7 +5,20 @@
 import { execFileSync } from 'node:child_process';
 import { isMainModule } from '../lib/esm-entry.js';
 
-export type ProcessRole = 'current-session' | 'project-daemon' | 'expected-daemon' | 'zombie' | 'unknown';
+export type ProcessRole = 'current-session' | 'project-daemon' | 'expected-daemon' | 'external-tool' | 'zombie' | 'unknown';
+
+export type ProcessClassification =
+  | 'current-session'
+  | 'project-daemon'
+  | 'orphaned-project-daemon'
+  | 'expected-warm-daemon'
+  | 'external-mcp-stdio'
+  | 'browser-session'
+  | 'ccc-daemon'
+  | 'zombie'
+  | 'stale-pid-lock'
+  | 'eperm-alive-unowned'
+  | 'unknown-owner';
 
 export interface ProcessRow {
   pid: number;
@@ -13,17 +26,20 @@ export interface ProcessRow {
   stat: string;
   rssKb: number;
   command: string;
+  eperm?: boolean;
 }
 
 export interface ProcessRule {
   id: string;
   pattern: RegExp;
   role: Exclude<ProcessRole, 'current-session' | 'zombie' | 'unknown'>;
+  classification?: ProcessClassification;
   reason: string;
 }
 
 export interface ClassifiedProcess extends ProcessRow {
   role: ProcessRole;
+  classification: ProcessClassification;
   ruleId: string | null;
   rssMb: number;
   isAncestorOfCurrent: boolean;
@@ -63,6 +79,8 @@ export interface HarnessSnapshot {
   processes: ClassifiedProcess[];
   pidLocks: PidLockState[];
 }
+
+export type Inventory = HarnessSnapshot;
 
 export const DEFAULT_PROCESS_RULES: ProcessRule[] = [
   {
@@ -114,6 +132,42 @@ export const DEFAULT_PROCESS_RULES: ProcessRule[] = [
     reason: 'Operator-managed Ollama daemon',
   },
 ];
+
+const KNOWN_PROJECT_OWNER_MARKERS = [
+  '.opencode/skills/system-spec-kit',
+  '.opencode/skills/mcp-coco-index',
+  '.opencode/skills/system-code-graph',
+  '.opencode/skills/system-rerank-sidecar',
+  'mk-spec-memory-launcher.cjs',
+  'mk-code-index-launcher.cjs',
+  'SPECKIT_OWNER_TOKEN=',
+  'SPECKIT_PROCESS_OWNER=',
+  'SPECKIT_PROJECT_ROOT=',
+  '--owner-token',
+  '--ownerToken',
+  'owner_token=',
+  'ownerToken=',
+];
+
+function hasOwnerToken(command: string): boolean {
+  return /(?:^|\s)(?:--owner-token|--ownerToken|owner_token=|ownerToken=|SPECKIT_OWNER_TOKEN=)/.test(command);
+}
+
+export function hasKnownProjectOwnerMarker(command: string): boolean {
+  return KNOWN_PROJECT_OWNER_MARKERS.some((marker) => command.includes(marker));
+}
+
+function isCccProcess(command: string): boolean {
+  return /(?:^|[\s/])ccc(?:\s|$)/.test(command);
+}
+
+function isExternalMcpProcess(command: string): boolean {
+  return /(?:^|[\s/])mcp-[^\s/]+/.test(command) || /(?:^|\s)--mcp-server(?:\s|=|$)/.test(command);
+}
+
+function isBrowserProcess(command: string): boolean {
+  return /(?:Chrome|Firefox|Safari|WebKit)/.test(command) && !hasKnownProjectOwnerMarker(command);
+}
 
 function toMb(kb: number): number {
   return Math.round((kb / 1024) * 100) / 100;
@@ -200,6 +254,10 @@ export function getAncestorPids(pid: number, rows: ProcessRow[]): number[] {
   return ancestors;
 }
 
+export function getProcessAncestry(pid: number, rows: ProcessRow[]): number[] {
+  return getAncestorPids(pid, rows);
+}
+
 export function getDescendantPids(pid: number, rows: ProcessRow[]): number[] {
   const children = new Map<number, number[]>();
   for (const row of rows) {
@@ -263,6 +321,7 @@ export function classifyProcesses(
       return {
         ...row,
         role: 'zombie',
+        classification: 'zombie',
         ruleId: null,
         rssMb: toMb(row.rssKb),
         isAncestorOfCurrent,
@@ -277,6 +336,7 @@ export function classifyProcesses(
       return {
         ...row,
         role: 'current-session',
+        classification: 'current-session',
         ruleId: null,
         rssMb: toMb(row.rssKb),
         isAncestorOfCurrent,
@@ -287,14 +347,84 @@ export function classifyProcesses(
       };
     }
 
+    if (row.eperm) {
+      return {
+        ...row,
+        role: 'unknown',
+        classification: 'eperm-alive-unowned',
+        ruleId: null,
+        rssMb: toMb(row.rssKb),
+        isAncestorOfCurrent,
+        isDescendantOfCurrent,
+        isOrphanedProjectDaemon: false,
+        terminationCandidate: false,
+        reason: 'Process is alive but ownership cannot be inspected due to EPERM',
+      };
+    }
+
+    if (isCccProcess(row.command) && !hasOwnerToken(row.command)) {
+      return {
+        ...row,
+        role: 'external-tool',
+        classification: 'ccc-daemon',
+        ruleId: 'ccc-daemon',
+        rssMb: toMb(row.rssKb),
+        isAncestorOfCurrent,
+        isDescendantOfCurrent,
+        isOrphanedProjectDaemon: false,
+        terminationCandidate: false,
+        reason: 'CocoIndex CLI process without an owner token; preserve until exact owner policy exists',
+      };
+    }
+
+    if (isExternalMcpProcess(row.command)) {
+      return {
+        ...row,
+        role: 'external-tool',
+        classification: 'external-mcp-stdio',
+        ruleId: 'external-mcp-stdio',
+        rssMb: toMb(row.rssKb),
+        isAncestorOfCurrent,
+        isDescendantOfCurrent,
+        isOrphanedProjectDaemon: false,
+        terminationCandidate: false,
+        reason: 'External MCP stdio process; preserve until explicit close/stop ownership is proven',
+      };
+    }
+
+    if (isBrowserProcess(row.command)) {
+      return {
+        ...row,
+        role: 'external-tool',
+        classification: 'browser-session',
+        ruleId: 'browser-session',
+        rssMb: toMb(row.rssKb),
+        isAncestorOfCurrent,
+        isDescendantOfCurrent,
+        isOrphanedProjectDaemon: false,
+        terminationCandidate: false,
+        reason: 'Browser session without known project marker; preserve',
+      };
+    }
+
     const rule = rules.find((candidate) => candidate.pattern.test(row.command));
     const role = rule?.role ?? 'unknown';
     const isOrphanedProjectDaemon = role === 'project-daemon' && row.ppid === 1;
-    const terminationCandidate = role === 'project-daemon' && !isCurrentSession;
+    const classification =
+      rule?.classification ??
+      (isOrphanedProjectDaemon
+        ? 'orphaned-project-daemon'
+        : role === 'expected-daemon'
+          ? 'expected-warm-daemon'
+          : role === 'project-daemon'
+            ? 'project-daemon'
+            : 'unknown-owner');
+    const terminationCandidate = classification === 'orphaned-project-daemon';
 
     return {
       ...row,
       role,
+      classification,
       ruleId: rule?.id ?? null,
       rssMb: toMb(row.rssKb),
       isAncestorOfCurrent,
@@ -304,6 +434,17 @@ export function classifyProcesses(
       reason: rule?.reason ?? 'No project daemon rule matched',
     };
   });
+}
+
+export function classifyProcess(
+  row: ProcessRow,
+  rows: ProcessRow[],
+  options: {
+    currentPid?: number;
+    rules?: ProcessRule[];
+  } = {},
+): ClassifiedProcess {
+  return classifyProcesses(rows, options).find((candidate) => candidate.pid === row.pid) ?? classifyProcesses([row], options)[0];
 }
 
 export function buildHarnessSnapshot(input: {
@@ -364,10 +505,10 @@ Pages occupied by compressor: 50.
     sysctlOutput: 'hw.memsize: 68719476736',
     currentPid: 1000,
     lockContents: {
-      'live.pid': '2000',
-      'stale.pid': '9999',
-      'invalid.pid': 'not-a-pid',
-      'zombie.pid': '5000',
+      '.opencode/skills/system-spec-kit/run/live.pid': '2000',
+      '.opencode/skills/system-spec-kit/run/stale.pid': '9999',
+      '.opencode/skills/system-spec-kit/run/invalid.pid': 'not-a-pid',
+      '.opencode/skills/system-spec-kit/run/zombie.pid': '5000',
     },
     timestamp: '2026-05-22T00:00:00.000Z',
   });
@@ -375,7 +516,7 @@ Pages occupied by compressor: 50.
 
 function readCommand(command: string, args: string[]): string {
   try {
-    return execFileSync(command, args, { encoding: 'utf8' });
+    return execFileSync(command, args, { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     return `# command_failed: ${command} ${args.join(' ')} :: ${message}\n`;
@@ -389,6 +530,10 @@ function runSnapshot(): HarnessSnapshot {
     sysctlOutput: readCommand('sysctl', ['hw.memsize']),
     currentPid: process.pid,
   });
+}
+
+export function collectInventory(): Inventory {
+  return runSnapshot();
 }
 
 function showHelp(): void {

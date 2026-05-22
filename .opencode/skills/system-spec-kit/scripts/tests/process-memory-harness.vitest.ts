@@ -6,6 +6,7 @@ import {
   classifyProcesses,
   getAncestorPids,
   getDescendantPids,
+  getProcessAncestry,
   parsePsOutput,
   parseVmStat,
   syntheticFixtureSnapshot,
@@ -43,6 +44,7 @@ describe('process memory harness', () => {
 
     expect(getDescendantPids(1000, rows)).toEqual([1001, 1002]);
     expect(getAncestorPids(1002, rows)).toEqual([1001, 1000, 1]);
+    expect(getProcessAncestry(1002, rows)).toEqual([1001, 1000, 1]);
     expect(classified.find((row) => row.pid === 1001)?.role).toBe('current-session');
     expect(classified.find((row) => row.pid === 1002)?.terminationCandidate).toBe(false);
   });
@@ -51,18 +53,20 @@ describe('process memory harness', () => {
     const classified = classifyProcesses(parsePsOutput(PS_FIXTURE), { currentPid: 1000 });
 
     expect(classified.find((row) => row.pid === 2000)).toMatchObject({
-      role: 'project-daemon',
-      ruleId: 'cocoindex-daemon',
-      isOrphanedProjectDaemon: true,
-      terminationCandidate: true,
+      role: 'external-tool',
+      classification: 'ccc-daemon',
+      ruleId: 'ccc-daemon',
+      terminationCandidate: false,
     });
     expect(classified.find((row) => row.pid === 3000)).toMatchObject({
       role: 'expected-daemon',
+      classification: 'expected-warm-daemon',
       ruleId: 'rerank-sidecar',
       terminationCandidate: false,
     });
     expect(classified.find((row) => row.pid === 4000)).toMatchObject({
       role: 'expected-daemon',
+      classification: 'expected-warm-daemon',
       ruleId: 'ollama-serve',
       terminationCandidate: false,
     });
@@ -101,10 +105,10 @@ describe('process memory harness', () => {
     const snapshot = syntheticFixtureSnapshot();
 
     expect(snapshot.processCount).toBeGreaterThan(0);
-    expect(snapshot.projectDaemonCount).toBeGreaterThanOrEqual(4);
+    expect(snapshot.projectDaemonCount).toBeGreaterThanOrEqual(2);
     expect(snapshot.expectedDaemonCount).toBeGreaterThanOrEqual(2);
     expect(snapshot.zombieCount).toBe(1);
-    expect(snapshot.orphanedProjectDaemonCount).toBeGreaterThanOrEqual(4);
+    expect(snapshot.orphanedProjectDaemonCount).toBeGreaterThanOrEqual(2);
     expect(snapshot.pidLocks.map((lock) => lock.state).sort()).toEqual([
       'invalid',
       'live',

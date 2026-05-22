@@ -54,4 +54,10 @@ This map normalizes the relocated source research from packet 020 and packet 024
 | Exact effective `SPECKIT_CODE_GRAPH_DB_DIR` identity across code-graph servers | Launcher single-owner and orphan-reap fixtures | `007` |
 | Pre-authorized destructive cleanup vs fresh confirmation for every terminating action | Process sweep behavior | `005` and `010` |
 
+## Phase 005 Completion Evidence
+
+Items #6 and #15 now have a phase-005 dry-run implementation surface under `.opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts`. The sweep consumes the phase-002 process inventory, preserves expected warm daemons, `ccc` daemon rows, browser sessions, external MCP stdio rows, unknown-owner rows, and EPERM-alive rows, and only marks stale PID locks or orphaned project daemons eligible after self-PID, ancestry, and known project identity checks pass.
+
+Verification evidence is recorded in `005-expected-daemon-classifier-and-process-sweep/implementation-summary.md`. Destructive termination remains deferred to phase 010 operator-confirmation policy.
+
 <!-- /ANCHOR:remediation-map -->
