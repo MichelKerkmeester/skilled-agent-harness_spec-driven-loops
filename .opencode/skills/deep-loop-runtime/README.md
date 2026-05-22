@@ -1,39 +1,174 @@
+---
+title: "deep-loop-runtime: Shared Deep-Loop Runtime Infrastructure"
+description: "Shared runtime home for deep-review and deep-research loop infrastructure. Houses executor config, prompt-pack rendering, post-dispatch validation, atomic state, coverage-graph schema/query/signals, .cjs script entry points (replacing removed deep_loop_graph_* MCP tools), and runtime-owned SQLite storage + tests."
+trigger_phrases:
+  - "deep-loop runtime"
+  - "deep-loop-runtime skill"
+  - "executor config"
+  - "convergence detection"
+  - "coverage-graph schema"
+  - "deep-loop runtime scripts"
+---
+
 # deep-loop-runtime
 
-`deep-loop-runtime` is the shared runtime home for deep-review and deep-research loop infrastructure. The 118 FULL_ISOLATE_NO_MCP arc moves executor config, prompt-pack rendering, post-dispatch validation, state safety, permissions, Bayesian scoring, fallback routing, coverage-graph logic, script entry points, storage, and runtime tests out of the MCP server surface and into this peer skill.
+> Shared runtime infrastructure for the deep-review + deep-research loop workflows. Houses the executor + state + scoring + coverage-graph runtime moved out of `system-spec-kit/mcp_server/` by the 118 FULL_ISOLATE_NO_MCP arc.
 
-## Folder Layout
+---
+
+<!-- ANCHOR:toc -->
+## TABLE OF CONTENTS
+
+- [1. OVERVIEW](#1--overview)
+- [2. QUICK START](#2--quick-start)
+- [3. FEATURES](#3--features)
+- [4. STRUCTURE](#4--structure)
+- [5. INTEGRATION POINTS](#5--integration-points)
+- [6. RELATED DOCUMENTS](#6--related-documents)
+<!-- /ANCHOR:toc -->
+
+---
+
+<!-- ANCHOR:overview -->
+## 1. OVERVIEW
+
+### Purpose
+
+`deep-loop-runtime` is the shared runtime home for the deep-review and deep-research loop infrastructure. The 118 FULL_ISOLATE_NO_MCP arc moved executor config, prompt-pack rendering, post-dispatch validation, state safety primitives, permissions, Bayesian scoring, fallback routing, coverage-graph logic, script entry points, storage, and runtime tests out of the MCP server surface and into this peer skill. The 4 `mcp__mk_spec_memory__deep_loop_graph_*` MCP tools were deleted; their behavior moved to `scripts/*.cjs` direct-invocation entry points.
+
+### Usage
+
+This README orients contributors and operators to the skill's layout, integration surface, and version history. The full operational contract — when to use, smart routing, rules, runtime architecture — lives in [`SKILL.md`](SKILL.md).
+
+### Key Statistics
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Library modules | 13 (10 deep-loop + 3 coverage-graph) |
+| Script entry points | 4 (`convergence`, `upsert`, `query`, `status`) |
+| Storage | `storage/deep-loop-graph.sqlite` (runtime-owned) |
+| Tests | 21 vitest files + 1 shared helper |
+| Predecessor ADRs | 117 SPLIT (superseded), 118 FULL_ISOLATE_NO_MCP (current) |
+<!-- /ANCHOR:overview -->
+
+---
+
+<!-- ANCHOR:quick-start -->
+## 2. QUICK START
+
+### Invoke from a workflow YAML
+
+```yaml
+bash: 'node .opencode/skills/deep-loop-runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "review" --session-id "{session_id}"'
+outputs:
+  - graph_decision
+  - graph_signals_json
+  - graph_blockers_json
+  - graph_blockers_csv
+  - graph_stop_blocked
+```
+
+### Invoke a script directly (operator)
+
+```bash
+node .opencode/skills/deep-loop-runtime/scripts/status.cjs \
+  --spec-folder ".opencode/specs/skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp" \
+  --loop-type review \
+  --session-id phase-006-smoke
+```
+
+Stdout is JSON. Exit codes: 0=ok, 1=script error, 2=DB error, 3=input validation error.
+
+### Import a lib module (TypeScript)
+
+```typescript
+import { acquireLoopLock, releaseLoopLock } from '../../deep-loop-runtime/lib/deep-loop/loop-lock.js';
+```
+<!-- /ANCHOR:quick-start -->
+
+---
+
+<!-- ANCHOR:features -->
+## 3. FEATURES
+
+| Feature | Module | Purpose |
+|---------|--------|---------|
+| Executor config | `lib/deep-loop/executor-config.ts` | Schema + parsing for per-iteration executor settings |
+| Executor audit | `lib/deep-loop/executor-audit.ts` | Appends `executor` block to iteration JSONL for non-native executor provenance |
+| Prompt-pack rendering | `lib/deep-loop/prompt-pack.ts` | Renders the iteration prompt template |
+| Post-dispatch validation | `lib/deep-loop/post-dispatch-validate.ts` | Validates iteration outputs (markdown + JSONL + delta) |
+| Atomic state | `lib/deep-loop/atomic-state.ts` | Atomic state-log writes |
+| JSONL repair | `lib/deep-loop/jsonl-repair.ts` | Recovers corrupt JSONL state lines |
+| Loop lock | `lib/deep-loop/loop-lock.ts` | Single-writer locking |
+| Permissions gate | `lib/deep-loop/permissions-gate.ts` | Permission scope checks |
+| Bayesian scoring | `lib/deep-loop/bayesian-scorer.ts` | Convergence scoring |
+| Fallback router | `lib/deep-loop/fallback-router.ts` | Executor fallback decision matrix |
+| Coverage-graph DB | `lib/coverage-graph/coverage-graph-db.ts` | SQLite schema + node-kind allow-list + connection lifecycle |
+| Coverage-graph query | `lib/coverage-graph/coverage-graph-query.ts` | Query builders |
+| Coverage-graph signals | `lib/coverage-graph/coverage-graph-signals.ts` | Convergence signal extraction |
+<!-- /ANCHOR:features -->
+
+---
+
+<!-- ANCHOR:structure -->
+## 4. STRUCTURE
 
 ```text
 .opencode/skills/deep-loop-runtime/
-  SKILL.md
-  README.md
-  lib/
-    deep-loop/
-    coverage-graph/
-  scripts/
-  storage/
-  tests/
+├── SKILL.md                              # operational contract (when to use, rules, routing)
+├── README.md                             # this file
+├── changelog/
+│   └── v1.0.0.md                         # initial shipped release
+├── lib/
+│   ├── deep-loop/                        # 10 TS modules (executor, state, scoring, routing)
+│   └── coverage-graph/                   # 3 TS modules (DB, query, signals)
+├── scripts/                              # 4 .cjs entry points replacing the deleted MCP tools
+│   ├── convergence.cjs
+│   ├── upsert.cjs
+│   ├── query.cjs
+│   └── status.cjs
+├── storage/
+│   └── deep-loop-graph.sqlite            # runtime-owned SQLite
+└── tests/
+    ├── unit/                             # 13 per-module tests
+    ├── integration/                      # 7 script + review-depth tests
+    ├── lifecycle/                        # 1 DB lifecycle test
+    └── _helpers/
+        └── spawn-cjs.ts                  # shared test helper
 ```
+<!-- /ANCHOR:structure -->
 
-`lib/deep-loop/` is the phase 002 destination for deep-loop runtime libraries.
+---
 
-`lib/coverage-graph/` is the phase 002 destination for coverage-graph runtime helpers and schema ownership under the 118 override.
+<!-- ANCHOR:integration -->
+## 5. INTEGRATION POINTS
 
-`scripts/` is the phase 003 destination for `.cjs` entry points that replace the removed deep-loop MCP tools.
+| Consumer | How it integrates |
+|----------|-------------------|
+| `deep-review` workflow YAML | `bash: node .../scripts/<name>.cjs` invocations in `spec_kit_deep-review_{auto,confirm}.yaml` |
+| `deep-research` workflow YAML | Mirror invocations in `spec_kit_deep-research_{auto,confirm}.yaml` |
+| `deep-review/scripts/reduce-state.cjs` | TS imports from `lib/coverage-graph/` |
+| `/doctor` command | Health checks via `scripts/status.cjs` invocation |
+| `system-code-graph` playbook | Scenario 009 references the new script paths |
+| `system-spec-kit/mcp_server/vitest.config.ts` | Cross-package test discovery via `'../deep-loop-runtime/tests/**/*.{vitest,test}.ts'` |
 
-`storage/` is the phase 003 destination for runtime-owned SQLite state.
+The 4 deleted `mcp__mk_spec_memory__deep_loop_graph_*` MCP tools have no replacement in the MCP layer — direct script invocation is now canonical.
+<!-- /ANCHOR:integration -->
 
-`tests/` is the phase 007 destination for runtime-owned tests.
+---
 
-## Quick Start
+<!-- ANCHOR:related -->
+## 6. RELATED DOCUMENTS
 
-To invoke runtime behavior from a workflow YAML, call the relevant `scripts/<name>.cjs` entry point once phase 003 adds it.
-
-Phase 001 only creates the folder skeleton. The library files land in phase 002, script shims and storage ownership land in phase 003, and test migration lands in phase 007.
-
-## References
-
-- 118 phase parent: `.opencode/specs/skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/spec.md`
-- 117 council ruling: `.opencode/specs/skilled-agent-orchestration/117-deep-loop-core-isolation-deliberation/ai-council/seats/round-001/seat-D-adjudicator.md`
-- 118 ADR-001: FULL_ISOLATE_NO_MCP supersedes the 117 SPLIT ruling for this migration arc.
+| Document | Purpose |
+|----------|---------|
+| [`SKILL.md`](SKILL.md) | Operational contract: when to use, smart routing, runtime architecture, RULES (ALWAYS / NEVER / ESCALATE IF) |
+| [`changelog/v1.0.0.md`](changelog/v1.0.0.md) | Initial shipped release notes |
+| `.opencode/specs/skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/spec.md` | Phase parent for the FULL_ISOLATE_NO_MCP arc |
+| `.opencode/specs/skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/003-script-shim-and-db-relocation/decision-record.md` | ADR-001: script interface contract + DB lifecycle ownership transfer |
+| `.opencode/specs/skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/004-mcp-tool-surface-removal/decision-record.md` | ADR-001: MCP tool surface removal rationale |
+| `.opencode/specs/skilled-agent-orchestration/117-deep-loop-core-isolation-deliberation/decision-record.md` | 117 council ruling (SPLIT, superseded by 118) |
+| `.opencode/skills/deep-review/SKILL.md` | Consumer skill — deep-review (v1.4.0.0 depends on this runtime) |
+| `.opencode/skills/deep-research/SKILL.md` | Consumer skill — deep-research |
+<!-- /ANCHOR:related -->
