@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-05-22 |
 | **Deciders** | User directive override of 117 SPLIT ruling; phase-parent author |
 

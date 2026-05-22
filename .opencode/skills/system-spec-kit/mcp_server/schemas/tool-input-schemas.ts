@@ -129,17 +129,6 @@ const skillGraphQueryTypeEnum = z.enum([
 
 const skillFamilyEnum = z.enum(['cli', 'mcp', 'sk-code', 'deep-loop', 'sk-util', 'system']);
 
-const coverageGraphLoopTypeEnum = z.enum(['research', 'review']);
-
-const deepLoopGraphQueryTypeEnum = z.enum([
-  'uncovered_questions',
-  'unverified_claims',
-  'contradictions',
-  'provenance_chain',
-  'coverage_gaps',
-  'hot_nodes',
-]);
-
 const councilGraphNodeKindEnum = z.enum([
   'SESSION',
   'ROUND',
@@ -525,56 +514,6 @@ const skillGraphStatusSchema = getSchema({});
 
 const skillGraphValidateSchema = getSchema({});
 
-const deepLoopGraphNodeSchema = z.object({
-  id: z.string().min(1),
-  kind: z.string(),
-  name: z.string().min(1),
-  contentHash: z.string().optional(),
-  iteration: safeNumericPreprocess.pipe(z.number().int()).optional(),
-  metadata: z.record(z.string(), z.unknown()).optional(),
-});
-
-const deepLoopGraphEdgeSchema = z.object({
-  id: z.string().min(1),
-  sourceId: z.string().min(1),
-  targetId: z.string().min(1),
-  relation: z.string(),
-  weight: boundedNumber(0, 2).optional(),
-  metadata: z.record(z.string(), z.unknown()).optional(),
-});
-
-const deepLoopGraphUpsertSchema = getSchema({
-  specFolder: pathString(1),
-  loopType: coverageGraphLoopTypeEnum,
-  sessionId: z.string().min(1),
-  nodes: z.array(deepLoopGraphNodeSchema).optional(),
-  edges: z.array(deepLoopGraphEdgeSchema).optional(),
-});
-
-const deepLoopGraphQuerySchema = getSchema({
-  specFolder: pathString(1),
-  loopType: coverageGraphLoopTypeEnum,
-  queryType: deepLoopGraphQueryTypeEnum,
-  nodeId: z.string().optional(),
-  sessionId: z.string().min(1),
-  limit: positiveIntMax(200).optional(),
-  maxDepth: positiveIntMax(20).optional(),
-});
-
-const deepLoopGraphStatusSchema = getSchema({
-  specFolder: pathString(1),
-  loopType: coverageGraphLoopTypeEnum,
-  sessionId: z.string().min(1),
-});
-
-const deepLoopGraphConvergenceSchema = getSchema({
-  specFolder: pathString(1),
-  loopType: coverageGraphLoopTypeEnum,
-  sessionId: z.string().min(1),
-  iteration: safeNumericPreprocess.pipe(z.number().int()).optional(),
-  persistSnapshot: z.boolean().optional(),
-});
-
 const councilGraphNodeSchema = z.object({
   id: z.string().min(1),
   kind: councilGraphNodeKindEnum,
@@ -665,10 +604,6 @@ export const TOOL_SCHEMAS: Record<string, ToolInputSchema> = {
   skill_graph_query: skillGraphQuerySchema as unknown as ToolInputSchema,
   skill_graph_status: skillGraphStatusSchema as unknown as ToolInputSchema,
   skill_graph_validate: skillGraphValidateSchema as unknown as ToolInputSchema,
-  deep_loop_graph_upsert: deepLoopGraphUpsertSchema as unknown as ToolInputSchema,
-  deep_loop_graph_query: deepLoopGraphQuerySchema as unknown as ToolInputSchema,
-  deep_loop_graph_status: deepLoopGraphStatusSchema as unknown as ToolInputSchema,
-  deep_loop_graph_convergence: deepLoopGraphConvergenceSchema as unknown as ToolInputSchema,
   council_graph_upsert: councilGraphUpsertSchema as unknown as ToolInputSchema,
   council_graph_query: councilGraphQuerySchema as unknown as ToolInputSchema,
   council_graph_status: councilGraphStatusSchema as unknown as ToolInputSchema,
@@ -722,10 +657,6 @@ const ALLOWED_PARAMETERS: Record<string, string[]> = {
   skill_graph_query: ['queryType', 'skillId', 'sourceSkillId', 'targetSkillId', 'family', 'minInbound', 'depth', 'limit'],
   skill_graph_status: [],
   skill_graph_validate: [],
-  deep_loop_graph_upsert: ['specFolder', 'loopType', 'sessionId', 'nodes', 'edges'],
-  deep_loop_graph_query: ['specFolder', 'loopType', 'queryType', 'nodeId', 'sessionId', 'limit', 'maxDepth'],
-  deep_loop_graph_status: ['specFolder', 'loopType', 'sessionId'],
-  deep_loop_graph_convergence: ['specFolder', 'loopType', 'sessionId', 'iteration', 'persistSnapshot'],
   council_graph_upsert: ['specFolder', 'sessionId', 'nodes', 'edges'],
   council_graph_query: ['specFolder', 'sessionId', 'queryType', 'nodeId', 'limit', 'maxDepth'],
   council_graph_status: ['specFolder', 'sessionId'],

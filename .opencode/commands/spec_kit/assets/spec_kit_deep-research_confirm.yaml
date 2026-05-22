@@ -398,13 +398,8 @@ workflow:
 
       step_graph_convergence:
         action: "Evaluate coverage-graph convergence before the inline 3-signal vote and persist the graph decision snapshot"
-        mcp_tool:
-          name: mcp__mk_spec_memory__deep_loop_graph_convergence
-          note: "Run before the inline vote. STOP from the inline 3-signal vote is allowed only when the graph decision is STOP_ALLOWED or absent."
-          parameters:
-            specFolder: "{spec_folder}"
-            loopType: "research"
-            sessionId: "{config.lineage.sessionId}"
+        bash: 'node .opencode/skills/deep-loop-runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "research" --session-id "{config.lineage.sessionId}"'
+        note: "Run before the inline vote. STOP from the inline 3-signal vote is allowed only when the graph decision is STOP_ALLOWED or absent."
         outputs:
           - graph_decision: "Tool decision value (CONTINUE | STOP_ALLOWED | STOP_BLOCKED), else null when unavailable"
           - graph_decision_json: "JSON-encoded graph decision string, else null"
@@ -719,15 +714,8 @@ workflow:
           - graph_upsert_edges_json: "Map latest_graph_events where type == 'edge' to edge payloads with source -> sourceId, target -> targetId, relation -> uppercase(relation), and preserve remaining edge fields"
           - graph_upsert_event_count: "Count mapped node and edge events"
         if_graph_events_present:
-          mcp_tool:
-            name: mcp__mk_spec_memory__deep_loop_graph_upsert
-            note: "Skip silently when graphEvents is missing or empty."
-            parameters:
-              specFolder: "{spec_folder}"
-              loopType: "research"
-              sessionId: "{config.lineage.sessionId}"
-              nodes: "{graph_upsert_nodes_json}"
-              edges: "{graph_upsert_edges_json}"
+          bash: "node .opencode/skills/deep-loop-runtime/scripts/upsert.cjs --spec-folder \"{spec_folder}\" --loop-type \"research\" --session-id \"{config.lineage.sessionId}\" --nodes '{graph_upsert_nodes_json}' --edges '{graph_upsert_edges_json}'"
+          note: "Skip silently when graphEvents is missing or empty."
         if_graph_events_missing:
           proceed: true
 

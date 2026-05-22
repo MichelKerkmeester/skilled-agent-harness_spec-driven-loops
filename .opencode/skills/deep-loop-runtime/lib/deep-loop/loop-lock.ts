@@ -121,6 +121,32 @@ function writeLoopLockAtomic(lockPath: string, data: LoopLockData): void {
   }
 }
 
+function writeLoopLockExclusive(lockPath: string, data: LoopLockData): boolean {
+  let fd: number | undefined;
+  try {
+    fd = openSync(lockPath, 'wx');
+    writeFileSync(fd, `${JSON.stringify(serializeLock(data), null, 2)}\n`, { encoding: 'utf8' });
+    fsyncSync(fd);
+  } catch (error: unknown) {
+    const code = error && typeof error === 'object' && 'code' in error ? (error as NodeJS.ErrnoException).code : undefined;
+    if (code === 'EEXIST') {
+      return false;
+    }
+    throw error;
+  } finally {
+    if (typeof fd === 'number') {
+      closeSync(fd);
+    }
+  }
+
+  try {
+    fsyncPath(dirname(lockPath));
+  } catch {
+    // Directory fsync is best-effort across local filesystems.
+  }
+  return true;
+}
+
 export function processAlive(pid: number): boolean {
   if (!Number.isInteger(pid) || pid <= 0) {
     return false;
@@ -150,6 +176,14 @@ export function acquireLoopLock(lockPath: string, data: LoopLockData): LoopLockA
   const holder = existsSync(lockPath) ? readLoopLock(lockPath) : null;
   if (holder && !isStaleLoopLock(holder)) {
     return { acquired: false, holder };
+  }
+
+  if (!holder) {
+    if (writeLoopLockExclusive(lockPath, data)) {
+      return { acquired: true, lock: data };
+    }
+    const current = readLoopLock(lockPath);
+    return { acquired: false, holder: current ?? data };
   }
 
   writeLoopLockAtomic(lockPath, data);

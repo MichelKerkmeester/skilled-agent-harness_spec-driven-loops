@@ -5,10 +5,10 @@
 // Uses dedicated deep-loop-graph.sqlite alongside the memory index DB.
 // Follows code-graph-db.ts patterns for schema versioning and transaction safety.
 
-import Database from 'better-sqlite3';
-import { join } from 'node:path';
-import { statSync } from 'node:fs';
-import { DATABASE_DIR } from '../../core/config.js';
+import Database from '../../../system-spec-kit/mcp_server/node_modules/better-sqlite3/lib/index.js';
+import { mkdirSync, statSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 // ───────────────────────────────────────────────────────────────
 // 1. TYPES
@@ -115,6 +115,12 @@ export interface Namespace {
 export const SCHEMA_VERSION = 2;
 
 const DB_FILENAME = 'deep-loop-graph.sqlite';
+export const COVERAGE_GRAPH_DATABASE_DIR = join(
+  dirname(fileURLToPath(import.meta.url)),
+  '..',
+  '..',
+  'storage',
+);
 
 /** Weight clamping bounds */
 const MIN_WEIGHT = 0.0;
@@ -250,6 +256,7 @@ export function initDb(dbDir: string): Database.Database {
   if (db) return db;
 
   try {
+    mkdirSync(dbDir, { recursive: true });
     dbPath = join(dbDir, DB_FILENAME);
     db = new Database(dbPath);
     db.pragma('journal_mode = WAL');
@@ -307,7 +314,7 @@ export function initDb(dbDir: string): Database.Database {
 
 /** Get the current database instance (lazy-initializes if needed) */
 export function getDb(): Database.Database {
-  if (!db) initDb(DATABASE_DIR);
+  if (!db) initDb(COVERAGE_GRAPH_DATABASE_DIR);
   return db!;
 }
 

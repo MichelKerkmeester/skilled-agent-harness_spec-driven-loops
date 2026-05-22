@@ -5,7 +5,7 @@
 // research and review convergence metrics.
 // Follows graph-signals.ts patterns for degree, depth, and momentum.
 
-import Database from 'better-sqlite3';
+import Database from '../../../system-spec-kit/mcp_server/node_modules/better-sqlite3/lib/index.js';
 import {
   getDb,
   getNodes,

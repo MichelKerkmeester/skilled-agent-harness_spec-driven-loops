@@ -11,7 +11,7 @@ import {
   refreshLoopLock,
   releaseLoopLock,
   type LoopLockData,
-} from '../../lib/deep-loop/loop-lock.js';
+} from '../../../../deep-loop-runtime/lib/deep-loop/loop-lock.js';
 
 function withTempLock(run: (lockPath: string) => void): void {
   const tempDir = mkdtempSync(join(tmpdir(), 'loop-lock-'));
@@ -69,6 +69,25 @@ describe('loop-lock', () => {
 
       expect(second).toEqual({ acquired: false, holder: first });
     });
+  });
+
+  it('allows exactly one fresh concurrent acquire to win', async () => {
+    const tempDir = mkdtempSync(join(tmpdir(), 'loop-lock-'));
+    try {
+      const lockPath = join(tempDir, '.deep-loop.lock');
+      const first = lockData({ packetId: 'packet-004-a' });
+      const second = lockData({ packetId: 'packet-004-b' });
+
+      const results = await Promise.all([
+        Promise.resolve().then(() => acquireLoopLock(lockPath, first)),
+        Promise.resolve().then(() => acquireLoopLock(lockPath, second)),
+      ]);
+
+      expect(results.filter((result) => result.acquired)).toHaveLength(1);
+      expect(results.filter((result) => !result.acquired)).toHaveLength(1);
+    } finally {
+      rmSync(tempDir, { recursive: true, force: true });
+    }
   });
 
   it('refreshes and releases only when the owner pid matches', () => {

@@ -434,14 +434,12 @@ workflow:
           3. Preserve raw graph signals and blockers for reducer rollup and blocked-stop evidence.
           4. Normalize blockers to both JSON array and CSV forms for downstream stop handling.
           5. Set graph_stop_blocked = true only when graph_decision == "STOP_BLOCKED".
-        mcp_tool:
-          name: mcp__mk_spec_memory__deep_loop_graph_convergence
-          note: "Call directly - NEVER through Code Mode. Review-side graph convergence must run before the inline review stop vote."
-          parameters: { specFolder: "{spec_folder}", loopType: "review", sessionId: "{session_id}" }
+        bash: 'node .opencode/skills/deep-loop-runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "review" --session-id "{session_id}"'
+        note: "Invoke the runtime script directly. Review-side graph convergence must run before the inline review stop vote."
         append_jsonl: '{"type":"event","event":"graph_convergence","mode":"review","run":{current_iteration},"decision":"{graph_decision}","signals":{graph_signals_json},"blockers":{graph_blockers_json},"timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}'
         outputs:
           - graph_decision: "CONTINUE | STOP_ALLOWED | STOP_BLOCKED"
-          - graph_signals_json: "JSON object returned by deep_loop_graph_convergence"
+          - graph_signals_json: "JSON object returned by convergence.cjs"
           - graph_blockers_json: "JSON array of graph blockers when present, else []"
           - graph_blockers_csv: "Comma-separated blocker summary when graph blocks STOP, else empty string"
           - graph_stop_blocked: "Boolean true when graph_decision == STOP_BLOCKED"
@@ -933,10 +931,8 @@ workflow:
           5. For each graph event with relation + source + target, normalize relation = uppercase(event.relation) and keep only COVERS, EVIDENCE_FOR, CONTRADICTS, RESOLVES, CONFIRMS, ESCALATES, IN_DIMENSION, IN_FILE.
           6. Emit edges as { id, relation, sourceId, targetId, metadata } and deduplicate the batch by id.
           7. Discard malformed or unknown graph events instead of failing the review iteration.
-        mcp_tool:
-          name: mcp__mk_spec_memory__deep_loop_graph_upsert
-          note: "Call directly - NEVER through Code Mode. Upsert only the latest iteration graph delta."
-          parameters: { specFolder: "{spec_folder}", loopType: "review", sessionId: "{session_id}", nodes: "{graph_nodes_json}", edges: "{graph_edges_json}" }
+        bash: "node .opencode/skills/deep-loop-runtime/scripts/upsert.cjs --spec-folder \"{spec_folder}\" --loop-type \"review\" --session-id \"{session_id}\" --nodes '{graph_nodes_json}' --edges '{graph_edges_json}'"
+        note: "Invoke the runtime script directly. Upsert only the latest iteration graph delta."
         outputs:
           - graph_nodes_json: "JSON array of normalized review graph nodes for the latest iteration"
           - graph_edges_json: "JSON array of normalized review graph edges for the latest iteration"

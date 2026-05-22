@@ -2,7 +2,7 @@
 // MODULE: Deep-Loop Executor Config
 // ───────────────────────────────────────────────────────────────
 
-import { z } from 'zod';
+import { z } from '../../../system-spec-kit/mcp_server/node_modules/zod/index.js';
 
 export const EXECUTOR_KINDS = ['native', 'cli-codex', 'cli-gemini', 'cli-claude-code', 'cli-opencode', 'cli-devin'] as const;
 export type ExecutorKind = typeof EXECUTOR_KINDS[number];

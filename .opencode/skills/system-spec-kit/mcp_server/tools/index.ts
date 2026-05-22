@@ -9,10 +9,6 @@ import * as checkpointTools from './checkpoint-tools.js';
 import * as lifecycleTools from './lifecycle-tools.js';
 // Code-graph MCP dispatch moved to standalone system_code_graph server per ADR-002.
 import { validateToolArgs } from '../schemas/tool-input-schemas.js';
-import { handleCoverageGraphConvergence } from '../handlers/coverage-graph/convergence.js';
-import { handleCoverageGraphQuery } from '../handlers/coverage-graph/query.js';
-import { handleCoverageGraphStatus } from '../handlers/coverage-graph/status.js';
-import { handleCoverageGraphUpsert } from '../handlers/coverage-graph/upsert.js';
 import { handleCouncilGraphConvergence } from '../handlers/council-graph/convergence.js';
 import { handleCouncilGraphQuery } from '../handlers/council-graph/query.js';
 import { handleCouncilGraphStatus } from '../handlers/council-graph/status.js';
@@ -26,29 +22,6 @@ function toMCP(result: { content: Array<{ type: string; text: string }> }): MCPR
     content: result.content.map((entry) => ({ type: 'text' as const, text: entry.text })),
   };
 }
-
-export const coverageGraphTools = {
-  TOOL_NAMES: new Set([
-    'deep_loop_graph_upsert',
-    'deep_loop_graph_query',
-    'deep_loop_graph_status',
-    'deep_loop_graph_convergence',
-  ]),
-  async handleTool(name: string, args: Record<string, unknown>): Promise<MCPResponse | null> {
-    switch (name) {
-      case 'deep_loop_graph_upsert':
-        return toMCP(await handleCoverageGraphUpsert(parseArgs<Parameters<typeof handleCoverageGraphUpsert>[0]>(args)));
-      case 'deep_loop_graph_query':
-        return toMCP(await handleCoverageGraphQuery(parseArgs<Parameters<typeof handleCoverageGraphQuery>[0]>(args)));
-      case 'deep_loop_graph_status':
-        return toMCP(await handleCoverageGraphStatus(parseArgs<Parameters<typeof handleCoverageGraphStatus>[0]>(args)));
-      case 'deep_loop_graph_convergence':
-        return toMCP(await handleCoverageGraphConvergence(parseArgs<Parameters<typeof handleCoverageGraphConvergence>[0]>(args)));
-      default:
-        return null;
-    }
-  },
-};
 
 export const councilGraphTools = {
   TOOL_NAMES: new Set([
@@ -74,7 +47,6 @@ export const councilGraphTools = {
 };
 
 const SCHEMA_VALIDATED_TOOL_NAMES = new Set<string>([
-  ...coverageGraphTools.TOOL_NAMES,
   ...councilGraphTools.TOOL_NAMES,
 ]);
 
@@ -91,7 +63,6 @@ export const ALL_DISPATCHERS = [
   lifecycleTools,
   // codeGraphTools intentionally omitted: standalone system_code_graph owns MCP dispatch per ADR-002.
   // skillGraphTools intentionally omitted: standalone mk_skill_advisor owns MCP dispatch per 013/009/008.
-  coverageGraphTools,
   councilGraphTools,
 ] as const;
 

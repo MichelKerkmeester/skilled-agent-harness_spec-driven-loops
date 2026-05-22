@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 
 import { readFileSync } from 'node:fs';
-import { z } from 'zod';
+import { z } from '../../../system-spec-kit/mcp_server/node_modules/zod/index.js';
 
 export type PromptPackVariables = Record<string, string | number>;
 
