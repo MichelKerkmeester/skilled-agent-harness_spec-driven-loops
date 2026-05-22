@@ -96,7 +96,7 @@ This sub-phase formalizes the format, populates the first two adopters, and docu
 - Re-running any benchmark (uses already-shipped evidence from the two spec packets)
 - Touching the source spec packets (`016/002/004-spec-memory-embedder-bake-off/`, `016/004/004-extended-bake-off/`) — they remain authoritative
 - Rolling out this format to skills that don't yet have benchmarks (e.g., mk-skill-advisor, mk-code-index) — those can adopt later when they have data
-- Updating decisions/defaults in the underlying MCPs (separate concern, tracked under `016/007-ollama-and-bge-promotion-arc/`)
+- Updating decisions/defaults in the underlying MCPs (separate concern, tracked under `016/007-ollama-and-bge-promotion/`)
 - Code-Graph (mk-code-index) doesn't use embeddings, so no benchmarks folder needed there
 <!-- /ANCHOR:scope -->
 

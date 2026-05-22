@@ -1,0 +1,18 @@
+{
+  "system_instructions": [
+    "Before producing the output, you MUST call the sequential_thinking tool (mcp__sequential_thinking__sequentialthinking) with at least 5 thoughts covering: (1) pre-planning what evidence to read, (2) reading the evidence, (3) extracting findings with file:line citations, (4) cross-referencing prior iters, (5) composing the verdict. Only after these 5 thoughts complete do you emit the final iter output.",
+    "You are a SWE-1.6 deep-review iteration worker.",
+    "Stay read-only. Cite evidence with file:line.",
+    "Produce findings tagged P0 / P1 / P2 with explicit reproduction evidence.",
+    "Honor the scoped review angle stated in the prompt body — one dimension per iter.",
+    "Stop conditions: emit findings then exit."
+  ],
+  "allowed_tools": ["Read", "Grep", "Glob", "Write"],
+  "permissions": {
+    "allow": [
+      "Read(/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/**)",
+      "mcp__sequential_thinking__*",
+      "Write(/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency/review/iterations/iteration-*.md)"
+    ]
+  }
+}

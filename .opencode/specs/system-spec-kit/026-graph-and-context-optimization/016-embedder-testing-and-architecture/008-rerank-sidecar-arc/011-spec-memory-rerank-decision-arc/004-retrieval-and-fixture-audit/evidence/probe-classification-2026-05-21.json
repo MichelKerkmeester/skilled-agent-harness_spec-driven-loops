@@ -367,7 +367,7 @@
       "difficulty": "medium",
       "class": "stale",
       "original_gold_memory_id": 8547,
-      "gold_doc_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/spec.md",
+      "gold_doc_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency/spec.md",
       "resolved_memory_id": null,
       "resolved_doc_id": null,
       "resolution_note": "gold_memory_id missing; no current row matched gold_doc_id"
@@ -379,9 +379,9 @@
       "difficulty": "medium",
       "class": "valid",
       "original_gold_memory_id": 8546,
-      "gold_doc_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/012-daemon-bridge-socket-for-skill-advisor-and-code-index/spec.md",
+      "gold_doc_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency/012-daemon-bridge-socket-for-skill-advisor-and-code-index/spec.md",
       "resolved_memory_id": 8546,
-      "resolved_doc_id": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/012-daemon-bridge-socket-for-skill-advisor-and-code-index/spec.md",
+      "resolved_doc_id": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency/012-daemon-bridge-socket-for-skill-advisor-and-code-index/spec.md",
       "resolution_note": "gold_memory_id resolved"
     },
     {
@@ -391,7 +391,7 @@
       "difficulty": "hard",
       "class": "stale",
       "original_gold_memory_id": 8544,
-      "gold_doc_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/012-daemon-bridge-socket-for-skill-advisor-and-code-index/implementation-summary.md",
+      "gold_doc_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency/012-daemon-bridge-socket-for-skill-advisor-and-code-index/implementation-summary.md",
       "resolved_memory_id": null,
       "resolved_doc_id": null,
       "resolution_note": "gold_memory_id missing; no current row matched gold_doc_id"
@@ -403,9 +403,9 @@
       "difficulty": "medium",
       "class": "valid",
       "original_gold_memory_id": 8542,
-      "gold_doc_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/011-sun-path-and-stale-lease-followups/plan.md",
+      "gold_doc_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency/011-sun-path-and-stale-lease-followups/plan.md",
       "resolved_memory_id": 8542,
-      "resolved_doc_id": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/011-sun-path-and-stale-lease-followups/plan.md",
+      "resolved_doc_id": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency/011-sun-path-and-stale-lease-followups/plan.md",
       "resolution_note": "gold_memory_id resolved"
     },
     {
@@ -415,7 +415,7 @@
       "difficulty": "medium",
       "class": "stale",
       "original_gold_memory_id": 8543,
-      "gold_doc_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/011-sun-path-and-stale-lease-followups/spec.md",
+      "gold_doc_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency/011-sun-path-and-stale-lease-followups/spec.md",
       "resolved_memory_id": null,
       "resolved_doc_id": null,
       "resolution_note": "gold_memory_id missing; no current row matched gold_doc_id"
@@ -427,9 +427,9 @@
       "difficulty": "hard",
       "class": "valid",
       "original_gold_memory_id": 4578,
-      "gold_doc_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/010-multi-client-stdio-socket-bridge/spec.md",
+      "gold_doc_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency/010-multi-client-stdio-socket-bridge/spec.md",
       "resolved_memory_id": 4578,
-      "resolved_doc_id": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/010-multi-client-stdio-socket-bridge/spec.md",
+      "resolved_doc_id": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency/010-multi-client-stdio-socket-bridge/spec.md",
       "resolution_note": "gold_memory_id resolved"
     },
     {

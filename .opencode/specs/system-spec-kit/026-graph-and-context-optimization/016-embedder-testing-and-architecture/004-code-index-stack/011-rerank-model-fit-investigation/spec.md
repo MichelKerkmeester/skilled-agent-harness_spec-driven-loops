@@ -41,7 +41,7 @@ _memory:
 | Owner | Main agent |
 | Parent | `../spec.md` (004-code-index-stack) |
 | Power dependency | Light — targeted bench is ~10 min × N candidates, not the full 80-110 min |
-| Triggered by | `../../007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md` §7.3 |
+| Triggered by | `../../007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md` §7.3 |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -141,7 +141,7 @@ Dependencies:
 <!-- ANCHOR:cross-links -->
 ## 8. CROSS-LINKS
 
-- **Failure-mode source:** `../../007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md` §4 (Failure Mode Pattern)
+- **Failure-mode source:** `../../007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md` §4 (Failure Mode Pattern)
 - **Sibling investigation:** `../012-fixture-audit-10-probes/` — orthogonal angle on the same data (does the fixture have wrong expected paths)
 - **Risk analysis context:** `004-extended-bake-off/risk-analysis-rerank-nondeterminism.md` (predates this finding; the structural problem is bigger than non-determinism)
 - **Install hygiene fix that made this measurable:** `../../005-cross-cutting-quality/005-cocoindex-install-hygiene/`

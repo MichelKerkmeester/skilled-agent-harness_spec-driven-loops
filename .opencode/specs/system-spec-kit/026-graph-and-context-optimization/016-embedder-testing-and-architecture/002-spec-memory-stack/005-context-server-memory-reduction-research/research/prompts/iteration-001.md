@@ -13,7 +13,7 @@ Investigate how to reduce memory usage of the spec-memory MCP server (`context-s
 - Steady-state RSS observed: ~1080 MB (PID 3216).
 - Parent: `mk-spec-memory-launcher.cjs` (PID 3176) — single-writer-lease lockstep with skill-advisor + code-graph daemons.
 - Embedders in scope: Voyage (external API), node-llama-cpp (local GGUF), Ollama (local server), future BGE / mxbai-embed-large.
-- Recent context: arc 006 (mcp-launcher-concurrency-arc) just closed; embedder umbrella 016/002-spec-memory-stack is the parent track.
+- Recent context: arc 006 (mcp-launcher-concurrency) just closed; embedder umbrella 016/002-spec-memory-stack is the parent track.
 
 ## NON-NEGOTIABLES
 

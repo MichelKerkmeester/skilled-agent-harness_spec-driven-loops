@@ -27,9 +27,9 @@ What this report ACTUALLY measured: pure vector retrieval against the chunk-1500
 The instrumented evening re-bench (single candidate, after install hygiene fix) found bge-code-v1 drops to **10/18 = 55.6%** with rerank actually firing, AND all 4 previously-unique-win probes flip to MISSES with margins < 0.05. The rerank — when it fires — exhibits a systematic failure mode (tests / refs / .ts source outrank implementations / dist / integration tests on paraphrase-heavy queries).
 
 **For the corrected numbers + a full 4-candidate re-baseline**, see:
-- `../../007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md` — the invalidation finding + per-probe margin analysis
+- `../../007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md` — the invalidation finding + per-probe margin analysis
 - `../../005-cross-cutting-quality/005-cocoindex-install-hygiene/` — the pipx editable + harness CCC-pinning fix that makes future bench runs production-truthful
-- `../../007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote/` (rescoped) — the planned 4-candidate re-baseline using the corrected pipeline
+- `../../007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote/` (rescoped) — the planned 4-candidate re-baseline using the corrected pipeline
 
 The rest of this doc (Sections 1-12) is preserved as historical record of what was measured at the time. Treat the numbers as "pure-vector + RRF-no-FTS5 + NO-rerank" results, not "hybrid+rerank ON" — and prefer the rescoped 007/003 packet for the production decision.
 <!-- /ANCHOR:erratum -->

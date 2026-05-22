@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/007-code-graph-launcher-and-db-lifecycle",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/007-code-graph-launcher-and-db-lifecycle",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/002-telemetry-and-process-verification-harness",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/005-expected-daemon-classifier-and-process-sweep"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/020-cli-process-memory-leak-deep-research",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code-graph-launcher-and-db-lifecycle",
+      "memory leak phase 7"
+    ],
+    "key_topics": [
+      "memory-leak",
+      "process-cleanup",
+      "code-graph-launcher-and-db-lifecycle"
+    ],
+    "importance_tier": "important",
+    "status": "completed",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "description.json"
+    ],
+    "entities": [
+      {
+        "name": ".opencode/bin/mk-code-index-launcher.cjs",
+        "kind": "path",
+        "path": ".opencode/bin/mk-code-index-launcher.cjs",
+        "source": "manual"
+      },
+      {
+        "name": ".opencode/skills/system-code-graph/mcp_server/",
+        "kind": "directory",
+        "path": ".opencode/skills/system-code-graph/mcp_server/",
+        "source": "manual"
+      }
+    ],
+    "causal_summary": "Enforce one code-graph launcher/server owner per effective graph DB and close DB handles on shutdown.",
+    "created_at": "2026-05-22T10:20:00Z",
+    "last_save_at": "2026-05-22T13:49:32Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ]
+  }
+}

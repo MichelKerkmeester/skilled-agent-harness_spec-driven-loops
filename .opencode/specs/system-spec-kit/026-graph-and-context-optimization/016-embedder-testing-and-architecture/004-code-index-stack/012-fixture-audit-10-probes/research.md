@@ -14,7 +14,7 @@ contextType: "research"
 <!-- ANCHOR:overview -->
 ## 1. Overview
 
-Audited the 18-pair fixture at `../002-baseline-fixture/evidence/code-retrieval-fixture.json` against the live source tree and the May 18 rerank failure analysis at `../../007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md`. Method: read every `expected_source_path`, inspect the expected symbol area or relevant implementation region, and use targeted `rg` searches for plausible source, test, doc, and mirror alternatives.
+Audited the 18-pair fixture at `../002-baseline-fixture/evidence/code-retrieval-fixture.json` against the live source tree and the May 18 rerank failure analysis at `../../007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md`. Method: read every `expected_source_path`, inspect the expected symbol area or relevant implementation region, and use targeted `rg` searches for plausible source, test, doc, and mirror alternatives.
 
 Verdict counts: KEEP 16, CHANGE 1, AMBIGUOUS 1. Recommendation: update probe 10 from generated dist JavaScript to tracked TypeScript source; leave the remaining paths unchanged until probe 18's query wording or target intent is clarified.
 <!-- /ANCHOR:overview -->
@@ -101,7 +101,7 @@ Do not update probe 18 yet. If the intended target is "MCP refresh/search split"
 Evidence files and checks:
 
 - Original fixture: `../002-baseline-fixture/evidence/code-retrieval-fixture.json`
-- May 18 failure-mode analysis: `../../007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md`
+- May 18 failure-mode analysis: `../../007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md`
 - Proposed fixture copy: `evidence/code-retrieval-fixture-proposed.json`
 - Baseline fixture validation was run against the current workspace and passed: `bash ../002-baseline-fixture/evidence/fixture-validate.sh`
 - Targeted audit commands used `rg`, `sed`, `find`, `jq`, and `node`; no `ccc` invocation and no `SpawnAgent`.

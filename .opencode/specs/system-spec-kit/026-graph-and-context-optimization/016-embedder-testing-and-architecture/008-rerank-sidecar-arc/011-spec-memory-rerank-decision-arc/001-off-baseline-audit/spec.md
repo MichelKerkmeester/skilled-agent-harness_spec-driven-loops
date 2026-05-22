@@ -33,7 +33,7 @@ _memory:
 | **Created** | 2026-05-21 |
 | **Branch** | `main` |
 | **Parent Arc** | `011-spec-memory-rerank-decision-arc` |
-| **Position in arc** | Phase 1 of 3 (decision gate to Phase 2) |
+| **Position in arc** | Phase 011 of 013 (decision gate to Phase 2) |
 | **Executor** | cli-codex gpt-5.5 high fast |
 <!-- /ANCHOR:metadata -->
 

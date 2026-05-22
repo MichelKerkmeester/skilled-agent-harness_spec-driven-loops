@@ -102,7 +102,7 @@ _memory:
   - `016/002/004-spec-memory-embedder-bake-off/`
   - `016/004/004-extended-bake-off/`
 - sk-doc resources added: `references/benchmarks_format.md` + `assets/benchmark/benchmark_report_template.md`
-- Follow-on work: `016/007-ollama-and-bge-promotion-arc/` (Ollama adapter + bge-code-v1 promotion confirmation)
+- Follow-on work: `016/007-ollama-and-bge-promotion/` (Ollama adapter + bge-code-v1 promotion confirmation)
 - **Historical note (added by packet 006):** FORMAT.md relocated to sk-doc in packet `005-cross-cutting-quality/006-benchmark-format-to-sk-doc`. The canonical mechanics document is now `.opencode/skills/sk-doc/references/benchmark_creation.md`. `references/benchmarks_format.md` was deleted as part of the same consolidation.
 <!-- /ANCHOR:cross-refs -->
 

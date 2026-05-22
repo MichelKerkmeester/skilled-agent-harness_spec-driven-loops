@@ -80,5 +80,5 @@ All 4 sub-phases shipped before this restructure landed. The restructure is pure
 - Sibling umbrella: `../003-skill-advisor-stack/` — skill-advisor (TypeScript) embedder parity work (mirrors this stack's adapter pattern)
 - Cross-cutting: `../008-deep-review-stack/` — 20-iter deep-review covering the work in this stack
 - Cross-cutting: `../009-skill-docs-alignment/` — docs sweep covering the work in this stack
-- Cross-cutting: `../009-memory-leak-remediation-arc/001-research-synthesis-and-remediation-map/` — canonical archive for the former `020-cli-process-memory-leak-deep-research` research artifacts
+- Cross-cutting: `../009-memory-leak-remediation/001-research-synthesis-and-remediation-map/` — canonical archive for the former `020-cli-process-memory-leak-deep-research` research artifacts
 <!-- /ANCHOR:cross-refs -->

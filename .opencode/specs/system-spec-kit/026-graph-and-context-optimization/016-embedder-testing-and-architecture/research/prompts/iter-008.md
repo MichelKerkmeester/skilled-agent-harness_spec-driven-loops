@@ -3,7 +3,7 @@ You are iteration 8 of a 10-iter deep-research dispatch on the 016 umbrella unde
 ## Pre-bindings
 
 - Working directory: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`
-- Target for this iter: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc`
+- Target for this iter: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion`
 - Spec folder (pre-approved, skip Gate 3): `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/research/..`
 - Read-only against source. Writes ONLY to `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/research/iterations/iteration-008.md` and the JSONL state.
 
@@ -47,7 +47,7 @@ Append one JSONL line to `/Users/michelkerkmeester/MEGA/Development/Code_Environ
 
 ## Process
 
-1. Skim `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc`'s spec.md / plan.md / tasks.md / implementation-summary.md / graph-metadata.json.
+1. Skim `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion`'s spec.md / plan.md / tasks.md / implementation-summary.md / graph-metadata.json.
 2. Spot-check 2-3 source files referenced by those docs.
 3. Run 2-3 grep probes for terms the docs mention (env vars, function names, file paths).
 4. Compare commits in the arc's history (git log on the path) against the docs' claims.

@@ -100,7 +100,7 @@ The arc converges when:
 ## RELATED DOCUMENTS
 
 - **Phase children**: see sub-folders `001-flag-routing-fix-for-cross-encoder/`, `002-*/`, `003-*/`, `004-*/`, `005-*/`
-- **Predecessor arc**: `../006-mcp-launcher-concurrency-arc/` (introduced the launcher-lease + IPC-bridge patterns that this arc mirrors at the port-bind level)
+- **Predecessor arc**: `../006-mcp-launcher-concurrency/` (introduced the launcher-lease + IPC-bridge patterns that this arc mirrors at the port-bind level)
 - **Sibling research**: cocoindex's benchmark at `.opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-20-expanded/benchmark_report.md` (the source of the Qwen3-Reranker-0.6B model choice)
 - **Discussion record**: gpt-5.5 xhigh second-opinion captured in `001-*/decision-record.md` (planned) — surfaced the flag-routing bug + sigmoid-normalization requirement + own-benchmark imperative
 - **Graph metadata**: see `graph-metadata.json` for `derived.last_active_child_id` pointer

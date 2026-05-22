@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency/001-concurrent-daemon-corruption-fix",
+  "description": "Concurrent Daemon Corruption Fix",
+  "keywords": [
+    "concurrent",
+    "daemon",
+    "corruption",
+    "fix"
+  ],
+  "lastUpdated": "2026-05-21T10:22:38.716Z",
+  "specId": "001",
+  "folderSlug": "concurrent-daemon-corruption-fix",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "006-mcp-launcher-concurrency"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

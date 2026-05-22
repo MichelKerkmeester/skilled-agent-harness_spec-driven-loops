@@ -1,6 +1,6 @@
 ## Focus
 
-Iteration 7 audited arc `006-mcp-launcher-concurrency-arc`, especially the late 010-012 bridge/socket follow-ons and the parent arc metadata. The pass checked whether the arc's "complete" claims still line up with current launcher, daemon, plugin, and spec-folder state.
+Iteration 7 audited arc `006-mcp-launcher-concurrency`, especially the late 010-012 bridge/socket follow-ons and the parent arc metadata. The pass checked whether the arc's "complete" claims still line up with current launcher, daemon, plugin, and spec-folder state.
 
 ## Actions Taken
 

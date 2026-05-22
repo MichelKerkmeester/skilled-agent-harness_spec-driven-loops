@@ -35,7 +35,7 @@ _memory:
 | **Created** | 2026-05-21 |
 | **Branch** | `main` |
 | **Parent Arc** | `011-spec-memory-rerank-decision-arc` |
-| **Position in arc** | Phase 2 of 3 |
+| **Position in arc** | Phase 012 of 013 |
 <!-- /ANCHOR:metadata -->
 
 ---

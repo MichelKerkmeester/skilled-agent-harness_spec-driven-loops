@@ -37,7 +37,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## 2. PHASE 1: SETUP
 
-- [x] T001 - Survey / read source material per plan.md Phase 1. Evidence: `research.md` §1 and §5; source fixture at `../002-baseline-fixture/evidence/code-retrieval-fixture.json`; trigger analysis at `../../007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md`.
+- [x] T001 - Survey / read source material per plan.md Phase 1. Evidence: `research.md` §1 and §5; source fixture at `../002-baseline-fixture/evidence/code-retrieval-fixture.json`; trigger analysis at `../../007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md`.
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
@@ -67,5 +67,5 @@ _memory:
 
 - Spec: `spec.md`
 - Plan: `plan.md`
-- Trigger: `../../007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md`
+- Trigger: `../../007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md`
 <!-- /ANCHOR:cross-refs -->

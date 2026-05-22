@@ -151,8 +151,8 @@ The `da33c866d` commit is the template for BUGGED-category sibling hunting: Conf
 | 003 | skill-advisor-stack | 4 phases |
 | 004 | code-index-stack | 20 phases |
 | 005 | cross-cutting-quality | 6 phases |
-| 006 | mcp-launcher-concurrency-arc | 12 phases |
-| 007 | ollama-and-bge-promotion-arc | 4 phases |
+| 006 | mcp-launcher-concurrency | 12 phases |
+| 007 | ollama-and-bge-promotion | 4 phases |
 | 008 | rerank-sidecar-arc | 7 phases (001-007) |
 
 ### Naming reconciliation

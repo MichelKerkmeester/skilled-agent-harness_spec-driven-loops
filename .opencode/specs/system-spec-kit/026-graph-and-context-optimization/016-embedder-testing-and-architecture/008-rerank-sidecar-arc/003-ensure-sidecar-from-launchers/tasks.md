@@ -98,5 +98,5 @@ T001-T024 complete with evidence. Phase 004 of the arc unblocks once T024 passes
 - Predecessor `../002-system-rerank-sidecar-skill/` — owns `start.sh` invoked by this phase
 - Predecessor `../001-flag-routing-fix-for-cross-encoder/` — makes the wired sidecar reachable by Stage 3
 - Successor `../004-spec-memory-rerank-benchmark/` — runs benchmarks after this phase makes the sidecar auto-spawn
-- Reference (lease pattern): `../../006-mcp-launcher-concurrency-arc/012-daemon-bridge-socket-for-skill-advisor-and-code-index/` — same idempotent-attach pattern, at port level instead of file level
+- Reference (lease pattern): `../../006-mcp-launcher-concurrency/012-daemon-bridge-socket-for-skill-advisor-and-code-index/` — same idempotent-attach pattern, at port level instead of file level
 <!-- /ANCHOR:cross-refs -->

@@ -1,0 +1,71 @@
+{
+  "topic": "Memory leaks and process lifecycle hazards in .opencode/skills/mcp-coco-index and .opencode/skills/system-code-graph during CLI deep-flow orchestration",
+  "maxIterations": 15,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 240,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 30,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit",
+  "createdAt": "2026-05-22T06:00:58.626Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executorSchedule": [
+    {
+      "iterations": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "kind": "cli-claude-code",
+      "model": "claude-opus-4-7",
+      "reasoningEffort": "high",
+      "serviceTier": null,
+      "sandboxMode": "workspace-write",
+      "timeoutSeconds": 1800
+    },
+    {
+      "iterations": [
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "kind": "cli-codex",
+      "model": "gpt-5.5",
+      "reasoningEffort": "xhigh",
+      "serviceTier": "fast",
+      "sandboxMode": "workspace-write",
+      "timeoutSeconds": 1800
+    },
+    {
+      "iterations": [
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "kind": "cli-codex",
+      "model": "gpt-5.5",
+      "reasoningEffort": "xhigh",
+      "serviceTier": "fast",
+      "sandboxMode": "workspace-write",
+      "timeoutSeconds": 1800
+    }
+  ],
+  "lineage": {
+    "sessionId": "024-cli-memory-leak-audit-auto",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "resource_map": {
+    "emit": true
+  }
+}

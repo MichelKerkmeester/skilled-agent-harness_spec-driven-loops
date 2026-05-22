@@ -39,7 +39,7 @@ _memory:
 | Type | Research-only (no code changes); may produce a fixture update if any expected paths are wrong |
 | Owner | Main agent |
 | Parent | `../spec.md` (004-code-index-stack) |
-| Triggered by | `../../007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md` §7.4 |
+| Triggered by | `../../007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md` §7.4 |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -116,7 +116,7 @@ Risks:
 
 Dependencies:
 - `../002-baseline-fixture/evidence/code-retrieval-fixture.json` (the 18-pair fixture file)
-- `../../007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md` (failure-mode pattern motivating the audit)
+- `../../007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md` (failure-mode pattern motivating the audit)
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
@@ -130,8 +130,8 @@ Dependencies:
 <!-- ANCHOR:cross-links -->
 ## 8. CROSS-LINKS
 
-- **Trigger:** `../../007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md` §7.4
+- **Trigger:** `../../007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md` §7.4
 - **Fixture file:** `../002-baseline-fixture/evidence/code-retrieval-fixture.json` (18 pairs)
 - **Sibling investigation:** `../011-rerank-model-fit-investigation/` — orthogonal angle (does the cross-encoder need to change vs does the fixture need to change)
-- **Bench packet to re-run after fixture update:** `../../007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote/`
+- **Bench packet to re-run after fixture update:** `../../007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote/`
 <!-- /ANCHOR:cross-links -->

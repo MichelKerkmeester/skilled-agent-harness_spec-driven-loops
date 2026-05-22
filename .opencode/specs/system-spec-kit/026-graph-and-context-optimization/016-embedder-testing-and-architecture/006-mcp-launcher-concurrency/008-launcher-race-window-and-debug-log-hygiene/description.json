@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency/008-launcher-race-window-and-debug-log-hygiene",
+  "description": "Launcher Race-Window Tightening + Debug-Log Hygiene",
+  "keywords": [
+    "launcher",
+    "race-window",
+    "tightening",
+    "debug-log",
+    "hygiene"
+  ],
+  "lastUpdated": "2026-05-18T18:05:16.895Z",
+  "specId": "008",
+  "folderSlug": "launcher-race-window-and-debug-log-hygiene",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "006-mcp-launcher-concurrency"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "18-05-26_19-05__phase-008-p2-closeout-moved-skill-advisor-pid.md"
+  ]
+}

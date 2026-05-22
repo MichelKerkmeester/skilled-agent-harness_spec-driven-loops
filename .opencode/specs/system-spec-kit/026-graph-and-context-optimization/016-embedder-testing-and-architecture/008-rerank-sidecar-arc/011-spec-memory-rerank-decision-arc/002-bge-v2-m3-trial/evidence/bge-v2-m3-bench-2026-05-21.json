@@ -938,11 +938,11 @@
         "memory_index:3542",
         "specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/implementation-summary.md",
         "memory_index:9710",
-        "specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote/decision-record.md",
+        "specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote/decision-record.md",
         "memory_index:8946",
         "specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/spec.md",
         "memory_index:9709",
-        "specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote/checklist.md"
+        "specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote/checklist.md"
       ],
       "returned_memory_ids": [
         1710,
@@ -1814,20 +1814,20 @@
       "category": "arc-context",
       "difficulty": "medium",
       "gold_doc_ids": [
-        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/spec.md"
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency/spec.md"
       ],
       "gold_memory_ids": [
         8547
       ],
       "returned_doc_ids": [
         "memory_index:1765",
-        "specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/004-launcher-diagnostics-and-signal-coverage/implementation-summary.md",
+        "specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency/004-launcher-diagnostics-and-signal-coverage/implementation-summary.md",
         "memory_index:6081",
         "specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/003-codex-native-startup-advisor-hooks/research/research.md",
         "memory_index:1137",
         "specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/002-skill-graph-daemon-native-advisor-tools/plan.md",
         "memory_index:1767",
-        "specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/004-launcher-diagnostics-and-signal-coverage/spec.md",
+        "specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency/004-launcher-diagnostics-and-signal-coverage/spec.md",
         "memory_index:1138",
         "specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/002-skill-graph-daemon-native-advisor-tools/tasks.md"
       ],
@@ -1868,7 +1868,7 @@
       "category": "arc-context",
       "difficulty": "medium",
       "gold_doc_ids": [
-        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/012-daemon-bridge-socket-for-skill-advisor-and-code-index/spec.md"
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency/012-daemon-bridge-socket-for-skill-advisor-and-code-index/spec.md"
       ],
       "gold_memory_ids": [
         8546
@@ -1922,7 +1922,7 @@
       "category": "paraphrase",
       "difficulty": "hard",
       "gold_doc_ids": [
-        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/012-daemon-bridge-socket-for-skill-advisor-and-code-index/implementation-summary.md"
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency/012-daemon-bridge-socket-for-skill-advisor-and-code-index/implementation-summary.md"
       ],
       "gold_memory_ids": [
         8544
@@ -1977,7 +1977,7 @@
       "category": "arc-context",
       "difficulty": "medium",
       "gold_doc_ids": [
-        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/011-sun-path-and-stale-lease-followups/plan.md"
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency/011-sun-path-and-stale-lease-followups/plan.md"
       ],
       "gold_memory_ids": [
         8542
@@ -2032,7 +2032,7 @@
       "category": "arc-context",
       "difficulty": "medium",
       "gold_doc_ids": [
-        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/011-sun-path-and-stale-lease-followups/spec.md"
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency/011-sun-path-and-stale-lease-followups/spec.md"
       ],
       "gold_memory_ids": [
         8543
@@ -2086,7 +2086,7 @@
       "category": "paraphrase",
       "difficulty": "hard",
       "gold_doc_ids": [
-        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/010-multi-client-stdio-socket-bridge/spec.md"
+        "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency/010-multi-client-stdio-socket-bridge/spec.md"
       ],
       "gold_memory_ids": [
         4578
@@ -2265,7 +2265,7 @@
         "memory_index:1534",
         "specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/020-catalog-playbook-alignment-audit/plan.md",
         "memory_index:9710",
-        "specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote/decision-record.md"
+        "specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote/decision-record.md"
       ],
       "returned_memory_ids": [
         1535,

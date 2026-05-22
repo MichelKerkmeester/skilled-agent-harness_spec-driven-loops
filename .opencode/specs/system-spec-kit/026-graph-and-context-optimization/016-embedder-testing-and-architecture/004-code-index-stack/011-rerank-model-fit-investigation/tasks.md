@@ -67,5 +67,5 @@ _memory:
 
 - Spec: `spec.md`
 - Plan: `plan.md`
-- Trigger: `../../007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md`
+- Trigger: `../../007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md`
 <!-- /ANCHOR:cross-refs -->

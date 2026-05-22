@@ -23,8 +23,8 @@ Read three local docs and produce probe-by-probe analysis (probes 3, 10, 14, 18)
 
 ## Evidence (file:line citations or URLs required)
 
-1. <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md" lines="45-52" /> — Per-probe results table with rank-1 scores and margins
-2. <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md" lines="63-70" /> — Failure mode pattern analysis
+1. <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md" lines="45-52" /> — Per-probe results table with rank-1 scores and margins
+2. <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md" lines="63-70" /> — Failure mode pattern analysis
 3. <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/reranker.py" lines="109-150" /> — Reranker implementation showing naive cross-encoder scoring
 4. <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/reranker.py" lines="126-129" /> — Cross-encoder prediction using query-candidate content pairs
 5. <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/reranker.py" lines="149" /> — Sorting by reranker score without path-class weighting
@@ -38,7 +38,7 @@ Read three local docs and produce probe-by-probe analysis (probes 3, 10, 14, 18)
 - **Actual rank-1**: `tests/test_config.py` (duplicate chunk from test file)
 - **Rank-1 score**: 0.9313
 - **Margin (r1-r2)**: 0.018
-- **Semantic failure pattern**: The test file contains literal "default model" assertions that match query keywords more densely than the implementation file. The cross-encoder rewards this lexical-cue density over the semantic role that the query is asking about the implementation, not its tests. <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md" lines="65" />
+- **Semantic failure pattern**: The test file contains literal "default model" assertions that match query keywords more densely than the implementation file. The cross-encoder rewards this lexical-cue density over the semantic role that the query is asking about the implementation, not its tests. <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md" lines="65" />
 
 ### 2. Probe 10: Source outranks dist artifact (medium difficulty)
 
@@ -47,7 +47,7 @@ Read three local docs and produce probe-by-probe analysis (probes 3, 10, 14, 18)
 - **Actual rank-1**: `scripts/memory/generate-context.ts` (TypeScript source)
 - **Rank-1 score**: 0.7985
 - **Margin (r1-r2)**: 0.003 (tightest margin of all four probes)
-- **Semantic failure pattern**: The TypeScript source file is semantically more correct (it's the actual implementation), but the fixture expects the .js dist artifact. The reranker ranks the source higher because it likely contains more descriptive comments and type annotations that lexically match the query better than the minified/compiled dist output. <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md" lines="66" />
+- **Semantic failure pattern**: The TypeScript source file is semantically more correct (it's the actual implementation), but the fixture expects the .js dist artifact. The reranker ranks the source higher because it likely contains more descriptive comments and type annotations that lexically match the query better than the minified/compiled dist output. <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md" lines="66" />
 
 ### 3. Probe 14: Stress-test outranks implementation (hard difficulty)
 
@@ -56,7 +56,7 @@ Read three local docs and produce probe-by-probe analysis (probes 3, 10, 14, 18)
 - **Actual rank-1**: `stress_test/code-graph/walker-dos-caps.vitest.ts` (stress test)
 - **Rank-1 score**: 0.0765 (lowest score among all four probes)
 - **Margin (r1-r2)**: 0.025
-- **Semantic failure pattern**: The stress test filename contains "walker" + "caps" which lexically matches query keywords better than the implementation's named symbols. The test file's descriptive name and content about DoS caps provide denser lexical cues than the actual implementation, causing the cross-encoder to incorrectly favor the test over the code being tested. <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md" lines="67" />
+- **Semantic failure pattern**: The stress test filename contains "walker" + "caps" which lexically matches query keywords better than the implementation's named symbols. The test file's descriptive name and content about DoS caps provide denser lexical cues than the actual implementation, causing the cross-encoder to incorrectly favor the test over the code being tested. <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md" lines="67" />
 
 ### 4. Probe 18: Reference doc outranks integration test (medium difficulty)
 
@@ -65,11 +65,11 @@ Read three local docs and produce probe-by-probe analysis (probes 3, 10, 14, 18)
 - **Actual rank-1**: `mcp-coco-index/references/tool_reference.md` (reference documentation)
 - **Rank-1 score**: 0.1629
 - **Margin (r1-r2)**: 0.036 (widest margin among the four failures)
-- **Semantic failure pattern**: The reference doc contains prose mentioning "refresh" + "reprocessing" which provides dense lexical matching for the query. The integration test, while semantically the correct target (it actually tests the refresh functionality), likely has less descriptive prose and more code assertions, resulting in lower lexical-cue density. <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md" lines="68" />
+- **Semantic failure pattern**: The reference doc contains prose mentioning "refresh" + "reprocessing" which provides dense lexical matching for the query. The integration test, while semantically the correct target (it actually tests the refresh functionality), likely has less descriptive prose and more code assertions, resulting in lower lexical-cue density. <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md" lines="68" />
 
 ### 5. Cross-probe pattern: Lexical-cue density bias is systematic
 
-All four probes share the same failure mechanism: **the cross-encoder rewards lexical-cue density over semantic role**. When a file (test, doc, or source) contains the query's exact keywords in high density, it scores higher than the implementation that the query is actually about. This is not random non-determinism — it's a systematic bias in the BAAI/bge-reranker-v2-m3 model's scoring function. <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md" lines="70" />
+All four probes share the same failure mechanism: **the cross-encoder rewards lexical-cue density over semantic role**. When a file (test, doc, or source) contains the query's exact keywords in high density, it scores higher than the implementation that the query is actually about. This is not random non-determinism — it's a systematic bias in the BAAI/bge-reranker-v2-m3 model's scoring function. <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md" lines="70" />
 
 ### 6. Reranker implementation enables this failure mode
 
@@ -83,7 +83,7 @@ This implementation choice, combined with bge-reranker-v2-m3's training on MS-MA
 
 ### 7. Margin analysis: tight but incorrect decisions
 
-All four probes have rank-1 vs rank-2 margins below 0.05 (0.003, 0.018, 0.025, 0.036) <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md" lines="52" />. These tight margins suggest the cross-encoder is confidently but incorrectly ranking the distractors. The margins are too small to be explained by noise — they represent systematic preference for the lexical-dense distractors.
+All four probes have rank-1 vs rank-2 margins below 0.05 (0.003, 0.018, 0.025, 0.036) <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md" lines="52" />. These tight margins suggest the cross-encoder is confidently but incorrectly ranking the distractors. The margins are too small to be explained by noise — they represent systematic preference for the lexical-dense distractors.
 
 ## Gaps for Next Iter
 
@@ -95,7 +95,7 @@ All four probes have rank-1 vs rank-2 margins below 0.05 (0.003, 0.018, 0.025, 0
 
 4. **No comparison with alternative rerankers**: This analysis only validates the failure mode for bge-reranker-v2-m3. Iter 1 identified mxbai-rerank-base-v2 and jina-reranker-v3 as potentially better performers on code retrieval. Need probe-level analysis of whether those models exhibit the same lexical-cue density bias.
 
-5. **Path-class boost not tested**: The margin analysis suggests adding a "path-class boost" to down-weight tests/references/z_archive <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md" lines="135" />, but this mitigation has not been implemented or benchmarked.
+5. **Path-class boost not tested**: The margin analysis suggests adding a "path-class boost" to down-weight tests/references/z_archive <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md" lines="135" />, but this mitigation has not been implemented or benchmarked.
 
 ## JSONL Delta Row
 

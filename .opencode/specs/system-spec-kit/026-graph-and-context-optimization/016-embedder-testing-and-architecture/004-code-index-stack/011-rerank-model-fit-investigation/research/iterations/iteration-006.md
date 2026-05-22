@@ -28,7 +28,7 @@ Feasibility of hybrid fusion recalibration. CocoIndex uses RRF for dense+BM25 (.
 3. <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py" lines="15-17" /> — Default fusion weights: vector_weight=0.7, fts5_weight=0.7, rrf_k=60
 4. <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py" lines="310-327" /> — Environment variable configuration for fusion weights with validation ranges
 5. <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py" lines="624-630" /> — Fusion invocation in query pipeline using config values
-6. <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md" lines="63-70" /> — Failure mode pattern showing reranker-level lexical-cue density bias
+6. <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md" lines="63-70" /> — Failure mode pattern showing reranker-level lexical-cue density bias
 7. <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/reranker.py" lines="109-150" /> — Reranker implementation from iter 2 showing failure occurs after fusion, not before
 
 ## Findings (numbered, with citations)
@@ -65,7 +65,7 @@ Implementing Borda count or other fusion methods would require new code in fusio
 
 ### 4. Failure pattern is reranker-level, not fusion-level
 
-The lexical-cue density bias identified in iters 1-2 is a reranker-level issue, not a fusion-level issue. The margin analysis shows that the cross-encoder reranker systematically demotes semantically correct targets in favor of lexically dense distractors after fusion has already occurred. <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md" lines="63-70" />
+The lexical-cue density bias identified in iters 1-2 is a reranker-level issue, not a fusion-level issue. The margin analysis shows that the cross-encoder reranker systematically demotes semantically correct targets in favor of lexically dense distractors after fusion has already occurred. <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md" lines="63-70" />
 
 The query pipeline order is:
 1. Vector retrieval
@@ -79,7 +79,7 @@ The failure occurs at step 4, not step 3. Fusion recalibration would change the 
 
 Fusion recalibration could indirectly affect the failure probes through two mechanisms:
 
-**Dense-heavy fusion (0.9/0.3)**: If dense embeddings are less susceptible to lexical-cue density than BM25 (which is inherently lexical), then increasing vector_weight might reduce the proportion of lexically dense distractors in the top-20 candidate set before reranking. However, this is speculative—the margin analysis does not provide dense vs BM25 score breakdowns for the failure probes to validate this hypothesis. <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md" lines="45-52" />
+**Dense-heavy fusion (0.9/0.3)**: If dense embeddings are less susceptible to lexical-cue density than BM25 (which is inherently lexical), then increasing vector_weight might reduce the proportion of lexically dense distractors in the top-20 candidate set before reranking. However, this is speculative—the margin analysis does not provide dense vs BM25 score breakdowns for the failure probes to validate this hypothesis. <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md" lines="45-52" />
 
 **Sparse-heavy fusion (0.3/0.9)**: Conversely, if BM25's exact term matching is actually better at distinguishing implementation files from tests/docs (e.g., implementation files contain more unique function names), then increasing fts_weight might help. However, BM25 is inherently lexical, so this could exacerbate the lexical-cue density problem rather than mitigate it.
 
@@ -131,7 +131,7 @@ The combined approach (fusion recalibration + better model + path-class boost) w
 
 ### 9. No dense vs BM25 score breakdown data for failure probes
 
-The margin analysis does not provide dense vs BM25 score breakdowns for the failure probes (3, 10, 14, 18). It only reports reranker cross-encoder scores. <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md" lines="45-52" />
+The margin analysis does not provide dense vs BM25 score breakdowns for the failure probes (3, 10, 14, 18). It only reports reranker cross-encoder scores. <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md" lines="45-52" />
 
 Without this data, it's impossible to determine:
 - Whether dense or BM25 is currently ranking the implementation higher before reranking

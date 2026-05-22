@@ -15,7 +15,7 @@ _memory:
     last_updated_at: "2026-05-22T10:20:00Z"
     last_updated_by: "main_agent"
     recent_action: "Added 009 memory leak remediation arc."
-    next_safe_action: "Resume 009-memory-leak-remediation-arc."
+    next_safe_action: "Resume 009-memory-leak-remediation."
     blockers: []
     key_files:
       - "spec.md"
@@ -76,11 +76,10 @@ This parent is a control file for nine direct child arcs plus `research/`; detai
 | `003-skill-advisor-stack/` | skill-advisor pluggable registry and deferred default alignment | In Progress |
 | `004-code-index-stack/` | CocoIndex CodeRankEmbed, hybrid search, query expansion, rerank stack | In Progress |
 | `005-cross-cutting-quality/` | cross-stack QA, docs, benchmark format, install hygiene | In Progress |
-| `006-mcp-launcher-concurrency-arc/` | launcher lease/concurrency hardening and 013 follow-up | In Progress |
-| `007-ollama-and-bge-promotion-arc/` | historical Ollama/BGE promotion arc superseded by Nomic | Closed / Superseded |
+| `006-mcp-launcher-concurrency/` | launcher lease/concurrency hardening and 013 follow-up | In Progress |
+| `007-ollama-and-bge-promotion/` | historical Ollama/BGE promotion arc superseded by Nomic | Closed / Superseded |
 | `008-rerank-sidecar-arc/` | shared rerank sidecar and Qwen/CocoIndex rerank work | In Progress |
-| `009-memory-leak-remediation-arc/` | dedicated memory/process lifecycle remediation across Spec Kit Memory, CocoIndex, Code Graph, sidecars, and deep-loop CLI workflows | Completed |
-| `010-memory-leak-follow-ons-arc/` | deferred follow-ons from arc 009: code-graph suite triage, adapter RSS benchmark, owner-lease heartbeat-staleness gap | Planned |
+| `009-memory-leak-remediation/` | dedicated memory/process lifecycle remediation, with former follow-ons folded in as phases 011-013 | Completed |
 <!-- /ANCHOR:sub-phase-list -->
 
 ---
@@ -97,5 +96,5 @@ Current umbrella follow-up work is status reconciliation and scoped execution in
 - Hybrid search: default-on. Query expansion: default-off.
 - llama-cpp migration work is historical and superseded by the Ollama cascade.
 
-Resume work from the relevant child arc. Arc `009-memory-leak-remediation-arc/` shipped; deferred follow-ons live under `010-memory-leak-follow-ons-arc/`.
+Resume work from the relevant child arc. Arc `009-memory-leak-remediation/` shipped with deferred follow-ons folded in as phases 011-013.
 <!-- /ANCHOR:what-needs-done -->

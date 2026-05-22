@@ -22,8 +22,8 @@ declare -a FOCUSES=(
   "4|arc 003 skill-advisor-stack|.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack"
   "5|arc 004 code-index-stack|.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack"
   "6|arc 005 cross-cutting-quality|.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality"
-  "7|arc 006 mcp-launcher-concurrency|.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc"
-  "8|arc 007 ollama-and-bge-promotion|.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc"
+  "7|arc 006 mcp-launcher-concurrency|.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency"
+  "8|arc 007 ollama-and-bge-promotion|.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion"
   "9|cross-arc consistency + global hygiene|.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture"
 )
 

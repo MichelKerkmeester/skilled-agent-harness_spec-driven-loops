@@ -1,0 +1,25 @@
+{
+  "level": "feature",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion/002-cocoindex-ollama-adapter",
+  "description": "Spec: 016/013/002 CocoIndex Ollama Adapter",
+  "keywords": [
+    "spec",
+    "016",
+    "013",
+    "002",
+    "cocoindex",
+    "ollama",
+    "adapter"
+  ],
+  "lastUpdated": "2026-05-21T10:22:38.777Z",
+  "specId": "002",
+  "folderSlug": "cocoindex-ollama-adapter",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "007-ollama-and-bge-promotion"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

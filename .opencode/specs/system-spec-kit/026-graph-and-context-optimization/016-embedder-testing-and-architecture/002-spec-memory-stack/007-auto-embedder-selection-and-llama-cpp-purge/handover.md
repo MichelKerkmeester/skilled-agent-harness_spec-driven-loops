@@ -149,7 +149,7 @@ In order from oldest to most recent:
 ├── 005-cross-cutting-quality/
 │   ├── 004-skill-local-benchmarks-format/   (skill-local benchmarks/ format convention shipped)
 │   └── 005-cocoindex-install-hygiene/       (pipx editable + harness $CCC pin shipped; scratch/ may receive MCP RCA from codex)
-└── 007-ollama-and-bge-promotion-arc/
+└── 007-ollama-and-bge-promotion/
     ├── 001-indexer-surface-investigation/   (research shipped)
     ├── 002-cocoindex-ollama-adapter/        (mostly shipped via overnight commit)
     ├── 003-bge-code-v1-confirmation-and-promote/   (rescoped to 4-cand re-baseline; bench in flight; will get corrected benchmark_report.md when bench done)
@@ -248,8 +248,8 @@ cat .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embed
 
 - **Predecessor packet (just shipped):** `../006-ollama-encode-path-wiring/implementation-summary.md`
 - **Production decision:** `../004-spec-memory-embedder-bake-off/decision-record.md` ADR-012
-- **In-flight bench packet:** `../../007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote/`
-- **Pre-confirmation margin analysis** (the May 18 invalidation finding): `../../007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md`
+- **In-flight bench packet:** `../../007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote/`
+- **Pre-confirmation margin analysis** (the May 18 invalidation finding): `../../007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote/pre-confirmation-margin-analysis.md`
 - **Install hygiene fix** (made the bench production-truthful): `../../005-cross-cutting-quality/005-cocoindex-install-hygiene/`
 - **Skill-local benchmark convention:** `../../005-cross-cutting-quality/004-skill-local-benchmarks-format/`
 - **Risk analysis (rerank non-determinism, now upgraded to "structural failure"):** `../../004-code-index-stack/004-extended-bake-off/risk-analysis-rerank-nondeterminism.md`

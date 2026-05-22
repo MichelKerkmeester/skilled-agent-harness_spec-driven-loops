@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/012-adapter-resident-memory-benchmark",
+  "description": "Adapter Resident-Memory Benchmark: Measure RSS slope on successful-search and sidecar 5xx fallback paths to decide whether P2 holds or P1 escalation is warranted.",
+  "keywords": [
+    "memory",
+    "leak",
+    "follow-on",
+    "adapter-resident-memory-benchmark"
+  ],
+  "lastUpdated": "2026-05-22T16:03:59Z",
+  "specId": "012",
+  "folderSlug": "adapter-resident-memory-benchmark",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "009-memory-leak-remediation"
+  ],
+  "memorySequence": 12,
+  "memoryNameHistory": [],
+  "level": "1"
+}
