@@ -77,8 +77,7 @@ type PostDispatchFailureReason =
   | 'v2_uncited_ledger_row'
   | 'v2_broken_linked_finding'
   | 'v2_shallow_finding_details'
-  | 'delta_iteration_id_mismatch'
-  | 'state_delta_iteration_mismatch';
+  | 'delta_iteration_id_mismatch';
 
 export type PostDispatchValidateResult =
   | { ok: true; warnings?: PostDispatchAdvisory[] }
@@ -150,9 +149,14 @@ const REVIEW_ITERATION_FIELDS = [
   'durationMs',
 ] as const;
 const V2_SCOPE_CLASSES = new Set(['trivial', 'standard', 'complex']);
+// Per-record applicability enum (validates iteration record's reviewDepthApplicability.enforcement field at line 199).
+// Distinct from the global env-var rollout enum V2EnforcementMode below — per-record uses `skip` (record-exempt),
+// env-var uses `off` (rollout-disabled).
 const V2_ENFORCEMENT_MODES = new Set(['strict', 'warn', 'skip']);
 const V2_GRAPH_COVERAGE_MODES = new Set(['graph', 'graphless_fallback', 'unavailable_blocked']);
 
+// Global rollout-posture enum for DEEP_REVIEW_V2_ENFORCEMENT env var (parsed by getV2EnforcementMode below).
+// `off` here means rollout-disabled (skip all v2 enforcement). Distinct from per-record `skip` in V2_ENFORCEMENT_MODES.
 type V2EnforcementMode = 'warn' | 'strict' | 'off';
 type V2ValidationFailure = {
   reason: PostDispatchFailureReason;
