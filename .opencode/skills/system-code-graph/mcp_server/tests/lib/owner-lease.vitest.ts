@@ -117,6 +117,98 @@ describe('owner lease lifecycle', () => {
     expect(readOwnerLease(dbDir)?.ownerPid).toBe(777);
   });
 
+  it('classifies stale-heartbeat live-PID owners as reclaimable', () => {
+    const dbDir = join(tempRoot(), 'db');
+    const now = new Date('2026-05-22T00:03:00.001Z');
+    const staleOwner = leaseFor(dbDir, {
+      lastHeartbeatIso: '2026-05-22T00:00:00.000Z',
+      ttlMs: 60_000,
+    });
+
+    expect(classifyOwner(staleOwner, {
+      processKill: () => true,
+      readParentPid: () => staleOwner.ppid,
+      now,
+    })).toBe('stale-heartbeat-reclaim');
+  });
+
+  it('keeps recent-heartbeat live-PID owners classified as live', () => {
+    const dbDir = join(tempRoot(), 'db');
+    const now = new Date('2026-05-22T00:00:00.100Z');
+    const healthyOwner = leaseFor(dbDir, {
+      lastHeartbeatIso: '2026-05-22T00:00:00.000Z',
+      ttlMs: 60_000,
+    });
+
+    expect(classifyOwner(healthyOwner, {
+      processKill: () => true,
+      readParentPid: () => healthyOwner.ppid,
+      now,
+    })).toBe('live-owner');
+  });
+
+  it('keeps refreshed live-PID owners classified as live across multiple TTL windows', () => {
+    const dbDir = join(tempRoot(), 'db');
+    const baseMs = Date.parse('2026-05-22T00:00:00.000Z');
+    const ttlMs = 300;
+    const refreshIntervalMs = ttlMs / 3;
+    const ownerPid = 1234;
+    const ownerPpid = 5678;
+
+    writeLease(dbDir, leaseFor(dbDir, {
+      ownerPid,
+      ppid: ownerPpid,
+      lastHeartbeatIso: new Date(baseMs).toISOString(),
+      ttlMs,
+    }));
+
+    for (let tick = 1; tick <= 12; tick += 1) {
+      const now = new Date(baseMs + tick * refreshIntervalMs);
+      expect(refreshOwnerLease(dbDir, ownerPid, now)).toBe(true);
+      const refreshed = readOwnerLease(dbDir);
+
+      expect(refreshed).not.toBeNull();
+      expect(classifyOwner(refreshed!, {
+        processKill: () => true,
+        readParentPid: () => ownerPpid,
+        now,
+      })).toBe('live-owner');
+    }
+  });
+
+  it('reclaims stale-heartbeat leases by overwriting the lease file', () => {
+    const dbDir = join(tempRoot(), 'db');
+    const base = new Date('2026-05-22T00:00:00.000Z');
+    const initial = acquireOwnerLease(dbDir, {
+      ownerPid: 424242,
+      ppid: 1,
+      executablePath: '/bin/node',
+      now: base,
+      ttlMs: 60_000,
+    });
+
+    expect(initial.acquired).toBe(true);
+    writeLease(dbDir, {
+      ...readOwnerLease(dbDir)!,
+      lastHeartbeatIso: base.toISOString(),
+    });
+
+    const result = acquireOwnerLease(dbDir, {
+      ownerPid: 777,
+      ppid: 1,
+      processKill: () => true,
+      readParentPid: () => 1,
+      now: new Date(base.getTime() + 180_001),
+    });
+
+    expect(result).toMatchObject({
+      acquired: true,
+      classification: 'stale-heartbeat-reclaim',
+      reclaimed: { ownerPid: 424242 },
+    });
+    expect(readOwnerLease(dbDir)?.ownerPid).toBe(777);
+  });
+
   it('classifies EPERM owners as unknown and does not reclaim them', () => {
     const dbDir = join(tempRoot(), 'db');
     writeLease(dbDir, leaseFor(dbDir, { ownerPid: 424242, ppid: 1 }));

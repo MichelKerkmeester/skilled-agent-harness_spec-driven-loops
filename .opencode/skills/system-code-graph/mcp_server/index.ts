@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// ───────────────────────────────────────────────────────────────────
+// MODULE: mk-code-index MCP Server Entrypoint
+// ───────────────────────────────────────────────────────────────────
 /**
  * mk-code-index MCP server entry point.
  *
@@ -15,6 +18,7 @@ import * as codeGraphTools from './tools/index.js';
 import { CODE_GRAPH_TOOL_SCHEMAS } from './tool-schemas.js';
 import { writeCodeGraphReadinessMarker } from './lib/readiness-marker.js';
 import { closeDbWithAssertion } from './lib/code-graph-db.js';
+import { refreshOwnerLease } from './lib/owner-lease.js';
 import { DATABASE_DIR } from './core/config.js';
 import {
   resolveIpcSocketPath,
@@ -22,13 +26,38 @@ import {
   type IpcSocketServerHandle,
 } from './lib/ipc/socket-server.js';
 
+const DEFAULT_OWNER_LEASE_TTL_MS = 60_000;
+const OWNER_LEASE_REFRESH_INTERVAL_MS = DEFAULT_OWNER_LEASE_TTL_MS / 3;
+let ownerLeaseRefreshTimer: ReturnType<typeof setInterval> | null = null;
+
+function clearOwnerLeaseRefreshTimer(): void {
+  if (!ownerLeaseRefreshTimer) return;
+  clearInterval(ownerLeaseRefreshTimer);
+  ownerLeaseRefreshTimer = null;
+}
+
+function startOwnerLeaseRefreshTimer(): void {
+  if (ownerLeaseRefreshTimer) return;
+  ownerLeaseRefreshTimer = setInterval(() => {
+    try {
+      refreshOwnerLease(DATABASE_DIR, process.pid);
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error);
+      console.error(`[owner-lease] heartbeat refresh failed: ${message}`);
+    }
+  }, OWNER_LEASE_REFRESH_INTERVAL_MS);
+  ownerLeaseRefreshTimer.unref();
+}
+
 process.on('uncaughtException', (err) => {
   console.error('[mk-code-index] uncaughtException:', err);
+  clearOwnerLeaseRefreshTimer();
   closeDbWithAssertion();
   process.exit(1);
 });
 process.on('unhandledRejection', (reason) => {
   console.error('[mk-code-index] unhandledRejection:', reason);
+  clearOwnerLeaseRefreshTimer();
   closeDbWithAssertion();
   process.exit(1);
 });
@@ -55,6 +84,7 @@ let ipcBridge: IpcSocketServerHandle | null = null;
 
 async function shutdownCodeIndex(reason: string): Promise<void> {
   console.error(`[mk-code-index] ${reason}`);
+  clearOwnerLeaseRefreshTimer();
   if (ipcBridge) {
     await ipcBridge.close().catch((error: unknown) => {
       const message = error instanceof Error ? error.message : String(error);
@@ -84,12 +114,14 @@ try {
 const transport = new StdioServerTransport();
 try {
   await server.connect(transport);
+  startOwnerLeaseRefreshTimer();
   ipcBridge = await startIpcSocketServer({
     socketPath: resolveIpcSocketPath(DATABASE_DIR),
     createServer: () => createCodeIndexMcpServer(),
     log: (message: string) => console.error(message),
   });
 } catch (error: unknown) {
+  clearOwnerLeaseRefreshTimer();
   const message = error instanceof Error ? error.message : String(error);
   const stack = error instanceof Error ? error.stack : undefined;
   console.error('[mk-code-index] connect failed:', message);

@@ -31,6 +31,7 @@ export interface OwnerLeaseData {
 export type OwnerClassification =
   | 'live-owner'
   | 'stale-pid'
+  | 'stale-heartbeat-reclaim'
   | 'ppid-1-orphan'
   | 'symlink-alias'
   | 'unknown-eperm';
@@ -53,6 +54,7 @@ export interface OwnerClassificationOptions {
   readonly processKill?: (pid: number, signal: 0) => boolean;
   readonly readParentPid?: (pid: number) => number | null;
   readonly candidateDbDir?: string;
+  readonly now?: Date;
 }
 
 const OWNER_LEASE_FILE_NAME = '.code-graph-owner.json';
@@ -131,6 +133,12 @@ export function processAlive(pid: number): boolean {
   return getProcessLiveness(pid) !== 'dead';
 }
 
+function isHeartbeatStale(lease: OwnerLeaseData, now: Date = new Date()): boolean {
+  const heartbeatMs = Date.parse(lease.lastHeartbeatIso);
+  const ttlMs = Number.isFinite(lease.ttlMs) ? lease.ttlMs : 0;
+  return !Number.isFinite(heartbeatMs) || now.getTime() - heartbeatMs > ttlMs * 2;
+}
+
 export function getOwnerLeasePath(dbDir: string): string {
   return ownerLeasePath(resolveCanonicalDbDir(dbDir));
 }
@@ -182,6 +190,10 @@ export function classifyOwner(
     return 'ppid-1-orphan';
   }
 
+  if (isHeartbeatStale(lease, options.now)) {
+    return 'stale-heartbeat-reclaim';
+  }
+
   if (options.candidateDbDir) {
     const candidateResolved = resolve(options.candidateDbDir);
     const candidateCanonical = resolveCanonicalDbDir(options.candidateDbDir);
@@ -197,12 +209,14 @@ export function acquireOwnerLease(dbDir: string, options: OwnerLeaseOptions = {}
   const canonicalDbDir = resolveCanonicalDbDir(dbDir);
   const leasePath = ownerLeasePath(canonicalDbDir);
   const existing = existsSync(leasePath) ? readOwnerLease(canonicalDbDir) : null;
+  const now = options.now ?? new Date();
   let existingClassification: OwnerClassification | undefined;
 
   if (existing) {
     const classification = classifyOwner(existing, {
       processKill: options.processKill,
       readParentPid: options.readParentPid,
+      now,
     });
     existingClassification = classification;
     if (
@@ -214,7 +228,6 @@ export function acquireOwnerLease(dbDir: string, options: OwnerLeaseOptions = {}
     }
   }
 
-  const now = options.now ?? new Date();
   const lease: OwnerLeaseData = {
     ownerPid: options.ownerPid ?? process.pid,
     ppid: options.ppid ?? process.ppid,

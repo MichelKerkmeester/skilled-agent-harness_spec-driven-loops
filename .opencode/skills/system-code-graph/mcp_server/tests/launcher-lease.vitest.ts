@@ -262,6 +262,40 @@ describe('mk-code-index launcher lease', () => {
     expect(readLeasePid(workspace.pidFilePath)).toBe(run.child.pid);
   });
 
+  it('reclaims a stale-heartbeat owner lease with a live PID', async () => {
+    const workspace = createWorkspace();
+    const holder = await createLivePid();
+    const ownerLeasePath = join(workspace.root, ownerLeaseRelativePath);
+    const dbDir = dirname(ownerLeasePath);
+
+    try {
+      mkdirSync(dbDir, { recursive: true });
+      writeFileSync(ownerLeasePath, JSON.stringify({
+        ownerPid: holder.pid,
+        ppid: process.pid,
+        executablePath: process.execPath,
+        startedAtIso: '2026-05-22T00:00:00.000Z',
+        lastHeartbeatIso: '2026-05-22T00:00:00.000Z',
+        ttlMs: 10,
+        canonicalDbDir: resolve(dbDir),
+      }, null, 2));
+
+      const run = spawnLauncher(workspace.launcherPath, workspace.root);
+      await waitFor(() => /ownerLeaseReclaimed: stale-heartbeat-reclaim/.test(run.stderr), 2000, 'stale-heartbeat owner reclaim log');
+      await waitForLeasePid(workspace.pidFilePath, run.child.pid);
+
+      expect(run.stderr).toContain(`ownerLeaseReclaimed: stale-heartbeat-reclaim ownerPid=${holder.pid}`);
+      expect(readOwnerLeasePid(workspace.root)).not.toBe(holder.pid);
+    } finally {
+      holder.kill('SIGTERM');
+      try {
+        await waitForExit(holder, 1000);
+      } catch {
+        holder.kill('SIGKILL');
+      }
+    }
+  });
+
   // 002-REQ-003 / 004-REQ-010: clean child exit removes the lease file.
   it('removes the PID file on clean exit', async () => {
     const workspace = createWorkspace();

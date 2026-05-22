@@ -255,6 +255,12 @@ function classifyOwnerLease(lease) {
     return 'ppid-1-orphan';
   }
 
+  const heartbeatMs = Date.parse(lease.lastHeartbeatIso);
+  const ttlMs = Number.isFinite(lease.ttlMs) ? lease.ttlMs : 0;
+  if (!Number.isFinite(heartbeatMs) || Date.now() - heartbeatMs > ttlMs * 2) {
+    return 'stale-heartbeat-reclaim';
+  }
+
   return 'live-owner';
 }
 
