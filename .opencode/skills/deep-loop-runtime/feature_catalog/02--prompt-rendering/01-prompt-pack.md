@@ -1,0 +1,57 @@
+---
+title: "Prompt pack"
+description: "Renders prompt-pack templates with checked placeholder variables."
+---
+
+# Prompt pack
+
+## TABLE OF CONTENTS
+
+- [1. OVERVIEW](#1--overview)
+- [2. CURRENT REALITY](#2--current-reality)
+- [3. SOURCE FILES](#3--source-files)
+- [4. SOURCE METADATA](#4--source-metadata)
+
+---
+
+## 1. OVERVIEW
+
+Renders prompt-pack templates with checked placeholder variables.
+
+This feature belongs to the prompt rendering group and is catalogued as F004 in the `deep-loop-runtime` inventory.
+
+---
+
+## 2. CURRENT REALITY
+
+Template token extraction, strict variable names, missing-token failures, and render output.
+
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+
+---
+
+## 3. SOURCE FILES
+
+### Implementation
+
+| File | Layer | Role |
+|---|---|---|
+| `lib/deep-loop/prompt-pack.ts` | Runtime | Template token extraction, strict variable names, missing-token failures, and render output. |
+
+### Validation And Tests
+
+| File | Type | Role |
+|---|---|---|
+| `tests/unit/prompt-pack.vitest.ts` | Test | Primary regression coverage for Prompt pack. |
+
+
+---
+
+## 4. SOURCE METADATA
+
+- Group: Prompt rendering
+- Canonical catalog source: `feature_catalog.md`
+- Feature ID: F004
+- Feature file path: `02--prompt-rendering/01-prompt-pack.md`
+- Primary sources: `lib/deep-loop/prompt-pack.ts`, `tests/unit/prompt-pack.vitest.ts`
+

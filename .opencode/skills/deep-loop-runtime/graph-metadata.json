@@ -1,0 +1,170 @@
+{
+  "schema_version": 2,
+  "packet_id": "118-deep-loop-full-isolation-no-mcp",
+  "skill_id": "deep-loop-runtime",
+  "family": "deep-loop",
+  "category": "shared-runtime",
+  "importance_tier": "important",
+  "edges": {
+    "depends_on": [
+      {
+        "target": "system-spec-kit",
+        "weight": 0.7,
+        "context": "imports zod, better-sqlite3, TSX loader, command YAML consumers, and shared test discovery from system-spec-kit paths"
+      }
+    ],
+    "enhances": [
+      {
+        "target": "deep-review",
+        "weight": 0.9,
+        "context": "provides shared runtime for review loops"
+      },
+      {
+        "target": "deep-research",
+        "weight": 0.9,
+        "context": "provides shared runtime for research loops"
+      }
+    ],
+    "siblings": [
+      {
+        "target": "deep-review",
+        "weight": 0.6,
+        "context": "consumer skill in the deep-loop family"
+      },
+      {
+        "target": "deep-research",
+        "weight": 0.6,
+        "context": "consumer skill in the deep-loop family"
+      }
+    ],
+    "conflicts_with": [],
+    "prerequisite_for": []
+  },
+  "manual": {
+    "depends_on": [
+      "system-spec-kit"
+    ],
+    "related_to": [
+      "deep-review",
+      "deep-research",
+      "system-code-graph"
+    ]
+  },
+  "domains": [
+    "runtime",
+    "deep-loop",
+    "coverage-graph",
+    "convergence",
+    "executor",
+    "state-safety",
+    "script-entry-points"
+  ],
+  "intent_signals": [
+    "deep-loop runtime",
+    "deep-loop-runtime skill",
+    "executor config",
+    "convergence detection",
+    "coverage-graph schema",
+    "deep-loop runtime scripts"
+  ],
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop runtime",
+      "deep-loop-runtime skill",
+      "executor config",
+      "convergence detection",
+      "coverage-graph schema",
+      "deep-loop runtime scripts"
+    ],
+    "key_topics": [
+      "deep-loop-runtime",
+      "coverage-graph-db",
+      "coverage-graph-query",
+      "coverage-graph-signals",
+      "script-entry-points",
+      "executor-config",
+      "executor-audit",
+      "prompt-pack",
+      "post-dispatch-validate",
+      "atomic-state",
+      "jsonl-repair",
+      "loop-lock",
+      "permissions-gate",
+      "bayesian-scorer",
+      "fallback-router"
+    ],
+    "key_files": [
+      ".opencode/skills/deep-loop-runtime/SKILL.md",
+      ".opencode/skills/deep-loop-runtime/README.md",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/",
+      ".opencode/skills/deep-loop-runtime/lib/coverage-graph/",
+      ".opencode/skills/deep-loop-runtime/scripts/",
+      ".opencode/skills/deep-loop-runtime/storage/deep-loop-graph.sqlite",
+      ".opencode/skills/deep-loop-runtime/tests/"
+    ],
+    "entities": [
+      {
+        "name": "deep-loop-runtime",
+        "kind": "skill",
+        "path": ".opencode/skills/deep-loop-runtime/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-graph",
+        "kind": "runtime",
+        "path": ".opencode/skills/deep-loop-runtime/lib/coverage-graph/",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review",
+        "kind": "consumer-skill",
+        "path": ".opencode/skills/deep-review/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research",
+        "kind": "consumer-skill",
+        "path": ".opencode/skills/deep-research/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "convergence.cjs",
+        "kind": "script",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "upsert.cjs",
+        "kind": "script",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/upsert.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "query.cjs",
+        "kind": "script",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/query.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "status.cjs",
+        "kind": "script",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/status.cjs",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Shared runtime infrastructure for deep-review and deep-research moved into a peer skill in the 118 FULL_ISOLATE_NO_MCP arc. It matters because executor configuration, audit provenance, prompt rendering, post-dispatch validation, state safety, Bayesian scoring, fallback routing, coverage-graph storage/query/signals, script entry points, SQLite storage, and runtime tests now have one discoverable owner outside the system-spec-kit MCP server.",
+    "source_docs": [
+      "SKILL.md",
+      "README.md",
+      "feature_catalog/feature_catalog.md",
+      "manual_testing_playbook/manual_testing_playbook.md",
+      "references/script_interface_contract.md",
+      "references/coverage_graph_schema.md",
+      "references/state_format.md",
+      "references/integration_points.md"
+    ],
+    "created_at": "2026-05-22T00:00:00Z",
+    "last_updated_at": "2026-05-22T00:00:00Z"
+  }
+}
+
