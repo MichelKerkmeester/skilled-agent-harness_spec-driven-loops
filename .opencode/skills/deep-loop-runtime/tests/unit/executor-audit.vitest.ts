@@ -419,6 +419,10 @@ describe('executor-audit', () => {
   it('buildExecutorDispatchEnv appends the current kind without mutating parent env', () => {
     const parentEnv = {
       PATH: '/usr/bin',
+      HOME: '/tmp/home',
+      OPENAI_API_KEY: 'needed',
+      GITHUB_TOKEN: 'unrelated-secret',
+      ANTHROPIC_API_KEY: 'wrong-provider',
       SPECKIT_CLI_DISPATCH_STACK: 'cli-gemini',
     };
 
@@ -426,8 +430,12 @@ describe('executor-audit', () => {
 
     expect(nextEnv).toMatchObject({
       PATH: '/usr/bin',
+      HOME: '/tmp/home',
+      OPENAI_API_KEY: 'needed',
       SPECKIT_CLI_DISPATCH_STACK: 'cli-gemini:cli-codex',
     });
+    expect(nextEnv.GITHUB_TOKEN).toBeUndefined();
+    expect(nextEnv.ANTHROPIC_API_KEY).toBeUndefined();
     expect(parentEnv.SPECKIT_CLI_DISPATCH_STACK).toBe('cli-gemini');
   });
 

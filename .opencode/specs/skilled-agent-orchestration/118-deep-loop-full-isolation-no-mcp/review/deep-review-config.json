@@ -1,0 +1,21 @@
+{
+  "reviewTarget": ".opencode/skills/deep-loop-runtime/",
+  "reviewTargetType": "skill",
+  "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
+  "specFolder": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.10,
+  "executionMode": "auto",
+  "resource_map": { "emit": true },
+  "config": {
+    "executor": {
+      "type": "cli-devin",
+      "model": "swe-1.6",
+      "permissionMode": "dangerous",
+      "timeoutSeconds": 900,
+      "dispatchPattern": "per-iter-with-kill-between"
+    }
+  },
+  "createdAt": "2026-05-22T21:53:00Z",
+  "status": "active"
+}

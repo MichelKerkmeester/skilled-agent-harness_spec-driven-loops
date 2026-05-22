@@ -77,6 +77,30 @@ const EXECUTOR_DEFAULT_HOME_DIR_BY_KIND: Partial<Record<ExecutorKind, string>> =
   'cli-devin': '.devin',
 };
 
+const EXECUTOR_COMMON_ENV_ALLOWLIST = new Set([
+  'PATH',
+  'HOME',
+  'LANG',
+  'TMPDIR',
+  'NODE_PATH',
+  'TERM',
+]);
+
+const EXECUTOR_ENV_PREFIXES_BY_KIND: Partial<Record<ExecutorKind, string[]>> = {
+  'cli-codex': ['CODEX_', 'OPENAI_', 'AZURE_OPENAI_'],
+  'cli-gemini': ['GEMINI_', 'GOOGLE_'],
+  'cli-claude-code': ['CLAUDE_', 'CLAUDE_CODE_', 'ANTHROPIC_'],
+  'cli-opencode': ['OPENCODE_'],
+  'cli-devin': ['DEVIN_'],
+};
+
+function isAllowedExecutorEnvKey(key: string, kind: ExecutorKind): boolean {
+  if (EXECUTOR_COMMON_ENV_ALLOWLIST.has(key) || key.startsWith('LC_')) {
+    return true;
+  }
+  return (EXECUTOR_ENV_PREFIXES_BY_KIND[kind] ?? []).some((prefix) => key.startsWith(prefix));
+}
+
 function recursionReasonForLayer(layer: RecursionGuardLayer): RecursionGuardFailureReason {
   return `recursion-guard-${layer}` as RecursionGuardFailureReason;
 }
@@ -276,12 +300,17 @@ export function buildExecutorDispatchEnv(
   config: ExecutorConfig,
   parentEnv: Record<string, string | undefined> = process.env,
 ): Record<string, string | undefined> {
-  const nextEnv: Record<string, string | undefined> = { ...parentEnv };
   const kind = getExecutorKind(config);
   if (kind === 'native') {
-    return nextEnv;
+    return { ...parentEnv };
   }
 
+  const nextEnv: Record<string, string | undefined> = {};
+  for (const [key, value] of Object.entries(parentEnv)) {
+    if (value !== undefined && isAllowedExecutorEnvKey(key, kind)) {
+      nextEnv[key] = value;
+    }
+  }
   nextEnv[CLI_DISPATCH_STACK_ENV] = [...splitDispatchStack(parentEnv[CLI_DISPATCH_STACK_ENV]), kind].join(':');
   return nextEnv;
 }
