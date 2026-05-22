@@ -11,8 +11,8 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening"
     last_updated_at: "2026-05-22T19:00:00Z"
     last_updated_by: "codex"
-    recent_action: "created-phase-014-finding-checklist"
-    next_safe_action: "fill-checklist-evidence-during-batch-implementation"
+    recent_action: "closed-b6-finding-ledger"
+    next_safe_action: "parent-review-and-commit-handoff"
     blockers: []
     key_files:
       - "checklist.md"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0140140140140140140140140140140140140140140140140140140140140140"
       session_id: "009-memory-leak-remediation-014"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 98
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist + level3-arch | v2.2 -->
 # Checklist: Deep-Review P1 Findings Remediation for Lifecycle and Sidecar Hardening
@@ -46,8 +46,8 @@ Status values: `open`, `closed`, `deferred`, `blocked`.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [x] CHK-001 [P1] Registry, report, and resource map are read before implementation. Evidence: B3 required phase docs, batch plan, review iterations 002/004/006/010, and target source files were read before edits.
-- [x] CHK-002 [P1] Batch scope is selected from `scratch/batch-plan.md`. Evidence: Batch B5 only was implemented in this pass; B6 rows remain open.
+- [x] CHK-001 [P1] Registry, report, and resource map are read before implementation. Evidence: B6 required phase docs, batch plan, review iterations 004/008/009, and target source files were read before edits.
+- [x] CHK-002 [P1] Batch scope is selected from `scratch/batch-plan.md`. Evidence: Batch B6 only was implemented in this pass; prior B1-B5 rows were left intact.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -64,8 +64,8 @@ Status values: `open`, `closed`, `deferred`, `blocked`.
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P1] Batch-specific Vitest/pytest/shell tests pass. Evidence: B5 targeted suites passed on 2026-05-22: deep-loop lock 1 file/7 tests; memory runtime retention 1 file/4 tests; sidecar hardening 1 file/5 tests; Code Graph launcher lease 1 file/13 tests; CocoIndex lifecycle 25 tests.
-- [x] CHK-021 [P1] Touched phase docs pass strict validation. Evidence: B5 strict validation recorded after phase-doc reconciliation.
+- [x] CHK-020 [P1] Batch-specific Vitest/pytest/shell tests pass. Evidence: B6 targeted suites passed on 2026-05-22: bounded-cache 1 file/5 tests; CocoIndex lifecycle 27 tests; process-sweep 1 file/11 tests; Code Graph `npm run typecheck`; benchmark `py_compile` with writable `PYTHONPYCACHEPREFIX`.
+- [x] CHK-021 [P1] Touched phase docs pass strict validation. Evidence: final B6 strict validation recorded in `implementation-summary.md`.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -124,19 +124,19 @@ Status values: `open`, `closed`, `deferred`, `blocked`.
 | DR009-TRC-009 | P1 | B5 | closed | Evidence: `sidecar-hardening.vitest.ts` adds a real parent + detached polling child fixture and observes the child exits within `ttlMs * 2` after the parent dies on non-Linux polling platforms; targeted sidecar suite passed 5/5. |
 | DR009-TRC-010 | P1 | B5 | closed | Evidence: `sidecar-hardening.vitest.ts` replaced `/proc` checks with cross-platform `process.kill(pid, 0)` liveness and verifies SIGTERM-resistant workers exit after SIGKILL before child state is dropped; targeted sidecar suite passed 5/5. |
 | DR009-TRC-011 | P1 | B5 | closed | Evidence: phase 010 implementation summary now honestly states `memory_index_scan` was available but not completed during phase 010 closeout; closure rests on arc-118/B5 vitest replay over the same runtime-retention surface rather than claiming the scan ran. |
-| DR009-COR-011 | P2 | B6 | open | TBD: commit hash or deferral rationale |
-| DR009-TRC-008 | P2 | B6 | open | TBD: commit hash or deferral rationale |
-| DR009-TRC-012 | P2 | B6 | open | TBD: commit hash or deferral rationale |
-| DR009-MNT-004 | P2 | B6 | open | TBD: commit hash or deferral rationale |
-| DR009-MNT-005 | P2 | B6 | open | TBD: commit hash or deferral rationale |
-| DR009-MNT-006 | P2 | B6 | open | TBD: commit hash or deferral rationale |
-| DR009-MNT-007 | P2 | B6 | open | TBD: commit hash or deferral rationale |
-| DR009-MNT-008 | P2 | B6 | open | TBD: commit hash or deferral rationale |
-| DR009-MNT-010 | P2 | B6 | open | TBD: commit hash or deferral rationale |
-| DR009-MNT-011 | P2 | B6 | open | TBD: commit hash or deferral rationale |
-| DR009-MNT-012 | P2 | B6 | open | TBD: commit hash or deferral rationale |
-| DR009-MNT-013 | P2 | B6 | open | TBD: commit hash or deferral rationale |
-| DR009-MNT-014 | P2 | B6 | open | TBD: commit hash or deferral rationale |
+| DR009-COR-011 | P2 | B6 | closed | Evidence: `bounded-cache.ts` evicts through the entry iterator so an oldest `undefined` key cannot stop eviction; `bounded-cache.vitest.ts` covers the `undefined` key edge; targeted run passed 5/5. |
+| DR009-TRC-008 | P2 | B6 | closed | Evidence: phase 007 `tasks.md` now marks T001-T012 and completion criteria complete with evidence pointers to `implementation-summary.md`; phase validation run recorded in this phase summary. |
+| DR009-TRC-012 | P2 | B6 | closed | Evidence: phase 011 `tasks.md`, `plan.md`, and `implementation-summary.md` now use phase 011 / arc 009 identifiers and `fix(009/011)`. |
+| DR009-MNT-004 | P2 | B6 | closed | Evidence: `ActiveWorkRegistry.mark_complete()` now uses `retain_completed_row`; deprecated `retain_stale` remains as a warning alias; lifecycle pytest passed 27/27. |
+| DR009-MNT-005 | P2 | B6 | closed | Evidence: deep-loop, Code Graph, and ops READMEs now list arc 009 lifecycle helpers and migrated deep-loop runtime paths. |
+| DR009-MNT-006 | P2 | B6 | closed | Evidence: `TtlMap.has()` checks entry expiry directly and reports stored `undefined` as present until expiry; targeted bounded-cache run passed 5/5. |
+| DR009-MNT-007 | P2 | B6 | closed | Evidence: `process-sweep.ts` no longer exposes a dry-run `apply` command; docs now direct operators to `plan`/`fixture`; process-sweep tests passed 11/11. |
+| DR009-MNT-008 | P2 | B6 | closed | Evidence: phase 013 implementation summary now says "Phase 013" and suggested commit `feat(009/013)`. |
+| DR009-MNT-010 | P2 | B6 | closed | Evidence: Code Graph `lib/index.ts` exports owner-lease, canonical-db-dir, and close-db-assertion helpers; MCP server imports lifecycle helpers via the library barrel; `npm run typecheck` passed. |
+| DR009-MNT-011 | P2 | B6 | closed | Evidence: `cocoindex_code.lifecycle` now exports ActiveWorkRegistry, CancelRequest, DaemonTaskRegistry, remove-project drain helpers, and MCP threadpool helpers; package-export pytest passed in the 27-test lifecycle run. |
+| DR009-MNT-012 | P2 | B6 | closed | Evidence: benchmark RSS slope, IQR, blocked payload, snapshot, and JSON writing helpers moved into `bench_rss_core.py`; both benchmark scripts import the shared core; `py_compile` passed with writable pycache. |
+| DR009-MNT-013 | P2 | B6 | closed | Evidence: phase 012 benchmark methodology, plan, spec context, implementation summary, and remediation-map reference now point to arc 009 / phase 012. |
+| DR009-MNT-014 | P2 | B6 | closed | Evidence: ops README validation command now uses `.opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py`; the verifier file exists at that path. |
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -153,8 +153,8 @@ Status values: `open`, `closed`, `deferred`, `blocked`.
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] CHK-040 [P1] `checklist.md` evidence is updated for every closed or deferred finding. Evidence: all 10 B5 rows are marked `closed` or parent-authorized `deferred` with implementation and test evidence.
-- [ ] CHK-041 [P1] `implementation-summary.md` records final status and residual risk.
+- [x] CHK-040 [P1] `checklist.md` evidence is updated for every closed or deferred finding. Evidence: all 13 B6 rows are marked `closed` with implementation and test evidence.
+- [x] CHK-041 [P1] `implementation-summary.md` records final status and residual risk. Evidence: B6 summary and verification sections record closure state, writable-pycache caveat, and no B6 deferrals.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -187,7 +187,7 @@ Status values: `open`, `closed`, `deferred`, `blocked`.
 <!-- ANCHOR:deploy-ready -->
 ## L3: Deployment Readiness
 
-- [ ] CHK-120 [P1] Parent agent has enough evidence to commit after all batches.
+- [x] CHK-120 [P1] Parent agent has enough evidence to commit after all batches. Evidence: `scratch/batch-plan.md` includes B6 commit handoff with changed files and suggested commit.
 <!-- /ANCHOR:deploy-ready -->
 
 ---
@@ -195,7 +195,7 @@ Status values: `open`, `closed`, `deferred`, `blocked`.
 <!-- ANCHOR:compliance-verify -->
 ## L3: Compliance Verification
 
-- [ ] CHK-130 [P1] P1 deferrals, if any, have explicit parent approval.
+- [x] CHK-130 [P1] P1 deferrals, if any, have explicit parent approval. Evidence: no new B6 P1 deferrals were introduced; prior B5 operator deferral remains recorded.
 <!-- /ANCHOR:compliance-verify -->
 
 ---
@@ -203,7 +203,7 @@ Status values: `open`, `closed`, `deferred`, `blocked`.
 <!-- ANCHOR:docs-verify -->
 ## L3: Documentation Verification
 
-- [ ] CHK-140 [P1] Phase 014 and arc 009 parent pass strict validation.
+- [x] CHK-140 [P1] Phase 014 and arc 009 parent pass strict validation. Evidence: final B6 validation passed for touched phases 001, 005, 007, 010, 011, 012, 013, 014 and parent arc 009; each exited 0.
 <!-- /ANCHOR:docs-verify -->
 
 ---

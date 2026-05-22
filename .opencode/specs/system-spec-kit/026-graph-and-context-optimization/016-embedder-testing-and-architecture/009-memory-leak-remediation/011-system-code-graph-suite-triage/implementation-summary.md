@@ -101,7 +101,7 @@ Each failing file was checked against its assertion target. Valid assertions wer
 
 | Check | Result |
 |-------|--------|
-| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .../001-system-code-graph-suite-triage --strict` after plan/task authoring | PASSED: exit 0, errors 0, warnings 0. |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .../011-system-code-graph-suite-triage --strict` after plan/task authoring | PASSED: exit 0, errors 0, warnings 0. |
 | Baseline: `node node_modules/vitest/vitest.mjs run --config vitest.config.ts 2>&1 \| tee /tmp/code-graph-suite-baseline.log` from `.opencode/skills/system-code-graph` | Reproduced 12 failing files / 31 failing tests; full list in `scratch/baseline-failures.md`. |
 | Targeted: `auto-rescan-policy`, `runtime-detection`, `graph-payload-validator`, `tree-sitter-parser` | PASSED: 4 files, 44 tests. |
 | Targeted: `code-graph-context-cocoindex-telemetry-passthrough`, `code-graph-context-handler`, `edge-metadata-sanitize` | PASSED: 3 files, 30 tests. |
@@ -180,7 +180,7 @@ None for this phase. The 31-failure baseline is closed with no new skips and no 
 Suggested commit:
 
 ```text
-fix(010/001): system-code-graph suite triage - 31 failures resolved
+fix(009/011): system-code-graph suite triage - 31 failures resolved
 ```
 
 Files for the parent Claude Code agent to stage explicitly:

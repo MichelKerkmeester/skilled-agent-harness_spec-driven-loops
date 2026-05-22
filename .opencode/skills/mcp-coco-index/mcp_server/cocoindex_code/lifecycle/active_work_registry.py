@@ -130,13 +130,26 @@ class ActiveWorkRegistry:
             self._condition.notify_all()
             return list(rows)
 
-    def mark_complete(self, req: CancelRequest, *, retain_stale: bool = True) -> bool:
+    def mark_complete(
+        self,
+        req: CancelRequest,
+        *,
+        retain_completed_row: bool = True,
+        retain_stale: bool | None = None,
+    ) -> bool:
+        if retain_stale is not None:
+            logger.warning(
+                "retain_stale is deprecated; use retain_completed_row=%s",
+                retain_stale,
+            )
+            retain_completed_row = retain_stale
+
         with self._condition:
             for row in list(self._rows):
                 if not match_cancel_request(req, row):
                     continue
                 row.status = "complete"
-                if not retain_stale:
+                if not retain_completed_row:
                     self._remember_stale(row)
                     self._rows.remove(row)
                 else:

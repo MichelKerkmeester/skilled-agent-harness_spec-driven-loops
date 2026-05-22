@@ -61,7 +61,7 @@ def test_not_found_status() -> None:
 def test_stale_status_after_row_is_forgotten() -> None:
     registry = ActiveWorkRegistry()
     registry.add(_row())
-    registry.mark_complete(CancelRequest(req_id="req-1"), retain_stale=False)
+    registry.mark_complete(CancelRequest(req_id="req-1"), retain_completed_row=False)
 
     assert registry.cancel(CancelRequest(req_id="req-1")) == CancelStatus.STALE
 
@@ -69,6 +69,6 @@ def test_stale_status_after_row_is_forgotten() -> None:
 def test_stale_status_requires_both_identities_when_both_are_supplied() -> None:
     registry = ActiveWorkRegistry()
     registry.add(_row())
-    registry.mark_complete(CancelRequest(req_id="req-1", index_id="idx-1"), retain_stale=False)
+    registry.mark_complete(CancelRequest(req_id="req-1", index_id="idx-1"), retain_completed_row=False)
 
     assert registry.cancel(CancelRequest(req_id="req-1", index_id="idx-old")) == CancelStatus.NOT_FOUND

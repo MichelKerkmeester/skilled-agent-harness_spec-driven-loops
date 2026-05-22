@@ -1,6 +1,6 @@
 ---
 title: "Methodology: Adapter Resident-Memory RSS Benchmark"
-description: "RSS slope methodology for arc 010 phase 002 successful-search and sidecar 5xx fallback paths."
+description: "RSS slope methodology for arc 009 phase 012 successful-search and sidecar 5xx fallback paths."
 trigger_phrases:
   - "adapter rss methodology"
   - "successful-search rss benchmark"
@@ -33,7 +33,7 @@ The default per-iteration threshold is therefore `0.2 MB/iter`.
 
 ## Snapshot Source
 
-Both scripts call:
+Both scripts share RSS snapshot, slope, IQR, confidence interval and blocked-payload handling through `bench_rss_core.py`. Both scripts call:
 
 ```bash
 node .opencode/skills/system-spec-kit/scripts/dist/ops/process-memory-harness.js snapshot

@@ -28,6 +28,17 @@ describe('BoundedMap', () => {
     expect(cache.size).toBe(10);
     expect([...cache.keys()]).toEqual([990, 991, 992, 993, 994, 995, 996, 997, 998, 999]);
   });
+
+  it('evicts an undefined oldest key without exceeding max size', () => {
+    const cache = new BoundedMap<string | undefined, number>(2);
+    cache.set(undefined, 1);
+    cache.set('b', 2);
+    cache.set('c', 3);
+
+    expect(cache.size).toBe(2);
+    expect(cache.has(undefined)).toBe(false);
+    expect([...cache.keys()]).toEqual(['b', 'c']);
+  });
 });
 
 describe('TtlMap', () => {
@@ -40,5 +51,17 @@ describe('TtlMap', () => {
     now = 1_101;
     expect(cache.get('fresh')).toBeUndefined();
     expect(cache.size).toBe(0);
+  });
+
+  it('reports stored undefined values as present until expiry', () => {
+    let now = 1_000;
+    const cache = new TtlMap<string, number | undefined>(10, () => now);
+    cache.set('present', undefined, 100);
+
+    expect(cache.get('present')).toBeUndefined();
+    expect(cache.has('present')).toBe(true);
+
+    now = 1_101;
+    expect(cache.has('present')).toBe(false);
   });
 });

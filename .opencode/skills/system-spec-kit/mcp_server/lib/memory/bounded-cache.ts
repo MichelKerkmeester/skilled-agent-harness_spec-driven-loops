@@ -55,9 +55,9 @@ export class BoundedMap<K, V> extends Map<K, V> {
 
     super.set(key, value);
     while (this.size > this.maxSize) {
-      const first = this.keys().next().value as K | undefined;
-      if (first === undefined) break;
-      super.delete(first);
+      const first = this.entries().next();
+      if (first.done) break;
+      super.delete(first.value[0]);
     }
 
     return this;
@@ -97,7 +97,17 @@ export class TtlMap<K, V> {
   }
 
   has(key: K): boolean {
-    return this.get(key) !== undefined;
+    const entry = this.entries.get(key);
+    if (!entry) {
+      return false;
+    }
+
+    if (this.isExpired(entry)) {
+      this.entries.delete(key);
+      return false;
+    }
+
+    return true;
   }
 
   set(key: K, value: V, ttlMs: number = Number.POSITIVE_INFINITY): this {

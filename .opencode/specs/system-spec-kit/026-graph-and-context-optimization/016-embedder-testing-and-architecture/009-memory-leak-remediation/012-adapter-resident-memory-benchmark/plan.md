@@ -159,7 +159,7 @@ This path proves the code path and output mechanics in sandbox. Operators can re
 | `.opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-22-adapter-rss/` | Benchmark workspace | Add two scripts and methodology | `py_compile`, `--help`, live attempt or sandbox-blocked runbook |
 | `.opencode/skills/system-spec-kit/scripts/ops/process-memory-harness.ts` | Process memory helper | Read only; no helper change planned | Existing compiled JS snapshot command used as subprocess |
 | `implementation-summary.md` | Phase evidence ledger | Record methodology, numbers, and severity decision | Strict spec validation |
-| `../spec.md` | Parent arc control file | Mark phase 002 complete and arc completion 100 percent | Strict parent validation |
+| `../spec.md` | Parent arc control file | Mark phase 012 complete and arc completion 100 percent | Strict parent validation |
 | `../../009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/remediation-map.md` | Source remediation map | Update item #13 implementation outcome | Strict validation plus direct evidence link |
 <!-- /ANCHOR:affected-surfaces -->
 

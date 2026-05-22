@@ -22,13 +22,14 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`lib/deep-loop/` owns helper modules used by deep research and review loops after a workflow chooses an executor. The folder keeps executor configuration, prompt-pack rendering, JSONL audit writes and post-dispatch output checks in one library boundary.
+`lib/deep-loop/` is a legacy documentation surface for helper modules used by deep research and review loops after a workflow chooses an executor. Current runtime-owned deep-loop helpers live under `.opencode/skills/deep-loop-runtime/lib/deep-loop/`.
 
 Current state:
 
 - Supports native and external CLI executor configuration parsing.
 - Records non-native executor provenance in state logs.
 - Validates that each dispatch wrote the expected iteration outputs.
+- Points maintainers to migrated arc 009 helpers: `loop-lock.ts`, `jsonl-repair.ts`, and `atomic-state.ts`.
 
 ---
 
@@ -41,6 +42,15 @@ deep-loop/
 +-- post-dispatch-validate.ts  # Iteration output and state-log validation
 +-- prompt-pack.ts             # Prompt template token rendering and validation
 `-- README.md
+
+Migrated runtime modules now live in `deep-loop-runtime/lib/deep-loop/`:
+
+```text
+deep-loop-runtime/lib/deep-loop/
++-- atomic-state.ts
++-- jsonl-repair.ts
+`-- loop-lock.ts
+```
 ```
 
 ---
@@ -53,6 +63,9 @@ deep-loop/
 | `executor-audit.ts` | Adds executor records and dispatch failure events to JSONL state logs. |
 | `post-dispatch-validate.ts` | Checks iteration files, state-log appends, delta files and required JSONL fields. |
 | `prompt-pack.ts` | Renders braced-token prompt templates and reports missing variables. |
+| `.opencode/skills/deep-loop-runtime/lib/deep-loop/loop-lock.ts` | Current single-writer loop lock helper. |
+| `.opencode/skills/deep-loop-runtime/lib/deep-loop/jsonl-repair.ts` | Current JSONL corrupt-tail repair helper. |
+| `.opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts` | Current atomic state-log write helper. |
 
 ---
 

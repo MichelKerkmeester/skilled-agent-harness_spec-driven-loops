@@ -93,7 +93,7 @@ _memory:
 - [x] T032 Run OpenCode alignment drift verification for changed implementation scope. (`.opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py`)
 - [x] T033 Update this phase's `implementation-summary.md` with metadata, decisions, verification, limitations, per-file triage table, continuity frontmatter, and commit handoff. (`implementation-summary.md`)
 - [x] T034 Update arc 009 phase 007 Limitations with closure note. (`../009-memory-leak-remediation/007-code-graph-launcher-and-db-lifecycle/implementation-summary.md`)
-- [x] T035 Update arc 009 parent spec status: phase 001 Completed and completion_pct 67. (`../spec.md`)
+- [x] T035 Update arc 009 parent spec status: phase 011 Completed and completion_pct 67. (`../spec.md`)
 - [x] T036 Strict-validate this phase, arc 009 parent, and arc 009 phase 007. (`validate.sh --strict`)
 <!-- /ANCHOR:phase-3 -->
 

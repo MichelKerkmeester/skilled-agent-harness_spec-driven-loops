@@ -72,7 +72,7 @@ _memory:
 - [x] T006 Add `.opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts` with `planSweep(inventory, options)` returning `SweepPlan` rows and summary counts.
 - [x] T007 Implement sweep eligibility rules in `process-sweep.ts`: refuse self PID, ancestors, expected warm daemons, unknown owners, and EPERM-alive rows; only allow stale PID lock or orphaned project daemon after owner identity is known.
 - [x] T008 Extend `.opencode/skills/system-spec-kit/scripts/ops/process-memory-harness.ts` taxonomy with explicit `external-mcp-stdio`, `browser-session`, and `ccc-daemon` buckets where command evidence supports them.
-- [x] T009 Add CLI handling in `process-sweep.ts` for `plan` default dry-run, `fixture`, and `apply --confirmed <token>` while keeping live termination deferred and non-destructive.
+- [x] T009 Add CLI handling in `process-sweep.ts` for `plan` default dry-run and `fixture` while keeping live termination deferred and non-destructive. Note: phase 014 B6 removed the misleading dry-run `apply --confirmed <token>` alias.
 - [x] T010 Add `.opencode/skills/system-spec-kit/scripts/tests/process-sweep.vitest.ts` covering current PID, ancestors, EPERM, stale PID locks, sidecars, `ccc` daemons, external MCP stdio, browser sessions, and unknown owners.
 - [x] T011 Update existing `.opencode/skills/system-spec-kit/scripts/tests/process-memory-harness.vitest.ts` only if taxonomy assertions require it.
 <!-- /ANCHOR:phase-2 -->

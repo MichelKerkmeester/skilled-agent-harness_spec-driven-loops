@@ -32,7 +32,7 @@ from .observability.observability import (
     new_request_id,
     resolve_mcp_request_timeout_ms,
 )
-from .lifecycle.daemon_task_registry import daemon_task_registry, get_mcp_threadpool
+from .lifecycle import daemon_task_registry, get_mcp_threadpool
 from .core.protocol import IndexingProgress
 from .retrieval.search_budget import SearchBudgetExceeded, validate_search_budget
 

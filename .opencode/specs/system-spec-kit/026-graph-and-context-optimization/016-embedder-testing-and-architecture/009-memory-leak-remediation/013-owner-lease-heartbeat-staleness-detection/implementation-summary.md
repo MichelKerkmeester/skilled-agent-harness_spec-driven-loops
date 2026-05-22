@@ -52,7 +52,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Phase 003 closes the owner-lease stale-heartbeat gap discovered after arc 009.
+Phase 013 closes the owner-lease stale-heartbeat gap discovered after arc 009.
 
 - Added `stale-heartbeat-reclaim` to `OwnerClassification` in `.opencode/skills/system-code-graph/mcp_server/lib/owner-lease.ts`.
 - Added heartbeat-staleness classification for live, inspectable owners whose `lastHeartbeatIso` is older than `ttlMs * 2`.
@@ -150,7 +150,7 @@ For stale-heartbeat-specific manual verification, write `.code-graph-owner.json`
 ## Commit Handoff
 
 Suggested commit:
-`feat(010/003): owner-lease stale-heartbeat-reclaim + periodic refresh`
+`feat(009/013): owner-lease stale-heartbeat-reclaim + periodic refresh`
 
 Files for the parent Claude Code agent to stage explicitly:
 

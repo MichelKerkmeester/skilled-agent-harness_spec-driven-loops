@@ -100,9 +100,9 @@ Classification rules:
 |---------|--------------|--------|--------------|
 | `.opencode/skills/system-code-graph/mcp_server/tests/` | Broader code-graph Vitest coverage | Triage failures and apply scoped fixes, documented skips, or deletes | Targeted and broader Vitest commands |
 | `.opencode/skills/system-code-graph/mcp_server/` | Product code under test | Modify only when triage proves a real product bug | Focused tests for the changed surface |
-| `.opencode/specs/.../001-system-code-graph-suite-triage/` | Phase evidence ledger | Record baseline, plan, task status, triage outcomes, and final validation | Strict spec validation |
+| `.opencode/specs/.../011-system-code-graph-suite-triage/` | Phase evidence ledger | Record baseline, plan, task status, triage outcomes, and final validation | Strict spec validation |
 | `.opencode/specs/.../009-memory-leak-remediation/007-code-graph-launcher-and-db-lifecycle/implementation-summary.md` | Source baseline closure note | Append closure note to Limitations anchor | Strict spec validation |
-| `.opencode/specs/.../009-memory-leak-remediation/spec.md` | Parent phase status | Mark phase 001 completed and update completion percentage 33 -> 67 | Strict spec validation |
+| `.opencode/specs/.../009-memory-leak-remediation/spec.md` | Parent phase status | Mark phase 011 completed and update completion percentage 33 -> 67 | Strict spec validation |
 <!-- /ANCHOR:affected-surfaces -->
 
 ---

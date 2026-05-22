@@ -60,7 +60,7 @@ Phase 005 delivered a dry-run process sweep surface and extended the phase-002 p
 
 - Added `.opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts`.
 - Added `planSweep(inventory, { selfPid })`, returning rows with `pid`, `ppid`, `command`, `classification`, `eligibleForTermination`, and `rationale`.
-- Added a default `plan` CLI mode, deterministic `fixture` mode, and non-destructive `apply --confirmed <token>` mode.
+- Added a default `plan` CLI mode and deterministic `fixture` mode. Phase 014 B6 removed the misleading non-destructive `apply --confirmed <token>` alias; no destructive apply command exists.
 - Extended `.opencode/skills/system-spec-kit/scripts/ops/process-memory-harness.ts` with `Inventory`, `ProcessClassification`, `getProcessAncestry(pid, rows)`, `collectInventory()`, and `hasKnownProjectOwnerMarker()`.
 - Extended harness classification with `expected-warm-daemon`, `orphaned-project-daemon`, `external-mcp-stdio`, `browser-session`, `ccc-daemon`, `eperm-alive-unowned`, `stale-pid-lock`, and `unknown-owner`.
 - Added `.opencode/skills/system-spec-kit/scripts/tests/process-sweep.vitest.ts` for the SC-001 fixture matrix.
@@ -115,7 +115,7 @@ No broad `pkill` or process-name kill pattern was added. No implementation path 
 | Typecheck | Passed: `npm run typecheck --workspace=@spec-kit/scripts`. |
 | Build | Passed: `npm run build --workspace=@spec-kit/scripts`. |
 | CLI fixture dry run | Passed: `node scripts/dist/ops/process-sweep.js fixture --pretty`; 11 rows, 3 eligible, 8 preserved, `dryRun: true`. |
-| CLI apply without token | Passed: `node scripts/dist/ops/process-sweep.js apply --pretty`; exited 0, `dryRun: true`, `applyConfirmed: false`, no termination. |
+| CLI live apply | Reconciled by phase 014 B6: `apply --confirmed` is no longer a supported dry-run alias; operators use `plan --pretty` for evidence. |
 | OpenCode alignment | Passed with 0 errors and 44 warnings from the wider scanned scope. |
 | Final strict phase validation | Passed: 0 errors, 0 warnings. |
 | Final strict parent arc validation | Passed: 0 errors, 0 warnings. |
@@ -128,7 +128,7 @@ No broad `pkill` or process-name kill pattern was added. No implementation path 
 
 1. EPERM classification depends on inventory rows carrying `eperm: true`; POSIX `ps` output alone does not expose permission-denied liveness.
 2. Live inventory can be empty in restricted sandboxes when process enumeration is denied. The deterministic fixture and unit tests cover policy behavior.
-3. `apply --confirmed <token>` is intentionally non-destructive in this phase. Phase 010 must define the operator token policy before any signal-sending behavior exists.
+3. No destructive apply command exists. Phase 014 B6 removed the old dry-run `apply --confirmed <token>` alias; a future signal-sending command needs a separate operator policy packet and a new command name.
 4. Sidecar ownership is classified and preserved here; phase 008 owns the port ledger, health payload, stale exact-PID sidecar cleanup, and reuse policy.
 5. Alignment verification reports 44 warnings in the broader `system-spec-kit` scan, but no errors. Those warnings are outside the phase-005 changed files.
 <!-- /ANCHOR:limitations -->

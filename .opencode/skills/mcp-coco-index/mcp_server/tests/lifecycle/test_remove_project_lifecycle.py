@@ -289,7 +289,7 @@ def test_load_time_cancel_task_transitions_to_complete() -> None:
 def test_stale_cancel_identity_returns_stale_or_complete() -> None:
     registry = ActiveWorkRegistry()
     registry.add(_row("/tmp/project"))
-    registry.mark_complete(CancelRequest(req_id="req-1"), retain_stale=False)
+    registry.mark_complete(CancelRequest(req_id="req-1"), retain_completed_row=False)
 
     assert registry.cancel(CancelRequest(req_id="req-1")) == CancelStatus.STALE
 

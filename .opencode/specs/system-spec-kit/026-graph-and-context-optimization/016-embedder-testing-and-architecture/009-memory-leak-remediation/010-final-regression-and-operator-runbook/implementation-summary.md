@@ -155,7 +155,7 @@ Representative no-op workload:
 node .opencode/skills/system-spec-kit/scripts/dist/ops/process-sweep.js fixture --pretty
 ```
 
-Fixture result: 11 rows, 3 eligible by exact stale/orphan identity, 8 preserved, `dryRun: true`, `applyConfirmed: false`, and no termination attempted.
+Fixture result: 11 rows, 3 eligible by exact stale/orphan identity, 8 preserved, `dryRun: true`, and no termination attempted.
 
 After snapshot:
 

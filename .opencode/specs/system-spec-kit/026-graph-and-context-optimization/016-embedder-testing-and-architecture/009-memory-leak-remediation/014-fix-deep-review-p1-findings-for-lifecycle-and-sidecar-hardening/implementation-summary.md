@@ -11,8 +11,8 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening"
     last_updated_at: "2026-05-22T19:00:00Z"
     last_updated_by: "codex"
-    recent_action: "created-empty-phase-014-implementation-summary"
-    next_safe_action: "fill-after-batch-remediation"
+    recent_action: "completed-b6-doc-drift-maintainability-cleanup"
+    next_safe_action: "parent-review-and-commit-handoff"
     blockers: []
     key_files:
       - "implementation-summary.md"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0140140140140140140140140140140140140140140140140140140140140140"
       session_id: "009-memory-leak-remediation-014"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 98
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level3-arch | v2.2 -->
 # Implementation Summary: Deep-Review P1 Findings Remediation for Lifecycle and Sidecar Hardening
@@ -37,11 +37,11 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening |
-| **Completed** | In progress; B5 complete |
+| **Completed** | In progress; B6 complete, parent sign-off pending |
 | **Level** | 3 |
-| **Actual Effort** | TBD |
-| **LOC Added** | TBD |
-| **Completion Percent** | 83 |
+| **Actual Effort** | B1-B6 remediation passes |
+| **LOC Added** | B6: scoped code, tests, README, and phase-doc reconciliation |
+| **Completion Percent** | 98 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -49,7 +49,7 @@ _memory:
 <!-- ANCHOR:exec-summary -->
 ## Executive Summary
 
-B5 is complete. This pass restored traceability evidence for 10 fixture-validity findings without mutating review artifacts or committing.
+B6 is complete. This pass closed the final 13 doc-drift and maintainability findings without mutating review artifacts or committing.
 <!-- /ANCHOR:exec-summary -->
 
 ---
@@ -57,7 +57,7 @@ B5 is complete. This pass restored traceability evidence for 10 fixture-validity
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-B5 implemented fixture and evidence reconciliation for deep-review traceability findings DR009-TRC-001, DR009-TRC-002, DR009-TRC-003, DR009-TRC-004, DR009-TRC-005, DR009-TRC-006, DR009-TRC-007, DR009-TRC-009, DR009-TRC-010, and DR009-TRC-011.
+B6 implemented final cleanup for DR009-COR-011, DR009-TRC-008, DR009-TRC-012, DR009-MNT-004, DR009-MNT-005, DR009-MNT-006, DR009-MNT-007, DR009-MNT-008, DR009-MNT-010, DR009-MNT-011, DR009-MNT-012, DR009-MNT-013, and DR009-MNT-014.
 
 ### Files Changed
 
@@ -76,6 +76,19 @@ B5 implemented fixture and evidence reconciliation for deep-review traceability 
 | `.opencode/skills/mcp-coco-index/mcp_server/tests/lifecycle/test_remove_project_lifecycle.py` | Modified | Queued remove and typed cancel transport tests | B5 |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/memory-runtime-retention.vitest.ts` | Modified | Save/search/index workload cap fixture | B5 |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/embedders/sidecar-hardening.vitest.ts` | Modified | Parent-death and portable timeout-kill assertions | B5 |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/memory/bounded-cache.ts` | Modified | Fix `BoundedMap` `undefined` key eviction and `TtlMap.has()` undefined-value semantics | B6 |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/lib/memory/bounded-cache.vitest.ts` | Modified | Add regression coverage for BoundedMap and TtlMap edge cases | B6 |
+| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/lifecycle/active_work_registry.py` | Modified | Add `retain_completed_row` and deprecated `retain_stale` warning alias | B6 |
+| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/lifecycle/__init__.py` | Modified | Export lifecycle helper entrypoints from package barrel | B6 |
+| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py` | Modified | Import lifecycle helpers through package barrel | B6 |
+| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/server.py` | Modified | Import threadpool helper through package barrel | B6 |
+| `.opencode/skills/mcp-coco-index/mcp_server/tests/lifecycle/*.py` | Modified | Update retain-completed naming and package export tests | B6 |
+| `.opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts` | Modified | Remove misleading dry-run `apply` command alias | B6 |
+| `.opencode/skills/system-code-graph/mcp_server/lib/index.ts` | Modified | Export lifecycle helpers through public barrel | B6 |
+| `.opencode/skills/system-code-graph/mcp_server/index.ts` | Modified | Import lifecycle helpers through public barrel | B6 |
+| `.opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-22-adapter-rss/bench_rss_core.py` | Created | Shared RSS snapshot, slope, IQR, confidence and JSON helper | B6 |
+| `.opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-22-adapter-rss/bench_*.py` | Modified | Import shared RSS core | B6 |
+| Lifecycle READMEs and arc 009 phase docs | Modified | Reconcile helper maps, process-sweep command docs, and stale phase identifiers | B6 |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -83,7 +96,7 @@ B5 implemented fixture and evidence reconciliation for deep-review traceability 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-B5 was delivered as scoped fixture and reconciliation work. Review artifacts stayed read-only. Prior phase docs were updated only where the traceability finding required evidence reconciliation.
+B6 was delivered as scoped maintainability and documentation cleanup. Review artifacts stayed read-only. Prior phase docs were updated only where the traceability or stale-identifier finding required reconciliation.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -99,6 +112,7 @@ B5 was delivered as scoped fixture and reconciliation work. Review artifacts sta
 | ADR-004 | Explicit P2 deferral policy | Proposed | Keeps advisory debt auditable |
 | ADR-005 | Review artifacts remain immutable | Accepted | Preserves review provenance |
 | ADR-032-040 | B5 fixture-validity restoration decisions | Accepted | Records cross-process, queued-work, retention, RSS-deferral, reconnect, cancel transport, parent-death, timeout-kill, and phase-010 scan policies |
+| ADR-041-047 | B6 maintainability cleanup decisions | Accepted | Records cache edge semantics, retained-completed naming, plan-only sweep CLI, lifecycle barrels, RSS benchmark core, and doc-drift reconciliation |
 <!-- /ANCHOR:arch-decisions -->
 
 ---
@@ -112,6 +126,8 @@ B5 was delivered as scoped fixture and reconciliation work. Review artifacts sta
 | Keep review artifacts immutable | Preserves review provenance. |
 | Track P2 deferrals explicitly | Avoids hiding advisory debt behind P1 closure. |
 | Treat DR009-TRC-005 as operator-deferred-by-design | Local sandbox cannot produce valid RSS slope numbers; phase 012 now accepts runbook deferral with blocker evidence. |
+| Remove the process-sweep dry-run `apply` alias | A command named `apply` should not be non-destructive; operators now use `plan`/`fixture` until a future policy packet defines a live command. |
+| Keep `code-graph-db.ts` on a sibling close-assertion import | The public barrel exports lifecycle helpers for consumers; the DB module avoids importing the barrel to prevent a circular module dependency. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -121,14 +137,16 @@ B5 was delivered as scoped fixture and reconciliation work. Review artifacts sta
 
 | Gate | Status | Evidence |
 |------|--------|----------|
-| B1 Lease/Ledger Race Correctness | Not started | TBD |
-| B2 Cleanup Correctness | Not started | TBD |
-| B3 Sidecar + Executor Security | Not started | TBD |
-| B4 Audit/Data Integrity | Not started | TBD |
+| B1 Lease/Ledger Race Correctness | Passed | Closure evidence recorded in `checklist.md` and `scratch/batch-plan.md#b1-commit-handoff`. |
+| B2 Cleanup Correctness | Passed | Closure evidence recorded in `checklist.md` B2 rows. |
+| B3 Sidecar + Executor Security | Passed | Closure evidence recorded in `checklist.md` B3 rows. |
+| B4 Audit/Data Integrity | Passed | Closure evidence recorded in `checklist.md` B4 rows. |
 | B5 Test Fixture Validity Restoration | Passed | Targeted suites passed: loop-lock 7/7, memory runtime retention 4/4, sidecar hardening 5/5, Code Graph launcher lease 13/13, CocoIndex lifecycle 25/25. |
-| B6 Doc Drift + Maintainability Cleanup | Not started | TBD |
-| Phase 014 strict validation | Not started | TBD |
-| Arc 009 parent strict validation | Not started | TBD |
+| B6 Doc Drift + Maintainability Cleanup | Passed | Targeted suites passed: bounded-cache 5/5, CocoIndex lifecycle 27/27, process-sweep 11/11, Code Graph typecheck exit 0, benchmark py_compile exit 0 with `PYTHONPYCACHEPREFIX=/private/tmp/codex-pycache`. |
+| OpenCode alignment drift | Passed | Changed skill scopes passed. CocoIndex lifecycle and Code Graph lib scans reported non-blocking pre-existing warnings only; benchmark helper scan passed clean after shebang fix. |
+| Phase 014 strict validation | Passed | `validate.sh .../014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening --strict` -> exit 0. |
+| Touched phase strict validation | Passed | Touched phases 001, 005, 007, 010, 011, 012, 013 and 014 all passed strict validation with exit 0. |
+| Arc 009 parent strict validation | Passed | `validate.sh .../009-memory-leak-remediation --strict` -> exit 0. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -136,9 +154,9 @@ B5 was delivered as scoped fixture and reconciliation work. Review artifacts sta
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-- B5 routes the cited deep-review Codex branch through the audited async supervisor; other non-cited CLI branches remain broader workflow-hardening candidates if the parent wants a full non-Codex dispatch migration.
 - DR009-TRC-005 remains operator-deferred-by-design until an operator can run the RSS benchmark where `ps` and CocoIndex daemon startup are available.
-- B6 remains open.
+- The exact `python3 -m py_compile ...` command attempted first could not write bytecode under macOS' default user cache path inside this sandbox. The verification was rerun successfully with `PYTHONPYCACHEPREFIX=/private/tmp/codex-pycache`.
+- Parent commit/sign-off remains outside this dispatch by instruction.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -146,11 +164,11 @@ B5 was delivered as scoped fixture and reconciliation work. Review artifacts sta
 <!-- ANCHOR:follow-up -->
 ## Follow-Up Items
 
-- [ ] Dispatch B1.
-- [ ] Dispatch B2 after B1 validation.
-- [ ] Dispatch B3 after B2 validation.
-- [ ] Dispatch B4 after B3 validation.
+- [x] Dispatch B1.
+- [x] Dispatch B2 after B1 validation.
+- [x] Dispatch B3 after B2 validation.
+- [x] Dispatch B4 after B3 validation.
 - [x] Dispatch B5 after B4 validation.
-- [ ] Dispatch B6 after B5 validation.
+- [x] Dispatch B6 after B5 validation.
 - [ ] Reconcile final checklist and parent metadata.
 <!-- /ANCHOR:follow-up -->

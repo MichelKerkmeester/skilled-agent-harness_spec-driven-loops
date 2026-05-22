@@ -905,3 +905,150 @@ The implementation summary records that gap directly and cites B5 runtime-retent
 ### Consequences
 Future operators can distinguish unavailable live scan evidence from validated runtime-retention coverage.
 <!-- /ANCHOR:adr-040 -->
+
+---
+
+<!-- ANCHOR:adr-041 -->
+## ADR-041: Cache Presence Uses Entry Identity, Not Value Truthiness
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-COR-011, DR009-MNT-006 |
+
+### Context
+`BoundedMap` used `keys().next().value` as both the oldest key and the empty-iterator sentinel, which failed when the oldest key was actually `undefined`. `TtlMap.has()` delegated to `get() !== undefined`, which failed for stored `undefined` values.
+
+### Decision
+Use entry iterators for bounded eviction and check TTL entry existence/expiry directly for `has()`.
+
+### Consequences
+Map-like semantics now hold for `undefined` keys and `undefined` stored values, with targeted regression coverage.
+<!-- /ANCHOR:adr-041 -->
+
+---
+
+<!-- ANCHOR:adr-042 -->
+## ADR-042: ActiveWork Completion Retention Is Named Positively
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-MNT-004 |
+
+### Context
+`retain_stale` described the inverse of the caller decision: the true choice is whether to keep the completed row visible before aging it into stale identity sets.
+
+### Decision
+Rename the parameter to `retain_completed_row`. Keep `retain_stale` as a deprecated keyword-only alias for one release and log a warning when used.
+
+### Consequences
+New call sites read in the direction of the behavior, while old callers remain compatible and visible in logs.
+<!-- /ANCHOR:adr-042 -->
+
+---
+
+<!-- ANCHOR:adr-043 -->
+## ADR-043: Process Sweep Is Plan-Only Until Destructive Policy Exists
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-MNT-007 |
+
+### Context
+`process-sweep apply --confirmed` sounded destructive but returned dry-run JSON and sent no signals.
+
+### Decision
+Remove the `apply` command alias. Operators use `plan` or `fixture`; a future live command needs a new name and separate operator policy.
+
+### Consequences
+The CLI no longer relies on payload inspection to discover that no process was touched.
+<!-- /ANCHOR:adr-043 -->
+
+---
+
+<!-- ANCHOR:adr-044 -->
+## ADR-044: Lifecycle Helpers Are Exported Through Package Barrels
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-MNT-010, DR009-MNT-011 |
+
+### Context
+Arc 009 shipped lifecycle helpers, but discoverability lagged behind: Code Graph and CocoIndex callers reached into submodules for helpers that are part of the public maintenance surface.
+
+### Decision
+Export Code Graph owner-lease, canonical-db-dir and close-db-assertion helpers from `lib/index.ts`; export CocoIndex active-work, cancel, daemon-task, remove-project and threadpool helpers from `cocoindex_code.lifecycle`.
+
+### Consequences
+New callers can import from documented package surfaces. Internal peer modules may still use sibling imports where a barrel import would create a module cycle.
+<!-- /ANCHOR:adr-044 -->
+
+---
+
+<!-- ANCHOR:adr-045 -->
+## ADR-045: RSS Benchmark Math Has One Local Core
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-MNT-012 |
+
+### Context
+The successful-search and sidecar-5xx fallback benchmark scripts duplicated snapshot, RSS aggregation, OLS slope, IQR, confidence interval, blocked-payload and JSON-writing code.
+
+### Decision
+Extract those mechanics to `bench_rss_core.py` and keep workload-specific logic in each benchmark script.
+
+### Consequences
+Threshold semantics and blocked-run payload shape now change in one place.
+<!-- /ANCHOR:adr-045 -->
+
+---
+
+<!-- ANCHOR:adr-046 -->
+## ADR-046: Phase Identifier Drift Is Reconciled In Owning Phase Docs
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-TRC-008, DR009-TRC-012, DR009-MNT-008, DR009-MNT-013 |
+
+### Context
+Several completed phase docs carried stale checkboxes or old phase IDs after arc refactors.
+
+### Decision
+Patch the owning phase docs directly: phase 007 task evidence, phase 011 identifiers, phase 012 benchmark identifiers, phase 013 summary and commit prefix.
+
+### Consequences
+Memory retrieval and parent handoff point at the correct arc 009 phase evidence without mutating immutable review artifacts.
+<!-- /ANCHOR:adr-046 -->
+
+---
+
+<!-- ANCHOR:adr-047 -->
+## ADR-047: Lifecycle README Maps Track Arc 009 Helper Surfaces
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-MNT-005, DR009-MNT-014 |
+
+### Context
+Maintainer READMEs omitted arc 009 helper surfaces and one ops README validation command pointed at a stale verifier path.
+
+### Decision
+Document the helper map across deep-loop-runtime, Code Graph, Spec Kit runtime, ops and rerank sidecar surfaces. Use `.opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py` as the canonical verifier path.
+
+### Consequences
+Follow-up lifecycle work has a current local map and copy-paste validation command.
+<!-- /ANCHOR:adr-047 -->

@@ -72,15 +72,15 @@ from .core.protocol import (
     decode_request,
     encode_response,
 )
-from .lifecycle.active_work_registry import (
+from .lifecycle import (
     ActiveWorkRow,
+    CancelRequest,
     active_work_registry,
     async_remove_project_with_drain,
+    daemon_task_registry,
     remove_project_with_drain,
     remove_project_timeout_seconds,
 )
-from .lifecycle.cancel_protocol import CancelRequest
-from .lifecycle.daemon_task_registry import daemon_task_registry
 from .retrieval.query import query_codebase
 from .config.settings import (
     PROJECT_SETTINGS,

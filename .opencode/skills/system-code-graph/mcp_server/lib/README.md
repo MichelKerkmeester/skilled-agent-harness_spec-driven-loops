@@ -85,11 +85,14 @@ lib/
 +-- tree-sitter-parser.ts       # AST extraction and parser selection
 +-- parser-skip-list.ts         # Parser-failure quarantine storage
 +-- code-graph-db.ts            # SQLite schema and graph queries
++-- canonical-db-dir.ts         # Canonical DB directory resolution and containment
++-- close-db-assertion.ts       # DB close assertion helper
 +-- code-graph-context.ts       # Compact context assembly
 +-- seed-resolver.ts            # File and line seeds to graph nodes
 +-- compact-merger.ts           # Memory, graph and CocoIndex merge
 +-- ensure-ready.ts             # Readiness guard and scan trigger logic
 +-- readiness-contract.ts       # Readiness and trust vocabulary
++-- owner-lease.ts              # Single-owner lifecycle lease
 +-- query-result-adapter.ts     # Stable handler result shapes
 +-- apply-orchestrator.ts       # Verification-gated recovery dispatcher
 +-- apply-metadata.ts           # Apply-mode audit metadata helpers
@@ -141,6 +144,8 @@ lib/
 +-- apply-orchestrator.ts
 +-- auto-rescan-policy.ts
 +-- budget-allocator.ts
++-- canonical-db-dir.ts
++-- close-db-assertion.ts
 +-- code-graph-context.ts
 +-- code-graph-db.ts
 +-- compact-merger.ts
@@ -154,6 +159,7 @@ lib/
 +-- index.ts
 +-- indexer-types.ts
 +-- ops-hardening.ts
++-- owner-lease.ts
 +-- parser-skip-list.ts
 +-- phase-runner.ts
 +-- query-intent-classifier.ts
@@ -183,6 +189,8 @@ lib/
 | `tree-sitter-parser.ts` | Extracts AST-backed nodes and edges, skips doc-language rows and reports parser health. |
 | `parser-skip-list.ts` | Stores per-file parser skip-list rows for repeated tree-sitter failures. |
 | `code-graph-db.ts` | Owns SQLite schema, graph CRUD, statistics and startup highlights. |
+| `canonical-db-dir.ts` | Resolves canonical DB directories and enforces workspace-contained overrides. |
+| `close-db-assertion.ts` | Asserts stale DB handles are closed after lifecycle shutdown. |
 | `code-graph-context.ts` | Builds token-bounded neighborhoods for `code_graph_context`. |
 | `seed-resolver.ts` | Resolves manual, graph and CocoIndex seeds to indexed graph nodes. |
 | `compact-merger.ts` | Merges Spec Kit memory, code graph and CocoIndex context payloads. |
@@ -199,6 +207,7 @@ lib/
 | `index-scope-policy.ts` | Resolves end-user-vs-skill-inclusive scan scope from env and per-call args. |
 | `indexer-types.ts` | Defines graph node, edge, parse result, language and scan default types. |
 | `startup-brief.ts` | Builds compact startup graph summaries for runtime surfaces. |
+| `owner-lease.ts` | Acquires, refreshes, classifies and releases the single Code Graph owner lease. |
 | `utils/workspace-path.ts` | Canonicalizes caller-supplied paths and enforces workspace containment. |
 
 <!-- /ANCHOR:key-files -->
@@ -211,7 +220,7 @@ lib/
 | Boundary | Rule |
 |---|---|
 | Imports | Library modules may import local utilities, shared MCP server types and storage adapters. |
-| Exports | `index.ts` exposes library modules to handlers and startup surfaces. |
+| Exports | `index.ts` exposes library modules to handlers and startup surfaces, including lifecycle helpers (`owner-lease.ts`, `canonical-db-dir.ts`, `close-db-assertion.ts`). |
 | Ownership | Core graph state, parser behavior, readiness, recovery and context assembly live here. MCP argument handling lives in `../handlers/`. |
 | Storage | SQLite persistence flows through `code-graph-db.ts`; callers should not write database files directly. |
 
@@ -252,6 +261,9 @@ code_graph_apply handler
 | `ensureCodeGraphReady()` | Function | Checks readiness before graph reads. |
 | `applyCodeGraph()` | Function | Runs verification-gated graph recovery operations. |
 | `buildStartupBrief()` | Function | Builds startup graph summary payloads. |
+| `acquireOwnerLease()` / `refreshOwnerLease()` / `releaseOwnerLease()` | Functions | Manage the Code Graph single-owner lifecycle lease. |
+| `resolveCanonicalDbDir()` | Function | Resolves DB directory identity for owner and DB lifecycle boundaries. |
+| `assertDbHandleClosed()` | Function | Proves a closed SQLite handle no longer accepts queries. |
 | `lookupSkipList()` / `addToSkipList()` / `getSkipListSummary()` / `seedFromProduction()` / `recordSuccess()` | Functions | Skip-list reads, writes, summary and seed backfill. |
 | `getParserHealth()` / `classifyError()` | Functions | Parser-health getter and parser-error classifier. |
 

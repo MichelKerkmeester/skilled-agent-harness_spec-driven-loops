@@ -35,9 +35,8 @@ interface PlanSweepOptions {
 }
 
 interface CliPayload extends SweepPlan {
-  mode: 'plan' | 'fixture' | 'apply';
+  mode: 'plan' | 'fixture';
   dryRun: true;
-  applyConfirmed: boolean;
   note: string;
 }
 
@@ -148,39 +147,26 @@ function showHelp(): void {
 USAGE:
   node scripts/dist/ops/process-sweep.js plan [--pretty]
   node scripts/dist/ops/process-sweep.js fixture [--pretty]
-  node scripts/dist/ops/process-sweep.js apply --confirmed <token> [--pretty]
 
 COMMANDS:
   plan      Capture live inventory and emit a dry-run sweep plan. This is the default.
   fixture   Emit a deterministic dry-run sweep plan from synthetic process evidence.
-  apply     Non-destructive in phase 005. Requires --confirmed but still sends no signals.
 
 NOTES:
   This phase never kills processes. eligibleForTermination means exact-identity dry-run proof only.
+  No destructive apply command exists; add one under a separate operator policy packet.
 `);
 }
 
-function readConfirmationToken(argv: string[]): string | null {
-  const index = argv.indexOf('--confirmed');
-  if (index === -1) return null;
-  const token = argv[index + 1];
-  return token && !token.startsWith('--') ? token : null;
-}
-
-function buildCliPayload(command: 'plan' | 'fixture' | 'apply', argv: string[]): CliPayload {
+function buildCliPayload(command: 'plan' | 'fixture'): CliPayload {
   const inventory = command === 'fixture' ? syntheticFixtureSnapshot() : collectInventory();
   const plan = planSweep(inventory, { selfPid: inventory.currentPid });
-  const token = readConfirmationToken(argv);
 
   return {
     ...plan,
     mode: command,
     dryRun: true,
-    applyConfirmed: command === 'apply' && token !== null,
-    note:
-      command === 'apply'
-        ? 'Phase 005 apply is non-destructive; live termination is deferred to phase 010 operator policy.'
-        : 'Dry-run inventory only; no termination attempted.',
+    note: 'Dry-run inventory only; no termination attempted.',
   };
 }
 
@@ -193,20 +179,14 @@ function main(argv: string[]): void {
     return;
   }
 
-  if (command !== 'plan' && command !== 'fixture' && command !== 'apply') {
+  if (command !== 'plan' && command !== 'fixture') {
     console.error(`ERROR: unknown command: ${command}`);
     showHelp();
     process.exitCode = 2;
     return;
   }
 
-  if (command === 'apply' && !readConfirmationToken(argv)) {
-    const payload = buildCliPayload(command, argv);
-    console.log(JSON.stringify(payload, null, pretty ? 2 : 0));
-    return;
-  }
-
-  console.log(JSON.stringify(buildCliPayload(command, argv), null, pretty ? 2 : 0));
+  console.log(JSON.stringify(buildCliPayload(command), null, pretty ? 2 : 0));
 }
 
 if (isMainModule(import.meta.url)) {

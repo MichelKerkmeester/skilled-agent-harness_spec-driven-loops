@@ -62,7 +62,7 @@ This is phase 012 of the memory-leak remediation arc. Source decision lives in `
 **Scope Boundary**: measure adapter resident-memory growth on two paths — (a) successful-search RSS slope, (b) sidecar 5xx fallback RSS delta. Confirm whether the current P2 severity holds or P1 escalation is warranted.
 
 **Dependencies**:
-- Phase 002 process-memory-harness (already shipped; provides RSS/swap/wired snapshots).
+- Arc 009 phase 002 process-memory-harness (already shipped; provides RSS/swap/wired snapshots).
 - Phase 008 adapter close idempotence + fallback RSS gate (already shipped; provides per-fallback RSS measurement hooks).
 
 **Deliverables**:

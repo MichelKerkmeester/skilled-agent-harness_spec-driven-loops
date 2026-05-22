@@ -126,7 +126,7 @@ The sandbox blocks valid live RSS evidence because `ps` is denied, so process sn
 ## Commit Handoff
 
 Suggested commit:
-`bench(010/002): adapter resident-memory benchmark -- successful-search + 5xx fallback RSS slopes`
+`bench(009/012): adapter resident-memory benchmark -- successful-search + 5xx fallback RSS slopes`
 
 Scope:
 - `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-22-adapter-rss/bench_successful_search_rss.py`

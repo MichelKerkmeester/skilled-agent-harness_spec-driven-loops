@@ -16,6 +16,15 @@ from cocoindex_code.lifecycle.active_work_registry import (
     ActiveWorkRow,
 )
 from cocoindex_code.lifecycle.cancel_protocol import CancelRequest, CancelStatus
+from cocoindex_code.lifecycle import (
+    ActiveWorkRegistry as PackageActiveWorkRegistry,
+    CancelRequest as PackageCancelRequest,
+    DaemonTaskRegistry as PackageDaemonTaskRegistry,
+    async_remove_project_with_drain,
+    get_mcp_threadpool,
+    remove_project_with_drain,
+    shutdown_mcp_threadpool,
+)
 
 
 def _row(project_key: str = "project", req_id: str = "req-1", index_id: str = "idx-1") -> ActiveWorkRow:
@@ -97,3 +106,23 @@ def test_stale_identity_sets_are_bounded(caplog) -> None:
     assert len(registry._stale_index_ids) == 2
     assert "set-overflow" in caplog.text
     assert registry.cancel(CancelRequest(req_id="req-2")) == CancelStatus.NOT_FOUND
+
+
+def test_retain_stale_alias_maps_to_retain_completed_row(caplog) -> None:
+    registry = ActiveWorkRegistry()
+    registry.add(_row())
+
+    registry.mark_complete(CancelRequest(req_id="req-1"), retain_stale=False)
+
+    assert "retain_stale is deprecated" in caplog.text
+    assert registry.cancel(CancelRequest(req_id="req-1")) == CancelStatus.STALE
+
+
+def test_lifecycle_package_exports_helper_entrypoints() -> None:
+    assert PackageActiveWorkRegistry is ActiveWorkRegistry
+    assert PackageCancelRequest is CancelRequest
+    assert PackageDaemonTaskRegistry.__name__ == "DaemonTaskRegistry"
+    assert callable(remove_project_with_drain)
+    assert callable(async_remove_project_with_drain)
+    assert callable(get_mcp_threadpool)
+    assert callable(shutdown_mcp_threadpool)

@@ -17,8 +17,7 @@ import { CallToolRequestSchema, ListToolsRequestSchema } from '@modelcontextprot
 import * as codeGraphTools from './tools/index.js';
 import { CODE_GRAPH_TOOL_SCHEMAS } from './tool-schemas.js';
 import { writeCodeGraphReadinessMarker } from './lib/readiness-marker.js';
-import { closeDbWithAssertion } from './lib/code-graph-db.js';
-import { refreshOwnerLease } from './lib/owner-lease.js';
+import { closeDbWithAssertion, refreshOwnerLease } from './lib/index.js';
 import { DATABASE_DIR } from './core/config.js';
 import {
   resolveIpcSocketPath,

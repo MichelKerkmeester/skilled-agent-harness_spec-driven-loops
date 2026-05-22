@@ -87,7 +87,7 @@ Inventory first, classify second, and produce a conservative no-signal sweep pla
 ### Key Components
 - **Harness extension**: export `getProcessAncestry(pid, rows)` from `process-memory-harness.ts`. It walks the PPID chain from the already parsed `ps` rows, matching the existing `getAncestorPids` behavior without rerunning `ps`.
 - **Classifier taxonomy**: extend harness classification with explicit buckets for `external-mcp-stdio`, `browser-session`, and `ccc-daemon` where command evidence supports them. These buckets preserve by default.
-- **Sweep surface**: add `process-sweep.ts` with `planSweep(inventory, options)` and a CLI supporting `plan` (default), `fixture`, and `apply --confirmed <token>`.
+- **Sweep surface**: add `process-sweep.ts` with `planSweep(inventory, options)` and a CLI supporting `plan` (default) and `fixture`. Phase 014 B6 removed the misleading dry-run `apply --confirmed <token>` alias; no destructive apply command exists.
 - **Apply boundary**: `apply` remains non-destructive in phase 005. Without the explicit confirmation token it prints what it would do and exits 0; with the token it still reports the eligible plan and records that live termination is deferred to phase 010.
 
 ### Data Flow
