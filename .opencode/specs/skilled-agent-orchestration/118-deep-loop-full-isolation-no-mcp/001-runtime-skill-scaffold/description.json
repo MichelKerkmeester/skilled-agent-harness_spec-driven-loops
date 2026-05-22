@@ -1,31 +1,22 @@
 {
-  "level": "2",
   "specFolder": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/001-runtime-skill-scaffold",
-  "description": "Level 2 Phase 1 packet scaffolding the new .opencode/skills/deep-loop-runtime/ peer skill skeleton (SKILL.md, README.md, and five .gitkeep-tagged subfolders) so subsequent phases of the 118 FULL_ISOLATE_NO_MCP migration arc have a destination for lib moves, script shims, DB relocation, and tests.",
+  "description": "Feature Specification: 118/001 — Runtime Skill Scaffold",
   "keywords": [
     "feature",
     "specification",
-    "deep-loop-runtime",
-    "scaffold",
-    "skeleton",
-    "peer-skill",
     "118",
-    "phase-1",
+    "001",
     "runtime",
-    "isolate",
-    "no-mcp"
+    "skill",
+    "scaffold"
   ],
-  "lastUpdated": "2026-05-22T19:50:00.000Z",
+  "lastUpdated": "2026-05-22T19:07:31.306Z",
   "specId": "001",
   "folderSlug": "runtime-skill-scaffold",
   "parentChain": [
     "skilled-agent-orchestration",
     "118-deep-loop-full-isolation-no-mcp"
   ],
-  "memorySequence": 118,
-  "memoryNameHistory": [
-    "deep-loop-full-isolation-no-mcp"
-  ]
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }
-</content>
-</invoke>

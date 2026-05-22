@@ -1,21 +1,23 @@
 {
-  "level": "2",
-  "specFolder": "skilled-agent-orchestration/116-deep-review-complexity/002-seeded-fixture-harness",
-  "description": "Seeded vitest fixtures encoding the frozen v2 review-depth contract; fixtures fail today and pass after phases C-G ship.",
-  "keywords": [
-    "116",
-    "review-depth",
-    "fixtures",
-    "searchLedger",
-    "vitest"
-  ],
   "trigger_phrases": [
     "deep-review seeded fixtures",
     "review-depth fixture harness"
   ],
+  "level": "2",
   "importance_tier": "important",
   "contextType": "implementation",
-  "lastUpdated": "2026-05-22T11:23:51.035Z",
+  "specFolder": "skilled-agent-orchestration/116-deep-review-complexity/002-seeded-fixture-harness",
+  "description": "Feature Specification: 116/002 - Seeded Fixture Harness",
+  "keywords": [
+    "feature",
+    "specification",
+    "116",
+    "002",
+    "seeded",
+    "fixture",
+    "harness"
+  ],
+  "lastUpdated": "2026-05-22T19:07:31.265Z",
   "specId": "002",
   "folderSlug": "seeded-fixture-harness",
   "parentChain": [

@@ -1,27 +1,20 @@
 {
-  "level": "2",
   "specFolder": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/002-lib-runtime-migration",
-  "description": "Feature Specification: Lib Runtime Migration — move 13 deep-loop + coverage-graph lib .ts files from system-spec-kit/mcp_server/lib/ into deep-loop-runtime/lib/ via git mv with internal import patching.",
+  "description": "Feature Specification: Lib Runtime Migration",
   "keywords": [
     "feature",
     "specification",
     "lib",
     "runtime",
-    "migration",
-    "deep-loop",
-    "coverage-graph",
-    "git-mv",
-    "118"
+    "migration"
   ],
-  "lastUpdated": "2026-05-22T19:50:00.000Z",
+  "lastUpdated": "2026-05-22T19:07:31.312Z",
   "specId": "002",
   "folderSlug": "lib-runtime-migration",
   "parentChain": [
     "skilled-agent-orchestration",
     "118-deep-loop-full-isolation-no-mcp"
   ],
-  "memorySequence": 1,
+  "memorySequence": 0,
   "memoryNameHistory": []
 }
-</content>
-</invoke>

@@ -1,23 +1,25 @@
 {
-  "level": "3",
-  "specFolder": "skilled-agent-orchestration/116-deep-review-complexity/003-review-depth-schema-and-prompt-contract",
-  "description": "Defines reviewDepthSchemaVersion v2 schema and prompt contract; applicability-driven enforcement; trivial-scope exemption.",
-  "keywords": [
-    "116",
-    "review-depth",
-    "schema",
-    "prompt-contract",
-    "searchLedger",
-    "v2"
-  ],
   "trigger_phrases": [
     "review depth schema",
     "review depth prompt contract",
     "searchLedger contract"
   ],
+  "level": "3",
   "importance_tier": "important",
   "contextType": "implementation",
-  "lastUpdated": "2026-05-22T11:41:42.866Z",
+  "specFolder": "skilled-agent-orchestration/116-deep-review-complexity/003-review-depth-schema-and-prompt-contract",
+  "description": "Feature Specification: 116/003 - Review-Depth Schema and Prompt Contract",
+  "keywords": [
+    "feature",
+    "specification",
+    "116",
+    "003",
+    "review-depth",
+    "schema",
+    "prompt",
+    "contract"
+  ],
+  "lastUpdated": "2026-05-22T19:07:31.272Z",
   "specId": "003",
   "folderSlug": "review-depth-schema-and-prompt-contract",
   "parentChain": [

@@ -39,7 +39,7 @@
       "test-split"
     ],
     "importance_tier": "important",
-    "status": "active",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "001-runtime-skill-scaffold/spec.md",
@@ -56,9 +56,9 @@
       "system-code-graph",
       "mcp__mk_spec_memory__deep_loop_graph_*"
     ],
-    "causal_summary": "Phase parent for FULL_ISOLATE_NO_MCP implementation. User directive override of 117 SPLIT ruling: relax MCP tool ID stability + DB lifecycle constraints. 8 phase children: scaffold runtime skill, migrate libs + coverage-graph, create script shims + relocate DB, remove MCP handlers + schemas, update workflow YAMLs, update doctor + system-code-graph collateral, split tests, final verification + changelog.",
+    "causal_summary": "Complete phase parent for FULL_ISOLATE_NO_MCP implementation. User directive override of 117 SPLIT ruling moved deep-loop runtime, coverage-graph schema/query/signals, script entry points, SQLite storage, workflow callers, collateral, and tests into deep-loop-runtime while removing the deep_loop_graph_* MCP tool surface. Phase 008 closed the arc with verification evidence, deep-review v1.4.0.0, deep-loop-runtime v1.0.0, and the deferred 116 resource-map.",
     "created_at": "2026-05-22T18:10:00Z",
-    "last_save_at": "2026-05-22T18:10:00Z",
+    "last_save_at": "2026-05-22T19:23:44Z",
     "save_lineage": "manual_phase_parent_scaffold",
     "last_accessed_at": null,
     "source_docs": [

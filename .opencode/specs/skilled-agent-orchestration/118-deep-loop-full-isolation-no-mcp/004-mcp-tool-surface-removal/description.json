@@ -1,26 +1,22 @@
 {
   "level": "3",
   "specFolder": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/004-mcp-tool-surface-removal",
-  "description": "Phase 004 of 118 FULL_ISOLATE_NO_MCP: delete the four deep_loop_graph_* MCP tools from system-spec-kit/mcp_server/. Removes 5 handler files under handlers/coverage-graph/, 4 entries in tool-schemas.ts, 4 entries in schemas/tool-input-schemas.ts, and 4 registration calls in tools/index.ts. No backward-compat aliases (ADR-001).",
+  "description": "Feature Specification: 004 — MCP Tool Surface Removal",
   "keywords": [
-    "118",
-    "phase-004",
-    "mcp-tool-surface-removal",
-    "deep_loop_graph",
-    "coverage-graph",
-    "handler-delete",
-    "tool-schemas",
-    "tool-input-schemas",
-    "tools-index",
-    "full-isolate-no-mcp",
-    "skilled-agent-orchestration"
+    "feature",
+    "specification",
+    "004",
+    "mcp",
+    "tool",
+    "surface",
+    "removal"
   ],
-  "lastUpdated": "2026-05-22T19:55:00.000Z",
+  "lastUpdated": "2026-05-22T19:07:31.323Z",
   "specId": "004",
   "folderSlug": "mcp-tool-surface-removal",
   "parentChain": [
     "skilled-agent-orchestration",
-    "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp"
+    "118-deep-loop-full-isolation-no-mcp"
   ],
   "memorySequence": 4,
   "memoryNameHistory": []

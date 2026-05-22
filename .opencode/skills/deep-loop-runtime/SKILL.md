@@ -1,13 +1,13 @@
 ---
 name: deep-loop-runtime
-version: 0.1.0
+version: 1.0.0
 description: "Shared deep-loop runtime infrastructure for deep-review + deep-research: executor config, prompt-pack rendering, post-dispatch validation, atomic state, JSONL repair, loop locking, permissions, Bayesian scoring, fallback routing, coverage-graph schema + query + signals."
 allowed-tools: [Bash, Read, Glob, Grep]
 ---
 
 # Deep Loop Runtime
 
-Shared runtime infrastructure for the deep-review and deep-research loop workflows. Phase 001 creates only the skill scaffold; runtime libraries and executable entry points land in later 118 phases.
+Shared runtime infrastructure for the deep-review and deep-research loop workflows. The 118 FULL_ISOLATE_NO_MCP arc moved the shared runtime libraries, coverage-graph ownership, script entry points, SQLite storage, and runtime tests into this peer skill.
 
 ## 1. WHEN TO USE
 
@@ -43,20 +43,20 @@ Out of scope:
 ## 3. ARCHITECTURE
 
 - `lib/deep-loop/` holds shared deep-loop runtime libraries.
-- `lib/coverage-graph/` holds coverage-graph schema, query, and signal helpers after migration.
+- `lib/coverage-graph/` holds coverage-graph schema, query, and signal helpers.
 - `scripts/` holds `.cjs` entry points used by workflow YAML and collateral commands.
-- `storage/` owns relocated runtime SQLite artifacts once phase 003 lands.
+- `storage/` owns relocated runtime SQLite artifacts.
 - `tests/` holds runtime-owned tests split from the MCP server surface.
 
-Phase ownership:
+Shipped layout:
 
 | Path | Populated By | Purpose |
 |------|--------------|---------|
-| `lib/deep-loop/` | 118 phase 002 | Move 10 deep-loop runtime `.ts` files. |
-| `lib/coverage-graph/` | 118 phase 002 | Move coverage-graph runtime helpers and schema owner per FULL_ISOLATE_NO_MCP. |
-| `scripts/` | 118 phase 003 | Add `.cjs` script shims replacing the deep-loop MCP tools. |
-| `storage/` | 118 phase 003 | Relocate `deep-loop-graph.sqlite` ownership. |
-| `tests/` | 118 phase 007 | Move runtime-focused tests. |
+| `lib/deep-loop/` | 10 files | Shared executor config, audit, prompt-pack, validation, state, repair, locking, permissions, scoring, and fallback routing. |
+| `lib/coverage-graph/` | 3 files | Coverage-graph schema owner, query helpers, and signal interpretation. |
+| `scripts/` | 4 files | Direct `status`, `query`, `upsert`, and `convergence` entry points replacing the removed deep-loop MCP tools. |
+| `storage/` | SQLite | Runtime-owned `deep-loop-graph.sqlite`. |
+| `tests/` | Unit, integration, lifecycle | Runtime-owned tests discovered by the system-spec-kit MCP server Vitest config. |
 
 ## 4. INTEGRATION POINTS
 
@@ -66,6 +66,6 @@ Phase ownership:
 
 ## 5. REFERENCES
 
-- 118 phase 003 ADRs: script shim and DB relocation details once authored.
-- 118 phase 004 ADRs: MCP tool surface removal details once authored.
-- 118 phase 008 closeout: final version, changelog, and resource-map updates once landed.
+- 118 phase 003: script shim and DB relocation.
+- 118 phase 004: MCP tool surface removal.
+- 118 phase 008: v1.0.0 closeout, changelog, and resource-map updates.
