@@ -234,3 +234,51 @@ def test_ensure_reclaims_stale_dead_pid_before_fresh_spawn(tmp_path, monkeypatch
     assert result["spawned"] is True
     assert result["ownerPid"] == 202
     assert [row.pid for row in read_ledger(tmp_path)] == [202]
+
+
+def test_ensure_records_spawned_sidecar_before_warmup_timeout(tmp_path, monkeypatch):
+    monkeypatch.setenv("RERANK_SIDECAR_STATE_DIR", str(tmp_path))
+    monkeypatch.setenv("RERANK_SIDECAR_OWNER_TOKEN", "owner-a")
+    observed_during_warmup: list[int] = []
+    sent_signals: list[tuple[int, int]] = []
+
+    class FakeProc:
+        pid = 303
+
+        def __init__(self) -> None:
+            self.wait_calls = 0
+
+        def wait(self, timeout):
+            self.wait_calls += 1
+            if self.wait_calls == 1:
+                raise ensure_module.subprocess.TimeoutExpired("sidecar", timeout)
+            return 0
+
+    fake_proc = FakeProc()
+
+    def fake_wait_for_healthy(port, deadline):
+        observed_during_warmup.extend(row.pid for row in read_ledger(tmp_path))
+        return False
+
+    monkeypatch.setattr(ensure_module, "is_healthy", lambda port, timeout_seconds=2.0: False)
+    monkeypatch.setattr(ensure_module, "wait_for_healthy", fake_wait_for_healthy)
+    monkeypatch.setattr(ensure_module, "_open_sidecar_log", lambda: None)
+    monkeypatch.setattr(ensure_module.subprocess, "Popen", lambda *args, **kwargs: fake_proc)
+    monkeypatch.setattr(ensure_module.os, "killpg", lambda pid, sig: sent_signals.append((pid, sig)))
+
+    result = ensure_module.ensure_rerank_sidecar(
+        port=8765,
+        sidecar_skill_path=SKILL_DIR,
+        skip_if_disabled=False,
+        health_timeout_seconds=0.01,
+    )
+
+    assert observed_during_warmup == [303]
+    assert result["fallback"] == "warmup-timeout"
+    assert result["ledger"] == "recorded-before-warmup"
+    assert result["termination"] == "killed"
+    assert sent_signals == [
+        (303, ensure_module.signal.SIGTERM),
+        (303, ensure_module.signal.SIGKILL),
+    ]
+    assert read_ledger(tmp_path) == []

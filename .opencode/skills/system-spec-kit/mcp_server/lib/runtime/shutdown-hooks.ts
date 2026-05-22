@@ -35,6 +35,9 @@ let nextHookId = 1;
 let installed = false;
 let running = false;
 
+type ShutdownSignal = 'SIGINT' | 'SIGTERM';
+type ExitProcess = (code?: number) => never;
+
 // ───────────────────────────────────────────────────────────────
 // 3. CORE LOGIC
 // ───────────────────────────────────────────────────────────────
@@ -82,6 +85,13 @@ export function clearShutdownHooksForTests(): void {
   running = false;
 }
 
+export async function handleShutdownSignalForTests(
+  signal: ShutdownSignal,
+  exitProcess: ExitProcess,
+): Promise<void> {
+  await handleShutdownSignal(signal, exitProcess);
+}
+
 async function runOneHook(record: ShutdownHookRecord): Promise<ShutdownHookResult> {
   let timer: NodeJS.Timeout | undefined;
   try {
@@ -117,12 +127,22 @@ function installProcessHooks(): void {
   installed = true;
 
   process.once('SIGTERM', () => {
-    void runShutdownHooks();
+    void handleShutdownSignal('SIGTERM', process.exit);
   });
   process.once('SIGINT', () => {
-    void runShutdownHooks();
+    void handleShutdownSignal('SIGINT', process.exit);
   });
   process.once('beforeExit', () => {
     void runShutdownHooks();
   });
+}
+
+async function handleShutdownSignal(signal: ShutdownSignal, exitProcess: ExitProcess): Promise<void> {
+  const results = await runShutdownHooks();
+  const hookFailed = results.some((result) => !result.ok);
+  if (hookFailed) {
+    exitProcess(1);
+    return;
+  }
+  exitProcess(signal === 'SIGINT' ? 130 : 143);
 }

@@ -4,7 +4,184 @@ import concurrent.futures
 import asyncio
 import threading
 import time
+import sys
+import types
+from pathlib import Path
+from types import SimpleNamespace
 
+import pytest
+
+MCP_SERVER_DIR = Path(__file__).resolve().parents[2]
+if str(MCP_SERVER_DIR) not in sys.path:
+    sys.path.insert(0, str(MCP_SERVER_DIR))
+
+if "cocoindex" not in sys.modules:
+    cocoindex_stub = types.ModuleType("cocoindex")
+
+    class _Settings:
+        @staticmethod
+        def from_env(path):
+            return object()
+
+    class _AppConfig:
+        def __init__(self, **kwargs):
+            self.kwargs = kwargs
+
+    class _Environment:
+        def __init__(self, *args, **kwargs):
+            self.args = args
+            self.kwargs = kwargs
+
+    class _App:
+        def __init__(self, *args, **kwargs):
+            self.args = args
+            self.kwargs = kwargs
+
+        @classmethod
+        def __class_getitem__(cls, item):
+            return cls
+
+    class _ContextProvider:
+        def provide(self, key, value):
+            return None
+
+    cocoindex_stub.Settings = _Settings
+    cocoindex_stub.AppConfig = _AppConfig
+    cocoindex_stub.Environment = _Environment
+    cocoindex_stub.App = _App
+    cocoindex_stub.ContextProvider = _ContextProvider
+    connectors_stub = types.ModuleType("cocoindex.connectors")
+    sqlite_stub = types.ModuleType("cocoindex.connectors.sqlite")
+    sqlite_stub.connect = lambda *args, **kwargs: object()
+    connectors_stub.sqlite = sqlite_stub
+    sys.modules["cocoindex"] = cocoindex_stub
+    sys.modules["cocoindex.connectors"] = connectors_stub
+    sys.modules["cocoindex.connectors.sqlite"] = sqlite_stub
+
+indexer_stub = types.ModuleType("cocoindex_code.indexer.indexer")
+indexer_stub.indexer_main = lambda *args, **kwargs: None
+sys.modules.setdefault("cocoindex_code.indexer.indexer", indexer_stub)
+
+protocol_stub = types.ModuleType("cocoindex_code.core.protocol")
+
+class _ProtocolStruct:
+    def __init__(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+
+for _name in (
+    "DaemonProjectInfo",
+    "DaemonStatusRequest",
+    "DaemonStatusResponse",
+    "ErrorResponse",
+    "HandshakeRequest",
+    "HandshakeResponse",
+    "IndexCancelRequest",
+    "IndexCancelResponse",
+    "IndexingProgress",
+    "IndexProgressUpdate",
+    "IndexRequest",
+    "IndexResponse",
+    "IndexStreamResponse",
+    "IndexWaitingNotice",
+    "IndexFingerprintPayload",
+    "ProjectStatusRequest",
+    "ProjectStatusResponse",
+    "RemoveProjectRequest",
+    "RemoveProjectResponse",
+    "Request",
+    "Response",
+    "SearchRequest",
+    "SearchResponse",
+    "SearchResult",
+    "SearchStreamResponse",
+    "RetrievalDiagnosticsPayload",
+    "StopRequest",
+    "StopResponse",
+):
+    setattr(protocol_stub, _name, type(_name, (_ProtocolStruct,), {}))
+protocol_stub.decode_request = lambda data: data
+protocol_stub.encode_response = lambda resp: b""
+sys.modules.setdefault("cocoindex_code.core.protocol", protocol_stub)
+
+query_stub = types.ModuleType("cocoindex_code.retrieval.query")
+query_stub.query_codebase = lambda *args, **kwargs: []
+sys.modules.setdefault("cocoindex_code.retrieval.query", query_stub)
+
+settings_stub = types.ModuleType("cocoindex_code.config.settings")
+settings_stub.PROJECT_SETTINGS = object()
+settings_stub.ProjectSettings = type("ProjectSettings", (), {})
+settings_stub.EmbeddingSettings = type("EmbeddingSettings", (), {})
+settings_stub.load_gitignore_spec = lambda root: None
+settings_stub.load_project_settings = lambda root: object()
+settings_stub.load_user_settings = lambda: SimpleNamespace(
+    envs={},
+    embedding=SimpleNamespace(
+        model="model",
+        provider="sentence-transformers",
+        query_params=None,
+        indexing_params=None,
+    ),
+)
+settings_stub.user_settings_dir = lambda: Path("/tmp/cocoindex-code-test")
+settings_stub.global_settings_mtime_us = lambda: 0
+sys.modules.setdefault("cocoindex_code.config.settings", settings_stub)
+
+shared_stub = types.ModuleType("cocoindex_code.core.shared")
+shared_stub.CODEBASE_DIR = object()
+shared_stub.EMBEDDER = object()
+shared_stub.EXT_LANG_OVERRIDE_MAP = object()
+shared_stub.GITIGNORE_SPEC = object()
+shared_stub.DOCUMENT_PROMPT_NAME = object()
+shared_stub.QUERY_PROMPT_NAME = object()
+shared_stub.SQLITE_DB = object()
+shared_stub.Embedder = object
+shared_stub.query_prompt_name = None
+shared_stub.document_prompt_name = None
+shared_stub.resolve_query_prompt_name = lambda model: None
+shared_stub.resolve_document_prompt_name = lambda model: None
+shared_stub.create_embedder = lambda settings: object()
+sys.modules.setdefault("cocoindex_code.core.shared", shared_stub)
+
+index_metadata_stub = types.ModuleType("cocoindex_code.observability.index_metadata")
+
+class _IndexCompatibilityError(Exception):
+    def details(self):
+        return {}
+
+class _Metadata:
+    def dump(self):
+        return {"effective_config_hash": "hash"}
+
+class _Compatibility:
+    soft_warnings: list[object] = []
+
+    def raise_for_hard_refusal(self):
+        return None
+
+index_metadata_stub.IndexCompatibilityError = _IndexCompatibilityError
+index_metadata_stub.build_current_index_metadata = lambda **kwargs: _Metadata()
+index_metadata_stub.check_index_compatibility = lambda *args, **kwargs: _Compatibility()
+sys.modules.setdefault("cocoindex_code.observability.index_metadata", index_metadata_stub)
+
+observability_stub = types.ModuleType("cocoindex_code.observability.observability")
+observability_stub.RetrievalDiagnostics = type("RetrievalDiagnostics", (), {"dump": lambda self: {}})
+observability_stub.build_index_fingerprint = lambda **kwargs: _Metadata()
+observability_stub.elapsed_ms = lambda start: 0
+observability_stub.ipc_debug_enabled = lambda: False
+observability_stub.log_json = lambda *args, **kwargs: None
+observability_stub.log_msgspec_decode_error = lambda *args, **kwargs: None
+observability_stub.log_response_size = lambda *args, **kwargs: None
+observability_stub.log_stage = lambda *args, **kwargs: None
+observability_stub.monotonic_ms = lambda: 0
+observability_stub.new_request_id = lambda: "req-test"
+observability_stub.read_index_meta = lambda root: {"effective_config_hash": "old"}
+observability_stub.resolve_mcp_request_timeout_ms = lambda: 1000
+sys.modules.setdefault("cocoindex_code.observability.observability", observability_stub)
+
+import cocoindex_code.core.project as project_module
+import cocoindex_code.daemon as daemon_module
+from cocoindex_code.core.project import Project
 from cocoindex_code.lifecycle.active_work_registry import (
     ActiveWorkRegistry,
     ActiveWorkRow,
@@ -12,7 +189,10 @@ from cocoindex_code.lifecycle.active_work_registry import (
     remove_project_with_drain,
 )
 from cocoindex_code.lifecycle.cancel_protocol import CancelRequest, CancelStatus
-from cocoindex_code.lifecycle.daemon_task_registry import DaemonTaskRegistry
+from cocoindex_code.lifecycle.daemon_task_registry import (
+    DaemonTaskRegistry,
+    DuplicateTaskIdError,
+)
 
 
 def _row(project_key: str, req_id: str = "req-1", index_id: str = "idx-1") -> ActiveWorkRow:
@@ -159,3 +339,140 @@ def test_post_remove_same_project_key_can_be_used_again(monkeypatch) -> None:
 
     active_work_registry.add(_row(project_key, req_id="req-new", index_id="idx-new"))
     assert [row.req_id for row in active_work_registry.list(project_key)] == ["req-new"]
+
+
+def test_project_update_cancel_skips_fts_and_initial_done(monkeypatch) -> None:
+    class FakeHandle:
+        async def watch(self):
+            yield SimpleNamespace(
+                stats=SimpleNamespace(by_component={"process_file": SimpleNamespace(
+                    num_execution_starts=1,
+                    num_unchanged=0,
+                    num_adds=1,
+                    num_deletes=0,
+                    num_reprocesses=0,
+                    num_errors=0,
+                )})
+            )
+
+    class FakeApp:
+        def update(self):
+            return FakeHandle()
+
+    class FakeEnv:
+        def get_context(self, key):
+            raise AssertionError("cancelled update must not open the DB for FTS sync")
+
+    sync_calls: list[object] = []
+    monkeypatch.setattr(project_module, "sync_fts_from_code_chunks", lambda conn: sync_calls.append(conn))
+
+    project = Project.__new__(Project)
+    project._app = FakeApp()
+    project._env = FakeEnv()
+    project._indexing_stats = None
+    project._initial_index_done = False
+    project._closed = False
+    cancel_event = threading.Event()
+
+    def cancel_on_progress(progress) -> None:
+        cancel_event.set()
+
+    with pytest.raises(asyncio.CancelledError):
+        asyncio.run(project.update_index(on_progress=cancel_on_progress, cancel_event=cancel_event))
+
+    assert sync_calls == []
+    assert project.is_initial_index_done is False
+    assert project.indexing_stats is None
+
+
+def test_project_close_is_retryable_after_failed_close() -> None:
+    class FakeDb:
+        def __init__(self) -> None:
+            self.calls = 0
+
+        def close(self) -> None:
+            self.calls += 1
+            if self.calls == 1:
+                raise RuntimeError("close failed")
+
+    db = FakeDb()
+
+    class FakeEnv:
+        def get_context(self, key):
+            return db
+
+    project = Project.__new__(Project)
+    project._env = FakeEnv()
+    project._closed = False
+    project.close_status = "open"
+
+    project.close()
+    assert project._closed is False
+    assert project.close_status == "degraded"
+
+    project.close()
+    assert project._closed is True
+    assert project.close_status == "closed"
+    assert db.calls == 2
+
+
+def test_config_refresh_skips_close_while_active_indexing(monkeypatch) -> None:
+    monkeypatch.setenv("REMOVE_PROJECT_TIMEOUT_SECONDS", "0.01")
+    project_key = "/tmp/project"
+    close_calls: list[str] = []
+
+    class FakeProject:
+        def close(self) -> None:
+            close_calls.append("closed")
+
+    registry = daemon_module.ProjectRegistry(embedder=object())
+    registry._projects[project_key] = FakeProject()
+    registry._project_effective_config_hash[project_key] = "old"
+    monkeypatch.setattr(registry, "_runtime_metadata", lambda key: {"effective_config_hash": "new"})
+
+    active_work_registry.add(_row(project_key))
+    registry._refresh_project_if_config_changed(project_key)
+
+    assert close_calls == []
+    assert project_key in registry._projects
+
+
+def test_shutdown_cancel_leaves_completed_rows_untouched() -> None:
+    async def _run() -> None:
+        task_registry = DaemonTaskRegistry()
+        done_task = asyncio.create_task(asyncio.sleep(0))
+        task_registry.add_task(done_task, task_id="done", kind="unit")
+        await done_task
+        await asyncio.sleep(0)
+
+        running_task = asyncio.create_task(asyncio.sleep(10))
+        task_registry.add_task(running_task, task_id="running", kind="unit")
+        rows = task_registry.cancel()
+
+        try:
+            by_id = {row.task_id: row for row in task_registry.list()}
+            assert "done" not in {row.task_id for row in rows}
+            assert by_id["done"].status == "complete"
+            assert by_id["running"].status == "cancelling"
+        finally:
+            running_task.cancel()
+            await asyncio.gather(running_task, return_exceptions=True)
+
+    asyncio.run(_run())
+
+
+def test_duplicate_task_id_registration_raises() -> None:
+    async def _run() -> None:
+        task_registry = DaemonTaskRegistry()
+        first = asyncio.create_task(asyncio.sleep(10))
+        second = asyncio.create_task(asyncio.sleep(10))
+        try:
+            task_registry.add_task(first, task_id="dup", kind="unit")
+            with pytest.raises(DuplicateTaskIdError):
+                task_registry.add_task(second, task_id="dup", kind="unit")
+        finally:
+            first.cancel()
+            second.cancel()
+            await asyncio.gather(first, second, return_exceptions=True)
+
+    asyncio.run(_run())

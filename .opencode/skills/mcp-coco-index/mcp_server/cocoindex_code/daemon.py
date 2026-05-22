@@ -77,6 +77,7 @@ from .lifecycle.active_work_registry import (
     active_work_registry,
     async_remove_project_with_drain,
     remove_project_with_drain,
+    remove_project_timeout_seconds,
 )
 from .lifecycle.cancel_protocol import CancelRequest
 from .lifecycle.daemon_task_registry import daemon_task_registry
@@ -456,12 +457,28 @@ class ProjectRegistry:
         effective_hash = str(runtime_meta.get("effective_config_hash"))
         if self._project_effective_config_hash.get(project_root) == effective_hash:
             return
+        drain = active_work_registry.await_drain(project_root, remove_project_timeout_seconds())
+        if drain.timed_out:
+            self._log_refresh_timeout(project_root, drain.remaining)
+            return
         old_hash = self._project_effective_config_hash.get(project_root)
         project = self._projects.pop(project_root, None)
         if project is not None:
             project.close()
         self._project_effective_config_hash.pop(project_root, None)
         self._evict_embedder_hash_if_unused(old_hash)
+
+    def _log_refresh_timeout(self, project_root: str, remaining: list[ActiveWorkRow]) -> None:
+        for row in remaining:
+            log_json(
+                logger,
+                event="cocoindex_config_refresh_close_skipped_active_work",
+                pid=os.getpid(),
+                projectRoot=project_root,
+                reqId=row.req_id,
+                indexId=row.index_id,
+                status=row.status,
+            )
 
     def should_wait_for_indexing(self, project_root: str) -> bool:
         """Check if search should wait before querying.
@@ -520,10 +537,12 @@ class ProjectRegistry:
         lock = self._index_locks[project_root]
 
         acquired = False
+        cancelled = False
         try:
             await lock.acquire()
             acquired = True
             if cancel_event.is_set():
+                cancelled = True
                 raise asyncio.CancelledError()
             await project.update_index(
                 on_progress=on_progress,
@@ -531,6 +550,7 @@ class ProjectRegistry:
             )
             self._write_index_metadata(project_root)
         except asyncio.CancelledError:
+            cancelled = True
             logger.info(
                 "Indexing cancelled for %s reqId=%s indexId=%s",
                 project_root,
@@ -548,6 +568,14 @@ class ProjectRegistry:
             event = self._load_time_done.get(project_root)
             if event is not None:
                 event.set()
+            if cancelled:
+                log_json(
+                    logger,
+                    event="cocoindex_index_cancelled_skip_success_mutation",
+                    projectRoot=project_root,
+                    reqId=req_id,
+                    indexId=index_id,
+                )
             if acquired:
                 lock.release()
 

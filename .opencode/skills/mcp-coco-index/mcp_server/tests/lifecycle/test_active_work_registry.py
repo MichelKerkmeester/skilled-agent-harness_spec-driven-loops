@@ -2,8 +2,14 @@ from __future__ import annotations
 
 import threading
 import time
+import sys
+from pathlib import Path
 
 import pytest
+
+MCP_SERVER_DIR = Path(__file__).resolve().parents[2]
+if str(MCP_SERVER_DIR) not in sys.path:
+    sys.path.insert(0, str(MCP_SERVER_DIR))
 
 from cocoindex_code.lifecycle.active_work_registry import (
     ActiveWorkRegistry,

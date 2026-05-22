@@ -36,6 +36,7 @@ try:
         default_state_dir,
         find_reusable_sidecar,
         now_iso,
+        reclaim_stale,
     )
 except ModuleNotFoundError:  # pragma: no cover - direct script execution
     from sidecar_ledger import (  # type: ignore[no-redef]
@@ -44,6 +45,7 @@ except ModuleNotFoundError:  # pragma: no cover - direct script execution
         default_state_dir,
         find_reusable_sidecar,
         now_iso,
+        reclaim_stale,
     )
 
 DEFAULT_PORT = 8765
@@ -133,6 +135,33 @@ def _open_sidecar_log():
     return subprocess.DEVNULL
 
 
+def _terminate_process_group(proc: subprocess.Popen[Any], grace_seconds: float = 2.0) -> str:
+    """Terminate a spawned sidecar session before returning degraded fallback."""
+    try:
+        if sys.platform != "win32":
+            os.killpg(proc.pid, signal.SIGTERM)
+        else:
+            proc.terminate()
+    except OSError:
+        return "already-exited"
+    try:
+        proc.wait(timeout=grace_seconds)
+        return "terminated"
+    except subprocess.TimeoutExpired:
+        try:
+            if sys.platform != "win32":
+                os.killpg(proc.pid, signal.SIGKILL)
+            else:
+                proc.kill()
+        except OSError:
+            return "sigkill-missed"
+        try:
+            proc.wait(timeout=grace_seconds)
+            return "killed"
+        except subprocess.TimeoutExpired:
+            return "kill-timeout"
+
+
 def ensure_rerank_sidecar(
     *,
     port: int | None = None,
@@ -188,16 +217,6 @@ def ensure_rerank_sidecar(
         env=env,
         start_new_session=True,
     )
-
-    ok = wait_for_healthy(resolved_port, time.monotonic() + float(health_timeout_seconds))
-    if not ok:
-        try:
-            os.kill(proc.pid, signal.SIGTERM)
-        except OSError:
-            pass
-        _log(f"sidecar warmup timed out after {health_timeout_seconds}s")
-        return {"spawned": False, "port": resolved_port, "fallback": "warmup-timeout"}
-
     row = SidecarLedgerRow(
         pid=proc.pid,
         port=resolved_port,
@@ -208,6 +227,20 @@ def ensure_rerank_sidecar(
         canonicalConfigHash=config_hash,
     )
     add_sidecar_row(state_dir, row)
+
+    ok = wait_for_healthy(resolved_port, time.monotonic() + float(health_timeout_seconds))
+    if not ok:
+        termination = _terminate_process_group(proc)
+        reclaim_stale(state_dir)
+        _log(f"sidecar warmup timed out after {health_timeout_seconds}s")
+        return {
+            "spawned": False,
+            "port": resolved_port,
+            "ownerPid": proc.pid,
+            "fallback": "warmup-timeout",
+            "termination": termination,
+            "ledger": "recorded-before-warmup",
+        }
 
     _log(f"sidecar spawned PID={proc.pid} listening on :{resolved_port}")
     return {

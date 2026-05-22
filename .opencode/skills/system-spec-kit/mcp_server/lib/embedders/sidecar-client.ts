@@ -75,6 +75,7 @@ type SidecarResponse = SidecarEmbeddingResponse | SidecarPongResponse | SidecarE
 const DEFAULT_IDLE_MS = 300_000;
 const DEFAULT_PING_TIMEOUT_MS = 2_000;
 const DEFAULT_REQUEST_TIMEOUT_MS = 30_000;
+const DEFAULT_TERMINATION_GRACE_MS = 1_000;
 const MIN_TIMEOUT_MS = 1;
 const ALLOWED_ENV_KEYS = new Set(['PATH', 'HOME', 'LANG', 'LC_ALL', 'LC_CTYPE', 'TMPDIR']);
 
@@ -127,6 +128,50 @@ function toErrorMessage(error: unknown): string {
   return error instanceof Error ? error.message : String(error);
 }
 
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => {
+    const timer = setTimeout(resolve, ms);
+    timer.unref?.();
+  });
+}
+
+function signalChildProcessGroup(child: ChildProcess, signal: NodeJS.Signals): void {
+  if (child.pid && process.platform !== 'win32') {
+    try {
+      process.kill(-child.pid, signal);
+      return;
+    } catch (error: unknown) {
+      if ((error as NodeJS.ErrnoException).code !== 'ESRCH') {
+        process.stderr.write(`[sidecar:${child.pid}] process-group ${signal} failed: ${toErrorMessage(error)}\n`);
+      }
+    }
+  }
+  if (!child.killed) {
+    child.kill(signal);
+  }
+}
+
+function waitForChildExit(child: ChildProcess, timeoutMs: number): Promise<boolean> {
+  if (child.exitCode !== null || child.signalCode !== null) {
+    return Promise.resolve(true);
+  }
+
+  return new Promise((resolve) => {
+    let settled = false;
+    const finish = (exited: boolean): void => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      child.off('exit', onExit);
+      resolve(exited);
+    };
+    const onExit = (): void => finish(true);
+    const timer = setTimeout(() => finish(false), timeoutMs);
+    timer.unref?.();
+    child.once('exit', onExit);
+  });
+}
+
 function isAllowedEnvKey(key: string, explicitAllowlist: readonly string[] = []): boolean {
   return ALLOWED_ENV_KEYS.has(key)
     || key.startsWith('LC_')
@@ -173,6 +218,7 @@ export class SidecarClient implements EmbedderAdapter {
   private lastRequestAt = 0;
   private requestCount = 0;
   private shuttingDown = false;
+  private termination: Promise<void> | null = null;
 
   constructor(options: SidecarClientOptions) {
     this.provider = options.provider;
@@ -256,23 +302,26 @@ export class SidecarClient implements EmbedderAdapter {
     try {
       await this.sendRequest({ type: 'shutdown' }, this.pingTimeoutMs);
     } catch {
-      if (!child.killed) {
-        child.kill('SIGTERM');
-      }
+      await this.terminateChild(child);
     } finally {
       this.clearIdleTimer();
-      this.cleanupChild();
+      if (this.child === child) {
+        await this.terminateChild(child);
+      }
     }
   }
 
   private async ensureHealthyWorker(): Promise<void> {
+    if (this.termination) {
+      await this.termination;
+    }
     this.ensureWorker();
     const healthy = await this.ping();
     if (healthy) {
       return;
     }
 
-    this.restartWorker();
+    await this.restartWorker();
     const respawnHealthy = await this.ping();
     if (!respawnHealthy) {
       throw new Error(`Embedder sidecar failed health check for ${this.provider}:${this.name}`);
@@ -288,6 +337,7 @@ export class SidecarClient implements EmbedderAdapter {
     this.stdoutBuffer = '';
     const child = fork(this.workerPath, [], {
       stdio: ['pipe', 'pipe', 'pipe', 'ipc'],
+      detached: process.platform !== 'win32',
       env: {
         ...buildSidecarEnv(this.env, this.envAllowlist),
         SPECKIT_EMBEDDER_SIDECAR_PROVIDER: this.provider,
@@ -315,30 +365,58 @@ export class SidecarClient implements EmbedderAdapter {
       if (!this.shuttingDown) {
         this.rejectAllPending(new Error(`Embedder sidecar exited for ${this.provider}:${this.name}`));
       }
-      this.cleanupChild();
+      this.cleanupChild(child);
     });
   }
 
-  private restartWorker(): void {
-    this.killWorker();
+  private async restartWorker(): Promise<void> {
+    await this.killWorker();
     this.ensureWorker();
   }
 
-  private killWorker(): void {
+  private async killWorker(): Promise<void> {
     if (!this.child) {
       return;
     }
 
-    this.shuttingDown = true;
-    this.child.kill('SIGTERM');
-    this.cleanupChild();
+    await this.terminateChild(this.child);
   }
 
-  private cleanupChild(): void {
-    this.child?.stdout?.removeAllListeners();
-    this.child?.stderr?.removeAllListeners();
-    this.child?.removeAllListeners();
-    this.child = null;
+  private async terminateChild(child: ChildProcess): Promise<void> {
+    if (this.termination) {
+      await this.termination;
+      return;
+    }
+
+    this.shuttingDown = true;
+    this.termination = (async () => {
+      signalChildProcessGroup(child, 'SIGTERM');
+      const exitedAfterTerm = await waitForChildExit(child, DEFAULT_TERMINATION_GRACE_MS);
+      if (!exitedAfterTerm) {
+        signalChildProcessGroup(child, 'SIGKILL');
+        await waitForChildExit(child, DEFAULT_TERMINATION_GRACE_MS);
+      }
+      this.cleanupChild(child);
+      await sleep(0);
+    })();
+    try {
+      await this.termination;
+    } finally {
+      this.termination = null;
+      this.shuttingDown = false;
+    }
+  }
+
+  private cleanupChild(child: ChildProcess | null = this.child): void {
+    if (!child || (this.child !== child && this.child !== null)) {
+      return;
+    }
+    child.stdout?.removeAllListeners();
+    child.stderr?.removeAllListeners();
+    child.removeAllListeners();
+    if (this.child === child) {
+      this.child = null;
+    }
     this.stdoutBuffer = '';
     this.clearIdleTimer();
   }
@@ -371,9 +449,7 @@ export class SidecarClient implements EmbedderAdapter {
       if (timeoutMs !== undefined) {
         timer = registerTimeout(() => {
           this.pending.delete(id);
-          if (!child.killed) {
-            child.kill('SIGTERM');
-          }
+          void this.terminateChild(child);
           reject(new Error(`Embedder sidecar request timed out after ${timeoutMs}ms`));
         }, timeoutMs, { unref: true });
       }
@@ -459,7 +535,7 @@ export class SidecarClient implements EmbedderAdapter {
         this.scheduleIdleEviction();
         return;
       }
-      this.killWorker();
+      void this.killWorker();
     }, this.idleMs, { unref: true });
   }
 

@@ -12,11 +12,31 @@ function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-function createWorker(dir: string, mode: 'env' | 'hang'): string {
+function pidAlive(pid: number): boolean {
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function waitUntil(condition: () => boolean, timeoutMs: number): Promise<void> {
+  const deadline = Date.now() + timeoutMs;
+  while (Date.now() < deadline) {
+    if (condition()) return;
+    await sleep(10);
+  }
+}
+
+function createWorker(dir: string, mode: 'env' | 'hang' | 'ignore-term'): string {
   const workerPath = join(dir, `worker-${mode}.cjs`);
   writeFileSync(workerPath, `
 const fs = require('node:fs');
 const readline = require('node:readline');
+if (${JSON.stringify(mode)} === 'ignore-term') {
+  process.on('SIGTERM', () => {});
+}
 const envOut = process.env.MOCK_SIDECAR_ENV_OUT;
 if (envOut) {
   fs.writeFileSync(envOut, JSON.stringify({
@@ -31,7 +51,7 @@ rl.on('line', (line) => {
   const message = JSON.parse(line);
   if (message.type === 'ping') { write({ id: message.id, type: 'pong' }); return; }
   if (message.type === 'shutdown') { process.exit(0); }
-  if (${JSON.stringify(mode)} === 'hang') return;
+  if (${JSON.stringify(mode)} === 'hang' || ${JSON.stringify(mode)} === 'ignore-term') return;
   write({ id: message.id, type: 'embedding', vectors: message.input.map(() => [1, 2, 3]), dimensions: message.dimensions });
 });
 `, 'utf8');
@@ -108,5 +128,27 @@ describe('sidecar hardening', () => {
       expect(existsSync(`/proc/${info.pid}`)).toBe(false);
     }
     await client.shutdown();
+  });
+
+  it('escalates timeout cleanup to SIGKILL before dropping the worker', async () => {
+    const client = new SidecarClient({
+      provider: 'hf-local',
+      model: 'model',
+      dimensions: 3,
+      workerPath: createWorker(tmpDir, 'ignore-term'),
+      pingTimeoutMs: 100,
+      requestTimeoutMs: 40,
+      env: process.env,
+    });
+
+    await client.ready();
+    const pid = client.getWorkerInfo()?.pid;
+    expect(pid).toBeGreaterThan(0);
+
+    await expect(client.embed(['abc'])).rejects.toThrow('timed out');
+    await waitUntil(() => client.getWorkerInfo() === null, 2_500);
+
+    expect(client.getWorkerInfo()).toBeNull();
+    expect(pidAlive(pid!)).toBe(false);
   });
 });

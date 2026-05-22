@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+import logging
 import threading
 from collections.abc import Callable
 from pathlib import Path
@@ -26,6 +27,8 @@ from .shared import (
     Embedder,
 )
 
+logger = logging.getLogger(__name__)
+
 
 class Project:
     _env: coco.Environment
@@ -34,17 +37,21 @@ class Project:
     _initial_index_done: bool = False
     _indexing_stats: IndexingProgress | None = None
     _closed: bool = False
+    close_status: str = "open"
 
     def close(self) -> None:
         """Close project resources to release file handles (LMDB, SQLite)."""
         if self._closed:
             return
-        self._closed = True
         try:
             db = self._env.get_context(SQLITE_DB)
             db.close()
         except Exception:
-            pass
+            self.close_status = "degraded"
+            logger.exception("Project resource close failed; leaving project retryable")
+            return
+        self._closed = True
+        self.close_status = "closed"
 
     async def update_index(
         self,
@@ -58,6 +65,7 @@ class Project:
         responsible for serialization so they can inspect lock state and
         yield one-shot snapshots before blocking.
         """
+        completed = False
         try:
             handle = self._app.update()
             async for snapshot in handle.watch():
@@ -77,12 +85,18 @@ class Project:
                     if on_progress is not None:
                         on_progress(progress)
                     await asyncio.sleep(0.1)
+            if cancel_event is not None and cancel_event.is_set():
+                raise asyncio.CancelledError()
+            completed = True
         finally:
-            db = self._env.get_context(SQLITE_DB)
-            with db.transaction() as conn:
-                sync_fts_from_code_chunks(conn)
             self._indexing_stats = None
-            self._initial_index_done = True
+            if completed:
+                db = self._env.get_context(SQLITE_DB)
+                with db.transaction() as conn:
+                    sync_fts_from_code_chunks(conn)
+                self._initial_index_done = True
+            elif cancel_event is not None and cancel_event.is_set():
+                logger.info("Project index update cancelled before success mutation")
 
     @property
     def indexing_stats(self) -> IndexingProgress | None:
@@ -139,4 +153,5 @@ class Project:
         result._app = app
         result._index_lock = asyncio.Lock()
         result._closed = False
+        result.close_status = "open"
         return result

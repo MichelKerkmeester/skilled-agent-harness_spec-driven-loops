@@ -83,14 +83,14 @@ Status values: `open`, `closed`, `deferred`, `blocked`.
 | DR009-COR-014 | P1 | B1 | closed | Evidence: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening/scratch/batch-plan.md#b1-commit-handoff` |
 | DR009-COR-015 | P1 | B1 | closed | Evidence: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening/scratch/batch-plan.md#b1-commit-handoff` |
 | DR009-MNT-002 | P1 | B1 | closed | Evidence: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening/scratch/batch-plan.md#b1-commit-handoff` |
-| DR009-COR-003 | P1 | B2 | open | TBD: commit hash + shutdown hook signal test |
-| DR009-COR-005 | P1 | B2 | open | TBD: commit hash + cancelled update pytest |
-| DR009-COR-007 | P1 | B2 | open | TBD: commit hash + refresh active-work pytest |
-| DR009-COR-008 | P1 | B2 | open | TBD: commit hash + embedder timeout cleanup test |
-| DR009-COR-009 | P1 | B2 | open | TBD: commit hash + rerank warmup timeout test |
-| DR009-COR-010 | P1 | B2 | open | TBD: commit hash + Project.close failure test |
-| DR009-COR-012 | P2 | B2 | open | TBD: commit hash or deferral rationale |
-| DR009-MNT-003 | P1 | B2 | open | TBD: commit hash + duplicate task ID test |
+| DR009-COR-003 | P1 | B2 | closed | Evidence: `.opencode/skills/system-spec-kit/mcp_server/lib/runtime/shutdown-hooks.ts:129` routes SIGTERM/SIGINT through terminal shutdown; `mcp_server/tests/lib/runtime/shutdown-hooks.vitest.ts:42` and `:57` cover clean signal exit 143 and hook-failure exit 1. |
+| DR009-COR-005 | P1 | B2 | closed | Evidence: `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/core/project.py:91` gates FTS sync and `_initial_index_done` behind completed update; `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:571` logs cancelled work; `mcp_server/tests/lifecycle/test_remove_project_lifecycle.py:344` covers cancelled updates skipping FTS and initial-done mutation. |
+| DR009-COR-007 | P1 | B2 | closed | Evidence: `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:460` awaits active-work drain before config-refresh close and `:461` skips close on timeout; `mcp_server/tests/lifecycle/test_remove_project_lifecycle.py:419` covers active indexing preventing config-refresh close. |
+| DR009-COR-008 | P1 | B2 | closed | Evidence: `.opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts:138` signals the process group, `:385` bounded-waits then escalates SIGKILL, and `:399` drops child references only after termination; `mcp_server/tests/embedders/sidecar-hardening.vitest.ts:133` covers SIGTERM-resistant timeout cleanup. |
+| DR009-COR-009 | P1 | B2 | closed | Evidence: `.opencode/skills/system-rerank-sidecar/scripts/ensure_rerank_sidecar.py:220` writes the ledger row before warmup and `:232` terminates/reclaims on timeout; `tests/test_sidecar_ledger.py:239` covers ledger-before-health plus SIGTERM/SIGKILL timeout cleanup. |
+| DR009-COR-010 | P1 | B2 | closed | Evidence: `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/core/project.py:42` marks closed only after DB close succeeds and records degraded retryable state on failure; `mcp_server/tests/lifecycle/test_remove_project_lifecycle.py:388` covers retry after failed close. |
+| DR009-COR-012 | P2 | B2 | closed | Evidence: `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/lifecycle/daemon_task_registry.py:110` filters shutdown cancellation to running/queued rows; `mcp_server/tests/lifecycle/test_remove_project_lifecycle.py:440` covers completed history remaining complete while running rows cancel. |
+| DR009-MNT-003 | P1 | B2 | closed | Evidence: `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/lifecycle/daemon_task_registry.py:17` defines `DuplicateTaskIdError` and `:83` rejects duplicate registrations; `mcp_server/tests/lifecycle/test_remove_project_lifecycle.py:464` covers duplicate task ID rejection. |
 | DR009-SEC-001 | P1 | B3 | open | TBD: commit hash + rerank API-key startup test |
 | DR009-SEC-002 | P1 | B3 | open | TBD: commit hash + warmup auth/rate test |
 | DR009-SEC-003 | P1 | B3 | open | TBD: commit hash + ownership proof test |
@@ -221,11 +221,11 @@ Status values: `open`, `closed`, `deferred`, `blocked`.
 
 | Category | Total | Closed | Deferred | Open |
 |----------|-------|--------|----------|------|
-| P1 Findings | 40 | 6 | 0 | 34 |
-| P2 Findings | 20 | 0 | 0 | 20 |
-| Batches | 6 | 1 | 0 | 5 |
+| P1 Findings | 40 | 13 | 0 | 27 |
+| P2 Findings | 20 | 1 | 0 | 19 |
+| Batches | 6 | 2 | 0 | 4 |
 
 **Verification Date**: 2026-05-22
 **Verified By**: codex
-**ADRs**: 4 proposed in `decision-record.md`
+**ADRs**: 12 total in `decision-record.md`; B1/B2 cleanup correctness ADRs accepted where implemented.
 <!-- /ANCHOR:summary -->

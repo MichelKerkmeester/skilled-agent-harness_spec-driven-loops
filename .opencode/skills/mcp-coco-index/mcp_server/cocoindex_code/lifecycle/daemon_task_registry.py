@@ -14,6 +14,10 @@ from typing import Any, Coroutine
 logger = logging.getLogger(__name__)
 
 
+class DuplicateTaskIdError(RuntimeError):
+    """Raised when a daemon task id is registered more than once."""
+
+
 @dataclass
 class DaemonTaskRow:
     task_id: str
@@ -46,13 +50,17 @@ class DaemonTaskRegistry:
         cancel_event: threading.Event | None = None,
     ) -> asyncio.Task[Any]:
         task = asyncio.create_task(coro)
-        self.add_task(
-            task,
-            task_id=task_id,
-            kind=kind,
-            project_key=project_key,
-            cancel_event=cancel_event,
-        )
+        try:
+            self.add_task(
+                task,
+                task_id=task_id,
+                kind=kind,
+                project_key=project_key,
+                cancel_event=cancel_event,
+            )
+        except DuplicateTaskIdError:
+            task.cancel()
+            raise
         return task
 
     def add_task(
@@ -73,6 +81,7 @@ class DaemonTaskRegistry:
             cancel_event=cancel_event,
         )
         with self._lock:
+            self._raise_if_duplicate(task_id)
             self._rows[task_id] = row
         task.add_done_callback(lambda done, ident=task_id: self._mark_task_done(ident, done))
 
@@ -94,6 +103,7 @@ class DaemonTaskRegistry:
             cancel_event=cancel_event,
         )
         with self._lock:
+            self._raise_if_duplicate(task_id)
             self._rows[task_id] = row
         future.add_done_callback(lambda done, ident=task_id: self._mark_future_done(ident, done))
 
@@ -102,7 +112,8 @@ class DaemonTaskRegistry:
             rows = [
                 row
                 for row in self._rows.values()
-                if task_id is None or row.task_id == task_id
+                if (task_id is None or row.task_id == task_id)
+                and row.status in ("running", "queued")
             ]
             for row in rows:
                 row.status = "cancelling"
@@ -147,6 +158,11 @@ class DaemonTaskRegistry:
     def reset(self) -> None:
         with self._lock:
             self._rows.clear()
+            self._completed_order.clear()
+
+    def _raise_if_duplicate(self, task_id: str) -> None:
+        if task_id in self._rows:
+            raise DuplicateTaskIdError(f"duplicate daemon task_id: {task_id}")
 
     def _mark_task_done(self, task_id: str, task: asyncio.Task[Any]) -> None:
         with self._lock:

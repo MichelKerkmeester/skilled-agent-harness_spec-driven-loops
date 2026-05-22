@@ -233,3 +233,171 @@ Treat a `refreshOwnerLease()` false return in the MCP server heartbeat loop as o
 - A process that no longer owns the lease does not overwrite the new owner.
 - The no-op refresh behavior is covered in `owner-lease.vitest.ts`; launcher transfer behavior remains covered by `launcher-lease.vitest.ts`.
 <!-- /ANCHOR:adr-008 -->
+
+---
+
+<!-- ANCHOR:adr-009 -->
+## ADR-009: Signal-Triggered Shutdown Must Exit
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-COR-003 |
+
+### Context
+Node signal listeners replace the default SIGTERM/SIGINT termination behavior, so running shutdown hooks without exiting can leave the daemon process alive.
+
+### Decision
+Signal handlers run registered shutdown hooks and then terminate with a conventional code: 143 for SIGTERM, 130 for SIGINT, and 1 when any hook fails.
+
+### Consequences
+Cleanup remains best-effort and bounded by hook timeouts, but operator signals regain terminal semantics.
+<!-- /ANCHOR:adr-009 -->
+
+---
+
+<!-- ANCHOR:adr-010 -->
+## ADR-010: Cancellation Checks Precede Success Mutation
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-COR-005 |
+
+### Context
+Cancelled CocoIndex updates previously ran FTS sync and marked initial indexing complete from a `finally` block.
+
+### Decision
+Project index updates record a local completion flag and mutate FTS/initial-index state only after the update stream completes without cancellation.
+
+### Consequences
+Cancelled or failed work clears transient progress but does not advertise a usable initial index.
+<!-- /ANCHOR:adr-010 -->
+
+---
+
+<!-- ANCHOR:adr-011 -->
+## ADR-011: Config Refresh Waits for Active Work
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-COR-007 |
+
+### Context
+Config refresh can be triggered from search/status paths while an index task already holds a captured `Project` object.
+
+### Decision
+Before closing a project during config refresh, the registry performs the same bounded active-work drain used by remove-project. If the drain times out, refresh logs evidence and skips the close.
+
+### Consequences
+Refresh may defer a config change under active indexing, but it no longer closes DB resources underneath live work.
+<!-- /ANCHOR:adr-011 -->
+
+---
+
+<!-- ANCHOR:adr-012 -->
+## ADR-012: Sidecar Timeout Cleanup Kills the Process Group
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-COR-008 |
+
+### Context
+Embedder timeout cleanup sent SIGTERM to a child and immediately dropped listeners and references.
+
+### Decision
+Forked embedder sidecars run as POSIX process-group leaders. Timeout cleanup sends SIGTERM to the group, waits boundedly, escalates SIGKILL to the group, and only then drops child state.
+
+### Consequences
+Slow or signal-resistant workers cannot be detached silently before the next request creates another resident worker.
+<!-- /ANCHOR:adr-012 -->
+
+---
+
+<!-- ANCHOR:adr-013 -->
+## ADR-013: Warmup Registers Before Health
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-COR-009 |
+
+### Context
+The rerank warmup path spawned a process and registered it only after health succeeded, leaving timeout-spawned processes unledgered.
+
+### Decision
+The ensure helper writes the sidecar ledger row immediately after spawn and before health probing. Warmup timeout then terminates the session and reclaims stale rows.
+
+### Consequences
+Every spawned process has an ownership row during warmup, so timeout cleanup and later recovery have an auditable PID.
+<!-- /ANCHOR:adr-013 -->
+
+---
+
+<!-- ANCHOR:adr-014 -->
+## ADR-014: Close Confirms Success Before Marking Closed
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-COR-010 |
+
+### Context
+`Project.close()` marked a project closed before DB close succeeded, hiding failed cleanup and preventing retry.
+
+### Decision
+`Project.close()` sets `close_status = "degraded"` and leaves the project retryable on close failure. It marks `_closed = True` only after the underlying DB close succeeds.
+
+### Consequences
+Callers no longer get silent success after a failed resource close; repeated close attempts can still release the handle.
+<!-- /ANCHOR:adr-014 -->
+
+---
+
+<!-- ANCHOR:adr-015 -->
+## ADR-015: Shutdown Drain Leaves Completed History Alone
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-COR-012 |
+
+### Context
+Daemon task shutdown previously selected retained completed rows and rewrote them to `cancelling`.
+
+### Decision
+Shutdown cancellation targets only live rows with `running` or `queued` status. Completed diagnostic history remains immutable until normal history eviction.
+
+### Consequences
+Shutdown evidence no longer corrupts completed task history while still cancelling live work.
+<!-- /ANCHOR:adr-015 -->
+
+---
+
+<!-- ANCHOR:adr-016 -->
+## ADR-016: Duplicate Task IDs Are Typed Errors
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-MNT-003 |
+
+### Context
+The daemon task registry used public task IDs as identity keys but silently overwrote existing rows.
+
+### Decision
+Registering an existing task ID raises `DuplicateTaskIdError`. `create_task()` cancels the just-created task when registration fails so the duplicate does not leak.
+
+### Consequences
+Duplicate task IDs fail loudly as logical bugs, and completion callbacks cannot mark the wrong row.
+<!-- /ANCHOR:adr-016 -->
