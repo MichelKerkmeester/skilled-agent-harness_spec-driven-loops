@@ -1,17 +1,20 @@
 {
+  "level": "phase",
   "specFolder": "skilled-agent-orchestration/116-deep-review-complexity",
-  "description": "Completed 10-iteration evidence-only research packet on why focused deep-research bug-finding can surface more actionable defects than deep-review, with searchLedger as the top follow-up recommendation.",
+  "description": "Phase parent for turning the completed deep-review complexity research into staged search-depth hardening across seeded fixtures, schema, validator enforcement, reducer/report persistence, convergence gates, graph vocabulary, and rollout playbooks.",
   "keywords": [
     "feature",
     "specification",
-    "deep",
-    "review",
-    "complexity",
-    "research",
+    "116",
+    "deep-review",
+    "search-depth",
     "searchLedger",
-    "candidate-generation"
+    "searchCoverage",
+    "candidate-generation",
+    "graphless-fallback",
+    "seeded-tests"
   ],
-  "lastUpdated": "2026-05-22T06:48:00.000Z",
+  "lastUpdated": "2026-05-22T00:00:00.000Z",
   "specId": "116",
   "folderSlug": "deep-review-complexity",
   "parentChain": [

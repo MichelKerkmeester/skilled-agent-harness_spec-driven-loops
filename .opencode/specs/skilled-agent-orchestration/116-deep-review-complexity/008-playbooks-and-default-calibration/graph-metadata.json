@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/116-deep-review-complexity/008-playbooks-and-default-calibration",
+  "spec_folder": "skilled-agent-orchestration/116-deep-review-complexity/008-playbooks-and-default-calibration",
+  "parent_id": "skilled-agent-orchestration/116-deep-review-complexity",
+  "children_ids": [],
+  "manual": {"depends_on": ["skilled-agent-orchestration/116-deep-review-complexity/007-ledger-led-graph-vocabulary"], "supersedes": [], "related_to": []},
+  "derived": {
+    "trigger_phrases": ["deep-review playbooks", "review default calibration"],
+    "key_topics": ["manual playbook", "seeded scenarios", "defaults", "calibration"],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": ["spec.md", "plan.md", "tasks.md"],
+    "entities": ["manual_testing_playbook", "deep_review_config.json"],
+    "causal_summary": "This phase documents seeded scenarios and treats iteration/default changes as evidence-backed rollout work after search-depth gates exist.",
+    "created_at": "2026-05-22T00:00:00Z",
+    "last_save_at": "2026-05-22T00:00:00Z",
+    "save_lineage": "phase_scaffold",
+    "last_accessed_at": null,
+    "source_docs": ["spec.md", "plan.md", "tasks.md"]
+  }
+}

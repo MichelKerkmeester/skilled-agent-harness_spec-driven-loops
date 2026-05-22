@@ -1,0 +1,12 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/116-deep-review-complexity/002-seeded-fixture-harness",
+  "description": "Seeded fixture harness for review-depth hardening before production changes.",
+  "keywords": ["116", "002", "seeded", "fixtures", "deep-review", "searchLedger"],
+  "lastUpdated": "2026-05-22T00:00:00.000Z",
+  "specId": "002",
+  "folderSlug": "seeded-fixture-harness",
+  "parentChain": ["skilled-agent-orchestration", "116-deep-review-complexity"],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

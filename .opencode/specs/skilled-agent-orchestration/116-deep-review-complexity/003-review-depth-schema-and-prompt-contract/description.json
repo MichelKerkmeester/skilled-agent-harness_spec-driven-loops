@@ -1,0 +1,12 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/116-deep-review-complexity/003-review-depth-schema-and-prompt-contract",
+  "description": "Review-depth schema and prompt contract for searchLedger, targetSelection, and searchCoverage.",
+  "keywords": ["116", "003", "review-depth", "schema", "prompt", "searchLedger"],
+  "lastUpdated": "2026-05-22T00:00:00.000Z",
+  "specId": "003",
+  "folderSlug": "review-depth-schema-and-prompt-contract",
+  "parentChain": ["skilled-agent-orchestration", "116-deep-review-complexity"],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

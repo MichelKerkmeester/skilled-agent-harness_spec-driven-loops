@@ -1,0 +1,12 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/116-deep-review-complexity/006-candidate-saturation-and-graphless-gates",
+  "description": "Candidate saturation and graphless fallback stop gates for review-depth coverage.",
+  "keywords": ["116", "006", "candidate", "saturation", "graphless", "convergence"],
+  "lastUpdated": "2026-05-22T00:00:00.000Z",
+  "specId": "006",
+  "folderSlug": "candidate-saturation-and-graphless-gates",
+  "parentChain": ["skilled-agent-orchestration", "116-deep-review-complexity"],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

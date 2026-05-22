@@ -3,7 +3,16 @@
   "packet_id": "skilled-agent-orchestration/116-deep-review-complexity",
   "spec_folder": "skilled-agent-orchestration/116-deep-review-complexity",
   "parent_id": "skilled-agent-orchestration",
-  "children_ids": [],
+  "children_ids": [
+    "skilled-agent-orchestration/116-deep-review-complexity/001-research-synthesis",
+    "skilled-agent-orchestration/116-deep-review-complexity/002-seeded-fixture-harness",
+    "skilled-agent-orchestration/116-deep-review-complexity/003-review-depth-schema-and-prompt-contract",
+    "skilled-agent-orchestration/116-deep-review-complexity/004-validator-v2-enforcement",
+    "skilled-agent-orchestration/116-deep-review-complexity/005-search-ledger-persistence-and-reporting",
+    "skilled-agent-orchestration/116-deep-review-complexity/006-candidate-saturation-and-graphless-gates",
+    "skilled-agent-orchestration/116-deep-review-complexity/007-ledger-led-graph-vocabulary",
+    "skilled-agent-orchestration/116-deep-review-complexity/008-playbooks-and-default-calibration"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -14,50 +23,45 @@
   },
   "derived": {
     "trigger_phrases": [
-      "deep-review complexity",
-      "deep review surface level",
-      "deep-research bug finding",
-      "review workflow depth",
-      "deep-loop review quality"
+      "deep-review search-depth hardening",
+      "deep-review search ledger",
+      "candidate generation review",
+      "search coverage gates"
     ],
     "key_topics": [
       "deep-review",
-      "deep-research",
-      "bug finding",
-      "workflow depth",
-      "iterative review"
+      "searchLedger",
+      "searchCoverage",
+      "validator enforcement",
+      "candidate saturation",
+      "graphless fallback"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "active",
     "key_files": [
       "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "implementation-summary.md",
-      "research/",
-      "research/research.md"
+      "001-research-synthesis/research/research.md",
+      "002-seeded-fixture-harness/spec.md",
+      "003-review-depth-schema-and-prompt-contract/spec.md",
+      "004-validator-v2-enforcement/spec.md"
     ],
     "entities": [
       "deep-review",
-      "deep-research",
-      "cli-codex",
-      "gpt-5.5"
+      "searchLedger",
+      "searchCoverage",
+      "post-dispatch-validate.ts",
+      "reduce-state.cjs"
     ],
-    "causal_summary": "Completed evidence-only 10-iteration deep-research packet. The stable diagnosis is that deep-review needs stronger candidate-generation and search-proof state before severity adjudication, with versioned searchLedger enforcement as the top follow-up recommendation.",
-    "created_at": "2026-05-22T05:50:19Z",
-    "last_save_at": "2026-05-22T06:48:00Z",
-    "save_lineage": "manual_packet_repair_then_research_synthesis",
+    "causal_summary": "The completed research found that deep-review needs auditable candidate-generation and search-proof state before severity adjudication. This parent coordinates staged hardening from seeded tests through schema, validation, persistence, convergence, graph projection, and rollout playbooks.",
+    "created_at": "2026-05-22T00:00:00Z",
+    "last_save_at": "2026-05-22T00:00:00Z",
+    "save_lineage": "phase_parent_initialization",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "implementation-summary.md",
-      "research/research.md"
-    ]
+      "001-research-synthesis/research/research.md"
+    ],
+    "last_active_child_id": "skilled-agent-orchestration/116-deep-review-complexity/002-seeded-fixture-harness",
+    "last_active_at": "2026-05-22T00:00:00Z"
   }
 }

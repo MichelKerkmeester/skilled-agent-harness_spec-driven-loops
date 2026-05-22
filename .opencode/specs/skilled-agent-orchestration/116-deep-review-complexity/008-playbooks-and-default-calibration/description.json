@@ -1,0 +1,12 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/116-deep-review-complexity/008-playbooks-and-default-calibration",
+  "description": "Seeded manual playbooks and evidence-backed deep-review default calibration.",
+  "keywords": ["116", "008", "playbooks", "defaults", "calibration", "deep-review"],
+  "lastUpdated": "2026-05-22T00:00:00.000Z",
+  "specId": "008",
+  "folderSlug": "playbooks-and-default-calibration",
+  "parentChain": ["skilled-agent-orchestration", "116-deep-review-complexity"],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

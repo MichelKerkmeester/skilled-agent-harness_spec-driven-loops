@@ -1,0 +1,12 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/116-deep-review-complexity/007-ledger-led-graph-vocabulary",
+  "description": "Ledger-led graph vocabulary for candidate, invariant, producer, consumer, and test search semantics.",
+  "keywords": ["116", "007", "graph", "vocabulary", "BUG_CLASS", "INVARIANT"],
+  "lastUpdated": "2026-05-22T00:00:00.000Z",
+  "specId": "007",
+  "folderSlug": "ledger-led-graph-vocabulary",
+  "parentChain": ["skilled-agent-orchestration", "116-deep-review-complexity"],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

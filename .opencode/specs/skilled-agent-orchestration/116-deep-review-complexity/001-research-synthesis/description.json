@@ -1,0 +1,29 @@
+{
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/116-deep-review-complexity/001-research-synthesis",
+  "description": "Completed 15-iteration evidence-only research packet on why focused deep-research bug-finding can surface more actionable defects than deep-review, refining searchLedger/searchCoverage, validator, reducer, graphless fallback, and seeded-test recommendations.",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep",
+    "review",
+    "complexity",
+    "research",
+    "searchLedger",
+    "candidate-generation",
+    "searchCoverage",
+    "graphless-fallback",
+    "seeded-tests"
+  ],
+  "lastUpdated": "2026-05-22T08:35:00.000Z",
+  "specId": "001",
+  "folderSlug": "research-synthesis",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "116-deep-review-complexity"
+  ],
+  "memorySequence": 116,
+  "memoryNameHistory": [
+    "deep-review-complexity"
+  ]
+}
