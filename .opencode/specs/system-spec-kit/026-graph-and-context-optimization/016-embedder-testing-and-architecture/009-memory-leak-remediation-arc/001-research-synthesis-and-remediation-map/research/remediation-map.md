@@ -78,4 +78,33 @@ The reranker path adds idempotent `close()` methods for HTTP sidecar, bundled Cr
 
 Verification evidence is recorded in `008-sidecar-local-model-and-adapter-lifecycle/implementation-summary.md`. Targeted sidecar ledger pytest passed with 10 tests; targeted reranker/registry pytest passed with 38 tests; Python compile and OpenCode alignment checks passed. Existing live sidecar integration tests are blocked in this sandbox by localhost bind denial (`Operation not permitted`) on `127.0.0.1:8766`; that path uses untouched `start.sh` and `rerank_sidecar.py` and is recorded as an out-of-scope sandbox baseline.
 
+## Implementation Outcomes
+
+Phase 010 reconciles every normalized work item against the shipped phase summaries and the final regression sweep. Status values mean:
+
+- `implemented`: the runtime or documentation surface shipped in the listed phase.
+- `verified`: phase 010 reran or bundled the targeted validation evidence.
+- `deferred`: intentionally left for a follow-on packet because it was outside the memory/process lifecycle closure boundary.
+- `no-action`: research item required no remediation packet.
+
+| Order | Work Item | Implemented In | Outcome | Evidence |
+| --- | --- | --- | --- | --- |
+| 1 | Evidence synthesis and source archive | `001-research-synthesis-and-remediation-map` | implemented / verified | `../001-research-synthesis-and-remediation-map/implementation-summary.md#verification`; phase 010 parent validation confirms the source archive remains linked. |
+| 2 | Telemetry and process verification harness | `002-telemetry-and-process-verification-harness` | implemented / verified | `../002-telemetry-and-process-verification-harness/implementation-summary.md#verification`; phase 010 reran `process-memory-harness.js snapshot` and `process-sweep.js fixture --pretty`. |
+| 3 | Shared CLI supervisor with process-group ownership | `003-cli-dispatch-containment-and-recursion-guards` | implemented / verified | `../003-cli-dispatch-containment-and-recursion-guards/implementation-summary.md#verification`; phase 010 reran the full deep-loop Vitest gate. |
+| 4 | Dispatch-time recursion and self-invocation guards | `003-cli-dispatch-containment-and-recursion-guards` | implemented / verified | `../003-cli-dispatch-containment-and-recursion-guards/implementation-summary.md#verification`; guarded dispatch remains covered by the deep-loop regression. |
+| 5 | Deep-loop locks, heartbeat, stale-lock recovery, and atomic state repair | `004-deep-loop-locks-state-and-recovery` | implemented / verified | `../004-deep-loop-locks-state-and-recovery/implementation-summary.md#verification`; phase 010 reran the full deep-loop Vitest gate. |
+| 6 | Expected-daemon classifier and host/session process sweep | `005-expected-daemon-classifier-and-process-sweep` | implemented / verified | `../005-expected-daemon-classifier-and-process-sweep/implementation-summary.md#verification`; phase 010 reran process harness/sweep Vitest and fixture sweep. |
+| 7 | CocoIndex remove-project cancel safety | `006-cocoindex-remove-cancel-and-index-lifecycle` | implemented / verified | `../006-cocoindex-remove-cancel-and-index-lifecycle/implementation-summary.md#verification`; phase 010 reran targeted lifecycle pytest in the package venv. |
+| 8 | CocoIndex daemon cancel protocol surface | `006-cocoindex-remove-cancel-and-index-lifecycle` | implemented / verified | `../006-cocoindex-remove-cancel-and-index-lifecycle/implementation-summary.md#verification`; identity-based `index_cancel` remains covered by lifecycle pytest. |
+| 9 | Daemon and MCP background index task lifecycle | `006-cocoindex-remove-cancel-and-index-lifecycle` | implemented / verified | `../006-cocoindex-remove-cancel-and-index-lifecycle/implementation-summary.md#verification`; daemon task shutdown remains covered by lifecycle pytest. |
+| 10 | Code Graph launcher single owner, orphan reap, and DB close | `007-code-graph-launcher-and-db-lifecycle` | implemented / verified | `../007-code-graph-launcher-and-db-lifecycle/implementation-summary.md#verification`; phase 010 reran targeted Code Graph lifecycle Vitest. |
+| 11 | Rerank sidecar lifecycle and safe reuse/reap policy | `008-sidecar-local-model-and-adapter-lifecycle` | implemented / verified | `../008-sidecar-local-model-and-adapter-lifecycle/implementation-summary.md#verification`; phase 010 reran sidecar ledger pytest. |
+| 12 | Project close and registry embedder cache lifecycle | `008-sidecar-local-model-and-adapter-lifecycle` | implemented / verified | `../008-sidecar-local-model-and-adapter-lifecycle/implementation-summary.md#verification`; phase 010 reran registry embedder lifecycle pytest. |
+| 13 | Adapter lifecycle management and benchmark-gated resident-memory work | `008-sidecar-local-model-and-adapter-lifecycle` | implemented / verified with benchmark-gated limitation | `../008-sidecar-local-model-and-adapter-lifecycle/implementation-summary.md#verification`; phase 010 reran HTTP sidecar adapter pytest and preserves RSS escalation as benchmark-gated. |
+| 14 | Spec Kit Memory in-process retention cleanup | `009-spec-memory-runtime-retention-cleanup` | implemented / verified | `../009-spec-memory-runtime-retention-cleanup/implementation-summary.md#verification`; phase 010 reran memory/runtime/embedder/provider Vitest plus build/typecheck. |
+| 15 | External MCP/browser/tool cleanup | `005-expected-daemon-classifier-and-process-sweep` and `010-final-regression-and-operator-runbook` | implemented / verified as preserve/no-action guidance | `../005-expected-daemon-classifier-and-process-sweep/implementation-summary.md#verification` and `../010-final-regression-and-operator-runbook/operator-runbook.md#3-no-action-cases`; phase 010 documents browser and external MCP stdio preservation. |
+| 16 | Code Graph read-path friction | `007-code-graph-launcher-and-db-lifecycle` follow-on | deferred | `../007-code-graph-launcher-and-db-lifecycle/implementation-summary.md#limitations`; read-path batching/freshness work remains outside lifecycle closure. |
+| 17 | Cosmetic logging no-action bucket | None | no-action | This map keeps the no-action decision; no remediation packet was opened. |
+
 <!-- /ANCHOR:remediation-map -->
