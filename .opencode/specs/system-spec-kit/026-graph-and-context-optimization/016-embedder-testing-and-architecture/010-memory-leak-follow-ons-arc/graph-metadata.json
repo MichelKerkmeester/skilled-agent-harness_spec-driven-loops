@@ -33,7 +33,7 @@
       "code-graph"
     ],
     "importance_tier": "important",
-    "status": "active",
+    "status": "completed",
     "key_files": [
       "spec.md",
       "description.json",
@@ -61,11 +61,11 @@
     ],
     "causal_summary": "Follow-on arc for three deferred items documented during arc 009 closure: out-of-scope test-suite failures, benchmark-gated adapter RSS work, and a phase 007 owner-lease gap that surfaces as MCP reconnect failures after orphan accumulation.",
     "created_at": "2026-05-22T18:30:00Z",
-    "last_save_at": "2026-05-22T18:30:00Z",
+    "last_save_at": "2026-05-22T16:03:59Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-memory-leak-follow-ons-arc/003-owner-lease-heartbeat-staleness-detection",
-    "last_active_at": "2026-05-22T18:30:00Z",
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-memory-leak-follow-ons-arc/002-adapter-resident-memory-benchmark",
+    "last_active_at": "2026-05-22T16:03:59Z",
     "source_docs": [
       "spec.md",
       "../009-memory-leak-remediation-arc/007-code-graph-launcher-and-db-lifecycle/implementation-summary.md",
