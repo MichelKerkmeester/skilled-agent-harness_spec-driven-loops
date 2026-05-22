@@ -1,7 +1,7 @@
 ---
 description: Router for /doctor <target>; dispatches per-subsystem diagnostic to the right YAML via the _routes.yaml manifest.
 argument-hint: "<target> [flags] | list | ?"
-allowed-tools: Read, Bash, Grep, Glob, Edit, Write, mcp__cocoindex_code__search, mcp__mk_code_index__code_graph_status, mcp__mk_code_index__code_graph_query, mcp__mk_code_index__code_graph_context, mcp__mk_code_index__code_graph_scan, mcp__mk_code_index__code_graph_apply, mcp__mk_code_index__detect_changes, mcp__mk_spec_memory__memory_context, mcp__mk_spec_memory__memory_search, mcp__mk_spec_memory__memory_health, mcp__mk_spec_memory__memory_index_scan, mcp__mk_spec_memory__memory_drift_why, mcp__mk_spec_memory__memory_stats, mcp__mk_spec_memory__memory_causal_stats, mcp__mk_spec_memory__memory_causal_link, mcp__mk_spec_memory__deep_loop_graph_status, mcp__mk_spec_memory__deep_loop_graph_query, mcp__mk_spec_memory__deep_loop_graph_upsert, mcp__mk_spec_memory__deep_loop_graph_convergence, mcp__mk_code_index__ccc_status, mcp__mk_code_index__ccc_reindex, mcp__mk_code_index__ccc_feedback, mcp__mk_skill_advisor__advisor_recommend, mcp__mk_skill_advisor__advisor_status, mcp__mk_skill_advisor__advisor_validate, mcp__mk_skill_advisor__advisor_rebuild, mcp__mk_skill_advisor__skill_graph_scan, mcp__mk_skill_advisor__skill_graph_query, mcp__mk_skill_advisor__skill_graph_status
+allowed-tools: Read, Bash, Grep, Glob, Edit, Write, mcp__cocoindex_code__search, mcp__mk_code_index__code_graph_status, mcp__mk_code_index__code_graph_query, mcp__mk_code_index__code_graph_context, mcp__mk_code_index__code_graph_scan, mcp__mk_code_index__code_graph_apply, mcp__mk_code_index__detect_changes, mcp__mk_spec_memory__memory_context, mcp__mk_spec_memory__memory_search, mcp__mk_spec_memory__memory_health, mcp__mk_spec_memory__memory_index_scan, mcp__mk_spec_memory__memory_drift_why, mcp__mk_spec_memory__memory_stats, mcp__mk_spec_memory__memory_causal_stats, mcp__mk_spec_memory__memory_causal_link, mcp__mk_code_index__ccc_status, mcp__mk_code_index__ccc_reindex, mcp__mk_code_index__ccc_feedback, mcp__mk_skill_advisor__advisor_recommend, mcp__mk_skill_advisor__advisor_status, mcp__mk_skill_advisor__advisor_validate, mcp__mk_skill_advisor__advisor_rebuild, mcp__mk_skill_advisor__skill_graph_scan, mcp__mk_skill_advisor__skill_graph_query, mcp__mk_skill_advisor__skill_graph_status
 ---
 <!-- skill_agent: system-spec-kit -->
 
@@ -15,7 +15,7 @@ allowed-tools: Read, Bash, Grep, Glob, Edit, Write, mcp__cocoindex_code__search,
 >
 > **YOUR FIRST ACTION:**
 > 1. Parse the FIRST positional argument from `$ARGUMENTS` as `target`. If missing or empty → run Tier 1 interactive menu and wait. If `list` / `?` / `--list` → print SUBSYSTEM MANIFEST and exit. If unknown → reject with the valid list.
-> 2. Look `target` up in `.opencode/commands/doctor/_routes.yaml`. Resolve `yaml`, `setup_vars`, `allowed_flags`, `mutating`, `mcp_tools`.
+> 2. Look `target` up in `.opencode/commands/doctor/_routes.yaml`. Resolve `yaml`, `setup_vars`, `allowed_flags`, `mutating`, `mcp_tools`, and any `script_invocations`.
 > 3. Run the per-target flag parser (Tier 2) using ONLY that target's `allowed_flags`. Any unknown or cross-target flag MUST raise a clear error pointing to the correct command (e.g. "`--confidence-threshold` is not a flag for `memory`; did you mean `/doctor causal-graph --confidence-threshold=0.8`?").
 > 4. Bind all `setup_vars` to resolved values (defaults if no flag given). `execution_mode` is always `INTERACTIVE`.
 > 5. Load `assets/<yaml>` and execute its phased workflow.
@@ -31,7 +31,7 @@ allowed-tools: Read, Bash, Grep, Glob, Edit, Write, mcp__cocoindex_code__search,
 - **MARKDOWN OWNS SETUP**: resolve `execution_mode` + per-target `setup_vars` here first, then hand off to YAML.
 - **YAML START CONDITION**: do not load the target YAML until `target` is bound AND every `setup_var` for that target is resolved.
 - **NO YAML MODIFICATIONS**: the 7 YAML assets under `assets/doctor_*.yaml` are stable and untouched by this router.
-- **MANIFEST IS CANONICAL**: per-target metadata (yaml asset, setup vars, allowed flags, mutation class, mcp tools, trigger phrases) lives in `_routes.yaml`. The SUBSYSTEM MANIFEST table below is a human-readable mirror, not the source of truth.
+- **MANIFEST IS CANONICAL**: per-target metadata (yaml asset, setup vars, allowed flags, mutation class, mcp tools, script invocations, trigger phrases) lives in `_routes.yaml`. The SUBSYSTEM MANIFEST table below is a human-readable mirror, not the source of truth.
 
 > **Format:** `/doctor <target> [flags]` | `/doctor list` | `/doctor ?`
 > Examples: `/doctor memory --dry-run`, `/doctor causal-graph --confidence-threshold=0.8`
@@ -45,7 +45,7 @@ This router never modifies authored spec packet docs. Each routed target has its
 | `memory`        | `mcp_server/database/context-index__*.sqlite` active profile DB                           | **mutates**    | Runtime database files, not spec folder packets                   | Phase 3 canonical-path validator + `VACUUM INTO` snapshot    |
 | `causal-graph`  | `mcp_server/database/context-index__*.sqlite` causal_edges table                          | **add-only**   | Edges are evidence; existing rows never deleted or updated        | Phase 3 validator + snapshot; halts if upsert detected       |
 | `code-graph`    | `.opencode/code-graph.config.json` + `.opencode/skills/system-code-graph/database/code-graph.sqlite` | **mutates**    | Runtime config + index; not packet docs                           | Phase 3 validator + gold-battery + auto-rollback             |
-| `deep-loop`     | `mcp_server/database/deep-loop-graph.sqlite`                                              | **mutates**    | Coverage graph DB; not packet docs                                | Phase 3 validator + `VACUUM INTO` snapshot                   |
+| `deep-loop`     | `.opencode/skills/deep-loop-runtime/storage/deep-loop-graph.sqlite`                       | **mutates**    | Coverage graph DB; not packet docs                                | Phase 3 validator + `VACUUM INTO` snapshot                   |
 | `cocoindex`     | `.opencode/skills/mcp-coco-index/mcp_server/database/`                                    | **mutates**    | CocoIndex runtime stores; not packet docs                         | Phase 2/3 validator + pre-reindex snapshots                  |
 | `skill-advisor` | `lib/scorer/lanes/*.ts` + `.opencode/skills/*/graph-metadata.json`                        | **mutates**    | Runtime scorer config + graph metadata; not packet docs           | Phase 3 validator + per-run rollback script                  |
 | `skill-budget`  | n/a (read-only audit)                                                                     | **read-only**  | No mutations; report-only                                         | Diagnostic output only                                       |
