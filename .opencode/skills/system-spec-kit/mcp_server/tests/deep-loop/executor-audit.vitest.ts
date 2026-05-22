@@ -1,4 +1,4 @@
-import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
@@ -7,7 +7,14 @@ import { describe, expect, it } from 'vitest';
 import {
   appendExecutorAuditToLastRecord,
   buildExecutorAuditRecord,
+  buildExecutorDispatchEnv,
+  detectFromAncestry,
+  detectFromLockfile,
+  detectFromRuntimeEnv,
+  detectSameKindFromStack,
   emitDispatchFailure,
+  runAuditedExecutorCommand,
+  validateExecutorDispatchAllowed,
   writeFirstRecordExecutor,
 } from '../../lib/deep-loop/executor-audit.js';
 import type { ExecutorConfig } from '../../lib/deep-loop/executor-config.js';
@@ -22,6 +29,17 @@ function withTempStateLog(content: string, run: (stateLogPath: string) => void):
   } finally {
     rmSync(tempDir, { recursive: true, force: true });
   }
+}
+
+function cliCodexExecutor(): ExecutorConfig {
+  return {
+    kind: 'cli-codex',
+    model: 'gpt-5.4',
+    reasoningEffort: 'high',
+    serviceTier: 'priority',
+    sandboxMode: null,
+    timeoutSeconds: 900,
+  };
 }
 
 describe('executor-audit', () => {
@@ -299,6 +317,147 @@ describe('executor-audit', () => {
         detail: 'native failure path',
       });
       expect(lastRecord.executor).toBeUndefined();
+    });
+  });
+
+  it('detectSameKindFromStack rejects same-runtime loops across two-hop stacks', () => {
+    expect(detectSameKindFromStack('cli-gemini:cli-codex', 'cli-codex')).toBe(true);
+    expect(detectSameKindFromStack('cli-gemini:cli-opencode', 'cli-codex')).toBe(false);
+    expect(detectSameKindFromStack('cli-codex', 'native')).toBe(false);
+  });
+
+  it('detectFromAncestry matches the executor binary in ancestor command lines', () => {
+    expect(detectFromAncestry('cli-codex', ['/usr/local/bin/node worker.js', '/opt/homebrew/bin/codex exec'])).toBe(true);
+    expect(detectFromAncestry('cli-codex', ['/usr/local/bin/node worker.js', '/opt/homebrew/bin/gemini'])).toBe(false);
+  });
+
+  it('detectFromRuntimeEnv matches the runtime-specific session variable only', () => {
+    expect(detectFromRuntimeEnv('cli-codex', { CODEX_SESSION_ID: 'session-1' })).toBe(true);
+    expect(detectFromRuntimeEnv('cli-codex', { CLAUDE_CODE_SESSION_ID: 'session-1' })).toBe(false);
+    expect(detectFromRuntimeEnv('native', { CODEX_SESSION_ID: 'session-1' })).toBe(false);
+  });
+
+  it('detectFromLockfile rejects executor lockfiles in runtime state paths', () => {
+    const tempDir = mkdtempSync(join(tmpdir(), 'executor-lock-'));
+
+    try {
+      mkdirSync(join(tempDir, 'locks'));
+      writeFileSync(join(tempDir, 'locks', 'speckit-cli-dispatch-cli-codex.lock'), 'pid=123\n', 'utf8');
+
+      expect(detectFromLockfile('cli-codex', [tempDir])).toBe(true);
+      expect(detectFromLockfile('cli-gemini', [tempDir])).toBe(false);
+    } finally {
+      rmSync(tempDir, { recursive: true, force: true });
+    }
+  });
+
+  it('validateExecutorDispatchAllowed reports stack guard rejections before spawn', () => {
+    expect(
+      validateExecutorDispatchAllowed(cliCodexExecutor(), {
+        env: { SPECKIT_CLI_DISPATCH_STACK: 'cli-gemini:cli-codex' },
+        ancestryCmdlines: [],
+        statePaths: [],
+      }),
+    ).toEqual({
+      allowed: false,
+      layer: 'stack',
+      reason: 'recursion-guard-stack',
+      detail: 'cli-codex already appears in SPECKIT_CLI_DISPATCH_STACK',
+    });
+  });
+
+  it('validateExecutorDispatchAllowed reports ancestry guard rejections', () => {
+    expect(
+      validateExecutorDispatchAllowed(cliCodexExecutor(), {
+        env: {},
+        ancestryCmdlines: ['/opt/homebrew/bin/codex exec'],
+        statePaths: [],
+      }),
+    ).toMatchObject({
+      allowed: false,
+      layer: 'ancestry',
+      reason: 'recursion-guard-ancestry',
+    });
+  });
+
+  it('validateExecutorDispatchAllowed reports env guard rejections', () => {
+    expect(
+      validateExecutorDispatchAllowed(cliCodexExecutor(), {
+        env: { CODEX_SESSION_ID: 'session-1' },
+        ancestryCmdlines: [],
+        statePaths: [],
+      }),
+    ).toMatchObject({
+      allowed: false,
+      layer: 'env',
+      reason: 'recursion-guard-env',
+    });
+  });
+
+  it('validateExecutorDispatchAllowed reports lockfile guard rejections', () => {
+    const tempDir = mkdtempSync(join(tmpdir(), 'executor-guard-lock-'));
+
+    try {
+      writeFileSync(join(tempDir, 'cli-codex.lock'), 'pid=123\n', 'utf8');
+
+      expect(
+        validateExecutorDispatchAllowed(cliCodexExecutor(), {
+          env: {},
+          ancestryCmdlines: [],
+          statePaths: [tempDir],
+        }),
+      ).toMatchObject({
+        allowed: false,
+        layer: 'lockfile',
+        reason: 'recursion-guard-lockfile',
+      });
+    } finally {
+      rmSync(tempDir, { recursive: true, force: true });
+    }
+  });
+
+  it('buildExecutorDispatchEnv appends the current kind without mutating parent env', () => {
+    const parentEnv = {
+      PATH: '/usr/bin',
+      SPECKIT_CLI_DISPATCH_STACK: 'cli-gemini',
+    };
+
+    const nextEnv = buildExecutorDispatchEnv(cliCodexExecutor(), parentEnv);
+
+    expect(nextEnv).toMatchObject({
+      PATH: '/usr/bin',
+      SPECKIT_CLI_DISPATCH_STACK: 'cli-gemini:cli-codex',
+    });
+    expect(parentEnv.SPECKIT_CLI_DISPATCH_STACK).toBe('cli-gemini');
+  });
+
+  it('runAuditedExecutorCommand emits a typed dispatch_failure when the guard rejects before spawn', () => {
+    withTempStateLog('{"type":"event","event":"start"}\n', (stateLogPath) => {
+      const exitCode = runAuditedExecutorCommand({
+        command: 'node',
+        args: ['-e', 'process.exit(99)'],
+        cwd: tmpdir(),
+        timeoutSeconds: 5,
+        stateLogPath,
+        executor: cliCodexExecutor(),
+        iteration: 9,
+        guardContext: {
+          env: { SPECKIT_CLI_DISPATCH_STACK: 'cli-codex' },
+          ancestryCmdlines: [],
+          statePaths: [],
+        },
+      });
+
+      const lines = readFileSync(stateLogPath, 'utf8').trimEnd().split('\n');
+      expect(exitCode).toBe(0);
+      expect(JSON.parse(lines.at(-1) ?? '')).toMatchObject({
+        type: 'event',
+        event: 'dispatch_failure',
+        iteration: 9,
+        reason: 'recursion-guard-stack',
+        detail: 'cli-codex already appears in SPECKIT_CLI_DISPATCH_STACK',
+        executor: { kind: 'cli-codex' },
+      });
     });
   });
 });
