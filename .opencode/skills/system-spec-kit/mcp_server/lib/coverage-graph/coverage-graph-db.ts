@@ -20,7 +20,17 @@ export type LoopType = 'research' | 'review';
 export type ResearchNodeKind = 'QUESTION' | 'FINDING' | 'CLAIM' | 'SOURCE';
 
 /** Review node kinds */
-export type ReviewNodeKind = 'DIMENSION' | 'FILE' | 'FINDING' | 'EVIDENCE' | 'REMEDIATION';
+export type ReviewNodeKind =
+  | 'DIMENSION'
+  | 'FILE'
+  | 'FINDING'
+  | 'EVIDENCE'
+  | 'REMEDIATION'
+  | 'BUG_CLASS'
+  | 'INVARIANT'
+  | 'PRODUCER'
+  | 'CONSUMER'
+  | 'TEST';
 
 /** All valid node kinds across both loop types */
 export type NodeKind = ResearchNodeKind | ReviewNodeKind;
@@ -136,7 +146,18 @@ export const REVIEW_WEIGHTS: Record<ReviewRelation, number> = {
 /** Valid node kinds by loop type */
 export const VALID_KINDS: Record<LoopType, readonly string[]> = {
   research: ['QUESTION', 'FINDING', 'CLAIM', 'SOURCE'] as const,
-  review: ['DIMENSION', 'FILE', 'FINDING', 'EVIDENCE', 'REMEDIATION'] as const,
+  review: [
+    'DIMENSION',
+    'FILE',
+    'FINDING',
+    'EVIDENCE',
+    'REMEDIATION',
+    'BUG_CLASS',
+    'INVARIANT',
+    'PRODUCER',
+    'CONSUMER',
+    'TEST',
+  ] as const,
 };
 
 /** Valid relation types by loop type */

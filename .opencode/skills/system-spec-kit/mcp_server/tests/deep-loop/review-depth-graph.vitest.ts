@@ -56,7 +56,7 @@ afterEach(() => {
 });
 
 describe('review-depth graph vocabulary fixtures', () => {
-  it('upserting BUG_CLASS node today fails with unsupported_kind', async () => {
+  it('upserting BUG_CLASS node succeeds because the Phase G graph vocabulary contract is live', async () => {
     const { handleCoverageGraphUpsert } = await loadCoverageModules();
     const response = parseResponse(await handleCoverageGraphUpsert({
       specFolder: 'specs/review-depth-graph-fixture',
@@ -67,16 +67,14 @@ describe('review-depth graph vocabulary fixtures', () => {
       ],
     }));
     const data = response.data as Record<string, unknown>;
-    const validationErrors = (data.validationErrors as string[] | undefined) ?? [];
 
     expect(response.status).toBe('ok');
-    expect(data.insertedNodes).toBe(0);
-    expect(validationErrors.join('\n')).toMatch(/unsupported_kind|invalid_kind|Invalid node kind "BUG_CLASS"/);
+    expect(data.insertedNodes).toBe(1);
+    expect(data.validationErrors).toBeUndefined();
   });
 
   for (const kind of futureReviewNodeKinds) {
-    it.skip(`upserting ${kind} node succeeds after Phase G allow-list extension`, async () => {
-      // EXPECT: enable after phase G (007-ledger-led-graph-vocabulary).
+    it(`upserting ${kind} node succeeds after Phase G allow-list extension`, async () => {
       const { handleCoverageGraphUpsert } = await loadCoverageModules();
       const response = parseResponse(await handleCoverageGraphUpsert({
         specFolder: 'specs/review-depth-graph-fixture',

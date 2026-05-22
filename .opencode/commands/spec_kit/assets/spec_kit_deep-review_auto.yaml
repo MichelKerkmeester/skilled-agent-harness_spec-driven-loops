@@ -1006,7 +1006,7 @@ workflow:
         transform: |
           1. Read the latest iteration JSONL record after reducer completion.
           2. If graphEvents is absent or empty, set graph_nodes_json = [] and graph_edges_json = [] and skip the upsert.
-          3. For each graph event without relation/source/target, normalize type = uppercase(event.type || event.nodeKind || event.type) and keep only DIMENSION, FILE, FINDING, EVIDENCE, REMEDIATION.
+          3. For each graph event without relation/source/target, normalize type = uppercase(event.type || event.nodeKind || event.type) and keep only DIMENSION, FILE, FINDING, EVIDENCE, REMEDIATION, BUG_CLASS, INVARIANT, PRODUCER, CONSUMER, TEST.
           4. Emit nodes as { id, type, name, iteration, metadata } using the event label (or id fallback) and review metadata for run/current focus.
           5. For each graph event with relation + source + target, normalize relation = uppercase(event.relation) and keep only COVERS, EVIDENCE_FOR, CONTRADICTS, RESOLVES, CONFIRMS, ESCALATES, IN_DIMENSION, IN_FILE.
           6. Emit edges as { id, relation, sourceId, targetId, metadata } and deduplicate the batch by id.
