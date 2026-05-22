@@ -1,5 +1,1366 @@
 {
-  "version": 1,
-  "findings": [],
-  "fingerprints": {}
+  "version": 2,
+  "findings": [
+    {
+      "id": 1,
+      "fingerprint": "drift:ensure-rerank-sidecar:config-hash-default-revision-mismatch",
+      "angle": "drift",
+      "severity": "P1",
+      "files": [
+        ".opencode/bin/lib/ensure-rerank-sidecar.cjs:136",
+        ".opencode/skills/system-rerank-sidecar/scripts/ensure_rerank_sidecar.py:140"
+      ],
+      "iteration": 1,
+      "title": "Config hash default revision drift between JS and Python implementations"
+    },
+    {
+      "id": 2,
+      "fingerprint": "drift:backend-kind-resolution:duplicate-implementation",
+      "angle": "drift",
+      "severity": "P1",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts:106-117",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:46-55"
+      ],
+      "iteration": 1,
+      "title": "Inconsistent backend kind resolution logic between sidecar-client and execution-router"
+    },
+    {
+      "id": 3,
+      "fingerprint": "drift:env-var-naming:inconsistent-conventions",
+      "angle": "drift",
+      "severity": "P1",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts:229-233",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts:80"
+      ],
+      "iteration": 1,
+      "title": "Environment variable naming drift between documentation and implementation"
+    },
+    {
+      "id": 4,
+      "fingerprint": "drift:sidecar-client:missing-jsdoc-public-api",
+      "angle": "drift",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts:183-195"
+      ],
+      "iteration": 1,
+      "title": "Missing JSDoc comments for public API surface in sidecar-client"
+    },
+    {
+      "id": 5,
+      "fingerprint": "dead-code:sidecar-worker:unreachable-model-fallback-chain",
+      "angle": "dead-code",
+      "severity": "P1",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-worker.ts:54-59"
+      ],
+      "iteration": 2,
+      "title": "Unreachable model-name fallback chain in sidecar-worker getModelName"
+    },
+    {
+      "id": 6,
+      "fingerprint": "dead-code:execution-router:test-harness-exports",
+      "angle": "dead-code",
+      "severity": "P1",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:247-254"
+      ],
+      "iteration": 2,
+      "title": "Test-only production export __embedderExecutionRouterTestables"
+    },
+    {
+      "id": 7,
+      "fingerprint": "dead-code:sidecar-client:unused-embedder-input-type-export",
+      "angle": "dead-code",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts:18"
+      ],
+      "iteration": 2,
+      "title": "Unused export EmbedderSidecarInputType with zero external consumers"
+    },
+    {
+      "id": 8,
+      "fingerprint": "dead-code:execution-router:unused-policy-type-exports",
+      "angle": "dead-code",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:18-19"
+      ],
+      "iteration": 2,
+      "title": "Unused type exports EmbedderExecutionPolicy and EmbedderExecutionInputType"
+    },
+    {
+      "id": 9,
+      "fingerprint": "dead-code:sidecar-client:test-only-buildsidecarenv-export",
+      "angle": "dead-code",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts:183-195"
+      ],
+      "iteration": 2,
+      "title": "buildSidecarEnv exported solely for test consumption"
+    },
+    {
+      "id": 10,
+      "fingerprint": "dead-code:sidecar-worker:unreachable-dimensions-fallback",
+      "angle": "dead-code",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-worker.ts:61-68"
+      ],
+      "iteration": 2,
+      "title": "Unreachable dimension fallback in sidecar-worker getDimensions"
+    },
+    {
+      "id": 11,
+      "fingerprint": "dead-code:ensure-rerank-sidecar:unused-named-exports",
+      "angle": "dead-code",
+      "severity": "P2",
+      "files": [
+        ".opencode/bin/lib/ensure-rerank-sidecar.cjs:289-298"
+      ],
+      "iteration": 2,
+      "title": "Unused named exports in ensure-rerank-sidecar.cjs module.exports"
+    },
+    {
+      "id": 12,
+      "fingerprint": "security:sidecar-client:unbounded-json-parsing-resource-exhaustion",
+      "angle": "security",
+      "severity": "P0",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts:476-497"
+      ],
+      "iteration": 3,
+      "title": "Unbounded JSON parsing in sidecar-client stdout handler"
+    },
+    {
+      "id": 13,
+      "fingerprint": "security:ensure-rerank-sidecar:predictable-temp-file-names-symlink-attack",
+      "angle": "security",
+      "severity": "P0",
+      "files": [
+        ".opencode/bin/lib/ensure-rerank-sidecar.cjs:167-169"
+      ],
+      "iteration": 3,
+      "title": "Predictable temp file names in ensure-rerank-sidecar ledger writes"
+    },
+    {
+      "id": 14,
+      "fingerprint": "security:sidecar-worker:incorrect-parent-liveness-detection-eperm-bypass",
+      "angle": "security",
+      "severity": "P1",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-worker.ts:74-85"
+      ],
+      "iteration": 3,
+      "title": "Incorrect parent liveness detection in sidecar-worker"
+    },
+    {
+      "id": 15,
+      "fingerprint": "security:ensure-rerank-sidecar:non-atomic-owner-token-write-race-condition",
+      "angle": "security",
+      "severity": "P1",
+      "files": [
+        ".opencode/bin/lib/ensure-rerank-sidecar.cjs:117-127"
+      ],
+      "iteration": 3,
+      "title": "Missing atomic file write in owner token creation"
+    },
+    {
+      "id": 16,
+      "fingerprint": "security:sidecar-client:broad-env-prefix-allowlist-injection-risk",
+      "angle": "security",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts:175-181"
+      ],
+      "iteration": 3,
+      "title": "Broad SPECKIT_ environment variable prefix allowlist"
+    },
+    {
+      "id": 17,
+      "fingerprint": "security:ensure-rerank-sidecar:missing-input-sanitization-config-hash",
+      "angle": "security",
+      "severity": "P2",
+      "files": [
+        ".opencode/bin/lib/ensure-rerank-sidecar.cjs:129-141",
+        ".opencode/skills/system-rerank-sidecar/scripts/ensure_rerank_sidecar.py:135-149"
+      ],
+      "iteration": 3,
+      "title": "Missing input sanitization in config hash calculation"
+    },
+    {
+      "id": 18,
+      "fingerprint": "over-engineering:sidecar-client:optional-config-fields-only-for-tests",
+      "angle": "over-engineering",
+      "severity": "P1",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts:20-31",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:211-216"
+      ],
+      "iteration": 4,
+      "title": "SidecarClient constructor accepts 7 optional fields serving only test consumers"
+    },
+    {
+      "id": 19,
+      "fingerprint": "over-engineering:sidecar-worker:single-caller-helper-indirection",
+      "angle": "over-engineering",
+      "severity": "P1",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-worker.ts:50-149"
+      ],
+      "iteration": 4,
+      "title": "Sidecar-worker single-caller helper function indirection chain"
+    },
+    {
+      "id": 20,
+      "fingerprint": "over-engineering:embed-options:duplicate-single-property-interfaces",
+      "angle": "over-engineering",
+      "severity": "P1",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts:41-43",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:21-23"
+      ],
+      "iteration": 4,
+      "title": "Duplicate single-property EmbedOptions interfaces across two files"
+    },
+    {
+      "id": 21,
+      "fingerprint": "over-engineering:ensure-rerank-sidecar:resolveport-used-for-timeout",
+      "angle": "over-engineering",
+      "severity": "P2",
+      "files": [
+        ".opencode/bin/lib/ensure-rerank-sidecar.cjs:21-24,219"
+      ],
+      "iteration": 4,
+      "title": "resolvePort function semantically overloaded to parse timeout values"
+    },
+    {
+      "id": 22,
+      "fingerprint": "over-engineering:ensure-rerank-sidecar:skipifdisabled-always-true-production",
+      "angle": "over-engineering",
+      "severity": "P2",
+      "files": [
+        ".opencode/bin/lib/ensure-rerank-sidecar.cjs:220,230",
+        ".opencode/bin/mk-spec-memory-launcher.cjs:449"
+      ],
+      "iteration": 4,
+      "title": "skipIfDisabled parameter always true in single production call"
+    },
+    {
+      "id": 23,
+      "fingerprint": "over-engineering:execution-router:directprovideradapter-single-instantiation",
+      "angle": "over-engineering",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:130-198,225"
+      ],
+      "iteration": 4,
+      "title": "DirectProviderAdapter 68-line class with single instantiation site and ollama delegation branch"
+    },
+    {
+      "id": 24,
+      "fingerprint": "over-engineering:reindex:dual-job-row-representation",
+      "angle": "over-engineering",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:32-65,123-136"
+      ],
+      "iteration": 4,
+      "title": "ReindexJob/JobRow dual representation with normalizeJob() field-name converter"
+    },
+    {
+      "id": 25,
+      "fingerprint": "simplification:sidecar-client:eight-single-call-helpers",
+      "angle": "simplification",
+      "severity": "P1",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts:86-195"
+      ],
+      "iteration": 5,
+      "title": "Sidecar-client 8 single-call helper functions with trivial implementations"
+    },
+    {
+      "id": 26,
+      "fingerprint": "simplification:sidecar-worker:four-single-call-helpers",
+      "angle": "simplification",
+      "severity": "P1",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-worker.ts:50-103"
+      ],
+      "iteration": 5,
+      "title": "Sidecar-worker 4 single-call helper functions with trivial implementations"
+    },
+    {
+      "id": 27,
+      "fingerprint": "simplification:reindex:dual-job-row-representation-sql-aliases",
+      "angle": "simplification",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:32-65,123-136,142-164"
+      ],
+      "iteration": 5,
+      "title": "Reindex normalizeJob/JobRow dual representation can be eliminated with SQL aliases"
+    },
+    {
+      "id": 28,
+      "fingerprint": "simplification:ensure-rerank-sidecar:deps-injection-complexity",
+      "angle": "simplification",
+      "severity": "P2",
+      "files": [
+        ".opencode/bin/lib/ensure-rerank-sidecar.cjs:30-79,211-217"
+      ],
+      "iteration": 5,
+      "title": "Ensure-rerank-sidecar deps injection pattern adds complexity for testability"
+    },
+    {
+      "id": 29,
+      "fingerprint": "simplification:sidecar-client:responsehasid-type-guard-inline",
+      "angle": "simplification",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts:119-125,490-506"
+      ],
+      "iteration": 5,
+      "title": "Sidecar-client responseHasId type guard can be inlined into handleResponseLine"
+    },
+    {
+      "id": 30,
+      "fingerprint": "refinement:embedders:inconsistent-error-message-detail",
+      "angle": "refinement",
+      "severity": "P1",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-worker.ts:161",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:168",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:383"
+      ],
+      "iteration": 6,
+      "title": "Inconsistent error-message detail across embedder module boundaries"
+    },
+    {
+      "id": 31,
+      "fingerprint": "refinement:execution-router:resolveexecutionpolicy-logging-side-effect",
+      "angle": "refinement",
+      "severity": "P1",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:57-67"
+      ],
+      "iteration": 6,
+      "title": "resolveExecutionPolicy mixes logging side effect into pure resolver function"
+    },
+    {
+      "id": 32,
+      "fingerprint": "refinement:sidecar-client:sidecarworkerinfo-mixed-naming-convention",
+      "angle": "refinement",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts:33-39,218-219,281-293"
+      ],
+      "iteration": 6,
+      "title": "SidecarWorkerInfo interface mixes camelCase and snake_case field naming"
+    },
+    {
+      "id": 33,
+      "fingerprint": "refinement:embedders:comment-divider-style-drift-across-modules",
+      "angle": "refinement",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:1,26,74,101",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts:1",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-worker.ts:1",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:1",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/schema.ts:1"
+      ],
+      "iteration": 6,
+      "title": "Comment section-divider style drift between reindex.ts and other embedder modules"
+    },
+    {
+      "id": 34,
+      "fingerprint": "refinement:sidecar-worker:third-copy-input-type-union",
+      "angle": "refinement",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-worker.ts:14",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts:18",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:19"
+      ],
+      "iteration": 6,
+      "title": "WorkerInputType is third independent definition of 'document' | 'query' union"
+    },
+    {
+      "id": 35,
+      "fingerprint": "refinement:reindex:misleading-cardinality-error-message",
+      "angle": "refinement",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:230-231,260-261,382-384"
+      ],
+      "iteration": 6,
+      "title": "Misleading error message 'Embedding batch cardinality mismatch' in reindex write helpers"
+    },
+    {
+      "id": 36,
+      "fingerprint": "refinement:embedders:toerrormessage-inconsistent-extraction",
+      "angle": "refinement",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts:127-129",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-worker.ts:70-72",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:406"
+      ],
+      "iteration": 6,
+      "title": "toErrorMessage extraction pattern inconsistently applied across embedder modules"
+    },
+    {
+      "id": 37,
+      "fingerprint": "drift:sidecar-client:api-surface-drift-from-production-usage",
+      "angle": "drift",
+      "severity": "P1",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts:20-31",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:211-216"
+      ],
+      "iteration": 7,
+      "title": "SidecarClientOptions API surface drift from production usage"
+    },
+    {
+      "id": 38,
+      "fingerprint": "drift:backend-kind-resolution:function-signature-drift",
+      "angle": "drift",
+      "severity": "P1",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts:106-117",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:46-55"
+      ],
+      "iteration": 7,
+      "title": "toBackendKind function signature drift between sidecar-client and execution-router"
+    },
+    {
+      "id": 39,
+      "fingerprint": "drift:sidecar-client:sidecarworkerinfo-naming-convention-drift",
+      "angle": "drift",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts:33-39,218-219,281-293"
+      ],
+      "iteration": 7,
+      "title": "SidecarWorkerInfo mixed naming convention drift from internal implementation"
+    },
+    {
+      "id": 40,
+      "fingerprint": "drift:sidecar-client:env-var-usage-drift-from-documented-patterns",
+      "angle": "drift",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts:80,175-181,229-233,343-346",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:58"
+      ],
+      "iteration": 7,
+      "title": "SPECKIT_ environment variable usage drift from documented patterns"
+    },
+    {
+      "id": 41,
+      "fingerprint": "dead-code:reindex:canceljob-zero-production-callers",
+      "angle": "dead-code",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:465-479"
+      ],
+      "iteration": 8,
+      "title": "cancelJob has zero production callers; only invoked in tests"
+    },
+    {
+      "id": 42,
+      "fingerprint": "dead-code:reindex:active-reindex-statuses-unused-export",
+      "angle": "dead-code",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:519",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/index.ts:27"
+      ],
+      "iteration": 8,
+      "title": "ACTIVE_REINDEX_STATUSES exported from barrel but zero consumers"
+    },
+    {
+      "id": 43,
+      "fingerprint": "dead-code:reindex:autostart-false-dead-production-path",
+      "angle": "dead-code",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:49-52,423-455"
+      ],
+      "iteration": 8,
+      "title": "ReindexRuntimeOptions.autoStart = false path dead in production; only used in tests"
+    },
+    {
+      "id": 44,
+      "fingerprint": "dead-code:registry:listsupporteddimensions-test-only",
+      "angle": "dead-code",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/shared/embeddings/registry.ts:111-120",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/index.ts:15"
+      ],
+      "iteration": 8,
+      "title": "listSupportedDimensions zero production callers; only invoked by tests"
+    },
+    {
+      "id": 45,
+      "fingerprint": "dead-code:index-barrel:ollama-embed-options-types-unused",
+      "angle": "dead-code",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/index.ts:43",
+        ".opencode/skills/system-spec-kit/shared/embeddings/adapters/ollama.ts:20-23"
+      ],
+      "iteration": 8,
+      "title": "OllamaEmbedOptions and OllamaInputType barrel exports never imported"
+    },
+    {
+      "id": 46,
+      "fingerprint": "dead-code:sidecar-client:mock-sidecar-env-prefix-production",
+      "angle": "dead-code",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts:175-181"
+      ],
+      "iteration": 8,
+      "title": "MOCK_SIDECAR_ env prefix allowlisting dead in production"
+    },
+    {
+      "id": 47,
+      "fingerprint": "security:sidecar-worker:unbounded-json-parsing-resource-exhaustion",
+      "angle": "security",
+      "severity": "P0",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-worker.ts:105-132"
+      ],
+      "iteration": 9,
+      "title": "Unbounded JSON parsing in sidecar-worker stdin handler"
+    },
+    {
+      "id": 48,
+      "fingerprint": "security:sidecar-client:predictable-request-ids-hijacking-risk",
+      "angle": "security",
+      "severity": "P1",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts:214,443-444"
+      ],
+      "iteration": 9,
+      "title": "Predictable request IDs enable request hijacking"
+    },
+    {
+      "id": 49,
+      "fingerprint": "security:ensure-rerank-sidecar:env-var-leakage-child-process",
+      "angle": "security",
+      "severity": "P1",
+      "files": [
+        ".opencode/bin/lib/ensure-rerank-sidecar.cjs:252-257"
+      ],
+      "iteration": 9,
+      "title": "Environment variable leakage to child processes"
+    },
+    {
+      "id": 50,
+      "fingerprint": "security:sidecar-worker:fixed-polling-interval-timing-attack",
+      "angle": "security",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-worker.ts:93-97"
+      ],
+      "iteration": 9,
+      "title": "Fixed polling interval enables timing attacks"
+    },
+    {
+      "id": 51,
+      "fingerprint": "security:execution-router:unsafe-signal-handling-shutdown-hooks",
+      "angle": "security",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:116-123"
+      ],
+      "iteration": 9,
+      "title": "Unsafe signal handling in shutdown hooks"
+    },
+    {
+      "id": 52,
+      "fingerprint": "over-engineering:execution-router:resolve-dimensions-dead-branch",
+      "angle": "over-engineering",
+      "severity": "P1",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:80-96"
+      ],
+      "iteration": 10,
+      "title": "resolveDimensions 4-level fallback ladder with dead 3rd level"
+    },
+    {
+      "id": 53,
+      "fingerprint": "over-engineering:execution-router:shutdown-hooks-fire-and-forget",
+      "angle": "over-engineering",
+      "severity": "P1",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:106-123"
+      ],
+      "iteration": 10,
+      "title": "Elaborate shutdown hook machinery undermined by fire-and-forget void"
+    },
+    {
+      "id": 54,
+      "fingerprint": "over-engineering:reindex:getcancellationstatus-duplicates-selectjob",
+      "angle": "over-engineering",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:142-151",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:191-194"
+      ],
+      "iteration": 10,
+      "title": "getCancellationStatus is a column-subset duplicate of selectJob"
+    },
+    {
+      "id": 55,
+      "fingerprint": "over-engineering:sidecar-worker:baserequest-unused-standalone",
+      "angle": "over-engineering",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-worker.ts:16-19"
+      ],
+      "iteration": 10,
+      "title": "BaseRequest interface defined but never used as standalone type"
+    },
+    {
+      "id": 56,
+      "fingerprint": "over-engineering:execution-router:triple-normalizeprovider-calls",
+      "angle": "over-engineering",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:38-44",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:69-78",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:204-228"
+      ],
+      "iteration": 10,
+      "title": "Triple redundant normalizeProvider calls in getEmbedderAdapter"
+    },
+    {
+      "id": 57,
+      "fingerprint": "simplification:sidecar-client:terminatechild-duplicate-signal-exit-pattern",
+      "angle": "simplification",
+      "severity": "P1",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts:385-408"
+      ],
+      "iteration": 11,
+      "title": "Sidecar-client terminateChild duplicate signal/exit pattern"
+    },
+    {
+      "id": 58,
+      "fingerprint": "simplification:execution-router:registershutdownhooks-repetitive-signal-handling",
+      "angle": "simplification",
+      "severity": "P1",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:106-124"
+      ],
+      "iteration": 11,
+      "title": "Execution-router registerShutdownHooks repetitive signal handling"
+    },
+    {
+      "id": 59,
+      "fingerprint": "simplification:ensure-rerank-sidecar:healthpayload-repetitive-error-handling",
+      "angle": "simplification",
+      "severity": "P2",
+      "files": [
+        ".opencode/bin/lib/ensure-rerank-sidecar.cjs:30-58"
+      ],
+      "iteration": 11,
+      "title": "Ensure-rerank-sidecar healthPayload repetitive error handling"
+    },
+    {
+      "id": 60,
+      "fingerprint": "simplification:reindex:writevectors-duplicate-cardinality-check",
+      "angle": "simplification",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:215-238,249-269"
+      ],
+      "iteration": 11,
+      "title": "Reindex writeVectors duplicate cardinality check"
+    },
+    {
+      "id": 61,
+      "fingerprint": "refinement:execution-router:resolvedimensions-unconditional-fallback",
+      "angle": "refinement",
+      "severity": "P1",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:80-96"
+      ],
+      "iteration": 12,
+      "title": "resolveDimensions unconditional fallback returns potentially wrong dimensions"
+    },
+    {
+      "id": 62,
+      "fingerprint": "refinement:sidecar-client:handleresponseline-unsafe-type-assertion",
+      "angle": "refinement",
+      "severity": "P1",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts:490-519"
+      ],
+      "iteration": 12,
+      "title": "handleResponseLine unsafe type assertion bypasses discriminator check"
+    },
+    {
+      "id": 63,
+      "fingerprint": "refinement:execution-router:directprovideradapter-misleading-name",
+      "angle": "refinement",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:130-198"
+      ],
+      "iteration": 12,
+      "title": "DirectProviderAdapter class name misleads — delegates to registry adapter for ollama"
+    },
+    {
+      "id": 64,
+      "fingerprint": "refinement:execution-router:directprovideradapter-fragile-type-assertion",
+      "angle": "refinement",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:154-158"
+      ],
+      "iteration": 12,
+      "title": "DirectProviderAdapter.embed fragile type assertion for ollama delegation path"
+    },
+    {
+      "id": 65,
+      "fingerprint": "refinement:reindex:writevectorstoshard-mixed-concerns",
+      "angle": "refinement",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:271-330"
+      ],
+      "iteration": 12,
+      "title": "writeVectorsToShard 60-line function with mixed concerns"
+    },
+    {
+      "id": 66,
+      "fingerprint": "refinement:ensure-rerank-sidecar:openLogFd-mixed-return-type",
+      "angle": "refinement",
+      "severity": "P2",
+      "files": [
+        ".opencode/bin/lib/ensure-rerank-sidecar.cjs:81-95"
+      ],
+      "iteration": 12,
+      "title": "openSidecarLogFd returns mixed number | 'ignore' return type"
+    },
+    {
+      "id": 67,
+      "fingerprint": "refinement:ensure-rerank-sidecar:ensurereranksidecar-god-function",
+      "angle": "refinement",
+      "severity": "P2",
+      "files": [
+        ".opencode/bin/lib/ensure-rerank-sidecar.cjs:211-287"
+      ],
+      "iteration": 12,
+      "title": "ensureRerankSidecar 77-line god function with 7+ distinct concerns"
+    },
+    {
+      "id": 68,
+      "fingerprint": "refinement:index-barrel:stale-phase-comments",
+      "angle": "refinement",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/index.ts:4-6"
+      ],
+      "iteration": 12,
+      "title": "index.ts barrel file stale phase-plan comments describing already-completed work as future"
+    },
+    {
+      "id": 69,
+      "fingerprint": "drift:ensure-rerank-sidecar:missing-file-locking-vs-python",
+      "angle": "drift",
+      "severity": "P1",
+      "files": [
+        ".opencode/bin/lib/ensure-rerank-sidecar.cjs:164-170",
+        ".opencode/skills/system-rerank-sidecar/scripts/sidecar_ledger.py:94-104,187-189"
+      ],
+      "iteration": 13,
+      "title": "Missing file locking in JS ledger write vs Python atomic locking"
+    },
+    {
+      "id": 70,
+      "fingerprint": "drift:types.ts:canonical-location-comment-drift",
+      "angle": "drift",
+      "severity": "P1",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/types.ts:4",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts:106-117",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:46-55"
+      ],
+      "iteration": 13,
+      "title": "types.ts comment drift from actual implementation"
+    },
+    {
+      "id": 71,
+      "fingerprint": "drift:sidecar-worker:getprovidername-undocumented-default",
+      "angle": "drift",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-worker.ts:50-52"
+      ],
+      "iteration": 13,
+      "title": "sidecar-worker getProviderName undocumented default value"
+    },
+    {
+      "id": 72,
+      "fingerprint": "drift:ensure-rerank-sidecar:missing-directory-fsync-vs-python",
+      "angle": "drift",
+      "severity": "P2",
+      "files": [
+        ".opencode/bin/lib/ensure-rerank-sidecar.cjs:164-170",
+        ".opencode/skills/system-rerank-sidecar/scripts/sidecar_ledger.py:210-217"
+      ],
+      "iteration": 13,
+      "title": "ensure-rerank-sidecar missing directory fsync vs Python implementation"
+    },
+    {
+      "id": 73,
+      "fingerprint": "dead-code:sidecar-client:ready-zero-production-callers",
+      "angle": "dead-code",
+      "severity": "P1",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts:272-279"
+      ],
+      "iteration": 14,
+      "title": "SidecarClient.ready() has zero production callers"
+    },
+    {
+      "id": 74,
+      "fingerprint": "dead-code:execution-router:directprovideradapter-ready-zero-production-callers",
+      "angle": "dead-code",
+      "severity": "P1",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:175-185"
+      ],
+      "iteration": 14,
+      "title": "DirectProviderAdapter.ready() has zero production callers"
+    },
+    {
+      "id": 75,
+      "fingerprint": "dead-code:sidecar-worker:unreachable-provider-default",
+      "angle": "dead-code",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-worker.ts:50-52"
+      ],
+      "iteration": 14,
+      "title": "getProviderName dead 'hf-local' default fallback"
+    },
+    {
+      "id": 76,
+      "fingerprint": "dead-code:sidecar-worker:unreachable-inputtype-default",
+      "angle": "dead-code",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-worker.ts:153"
+      ],
+      "iteration": 14,
+      "title": "handleEmbed dead '?? \"document\"' nullish coalescing"
+    },
+    {
+      "id": 77,
+      "fingerprint": "dead-code:index-barrel:ollama-adapter-classes-zero-consumers",
+      "angle": "dead-code",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/index.ts:37-41"
+      ],
+      "iteration": 14,
+      "title": "OllamaAdapter + error classes in barrel with zero direct consumers"
+    },
+    {
+      "id": 78,
+      "fingerprint": "dead-code:index-barrel:notimplementederror-zero-consumers",
+      "angle": "dead-code",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/index.ts:16"
+      ],
+      "iteration": 14,
+      "title": "NotImplementedError barrel export with zero consumers"
+    },
+    {
+      "id": 79,
+      "fingerprint": "over-engineering:sidecar-client:terminatechild-dual-promise-lifecycle",
+      "angle": "over-engineering",
+      "severity": "P1",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts:385-408"
+      ],
+      "iteration": 16,
+      "title": "terminateChild over-engineered dual-promise lifecycle with sleep(0) hack"
+    },
+    {
+      "id": 80,
+      "fingerprint": "over-engineering:execution-router:normalizeproviderforfactory-single-call",
+      "angle": "over-engineering",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:98-104"
+      ],
+      "iteration": 16,
+      "title": "normalizeProviderForFactory 3-line single-call helper"
+    },
+    {
+      "id": 81,
+      "fingerprint": "over-engineering:reindex:yieldtoeventloop-single-call-setimmediate",
+      "angle": "over-engineering",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:117-121"
+      ],
+      "iteration": 16,
+      "title": "yieldToEventLoop wraps setImmediate in a promise called once"
+    },
+    {
+      "id": 82,
+      "fingerprint": "over-engineering:reindex:setjobstatus-dynamic-sql-construction",
+      "angle": "over-engineering",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:166-189"
+      ],
+      "iteration": 16,
+      "title": "setJobStatus constructs SQL dynamically with string interpolation"
+    },
+    {
+      "id": 83,
+      "fingerprint": "over-engineering:schema:single-call-helper-chain",
+      "angle": "over-engineering",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/schema.ts:49-53,70-83,85-95,111-114,116-121"
+      ],
+      "iteration": 16,
+      "title": "Schema module chain of 4 single-call helpers"
+    },
+    {
+      "id": 84,
+      "fingerprint": "over-engineering:sidecar-client:sleep-single-call-settimeout-wrapper",
+      "angle": "over-engineering",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts:131-136"
+      ],
+      "iteration": 16,
+      "title": "sleep() single-call Promise-wrapping-setTimeout helper"
+    },
+    {
+      "id": 85,
+      "fingerprint": "security:ensure-rerank-sidecar:healthpayload-unbounded-body-accumulation",
+      "angle": "security",
+      "severity": "P1",
+      "files": [
+        ".opencode/bin/lib/ensure-rerank-sidecar.cjs:36-49",
+        ".opencode/skills/system-rerank-sidecar/scripts/ensure_rerank_sidecar.py:82"
+      ],
+      "iteration": 15,
+      "title": "healthPayload in ensure-rerank-sidecar.cjs accumulates HTTP body unbounded"
+    },
+    {
+      "id": 86,
+      "fingerprint": "security:sidecar-client:unbounded-embed-input-array-resource-exhaustion",
+      "angle": "security",
+      "severity": "P1",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts:238-270,433-473"
+      ],
+      "iteration": 15,
+      "title": "SidecarClient.embed() accepts unbounded input array enabling resource exhaustion"
+    },
+    {
+      "id": 87,
+      "fingerprint": "security:sidecar-worker:unbounded-embed-input-array-worker-resource-exhaustion",
+      "angle": "security",
+      "severity": "P1",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-worker.ts:105-132,151-175"
+      ],
+      "iteration": 15,
+      "title": "Sidecar-worker has no input array length validation enabling worker memory exhaustion"
+    },
+    {
+      "id": 88,
+      "fingerprint": "security:ensure-rerank-sidecar:processliveness-incorrect-default-alive-fallthrough",
+      "angle": "security",
+      "severity": "P1",
+      "files": [
+        ".opencode/bin/lib/ensure-rerank-sidecar.cjs:178-187",
+        ".opencode/skills/system-rerank-sidecar/scripts/sidecar_ledger.py:150-161"
+      ],
+      "iteration": 15,
+      "title": "processLiveness in ensure-rerank-sidecar.cjs defaults unknown errors to 'alive'"
+    },
+    {
+      "id": 89,
+      "fingerprint": "security:ensure-rerank-sidecar:statdir-unvalidated-env-path-traversal-risk",
+      "angle": "security",
+      "severity": "P2",
+      "files": [
+        ".opencode/bin/lib/ensure-rerank-sidecar.cjs:97-100",
+        ".opencode/skills/system-rerank-sidecar/scripts/sidecar_ledger.py:107-111"
+      ],
+      "iteration": 15,
+      "title": "Unvalidated RERANK_SIDECAR_STATE_DIR enables path traversal to arbitrary directories"
+    },
+    {
+      "id": 90,
+      "fingerprint": "security:execution-router:stale-credential-caching-no-rotation",
+      "angle": "security",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:30-31,204-228"
+      ],
+      "iteration": 15,
+      "title": "Execution router caches adapter instances indefinitely without credential rotation"
+    },
+    {
+      "id": 91,
+      "fingerprint": "simplification:sidecar-client:embed-nested-validation-cascade",
+      "angle": "simplification",
+      "severity": "P1",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts:238-270"
+      ],
+      "iteration": 17,
+      "title": "Sidecar-client embed() nested validation cascade can be consolidated"
+    },
+    {
+      "id": 92,
+      "fingerprint": "simplification:ensure-rerank-sidecar:loadcreatetoken-nested-try-catch",
+      "angle": "simplification",
+      "severity": "P2",
+      "files": [
+        ".opencode/bin/lib/ensure-rerank-sidecar.cjs:106-127"
+      ],
+      "iteration": 17,
+      "title": "Ensure-rerank-sidecar loadOrCreateOwnerToken nested try-catch can be flattened"
+    },
+    {
+      "id": 93,
+      "fingerprint": "simplification:reindex:runjob-nested-cancellation-checks",
+      "angle": "simplification",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:343-416"
+      ],
+      "iteration": 17,
+      "title": "Reindex runJob nested cancellation checks can be consolidated"
+    },
+    {
+      "id": 94,
+      "fingerprint": "refinement:sidecar-worker:error-response-id-zero-dropped-by-client",
+      "angle": "refinement",
+      "severity": "P1",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-worker.ts:207-218",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts:443-444,503"
+      ],
+      "iteration": 18,
+      "title": "Sidecar-worker error responses for pre-parse failures use id=0, silently dropped by client"
+    },
+    {
+      "id": 95,
+      "fingerprint": "refinement:embedders:cached-rejected-provider-promise-no-recovery",
+      "angle": "refinement",
+      "severity": "P1",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-worker.ts:138-149",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts:187-197,30-31"
+      ],
+      "iteration": 18,
+      "title": "Cached rejected provider promise persists indefinitely in both adapter paths"
+    },
+    {
+      "id": 96,
+      "fingerprint": "refinement:reindex:write-vector-shard-manual-sql-escaping",
+      "angle": "refinement",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:305-306"
+      ],
+      "iteration": 18,
+      "title": "Manual SQL escaping via string replace instead of parameterized queries in writeVectorsToShard"
+    },
+    {
+      "id": 97,
+      "fingerprint": "refinement:sidecar-client:dimensions-vs-dim-naming-inconsistency",
+      "angle": "refinement",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts:23,55,226,256"
+      ],
+      "iteration": 18,
+      "title": "Inconsistent dimensions vs dim naming across options interface, response type, and stored field"
+    },
+    {
+      "id": 98,
+      "fingerprint": "refinement:reindex:runjob-cancellation-silent-exit-no-logging",
+      "angle": "refinement",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:371-374,393-394"
+      ],
+      "iteration": 18,
+      "title": "runJob silently exits on cancellation with no log entry"
+    },
+    {
+      "id": 99,
+      "fingerprint": "refinement:sidecar-client:sendrequest-resolve-unsafe-cast",
+      "angle": "refinement",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts:457-458"
+      ],
+      "iteration": 18,
+      "title": "sendRequest resolves pending promise with unsafe value-as-T type assertion"
+    },
+    {
+      "id": 100,
+      "fingerprint": "refinement:sidecar-worker:parserequest-premature-type-assertion-before-validation",
+      "angle": "refinement",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-worker.ts:106"
+      ],
+      "iteration": 18,
+      "title": "parseRequest uses premature type assertion before runtime validation"
+    },
+    {
+      "id": 101,
+      "fingerprint": "drift:ensure-rerank-sidecar:health-payload-body-size-limit-drift",
+      "angle": "drift",
+      "severity": "P1",
+      "files": [
+        ".opencode/bin/lib/ensure-rerank-sidecar.cjs:36-49",
+        ".opencode/skills/system-rerank-sidecar/scripts/ensure_rerank_sidecar.py:80-81"
+      ],
+      "iteration": 19,
+      "title": "Health payload body size limit drift between JS and Python implementations"
+    },
+    {
+      "id": 102,
+      "fingerprint": "drift:ensure-rerank-sidecar:process-liveness-error-handling-drift",
+      "angle": "drift",
+      "severity": "P1",
+      "files": [
+        ".opencode/bin/lib/ensure-rerank-sidecar.cjs:178-187",
+        ".opencode/skills/system-rerank-sidecar/scripts/sidecar_ledger.py:150-161"
+      ],
+      "iteration": 19,
+      "title": "Process liveness error handling drift between JS and Python implementations"
+    },
+    {
+      "id": 103,
+      "fingerprint": "drift:ensure-rerank-sidecar:log-file-open-mode-drift",
+      "angle": "drift",
+      "severity": "P2",
+      "files": [
+        ".opencode/bin/lib/ensure-rerank-sidecar.cjs:89",
+        ".opencode/skills/system-rerank-sidecar/scripts/ensure_rerank_sidecar.py:171"
+      ],
+      "iteration": 19,
+      "title": "Log file open mode drift between JS and Python implementations"
+    },
+    {
+      "id": 104,
+      "fingerprint": "drift:ensure-rerank-sidecar:temp-file-naming-pattern-drift",
+      "angle": "drift",
+      "severity": "P2",
+      "files": [
+        ".opencode/bin/lib/ensure-rerank-sidecar.cjs:167",
+        ".opencode/skills/system-rerank-sidecar/scripts/sidecar_ledger.py:197-199"
+      ],
+      "iteration": 19,
+      "title": "Temp file naming pattern drift between JS and Python implementations"
+    },
+    {
+      "id": 105,
+      "fingerprint": "dead-code:reindex:runcancellation-check-branches-unreachable",
+      "angle": "dead-code",
+      "severity": "P1",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:372,393"
+      ],
+      "iteration": 20,
+      "title": "Dead cancellation-polling branches in reindex runJob loop"
+    },
+    {
+      "id": 106,
+      "fingerprint": "dead-code:index-barrel:activeembedder-type-zero-importers",
+      "angle": "dead-code",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/index.ts:25"
+      ],
+      "iteration": 20,
+      "title": "ActiveEmbedder barrel type export has zero importers"
+    },
+    {
+      "id": 107,
+      "fingerprint": "dead-code:index-barrel:reindexjobstatus-type-zero-importers",
+      "angle": "dead-code",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/index.ts:35"
+      ],
+      "iteration": 20,
+      "title": "ReindexJobStatus barrel type export has zero importers"
+    },
+    {
+      "id": 108,
+      "fingerprint": "dead-code:index-barrel:startreindexoptions-type-zero-external-consumers",
+      "angle": "dead-code",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/index.ts:35"
+      ],
+      "iteration": 20,
+      "title": "StartReindexOptions barrel type export has zero external consumers"
+    },
+    {
+      "id": 109,
+      "fingerprint": "dead-code:index-barrel:embeddermanifest-type-zero-production-consumers",
+      "angle": "dead-code",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/index.ts:9"
+      ],
+      "iteration": 20,
+      "title": "EmbedderManifest barrel type export has zero production consumers"
+    },
+    {
+      "id": 110,
+      "fingerprint": "dead-code:reindex:writevectorstoshard-null-databasedir-early-return-production-dead",
+      "angle": "dead-code",
+      "severity": "P2",
+      "files": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:278-281"
+      ],
+      "iteration": 20,
+      "title": "writeVectorsToShard null-databaseDir early-return dead in production"
+    }
+  ],
+  "fingerprints": {
+    "drift:ensure-rerank-sidecar:config-hash-default-revision-mismatch": 1,
+    "drift:backend-kind-resolution:duplicate-implementation": 2,
+    "drift:env-var-naming:inconsistent-conventions": 3,
+    "drift:sidecar-client:missing-jsdoc-public-api": 4,
+    "dead-code:sidecar-worker:unreachable-model-fallback-chain": 5,
+    "dead-code:execution-router:test-harness-exports": 6,
+    "dead-code:sidecar-client:unused-embedder-input-type-export": 7,
+    "dead-code:execution-router:unused-policy-type-exports": 8,
+    "dead-code:sidecar-client:test-only-buildsidecarenv-export": 9,
+    "dead-code:sidecar-worker:unreachable-dimensions-fallback": 10,
+    "dead-code:ensure-rerank-sidecar:unused-named-exports": 11,
+    "security:sidecar-client:unbounded-json-parsing-resource-exhaustion": 12,
+    "security:ensure-rerank-sidecar:predictable-temp-file-names-symlink-attack": 13,
+    "security:sidecar-worker:incorrect-parent-liveness-detection-eperm-bypass": 14,
+    "security:ensure-rerank-sidecar:non-atomic-owner-token-write-race-condition": 15,
+    "security:sidecar-client:broad-env-prefix-allowlist-injection-risk": 16,
+    "security:ensure-rerank-sidecar:missing-input-sanitization-config-hash": 17,
+    "over-engineering:sidecar-client:optional-config-fields-only-for-tests": 18,
+    "over-engineering:sidecar-worker:single-caller-helper-indirection": 19,
+    "over-engineering:embed-options:duplicate-single-property-interfaces": 20,
+    "over-engineering:ensure-rerank-sidecar:resolveport-used-for-timeout": 21,
+    "over-engineering:ensure-rerank-sidecar:skipifdisabled-always-true-production": 22,
+    "over-engineering:execution-router:directprovideradapter-single-instantiation": 23,
+    "over-engineering:reindex:dual-job-row-representation": 24,
+    "simplification:sidecar-client:eight-single-call-helpers": 25,
+    "simplification:sidecar-worker:four-single-call-helpers": 26,
+    "simplification:reindex:dual-job-row-representation-sql-aliases": 27,
+    "simplification:ensure-rerank-sidecar:deps-injection-complexity": 28,
+    "simplification:sidecar-client:responsehasid-type-guard-inline": 29,
+    "refinement:embedders:inconsistent-error-message-detail": 30,
+    "refinement:execution-router:resolveexecutionpolicy-logging-side-effect": 31,
+    "refinement:sidecar-client:sidecarworkerinfo-mixed-naming-convention": 32,
+    "refinement:embedders:comment-divider-style-drift-across-modules": 33,
+    "refinement:sidecar-worker:third-copy-input-type-union": 34,
+    "refinement:reindex:misleading-cardinality-error-message": 35,
+    "refinement:embedders:toerrormessage-inconsistent-extraction": 36,
+    "drift:sidecar-client:api-surface-drift-from-production-usage": 37,
+    "drift:backend-kind-resolution:function-signature-drift": 38,
+    "drift:sidecar-client:sidecarworkerinfo-naming-convention-drift": 39,
+    "drift:sidecar-client:env-var-usage-drift-from-documented-patterns": 40,
+    "dead-code:reindex:canceljob-zero-production-callers": 41,
+    "dead-code:reindex:active-reindex-statuses-unused-export": 42,
+    "dead-code:reindex:autostart-false-dead-production-path": 43,
+    "dead-code:registry:listsupporteddimensions-test-only": 44,
+    "dead-code:index-barrel:ollama-embed-options-types-unused": 45,
+    "dead-code:sidecar-client:mock-sidecar-env-prefix-production": 46,
+    "security:sidecar-worker:unbounded-json-parsing-resource-exhaustion": 47,
+    "security:sidecar-client:predictable-request-ids-hijacking-risk": 48,
+    "security:ensure-rerank-sidecar:env-var-leakage-child-process": 49,
+    "security:sidecar-worker:fixed-polling-interval-timing-attack": 50,
+    "security:execution-router:unsafe-signal-handling-shutdown-hooks": 51,
+    "over-engineering:execution-router:resolve-dimensions-dead-branch": 52,
+    "over-engineering:execution-router:shutdown-hooks-fire-and-forget": 53,
+    "over-engineering:reindex:getcancellationstatus-duplicates-selectjob": 54,
+    "over-engineering:sidecar-worker:baserequest-unused-standalone": 55,
+    "over-engineering:execution-router:triple-normalizeprovider-calls": 56,
+    "simplification:sidecar-client:terminatechild-duplicate-signal-exit-pattern": 57,
+    "simplification:execution-router:registershutdownhooks-repetitive-signal-handling": 58,
+    "simplification:ensure-rerank-sidecar:healthpayload-repetitive-error-handling": 59,
+    "simplification:reindex:writevectors-duplicate-cardinality-check": 60,
+    "refinement:execution-router:resolvedimensions-unconditional-fallback": 61,
+    "refinement:sidecar-client:handleresponseline-unsafe-type-assertion": 62,
+    "refinement:execution-router:directprovideradapter-misleading-name": 63,
+    "refinement:execution-router:directprovideradapter-fragile-type-assertion": 64,
+    "refinement:reindex:writevectorstoshard-mixed-concerns": 65,
+    "refinement:ensure-rerank-sidecar:openLogFd-mixed-return-type": 66,
+    "refinement:ensure-rerank-sidecar:ensurereranksidecar-god-function": 67,
+    "refinement:index-barrel:stale-phase-comments": 68,
+    "drift:ensure-rerank-sidecar:missing-file-locking-vs-python": 69,
+    "drift:types.ts:canonical-location-comment-drift": 70,
+    "drift:sidecar-worker:getprovidername-undocumented-default": 71,
+    "drift:ensure-rerank-sidecar:missing-directory-fsync-vs-python": 72,
+    "dead-code:sidecar-client:ready-zero-production-callers": 73,
+    "dead-code:execution-router:directprovideradapter-ready-zero-production-callers": 74,
+    "dead-code:sidecar-worker:unreachable-provider-default": 75,
+    "dead-code:sidecar-worker:unreachable-inputtype-default": 76,
+    "dead-code:index-barrel:ollama-adapter-classes-zero-consumers": 77,
+    "dead-code:index-barrel:notimplementederror-zero-consumers": 78,
+    "over-engineering:sidecar-client:terminatechild-dual-promise-lifecycle": 79,
+    "over-engineering:execution-router:normalizeproviderforfactory-single-call": 80,
+    "over-engineering:reindex:yieldtoeventloop-single-call-setimmediate": 81,
+    "over-engineering:reindex:setjobstatus-dynamic-sql-construction": 82,
+    "over-engineering:schema:single-call-helper-chain": 83,
+    "over-engineering:sidecar-client:sleep-single-call-settimeout-wrapper": 84,
+    "security:ensure-rerank-sidecar:healthpayload-unbounded-body-accumulation": 85,
+    "security:sidecar-client:unbounded-embed-input-array-resource-exhaustion": 86,
+    "security:sidecar-worker:unbounded-embed-input-array-worker-resource-exhaustion": 87,
+    "security:ensure-rerank-sidecar:processliveness-incorrect-default-alive-fallthrough": 88,
+    "security:ensure-rerank-sidecar:statdir-unvalidated-env-path-traversal-risk": 89,
+    "security:execution-router:stale-credential-caching-no-rotation": 90,
+    "simplification:sidecar-client:embed-nested-validation-cascade": 91,
+    "simplification:ensure-rerank-sidecar:loadcreatetoken-nested-try-catch": 92,
+    "simplification:reindex:runjob-nested-cancellation-checks": 93,
+    "refinement:sidecar-worker:error-response-id-zero-dropped-by-client": 94,
+    "refinement:embedders:cached-rejected-provider-promise-no-recovery": 95,
+    "refinement:reindex:write-vector-shard-manual-sql-escaping": 96,
+    "refinement:sidecar-client:dimensions-vs-dim-naming-inconsistency": 97,
+    "refinement:reindex:runjob-cancellation-silent-exit-no-logging": 98,
+    "refinement:sidecar-client:sendrequest-resolve-unsafe-cast": 99,
+    "refinement:sidecar-worker:parserequest-premature-type-assertion-before-validation": 100,
+    "drift:ensure-rerank-sidecar:health-payload-body-size-limit-drift": 101,
+    "drift:ensure-rerank-sidecar:process-liveness-error-handling-drift": 102,
+    "drift:ensure-rerank-sidecar:log-file-open-mode-drift": 103,
+    "drift:ensure-rerank-sidecar:temp-file-naming-pattern-drift": 104,
+    "dead-code:reindex:runcancellation-check-branches-unreachable": 105,
+    "dead-code:index-barrel:activeembedder-type-zero-importers": 106,
+    "dead-code:index-barrel:reindexjobstatus-type-zero-importers": 107,
+    "dead-code:index-barrel:startreindexoptions-type-zero-external-consumers": 108,
+    "dead-code:index-barrel:embeddermanifest-type-zero-production-consumers": 109,
+    "dead-code:reindex:writevectorstoshard-null-databasedir-early-return-production-dead": 110
+  }
 }

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Deep-Research Investigation of System-Spec-Kit MCP Sidecar"
-description: "Not-started implementation summary scaffold for arc 010 phase 001 research."
+description: "Completed implementation summary for arc 010 phase 001 research: 20 iterations and final synthesis."
 trigger_phrases:
   - "sidecar research implementation summary"
   - "arc 010 phase 001 summary"
@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-system-spec-kit-mcp-sidecar-investigation/001-deep-research-drift-and-simplification"
-    last_updated_at: "2026-05-22T21:00:18Z"
-    last_updated_by: "codex"
-    recent_action: "scaffolded-not-started-summary"
-    next_safe_action: "run-research-loop"
+    last_updated_at: "2026-05-22T22:59:37.507Z"
+    last_updated_by: "codex-synthesis"
+    recent_action: "completed-20-iteration-sidecar-research-synthesis"
+    next_safe_action: "plan-targeted-remediation-packets-from-p0-p1-findings"
     blockers: []
     key_files:
       - "implementation-summary.md"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0100010100010100010100010100010100010100010100010100010100010100"
       session_id: "016-embedder-testing-and-architecture-010-001"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
 ---
 # Implementation Summary: Deep-Research Investigation of System-Spec-Kit MCP Sidecar
 
@@ -36,12 +36,12 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 001-deep-research-drift-and-simplification |
-| **Status** | Not started |
-| **Completed** | Not started |
+| **Status** | Complete |
+| **Completed** | 2026-05-23 |
 | **Level** | 2 |
-| **Actual Effort** | Not started |
-| **LOC Added** | Scaffold only |
-| **Completion Percent** | 0 |
+| **Actual Effort** | 20 research iterations + synthesis pass |
+| **LOC Added** | Research artifacts only |
+| **Completion Percent** | 100 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -49,7 +49,7 @@ _memory:
 <!-- ANCHOR:exec-summary -->
 ## Executive Summary
 
-Research has not started. This scaffold prepares a 20-iteration deep-research packet and state directory for a workflow-owned investigation of the system-spec-kit MCP sidecar surface.
+Completed the 20-iteration deep-research investigation of the system-spec-kit MCP sidecar surface and produced the final `research/research.md` synthesis. The registry contains 110 deduped findings across 6 angles: 3 P0, 39 P1, and 68 P2. No source code was modified; remediation is intentionally deferred to follow-on packets.
 <!-- /ANCHOR:exec-summary -->
 
 ---
@@ -61,11 +61,18 @@ Research has not started. This scaffold prepares a 20-iteration deep-research pa
 
 | File | Action | Purpose | LOC |
 |------|--------|---------|-----|
-| `spec.md` | Created | Research requirements and scope | Scaffold |
-| `plan.md` | Created | Iteration strategy and convergence plan | Scaffold |
-| `tasks.md` | Created | T001-T022 task ledger | Scaffold |
-| `checklist.md` | Created | Level 2 verification checklist | Scaffold |
-| `research/` | Created | Deep-research state and artifact directories | Scaffold |
+| `research/deep-research-config.json` | Read | Scope, executor mix, caps, and state contract | Existing |
+| `research/deep-research-state.jsonl` | Appended | Added final synthesis event with severity counts | Append-only |
+| `research/findings-registry.json` | Read | Source of truth for 110 deduped findings | Existing |
+| `research/iterations/iteration-001.md` - `iteration-020.md` | Read | Evidence, rationale, and remediation source material | Existing |
+| `research/research.md` | Created | Final 10-anchor synthesis report plus commit handoff | New |
+| `implementation-summary.md` | Updated | Completion state, verification, and limitations | Updated |
+
+### Research Built
+
+- 20 iterations completed across drift, dead-code, security, over-engineering, simplification, and refinement.
+- Executor mix completed as configured: 10 cli-devin SWE-1.6 iterations and 10 cli-opencode DeepSeek-v4-pro high iterations.
+- Final synthesis includes by-angle counts, by-surface narratives, top themes, P0/P1 prioritization, adversarial spot-checks, remediation packet suggestions, limitations, and a full finding registry transcription.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -73,7 +80,7 @@ Research has not started. This scaffold prepares a 20-iteration deep-research pa
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The scaffold was delivered by creating the arc 010 phase parent, child Level-2 docs, and packet-local research state tree. No implementation fixes or CLI executor dispatches were performed.
+The completed iteration artifacts were synthesized without modifying sidecar source code or iteration files. Registry entries remained the only source of findings; the synthesis pass only performed adversarial verification on the five highest-severity items and recorded zero downgrades or withdrawals.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -83,9 +90,10 @@ The scaffold was delivered by creating the arc 010 phase parent, child Level-2 d
 
 | Decision | Rationale |
 |----------|-----------|
-| Keep arc 010 research-only | The parent dispatch forbids implementation fixes in this operation. |
-| Add Level-2 checklist | Strict validation requires `checklist.md` for Level 2 children. |
-| Record executor mix in config | The workflow needs planned alternation, while actual dispatch remains workflow-owned. |
+| Keep synthesis research-only | The dispatch forbids source changes and commits. |
+| Preserve all registry findings | Synthesis must not add findings; adversarial review found no false positives among the five checked items. |
+| Group remediation by theme | Many findings share root causes, so follow-on packets should fix clusters instead of one finding per patch. |
+| Cite risks anchor for limitations | Runtime load, cross-platform behavior, and performance were not measured in this static research pass. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -95,8 +103,11 @@ The scaffold was delivered by creating the arc 010 phase parent, child Level-2 d
 
 | Gate | Status | Evidence |
 |------|--------|----------|
-| Scaffold creation | Pending | Strict validation will run after scaffold creation. |
-| Research execution | Not started | Iteration files are not expected yet. |
+| Iteration count | Passed | 20 iteration markdown files present under `research/iterations/`. |
+| Executor mix | Passed | 10 cli-devin SWE-1.6 + 10 cli-opencode DeepSeek-v4-pro high iterations from config schedule. |
+| Finding registry | Passed | 110 findings: 3 P0, 39 P1, 68 P2. |
+| Adversarial spot-check | Passed | F12, F13, F47, F86, and F87 re-read against source/tests; 0 changes. |
+| Strict validation | Passed | `validate.sh .../001-deep-research-drift-and-simplification --strict` and `validate.sh .../010-system-spec-kit-mcp-sidecar-investigation --strict` both exited 0. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -104,8 +115,7 @@ The scaffold was delivered by creating the arc 010 phase parent, child Level-2 d
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-- No research findings exist yet.
-- No fixes are implemented in this packet by design.
+See `research/research.md#9-risks--limitations`. The synthesis is based on static analysis only; it did not measure runtime behavior under load, benchmark performance, prove cross-platform behavior beyond existing tests, or audit the full user-runtime side beyond evidence-led cross-skill sidecar consumers.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -113,8 +123,9 @@ The scaffold was delivered by creating the arc 010 phase parent, child Level-2 d
 <!-- ANCHOR:follow-up -->
 ## Follow-Up Items
 
-- [ ] Run the deep-research workflow for 20 iterations.
-- [ ] Populate the findings registry.
-- [ ] Produce final synthesis.
-- [ ] Run strict validation.
+- [x] Run the deep-research workflow for 20 iterations.
+- [x] Populate the findings registry.
+- [x] Produce final synthesis.
+- [x] Run strict validation.
+- [ ] Plan targeted remediation packets from P0/P1 findings.
 <!-- /ANCHOR:follow-up -->
