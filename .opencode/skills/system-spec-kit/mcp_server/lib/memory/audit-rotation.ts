@@ -29,8 +29,7 @@ export function rotateIfNeeded(
     return false;
   }
 
-  const suffix = now.toISOString().replace(/[:.]/g, '-');
-  renameSync(auditPath, `${auditPath}.${suffix}.rotated`);
+  renameSync(auditPath, nextRotationPath(auditPath, now));
   enforceRotationCap(auditPath, normalizedMaxFiles);
   return true;
 }
@@ -50,6 +49,19 @@ function enforceRotationCap(auditPath: string, maxFiles: number): void {
   const rotated = listRotatedAuditFiles(auditPath);
   for (const stale of rotated.slice(maxFiles)) {
     rmSync(stale, { force: true });
+  }
+}
+
+function nextRotationPath(auditPath: string, now: Date): string {
+  const suffix = now.toISOString().replace(/[:.]/g, '-');
+  let counter = 0;
+
+  while (true) {
+    const candidate = `${auditPath}.${suffix}.${counter}.rotated`;
+    if (!existsSync(candidate)) {
+      return candidate;
+    }
+    counter += 1;
   }
 }
 

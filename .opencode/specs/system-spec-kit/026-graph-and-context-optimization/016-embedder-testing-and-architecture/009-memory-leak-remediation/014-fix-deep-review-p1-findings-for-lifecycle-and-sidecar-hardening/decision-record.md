@@ -611,3 +611,108 @@ Model switching reads the rerank sidecar ledger and signals only exact PIDs with
 ### Consequences
 Process control is tied to ownership evidence, and diagnostics no longer leak reusable owner tokens.
 <!-- /ANCHOR:adr-026 -->
+
+---
+
+<!-- ANCHOR:adr-027 -->
+## ADR-027: Repair JSONL Tails Before Pre-Dispatch Audit Reads
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-COR-004 |
+
+### Context
+Pre-dispatch audit paths need to read the state log before post-dispatch validation can repair a corrupt tail left by a killed writer.
+
+### Decision
+`writeFirstRecordExecutor()` and `emitDispatchFailure()` repair the JSONL tail before scanning records, and scanner helpers treat malformed non-selected lines as non-matches instead of crashing the dispatch path.
+
+### Consequences
+A partial trailing append no longer blocks the next dispatch from recording executor provenance or a typed dispatch failure.
+<!-- /ANCHOR:adr-027 -->
+
+---
+
+<!-- ANCHOR:adr-028 -->
+## ADR-028: Process Inventory Carries Explicit Status
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-COR-006 |
+
+### Context
+The harness previously converted `ps` failures into unparsable text, which downstream code interpreted as a clean zero-process inventory.
+
+### Decision
+Harness snapshots now carry `status: ok | ps-error | empty` and optional `error`. Degraded inventories suppress PID-lock stale inference, and sweep planning refuses termination rows unless status is `ok`.
+
+### Consequences
+Operators and benchmark gates can distinguish host enumeration failure from a successful but empty process table.
+<!-- /ANCHOR:adr-028 -->
+
+---
+
+<!-- ANCHOR:adr-029 -->
+## ADR-029: Relationship Queries Accept File-Path Subjects
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-COR-016 |
+
+### Context
+The public Code Graph query schema documented file paths as valid relationship subjects, but the handler only resolved symbols for relationship operations.
+
+### Decision
+Relationship queries that look like file paths resolve through the existing file-path resolver, load that file's symbols, and aggregate outbound or inbound edges across those symbols.
+
+### Consequences
+Documented file-path subjects now return relationship results, with response metadata identifying `subjectKind: file_path`.
+<!-- /ANCHOR:adr-029 -->
+
+---
+
+<!-- ANCHOR:adr-030 -->
+## ADR-030: Audit Rotation Uses a Collision Counter
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-COR-017 |
+
+### Context
+Audit rotation filenames used only an ISO timestamp suffix, so two rotations with the same millisecond timestamp could overwrite the first rotated file.
+
+### Decision
+Rotated audit filenames append a counter after the timestamp and choose the first non-existing target path.
+
+### Consequences
+Repeated rotations under deterministic clocks preserve every rotated file until the configured retention cap removes old files.
+<!-- /ANCHOR:adr-030 -->
+
+---
+
+<!-- ANCHOR:adr-031 -->
+## ADR-031: Executor Kind Is Canonical, Type Is a Deprecated Alias
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-MNT-009 |
+
+### Context
+Deep-review executor configuration existed in multiple shapes: parser schema expected `kind`, workflow YAMLs branched on `type`, and old review provenance persisted `type`.
+
+### Decision
+`kind` is the canonical executor field. The parser accepts legacy `type` as a deprecated alias with a warning, rejects conflicting `kind` and `type` values, and current deep-review workflows branch and persist `kind`.
+
+### Consequences
+New runtime state has one shape while immutable review artifacts with `type` remain parseable.
+<!-- /ANCHOR:adr-031 -->

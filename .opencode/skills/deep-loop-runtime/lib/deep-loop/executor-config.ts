@@ -107,6 +107,37 @@ export class ExecutorConfigError extends Error {
   }
 }
 
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return value !== null && !Array.isArray(value) && typeof value === 'object';
+}
+
+function normalizeExecutorConfigInput(raw: unknown): unknown {
+  if (!isRecord(raw) || !Object.prototype.hasOwnProperty.call(raw, 'type')) {
+    return raw;
+  }
+
+  const legacyKind = raw.type;
+  if (typeof legacyKind !== 'string') {
+    return raw;
+  }
+
+  if (typeof raw.kind === 'string' && raw.kind !== legacyKind) {
+    throw new ExecutorConfigError({
+      issues: [{
+        path: ['type'],
+        message: `deprecated executor field 'type' conflicts with canonical kind '${raw.kind}'`,
+      }],
+    });
+  }
+
+  console.warn("[executor-config] Deprecated executor field 'type' was provided; use 'kind' instead.");
+  const { type: _legacyType, ...rest } = raw;
+  return {
+    ...rest,
+    kind: typeof raw.kind === 'string' ? raw.kind : legacyKind,
+  };
+}
+
 function normalizeIssues(error: z.ZodError<ExecutorConfig>): ExecutorConfigIssue[] {
   return error.issues.map((issue) => ({
     path: issue.path,
@@ -115,7 +146,7 @@ function normalizeIssues(error: z.ZodError<ExecutorConfig>): ExecutorConfigIssue
 }
 
 export function parseExecutorConfig(raw: unknown): ExecutorConfig {
-  const parsed = executorConfigSchema.safeParse(raw);
+  const parsed = executorConfigSchema.safeParse(normalizeExecutorConfigInput(raw));
   if (!parsed.success) {
     throw new ExecutorConfigError({
       issues: normalizeIssues(parsed.error),

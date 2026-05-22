@@ -24,6 +24,8 @@ export interface SweepPlanRow {
 }
 
 export interface SweepPlan {
+  inventoryStatus: Inventory['status'];
+  inventoryError?: string;
   rows: SweepPlanRow[];
   summary: Record<string, number>;
 }
@@ -103,6 +105,20 @@ function evaluateEligibility(
 }
 
 export function planSweep(inventory: Inventory, opts: PlanSweepOptions): SweepPlan {
+  if (inventory.status !== 'ok') {
+    return {
+      inventoryStatus: inventory.status,
+      ...(inventory.error ? { inventoryError: inventory.error } : {}),
+      rows: [],
+      summary: {
+        totalRows: 0,
+        eligibleForTermination: 0,
+        preserved: 0,
+        inventoryUnavailable: 1,
+      },
+    };
+  }
+
   const ancestorPids = new Set(getProcessAncestry(opts.selfPid, inventory.processes));
   const processRows: SweepPlanRow[] = inventory.processes.map((processRow) => ({
     pid: processRow.pid,
@@ -119,6 +135,8 @@ export function planSweep(inventory: Inventory, opts: PlanSweepOptions): SweepPl
   }));
 
   return {
+    inventoryStatus: inventory.status,
+    ...(inventory.error ? { inventoryError: inventory.error } : {}),
     rows,
     summary: summarize(rows),
   };

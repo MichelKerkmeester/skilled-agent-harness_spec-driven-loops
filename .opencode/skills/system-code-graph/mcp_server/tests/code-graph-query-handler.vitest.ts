@@ -810,6 +810,60 @@ describe('code-graph-query handler', () => {
     }
   });
 
+  it('accepts documented file-path subjects for relationship queries', async () => {
+    mocks.resolveSubjectFilePath.mockReturnValueOnce('src/source.ts');
+    mocks.queryOutline.mockReturnValueOnce([
+      {
+        symbolId: 'source-symbol',
+        fqName: 'source.handle',
+        name: 'handle',
+        kind: 'function',
+        filePath: 'src/source.ts',
+        startLine: 10,
+      },
+    ]);
+    mocks.queryEdgesFrom.mockReturnValueOnce([
+      {
+        edge: {
+          targetId: 'target-symbol',
+          edgeType: 'IMPORTS',
+          metadata: {
+            confidence: 0.9,
+          },
+        },
+        targetNode: {
+          fqName: 'target.module',
+          filePath: 'src/target.ts',
+          startLine: 1,
+        },
+      },
+    ]);
+
+    const result = await handleCodeGraphQuery({
+      operation: 'imports_from',
+      subject: 'src/source.ts',
+    });
+    const parsed = parseRelationshipQueryResult(result);
+
+    expect(parsed.status).toBe('ok');
+    if (parsed.status === 'ok') {
+      expect(parsed.data).toMatchObject({
+        operation: 'imports_from',
+        filePath: 'src/source.ts',
+        subjectKind: 'file_path',
+        symbolCount: 1,
+      });
+      expect(parsed.data.edges).toEqual([
+        expect.objectContaining({
+          target: 'target.module',
+          file: 'src/target.ts',
+          numericConfidence: 0.9,
+        }),
+      ]);
+    }
+    expect(mocks.queryEdgesFrom).toHaveBeenCalledWith('source-symbol', 'IMPORTS');
+  });
+
   it('excludes dangling edges and reports corruption warnings instead of returning raw symbol IDs', async () => {
     mocks.queryEdgesFrom.mockReturnValue([
       {

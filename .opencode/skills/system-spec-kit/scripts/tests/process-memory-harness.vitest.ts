@@ -118,6 +118,7 @@ describe('process memory harness', () => {
   it('builds a fixture snapshot with the required phase-002 evidence axes', () => {
     const snapshot = syntheticFixtureSnapshot();
 
+    expect(snapshot.status).toBe('ok');
     expect(snapshot.processCount).toBeGreaterThan(0);
     expect(snapshot.projectDaemonCount).toBeGreaterThanOrEqual(2);
     expect(snapshot.expectedDaemonCount).toBeGreaterThanOrEqual(2);
@@ -142,7 +143,37 @@ describe('process memory harness', () => {
     });
 
     expect(snapshot.timestamp).toBe('2026-05-22T00:00:00.000Z');
+    expect(snapshot.status).toBe('ok');
     expect(snapshot.hostMemory.approx.freeBytes).toBe(4096);
     expect(snapshot.pidLocks[0]).toMatchObject({ state: 'stale', pid: 9999 });
+  });
+
+  it('marks successful zero-row ps output as empty rather than ok', () => {
+    const snapshot = buildHarnessSnapshot({
+      psOutput: '  PID  PPID STAT    RSS COMMAND\n',
+      vmStatOutput: 'Mach Virtual Memory Statistics: (page size of 4096 bytes)\n',
+      currentPid: 1000,
+      lockContents: { 'maybe-stale.pid': '9999' },
+      timestamp: '2026-05-22T00:00:00.000Z',
+    });
+
+    expect(snapshot.status).toBe('empty');
+    expect(snapshot.processCount).toBe(0);
+    expect(snapshot.pidLocks).toEqual([]);
+  });
+
+  it('marks ps command failures as degraded inventory with an error', () => {
+    const snapshot = buildHarnessSnapshot({
+      psOutput: '# command_failed: ps -axo pid,ppid,stat,rss,command :: permission denied\n',
+      vmStatOutput: 'Mach Virtual Memory Statistics: (page size of 4096 bytes)\n',
+      currentPid: 1000,
+      lockContents: { 'maybe-stale.pid': '9999' },
+      timestamp: '2026-05-22T00:00:00.000Z',
+    });
+
+    expect(snapshot.status).toBe('ps-error');
+    expect(snapshot.error).toContain('permission denied');
+    expect(snapshot.processCount).toBe(0);
+    expect(snapshot.pidLocks).toEqual([]);
   });
 });

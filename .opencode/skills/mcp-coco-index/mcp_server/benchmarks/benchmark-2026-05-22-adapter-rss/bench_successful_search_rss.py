@@ -49,8 +49,10 @@ def run_snapshot() -> dict[str, Any]:
     if proc.returncode != 0:
         raise RuntimeError((proc.stderr or proc.stdout or "process-memory-harness snapshot failed").strip())
     snapshot = json.loads(proc.stdout)
-    if int(snapshot.get("processCount") or 0) == 0:
-        raise RuntimeError("process-memory-harness snapshot returned zero processes; ps is blocked in this sandbox")
+    if snapshot.get("status") != "ok":
+        raise RuntimeError(
+            f"process-memory-harness inventory status is {snapshot.get('status')}: {snapshot.get('error') or 'no process rows'}"
+        )
     return snapshot
 
 

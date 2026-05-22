@@ -464,3 +464,42 @@ Verification:
 - `cd .opencode/skills/system-code-graph && npm run typecheck -- --pretty false 2>&1 | tail -80` -> passed.
 - `cd .opencode/skills/system-spec-kit && npm run typecheck -- --pretty false 2>&1 | tail -80` -> passed.
 - `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening --strict` -> passed with 0 errors, 0 warnings.
+
+## B4 Commit Handoff
+
+Suggested commit: `fix(014/B4): audit/JSONL data integrity — DR009-COR-004/006/016/017 + DR009-MNT-009`
+
+Findings closed: DR009-COR-004, DR009-COR-006, DR009-COR-016, DR009-COR-017, DR009-MNT-009.
+
+Changed/new files:
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-runtime/tests/unit/executor-audit.vitest.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-runtime/tests/unit/executor-config.vitest.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/ops/process-memory-harness.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/process-memory-harness.vitest.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/process-sweep.vitest.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/memory/audit-rotation.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/lib/memory/audit-rotation.vitest.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/handlers/query.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/tests/code-graph-query-handler.vitest.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-22-adapter-rss/bench_successful_search_rss.py`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-22-adapter-rss/bench_sidecar_5xx_fallback_rss.py`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening/checklist.md`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening/decision-record.md`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening/scratch/batch-plan.md`
+
+Verification:
+- `cd .opencode/skills/system-spec-kit && node mcp_server/node_modules/vitest/vitest.mjs run ../deep-loop-runtime/tests/unit/executor-audit.vitest.ts ../deep-loop-runtime/tests/unit/jsonl-repair.vitest.ts ../deep-loop-runtime/tests/unit/executor-config.vitest.ts --config mcp_server/vitest.config.ts` -> 3 files, 57 tests passed.
+- `cd .opencode/skills/system-spec-kit && node mcp_server/node_modules/vitest/vitest.mjs run scripts/tests/process-memory-harness.vitest.ts scripts/tests/process-sweep.vitest.ts --config mcp_server/vitest.config.ts` -> 2 files, 21 tests passed.
+- `cd .opencode/skills/system-spec-kit && node mcp_server/node_modules/vitest/vitest.mjs run mcp_server/tests/lib/memory/audit-rotation.vitest.ts --config mcp_server/vitest.config.ts` -> 1 file, 2 tests passed.
+- `cd .opencode/skills/system-code-graph && node node_modules/vitest/vitest.mjs run mcp_server/tests/code-graph-query-handler.vitest.ts mcp_server/tests/code-graph-context-handler.vitest.ts --config vitest.config.ts` -> 2 files, 39 tests passed.
+- `cd .opencode/skills/system-code-graph && npm run typecheck -- --pretty false` -> passed.
+- `cd .opencode/skills/system-spec-kit && npm run typecheck -- --pretty false` -> passed.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening --strict` -> passed with 0 errors, 0 warnings.
+- `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/deep-loop-runtime/lib/deep-loop` -> passed.
+- `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-code-graph/mcp_server/handlers` -> passed.
+- `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/scripts/ops` -> passed.

@@ -5,7 +5,7 @@
 
 import * as graphDb from '../lib/code-graph-db.js';
 import { ensureCodeGraphReady, type ReadyResult } from '../lib/ensure-ready.js';
-import type { EdgeType } from '../lib/indexer-types.js';
+import type { CodeNode, EdgeType } from '../lib/indexer-types.js';
 import {
   attachGraphEdgeEnrichment,
   attachStructuralTrustFields,
@@ -732,6 +732,100 @@ function extractInboundFilePaths(entries: InboundEdgeEntry[]): string[] {
     .filter((value): value is string => typeof value === 'string');
 }
 
+function subjectLooksLikeFilePath(subject: string): boolean {
+  return FILE_PATH_SEPARATOR_PATTERN.test(subject) || FILE_PATH_EXTENSION_PATTERN.test(subject);
+}
+
+function resolveRelationshipFilePath(subject: string): string | null {
+  if (!subjectLooksLikeFilePath(subject)) {
+    return null;
+  }
+
+  const resolvedFilePath = graphDb.resolveSubjectFilePath(subject);
+  return typeof resolvedFilePath === 'string' && resolvedFilePath.length > 0
+    ? resolvedFilePath
+    : null;
+}
+
+function queryRelationshipFileSymbols(filePath: string): CodeNode[] {
+  return graphDb
+    .queryOutline(filePath)
+    .filter((node) => typeof node.symbolId === 'string' && node.symbolId.length > 0);
+}
+
+function relationshipFilePayload(input: {
+  operation: QueryArgs['operation'];
+  filePath: string;
+  symbols: CodeNode[];
+  edgeType: EdgeType | undefined;
+  limit: number;
+}): {
+  result: {
+    operation: QueryArgs['operation'];
+    filePath: string;
+    subjectKind: 'file_path';
+    symbolCount: number;
+    edgeType: EdgeType | undefined;
+    edges: RelationshipMappedEdge[];
+    warnings?: DanglingEdgeWarning[];
+    hotFileBreadcrumbs: ReturnType<typeof buildHotFileBreadcrumbs>;
+  };
+  edgeEnrichment: ReturnType<typeof summarizeWeakestGraphEdgeEnrichment>;
+} {
+  const sourceIds = input.symbols.map((node) => node.symbolId);
+  if (input.operation === 'calls_from' || input.operation === 'imports_from') {
+    const entries = sourceIds.flatMap((symbolId) => graphDb.queryEdgesFrom(symbolId, input.edgeType));
+    const { resolvedEntries, warnings } = excludeDanglingEdges(
+      entries,
+      input.limit,
+      input.operation,
+      'target',
+      (entry: OutboundEdgeEntry) => entry.targetNode != null,
+      (entry: OutboundEdgeEntry) => entry.edge.targetId,
+    );
+    const includeLine = input.operation === 'calls_from';
+    const edges = resolvedEntries.map((entry) => mapOutboundRelationshipEdge(entry, { includeLine }));
+    return {
+      result: {
+        operation: input.operation,
+        filePath: input.filePath,
+        subjectKind: 'file_path',
+        symbolCount: input.symbols.length,
+        edgeType: input.edgeType,
+        edges,
+        ...(warnings ? { warnings } : {}),
+        hotFileBreadcrumbs: buildHotFileBreadcrumbs(extractOutboundFilePaths(resolvedEntries)),
+      },
+      edgeEnrichment: summarizeWeakestGraphEdgeEnrichment(edges),
+    };
+  }
+
+  const entries = sourceIds.flatMap((symbolId) => graphDb.queryEdgesTo(symbolId, input.edgeType));
+  const { resolvedEntries, warnings } = excludeDanglingEdges(
+    entries,
+    input.limit,
+    input.operation,
+    'source',
+    (entry: InboundEdgeEntry) => entry.sourceNode != null,
+    (entry: InboundEdgeEntry) => entry.edge.sourceId,
+  );
+  const includeLine = input.operation === 'calls_to';
+  const edges = resolvedEntries.map((entry) => mapInboundRelationshipEdge(entry, { includeLine }));
+  return {
+    result: {
+      operation: input.operation,
+      filePath: input.filePath,
+      subjectKind: 'file_path',
+      symbolCount: input.symbols.length,
+      edgeType: input.edgeType,
+      edges,
+      ...(warnings ? { warnings } : {}),
+      hotFileBreadcrumbs: buildHotFileBreadcrumbs(extractInboundFilePaths(resolvedEntries)),
+    },
+    edgeEnrichment: summarizeWeakestGraphEdgeEnrichment(edges),
+  };
+}
+
 const EDGE_EVIDENCE_CLASS_WEAKNESS: Record<EdgeEvidenceClass, number> = {
   inferred_heuristic: 0,
   test_coverage: 1,
@@ -1192,8 +1286,7 @@ export async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: 
     const minConfidence = clampNumericConfidence(args.minConfidence ?? 0);
 
     for (const candidate of rawSubjects) {
-      const candidateLooksLikeFilePath = FILE_PATH_SEPARATOR_PATTERN.test(candidate)
-        || FILE_PATH_EXTENSION_PATTERN.test(candidate);
+      const candidateLooksLikeFilePath = subjectLooksLikeFilePath(candidate);
       let resolvedPathCandidate: string | null = null;
       if (candidateLooksLikeFilePath) {
         const resolvedFileCandidate = graphDb.resolveSubjectFilePath(candidate);
@@ -1382,6 +1475,33 @@ export async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: 
 
   if (!isSupportedRelationshipOperation(operation)) {
     return buildUnknownOperationResponse(operation);
+  }
+
+  const relationshipFilePath = resolveRelationshipFilePath(subject);
+  if (relationshipFilePath) {
+    const symbols = queryRelationshipFileSymbols(relationshipFilePath);
+    const { result, edgeEnrichment } = graphDb.getDb().transaction(() => relationshipFilePayload({
+      operation,
+      filePath: relationshipFilePath,
+      symbols,
+      edgeType: requestedEdgeType,
+      limit,
+    }))();
+
+    return {
+      content: [{
+        type: 'text',
+        text: JSON.stringify({
+          status: 'ok',
+          data: buildGraphQueryPayload(
+            result,
+            readiness,
+            `code_graph_query ${operation} file-path payload`,
+            edgeEnrichment,
+          ),
+        }, null, 2),
+      }],
+    };
   }
 
   const resolvedSubject = resolveSubject(subject, operation, requestedEdgeType);

@@ -64,7 +64,7 @@ Status values: `open`, `closed`, `deferred`, `blocked`.
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P1] Batch-specific Vitest/pytest/shell tests pass. Evidence: targeted B3 unit suites passed; full rerank integration remains blocked by sandbox localhost bind/connect denial on `127.0.0.1:8766`.
+- [x] CHK-020 [P1] Batch-specific Vitest/pytest/shell tests pass. Evidence: B4 targeted suites passed on 2026-05-22: deep-loop executor audit/jsonl-repair/executor-config 3 files, 57 tests; process memory harness/sweep 2 files, 21 tests; audit rotation 1 file, 2 tests; Code Graph query/context 2 files, 39 tests.
 - [x] CHK-021 [P1] Touched phase docs pass strict validation. Evidence: `validate.sh <phase> --strict` passed with 0 errors and 0 warnings on 2026-05-22.
 <!-- /ANCHOR:testing -->
 
@@ -109,11 +109,11 @@ Status values: `open`, `closed`, `deferred`, `blocked`.
 | DR009-SEC-016 | P1 | B3 | closed | Evidence: Python and CJS rerank ensure helpers now use persistent `secrets.token_urlsafe(24)`-class owner tokens and health-proof hashes; `tests/test_sidecar_ledger.py::test_owner_token_is_random_persistent_and_not_path_hash` passed. |
 | DR009-SEC-017 | P2 | B3 | closed | Evidence: IPC socket unlinking first verifies workspace containment, socket type, and same uid before reclaiming; `mcp_server/tests/lib/security-hardening.vitest.ts` passed in the B3 Code Graph run. |
 | DR009-MNT-001 | P1 | B3 | closed | Evidence: Python and CJS rerank ensure helpers share owner-token/config-hash/health-proof contract with parity coverage; `tests/test_sidecar_ledger.py::test_node_and_python_ensure_helpers_share_config_hash_contract` passed. |
-| DR009-COR-004 | P1 | B4 | open | TBD: commit hash + corrupt JSONL tail test |
-| DR009-COR-006 | P1 | B4 | open | TBD: commit hash + degraded inventory test |
-| DR009-COR-016 | P2 | B4 | open | TBD: commit hash or deferral rationale |
-| DR009-COR-017 | P2 | B4 | open | TBD: commit hash or deferral rationale |
-| DR009-MNT-009 | P1 | B4 | open | TBD: commit hash + executor config schema test |
+| DR009-COR-004 | P1 | B4 | closed | Evidence: `.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts` repairs JSONL tails before pre-dispatch reads and skips non-object/malformed scanner lines; `deep-loop-runtime/tests/unit/executor-audit.vitest.ts` covers corrupt-tail recovery for `writeFirstRecordExecutor()` and `emitDispatchFailure()`; targeted deep-loop run passed 57/57. |
+| DR009-COR-006 | P1 | B4 | closed | Evidence: `.opencode/skills/system-spec-kit/scripts/ops/process-memory-harness.ts` now emits `status: ok \| ps-error \| empty` plus `error` for `ps` failures; degraded inventory suppresses stale-lock inference; `process-sweep.ts` refuses termination planning unless inventory status is `ok`; harness/sweep targeted run passed 21/21. |
+| DR009-COR-016 | P2 | B4 | closed | Evidence: `.opencode/skills/system-code-graph/mcp_server/handlers/query.ts` accepts documented file-path subjects for relationship queries by resolving the file and aggregating symbol edges; `code-graph-query-handler.vitest.ts` covers `imports_from` with `subject: "src/source.ts"`; Code Graph query/context run passed 39/39. |
+| DR009-COR-017 | P2 | B4 | closed | Evidence: `.opencode/skills/system-spec-kit/mcp_server/lib/memory/audit-rotation.ts` uses a timestamp plus collision counter suffix; `audit-rotation.vitest.ts` verifies two rotations in the same millisecond preserve `.0.rotated` and `.1.rotated`; targeted audit rotation run passed 2/2. |
+| DR009-MNT-009 | P1 | B4 | closed | Evidence: `.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts` accepts deprecated `type` as a logged alias for canonical `kind` and rejects conflicting values; deep-review auto/confirm YAMLs now branch and persist `config.executor.kind`; immutable `review/deep-review-config.json` remains unchanged; executor-config targeted tests passed. |
 | DR009-TRC-001 | P1 | B5 | open | TBD: commit hash + supervised executor coverage |
 | DR009-TRC-002 | P1 | B5 | open | TBD: commit hash + true concurrent lock fixture |
 | DR009-TRC-003 | P1 | B5 | open | TBD: commit hash + queued remove fixture |
@@ -153,7 +153,7 @@ Status values: `open`, `closed`, `deferred`, `blocked`.
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] CHK-040 [P1] `checklist.md` evidence is updated for every closed or deferred finding. Evidence: all 18 B3 rows are marked `closed` with test evidence.
+- [x] CHK-040 [P1] `checklist.md` evidence is updated for every closed or deferred finding. Evidence: all 5 B4 rows are marked `closed` with implementation and test evidence.
 - [ ] CHK-041 [P1] `implementation-summary.md` records final status and residual risk.
 <!-- /ANCHOR:docs -->
 
@@ -171,7 +171,7 @@ Status values: `open`, `closed`, `deferred`, `blocked`.
 <!-- ANCHOR:arch-verify -->
 ## L3: Architecture Verification
 
-- [ ] CHK-100 [P1] ADR decisions are either accepted or updated with implementation rationale.
+- [x] CHK-100 [P1] ADR decisions are either accepted or updated with implementation rationale. Evidence: ADR-027 through ADR-031 record the B4 JSONL repair, inventory status, relationship file-path subject, audit rotation collision, and executor kind/type alias policies.
 <!-- /ANCHOR:arch-verify -->
 
 ---
@@ -221,11 +221,11 @@ Status values: `open`, `closed`, `deferred`, `blocked`.
 
 | Category | Total | Closed | Deferred | Open |
 |----------|-------|--------|----------|------|
-| P1 Findings | 40 | 13 | 0 | 27 |
-| P2 Findings | 20 | 1 | 0 | 19 |
-| Batches | 6 | 2 | 0 | 4 |
+| P1 Findings | 40 | 16 | 0 | 24 |
+| P2 Findings | 20 | 3 | 0 | 17 |
+| Batches | 6 | 4 | 0 | 2 |
 
 **Verification Date**: 2026-05-22
 **Verified By**: codex
-**ADRs**: 12 total in `decision-record.md`; B1/B2 cleanup correctness ADRs accepted where implemented.
+**ADRs**: 31 total in `decision-record.md`; B1-B4 implementation ADRs accepted where implemented.
 <!-- /ANCHOR:summary -->

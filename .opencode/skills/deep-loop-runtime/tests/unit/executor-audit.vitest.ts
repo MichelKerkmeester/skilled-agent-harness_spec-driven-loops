@@ -137,6 +137,28 @@ describe('executor-audit', () => {
     });
   });
 
+  it('writeFirstRecordExecutor repairs a corrupt tail before scanning iteration records', () => {
+    const executor = cliCodexExecutor();
+
+    withTempStateLog(
+      '{"type":"event","event":"start"}\n{"type":"iteration","iteration":4,"status":"continue"}\n{"type":"event","iteration":4',
+      (stateLogPath) => {
+        writeFirstRecordExecutor(stateLogPath, executor, 4);
+
+        const lines = readFileSync(stateLogPath, 'utf8').trimEnd().split('\n');
+        expect(lines).toHaveLength(2);
+        expect(JSON.parse(lines.at(-1) ?? '')).toMatchObject({
+          type: 'iteration',
+          iteration: 4,
+          executor: {
+            kind: 'cli-codex',
+            model: 'gpt-5.4',
+          },
+        });
+      },
+    );
+  });
+
   it('writeFirstRecordExecutor is a no-op when the iteration record already has executor provenance', () => {
     const executor: ExecutorConfig = {
       kind: 'cli-codex',
@@ -270,6 +292,23 @@ describe('executor-audit', () => {
           reasoningEffort: 'high',
           serviceTier: 'priority',
         },
+      });
+    });
+  });
+
+  it('emitDispatchFailure repairs a corrupt tail before checking duplicate failure events', () => {
+    const executor = cliCodexExecutor();
+
+    withTempStateLog('{"type":"event","event":"start"}\n{"type":"event","iteration":3', (stateLogPath) => {
+      emitDispatchFailure(stateLogPath, executor, 'crash', 3, 'worker exited early');
+
+      const lines = readFileSync(stateLogPath, 'utf8').trimEnd().split('\n');
+      const lastRecord = JSON.parse(lines.at(-1) ?? '');
+      expect(lastRecord).toMatchObject({
+        type: 'event',
+        event: 'dispatch_failure',
+        reason: 'crash',
+        iteration: 3,
       });
     });
   });

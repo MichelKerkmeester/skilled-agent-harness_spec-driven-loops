@@ -31,4 +31,19 @@ describe('audit-rotation', () => {
     expect(listRotatedAuditFiles(auditPath)).toHaveLength(1);
     expect(readdirSync(tmpDir).filter((name) => name.endsWith('.rotated'))).toHaveLength(1);
   });
+
+  it('preserves multiple rotations with the same millisecond timestamp', () => {
+    const now = new Date('2026-05-22T00:00:00.123Z');
+
+    writeFileSync(auditPath, 'x'.repeat(20), 'utf8');
+    expect(rotateIfNeeded(auditPath, 10, 10, now)).toBe(true);
+
+    writeFileSync(auditPath, 'y'.repeat(20), 'utf8');
+    expect(rotateIfNeeded(auditPath, 10, 10, now)).toBe(true);
+
+    const rotated = readdirSync(tmpDir).filter((name) => name.endsWith('.rotated')).sort();
+    expect(rotated).toHaveLength(2);
+    expect(rotated[0]).toContain('.0.rotated');
+    expect(rotated[1]).toContain('.1.rotated');
+  });
 });

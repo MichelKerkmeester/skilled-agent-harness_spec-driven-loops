@@ -651,7 +651,7 @@ workflow:
         action: "Dispatch @deep-review agent for one review iteration"
         resolve_executor:
           source: "config.executor"
-          loader: ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts#parseExecutorConfig"
+          loader: ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts#parseExecutorConfig"
         pre_dispatch:
           generate_summary: |
             STATE SUMMARY (auto-generated):
@@ -667,7 +667,7 @@ workflow:
             Provisional Verdict: {PASS|CONDITIONAL|FAIL|PENDING} hasAdvisories={has_advisories}
           render_prompt_pack:
             template_path: ".opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl"
-            renderer: ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/prompt-pack.ts#renderPromptPack"
+            renderer: ".opencode/skills/deep-loop-runtime/lib/deep-loop/prompt-pack.ts#renderPromptPack"
             output_path: "{state_paths.prompt_dir}/iteration-{current_iteration}.md"
             variables:
               state_summary: "{state_summary}"
@@ -686,13 +686,13 @@ workflow:
               state_paths_iteration_pattern: "{state_paths.iteration_pattern}"
               state_paths_delta_pattern: "{state_paths.delta_pattern}"
         pre_dispatch_audit:
-          skip_when: "config.executor.type == 'native'"
-          call: ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-audit.ts#writeFirstRecordExecutor"
+          skip_when: "config.executor.kind == 'native'"
+          call: ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts#writeFirstRecordExecutor"
           args:
             stateLogPath: "{state_paths.state_log}"
             executor: "{config.executor}"
             iteration: "{current_iteration}"
-        branch_on: "config.executor.type"
+        branch_on: "config.executor.kind"
         if_native:
           dispatch:
             agent: deep-review
@@ -717,7 +717,7 @@ workflow:
             import { readFileSync, writeFileSync } from 'node:fs';
             import { spawnSync } from 'node:child_process';
 
-            import { buildCopilotPromptArg } from './.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts';
+            import { buildCopilotPromptArg } from './.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts';
 
             const promptPath = '{state_paths.prompt_dir}/iteration-{current_iteration}.md';
             const prompt = readFileSync(promptPath, 'utf8');
@@ -866,7 +866,7 @@ workflow:
           render_hint:
             resolved_permission_mode: |
               Resolve via resolveDevinPermissionMode(config.executor.sandboxMode) — defined in
-              .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts.
+              .opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts.
               Mapping: sandboxMode='danger-full-access' → 'dangerous', everything else → 'auto'.
               Default (sandboxMode unset): 'auto'.
             agent_config_recipe: |
@@ -893,7 +893,7 @@ workflow:
             - "v1.0.4.0: stdout captured to {state_paths.prompt_dir}/devin-stdout-iter-NNN.log and scanned for stdout-fallback boilerplate ('I cannot write', 'read-only mode', 'permission errors when attempting to write'); ITER_OUTCOME=degraded_stdout_fallback flagged so the JSONL row can be tagged dispatch_quality=degraded for the synthesis phase"
             - "v1.0.4.0: <packet-root> substitution added to the agent-config sed pipeline so the review-iter recipe's narrow Write scope resolves to {spec_folder} at dispatch time"
         post_dispatch_validate:
-          validator: ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"
+          validator: ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"
           assert_exists: "{state_paths.iteration_pattern}"
           assert_appended: "{state_paths.state_log}"
           assert_jsonl_fields: [type, iteration, mode, run, status, focus, dimensions, filesReviewed, findingsCount, findingsSummary, findingsNew, findingDetails, newFindingsRatio, sessionId, generation, lineageMode, timestamp, durationMs]
@@ -928,11 +928,11 @@ workflow:
             action: "emit schema_mismatch canonical conflict event"
             escalation: "After 3 consecutive failures, trigger stuck_recovery event with diagnostic context"
         record_executor_audit:
-          skip_when: "config.executor.type == 'native'"
+          skip_when: "config.executor.kind == 'native'"
           target: "{state_paths.state_log}"
           field: "executor"
           value:
-            kind: "{config.executor.type}"
+            kind: "{config.executor.kind}"
             model: "{config.executor.model}"
             reasoningEffort: "{config.executor.reasoningEffort}"
             serviceTier: "{config.executor.serviceTier}"

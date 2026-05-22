@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { afterEach, describe, it, expect, vi } from 'vitest';
 
 import {
   ExecutorConfigError,
@@ -7,6 +7,10 @@ import {
 } from '../../lib/deep-loop/executor-config';
 
 describe('executor-config', () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
   it('returns all defaults for a native executor config', () => {
     expect(parseExecutorConfig({ kind: 'native' })).toEqual({
       kind: 'native',
@@ -30,6 +34,22 @@ describe('executor-config', () => {
       kind: 'cli-codex',
       model: 'gpt-5.4',
     });
+  });
+
+  it('accepts deprecated executor type as an alias for kind and logs a warning', () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+
+    expect(parseExecutorConfig({ type: 'cli-codex', model: 'gpt-5.4' })).toMatchObject({
+      kind: 'cli-codex',
+      model: 'gpt-5.4',
+    });
+    expect(warn).toHaveBeenCalledWith(expect.stringContaining("Deprecated executor field 'type'"));
+  });
+
+  it('rejects conflicting deprecated type and canonical kind values', () => {
+    expect(() => parseExecutorConfig({ type: 'native', kind: 'cli-codex', model: 'gpt-5.4' })).toThrow(
+      ExecutorConfigError,
+    );
   });
 
   it('rejects cli-codex when model is null', () => {

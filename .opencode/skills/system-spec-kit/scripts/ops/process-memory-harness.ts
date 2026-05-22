@@ -65,7 +65,11 @@ export interface HostMemorySnapshot {
   warnings: string[];
 }
 
+export type ProcessInventoryStatus = 'ok' | 'ps-error' | 'empty';
+
 export interface HarnessSnapshot {
+  status: ProcessInventoryStatus;
+  error?: string;
   timestamp: string;
   currentPid: number;
   currentAncestors: number[];
@@ -206,6 +210,28 @@ export function parsePsOutput(output: string): ProcessRow[] {
     });
   }
   return rows;
+}
+
+function extractCommandFailure(output: string): string | null {
+  const failureLine = output.split(/\r?\n/).find((line) => line.startsWith('# command_failed:'));
+  return failureLine ? failureLine.replace(/^# command_failed:\s*/, '').trim() : null;
+}
+
+function resolveInventoryStatus(input: {
+  psOutput: string;
+  psError?: string;
+  rows: ProcessRow[];
+}): { status: ProcessInventoryStatus; error?: string } {
+  const commandFailure = input.psError ?? extractCommandFailure(input.psOutput) ?? undefined;
+  if (commandFailure) {
+    return { status: 'ps-error', error: commandFailure };
+  }
+
+  if (input.rows.length === 0) {
+    return { status: 'empty' };
+  }
+
+  return { status: 'ok' };
 }
 
 export function parseVmStat(output: string, sysctlOutput = ''): HostMemorySnapshot {
@@ -459,6 +485,7 @@ export function classifyProcess(
 
 export function buildHarnessSnapshot(input: {
   psOutput: string;
+  psError?: string;
   vmStatOutput: string;
   sysctlOutput?: string;
   currentPid?: number;
@@ -466,6 +493,11 @@ export function buildHarnessSnapshot(input: {
   timestamp?: string;
 }): HarnessSnapshot {
   const rows = parsePsOutput(input.psOutput);
+  const inventoryStatus = resolveInventoryStatus({
+    psOutput: input.psOutput,
+    psError: input.psError,
+    rows,
+  });
   const currentPid = input.currentPid ?? process.pid;
   const processes = classifyProcesses(rows, { currentPid });
   const pidLocks = Object.entries(input.lockContents ?? {}).map(([path, raw]) =>
@@ -473,6 +505,7 @@ export function buildHarnessSnapshot(input: {
   );
 
   return {
+    ...inventoryStatus,
     timestamp: input.timestamp ?? new Date().toISOString(),
     currentPid,
     currentAncestors: getAncestorPids(currentPid, rows),
@@ -484,7 +517,7 @@ export function buildHarnessSnapshot(input: {
     orphanedProjectDaemonCount: processes.filter((row) => row.isOrphanedProjectDaemon).length,
     terminationCandidateCount: processes.filter((row) => row.terminationCandidate).length,
     processes,
-    pidLocks,
+    pidLocks: inventoryStatus.status === 'ok' ? pidLocks : [],
   };
 }
 
@@ -524,20 +557,28 @@ Pages occupied by compressor: 50.
   });
 }
 
-function readCommand(command: string, args: string[]): string {
+function readCommand(command: string, args: string[]): { output: string; error?: string } {
   try {
-    return execFileSync(command, args, { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+    return { output: execFileSync(command, args, { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }) };
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
-    return `# command_failed: ${command} ${args.join(' ')} :: ${message}\n`;
+    return {
+      output: `# command_failed: ${command} ${args.join(' ')} :: ${message}\n`,
+      error: `${command} ${args.join(' ')} :: ${message}`,
+    };
   }
 }
 
 function runSnapshot(): HarnessSnapshot {
+  const ps = readCommand('ps', ['-axo', 'pid,ppid,stat,rss,command']);
+  const vmStat = readCommand('vm_stat', []);
+  const sysctl = readCommand('sysctl', ['hw.memsize']);
+
   return buildHarnessSnapshot({
-    psOutput: readCommand('ps', ['-axo', 'pid,ppid,stat,rss,command']),
-    vmStatOutput: readCommand('vm_stat', []),
-    sysctlOutput: readCommand('sysctl', ['hw.memsize']),
+    psOutput: ps.output,
+    psError: ps.error,
+    vmStatOutput: vmStat.output,
+    sysctlOutput: sysctl.output,
     currentPid: process.pid,
   });
 }

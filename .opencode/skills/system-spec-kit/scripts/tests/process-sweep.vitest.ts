@@ -5,6 +5,7 @@ import { planSweep } from '../ops/process-sweep.js';
 
 function inventory(processes: ClassifiedProcess[], pidLocks: PidLockState[] = [], currentPid = 1000): Inventory {
   return {
+    status: 'ok',
     timestamp: '2026-05-22T00:00:00.000Z',
     currentPid,
     currentAncestors: [],
@@ -23,6 +24,17 @@ function inventory(processes: ClassifiedProcess[], pidLocks: PidLockState[] = []
     terminationCandidateCount: processes.filter((row) => row.terminationCandidate).length,
     processes,
     pidLocks,
+  };
+}
+
+function degradedInventory(status: Inventory['status'], error?: string): Inventory {
+  return {
+    ...inventory([]),
+    status,
+    ...(error ? { error } : {}),
+    processCount: 0,
+    processes: [],
+    pidLocks: [],
   };
 }
 
@@ -214,5 +226,14 @@ describe('process sweep', () => {
       eligibleForTermination: false,
       rationale: 'unknown-owner-refused',
     });
+  });
+
+  it('does not plan process termination when inventory is degraded', () => {
+    const plan = planSweep(degradedInventory('ps-error', 'ps failed'), { selfPid: 1000 });
+
+    expect(plan.inventoryStatus).toBe('ps-error');
+    expect(plan.inventoryError).toBe('ps failed');
+    expect(plan.rows).toEqual([]);
+    expect(plan.summary.inventoryUnavailable).toBe(1);
   });
 });

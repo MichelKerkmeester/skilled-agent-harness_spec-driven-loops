@@ -7,7 +7,7 @@ import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from '
 import { basename, join } from 'node:path';
 
 import type { ExecutorConfig, ExecutorKind } from './executor-config.js';
-import { appendJsonlRecord as appendJsonlRecordSafe } from './jsonl-repair.js';
+import { appendJsonlRecord as appendJsonlRecordSafe, repairJsonlTail } from './jsonl-repair.js';
 
 export const CLI_DISPATCH_STACK_ENV = 'SPECKIT_CLI_DISPATCH_STACK' as const;
 
@@ -351,9 +351,23 @@ function readJsonlFile(stateLogPath: string): {
   };
 }
 
+function readJsonlFileAfterTailRepair(stateLogPath: string): ReturnType<typeof readJsonlFile> {
+  repairJsonlTail(stateLogPath);
+  return readJsonlFile(stateLogPath);
+}
+
 function rewriteJsonlFile(stateLogPath: string, lines: string[], hasTrailingNewline: boolean): void {
   const rewritten = lines.join('\n');
   writeFileSync(stateLogPath, hasTrailingNewline ? `${rewritten}\n` : rewritten, 'utf8');
+}
+
+function parseJsonlObjectLine(line: string): Record<string, unknown> | null {
+  try {
+    const parsedRecord = JSON.parse(line);
+    return isObjectRecord(parsedRecord) ? parsedRecord : null;
+  } catch {
+    return null;
+  }
 }
 
 function findLatestIterationRecordIndex(lines: string[], iteration: number): number {
@@ -363,9 +377,9 @@ function findLatestIterationRecordIndex(lines: string[], iteration: number): num
       continue;
     }
 
-    const parsedRecord = JSON.parse(line);
+    const parsedRecord = parseJsonlObjectLine(line);
     if (
-      isObjectRecord(parsedRecord) &&
+      parsedRecord &&
       parsedRecord.iteration === iteration &&
       (parsedRecord.type === 'iteration' || parsedRecord.type === 'iteration_start')
     ) {
@@ -383,9 +397,9 @@ function findLatestIterationEvent(lines: string[], iteration: number): Record<st
       continue;
     }
 
-    const parsedRecord = JSON.parse(line);
+    const parsedRecord = parseJsonlObjectLine(line);
     if (
-      isObjectRecord(parsedRecord) &&
+      parsedRecord &&
       parsedRecord.iteration === iteration &&
       parsedRecord.type === 'event'
     ) {
@@ -401,7 +415,7 @@ export function writeFirstRecordExecutor(stateLogPath: string, executor: Executo
     return;
   }
 
-  const { lines, hasTrailingNewline } = readJsonlFile(stateLogPath);
+  const { lines, hasTrailingNewline } = readJsonlFileAfterTailRepair(stateLogPath);
   const recordIndex = findLatestIterationRecordIndex(lines, iteration);
 
   if (recordIndex !== -1) {
@@ -437,7 +451,7 @@ export function emitDispatchFailure(
   iteration: number,
   detail?: string,
 ): void {
-  const lastIterationEvent = findLatestIterationEvent(readJsonlFile(stateLogPath).lines, iteration);
+  const lastIterationEvent = findLatestIterationEvent(readJsonlFileAfterTailRepair(stateLogPath).lines, iteration);
   if (lastIterationEvent?.event === 'dispatch_failure') {
     return;
   }
