@@ -590,7 +590,7 @@ workflow:
             import { resolveCodexSandboxMode } from './.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts';
 
             const executor = {
-              type: 'cli-codex',
+              kind: 'cli-codex',
               model: '{config.executor.model}',
               reasoningEffort: '{config.executor.reasoningEffort}' === 'null' ? null : '{config.executor.reasoningEffort}',
               serviceTier: '{config.executor.serviceTier}' === 'null' ? null : '{config.executor.serviceTier}',
@@ -636,7 +636,7 @@ workflow:
             import { resolveGeminiSandboxMode } from './.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts';
 
             const executor = {
-              type: 'cli-gemini',
+              kind: 'cli-gemini',
               model: '{config.executor.model}',
               reasoningEffort: '{config.executor.reasoningEffort}' === 'null' ? null : '{config.executor.reasoningEffort}',
               serviceTier: '{config.executor.serviceTier}' === 'null' ? null : '{config.executor.serviceTier}',
@@ -681,7 +681,7 @@ workflow:
             import { resolveClaudePermissionMode } from './.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts';
 
             const executor = {
-              type: 'cli-claude-code',
+              kind: 'cli-claude-code',
               model: '{config.executor.model}',
               reasoningEffort: '{config.executor.reasoningEffort}' === 'null' ? null : '{config.executor.reasoningEffort}',
               serviceTier: '{config.executor.serviceTier}' === 'null' ? null : '{config.executor.serviceTier}',
@@ -726,7 +726,7 @@ workflow:
           target: "{state_paths.state_log}"
           field: "executor"
           value:
-            type: "{config.executor.type}"
+            kind: "{config.executor.type}"
             model: "{config.executor.model}"
             reasoningEffort: "{config.executor.reasoningEffort}"
             serviceTier: "{config.executor.serviceTier}"

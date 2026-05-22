@@ -934,7 +934,7 @@ workflow:
           target: "{state_paths.state_log}"
           field: "executor"
           value:
-            type: "{config.executor.type}"
+            kind: "{config.executor.type}"
             model: "{config.executor.model}"
             reasoningEffort: "{config.executor.reasoningEffort}"
             serviceTier: "{config.executor.serviceTier}"

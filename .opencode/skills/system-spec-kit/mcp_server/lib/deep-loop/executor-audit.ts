@@ -7,6 +7,7 @@ import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from '
 import { basename, join } from 'node:path';
 
 import type { ExecutorConfig, ExecutorKind } from './executor-config.js';
+import { appendJsonlRecord as appendJsonlRecordSafe } from './jsonl-repair.js';
 
 export const CLI_DISPATCH_STACK_ENV = 'SPECKIT_CLI_DISPATCH_STACK' as const;
 
@@ -39,6 +40,10 @@ type ExecutorDispatchGuardContext = {
   ancestryCmdlines?: string[];
   statePaths?: string[];
 };
+
+function getExecutorKind(config: ExecutorConfig): ExecutorKind {
+  return config.kind ?? (config as ExecutorConfig & { type?: ExecutorKind }).type ?? 'native';
+}
 
 const EXECUTOR_BINARY_BY_KIND: Partial<Record<ExecutorKind, string>> = {
   'cli-codex': 'codex',
@@ -219,47 +224,48 @@ export function validateExecutorDispatchAllowed(
   config: ExecutorConfig,
   context: ExecutorDispatchGuardContext = {},
 ): ExecutorDispatchAllowedResult {
-  if (config.kind === 'native') {
+  const kind = getExecutorKind(config);
+  if (kind === 'native') {
     return { allowed: true };
   }
 
   const env = context.env ?? process.env;
   const stack = env[CLI_DISPATCH_STACK_ENV];
-  if (detectSameKindFromStack(stack, config.kind)) {
+  if (detectSameKindFromStack(stack, kind)) {
     return {
       allowed: false,
       layer: 'stack',
       reason: recursionReasonForLayer('stack'),
-      detail: `${config.kind} already appears in ${CLI_DISPATCH_STACK_ENV}`,
+      detail: `${kind} already appears in ${CLI_DISPATCH_STACK_ENV}`,
     };
   }
 
-  if (detectFromAncestry(config.kind, context.ancestryCmdlines)) {
+  if (detectFromAncestry(kind, context.ancestryCmdlines)) {
     return {
       allowed: false,
       layer: 'ancestry',
       reason: recursionReasonForLayer('ancestry'),
-      detail: `${config.kind} executor binary appears in process ancestry`,
+      detail: `${kind} executor binary appears in process ancestry`,
     };
   }
 
-  if (detectFromRuntimeEnv(config.kind, env)) {
-    const envName = EXECUTOR_SESSION_ENV_BY_KIND[config.kind] ?? 'runtime session env';
+  if (detectFromRuntimeEnv(kind, env)) {
+    const envName = EXECUTOR_SESSION_ENV_BY_KIND[kind] ?? 'runtime session env';
     return {
       allowed: false,
       layer: 'env',
       reason: recursionReasonForLayer('env'),
-      detail: `${envName} is set for ${config.kind}`,
+      detail: `${envName} is set for ${kind}`,
     };
   }
 
-  const statePaths = context.statePaths ?? getDefaultStatePaths(config.kind, env);
-  if (detectFromLockfile(config.kind, statePaths)) {
+  const statePaths = context.statePaths ?? getDefaultStatePaths(kind, env);
+  if (detectFromLockfile(kind, statePaths)) {
     return {
       allowed: false,
       layer: 'lockfile',
       reason: recursionReasonForLayer('lockfile'),
-      detail: `${config.kind} dispatch lockfile exists in runtime state path`,
+      detail: `${kind} dispatch lockfile exists in runtime state path`,
     };
   }
 
@@ -271,17 +277,18 @@ export function buildExecutorDispatchEnv(
   parentEnv: Record<string, string | undefined> = process.env,
 ): Record<string, string | undefined> {
   const nextEnv: Record<string, string | undefined> = { ...parentEnv };
-  if (config.kind === 'native') {
+  const kind = getExecutorKind(config);
+  if (kind === 'native') {
     return nextEnv;
   }
 
-  nextEnv[CLI_DISPATCH_STACK_ENV] = [...splitDispatchStack(parentEnv[CLI_DISPATCH_STACK_ENV]), config.kind].join(':');
+  nextEnv[CLI_DISPATCH_STACK_ENV] = [...splitDispatchStack(parentEnv[CLI_DISPATCH_STACK_ENV]), kind].join(':');
   return nextEnv;
 }
 
 export function buildExecutorAuditRecord(executor: ExecutorConfig): Record<string, unknown> {
   return {
-    kind: executor.kind,
+    kind: getExecutorKind(executor),
     model: executor.model,
     reasoningEffort: executor.reasoningEffort,
     serviceTier: executor.serviceTier,
@@ -318,12 +325,6 @@ function readJsonlFile(stateLogPath: string): {
 function rewriteJsonlFile(stateLogPath: string, lines: string[], hasTrailingNewline: boolean): void {
   const rewritten = lines.join('\n');
   writeFileSync(stateLogPath, hasTrailingNewline ? `${rewritten}\n` : rewritten, 'utf8');
-}
-
-function appendJsonlRecord(stateLogPath: string, record: Record<string, unknown>): void {
-  const { content, hasTrailingNewline } = readJsonlFile(stateLogPath);
-  const prefix = content.length === 0 || hasTrailingNewline ? '' : '\n';
-  writeFileSync(stateLogPath, `${content}${prefix}${JSON.stringify(record)}\n`, 'utf8');
 }
 
 function findLatestIterationRecordIndex(lines: string[], iteration: number): number {
@@ -367,7 +368,7 @@ function findLatestIterationEvent(lines: string[], iteration: number): Record<st
 }
 
 export function writeFirstRecordExecutor(stateLogPath: string, executor: ExecutorConfig, iteration: number): void {
-  if (executor.kind === 'native') {
+  if (getExecutorKind(executor) === 'native') {
     return;
   }
 
@@ -392,7 +393,7 @@ export function writeFirstRecordExecutor(stateLogPath: string, executor: Executo
     return;
   }
 
-  appendJsonlRecord(stateLogPath, {
+  appendJsonlRecordSafe(stateLogPath, {
     type: 'iteration_start',
     iteration,
     executor: buildExecutorAuditRecord(executor),
@@ -412,10 +413,10 @@ export function emitDispatchFailure(
     return;
   }
 
-  appendJsonlRecord(stateLogPath, {
+  appendJsonlRecordSafe(stateLogPath, {
     type: 'event',
     event: 'dispatch_failure',
-    ...(executor.kind === 'native' ? {} : { executor: buildExecutorAuditRecord(executor) }),
+    ...(getExecutorKind(executor) === 'native' ? {} : { executor: buildExecutorAuditRecord(executor) }),
     reason,
     iteration,
     ...(detail ? { detail } : {}),
@@ -630,7 +631,7 @@ export async function runAuditedExecutorCommandAsync(input: RunAuditedExecutorCo
 }
 
 export function appendExecutorAuditToLastRecord(stateLogPath: string, executor: ExecutorConfig): void {
-  if (executor.kind === 'native') {
+  if (getExecutorKind(executor) === 'native') {
     return;
   }
 

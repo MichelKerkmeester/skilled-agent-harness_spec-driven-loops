@@ -215,7 +215,7 @@ describe('post-dispatch-validate', () => {
     });
   });
 
-  it('returns jsonl_parse_error when the last JSONL line is malformed', () => {
+  it('repairs a malformed trailing JSONL line before validation', () => {
     withTempPaths(({ iterationFile, stateLogPath }) => {
       writeFileSync(iterationFile, '# Iteration 1\n', 'utf8');
       writeFileSync(stateLogPath, '{"type":"event"}\n', 'utf8');
@@ -232,8 +232,9 @@ describe('post-dispatch-validate', () => {
 
       expect(result.ok).toBe(false);
       if (!result.ok) {
-        expect(result.reason).toBe('jsonl_parse_error');
+        expect(result.reason).toBe('jsonl_not_appended');
       }
+      expect(readFileSync(stateLogPath, 'utf8')).toBe('{"type":"event"}\n');
     });
   });
 

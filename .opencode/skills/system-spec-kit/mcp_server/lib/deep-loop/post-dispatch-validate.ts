@@ -1,8 +1,9 @@
 // MODULE: Deep-Loop Post-Dispatch Validator
 
-import { appendFileSync, existsSync, readFileSync, statSync } from 'node:fs';
+import { existsSync, readFileSync, statSync } from 'node:fs';
 
 import type { ExecutorKind } from './executor-config.js';
+import { appendJsonlRecord, repairJsonlTail } from './jsonl-repair.js';
 
 export type VerificationLanguage = 'python' | 'typescript' | 'javascript' | 'rust' | 'go';
 
@@ -480,6 +481,8 @@ export function runOptionalVerificationPass(
 export function validateIterationOutputs(input: PostDispatchValidateInput): PostDispatchValidateResult {
   const warnings: PostDispatchAdvisory[] = [];
 
+  repairJsonlTail(input.stateLogPath);
+
   if (statSync(input.stateLogPath).size <= input.previousStateLogSize) {
     return {
       ok: false,
@@ -655,15 +658,14 @@ export function validateIterationOutputs(input: PostDispatchValidateInput): Post
 
     const verificationResult = runOptionalVerificationPass(input.iterationFile, input.recipeConfig);
     if (!verificationResult.ok) {
-      appendFileSync(
+      appendJsonlRecord(
         input.stateLogPath,
-        `${buildVerificationDegradedEvent({
+        JSON.parse(buildVerificationDegradedEvent({
           confidence: verificationResult.confidence,
           threshold: verificationResult.threshold,
           language: verificationResult.language,
           details: verificationResult.details,
-        })}\n`,
-        'utf8',
+        })),
       );
       return {
         ok: false,

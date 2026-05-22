@@ -53,9 +53,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read source evidence from packets 020 and 024.
-- [ ] T002 Confirm affected surfaces and same-class producers.
-- [ ] T003 Define verification matrix and no-kill safety boundaries.
+- [x] T001 Read parent arc spec, phase spec, remediation-map item 5, source research lock/state sections, predecessor phase summary, deep-loop sources, and existing deep-loop test patterns. (`.opencode/specs/.../009-memory-leak-remediation-arc/`, `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/`, `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/`)
+- [x] T002 Replace generic `plan.md` with the concrete lock format, acquire/refresh/release contract, JSONL repair contract, atomic-state contract, affected writer inventory, and verification matrix. (`.opencode/specs/.../004-deep-loop-locks-state-and-recovery/plan.md`)
+- [x] T003 Replace this task list with file-scoped implementation and verification tasks, then strict-validate the phase folder. (`.opencode/specs/.../004-deep-loop-locks-state-and-recovery/tasks.md`)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -63,9 +63,11 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Implement scoped harness, docs, or runtime changes for this phase.
-- [ ] T005 Add tests for timeout, parent-death, stale state, and expected-daemon boundaries when applicable.
-- [ ] T006 Update phase docs with evidence and handoff notes.
+- [x] T004 Add `loop-lock.ts` with `LoopLockData`, `LoopLockHeldError`, `processAlive(pid)`, `isStaleLoopLock(data, now)`, `acquireLoopLock(lockPath, data)`, `refreshLoopLock(lockPath, ownerPid)`, and `releaseLoopLock(lockPath, ownerPid)`. (`.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/loop-lock.ts`)
+- [x] T005 Add `jsonl-repair.ts` with `repairJsonlTail(path)` and `appendJsonlRecord(path, record)`, preserving valid records and stripping only corrupt trailing bytes. (`.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/jsonl-repair.ts`)
+- [x] T006 Add `atomic-state.ts` with `writeStateAtomic(path, data)` using temp write, fsync, rename, and temp cleanup on failure. (`.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/atomic-state.ts`)
+- [x] T007 Wire existing TypeScript JSONL writers/readers to the shared helpers: append paths in `executor-audit.ts`, append path and pre-read repair in `post-dispatch-validate.ts`; keep existing exports intact. (`.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-audit.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`)
+- [x] T008 Search state/audit producers for `executor` metadata written as `type:` instead of `kind:` and normalize in-scope TypeScript/YAML state writers or document that no in-scope rewrite remains. (`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`, `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -73,9 +75,18 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T007 Run stack-specific tests and strict spec validation.
-- [ ] T008 Run process/memory telemetry checks when applicable.
-- [ ] T009 Update parent phase map status and next safe action.
+- [x] T009 Add lock tests covering acquire, refresh, release, stale TTL, dead-PID reclaim, live-holder refusal, and sequential concurrent-run behavior. (`.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/loop-lock.vitest.ts`)
+- [x] T010 Add JSONL tests covering corrupt trailing line, kill-during-append partial line recovery, empty file, clean file no-op, and concurrent append record counts. (`.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/jsonl-repair.vitest.ts`)
+- [x] T011 Add atomic-state tests covering JSON write, replacement preserving parseability, and cleanup when rename fails or target directory is invalid. (`.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/atomic-state.vitest.ts`)
+- [x] T012 Run targeted new-module Vitest command and fix failures before proceeding. (`cd .opencode/skills/system-spec-kit && node mcp_server/node_modules/vitest/vitest.mjs run mcp_server/tests/deep-loop/loop-lock.vitest.ts mcp_server/tests/deep-loop/jsonl-repair.vitest.ts mcp_server/tests/deep-loop/atomic-state.vitest.ts --config mcp_server/vitest.config.ts`)
+- [x] T013 Run full deep-loop regression and confirm the existing 114-test suite plus new fixtures pass. (`cd .opencode/skills/system-spec-kit && node mcp_server/node_modules/vitest/vitest.mjs run mcp_server/tests/deep-loop/ --config mcp_server/vitest.config.ts`)
+
+### Static Verification And Handoff
+
+- [x] T014 Run MCP server typecheck and build. (`cd .opencode/skills/system-spec-kit && npm run typecheck --workspace=@spec-kit/mcp-server`, `npm run build --workspace=@spec-kit/mcp-server`)
+- [x] T015 Run OpenCode alignment drift check for the changed system-spec-kit scope. (`python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit`)
+- [x] T016 Fill `implementation-summary.md` with completed metadata, what-built, how-delivered, decisions, verification evidence, limitations, continuity `completion_pct: 100`, and `## Commit Handoff`. (`.opencode/specs/.../004-deep-loop-locks-state-and-recovery/implementation-summary.md`)
+- [x] T017 Strict-validate the phase folder and parent arc. (`bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <phase-folder> --strict`, `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <parent-arc> --strict`)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -83,9 +94,11 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All non-deferred P0/P1 tasks are complete.
-- [ ] No destructive cleanup path lacks exact ownership proof.
-- [ ] Validation evidence is recorded in implementation-summary.md.
+- [x] REQ-001 evidence recorded: interrupted or corrupt trailing JSONL state can be repaired without duplicating iteration records.
+- [x] REQ-002 evidence recorded: concurrent same-packet runs are blocked while a live holder owns `.deep-loop.lock`, and stale holders are reclaimable.
+- [x] SC-001 fixtures pass: kill-during-append, corrupt trailing line, dead-PID lock, concurrent run.
+- [x] All commands in T012 through T017 pass with evidence in `implementation-summary.md`.
+- [x] No git mutation is attempted; parent agent receives explicit absolute file list in `## Commit Handoff`.
 <!-- /ANCHOR:completion -->
 
 ---
