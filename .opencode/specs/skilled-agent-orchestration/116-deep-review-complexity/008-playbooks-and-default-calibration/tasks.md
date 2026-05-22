@@ -1,8 +1,10 @@
 ---
 title: "Tasks: 116/008 — Playbooks and Default Calibration"
-description: "Tasks for seeded manual playbooks and evidence-backed default calibration."
+description: "Level 2 task ledger for Phase H manual playbooks, SKILL.md version bump, metadata refresh, and verification."
 trigger_phrases:
-  - "116 playbook calibration tasks"
+  - "deep-review playbook"
+  - "review-depth manual scenario"
+  - "SKILL version bump"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
@@ -10,68 +12,102 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/116-deep-review-complexity/008-playbooks-and-default-calibration"
     last_updated_at: "2026-05-22T00:00:00Z"
     last_updated_by: "gpt-5.5"
-    recent_action: "Scaffolded phase 008 tasks."
-    next_safe_action: "Start playbook rollout after phase 007."
+    recent_action: "Populated Level 2 task ledger."
+    next_safe_action: "Complete verification and handoff."
     blockers: []
-    key_files: ["plan.md"]
+    key_files:
+      - "plan.md"
+      - "checklist.md"
+      - "implementation-summary.md"
     session_dedup:
-      fingerprint: "sha256:1160082000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:1160088300000000000000000000000000000000000000000000000000000000"
       session_id: "116-008-tasks"
-      parent_session_id: "116-008-playbooks-default-calibration"
-    completion_pct: 0
+      parent_session_id: "116-008-playbooks-and-default-calibration"
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "No default values are changed in this phase."
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-<!-- SPECKIT_LEVEL: 1 -->
-
 # Tasks: 116/008 — Playbooks and Default Calibration
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core + level2-verify | v2.2 -->
 
 ---
 
 <!-- ANCHOR:notation -->
 ## Task Notation
-- `T###` task ID; `[D:T###]` dependency marker.
+
+| Prefix | Meaning |
+|--------|---------|
+| `[ ]` | Pending |
+| `[x]` | Completed |
+| `[P]` | Parallelizable |
+| `[B]` | Blocked |
+
+**Task Format**: `T### [P?] Description (file path) [effort]`
 <!-- /ANCHOR:notation -->
 
 ---
 
 <!-- ANCHOR:phase-1 -->
-## Phase 1: Setup
-- [ ] T001 Read manual playbook conventions.
-- [ ] T002 Collect evidence from phases 002-007.
+## PHASE 1: SETUP
+
+- [x] T001 Read Phase 116 parent spec (`../spec.md`) [5m]
+- [x] T002 Read research R8 P2 default-calibration guidance (`../001-research-synthesis/research/research.md`) [10m]
+- [x] T003 [P] Read Phase 002-007 implementation summaries [20m]
+- [x] T004 [P] Inspect Level 2 templates (`templates/examples/level_2/`) [10m]
+- [x] T005 Replace Phase 008 scaffold with Level 2 docs (`spec.md`, `plan.md`, `tasks.md`) [20m]
+- [x] T006 Create Level 2 checklist (`checklist.md`) [15m]
 <!-- /ANCHOR:phase-1 -->
 
 ---
 
 <!-- ANCHOR:phase-2 -->
-## Phase 2: Implementation
-- [ ] T010 Add seeded manual scenarios.
-- [ ] T011 Update deep-review README/reference docs.
-- [ ] T012 Evaluate defaults and change only if evidence supports it.
+## PHASE 2: IMPLEMENTATION
+
+- [x] T010 Create root playbook README (`manual_testing_playbook/README.md`) [15m]
+- [x] T011 Create validator warn rollout scenario (`scenario-01-validator-warn-rollout.md`) [15m]
+- [x] T012 Create strict v2 validator scenario (`scenario-02-validator-strict-v2.md`) [15m]
+- [x] T013 Create reducer search debt scenario (`scenario-03-reducer-search-debt.md`) [15m]
+- [x] T014 Create `candidateCoverageGate` STOP scenario (`scenario-04-stop-gate-candidate.md`) [15m]
+- [x] T015 Create `graphlessFallbackGate` STOP scenario (`scenario-05-stop-gate-graphless-fallback.md`) [15m]
+- [x] T016 Create graph vocabulary scenario (`scenario-06-graph-vocabulary.md`) [15m]
 <!-- /ANCHOR:phase-2 -->
 
 ---
 
 <!-- ANCHOR:phase-3 -->
-## Phase 3: Verification
-- [ ] T020 Run docs/playbook checks.
-- [ ] T021 Run targeted defaults tests if defaults change.
-- [ ] T022 Run `validate.sh --strict` on this phase.
+## PHASE 3: VERIFICATION
+
+- [x] T020 Update only the `version:` field (`.opencode/skills/deep-review/SKILL.md`) [5m]
+- [x] T021 Verify `SKILL.md` diff shows only the version-line change [5m]
+- [x] T030 Refresh metadata (`description.json`, `graph-metadata.json`) [5m]
+- [x] T031 Run strict spec validation [5m]
+- [x] T032 Run playbook inventory and grep checks [5m]
+- [x] T033 Run requested full `tests/deep-loop/` Vitest command [10m]
+- [x] T034 Finalize `implementation-summary.md` with Known Limitations and Commit Handoff [15m]
 <!-- /ANCHOR:phase-3 -->
 
 ---
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
-- [ ] Playbooks prove seeded bug-class scenarios.
-- [ ] Defaults are evidence-backed or left unchanged.
+
+- [x] All tasks marked `[x]` or explicitly documented.
+- [x] No `[B]` blocked tasks remaining.
+- [x] Six scenario files follow the requested structure.
+- [x] Defaults are evidence-backed or left unchanged.
+- [x] Checklist.md fully verified.
 <!-- /ANCHOR:completion -->
 
 ---
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
-- Parent: `../spec.md`
-- Prior phase: `../007-ledger-led-graph-vocabulary/spec.md`
+
+- **Specification**: See `spec.md`
+- **Plan**: See `plan.md`
+- **Checklist**: See `checklist.md`
+- **Implementation Summary**: See `implementation-summary.md`
 <!-- /ANCHOR:cross-refs -->

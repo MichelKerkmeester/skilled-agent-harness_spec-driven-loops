@@ -1,12 +1,31 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "skilled-agent-orchestration/116-deep-review-complexity/008-playbooks-and-default-calibration",
-  "description": "Seeded manual playbooks and evidence-backed deep-review default calibration.",
-  "keywords": ["116", "008", "playbooks", "defaults", "calibration", "deep-review"],
-  "lastUpdated": "2026-05-22T00:00:00.000Z",
+  "description": "Manual testing playbook scenarios for the v2 review-depth contract; deep-review SKILL.md version bump; iteration-default calibration deferred per rese",
+  "keywords": [
+    "manual",
+    "testing",
+    "playbook",
+    "scenarios",
+    "review-depth",
+    "contract",
+    "deep-review",
+    "skill",
+    "version",
+    "bump",
+    "iteration-default",
+    "calibration",
+    "deferred",
+    "per",
+    "research"
+  ],
+  "lastUpdated": "2026-05-22T13:09:03.296Z",
   "specId": "008",
   "folderSlug": "playbooks-and-default-calibration",
-  "parentChain": ["skilled-agent-orchestration", "116-deep-review-complexity"],
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "116-deep-review-complexity"
+  ],
   "memorySequence": 0,
   "memoryNameHistory": []
 }
