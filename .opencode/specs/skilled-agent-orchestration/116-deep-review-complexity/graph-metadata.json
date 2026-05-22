@@ -54,14 +54,14 @@
     ],
     "causal_summary": "The completed research found that deep-review needs auditable candidate-generation and search-proof state before severity adjudication. This parent coordinates staged hardening from seeded tests through schema, validation, persistence, convergence, graph projection, and rollout playbooks.",
     "created_at": "2026-05-22T00:00:00Z",
-    "last_save_at": "2026-05-22T11:23:28.001Z",
+    "last_save_at": "2026-05-22T11:41:43.972Z",
     "save_lineage": "phase_parent_initialization",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "001-research-synthesis/research/research.md"
     ],
-    "last_active_child_id": "skilled-agent-orchestration/116-deep-review-complexity/002-seeded-fixture-harness",
-    "last_active_at": "2026-05-22T11:23:28.001Z"
+    "last_active_child_id": "skilled-agent-orchestration/116-deep-review-complexity/003-review-depth-schema-and-prompt-contract",
+    "last_active_at": "2026-05-22T11:41:43.972Z"
   }
 }

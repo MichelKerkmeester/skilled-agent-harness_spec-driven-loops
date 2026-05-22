@@ -1,12 +1,31 @@
 {
-  "level": "1",
+  "level": "3",
   "specFolder": "skilled-agent-orchestration/116-deep-review-complexity/003-review-depth-schema-and-prompt-contract",
-  "description": "Review-depth schema and prompt contract for searchLedger, targetSelection, and searchCoverage.",
-  "keywords": ["116", "003", "review-depth", "schema", "prompt", "searchLedger"],
-  "lastUpdated": "2026-05-22T00:00:00.000Z",
+  "description": "Defines reviewDepthSchemaVersion v2 schema and prompt contract; applicability-driven enforcement; trivial-scope exemption.",
+  "keywords": [
+    "116",
+    "review-depth",
+    "schema",
+    "prompt-contract",
+    "searchLedger",
+    "v2"
+  ],
+  "trigger_phrases": [
+    "review depth schema",
+    "review depth prompt contract",
+    "searchLedger contract"
+  ],
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "lastUpdated": "2026-05-22T11:41:42.866Z",
   "specId": "003",
   "folderSlug": "review-depth-schema-and-prompt-contract",
-  "parentChain": ["skilled-agent-orchestration", "116-deep-review-complexity"],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "116-deep-review-complexity"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "22-05-26_12-41__added-v2-state-format-md-contract-for.md"
+  ]
 }

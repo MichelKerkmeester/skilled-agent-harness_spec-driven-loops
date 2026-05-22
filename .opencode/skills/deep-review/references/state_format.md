@@ -451,6 +451,123 @@ When `activeP2 > 0` on PASS, set `hasAdvisories: true`.
 - `findingsSummary` and `findingsNew` must each contain `P0`, `P1`, `P2` keys
 - `findingDetails` must be an array; each active item must include `findingClass`, `scopeProof`, and `affectedSurfaceHints`
 
+## Review Depth Schema (v2)
+
+`reviewDepthSchemaVersion: 2` is the discriminator for the v2 search-depth contract. Absent values, `null`, or any value other than `2` mean v1 legacy: readers keep today's behavior, and validator hard enforcement applies only when the discriminator is present.
+
+Frozen v2 contract:
+
+Top-level review iteration fields when `reviewDepthSchemaVersion: 2`:
+- `reviewDepthSchemaVersion: 2` — discriminator
+- `reviewDepthApplicability` — `{ scopeClass: 'trivial'|'standard'|'complex', enforcement: 'strict'|'warn'|'skip', reason: string, evidenceRefs: string[] }`
+- `targetSelection` — `{ selectedTargets: string[], selectionReason: string, discoveryMethods: string[], omittedHighRiskTargets: string[], graphStatus: 'available'|'unavailable'|'partial', semanticSearchStatus: 'available'|'unavailable'|'partial', evidenceRefs: string[] }`
+- `searchCoverage` — `{ requiredBugClasses: string[], covered: string[], ruledOut: string[], deferred: string[], blocked: string[], graphCoverageMode: 'graph'|'graphless_fallback'|'unavailable_blocked' }`
+- `searchLedger[]` — array of ledger rows
+
+Ledger row fields:
+- Required: `id, dimension, targetRefs, bugClass, disposition, rationale`
+- `hypothesis` (string) OR `invariant` (string) — at least one
+- `searchActions[]` — `{ method: string, queryOrPath: string, result: string, evidenceRefs: string[] }`
+- Disposition-specific link (exactly one):
+  - `finding` → `linkedFindingId` (must reference an id present in `findingDetails[]`)
+  - `ruled_out` → `ruledOutReason`
+  - `deferred` → `deferredReason`
+  - `blocked` → `blockedReason`
+  - `not_applicable` → `notApplicableReason`
+
+Trivial-scope exemption: when `reviewDepthApplicability.scopeClass === 'trivial'` AND `reviewDepthApplicability.enforcement === 'skip'`, ledger may be `[]` with cited scope proof in `reviewDepthApplicability.evidenceRefs`.
+
+### Applicability
+
+| Field | Type | Required | Semantics |
+|-------|------|----------|-----------|
+| `scopeClass` | `'trivial' \| 'standard' \| 'complex'` | Yes | Classifies how much depth proof the review target warrants. |
+| `enforcement` | `'strict' \| 'warn' \| 'skip'` | Yes | `strict` means v2 validators fail shallow records; `warn` emits advisory rollout feedback; `skip` is valid only for trivial scope with proof. |
+| `reason` | string | Yes | Human-readable justification for the chosen scope/enforcement pair. |
+| `evidenceRefs` | string[] | Yes | File/path refs proving scope classification; required even for skipped trivial ledgers. |
+
+### Target Selection
+
+| Field | Type | Required | Semantics |
+|-------|------|----------|-----------|
+| `selectedTargets` | string[] | Yes | Files, folders, specs, or surfaces actually searched this iteration. |
+| `selectionReason` | string | Yes | Why these targets were highest-value for the dimension or bug class. |
+| `discoveryMethods` | string[] | Yes | Methods such as direct read, exact search, semantic search, graph query, producer trace, consumer trace, or negative-test search. |
+| `omittedHighRiskTargets` | string[] | Yes | High-risk targets not searched; use `[]` when none were identified. |
+| `graphStatus` | `'available' \| 'unavailable' \| 'partial'` | Yes | Code/coverage graph availability for this iteration's target selection. |
+| `semanticSearchStatus` | `'available' \| 'unavailable' \| 'partial'` | Yes | Semantic/code search availability for this iteration. |
+| `evidenceRefs` | string[] | Yes | Evidence for target selection and omitted-target claims. |
+
+### Search Coverage
+
+| Field | Type | Required | Semantics |
+|-------|------|----------|-----------|
+| `requiredBugClasses` | string[] | Yes | Bug classes or invariant families that should be searched for this scope. |
+| `covered` | string[] | Yes | Required classes searched with conclusive finding or clean proof. |
+| `ruledOut` | string[] | Yes | Required classes searched and explicitly ruled out. |
+| `deferred` | string[] | Yes | Required classes postponed with a reason in ledger rows. |
+| `blocked` | string[] | Yes | Required classes blocked by missing access, graph/search outage, ambiguity, or scope conflict. |
+| `graphCoverageMode` | `'graph' \| 'graphless_fallback' \| 'unavailable_blocked'` | Yes | `graph` uses graph evidence, `graphless_fallback` uses direct text/JSON proof, and `unavailable_blocked` records insufficient fallback proof. |
+
+### Search Ledger
+
+| Field | Type | Required | Semantics |
+|-------|------|----------|-----------|
+| `id` | string | Yes | Stable ledger-row id unique within the iteration record. |
+| `dimension` | string | Yes | Review dimension addressed by this row. |
+| `targetRefs` | string[] | Yes | Targets searched; should overlap `targetSelection.selectedTargets`. |
+| `bugClass` | string | Yes | Candidate bug class or invariant family. |
+| `hypothesis` / `invariant` | string | Conditional | At least one must be present and non-empty. |
+| `searchActions` | array | Yes | Each action has `method`, `queryOrPath`, `result`, and `evidenceRefs`. |
+| `disposition` | string | Yes | One of `finding`, `ruled_out`, `deferred`, `blocked`, `not_applicable`. |
+| `rationale` | string | Yes | Why this disposition follows from the evidence. |
+
+| Disposition | Required link | Rule |
+|-------------|---------------|------|
+| `finding` | `linkedFindingId` | Must reference an `id` present in `findingDetails[]`. |
+| `ruled_out` | `ruledOutReason` | Must explain the negative evidence. |
+| `deferred` | `deferredReason` | Must explain why later search is acceptable. |
+| `blocked` | `blockedReason` | Must name the blocker and expected recovery path. |
+| `not_applicable` | `notApplicableReason` | Must explain why the bug class does not apply to this target. |
+
+Representative v2 record:
+
+```json
+{
+  "type": "iteration",
+  "mode": "review",
+  "iteration": 3,
+  "run": 3,
+  "status": "complete",
+  "dimensions": ["correctness"],
+  "filesReviewed": ["src/review-target.ts"],
+  "findingsSummary": { "P0": 0, "P1": 0, "P2": 0 },
+  "findingsNew": { "P0": 0, "P1": 0, "P2": 0 },
+  "findingDetails": [],
+  "newFindingsRatio": 0,
+  "sessionId": "rvw-example",
+  "generation": 1,
+  "lineageMode": "new",
+  "timestamp": "2026-05-22T00:00:00Z",
+  "durationMs": 120000,
+  "reviewDepthSchemaVersion": 2,
+  "reviewDepthApplicability": { "scopeClass": "standard", "enforcement": "strict", "reason": "non-trivial state transition target", "evidenceRefs": ["src/review-target.ts:1"] },
+  "targetSelection": { "selectedTargets": ["src/review-target.ts"], "selectionReason": "state mutation path under review", "discoveryMethods": ["direct_read", "exact_search"], "omittedHighRiskTargets": [], "graphStatus": "unavailable", "semanticSearchStatus": "partial", "evidenceRefs": ["src/review-target.ts:1"] },
+  "searchCoverage": { "requiredBugClasses": ["state_transition"], "covered": [], "ruledOut": ["state_transition"], "deferred": [], "blocked": [], "graphCoverageMode": "graphless_fallback" },
+  "searchLedger": [{ "id": "SL-001", "dimension": "correctness", "targetRefs": ["src/review-target.ts"], "bugClass": "state_transition", "hypothesis": "state transition can skip validation", "searchActions": [{ "method": "direct_read", "queryOrPath": "src/review-target.ts", "result": "validation guard present on all branches", "evidenceRefs": ["src/review-target.ts:42"] }], "disposition": "ruled_out", "rationale": "all mutation branches call the validator", "ruledOutReason": "guard verified by direct read" }]
+}
+```
+
+### Compatibility and Downstream Obligations
+
+| Record Shape | Reader Behavior | Validator Behavior |
+|--------------|-----------------|--------------------|
+| v1 legacy: discriminator absent or not `2` | Parse as today's iteration record. | Phase D may warn, but must not hard-fail only because v2 fields are absent. |
+| v2 trivial+skip | Parse v2 applicability; `searchLedger: []` allowed with cited scope proof. | Validate `reviewDepthApplicability.evidenceRefs`; skip ledger-depth requirements. |
+| v2 standard/complex | Parse v2 fields in addition to v1 required fields. | Enforce v2 shape, ledger linkage, coverage reconciliation, and evidence refs. |
+
+Phase E reducer/dashboard/report work must preserve and expose `candidateCoverage`, `searchDebt`, `ruledOutCandidates`, `cleanSearchProof`, and `searchCoverage`. Until Phase E ships, these are contract obligations only; `deep-review-findings-registry.json`, `deep-review-dashboard.md`, and `review-report.md` are not expected to persist them.
+
 ---
 
 ## 4. STRATEGY FILE (deep-review-strategy.md)
