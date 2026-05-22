@@ -10,7 +10,7 @@
     "fixture-drift",
     "scaffold-only"
   ],
-  "lastUpdated": "2026-05-21T13:50:00Z",
+  "lastUpdated": "2026-05-22T07:42:13.841Z",
   "specId": "008",
   "folderSlug": "008-spec-memory-vitest-stabilization",
   "parentChain": [
@@ -19,6 +19,8 @@
     "016-embedder-testing-and-architecture",
     "005-cross-cutting-quality"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "22-05-26_08-42__executed-the-008-packet-s-deferred-plan.md"
+  ]
 }

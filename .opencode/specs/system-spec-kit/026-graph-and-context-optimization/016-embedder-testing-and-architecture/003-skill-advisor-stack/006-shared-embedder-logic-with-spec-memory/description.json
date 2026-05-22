@@ -9,7 +9,7 @@
     "logic",
     "spec-memory"
   ],
-  "lastUpdated": "2026-05-21T10:22:38.557Z",
+  "lastUpdated": "2026-05-21T18:08:46.928Z",
   "specId": "006",
   "folderSlug": "shared-embedder-logic-with-spec-memory",
   "parentChain": [
@@ -18,6 +18,8 @@
     "016-embedder-testing-and-architecture",
     "003-skill-advisor-stack"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "21-05-26_19-08__shipped-phase-003-006-of-the-016-embedder-testing.md"
+  ]
 }

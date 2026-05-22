@@ -1,0 +1,20 @@
+{
+  "openQuestions": [
+    "Which system-spec-kit paths spawn long-lived child processes without cleanup?",
+    "Which deep-flow workflows can produce nested CLI process storms?",
+    "Where are cleanup and self-invocation guards missing?",
+    "Which helpers are expected daemons versus leftovers?",
+    "What verification proves each fix?"
+  ],
+  "resolvedQuestions": [],
+  "keyFindings": [],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 0,
+    "openQuestions": 5,
+    "resolvedQuestions": 0,
+    "keyFindings": 0,
+    "convergenceScore": 0,
+    "coverageBySources": {}
+  }
+}

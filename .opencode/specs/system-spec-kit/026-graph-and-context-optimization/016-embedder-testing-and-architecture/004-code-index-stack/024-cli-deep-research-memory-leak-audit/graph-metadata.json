@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/024-cli-deep-research-memory-leak-audit",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/024-cli-deep-research-memory-leak-audit",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/010-daemon-resilience",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/019-deep-review-arc-013-to-018"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "024 CLI memory leak audit",
+      "deep research process spam",
+      "mcp-coco-index memory leak",
+      "system-code-graph memory leak",
+      "CLI orchestration RAM overload"
+    ],
+    "key_topics": [
+      "cli",
+      "deep-research",
+      "memory-leak",
+      "process-cleanup",
+      "mcp-coco-index",
+      "system-code-graph",
+      "apple-silicon",
+      "swap",
+      "wired-memory"
+    ],
+    "importance_tier": "critical",
+    "status": "synthesized",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "resource-map.md",
+      "research/research.md",
+      "research/resource-map.md",
+      "description.json",
+      ".opencode/skills/mcp-coco-index/",
+      ".opencode/skills/system-code-graph/"
+    ],
+    "entities": [
+      {
+        "name": "mcp-coco-index",
+        "kind": "skill",
+        "path": ".opencode/skills/mcp-coco-index/",
+        "source": "manual"
+      },
+      {
+        "name": "system-code-graph",
+        "kind": "skill",
+        "path": ".opencode/skills/system-code-graph/",
+        "source": "manual"
+      },
+      {
+        "name": "cli-claude-code",
+        "kind": "skill",
+        "path": ".opencode/skills/cli-claude-code/",
+        "source": "manual"
+      },
+      {
+        "name": "cli-codex",
+        "kind": "skill",
+        "path": ".opencode/skills/cli-codex/",
+        "source": "manual"
+      },
+      {
+        "name": "Apple Silicon memory pressure",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Completed a ten-iteration deep-research audit. Final synthesis prioritizes daemon correctness and process lifecycle cleanup over resident-memory optimization, with ordered follow-up remediation packets.",
+    "created_at": "2026-05-22T05:55:00Z",
+    "last_save_at": "2026-05-22T07:20:00Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "resource-map.md",
+      "research/research.md",
+      "research/resource-map.md"
+    ]
+  }
+}

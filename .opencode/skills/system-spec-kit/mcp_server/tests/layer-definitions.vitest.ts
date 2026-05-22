@@ -32,6 +32,9 @@ describe('Layer Definitions Tests', () => {
     advisor_status: { id: 'L8', name: 'Skill Advisor' },
     advisor_validate: { id: 'L8', name: 'Skill Advisor' },
     code_graph_apply: { id: 'L8', name: 'Code Graph' },
+    embedder_list: { id: 'L7', name: 'Maintenance' },
+    embedder_set: { id: 'L7', name: 'Maintenance' },
+    embedder_status: { id: 'L7', name: 'Maintenance' },
   };
 
   // 4.1 LAYER_DEFINITIONS CONSTANT
@@ -144,7 +147,6 @@ describe('Layer Definitions Tests', () => {
         memory_drift_why: 'L6',
         memory_causal_link: 'L6',
         memory_causal_stats: 'L6',
-        memory_causal_unlink: 'L6',
         task_preflight: 'L6',
         task_postflight: 'L6',
         memory_index_scan: 'L7',

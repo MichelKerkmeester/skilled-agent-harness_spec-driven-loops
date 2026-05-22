@@ -1,0 +1,1562 @@
+{
+  "generated_at": "2026-05-21T14:36:30.846Z",
+  "subset": "valid+replaced",
+  "summary": {
+    "total": 34,
+    "lane_hit_rates": {
+      "fts5": {
+        "top_20": 0,
+        "top_50": 0,
+        "top_100": 0
+      },
+      "vector": {
+        "top_20": 0,
+        "top_50": 0,
+        "top_100": 0
+      },
+      "fused": {
+        "top_20": 0,
+        "top_50": 0,
+        "top_100": 0
+      },
+      "final_pool": {
+        "top_20": 0,
+        "top_50": 0,
+        "top_100": 0
+      }
+    },
+    "pre_rerank_coverage_final_pool": 0
+  },
+  "rows": [
+    {
+      "probe_id": "fixture-001",
+      "category": "paraphrase",
+      "class": "valid",
+      "original_gold_memory_id": 2000,
+      "resolved_memory_id": 2000,
+      "candidate_counts": {
+        "fts5": 0,
+        "vector": 0,
+        "fused": 0,
+        "final_pool": 0
+      },
+      "coverage": {
+        "fts5": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "vector": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "fused": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "final_pool": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        }
+      },
+      "top_ids": {
+        "fts5": [],
+        "vector": [],
+        "fused": [],
+        "final_pool": []
+      }
+    },
+    {
+      "probe_id": "fixture-002",
+      "category": "paraphrase",
+      "class": "valid",
+      "original_gold_memory_id": 1620,
+      "resolved_memory_id": 1620,
+      "candidate_counts": {
+        "fts5": 0,
+        "vector": 0,
+        "fused": 0,
+        "final_pool": 0
+      },
+      "coverage": {
+        "fts5": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "vector": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "fused": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "final_pool": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        }
+      },
+      "top_ids": {
+        "fts5": [],
+        "vector": [],
+        "fused": [],
+        "final_pool": []
+      }
+    },
+    {
+      "probe_id": "fixture-003",
+      "category": "paraphrase",
+      "class": "valid",
+      "original_gold_memory_id": 954,
+      "resolved_memory_id": 954,
+      "candidate_counts": {
+        "fts5": 0,
+        "vector": 0,
+        "fused": 0,
+        "final_pool": 0
+      },
+      "coverage": {
+        "fts5": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "vector": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "fused": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "final_pool": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        }
+      },
+      "top_ids": {
+        "fts5": [],
+        "vector": [],
+        "fused": [],
+        "final_pool": []
+      }
+    },
+    {
+      "probe_id": "fixture-006",
+      "category": "paraphrase",
+      "class": "valid",
+      "original_gold_memory_id": 1046,
+      "resolved_memory_id": 1046,
+      "candidate_counts": {
+        "fts5": 0,
+        "vector": 0,
+        "fused": 0,
+        "final_pool": 0
+      },
+      "coverage": {
+        "fts5": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "vector": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "fused": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "final_pool": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        }
+      },
+      "top_ids": {
+        "fts5": [],
+        "vector": [],
+        "fused": [],
+        "final_pool": []
+      }
+    },
+    {
+      "probe_id": "fixture-007",
+      "category": "paraphrase",
+      "class": "valid",
+      "original_gold_memory_id": 729,
+      "resolved_memory_id": 729,
+      "candidate_counts": {
+        "fts5": 0,
+        "vector": 0,
+        "fused": 0,
+        "final_pool": 0
+      },
+      "coverage": {
+        "fts5": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "vector": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "fused": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "final_pool": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        }
+      },
+      "top_ids": {
+        "fts5": [],
+        "vector": [],
+        "fused": [],
+        "final_pool": []
+      }
+    },
+    {
+      "probe_id": "fixture-009",
+      "category": "paraphrase",
+      "class": "valid",
+      "original_gold_memory_id": 908,
+      "resolved_memory_id": 908,
+      "candidate_counts": {
+        "fts5": 0,
+        "vector": 0,
+        "fused": 0,
+        "final_pool": 0
+      },
+      "coverage": {
+        "fts5": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "vector": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "fused": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "final_pool": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        }
+      },
+      "top_ids": {
+        "fts5": [],
+        "vector": [],
+        "fused": [],
+        "final_pool": []
+      }
+    },
+    {
+      "probe_id": "fixture-010",
+      "category": "paraphrase",
+      "class": "valid",
+      "original_gold_memory_id": 1096,
+      "resolved_memory_id": 1096,
+      "candidate_counts": {
+        "fts5": 0,
+        "vector": 0,
+        "fused": 0,
+        "final_pool": 0
+      },
+      "coverage": {
+        "fts5": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "vector": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "fused": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "final_pool": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        }
+      },
+      "top_ids": {
+        "fts5": [],
+        "vector": [],
+        "fused": [],
+        "final_pool": []
+      }
+    },
+    {
+      "probe_id": "fixture-011",
+      "category": "terminology",
+      "class": "valid",
+      "original_gold_memory_id": 4849,
+      "resolved_memory_id": 4849,
+      "candidate_counts": {
+        "fts5": 0,
+        "vector": 0,
+        "fused": 0,
+        "final_pool": 0
+      },
+      "coverage": {
+        "fts5": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "vector": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "fused": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "final_pool": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        }
+      },
+      "top_ids": {
+        "fts5": [],
+        "vector": [],
+        "fused": [],
+        "final_pool": []
+      }
+    },
+    {
+      "probe_id": "fixture-012",
+      "category": "paraphrase",
+      "class": "valid",
+      "original_gold_memory_id": 4846,
+      "resolved_memory_id": 4846,
+      "candidate_counts": {
+        "fts5": 0,
+        "vector": 0,
+        "fused": 0,
+        "final_pool": 0
+      },
+      "coverage": {
+        "fts5": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "vector": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "fused": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "final_pool": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        }
+      },
+      "top_ids": {
+        "fts5": [],
+        "vector": [],
+        "fused": [],
+        "final_pool": []
+      }
+    },
+    {
+      "probe_id": "fixture-018",
+      "category": "terminology",
+      "class": "valid",
+      "original_gold_memory_id": 8406,
+      "resolved_memory_id": 8406,
+      "candidate_counts": {
+        "fts5": 0,
+        "vector": 0,
+        "fused": 0,
+        "final_pool": 0
+      },
+      "coverage": {
+        "fts5": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "vector": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "fused": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "final_pool": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        }
+      },
+      "top_ids": {
+        "fts5": [],
+        "vector": [],
+        "fused": [],
+        "final_pool": []
+      }
+    },
+    {
+      "probe_id": "fixture-019",
+      "category": "paraphrase",
+      "class": "valid",
+      "original_gold_memory_id": 8409,
+      "resolved_memory_id": 8409,
+      "candidate_counts": {
+        "fts5": 0,
+        "vector": 0,
+        "fused": 0,
+        "final_pool": 0
+      },
+      "coverage": {
+        "fts5": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "vector": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "fused": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "final_pool": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        }
+      },
+      "top_ids": {
+        "fts5": [],
+        "vector": [],
+        "fused": [],
+        "final_pool": []
+      }
+    },
+    {
+      "probe_id": "fixture-020",
+      "category": "terminology",
+      "class": "valid",
+      "original_gold_memory_id": 8404,
+      "resolved_memory_id": 8404,
+      "candidate_counts": {
+        "fts5": 0,
+        "vector": 0,
+        "fused": 0,
+        "final_pool": 0
+      },
+      "coverage": {
+        "fts5": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "vector": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "fused": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "final_pool": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        }
+      },
+      "top_ids": {
+        "fts5": [],
+        "vector": [],
+        "fused": [],
+        "final_pool": []
+      }
+    },
+    {
+      "probe_id": "fixture-021",
+      "category": "paraphrase",
+      "class": "valid",
+      "original_gold_memory_id": 8407,
+      "resolved_memory_id": 8407,
+      "candidate_counts": {
+        "fts5": 0,
+        "vector": 0,
+        "fused": 0,
+        "final_pool": 0
+      },
+      "coverage": {
+        "fts5": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "vector": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "fused": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "final_pool": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        }
+      },
+      "top_ids": {
+        "fts5": [],
+        "vector": [],
+        "fused": [],
+        "final_pool": []
+      }
+    },
+    {
+      "probe_id": "fixture-022",
+      "category": "paraphrase",
+      "class": "valid",
+      "original_gold_memory_id": 8405,
+      "resolved_memory_id": 8405,
+      "candidate_counts": {
+        "fts5": 0,
+        "vector": 0,
+        "fused": 0,
+        "final_pool": 0
+      },
+      "coverage": {
+        "fts5": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "vector": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "fused": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "final_pool": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        }
+      },
+      "top_ids": {
+        "fts5": [],
+        "vector": [],
+        "fused": [],
+        "final_pool": []
+      }
+    },
+    {
+      "probe_id": "fixture-024",
+      "category": "arc-context",
+      "class": "valid",
+      "original_gold_memory_id": 8548,
+      "resolved_memory_id": 8548,
+      "candidate_counts": {
+        "fts5": 0,
+        "vector": 0,
+        "fused": 0,
+        "final_pool": 0
+      },
+      "coverage": {
+        "fts5": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "vector": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "fused": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "final_pool": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        }
+      },
+      "top_ids": {
+        "fts5": [],
+        "vector": [],
+        "fused": [],
+        "final_pool": []
+      }
+    },
+    {
+      "probe_id": "fixture-025",
+      "category": "arc-context",
+      "class": "valid",
+      "original_gold_memory_id": 8549,
+      "resolved_memory_id": 8549,
+      "candidate_counts": {
+        "fts5": 0,
+        "vector": 0,
+        "fused": 0,
+        "final_pool": 0
+      },
+      "coverage": {
+        "fts5": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "vector": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "fused": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "final_pool": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        }
+      },
+      "top_ids": {
+        "fts5": [],
+        "vector": [],
+        "fused": [],
+        "final_pool": []
+      }
+    },
+    {
+      "probe_id": "fixture-026",
+      "category": "arc-context",
+      "class": "valid",
+      "original_gold_memory_id": 8550,
+      "resolved_memory_id": 8550,
+      "candidate_counts": {
+        "fts5": 0,
+        "vector": 0,
+        "fused": 0,
+        "final_pool": 0
+      },
+      "coverage": {
+        "fts5": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "vector": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "fused": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "final_pool": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        }
+      },
+      "top_ids": {
+        "fts5": [],
+        "vector": [],
+        "fused": [],
+        "final_pool": []
+      }
+    },
+    {
+      "probe_id": "fixture-030",
+      "category": "arc-context",
+      "class": "valid",
+      "original_gold_memory_id": 8546,
+      "resolved_memory_id": 8546,
+      "candidate_counts": {
+        "fts5": 0,
+        "vector": 0,
+        "fused": 0,
+        "final_pool": 0
+      },
+      "coverage": {
+        "fts5": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "vector": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "fused": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "final_pool": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        }
+      },
+      "top_ids": {
+        "fts5": [],
+        "vector": [],
+        "fused": [],
+        "final_pool": []
+      }
+    },
+    {
+      "probe_id": "fixture-032",
+      "category": "arc-context",
+      "class": "valid",
+      "original_gold_memory_id": 8542,
+      "resolved_memory_id": 8542,
+      "candidate_counts": {
+        "fts5": 0,
+        "vector": 0,
+        "fused": 0,
+        "final_pool": 0
+      },
+      "coverage": {
+        "fts5": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "vector": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "fused": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "final_pool": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        }
+      },
+      "top_ids": {
+        "fts5": [],
+        "vector": [],
+        "fused": [],
+        "final_pool": []
+      }
+    },
+    {
+      "probe_id": "fixture-034",
+      "category": "paraphrase",
+      "class": "valid",
+      "original_gold_memory_id": 4578,
+      "resolved_memory_id": 4578,
+      "candidate_counts": {
+        "fts5": 0,
+        "vector": 0,
+        "fused": 0,
+        "final_pool": 0
+      },
+      "coverage": {
+        "fts5": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "vector": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "fused": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "final_pool": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        }
+      },
+      "top_ids": {
+        "fts5": [],
+        "vector": [],
+        "fused": [],
+        "final_pool": []
+      }
+    },
+    {
+      "probe_id": "fixture-035",
+      "category": "terminology",
+      "class": "valid",
+      "original_gold_memory_id": 3793,
+      "resolved_memory_id": 3793,
+      "candidate_counts": {
+        "fts5": 0,
+        "vector": 0,
+        "fused": 0,
+        "final_pool": 0
+      },
+      "coverage": {
+        "fts5": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "vector": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "fused": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "final_pool": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        }
+      },
+      "top_ids": {
+        "fts5": [],
+        "vector": [],
+        "fused": [],
+        "final_pool": []
+      }
+    },
+    {
+      "probe_id": "fixture-036",
+      "category": "paraphrase",
+      "class": "valid",
+      "original_gold_memory_id": 3791,
+      "resolved_memory_id": 3791,
+      "candidate_counts": {
+        "fts5": 0,
+        "vector": 0,
+        "fused": 0,
+        "final_pool": 0
+      },
+      "coverage": {
+        "fts5": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "vector": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "fused": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "final_pool": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        }
+      },
+      "top_ids": {
+        "fts5": [],
+        "vector": [],
+        "fused": [],
+        "final_pool": []
+      }
+    },
+    {
+      "probe_id": "fixture-038",
+      "category": "paraphrase",
+      "class": "valid",
+      "original_gold_memory_id": 4544,
+      "resolved_memory_id": 4544,
+      "candidate_counts": {
+        "fts5": 0,
+        "vector": 0,
+        "fused": 0,
+        "final_pool": 0
+      },
+      "coverage": {
+        "fts5": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "vector": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "fused": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "final_pool": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        }
+      },
+      "top_ids": {
+        "fts5": [],
+        "vector": [],
+        "fused": [],
+        "final_pool": []
+      }
+    },
+    {
+      "probe_id": "fixture-039",
+      "category": "terminology",
+      "class": "valid",
+      "original_gold_memory_id": 8514,
+      "resolved_memory_id": 8514,
+      "candidate_counts": {
+        "fts5": 0,
+        "vector": 0,
+        "fused": 0,
+        "final_pool": 0
+      },
+      "coverage": {
+        "fts5": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "vector": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "fused": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "final_pool": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        }
+      },
+      "top_ids": {
+        "fts5": [],
+        "vector": [],
+        "fused": [],
+        "final_pool": []
+      }
+    },
+    {
+      "probe_id": "fixture-040",
+      "category": "arc-context",
+      "class": "valid",
+      "original_gold_memory_id": 8537,
+      "resolved_memory_id": 8537,
+      "candidate_counts": {
+        "fts5": 0,
+        "vector": 0,
+        "fused": 0,
+        "final_pool": 0
+      },
+      "coverage": {
+        "fts5": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "vector": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "fused": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "final_pool": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        }
+      },
+      "top_ids": {
+        "fts5": [],
+        "vector": [],
+        "fused": [],
+        "final_pool": []
+      }
+    },
+    {
+      "probe_id": "fixture-041",
+      "category": "paraphrase",
+      "class": "valid",
+      "original_gold_memory_id": 8519,
+      "resolved_memory_id": 8519,
+      "candidate_counts": {
+        "fts5": 0,
+        "vector": 0,
+        "fused": 0,
+        "final_pool": 0
+      },
+      "coverage": {
+        "fts5": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "vector": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "fused": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "final_pool": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        }
+      },
+      "top_ids": {
+        "fts5": [],
+        "vector": [],
+        "fused": [],
+        "final_pool": []
+      }
+    },
+    {
+      "probe_id": "fixture-042",
+      "category": "paraphrase",
+      "class": "valid",
+      "original_gold_memory_id": 8534,
+      "resolved_memory_id": 8534,
+      "candidate_counts": {
+        "fts5": 0,
+        "vector": 0,
+        "fused": 0,
+        "final_pool": 0
+      },
+      "coverage": {
+        "fts5": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "vector": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "fused": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "final_pool": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        }
+      },
+      "top_ids": {
+        "fts5": [],
+        "vector": [],
+        "fused": [],
+        "final_pool": []
+      }
+    },
+    {
+      "probe_id": "fixture-043",
+      "category": "paraphrase",
+      "class": "valid",
+      "original_gold_memory_id": 8530,
+      "resolved_memory_id": 8530,
+      "candidate_counts": {
+        "fts5": 0,
+        "vector": 0,
+        "fused": 0,
+        "final_pool": 0
+      },
+      "coverage": {
+        "fts5": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "vector": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "fused": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "final_pool": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        }
+      },
+      "top_ids": {
+        "fts5": [],
+        "vector": [],
+        "fused": [],
+        "final_pool": []
+      }
+    },
+    {
+      "probe_id": "fixture-044",
+      "category": "paraphrase",
+      "class": "valid",
+      "original_gold_memory_id": 8523,
+      "resolved_memory_id": 8523,
+      "candidate_counts": {
+        "fts5": 0,
+        "vector": 0,
+        "fused": 0,
+        "final_pool": 0
+      },
+      "coverage": {
+        "fts5": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "vector": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "fused": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "final_pool": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        }
+      },
+      "top_ids": {
+        "fts5": [],
+        "vector": [],
+        "fused": [],
+        "final_pool": []
+      }
+    },
+    {
+      "probe_id": "fixture-045",
+      "category": "paraphrase",
+      "class": "valid",
+      "original_gold_memory_id": 8488,
+      "resolved_memory_id": 8488,
+      "candidate_counts": {
+        "fts5": 0,
+        "vector": 0,
+        "fused": 0,
+        "final_pool": 0
+      },
+      "coverage": {
+        "fts5": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "vector": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "fused": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "final_pool": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        }
+      },
+      "top_ids": {
+        "fts5": [],
+        "vector": [],
+        "fused": [],
+        "final_pool": []
+      }
+    },
+    {
+      "probe_id": "fixture-046",
+      "category": "paraphrase",
+      "class": "valid",
+      "original_gold_memory_id": 8497,
+      "resolved_memory_id": 8497,
+      "candidate_counts": {
+        "fts5": 0,
+        "vector": 0,
+        "fused": 0,
+        "final_pool": 0
+      },
+      "coverage": {
+        "fts5": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "vector": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "fused": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "final_pool": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        }
+      },
+      "top_ids": {
+        "fts5": [],
+        "vector": [],
+        "fused": [],
+        "final_pool": []
+      }
+    },
+    {
+      "probe_id": "fixture-047",
+      "category": "paraphrase",
+      "class": "valid",
+      "original_gold_memory_id": 8490,
+      "resolved_memory_id": 8490,
+      "candidate_counts": {
+        "fts5": 0,
+        "vector": 0,
+        "fused": 0,
+        "final_pool": 0
+      },
+      "coverage": {
+        "fts5": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "vector": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "fused": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "final_pool": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        }
+      },
+      "top_ids": {
+        "fts5": [],
+        "vector": [],
+        "fused": [],
+        "final_pool": []
+      }
+    },
+    {
+      "probe_id": "fixture-048",
+      "category": "terminology",
+      "class": "valid",
+      "original_gold_memory_id": 6806,
+      "resolved_memory_id": 6806,
+      "candidate_counts": {
+        "fts5": 0,
+        "vector": 0,
+        "fused": 0,
+        "final_pool": 0
+      },
+      "coverage": {
+        "fts5": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "vector": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "fused": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "final_pool": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        }
+      },
+      "top_ids": {
+        "fts5": [],
+        "vector": [],
+        "fused": [],
+        "final_pool": []
+      }
+    },
+    {
+      "probe_id": "fixture-049",
+      "category": "terminology",
+      "class": "valid",
+      "original_gold_memory_id": 8548,
+      "resolved_memory_id": 8548,
+      "candidate_counts": {
+        "fts5": 0,
+        "vector": 0,
+        "fused": 0,
+        "final_pool": 0
+      },
+      "coverage": {
+        "fts5": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "vector": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "fused": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        },
+        "final_pool": {
+          "rank": null,
+          "top_20": false,
+          "top_50": false,
+          "top_100": false
+        }
+      },
+      "top_ids": {
+        "fts5": [],
+        "vector": [],
+        "fused": [],
+        "final_pool": []
+      }
+    }
+  ]
+}

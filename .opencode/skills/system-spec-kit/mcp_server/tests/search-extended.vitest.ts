@@ -232,26 +232,26 @@ describe('resolveProvider', () => {
 
   it('RP-02: returns voyage when VOYAGE_API_KEY set', () => {
     resetEnv();
-    process.env.VOYAGE_API_KEY = 'test-key';
+    process.env.VOYAGE_API_KEY = 'test-voyage-api-key-XXXXXXXXX';
     expect(resolveProvider()).toBe('voyage');
   });
 
   it('RP-03: returns cohere when COHERE_API_KEY set', () => {
     resetEnv();
-    process.env.COHERE_API_KEY = 'test-key';
+    process.env.COHERE_API_KEY = 'test-voyage-api-key-XXXXXXXXX';
     expect(resolveProvider()).toBe('cohere');
   });
 
-  it('RP-04: returns local when RERANKER_LOCAL=true', () => {
+  it('RP-04: ignores RERANKER_LOCAL for cross-encoder provider resolution', () => {
     resetEnv();
     process.env.RERANKER_LOCAL = 'true';
-    expect(resolveProvider()).toBe('local');
+    expect(resolveProvider()).toBe(null);
   });
 
   it('RP-05: voyage takes priority over cohere', () => {
     resetEnv();
-    process.env.VOYAGE_API_KEY = 'v-key';
-    process.env.COHERE_API_KEY = 'c-key';
+    process.env.VOYAGE_API_KEY = 'test-voyage-api-key-XXXXXXXXX';
+    process.env.COHERE_API_KEY = 'test-cohere-api-key-XXXXXXXXX';
     expect(resolveProvider()).toBe('voyage');
   });
 });
@@ -261,16 +261,16 @@ describe('resolveProvider', () => {
 =================================================================== */
 
 describe('calculateLengthPenalty', () => {
-  it('CLP-01: short content → shortPenalty', () => {
-    expect(calculateLengthPenalty(10)).toBe(LENGTH_PENALTY.shortPenalty);
+  it('CLP-01: short content → 1.0 after length penalty removal', () => {
+    expect(calculateLengthPenalty(10)).toBe(1.0);
   });
 
   it('CLP-02: medium content → 1.0 (no penalty)', () => {
     expect(calculateLengthPenalty(500)).toBe(1.0);
   });
 
-  it('CLP-03: long content → longPenalty', () => {
-    expect(calculateLengthPenalty(5000)).toBe(LENGTH_PENALTY.longPenalty);
+  it('CLP-03: long content → 1.0 after length penalty removal', () => {
+    expect(calculateLengthPenalty(5000)).toBe(1.0);
   });
 
   it('CLP-04: exactly shortThreshold → 1.0', () => {
@@ -281,8 +281,8 @@ describe('calculateLengthPenalty', () => {
     expect(calculateLengthPenalty(LENGTH_PENALTY.longThreshold)).toBe(1.0);
   });
 
-  it('CLP-06: length 0 → shortPenalty', () => {
-    expect(calculateLengthPenalty(0)).toBe(LENGTH_PENALTY.shortPenalty);
+  it('CLP-06: length 0 → 1.0 after length penalty removal', () => {
+    expect(calculateLengthPenalty(0)).toBe(1.0);
   });
 });
 
@@ -345,19 +345,19 @@ describe('isRerankerAvailable', () => {
 
   it('IRA-02: returns true when VOYAGE_API_KEY set', () => {
     resetEnv();
-    process.env.VOYAGE_API_KEY = 'test-key';
+    process.env.VOYAGE_API_KEY = 'test-voyage-api-key-XXXXXXXXX';
     expect(isRerankerAvailable()).toBe(true);
   });
 
   it('IRA-03: returns true when COHERE_API_KEY set', () => {
     resetEnv();
-    process.env.COHERE_API_KEY = 'test-key';
+    process.env.COHERE_API_KEY = 'test-voyage-api-key-XXXXXXXXX';
     expect(isRerankerAvailable()).toBe(true);
   });
 
-  it('IRA-04: returns true when RERANKER_LOCAL=true', () => {
+  it('IRA-04: returns false when only RERANKER_LOCAL=true', () => {
     resetEnv();
     process.env.RERANKER_LOCAL = 'true';
-    expect(isRerankerAvailable()).toBe(true);
+    expect(isRerankerAvailable()).toBe(false);
   });
 });

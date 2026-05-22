@@ -30,7 +30,8 @@ function createKeywordDb(): Database.Database {
       file_path TEXT,
       created_at TEXT,
       importance_weight REAL,
-      importance_tier TEXT
+      importance_tier TEXT,
+      embedding_status TEXT DEFAULT 'success'
     );
     CREATE TABLE active_memory_projection (active_memory_id INTEGER PRIMARY KEY);
   `);
@@ -89,6 +90,21 @@ describe('local LLM offline degradation', () => {
     vi.doMock('../../lib/providers/embeddings.js', () => ({
       generateQueryEmbedding: vi.fn(async () => null),
     }));
+    vi.doMock('../../lib/embedders/execution-router.js', () => ({
+      getEmbedderAdapter: vi.fn(() => ({
+        embed: vi.fn(async () => {
+          throw new Error('offline provider unavailable');
+        }),
+      })),
+    }));
+    vi.doMock('../../lib/cache/embedding-cache.js', async (importOriginal) => {
+      const actual = await importOriginal<typeof import('../../lib/cache/embedding-cache.js')>();
+      return {
+        ...actual,
+        lookupEmbedding: vi.fn(() => null),
+        storeEmbedding: vi.fn(),
+      };
+    });
     const db = createKeywordDb();
     const { vector_search_enriched } = await import('../../lib/search/vector-index-queries.js');
 

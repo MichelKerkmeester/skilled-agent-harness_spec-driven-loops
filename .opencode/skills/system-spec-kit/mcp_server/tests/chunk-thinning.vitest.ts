@@ -364,7 +364,7 @@ describe('R7 integration wiring', () => {
 
     const embeddingSpy = vi
       .spyOn(embeddings, 'generateDocumentEmbedding')
-      .mockResolvedValue(new Float32Array(1024).fill(0.1));
+      .mockResolvedValue(new Float32Array(768).fill(0.1));
 
     const lowSignalSection = '# Low Signal\n\n' + '<!-- filler -->\n'.repeat(420);
     const highSignalSection =

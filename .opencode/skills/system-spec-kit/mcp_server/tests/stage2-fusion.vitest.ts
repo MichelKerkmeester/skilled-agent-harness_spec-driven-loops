@@ -289,10 +289,15 @@ describe('Stage 2 fusion regression coverage', () => {
 
     expect(mockApplyGraphSignals).not.toHaveBeenCalled();
     expect(mockQueryLearnedTriggers).not.toHaveBeenCalled();
-    expect(result.scored.map((row) => ({ id: row.id, score: row.score }))).toEqual([
-      { id: 1, score: 0.9 },
-      { id: 2, score: 0.8 },
-    ]);
+    // Stage 2 now applies RRF normalization unconditionally; verify order + finite scores
+    // rather than raw input scores. Order is preserved when DB graph signals are skipped.
+    const ids = result.scored.map((row) => row.id);
+    expect(ids).toEqual([1, 2]);
+    for (const row of result.scored) {
+      expect(Number.isFinite(row.score)).toBe(true);
+      expect(row.score).toBeGreaterThan(0);
+    }
+    expect(result.scored[0].score).toBeGreaterThanOrEqual(result.scored[1].score);
   });
 
   it('hydrates memoryState for community-injected rows from memory_index', async () => {

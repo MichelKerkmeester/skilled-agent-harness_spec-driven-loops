@@ -549,6 +549,31 @@ export const RECOVERY_HINTS: RecoveryHintMap = {
     severity: 'low',
     toolTip: 'memory_save({ force: true })'
   },
+  [ERROR_CODES.MEMORY_SAVE_GOVERNANCE_REJECTED]: {
+    hint: 'Memory save rejected by governance scope checks.',
+    actions: ['Provide required tenant/user/agent provenance or adjust the scoped save request'],
+    severity: 'medium'
+  },
+  [ERROR_CODES.MEMORY_SAVE_EMBEDDING_FAILED]: {
+    hint: 'Memory saved metadata path encountered an embedding failure.',
+    actions: ['Retry with asyncEmbedding=true or run memory_index_scan after provider recovery'],
+    severity: 'medium'
+  },
+  [ERROR_CODES.MEMORY_SAVE_SQLITE_BUSY]: {
+    hint: 'Memory save could not complete because SQLite was busy.',
+    actions: ['Retry after the current write finishes or inspect memory_health() for database locks'],
+    severity: 'medium'
+  },
+  [ERROR_CODES.MEMORY_SAVE_DB_ERROR]: {
+    hint: 'Memory save failed during database persistence.',
+    actions: ['Run memory_health() and retry after resolving database errors'],
+    severity: 'high'
+  },
+  [ERROR_CODES.MEMORY_SAVE_VALIDATION_FAILED]: {
+    hint: 'Memory save failed validation before persistence.',
+    actions: ['Run memory_save({ dryRun: true }) and fix the reported validation issues'],
+    severity: 'medium'
+  },
 
   // --- Validation Errors ---
   [ERROR_CODES.VALIDATION_FAILED]: {

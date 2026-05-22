@@ -51,14 +51,14 @@ describe('local LLM default model selection', () => {
     expect(profile.dtype).toBe('q8');
   });
 
-  it('T2 selects the Ollama Jina default', async () => {
+  it('T2 selects the Ollama Nomic default', async () => {
     process.env.EMBEDDINGS_PROVIDER = 'ollama';
 
     const { getStartupEmbeddingProfile } = await loadFactory();
     const profile = getStartupEmbeddingProfile();
 
-    expect(profile.model).toBe('jina-embeddings-v3');
-    expect(profile.dim).toBe(1024);
+    expect(profile.model).toBe('nomic-embed-text-v1.5');
+    expect(profile.dim).toBe(768);
     expect(profile.dtype).toBeNull();
   });
 

@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack"
-    last_updated_at: "2026-05-21T11:00:00Z"
+    last_updated_at: "2026-05-22T05:50:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Dispatch A reconciled parent map and defaults."
-    next_safe_action: "Resume active child from graph metadata."
+    recent_action: "Added child 020 for memory leak research."
+    next_safe_action: "Resume child 020 for deep-research execution."
     blockers: []
     key_files:
       - "spec.md"
@@ -71,6 +71,7 @@ All 4 sub-phases shipped before this restructure landed. The restructure is pure
 | `017-factory-shard-fallback-for-hf-voyage-openai/` | factory-shard-fallback-for-hf-voyage-openai | Complete |
 | `018-constitutional-quality-gate-exemption/` | Phase 1: constitutional-quality-gate-exemption | Complete |
 | `019-lineage-and-metadata-repair-runner/` | Lineage and Metadata Repair Runner | Complete |
+| `020-cli-process-memory-leak-deep-research/` | CLI process memory leak deep research across system-spec-kit, deep flows, and cli-X dispatchers | Draft |
 <!-- /ANCHOR:phase-map -->
 
 <!-- ANCHOR:cross-refs -->

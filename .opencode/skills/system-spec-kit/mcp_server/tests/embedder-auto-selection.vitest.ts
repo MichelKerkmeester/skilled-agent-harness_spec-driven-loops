@@ -46,8 +46,11 @@ describe('embedder bootstrap auto-selection', () => {
     }
   });
 
-  it('tier 1 selects Voyage when the API key is set and the embeddings probe is reachable', async () => {
+  it('selects Voyage when local probes are unavailable and the Voyage probe is reachable', async () => {
     const fetchImpl = vi.fn(async (input: RequestInfo | URL) => {
+      if (String(input) === 'http://127.0.0.1:11434/api/tags') {
+        throw new Error('connection refused');
+      }
       expect(String(input)).toBe('https://api.voyageai.com/v1/embeddings');
       return jsonResponse({ data: [{ embedding: embedding(1024) }] });
     });
@@ -63,11 +66,14 @@ describe('embedder bootstrap auto-selection', () => {
       dim: 1024,
       provider: 'voyage',
     });
-    expect(fetchImpl).toHaveBeenCalledTimes(1);
+    expect(fetchImpl).toHaveBeenCalledTimes(2);
   });
 
-  it('tier 2 selects OpenAI when Voyage is unavailable and OpenAI is reachable', async () => {
+  it('selects OpenAI when local probes are unavailable and OpenAI is reachable', async () => {
     const fetchImpl = vi.fn(async (input: RequestInfo | URL) => {
+      if (String(input) === 'http://127.0.0.1:11434/api/tags') {
+        throw new Error('connection refused');
+      }
       expect(String(input)).toBe('https://api.openai.com/v1/embeddings');
       return jsonResponse({ data: [{ embedding: embedding(1536) }] });
     });
@@ -83,9 +89,10 @@ describe('embedder bootstrap auto-selection', () => {
       dim: 1536,
       provider: 'openai',
     });
+    expect(fetchImpl).toHaveBeenCalledTimes(2);
   });
 
-  it('tier 3 selects the first pulled Ollama model in ADR-012 priority order', async () => {
+  it('selects the first pulled Ollama model in the current priority order', async () => {
     const fetchImpl = vi.fn(async () => jsonResponse({
       models: [
         { name: 'nomic-embed-text:v1.5' },
@@ -100,13 +107,13 @@ describe('embedder bootstrap auto-selection', () => {
     });
 
     expect(selected).toMatchObject({
-      name: 'jina-embeddings-v3',
-      dim: 1024,
+      name: 'nomic-embed-text-v1.5',
+      dim: 768,
       provider: 'ollama',
     });
   });
 
-  it('tier 3 falls through to Nomic when Jina is not pulled', async () => {
+  it('selects Nomic when it is the only pulled Ollama model', async () => {
     const fetchImpl = vi.fn(async () => jsonResponse({
       models: [{ name: 'nomic-embed-text:v1.5' }],
     }));
@@ -124,7 +131,7 @@ describe('embedder bootstrap auto-selection', () => {
     });
   });
 
-  it('tier 4 selects hf-local when cloud keys and Ollama are unavailable but sentence-transformers is importable', async () => {
+  it('selects hf-local Nomic when Ollama is unavailable but sentence-transformers is importable', async () => {
     const selected = await autoSelectActiveEmbedder({
       env: {},
       fetchImpl: vi.fn(async () => {
@@ -134,7 +141,7 @@ describe('embedder bootstrap auto-selection', () => {
     });
 
     expect(selected).toMatchObject({
-      name: 'BAAI/bge-base-en-v1.5',
+      name: 'nomic-ai/nomic-embed-text-v1.5',
       dim: 768,
       provider: 'hf-local',
     });
@@ -163,7 +170,12 @@ describe('embedder bootstrap auto-selection', () => {
     try {
       await ensureActiveEmbedder(db, {
         env: { VOYAGE_API_KEY: VALID_VOYAGE_KEY },
-        fetchImpl: vi.fn(async () => jsonResponse({ data: [{ embedding: embedding(1024) }] })) as typeof fetch,
+        fetchImpl: vi.fn(async (input: RequestInfo | URL) => {
+          if (String(input) === 'http://127.0.0.1:11434/api/tags') {
+            throw new Error('connection refused');
+          }
+          return jsonResponse({ data: [{ embedding: embedding(1024) }] });
+        }) as typeof fetch,
         runPythonImportProbe: async () => false,
       });
 
@@ -203,6 +215,7 @@ describe('embedder bootstrap auto-selection', () => {
         metadataStore: store,
         lockPath: path.join(tempDir, 'active.lock'),
         sleepMs: 1,
+        runPythonImportProbe: async () => false,
       }),
       autoSelectActiveEmbedder({
         env: { VOYAGE_API_KEY: VALID_VOYAGE_KEY },
@@ -210,12 +223,13 @@ describe('embedder bootstrap auto-selection', () => {
         metadataStore: store,
         lockPath: path.join(tempDir, 'active.lock'),
         sleepMs: 1,
+        runPythonImportProbe: async () => false,
       }),
     ]);
 
     expect(first.name).toBe('voyage-code-3');
     expect(second.name).toBe('voyage-code-3');
     expect(writeCount).toBe(1);
-    expect(fetchImpl).toHaveBeenCalledTimes(1);
+    expect(fetchImpl).toHaveBeenCalledTimes(2);
   });
 });

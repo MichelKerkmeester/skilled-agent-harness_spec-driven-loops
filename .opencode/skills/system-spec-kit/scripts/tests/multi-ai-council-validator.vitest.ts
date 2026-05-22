@@ -10,7 +10,7 @@ const WORKSPACE_ROOT = resolve(TEST_DIR, '../../../../../');
 const VALIDATE_SH = join(WORKSPACE_ROOT, '.opencode/skills/system-spec-kit/scripts/spec/validate.sh');
 const SOURCE_SPEC = join(
   WORKSPACE_ROOT,
-  '.opencode/specs/skilled-agent-orchestration/089-ai-council-persistence',
+  '.opencode/specs/skilled-agent-orchestration/z_archive/089-multi-ai-council-persistence',
 );
 
 const specDocs = [
@@ -26,7 +26,7 @@ const specDocs = [
 
 function makeSyntheticSpecFolder(): { tmp: string; packet: string } {
   const tmp = mkdtempSync(join(tmpdir(), 'spec-kit-089-validator-'));
-  const packet = join(tmp, '089-ai-council-persistence');
+  const packet = join(tmp, '089-multi-ai-council-persistence');
   mkdirSync(packet, { recursive: true });
 
   for (const doc of specDocs) {

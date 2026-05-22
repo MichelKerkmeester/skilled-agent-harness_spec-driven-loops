@@ -16,7 +16,9 @@ const EXCLUDED_PATH_SNIPPETS = [
   `${path.sep}hooks${path.sep}claude${path.sep}`,
   `${path.sep}hooks${path.sep}copilot${path.sep}`,
   `${path.sep}hooks${path.sep}codex${path.sep}`,
+  `${path.sep}hooks${path.sep}devin${path.sep}`,
   `${path.sep}hooks${path.sep}gemini${path.sep}`,
+  `${path.sep}lib${path.sep}embedders${path.sep}sidecar-worker.ts`,
   `${path.sep}skill-advisor${path.sep}bench${path.sep}`,
   `${path.sep}skill_advisor${path.sep}bench${path.sep}`,
 ];

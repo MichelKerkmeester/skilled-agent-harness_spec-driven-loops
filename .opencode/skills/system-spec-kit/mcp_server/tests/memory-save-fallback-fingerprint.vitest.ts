@@ -447,7 +447,7 @@ describe('memory-save canonical fallback fingerprint guard', () => {
 
     expect(result.success).toBe(false);
     expect(result.status).toBe('rejected');
-    expect(result.summary).toBe('Atomic index rejected after file promotion rollback');
+    expect(result.summary).toBe('Atomic index rejected before file promotion');
     expect(result.filePath).toBe(fixture.targetPath);
     expect(result.message).toMatch(/fingerprint/i);
     expect(fs.readFileSync(fixture.targetPath, 'utf8')).toBe(targetBefore);

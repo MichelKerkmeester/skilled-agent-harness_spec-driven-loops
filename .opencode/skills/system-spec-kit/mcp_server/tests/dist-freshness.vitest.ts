@@ -26,7 +26,7 @@ const CANONICAL: CanonicalExport[] = [
   {
     source: 'embedders/registry.ts',
     dist: 'embedders/registry.js',
-    markers: ['MANIFESTS', 'getAdapter'],
+    markers: ['@spec-kit/shared/embeddings/registry.js'],
   },
   {
     source: 'embedders/adapter.ts',

@@ -309,7 +309,7 @@ describe('Context Server', () => {
 
     // T16: CallToolRequestSchema handler exists
     it('T16: CallToolRequestSchema handler exists', () => {
-      expect(sourceCode).toMatch(/server\.setRequestHandler\(CallToolRequestSchema/)
+      expect(sourceCode).toMatch(/targetServer\.setRequestHandler\(CallToolRequestSchema/)
     })
 
     // T303: Verify dispatchTool is used instead of switch

@@ -14,6 +14,7 @@ const {
 
 vi.mock('../lib/cache/embedding-cache', () => ({
   computeContentHash: computeContentHashMock,
+  getActiveEmbeddingProfileKey: vi.fn(() => 'test-profile-key'),
   lookupEmbedding: lookupEmbeddingMock,
   storeEmbedding: storeEmbeddingMock,
 }));

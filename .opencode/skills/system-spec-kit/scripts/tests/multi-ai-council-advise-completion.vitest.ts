@@ -10,7 +10,7 @@ const TEST_DIR = dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = resolve(TEST_DIR, '../../../../../');
 const ADVISOR_PATH = join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-spec-kit/scripts/ai-council/advise-council-completion.cjs',
+  '.opencode/skills/sk-ai-council/scripts/advise-council-completion.cjs',
 );
 
 const tempDirs: string[] = [];

@@ -1,0 +1,24 @@
+{
+  "specFolder": "skilled-agent-orchestration/116-deep-review-complexity",
+  "description": "Completed 10-iteration evidence-only research packet on why focused deep-research bug-finding can surface more actionable defects than deep-review, with searchLedger as the top follow-up recommendation.",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep",
+    "review",
+    "complexity",
+    "research",
+    "searchLedger",
+    "candidate-generation"
+  ],
+  "lastUpdated": "2026-05-22T06:48:00.000Z",
+  "specId": "116",
+  "folderSlug": "deep-review-complexity",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 116,
+  "memoryNameHistory": [
+    "deep-review-complexity"
+  ]
+}

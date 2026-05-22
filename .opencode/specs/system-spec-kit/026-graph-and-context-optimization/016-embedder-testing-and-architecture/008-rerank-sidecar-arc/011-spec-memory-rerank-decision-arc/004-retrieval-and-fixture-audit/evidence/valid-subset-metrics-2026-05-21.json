@@ -1,0 +1,833 @@
+{
+  "generated_at": "2026-05-21T14:36:31.119Z",
+  "source": "Recomputed from Phase 1 OFF returned_memory_ids/returned_doc_ids over valid+replaced subset",
+  "subset": "valid+replaced",
+  "summary": {
+    "count": 34,
+    "hit_rate_at_5": 0.17647058823529413,
+    "recall_at_5": 0.17647058823529413,
+    "ndcg_at_10": 0.16561558098739582
+  },
+  "phase1_off_summary": {
+    "fixture_count": 50,
+    "hit_rate_at_5": 0.12,
+    "ndcg_at_10": 0.11,
+    "recall_at_5": 0.12,
+    "per_category": {
+      "arc-context": {
+        "probe_count": 12,
+        "hit_rate_at_5": 0.08333333333333333,
+        "recall_at_5": 0.08333333333333333,
+        "ndcg_at_10": 0.08333333333333333,
+        "zero_recall": false,
+        "miss_probe_ids": [
+          "fixture-023",
+          "fixture-024",
+          "fixture-025",
+          "fixture-026",
+          "fixture-027",
+          "fixture-028",
+          "fixture-029",
+          "fixture-030",
+          "fixture-032",
+          "fixture-033",
+          "fixture-050"
+        ]
+      },
+      "paraphrase": {
+        "probe_count": 27,
+        "hit_rate_at_5": 0.14814814814814814,
+        "recall_at_5": 0.14814814814814814,
+        "ndcg_at_10": 0.14814814814814814,
+        "zero_recall": false,
+        "miss_probe_ids": [
+          "fixture-001",
+          "fixture-002",
+          "fixture-004",
+          "fixture-005",
+          "fixture-007",
+          "fixture-008",
+          "fixture-012",
+          "fixture-013",
+          "fixture-016",
+          "fixture-019",
+          "fixture-021",
+          "fixture-022",
+          "fixture-031",
+          "fixture-034",
+          "fixture-036",
+          "fixture-038",
+          "fixture-041",
+          "fixture-042",
+          "fixture-043",
+          "fixture-044",
+          "fixture-045",
+          "fixture-046",
+          "fixture-047"
+        ]
+      },
+      "terminology": {
+        "probe_count": 11,
+        "hit_rate_at_5": 0.09090909090909091,
+        "recall_at_5": 0.09090909090909091,
+        "ndcg_at_10": 0.045454545454545456,
+        "zero_recall": false,
+        "miss_probe_ids": [
+          "fixture-011",
+          "fixture-014",
+          "fixture-015",
+          "fixture-017",
+          "fixture-018",
+          "fixture-020",
+          "fixture-035",
+          "fixture-037",
+          "fixture-048",
+          "fixture-049"
+        ]
+      }
+    },
+    "zero_recall_categories": [],
+    "latency_ms": {
+      "p50": 469.904,
+      "p95": 557.529
+    },
+    "stale_gold_memory_ids": [
+      {
+        "probe": "fixture-004",
+        "memory_id": 1404
+      },
+      {
+        "probe": "fixture-005",
+        "memory_id": 1047
+      },
+      {
+        "probe": "fixture-008",
+        "memory_id": 1007
+      },
+      {
+        "probe": "fixture-013",
+        "memory_id": 8184
+      },
+      {
+        "probe": "fixture-014",
+        "memory_id": 8183
+      },
+      {
+        "probe": "fixture-015",
+        "memory_id": 8189
+      },
+      {
+        "probe": "fixture-016",
+        "memory_id": 8186
+      },
+      {
+        "probe": "fixture-017",
+        "memory_id": 8192
+      },
+      {
+        "probe": "fixture-023",
+        "memory_id": 8553
+      },
+      {
+        "probe": "fixture-027",
+        "memory_id": 8551
+      },
+      {
+        "probe": "fixture-028",
+        "memory_id": 8552
+      },
+      {
+        "probe": "fixture-029",
+        "memory_id": 8547
+      },
+      {
+        "probe": "fixture-031",
+        "memory_id": 8544
+      },
+      {
+        "probe": "fixture-033",
+        "memory_id": 8543
+      },
+      {
+        "probe": "fixture-037",
+        "memory_id": 4546
+      },
+      {
+        "probe": "fixture-050",
+        "memory_id": 8551
+      }
+    ],
+    "verdict_thresholds": {
+      "hit_rate_at_5_min": 0.7,
+      "ndcg_at_10_min": 0.65,
+      "requires_no_zero_recall_category": true
+    },
+    "verdict": "OFF_DEFICIENT",
+    "failure_analysis": {
+      "ranking_inversion": [],
+      "recall_miss": [
+        "fixture-001",
+        "fixture-002",
+        "fixture-004",
+        "fixture-005",
+        "fixture-007",
+        "fixture-008",
+        "fixture-011",
+        "fixture-012",
+        "fixture-013",
+        "fixture-014",
+        "fixture-015",
+        "fixture-016",
+        "fixture-017",
+        "fixture-018",
+        "fixture-019",
+        "fixture-020",
+        "fixture-021",
+        "fixture-022",
+        "fixture-023",
+        "fixture-024",
+        "fixture-025",
+        "fixture-026",
+        "fixture-027",
+        "fixture-028",
+        "fixture-029",
+        "fixture-030",
+        "fixture-031",
+        "fixture-032",
+        "fixture-033",
+        "fixture-034",
+        "fixture-035",
+        "fixture-036",
+        "fixture-037",
+        "fixture-038",
+        "fixture-041",
+        "fixture-042",
+        "fixture-043",
+        "fixture-044",
+        "fixture-045",
+        "fixture-046",
+        "fixture-047",
+        "fixture-048",
+        "fixture-049",
+        "fixture-050"
+      ],
+      "empty_result": []
+    }
+  },
+  "delta_vs_phase1_off": {
+    "hit_rate_at_5": 0.056470588235294134,
+    "recall_at_5": 0.056470588235294134,
+    "ndcg_at_10": 0.055615580987395816
+  },
+  "per_category": {
+    "arc-context": {
+      "count": 6,
+      "hit_rate_at_5": 0.16666666666666666,
+      "recall_at_5": 0.16666666666666666,
+      "ndcg_at_10": 0.16666666666666666
+    },
+    "paraphrase": {
+      "count": 21,
+      "hit_rate_at_5": 0.19047619047619047,
+      "recall_at_5": 0.19047619047619047,
+      "ndcg_at_10": 0.19047619047619047
+    },
+    "terminology": {
+      "count": 7,
+      "hit_rate_at_5": 0.14285714285714285,
+      "recall_at_5": 0.14285714285714285,
+      "ndcg_at_10": 0.09013282193877965
+    }
+  },
+  "probes": [
+    {
+      "probe_id": "fixture-001",
+      "category": "paraphrase",
+      "class": "valid",
+      "resolved_memory_id": 2000,
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0
+    },
+    {
+      "probe_id": "fixture-002",
+      "category": "paraphrase",
+      "class": "valid",
+      "resolved_memory_id": 1620,
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0
+    },
+    {
+      "probe_id": "fixture-003",
+      "category": "paraphrase",
+      "class": "valid",
+      "resolved_memory_id": 954,
+      "rank_at_5": 1,
+      "rank_at_10": 1,
+      "hit_at_5": true,
+      "recall_at_5": 1,
+      "ndcg_at_10": 1
+    },
+    {
+      "probe_id": "fixture-006",
+      "category": "paraphrase",
+      "class": "valid",
+      "resolved_memory_id": 1046,
+      "rank_at_5": 1,
+      "rank_at_10": 1,
+      "hit_at_5": true,
+      "recall_at_5": 1,
+      "ndcg_at_10": 1
+    },
+    {
+      "probe_id": "fixture-007",
+      "category": "paraphrase",
+      "class": "valid",
+      "resolved_memory_id": 729,
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0
+    },
+    {
+      "probe_id": "fixture-009",
+      "category": "paraphrase",
+      "class": "valid",
+      "resolved_memory_id": 908,
+      "rank_at_5": 1,
+      "rank_at_10": 1,
+      "hit_at_5": true,
+      "recall_at_5": 1,
+      "ndcg_at_10": 1
+    },
+    {
+      "probe_id": "fixture-010",
+      "category": "paraphrase",
+      "class": "valid",
+      "resolved_memory_id": 1096,
+      "rank_at_5": 1,
+      "rank_at_10": 1,
+      "hit_at_5": true,
+      "recall_at_5": 1,
+      "ndcg_at_10": 1
+    },
+    {
+      "probe_id": "fixture-011",
+      "category": "terminology",
+      "class": "valid",
+      "resolved_memory_id": 4849,
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0
+    },
+    {
+      "probe_id": "fixture-012",
+      "category": "paraphrase",
+      "class": "valid",
+      "resolved_memory_id": 4846,
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0
+    },
+    {
+      "probe_id": "fixture-018",
+      "category": "terminology",
+      "class": "valid",
+      "resolved_memory_id": 8406,
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0
+    },
+    {
+      "probe_id": "fixture-019",
+      "category": "paraphrase",
+      "class": "valid",
+      "resolved_memory_id": 8409,
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0
+    },
+    {
+      "probe_id": "fixture-020",
+      "category": "terminology",
+      "class": "valid",
+      "resolved_memory_id": 8404,
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0
+    },
+    {
+      "probe_id": "fixture-021",
+      "category": "paraphrase",
+      "class": "valid",
+      "resolved_memory_id": 8407,
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0
+    },
+    {
+      "probe_id": "fixture-022",
+      "category": "paraphrase",
+      "class": "valid",
+      "resolved_memory_id": 8405,
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0
+    },
+    {
+      "probe_id": "fixture-024",
+      "category": "arc-context",
+      "class": "valid",
+      "resolved_memory_id": 8548,
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0
+    },
+    {
+      "probe_id": "fixture-025",
+      "category": "arc-context",
+      "class": "valid",
+      "resolved_memory_id": 8549,
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0
+    },
+    {
+      "probe_id": "fixture-026",
+      "category": "arc-context",
+      "class": "valid",
+      "resolved_memory_id": 8550,
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0
+    },
+    {
+      "probe_id": "fixture-030",
+      "category": "arc-context",
+      "class": "valid",
+      "resolved_memory_id": 8546,
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0
+    },
+    {
+      "probe_id": "fixture-032",
+      "category": "arc-context",
+      "class": "valid",
+      "resolved_memory_id": 8542,
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0
+    },
+    {
+      "probe_id": "fixture-034",
+      "category": "paraphrase",
+      "class": "valid",
+      "resolved_memory_id": 4578,
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0
+    },
+    {
+      "probe_id": "fixture-035",
+      "category": "terminology",
+      "class": "valid",
+      "resolved_memory_id": 3793,
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0
+    },
+    {
+      "probe_id": "fixture-036",
+      "category": "paraphrase",
+      "class": "valid",
+      "resolved_memory_id": 3791,
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0
+    },
+    {
+      "probe_id": "fixture-038",
+      "category": "paraphrase",
+      "class": "valid",
+      "resolved_memory_id": 4544,
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0
+    },
+    {
+      "probe_id": "fixture-039",
+      "category": "terminology",
+      "class": "valid",
+      "resolved_memory_id": 8514,
+      "rank_at_5": 2,
+      "rank_at_10": 2,
+      "hit_at_5": true,
+      "recall_at_5": 1,
+      "ndcg_at_10": 0.6309297535714575
+    },
+    {
+      "probe_id": "fixture-040",
+      "category": "arc-context",
+      "class": "valid",
+      "resolved_memory_id": 8537,
+      "rank_at_5": 1,
+      "rank_at_10": 1,
+      "hit_at_5": true,
+      "recall_at_5": 1,
+      "ndcg_at_10": 1
+    },
+    {
+      "probe_id": "fixture-041",
+      "category": "paraphrase",
+      "class": "valid",
+      "resolved_memory_id": 8519,
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0
+    },
+    {
+      "probe_id": "fixture-042",
+      "category": "paraphrase",
+      "class": "valid",
+      "resolved_memory_id": 8534,
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0
+    },
+    {
+      "probe_id": "fixture-043",
+      "category": "paraphrase",
+      "class": "valid",
+      "resolved_memory_id": 8530,
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0
+    },
+    {
+      "probe_id": "fixture-044",
+      "category": "paraphrase",
+      "class": "valid",
+      "resolved_memory_id": 8523,
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0
+    },
+    {
+      "probe_id": "fixture-045",
+      "category": "paraphrase",
+      "class": "valid",
+      "resolved_memory_id": 8488,
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0
+    },
+    {
+      "probe_id": "fixture-046",
+      "category": "paraphrase",
+      "class": "valid",
+      "resolved_memory_id": 8497,
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0
+    },
+    {
+      "probe_id": "fixture-047",
+      "category": "paraphrase",
+      "class": "valid",
+      "resolved_memory_id": 8490,
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0
+    },
+    {
+      "probe_id": "fixture-048",
+      "category": "terminology",
+      "class": "valid",
+      "resolved_memory_id": 6806,
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0
+    },
+    {
+      "probe_id": "fixture-049",
+      "category": "terminology",
+      "class": "valid",
+      "resolved_memory_id": 8548,
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0
+    }
+  ],
+  "phase2_bge_summary": {
+    "fixture_count": 50,
+    "hit_rate_at_5": 0.12,
+    "ndcg_at_10": 0.11,
+    "recall_at_5": 0.12,
+    "per_category": {
+      "paraphrase": {
+        "probe_count": 27,
+        "hit_rate_at_5": 0.14814814814814814,
+        "recall_at_5": 0.14814814814814814,
+        "ndcg_at_10": 0.14814814814814814,
+        "zero_recall": false,
+        "miss_probe_ids": [
+          "fixture-001",
+          "fixture-002",
+          "fixture-004",
+          "fixture-005",
+          "fixture-007",
+          "fixture-008",
+          "fixture-012",
+          "fixture-013",
+          "fixture-016",
+          "fixture-019",
+          "fixture-021",
+          "fixture-022",
+          "fixture-031",
+          "fixture-034",
+          "fixture-036",
+          "fixture-038",
+          "fixture-041",
+          "fixture-042",
+          "fixture-043",
+          "fixture-044",
+          "fixture-045",
+          "fixture-046",
+          "fixture-047"
+        ]
+      },
+      "terminology": {
+        "probe_count": 11,
+        "hit_rate_at_5": 0.09090909090909091,
+        "recall_at_5": 0.09090909090909091,
+        "ndcg_at_10": 0.045454545454545456,
+        "zero_recall": false,
+        "miss_probe_ids": [
+          "fixture-011",
+          "fixture-014",
+          "fixture-015",
+          "fixture-017",
+          "fixture-018",
+          "fixture-020",
+          "fixture-035",
+          "fixture-037",
+          "fixture-048",
+          "fixture-049"
+        ]
+      },
+      "arc-context": {
+        "probe_count": 12,
+        "hit_rate_at_5": 0.08333333333333333,
+        "recall_at_5": 0.08333333333333333,
+        "ndcg_at_10": 0.08333333333333333,
+        "zero_recall": false,
+        "miss_probe_ids": [
+          "fixture-023",
+          "fixture-024",
+          "fixture-025",
+          "fixture-026",
+          "fixture-027",
+          "fixture-028",
+          "fixture-029",
+          "fixture-030",
+          "fixture-032",
+          "fixture-033",
+          "fixture-050"
+        ]
+      }
+    },
+    "zero_recall_categories": [],
+    "latency_ms": {
+      "p50": 609.126,
+      "p95": 10591.245
+    },
+    "stale_gold_memory_ids": [
+      {
+        "probe": "fixture-004",
+        "memory_id": 1404
+      },
+      {
+        "probe": "fixture-005",
+        "memory_id": 1047
+      },
+      {
+        "probe": "fixture-008",
+        "memory_id": 1007
+      },
+      {
+        "probe": "fixture-013",
+        "memory_id": 8184
+      },
+      {
+        "probe": "fixture-014",
+        "memory_id": 8183
+      },
+      {
+        "probe": "fixture-015",
+        "memory_id": 8189
+      },
+      {
+        "probe": "fixture-016",
+        "memory_id": 8186
+      },
+      {
+        "probe": "fixture-017",
+        "memory_id": 8192
+      },
+      {
+        "probe": "fixture-023",
+        "memory_id": 8553
+      },
+      {
+        "probe": "fixture-027",
+        "memory_id": 8551
+      },
+      {
+        "probe": "fixture-028",
+        "memory_id": 8552
+      },
+      {
+        "probe": "fixture-029",
+        "memory_id": 8547
+      },
+      {
+        "probe": "fixture-031",
+        "memory_id": 8544
+      },
+      {
+        "probe": "fixture-033",
+        "memory_id": 8543
+      },
+      {
+        "probe": "fixture-037",
+        "memory_id": 4546
+      },
+      {
+        "probe": "fixture-050",
+        "memory_id": 8551
+      }
+    ],
+    "verdict_thresholds": {
+      "recall_at_5_min": 0.17,
+      "recall_misses_max": 22,
+      "ranking_inversions_max": 0,
+      "hit_rate_at_5_min": 0.18,
+      "p95_latency_off_plus_500ms_max": 1057.529,
+      "requires_no_sidecar_crash": true
+    },
+    "verdict": "HOLD",
+    "failure_analysis": {
+      "ranking_inversion": [],
+      "recall_miss": [
+        "fixture-001",
+        "fixture-002",
+        "fixture-004",
+        "fixture-005",
+        "fixture-007",
+        "fixture-008",
+        "fixture-011",
+        "fixture-012",
+        "fixture-013",
+        "fixture-014",
+        "fixture-015",
+        "fixture-016",
+        "fixture-017",
+        "fixture-018",
+        "fixture-019",
+        "fixture-020",
+        "fixture-021",
+        "fixture-022",
+        "fixture-023",
+        "fixture-024",
+        "fixture-025",
+        "fixture-026",
+        "fixture-027",
+        "fixture-028",
+        "fixture-029",
+        "fixture-030",
+        "fixture-031",
+        "fixture-032",
+        "fixture-033",
+        "fixture-034",
+        "fixture-035",
+        "fixture-036",
+        "fixture-037",
+        "fixture-038",
+        "fixture-041",
+        "fixture-042",
+        "fixture-043",
+        "fixture-044",
+        "fixture-045",
+        "fixture-046",
+        "fixture-047",
+        "fixture-048",
+        "fixture-049",
+        "fixture-050"
+      ],
+      "empty_result": []
+    }
+  },
+  "branch_inputs": {
+    "pre_rerank_coverage_v": 0,
+    "rerank_effect_v": 0
+  },
+  "branch_decision": "RETRIEVAL_WORK",
+  "next_recommendation": "new arc 012-retrieval-pipeline-audit (FTS / vector / RRF / chunking)"
+}

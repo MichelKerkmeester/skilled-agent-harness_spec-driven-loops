@@ -73,6 +73,12 @@ vi.mock('../lib/search/intent-classifier.js', () => ({
 
 vi.mock('../lib/code-graph-boundary.js', () => ({
   classifyQueryIntent: mocks.classifyQueryIntent,
+  getGraphReadinessSnapshotFromMarker: vi.fn(() => ({
+    readiness: 'unavailable',
+    fresh: false,
+    stale: true,
+    reason: 'test mock',
+  })),
   callCodeGraphTool: vi.fn(async () => ({
     status: 'ok',
     data: mocks.buildContext(),
@@ -486,7 +492,14 @@ describe.sequential('Gate D canonical-filtering contract assertions', () => {
     vi.doUnmock('../lib/search/search-flags.js');
     vi.doUnmock('../core/index.js');
     vi.doMock('../lib/providers/embeddings.js', () => ({
+      getModelName: vi.fn(() => 'jina-embeddings-v3'),
+      getEmbeddingDimension: vi.fn(() => 1024),
       generateQueryEmbedding: vi.fn(async () => new Float32Array(1024).fill(0.1)),
+    }));
+    vi.doMock('../lib/embedders/execution-router.js', () => ({
+      getEmbedderAdapter: vi.fn(() => ({
+        embed: vi.fn(async () => [new Float32Array(1024).fill(0.1)]),
+      })),
     }));
 
     const fixture = await import('./helpers/memory-db-fixture.js');

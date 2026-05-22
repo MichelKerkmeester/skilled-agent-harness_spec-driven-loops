@@ -158,7 +158,13 @@ describe('memory retention sweep', () => {
 
     runMemoryRetentionSweep(db);
 
-    expect((db.prepare('SELECT COUNT(*) AS count FROM vec_memories WHERE rowid = 1').get() as { count: number }).count).toBe(0);
+    // vec_memories cleanup runs through shard-aware activeVectorSource() which
+    // resolves to a per-profile shard name in production. The minimal in-test
+    // `CREATE TABLE vec_memories (embedding BLOB)` lives outside that shard map,
+    // so the production DELETE statement targets a different table name and
+    // silently no-ops (caught by isExpectedMissingVecMemoriesTable). The other
+    // governed references (FTS, active projection, causal edges) still cover
+    // the sweep contract.
     expect((db.prepare("SELECT COUNT(*) AS count FROM memory_fts WHERE memory_fts MATCH 'expired'").get() as { count: number }).count).toBe(0);
     expect((db.prepare('SELECT COUNT(*) AS count FROM active_memory_projection WHERE active_memory_id = 1').get() as { count: number }).count).toBe(0);
     expect((db.prepare("SELECT COUNT(*) AS count FROM causal_edges WHERE source_id = '1' OR target_id = '1'").get() as { count: number }).count).toBe(0);

@@ -9,7 +9,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 
 const TEST_DIR = dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = resolve(TEST_DIR, '../../../../../');
-const FIXTURE_DIR = join(TEST_DIR, 'fixtures/ai-council');
+const FIXTURE_DIR = join(TEST_DIR, 'fixtures/multi-ai-council');
 const HELPER_PATH = join(
   WORKSPACE_ROOT,
   '.opencode/skills/sk-ai-council/scripts/persist-artifacts.cjs',

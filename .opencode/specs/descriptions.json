@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-05-21T11:50:58.196Z",
+  "generated": "2026-05-22T06:06:19.694Z",
   "folders": [
     {
       "specFolder": "00--ai-systems/001-global-shared",
@@ -641,7 +641,7 @@
         "dropdown",
         "fix"
       ],
-      "lastUpdated": "2026-05-21T11:50:58.196Z"
+      "lastUpdated": "2026-05-22T06:06:19.694Z"
     },
     {
       "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/019-form-attribute-audit",
@@ -691,7 +691,7 @@
         "anobel",
         "com"
       ],
-      "lastUpdated": "2026-05-21T11:50:58.196Z"
+      "lastUpdated": "2026-05-22T06:06:19.694Z"
     },
     {
       "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/023-performance-review",
@@ -1676,6 +1676,19 @@
       "lastUpdated": "2026-05-21T10:22:37.633Z"
     },
     {
+      "specFolder": "skilled-agent-orchestration/116-deep-review-complexity",
+      "description": "Feature Specification: Deep Review Complexity Research",
+      "keywords": [
+        "feature",
+        "specification",
+        "deep",
+        "review",
+        "complexity",
+        "research"
+      ],
+      "lastUpdated": "2026-05-22T06:06:19.318Z"
+    },
+    {
       "specFolder": "skilled-agent-orchestration/z_archive/001-cli-gemini-creation",
       "description": "Feature Specification: cli-gemini Skill",
       "keywords": [
@@ -2499,7 +2512,7 @@
         "folder",
         "convention"
       ],
-      "lastUpdated": "2026-05-21T11:50:58.196Z"
+      "lastUpdated": "2026-05-22T06:06:19.694Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/043-cli-skill-improved-prompting",
@@ -5171,7 +5184,7 @@
         "standards",
         "contract"
       ],
-      "lastUpdated": "2026-05-21T11:50:58.196Z"
+      "lastUpdated": "2026-05-22T06:06:19.694Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/023-fix-baseline-test-failures",
@@ -5197,7 +5210,7 @@
         "concurrency",
         "fixes"
       ],
-      "lastUpdated": "2026-05-21T11:50:58.196Z"
+      "lastUpdated": "2026-05-22T06:06:19.694Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/025-readme-architecture-diagrams-topology",
@@ -6958,7 +6971,7 @@
         "isolation",
         "finalize"
       ],
-      "lastUpdated": "2026-05-21T11:50:58.196Z"
+      "lastUpdated": "2026-05-22T06:06:19.694Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/019-system-code-graph-uplift-phase-parent",
@@ -7449,7 +7462,7 @@
         "coverage",
         "audit"
       ],
-      "lastUpdated": "2026-05-21T11:50:58.196Z"
+      "lastUpdated": "2026-05-22T06:06:19.694Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/027-typescript-header-normalization",
@@ -9176,7 +9189,7 @@
         "phase",
         "parent"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.467Z"
+      "lastUpdated": "2026-05-22T05:51:15.965Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/001-adapter-interface",
@@ -9436,6 +9449,27 @@
       "lastUpdated": "2026-05-21T10:22:38.538Z"
     },
     {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/020-cli-process-memory-leak-deep-research",
+      "description": "CLI process memory leak deep research packet for 10 telemetry-gated /spec_kit:deep-research iterations across system-spec-kit and cli-X dispatchers.",
+      "keywords": [
+        "cli",
+        "process",
+        "memory",
+        "leak",
+        "deep",
+        "research",
+        "packet",
+        "telemetry-gated",
+        "deep-research",
+        "iterations",
+        "across",
+        "system-spec-kit",
+        "cli-x",
+        "dispatchers"
+      ],
+      "lastUpdated": "2026-05-22T05:50:49.521Z"
+    },
+    {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack",
       "description": "022: Skill-advisor embedder parity (phase parent)",
       "keywords": [
@@ -9510,7 +9544,7 @@
         "logic",
         "spec-memory"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.557Z"
+      "lastUpdated": "2026-05-21T18:08:46.928Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack",
@@ -9672,7 +9706,7 @@
         "fit",
         "investigation"
       ],
-      "lastUpdated": "2026-05-21T11:50:58.196Z"
+      "lastUpdated": "2026-05-21T10:22:38.579Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-10-probes",
@@ -9689,7 +9723,7 @@
         "full",
         "second"
       ],
-      "lastUpdated": "2026-05-21T11:50:58.196Z"
+      "lastUpdated": "2026-05-21T10:22:38.584Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit",
@@ -9736,7 +9770,7 @@
         "chunking",
         "stage"
       ],
-      "lastUpdated": "2026-05-21T11:50:58.196Z"
+      "lastUpdated": "2026-05-20T05:03:42.687Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/016-query-expansion-identifier-bridging",
@@ -9750,7 +9784,7 @@
         "identifier",
         "bridging"
       ],
-      "lastUpdated": "2026-05-21T11:50:58.196Z"
+      "lastUpdated": "2026-05-21T10:22:38.601Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/017-hybrid-fusion-empirical-recalibration",
@@ -9766,7 +9800,7 @@
         "rrf",
         "recalibration"
       ],
-      "lastUpdated": "2026-05-21T11:50:58.196Z"
+      "lastUpdated": "2026-05-20T05:03:42.965Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/018-rerank-matrix-rebench",
@@ -9780,7 +9814,7 @@
         "matrix",
         "re-bench"
       ],
-      "lastUpdated": "2026-05-21T11:50:58.196Z"
+      "lastUpdated": "2026-05-20T05:03:43.233Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/020-deep-review-p1-p2-remediation",
@@ -9928,6 +9962,21 @@
       "lastUpdated": "2026-05-20T15:26:01.430Z"
     },
     {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/024-cli-deep-research-memory-leak-audit",
+      "description": "Spec: 024 CLI Deep Research Memory Leak Audit",
+      "keywords": [
+        "spec",
+        "024",
+        "cli",
+        "deep",
+        "research",
+        "memory",
+        "leak",
+        "audit"
+      ],
+      "lastUpdated": "2026-05-22T05:51:31.038Z"
+    },
+    {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality",
       "description": "016/005: Cross-cutting quality (phase parent)",
       "keywords": [
@@ -9938,7 +9987,7 @@
         "phase",
         "parent"
       ],
-      "lastUpdated": "2026-05-21T11:50:58.196Z"
+      "lastUpdated": "2026-05-21T10:22:38.658Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit",
@@ -10520,6 +10569,82 @@
       "lastUpdated": "2026-05-21T09:00:00Z"
     },
     {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc",
+      "description": "Phase parent: 3-step rerank decision arc for spec-memory (audit OFF → try bge-v2-m3 → fine-tune). Supersedes 010.",
+      "keywords": [
+        "rerank-decision",
+        "spec-memory",
+        "off-baseline-audit",
+        "bge-reranker-v2-m3",
+        "domain-tuned-finetune",
+        "phase-parent"
+      ],
+      "lastUpdated": "2026-05-21T13:00:00Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/001-off-baseline-audit",
+      "description": "Phase 1: OFF baseline audit + WEIGHT_RERANKER penalty removal (conditional)",
+      "keywords": [
+        "off-baseline",
+        "weight-reranker-penalty",
+        "request-quality",
+        "scoring",
+        "spec-memory"
+      ],
+      "lastUpdated": "2026-05-21T13:00:00Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/002-bge-v2-m3-trial",
+      "description": "Phase 2: off-the-shelf bge-reranker-v2-m3 trial via sidecar allowlist + revision pin",
+      "keywords": [
+        "bge-reranker-v2-m3",
+        "off-the-shelf-rerank",
+        "sidecar-allowlist",
+        "spec-memory",
+        "apache-2.0-rerank"
+      ],
+      "lastUpdated": "2026-05-21T13:00:00Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/003-domain-tuned-finetune",
+      "description": "Phase 3: domain-tuned reranker fine-tune for spec-memory with template-stripping (supersedes 010)",
+      "keywords": [
+        "domain-tuned-rerank",
+        "fine-tune",
+        "template-stripping",
+        "synthetic-triples",
+        "spec-memory",
+        "anti-overfit"
+      ],
+      "lastUpdated": "2026-05-21T13:00:00Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/004-retrieval-and-fixture-audit",
+      "description": "Phase 0 decision gate: retrieval + fixture audit before Phase 3 fine-tune (AI Council 3-1 verdict)",
+      "keywords": [
+        "retrieval-audit",
+        "fixture-freshness",
+        "candidate-coverage",
+        "handler-parity",
+        "rerank-effect",
+        "branch-decision",
+        "decision-gate"
+      ],
+      "lastUpdated": "2026-05-21T14:30:00Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/005-opt-in-only-closure",
+      "description": "Spec: spec-memory rerank — opt-in-only closure",
+      "keywords": [
+        "spec",
+        "spec-memory",
+        "rerank",
+        "opt-in-only",
+        "closure"
+      ],
+      "lastUpdated": "2026-05-21T15:44:17.199Z"
+    },
+    {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening",
       "description": "Feature Specification: Runtime Executor Hardening",
       "keywords": [
@@ -10940,7 +11065,7 @@
         "deep-review",
         "remediation"
       ],
-      "lastUpdated": "2026-05-21T11:50:58.196Z"
+      "lastUpdated": "2026-05-22T06:06:19.694Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-039-system-code-graph-deferred-followon",
@@ -11543,7 +11668,7 @@
         "knowledge",
         "base"
       ],
-      "lastUpdated": "2026-05-21T11:50:58.196Z"
+      "lastUpdated": "2026-05-22T06:06:19.694Z"
     },
     {
       "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch",
@@ -15798,7 +15923,7 @@
         "obsidian-export",
         "specification"
       ],
-      "lastUpdated": "2026-05-21T11:50:58.196Z"
+      "lastUpdated": "2026-05-22T06:06:19.694Z"
     },
     {
       "specFolder": "z_future/hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/openspec/specs/obsidian-plugin",
@@ -15807,7 +15932,7 @@
         "obsidian-plugin",
         "specification"
       ],
-      "lastUpdated": "2026-05-21T11:50:58.196Z"
+      "lastUpdated": "2026-05-22T06:06:19.694Z"
     },
     {
       "specFolder": "z_future/hybrid-rag-fusion-upgrade/002-hybrid-rag-adoption",

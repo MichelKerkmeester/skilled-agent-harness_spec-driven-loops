@@ -89,13 +89,21 @@ function getResultConfidence(envelope: SearchEnvelope, resultId: number): Confid
 
 describe('D5 Phase A: result confidence scoring', () => {
   let originalFlag: string | undefined;
+  let originalCrossEncoder: string | undefined;
 
   beforeEach(() => {
     originalFlag = process.env[CONFIDENCE_FLAG];
     process.env[CONFIDENCE_FLAG] = 'true';
+    originalCrossEncoder = process.env.SPECKIT_CROSS_ENCODER;
+    process.env.SPECKIT_CROSS_ENCODER = 'true';
   });
 
   afterEach(() => {
+    if (originalCrossEncoder === undefined) {
+      delete process.env.SPECKIT_CROSS_ENCODER;
+    } else {
+      process.env.SPECKIT_CROSS_ENCODER = originalCrossEncoder;
+    }
     if (originalFlag === undefined) {
       delete process.env[CONFIDENCE_FLAG];
     } else {

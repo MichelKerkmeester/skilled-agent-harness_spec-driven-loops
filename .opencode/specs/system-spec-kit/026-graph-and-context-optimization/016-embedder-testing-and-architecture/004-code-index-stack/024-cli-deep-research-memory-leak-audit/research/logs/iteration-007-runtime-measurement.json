@@ -1,0 +1,177 @@
+{
+  "createdAt": "2026-05-22T06:46:29.549Z",
+  "purpose": "Native non-destructive runtime measurement for iteration 007 after Codex sandbox denied ps/pgrep/sysctl.",
+  "before": {
+    "label": "before",
+    "at": "2026-05-22T06:46:29.617Z",
+    "pgrep": {
+      "label": "before:pgrep",
+      "cmd": [
+        "pgrep",
+        "-fl",
+        "ccc|cocoindex|rerank_sidecar|uvicorn|code-graph|mk-code-index|claude -p|codex exec"
+      ],
+      "startedAt": "2026-05-22T06:46:29.549Z",
+      "endedAt": "2026-05-22T06:46:29.573Z",
+      "status": 0,
+      "signal": null,
+      "stdout": "986 node .opencode/bin/mk-code-index-launcher.cjs\n987 /opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python .opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc mcp\n5629 /opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python -m uvicorn scripts.rerank_sidecar:app --host 127.0.0.1 --port 8765 --workers 1\n47859 claude -p # Iteration 004 Prompt\n\nRead `iteration-contract.md` in this directory first and follow it exactly.\n\nIteration: 004\n\nExecutor metadata: `{\"kind\":\"cli-claude-code\",\"model\":\"claude-opus-4-7\",\"reasoningEffort\":\"high\",\"serviceTier\":null}`\n\nFocus: audit cli-X self-invocation guards, nested routing rules, and cross-CLI loop risks across `cli-claude-code`, `cli-codex`, `cli-opencode`, `cli-devin`, and `cli-gemini`. Identify inconsistencies that could allow Claude calling Claude, OpenCode calling OpenCode, Codex calling Codex, or a chain of CLIs recursively dispatching each other.\n\nWrite:\n\n- `../iterations/iteration-004.md`\n- `../deltas/iter-004.jsonl`\n- append one JSONL line to `../deep-research-state.jsonl` --model claude-opus-4-7 --permission-mode acceptEdits --output-format text\n47896 node .opencode/bin/mk-code-index-launcher.cjs\n47897 /opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python .opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc mcp\n61691 /opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc run-daemon\n62642 node .opencode/bin/mk-code-index-launcher.cjs\n62661 /opt/homebrew/Cellar/node/25.6.1/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/dist/index.js\n63458 /opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python .opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc mcp\n63576 node .opencode/bin/mk-code-index-launcher.cjs\n63577 /opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python .opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc mcp\n63605 /opt/homebrew/Cellar/node/25.6.1/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/dist/index.js\n70351 node .opencode/bin/mk-code-index-launcher.cjs\n70352 /opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python .opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc mcp\n74722 /opt/homebrew/Cellar/node/25.6.1/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/dist/index.js\n",
+      "stderr": "",
+      "error": null
+    },
+    "ps": {
+      "label": "before:ps",
+      "cmd": [
+        "ps",
+        "-o",
+        "pid,ppid,rss,vsz,etime,command",
+        "-p",
+        "986,987,5629,47859,47896,47897,61691,62642,62661,63458,63576,63577,63605,70351,70352,74722"
+      ],
+      "startedAt": "2026-05-22T06:46:29.573Z",
+      "endedAt": "2026-05-22T06:46:29.617Z",
+      "status": 0,
+      "signal": null,
+      "stdout": "  PID  PPID    RSS      VSZ     ELAPSED COMMAND\n 5629     1 402352 443233392       31:32 /opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python -m uvicorn scripts.rerank_sidecar:app --host 127.0.0.1 --port 8765 --workers 1\n47859   925 516176 515421440       06:32 claude -p # Iteration 004 Prompt\\012\\012Read `iteration-contract.md` in this directory first and follow it exactly.\\012\\012Iteration: 004\\012\\012Executor metadata: `{\"kind\":\"cli-claude-code\",\"model\":\"claude-opus-4-7\",\"reasoningEffort\":\"high\",\"serviceTier\":null}`\\012\\012Focus: audit cli-X self-invocation guards, nested routing rules, and cross-CLI loop risks across `cli-claude-code`, `cli-codex`, `cli-opencode`, `cli-devin`, and `cli-gemini`. Identify inconsistencies that could allow Claude calling Claude, OpenCode calling OpenCode, Codex calling Codex, or a chain of CLIs recursively dispatching each other.\\012\\012Write:\\012\\012- `../iterations/iteration-004.md`\\012- `../deltas/iter-004.jsonl`\\012- append one JSONL line to `../deep-research-state.jsonl` --model claude-opus-4-7 --permission-mode acceptEdits --output-format text\n47896 47859  48784 443458800       06:31 node .opencode/bin/mk-code-index-launcher.cjs\n47897 47859 246208 443196800       06:31 /opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python .opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc mcp\n61691     1 498816 448483872    18:44:09 /opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc run-daemon\n74722     1     32 443522240 01-17:17:48 /opt/homebrew/Cellar/node/25.6.1/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/dist/index.js\n62642 62584  35392 443467408    01:15:41 node .opencode/bin/mk-code-index-launcher.cjs\n62661 62642  45328 443531056    01:15:41 /opt/homebrew/Cellar/node/25.6.1/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/dist/index.js\n63458 62584  58944 443179712    01:15:41 /opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python .opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc mcp\n  986   925  42112 443478768    01:08:29 node .opencode/bin/mk-code-index-launcher.cjs\n  987   925 206032 443175168    01:08:29 /opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python .opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc mcp\n70351 68429  35424 443478912    01:15:04 node .opencode/bin/mk-code-index-launcher.cjs\n70352 68429  58912 443184384    01:15:04 /opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python .opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc mcp\n63576 62410  38528 443466736       55:28 node .opencode/bin/mk-code-index-launcher.cjs\n63577 62410 128080 443179376       55:28 /opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python .opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc mcp\n63605 63576  79664 443528256       55:28 /opt/homebrew/Cellar/node/25.6.1/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/dist/index.js\n",
+      "stderr": "",
+      "error": null
+    },
+    "swap": {
+      "label": "before:swap",
+      "cmd": [
+        "sysctl",
+        "vm.swapusage"
+      ],
+      "startedAt": "2026-05-22T06:46:29.617Z",
+      "endedAt": "2026-05-22T06:46:29.619Z",
+      "status": 0,
+      "signal": null,
+      "stdout": "vm.swapusage: total = 41984.00M  used = 40812.94M  free = 1171.06M  (encrypted)\n",
+      "stderr": "",
+      "error": null
+    },
+    "vmStat": {
+      "label": "before:vm_stat",
+      "cmd": [
+        "vm_stat"
+      ],
+      "startedAt": "2026-05-22T06:46:29.619Z",
+      "endedAt": "2026-05-22T06:46:29.621Z",
+      "status": 0,
+      "signal": null,
+      "stdout": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                             1501510.\nPages active:                            986514.\nPages inactive:                          880312.\nPages speculative:                       118791.\nPages throttled:                              0.\nPages wired down:                        401861.\nPages purgeable:                          14843.\n\"Translation faults\":                3841578914.\nPages copy-on-write:                  365704172.\nPages zero filled:                   4123225881.\nPages reactivated:                    265886155.\nPages purged:                         210880192.\nFile-backed pages:                       720101.\nAnonymous pages:                        1265516.\nPages stored in compressor:             4011228.\nPages occupied by compressor:            218683.\nDecompressions:                      1754779465.\nCompressions:                        1896749340.\nPageins:                               66826262.\nPageouts:                                437972.\nSwapins:                              260068204.\nSwapouts:                             278129527.\n",
+      "stderr": "",
+      "error": null
+    }
+  },
+  "commands": [
+    {
+      "label": "command-v-ccc",
+      "cmd": [
+        "zsh",
+        "-lc",
+        "command -v ccc"
+      ],
+      "startedAt": "2026-05-22T06:46:29.621Z",
+      "endedAt": "2026-05-22T06:46:29.629Z",
+      "status": 0,
+      "signal": null,
+      "stdout": "/opt/homebrew/bin/ccc\n",
+      "stderr": "",
+      "error": null
+    },
+    {
+      "label": "ccc-status",
+      "cmd": [
+        "zsh",
+        "-lc",
+        "ccc status"
+      ],
+      "startedAt": "2026-05-22T06:46:29.629Z",
+      "endedAt": "2026-05-22T06:46:29.947Z",
+      "status": 1,
+      "signal": null,
+      "stdout": "\n╔═══════════════════════════════════════════════════════════╗\n║                                                           ║\n║   CCC - Claude Code Chat v1.2.0                           ║\n║   Control Claude Code from your mobile device             ║\n║                                                           ║\n╚═══════════════════════════════════════════════════════════╝\n\nStarting Claude Code Chat backend...\n\n",
+      "stderr": "node:internal/modules/cjs/loader:1458\n  throw err;\n  ^\n\nError: Cannot find module './sentry_cpu_profiler-darwin-arm64-141.node'\nRequire stack:\n- /opt/homebrew/lib/node_modules/@naarang/ccc/node_modules/@sentry-internal/node-cpu-profiler/lib/index.js\n- /opt/homebrew/lib/node_modules/@naarang/ccc/node_modules/@sentry/profiling-node/build/cjs/index.js\n- /opt/homebrew/lib/node_modules/@naarang/ccc/dist/utils/sentry_instrument.js\n- /opt/homebrew/lib/node_modules/@naarang/ccc/dist/index.js\n- /opt/homebrew/lib/node_modules/@naarang/ccc/bin/ccc.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1455:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1065:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1070:22)\n    at Module._load (node:internal/modules/cjs/loader:1241:25)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.require (node:internal/modules/cjs/loader:1555:12)\n    at require (node:internal/modules/helpers:152:16)\n    at importCppBindingsModule (/opt/homebrew/lib/node_modules/@naarang/ccc/node_modules/@sentry-internal/node-cpu-profiler/lib/index.js:165:12)\n    at Object.<anonymous> (/opt/homebrew/lib/node_modules/@naarang/ccc/node_modules/@sentry-internal/node-cpu-profiler/lib/index.js:167:38)\n    at Module._compile (node:internal/modules/cjs/loader:1811:14) {\n  code: 'MODULE_NOT_FOUND',\n  requireStack: [\n    '/opt/homebrew/lib/node_modules/@naarang/ccc/node_modules/@sentry-internal/node-cpu-profiler/lib/index.js',\n    '/opt/homebrew/lib/node_modules/@naarang/ccc/node_modules/@sentry/profiling-node/build/cjs/index.js',\n    '/opt/homebrew/lib/node_modules/@naarang/ccc/dist/utils/sentry_instrument.js',\n    '/opt/homebrew/lib/node_modules/@naarang/ccc/dist/index.js',\n    '/opt/homebrew/lib/node_modules/@naarang/ccc/bin/ccc.js'\n  ]\n}\n\nNode.js v25.6.1\n",
+      "error": null
+    },
+    {
+      "label": "ccc-search",
+      "cmd": [
+        "zsh",
+        "-lc",
+        "ccc search \"Project.close ManagedConnection close\" --limit 2"
+      ],
+      "startedAt": "2026-05-22T06:46:29.947Z",
+      "endedAt": "2026-05-22T06:46:30.090Z",
+      "status": 1,
+      "signal": null,
+      "stdout": "\n╔═══════════════════════════════════════════════════════════╗\n║                                                           ║\n║   CCC - Claude Code Chat v1.2.0                           ║\n║   Control Claude Code from your mobile device             ║\n║                                                           ║\n╚═══════════════════════════════════════════════════════════╝\n\nStarting Claude Code Chat backend...\n\n",
+      "stderr": "node:internal/modules/cjs/loader:1458\n  throw err;\n  ^\n\nError: Cannot find module './sentry_cpu_profiler-darwin-arm64-141.node'\nRequire stack:\n- /opt/homebrew/lib/node_modules/@naarang/ccc/node_modules/@sentry-internal/node-cpu-profiler/lib/index.js\n- /opt/homebrew/lib/node_modules/@naarang/ccc/node_modules/@sentry/profiling-node/build/cjs/index.js\n- /opt/homebrew/lib/node_modules/@naarang/ccc/dist/utils/sentry_instrument.js\n- /opt/homebrew/lib/node_modules/@naarang/ccc/dist/index.js\n- /opt/homebrew/lib/node_modules/@naarang/ccc/bin/ccc.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1455:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1065:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1070:22)\n    at Module._load (node:internal/modules/cjs/loader:1241:25)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.require (node:internal/modules/cjs/loader:1555:12)\n    at require (node:internal/modules/helpers:152:16)\n    at importCppBindingsModule (/opt/homebrew/lib/node_modules/@naarang/ccc/node_modules/@sentry-internal/node-cpu-profiler/lib/index.js:165:12)\n    at Object.<anonymous> (/opt/homebrew/lib/node_modules/@naarang/ccc/node_modules/@sentry-internal/node-cpu-profiler/lib/index.js:167:38)\n    at Module._compile (node:internal/modules/cjs/loader:1811:14) {\n  code: 'MODULE_NOT_FOUND',\n  requireStack: [\n    '/opt/homebrew/lib/node_modules/@naarang/ccc/node_modules/@sentry-internal/node-cpu-profiler/lib/index.js',\n    '/opt/homebrew/lib/node_modules/@naarang/ccc/node_modules/@sentry/profiling-node/build/cjs/index.js',\n    '/opt/homebrew/lib/node_modules/@naarang/ccc/dist/utils/sentry_instrument.js',\n    '/opt/homebrew/lib/node_modules/@naarang/ccc/dist/index.js',\n    '/opt/homebrew/lib/node_modules/@naarang/ccc/bin/ccc.js'\n  ]\n}\n\nNode.js v25.6.1\n",
+      "error": null
+    }
+  ],
+  "after": {
+    "label": "after",
+    "at": "2026-05-22T06:46:30.155Z",
+    "pgrep": {
+      "label": "after:pgrep",
+      "cmd": [
+        "pgrep",
+        "-fl",
+        "ccc|cocoindex|rerank_sidecar|uvicorn|code-graph|mk-code-index|claude -p|codex exec"
+      ],
+      "startedAt": "2026-05-22T06:46:30.090Z",
+      "endedAt": "2026-05-22T06:46:30.111Z",
+      "status": 0,
+      "signal": null,
+      "stdout": "986 node .opencode/bin/mk-code-index-launcher.cjs\n987 /opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python .opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc mcp\n5629 /opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python -m uvicorn scripts.rerank_sidecar:app --host 127.0.0.1 --port 8765 --workers 1\n47859 claude -p # Iteration 004 Prompt\n\nRead `iteration-contract.md` in this directory first and follow it exactly.\n\nIteration: 004\n\nExecutor metadata: `{\"kind\":\"cli-claude-code\",\"model\":\"claude-opus-4-7\",\"reasoningEffort\":\"high\",\"serviceTier\":null}`\n\nFocus: audit cli-X self-invocation guards, nested routing rules, and cross-CLI loop risks across `cli-claude-code`, `cli-codex`, `cli-opencode`, `cli-devin`, and `cli-gemini`. Identify inconsistencies that could allow Claude calling Claude, OpenCode calling OpenCode, Codex calling Codex, or a chain of CLIs recursively dispatching each other.\n\nWrite:\n\n- `../iterations/iteration-004.md`\n- `../deltas/iter-004.jsonl`\n- append one JSONL line to `../deep-research-state.jsonl` --model claude-opus-4-7 --permission-mode acceptEdits --output-format text\n47896 node .opencode/bin/mk-code-index-launcher.cjs\n47897 /opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python .opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc mcp\n61691 /opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc run-daemon\n62642 node .opencode/bin/mk-code-index-launcher.cjs\n62661 /opt/homebrew/Cellar/node/25.6.1/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/dist/index.js\n63458 /opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python .opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc mcp\n63576 node .opencode/bin/mk-code-index-launcher.cjs\n63577 /opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python .opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc mcp\n63605 /opt/homebrew/Cellar/node/25.6.1/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/dist/index.js\n70351 node .opencode/bin/mk-code-index-launcher.cjs\n70352 /opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python .opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc mcp\n74722 /opt/homebrew/Cellar/node/25.6.1/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/dist/index.js\n",
+      "stderr": "",
+      "error": null
+    },
+    "ps": {
+      "label": "after:ps",
+      "cmd": [
+        "ps",
+        "-o",
+        "pid,ppid,rss,vsz,etime,command",
+        "-p",
+        "986,987,5629,47859,47896,47897,61691,62642,62661,63458,63576,63577,63605,70351,70352,74722"
+      ],
+      "startedAt": "2026-05-22T06:46:30.111Z",
+      "endedAt": "2026-05-22T06:46:30.155Z",
+      "status": 0,
+      "signal": null,
+      "stdout": "  PID  PPID    RSS      VSZ     ELAPSED COMMAND\n 5629     1 402352 443233392       31:33 /opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python -m uvicorn scripts.rerank_sidecar:app --host 127.0.0.1 --port 8765 --workers 1\n47859   925 516176 515421440       06:33 claude -p # Iteration 004 Prompt\\012\\012Read `iteration-contract.md` in this directory first and follow it exactly.\\012\\012Iteration: 004\\012\\012Executor metadata: `{\"kind\":\"cli-claude-code\",\"model\":\"claude-opus-4-7\",\"reasoningEffort\":\"high\",\"serviceTier\":null}`\\012\\012Focus: audit cli-X self-invocation guards, nested routing rules, and cross-CLI loop risks across `cli-claude-code`, `cli-codex`, `cli-opencode`, `cli-devin`, and `cli-gemini`. Identify inconsistencies that could allow Claude calling Claude, OpenCode calling OpenCode, Codex calling Codex, or a chain of CLIs recursively dispatching each other.\\012\\012Write:\\012\\012- `../iterations/iteration-004.md`\\012- `../deltas/iter-004.jsonl`\\012- append one JSONL line to `../deep-research-state.jsonl` --model claude-opus-4-7 --permission-mode acceptEdits --output-format text\n47896 47859  48784 443458800       06:32 node .opencode/bin/mk-code-index-launcher.cjs\n47897 47859 246208 443196800       06:32 /opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python .opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc mcp\n61691     1 498816 448483872    18:44:10 /opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc run-daemon\n74722     1     32 443522240 01-17:17:49 /opt/homebrew/Cellar/node/25.6.1/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/dist/index.js\n62642 62584  35392 443467408    01:15:42 node .opencode/bin/mk-code-index-launcher.cjs\n62661 62642  45328 443531056    01:15:42 /opt/homebrew/Cellar/node/25.6.1/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/dist/index.js\n63458 62584  58944 443179712    01:15:42 /opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python .opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc mcp\n  986   925  42112 443478768    01:08:30 node .opencode/bin/mk-code-index-launcher.cjs\n  987   925 206032 443175168    01:08:30 /opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python .opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc mcp\n70351 68429  35424 443478912    01:15:05 node .opencode/bin/mk-code-index-launcher.cjs\n70352 68429  58912 443184384    01:15:05 /opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python .opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc mcp\n63576 62410  38528 443466736       55:29 node .opencode/bin/mk-code-index-launcher.cjs\n63577 62410 128080 443179376       55:29 /opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python .opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc mcp\n63605 63576  79664 443528256       55:29 /opt/homebrew/Cellar/node/25.6.1/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/dist/index.js\n",
+      "stderr": "",
+      "error": null
+    },
+    "swap": {
+      "label": "after:swap",
+      "cmd": [
+        "sysctl",
+        "vm.swapusage"
+      ],
+      "startedAt": "2026-05-22T06:46:30.155Z",
+      "endedAt": "2026-05-22T06:46:30.157Z",
+      "status": 0,
+      "signal": null,
+      "stdout": "vm.swapusage: total = 41984.00M  used = 40812.94M  free = 1171.06M  (encrypted)\n",
+      "stderr": "",
+      "error": null
+    },
+    "vmStat": {
+      "label": "after:vm_stat",
+      "cmd": [
+        "vm_stat"
+      ],
+      "startedAt": "2026-05-22T06:46:30.157Z",
+      "endedAt": "2026-05-22T06:46:30.158Z",
+      "status": 0,
+      "signal": null,
+      "stdout": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                             1520567.\nPages active:                            983687.\nPages inactive:                          866667.\nPages speculative:                       116572.\nPages throttled:                              0.\nPages wired down:                        401884.\nPages purgeable:                          14650.\n\"Translation faults\":                3841594645.\nPages copy-on-write:                  365705278.\nPages zero filled:                   4123233610.\nPages reactivated:                    265886155.\nPages purged:                         210880192.\nFile-backed pages:                       701647.\nAnonymous pages:                        1265279.\nPages stored in compressor:             4011228.\nPages occupied by compressor:            218683.\nDecompressions:                      1754779465.\nCompressions:                        1896749340.\nPageins:                               66826496.\nPageouts:                                437972.\nSwapins:                              260068204.\nSwapouts:                             278129527.\n",
+      "stderr": "",
+      "error": null
+    }
+  }
+}

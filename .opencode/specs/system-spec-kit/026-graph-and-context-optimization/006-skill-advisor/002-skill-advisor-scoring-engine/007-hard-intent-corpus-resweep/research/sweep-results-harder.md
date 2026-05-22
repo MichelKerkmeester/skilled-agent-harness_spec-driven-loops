@@ -1,14 +1,14 @@
-# Harder Intent Corpus Lane Weight Sweep (2026-05-15T16:40:33.554Z)
+# Harder Intent Corpus Lane Weight Sweep (2026-05-21T17:57:53.866Z)
 
 ## Seed Status
 
-- providerModelId: `llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8`
+- providerModelId: `ollama__nomic-embed-text-v1.5__768`
 - cacheHits: 15
 - cacheMisses: 0
 - seededSkills: 15
 - promptEmbeddings: 46
 - harderPrompts: 22
-- varianceDetected: true
+- varianceDetected: false
 
 Original-24 baseline from 015/004 V0: accuracyTotal 0.6667, todayCorrect 1.0000, intentDescribed 0.3333, flippedFromBaseline 0.
 
@@ -17,10 +17,10 @@ Original-24 baseline from 015/004 V0: accuracyTotal 0.6667, todayCorrect 1.0000,
 | V0-baseline-015-002 | explicit=0.4200, lexical=0.2800, graph=0.1300, derived=0.1200, semantic=0.0500 | 0.1818 | -0.4849 | n/a | n/a | 0.1818 | -0.1515 | 0 | +0.0000 |
 | V1-pre-015-002 | explicit=0.4500, lexical=0.3000, graph=0.1500, derived=0.1500, semantic=0.0000 | 0.1818 | -0.4849 | n/a | n/a | 0.1818 | -0.1515 | 0 | +0.0000 |
 | V2-slightly-higher | explicit=0.4000, lexical=0.2800, graph=0.1300, derived=0.1200, semantic=0.0700 | 0.1818 | -0.4849 | n/a | n/a | 0.1818 | -0.1515 | 0 | +0.0000 |
-| V3-medium | explicit=0.3800, lexical=0.2700, graph=0.1200, derived=0.1200, semantic=0.1100 | 0.2273 | -0.4394 | n/a | n/a | 0.2273 | -0.1060 | 1 | +1.0000 |
-| V4-aggressive | explicit=0.3500, lexical=0.2500, graph=0.1200, derived=0.1300, semantic=0.1500 | 0.2273 | -0.4394 | n/a | n/a | 0.2273 | -0.1060 | 1 | +1.0000 |
+| V3-medium | explicit=0.3800, lexical=0.2700, graph=0.1200, derived=0.1200, semantic=0.1100 | 0.1818 | -0.4849 | n/a | n/a | 0.1818 | -0.1515 | 0 | +0.0000 |
+| V4-aggressive | explicit=0.3500, lexical=0.2500, graph=0.1200, derived=0.1300, semantic=0.1500 | 0.1818 | -0.4849 | n/a | n/a | 0.1818 | -0.1515 | 0 | +0.0000 |
 | V5-explicit-heavy | explicit=0.5000, lexical=0.2500, graph=0.1000, derived=0.1000, semantic=0.0500 | 0.1818 | -0.4849 | n/a | n/a | 0.1818 | -0.1515 | 0 | +0.0000 |
-| V6-cosine-dominant | explicit=0.3000, lexical=0.2000, graph=0.1000, derived=0.1000, semantic=0.3000 | 0.2273 | -0.4394 | n/a | n/a | 0.2273 | -0.1060 | 1 | +1.0000 |
+| V6-cosine-dominant | explicit=0.3000, lexical=0.2000, graph=0.1000, derived=0.1000, semantic=0.3000 | 0.1818 | -0.4849 | n/a | n/a | 0.1818 | -0.1515 | 0 | +0.0000 |
 
 ## Per-Case Routing Diff Table
 
@@ -127,10 +127,10 @@ Original-24 baseline from 015/004 V0: accuracyTotal 0.6667, todayCorrect 1.0000,
 | V0-baseline-015-002 | Ask the search-grounded external model to sweep the architecture and report what this repo is missing. | cli-gemini | cli-codex | cli-codex | no | no | Search-grounded external model implies Gemini, but repo architecture terms can route to cli-codex/sk-code. |
 | V1-pre-015-002 | Ask the search-grounded external model to sweep the architecture and report what this repo is missing. | cli-gemini | cli-codex | cli-codex | no | no | Search-grounded external model implies Gemini, but repo architecture terms can route to cli-codex/sk-code. |
 | V2-slightly-higher | Ask the search-grounded external model to sweep the architecture and report what this repo is missing. | cli-gemini | cli-codex | cli-codex | no | no | Search-grounded external model implies Gemini, but repo architecture terms can route to cli-codex/sk-code. |
-| V3-medium | Ask the search-grounded external model to sweep the architecture and report what this repo is missing. | cli-gemini | cli-codex | cli-gemini | yes | yes | Search-grounded external model implies Gemini, but repo architecture terms can route to cli-codex/sk-code. |
-| V4-aggressive | Ask the search-grounded external model to sweep the architecture and report what this repo is missing. | cli-gemini | cli-codex | cli-gemini | yes | yes | Search-grounded external model implies Gemini, but repo architecture terms can route to cli-codex/sk-code. |
+| V3-medium | Ask the search-grounded external model to sweep the architecture and report what this repo is missing. | cli-gemini | cli-codex | cli-codex | no | no | Search-grounded external model implies Gemini, but repo architecture terms can route to cli-codex/sk-code. |
+| V4-aggressive | Ask the search-grounded external model to sweep the architecture and report what this repo is missing. | cli-gemini | cli-codex | cli-codex | no | no | Search-grounded external model implies Gemini, but repo architecture terms can route to cli-codex/sk-code. |
 | V5-explicit-heavy | Ask the search-grounded external model to sweep the architecture and report what this repo is missing. | cli-gemini | cli-codex | cli-codex | no | no | Search-grounded external model implies Gemini, but repo architecture terms can route to cli-codex/sk-code. |
-| V6-cosine-dominant | Ask the search-grounded external model to sweep the architecture and report what this repo is missing. | cli-gemini | cli-codex | cli-gemini | yes | yes | Search-grounded external model implies Gemini, but repo architecture terms can route to cli-codex/sk-code. |
+| V6-cosine-dominant | Ask the search-grounded external model to sweep the architecture and report what this repo is missing. | cli-gemini | cli-codex | cli-codex | no | no | Search-grounded external model implies Gemini, but repo architecture terms can route to cli-codex/sk-code. |
 | V0-baseline-015-002 | Use the Google-backed second opinion for a wide-context read before we decide on the design. | cli-gemini | system-spec-kit | system-spec-kit | no | no | Google-backed wide-context read describes Gemini CLI but avoids its explicit skill and CLI phrases. |
 | V1-pre-015-002 | Use the Google-backed second opinion for a wide-context read before we decide on the design. | cli-gemini | system-spec-kit | system-spec-kit | no | no | Google-backed wide-context read describes Gemini CLI but avoids its explicit skill and CLI phrases. |
 | V2-slightly-higher | Use the Google-backed second opinion for a wide-context read before we decide on the design. | cli-gemini | system-spec-kit | system-spec-kit | no | no | Google-backed wide-context read describes Gemini CLI but avoids its explicit skill and CLI phrases. |
@@ -166,31 +166,31 @@ Original-24 baseline from 015/004 V0: accuracyTotal 0.6667, todayCorrect 1.0000,
 | V4-aggressive | Audit the implementation repeatedly with a persistent state log until only residual issues remain. | deep-review | sk-code-review | sk-code-review | no | no | Audit and implementation can pull toward sk-code-review/sk-code, while repeated stateful passes are deep-review. |
 | V5-explicit-heavy | Audit the implementation repeatedly with a persistent state log until only residual issues remain. | deep-review | sk-code-review | sk-code-review | no | no | Audit and implementation can pull toward sk-code-review/sk-code, while repeated stateful passes are deep-review. |
 | V6-cosine-dominant | Audit the implementation repeatedly with a persistent state log until only residual issues remain. | deep-review | sk-code-review | sk-code-review | no | no | Audit and implementation can pull toward sk-code-review/sk-code, while repeated stateful passes are deep-review. |
-| V0-baseline-015-002 | Have multiple perspectives argue the plan, compare tradeoffs, and leave the decision artifacts in the packet. | deep-ai-council | system-spec-kit | system-spec-kit | no | no | Planning and packet terms can route to system-spec-kit, but multi-perspective deliberation belongs to council. |
-| V1-pre-015-002 | Have multiple perspectives argue the plan, compare tradeoffs, and leave the decision artifacts in the packet. | deep-ai-council | system-spec-kit | system-spec-kit | no | no | Planning and packet terms can route to system-spec-kit, but multi-perspective deliberation belongs to council. |
-| V2-slightly-higher | Have multiple perspectives argue the plan, compare tradeoffs, and leave the decision artifacts in the packet. | deep-ai-council | system-spec-kit | system-spec-kit | no | no | Planning and packet terms can route to system-spec-kit, but multi-perspective deliberation belongs to council. |
-| V3-medium | Have multiple perspectives argue the plan, compare tradeoffs, and leave the decision artifacts in the packet. | deep-ai-council | system-spec-kit | system-spec-kit | no | no | Planning and packet terms can route to system-spec-kit, but multi-perspective deliberation belongs to council. |
-| V4-aggressive | Have multiple perspectives argue the plan, compare tradeoffs, and leave the decision artifacts in the packet. | deep-ai-council | system-spec-kit | system-spec-kit | no | no | Planning and packet terms can route to system-spec-kit, but multi-perspective deliberation belongs to council. |
-| V5-explicit-heavy | Have multiple perspectives argue the plan, compare tradeoffs, and leave the decision artifacts in the packet. | deep-ai-council | system-spec-kit | system-spec-kit | no | no | Planning and packet terms can route to system-spec-kit, but multi-perspective deliberation belongs to council. |
-| V6-cosine-dominant | Have multiple perspectives argue the plan, compare tradeoffs, and leave the decision artifacts in the packet. | deep-ai-council | system-spec-kit | system-spec-kit | no | no | Planning and packet terms can route to system-spec-kit, but multi-perspective deliberation belongs to council. |
-| V0-baseline-015-002 | Stage a structured design deliberation with separate seats and converge on the least risky option. | deep-ai-council | deep-ai-council | deep-ai-council | yes | no | Design deliberation may match architecture/code planning; separate seats/convergence is council-owned. |
-| V1-pre-015-002 | Stage a structured design deliberation with separate seats and converge on the least risky option. | deep-ai-council | deep-ai-council | deep-ai-council | yes | no | Design deliberation may match architecture/code planning; separate seats/convergence is council-owned. |
-| V2-slightly-higher | Stage a structured design deliberation with separate seats and converge on the least risky option. | deep-ai-council | deep-ai-council | deep-ai-council | yes | no | Design deliberation may match architecture/code planning; separate seats/convergence is council-owned. |
-| V3-medium | Stage a structured design deliberation with separate seats and converge on the least risky option. | deep-ai-council | deep-ai-council | deep-ai-council | yes | no | Design deliberation may match architecture/code planning; separate seats/convergence is council-owned. |
-| V4-aggressive | Stage a structured design deliberation with separate seats and converge on the least risky option. | deep-ai-council | deep-ai-council | deep-ai-council | yes | no | Design deliberation may match architecture/code planning; separate seats/convergence is council-owned. |
-| V5-explicit-heavy | Stage a structured design deliberation with separate seats and converge on the least risky option. | deep-ai-council | deep-ai-council | deep-ai-council | yes | no | Design deliberation may match architecture/code planning; separate seats/convergence is council-owned. |
-| V6-cosine-dominant | Stage a structured design deliberation with separate seats and converge on the least risky option. | deep-ai-council | deep-ai-council | deep-ai-council | yes | no | Design deliberation may match architecture/code planning; separate seats/convergence is council-owned. |
+| V0-baseline-015-002 | Have multiple perspectives argue the plan, compare tradeoffs, and leave the decision artifacts in the packet. | sk-ai-council | system-spec-kit | system-spec-kit | no | no | Planning and packet terms can route to system-spec-kit, but multi-perspective deliberation belongs to council. |
+| V1-pre-015-002 | Have multiple perspectives argue the plan, compare tradeoffs, and leave the decision artifacts in the packet. | sk-ai-council | system-spec-kit | system-spec-kit | no | no | Planning and packet terms can route to system-spec-kit, but multi-perspective deliberation belongs to council. |
+| V2-slightly-higher | Have multiple perspectives argue the plan, compare tradeoffs, and leave the decision artifacts in the packet. | sk-ai-council | system-spec-kit | system-spec-kit | no | no | Planning and packet terms can route to system-spec-kit, but multi-perspective deliberation belongs to council. |
+| V3-medium | Have multiple perspectives argue the plan, compare tradeoffs, and leave the decision artifacts in the packet. | sk-ai-council | system-spec-kit | system-spec-kit | no | no | Planning and packet terms can route to system-spec-kit, but multi-perspective deliberation belongs to council. |
+| V4-aggressive | Have multiple perspectives argue the plan, compare tradeoffs, and leave the decision artifacts in the packet. | sk-ai-council | system-spec-kit | system-spec-kit | no | no | Planning and packet terms can route to system-spec-kit, but multi-perspective deliberation belongs to council. |
+| V5-explicit-heavy | Have multiple perspectives argue the plan, compare tradeoffs, and leave the decision artifacts in the packet. | sk-ai-council | system-spec-kit | system-spec-kit | no | no | Planning and packet terms can route to system-spec-kit, but multi-perspective deliberation belongs to council. |
+| V6-cosine-dominant | Have multiple perspectives argue the plan, compare tradeoffs, and leave the decision artifacts in the packet. | sk-ai-council | system-spec-kit | system-spec-kit | no | no | Planning and packet terms can route to system-spec-kit, but multi-perspective deliberation belongs to council. |
+| V0-baseline-015-002 | Stage a structured design deliberation with separate seats and converge on the least risky option. | sk-ai-council | sk-ai-council | sk-ai-council | yes | no | Design deliberation may match architecture/code planning; separate seats/convergence is council-owned. |
+| V1-pre-015-002 | Stage a structured design deliberation with separate seats and converge on the least risky option. | sk-ai-council | sk-ai-council | sk-ai-council | yes | no | Design deliberation may match architecture/code planning; separate seats/convergence is council-owned. |
+| V2-slightly-higher | Stage a structured design deliberation with separate seats and converge on the least risky option. | sk-ai-council | sk-ai-council | sk-ai-council | yes | no | Design deliberation may match architecture/code planning; separate seats/convergence is council-owned. |
+| V3-medium | Stage a structured design deliberation with separate seats and converge on the least risky option. | sk-ai-council | sk-ai-council | sk-ai-council | yes | no | Design deliberation may match architecture/code planning; separate seats/convergence is council-owned. |
+| V4-aggressive | Stage a structured design deliberation with separate seats and converge on the least risky option. | sk-ai-council | sk-ai-council | sk-ai-council | yes | no | Design deliberation may match architecture/code planning; separate seats/convergence is council-owned. |
+| V5-explicit-heavy | Stage a structured design deliberation with separate seats and converge on the least risky option. | sk-ai-council | sk-ai-council | sk-ai-council | yes | no | Design deliberation may match architecture/code planning; separate seats/convergence is council-owned. |
+| V6-cosine-dominant | Stage a structured design deliberation with separate seats and converge on the least risky option. | sk-ai-council | sk-ai-council | sk-ai-council | yes | no | Design deliberation may match architecture/code planning; separate seats/convergence is council-owned. |
 
 ## Recommendation
 
-Recommended vector: `V3-medium`
+Recommended vector: `V0-baseline-015-002`
 
 Harder baseline intent-described accuracy: 0.1818
 
-Recommended intent-described accuracy: 0.2273
+Recommended intent-described accuracy: 0.1818
 
-Recommended accuracy delta vs original-24 V0: -0.4394
+Recommended accuracy delta vs original-24 V0: -0.4849
 
-Recommended intent-described delta vs original-24 V0: -0.1060
+Recommended intent-described delta vs original-24 V0: -0.1515
 
-Recommended flippedFromBaseline: 1
+Recommended flippedFromBaseline: 0

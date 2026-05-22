@@ -8,6 +8,20 @@ const TEST_DIR = dirname(fileURLToPath(import.meta.url));
 const MCP_SERVER_ROOT = resolve(TEST_DIR, '..');
 const WORKSPACE_ROOT = resolve(TEST_DIR, '../../../../../');
 const PLAYBOOK_ROOT = join(WORKSPACE_ROOT, '.opencode/skills/sk-ai-council/manual_testing_playbook');
+const SKILL_ADVISOR_TEST_ROOT = join(WORKSPACE_ROOT, '.opencode/skills/system-skill-advisor/mcp_server/tests');
+
+const RENAMED_TEST_REFERENCES: Record<string, string> = {
+  '.opencode/skills/system-spec-kit/mcp_server/tests/ai-council-runtime-parity.vitest.ts':
+    '.opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-runtime-parity.vitest.ts',
+  '.opencode/skills/system-spec-kit/mcp_server/tests/ai-council-permission-scope.vitest.ts':
+    '.opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-permission-scope.vitest.ts',
+  '.opencode/skills/system-spec-kit/mcp_server/tests/ai-council-audit-trail.vitest.ts':
+    '.opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-audit-trail.vitest.ts',
+  '.opencode/skills/system-spec-kit/mcp_server/tests/ai-council-rollback.vitest.ts':
+    '.opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-rollback.vitest.ts',
+  '.opencode/skills/system-spec-kit/scripts/tests/ai-council-persist-artifacts.vitest.ts':
+    '.opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-persist-artifacts.vitest.ts',
+};
 
 const TEST_FILE_REF =
   /(?:(?:\.opencode\/skills\/system-spec-kit\/)?(?:mcp_server\/tests|scripts\/tests)|\.\.\/scripts\/tests)\/[A-Za-z0-9._/-]+?\.vitest\.ts/g;
@@ -32,7 +46,11 @@ function walkVitest(dir: string): string[] {
 }
 
 function resolveTestReference(reference: string): string {
-  const withoutSkillPrefix = reference.replace(/^\.opencode\/skills\/system-spec-kit\//, '');
+  const normalizedReference = RENAMED_TEST_REFERENCES[reference] ?? reference;
+  if (normalizedReference === 'mcp_server/tests/scorer/native-scorer.vitest.ts') {
+    return join(SKILL_ADVISOR_TEST_ROOT, 'scorer/native-scorer.vitest.ts');
+  }
+  const withoutSkillPrefix = normalizedReference.replace(/^\.opencode\/skills\/system-spec-kit\//, '');
   if (withoutSkillPrefix.startsWith('mcp_server/tests/')) {
     return join(WORKSPACE_ROOT, '.opencode/skills/system-spec-kit', withoutSkillPrefix);
   }
@@ -64,6 +82,7 @@ describe('council playbook anchor integrity', () => {
     const availableTests = new Set([
       ...walkVitest(join(MCP_SERVER_ROOT, 'tests')),
       ...walkVitest(resolve(MCP_SERVER_ROOT, '../scripts/tests')),
+      ...walkVitest(SKILL_ADVISOR_TEST_ROOT),
     ]);
 
     const missingFiles: string[] = [];
