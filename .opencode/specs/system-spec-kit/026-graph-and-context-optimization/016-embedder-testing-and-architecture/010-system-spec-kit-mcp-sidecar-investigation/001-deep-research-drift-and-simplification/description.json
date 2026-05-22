@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-system-spec-kit-mcp-sidecar-investigation/001-deep-research-drift-and-simplification",
+  "description": "Deep-Research Investigation of System-Spec-Kit MCP Sidecar",
+  "keywords": [
+    "deep-research",
+    "drift",
+    "dead-code",
+    "security",
+    "over-engineering",
+    "simplification",
+    "refinement",
+    "sidecar",
+    "mcp"
+  ],
+  "lastUpdated": "2026-05-22T21:00:18Z",
+  "specId": "001",
+  "folderSlug": "deep-research-drift-and-simplification",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "010-system-spec-kit-mcp-sidecar-investigation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

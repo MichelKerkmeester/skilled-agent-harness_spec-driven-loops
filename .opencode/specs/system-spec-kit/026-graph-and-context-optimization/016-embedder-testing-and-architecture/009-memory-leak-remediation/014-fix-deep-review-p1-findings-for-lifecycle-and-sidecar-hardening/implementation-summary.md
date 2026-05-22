@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0140140140140140140140140140140140140140140140140140140140140140"
       session_id: "009-memory-leak-remediation-014"
       parent_session_id: null
-    completion_pct: 98
+    completion_pct: 100
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level3-arch | v2.2 -->
 # Implementation Summary: Deep-Review P1 Findings Remediation for Lifecycle and Sidecar Hardening
@@ -37,11 +37,11 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening |
-| **Completed** | In progress; B6 complete, parent sign-off pending |
+| **Completed** | 2026-05-22 |
 | **Level** | 3 |
 | **Actual Effort** | B1-B6 remediation passes |
 | **LOC Added** | B6: scoped code, tests, README, and phase-doc reconciliation |
-| **Completion Percent** | 98 |
+| **Completion Percent** | 100 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -49,7 +49,9 @@ _memory:
 <!-- ANCHOR:exec-summary -->
 ## Executive Summary
 
-B6 is complete. This pass closed the final 13 doc-drift and maintainability findings without mutating review artifacts or committing.
+Phase 014 is complete. The six remediation batches closed the full 60-finding registry: B1 closed 6 findings with DR009-COR-001 already closed by arc 118; B2 closed 8 cleanup-correctness findings; B3 closed 18 sidecar and executor security findings; B4 closed 5 audit and data-integrity findings; B5 closed 9 traceability findings and carried 1 operator-approved RSS deferral; B6 closed the final 13 doc-drift and maintainability findings.
+
+Review artifacts stayed immutable, no commit was created, and the remaining RSS measurement item is recorded as operator-deferred-by-design rather than hidden as a completed local measurement.
 <!-- /ANCHOR:exec-summary -->
 
 ---
@@ -137,12 +139,13 @@ B6 was delivered as scoped maintainability and documentation cleanup. Review art
 
 | Gate | Status | Evidence |
 |------|--------|----------|
-| B1 Lease/Ledger Race Correctness | Passed | Closure evidence recorded in `checklist.md` and `scratch/batch-plan.md#b1-commit-handoff`. |
-| B2 Cleanup Correctness | Passed | Closure evidence recorded in `checklist.md` B2 rows. |
-| B3 Sidecar + Executor Security | Passed | Closure evidence recorded in `checklist.md` B3 rows. |
-| B4 Audit/Data Integrity | Passed | Closure evidence recorded in `checklist.md` B4 rows. |
-| B5 Test Fixture Validity Restoration | Passed | Targeted suites passed: loop-lock 7/7, memory runtime retention 4/4, sidecar hardening 5/5, Code Graph launcher lease 13/13, CocoIndex lifecycle 25/25. |
-| B6 Doc Drift + Maintainability Cleanup | Passed | Targeted suites passed: bounded-cache 5/5, CocoIndex lifecycle 27/27, process-sweep 11/11, Code Graph typecheck exit 0, benchmark py_compile exit 0 with `PYTHONPYCACHEPREFIX=/private/tmp/codex-pycache`. |
+| B1 Lease/Ledger Race Correctness | Passed | Closed 6 findings plus DR009-COR-001 closed-by-arc-118. Targeted suites passed: deep-loop lock 7/7, Code Graph lease/launcher 24/24, CocoIndex cancel protocol 7/7, rerank sidecar ledger 11/11. |
+| B2 Cleanup Correctness | Passed | Closed 8 findings. Targeted suites passed: runtime shutdown hooks 4/4, embedder sidecar 7/7, CocoIndex lifecycle 22/22, rerank sidecar ledger 12/12. |
+| B3 Sidecar + Executor Security | Passed | Closed 18 findings. Targeted suites passed: rerank sidecar targeted 21/21, CocoIndex active work 5/5, Code Graph hardening 37/37, deep-loop executor audit 22/22, ops redaction/harness 18/18. Full sidecar run reached 22 passed / 3 sandbox-blocked localhost cases. |
+| B4 Audit/Data Integrity | Passed | Closed 5 findings. Targeted suites passed: deep-loop audit/config/JSONL 57/57, process harness/sweep 21/21, audit rotation 2/2, Code Graph query/context 39/39. |
+| B5 Test Fixture Validity Restoration | Passed | Closed 9 findings and deferred DR009-TRC-005 by operator-runbook policy. Targeted suites passed: loop-lock 7/7, memory runtime retention 4/4, sidecar hardening 5/5, Code Graph launcher lease 13/13, CocoIndex lifecycle 25/25. |
+| B6 Doc Drift + Maintainability Cleanup | Passed | Closed 13 findings. Targeted suites passed: bounded-cache 5/5, CocoIndex lifecycle 27/27, process-sweep 11/11, Code Graph typecheck exit 0, benchmark py_compile exit 0 with `PYTHONPYCACHEPREFIX=/private/tmp/codex-pycache`. |
+| Aggregate batch test count | Passed | 413 targeted tests passed across B1-B6, plus batch typechecks, shell syntax checks, py_compile, alignment drift scans, and strict spec validation. |
 | OpenCode alignment drift | Passed | Changed skill scopes passed. CocoIndex lifecycle and Code Graph lib scans reported non-blocking pre-existing warnings only; benchmark helper scan passed clean after shebang fix. |
 | Phase 014 strict validation | Passed | `validate.sh .../014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening --strict` -> exit 0. |
 | Touched phase strict validation | Passed | Touched phases 001, 005, 007, 010, 011, 012, 013 and 014 all passed strict validation with exit 0. |
@@ -170,5 +173,5 @@ B6 was delivered as scoped maintainability and documentation cleanup. Review art
 - [x] Dispatch B4 after B3 validation.
 - [x] Dispatch B5 after B4 validation.
 - [x] Dispatch B6 after B5 validation.
-- [ ] Reconcile final checklist and parent metadata.
+- [x] Reconcile final checklist and parent metadata.
 <!-- /ANCHOR:follow-up -->

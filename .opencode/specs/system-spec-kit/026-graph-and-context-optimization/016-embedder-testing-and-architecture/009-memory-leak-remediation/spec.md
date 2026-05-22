@@ -71,7 +71,7 @@ The operating rule is verification first: no cleanup path may claim memory relie
 | `011-system-code-graph-suite-triage/` | system-code-graph Vitest Suite Triage | P1 | Completed |
 | `012-adapter-resident-memory-benchmark/` | Adapter Resident-Memory Benchmark | P2 | Completed |
 | `013-owner-lease-heartbeat-staleness-detection/` | Owner-Lease Heartbeat-Staleness Detection | P1 | Completed |
-| `014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening/` | Deep-Review P1 Findings Remediation for Lifecycle and Sidecar Hardening | P1 | Planned |
+| `014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening/` | Deep-Review P1 Findings Remediation for Lifecycle and Sidecar Hardening | P1 | Completed |
 
 ### Phase Transition Rules
 

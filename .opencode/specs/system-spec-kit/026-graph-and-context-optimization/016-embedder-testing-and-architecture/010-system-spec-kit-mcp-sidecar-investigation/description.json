@@ -1,0 +1,23 @@
+{
+  "level": "phase",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-system-spec-kit-mcp-sidecar-investigation",
+  "description": "System-Spec-Kit MCP Sidecar Investigation",
+  "keywords": [
+    "mcp",
+    "sidecar",
+    "system-spec-kit",
+    "investigation",
+    "drift",
+    "simplification"
+  ],
+  "lastUpdated": "2026-05-22T21:00:18Z",
+  "specId": "010",
+  "folderSlug": "system-spec-kit-mcp-sidecar-investigation",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture"
+  ],
+  "memorySequence": 10,
+  "memoryNameHistory": []
+}

@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening"
     last_updated_at: "2026-05-22T19:00:00Z"
     last_updated_by: "codex"
-    recent_action: "scaffolded-phase-014-deep-review-p1-remediation"
-    next_safe_action: "dispatch-batch-b1-lease-ledger-race-correctness"
+    recent_action: "completed-phase-014-deep-review-p1-fixpack"
+    next_safe_action: "sidecar-deep-research-investigation-arc-010"
     blockers: []
     key_files:
       - "spec.md"
@@ -27,7 +27,7 @@ _memory:
       fingerprint: "sha256:0140140140140140140140140140140140140140140140140140140140140140"
       session_id: "009-memory-leak-remediation-014"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Spec folder pre-approved by parent dispatch."
@@ -59,7 +59,7 @@ Arc 009's deep review returned a CONDITIONAL verdict with P0=0, P1=40, and P2=20
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Completed |
 | **Created** | 2026-05-22 |
 | **Branch** | `main` |
 | **Estimated LOC** | 1200+ |

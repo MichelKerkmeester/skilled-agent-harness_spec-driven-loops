@@ -80,6 +80,7 @@ This parent is a control file for nine direct child arcs plus `research/`; detai
 | `007-ollama-and-bge-promotion/` | historical Ollama/BGE promotion arc superseded by Nomic | Closed / Superseded |
 | `008-rerank-sidecar-arc/` | shared rerank sidecar and Qwen/CocoIndex rerank work | In Progress |
 | `009-memory-leak-remediation/` | dedicated memory/process lifecycle remediation, with former follow-ons folded in as phases 011-013 | Completed |
+| `010-system-spec-kit-mcp-sidecar-investigation/` | system-spec-kit MCP sidecar drift, dead-code, security, simplification, and refinement investigation | Planned |
 <!-- /ANCHOR:sub-phase-list -->
 
 ---
