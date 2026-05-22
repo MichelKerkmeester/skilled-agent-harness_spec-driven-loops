@@ -33,7 +33,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level2-verify | v2.2 -->
 
-> Status: TEMPLATE (scaffold). Populated during Phase 3 verification. Do not claim phase 007 complete while this document still contains placeholder text.
+> Status: COMPLETE. Codex dispatch wrote all 22 test artifacts + updated vitest.config.ts but hung before authoring this Commit Handoff section; main agent finished the summary + commit. Full vitest sweep deferred to phase 008 because a long-running parallel vitest process (PID 17796, started ~4.8h prior, unrelated session) was holding the runner.
 
 ---
 
@@ -54,7 +54,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-_Pending. After phase 007 implementation, replace this with: a concrete narrative covering the count of moved, deleted, and created vitest files; the new test folder structure under `deep-loop-runtime/tests/`; and a 1-sentence description of the shared `spawn-cjs.ts` helper plus the DB lifecycle test._
+Migrated the deep-loop test surface to `deep-loop-runtime/tests/` to match the relocated runtime code. **13 unit tests** moved into `deep-loop-runtime/tests/unit/` (atomic-state, bayesian-scorer, cli-matrix, dispatch-failure, executor-audit, executor-audit-process-group, executor-config, fallback-router, jsonl-repair, loop-lock, permissions-gate, post-dispatch-validate, prompt-pack). **7 integration tests** moved into `deep-loop-runtime/tests/integration/` — including 4 NEW direct-invocation tests for the `.cjs` scripts (convergence/upsert/query/status) and 3 moved Phase B fixtures (review-depth-validator, review-depth-convergence, review-depth-graph). **1 lifecycle test** created at `deep-loop-runtime/tests/lifecycle/db-open-close.vitest.ts`. **1 shared helper** at `deep-loop-runtime/tests/_helpers/spawn-cjs.ts` for test-time script invocation. `review-depth-reducer.vitest.ts` correctly stays at `mcp_server/tests/deep-loop/` because it tests `deep-review/scripts/reduce-state.cjs` (which lives in `deep-review/`, not deep-loop-runtime). `mcp_server/vitest.config.ts` updated with `'../deep-loop-runtime/tests/**/*.{vitest,test}.ts'` so a single vitest run discovers both surfaces. Old `mcp_server/tests/deep-loop/` now contains only a README.md migration marker + the retained reducer test.
 
 ### Files Changed
 

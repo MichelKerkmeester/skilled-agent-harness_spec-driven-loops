@@ -11,7 +11,7 @@ import {
   refreshLoopLock,
   releaseLoopLock,
   type LoopLockData,
-} from '../../../../deep-loop-runtime/lib/deep-loop/loop-lock.js';
+} from '../../lib/deep-loop/loop-lock.js';
 
 function withTempLock(run: (lockPath: string) => void): void {
   const tempDir = mkdtempSync(join(tmpdir(), 'loop-lock-'));

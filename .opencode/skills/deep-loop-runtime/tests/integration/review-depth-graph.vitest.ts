@@ -4,21 +4,20 @@ import path from 'node:path';
 
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-type HandlerResponse = { content: Array<{ type: string; text: string }> };
-
 type CoverageModules = {
   closeDb: () => void;
-  handleCoverageGraphUpsert: (args: Record<string, unknown>) => Promise<HandlerResponse>;
+  batchUpsert: (nodes: Array<Record<string, unknown>>, edges: Array<Record<string, unknown>>) => {
+    insertedNodes: number;
+    insertedEdges: number;
+    rejectedEdges: number;
+  };
+  VALID_KINDS: Record<string, readonly string[]>;
 };
 
 const originalDbDir = process.env.SPEC_KIT_DB_DIR;
 const tempDirs: string[] = [];
 const futureReviewNodeKinds = ['BUG_CLASS', 'INVARIANT', 'PRODUCER', 'CONSUMER', 'TEST'] as const;
 let activeCloseDb: (() => void) | null = null;
-
-function parseResponse(response: HandlerResponse): Record<string, unknown> {
-  return JSON.parse(response.content[0]?.text ?? '{}') as Record<string, unknown>;
-}
 
 async function loadCoverageModules(): Promise<CoverageModules> {
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'review-depth-graph-'));
@@ -27,13 +26,14 @@ async function loadCoverageModules(): Promise<CoverageModules> {
   vi.resetModules();
 
   const dbModule = await import('../../lib/coverage-graph/coverage-graph-db.js');
-  const upsertModule = await import('../../handlers/coverage-graph/upsert.js');
+  dbModule.initDb(tempDir);
 
   activeCloseDb = dbModule.closeDb;
 
   return {
     closeDb: dbModule.closeDb,
-    handleCoverageGraphUpsert: upsertModule.handleCoverageGraphUpsert,
+    batchUpsert: dbModule.batchUpsert,
+    VALID_KINDS: dbModule.VALID_KINDS,
   };
 }
 
@@ -57,36 +57,34 @@ afterEach(() => {
 
 describe('review-depth graph vocabulary fixtures', () => {
   it('upserting BUG_CLASS node succeeds because the Phase G graph vocabulary contract is live', async () => {
-    const { handleCoverageGraphUpsert } = await loadCoverageModules();
-    const response = parseResponse(await handleCoverageGraphUpsert({
+    const { batchUpsert } = await loadCoverageModules();
+    const namespace = {
       specFolder: 'specs/review-depth-graph-fixture',
       loopType: 'review',
       sessionId: 'review-depth-graph-fixture',
-      nodes: [
-        { id: 'bug-class-state-transition', kind: 'BUG_CLASS', name: 'State transition bug class' },
-      ],
-    }));
-    const data = response.data as Record<string, unknown>;
+    } as const;
+    const data = batchUpsert([
+      { ...namespace, id: 'bug-class-state-transition', kind: 'BUG_CLASS', name: 'State transition bug class' },
+    ], []);
 
-    expect(response.status).toBe('ok');
     expect(data.insertedNodes).toBe(1);
-    expect(data.validationErrors).toBeUndefined();
+    expect(data.rejectedEdges).toBe(0);
   });
 
   for (const kind of futureReviewNodeKinds) {
     it(`upserting ${kind} node succeeds after Phase G allow-list extension`, async () => {
-      const { handleCoverageGraphUpsert } = await loadCoverageModules();
-      const response = parseResponse(await handleCoverageGraphUpsert({
+      const { batchUpsert, VALID_KINDS } = await loadCoverageModules();
+      const namespace = {
         specFolder: 'specs/review-depth-graph-fixture',
         loopType: 'review',
         sessionId: `review-depth-graph-${kind.toLowerCase()}`,
-        nodes: [
-          { id: `${kind.toLowerCase()}-1`, kind, name: `${kind} fixture` },
-        ],
-      }));
+      } as const;
+      const data = batchUpsert([
+        { ...namespace, id: `${kind.toLowerCase()}-1`, kind, name: `${kind} fixture` },
+      ], []);
 
-      expect(response.status).toBe('ok');
-      expect((response.data as Record<string, unknown>).insertedNodes).toBe(1);
+      expect(VALID_KINDS.review).toContain(kind);
+      expect(data.insertedNodes).toBe(1);
     });
   }
 });

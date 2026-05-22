@@ -17,6 +17,7 @@ export default defineConfig({
   test: {
     include: [
       'mcp_server/tests/**/*.{vitest,test}.ts',
+      '../deep-loop-runtime/tests/**/*.{vitest,test}.ts',
       'scripts/tests/**/*.{vitest,test}.ts',
     ],
     exclude: [
