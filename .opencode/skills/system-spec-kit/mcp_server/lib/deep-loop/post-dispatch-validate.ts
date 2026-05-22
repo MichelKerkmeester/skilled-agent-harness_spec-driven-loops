@@ -57,24 +57,35 @@ export type VerificationPassResult =
       stages: VerificationStageScores;
     };
 
+export type PostDispatchAdvisory = { code: string; detail: string; fieldPath?: string };
+
+type PostDispatchFailureReason =
+  | 'iteration_file_missing'
+  | 'iteration_file_empty'
+  | 'jsonl_not_appended'
+  | 'jsonl_missing_fields'
+  | 'jsonl_parse_error'
+  | 'jsonl_wrong_type'
+  | 'delta_file_missing'
+  | 'delta_file_empty'
+  | 'delta_file_missing_iteration_record'
+  | 'executor_missing'
+  | 'dispatch_failure_logged'
+  | 'verification_degraded'
+  | 'v2_missing_ledger'
+  | 'v2_uncited_ledger_row'
+  | 'v2_broken_linked_finding'
+  | 'v2_shallow_finding_details'
+  | 'delta_iteration_id_mismatch'
+  | 'state_delta_iteration_mismatch';
+
 export type PostDispatchValidateResult =
-  | { ok: true }
+  | { ok: true; warnings?: PostDispatchAdvisory[] }
   | {
       ok: false;
-      reason:
-        | 'iteration_file_missing'
-        | 'iteration_file_empty'
-        | 'jsonl_not_appended'
-        | 'jsonl_missing_fields'
-        | 'jsonl_parse_error'
-        | 'jsonl_wrong_type'
-        | 'delta_file_missing'
-        | 'delta_file_empty'
-        | 'delta_file_missing_iteration_record'
-        | 'executor_missing'
-        | 'dispatch_failure_logged'
-        | 'verification_degraded';
+      reason: PostDispatchFailureReason;
       details: string;
+      warnings?: PostDispatchAdvisory[];
     };
 
 function getLastNonEmptyLine(content: string): string | null {
@@ -92,6 +103,14 @@ function getLastNonEmptyLine(content: string): string | null {
 
 function isObjectRecord(value: unknown): value is Record<string, unknown> {
   return value !== null && !Array.isArray(value) && typeof value === 'object';
+}
+
+function isStringArray(value: unknown): value is string[] {
+  return Array.isArray(value) && value.every((entry) => typeof entry === 'string');
+}
+
+function isNonEmptyStringArray(value: unknown): value is string[] {
+  return isStringArray(value) && value.length > 0;
 }
 
 /**
@@ -129,6 +148,160 @@ const REVIEW_ITERATION_FIELDS = [
   'timestamp',
   'durationMs',
 ] as const;
+const V2_SCOPE_CLASSES = new Set(['trivial', 'standard', 'complex']);
+const V2_ENFORCEMENT_MODES = new Set(['strict', 'warn', 'skip']);
+const V2_GRAPH_COVERAGE_MODES = new Set(['graph', 'graphless_fallback', 'unavailable_blocked']);
+
+type V2EnforcementMode = 'warn' | 'strict' | 'off';
+type V2ValidationFailure = {
+  reason: PostDispatchFailureReason;
+  details: string;
+  fieldPath?: string;
+};
+
+function getV2EnforcementMode(): V2EnforcementMode {
+  const raw = process.env.DEEP_REVIEW_V2_ENFORCEMENT?.trim().toLowerCase();
+  if (raw === 'strict' || raw === 'off' || raw === 'warn') {
+    return raw;
+  }
+  return 'warn';
+}
+
+function isLegacyNonTrivialReviewRecord(record: Record<string, unknown>): boolean {
+  return (Array.isArray(record.findingDetails) && record.findingDetails.length > 0)
+    || (Array.isArray(record.dimensions) && record.dimensions.length > 1);
+}
+
+function v2Failure(
+  reason: PostDispatchFailureReason,
+  details: string,
+  fieldPath?: string,
+): V2ValidationFailure {
+  return { reason, details, fieldPath };
+}
+
+function validateV2IterationRecord(
+  record: Record<string, unknown>,
+  deltaIterationRecord: Record<string, unknown> | null,
+): V2ValidationFailure[] {
+  const failures: V2ValidationFailure[] = [];
+  const applicability = record.reviewDepthApplicability;
+  const targetSelection = record.targetSelection;
+  const searchCoverage = record.searchCoverage;
+
+  if (!isObjectRecord(applicability)) {
+    failures.push(v2Failure('jsonl_missing_fields', 'reviewDepthApplicability must be an object', 'reviewDepthApplicability'));
+  } else {
+    if (!V2_SCOPE_CLASSES.has(String(applicability.scopeClass))) {
+      failures.push(v2Failure('jsonl_missing_fields', 'reviewDepthApplicability.scopeClass must be trivial, standard, or complex', 'reviewDepthApplicability.scopeClass'));
+    }
+    if (!V2_ENFORCEMENT_MODES.has(String(applicability.enforcement))) {
+      failures.push(v2Failure('jsonl_missing_fields', 'reviewDepthApplicability.enforcement must be strict, warn, or skip', 'reviewDepthApplicability.enforcement'));
+    }
+  }
+
+  if (!isObjectRecord(targetSelection)) {
+    failures.push(v2Failure('jsonl_missing_fields', 'targetSelection must be an object', 'targetSelection'));
+  } else {
+    if (!Array.isArray(targetSelection.selectedTargets)) {
+      failures.push(v2Failure('jsonl_missing_fields', 'targetSelection.selectedTargets must be an array', 'targetSelection.selectedTargets'));
+    }
+    if (!Array.isArray(targetSelection.discoveryMethods)) {
+      failures.push(v2Failure('jsonl_missing_fields', 'targetSelection.discoveryMethods must be an array', 'targetSelection.discoveryMethods'));
+    }
+  }
+
+  if (!isObjectRecord(searchCoverage)) {
+    failures.push(v2Failure('jsonl_missing_fields', 'searchCoverage must be an object', 'searchCoverage'));
+  } else {
+    if (!V2_GRAPH_COVERAGE_MODES.has(String(searchCoverage.graphCoverageMode))) {
+      failures.push(v2Failure('jsonl_missing_fields', 'searchCoverage.graphCoverageMode must be graph, graphless_fallback, or unavailable_blocked', 'searchCoverage.graphCoverageMode'));
+    }
+  }
+
+  const scopeClass = isObjectRecord(applicability) && typeof applicability.scopeClass === 'string'
+    ? applicability.scopeClass
+    : '';
+  const enforcement = isObjectRecord(applicability) && typeof applicability.enforcement === 'string'
+    ? applicability.enforcement
+    : '';
+  const nonTrivialScope = scopeClass !== 'trivial' || enforcement !== 'skip';
+
+  if (nonTrivialScope) {
+    if (!Array.isArray(record.searchLedger) || record.searchLedger.length === 0) {
+      failures.push(v2Failure('v2_missing_ledger', 'non-trivial v2 records must include at least one searchLedger row', 'searchLedger'));
+    }
+
+    const findingIds = new Set(
+      Array.isArray(record.findingDetails)
+        ? record.findingDetails
+            .filter(isObjectRecord)
+            .map((finding) => (typeof finding.id === 'string' ? finding.id : null))
+            .filter((id): id is string => id !== null)
+        : [],
+    );
+
+    if (Array.isArray(record.searchLedger)) {
+      for (let index = 0; index < record.searchLedger.length; index += 1) {
+        const row = record.searchLedger[index];
+        if (!isObjectRecord(row)) {
+          failures.push(v2Failure('jsonl_missing_fields', `searchLedger[${index}] must be an object`, `searchLedger[${index}]`));
+          continue;
+        }
+        const actions = Array.isArray(row.searchActions) ? row.searchActions : [];
+        if (
+          actions.length === 0
+          || actions.some((action) => !isObjectRecord(action) || !isNonEmptyStringArray(action.evidenceRefs))
+        ) {
+          failures.push(v2Failure('v2_uncited_ledger_row', `searchLedger[${index}] must cite evidenceRefs on every searchActions entry`, `searchLedger[${index}].searchActions`));
+        }
+        if (row.disposition === 'finding') {
+          const linkedFindingId = typeof row.linkedFindingId === 'string' ? row.linkedFindingId : '';
+          if (!linkedFindingId || !findingIds.has(linkedFindingId)) {
+            failures.push(v2Failure('v2_broken_linked_finding', `searchLedger[${index}] linkedFindingId '${linkedFindingId || '[missing]'}' is not present in findingDetails[].id`, `searchLedger[${index}].linkedFindingId`));
+          }
+        }
+      }
+    }
+
+    if (Array.isArray(record.findingDetails)) {
+      for (let index = 0; index < record.findingDetails.length; index += 1) {
+        const finding = record.findingDetails[index];
+        if (!isObjectRecord(finding)) continue;
+        const disposition = typeof finding.disposition === 'string' ? finding.disposition : 'active';
+        if (disposition !== 'active') continue;
+        if (!isNonEmptyStringArray(finding.affectedSurfaceHints) || typeof finding.scopeProof !== 'string' || finding.scopeProof.trim() === '') {
+          const id = typeof finding.id === 'string' ? finding.id : `index ${index}`;
+          failures.push(v2Failure('v2_shallow_finding_details', `active finding ${id} must include non-empty scopeProof and affectedSurfaceHints`, `findingDetails[${index}]`));
+        }
+      }
+    }
+  }
+
+  if (deltaIterationRecord) {
+    const stateIteration = typeof record.iteration === 'number' ? record.iteration : record.run;
+    const deltaIteration = typeof deltaIterationRecord.iteration === 'number'
+      ? deltaIterationRecord.iteration
+      : deltaIterationRecord.run;
+    if (typeof stateIteration === 'number' && typeof deltaIteration === 'number' && stateIteration !== deltaIteration) {
+      failures.push(v2Failure(
+        'delta_iteration_id_mismatch',
+        `state-log iteration ${stateIteration} does not match delta iteration ${deltaIteration}`,
+        'iteration',
+      ));
+    }
+  }
+
+  return failures;
+}
+
+function warningsFromV2Failures(failures: V2ValidationFailure[]): PostDispatchAdvisory[] {
+  return failures.map((failure) => ({
+    code: `warn_${failure.reason}`,
+    detail: failure.details,
+    fieldPath: failure.fieldPath,
+  }));
+}
 
 function findLastIterationRecord(content: string): Record<string, unknown> | null {
   const lines = content.split(/\r?\n/);
@@ -305,6 +478,8 @@ export function runOptionalVerificationPass(
 }
 
 export function validateIterationOutputs(input: PostDispatchValidateInput): PostDispatchValidateResult {
+  const warnings: PostDispatchAdvisory[] = [];
+
   if (statSync(input.stateLogPath).size <= input.previousStateLogSize) {
     return {
       ok: false,
@@ -411,6 +586,7 @@ export function validateIterationOutputs(input: PostDispatchValidateInput): Post
     }
 
     // Per-iteration delta file assertion (when requested by the caller).
+    let deltaIterationRecord: Record<string, unknown> | null = null;
     if (input.deltaFilePath) {
       if (!existsSync(input.deltaFilePath)) {
         return { ok: false, reason: 'delta_file_missing', details: input.deltaFilePath };
@@ -419,13 +595,61 @@ export function validateIterationOutputs(input: PostDispatchValidateInput): Post
         return { ok: false, reason: 'delta_file_empty', details: input.deltaFilePath };
       }
       const deltaContent = readFileSync(input.deltaFilePath, 'utf8');
-      const deltaIterationRecord = findLastIterationRecord(deltaContent);
+      deltaIterationRecord = findLastIterationRecord(deltaContent);
       if (!deltaIterationRecord) {
         return {
           ok: false,
           reason: 'delta_file_missing_iteration_record',
           details: `${input.deltaFilePath} has no record with type='${CANONICAL_ITERATION_TYPE}'`,
         };
+      }
+    }
+
+    if (parsedRecord.reviewDepthSchemaVersion !== 2) {
+      if (isLegacyNonTrivialReviewRecord(parsedRecord)) {
+        warnings.push({
+          code: 'legacy_unversioned_record',
+          detail: 'non-trivial review record has no reviewDepthSchemaVersion: 2 discriminator; v2 depth checks skipped',
+          fieldPath: 'reviewDepthSchemaVersion',
+        });
+      }
+    } else {
+      const enforcementMode = getV2EnforcementMode();
+      if (enforcementMode === 'off') {
+        if (Array.isArray(parsedRecord.searchLedger) && parsedRecord.searchLedger.length > 0) {
+          warnings.push({
+            code: 'ledger_present_but_unverified',
+            detail: 'DEEP_REVIEW_V2_ENFORCEMENT=off skipped v2 searchLedger validation',
+            fieldPath: 'searchLedger',
+          });
+        }
+      } else {
+        const v2Failures = validateV2IterationRecord(parsedRecord, deltaIterationRecord);
+        const identityFailure = v2Failures.find((failure) => failure.reason === 'delta_iteration_id_mismatch');
+        if (identityFailure) {
+          return {
+            ok: false,
+            reason: identityFailure.reason,
+            details: identityFailure.details,
+            warnings: warnings.length > 0 ? warnings : undefined,
+          };
+        }
+        if (v2Failures.length > 0 && enforcementMode === 'strict') {
+          return {
+            ok: false,
+            reason: v2Failures[0].reason,
+            details: v2Failures[0].details,
+            warnings: warnings.length > 0 ? warnings : undefined,
+          };
+        }
+        if (v2Failures.length > 0) {
+          warnings.push({
+            code: 'applicability_strict_unenforced',
+            detail: 'DEEP_REVIEW_V2_ENFORCEMENT=warn converted v2 depth failures to advisories',
+            fieldPath: 'reviewDepthApplicability.enforcement',
+          });
+          warnings.push(...warningsFromV2Failures(v2Failures));
+        }
       }
     }
 
@@ -452,7 +676,7 @@ export function validateIterationOutputs(input: PostDispatchValidateInput): Post
     return { ok: false, reason: 'jsonl_parse_error', details };
   }
 
-  return { ok: true };
+  return warnings.length > 0 ? { ok: true, warnings } : { ok: true };
 }
 
 export class PostDispatchValidationError extends Error {

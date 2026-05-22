@@ -4,19 +4,209 @@
   "spec_folder": "skilled-agent-orchestration/116-deep-review-complexity/004-validator-v2-enforcement",
   "parent_id": "skilled-agent-orchestration/116-deep-review-complexity",
   "children_ids": [],
-  "manual": {"depends_on": ["skilled-agent-orchestration/116-deep-review-complexity/003-review-depth-schema-and-prompt-contract"], "supersedes": [], "related_to": []},
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
   "derived": {
-    "trigger_phrases": ["validator v2 enforcement", "post-dispatch searchLedger validation"],
-    "key_topics": ["post-dispatch validation", "warnings", "searchLedger", "state delta consistency"],
+    "trigger_phrases": [
+      "validator v2 enforcement",
+      "review-depth validator",
+      "post-dispatch validate v2",
+      "116 validator v2 plan",
+      "116 validator v2 tasks",
+      "116 validator v2 checklist",
+      "validator v2 ADR",
+      "116 validator v2 summary"
+    ],
+    "key_topics": [
+      "validator",
+      "enforcement",
+      "review-depth",
+      "post-dispatch",
+      "validate",
+      "116",
+      "plan",
+      "tasks",
+      "checklist",
+      "adr",
+      "summary",
+      "phase"
+    ],
     "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md", "plan.md", "tasks.md"],
-    "entities": ["post-dispatch-validate.ts", "post-dispatch-validate.vitest.ts"],
-    "causal_summary": "This phase enforces the review-depth v2 contract while preserving legacy readability with typed warnings.",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts",
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
+      "spec.md",
+      "plan.md",
+      "decision-record.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "post-dispatch-validate.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec_kit_deep-review_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec_kit_deep-review_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decision",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Deep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Targeted Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Type Extension",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Strict Checks",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Validator Implementation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 004 gives the Phase 003 review-depth v2 contract a migration-safe validator surface. The post-dispatch validator now returns typed advisory warnings, recognizes legacy unversioned records, and validates explicit `reviewDepthSchemaVersion: 2` records for applicability, target selection, search coverage, search ledger evidence, finding links, active-finding depth, and state-log/delta identity.",
     "created_at": "2026-05-22T00:00:00Z",
-    "last_save_at": "2026-05-22T00:00:00Z",
-    "save_lineage": "phase_scaffold",
+    "last_save_at": "2026-05-22T11:59:42.977Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md", "plan.md", "tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ]
   }
 }

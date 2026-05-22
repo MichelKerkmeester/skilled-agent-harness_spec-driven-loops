@@ -898,6 +898,18 @@ workflow:
             - delta_file_missing_iteration_record
             - executor_missing
             - dispatch_failure_logged
+            - v2_missing_ledger
+            - v2_uncited_ledger_row
+            - v2_broken_linked_finding
+            - v2_shallow_finding_details
+            - delta_iteration_id_mismatch
+            - state_delta_iteration_mismatch
+          warning_surface:
+            source: "result.warnings"
+            action: "emit schema_advisory canonical conflict event"
+            severity: "advisory"
+            event_shape: '{"type":"event","event":"schema_advisory","mode":"review","iteration":{current_iteration},"warnings":{result.warnings},"severity":"advisory","timestamp":"{ISO_8601_NOW}"}'
+            note: "Warnings do not fail dispatch. Hard failures still emit schema_mismatch through on_failure."
           on_failure:
             action: "emit schema_mismatch canonical conflict event"
             escalation: "After 3 consecutive failures, trigger stuck_recovery event with diagnostic context"
@@ -1205,7 +1217,13 @@ workflow:
           8. **Deferred Items**
              - Advisory-only or backlog-worthy follow-ups that do not block the current verdict
 
-          9. **Audit Appendix**
+          9. **Search Ledger**
+             - Always include this section before the appendix.
+             - Render reducer-owned `searchCoverage`, `candidateCoverage`, `searchDebt`, `ruledOutCandidates`, and `cleanSearchProof`.
+             - If all arrays are empty or absent, include: `*No search-depth state captured (legacy v1 record)*`.
+             - When `searchDebt` is non-empty, state `hasSearchDebt: true` and carry the dashboard verdict as CONDITIONAL unless active P0 findings make it FAIL.
+
+          10. **Audit Appendix**
              - Convergence summary, coverage summary, ruled-out claims, sources reviewed
              - Cross-reference appendix MUST be split into `Core Protocols` and `Overlay Protocols`
 

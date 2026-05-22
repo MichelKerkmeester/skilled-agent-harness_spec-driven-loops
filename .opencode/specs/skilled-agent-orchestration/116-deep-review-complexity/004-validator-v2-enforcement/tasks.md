@@ -1,6 +1,6 @@
 ---
 title: "Tasks: 116/004 — Validator v2 Enforcement"
-description: "Tasks for warning support and strict review-depth v2 validation."
+description: "Level 3 task list for warnings-first review-depth validator enforcement."
 trigger_phrases:
   - "116 validator v2 tasks"
 importance_tier: "important"
@@ -8,71 +8,108 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/116-deep-review-complexity/004-validator-v2-enforcement"
-    last_updated_at: "2026-05-22T00:00:00Z"
+    last_updated_at: "2026-05-22T12:10:00Z"
     last_updated_by: "gpt-5.5"
-    recent_action: "Scaffolded phase 004 tasks."
-    next_safe_action: "Start validator implementation."
-    blockers: []
-    key_files: ["plan.md"]
-    session_dedup:
-      fingerprint: "sha256:1160042000000000000000000000000000000000000000000000000000000000"
-      session_id: "116-004-tasks"
-      parent_session_id: "116-004-validator-v2-enforcement"
-    completion_pct: 0
-    open_questions: []
-    answered_questions: []
+    recent_action: "Implemented validator v2 warnings and enforcement surface."
+    next_safe_action: "Verify and handoff."
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-<!-- SPECKIT_LEVEL: 1 -->
-
 # Tasks: 116/004 — Validator v2 Enforcement
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core + level2-verify + level3-arch | v2.2 -->
 
 ---
 
 <!-- ANCHOR:notation -->
 ## Task Notation
-- `T###` task ID; `[D:T###]` dependency marker.
+
+| Prefix | Meaning |
+|--------|---------|
+| `[ ]` | Pending |
+| `[x]` | Completed |
+| `[P]` | Parallelizable |
 <!-- /ANCHOR:notation -->
+
+---
+
+<!-- ANCHOR:milestones -->
+## Milestone Reference
+
+| Milestone | Tasks | Target |
+|-----------|-------|--------|
+| M1 Setup | T001-T004 | Read contracts |
+| M2 Validator | T010-T018 | Runtime behavior |
+| M3 Workflow | T020-T022 | Advisory surface |
+| M4 Verification | T030-T034 | Evidence |
+<!-- /ANCHOR:milestones -->
 
 ---
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
-- [ ] T001 Read current validator result types.
-- [ ] T002 Confirm phase 002/003 fixture and schema readiness.
+
+- [x] T001 Read Phase 001 research synthesis.
+- [x] T002 Read Phase 003 schema and prompt contract.
+- [x] T003 Read `post-dispatch-validate.ts`.
+- [x] T004 Read workflow YAML validator sections.
 <!-- /ANCHOR:phase-1 -->
 
 ---
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
-- [ ] T010 Add warnings/advisories.
-- [ ] T011 Add v2 field checks.
-- [ ] T012 Add ledger and coverage consistency checks.
-- [ ] T013 Add state/delta consistency checks.
+
+- [x] T010 Add `PostDispatchAdvisory` type.
+- [x] T011 Extend `PostDispatchValidateResult` with optional warnings.
+- [x] T012 Add v2 discriminator detection.
+- [x] T013 Add legacy non-trivial warning heuristic.
+- [x] T014 Add v2 applicability, target selection, and search coverage checks.
+- [x] T015 Add ledger evidence and linked-finding checks.
+- [x] T016 Add active `findingDetails` depth checks.
+- [x] T017 Add state-log/delta iteration identity check.
+- [x] T018 Add `DEEP_REVIEW_V2_ENFORCEMENT` rollout modes.
 <!-- /ANCHOR:phase-2 -->
 
 ---
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
-- [ ] T020 Run targeted validator tests.
-- [ ] T021 Run `validate.sh --strict` on this phase.
+
+- [x] T020 Add v2 failure reasons to auto YAML.
+- [x] T021 Add v2 failure reasons to confirm YAML.
+- [x] T022 Document `schema_advisory` warning event recipe.
 <!-- /ANCHOR:phase-3 -->
+
+---
+
+<!-- ANCHOR:phase-4 -->
+## Phase 4: Evidence Capture
+
+- [x] T030 Run validator/reducer fixture tests. [Evidence: package-local Vitest run passed 2 files, 2 tests, 4 todos]
+- [x] T031 Run `post-dispatch-validate` regression tests. [Evidence: package-local Vitest passed 1 file, 14 tests]
+- [x] T032 Run `prompt-pack` regression tests. [Evidence: package-local Vitest passed 1 file, 11 tests]
+- [x] T033 Run strict validation for 004. [Evidence: `validate.sh .../004-validator-v2-enforcement --strict` passed]
+- [x] T034 Record evidence in implementation summary and checklist. [Evidence: `implementation-summary.md` and `checklist.md` updated]
+<!-- /ANCHOR:phase-4 -->
 
 ---
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
-- [ ] Legacy records warn.
-- [ ] Invalid v2 records fail.
-- [ ] Valid v2 records pass.
+
+- [x] Validator fixtures pass.
+- [x] Legacy validator tests pass.
+- [x] Workflow advisory surface documented.
+- [x] Checklist evidence is updated.
 <!-- /ANCHOR:completion -->
 
 ---
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
-- Parent: `../spec.md`
-- Prior phase: `../003-review-depth-schema-and-prompt-contract/spec.md`
+
+- **Specification**: `spec.md`
+- **Plan**: `plan.md`
+- **Checklist**: `checklist.md`
+- **Decision record**: `decision-record.md`
 <!-- /ANCHOR:cross-refs -->

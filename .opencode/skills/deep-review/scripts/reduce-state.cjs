@@ -869,6 +869,149 @@ function buildBlockedStopHistory(records) {
     });
 }
 
+function asStringList(value) {
+  return Array.isArray(value)
+    ? value.map((entry) => normalizeText(entry)).filter(Boolean)
+    : [];
+}
+
+function addCandidateClass(candidateCoverage, bugClass, disposition, iteration) {
+  if (!bugClass) return;
+  const bucketMap = {
+    finding: 'covered',
+    covered: 'covered',
+    ruled_out: 'ruledOut',
+    deferred: 'deferred',
+    blocked: 'blocked',
+  };
+  const bucket = bucketMap[disposition];
+  if (!bucket) return;
+  if (!candidateCoverage[bucket].includes(bugClass)) {
+    candidateCoverage[bucket].push(bugClass);
+  }
+  candidateCoverage.byBugClass[bugClass] = candidateCoverage.byBugClass[bugClass] || {
+    covered: false,
+    ruledOut: false,
+    deferred: false,
+    blocked: false,
+    iterations: [],
+  };
+  if (bucket === 'covered') candidateCoverage.byBugClass[bugClass].covered = true;
+  if (bucket === 'ruledOut') candidateCoverage.byBugClass[bugClass].ruledOut = true;
+  if (bucket === 'deferred') candidateCoverage.byBugClass[bugClass].deferred = true;
+  if (bucket === 'blocked') candidateCoverage.byBugClass[bugClass].blocked = true;
+  if (!candidateCoverage.byBugClass[bugClass].iterations.includes(iteration)) {
+    candidateCoverage.byBugClass[bugClass].iterations.push(iteration);
+  }
+}
+
+function extractLedgerEvidence(row) {
+  const actions = Array.isArray(row?.searchActions) ? row.searchActions : [];
+  return actions.flatMap((action) => asStringList(action?.evidenceRefs));
+}
+
+function buildSearchLedgerState(iterationRecords) {
+  const candidateCoverage = {
+    covered: [],
+    ruledOut: [],
+    deferred: [],
+    blocked: [],
+    byBugClass: {},
+  };
+  const searchDebt = [];
+  const ruledOutCandidates = [];
+  const cleanSearchProof = [];
+  let searchCoverage = {
+    requiredBugClasses: [],
+    covered: [],
+    ruledOut: [],
+    deferred: [],
+    blocked: [],
+    graphCoverageMode: null,
+  };
+
+  for (const record of iterationRecords.filter((entry) => entry?.type === 'iteration')) {
+    if (record.reviewDepthSchemaVersion !== 2) {
+      continue;
+    }
+
+    const iteration = Number.isFinite(record.iteration) ? record.iteration : record.run;
+    if (record.searchCoverage && typeof record.searchCoverage === 'object') {
+      const coverage = record.searchCoverage;
+      searchCoverage = {
+        requiredBugClasses: asStringList(coverage.requiredBugClasses),
+        covered: asStringList(coverage.covered),
+        ruledOut: asStringList(coverage.ruledOut),
+        deferred: asStringList(coverage.deferred),
+        blocked: asStringList(coverage.blocked),
+        graphCoverageMode: normalizeText(coverage.graphCoverageMode) || null,
+      };
+      for (const bugClass of searchCoverage.covered) addCandidateClass(candidateCoverage, bugClass, 'covered', iteration);
+      for (const bugClass of searchCoverage.ruledOut) addCandidateClass(candidateCoverage, bugClass, 'ruled_out', iteration);
+      for (const bugClass of searchCoverage.deferred) addCandidateClass(candidateCoverage, bugClass, 'deferred', iteration);
+      for (const bugClass of searchCoverage.blocked) addCandidateClass(candidateCoverage, bugClass, 'blocked', iteration);
+    }
+
+    const ledgerRows = Array.isArray(record.searchLedger) ? record.searchLedger : [];
+    for (const row of ledgerRows) {
+      if (!row || typeof row !== 'object') continue;
+      const evidenceRefs = extractLedgerEvidence(row);
+      const bugClass = normalizeText(row.bugClass) || 'UNKNOWN';
+      const disposition = normalizeText(row.disposition) || 'UNKNOWN';
+      const entry = {
+        iteration,
+        id: normalizeText(row.id) || `iteration-${iteration}-${bugClass}`,
+        dimension: normalizeText(row.dimension) || 'UNKNOWN',
+        targetRefs: asStringList(row.targetRefs),
+        bugClass,
+        disposition,
+        rationale: normalizeText(row.rationale) || 'UNKNOWN',
+        evidenceRefs,
+      };
+
+      addCandidateClass(candidateCoverage, bugClass, disposition, iteration);
+
+      if (disposition === 'deferred' || disposition === 'blocked') {
+        searchDebt.push({
+          ...entry,
+          reason: normalizeText(row.deferredReason || row.blockedReason) || entry.rationale,
+        });
+      }
+      if (disposition === 'ruled_out') {
+        ruledOutCandidates.push({
+          ...entry,
+          reason: normalizeText(row.ruledOutReason) || entry.rationale,
+        });
+        cleanSearchProof.push({
+          ...entry,
+          proof: normalizeText(row.ruledOutReason) || entry.rationale,
+        });
+      }
+      if (disposition === 'not_applicable') {
+        cleanSearchProof.push({
+          ...entry,
+          proof: normalizeText(row.notApplicableReason) || entry.rationale,
+        });
+      }
+    }
+  }
+
+  for (const key of ['covered', 'ruledOut', 'deferred', 'blocked']) {
+    candidateCoverage[key].sort((left, right) => left.localeCompare(right));
+  }
+  for (const value of Object.values(candidateCoverage.byBugClass)) {
+    value.iterations.sort((left, right) => Number(left) - Number(right));
+  }
+
+  return {
+    candidateCoverage,
+    searchDebt,
+    ruledOutCandidates,
+    cleanSearchProof,
+    searchCoverage,
+  };
+}
+
 function buildRegistry(strategyDimensions, iterationFiles, iterationRecords, config, corruptionWarnings = [], deltaRecords = []) {
   const terminalStop = buildTerminalStopState(iterationRecords);
   const lineage = buildLineageState(config, iterationRecords, terminalStop);
@@ -878,6 +1021,7 @@ function buildRegistry(strategyDimensions, iterationFiles, iterationRecords, con
   const convergenceScore = computeConvergenceScore(iterationRecords);
   const graphConvergence = buildGraphConvergenceRollup(iterationRecords);
   const blockedStopHistory = buildBlockedStopHistory(iterationRecords);
+  const searchLedgerState = buildSearchLedgerState(iterationRecords);
   const status = deriveDashboardStatus(config, iterationRecords, terminalStop);
 
   // Part C REQ-018: split repeatedFindings into two semantically distinct buckets
@@ -922,6 +1066,11 @@ function buildRegistry(strategyDimensions, iterationFiles, iterationRecords, con
     graphConvergenceScore: graphConvergence.score,
     graphDecision: graphConvergence.decision,
     graphBlockers: graphConvergence.blockers,
+    candidateCoverage: searchLedgerState.candidateCoverage,
+    searchDebt: searchLedgerState.searchDebt,
+    ruledOutCandidates: searchLedgerState.ruledOutCandidates,
+    cleanSearchProof: searchLedgerState.cleanSearchProof,
+    searchCoverage: searchLedgerState.searchCoverage,
     corruptionWarnings,
   };
 }
@@ -931,6 +1080,46 @@ function blockFromBulletList(items) {
     return '[None yet]';
   }
   return items.map((item) => `- ${item}`).join('\n');
+}
+
+function summarizeSearchEntry(entry) {
+  const evidence = Array.isArray(entry.evidenceRefs) && entry.evidenceRefs.length
+    ? ` evidence=${entry.evidenceRefs.join(', ')}`
+    : ' evidence=UNKNOWN';
+  return `iteration ${entry.iteration ?? '?'} ${entry.bugClass || 'UNKNOWN'} (${entry.disposition || 'UNKNOWN'}): ${entry.reason || entry.proof || entry.rationale || 'UNKNOWN'};${evidence}`;
+}
+
+function renderSearchDebtSection(registry) {
+  const debt = Array.isArray(registry.searchDebt) ? registry.searchDebt : [];
+  const ruledOut = Array.isArray(registry.ruledOutCandidates) ? registry.ruledOutCandidates : [];
+  const cleanProof = Array.isArray(registry.cleanSearchProof) ? registry.cleanSearchProof : [];
+  const coverage = registry.searchCoverage && typeof registry.searchCoverage === 'object'
+    ? registry.searchCoverage
+    : {};
+  const candidateCoverage = registry.candidateCoverage && typeof registry.candidateCoverage === 'object'
+    ? registry.candidateCoverage
+    : {};
+
+  if (!debt.length && !ruledOut.length && !cleanProof.length) {
+    return [
+      '- No search-depth state captured (legacy v1 record).',
+      `- graphCoverageMode: ${coverage.graphCoverageMode || 'none'}`,
+    ].join('\n');
+  }
+
+  return [
+    `- graphCoverageMode: ${coverage.graphCoverageMode || 'none'}`,
+    `- candidateCoverage: covered=${(candidateCoverage.covered || []).length}, ruledOut=${(candidateCoverage.ruledOut || []).length}, deferred=${(candidateCoverage.deferred || []).length}, blocked=${(candidateCoverage.blocked || []).length}`,
+    '',
+    '### Search Debt',
+    blockFromBulletList(debt.map(summarizeSearchEntry)),
+    '',
+    '### Ruled-Out Candidates',
+    blockFromBulletList(ruledOut.map(summarizeSearchEntry)),
+    '',
+    '### Clean Search Proof',
+    blockFromBulletList(cleanProof.map(summarizeSearchEntry)),
+  ].join('\n');
 }
 
 function buildExhaustedApproaches(iterationFiles) {
@@ -1072,9 +1261,10 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
     || '[All dimensions covered]';
 
   const severity = registry.findingsBySeverity;
+  const hasSearchDebt = Array.isArray(registry.searchDebt) && registry.searchDebt.length > 0;
   const verdict = severity.P0 > 0
     ? 'FAIL'
-    : severity.P1 > 0
+    : severity.P1 > 0 || hasSearchDebt
       ? 'CONDITIONAL'
       : 'PASS';
   const hasAdvisories = verdict === 'PASS' && severity.P2 > 0;
@@ -1122,6 +1312,7 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
     `- Status: ${registry.status || String(config.status || 'initialized').toUpperCase()}`,
     `- Iteration: ${iterationRecords.filter((record) => record.type === 'iteration').length} of ${config.maxIterations || 0}`,
     `- Provisional Verdict: ${verdict}`,
+    `- hasSearchDebt: ${hasSearchDebt}`,
     `- hasAdvisories: ${hasAdvisories}`,
     `- Session ID: ${registry.sessionId || '[Unknown session]'}`,
     `- Parent Session: ${registry.parentSessionId ?? 'none'}`,
@@ -1207,13 +1398,18 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
       : ['No corrupt JSONL lines detected.']),
     '',
     '<!-- /ANCHOR:corruption-warnings -->',
+    '<!-- ANCHOR:search-debt -->',
+    '## 10. SEARCH DEBT',
+    renderSearchDebtSection(registry),
+    '',
+    '<!-- /ANCHOR:search-debt -->',
     '<!-- ANCHOR:next-focus -->',
-    '## 10. NEXT FOCUS',
+    '## 11. NEXT FOCUS',
     nextFocus,
     '',
     '<!-- /ANCHOR:next-focus -->',
     '<!-- ANCHOR:active-risks -->',
-    '## 11. ACTIVE RISKS',
+    '## 12. ACTIVE RISKS',
     ...(function buildActiveRisks() {
       // REQ-034 (042 closing audit, F015): surface non-P0 release-readiness
       // debt alongside P0s so the dashboard cannot hide P1 debt behind a
@@ -1251,6 +1447,9 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
       const latestBlockedStop = registry.blockedStopHistory?.at(-1);
       if (latestBlockedStop && Array.isArray(latestBlockedStop.blockedBy) && latestBlockedStop.blockedBy.length > 0) {
         lines.push(`- Latest blocked_stop at run ${latestBlockedStop.run ?? '?'}: ${formatBlockedByList(latestBlockedStop.blockedBy)}. Recovery: ${latestBlockedStop.recoveryStrategy || 'see dashboard §BLOCKED STOPS'}.`);
+      }
+      if (hasSearchDebt) {
+        lines.push(`- ${registry.searchDebt.length} search-debt obligation(s) remain deferred or blocked. Verdict is CONDITIONAL until they are covered or ruled out.`);
       }
       if (severity.P2 > 0 && lines.length === 0) {
         lines.push(`- ${severity.P2} active P2 finding(s) — advisory only; release is not blocked by P2 alone, but the debt is tracked here so it does not disappear.`);
@@ -1420,6 +1619,7 @@ if (require.main === module) {
           resolvedFindingsCount: result.registry.resolvedFindingsCount,
           convergenceScore: result.registry.convergenceScore,
           graphConvergenceScore: result.registry.graphConvergenceScore,
+          searchDebtCount: Array.isArray(result.registry.searchDebt) ? result.registry.searchDebt.length : 0,
           corruptionCount: result.corruptionWarnings.length,
           resourceMapPath: emitResourceMapOutput ? result.resourceMapPath : null,
           resourceMapSkipped: emitResourceMapOutput ? result.resourceMapSkipped : null,

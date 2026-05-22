@@ -1,12 +1,32 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/116-deep-review-complexity/005-search-ledger-persistence-and-reporting",
-  "description": "Persist review-depth search ledger state through reducer, dashboard, and final report outputs.",
-  "keywords": ["116", "005", "searchLedger", "searchDebt", "reducer", "report"],
-  "lastUpdated": "2026-05-22T00:00:00.000Z",
+  "description": "Reducer + dashboard + report persist candidateCoverage/searchDebt/ruledOutCandidates/cleanSearchProof/searchCoverage; dashboard verdict shows Search D",
+  "keywords": [
+    "reducer",
+    "dashboard",
+    "report",
+    "persist",
+    "candidatecoverage",
+    "searchdebt",
+    "ruledoutcandidates",
+    "cleansearchproof",
+    "searchcoverage",
+    "verdict",
+    "shows",
+    "search",
+    "debt",
+    "adds",
+    "ledger",
+    "section"
+  ],
+  "lastUpdated": "2026-05-22T11:59:42.665Z",
   "specId": "005",
   "folderSlug": "search-ledger-persistence-and-reporting",
-  "parentChain": ["skilled-agent-orchestration", "116-deep-review-complexity"],
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "116-deep-review-complexity"
+  ],
   "memorySequence": 0,
   "memoryNameHistory": []
 }

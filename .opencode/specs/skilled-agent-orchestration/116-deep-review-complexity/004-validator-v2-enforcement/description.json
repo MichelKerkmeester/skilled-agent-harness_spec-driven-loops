@@ -1,12 +1,30 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/116-deep-review-complexity/004-validator-v2-enforcement",
-  "description": "Warning/advisory support and strict v2 validation for review-depth records.",
-  "keywords": ["116", "004", "validator", "v2", "searchLedger", "post-dispatch"],
-  "lastUpdated": "2026-05-22T00:00:00.000Z",
+  "description": "Validator v2 enforcement with warnings-first rollout; v2 records gain strict ledger/findingDetails/state-delta-identity checks behind a runtime flag.",
+  "keywords": [
+    "validator",
+    "enforcement",
+    "warnings-first",
+    "rollout",
+    "records",
+    "gain",
+    "strict",
+    "ledger",
+    "findingdetails",
+    "state-delta-identity",
+    "checks",
+    "behind",
+    "runtime",
+    "flag"
+  ],
+  "lastUpdated": "2026-05-22T11:59:42.342Z",
   "specId": "004",
   "folderSlug": "validator-v2-enforcement",
-  "parentChain": ["skilled-agent-orchestration", "116-deep-review-complexity"],
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "116-deep-review-complexity"
+  ],
   "memorySequence": 0,
   "memoryNameHistory": []
 }
