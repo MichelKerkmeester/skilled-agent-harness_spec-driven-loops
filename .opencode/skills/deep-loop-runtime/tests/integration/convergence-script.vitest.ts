@@ -66,4 +66,38 @@ describe('convergence.cjs direct invocation', () => {
     expect(result.json.status).toBe('error');
     expect(result.json.code).toBe('INPUT_VALIDATION');
   });
+
+  it('exits 3 when session-id is missing', () => {
+    const namespace = uniqueNamespace('convergence');
+    const result = runScript('convergence', [
+      '--spec-folder', namespace.specFolder,
+      '--loop-type', namespace.loopType,
+    ]);
+
+    expect(result.exitCode).toBe(3);
+    expect(result.json).toMatchObject({ status: 'error', code: 'INPUT_VALIDATION' });
+    expect(result.json.error).toContain('sessionId is required');
+  });
+
+  it('exits 2 for DB errors', () => {
+    const namespace = uniqueNamespace('convergence');
+    const result = runScript('convergence', namespaceArgs(namespace), {
+      env: { ...process.env, DEEP_LOOP_TEST_FAULT: 'db' },
+    });
+
+    expect(result.exitCode).toBe(2);
+    expect(result.json).toMatchObject({ status: 'error', code: 'DB_ERROR' });
+    expect(result.stderr).toBe('');
+  });
+
+  it('exits 1 with stderr JSON for generic script errors', () => {
+    const namespace = uniqueNamespace('convergence');
+    const result = runScript('convergence', namespaceArgs(namespace), {
+      env: { ...process.env, DEEP_LOOP_TEST_FAULT: 'script' },
+    });
+
+    expect(result.exitCode).toBe(1);
+    expect(result.json).toMatchObject({ status: 'error', code: 'SCRIPT_ERROR' });
+    expect(JSON.parse(result.stderr)).toMatchObject({ error: expect.stringContaining('Injected script fault') });
+  });
 });

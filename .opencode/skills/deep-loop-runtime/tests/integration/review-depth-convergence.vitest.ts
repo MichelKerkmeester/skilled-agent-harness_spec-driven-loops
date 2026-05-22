@@ -1,8 +1,27 @@
-import { describe, it } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+import { describe, expect, it } from 'vitest';
+
+const testDir = dirname(fileURLToPath(import.meta.url));
+const opencodeRoot = resolve(testDir, '../../../..');
+
+function readWorkflow(name: 'auto' | 'confirm'): string {
+  return readFileSync(
+    resolve(opencodeRoot, `commands/spec_kit/assets/spec_kit_deep-review_${name}.yaml`),
+    'utf8',
+  );
+}
 
 describe('review-depth convergence v2 fixtures', () => {
-  // TODO(116/008): Convert this to a workflow-runner integration fixture that
-  // executes step_check_convergence YAML with reducer registry state. The graph
-  // runtime alone must keep graph-empty CONTINUE behavior for Phase F.
-  it.todo('blocks graphless standard-scope STOP when fallback ledger rows are missing');
+  it('blocks graphless standard-scope STOP when fallback ledger rows are missing', () => {
+    for (const workflow of [readWorkflow('auto'), readWorkflow('confirm')]) {
+      expect(workflow).toContain('candidateCoverageGate');
+      expect(workflow).toContain('graphlessFallbackGate');
+      expect(workflow).toContain('at least one `searchLedger` row exists for each entry');
+      expect(workflow).toContain('Fail automatically when graphCoverageMode is `unavailable_blocked`');
+      expect(workflow).toContain('"graphlessFallbackGate":{"pass":{graphless_fallback_gate_pass}');
+    }
+  });
 });

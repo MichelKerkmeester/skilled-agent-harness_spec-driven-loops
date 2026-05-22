@@ -111,18 +111,83 @@ function writeIterationFixture(
   return previousStateLogSize;
 }
 
+function expectStrictValidationFailure(
+  stateRecord: Record<string, unknown>,
+  reason: string,
+): void {
+  const original = process.env.DEEP_REVIEW_V2_ENFORCEMENT;
+  process.env.DEEP_REVIEW_V2_ENFORCEMENT = 'strict';
+  try {
+    withTempPaths((paths) => {
+      const previousStateLogSize = writeIterationFixture(paths, stateRecord, { ...stateRecord });
+      const input = {
+        iterationFile: paths.iterationFile,
+        stateLogPath: paths.stateLogPath,
+        previousStateLogSize,
+        requiredJsonlFields: ['type', 'iteration', 'status', 'focus'],
+        deltaFilePath: paths.deltaFilePath,
+      };
+
+      expect(validateIterationOutputs(input)).toMatchObject({ ok: false, reason });
+      expect(() => validateOrThrow(input)).toThrow(PostDispatchValidationError);
+    });
+  } finally {
+    if (original === undefined) delete process.env.DEEP_REVIEW_V2_ENFORCEMENT;
+    else process.env.DEEP_REVIEW_V2_ENFORCEMENT = original;
+  }
+}
+
 describe('review-depth validator v2 fixtures', () => {
-  it.todo('v2 record with reviewDepthSchemaVersion:2 and missing searchLedger for non-trivial scope must fail');
+  it('v2 record with reviewDepthSchemaVersion:2 and missing searchLedger for non-trivial scope must fail', () => {
+    expectStrictValidationFailure(reviewDepthRecord({ searchLedger: [] }), 'v2_missing_ledger');
+  });
 
-  it.todo('v2 record with uncited ledger row (evidenceRefs:[]) must fail');
+  it('v2 record with uncited ledger row (evidenceRefs:[]) must fail', () => {
+    expectStrictValidationFailure(reviewDepthRecord({
+      searchLedger: [{
+        id: 'SL-uncited',
+        dimension: 'correctness',
+        targetRefs: ['src/review-target.ts'],
+        bugClass: 'state_transition',
+        searchActions: [{ method: 'direct_read', queryOrPath: 'src/review-target.ts', result: 'checked', evidenceRefs: [] }],
+        disposition: 'deferred',
+        rationale: 'synthetic uncited fixture',
+      }],
+    }), 'v2_uncited_ledger_row');
+  });
 
-  it.todo('v2 record with broken linkedFindingId must fail');
+  it('v2 record with broken linkedFindingId must fail', () => {
+    expectStrictValidationFailure(reviewDepthRecord({
+      searchLedger: [{
+        id: 'SL-broken-link',
+        dimension: 'correctness',
+        targetRefs: ['src/review-target.ts'],
+        bugClass: 'state_transition',
+        searchActions: [{ method: 'direct_read', queryOrPath: 'src/review-target.ts', result: 'finding', evidenceRefs: ['src/review-target.ts:1'] }],
+        disposition: 'finding',
+        linkedFindingId: 'F-missing',
+        rationale: 'synthetic broken-link fixture',
+      }],
+    }), 'v2_broken_linked_finding');
+  });
 
-  it.todo('v2 record with shallow findingDetails on active finding must fail');
+  it('v2 record with shallow findingDetails on active finding must fail', () => {
+    expectStrictValidationFailure(reviewDepthRecord({
+      findingDetails: [{ id: 'F-001', severity: 'P1', disposition: 'active' }],
+      searchLedger: [{
+        id: 'SL-finding',
+        dimension: 'correctness',
+        targetRefs: ['src/review-target.ts'],
+        bugClass: 'state_transition',
+        searchActions: [{ method: 'direct_read', queryOrPath: 'src/review-target.ts', result: 'finding', evidenceRefs: ['src/review-target.ts:1'] }],
+        disposition: 'finding',
+        linkedFindingId: 'F-001',
+        rationale: 'synthetic shallow finding fixture',
+      }],
+    }), 'v2_shallow_finding_details');
+  });
 
   it('state-log/delta iteration-id mismatch must fail', () => {
-    // EXPECT: passes after phase D (004-validator-v2-enforcement).
-    // Today the validator only requires any delta iteration record, so this assertion is intentionally red.
     withTempPaths((paths) => {
       const previousStateLogSize = writeIterationFixture(
         paths,

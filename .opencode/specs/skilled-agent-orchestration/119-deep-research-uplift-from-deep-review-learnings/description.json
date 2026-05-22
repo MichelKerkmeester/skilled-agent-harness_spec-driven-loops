@@ -1,0 +1,23 @@
+{
+  "level": "phase",
+  "specFolder": "skilled-agent-orchestration/119-deep-research-uplift-from-deep-review-learnings",
+  "description": "Phased deep-research investigation: which 118 deep-review upgrades should propagate to deep-research. 10-iter cli-devin SWE-1.6 (iters 1-8) + cli-codex gpt-5.5 high fast (iters 9-10). 3 phase children: research / applicability analysis / uplift recommendations.",
+  "keywords": [
+    "119",
+    "deep-research",
+    "deep-research-uplift",
+    "deep-review-learnings",
+    "deep-loop-runtime",
+    "cli-devin",
+    "swe-1.6",
+    "cli-codex",
+    "gpt-5.5-high-fast",
+    "skilled-agent-orchestration"
+  ],
+  "lastUpdated": "2026-05-22T22:35:00.000Z",
+  "specId": "119",
+  "folderSlug": "deep-research-uplift-from-deep-review-learnings",
+  "parentChain": ["skilled-agent-orchestration"],
+  "memorySequence": 119,
+  "memoryNameHistory": []
+}

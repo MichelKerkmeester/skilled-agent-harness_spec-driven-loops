@@ -1,9 +1,9 @@
-import { spawnSync } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const helperDir = dirname(fileURLToPath(import.meta.url));
-const runtimeRoot = resolve(helperDir, '..', '..');
+export const runtimeRoot = resolve(helperDir, '..', '..');
 
 export type ScriptName = 'convergence' | 'query' | 'status' | 'upsert';
 
@@ -12,6 +12,24 @@ export type ScriptResult = {
   stdout: string;
   stderr: string;
   json: Record<string, unknown>;
+};
+
+export type SpawnCjsOptions = {
+  cwd?: string;
+  env?: NodeJS.ProcessEnv;
+  timeoutMs?: number;
+};
+
+export type SpawnCjsResult = {
+  exitCode: number | null;
+  stdout: string;
+  stderr: string;
+  signal: NodeJS.Signals | null;
+  timedOut: boolean;
+};
+
+export type RunScriptOptions = {
+  env?: NodeJS.ProcessEnv;
 };
 
 export type ScriptNamespace = {
@@ -40,10 +58,11 @@ export function namespaceArgs(namespace: ScriptNamespace): string[] {
   ];
 }
 
-export function runScript(scriptName: ScriptName, args: string[] = []): ScriptResult {
+export function runScript(scriptName: ScriptName, args: string[] = [], options: RunScriptOptions = {}): ScriptResult {
   const scriptPath = resolve(runtimeRoot, 'scripts', `${scriptName}.cjs`);
   const result = spawnSync(process.execPath, [scriptPath, ...args], {
     cwd: runtimeRoot,
+    env: options.env ?? process.env,
     encoding: 'utf8',
   });
   const stdout = result.stdout.trim();
@@ -55,6 +74,44 @@ export function runScript(scriptName: ScriptName, args: string[] = []): ScriptRe
     stderr: result.stderr.trim(),
     json: JSON.parse(jsonLine) as Record<string, unknown>,
   };
+}
+
+export function spawnCjs(
+  scriptPath: string,
+  args: string[] = [],
+  options: SpawnCjsOptions = {},
+): Promise<SpawnCjsResult> {
+  return new Promise((resolvePromise) => {
+    const child = spawn(process.execPath, [scriptPath, ...args], {
+      cwd: options.cwd ?? runtimeRoot,
+      env: options.env ?? process.env,
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+    let stdout = '';
+    let stderr = '';
+    let timedOut = false;
+    const timeout = options.timeoutMs
+      ? setTimeout(() => {
+          timedOut = true;
+          child.kill('SIGTERM');
+        }, options.timeoutMs)
+      : null;
+
+    child.stdout?.setEncoding('utf8');
+    child.stderr?.setEncoding('utf8');
+    child.stdout?.on('data', (chunk) => { stdout += chunk; });
+    child.stderr?.on('data', (chunk) => { stderr += chunk; });
+    child.on('close', (exitCode, signal) => {
+      if (timeout) clearTimeout(timeout);
+      resolvePromise({
+        exitCode,
+        stdout: stdout.trim(),
+        stderr: stderr.trim(),
+        signal,
+        timedOut,
+      });
+    });
+  });
 }
 
 export function seedReviewNode(namespace: ScriptNamespace, id = 'dimension-1'): ScriptResult {

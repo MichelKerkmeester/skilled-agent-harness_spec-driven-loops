@@ -213,7 +213,7 @@ This creates a spec folder, runs research, builds a plan and begins implementati
 
 ### Adapting to Your Stack
 
-This repo ships as a public template. Of the shipped skills, `sk-code` carries the stack-specific patterns (frontend framework, animation library, CMS, backend language). Start there when forking. The other shipped skills (`system-spec-kit`, `sk-doc`, `sk-git`, `sk-code-review`, `mcp-coco-index`, the deep-research/deep-review loops, the `cli-*` orchestrators) are codebase-agnostic out of the box and work for any project without modification. Most teams will also add their own skills on top. Drop them into `.opencode/skills/<your-skill>/` and they'll be picked up automatically.
+This repo ships as a public template. Of the shipped skills, `sk-code` carries the stack-specific patterns (frontend framework, animation library, CMS, backend language). Start there when forking. The other shipped skills (`system-spec-kit`, `sk-doc`, `sk-git`, `sk-code-review`, `mcp-coco-index`, the deep-research/deep-review loops, `deep-loop-runtime`, the `cli-*` orchestrators) are codebase-agnostic out of the box and work for any project without modification. Most teams will also add their own skills on top. Drop them into `.opencode/skills/<your-skill>/` and they'll be picked up automatically.
 
 See [§4 Customizing for Your Stack](#customizing-for-your-stack) for the full customization map and step-by-step adaptation guide.
 
@@ -792,7 +792,7 @@ For details, see the [Skill Advisor README](.opencode/skills/system-skill-adviso
 
 ### 🎯 Skills Library
 
-21 skills in `.opencode/skills/`, loaded on demand when Gate 2 matches a task (confidence >= 0.8 means the skill must be loaded).
+22 skills in `.opencode/skills/`, loaded on demand when Gate 2 matches a task (confidence >= 0.8 means the skill must be loaded).
 
 #### DOCUMENTATION
 
@@ -844,6 +844,10 @@ For details, see the [Skill Advisor README](.opencode/skills/system-skill-adviso
 - 9-section review report with PASS/CONDITIONAL/FAIL verdict
 - Fail-closed corruption, claim-adjudication `finalSeverity`, stale STOP veto auto-clearing
 - Lifecycle modes: `new`, `resume`, `restart`. Dispatched by `/spec_kit:deep-review` command
+
+**deep-loop-runtime**
+- Shared runtime infrastructure for deep-review + deep-research loop workflows (post-arc-118)
+- Owns executor config, state safety, scoring, fallback routing, coverage-graph scripts, and `storage/deep-loop-graph.sqlite`
 
 &nbsp;
 #### CROSS-AI CLI
@@ -1298,7 +1302,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 | `system-spec-kit`                                   | ✅ Codebase-agnostic                        | Spec folder workflow + validator + memory. Works for any project.                                                                                                                                        |
 | `mcp-coco-index`                                    | ✅ Codebase-agnostic                        | Semantic code search via embeddings. Works for any project.                                                                                                                                              |
 | `mcp-code-mode`                                     | ✅ Codebase-agnostic                        | Multi-tool MCP orchestration. Works for any project.                                                                                                                                                     |
-| `deep-research` / `deep-review`                     | ✅ Codebase-agnostic                        | Iterative loop protocols. Work for any topic / target.                                                                                                                                                   |
+| `deep-loop-runtime` / `deep-research` / `deep-review` | ✅ Codebase-agnostic                        | Shared runtime plus iterative loop protocols. Work for any topic / target.                                                                                                                               |
 | `sk-prompt` / `deep-agent-improvement`              | ✅ Codebase-agnostic                        | Prompt + agent improvement frameworks. Work for any project.                                                                                                                                             |
 | `cli-*` (codex/copilot/gemini/claude-code/opencode) | ✅ Codebase-agnostic                        | External CLI orchestrators. Stack-independent.                                                                                                                                                           |
 | `mcp-chrome-devtools`                               | ✅ Codebase-agnostic                        | Browser tooling. Stack-independent.                                                                                                                                                                      |
@@ -1445,7 +1449,7 @@ After that, `cat opencode.json` shows `"true"`. `git show HEAD:opencode.json` sh
 
 ## 5. FAQ
 
-**Q: Do I need all 21 skills installed to use the framework?**
+**Q: Do I need all 22 skills installed to use the framework?**
 
 A: No. Skills are loaded on demand by Gate 2. You only need the ones relevant to your work. The two core documentation skills - `system-spec-kit` and `sk-doc` - cover most documentation workflows. The MCP and cross-AI CLI skills require additional local tooling or API keys depending on the surface.
 &nbsp;
@@ -1521,4 +1525,4 @@ A: The feature catalog is a 290-entry reference across 22 categories documenting
 <!-- /ANCHOR:related-documents -->
 
 
-*Documentation version: 4.13 | Last updated: 2026-05-18 | Framework: 11 agents, 21 skills, 22 commands, 69 MCP tools (39 mk-spec-memory + 9 mk_skill_advisor + 11 mk_code_index + 7 code mode + 2 CocoIndex + 1 sequential thinking. Deferred / internal-only handlers do NOT count).*
+*Documentation version: 4.13 | Last updated: 2026-05-18 | Framework: 11 agents, 22 skills, 22 commands, 69 MCP tools (39 mk-spec-memory + 9 mk_skill_advisor + 11 mk_code_index + 7 code mode + 2 CocoIndex + 1 sequential thinking. Deferred / internal-only handlers do NOT count).*

@@ -12,6 +12,7 @@ type CoverageModules = {
     rejectedEdges: number;
   };
   VALID_KINDS: Record<string, readonly string[]>;
+  VALID_RELATIONS: Record<string, readonly string[]>;
 };
 
 const originalDbDir = process.env.SPEC_KIT_DB_DIR;
@@ -34,6 +35,7 @@ async function loadCoverageModules(): Promise<CoverageModules> {
     closeDb: dbModule.closeDb,
     batchUpsert: dbModule.batchUpsert,
     VALID_KINDS: dbModule.VALID_KINDS,
+    VALID_RELATIONS: dbModule.VALID_RELATIONS,
   };
 }
 
@@ -87,4 +89,22 @@ describe('review-depth graph vocabulary fixtures', () => {
       expect(data.insertedNodes).toBe(1);
     });
   }
+
+  it('upserts candidate vocabulary edges with review graph relation allow-list coverage', async () => {
+    const { batchUpsert, VALID_RELATIONS } = await loadCoverageModules();
+    const namespace = {
+      specFolder: 'specs/review-depth-graph-fixture',
+      loopType: 'review',
+      sessionId: 'review-depth-graph-edge',
+    } as const;
+    const data = batchUpsert([
+      { ...namespace, id: 'dim-correctness', kind: 'DIMENSION', name: 'Correctness' },
+      { ...namespace, id: 'bug-state-transition', kind: 'BUG_CLASS', name: 'State transition' },
+    ], [
+      { ...namespace, id: 'edge-bug-dim', sourceId: 'bug-state-transition', targetId: 'dim-correctness', relation: 'IN_DIMENSION' },
+    ]);
+
+    expect(VALID_RELATIONS.review).toContain('IN_DIMENSION');
+    expect(data.insertedEdges).toBe(1);
+  });
 });

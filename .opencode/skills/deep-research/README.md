@@ -230,6 +230,10 @@ A: Use `deep-review` and `/spec_kit:deep-review`.
 <!-- ANCHOR:related-documents -->
 ## 9. RELATED DOCUMENTS
 
+### Dependencies
+
+`deep-research` depends on `.opencode/skills/deep-loop-runtime/` for executor + state + coverage-graph runtime (arc 118 FULL_ISOLATE_NO_MCP override of 117 SPLIT ruling).
+
 | Resource | Purpose |
 |----------|---------|
 | `SKILL.md` | Full protocol and rules |

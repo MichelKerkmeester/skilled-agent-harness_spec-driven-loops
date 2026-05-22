@@ -387,6 +387,10 @@ A: Raise `--max-iterations` above the number of completed iterations and re-invo
 
 ## 9. RELATED DOCUMENTS
 
+### Dependencies
+
+`deep-review` depends on `.opencode/skills/deep-loop-runtime/` for executor + state + coverage-graph runtime (arc 118 FULL_ISOLATE_NO_MCP override of 117 SPLIT ruling).
+
 ### Shared References
 
 | Document        | Path                                                           | Purpose                                                                  |
