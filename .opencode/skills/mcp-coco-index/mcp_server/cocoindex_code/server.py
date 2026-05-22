@@ -32,6 +32,7 @@ from .observability.observability import (
     new_request_id,
     resolve_mcp_request_timeout_ms,
 )
+from .lifecycle.daemon_task_registry import daemon_task_registry, get_mcp_threadpool
 from .core.protocol import IndexingProgress
 from .retrieval.search_budget import SearchBudgetExceeded, validate_search_budget
 
@@ -105,6 +106,33 @@ class RefreshIndexResultModel(BaseModel):
     reqId: str | None = None
     paths: list[str] | None = None
     message: str | None = None
+
+
+class CancelIndexResultModel(BaseModel):
+    """Result from index_cancel tool."""
+
+    status: str
+    reqId: str | None = None
+    indexId: str | None = None
+    message: str | None = None
+
+
+def _run_registered_thread(
+    loop: asyncio.AbstractEventLoop,
+    func,
+    *,
+    task_id: str,
+    kind: str,
+    project_root: str,
+):
+    future = get_mcp_threadpool().submit(func)
+    daemon_task_registry.add_future(
+        future,
+        task_id=task_id,
+        kind=kind,
+        project_key=project_root,
+    )
+    return asyncio.wrap_future(future, loop=loop)
 
 
 # === Daemon-backed MCP server factory ===
@@ -212,15 +240,21 @@ def create_mcp_server(client: DaemonClient, project_root: str) -> FastMCP:
             async def _run_search_request() -> SearchResultModel:
                 if refresh_index:
                     refresh_start = monotonic_ms()
-                    await loop.run_in_executor(None, lambda: client.index(project_root))
+                    await _run_registered_thread(
+                        loop,
+                        lambda: client.index(project_root, req_id=req_id),
+                        task_id=f"mcp-refresh-{req_id}",
+                        kind="mcp-refresh-index",
+                        project_root=project_root,
+                    )
                     log_stage(
                         logger,
                         req_id=req_id,
                         stage="refresh_index",
                         duration_ms=elapsed_ms(refresh_start),
                     )
-                resp = await loop.run_in_executor(
-                    None,
+                resp = await _run_registered_thread(
+                    loop,
                     lambda: client.search(
                         project_root=project_root,
                         query=query,
@@ -230,6 +264,9 @@ def create_mcp_server(client: DaemonClient, project_root: str) -> FastMCP:
                         offset=offset,
                         req_id=req_id,
                     ),
+                    task_id=f"mcp-search-{req_id}",
+                    kind="mcp-search",
+                    project_root=project_root,
                 )
                 return SearchResultModel(
                     success=resp.success,
@@ -288,7 +325,6 @@ def create_mcp_server(client: DaemonClient, project_root: str) -> FastMCP:
             )
             _log_json_response_size(result, req_id=req_id)
             return result
-
     @mcp.tool(
         name="cocoindex_refresh_index",
         description=(
@@ -322,7 +358,13 @@ def create_mcp_server(client: DaemonClient, project_root: str) -> FastMCP:
         try:
             async def _run_refresh_request() -> RefreshIndexResultModel:
                 refresh_start = monotonic_ms()
-                resp = await loop.run_in_executor(None, lambda: client.index(project_root))
+                resp = await _run_registered_thread(
+                    loop,
+                    lambda: client.index(project_root, req_id=req_id),
+                    task_id=f"mcp-refresh-{req_id}",
+                    kind="mcp-refresh-index",
+                    project_root=project_root,
+                )
                 log_stage(
                     logger,
                     req_id=req_id,
@@ -368,6 +410,47 @@ def create_mcp_server(client: DaemonClient, project_root: str) -> FastMCP:
             )
             _log_json_response_size(result, req_id=req_id)
             return result
+
+    @mcp.tool(
+        name="index_cancel",
+        description=(
+            "Cancel a specific CocoIndex indexing request by reqId or indexId"
+            " without stopping the daemon."
+        ),
+    )
+    async def index_cancel(
+        reqId: str | None = Field(default=None, description="Client request id to cancel"),
+        indexId: str | None = Field(default=None, description="Daemon index id to cancel"),
+    ) -> CancelIndexResultModel:
+        """Cancel a daemon indexing request via exact identity."""
+        if not reqId and not indexId:
+            return CancelIndexResultModel(
+                status="not-found",
+                reqId=reqId,
+                indexId=indexId,
+                message="index_cancel requires reqId or indexId",
+            )
+        loop = asyncio.get_event_loop()
+        try:
+            resp = await _run_registered_thread(
+                loop,
+                lambda: client.index_cancel(req_id=reqId, index_id=indexId),
+                task_id=f"mcp-index-cancel-{reqId or indexId}",
+                kind="mcp-index-cancel",
+                project_root=project_root,
+            )
+            return CancelIndexResultModel(
+                status=resp.status,
+                reqId=resp.reqId,
+                indexId=resp.indexId,
+            )
+        except Exception as e:
+            return CancelIndexResultModel(
+                status="not-found",
+                reqId=reqId,
+                indexId=indexId,
+                message=f"Cancel failed: {e!s}",
+            )
 
     return mcp
 
@@ -554,8 +637,18 @@ def main() -> None:
         mcp_server = create_mcp_server(client, str(project_root))
 
         async def _serve() -> None:
-            asyncio.create_task(_bg_index(client, str(project_root)))
-            await mcp_server.run_stdio_async()
+            req_id = new_request_id()
+            task = asyncio.create_task(_bg_index(client, str(project_root)))
+            daemon_task_registry.add_task(
+                task,
+                task_id=f"mcp-bg-index-task-{req_id}",
+                kind="mcp-bg-index-task",
+                project_key=str(project_root),
+            )
+            try:
+                await mcp_server.run_stdio_async()
+            finally:
+                await daemon_task_registry.shutdown(timeout_seconds=10.0)
 
         asyncio.run(_serve())
 
@@ -563,7 +656,14 @@ def main() -> None:
 async def _bg_index(client: DaemonClient, project_root: str) -> None:
     """Index in background."""
     loop = asyncio.get_event_loop()
+    req_id = new_request_id()
     try:
-        await loop.run_in_executor(None, client.index, project_root)
+        await _run_registered_thread(
+            loop,
+            lambda: client.index(project_root, req_id=req_id),
+            task_id=f"mcp-bg-index-{req_id}",
+            kind="mcp-bg-index",
+            project_root=project_root,
+        )
     except Exception:
-        pass
+        logger.exception("background MCP index failed")

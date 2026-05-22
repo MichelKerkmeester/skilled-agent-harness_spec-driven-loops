@@ -47,6 +47,8 @@ from .core.protocol import (
     ErrorResponse,
     HandshakeRequest,
     HandshakeResponse,
+    IndexCancelRequest,
+    IndexCancelResponse,
     IndexingProgress,
     IndexProgressUpdate,
     IndexRequest,
@@ -70,6 +72,14 @@ from .core.protocol import (
     decode_request,
     encode_response,
 )
+from .lifecycle.active_work_registry import (
+    ActiveWorkRow,
+    active_work_registry,
+    async_remove_project_with_drain,
+    remove_project_with_drain,
+)
+from .lifecycle.cancel_protocol import CancelRequest
+from .lifecycle.daemon_task_registry import daemon_task_registry
 from .retrieval.query import query_codebase
 from .config.settings import (
     PROJECT_SETTINGS,
@@ -375,8 +385,24 @@ class ProjectRegistry:
             self._index_locks[project_root] = asyncio.Lock()
             self._load_time_done[project_root] = asyncio.Event()
             if not suppress_auto_index:
-                asyncio.create_task(self._run_index(project_root))
+                index_id = self._new_index_id()
+                task = asyncio.create_task(
+                    self._run_index(
+                        project_root,
+                        req_id=index_id,
+                        index_id=index_id,
+                    )
+                )
+                daemon_task_registry.add_task(
+                    task,
+                    task_id=index_id,
+                    kind="load-time-index",
+                    project_key=project_root,
+                )
         return self._projects[project_root]
+
+    def _new_index_id(self) -> str:
+        return f"idx-{new_request_id()}"
 
     def _runtime_metadata(self, project_root: str) -> dict[str, Any]:
         embedding_model, embedding_provider = self._embedding_settings()
@@ -444,6 +470,8 @@ class ProjectRegistry:
         self,
         project_root: str,
         on_progress: Callable[[IndexingProgress], None] | None = None,
+        req_id: str | None = None,
+        index_id: str | None = None,
     ) -> None:
         """Run indexing for a project, acquiring and releasing the per-project lock.
 
@@ -454,23 +482,52 @@ class ProjectRegistry:
         On completion (success or failure) it marks load-time as done
         (idempotent) and releases the lock.
         """
+        req_id = req_id or new_request_id()
+        index_id = index_id or self._new_index_id()
+        cancel_event = threading.Event()
+        row = ActiveWorkRow(
+            req_id=req_id,
+            index_id=index_id,
+            started_at=time.monotonic(),
+            status="running",
+            cancel_event=cancel_event,
+            project_key=project_root,
+        )
+        active_work_registry.add(row)
         project = self._projects[project_root]
         lock = self._index_locks[project_root]
 
-        await lock.acquire()
+        acquired = False
         try:
+            await lock.acquire()
+            acquired = True
+            if cancel_event.is_set():
+                raise asyncio.CancelledError()
             await project.update_index(
                 on_progress=on_progress,
+                cancel_event=cancel_event,
             )
             self._write_index_metadata(project_root)
+        except asyncio.CancelledError:
+            logger.info(
+                "Indexing cancelled for %s reqId=%s indexId=%s",
+                project_root,
+                req_id,
+                index_id,
+            )
+            raise
         except Exception:
             logger.exception("Indexing failed for %s", project_root)
             raise
         finally:
+            active_work_registry.mark_complete(
+                CancelRequest(req_id=req_id, index_id=index_id)
+            )
             event = self._load_time_done.get(project_root)
             if event is not None:
                 event.set()
-            lock.release()
+            if acquired:
+                lock.release()
 
     def _embedding_settings(self) -> tuple[str | None, str | None]:
         try:
@@ -608,7 +665,12 @@ class ProjectRegistry:
         result.raise_for_hard_refusal()
 
     async def update_index(
-        self, project_root: str, *, suppress_auto_index: bool = True
+        self,
+        project_root: str,
+        *,
+        suppress_auto_index: bool = True,
+        req_id: str | None = None,
+        index_id: str | None = None,
     ) -> AsyncIterator[IndexStreamResponse]:
         """Update index, yielding progress updates and a final IndexResponse.
 
@@ -626,12 +688,22 @@ class ProjectRegistry:
         if lock.locked():
             yield IndexWaitingNotice()
 
+        req_id = req_id or new_request_id()
+        index_id = index_id or self._new_index_id()
         progress_queue: asyncio.Queue[IndexingProgress] = asyncio.Queue()
         index_task = asyncio.create_task(
             self._run_index(
                 project_root,
                 on_progress=lambda p: progress_queue.put_nowait(p),
+                req_id=req_id,
+                index_id=index_id,
             )
+        )
+        daemon_task_registry.add_task(
+            index_task,
+            task_id=index_id,
+            kind="explicit-index",
+            project_key=project_root,
         )
 
         try:
@@ -650,13 +722,20 @@ class ProjectRegistry:
             # Propagate any exception from the index task
             index_task.result()
 
-            yield IndexResponse(success=True)
+            yield IndexResponse(success=True, reqId=req_id, indexId=index_id)
         except GeneratorExit:
             # Client disconnected — _run_index continues in background and
             # handles cleanup (release lock, clear _indexing) when done.
             return
+        except asyncio.CancelledError:
+            yield IndexResponse(
+                success=False,
+                message="cancelled",
+                reqId=req_id,
+                indexId=index_id,
+            )
         except Exception as e:
-            yield IndexResponse(success=False, message=str(e))
+            yield IndexResponse(success=False, message=str(e), reqId=req_id, indexId=index_id)
 
     async def search(
         self,
@@ -813,8 +892,19 @@ class ProjectRegistry:
             ),
         )
 
-    def remove_project(self, project_root: str) -> bool:
-        """Remove a project from the registry. Returns True if it was loaded."""
+    def _log_remove_timeout(self, project_root: str, remaining: list[ActiveWorkRow]) -> None:
+        for row in remaining:
+            log_json(
+                logger,
+                event="cocoindex_remove_project_force_removed",
+                pid=os.getpid(),
+                projectRoot=project_root,
+                reqId=row.req_id,
+                indexId=row.index_id,
+                status=row.status,
+            )
+
+    def _pop_and_close_project(self, project_root: str) -> bool:
         import gc
 
         was_loaded = project_root in self._projects
@@ -828,6 +918,26 @@ class ProjectRegistry:
             del project
             gc.collect()
         return was_loaded
+
+    def remove_project(self, project_root: str) -> bool:
+        """Remove a project from the registry. Returns True if it was loaded."""
+        return remove_project_with_drain(
+            project_root,
+            self._pop_and_close_project,
+            on_timeout=self._log_remove_timeout,
+        )
+
+    async def remove_project_async(self, project_root: str) -> bool:
+        """Async remove path used by daemon dispatch so index tasks can drain."""
+        return await async_remove_project_with_drain(
+            project_root,
+            self._pop_and_close_project,
+            on_timeout=self._log_remove_timeout,
+        )
+
+    def cancel_index(self, req: CancelRequest) -> str:
+        """Cancel a specific active index request."""
+        return active_work_registry.cancel(req).value
 
     def close_all(self) -> None:
         """Close all loaded projects and release resources."""
@@ -1012,7 +1122,19 @@ async def _dispatch(
     """
     try:
         if isinstance(req, IndexRequest):
-            return registry.update_index(req.project_root)
+            return registry.update_index(
+                req.project_root,
+                req_id=req.reqId or req_id,
+                index_id=req.indexId,
+            )
+
+        if isinstance(req, IndexCancelRequest):
+            try:
+                cancel_req = CancelRequest(req_id=req.reqId, index_id=req.indexId)
+            except ValueError as exc:
+                return ErrorResponse(message=str(exc), reqId=req_id)
+            status = registry.cancel_index(cancel_req)
+            return IndexCancelResponse(status=status, reqId=req.reqId, indexId=req.indexId)
 
         if isinstance(req, SearchRequest):
             # If load-time indexing is in progress, return a streaming response
@@ -1050,7 +1172,7 @@ async def _dispatch(
             )
 
         if isinstance(req, RemoveProjectRequest):
-            registry.remove_project(req.project_root)
+            await registry.remove_project_async(req.project_root)
             return RemoveProjectResponse(ok=True)
 
         if isinstance(req, StopRequest):
@@ -1284,6 +1406,7 @@ async def _async_daemon_main(
         if startup_lock_fd is not None:
             startup_lock_fd.close()
         accept_thread.join(timeout=2)
+        await daemon_task_registry.shutdown(timeout_seconds=10.0)
         if tasks:
             # Patch 10: bound the shutdown wait. asyncio.wait_for cancels its
             # awaited future on timeout, which propagates to the gathered tasks.

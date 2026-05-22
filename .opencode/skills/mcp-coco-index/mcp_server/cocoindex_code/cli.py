@@ -1198,11 +1198,23 @@ def mcp() -> None:
 
     async def _run_mcp() -> None:
         from .server import create_mcp_server
+        from .lifecycle.daemon_task_registry import daemon_task_registry
+        from .observability.observability import new_request_id
 
         mcp_server = create_mcp_server(client, project_root)
         # Trigger initial indexing in background
-        asyncio.create_task(_bg_index(client, project_root))
-        await mcp_server.run_stdio_async()
+        req_id = new_request_id()
+        task = asyncio.create_task(_bg_index(client, project_root))
+        daemon_task_registry.add_task(
+            task,
+            task_id=f"cli-bg-index-task-{req_id}",
+            kind="cli-bg-index-task",
+            project_key=project_root,
+        )
+        try:
+            await mcp_server.run_stdio_async()
+        finally:
+            await daemon_task_registry.shutdown(timeout_seconds=10.0)
 
     asyncio.run(_run_mcp())
 
@@ -1210,12 +1222,26 @@ def mcp() -> None:
 async def _bg_index(client, project_root: str) -> None:  # type: ignore[no-untyped-def]
     """Index in background, swallowing errors."""
     import asyncio
+    import logging
+
+    from .lifecycle.daemon_task_registry import daemon_task_registry, get_mcp_threadpool
+    from .observability.observability import new_request_id
+
+    logger = logging.getLogger(__name__)
 
     loop = asyncio.get_event_loop()
+    req_id = new_request_id()
+    future = get_mcp_threadpool().submit(lambda: client.index(project_root, req_id=req_id))
+    daemon_task_registry.add_future(
+        future,
+        task_id=f"cli-bg-index-{req_id}",
+        kind="cli-bg-index",
+        project_key=project_root,
+    )
     try:
-        await loop.run_in_executor(None, client.index, project_root)
+        await asyncio.wrap_future(future, loop=loop)
     except Exception:
-        pass
+        logger.exception("background CLI index failed")
 
 
 # --- Daemon subcommands ---

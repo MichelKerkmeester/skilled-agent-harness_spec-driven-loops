@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+import threading
 from collections.abc import Callable
 from pathlib import Path
 
@@ -45,6 +46,7 @@ class Project:
         self,
         *,
         on_progress: Callable[[IndexingProgress], None] | None = None,
+        cancel_event: threading.Event | None = None,
     ) -> None:
         """Update the index, streaming progress via callback.
 
@@ -55,6 +57,8 @@ class Project:
         try:
             handle = self._app.update()
             async for snapshot in handle.watch():
+                if cancel_event is not None and cancel_event.is_set():
+                    raise asyncio.CancelledError()
                 file_stats = snapshot.stats.by_component.get("process_file")
                 if file_stats is not None:
                     progress = IndexingProgress(

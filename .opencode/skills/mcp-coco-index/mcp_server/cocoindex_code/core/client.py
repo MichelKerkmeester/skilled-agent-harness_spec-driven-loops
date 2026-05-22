@@ -25,6 +25,8 @@ from .protocol import (
     ErrorResponse,
     HandshakeRequest,
     HandshakeResponse,
+    IndexCancelRequest,
+    IndexCancelResponse,
     IndexingProgress,
     IndexProgressUpdate,
     IndexRequest,
@@ -89,9 +91,15 @@ class DaemonClient:
         project_root: str,
         on_progress: Callable[[IndexingProgress], None] | None = None,
         on_waiting: Callable[[], None] | None = None,
+        req_id: str | None = None,
+        index_id: str | None = None,
     ) -> IndexResponse:
         """Request indexing with streaming progress. Blocks until complete."""
-        self._conn.send_bytes(encode_request(IndexRequest(project_root=project_root)))
+        self._conn.send_bytes(
+            encode_request(
+                IndexRequest(project_root=project_root, reqId=req_id, indexId=index_id)
+            )
+        )
         while True:
             try:
                 data = self._conn.recv_bytes()
@@ -193,6 +201,16 @@ class DaemonClient:
     def remove_project(self, project_root: str) -> RemoveProjectResponse:
         return self._send(  # type: ignore[return-value]
             RemoveProjectRequest(project_root=project_root)
+        )
+
+    def index_cancel(
+        self,
+        *,
+        req_id: str | None = None,
+        index_id: str | None = None,
+    ) -> IndexCancelResponse:
+        return self._send(  # type: ignore[return-value]
+            IndexCancelRequest(reqId=req_id, indexId=index_id)
         )
 
     def stop(self) -> StopResponse:

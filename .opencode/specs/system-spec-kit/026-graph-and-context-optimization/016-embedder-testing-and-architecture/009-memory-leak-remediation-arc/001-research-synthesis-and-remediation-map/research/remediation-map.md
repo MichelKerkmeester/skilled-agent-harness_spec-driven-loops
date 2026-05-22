@@ -60,4 +60,12 @@ Items #6 and #15 now have a phase-005 dry-run implementation surface under `.ope
 
 Verification evidence is recorded in `005-expected-daemon-classifier-and-process-sweep/implementation-summary.md`. Destructive termination remains deferred to phase 010 operator-confirmation policy.
 
+## Phase 006 Completion Evidence
+
+Items #7, #8, and #9 now have a CocoIndex lifecycle implementation surface under `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/lifecycle/`, with daemon/client/server wiring in the existing CocoIndex package.
+
+The implementation tracks active index work by exact `reqId`/`indexId`, blocks new active rows during remove, cancels and bounded-awaits project work before registry pop and `Project.close()`, exposes `index_cancel`, registers daemon/MCP/CLI background index work, and shuts down registered futures with `cancel_futures=True`. It preserves Phase 005's no-kill rule: timeout evidence is logged with PID/request identity, but threads or processes are not terminated.
+
+Verification evidence is recorded in `006-cocoindex-remove-cancel-and-index-lifecycle/implementation-summary.md`. Targeted lifecycle pytest passed with 15 tests; full existing pytest collection is blocked in this sandbox by missing Python dependencies.
+
 <!-- /ANCHOR:remediation-map -->

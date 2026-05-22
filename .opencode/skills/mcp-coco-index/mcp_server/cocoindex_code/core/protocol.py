@@ -16,6 +16,13 @@ class HandshakeRequest(_msgspec.Struct, tag="handshake"):
 
 class IndexRequest(_msgspec.Struct, tag="index"):
     project_root: str
+    reqId: str | None = None
+    indexId: str | None = None
+
+
+class IndexCancelRequest(_msgspec.Struct, tag="index_cancel"):
+    reqId: str | None = None
+    indexId: str | None = None
 
 
 class SearchRequest(_msgspec.Struct, tag="search"):
@@ -47,6 +54,7 @@ class StopRequest(_msgspec.Struct, tag="stop"):
 Request = (
     HandshakeRequest
     | IndexRequest
+    | IndexCancelRequest
     | SearchRequest
     | ProjectStatusRequest
     | DaemonStatusRequest
@@ -68,6 +76,14 @@ class HandshakeResponse(_msgspec.Struct, tag="handshake"):
 class IndexResponse(_msgspec.Struct, tag="index"):
     success: bool
     message: str | None = None
+    reqId: str | None = None
+    indexId: str | None = None
+
+
+class IndexCancelResponse(_msgspec.Struct, tag="index_cancel"):
+    status: str
+    reqId: str | None = None
+    indexId: str | None = None
 
 
 class IndexingProgress(_msgspec.Struct):
@@ -203,6 +219,7 @@ class ErrorResponse(_msgspec.Struct, tag="error"):
 Response = (
     HandshakeResponse
     | IndexResponse
+    | IndexCancelResponse
     | IndexProgressUpdate
     | IndexWaitingNotice
     | SearchResponse
