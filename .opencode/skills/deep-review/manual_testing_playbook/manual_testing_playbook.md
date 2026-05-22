@@ -20,6 +20,8 @@ Canonical package artifacts:
 - `04--convergence-and-recovery/`
 - `05--pause-resume-and-fault-tolerance/`
 - `06--synthesis-save-and-guardrails/`
+- `07--command-flow-stress-tests/`
+- `08--review-depth-v2-rollout/`
 
 ---
 
@@ -669,3 +671,12 @@ No dedicated automated test suite currently exists for `deep-review`. This playb
 - DRV-027: [Final synthesis memory save and guardrail behavior](06--synthesis-save-and-guardrails/027-final-synthesis-memory-save-and-guardrail-behavior.md)
 - DRV-028: [Finding deduplication and registry](06--synthesis-save-and-guardrails/028-finding-deduplication-and-registry.md)
 - DRV-029: [Resource map emission](06--synthesis-save-and-guardrails/029-resource-map-emission.md)
+
+### REVIEW-DEPTH V2 ROLLOUT
+
+- DRV-058: [Validator warn rollout for legacy unversioned records](08--review-depth-v2-rollout/058-validator-warn-rollout.md)
+- DRV-059: [Validator strict v2 with all five failure codes](08--review-depth-v2-rollout/059-validator-strict-v2.md)
+- DRV-060: [Reducer search-debt registry + dashboard + report persistence](08--review-depth-v2-rollout/060-reducer-search-debt.md)
+- DRV-061: [candidateCoverageGate STOP blocker](08--review-depth-v2-rollout/061-stop-gate-candidate-coverage.md)
+- DRV-062: [graphlessFallbackGate STOP blocker](08--review-depth-v2-rollout/062-stop-gate-graphless-fallback.md)
+- DRV-063: [Ledger-led graph vocabulary upserts (BUG_CLASS / INVARIANT / PRODUCER / CONSUMER / TEST)](08--review-depth-v2-rollout/063-graph-vocabulary.md)
