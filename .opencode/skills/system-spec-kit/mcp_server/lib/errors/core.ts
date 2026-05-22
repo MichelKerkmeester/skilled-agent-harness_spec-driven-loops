@@ -13,6 +13,7 @@ import {
 } from './recovery-hints.js';
 
 import type { RecoveryHint, Severity } from './recovery-hints.js';
+import { clearRegisteredTimer, registerTimeout } from '../runtime/timer-registry.js';
 
 // Feature catalog: Stage 3 effectiveScore fallback chain
 
@@ -147,11 +148,11 @@ export function withTimeout<T>(promise: Promise<T>, ms: number, operation: strin
   let timeoutId: ReturnType<typeof setTimeout> | null = null;
 
   const timeoutPromise = new Promise<never>((_, reject) => {
-    timeoutId = setTimeout(() => reject(new MemoryError(
+    timeoutId = registerTimeout(() => reject(new MemoryError(
       ErrorCodes.SEARCH_FAILED,
       `${operation} timed out after ${ms}ms`,
       { timeout: ms, operation }
-    )), ms);
+    )), ms, { unref: true });
   });
 
   return (async (): Promise<T> => {
@@ -159,7 +160,7 @@ export function withTimeout<T>(promise: Promise<T>, ms: number, operation: strin
       return await Promise.race([promise, timeoutPromise]);
     } finally {
       if (timeoutId !== null) {
-        clearTimeout(timeoutId);
+        clearRegisteredTimer(timeoutId);
       }
     }
   })();

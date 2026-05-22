@@ -7,6 +7,7 @@
 import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { clearRegisteredTimer, registerTimeout } from './runtime/timer-registry.js';
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
 import type {
@@ -129,17 +130,16 @@ export function buildSubprocessEnv(extras: Record<string, string> = {}): Record<
 function withTimeout<T>(operation: Promise<T>, timeoutMs: number, label: string): Promise<T> {
   let timeout: ReturnType<typeof setTimeout> | undefined;
   return new Promise((resolve, reject) => {
-    timeout = setTimeout(() => {
+    timeout = registerTimeout(() => {
       reject(Object.assign(new Error(`${label} timed out after ${timeoutMs}ms`), { code: 'CODE_GRAPH_MCP_TIMEOUT' }));
-    }, timeoutMs);
-    timeout.unref?.();
+    }, timeoutMs, { unref: true });
     operation.then(
       (value) => {
-        if (timeout) clearTimeout(timeout);
+        if (timeout) clearRegisteredTimer(timeout);
         resolve(value);
       },
       (error) => {
-        if (timeout) clearTimeout(timeout);
+        if (timeout) clearRegisteredTimer(timeout);
         reject(error);
       },
     );

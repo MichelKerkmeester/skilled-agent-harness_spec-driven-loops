@@ -21,6 +21,15 @@ const SESSION_TTL_MS = 30 * 60 * 1000;
 /** Maximum concurrent sessions before LRU eviction. */
 const MAX_SESSIONS = 100;
 
+/** Maximum seen result IDs retained per active session. */
+const MAX_SEEN_RESULT_IDS = 1_000;
+
+/** Maximum unresolved questions retained per active session. */
+const MAX_OPEN_QUESTIONS = 50;
+
+/** Maximum preferred anchors retained per active session. */
+const MAX_PREFERRED_ANCHORS = 100;
+
 /** Score multiplier for seen results (deprioritize, don't remove). */
 const SEEN_DEDUP_FACTOR = 0.3;
 
@@ -131,6 +140,11 @@ class SessionStateManager {
     const session = this.getOrCreate(sessionId);
     for (const id of resultIds) {
       session.seenResultIds.add(String(id));
+      while (session.seenResultIds.size > MAX_SEEN_RESULT_IDS) {
+        const oldest = session.seenResultIds.values().next().value as string | undefined;
+        if (oldest === undefined) break;
+        session.seenResultIds.delete(oldest);
+      }
     }
     session.updatedAt = Date.now();
   }
@@ -144,6 +158,9 @@ class SessionStateManager {
   addQuestion(sessionId: string, question: string): void {
     const session = this.getOrCreate(sessionId);
     session.openQuestions.push(question);
+    if (session.openQuestions.length > MAX_OPEN_QUESTIONS) {
+      session.openQuestions = session.openQuestions.slice(-MAX_OPEN_QUESTIONS);
+    }
     session.updatedAt = Date.now();
   }
 
@@ -155,7 +172,7 @@ class SessionStateManager {
    */
   setAnchors(sessionId: string, anchors: string[]): void {
     const session = this.getOrCreate(sessionId);
-    session.preferredAnchors = [...anchors];
+    session.preferredAnchors = anchors.slice(-MAX_PREFERRED_ANCHORS);
     session.updatedAt = Date.now();
   }
 
@@ -398,6 +415,9 @@ export {
   // Constants
   SESSION_TTL_MS,
   MAX_SESSIONS,
+  MAX_SEEN_RESULT_IDS,
+  MAX_OPEN_QUESTIONS,
+  MAX_PREFERRED_ANCHORS,
   SEEN_DEDUP_FACTOR,
   GOAL_BOOST_MAX,
 

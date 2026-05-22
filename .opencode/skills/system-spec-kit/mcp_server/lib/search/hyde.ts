@@ -22,6 +22,7 @@
 // Feature flags:
 //   SPECKIT_HYDE        — enable the HyDE feature (default: TRUE, graduated)
 //   SPECKIT_HYDE_ACTIVE — merge HyDE results into candidates (default: TRUE, graduated)
+import { clearRegisteredTimer, registerTimeout } from '../runtime/timer-registry.js';
 
 /* ───────────────────────────────────────────────────────────────
    1. IMPORTS
@@ -238,7 +239,7 @@ async function callLlmForHyDE(
   };
 
   const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), HYDE_TIMEOUT_MS);
+  const timeoutId = registerTimeout(() => controller.abort(), HYDE_TIMEOUT_MS, { unref: true });
 
   try {
     const response = await fetch(`${endpoint}/chat/completions`, {
@@ -251,7 +252,7 @@ async function callLlmForHyDE(
       signal: controller.signal,
     });
 
-    clearTimeout(timeoutId);
+    clearRegisteredTimer(timeoutId);
 
     if (!response.ok) {
       console.warn(`[hyde] LLM endpoint returned HTTP ${response.status}`);
@@ -266,7 +267,7 @@ async function callLlmForHyDE(
     if (!text || text.length < 10) return null;
     return text;
   } catch (err: unknown) {
-    clearTimeout(timeoutId);
+    clearRegisteredTimer(timeoutId);
     const msg = err instanceof Error ? err.message : String(err);
     console.warn(`[hyde] LLM call failed: ${msg}`);
     return null;

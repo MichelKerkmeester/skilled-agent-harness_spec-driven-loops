@@ -5,6 +5,8 @@
 // Batched access tracking with accumulator
 import type Database from 'better-sqlite3';
 import { recordAdaptiveSignal } from '../cognitive/adaptive-ranking.js';
+import { clearRegisteredTimer, registerInterval } from '../runtime/timer-registry.js';
+import { registerShutdownHook } from '../runtime/shutdown-hooks.js';
 
 /* ───────────────────────────────────────────────────────────────
    1. CONSTANTS
@@ -69,10 +71,9 @@ function init(database: Database.Database): void {
   db = database;
   initExitHandlers();
   if (!flushInterval) {
-    flushInterval = setInterval(() => {
+    flushInterval = registerInterval(() => {
       reset();
-    }, FLUSH_INTERVAL_MS);
-    flushInterval.unref?.();
+    }, FLUSH_INTERVAL_MS, { unref: true });
   }
 }
 
@@ -307,13 +308,17 @@ function cleanupExitHandlers(): void {
 
 function dispose(): void {
   if (flushInterval) {
-    clearInterval(flushInterval);
+    clearRegisteredTimer(flushInterval);
     flushInterval = null;
   }
   cleanupExitHandlers();
   reset();
   db = null;
 }
+
+registerShutdownHook(() => {
+  dispose();
+}, { timeoutMs: 250 });
 
 /* ───────────────────────────────────────────────────────────────
    7. EXPORTS

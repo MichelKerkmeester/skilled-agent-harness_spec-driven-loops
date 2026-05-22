@@ -2,15 +2,18 @@
 // MODULE: Search Decision Audit
 // ───────────────────────────────────────────────────────────────
 
-import { existsSync, mkdirSync, renameSync, statSync, appendFileSync } from 'node:fs';
+import { mkdirSync, appendFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import type { SearchDecisionEnvelope } from './search-decision-envelope.js';
+import { rotateIfNeeded as rotateAuditIfNeeded } from '../memory/audit-rotation.js';
 
 const DEFAULT_MAX_BYTES = 10 * 1024 * 1024;
+const DEFAULT_MAX_ROTATED_FILES = 5;
 
 export interface RecordSearchDecisionOptions {
   auditPath?: string;
   maxBytes?: number;
+  maxFiles?: number;
   now?: Date;
 }
 
@@ -46,7 +49,12 @@ function recordSearchDecision(
 ): RecordSearchDecisionResult {
   const auditPath = resolveAuditPath(options);
   try {
-    rotateIfNeeded(auditPath, options.maxBytes ?? DEFAULT_MAX_BYTES, options.now ?? new Date());
+    rotateAuditIfNeeded(
+      auditPath,
+      options.maxBytes ?? DEFAULT_MAX_BYTES,
+      options.maxFiles ?? parseMaxFilesEnv(),
+      options.now ?? new Date(),
+    );
     mkdirSync(dirname(auditPath), { recursive: true });
     appendFileSync(auditPath, `${JSON.stringify(envelope)}\n`, 'utf8');
     return { written: true, auditPath };
@@ -110,12 +118,12 @@ function computeSearchDecisionSlaMetrics(
   };
 }
 
-function rotateIfNeeded(auditPath: string, maxBytes: number, now: Date): void {
-  if (!existsSync(auditPath)) return;
-  const size = statSync(auditPath).size;
-  if (size <= maxBytes) return;
-  const suffix = now.toISOString().replace(/[:.]/g, '-');
-  renameSync(auditPath, `${auditPath}.${suffix}.rotated`);
+function parseMaxFilesEnv(): number {
+  const raw = process.env.SPECKIT_SEARCH_DECISION_AUDIT_MAX_FILES;
+  if (!raw) return DEFAULT_MAX_ROTATED_FILES;
+
+  const parsed = Number.parseInt(raw, 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : DEFAULT_MAX_ROTATED_FILES;
 }
 
 function readPipelineTiming(envelope: SearchDecisionEnvelope): Record<string, number> {
@@ -155,4 +163,3 @@ export {
   computeSearchDecisionSlaMetrics,
   recordSearchDecision,
 };
-

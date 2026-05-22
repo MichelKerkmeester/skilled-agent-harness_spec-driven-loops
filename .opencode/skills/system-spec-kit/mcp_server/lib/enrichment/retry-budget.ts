@@ -2,6 +2,8 @@
 // MODULE: Retry Budget
 // ───────────────────────────────────────────────────────────────
 
+import { BoundedMap } from '../memory/bounded-cache.js';
+
 /**
  * Tracks per-memory enrichment retry state for the current Node.js process only.
  *
@@ -41,7 +43,8 @@ export interface RetryTelemetryRecord {
 // ───────────────────────────────────────────────────────────────
 
 const MAX_RETRIES = 3;
-const retryBudget = new Map<string, RetryBudgetEntry>();
+const MAX_RETRY_BUDGET_ENTRIES = parsePositiveIntEnv('SPECKIT_RETRY_BUDGET_MAX_ENTRIES', 2_000);
+const retryBudget = new BoundedMap<string, RetryBudgetEntry>(MAX_RETRY_BUDGET_ENTRIES);
 
 // ───────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -49,6 +52,14 @@ const retryBudget = new Map<string, RetryBudgetEntry>();
 
 function buildRetryBudgetKey(memoryId: number, step: string, reason: string): string {
   return `${memoryId}::${step}::${reason}`;
+}
+
+function parsePositiveIntEnv(name: string, fallback: number): number {
+  const raw = process.env[name];
+  if (!raw) return fallback;
+
+  const parsed = Number.parseInt(raw, 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -117,3 +128,5 @@ export function clearAllBudgets(): void {
 export function getBudgetSize(): number {
   return retryBudget.size;
 }
+
+export { MAX_RETRY_BUDGET_ENTRIES };

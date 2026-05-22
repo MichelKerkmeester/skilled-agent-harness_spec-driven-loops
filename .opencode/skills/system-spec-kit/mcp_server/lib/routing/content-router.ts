@@ -7,6 +7,7 @@ import { createHash } from 'node:crypto';
 import routingPrototypeLibrary from './routing-prototypes.json' with { type: 'json' };
 import { normalizeContentForEmbedding } from '../parsing/content-normalizer.js';
 import { cosineSimilarity } from '../validation/save-quality-gate.js';
+import { TtlMap } from '../memory/bounded-cache.js';
 
 export const ROUTING_PROMPT_VERSION = 'tier3-router-v1' as const;
 export const TIER1_THRESHOLD = 0.7;
@@ -52,6 +53,14 @@ const DEFAULT_TASK_ANCHOR = 'phase-1' as const;
 const MANUAL_REVIEW_ANCHOR = 'manual-review' as const;
 const SESSION_CACHE_PREFIX = 'session' as const;
 const SPEC_FOLDER_CACHE_PREFIX = 'spec-folder' as const;
+
+function parsePositiveIntEnv(name: string, fallback: number): number {
+  const raw = process.env[name];
+  if (!raw) return fallback;
+
+  const parsed = Number.parseInt(raw, 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+}
 
 type PacketLevel = 'L1' | 'L2' | 'L3' | 'L3+';
 type PacketKind = 'feature' | 'phase' | 'remediation' | 'research' | 'unknown';
@@ -308,16 +317,16 @@ interface InMemoryRouterCacheRecord {
 
 /** Simple in-process cache used to avoid repeated Tier 3 routing calls. */
 export class InMemoryRouterCache implements RouterCache {
-  private readonly entries = new Map<string, InMemoryRouterCacheRecord>();
+  private readonly entries: TtlMap<string, InMemoryRouterCacheRecord>;
+
+  constructor(maxEntries = parsePositiveIntEnv('SPECKIT_ROUTER_CACHE_MAX_ENTRIES', 500)) {
+    this.entries = new TtlMap<string, InMemoryRouterCacheRecord>(maxEntries);
+  }
 
   get(scope: CacheScope, key: string, context: SessionHints): Tier3CacheEntry | null {
     const cacheKey = this.buildKey(scope, key, context);
     const record = this.entries.get(cacheKey);
     if (!record) {
-      return null;
-    }
-    if (record.expiresAt !== null && record.expiresAt <= Date.now()) {
-      this.entries.delete(cacheKey);
       return null;
     }
     return record.entry;
@@ -328,7 +337,15 @@ export class InMemoryRouterCache implements RouterCache {
     this.entries.set(this.buildKey(scope, key, context), {
       entry,
       expiresAt,
-    });
+    }, ttlMs);
+  }
+
+  clear(): void {
+    this.entries.clear();
+  }
+
+  get size(): number {
+    return this.entries.size;
   }
 
   private buildKey(scope: CacheScope, key: string, context: SessionHints): string {

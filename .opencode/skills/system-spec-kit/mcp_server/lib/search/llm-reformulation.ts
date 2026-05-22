@@ -23,6 +23,7 @@
 
 import { fts5Bm25Search } from './sqlite-fts.js';
 import { requireDb } from '../../utils/db-helpers.js';
+import { clearRegisteredTimer, registerTimeout } from '../runtime/timer-registry.js';
 import { getLlmCache, type LlmCacheKey } from './llm-cache.js';
 
 /* ───────────────────────────────────────────────────────────────
@@ -218,9 +219,10 @@ async function callLlmForReformulation(
   };
 
   const controller = new AbortController();
-  const timeoutId = setTimeout(
+  const timeoutId = registerTimeout(
     () => controller.abort(),
     REFORMULATION_TIMEOUT_MS,
+    { unref: true },
   );
 
   try {
@@ -234,7 +236,7 @@ async function callLlmForReformulation(
       signal: controller.signal,
     });
 
-    clearTimeout(timeoutId);
+    clearRegisteredTimer(timeoutId);
 
     if (!response.ok) {
       console.warn(
@@ -254,7 +256,7 @@ async function callLlmForReformulation(
 
     return parseReformulationResponse(rawText);
   } catch (err: unknown) {
-    clearTimeout(timeoutId);
+    clearRegisteredTimer(timeoutId);
     const msg = err instanceof Error ? err.message : String(err);
     console.warn(`[llm-reformulation] LLM call failed: ${msg}`);
     return null;

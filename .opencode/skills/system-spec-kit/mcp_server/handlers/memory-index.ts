@@ -260,6 +260,14 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     });
   }
 
+  let scanLeaseReleased = false;
+  const releaseScanLease = async (): Promise<void> => {
+    if (scanLeaseReleased) return;
+    scanLeaseReleased = true;
+    await completeIndexScanLease(Date.now());
+  };
+
+  try {
   const workspacePath: string = DEFAULT_BASE_PATH;
 
   const constitutionalFiles: string[] = include_constitutional ? findConstitutionalFiles(workspacePath) : [];
@@ -372,7 +380,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
       }
     }
 
-    await completeIndexScanLease(Date.now());
+    await releaseScanLease();
     return createMCPSuccessResponse({
       tool: 'memory_index_scan',
       summary: 'No memory files found',
@@ -721,7 +729,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     hints.push('All files already up-to-date. Use force: true to re-index');
   }
 
-  await completeIndexScanLease(Date.now());
+  await releaseScanLease();
 
   return createMCPSuccessResponse({
     tool: 'memory_index_scan',
@@ -746,6 +754,9 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     },
     hints
   });
+  } finally {
+    await releaseScanLease();
+  }
 }
 
 /* ───────────────────────────────────────────────────────────────

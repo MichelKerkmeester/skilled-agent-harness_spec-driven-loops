@@ -12,6 +12,7 @@ import {
   tokenize,
 } from './lexical-normalizer.js';
 import type { NormalizedLexicalQueryTokens } from './lexical-normalizer.js';
+import { clearRegisteredTimer, registerTimeout } from '../runtime/timer-registry.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. INTERFACES
@@ -389,13 +390,13 @@ class BM25Index {
         this.syncChangedRows(database, batchIds);
 
         if (pendingIds.length > 0) {
-          this.warmupHandle = setTimeout(processBatch, 0);
+          this.warmupHandle = registerTimeout(processBatch, 0, { unref: true });
         } else {
           this.warmupHandle = null;
         }
       };
 
-      this.warmupHandle = setTimeout(processBatch, 0);
+      this.warmupHandle = registerTimeout(processBatch, 0, { unref: true });
       return pendingIds.length;
     } catch (error: unknown) {
       const msg = error instanceof Error ? error.message : String(error);
@@ -407,7 +408,7 @@ class BM25Index {
   cancelWarmup(): void {
     this.warmupGeneration += 1;
     if (this.warmupHandle) {
-      clearTimeout(this.warmupHandle);
+      clearRegisteredTimer(this.warmupHandle);
       this.warmupHandle = null;
     }
   }

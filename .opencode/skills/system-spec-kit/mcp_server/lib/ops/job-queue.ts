@@ -107,6 +107,7 @@ const pendingQueue: string[] = [];
 let workerActive = false;
 let processFileFn: ((filePath: string) => Promise<unknown>) | null = null;
 const MAX_STORED_ERRORS = 50;
+const MAX_PENDING_INGEST_JOBS = parsePositiveIntEnv('SPECKIT_INGEST_QUEUE_MAX_PENDING', 1_000);
 
 /* ───────────────────────────────────────────────────────────────
    4. HELPERS
@@ -118,6 +119,14 @@ function toPublicPathLabel(filePath: string): string {
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function parsePositiveIntEnv(name: string, fallback: number): number {
+  const raw = process.env[name];
+  if (!raw) return fallback;
+
+  const parsed = Number.parseInt(raw, 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
 }
 
 function isSqliteBusyError(error: unknown): boolean {
@@ -685,6 +694,19 @@ function enqueueIngestJob(jobId: string): void {
   }
 
   pendingQueue.push(jobId);
+  while (pendingQueue.length > MAX_PENDING_INGEST_JOBS) {
+    const evictedJobId = pendingQueue.shift();
+    if (!evictedJobId) break;
+    void appendIngestError(
+      evictedJobId,
+      '__job__',
+      new Error(`Pending ingest queue exceeded cap ${MAX_PENDING_INGEST_JOBS}; oldest job aborted`),
+    )
+      .then(() => cancelIngestJob(evictedJobId))
+      .catch((error: unknown) => {
+        console.warn(`[job-queue] Failed to cancel overflow job ${evictedJobId}: ${toErrorMessage(error)}`);
+      });
+  }
 
   // Start worker if not already running (fire-and-forget).
   if (!workerActive) {
@@ -725,4 +747,5 @@ export {
   cancelIngestJob,
   enqueueIngestJob,
   resetIncompleteJobsToQueued,
+  MAX_PENDING_INGEST_JOBS,
 };

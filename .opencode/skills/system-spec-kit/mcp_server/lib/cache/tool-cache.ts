@@ -3,6 +3,8 @@
 // ───────────────────────────────────────────────────────────────
 // Feature catalog: Tool-level TTL cache
 import crypto from 'crypto';
+import { clearRegisteredTimer, registerInterval } from '../runtime/timer-registry.js';
+import { registerShutdownHook } from '../runtime/shutdown-hooks.js';
 
 /* ───────────────────────────────────────────────────────────────
    1. TYPES
@@ -371,18 +373,14 @@ function cleanupExpired(): number {
 function startCleanupInterval(): void {
   if (cleanupInterval) return;
 
-  cleanupInterval = setInterval(() => {
+  cleanupInterval = registerInterval(() => {
     cleanupExpired();
-  }, TOOL_CACHE_CONFIG.cleanupIntervalMs);
-
-  if (cleanupInterval.unref) {
-    cleanupInterval.unref();
-  }
+  }, TOOL_CACHE_CONFIG.cleanupIntervalMs, { unref: true });
 }
 
 function stopCleanupInterval(): void {
   if (cleanupInterval) {
-    clearInterval(cleanupInterval);
+    clearRegisteredTimer(cleanupInterval);
     cleanupInterval = null;
   }
 }
@@ -601,6 +599,10 @@ function shutdown(): void {
 if (TOOL_CACHE_CONFIG.enabled) {
   startCleanupInterval();
 }
+
+registerShutdownHook(() => {
+  shutdown();
+}, { timeoutMs: 250 });
 
 /* ───────────────────────────────────────────────────────────────
    11. EXPORTS

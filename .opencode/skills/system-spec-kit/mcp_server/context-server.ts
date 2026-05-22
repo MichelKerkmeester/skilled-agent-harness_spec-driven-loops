@@ -98,6 +98,7 @@ import {
   getDirtyNodes,
   clearDirtyNodes,
   recomputeLocal,
+  cancelScheduledRefresh,
 } from './lib/search/graph-lifecycle.js';
 import {
   isDegreeBoostEnabled,
@@ -105,6 +106,8 @@ import {
   isFileWatcherEnabled,
 } from './lib/search/search-flags.js';
 import { runCleanupStep, runAsyncCleanupStep } from './lib/utils/cleanup-helpers.js';
+import { clearAllTimers, clearRegisteredTimer, registerTimeout } from './lib/runtime/timer-registry.js';
+import { runShutdownHooks } from './lib/runtime/shutdown-hooks.js';
 import { disposeLocalReranker } from './lib/search/local-reranker.js';
 import {
   resolveIpcSocketPath,
@@ -676,7 +679,7 @@ async function resolveDispatchGraphContext(
   });
 
   const timeoutPromise = new Promise<DispatchGraphContextMeta>((resolve) => {
-    timeoutHandle = setTimeout(() => {
+    timeoutHandle = registerTimeout(() => {
       aborted = true;
       resolve({
         status: 'timeout',
@@ -685,12 +688,12 @@ async function resolveDispatchGraphContext(
         filePaths,
         latencyMs: Date.now() - startedAt,
       });
-    }, GRAPH_ENRICHMENT_TIMEOUT_MS);
+    }, GRAPH_ENRICHMENT_TIMEOUT_MS, { unref: true });
   });
 
   const graphContext = await Promise.race([buildPromise, timeoutPromise]);
   if (timeoutHandle) {
-    clearTimeout(timeoutHandle);
+    clearRegisteredTimer(timeoutHandle);
   }
   return graphContext;
 }
@@ -1424,6 +1427,7 @@ async function fatalShutdown(reason: string, exitCode: number): Promise<void> {
   runCleanupStep('sessionManager', () => sessionManager.shutdown());
   runCleanupStep('retryManager', () => retryManager.stopBackgroundJob());
   runCleanupStep('shadowEvaluationRuntime', () => shadowEvaluationRuntime.stopShadowEvaluationScheduler());
+  runCleanupStep('scheduledGraphRefresh', () => cancelScheduledRefresh());
   runCleanupStep('accessTracker', () => accessTracker.reset());
   runCleanupStep('toolCache', () => toolCache.shutdown());
 
@@ -1453,17 +1457,21 @@ async function fatalShutdown(reason: string, exitCode: number): Promise<void> {
         ipcBridge = null;
       }
     });
+    await runAsyncCleanupStep('shutdownHooks', async () => {
+      await runShutdownHooks();
+    });
+    runCleanupStep('registeredTimers', () => clearAllTimers());
   })();
 
   const timedOut = await Promise.race([
     cleanup.then(() => false),
     new Promise<boolean>((resolve) => {
-      deadlineTimer = setTimeout(() => resolve(true), SHUTDOWN_DEADLINE_MS);
+      deadlineTimer = registerTimeout(() => resolve(true), SHUTDOWN_DEADLINE_MS, { unref: true });
     }),
   ]);
 
   if (deadlineTimer) {
-    clearTimeout(deadlineTimer);
+    clearRegisteredTimer(deadlineTimer);
   }
 
   if (timedOut) {

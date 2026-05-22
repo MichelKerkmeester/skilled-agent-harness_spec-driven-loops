@@ -9,6 +9,7 @@ import { fileURLToPath } from 'node:url';
 
 import type { EmbedderAdapter } from './adapter.js';
 import type { BackendKind } from './types.js';
+import { clearRegisteredTimer, registerTimeout } from '../runtime/timer-registry.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. TYPE DEFINITIONS
@@ -24,6 +25,8 @@ export interface SidecarClientOptions {
   readonly workerPath?: string;
   readonly idleMs?: number;
   readonly pingTimeoutMs?: number;
+  readonly requestTimeoutMs?: number;
+  readonly envAllowlist?: readonly string[];
   readonly env?: NodeJS.ProcessEnv;
 }
 
@@ -71,7 +74,9 @@ type SidecarResponse = SidecarEmbeddingResponse | SidecarPongResponse | SidecarE
 
 const DEFAULT_IDLE_MS = 300_000;
 const DEFAULT_PING_TIMEOUT_MS = 2_000;
+const DEFAULT_REQUEST_TIMEOUT_MS = 30_000;
 const MIN_TIMEOUT_MS = 1;
+const ALLOWED_ENV_KEYS = new Set(['PATH', 'HOME', 'LANG', 'LC_ALL', 'LC_CTYPE', 'TMPDIR']);
 
 // ───────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -122,6 +127,28 @@ function toErrorMessage(error: unknown): string {
   return error instanceof Error ? error.message : String(error);
 }
 
+function isAllowedEnvKey(key: string, explicitAllowlist: readonly string[] = []): boolean {
+  return ALLOWED_ENV_KEYS.has(key)
+    || key.startsWith('LC_')
+    || key.startsWith('SPECKIT_EMBEDDER_')
+    || key.startsWith('MOCK_SIDECAR_')
+    || explicitAllowlist.includes(key);
+}
+
+export function buildSidecarEnv(
+  parentEnv: NodeJS.ProcessEnv,
+  explicitAllowlist: readonly string[] = [],
+): NodeJS.ProcessEnv {
+  const out: NodeJS.ProcessEnv = {};
+  for (const [key, value] of Object.entries(parentEnv)) {
+    if (value === undefined) continue;
+    if (isAllowedEnvKey(key, explicitAllowlist)) {
+      out[key] = value;
+    }
+  }
+  return out;
+}
+
 // ───────────────────────────────────────────────────────────────
 // 4. CORE LOGIC
 // ───────────────────────────────────────────────────────────────
@@ -135,6 +162,8 @@ export class SidecarClient implements EmbedderAdapter {
   private readonly workerPath: string;
   private readonly idleMs: number;
   private readonly pingTimeoutMs: number;
+  private readonly requestTimeoutMs: number;
+  private readonly envAllowlist: readonly string[];
   private readonly env: NodeJS.ProcessEnv;
   private child: ChildProcess | null = null;
   private nextId = 1;
@@ -154,6 +183,9 @@ export class SidecarClient implements EmbedderAdapter {
     this.idleMs = options.idleMs ?? parsePositiveIntegerEnv('SPECKIT_EMBEDDER_SIDECAR_IDLE_MS', DEFAULT_IDLE_MS);
     this.pingTimeoutMs = options.pingTimeoutMs
       ?? parsePositiveIntegerEnv('SPECKIT_EMBEDDER_SIDECAR_PING_TIMEOUT_MS', DEFAULT_PING_TIMEOUT_MS);
+    this.requestTimeoutMs = options.requestTimeoutMs
+      ?? parsePositiveIntegerEnv('SPECKIT_EMBEDDER_SIDECAR_REQUEST_TIMEOUT_MS', DEFAULT_REQUEST_TIMEOUT_MS);
+    this.envAllowlist = options.envAllowlist ?? [];
     this.env = options.env ?? process.env;
   }
 
@@ -257,10 +289,11 @@ export class SidecarClient implements EmbedderAdapter {
     const child = fork(this.workerPath, [], {
       stdio: ['pipe', 'pipe', 'pipe', 'ipc'],
       env: {
-        ...this.env,
+        ...buildSidecarEnv(this.env, this.envAllowlist),
         SPECKIT_EMBEDDER_SIDECAR_PROVIDER: this.provider,
         SPECKIT_EMBEDDER_SIDECAR_MODEL: this.name,
         SPECKIT_EMBEDDER_SIDECAR_DIMENSIONS: String(this.dim),
+        SPECKIT_EMBEDDER_SIDECAR_PARENT_PID: String(process.pid),
       },
     });
     this.child = child;
@@ -321,7 +354,7 @@ export class SidecarClient implements EmbedderAdapter {
 
   private sendRequest<T extends SidecarResponse>(
     payload: Record<string, unknown>,
-    timeoutMs?: number,
+    timeoutMs: number = this.requestTimeoutMs,
   ): Promise<T> {
     this.ensureWorker();
     const child = this.child;
@@ -336,10 +369,13 @@ export class SidecarClient implements EmbedderAdapter {
     return new Promise<T>((resolve, reject) => {
       let timer: NodeJS.Timeout | undefined;
       if (timeoutMs !== undefined) {
-        timer = setTimeout(() => {
+        timer = registerTimeout(() => {
           this.pending.delete(id);
+          if (!child.killed) {
+            child.kill('SIGTERM');
+          }
           reject(new Error(`Embedder sidecar request timed out after ${timeoutMs}ms`));
-        }, timeoutMs);
+        }, timeoutMs, { unref: true });
       }
 
       this.pending.set(id, {
@@ -353,7 +389,7 @@ export class SidecarClient implements EmbedderAdapter {
           return;
         }
         if (timer) {
-          clearTimeout(timer);
+          clearRegisteredTimer(timer);
         }
         this.pending.delete(id);
         reject(error);
@@ -395,7 +431,7 @@ export class SidecarClient implements EmbedderAdapter {
 
     this.pending.delete(parsed.id);
     if (pending.timer) {
-      clearTimeout(pending.timer);
+      clearRegisteredTimer(pending.timer);
     }
 
     const response = parsed as SidecarResponse;
@@ -409,7 +445,7 @@ export class SidecarClient implements EmbedderAdapter {
   private rejectAllPending(error: Error): void {
     for (const [id, pending] of this.pending.entries()) {
       if (pending.timer) {
-        clearTimeout(pending.timer);
+        clearRegisteredTimer(pending.timer);
       }
       pending.reject(error);
       this.pending.delete(id);
@@ -418,19 +454,18 @@ export class SidecarClient implements EmbedderAdapter {
 
   private scheduleIdleEviction(): void {
     this.clearIdleTimer();
-    this.idleTimer = setTimeout(() => {
+    this.idleTimer = registerTimeout(() => {
       if (this.pending.size > 0) {
         this.scheduleIdleEviction();
         return;
       }
       this.killWorker();
-    }, this.idleMs);
-    this.idleTimer.unref?.();
+    }, this.idleMs, { unref: true });
   }
 
   private clearIdleTimer(): void {
     if (this.idleTimer) {
-      clearTimeout(this.idleTimer);
+      clearRegisteredTimer(this.idleTimer);
       this.idleTimer = null;
     }
   }

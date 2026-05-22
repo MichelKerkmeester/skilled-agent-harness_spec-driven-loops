@@ -10,6 +10,8 @@ import * as vectorIndex from '../search/vector-index.js';
 import { computeContentHash, lookupEmbedding, storeEmbedding } from '../cache/embedding-cache.js';
 import { normalizeContentForEmbedding } from '../parsing/content-normalizer.js';
 import { generateDocumentEmbedding, getEmbeddingDimension, getModelName } from './embeddings.js';
+import { clearRegisteredTimer, registerInterval } from '../runtime/timer-registry.js';
+import { registerShutdownHook } from '../runtime/shutdown-hooks.js';
 
 // Type imports
 import type { MemoryDbRow } from '@spec-kit/shared/types';
@@ -338,6 +340,8 @@ const BACKOFF_DELAYS: number[] = [
 ];
 
 const MAX_RETRIES = 3;
+const MAX_RETRY_QUEUE_PENDING = parsePositiveIntEnv('SPECKIT_RETRY_QUEUE_MAX_PENDING', 1_000);
+const MAX_RETRY_QUEUE_AGE_MS = parsePositiveIntEnv('SPECKIT_RETRY_QUEUE_MAX_AGE_MS', 24 * 60 * 60 * 1000);
 
 // Background retry job configuration (REQ-031, CHK-179)
 // Env-overrideable (post-014/022 substrate repair — see 022-local-llm-legacy-remediation/ai-council/embedding-worker-diagnostic):
@@ -353,6 +357,8 @@ const BACKGROUND_JOB_CONFIG: BackgroundJobConfig = {
 // Background job state
 let backgroundJobInterval: ReturnType<typeof setInterval> | null = null;
 let backgroundJobRunning = false;
+let shutdownRequested = false;
+let retryAbortController: AbortController | null = null;
 
 // In-memory retry telemetry (never persisted to DB — read by getEmbeddingRetryStats)
 let lastBackgroundRunAt: string | null = null;
@@ -379,6 +385,14 @@ const circuitTransitions: number[] = [];
 
 let providerFailures = 0;
 let providerCircuitOpenedAt: number | null = null;
+
+function parsePositiveIntEnv(name: string, fallback: number): number {
+  const raw = process.env[name];
+  if (!raw) return fallback;
+
+  const parsed = Number.parseInt(raw, 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+}
 
 function recordCircuitTransition(): void {
   const now = Date.now();
@@ -457,6 +471,57 @@ function refreshRetryHealthSnapshot(stats: RetryStats): void {
   retryHealthSnapshot.queueDepth = stats.queue_size;
 }
 
+function enforceRetryRetentionLimits(
+  maxPending = MAX_RETRY_QUEUE_PENDING,
+  maxAgeMs = MAX_RETRY_QUEUE_AGE_MS,
+  now: Date = new Date(),
+): { expired: number; overflow: number } {
+  const db = vectorIndex.getDb();
+  if (!db) return { expired: 0, overflow: 0 };
+
+  const nowIso = now.toISOString();
+  const oldestAllowedIso = new Date(now.getTime() - maxAgeMs).toISOString();
+  const expired = db.prepare(`
+    UPDATE memory_index
+    SET embedding_status = 'failed',
+        failure_reason = 'Retry retention max age exceeded',
+        updated_at = ?
+    WHERE embedding_status IN ('pending', 'retry')
+      AND COALESCE(last_retry_at, created_at, updated_at) < ?
+  `).run(nowIso, oldestAllowedIso).changes;
+
+  const rows = db.prepare(`
+    SELECT id FROM memory_index
+    WHERE embedding_status IN ('pending', 'retry')
+    ORDER BY COALESCE(last_retry_at, created_at, updated_at) ASC, id ASC
+    LIMIT -1 OFFSET ?
+  `).all(maxPending) as Array<{ id: number }>;
+
+  let overflow = 0;
+  if (rows.length > 0) {
+    const updateOverflow = db.prepare(`
+      UPDATE memory_index
+      SET embedding_status = 'failed',
+          failure_reason = 'Retry retention pending cap exceeded',
+          updated_at = ?
+      WHERE id = ?
+        AND embedding_status IN ('pending', 'retry')
+    `);
+    const txn = db.transaction((ids: number[]) => {
+      for (const id of ids) {
+        overflow += updateOverflow.run(nowIso, id).changes;
+      }
+    });
+    txn(rows.map((row) => row.id));
+  }
+
+  if (expired > 0 || overflow > 0) {
+    console.warn(`[retry-manager] Retention pruned expired=${expired}, overflow=${overflow}`);
+  }
+
+  return { expired, overflow };
+}
+
 /* ───────────────────────────────────────────────────────────────
    3. RETRY QUEUE
 ──────────────────────────────────────────────────────────────── */
@@ -468,6 +533,7 @@ function getRetryQueue(limit = 10): RetryMemoryRow[] {
     console.warn('[retry-manager] Database not initialized. Server may still be starting up.');
     return [];
   }
+  enforceRetryRetentionLimits();
   const now = Date.now();
 
   const rows = db.prepare(`
@@ -797,6 +863,10 @@ function resetForRetry(id: number): boolean {
 ──────────────────────────────────────────────────────────────── */
 
 async function processRetryQueue(limit = 3, contentLoader: ContentLoader | null = null): Promise<BatchResult> {
+  if (shutdownRequested || retryAbortController?.signal.aborted) {
+    return { processed: 0, succeeded: 0, failed: 0, details: [] };
+  }
+
   const queue = getRetryQueue(limit);
 
   if (queue.length === 0) {
@@ -812,6 +882,10 @@ async function processRetryQueue(limit = 3, contentLoader: ContentLoader | null 
   const details = results.details ?? (results.details = []);
 
   for (const memory of queue) {
+    if (shutdownRequested || retryAbortController?.signal.aborted) {
+      break;
+    }
+
     const claim = claimRetryCandidate(memory);
     if (!claim.claimed) {
       continue;
@@ -826,6 +900,10 @@ async function processRetryQueue(limit = 3, contentLoader: ContentLoader | null 
       content = memory.content_text;
     } else {
       content = await loadContentFromFile(memory.file_path);
+    }
+
+    if (shutdownRequested || retryAbortController?.signal.aborted) {
+      break;
     }
 
     if (!content) {
@@ -863,6 +941,8 @@ function startBackgroundJob(options: Partial<BackgroundJobConfig> = {}): boolean
   }
 
   const config = { ...BACKGROUND_JOB_CONFIG, ...options };
+  shutdownRequested = false;
+  retryAbortController = new AbortController();
 
   if (!config.enabled) {
     console.error('[retry-manager] Background job is disabled');
@@ -876,21 +956,23 @@ function startBackgroundJob(options: Partial<BackgroundJobConfig> = {}): boolean
     console.error('[retry-manager] Initial background job failed:', message);
   });
 
-  backgroundJobInterval = setInterval(() => {
+  backgroundJobInterval = registerInterval(() => {
     runBackgroundJob(config.batchSize).catch((err: unknown) => {
       const message = err instanceof Error ? err.message : String(err);
       console.error('[retry-manager] Background job iteration failed:', message);
     });
-  }, config.intervalMs);
-  backgroundJobInterval.unref();
+  }, config.intervalMs, { unref: true });
 
   return true;
 }
 
 function stopBackgroundJob(): boolean {
+  shutdownRequested = true;
+  retryAbortController?.abort();
+  retryAbortController = null;
   if (!backgroundJobInterval) return false;
 
-  clearInterval(backgroundJobInterval);
+  clearRegisteredTimer(backgroundJobInterval);
   backgroundJobInterval = null;
   backgroundJobRunning = false;
   console.error('[retry-manager] Background retry job stopped');
@@ -907,8 +989,15 @@ async function runBackgroundJob(batchSize: number = BACKGROUND_JOB_CONFIG.batchS
   }
 
   backgroundJobRunning = true;
+  if (!retryAbortController || retryAbortController.signal.aborted) {
+    retryAbortController = new AbortController();
+  }
 
   try {
+    enforceRetryRetentionLimits();
+    if (shutdownRequested || retryAbortController.signal.aborted) {
+      return { skipped: true, reason: 'Shutdown requested' };
+    }
     const stats = getRetryStats();
 
     if (stats.queue_size === 0) {
@@ -936,6 +1025,10 @@ async function runBackgroundJob(batchSize: number = BACKGROUND_JOB_CONFIG.batchS
     backgroundJobRunning = false;
   }
 }
+
+registerShutdownHook(() => {
+  stopBackgroundJob();
+}, { timeoutMs: 250 });
 
 /* ───────────────────────────────────────────────────────────────
    7. UTILITIES
@@ -1002,7 +1095,10 @@ export {
   stopBackgroundJob,
   isBackgroundJobRunning,
   runBackgroundJob,
+  enforceRetryRetentionLimits,
   BACKGROUND_JOB_CONFIG,
   BACKOFF_DELAYS,
   MAX_RETRIES,
+  MAX_RETRY_QUEUE_PENDING,
+  MAX_RETRY_QUEUE_AGE_MS,
 };

@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation-arc"
-    last_updated_at: "2026-05-22T14:05:26Z"
+    last_updated_at: "2026-05-22T14:29:50Z"
     last_updated_by: "codex"
-    recent_action: "completed-phase-008-sidecar-and-adapter-lifecycle"
-    next_safe_action: "start-009-spec-memory-runtime-retention"
+    recent_action: "completed-phase-009-spec-memory-runtime-retention"
+    next_safe_action: "start-010-final-regression-and-runbook"
     blockers: []
     key_files:
       - "spec.md"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0090090090090090090090090090090090090090090090090090090090090090"
       session_id: "009-memory-leak-remediation-arc"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 90
     open_questions: []
     answered_questions:
       - "Original research artifacts from packets 020 and 024 are archived under phase 001 research/source-research/."
@@ -66,7 +66,7 @@ The operating rule is verification first: no cleanup path may claim memory relie
 | `006-cocoindex-remove-cancel-and-index-lifecycle/` | CocoIndex Remove, Cancel, and Index Lifecycle | P1 | Completed |
 | `007-code-graph-launcher-and-db-lifecycle/` | Code Graph Launcher and DB Lifecycle | P1 | Completed |
 | `008-sidecar-local-model-and-adapter-lifecycle/` | Sidecar, Local Model, and Adapter Lifecycle | P1 | Completed |
-| `009-spec-memory-runtime-retention-cleanup/` | Spec Memory Runtime Retention Cleanup | P1 | Planned |
+| `009-spec-memory-runtime-retention-cleanup/` | Spec Memory Runtime Retention Cleanup | P1 | Completed |
 | `010-final-regression-and-operator-runbook/` | Final Regression and Operator Runbook | P1 | Planned |
 
 ### Phase Transition Rules

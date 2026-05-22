@@ -24,6 +24,8 @@ import {
   selectHoldoutQueries,
   type ShadowEvaluationReport,
 } from './shadow-scoring.js';
+import { clearRegisteredTimer, registerInterval } from '../runtime/timer-registry.js';
+import { registerShutdownHook } from '../runtime/shutdown-hooks.js';
 
 /* ───────────────────────────────────────────────────────────────
    1. TYPES
@@ -482,13 +484,9 @@ function startShadowEvaluationScheduler(
 
   void runScheduledShadowEvaluationCycle(db, options);
 
-  schedulerTimer = setInterval(() => {
+  schedulerTimer = registerInterval(() => {
     void runScheduledShadowEvaluationCycle(db, options);
-  }, intervalMs);
-
-  if (typeof schedulerTimer.unref === 'function') {
-    schedulerTimer.unref();
-  }
+  }, intervalMs, { unref: true });
 
   return true;
 }
@@ -501,10 +499,14 @@ function stopShadowEvaluationScheduler(): boolean {
     return false;
   }
 
-  clearInterval(schedulerTimer);
+  clearRegisteredTimer(schedulerTimer);
   schedulerTimer = null;
   return true;
 }
+
+registerShutdownHook(() => {
+  stopShadowEvaluationScheduler();
+}, { timeoutMs: 250 });
 
 /**
  * Check whether the shadow evaluation scheduler is currently running.

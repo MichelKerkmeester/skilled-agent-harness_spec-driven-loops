@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Spec Memory Runtime Retention Cleanup"
-description: "Task list for Spec Memory Runtime Retention Cleanup."
+description: "File-scoped task list for Spec Kit Memory runtime retention cleanup."
 trigger_phrases:
   - "spec-memory-runtime-retention-cleanup"
   - "memory leak 9"
@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation-arc/009-spec-memory-runtime-retention-cleanup"
-    last_updated_at: "2026-05-22T10:20:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Scaffolded concrete phase scope for the memory leak remediation arc."
-    next_safe_action: "Plan and execute this child phase when its predecessor handoff criteria pass."
+    last_updated_at: "2026-05-22T14:12:07Z"
+    last_updated_by: "codex"
+    recent_action: "planned-file-scoped-runtime-retention-tasks"
+    next_safe_action: "implement-bounded-runtime-retention"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,10 +23,10 @@ _memory:
       fingerprint: "sha256:0909090909090909090909090909090909090909090909090909090909090909"
       session_id: "009-memory-leak-remediation-arc-009"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 20
     open_questions: []
     answered_questions:
-      - "This phase is scoped from the 020 and 024 memory-leak research packets."
+      - "Task list follows the operator-supplied T001-T018 execution contract."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks: Spec Memory Runtime Retention Cleanup
@@ -53,9 +53,12 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read source evidence from packets 020 and 024.
-- [ ] T002 Confirm affected surfaces and same-class producers.
-- [ ] T003 Define verification matrix and no-kill safety boundaries.
+- [ ] T001 [P] Add `BoundedMap` and `TtlMap` helpers with max-size LRU and lazy TTL eviction (`.opencode/skills/system-spec-kit/mcp_server/lib/memory/bounded-cache.ts`).
+- [ ] T002 [P] Add process-wide timer registry helpers (`.opencode/skills/system-spec-kit/mcp_server/lib/runtime/timer-registry.ts`).
+- [ ] T003 [P] Add bounded shutdown hook registry with per-hook timeout (`.opencode/skills/system-spec-kit/mcp_server/lib/runtime/shutdown-hooks.ts`).
+- [ ] T004 [P] Add audit rotation helper with max bytes and retained-file cap (`.opencode/skills/system-spec-kit/mcp_server/lib/memory/audit-rotation.ts`).
+- [ ] T005 Audit existing memory/search/routing/session/queue paths for unbounded `new Map()` and `new Set()` retention; replace with `BoundedMap` or explicit caps where entries outlive a request (`mcp_server/lib/**`).
+- [ ] T006 Audit timer usage and route long-lived timers through `timer-registry` (`mcp_server/lib/**`, `mcp_server/context-server.ts`).
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -63,9 +66,15 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Implement scoped harness, docs, or runtime changes for this phase.
-- [ ] T005 Add tests for timeout, parent-death, stale state, and expected-daemon boundaries when applicable.
-- [ ] T006 Update phase docs with evidence and handoff notes.
+- [ ] T007 Extend retry retention with pending count cap, max age, and abort-on-shutdown (`.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`).
+- [ ] T008 Harden embedder sidecar spawn/calls with timeout, env allowlist, and parent-death behavior (`.opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-worker.ts`).
+- [ ] T009 [P] Add bounded-cache Vitest coverage for LRU, TTL, and repeated set safety (`.opencode/skills/system-spec-kit/mcp_server/tests/lib/memory/bounded-cache.vitest.ts`).
+- [ ] T010 [P] Add timer-registry Vitest coverage for register, clear, and isolation (`.opencode/skills/system-spec-kit/mcp_server/tests/lib/runtime/timer-registry.vitest.ts`).
+- [ ] T011 [P] Add shutdown-hooks Vitest coverage for registration, run order, errors, and per-hook timeout (`.opencode/skills/system-spec-kit/mcp_server/tests/lib/runtime/shutdown-hooks.vitest.ts`).
+- [ ] T012 [P] Add audit-rotation Vitest coverage for threshold rotation and max retained files (`.opencode/skills/system-spec-kit/mcp_server/tests/lib/memory/audit-rotation.vitest.ts`).
+- [ ] T013 [P] Add embedder sidecar hardening Vitest coverage for timeout, env allowlist, and parent-death detection (`.opencode/skills/system-spec-kit/mcp_server/tests/embedders/sidecar-hardening.vitest.ts`).
+- [ ] T014 [P] Add retry retention Vitest coverage for pending cap, max age, and shutdown abort (`.opencode/skills/system-spec-kit/mcp_server/tests/providers/retry-retention.vitest.ts`).
+- [ ] T015 Add stress-style save/search/index workload fixture proving bounded pending-job retention, lease cleanup, timer shutdown, and audit rotation (`.opencode/skills/system-spec-kit/mcp_server/tests/memory-runtime-retention.vitest.ts`).
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -73,9 +82,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T007 Run stack-specific tests and strict spec validation.
-- [ ] T008 Run process/memory telemetry checks when applicable.
-- [ ] T009 Update parent phase map status and next safe action.
+- [ ] T016 Run targeted Vitest, typecheck, build, and OpenCode alignment drift verification (`.opencode/skills/system-spec-kit/`).
+- [ ] T017 Fill `implementation-summary.md` with Completed date, decisions, verification evidence, limitations, and commit handoff (`.opencode/specs/.../009-spec-memory-runtime-retention-cleanup/implementation-summary.md`).
+- [ ] T018 Run strict validation for the phase and parent arc, then update parent phase map 009 to Completed and parent continuity to 90 percent (`.opencode/specs/.../009-memory-leak-remediation-arc/spec.md`).
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -83,9 +92,10 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All non-deferred P0/P1 tasks are complete.
-- [ ] No destructive cleanup path lacks exact ownership proof.
-- [ ] Validation evidence is recorded in implementation-summary.md.
+- [ ] REQ-001 and REQ-002 are satisfied.
+- [ ] SC-001 fixtures exist as real tests, not prose-only handoff notes.
+- [ ] All new and touched-surface tests pass, or unchanged-surface baseline failures are HEAD-verified and documented.
+- [ ] Phase and arc `validate.sh --strict` commands exit 0.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -94,6 +104,7 @@ _memory:
 ## Cross-References
 
 - **Parent arc**: ../spec.md
-- **Source packet 020**: `system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation-arc/001-research-synthesis-and-remediation-map/research/source-research/020-cli-process-memory-leak-deep-research`
-- **Source packet 024**: `system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation-arc/001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit`
+- **Remediation map item #14**: `../001-research-synthesis-and-remediation-map/research/remediation-map.md`
+- **Source packet 020**: `../001-research-synthesis-and-remediation-map/research/source-research/020-cli-process-memory-leak-deep-research/research/research.md`
+- **Phase 004 patterns**: `../004-deep-loop-locks-state-and-recovery/implementation-summary.md`
 <!-- /ANCHOR:cross-refs -->

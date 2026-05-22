@@ -21,6 +21,8 @@ import { extractHeadings, extractAliases, extractRelationPhrases, extractCodeFen
   createTypedEdges as _createTypedEdgesWithCallback, EXPLICIT_ONLY_EVIDENCE } from './deterministic-extractor.js';
 import type { DeterministicEdge, WriteEdgePayload } from './deterministic-extractor.js';
 import { clearDegreeCacheForDb } from './graph-search-fn.js';
+import { clearRegisteredTimer, registerTimeout } from '../runtime/timer-registry.js';
+import { registerShutdownHook } from '../runtime/shutdown-hooks.js';
 
 // Re-export deterministic-extractor for backward compatibility
 export { extractHeadings, extractAliases, extractRelationPhrases, extractCodeFenceTechnologies, EXPLICIT_ONLY_EVIDENCE } from './deterministic-extractor.js';
@@ -353,9 +355,9 @@ const DEFAULT_SCHEDULE_DELAY_MS = 5_000;
  */
 export function scheduleGlobalRefresh(delayMs = DEFAULT_SCHEDULE_DELAY_MS): void {
   if (_scheduledRefreshTimer !== null) {
-    clearTimeout(_scheduledRefreshTimer);
+    clearRegisteredTimer(_scheduledRefreshTimer);
   }
-  _scheduledRefreshTimer = setTimeout(() => {
+  _scheduledRefreshTimer = registerTimeout(() => {
     _scheduledRefreshTimer = null;
     try {
       _globalRefreshFn();
@@ -372,10 +374,14 @@ export function scheduleGlobalRefresh(delayMs = DEFAULT_SCHEDULE_DELAY_MS): void
  */
 export function cancelScheduledRefresh(): void {
   if (_scheduledRefreshTimer !== null) {
-    clearTimeout(_scheduledRefreshTimer);
+    clearRegisteredTimer(_scheduledRefreshTimer);
     _scheduledRefreshTimer = null;
   }
 }
+
+registerShutdownHook(() => {
+  cancelScheduledRefresh();
+}, { timeoutMs: 250 });
 
 /** Returns true when a scheduled refresh is pending. */
 export function isScheduledRefreshPending(): boolean {

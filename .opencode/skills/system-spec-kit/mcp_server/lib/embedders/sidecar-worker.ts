@@ -41,6 +41,7 @@ type WorkerRequest = EmbedRequest | PingRequest | ShutdownRequest;
 // ───────────────────────────────────────────────────────────────
 
 let providerPromise: Promise<IEmbeddingProvider> | null = null;
+let parentPollTimer: NodeJS.Timeout | null = null;
 
 // ───────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -68,6 +69,33 @@ function getDimensions(requestDimensions: number): number {
 
 function toErrorMessage(error: unknown): string {
   return error instanceof Error ? error.message : String(error);
+}
+
+function parentProcessAlive(pid: number): boolean {
+  if (!Number.isInteger(pid) || pid <= 0) {
+    return false;
+  }
+
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch (error: unknown) {
+    return Boolean(error && typeof error === 'object' && 'code' in error && error.code === 'EPERM');
+  }
+}
+
+function startParentDeathPolling(): void {
+  const parentPid = Number.parseInt(process.env.SPECKIT_EMBEDDER_SIDECAR_PARENT_PID || '', 10);
+  if (!Number.isInteger(parentPid) || parentPid <= 0) {
+    return;
+  }
+
+  parentPollTimer = setInterval(() => {
+    if (!parentProcessAlive(parentPid)) {
+      process.exit(0);
+    }
+  }, 250);
+  parentPollTimer.unref?.();
 }
 
 function isStringArray(value: unknown): value is string[] {
@@ -168,6 +196,8 @@ const reader = readline.createInterface({
   crlfDelay: Infinity,
 });
 
+startParentDeathPolling();
+
 reader.on('line', (line: string) => {
   const trimmed = line.trim();
   if (trimmed.length === 0) {
@@ -191,6 +221,9 @@ reader.on('line', (line: string) => {
 });
 
 reader.on('close', () => {
+  if (parentPollTimer) {
+    clearInterval(parentPollTimer);
+    parentPollTimer = null;
+  }
   process.exit(0);
 });
-

@@ -8,6 +8,8 @@ import path from 'path';
 // Import working-memory for immediate cleanup on session end (GAP 2).
 import * as workingMemory from '../cognitive/working-memory.js';
 import { runMemoryRetentionSweep } from '../governance/memory-retention-sweep.js';
+import { clearRegisteredTimer, registerInterval } from '../runtime/timer-registry.js';
+import { registerShutdownHook } from '../runtime/shutdown-hooks.js';
 
 import type BetterSqlite from 'better-sqlite3';
 import type { DatabaseExtended as Database } from '@spec-kit/shared/types';
@@ -227,20 +229,16 @@ function init(database: Database): InitResult {
   // Set up periodic cleanup instead of only running once at init (P4-18).
   // Clear any existing interval first (in case of reinitializeDatabase).
   if (cleanupInterval) {
-    clearInterval(cleanupInterval);
+    clearRegisteredTimer(cleanupInterval);
   }
-  cleanupInterval = setInterval(() => {
+  cleanupInterval = registerInterval(() => {
     try {
       cleanupExpiredSessions();
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : String(err);
       console.warn(`[session-manager] Periodic cleanup failed: ${message}`);
     }
-  }, CLEANUP_INTERVAL_MS);
-  // Ensure interval doesn't prevent process exit (unref allows GC on idle)
-  if (cleanupInterval && typeof cleanupInterval === 'object' && 'unref' in cleanupInterval) {
-    cleanupInterval.unref();
-  }
+  }, CLEANUP_INTERVAL_MS, { unref: true });
 
   // Run stale session cleanup on startup and set up hourly interval
   try {
@@ -251,22 +249,19 @@ function init(database: Database): InitResult {
   }
 
   if (staleCleanupInterval) {
-    clearInterval(staleCleanupInterval);
+    clearRegisteredTimer(staleCleanupInterval);
   }
-  staleCleanupInterval = setInterval(() => {
+  staleCleanupInterval = registerInterval(() => {
     try {
       cleanupStaleSessions();
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : String(err);
       console.warn(`[session-manager] Periodic stale session cleanup failed: ${message}`);
     }
-  }, STALE_CLEANUP_INTERVAL_MS);
-  if (staleCleanupInterval && typeof staleCleanupInterval === 'object' && 'unref' in staleCleanupInterval) {
-    staleCleanupInterval.unref();
-  }
+  }, STALE_CLEANUP_INTERVAL_MS, { unref: true });
 
   if (retentionSweepInterval) {
-    clearInterval(retentionSweepInterval);
+    clearRegisteredTimer(retentionSweepInterval);
     retentionSweepInterval = null;
   }
   if (RETENTION_SWEEP_ENABLED) {
@@ -277,17 +272,14 @@ function init(database: Database): InitResult {
       console.warn(`[session-manager] Initial memory retention sweep failed: ${message}`);
     }
 
-    retentionSweepInterval = setInterval(() => {
+    retentionSweepInterval = registerInterval(() => {
       try {
         runMemoryRetentionSweep(database as unknown as BetterSqlite.Database, { dryRun: false });
       } catch (err: unknown) {
         const message = err instanceof Error ? err.message : String(err);
         console.warn(`[session-manager] Periodic memory retention sweep failed: ${message}`);
       }
-    }, RETENTION_SWEEP_INTERVAL_MS);
-    if (retentionSweepInterval && typeof retentionSweepInterval === 'object' && 'unref' in retentionSweepInterval) {
-      retentionSweepInterval.unref();
-    }
+    }, RETENTION_SWEEP_INTERVAL_MS, { unref: true });
   }
 
   return { success: true };
@@ -1412,18 +1404,22 @@ function checkpointSession(
 // Clear all background intervals on shutdown (GAP 1).
 function shutdown(): void {
   if (cleanupInterval) {
-    clearInterval(cleanupInterval);
+    clearRegisteredTimer(cleanupInterval);
     cleanupInterval = null;
   }
   if (staleCleanupInterval) {
-    clearInterval(staleCleanupInterval);
+    clearRegisteredTimer(staleCleanupInterval);
     staleCleanupInterval = null;
   }
   if (retentionSweepInterval) {
-    clearInterval(retentionSweepInterval);
+    clearRegisteredTimer(retentionSweepInterval);
     retentionSweepInterval = null;
   }
 }
+
+registerShutdownHook(() => {
+  shutdown();
+}, { timeoutMs: 250 });
 
 /* ───────────────────────────────────────────────────────────────
    12. EXPORTS
