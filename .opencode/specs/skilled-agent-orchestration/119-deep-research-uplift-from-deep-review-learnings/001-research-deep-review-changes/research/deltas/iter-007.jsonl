@@ -1,0 +1,17 @@
+{"iter":7,"adjudicates":"C-020","verdict":"OUTDATED","evidence":"Directory exists with 16 files across 4 categories (lifecycle, state, convergence, research output)"}
+{"iter":7,"adjudicates":"C-021","verdict":"OUTDATED","evidence":"Directory exists with 34 scenarios across 7 categories, including graph-aware scenarios (DR-029, DR-031, DR-032, DR-033)"}
+{"iter":7,"adjudicates":"C-022","verdict":"OUTDATED","evidence":"Directory exists with 6 files (capability_matrix, convergence, loop_protocol, quick_reference, spec_check_protocol, state_format)"}
+{"iter":7,"adjudicates":"C-008","verdict":"MISCATEGORIZED","evidence":"Both auto and confirm YAMLs correctly invoke the 4 deep-loop-runtime scripts via the reducer; this is a P2 verification task, not P1"}
+{"iter":7,"adjudicates":"C-036","verdict":"FALSE-POSITIVE","evidence":"deep-research/references/state_format.md exists and documents research-specific fields that differ intentionally from deep-review"}
+{"iter":7,"adjudicates":"C-039","verdict":"FALSE-POSITIVE","evidence":"deep-research scripts use resolveArtifactRoot from shared review-research-paths.cjs for canonical path resolution; no custom path validation needed"}
+{"iter":7,"adjudicates":"C-040","verdict":"FALSE-POSITIVE","evidence":"reduce-state.cjs doesn't directly access the coverage-graph DB - it uses scripts for all graph operations"}
+{"iter":7,"adjudicates":"C-041","verdict":"FALSE-POSITIVE","evidence":"deep-research uses .deep-research.lock which is acquired/released by the YAML workflow; the pattern is already consistent"}
+{"iter":7,"adjudicates":"C-042","verdict":"FALSE-POSITIVE","evidence":"deep-research doesn't have direct DB access - all graph operations go through scripts"}
+{"iter":7,"adjudicates":"C-043","verdict":"FALSE-POSITIVE","evidence":"deep-research uses the shared executor-config.ts from deep-loop-runtime; hardening is already inherited"}
+{"iter":7,"adjudicates":"DR-001","verdict":"FALSE-POSITIVE","evidence":"reduce-state.cjs has no dimensions field validation because deep-research is single-dimension by design; there's no multi-dimension pattern to reject"}
+{"iter":7,"adjudicates":"DR-002","verdict":"FALSE-POSITIVE","evidence":"reduce-state.cjs doesn't validate research.md structure. The workflow owns progressive synthesis; reducer has no structural validation role"}
+{"iter":7,"adjudicates":"DR-003","verdict":"CONFIRMED","evidence":"reduce-state.cjs has no uncoveredQuestions field or tracking logic. The answeredQuestions field exists but there's no reducer-owned surface listing remaining unanswered questions"}
+{"iter":7,"adjudicates":"DR-006","verdict":"CONFIRMED","evidence":"reduce-state.cjs line 874: .sort() performs lexical string comparison. Files like iteration-10.md and iteration-2.md sort as 'iteration-10' < 'iteration-2' lexicographically"}
+{"iter":7,"adjudicates":"DR-004","verdict":"FALSE-POSITIVE","evidence":"reduce-state.cjs has no validation for Non-Goals/Stop Conditions. The workflow owns initialization validation; reducer has no charter validation role"}
+{"iter":7,"adjudicates":"DR-007","verdict":"OUTDATED","evidence":"auto YAML has step_detect_resource_map but confirm YAML doesn't. This asymmetry is intentional - confirm mode has different initialization paths"}
+{"iter":7,"adjudicates":"DR-008","verdict":"MISCATEGORIZED","evidence":"SKILL.md line 4 lists [Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch, memory_context, memory_search]. All these tools are still active. No removed MCP tools are referenced"}

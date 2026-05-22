@@ -1,0 +1,11 @@
+{"type":"iteration","iteration":8,"newInfoRatio":0.0,"status":"complete","focus":"Final adversarial pass on untouched surfaces (assets, references, recent run packet)","graphEvents":[],"executor":{"model":"swe-1.6","effort":"medium","tier":"standard"}}
+{"type":"finding","id":"f-iter008-001","severity":"P2","label":"Assets directory inventory complete — all 5 templates present and correctly structured","iteration":8}
+{"type":"finding","id":"f-iter008-002","severity":"P2","label":"References directory verification complete — all 6 docs accurately describe implementation","iteration":8}
+{"type":"finding","id":"f-iter008-003","severity":"P2","label":"Recent deep-research run packet sample shows high-quality structured output","iteration":8}
+{"type":"finding","id":"f-iter008-004","severity":"P1","label":"DR-003 re-confirmed — reduce-state.cjs lacks uncoveredQuestions tracking","iteration":8}
+{"type":"finding","id":"f-iter008-005","severity":"P1","label":"DR-006 re-confirmed — lexical sort bug at reduce-state.cjs:874 affects iteration ordering","iteration":8}
+{"type":"invariant","id":"inv-iter008-001","label":"deep-research assets and references are well-maintained and accurate","iteration":8}
+{"type":"invariant","id":"inv-iter008-002","label":"deep-research produces high-quality structured output in real runs","iteration":8}
+{"type":"observation","id":"obs-iter008-001","packet":"119","classification":"real","iteration":8}
+{"type":"edge","id":"e-iter008-001","relation":"CONFIRMS","source":"f-iter008-004","target":"DR-003","iteration":8}
+{"type":"edge","id":"e-iter008-002","relation":"CONFIRMS","source":"f-iter008-005","target":"DR-006","iteration":8}

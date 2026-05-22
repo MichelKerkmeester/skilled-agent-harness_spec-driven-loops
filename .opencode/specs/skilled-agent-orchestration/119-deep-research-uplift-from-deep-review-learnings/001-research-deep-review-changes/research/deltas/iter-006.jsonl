@@ -1,0 +1,1 @@
+{"iter":6,"type":"verification","dimension":"changelog-accuracy","verdict":"PASS","findings":0,"details":"v1.12.0.0 changelog: all 6 major assertions verified; version sequence v1.1.0.0..v1.12.0.0 no gaps; all 8 file paths correct; zero factual errors / exaggerated claims / missing items"}
