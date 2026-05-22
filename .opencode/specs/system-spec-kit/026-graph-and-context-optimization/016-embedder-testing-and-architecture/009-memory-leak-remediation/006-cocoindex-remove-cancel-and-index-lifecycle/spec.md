@@ -115,13 +115,13 @@ Fix CocoIndex remove-project safety, per-index cancel identity, and daemon/MCP b
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | remove_project cannot close resources under active explicit, load-time, or queued index work | Evidence is captured in this phase's implementation summary and passes the phase verification command set. |
+| REQ-001 | remove_project cannot close resources under active explicit, load-time, or queued index work | Evidence is captured in this phase's implementation summary and passes the phase verification command set; B5 adds queued daemon-task cancellation before project close. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | Clients can cancel a specific index request without whole-daemon stop | Tests or documented verification prove the behavior without relying on broad process-kill patterns. |
+| REQ-002 | Clients can cancel a specific index request without whole-daemon stop | Tests or documented verification prove the behavior without relying on broad process-kill patterns; B5 adds typed `DaemonClient.index_cancel()` transport coverage. |
 <!-- /ANCHOR:requirements -->
 
 ---

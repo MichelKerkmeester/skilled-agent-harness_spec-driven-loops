@@ -101,6 +101,8 @@ for _name in (
 ):
     setattr(protocol_stub, _name, type(_name, (_ProtocolStruct,), {}))
 protocol_stub.decode_request = lambda data: data
+protocol_stub.decode_response = lambda data: data
+protocol_stub.encode_request = lambda req: b""
 protocol_stub.encode_response = lambda resp: b""
 sys.modules.setdefault("cocoindex_code.core.protocol", protocol_stub)
 
@@ -180,6 +182,7 @@ observability_stub.resolve_mcp_request_timeout_ms = lambda: 1000
 sys.modules.setdefault("cocoindex_code.observability.observability", observability_stub)
 
 import cocoindex_code.core.project as project_module
+import cocoindex_code.core.client as client_module
 import cocoindex_code.daemon as daemon_module
 from cocoindex_code.core.project import Project
 from cocoindex_code.lifecycle.active_work_registry import (
@@ -192,6 +195,7 @@ from cocoindex_code.lifecycle.cancel_protocol import CancelRequest, CancelStatus
 from cocoindex_code.lifecycle.daemon_task_registry import (
     DaemonTaskRegistry,
     DuplicateTaskIdError,
+    daemon_task_registry,
 )
 
 
@@ -208,10 +212,12 @@ def _row(project_key: str, req_id: str = "req-1", index_id: str = "idx-1") -> Ac
 
 def setup_function() -> None:
     active_work_registry.reset()
+    daemon_task_registry.reset()
 
 
 def teardown_function() -> None:
     active_work_registry.reset()
+    daemon_task_registry.reset()
 
 
 def test_remove_during_index_cancels_and_waits_before_close(monkeypatch) -> None:
@@ -435,6 +441,85 @@ def test_config_refresh_skips_close_while_active_indexing(monkeypatch) -> None:
 
     assert close_calls == []
     assert project_key in registry._projects
+
+
+def test_daemon_client_index_cancel_round_trips_typed_transport(monkeypatch) -> None:
+    sent_requests: list[object] = []
+
+    class FakeConnection:
+        def send_bytes(self, payload: bytes) -> None:
+            assert payload == b"encoded-index-cancel"
+
+        def recv_bytes(self) -> bytes:
+            return b"encoded-index-cancel-response"
+
+    def encode_request(req: object) -> bytes:
+        sent_requests.append(req)
+        return b"encoded-index-cancel"
+
+    def decode_response(payload: bytes) -> object:
+        assert payload == b"encoded-index-cancel-response"
+        return protocol_stub.IndexCancelResponse(
+            status="cancelled",
+            reqId="req-transport",
+            indexId="idx-transport",
+        )
+
+    monkeypatch.setattr(client_module, "encode_request", encode_request)
+    monkeypatch.setattr(client_module, "decode_response", decode_response)
+
+    client = client_module.DaemonClient(FakeConnection())
+    response = client.index_cancel(req_id="req-transport", index_id="idx-transport")
+
+    assert len(sent_requests) == 1
+    assert isinstance(sent_requests[0], protocol_stub.IndexCancelRequest)
+    assert sent_requests[0].reqId == "req-transport"
+    assert sent_requests[0].indexId == "idx-transport"
+    assert response.status == "cancelled"
+    assert response.reqId == "req-transport"
+    assert response.indexId == "idx-transport"
+
+
+def test_remove_project_cancels_queued_index_future_before_close(monkeypatch) -> None:
+    monkeypatch.setenv("REMOVE_PROJECT_TIMEOUT_SECONDS", "0.1")
+    project_key = "/tmp/project"
+    release_running = threading.Event()
+    close_observations: list[bool] = []
+
+    class FakeProject:
+        def close(self) -> None:
+            close_observations.append(queued_future.cancelled())
+
+    def blocking_work() -> None:
+        release_running.wait(timeout=1)
+
+    def queued_work() -> None:
+        raise AssertionError("queued index work must be cancelled before it starts")
+
+    executor = concurrent.futures.ThreadPoolExecutor(max_workers=1)
+    try:
+        running_future = executor.submit(blocking_work)
+        queued_future = executor.submit(queued_work)
+        daemon_task_registry.add_future(
+            queued_future,
+            task_id="idx-queued",
+            kind="explicit-index",
+            project_key=project_key,
+        )
+
+        registry = daemon_module.ProjectRegistry(embedder=object())
+        registry._projects[project_key] = FakeProject()
+        registry._index_locks[project_key] = object()
+        registry._load_time_done[project_key] = object()
+
+        assert registry.remove_project(project_key) is True
+        assert close_observations == [True]
+        assert queued_future.cancelled()
+        assert daemon_task_registry.list()[0].status == "complete"
+        assert daemon_task_registry.list()[0].error == "cancelled"
+    finally:
+        release_running.set()
+        executor.shutdown(wait=True, cancel_futures=True)
 
 
 def test_shutdown_cancel_leaves_completed_rows_untouched() -> None:

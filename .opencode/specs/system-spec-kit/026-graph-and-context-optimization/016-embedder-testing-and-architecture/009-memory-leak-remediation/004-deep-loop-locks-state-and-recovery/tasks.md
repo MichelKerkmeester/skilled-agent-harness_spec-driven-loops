@@ -95,8 +95,8 @@ _memory:
 ## Completion Criteria
 
 - [x] REQ-001 evidence recorded: interrupted or corrupt trailing JSONL state can be repaired without duplicating iteration records.
-- [x] REQ-002 evidence recorded: concurrent same-packet runs are blocked while a live holder owns `.deep-loop.lock`, and stale holders are reclaimable.
-- [x] SC-001 fixtures pass: kill-during-append, corrupt trailing line, dead-PID lock, concurrent run.
+- [x] REQ-002 evidence recorded: concurrent same-packet runs are blocked while a live holder owns `.deep-loop.lock`, stale holders are reclaimable, and B5 cross-process subprocess racing proves exactly one fresh acquire wins.
+- [x] SC-001 fixtures pass: kill-during-append, corrupt trailing line, dead-PID lock, concurrent run; B5 replaces the previous same-process concurrency surrogate with child-process coverage.
 - [x] All commands in T012 through T017 pass with evidence in `implementation-summary.md`.
 - [x] No git mutation is attempted; parent agent receives explicit absolute file list in `## Commit Handoff`.
 <!-- /ANCHOR:completion -->

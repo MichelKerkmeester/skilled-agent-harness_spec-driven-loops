@@ -116,7 +116,7 @@ Centralize CLI dispatch supervision and prevent same-runtime or cross-runtime re
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | All deep-loop CLI dispatch paths use one supervised spawn contract | Evidence is captured in this phase's implementation summary and passes the phase verification command set. |
+| REQ-001 | All deep-loop CLI dispatch paths use one supervised spawn contract | Evidence is captured in this phase's implementation summary and passes the phase verification command set; B5 reconciliation routes the cited deep-review Codex branch through `.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts#runAuditedExecutorCommandAsync`. |
 
 ### P1 - Required (complete OR user-approved deferral)
 

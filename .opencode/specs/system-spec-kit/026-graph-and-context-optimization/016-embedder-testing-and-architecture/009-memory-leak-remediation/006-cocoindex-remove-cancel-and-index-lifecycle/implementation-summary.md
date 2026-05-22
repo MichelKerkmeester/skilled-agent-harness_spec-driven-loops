@@ -109,6 +109,7 @@ Shutdown model:
 | Step 1 plan strict validation | Passed: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/006-cocoindex-remove-cancel-and-index-lifecycle --strict` |
 | Step 2 tasks strict validation | Passed: same phase strict validation command after task replacement |
 | Targeted lifecycle pytest | Passed: `PYTHONPYCACHEPREFIX=/private/tmp/codex-pycache python3 -m pytest tests/lifecycle/ -v` from `.opencode/skills/mcp-coco-index/mcp_server`; 15 passed in 0.08s |
+| B5 lifecycle replay | Passed: `python3 -m pytest mcp_server/tests/lifecycle/ -q` from `.opencode/skills/mcp-coco-index` passed 25 tests, including queued-index remove cancellation before close and typed `DaemonClient.index_cancel()` transport coverage. |
 | Python syntax check | Passed: `PYTHONPYCACHEPREFIX=/private/tmp/codex-pycache /opt/homebrew/bin/python3.11 -m py_compile $(find mcp_server -name "*.py" \| head -50)` from `.opencode/skills/mcp-coco-index` |
 | Ruff on new files | Not run: `python3 -m ruff` and `ruff` are unavailable in this sandbox |
 | Mypy on new files | Not run: `python3 -m mypy` and `mypy` are unavailable in this sandbox |

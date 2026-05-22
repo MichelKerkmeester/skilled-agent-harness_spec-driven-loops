@@ -104,8 +104,8 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] REQ-001: `remove_project()` cannot close project resources under active explicit, load-time, or queued index work.
-- [x] REQ-002: Clients can cancel a specific index request without whole-daemon stop.
+- [x] REQ-001: `remove_project()` cannot close project resources under active explicit, load-time, or queued index work; B5 verifies queued futures are cancelled before `Project.close()`.
+- [x] REQ-002: Clients can cancel a specific index request without whole-daemon stop; B5 verifies typed `DaemonClient.index_cancel()` request/response transport.
 - [x] SC-001 fixtures pass as real tests.
 - [x] SC-002 parent evidence is updated.
 - [x] No process termination calls are added.

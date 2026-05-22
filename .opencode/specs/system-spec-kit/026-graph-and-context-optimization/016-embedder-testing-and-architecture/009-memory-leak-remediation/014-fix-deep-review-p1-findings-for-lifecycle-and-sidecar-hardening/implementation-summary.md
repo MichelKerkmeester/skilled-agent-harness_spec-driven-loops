@@ -37,11 +37,11 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening |
-| **Completed** | Not started |
+| **Completed** | In progress; B5 complete |
 | **Level** | 3 |
 | **Actual Effort** | TBD |
 | **LOC Added** | TBD |
-| **Completion Percent** | 0 |
+| **Completion Percent** | 83 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -49,7 +49,7 @@ _memory:
 <!-- ANCHOR:exec-summary -->
 ## Executive Summary
 
-Not started. This summary will be filled after B1-B6 complete or after the parent approves any explicit deferrals.
+B5 is complete. This pass restored traceability evidence for 10 fixture-validity findings without mutating review artifacts or committing.
 <!-- /ANCHOR:exec-summary -->
 
 ---
@@ -57,7 +57,7 @@ Not started. This summary will be filled after B1-B6 complete or after the paren
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-No implementation work has started in this scaffold phase.
+B5 implemented fixture and evidence reconciliation for deep-review traceability findings DR009-TRC-001, DR009-TRC-002, DR009-TRC-003, DR009-TRC-004, DR009-TRC-005, DR009-TRC-006, DR009-TRC-007, DR009-TRC-009, DR009-TRC-010, and DR009-TRC-011.
 
 ### Files Changed
 
@@ -68,6 +68,14 @@ No implementation work has started in this scaffold phase.
 | `tasks.md` | Created | Numbered batch task ledger | Scaffold |
 | `checklist.md` | Created | Finding closure ledger | Scaffold |
 | `scratch/batch-plan.md` | Created | Parent dispatch input | Scaffold |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modified | Route cited Codex dispatch through audited async supervisor | B5 |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modified | Route cited Codex dispatch through audited async supervisor | B5 |
+| `.opencode/skills/deep-loop-runtime/tests/unit/loop-lock.vitest.ts` | Modified | Cross-process lock race fixture | B5 |
+| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/lifecycle/daemon_task_registry.py` | Modified | Project-scoped queued task cancellation | B5 |
+| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py` | Modified | Cancel queued project work before close | B5 |
+| `.opencode/skills/mcp-coco-index/mcp_server/tests/lifecycle/test_remove_project_lifecycle.py` | Modified | Queued remove and typed cancel transport tests | B5 |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/memory-runtime-retention.vitest.ts` | Modified | Save/search/index workload cap fixture | B5 |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/embedders/sidecar-hardening.vitest.ts` | Modified | Parent-death and portable timeout-kill assertions | B5 |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -75,7 +83,7 @@ No implementation work has started in this scaffold phase.
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Scaffold-only. No runtime code, tests, review artifacts, or prior phase implementation files were changed.
+B5 was delivered as scoped fixture and reconciliation work. Review artifacts stayed read-only. Prior phase docs were updated only where the traceability finding required evidence reconciliation.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -90,6 +98,7 @@ Scaffold-only. No runtime code, tests, review artifacts, or prior phase implemen
 | ADR-003 | Rewrite narrow fixtures for public/concurrent behavior | Proposed | Aligns evidence with phase acceptance criteria |
 | ADR-004 | Explicit P2 deferral policy | Proposed | Keeps advisory debt auditable |
 | ADR-005 | Review artifacts remain immutable | Accepted | Preserves review provenance |
+| ADR-032-040 | B5 fixture-validity restoration decisions | Accepted | Records cross-process, queued-work, retention, RSS-deferral, reconnect, cancel transport, parent-death, timeout-kill, and phase-010 scan policies |
 <!-- /ANCHOR:arch-decisions -->
 
 ---
@@ -102,6 +111,7 @@ Scaffold-only. No runtime code, tests, review artifacts, or prior phase implemen
 | Use six sequential batches | Keeps dispatch scope bounded and avoids cross-theme churn. |
 | Keep review artifacts immutable | Preserves review provenance. |
 | Track P2 deferrals explicitly | Avoids hiding advisory debt behind P1 closure. |
+| Treat DR009-TRC-005 as operator-deferred-by-design | Local sandbox cannot produce valid RSS slope numbers; phase 012 now accepts runbook deferral with blocker evidence. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -115,7 +125,7 @@ Scaffold-only. No runtime code, tests, review artifacts, or prior phase implemen
 | B2 Cleanup Correctness | Not started | TBD |
 | B3 Sidecar + Executor Security | Not started | TBD |
 | B4 Audit/Data Integrity | Not started | TBD |
-| B5 Test Fixture Validity Restoration | Not started | TBD |
+| B5 Test Fixture Validity Restoration | Passed | Targeted suites passed: loop-lock 7/7, memory runtime retention 4/4, sidecar hardening 5/5, Code Graph launcher lease 13/13, CocoIndex lifecycle 25/25. |
 | B6 Doc Drift + Maintainability Cleanup | Not started | TBD |
 | Phase 014 strict validation | Not started | TBD |
 | Arc 009 parent strict validation | Not started | TBD |
@@ -126,9 +136,9 @@ Scaffold-only. No runtime code, tests, review artifacts, or prior phase implemen
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-- This scaffold does not implement any finding remediation.
-- Checklist statuses remain `open` until later implementation dispatches fill evidence.
-- P2 deferral decisions are not made in this scaffold.
+- B5 routes the cited deep-review Codex branch through the audited async supervisor; other non-cited CLI branches remain broader workflow-hardening candidates if the parent wants a full non-Codex dispatch migration.
+- DR009-TRC-005 remains operator-deferred-by-design until an operator can run the RSS benchmark where `ps` and CocoIndex daemon startup are available.
+- B6 remains open.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -140,7 +150,7 @@ Scaffold-only. No runtime code, tests, review artifacts, or prior phase implemen
 - [ ] Dispatch B2 after B1 validation.
 - [ ] Dispatch B3 after B2 validation.
 - [ ] Dispatch B4 after B3 validation.
-- [ ] Dispatch B5 after B4 validation.
+- [x] Dispatch B5 after B4 validation.
 - [ ] Dispatch B6 after B5 validation.
 - [ ] Reconcile final checklist and parent metadata.
 <!-- /ANCHOR:follow-up -->

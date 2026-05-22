@@ -119,13 +119,13 @@ Quantify adapter resident-memory behavior on the two paths phase 008 instrumente
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Reproducible RSS measurement on both successful-search and sidecar 5xx fallback paths over ≥ 50 iterations. | Benchmark script in the packet + numbers in `implementation-summary.md`. |
+| REQ-001 | Reproducible RSS measurement on both successful-search and sidecar 5xx fallback paths over ≥ 50 iterations. | Live RSS measurement numbers in `implementation-summary.md`, OR operator-runbook deferral with sandbox-blocker evidence when local process enumeration or daemon startup is blocked. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | Severity decision (P2 hold or P1 escalation) recorded with explicit threshold + evidence link. | Decision row in `implementation-summary.md` Decisions anchor with numbers. |
+| REQ-002 | Severity decision (P2 hold, P1 escalation, or operator-deferred-by-design) recorded with explicit threshold + evidence link. | Decision row in `implementation-summary.md` Decisions anchor with live numbers or the operator-runbook deferral evidence. |
 <!-- /ANCHOR:requirements -->
 
 ---

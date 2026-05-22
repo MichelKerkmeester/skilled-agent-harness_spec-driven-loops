@@ -1,17 +1,17 @@
 {
+  "level": "3",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening",
-  "description": "Deep-Review P1 Findings Remediation for Lifecycle and Sidecar Hardening: plan and coordinate closure of 40 P1 and 20 P2 arc 009 review findings.",
+  "description": "Spec: Deep-Review P1 Findings Remediation for Lifecycle and Sidecar Hardening",
   "keywords": [
-    "memory",
-    "leak",
+    "spec",
     "deep-review",
-    "p1-findings",
-    "lifecycle-hardening",
-    "sidecar-hardening",
-    "arc-009",
-    "phase-014"
+    "findings",
+    "remediation",
+    "lifecycle",
+    "sidecar",
+    "hardening"
   ],
-  "lastUpdated": "2026-05-22T19:00:00Z",
+  "lastUpdated": "2026-05-22T19:07:31.667Z",
   "specId": "014",
   "folderSlug": "fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening",
   "parentChain": [
@@ -21,6 +21,5 @@
     "009-memory-leak-remediation"
   ],
   "memorySequence": 14,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

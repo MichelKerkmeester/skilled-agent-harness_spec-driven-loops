@@ -143,7 +143,7 @@ For stale-heartbeat-specific manual verification, write `.code-graph-owner.json`
 ## Known Limitations
 
 1. Heartbeat refresh uses the Node event loop. Under severe event-loop saturation, refresh ticks can be delayed; this phase did not add a macOS load-stress benchmark. The `ttlMs / 3` cadence leaves multiple missed ticks before reclaim.
-2. SC-003 was verified through an isolated launcher Vitest model and documented operator script. A live MCP parent-disconnect run against the shared production DB was not performed to avoid disrupting the current session's MCP state.
+2. SC-003 is reconciled by B5 as harness-equivalent evidence for the lease/reconnect surface: `launcher-lease.vitest.ts` creates stale-heartbeat and live-owner lease states against temp workspaces, starts the launcher repeatedly, and proves reclaim/reconnect behavior without touching the production MCP DB. The manual operator script above remains the non-disruptive live MCP follow-up if an operator wants production-parent disconnect evidence.
 3. The launcher still carries a mirrored CommonJS owner-lease classifier because it must run before TypeScript build/bootstrap can be assumed.
 <!-- /ANCHOR:limitations -->
 

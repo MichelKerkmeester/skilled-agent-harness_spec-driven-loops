@@ -503,3 +503,45 @@ Verification:
 - `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/deep-loop-runtime/lib/deep-loop` -> passed.
 - `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-code-graph/mcp_server/handlers` -> passed.
 - `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/scripts/ops` -> passed.
+
+## B5 Commit Handoff
+
+Suggested commit:
+`fix(014/B5): test fixture validity restoration -- DR009-TRC-001/002/003/004/005/006/007/009/010/011`
+
+Closed/deferred findings:
+- DR009-TRC-001 closed: deep-review Codex auto/confirm dispatch branches route through `runAuditedExecutorCommandAsync`.
+- DR009-TRC-002 closed: loop-lock concurrent fixture now races two child Node processes.
+- DR009-TRC-003 closed: queued CocoIndex daemon index work is cancelled before project close.
+- DR009-TRC-004 closed: memory runtime retention stress drives save/search/index workload calls and asserts caps.
+- DR009-TRC-005 deferred: phase 012 accepts operator-runbook RSS deferral with sandbox-blocker evidence.
+- DR009-TRC-006 closed: phase 013 SC-003 reconciled with temp-workspace launcher reconnect/reclaim harness and manual operator follow-up command.
+- DR009-TRC-007 closed: typed `DaemonClient.index_cancel()` transport round trip covered.
+- DR009-TRC-009 closed: parent-death polling uses real parent + detached child exit evidence on polling platforms.
+- DR009-TRC-010 closed: timeout-kill assertions use portable process liveness and SIGTERM-resistant child.
+- DR009-TRC-011 closed: phase 010 records the memory scan gap honestly and cites B5 runtime-retention replay as substitute closure evidence.
+
+Changed paths:
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-runtime/tests/unit/loop-lock.vitest.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/lifecycle/daemon_task_registry.py`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/tests/lifecycle/test_remove_project_lifecycle.py`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-runtime-retention.vitest.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/embedders/sidecar-hardening.vitest.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/003-cli-dispatch-containment-and-recursion-guards/`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/004-deep-loop-locks-state-and-recovery/`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/006-cocoindex-remove-cancel-and-index-lifecycle/`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/009-spec-memory-runtime-retention-cleanup/`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/010-final-regression-and-operator-runbook/implementation-summary.md`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/012-adapter-resident-memory-benchmark/`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/013-owner-lease-heartbeat-staleness-detection/implementation-summary.md`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening/`
+
+Verification:
+- `cd .opencode/skills/system-spec-kit && node mcp_server/node_modules/vitest/vitest.mjs run ../deep-loop-runtime/tests/unit/loop-lock.vitest.ts --config mcp_server/vitest.config.ts` -> passed, 7 tests.
+- `cd .opencode/skills/system-spec-kit && node mcp_server/node_modules/vitest/vitest.mjs run mcp_server/tests/memory-runtime-retention.vitest.ts --config mcp_server/vitest.config.ts` -> passed, 4 tests.
+- `cd .opencode/skills/system-spec-kit && node mcp_server/node_modules/vitest/vitest.mjs run mcp_server/tests/embedders/sidecar-hardening.vitest.ts --config mcp_server/vitest.config.ts` -> passed, 5 tests.
+- `cd .opencode/skills/system-code-graph && node node_modules/vitest/vitest.mjs run mcp_server/tests/launcher-lease.vitest.ts --config vitest.config.ts` -> passed, 13 tests.
+- `cd .opencode/skills/mcp-coco-index && python3 -m pytest mcp_server/tests/lifecycle/ -q` -> passed, 25 tests.

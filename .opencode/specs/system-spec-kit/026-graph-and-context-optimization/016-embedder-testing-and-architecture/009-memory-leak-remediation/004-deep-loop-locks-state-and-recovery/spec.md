@@ -123,7 +123,7 @@ Make deep-research, deep-review, council, and related loops interruption-safe.
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | Concurrent same-packet deep-loop runs are blocked or safely resumed | Tests or documented verification prove the behavior without relying on broad process-kill patterns. |
+| REQ-002 | Concurrent same-packet deep-loop runs are blocked or safely resumed | Tests or documented verification prove the behavior without relying on broad process-kill patterns; B5 adds cross-process child racing coverage in `.opencode/skills/deep-loop-runtime/tests/unit/loop-lock.vitest.ts`. |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -131,7 +131,7 @@ Make deep-research, deep-review, council, and related loops interruption-safe.
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: Kill-during-append, corrupt-trailing-line, dead-PID lock, concurrent run fixtures.
+- **SC-001**: Kill-during-append, corrupt-trailing-line, dead-PID lock, concurrent run fixtures. B5 concurrent-run evidence is a two-child subprocess race, not a same-process Promise-only fixture.
 - **SC-002**: This phase updates the parent remediation map or implementation summary with evidence and next-phase handoff notes.
 <!-- /ANCHOR:success-criteria -->
 

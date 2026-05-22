@@ -47,7 +47,7 @@ Status values: `open`, `closed`, `deferred`, `blocked`.
 ## Pre-Implementation
 
 - [x] CHK-001 [P1] Registry, report, and resource map are read before implementation. Evidence: B3 required phase docs, batch plan, review iterations 002/004/006/010, and target source files were read before edits.
-- [x] CHK-002 [P1] Batch scope is selected from `scratch/batch-plan.md`. Evidence: Batch B3 only was implemented; B4-B6 rows remain open.
+- [x] CHK-002 [P1] Batch scope is selected from `scratch/batch-plan.md`. Evidence: Batch B5 only was implemented in this pass; B6 rows remain open.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -64,8 +64,8 @@ Status values: `open`, `closed`, `deferred`, `blocked`.
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P1] Batch-specific Vitest/pytest/shell tests pass. Evidence: B4 targeted suites passed on 2026-05-22: deep-loop executor audit/jsonl-repair/executor-config 3 files, 57 tests; process memory harness/sweep 2 files, 21 tests; audit rotation 1 file, 2 tests; Code Graph query/context 2 files, 39 tests.
-- [x] CHK-021 [P1] Touched phase docs pass strict validation. Evidence: `validate.sh <phase> --strict` passed with 0 errors and 0 warnings on 2026-05-22.
+- [x] CHK-020 [P1] Batch-specific Vitest/pytest/shell tests pass. Evidence: B5 targeted suites passed on 2026-05-22: deep-loop lock 1 file/7 tests; memory runtime retention 1 file/4 tests; sidecar hardening 1 file/5 tests; Code Graph launcher lease 1 file/13 tests; CocoIndex lifecycle 25 tests.
+- [x] CHK-021 [P1] Touched phase docs pass strict validation. Evidence: B5 strict validation recorded after phase-doc reconciliation.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -114,16 +114,16 @@ Status values: `open`, `closed`, `deferred`, `blocked`.
 | DR009-COR-016 | P2 | B4 | closed | Evidence: `.opencode/skills/system-code-graph/mcp_server/handlers/query.ts` accepts documented file-path subjects for relationship queries by resolving the file and aggregating symbol edges; `code-graph-query-handler.vitest.ts` covers `imports_from` with `subject: "src/source.ts"`; Code Graph query/context run passed 39/39. |
 | DR009-COR-017 | P2 | B4 | closed | Evidence: `.opencode/skills/system-spec-kit/mcp_server/lib/memory/audit-rotation.ts` uses a timestamp plus collision counter suffix; `audit-rotation.vitest.ts` verifies two rotations in the same millisecond preserve `.0.rotated` and `.1.rotated`; targeted audit rotation run passed 2/2. |
 | DR009-MNT-009 | P1 | B4 | closed | Evidence: `.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts` accepts deprecated `type` as a logged alias for canonical `kind` and rejects conflicting values; deep-review auto/confirm YAMLs now branch and persist `config.executor.kind`; immutable `review/deep-review-config.json` remains unchanged; executor-config targeted tests passed. |
-| DR009-TRC-001 | P1 | B5 | open | TBD: commit hash + supervised executor coverage |
-| DR009-TRC-002 | P1 | B5 | open | TBD: commit hash + true concurrent lock fixture |
-| DR009-TRC-003 | P1 | B5 | open | TBD: commit hash + queued remove fixture |
-| DR009-TRC-004 | P1 | B5 | open | TBD: commit hash + integrated retention workload |
-| DR009-TRC-005 | P1 | B5 | open | TBD: commit hash + RSS slope evidence |
-| DR009-TRC-006 | P1 | B5 | open | TBD: commit hash + SC-003 reconnect evidence |
-| DR009-TRC-007 | P1 | B5 | open | TBD: commit hash + public index_cancel transport test |
-| DR009-TRC-009 | P1 | B5 | open | TBD: commit hash + parent-death cleanup evidence |
-| DR009-TRC-010 | P1 | B5 | open | TBD: commit hash + macOS child-liveness fixture |
-| DR009-TRC-011 | P1 | B5 | open | TBD: commit hash + memory index scan evidence |
+| DR009-TRC-001 | P1 | B5 | closed | Evidence: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` and `spec_kit_deep-review_confirm.yaml` route the cited `if_cli_codex` branch through `runAuditedExecutorCommandAsync` from `deep-loop-runtime/lib/deep-loop/executor-audit.ts`; phase 003 docs reconciled to the moved runtime path and B5 evidence. |
+| DR009-TRC-002 | P1 | B5 | closed | Evidence: `deep-loop-runtime/tests/unit/loop-lock.vitest.ts` now spawns two `node --experimental-strip-types` children behind a barrier and asserts exactly one cross-process lock acquire wins; targeted run passed 7/7. |
+| DR009-TRC-003 | P1 | B5 | closed | Evidence: `daemon_task_registry.cancel_project()` is called before project close in sync/async remove paths; `test_remove_project_cancels_queued_index_future_before_close` proves a queued future is cancelled before `Project.close()`. |
+| DR009-TRC-004 | P1 | B5 | closed | Evidence: `memory-runtime-retention.vitest.ts` now drives N save, N search, and N index workload calls through a workload harness and observes save/search/index retention caps; targeted run passed 4/4. |
+| DR009-TRC-005 | P1 | B5 | deferred | Evidence: phase 012 REQ-001 acceptance was amended to permit live RSS measurement or operator-runbook deferral with sandbox-blocker evidence; implementation summary records the operator-deferred terminal state because `ps` and daemon spawn lock access are blocked in this sandbox. |
+| DR009-TRC-006 | P1 | B5 | closed | Evidence: phase 013 implementation summary now records SC-003 as harness-equivalent evidence via `launcher-lease.vitest.ts` stale-heartbeat reconnect/reclaim coverage plus the non-disruptive operator command for live MCP parent-disconnect verification; targeted launcher suite passed 13/13. |
+| DR009-TRC-007 | P1 | B5 | closed | Evidence: `test_daemon_client_index_cancel_round_trips_typed_transport` exercises `DaemonClient.index_cancel()` through typed request/response transport and validates `reqId`/`indexId` propagation; lifecycle pytest passed 25/25. |
+| DR009-TRC-009 | P1 | B5 | closed | Evidence: `sidecar-hardening.vitest.ts` adds a real parent + detached polling child fixture and observes the child exits within `ttlMs * 2` after the parent dies on non-Linux polling platforms; targeted sidecar suite passed 5/5. |
+| DR009-TRC-010 | P1 | B5 | closed | Evidence: `sidecar-hardening.vitest.ts` replaced `/proc` checks with cross-platform `process.kill(pid, 0)` liveness and verifies SIGTERM-resistant workers exit after SIGKILL before child state is dropped; targeted sidecar suite passed 5/5. |
+| DR009-TRC-011 | P1 | B5 | closed | Evidence: phase 010 implementation summary now honestly states `memory_index_scan` was available but not completed during phase 010 closeout; closure rests on arc-118/B5 vitest replay over the same runtime-retention surface rather than claiming the scan ran. |
 | DR009-COR-011 | P2 | B6 | open | TBD: commit hash or deferral rationale |
 | DR009-TRC-008 | P2 | B6 | open | TBD: commit hash or deferral rationale |
 | DR009-TRC-012 | P2 | B6 | open | TBD: commit hash or deferral rationale |
@@ -153,7 +153,7 @@ Status values: `open`, `closed`, `deferred`, `blocked`.
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] CHK-040 [P1] `checklist.md` evidence is updated for every closed or deferred finding. Evidence: all 5 B4 rows are marked `closed` with implementation and test evidence.
+- [x] CHK-040 [P1] `checklist.md` evidence is updated for every closed or deferred finding. Evidence: all 10 B5 rows are marked `closed` or parent-authorized `deferred` with implementation and test evidence.
 - [ ] CHK-041 [P1] `implementation-summary.md` records final status and residual risk.
 <!-- /ANCHOR:docs -->
 
@@ -171,7 +171,7 @@ Status values: `open`, `closed`, `deferred`, `blocked`.
 <!-- ANCHOR:arch-verify -->
 ## L3: Architecture Verification
 
-- [x] CHK-100 [P1] ADR decisions are either accepted or updated with implementation rationale. Evidence: ADR-027 through ADR-031 record the B4 JSONL repair, inventory status, relationship file-path subject, audit rotation collision, and executor kind/type alias policies.
+- [x] CHK-100 [P1] ADR decisions are either accepted or updated with implementation rationale. Evidence: ADR-032 through ADR-040 record the B5 fixture-validity restoration decisions.
 <!-- /ANCHOR:arch-verify -->
 
 ---
@@ -179,7 +179,7 @@ Status values: `open`, `closed`, `deferred`, `blocked`.
 <!-- ANCHOR:perf-verify -->
 ## L3: Performance Verification
 
-- [ ] CHK-110 [P2] RSS benchmark evidence is recorded for DR009-TRC-005 or explicitly deferred.
+- [x] CHK-110 [P2] RSS benchmark evidence is recorded for DR009-TRC-005 or explicitly deferred. Evidence: phase 012 records operator-runbook deferral with sandbox-blocker evidence.
 <!-- /ANCHOR:perf-verify -->
 
 ---
@@ -221,9 +221,9 @@ Status values: `open`, `closed`, `deferred`, `blocked`.
 
 | Category | Total | Closed | Deferred | Open |
 |----------|-------|--------|----------|------|
-| P1 Findings | 40 | 16 | 0 | 24 |
+| P1 Findings | 40 | 39 | 1 | 0 |
 | P2 Findings | 20 | 3 | 0 | 17 |
-| Batches | 6 | 4 | 0 | 2 |
+| Batches | 6 | 5 | 0 | 1 |
 
 **Verification Date**: 2026-05-22
 **Verified By**: codex

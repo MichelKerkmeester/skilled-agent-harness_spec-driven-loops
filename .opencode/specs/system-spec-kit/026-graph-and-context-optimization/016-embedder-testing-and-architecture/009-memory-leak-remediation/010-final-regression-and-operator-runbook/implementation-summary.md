@@ -188,6 +188,7 @@ The live process inventory returned zero rows in this sandbox, so RSS is recorde
 | ----- | ------ |
 | Phase 010 strict validation after plan/tasks replacement | PASSED: exit 0, errors 0, warnings 0. |
 | Memory index scan | ATTEMPTED BUT NOT COMPLETED: `memory_index_scan` was available through `mcp__mk_spec_memory__`, but two attempts returned `user cancelled MCP tool call`. No scan result was written by the tool host. |
+| B5 honest scan reconciliation | RECORDED GAP: `memory_index_scan` was not exercised successfully in phase 010 closeout even though the tool was visible. Phase 014/B5 does not claim the scan ran; closure is by targeted runtime-retention Vitest replay over the same memory lifecycle surface plus this explicit follow-up note. |
 | Final strict phase validation | PASSED: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/010-final-regression-and-operator-runbook --strict --verbose` exited 0. |
 | Final strict parent validation | PASSED: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation --strict --verbose` exited 0. |
 | Defense-in-depth child validation | PASSED: phases 003, 004, 005, 006, 007, 008, 009, and 010 each exited 0 with `RESULT: PASSED`. |
@@ -202,7 +203,7 @@ The live process inventory returned zero rows in this sandbox, so RSS is recorde
 2. System Python 3.9 cannot collect the CocoIndex targeted tests because package dependencies and import paths are unavailable there. The package venv with Python 3.11 is the passing target.
 3. Live process enumeration returned zero process rows in this sandbox. The harness still captured host memory pages and the fixture sweep exercised the dry-run policy matrix.
 4. Apple Silicon wired/compressed/swap pressure cannot be resolved through project-daemon cleanup when no project-owned daemon evidence exists. The runbook documents reboot-only handling.
-5. Memory index scan could not complete because the MCP tool host cancelled both attempts. The final docs still passed strict spec validation, but immediate memory DB visibility was not refreshed in this session.
+5. Memory index scan could not complete because the MCP tool host cancelled both attempts. B5 records this as an unsatisfied live-scan attempt, not completed evidence; targeted runtime-retention Vitest replay is the substitute closure evidence for DR009-TRC-011.
 6. Remediation-map item 16, Code Graph read-path friction, remains deferred to a follow-on packet. Item 17 remains no-action.
 <!-- /ANCHOR:limitations -->
 

@@ -701,13 +701,45 @@ workflow:
           wait_for_completion: true
         if_cli_codex:
           command: |
-            codex exec \
-              --model "{config.executor.model}" \
-              -c model_reasoning_effort="{config.executor.reasoningEffort}" \
-              -c service_tier="{config.executor.serviceTier}" \
-              -c approval_policy=never \
-              --sandbox workspace-write \
-              - < "{state_paths.prompt_dir}/iteration-{current_iteration}.md"
+            node --experimental-strip-types --input-type=module <<'EOF'
+            import { readFileSync } from 'node:fs';
+
+            import { runAuditedExecutorCommandAsync } from './.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts';
+            import { resolveCodexSandboxMode } from './.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts';
+
+            const executor = {
+              kind: 'cli-codex',
+              model: '{config.executor.model}',
+              reasoningEffort: '{config.executor.reasoningEffort}' === 'null' ? null : '{config.executor.reasoningEffort}',
+              serviceTier: '{config.executor.serviceTier}' === 'null' ? null : '{config.executor.serviceTier}',
+              sandboxMode: '{config.executor.sandboxMode}' === 'null' ? null : '{config.executor.sandboxMode}',
+              timeoutSeconds: Number('{config.executor.timeoutSeconds}'),
+            };
+
+            process.exit(await runAuditedExecutorCommandAsync({
+              command: 'codex',
+              args: [
+                'exec',
+                '--model',
+                executor.model,
+                '-c',
+                `model_reasoning_effort=${executor.reasoningEffort}`,
+                '-c',
+                `service_tier=${executor.serviceTier}`,
+                '-c',
+                'approval_policy=never',
+                '--sandbox',
+                resolveCodexSandboxMode(executor.sandboxMode),
+                '-',
+              ],
+              cwd: '{repo_root}',
+              timeoutSeconds: executor.timeoutSeconds,
+              stateLogPath: '{state_paths.state_log}',
+              executor,
+              iteration: Number('{current_iteration}'),
+              input: readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8'),
+            }));
+            EOF
           working_directory: "{repo_root}"
           timeout_seconds: "{config.executor.timeoutSeconds}"
           wait_for_completion: true

@@ -111,6 +111,7 @@ Full-state replacement is centralized in `writeStateAtomic(path, data)`, which w
 | OpenCode alignment drift | Passed: `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit` reported 0 errors and 44 warnings, all outside files changed in this phase. |
 | Phase 004 strict validation | Passed: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/004-deep-loop-locks-state-and-recovery --strict` exited 0 with `RESULT: PASSED`. |
 | Parent arc strict validation | Passed: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation --strict` exited 0 with `RESULT: PASSED`. |
+| B5 cross-process lock replay | Passed: `.opencode/skills/deep-loop-runtime/tests/unit/loop-lock.vitest.ts` now spawns two child Node processes racing behind a barrier and asserts exactly one fresh acquire wins; targeted run passed 7/7. |
 <!-- /ANCHOR:verification -->
 
 ---

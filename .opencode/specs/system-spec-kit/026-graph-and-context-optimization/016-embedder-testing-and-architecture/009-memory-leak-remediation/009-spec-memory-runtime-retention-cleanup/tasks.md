@@ -92,8 +92,8 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] REQ-001 and REQ-002 are satisfied.
-- [ ] SC-001 fixtures exist as real tests, not prose-only handoff notes.
+- [x] REQ-001 and REQ-002 are satisfied, with B5 evidence restoring parent-death and timeout-kill fixture validity.
+- [x] SC-001 fixtures exist as real tests, not prose-only handoff notes; B5 adds save/search/index workload call counts plus cap assertions.
 - [ ] All new and touched-surface tests pass, or unchanged-surface baseline failures are HEAD-verified and documented.
 - [ ] Phase and arc `validate.sh --strict` commands exit 0.
 <!-- /ANCHOR:completion -->

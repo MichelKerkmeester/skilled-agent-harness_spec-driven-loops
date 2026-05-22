@@ -972,6 +972,7 @@ class ProjectRegistry:
 
     def remove_project(self, project_root: str) -> bool:
         """Remove a project from the registry. Returns True if it was loaded."""
+        daemon_task_registry.cancel_project(project_root)
         return remove_project_with_drain(
             project_root,
             self._pop_and_close_project,
@@ -980,6 +981,7 @@ class ProjectRegistry:
 
     async def remove_project_async(self, project_root: str) -> bool:
         """Async remove path used by daemon dispatch so index tasks can drain."""
+        daemon_task_registry.cancel_project(project_root)
         return await async_remove_project_with_drain(
             project_root,
             self._pop_and_close_project,

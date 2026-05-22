@@ -4,6 +4,7 @@
 
 import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { spawn } from 'node:child_process';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 import { buildSidecarEnv, SidecarClient } from '../../lib/embedders/sidecar-client.js';
@@ -120,13 +121,15 @@ describe('sidecar hardening', () => {
       env: process.env,
     });
 
-    await expect(client.embed(['abc'])).rejects.toThrow('timed out');
-    await sleep(80);
+    await client.ready();
+    const pid = client.getWorkerInfo()?.pid;
+    expect(pid).toBeGreaterThan(0);
 
-    const info = client.getWorkerInfo();
-    if (info) {
-      expect(existsSync(`/proc/${info.pid}`)).toBe(false);
-    }
+    await expect(client.embed(['abc'])).rejects.toThrow('timed out');
+    await waitUntil(() => client.getWorkerInfo() === null && !pidAlive(pid!), 2_500);
+
+    expect(client.getWorkerInfo()).toBeNull();
+    expect(pidAlive(pid!)).toBe(false);
     await client.shutdown();
   });
 
@@ -150,5 +153,55 @@ describe('sidecar hardening', () => {
 
     expect(client.getWorkerInfo()).toBeNull();
     expect(pidAlive(pid!)).toBe(false);
+  });
+
+  it.skipIf(process.platform === 'linux')('exits a polling child within ttl * 2 after its real parent dies', async () => {
+    const childPidPath = join(tmpDir, 'child.pid');
+    const childPath = join(tmpDir, 'parent-poll-child.cjs');
+    const parentPath = join(tmpDir, 'parent-poll-parent.cjs');
+    const ttlMs = 250;
+
+    writeFileSync(childPath, `
+const fs = require('node:fs');
+const parentPid = Number(process.env.SPECKIT_EMBEDDER_SIDECAR_PARENT_PID);
+fs.writeFileSync(process.env.CHILD_PID_PATH, String(process.pid));
+function alive(pid) {
+  try { process.kill(pid, 0); return true; }
+  catch (error) { return Boolean(error && error.code === 'EPERM'); }
+}
+setInterval(() => {
+  if (!alive(parentPid)) process.exit(0);
+}, ${Math.floor(ttlMs / 4)}).unref();
+setInterval(() => {}, 1000);
+`, 'utf8');
+    writeFileSync(parentPath, `
+const { spawn } = require('node:child_process');
+const child = spawn(process.execPath, [${JSON.stringify(childPath)}], {
+  detached: true,
+  stdio: 'ignore',
+  env: {
+    ...process.env,
+    SPECKIT_EMBEDDER_SIDECAR_PARENT_PID: String(process.pid),
+    CHILD_PID_PATH: ${JSON.stringify(childPidPath)},
+  },
+});
+child.unref();
+setInterval(() => {}, 1000);
+`, 'utf8');
+
+    const parent = spawn(process.execPath, [parentPath], { stdio: 'ignore' });
+    try {
+      await waitUntil(() => existsSync(childPidPath), 1000);
+      const childPid = Number(readFileSync(childPidPath, 'utf8'));
+      expect(pidAlive(childPid)).toBe(true);
+
+      parent.kill('SIGTERM');
+      await waitUntil(() => !pidAlive(parent.pid!), 1000);
+      await waitUntil(() => !pidAlive(childPid), ttlMs * 2);
+
+      expect(pidAlive(childPid)).toBe(false);
+    } finally {
+      if (parent.pid && pidAlive(parent.pid)) parent.kill('SIGKILL');
+    }
   });
 });

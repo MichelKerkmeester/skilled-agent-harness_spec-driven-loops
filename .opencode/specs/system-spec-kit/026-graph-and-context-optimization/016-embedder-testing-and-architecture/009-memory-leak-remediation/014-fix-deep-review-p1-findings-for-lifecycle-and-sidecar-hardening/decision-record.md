@@ -716,3 +716,192 @@ Deep-review executor configuration existed in multiple shapes: parser schema exp
 ### Consequences
 New runtime state has one shape while immutable review artifacts with `type` remain parseable.
 <!-- /ANCHOR:adr-031 -->
+
+---
+
+<!-- ANCHOR:adr-032 -->
+## ADR-032: Cross-Process Lock Fixture Is Required for Concurrent Claims
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-TRC-002 |
+
+### Context
+A same-process `Promise.all` race does not prove lock behavior across independently scheduled runtimes.
+
+### Decision
+The loop-lock concurrent fixture now spawns two child Node processes behind a barrier and asserts exactly one fresh acquire wins.
+
+### Consequences
+REQ-002 is backed by process-level evidence instead of an event-loop scheduling surrogate.
+<!-- /ANCHOR:adr-032 -->
+
+---
+
+<!-- ANCHOR:adr-033 -->
+## ADR-033: Remove Project Cancels Queued Index Work Before Close
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-TRC-003 |
+
+### Context
+Queued daemon futures can exist before an active-work row is registered.
+
+### Decision
+Project removal cancels daemon-task rows for the project before draining active work and closing the project.
+
+### Consequences
+Queued explicit index work cannot start after `Project.close()`.
+<!-- /ANCHOR:adr-033 -->
+
+---
+
+<!-- ANCHOR:adr-034 -->
+## ADR-034: Retention Stress Drives Save Search and Index Workload Calls
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-TRC-004 |
+
+### Context
+The prior retention fixture asserted helper maps directly without an observable workload shape.
+
+### Decision
+The B5 fixture drives N save, N search, and N index workload calls through a harness and asserts both call counts and retained caps.
+
+### Consequences
+The stress evidence now proves the workload-level retention contract while staying dependency-light for sandbox replay.
+<!-- /ANCHOR:adr-034 -->
+
+---
+
+<!-- ANCHOR:adr-035 -->
+## ADR-035: RSS Benchmark Accepts Operator-Runbook Deferral Under Sandbox Blockers
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-TRC-005 |
+
+### Context
+Phase 012 required live RSS slope numbers, but this sandbox blocks reliable process enumeration and CocoIndex daemon startup.
+
+### Decision
+REQ-001 accepts either live RSS numbers or an operator-runbook deferral with exact sandbox-blocker evidence.
+
+### Consequences
+The phase is honest about missing slope numbers without keeping an un-runnable local benchmark gate open.
+<!-- /ANCHOR:adr-035 -->
+
+---
+
+<!-- ANCHOR:adr-036 -->
+## ADR-036: SC-003 Reconnect Uses Temp-Workspace Harness Equivalence
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-TRC-006 |
+
+### Context
+A live production MCP parent-disconnect run would disturb the current tool session.
+
+### Decision
+Treat the temp-workspace launcher lease Vitest as equivalent evidence for stale-heartbeat reconnect/reclaim behavior, and keep the manual production command as operator follow-up.
+
+### Consequences
+SC-003 is covered without mutating or killing the active production MCP process.
+<!-- /ANCHOR:adr-036 -->
+
+---
+
+<!-- ANCHOR:adr-037 -->
+## ADR-037: Index Cancel Needs Typed Client Transport Coverage
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-TRC-007 |
+
+### Context
+Helper-level cancel protocol tests did not prove the client-facing request and response mapping.
+
+### Decision
+Lifecycle tests now exercise `DaemonClient.index_cancel()` through encoded request and decoded response boundaries.
+
+### Consequences
+`reqId` and `indexId` propagation is covered at the public client transport surface.
+<!-- /ANCHOR:adr-037 -->
+
+---
+
+<!-- ANCHOR:adr-038 -->
+## ADR-038: Parent-Death Polling Requires a Real Parent and Child
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-TRC-009 |
+
+### Context
+Asserting only the parent PID environment variable cannot prove the polling loop exits an orphaned worker.
+
+### Decision
+The sidecar hardening suite now spawns a real parent and detached polling child, kills the parent, and observes the child exit within `ttlMs * 2` on polling platforms.
+
+### Consequences
+macOS parent-death behavior is proven by observable process exit rather than env wiring alone.
+<!-- /ANCHOR:adr-038 -->
+
+---
+
+<!-- ANCHOR:adr-039 -->
+## ADR-039: Timeout-Kill Assertions Use Portable Child Liveness
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-TRC-010 |
+
+### Context
+`/proc/<pid>` checks are false positives on macOS because `/proc` does not exist.
+
+### Decision
+Timeout-kill fixtures now use `process.kill(pid, 0)` liveness and a SIGTERM-ignoring child to prove SIGKILL escalation.
+
+### Consequences
+The test fails if the child remains alive on macOS or Linux.
+<!-- /ANCHOR:adr-039 -->
+
+---
+
+<!-- ANCHOR:adr-040 -->
+## ADR-040: Phase 010 Memory Scan Gap Stays Explicit
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-TRC-011 |
+
+### Context
+Phase 010 saw `memory_index_scan` but both tool calls were cancelled, so the scan did not complete.
+
+### Decision
+The implementation summary records that gap directly and cites B5 runtime-retention replay as substitute closure evidence, not as proof that the scan ran.
+
+### Consequences
+Future operators can distinguish unavailable live scan evidence from validated runtime-retention coverage.
+<!-- /ANCHOR:adr-040 -->

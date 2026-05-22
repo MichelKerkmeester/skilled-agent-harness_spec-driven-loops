@@ -133,6 +133,7 @@ Existing caches and queues were hardened in place:
 |---------|--------|----------|
 | `node mcp_server/node_modules/vitest/vitest.mjs run mcp_server/tests/lib/memory/ mcp_server/tests/lib/runtime/ --config mcp_server/vitest.config.ts` | PASSED | Parent verified: 4 files, 8 tests passed. |
 | `node mcp_server/node_modules/vitest/vitest.mjs run mcp_server/tests/embedders/sidecar-hardening.vitest.ts mcp_server/tests/providers/ mcp_server/tests/memory-runtime-retention.vitest.ts --config mcp_server/vitest.config.ts` | PASSED | Parent verified: 3 files, 9 tests passed. |
+| B5 fixture-validity replay | PASSED | `memory-runtime-retention.vitest.ts` drives 250 save/search/index workload calls and observes retained caps; `sidecar-hardening.vitest.ts` uses portable child liveness checks, SIGKILL escalation, and a real parent + detached polling child fixture. Targeted B5 runs passed 4/4 and 5/5. |
 | `npm run typecheck --workspace=@spec-kit/mcp-server` | PASSED | Parent verified: exit 0. |
 | `npm run build --workspace=@spec-kit/mcp-server` | PASSED | Exit 0. Output tail: `tsc --build && node scripts/finalize-dist.mjs`. |
 | `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit` | PASSED | Exit 0. Counted 0 errors and 44 non-blocking warnings, matching the expected pre-existing alignment baseline. |
@@ -145,7 +146,7 @@ Existing caches and queues were hardened in place:
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. macOS has no `PR_SET_PDEATHSIG`, so sidecar parent-death behavior uses child-side parent PID polling. The current polling interval is 250 ms, so orphan detection can lag by up to roughly one polling interval plus scheduler delay.
+1. macOS has no `PR_SET_PDEATHSIG`, so sidecar parent-death behavior uses child-side parent PID polling. B5 adds a macOS/non-Linux polling fixture that kills a real parent and observes the detached child exit within `ttlMs * 2`.
 2. The finalization pass intentionally did not rerun broader Vitest suites; the parent agent had already verified the targeted runtime-retention suites.
 3. Alignment drift verification still reports the pre-existing 44 warning baseline and 0 errors. The warnings are out of scope for this phase.
 4. `git status --short` showed runtime database/launcher artifacts outside this phase, including skill-advisor SQLite files and code-graph readiness state. Those are workspace noise and are excluded from the commit handoff.

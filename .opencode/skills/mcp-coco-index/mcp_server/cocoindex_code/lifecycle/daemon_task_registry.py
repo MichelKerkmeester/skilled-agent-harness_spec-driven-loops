@@ -125,6 +125,24 @@ class DaemonTaskRegistry:
                     row.future.cancel()
             return list(rows)
 
+    def cancel_project(self, project_key: str) -> list[DaemonTaskRow]:
+        """Cancel running or queued daemon work for a project before removal."""
+        with self._lock:
+            rows = [
+                row
+                for row in self._rows.values()
+                if row.project_key == project_key and row.status in ("running", "queued")
+            ]
+            for row in rows:
+                row.status = "cancelling"
+                if row.cancel_event is not None:
+                    row.cancel_event.set()
+                if row.task is not None:
+                    row.task.cancel()
+                if row.future is not None:
+                    row.future.cancel()
+            return list(rows)
+
     async def shutdown(self, timeout_seconds: float = 10.0) -> list[DaemonTaskRow]:
         rows = self.cancel()
         tasks = [row.task for row in rows if row.task is not None]

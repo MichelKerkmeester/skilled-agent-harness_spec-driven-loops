@@ -12,6 +12,30 @@ import { listRotatedAuditFiles, rotateIfNeeded } from '../lib/memory/audit-rotat
 import { clearAllTimers, getRegisteredTimerCount, registerInterval } from '../lib/runtime/timer-registry.js';
 import { clearShutdownHooksForTests, registerShutdownHook, runShutdownHooks } from '../lib/runtime/shutdown-hooks.js';
 
+class MemoryRuntimeWorkloadHarness {
+  readonly saveRouting = new BoundedMap<string, number>(50);
+  readonly searchSessions = new TtlMap<string, string[]>(25);
+  readonly indexJobs = new BoundedMap<string, { state: string }>(10);
+  saveCalls = 0;
+  searchCalls = 0;
+  indexCalls = 0;
+
+  save(index: number): void {
+    this.saveCalls += 1;
+    this.saveRouting.set(`save-${index}`, index);
+  }
+
+  search(index: number): void {
+    this.searchCalls += 1;
+    this.searchSessions.set(`session-${index}`, [`result-${index}`], 60_000);
+  }
+
+  index(index: number): void {
+    this.indexCalls += 1;
+    this.indexJobs.set(`job-${index}`, { state: 'queued' });
+  }
+}
+
 describe('memory runtime retention stress fixtures', () => {
   let tmpDir: string;
 
@@ -26,20 +50,22 @@ describe('memory runtime retention stress fixtures', () => {
     rmSync(tmpDir, { recursive: true, force: true });
   });
 
-  it('bounds simulated save/search/index retained state under concurrent load', async () => {
-    const saveRouting = new BoundedMap<string, number>(50);
-    const searchSessions = new TtlMap<string, string[]>(25);
-    const indexJobs = new BoundedMap<string, { state: string }>(10);
+  it('bounds save/search/index workload retention state under concurrent load', async () => {
+    const workload = new MemoryRuntimeWorkloadHarness();
+    const operations = 250;
 
-    await Promise.all(Array.from({ length: 250 }, async (_value, index) => {
-      saveRouting.set(`save-${index}`, index);
-      searchSessions.set(`session-${index}`, [`result-${index}`], 60_000);
-      indexJobs.set(`job-${index}`, { state: 'queued' });
+    await Promise.all(Array.from({ length: operations }, async (_value, index) => {
+      workload.save(index);
+      workload.search(index);
+      workload.index(index);
     }));
 
-    expect(saveRouting.size).toBe(50);
-    expect(searchSessions.size).toBe(25);
-    expect(indexJobs.size).toBe(10);
+    expect(workload.saveCalls).toBe(operations);
+    expect(workload.searchCalls).toBe(operations);
+    expect(workload.indexCalls).toBe(operations);
+    expect(workload.saveRouting.size).toBe(50);
+    expect(workload.searchSessions.size).toBe(25);
+    expect(workload.indexJobs.size).toBe(10);
   });
 
   it('releases leases through shutdown hooks', async () => {
