@@ -11,6 +11,13 @@ from typing import Any
 from ..config.config import _DEFAULT_RERANK_MODEL
 from ..observability.observability import RetrievalDiagnostics
 from ..indexer.schema import QueryResult
+from .adapter_lifecycle import (
+    close_resource,
+    collect_model_garbage,
+    current_rss_bytes,
+    fallback_rss_threshold_mb,
+    measure_fallback_rss_delta,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -134,8 +141,11 @@ class CrossEncoderRerankerAdapter:
         self.model_name = model_name
         self._model: Any | None = None
         self._load_failed = False
+        self._closed = False
 
     def _load_model(self) -> Any | None:
+        if self._closed:
+            return None
         if self._model is not None:
             return self._model
         if self._load_failed:
@@ -167,6 +177,16 @@ class CrossEncoderRerankerAdapter:
             return None
 
         return self._model
+
+    def close(self) -> None:
+        """Release nested model resources; safe to call more than once."""
+        if self._closed:
+            return
+        self._closed = True
+        model = self._model
+        self._model = None
+        close_resource(model)
+        collect_model_garbage()
 
     def rerank(
         self,
@@ -245,8 +265,11 @@ class HttpSidecarRerankerAdapter:
         self.timeout_s = timeout_s if timeout_s is not None else DEFAULT_SIDECAR_TIMEOUT_S
         self._client: Any | None = None
         self._fallback_adapter: CrossEncoderRerankerAdapter | None = None
+        self._closed = False
 
     def _get_client(self) -> Any:
+        if self._closed:
+            self._closed = False
         if self._client is None:
             import httpx  # noqa: PLC0415
 
@@ -257,9 +280,24 @@ class HttpSidecarRerankerAdapter:
         return self._client
 
     def _get_fallback(self) -> CrossEncoderRerankerAdapter:
+        if self._closed:
+            self._closed = False
         if self._fallback_adapter is None:
             self._fallback_adapter = CrossEncoderRerankerAdapter(self.model_name)
         return self._fallback_adapter
+
+    def close(self) -> None:
+        """Close the HTTP client and bundled fallback adapter idempotently."""
+        if self._closed:
+            return
+        self._closed = True
+        client = self._client
+        fallback = self._fallback_adapter
+        self._client = None
+        self._fallback_adapter = None
+        close_resource(client)
+        close_resource(fallback)
+        collect_model_garbage()
 
     def _fallback_to_bundled(
         self,
@@ -271,12 +309,25 @@ class HttpSidecarRerankerAdapter:
     ) -> list[QueryResult]:
         if diagnostics is not None:
             diagnostics.record_reranker_fallback(reason)
-        return self._get_fallback().rerank(
+        before_rss = current_rss_bytes() if reason == "sidecar_5xx" else None
+        result = self._get_fallback().rerank(
             query,
             candidates,
             top_k,
             diagnostics=diagnostics,
         )
+        if before_rss is not None:
+            gate = measure_fallback_rss_delta(
+                before_rss,
+                current_rss_bytes(),
+                threshold_mb=fallback_rss_threshold_mb(),
+            )
+            logger.warning(
+                "Sidecar 5xx fallback RSS gate: severity=%s delta_mb=%.3f",
+                gate["severity"],
+                gate["delta_mb"],
+            )
+        return result
 
     def rerank(
         self,
@@ -412,6 +463,30 @@ def get_reranker_adapter(model_name: str = _DEFAULT_RERANK_MODEL) -> Any:
             adapter = CrossEncoderRerankerAdapter(model_name)
         _ADAPTERS[model_name] = adapter
     return adapter
+
+
+def close_reranker_adapter(model_name: str) -> bool:
+    """Close and evict one cached reranker adapter."""
+    keys = [model_name, f"__http_sidecar__:{model_name}"]
+    closed = False
+    for key in keys:
+        adapter = _ADAPTERS.pop(key, None)
+        if adapter is None:
+            continue
+        close_resource(adapter)
+        closed = True
+    collect_model_garbage()
+    return closed
+
+
+def close_all_reranker_adapters() -> int:
+    """Close all cached reranker adapters before clearing the cache."""
+    adapters = list(_ADAPTERS.values())
+    _ADAPTERS.clear()
+    for adapter in adapters:
+        close_resource(adapter)
+    collect_model_garbage()
+    return len(adapters)
 
 
 def rerank(

@@ -70,6 +70,7 @@ class _RecordedFallback:
 
     model_name: str
     calls: list[dict[str, Any]] = field(default_factory=list)
+    close_count: int = 0
 
     def rerank(self, query, candidates, top_k, *, diagnostics=None):
         self.calls.append(
@@ -81,6 +82,9 @@ class _RecordedFallback:
             }
         )
         return candidates
+
+    def close(self):
+        self.close_count += 1
 
 
 def test_happy_path_returns_reranked_results():
@@ -257,3 +261,108 @@ def test_dispatch_routes_to_bundled_when_env_explicit_false(monkeypatch):
 
     adapter = get_reranker_adapter(_DEFAULT_MODEL)
     assert isinstance(adapter, CrossEncoderRerankerAdapter)
+
+
+def test_http_sidecar_close_is_idempotent_and_closes_nested_client_and_fallback():
+    adapter = HttpSidecarRerankerAdapter(_DEFAULT_MODEL, port=8765, timeout_s=1.0)
+    _install_mock_transport(adapter, lambda request: httpx.Response(200, json={"results": []}))
+    client = adapter._client
+    fallback = _install_failing_fallback(adapter)
+
+    adapter.close()
+    adapter.close()
+
+    assert client is not None and client.is_closed
+    assert fallback.close_count == 1
+    assert adapter._client is None
+    assert adapter._fallback_adapter is None
+
+
+def test_cross_encoder_close_is_idempotent():
+    from cocoindex_code.rerankers.reranker import CrossEncoderRerankerAdapter
+
+    class FakeModel:
+        def __init__(self):
+            self.close_count = 0
+
+        def close(self):
+            self.close_count += 1
+
+    adapter = CrossEncoderRerankerAdapter(_DEFAULT_MODEL)
+    model = FakeModel()
+    adapter._model = model
+
+    adapter.close()
+    adapter.close()
+
+    assert model.close_count == 1
+    assert adapter._model is None
+
+
+def test_jina_close_is_idempotent():
+    from cocoindex_code.rerankers.rerankers_jina_v3 import JinaRerankerAdapter
+
+    class FakeModel:
+        def __init__(self):
+            self.close_count = 0
+
+        def close(self):
+            self.close_count += 1
+
+    adapter = JinaRerankerAdapter("jinaai/jina-reranker-v3")
+    model = FakeModel()
+    adapter._model = model
+
+    adapter.close()
+    adapter.close()
+
+    assert model.close_count == 1
+    assert adapter._model is None
+
+
+def test_close_all_reranker_adapters_closes_before_clearing_cache(monkeypatch):
+    monkeypatch.setattr(reranker_mod, "_ADAPTERS", {})
+    first = _RecordedFallback("a")
+    second = _RecordedFallback("b")
+    reranker_mod._ADAPTERS["a"] = first
+    reranker_mod._ADAPTERS["b"] = second
+
+    closed_count = reranker_mod.close_all_reranker_adapters()
+    reranker_mod.close_all_reranker_adapters()
+
+    assert closed_count == 2
+    assert first.close_count == 1
+    assert second.close_count == 1
+    assert reranker_mod._ADAPTERS == {}
+
+
+def test_measure_fallback_rss_delta_below_and_above_threshold(caplog):
+    from cocoindex_code.rerankers.adapter_lifecycle import measure_fallback_rss_delta
+
+    below = measure_fallback_rss_delta(100 * 1024 * 1024, 100 * 1024 * 1024, threshold_mb=0)
+    assert below["severity"] == "P2-default"
+    assert below["delta_mb"] == 0
+
+    caplog.set_level("WARNING", logger="cocoindex_code.rerankers.adapter_lifecycle")
+    above = measure_fallback_rss_delta(100 * 1024 * 1024, 111 * 1024 * 1024, threshold_mb=10)
+    assert above["severity"] == "P1-escalation-candidate"
+    assert above["delta_mb"] == 11
+    assert "Fallback RSS growth detected" in caplog.text
+
+
+def test_http_5xx_fallback_records_rss_gate(monkeypatch, caplog):
+    adapter = HttpSidecarRerankerAdapter(_DEFAULT_MODEL, port=8765, timeout_s=1.0)
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        return httpx.Response(503, json={"detail": "unavailable"})
+
+    _install_mock_transport(adapter, handler)
+    _install_failing_fallback(adapter)
+    rss_values = iter([100 * 1024 * 1024, 101 * 1024 * 1024])
+    monkeypatch.setattr(reranker_mod, "current_rss_bytes", lambda: next(rss_values))
+    monkeypatch.setattr(reranker_mod, "fallback_rss_threshold_mb", lambda: 10.0)
+    caplog.set_level("WARNING", logger="cocoindex_code.rerankers.reranker")
+
+    adapter.rerank("q", _candidates(3), top_k=3, diagnostics=RetrievalDiagnostics())
+
+    assert "Sidecar 5xx fallback RSS gate: severity=P2-default" in caplog.text

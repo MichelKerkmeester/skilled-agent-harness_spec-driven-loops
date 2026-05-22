@@ -29,6 +29,7 @@ from .reranker import (
     _available_ram_bytes,
     _maybe_log_scores,
 )
+from .adapter_lifecycle import close_resource, collect_model_garbage
 from ..observability.observability import RetrievalDiagnostics
 from ..indexer.schema import QueryResult
 
@@ -55,8 +56,11 @@ class JinaRerankerAdapter:
         self._model: Any | None = None
         self._device: str = "cpu"
         self._load_failed = False
+        self._closed = False
 
     def _load_model(self) -> Any | None:
+        if self._closed:
+            return None
         if self._model is not None:
             return self._model
         if self._load_failed:
@@ -115,6 +119,16 @@ class JinaRerankerAdapter:
             return None
 
         return self._model
+
+    def close(self) -> None:
+        """Release the loaded Jina model; safe to call repeatedly."""
+        if self._closed:
+            return
+        self._closed = True
+        model = self._model
+        self._model = None
+        close_resource(model)
+        collect_model_garbage()
 
     def rerank(
         self,

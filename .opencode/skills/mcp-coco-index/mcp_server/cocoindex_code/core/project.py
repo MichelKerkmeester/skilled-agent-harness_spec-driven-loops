@@ -33,9 +33,13 @@ class Project:
     _index_lock: asyncio.Lock
     _initial_index_done: bool = False
     _indexing_stats: IndexingProgress | None = None
+    _closed: bool = False
 
     def close(self) -> None:
         """Close project resources to release file handles (LMDB, SQLite)."""
+        if self._closed:
+            return
+        self._closed = True
         try:
             db = self._env.get_context(SQLITE_DB)
             db.close()
@@ -134,4 +138,5 @@ class Project:
         result._env = env
         result._app = app
         result._index_lock = asyncio.Lock()
+        result._closed = False
         return result

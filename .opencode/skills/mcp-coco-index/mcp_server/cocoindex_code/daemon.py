@@ -364,6 +364,7 @@ class ProjectRegistry:
         self._embedder_by_config_hash: dict[str, Embedder] = {}
         self._project_effective_config_hash: dict[str, str] = {}
         self._current_index_meta: dict[str, dict[str, Any] | None] = {}
+        self._closed = False
 
     async def get_project(self, project_root: str, *, suppress_auto_index: bool = False) -> Project:
         """Get or create a Project for the given root. Lazy initialization.
@@ -374,6 +375,7 @@ class ProjectRegistry:
         IndexRequest, SearchRequest with refresh) should pass
         ``suppress_auto_index=True``.
         """
+        self._closed = False
         if project_root in self._projects:
             self._refresh_project_if_config_changed(project_root)
         if project_root not in self._projects:
@@ -429,6 +431,24 @@ class ProjectRegistry:
         self._project_effective_config_hash[project_root] = effective_hash
         return self._embedder_by_config_hash[effective_hash]
 
+    def _close_embedder(self, embedder: Embedder | None) -> None:
+        if embedder is None:
+            return
+        close = getattr(embedder, "close", None)
+        if callable(close):
+            try:
+                close()
+            except Exception:
+                logger.exception("Embedder close failed during registry cleanup")
+
+    def _evict_embedder_hash_if_unused(self, effective_hash: str | None) -> None:
+        if not effective_hash:
+            return
+        if effective_hash in self._project_effective_config_hash.values():
+            return
+        embedder = self._embedder_by_config_hash.pop(effective_hash, None)
+        self._close_embedder(embedder)
+
     def _refresh_project_if_config_changed(self, project_root: str) -> None:
         if project_root in self._projects and project_root not in self._project_effective_config_hash:
             return
@@ -436,10 +456,12 @@ class ProjectRegistry:
         effective_hash = str(runtime_meta.get("effective_config_hash"))
         if self._project_effective_config_hash.get(project_root) == effective_hash:
             return
+        old_hash = self._project_effective_config_hash.get(project_root)
         project = self._projects.pop(project_root, None)
         if project is not None:
             project.close()
         self._project_effective_config_hash.pop(project_root, None)
+        self._evict_embedder_hash_if_unused(old_hash)
 
     def should_wait_for_indexing(self, project_root: str) -> bool:
         """Check if search should wait before querying.
@@ -909,14 +931,15 @@ class ProjectRegistry:
 
         was_loaded = project_root in self._projects
         project = self._projects.pop(project_root, None)
+        effective_hash = self._project_effective_config_hash.pop(project_root, None)
         self._index_locks.pop(project_root, None)
         self._load_time_done.pop(project_root, None)
-        self._project_effective_config_hash.pop(project_root, None)
         self._current_index_meta.pop(project_root, None)
         if project is not None:
             project.close()
             del project
-            gc.collect()
+        self._evict_embedder_hash_if_unused(effective_hash)
+        gc.collect()
         return was_loaded
 
     def remove_project(self, project_root: str) -> bool:
@@ -943,11 +966,30 @@ class ProjectRegistry:
         """Close all loaded projects and release resources."""
         import gc
 
+        if self._closed:
+            return
+        self._closed = True
         for project in self._projects.values():
             project.close()
         self._projects.clear()
         self._index_locks.clear()
         self._load_time_done.clear()
+        seen_embedder_ids: set[int] = set()
+        for embedder in [self._embedder, *self._embedder_by_config_hash.values()]:
+            embedder_id = id(embedder)
+            if embedder_id in seen_embedder_ids:
+                continue
+            seen_embedder_ids.add(embedder_id)
+            self._close_embedder(embedder)
+        try:
+            from .rerankers.reranker import close_all_reranker_adapters
+
+            close_all_reranker_adapters()
+        except Exception:
+            logger.exception("Reranker adapter cache cleanup failed during registry shutdown")
+        self._embedder_by_config_hash.clear()
+        self._project_effective_config_hash.clear()
+        self._current_index_meta.clear()
         gc.collect()
 
     def list_projects(self) -> list[DaemonProjectInfo]:

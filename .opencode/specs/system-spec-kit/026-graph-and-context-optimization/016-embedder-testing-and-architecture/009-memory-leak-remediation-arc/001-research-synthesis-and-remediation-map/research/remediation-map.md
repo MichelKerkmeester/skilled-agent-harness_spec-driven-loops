@@ -68,4 +68,14 @@ The implementation tracks active index work by exact `reqId`/`indexId`, blocks n
 
 Verification evidence is recorded in `006-cocoindex-remove-cancel-and-index-lifecycle/implementation-summary.md`. Targeted lifecycle pytest passed with 15 tests; full existing pytest collection is blocked in this sandbox by missing Python dependencies.
 
+## Phase 008 Completion Evidence
+
+Items #11, #12, and #13 now have sidecar, adapter, and registry lifecycle implementation surfaces under `.opencode/skills/system-rerank-sidecar/` and `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/`.
+
+The sidecar ensure path records `{pid, port, ownerToken, startedAtIso, lastHealthIso, executablePath, canonicalConfigHash}` rows in `<sidecar-state-dir>/.sidecar-ledger.json`, reuses only healthy matching-owner rows, refuses unknown live owners, and only reclaims dead exact-PID ledger rows. The implementation does not send process signals for unknown-owner cleanup and does not mark sidecars process-sweep eligible.
+
+The reranker path adds idempotent `close()` methods for HTTP sidecar, bundled CrossEncoder, Jina, fallback adapters, and `_ADAPTERS` cache eviction. The CocoIndex registry closes cached embedders on config-hash eviction, project removal, and `close_all()` after phase-006 active-work drain ordering; daemon `close_all()` also invokes the reranker adapter cache close helper. The 5xx fallback RSS gate records `P2-default` unless a configurable threshold is exceeded, at which point it logs `P1-escalation-candidate` evidence for phase 010.
+
+Verification evidence is recorded in `008-sidecar-local-model-and-adapter-lifecycle/implementation-summary.md`. Targeted sidecar ledger pytest passed with 10 tests; targeted reranker/registry pytest passed with 38 tests; Python compile and OpenCode alignment checks passed. Existing live sidecar integration tests are blocked in this sandbox by localhost bind denial (`Operation not permitted`) on `127.0.0.1:8766`; that path uses untouched `start.sh` and `rerank_sidecar.py` and is recorded as an out-of-scope sandbox baseline.
+
 <!-- /ANCHOR:remediation-map -->
