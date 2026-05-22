@@ -1,0 +1,26 @@
+{
+  "level": "feature",
+  "specFolder": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/006-collateral-doctor-playbook",
+  "description": "Phase 006 of 118 FULL ISOLATE + NO MCP arc. Updates 4 collateral files that still reference the removed mcp__mk_spec_memory__deep_loop_graph_* MCP tools so they invoke the deep-loop-runtime .cjs scripts instead: /doctor command + 2 sub-actions and the system-code-graph manual testing playbook scenario. Depends on phase 005 (workflow YAMLs already migrated).",
+  "keywords": [
+    "006",
+    "118",
+    "collateral-update",
+    "doctor",
+    "system-code-graph",
+    "deep-loop-runtime",
+    "mcp-tool-removal",
+    "script-shim",
+    "playbook",
+    "phase"
+  ],
+  "lastUpdated": "2026-05-22T19:50:00.000Z",
+  "specId": "006",
+  "folderSlug": "collateral-doctor-playbook",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "118-deep-loop-full-isolation-no-mcp"
+  ],
+  "memorySequence": 6,
+  "memoryNameHistory": []
+}

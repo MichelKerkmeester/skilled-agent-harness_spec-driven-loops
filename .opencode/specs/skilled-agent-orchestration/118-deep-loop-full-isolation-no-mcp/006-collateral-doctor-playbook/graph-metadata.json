@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/006-collateral-doctor-playbook",
+  "spec_folder": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/006-collateral-doctor-playbook",
+  "parent_id": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/005-yaml-workflow-update"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/003-script-shim-and-db-relocation",
+      "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/004-mcp-tool-surface-removal",
+      "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/007-test-migration"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase 006 collateral",
+      "doctor deep-loop update",
+      "system-code-graph playbook update",
+      "deep_loop_graph mcp tool removal collateral"
+    ],
+    "key_topics": [
+      "doctor-collateral",
+      "playbook-scenario-update",
+      "mcp-tool-replacement",
+      "script-shim-invocation"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      "doctor",
+      "system-code-graph",
+      "deep-loop-runtime",
+      "mcp__mk_spec_memory__deep_loop_graph_*"
+    ],
+    "causal_summary": "Updates 4 collateral files (.opencode/commands/doctor.md, .opencode/commands/doctor/_routes.yaml, .opencode/commands/doctor/update.md, .opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/009-deep-loop-graph-convergence-yaml-fire.md) to replace mcp__mk_spec_memory__deep_loop_graph_<X> tool invocations with direct node .opencode/skills/deep-loop-runtime/scripts/<X>.cjs --health-check calls. Output format (JSON to stdout) is unchanged so most downstream assertions remain valid.",
+    "created_at": "2026-05-22T19:50:00Z",
+    "last_save_at": "2026-05-22T19:50:00Z",
+    "save_lineage": "manual_phase_scaffold",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ]
+  }
+}

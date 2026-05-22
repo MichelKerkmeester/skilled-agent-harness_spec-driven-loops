@@ -1,0 +1,25 @@
+{
+  "level": "phase",
+  "specFolder": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp",
+  "description": "Phase parent for FULL ISOLATE + NO MCP execution — overrides 117 SPLIT ruling per user directive. Eight phase children migrate all deep-loop / coverage-graph infrastructure to a new deep-loop-runtime/ peer skill; replaces 4 MCP tools with .cjs script invocations.",
+  "keywords": [
+    "118",
+    "deep-loop",
+    "coverage-graph",
+    "full-isolation",
+    "no-mcp",
+    "deep-loop-runtime",
+    "peer-skill",
+    "script-shim",
+    "skilled-agent-orchestration",
+    "phased-implementation"
+  ],
+  "lastUpdated": "2026-05-22T18:10:00.000Z",
+  "specId": "118",
+  "folderSlug": "deep-loop-full-isolation-no-mcp",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 118,
+  "memoryNameHistory": []
+}

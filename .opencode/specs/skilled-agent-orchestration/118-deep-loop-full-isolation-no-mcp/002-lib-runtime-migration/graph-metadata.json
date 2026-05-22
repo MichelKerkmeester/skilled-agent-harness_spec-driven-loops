@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/002-lib-runtime-migration",
+  "spec_folder": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/002-lib-runtime-migration",
+  "parent_id": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/001-runtime-skill-scaffold"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/003-script-shim-and-db-relocation",
+      "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/004-mcp-tool-surface-removal"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "118/002 lib runtime migration",
+      "deep-loop lib move",
+      "coverage-graph lib move",
+      "deep-loop-runtime lib population",
+      "118/002 plan",
+      "118/002 tasks",
+      "118/002 checklist"
+    ],
+    "key_topics": [
+      "118",
+      "002",
+      "lib",
+      "runtime",
+      "migration",
+      "deep-loop",
+      "coverage-graph",
+      "git-mv",
+      "tsc",
+      "import-patch"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-loop-runtime",
+        "kind": "skill",
+        "path": ".opencode/skills/deep-loop-runtime/",
+        "source": "derived"
+      },
+      {
+        "name": "system-spec-kit",
+        "kind": "skill",
+        "path": ".opencode/skills/system-spec-kit/",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 002 of the FULL_ISOLATE_NO_MCP arc moves 13 lib .ts files from system-spec-kit/mcp_server/lib/{deep-loop,coverage-graph}/ into the deep-loop-runtime/lib/ peer skill scaffolded in phase 001. Uses git mv to preserve history; patches internal cross-imports inside the moved set so tsc --noEmit is clean from the runtime skill root. Downstream MCP handlers in system-spec-kit/mcp_server/handlers/coverage-graph/*.ts compile-break by design and are repaired by phases 003-005 (script shims, handler removal, tool schema removal, workflow YAML swap). DB file relocation for deep-loop-graph.sqlite is phase 003's job; phase 002 only relocates coverage-graph-db.ts so the schema owner moves with the rest of coverage-graph/.",
+    "created_at": "2026-05-22T19:50:00Z",
+    "last_save_at": "2026-05-22T19:50:00Z",
+    "save_lineage": "manual_phase_child_scaffold",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
+  }
+}
+</content>
+</invoke>

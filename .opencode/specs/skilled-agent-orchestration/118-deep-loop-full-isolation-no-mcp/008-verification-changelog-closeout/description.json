@@ -1,0 +1,26 @@
+{
+  "level": "feature",
+  "specFolder": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/008-verification-changelog-closeout",
+  "description": "Final phase 008 of the 118 FULL ISOLATE + NO MCP arc. Runs the full verification sweep (pnpm vitest, verify_alignment_drift on deep-loop-runtime + spec_kit assets, recursive strict-validate of the 118 phase parent, consumer grep for removed MCP tool IDs); bumps .opencode/skills/deep-review/SKILL.md from v1.3.3.0 to v1.4.0.0 with a matching changelog/v1.4.0.0.md per sk-doc/assets/changelog_template.md; finalizes .opencode/skills/deep-loop-runtime/SKILL.md and ships its initial-release changelog; drops the deferred-from-116 resource-map at .opencode/specs/skilled-agent-orchestration/116-deep-review-complexity/008-playbooks-and-default-calibration/resource-map.md using post-118 file paths; flips the 118 parent spec.md Status to Complete; refreshes parent + 8 child graph-metadata.json via generate-context.js; lands a single closeout commit. Depends on phase 007 (test migration complete + vitest green).",
+  "keywords": [
+    "008",
+    "118",
+    "closeout",
+    "verification",
+    "changelog",
+    "deep-review-v1.4.0.0",
+    "deep-loop-runtime-initial-release",
+    "resource-map",
+    "parent-status-complete",
+    "phase"
+  ],
+  "lastUpdated": "2026-05-22T19:55:00.000Z",
+  "specId": "008",
+  "folderSlug": "verification-changelog-closeout",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "118-deep-loop-full-isolation-no-mcp"
+  ],
+  "memorySequence": 8,
+  "memoryNameHistory": []
+}

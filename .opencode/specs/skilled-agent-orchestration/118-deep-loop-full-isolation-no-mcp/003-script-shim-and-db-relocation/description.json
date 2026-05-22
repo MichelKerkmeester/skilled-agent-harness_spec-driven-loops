@@ -1,0 +1,41 @@
+{
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/003-script-shim-and-db-relocation",
+  "description": "Phase 003 — Create 4 .cjs script entry points (convergence/upsert/query/status) replacing the deep_loop_graph_* MCP tools, and relocate deep-loop-graph.sqlite ownership from system-spec-kit/mcp_server/ into .opencode/skills/deep-loop-runtime/storage/. Scripts own per-invocation DB open/close lifecycle (no daemon). ADR-001 captures the choice with three alternatives and 5/5 Five Checks.",
+  "keywords": [
+    "118",
+    "003",
+    "script-shim",
+    "db-relocation",
+    "deep-loop-runtime",
+    "convergence-cjs",
+    "upsert-cjs",
+    "query-cjs",
+    "status-cjs",
+    "per-invocation-db-ownership",
+    "no-mcp"
+  ],
+  "trigger_phrases": [
+    "118/003 script shim",
+    "deep-loop script shim",
+    "deep-loop DB relocation",
+    "convergence.cjs upsert.cjs query.cjs status.cjs",
+    "deep-loop-runtime storage",
+    "118/003 plan",
+    "118/003 tasks",
+    "118/003 checklist",
+    "118/003 ADR-001",
+    "118/003 summary"
+  ],
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "lastUpdated": "2026-05-22T19:50:00.000Z",
+  "specId": "003",
+  "folderSlug": "script-shim-and-db-relocation",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "118-deep-loop-full-isolation-no-mcp"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

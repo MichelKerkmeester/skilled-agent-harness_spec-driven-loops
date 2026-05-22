@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/005-yaml-workflow-update",
+  "spec_folder": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/005-yaml-workflow-update",
+  "parent_id": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/004-mcp-tool-surface-removal",
+      "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/003-script-shim-and-db-relocation"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/006-collateral-doctor-playbook",
+      "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/007-test-migration"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "118 yaml workflow update",
+      "deep-loop graph mcp removal yaml",
+      "deep-review yaml bash shim",
+      "deep-research yaml bash shim"
+    ],
+    "key_topics": [
+      "yaml-workflow-update",
+      "mcp-tool-removal",
+      "bash-script-shim",
+      "convergence.cjs",
+      "upsert.cjs",
+      "deep-loop-runtime",
+      "deep-review",
+      "deep-research"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      "spec_kit_deep-review_auto.yaml",
+      "spec_kit_deep-review_confirm.yaml",
+      "spec_kit_deep-research_auto.yaml",
+      "spec_kit_deep-research_confirm.yaml",
+      "mcp__mk_spec_memory__deep_loop_graph_convergence",
+      "mcp__mk_spec_memory__deep_loop_graph_upsert",
+      "convergence.cjs",
+      "upsert.cjs",
+      "deep-loop-runtime"
+    ],
+    "causal_summary": "Phase 005 of 118 FULL_ISOLATE_NO_MCP. Rewrites 10 mcp_tool: call sites across 4 spec_kit_deep-*.yaml workflow files to bash invocations of the deep-loop-runtime .cjs script shims (convergence.cjs, upsert.cjs) authored in phase 003. Depends on phase 004 having deleted the 4 mcp__mk_spec_memory__deep_loop_graph_* tool registrations first; without that, YAML rewrites would alias against still-registered tool IDs. Preserves every outputs:, append_jsonl:, and skip/guard block byte-for-byte so reducer and state-machine logic downstream remain untouched. P0 gate: zero residual mcp__mk_spec_memory__deep_loop_graph references across all 4 YAMLs.",
+    "created_at": "2026-05-22T19:55:00Z",
+    "last_save_at": "2026-05-22T19:55:00Z",
+    "save_lineage": "manual_phase_005_scaffold",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ]
+  }
+}

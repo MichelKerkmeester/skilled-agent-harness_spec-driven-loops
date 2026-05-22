@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/007-test-migration",
+  "spec_folder": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/007-test-migration",
+  "parent_id": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/006-collateral-doctor-playbook"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/002-lib-runtime-migration",
+      "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/003-script-shim-and-db-relocation",
+      "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/004-mcp-tool-surface-removal",
+      "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/008-verification-changelog-closeout"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase 007 test migration",
+      "deep-loop-runtime tests split",
+      "mcp deep-loop test deletion",
+      "cjs script direct-invocation tests",
+      "db lifecycle test"
+    ],
+    "key_topics": [
+      "test-migration",
+      "vitest-config",
+      "mcp-test-deletion",
+      "direct-invocation-tests",
+      "db-lifecycle"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      "deep-loop-runtime/tests",
+      "system-spec-kit/mcp_server/tests/deep-loop",
+      "system-spec-kit/mcp_server/tests/coverage-graph",
+      "vitest",
+      "spawn-cjs helper",
+      "deep-loop-graph.sqlite"
+    ],
+    "causal_summary": "Realigns the vitest test layer to the post-isolation source layout. Three operations: MOVE 9 deep-loop unit tests + up-to-9 coverage-graph integration tests + 4 review-depth fixtures from .opencode/skills/system-spec-kit/mcp_server/tests/ into .opencode/skills/deep-loop-runtime/tests/{unit,integration}/ with import-path rewrites; DELETE MCP-handler tests that asserted on the 4 removed deep_loop_graph_* tool IDs and the corresponding tool-registration tests; CREATE 4 direct-invocation integration tests (convergence/upsert/query/status-script.vitest.ts) using a shared tests/_helpers/spawn-cjs.ts helper plus 1 lifecycle test (db-open-close.vitest.ts) on a temp DB. P0 gates: pnpm vitest run exit 0 and zero matches for orphan imports of removed code paths plus zero matches for removed-tool references in MCP-handler test folders.",
+    "created_at": "2026-05-22T20:05:00Z",
+    "last_save_at": "2026-05-22T20:05:00Z",
+    "save_lineage": "manual_phase_scaffold",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ]
+  }
+}

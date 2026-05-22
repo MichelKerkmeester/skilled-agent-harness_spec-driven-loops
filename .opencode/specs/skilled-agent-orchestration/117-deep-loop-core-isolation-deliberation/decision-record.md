@@ -39,11 +39,12 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted |
+| **Status** | Superseded by 118 user-directive override (FULL_ISOLATE_NO_MCP) |
 | **Date** | 2026-05-22 |
 | **Deciders** | sk-ai-council seats A/B/C/D + user |
 | **Decision Source** | Seat D — Adjudicator (independent reasoning; no 2-of-3 advocate majority) |
 | **Plan Confidence** | 92/100 |
+| **Superseded By** | `.opencode/specs/skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/` (user directive relaxed both "MCP tool ID stability" and "DB lifecycle in MCP server" constraints; ruling moves from SPLIT → FULL_ISOLATE_NO_MCP; see 118/spec.md §2 Problem Statement) |
 
 ---
 
