@@ -1,0 +1,25 @@
+{
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/117-deep-loop-core-isolation-deliberation",
+  "description": "AI Council deliberation evaluating whether to relocate 18 deep-loop / coverage-graph runtime files from system-spec-kit/mcp_server/ into the owning deep-* skill folders. Planning-only packet; file moves deferred to follow-on.",
+  "keywords": [
+    "117",
+    "deep-loop",
+    "coverage-graph",
+    "isolation",
+    "relocation",
+    "ai-council",
+    "cli-codex",
+    "gpt-5.5-xhigh",
+    "skilled-agent-orchestration",
+    "architectural-decision"
+  ],
+  "lastUpdated": "2026-05-22T17:50:00.000Z",
+  "specId": "117",
+  "folderSlug": "deep-loop-core-isolation-deliberation",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 117,
+  "memoryNameHistory": []
+}
