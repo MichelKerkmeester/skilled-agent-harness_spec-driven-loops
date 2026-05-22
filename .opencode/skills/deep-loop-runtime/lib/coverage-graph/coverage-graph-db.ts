@@ -250,6 +250,8 @@ const SCHEMA_SQL = `
 
 let db: Database.Database | null = null;
 let dbPath: string | null = null;
+let statementDb: Database.Database | null = null;
+const preparedStatements = new Map<string, Database.Statement>();
 
 /** Initialize (or get) the coverage graph database */
 export function initDb(dbDir: string): Database.Database {
@@ -324,7 +326,25 @@ export function closeDb(): void {
     db.close();
     db = null;
     dbPath = null;
+    statementDb = null;
+    preparedStatements.clear();
   }
+}
+
+/** Reuse prepared statements for hot coverage-graph operations. */
+function prepareStatement(sql: string): Database.Statement {
+  const currentDb = getDb();
+  if (statementDb !== currentDb) {
+    preparedStatements.clear();
+    statementDb = currentDb;
+  }
+
+  let statement = preparedStatements.get(sql);
+  if (!statement) {
+    statement = currentDb.prepare(sql);
+    preparedStatements.set(sql, statement);
+  }
+  return statement;
 }
 
 /** Build a namespace filter clause for SQL queries */
@@ -362,11 +382,11 @@ export function upsertNode(node: CoverageNode): string {
   const now = new Date().toISOString();
   const metadataStr = node.metadata ? JSON.stringify(node.metadata) : null;
 
-  const existing = d.prepare(
+  const existing = prepareStatement(
     'SELECT id FROM coverage_nodes WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
   ).get(node.specFolder, node.loopType, node.sessionId, node.id) as { id: string } | undefined;
   if (existing) {
-    d.prepare(`
+    prepareStatement(`
       UPDATE coverage_nodes SET
         kind = ?, name = ?, content_hash = ?, iteration = ?,
         metadata = ?, updated_at = ?
@@ -379,7 +399,7 @@ export function upsertNode(node: CoverageNode): string {
     return node.id;
   }
 
-  d.prepare(`
+  prepareStatement(`
     INSERT INTO coverage_nodes (
       spec_folder, loop_type, session_id, id, kind, name,
       content_hash, iteration, metadata, created_at, updated_at
@@ -397,7 +417,7 @@ export function upsertNode(node: CoverageNode): string {
 export function getNode(ns: Namespace, id: string): CoverageNode | null {
   if (!ns.sessionId) return null;
   const d = getDb();
-  const row = d.prepare(
+  const row = prepareStatement(
     'SELECT * FROM coverage_nodes WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
   ).get(ns.specFolder, ns.loopType, ns.sessionId, id) as Record<string, unknown> | undefined;
   return row ? rowToNode(row) : null;
@@ -407,7 +427,7 @@ export function getNode(ns: Namespace, id: string): CoverageNode | null {
 export function getNodes(ns: Namespace): CoverageNode[] {
   const d = getDb();
   const { clause, params } = buildNamespaceWhere(ns);
-  const rows = d.prepare(`SELECT * FROM coverage_nodes WHERE ${clause}`).all(...params) as Record<string, unknown>[];
+  const rows = prepareStatement(`SELECT * FROM coverage_nodes WHERE ${clause}`).all(...params) as Record<string, unknown>[];
   return rows.map(rowToNode);
 }
 
@@ -415,7 +435,7 @@ export function getNodes(ns: Namespace): CoverageNode[] {
 export function getNodesByKind(ns: Namespace, kind: NodeKind): CoverageNode[] {
   const d = getDb();
   const { clause, params } = buildNamespaceWhere(ns);
-  const rows = d.prepare(`SELECT * FROM coverage_nodes WHERE ${clause} AND kind = ?`).all(...params, kind) as Record<string, unknown>[];
+  const rows = prepareStatement(`SELECT * FROM coverage_nodes WHERE ${clause} AND kind = ?`).all(...params, kind) as Record<string, unknown>[];
   return rows.map(rowToNode);
 }
 
@@ -424,10 +444,10 @@ export function deleteNode(ns: Namespace, id: string): boolean {
   if (!ns.sessionId) return false;
   const d = getDb();
   const tx = d.transaction(() => {
-    d.prepare(
+    prepareStatement(
       'DELETE FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND (source_id = ? OR target_id = ?)',
     ).run(ns.specFolder, ns.loopType, ns.sessionId, id, id);
-    const result = d.prepare(
+    const result = prepareStatement(
       'DELETE FROM coverage_nodes WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
     ).run(ns.specFolder, ns.loopType, ns.sessionId, id);
     return result.changes > 0;
@@ -456,11 +476,11 @@ export function upsertEdge(edge: CoverageEdge): string | null {
   const now = new Date().toISOString();
   const metadataStr = edge.metadata ? JSON.stringify(edge.metadata) : null;
 
-  const existing = d.prepare(
+  const existing = prepareStatement(
     'SELECT id FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
   ).get(edge.specFolder, edge.loopType, edge.sessionId, edge.id) as { id: string } | undefined;
   if (existing) {
-    d.prepare(`
+    prepareStatement(`
       UPDATE coverage_edges SET
         relation = ?, weight = ?, metadata = ?
       WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?
@@ -471,7 +491,7 @@ export function upsertEdge(edge: CoverageEdge): string | null {
     return edge.id;
   }
 
-  d.prepare(`
+  prepareStatement(`
     INSERT INTO coverage_edges (
       spec_folder, loop_type, session_id, id, source_id, target_id,
       relation, weight, metadata, created_at
@@ -489,7 +509,7 @@ export function upsertEdge(edge: CoverageEdge): string | null {
 export function getEdge(ns: Namespace, id: string): CoverageEdge | null {
   if (!ns.sessionId) return null;
   const d = getDb();
-  const row = d.prepare(
+  const row = prepareStatement(
     'SELECT * FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
   ).get(ns.specFolder, ns.loopType, ns.sessionId, id) as Record<string, unknown> | undefined;
   return row ? rowToEdge(row) : null;
@@ -499,7 +519,7 @@ export function getEdge(ns: Namespace, id: string): CoverageEdge | null {
 export function getEdges(ns: Namespace): CoverageEdge[] {
   const d = getDb();
   const { clause, params } = buildNamespaceWhere(ns);
-  const rows = d.prepare(`SELECT * FROM coverage_edges WHERE ${clause}`).all(...params) as Record<string, unknown>[];
+  const rows = prepareStatement(`SELECT * FROM coverage_edges WHERE ${clause}`).all(...params) as Record<string, unknown>[];
   return rows.map(rowToEdge);
 }
 
@@ -507,7 +527,7 @@ export function getEdges(ns: Namespace): CoverageEdge[] {
 export function getEdgesFrom(ns: Namespace, sourceId: string): CoverageEdge[] {
   if (!ns.sessionId) return [];
   const d = getDb();
-  const rows = d.prepare(
+  const rows = prepareStatement(
     'SELECT * FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND source_id = ?',
   ).all(ns.specFolder, ns.loopType, ns.sessionId, sourceId) as Record<string, unknown>[];
   return rows.map(rowToEdge);
@@ -517,7 +537,7 @@ export function getEdgesFrom(ns: Namespace, sourceId: string): CoverageEdge[] {
 export function getEdgesTo(ns: Namespace, targetId: string): CoverageEdge[] {
   if (!ns.sessionId) return [];
   const d = getDb();
-  const rows = d.prepare(
+  const rows = prepareStatement(
     'SELECT * FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND target_id = ?',
   ).all(ns.specFolder, ns.loopType, ns.sessionId, targetId) as Record<string, unknown>[];
   return rows.map(rowToEdge);
@@ -531,7 +551,7 @@ export function updateEdge(
 ): boolean {
   if (!ns.sessionId) return false;
   const d = getDb();
-  const existing = d.prepare(
+  const existing = prepareStatement(
     'SELECT * FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
   ).get(ns.specFolder, ns.loopType, ns.sessionId, id) as Record<string, unknown> | undefined;
   if (!existing) return false;
@@ -539,7 +559,7 @@ export function updateEdge(
   const weight = updates.weight !== undefined ? clampWeight(updates.weight) : existing.weight as number;
   const metadataStr = updates.metadata ? JSON.stringify(updates.metadata) : existing.metadata as string | null;
 
-  d.prepare(
+  prepareStatement(
     'UPDATE coverage_edges SET weight = ?, metadata = ? WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
   ).run(weight, metadataStr, ns.specFolder, ns.loopType, ns.sessionId, id);
   return true;
@@ -549,7 +569,7 @@ export function updateEdge(
 export function deleteEdge(ns: Namespace, id: string): boolean {
   if (!ns.sessionId) return false;
   const d = getDb();
-  const result = d.prepare(
+  const result = prepareStatement(
     'DELETE FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
   ).run(ns.specFolder, ns.loopType, ns.sessionId, id);
   return result.changes > 0;
@@ -564,7 +584,7 @@ export function createSnapshot(snapshot: CoverageSnapshot): number {
   const d = getDb();
   const metricsStr = JSON.stringify(snapshot.metrics);
 
-  const result = d.prepare(`
+  const result = prepareStatement(`
     INSERT INTO coverage_snapshots (
       spec_folder, loop_type, session_id, iteration, metrics, node_count, edge_count
     )
@@ -584,14 +604,14 @@ export function createSnapshot(snapshot: CoverageSnapshot): number {
 export function getLatestSnapshot(specFolder: string, loopType: LoopType, sessionId?: string): CoverageSnapshot | null {
   const d = getDb();
   if (sessionId) {
-    const row = d.prepare(`
+    const row = prepareStatement(`
       SELECT * FROM coverage_snapshots
       WHERE spec_folder = ? AND loop_type = ? AND session_id = ?
       ORDER BY iteration DESC LIMIT 1
     `).get(specFolder, loopType, sessionId) as Record<string, unknown> | undefined;
     return row ? rowToSnapshot(row) : null;
   }
-  const row = d.prepare(`
+  const row = prepareStatement(`
     SELECT * FROM coverage_snapshots
     WHERE spec_folder = ? AND loop_type = ?
     ORDER BY iteration DESC LIMIT 1
@@ -603,14 +623,14 @@ export function getLatestSnapshot(specFolder: string, loopType: LoopType, sessio
 export function getSnapshots(specFolder: string, loopType: LoopType, sessionId?: string): CoverageSnapshot[] {
   const d = getDb();
   if (sessionId) {
-    const rows = d.prepare(`
+    const rows = prepareStatement(`
       SELECT * FROM coverage_snapshots
       WHERE spec_folder = ? AND loop_type = ? AND session_id = ?
       ORDER BY iteration ASC
     `).all(specFolder, loopType, sessionId) as Record<string, unknown>[];
     return rows.map(rowToSnapshot);
   }
-  const rows = d.prepare(`
+  const rows = prepareStatement(`
     SELECT * FROM coverage_snapshots
     WHERE spec_folder = ? AND loop_type = ?
     ORDER BY iteration ASC
@@ -634,27 +654,27 @@ export function getStats(specFolder: string, loopType: LoopType): {
 } {
   const d = getDb();
 
-  const totalNodes = (d.prepare(
+  const totalNodes = (prepareStatement(
     'SELECT COUNT(*) as c FROM coverage_nodes WHERE spec_folder = ? AND loop_type = ?',
   ).get(specFolder, loopType) as { c: number }).c;
 
-  const totalEdges = (d.prepare(
+  const totalEdges = (prepareStatement(
     'SELECT COUNT(*) as c FROM coverage_edges WHERE spec_folder = ? AND loop_type = ?',
   ).get(specFolder, loopType) as { c: number }).c;
 
   const nodesByKind: Record<string, number> = {};
-  const kindRows = d.prepare(
+  const kindRows = prepareStatement(
     'SELECT kind, COUNT(*) as c FROM coverage_nodes WHERE spec_folder = ? AND loop_type = ? GROUP BY kind',
   ).all(specFolder, loopType) as { kind: string; c: number }[];
   for (const r of kindRows) nodesByKind[r.kind] = r.c;
 
   const edgesByRelation: Record<string, number> = {};
-  const relRows = d.prepare(
+  const relRows = prepareStatement(
     'SELECT relation, COUNT(*) as c FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? GROUP BY relation',
   ).all(specFolder, loopType) as { relation: string; c: number }[];
   for (const r of relRows) edgesByRelation[r.relation] = r.c;
 
-  const lastIterRow = d.prepare(
+  const lastIterRow = prepareStatement(
     'SELECT MAX(iteration) as max_iter FROM coverage_snapshots WHERE spec_folder = ? AND loop_type = ?',
   ).get(specFolder, loopType) as { max_iter: number | null } | undefined;
   const lastIteration = lastIterRow?.max_iter ?? null;

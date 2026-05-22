@@ -8,6 +8,14 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
+const {
+  acquireWriterLock,
+  classifyExitCode,
+  installSignalHandlers,
+  maybeThrowTestFault,
+  sleepSync,
+  validateNamespaceValue,
+} = require('./_lib/cli-guards.cjs');
 
 const TSX_LOADER = path.resolve(__dirname, '..', '..', 'system-spec-kit', 'scripts', 'node_modules', 'tsx', 'dist', 'loader.mjs');
 
@@ -72,85 +80,96 @@ function jsonOut(payload) {
 
 async function main() {
   const args = parseArgs();
-  const specFolder = ensureString(args, 'specFolder');
+  const specFolder = validateNamespaceValue(ensureString(args, 'specFolder'), 'specFolder', inputError);
   const loopType = ensureString(args, 'loopType');
-  const sessionId = ensureString(args, 'sessionId');
+  const sessionId = validateNamespaceValue(ensureString(args, 'sessionId'), 'sessionId', inputError);
   if (loopType !== 'research' && loopType !== 'review') throw inputError('loopType must be "research" or "review"');
 
-  const db = await import('../lib/coverage-graph/coverage-graph-db.ts');
-  const events = readEvents(args.events);
-  const rawNodes = events
-    ? events.filter((event) => event && (event.type === 'node' || event.nodeKind || event.kind))
-    : parseJsonValue(args.nodes, [], 'nodes');
-  const rawEdges = events
-    ? events.filter((event) => event && (event.type === 'edge' || event.source || event.sourceId || event.target || event.targetId))
-    : parseJsonValue(args.edges, [], 'edges');
-  if (!Array.isArray(rawNodes) || !Array.isArray(rawEdges)) throw inputError('nodes and edges must be JSON arrays');
-  if (rawNodes.length === 0 && rawEdges.length === 0) throw inputError('At least one node or edge must be provided');
-
-  const validationErrors = [];
-  const rejectedSelfLoops = [];
-  const nodes = [];
-  const edges = [];
-
-  for (const n of rawNodes) {
-    const kind = String(n.kind || n.nodeKind || n.type || '').toUpperCase();
-    if (!n.id || typeof n.id !== 'string') {
-      validationErrors.push('Node missing required id');
-      continue;
-    }
-    if (!db.VALID_KINDS[loopType].includes(kind)) {
-      validationErrors.push(`Invalid node kind "${kind}" for loop type "${loopType}". Valid: ${db.VALID_KINDS[loopType].join(', ')}`);
-      continue;
-    }
-    const name = n.name || n.label || n.id;
-    nodes.push({
-      id: n.id,
-      specFolder,
-      loopType,
-      sessionId,
-      kind,
-      name,
-      contentHash: n.contentHash,
-      iteration: n.iteration,
-      metadata: n.metadata,
-    });
-  }
-
-  for (const e of rawEdges) {
-    const sourceId = e.sourceId || e.source;
-    const targetId = e.targetId || e.target;
-    const relation = String(e.relation || '').toUpperCase();
-    if (!e.id || typeof e.id !== 'string') {
-      validationErrors.push('Edge missing required id');
-      continue;
-    }
-    if (!sourceId || !targetId) {
-      validationErrors.push(`Edge "${e.id}" missing sourceId or targetId`);
-      continue;
-    }
-    if (sourceId === targetId) {
-      rejectedSelfLoops.push(e.id);
-      continue;
-    }
-    if (!db.VALID_RELATIONS[loopType].includes(relation)) {
-      validationErrors.push(`Invalid relation "${relation}" for loop type "${loopType}". Valid: ${db.VALID_RELATIONS[loopType].join(', ')}`);
-      continue;
-    }
-    edges.push({
-      id: e.id,
-      specFolder,
-      loopType,
-      sessionId,
-      sourceId,
-      targetId,
-      relation,
-      weight: db.clampWeight(e.weight ?? 1.0),
-      metadata: e.metadata,
-    });
-  }
-
+  let db = null;
+  let releaseWriterLock = null;
+  const cleanup = () => {
+    releaseWriterLock?.();
+    releaseWriterLock = null;
+    db?.closeDb();
+  };
   try {
+    db = await import('../lib/coverage-graph/coverage-graph-db.ts');
+    installSignalHandlers(cleanup);
+    maybeThrowTestFault();
+    const events = readEvents(args.events);
+    const rawNodes = events
+      ? events.filter((event) => event && (event.type === 'node' || event.nodeKind || event.kind))
+      : parseJsonValue(args.nodes, [], 'nodes');
+    const rawEdges = events
+      ? events.filter((event) => event && (event.type === 'edge' || event.source || event.sourceId || event.target || event.targetId))
+      : parseJsonValue(args.edges, [], 'edges');
+    if (!Array.isArray(rawNodes) || !Array.isArray(rawEdges)) throw inputError('nodes and edges must be JSON arrays');
+    if (rawNodes.length === 0 && rawEdges.length === 0) throw inputError('At least one node or edge must be provided');
+
+    const validationErrors = [];
+    const rejectedSelfLoops = [];
+    const nodes = [];
+    const edges = [];
+
+    for (const n of rawNodes) {
+      const kind = String(n.kind || n.nodeKind || n.type || '').toUpperCase();
+      if (!n.id || typeof n.id !== 'string') {
+        validationErrors.push('Node missing required id');
+        continue;
+      }
+      if (!db.VALID_KINDS[loopType].includes(kind)) {
+        validationErrors.push(`Invalid node kind "${kind}" for loop type "${loopType}". Valid: ${db.VALID_KINDS[loopType].join(', ')}`);
+        continue;
+      }
+      const name = n.name || n.label || n.id;
+      nodes.push({
+        id: n.id,
+        specFolder,
+        loopType,
+        sessionId,
+        kind,
+        name,
+        contentHash: n.contentHash,
+        iteration: n.iteration,
+        metadata: n.metadata,
+      });
+    }
+
+    for (const e of rawEdges) {
+      const sourceId = e.sourceId || e.source;
+      const targetId = e.targetId || e.target;
+      const relation = String(e.relation || '').toUpperCase();
+      if (!e.id || typeof e.id !== 'string') {
+        validationErrors.push('Edge missing required id');
+        continue;
+      }
+      if (!sourceId || !targetId) {
+        validationErrors.push(`Edge "${e.id}" missing sourceId or targetId`);
+        continue;
+      }
+      if (sourceId === targetId) {
+        rejectedSelfLoops.push(e.id);
+        continue;
+      }
+      if (!db.VALID_RELATIONS[loopType].includes(relation)) {
+        validationErrors.push(`Invalid relation "${relation}" for loop type "${loopType}". Valid: ${db.VALID_RELATIONS[loopType].join(', ')}`);
+        continue;
+      }
+      edges.push({
+        id: e.id,
+        specFolder,
+        loopType,
+        sessionId,
+        sourceId,
+        targetId,
+        relation,
+        weight: db.clampWeight(e.weight ?? 1.0),
+        metadata: e.metadata,
+      });
+    }
+
+    releaseWriterLock = acquireWriterLock(path.join(db.COVERAGE_GRAPH_DATABASE_DIR, '.deep-loop-graph-writer.lock'));
+    sleepSync(Number(process.env.DEEP_LOOP_SCRIPT_LOCK_HOLD_MS || 0));
     const result = db.batchUpsert(nodes, edges);
     const data = {
       insertedNodes: result.insertedNodes,
@@ -168,12 +187,12 @@ async function main() {
       graph_upsert_event_count: nodes.length + edges.length,
     });
   } finally {
-    db.closeDb();
+    cleanup();
   }
 }
 
 main().catch((err) => {
-  const code = err && err.code === 'INPUT_VALIDATION' ? 3 : err && (err.code === 'SQLITE_ERROR' || err.code === 'DB_ERROR') ? 2 : 1;
+  const code = classifyExitCode(err);
   jsonOut({ status: 'error', error: err instanceof Error ? err.message : String(err), code: err && err.code ? err.code : 'SCRIPT_ERROR' });
   if (code === 1) process.stderr.write(JSON.stringify({ error: err instanceof Error ? err.message : String(err), stack: err && err.stack }) + '\n');
   process.exit(code);

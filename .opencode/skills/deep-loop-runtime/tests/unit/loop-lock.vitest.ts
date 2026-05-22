@@ -1,6 +1,7 @@
 import { existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { spawn } from 'node:child_process';
 
 import { describe, expect, it } from 'vitest';
 
@@ -42,6 +43,63 @@ function knownDeadPid(): number {
   throw new Error('Could not find a known-dead pid for loop-lock test');
 }
 
+type ChildLockResult = {
+  acquired: boolean;
+  packetId: string;
+  diskPacketId: string | null;
+};
+
+function runLockChild(lockPath: string, barrierPath: string, packetId: string): Promise<ChildLockResult> {
+  const moduleUrl = new URL('../../lib/deep-loop/loop-lock.ts', import.meta.url).href;
+  const script = `
+    import { existsSync, readFileSync } from 'node:fs';
+    import { acquireLoopLock } from ${JSON.stringify(moduleUrl)};
+    const [lockPath, barrierPath, packetId] = process.argv.slice(1);
+    const deadline = Date.now() + 2000;
+    while (!existsSync(barrierPath)) {
+      if (Date.now() > deadline) throw new Error('barrier timeout');
+      Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 5);
+    }
+    const now = new Date().toISOString();
+    const result = acquireLoopLock(lockPath, {
+      ownerPid: process.pid,
+      startedAtIso: now,
+      ttlMs: 300000,
+      lastHeartbeatIso: now,
+      packetId,
+      runtimeKind: 'cli-codex',
+    });
+    let diskPacketId = null;
+    try { diskPacketId = JSON.parse(readFileSync(lockPath, 'utf8')).packet_id; } catch {}
+    process.stdout.write(JSON.stringify({ acquired: result.acquired, packetId, diskPacketId }) + '\\n');
+  `;
+
+  return new Promise((resolve, reject) => {
+    const child = spawn(process.execPath, ['--experimental-strip-types', '--input-type=module', '-e', script, lockPath, barrierPath, packetId], {
+      cwd: join(process.cwd()),
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+    let stdout = '';
+    let stderr = '';
+    child.stdout.setEncoding('utf8');
+    child.stderr.setEncoding('utf8');
+    child.stdout.on('data', (chunk: string) => {
+      stdout += chunk;
+    });
+    child.stderr.on('data', (chunk: string) => {
+      stderr += chunk;
+    });
+    child.on('error', reject);
+    child.on('close', (code) => {
+      if (code !== 0) {
+        reject(new Error(stderr || `lock child exited ${code}`));
+        return;
+      }
+      resolve(JSON.parse(stdout.trim()) as ChildLockResult);
+    });
+  });
+}
+
 describe('loop-lock', () => {
   it('acquires a new packet lock using the snake_case on-disk format', () => {
     withTempLock((lockPath) => {
@@ -71,20 +129,25 @@ describe('loop-lock', () => {
     });
   });
 
-  it('allows exactly one fresh concurrent acquire to win', async () => {
+  it('allows exactly one fresh cross-process acquire to win', async () => {
     const tempDir = mkdtempSync(join(tmpdir(), 'loop-lock-'));
     try {
       const lockPath = join(tempDir, '.deep-loop.lock');
-      const first = lockData({ packetId: 'packet-004-a' });
-      const second = lockData({ packetId: 'packet-004-b' });
+      const barrierPath = join(tempDir, 'go');
+      const children = [
+        runLockChild(lockPath, barrierPath, 'packet-004-a'),
+        runLockChild(lockPath, barrierPath, 'packet-004-b'),
+      ];
 
-      const results = await Promise.all([
-        Promise.resolve().then(() => acquireLoopLock(lockPath, first)),
-        Promise.resolve().then(() => acquireLoopLock(lockPath, second)),
-      ]);
+      await new Promise((resolve) => setTimeout(resolve, 50));
+      await import('node:fs').then(({ writeFileSync }) => writeFileSync(barrierPath, 'go', 'utf8'));
+      const results = await Promise.all(children);
 
       expect(results.filter((result) => result.acquired)).toHaveLength(1);
       expect(results.filter((result) => !result.acquired)).toHaveLength(1);
+      const winner = results.find((result) => result.acquired);
+      expect(JSON.parse(readFileSync(lockPath, 'utf8')).packet_id).toBe(winner?.packetId);
+      expect(results.every((result) => result.diskPacketId === winner?.packetId)).toBe(true);
     } finally {
       rmSync(tempDir, { recursive: true, force: true });
     }

@@ -15,7 +15,7 @@ _memory:
     recent_action: "Scaffolded 30-task breakdown across three phases."
     next_safe_action: "Confirm phase 001 PASS, then start T001."
     blockers: []
-    completion_pct: 5
+    completion_pct: 100
     key_files:
       - "tasks.md"
       - "spec.md"

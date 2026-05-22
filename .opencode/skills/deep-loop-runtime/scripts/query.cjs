@@ -8,6 +8,12 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
+const {
+  classifyExitCode,
+  installSignalHandlers,
+  maybeThrowTestFault,
+  validateNamespaceValue,
+} = require('./_lib/cli-guards.cjs');
 
 const TSX_LOADER = path.resolve(__dirname, '..', '..', 'system-spec-kit', 'scripts', 'node_modules', 'tsx', 'dist', 'loader.mjs');
 
@@ -56,19 +62,22 @@ function jsonOut(payload) {
 
 async function main() {
   const args = parseArgs();
-  const specFolder = ensureString(args, 'specFolder');
+  const specFolder = validateNamespaceValue(ensureString(args, 'specFolder'), 'specFolder', inputError);
   const loopType = ensureString(args, 'loopType');
-  const sessionId = ensureString(args, 'sessionId');
+  const sessionId = validateNamespaceValue(ensureString(args, 'sessionId'), 'sessionId', inputError);
   const queryType = args.queryType || args.query;
   if (loopType !== 'research' && loopType !== 'review') throw inputError('loopType must be "research" or "review"');
   if (!queryType || typeof queryType !== 'string') throw inputError('queryType is required');
 
-  const query = await import('../lib/coverage-graph/coverage-graph-query.ts');
-  const db = await import('../lib/coverage-graph/coverage-graph-db.ts');
   const ns = { specFolder, loopType, sessionId };
   const limit = Math.min(Math.max(Number(args.limit || 50), 1), 200);
+  let db = null;
 
   try {
+    db = await import('../lib/coverage-graph/coverage-graph-db.ts');
+    installSignalHandlers(() => db?.closeDb());
+    maybeThrowTestFault();
+    const query = await import('../lib/coverage-graph/coverage-graph-query.ts');
     let data;
     switch (queryType) {
       case 'uncovered_questions':
@@ -107,12 +116,12 @@ async function main() {
     }
     jsonOut({ status: 'ok', data });
   } finally {
-    db.closeDb();
+    db?.closeDb();
   }
 }
 
 main().catch((err) => {
-  const code = err && err.code === 'INPUT_VALIDATION' ? 3 : err && (err.code === 'SQLITE_ERROR' || err.code === 'DB_ERROR') ? 2 : 1;
+  const code = classifyExitCode(err);
   jsonOut({ status: 'error', error: err instanceof Error ? err.message : String(err), code: err && err.code ? err.code : 'SCRIPT_ERROR' });
   if (code === 1) process.stderr.write(JSON.stringify({ error: err instanceof Error ? err.message : String(err), stack: err && err.stack }) + '\n');
   process.exit(code);

@@ -91,13 +91,13 @@ appendJsonlRecord(path: string, record: Record<string, unknown>): void
 Source: `lib/deep-loop/loop-lock.ts`.
 
 ```typescript
-interface LoopLockData {
+export interface LoopLockData {
   ownerPid: number;
-  executorKind: ExecutorKind;
-  sessionId: string;
-  acquiredAtIso: string;
-  lastHeartbeatIso: string;
+  startedAtIso: string;
   ttlMs: number;
+  lastHeartbeatIso: string;
+  packetId: string;
+  runtimeKind: ExecutorKind | 'main';
 }
 ```
 
@@ -106,11 +106,11 @@ Serialized lock file fields:
 | JSON field | Runtime field | Meaning |
 |---|---|---|
 | `owner_pid` | `ownerPid` | Process id that owns the lock. |
-| `executor_kind` | `executorKind` | Executor associated with the writer. |
-| `session_id` | `sessionId` | Loop session namespace. |
-| `acquired_at_iso` | `acquiredAtIso` | Acquisition timestamp. |
-| `last_heartbeat_iso` | `lastHeartbeatIso` | Last heartbeat timestamp. |
+| `started_at_iso` | `startedAtIso` | Acquisition timestamp. |
 | `ttl_ms` | `ttlMs` | Lock TTL in milliseconds. |
+| `last_heartbeat_iso` | `lastHeartbeatIso` | Last heartbeat timestamp. |
+| `packet_id` | `packetId` | Spec-folder packet identifier the lock is scoped to. |
+| `runtime_kind` | `runtimeKind` | Executor kind that owns the lock (or `main` for orchestrator-held locks). |
 
 Acquire behavior:
 
@@ -126,12 +126,18 @@ Acquire behavior:
 Source: `lib/deep-loop/post-dispatch-validate.ts`.
 
 ```typescript
-type PostDispatchValidateInput = {
+export type PostDispatchValidateInput = {
   iterationFile: string;
   stateLogPath: string;
-  deltaPath?: string;
-  recipeConfig?: PostDispatchRecipeConfig;
+  previousStateLogSize: number;
+  requiredJsonlFields: string[];
   executorKind?: ExecutorKind;
+  /**
+   * Per-iteration delta file path (e.g. `deltas/iter-003.jsonl`). When supplied,
+   * the validator asserts the file exists and is non-empty.
+   */
+  deltaFilePath?: string;
+  recipeConfig?: PostDispatchRecipeConfig;
 };
 ```
 

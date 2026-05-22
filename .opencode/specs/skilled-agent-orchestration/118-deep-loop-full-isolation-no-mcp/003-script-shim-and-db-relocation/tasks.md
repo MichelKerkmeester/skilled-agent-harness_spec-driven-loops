@@ -16,7 +16,7 @@ _memory:
     next_safe_action: "Execute task T001 after phase 002 closes"
     blockers:
       - "phase-002-incomplete"
-    completion_pct: 5
+    completion_pct: 100
     key_files:
       - "tasks.md"
     session_dedup:
