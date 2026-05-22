@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation-arc/004-deep-loop-locks-state-and-recovery",
+  "description": "Deep Loop Locks, State, and Recovery: Make deep-research, deep-review, council, and related loops interruption-safe.",
+  "keywords": [
+    "memory",
+    "leak",
+    "remediation",
+    "deep-loop-locks-state-and-recovery"
+  ],
+  "lastUpdated": "2026-05-22T10:20:00Z",
+  "specId": "004",
+  "folderSlug": "deep-loop-locks-state-and-recovery",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "009-memory-leak-remediation-arc"
+  ],
+  "memorySequence": 4,
+  "memoryNameHistory": [],
+  "level": "1"
+}

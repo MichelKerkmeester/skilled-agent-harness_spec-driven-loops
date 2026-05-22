@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation-arc/005-expected-daemon-classifier-and-process-sweep",
+  "description": "Expected Daemon Classifier and Process Sweep: Provide a safe inventory-first cleanup surface for daemons, sidecars, browser tooling, and CLI leftovers.",
+  "keywords": [
+    "memory",
+    "leak",
+    "remediation",
+    "expected-daemon-classifier-and-process-sweep"
+  ],
+  "lastUpdated": "2026-05-22T10:20:00Z",
+  "specId": "005",
+  "folderSlug": "expected-daemon-classifier-and-process-sweep",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "009-memory-leak-remediation-arc"
+  ],
+  "memorySequence": 5,
+  "memoryNameHistory": [],
+  "level": "1"
+}

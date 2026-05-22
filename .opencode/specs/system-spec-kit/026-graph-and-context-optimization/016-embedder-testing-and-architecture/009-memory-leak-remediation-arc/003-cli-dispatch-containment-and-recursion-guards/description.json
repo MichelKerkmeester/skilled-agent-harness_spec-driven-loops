@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation-arc/003-cli-dispatch-containment-and-recursion-guards",
+  "description": "CLI Dispatch Containment and Recursion Guards: Centralize CLI dispatch supervision and prevent same-runtime or cross-runtime recursion loops.",
+  "keywords": [
+    "memory",
+    "leak",
+    "remediation",
+    "cli-dispatch-containment-and-recursion-guards"
+  ],
+  "lastUpdated": "2026-05-22T10:20:00Z",
+  "specId": "003",
+  "folderSlug": "cli-dispatch-containment-and-recursion-guards",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "009-memory-leak-remediation-arc"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [],
+  "level": "1"
+}

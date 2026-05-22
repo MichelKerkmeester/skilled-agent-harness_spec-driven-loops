@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation-arc",
+  "description": "Dedicated phased remediation arc for memory leaks, process lifecycle cleanup, sidecar ownership, daemon cleanup, and host-memory verification.",
+  "keywords": [
+    "memory",
+    "leak",
+    "remediation",
+    "process",
+    "sidecar",
+    "daemon",
+    "telemetry"
+  ],
+  "lastUpdated": "2026-05-22T10:20:00Z",
+  "specId": "009",
+  "folderSlug": "memory-leak-remediation-arc",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture"
+  ],
+  "memorySequence": 9,
+  "memoryNameHistory": [],
+  "level": "phase"
+}

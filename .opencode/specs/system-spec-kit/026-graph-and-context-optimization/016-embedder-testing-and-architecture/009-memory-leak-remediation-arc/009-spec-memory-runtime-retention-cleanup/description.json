@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation-arc/009-spec-memory-runtime-retention-cleanup",
+  "description": "Spec Memory Runtime Retention Cleanup: Bound Spec Kit Memory runtime leases, timers, caches, sessions, queues, retries, audits, and embedder sidecar cleanup.",
+  "keywords": [
+    "memory",
+    "leak",
+    "remediation",
+    "spec-memory-runtime-retention-cleanup"
+  ],
+  "lastUpdated": "2026-05-22T10:20:00Z",
+  "specId": "009",
+  "folderSlug": "spec-memory-runtime-retention-cleanup",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "009-memory-leak-remediation-arc"
+  ],
+  "memorySequence": 9,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation-arc/002-telemetry-and-process-verification-harness",
+  "description": "Telemetry and Process Verification Harness: Build reusable verification for process cleanup, RSS, swap, wired memory, sidecars, stale locks, and daemon identity.",
+  "keywords": [
+    "memory",
+    "leak",
+    "remediation",
+    "telemetry-and-process-verification-harness"
+  ],
+  "lastUpdated": "2026-05-22T13:45:00Z",
+  "specId": "002",
+  "folderSlug": "telemetry-and-process-verification-harness",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "009-memory-leak-remediation-arc"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [],
+  "level": "1"
+}
