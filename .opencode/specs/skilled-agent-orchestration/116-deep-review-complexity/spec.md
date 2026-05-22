@@ -11,27 +11,28 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/116-deep-review-complexity"
-    last_updated_at: "2026-05-22T00:00:00Z"
-    last_updated_by: "gpt-5.5"
-    recent_action: "Initialized phased parent for deep-review search-depth hardening."
-    next_safe_action: "Resume 002-seeded-fixture-harness and add failing fixtures before production changes."
+    last_updated_at: "2026-05-22T15:15:00Z"
+    last_updated_by: "claude-opus-4-7"
+    recent_action: "Arc complete: 8/8 children shipped autonomously."
+    next_safe_action: "Memory index_scan when MCP reconnects."
     blockers:
-      - "Spec Kit Memory MCP indexing is unavailable: Not connected"
+      - "Spec Kit Memory MCP indexing deferred (Not connected at closeout)"
     key_files:
       - "001-research-synthesis/research/research.md"
-      - "002-seeded-fixture-harness/spec.md"
-      - "003-review-depth-schema-and-prompt-contract/spec.md"
-      - "004-validator-v2-enforcement/spec.md"
+      - "003-review-depth-schema-and-prompt-contract/decision-record.md"
+      - "004-validator-v2-enforcement/decision-record.md"
+      - "005-search-ledger-persistence-and-reporting/decision-record.md"
     session_dedup:
       fingerprint: "sha256:1161161161161161161161161161161161161161161161161161161161160000"
       session_id: "116-deep-review-complexity-phase-parent"
       parent_session_id: null
-    completion_pct: 12
-    open_questions:
-      - "Should future implementation phases upgrade from Level 1 to Level 2 or Level 3 before code edits?"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "Phase 001 owns the completed 15-iteration research synthesis."
-      - "Implementation starts with seeded fixtures before schema, validator, reducer, convergence, graph, or rollout changes."
+      - "Implementation slices follow research recommendation order: fixtures, schema, validator, reducer, gates, graph, playbooks."
+      - "Validator v2 ships warn-only behind DEEP_REVIEW_V2_ENFORCEMENT flag."
+      - "Iteration-default calibration deferred per research R8 P2."
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
@@ -48,7 +49,7 @@ _memory:
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0/P1 phased program |
-| **Status** | Active parent; 001 complete; 002 planned next |
+| **Status** | Complete; 8/8 children shipped |
 | **Created** | 2026-05-22 |
 | **Branch** | `main` |
 | **Parent Spec** | `..` (skilled-agent-orchestration track root) |
@@ -117,13 +118,13 @@ Coordinate the staged hardening of `deep-review` so standard and complex review 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 001 | `001-research-synthesis/` | Completed 15-iteration research synthesis and evidence registry. | Complete |
-| 002 | `002-seeded-fixture-harness/` | Add failing fixtures and seeded targets before production changes. | Planned |
-| 003 | `003-review-depth-schema-and-prompt-contract/` | Define review-depth schema and prompt contract. | Planned |
-| 004 | `004-validator-v2-enforcement/` | Add warnings and strict v2 validator enforcement. | Planned |
-| 005 | `005-search-ledger-persistence-and-reporting/` | Persist ledger/search debt through reducer, dashboard, and report. | Planned |
-| 006 | `006-candidate-saturation-and-graphless-gates/` | Add candidate-saturation and graphless fallback stop gates. | Planned |
-| 007 | `007-ledger-led-graph-vocabulary/` | Project stable ledger semantics into graph vocabulary. | Planned |
-| 008 | `008-playbooks-and-default-calibration/` | Add manual playbooks and calibrate defaults after gates exist. | Planned |
+| 002 | `002-seeded-fixture-harness/` | Add failing fixtures and seeded targets before production changes. | Complete |
+| 003 | `003-review-depth-schema-and-prompt-contract/` | Define review-depth schema and prompt contract. | Complete |
+| 004 | `004-validator-v2-enforcement/` | Add warnings and strict v2 validator enforcement. | Complete |
+| 005 | `005-search-ledger-persistence-and-reporting/` | Persist ledger/search debt through reducer, dashboard, and report. | Complete |
+| 006 | `006-candidate-saturation-and-graphless-gates/` | Add candidate-saturation and graphless fallback stop gates. | Complete |
+| 007 | `007-ledger-led-graph-vocabulary/` | Project stable ledger semantics into graph vocabulary. | Complete |
+| 008 | `008-playbooks-and-default-calibration/` | Add manual playbooks and calibrate defaults after gates exist. | Complete (defaults calibration deferred per R8 P2) |
 
 ### Phase Transition Rules
 
