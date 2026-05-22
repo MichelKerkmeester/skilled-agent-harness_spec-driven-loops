@@ -93,12 +93,14 @@ let kitDir = path.join(skillsDir, 'system-code-graph');
 let dbDir = path.join(opencodeDir, '.spec-kit', 'code-graph', 'database');
 let lockDir = path.join(dbDir, '.mk-code-index-launcher.lockdir');
 const PID_FILE_NAME = '.mk-code-index-launcher.json';
+const OWNER_LEASE_FILE_NAME = '.code-graph-owner.json';
 let stateFile = path.join(dbDir, PID_FILE_NAME);
 
 const rel = (p) => path.relative(root, p) || '.';
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const now = () => new Date().toISOString();
 let childProcess = null;
+let ownerLeasePid = null;
 
 function log(message) {
   process.stderr.write(`[mk-code-index-launcher] ${message}\n`);
@@ -162,6 +164,10 @@ function leasePath() {
   return path.join(resolvedDbDir(), PID_FILE_NAME);
 }
 
+function ownerLeasePath() {
+  return path.join(resolvedDbDir(), OWNER_LEASE_FILE_NAME);
+}
+
 function legacyLeasePaths() {
   return [
     path.join(opencodeDir, 'skills', 'system-code-graph', 'mcp_server', 'database', PID_FILE_NAME),
@@ -178,6 +184,129 @@ function readLeaseFile(filePath = leasePath()) {
     // Missing or corrupt lease files are treated as no active lease.
   }
   return null;
+}
+
+function readOwnerLeaseFile(filePath = ownerLeasePath()) {
+  try {
+    const parsed = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    if (
+      Number.isInteger(parsed.ownerPid) &&
+      Number.isInteger(parsed.ppid) &&
+      typeof parsed.executablePath === 'string' &&
+      typeof parsed.startedAtIso === 'string' &&
+      typeof parsed.lastHeartbeatIso === 'string' &&
+      Number.isInteger(parsed.ttlMs) &&
+      typeof parsed.canonicalDbDir === 'string'
+    ) {
+      return parsed;
+    }
+  } catch {
+    // Missing or corrupt owner leases are treated as no active owner.
+  }
+  return null;
+}
+
+function writeOwnerLeaseFile(lease) {
+  const currentLeasePath = path.join(ensureCanonicalDir(path.dirname(ownerLeasePath())), OWNER_LEASE_FILE_NAME);
+  const tmp = `${currentLeasePath}.tmp.${process.pid}.${Date.now()}.${Math.random().toString(36).slice(2)}`;
+  fs.writeFileSync(tmp, `${JSON.stringify(lease, null, 2)}\n`, { mode: 0o600, flag: 'wx' });
+  fs.renameSync(tmp, currentLeasePath);
+}
+
+function processLiveness(pid) {
+  if (!Number.isInteger(pid) || pid <= 0) return 'dead';
+  try {
+    process.kill(pid, 0);
+    return 'alive';
+  } catch (error) {
+    if (error.code === 'ESRCH') return 'dead';
+    if (error.code === 'EPERM') return 'unknown-eperm';
+    return 'alive';
+  }
+}
+
+function readParentPid(pid) {
+  if (!Number.isInteger(pid) || pid <= 0) return null;
+  if (process.platform === 'linux') {
+    try {
+      const status = fs.readFileSync(`/proc/${pid}/status`, 'utf8');
+      const match = status.match(/^PPid:\s+(\d+)$/m);
+      return match ? Number.parseInt(match[1], 10) : null;
+    } catch {
+      return null;
+    }
+  }
+  const result = spawnSync('ps', ['-o', 'ppid=', '-p', String(pid)], {
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'ignore'],
+  });
+  if (result.status !== 0 || !result.stdout) return null;
+  const parsed = Number.parseInt(result.stdout.trim(), 10);
+  return Number.isInteger(parsed) ? parsed : null;
+}
+
+function classifyOwnerLease(lease) {
+  const liveness = processLiveness(lease.ownerPid);
+  if (liveness === 'dead') return 'stale-pid';
+  if (liveness === 'unknown-eperm') return 'unknown-eperm';
+
+  const actualPpid = readParentPid(lease.ownerPid);
+  if (actualPpid !== null && actualPpid !== lease.ppid && actualPpid === 1) {
+    return 'ppid-1-orphan';
+  }
+
+  return 'live-owner';
+}
+
+function acquireOwnerLeaseFile() {
+  const canonicalDbDir = resolvedDbDir();
+  const currentOwnerLeasePath = ownerLeasePath();
+  const existing = readOwnerLeaseFile(currentOwnerLeasePath);
+
+  if (existing) {
+    const classification = classifyOwnerLease(existing);
+    if (classification === 'live-owner' || classification === 'unknown-eperm') {
+      return { acquired: false, holder: existing, classification };
+    }
+    log(`ownerLeaseReclaimed: ${classification} ownerPid=${existing.ownerPid}`);
+  }
+
+  const lease = {
+    ownerPid: process.pid,
+    ppid: process.ppid,
+    executablePath: process.execPath,
+    startedAtIso: new Date().toISOString(),
+    lastHeartbeatIso: new Date().toISOString(),
+    ttlMs: 60000,
+    canonicalDbDir,
+  };
+  writeOwnerLeaseFile(lease);
+  ownerLeasePid = process.pid;
+  return { acquired: true, lease, reclaimed: existing };
+}
+
+function refreshOwnerLeaseFile(ownerPid, patch = {}) {
+  const lease = readOwnerLeaseFile();
+  if (!lease || lease.ownerPid !== ownerPid) return false;
+  writeOwnerLeaseFile({
+    ...lease,
+    ...patch,
+    lastHeartbeatIso: new Date().toISOString(),
+  });
+  ownerLeasePid = patch.ownerPid ?? ownerPid;
+  return true;
+}
+
+function clearOwnerLeaseFile() {
+  if (!Number.isInteger(ownerLeasePid)) return;
+  try {
+    const lease = readOwnerLeaseFile();
+    if (lease && lease.ownerPid === ownerLeasePid) fs.unlinkSync(ownerLeasePath());
+  } catch {
+    // Idempotent cleanup.
+  } finally {
+    ownerLeasePid = null;
+  }
 }
 
 function leaseHeldFromFile(filePath, legacyPath = null) {
@@ -232,6 +361,11 @@ function clearLeaseFile() {
   } catch {
     // Idempotent cleanup.
   }
+}
+
+function clearAllLeaseFiles() {
+  clearLeaseFile();
+  clearOwnerLeaseFile();
 }
 
 function run(command, args, options = {}) {
@@ -382,14 +516,25 @@ function launchServer() {
     stdio: 'inherit',
   });
 
+  if (typeof childProcess.pid === 'number') {
+    const refreshed = refreshOwnerLeaseFile(process.pid, {
+      ownerPid: childProcess.pid,
+      ppid: process.pid,
+      executablePath: process.execPath,
+    });
+    if (!refreshed) {
+      log('owner lease refresh to child pid failed; launcher pid remains the recorded owner');
+    }
+  }
+
   childProcess.on('exit', (code, signal) => {
     if (signal) {
       // council P1-Seat2: clear lease before signal mirror; process.on('exit') doesn't fire on SIGKILL.
-      clearLeaseFile();
+      clearAllLeaseFiles();
       process.kill(process.pid, signal);
       return;
     }
-    clearLeaseFile();
+    clearAllLeaseFiles();
     process.exit(code ?? 0);
   });
 
@@ -409,21 +554,18 @@ function installSignalHandlers() {
         });
         childProcess.kill(signal);
         setTimeout(() => {
-          if (childProcess && childProcess.exitCode === null && childProcess.signalCode === null) {
-            childProcess.kill('SIGKILL');
-          }
-          clearLeaseFile();
+          clearAllLeaseFiles();
           process.exit(128);
         }, 5000).unref();
         return;
       }
-      clearLeaseFile();
+      clearAllLeaseFiles();
       process.exit(128);
     });
   }
   process.on('uncaughtException', (err) => {
     try {
-      clearLeaseFile();
+      clearAllLeaseFiles();
     } catch {
       // Preserve default uncaughtException crash behavior.
     }
@@ -439,7 +581,7 @@ function installSignalHandlers() {
   try {
     installSignalHandlers();
     // REQ-011: lease cleanup runs unconditionally regardless of child termination path.
-    process.on('exit', clearLeaseFile);
+    process.on('exit', clearAllLeaseFiles);
     refreshPaths();
     ensureLayout(actions);
     refreshPaths();
@@ -470,8 +612,17 @@ function installSignalHandlers() {
 
     const strictSingleWriter = !isStrictModeDisabled(process.env.MK_CODE_INDEX_STRICT_SINGLE_WRITER);
     if (strictSingleWriter) {
+      const ownerLeaseResult = acquireOwnerLeaseFile();
+      if (!ownerLeaseResult.acquired) {
+        process.stdout.write(
+          `LEASE_HELD_BY:${ownerLeaseResult.holder.ownerPid} startedAt=${ownerLeaseResult.holder.startedAtIso} classification=${ownerLeaseResult.classification}\n`
+        );
+        return;
+      }
+
       const leaseResult = isLeaseHeld();
       if (leaseResult.held && !leaseResult.staleReclaimable) {
+        clearOwnerLeaseFile();
         bridgeOrReportLeaseHeld(leaseResult);
         return;
       }

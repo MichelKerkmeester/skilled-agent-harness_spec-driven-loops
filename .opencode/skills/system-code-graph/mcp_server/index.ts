@@ -14,6 +14,7 @@ import { CallToolRequestSchema, ListToolsRequestSchema } from '@modelcontextprot
 import * as codeGraphTools from './tools/index.js';
 import { CODE_GRAPH_TOOL_SCHEMAS } from './tool-schemas.js';
 import { writeCodeGraphReadinessMarker } from './lib/readiness-marker.js';
+import { closeDbWithAssertion } from './lib/code-graph-db.js';
 import { DATABASE_DIR } from './core/config.js';
 import {
   resolveIpcSocketPath,
@@ -23,10 +24,12 @@ import {
 
 process.on('uncaughtException', (err) => {
   console.error('[mk-code-index] uncaughtException:', err);
+  closeDbWithAssertion();
   process.exit(1);
 });
 process.on('unhandledRejection', (reason) => {
   console.error('[mk-code-index] unhandledRejection:', reason);
+  closeDbWithAssertion();
   process.exit(1);
 });
 
@@ -59,6 +62,7 @@ async function shutdownCodeIndex(reason: string): Promise<void> {
     });
     ipcBridge = null;
   }
+  closeDbWithAssertion();
 }
 
 process.once('SIGINT', () => {

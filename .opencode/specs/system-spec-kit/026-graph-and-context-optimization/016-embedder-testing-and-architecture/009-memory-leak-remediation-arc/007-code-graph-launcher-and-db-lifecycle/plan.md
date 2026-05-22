@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation-arc/007-code-graph-launcher-and-db-lifecycle"
-    last_updated_at: "2026-05-22T10:20:00Z"
+    last_updated_at: "2026-05-22T14:05:00Z"
     last_updated_by: "opencode"
-    recent_action: "Scaffolded concrete phase scope for the memory leak remediation arc."
-    next_safe_action: "Plan and execute this child phase when its predecessor handoff criteria pass."
+    recent_action: "planned-code-graph-owner-lease-and-close-db"
+    next_safe_action: "implement-code-graph-owner-lease"
     blockers: []
     key_files:
       - "spec.md"
@@ -42,13 +42,13 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | TypeScript, Python, shell, MCP servers, local CLI runtimes |
-| **Framework** | Spec Kit Memory, CocoIndex, Code Graph, deep-loop workflows |
-| **Storage** | JSONL state, SQLite/index files, sidecar ledgers, spec docs |
-| **Testing** | Vitest, pytest, shell smoke checks, host telemetry harness |
+| **Language/Stack** | TypeScript MCP server, CommonJS launcher |
+| **Framework** | Code Graph (`mk-code-index`) under OpenCode system tooling |
+| **Storage** | SQLite graph DB directory plus JSON owner lease |
+| **Testing** | Vitest, TypeScript typecheck/build, strict spec validation |
 
 ### Overview
-Enforce one code-graph launcher/server owner per effective graph DB and close DB handles on shutdown. The phase must preserve source evidence from the research packets and avoid claiming memory relief without process and telemetry proof.
+Enforce one code-graph launcher/server owner per canonical effective graph DB directory and prove shutdown closes graph DB handles. The implementation will reuse the existing launcher startup path, add Code Graph-owned canonical DB and owner-lease helpers, and preserve Phase 005's no-kill rule: stale/orphan evidence permits lease overwrite only, never process termination.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -57,13 +57,14 @@ Enforce one code-graph launcher/server owner per effective graph DB and close DB
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Source evidence links from packets 020 and 024 are listed.
-- [ ] Verification commands or harness fixtures are named.
-- [ ] Expected daemons and destructive cleanup boundaries are explicit.
+- [x] Source evidence links from packets 020 and 024 are listed in the parent remediation map.
+- [x] Verification fixtures are named: same-effective-DB, symlink, EPERM, PPID-1 orphan, child-survival, closeDb.
+- [x] Destructive cleanup boundary is explicit: no process termination, only refuse-to-start or stale lease overwrite.
 
 ### Definition of Done
-- [ ] REQ-001 and REQ-002 are satisfied or explicitly deferred by the operator.
-- [ ] Stack-specific tests or telemetry checks pass.
+- [ ] REQ-001 and REQ-002 are satisfied.
+- [ ] New and existing system-code-graph tests pass.
+- [ ] Typecheck/build pass for `@spec-kit/system-code-graph`.
 - [ ] This phase and the parent phase map are updated with evidence.
 <!-- /ANCHOR:quality-gates -->
 
@@ -73,15 +74,17 @@ Enforce one code-graph launcher/server owner per effective graph DB and close DB
 ## 3. ARCHITECTURE
 
 ### Pattern
-Verification-first remediation with exact process/resource ownership.
+Single-owner lease by canonical DB directory with non-destructive stale-owner reclaim.
 
 ### Key Components
-- **Evidence sources**: Source packets 020 and 024.
-- **Verification harness**: Process, memory, sidecar, lock, and state checks.
-- **Implementation surface**: `.opencode/bin/mk-code-index-launcher.cjs`, `.opencode/skills/system-code-graph/mcp_server/`.
+- **Effective DB identity**: `resolveCanonicalDbDir(dir)` resolves paths with `fs.realpathSync.native` after ensuring the directory exists. Symlink aliases collapse to the same canonical directory.
+- **Owner lease**: `<canonicalDbDir>/.code-graph-owner.json` stores `{ ownerPid, startedAtIso, lastHeartbeatIso, ttlMs, ppid, executablePath, canonicalDbDir }`.
+- **Single-owner gate**: launcher startup calls `acquireOwnerLease()` before heavy init. Existing live owners return a typed refusal; stale owners are reclaimed by atomic write-temp-then-rename only.
+- **Classification**: `classifyOwner(lease)` returns `live-owner | stale-pid | ppid-1-orphan | symlink-alias | unknown-eperm`.
+- **Shutdown**: server signal paths call `closeDb()` and run a post-close probe that proves the prior handle is closed.
 
 ### Data Flow
-Research evidence selects the fix boundary, the harness proves the current failure and final behavior, then phase docs record evidence and hand off to the next phase.
+Launcher resolves the effective DB directory, acquires the canonical owner lease, then spawns the MCP server with `SPECKIT_CODE_GRAPH_DB_DIR` set to that canonical path. The server uses the same DB directory through `DATABASE_DIR`; on shutdown it closes IPC and DB resources, then validates that the closed handle rejects subsequent DB operations.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -91,14 +94,18 @@ Research evidence selects the fix boundary, the harness proves the current failu
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `.opencode/bin/mk-code-index-launcher.cjs` | Phase implementation or evidence surface | Inspect and update only within this phase scope | Same-effective-DB, symlink, EPERM, PPID-1 orphan, child-survival, closeDb fixtures |
-| `.opencode/skills/system-code-graph/mcp_server/` | Phase implementation or evidence surface | Inspect and update only within this phase scope | Same-effective-DB, symlink, EPERM, PPID-1 orphan, child-survival, closeDb fixtures |
+| `.opencode/bin/mk-code-index-launcher.cjs` | Existing launcher/PID gate | Integrate canonical owner lease before bootstrap/build/server spawn | Same-effective-DB, symlink, live owner refusal |
+| `.opencode/skills/system-code-graph/mcp_server/lib/canonical-db-dir.ts` | New helper if no reusable resolver exists | Canonicalize effective DB dirs via realpath | Symlink alias, EPERM, missing dir |
+| `.opencode/skills/system-code-graph/mcp_server/lib/owner-lease.ts` | New lease helper | Acquire, refresh, release, read, classify owner leases | stale PID, EPERM, PPID-1 orphan, child survival |
+| `.opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts` | DB singleton | Add close assertion/probe without removing exports | closeDb idempotence and post-close probe |
+| `.opencode/skills/system-code-graph/mcp_server/index.ts` | MCP server shutdown | Call `closeDb()` assertion on signal and process lifecycle paths | closeDb ran on shutdown |
 
-Required inventories:
-- Same-class producers must be found before changing shared cleanup helpers.
-- Consumers of changed process, protocol, state, or health fields must be listed.
-- Matrix axes must include normal completion, timeout, parent death, stale lock, and expected-daemon cases when applicable.
-- Algorithm invariant: no cleanup path may kill unknown-owner or current-session processes without exact identity.
+Required invariants:
+- Same-effective DB identity is the realpath-resolved directory, not the user-provided spelling.
+- EPERM means alive but untracked; it is not reclaimable.
+- Dead PID or PPID-1 orphan evidence may reclaim a lease by overwrite only.
+- Child-survival detection treats a live child whose recorded parent died as stale/orphan evidence, not as a live launcher owner.
+- No code path sends signals to an owner process.
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -106,17 +113,21 @@ Required inventories:
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-### Phase 1: Evidence Lock
-- [ ] Confirm source packet findings and unresolved gaps.
-- [ ] Record exact affected files and process/resource identities.
+### Phase 1: Effective DB Identity
+- [ ] Add or reuse `resolveCanonicalDbDir(dir)` in `system-code-graph/mcp_server/lib/`.
+- [ ] Normalize launcher `SPECKIT_CODE_GRAPH_DB_DIR` to the canonical path before lease acquisition.
+- [ ] Preserve legacy PID-file compatibility only as a diagnostic fallback.
 
-### Phase 2: Change or Harness
-- [ ] Implement scoped harness or remediation changes.
-- [ ] Keep destructive cleanup disabled unless exact ownership is proven.
+### Phase 2: Owner Lease and Shutdown Lifecycle
+- [ ] Add `owner-lease.ts` with atomic write-temp-then-rename and owner-mismatch refresh/release refusal.
+- [ ] Integrate `acquireOwnerLease()` into launcher startup before bootstrap/build/server spawn.
+- [ ] Integrate `releaseOwnerLease()` into launcher exit/error/signal cleanup.
+- [ ] Integrate `closeDb()` and `assertDbClosed()` into server shutdown.
 
 ### Phase 3: Verification
-- [ ] Run stack-specific tests and telemetry checks.
-- [ ] Update this phase summary and parent handoff evidence.
+- [ ] Add vitest coverage for same-effective-DB, symlink alias, EPERM, PPID-1 orphan, child-survival, and closeDb.
+- [ ] Run targeted tests, full system-code-graph tests, typecheck/build, alignment drift, and strict spec validation.
+- [ ] Update implementation summary and parent remediation map with evidence and handoff.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -126,9 +137,10 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | Ownership, parser, protocol, or state helpers | Vitest or pytest |
-| Integration | CLI/deep-loop/MCP lifecycle paths | Shell, MCP smoke checks |
-| Telemetry | Process count, RSS, swap, wired memory, sidecars | Harness from phase 002 |
+| Unit | Canonical DB resolver, owner lease, closeDb probe | Vitest |
+| Integration | Launcher duplicate owner refusal and DB-dir override | Existing launcher vitest plus new fixtures |
+| Static | TypeScript correctness and build output | `npm run typecheck`, `npm run build` in system-code-graph |
+| Spec | Phase and parent packet validity | `validate.sh --strict` |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -138,8 +150,10 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Source research evidence | Internal spec docs | Available | Phase must not proceed without source-backed scope. |
-| Verification harness | Internal tooling | Planned | Memory or cleanup claims remain unproven. |
+| Phase 004 lock helpers | `processAlive`, atomic write-temp+rename pattern | Available | Owner lease semantics drift from existing lock behavior. |
+| Phase 005 sweep policy | Exact identity + dry-run/no-kill rule | Available | Reclaim logic could become destructive or too broad. |
+| Existing launcher lease tests | Launcher lifecycle fixtures | Available | Regression risk in duplicate-start behavior. |
+| Read-path friction item #16 | P2 follow-on | Deferred unless small bounded fix is reachable | Ownership work could sprawl into batching/socket retention. |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -147,6 +161,7 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: Tests fail, cleanup kills an expected daemon, or memory/process telemetry worsens.
-- **Procedure**: Revert the phase changes, preserve telemetry logs, restore previous config flags, and rerun the before/after harness.
+- **Trigger**: Lease logic refuses legitimate startup, reclaims EPERM/live owners, or closeDb probe breaks existing DB lifecycle.
+- **Procedure**: Disable the new owner lease with the existing `MK_CODE_INDEX_STRICT_SINGLE_WRITER=0` escape hatch while preserving old PID diagnostics, revert the phase files if needed, and rerun launcher plus DB tests.
+- **Data safety**: The lease file is metadata only. No graph SQLite files are deleted or rewritten by rollback.
 <!-- /ANCHOR:rollback -->

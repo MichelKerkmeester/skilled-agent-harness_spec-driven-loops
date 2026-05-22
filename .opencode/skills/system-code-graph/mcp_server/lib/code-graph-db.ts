@@ -7,6 +7,7 @@
 import Database from 'better-sqlite3';
 import { join, isAbsolute, resolve as resolvePath } from 'node:path';
 import { readFileSync, statSync } from 'node:fs';
+import { assertDbHandleClosed } from './close-db-assertion.js';
 import { generateContentHash, type CodeNode, type CodeEdge, type DetectorProvenance } from './indexer-types.js';
 import {
   CODE_GRAPH_SCOPE_FINGERPRINT_KEY,
@@ -302,7 +303,14 @@ export function closeDb(): void {
   if (db) {
     db.close();
     db = null;
+    dbPath = null;
   }
+}
+
+export function closeDbWithAssertion(): void {
+  const handle = db;
+  closeDb();
+  assertDbHandleClosed(handle);
 }
 
 function getMetadata(key: string): string | null {

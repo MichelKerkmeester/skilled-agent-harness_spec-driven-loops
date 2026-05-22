@@ -17,6 +17,7 @@ interface LauncherRun {
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../..');
 const launcherRelativePath = '.opencode/bin/mk-code-index-launcher.cjs';
 const pidFileRelativePath = '.opencode/.spec-kit/code-graph/database/.mk-code-index-launcher.json';
+const ownerLeaseRelativePath = '.opencode/.spec-kit/code-graph/database/.code-graph-owner.json';
 const tempDirs: string[] = [];
 const launcherRuns: LauncherRun[] = [];
 
@@ -35,7 +36,7 @@ function createWorkspace(options: { ignoreChildSigterm?: boolean } = {}): { root
   writeFileSync(
     directServer,
     options.ignoreChildSigterm
-      ? "process.on('SIGTERM', () => {}); process.on('SIGINT', () => process.exit(0)); setInterval(() => {}, 1000);\n"
+      ? "process.on('SIGTERM', () => {}); process.on('SIGINT', () => process.exit(0)); setTimeout(() => process.exit(0), 6500); setInterval(() => {}, 1000);\n"
       : "process.on('SIGTERM', () => process.exit(0)); process.on('SIGINT', () => process.exit(0)); setInterval(() => {}, 1000);\n",
     'utf8',
   );
@@ -132,6 +133,15 @@ function readLeasePid(pidFilePath: string): number | null {
   }
 }
 
+function readOwnerLeasePid(root: string): number | null {
+  try {
+    const parsed = JSON.parse(readFileSync(join(root, ownerLeaseRelativePath), 'utf8')) as { ownerPid?: unknown };
+    return typeof parsed.ownerPid === 'number' ? parsed.ownerPid : null;
+  } catch {
+    return null;
+  }
+}
+
 async function waitForLeasePid(pidFilePath: string, pid: number | undefined): Promise<void> {
   if (typeof pid !== 'number') throw new Error('launcher pid was not assigned');
   await waitFor(() => readLeasePid(pidFilePath) === pid, 2000, `lease pid ${pid}`);
@@ -189,10 +199,12 @@ describe('mk-code-index launcher lease', () => {
     const second = spawnLauncher(workspace.launcherPath, workspace.root);
     await waitForStdoutClose(second);
     const exit = await waitForExit(second.child, 8000);
+    const ownerPid = readOwnerLeasePid(workspace.root);
 
     expect(exit.code).toBe(0);
-    expect(second.stdout).toContain(`LEASE_HELD_BY:${first.child.pid}`);
-    expect(second.stdout).toMatch(new RegExp(`^LEASE_HELD_BY:${first.child.pid} startedAt=\\d{4}-\\d{2}-\\d{2}T`, 'm'));
+    expect(ownerPid).not.toBeNull();
+    expect(second.stdout).toContain(`LEASE_HELD_BY:${ownerPid}`);
+    expect(second.stdout).toMatch(new RegExp(`^LEASE_HELD_BY:${ownerPid} startedAt=\\d{4}-\\d{2}-\\d{2}T`, 'm'));
   });
 
   // 004-REQ-001: live-owner diagnostics include the recorded startedAt value.
@@ -309,8 +321,8 @@ describe('mk-code-index launcher lease', () => {
     }
   });
 
-  // 006-REQ-003: parent SIGTERM backstop clears lease when child ignores SIGTERM.
-  it('removes the PID file when the child ignores SIGTERM until the SIGKILL backstop', async () => {
+  // 007-REQ-002: parent SIGTERM cleanup clears launcher metadata without killing an ignored child.
+  it('removes the PID file when the child ignores SIGTERM until launcher cleanup timeout', async () => {
     const workspace = createWorkspace({ ignoreChildSigterm: true });
     const run = spawnLauncher(workspace.launcherPath, workspace.root);
     await waitForLeasePid(workspace.pidFilePath, run.child.pid);

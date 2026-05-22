@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation-arc/007-code-graph-launcher-and-db-lifecycle"
-    last_updated_at: "2026-05-22T10:20:00Z"
+    last_updated_at: "2026-05-22T14:05:00Z"
     last_updated_by: "opencode"
-    recent_action: "Scaffolded concrete phase scope for the memory leak remediation arc."
-    next_safe_action: "Plan and execute this child phase when its predecessor handoff criteria pass."
+    recent_action: "planned-code-graph-owner-lease-and-close-db"
+    next_safe_action: "implement-code-graph-owner-lease"
     blockers: []
     key_files:
       - "spec.md"
@@ -53,9 +53,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read source evidence from packets 020 and 024.
-- [ ] T002 Confirm affected surfaces and same-class producers.
-- [ ] T003 Define verification matrix and no-kill safety boundaries.
+- [ ] T001 Locate the canonical DB dir resolver. Either reuse existing or add `.opencode/skills/system-code-graph/mcp_server/lib/canonical-db-dir.ts` with `resolveCanonicalDbDir(dir)`.
+- [ ] T002 Add `.opencode/skills/system-code-graph/mcp_server/lib/owner-lease.ts` with `acquireOwnerLease`, `refreshOwnerLease`, `releaseOwnerLease`, `readOwnerLease`, and `classifyOwner`.
+- [ ] T003 Integrate `acquireOwnerLease` into `.opencode/bin/mk-code-index-launcher.cjs` startup; refuse launch if a live canonical owner exists.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -63,9 +63,11 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Implement scoped harness, docs, or runtime changes for this phase.
-- [ ] T005 Add tests for timeout, parent-death, stale state, and expected-daemon boundaries when applicable.
-- [ ] T006 Update phase docs with evidence and handoff notes.
+- [ ] T004 Integrate `releaseOwnerLease` plus `closeDb()` assertion into the server shutdown path for signal and exit handling.
+- [ ] T005 Add `closeDb()` assertion/probe that verifies the prior DB handle is closed after shutdown.
+- [ ] T006 Add `.opencode/skills/system-code-graph/mcp_server/tests/lib/canonical-db-dir.vitest.ts` covering symlink alias, EPERM, and missing dir.
+- [ ] T007 Add `.opencode/skills/system-code-graph/mcp_server/tests/lib/owner-lease.vitest.ts` covering acquire/refresh/release, stale PID, PPID-1 orphan, EPERM, child-survival, and same-effective-DB.
+- [ ] T008 Add `.opencode/skills/system-code-graph/mcp_server/tests/lib/close-db.vitest.ts` covering closeDb idempotence and the post-shutdown probe.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -73,9 +75,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T007 Run stack-specific tests and strict spec validation.
-- [ ] T008 Run process/memory telemetry checks when applicable.
-- [ ] T009 Update parent phase map status and next safe action.
+- [ ] T009 Locate package and workspace commands; run system-code-graph targeted tests, full tests, typecheck, and build.
+- [ ] T010 Fill `implementation-summary.md` with evidence and commit handoff.
+- [ ] T011 Run strict validation for this phase and the parent arc.
+- [ ] T012 Decide read-path friction item #16: either scoped fix if reachable or explicit follow-on note.
 <!-- /ANCHOR:phase-3 -->
 
 ---
