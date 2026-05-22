@@ -9,6 +9,7 @@ import {
   getProcessAncestry,
   parsePsOutput,
   parseVmStat,
+  redactSensitiveCommand,
   syntheticFixtureSnapshot,
 } from '../ops/process-memory-harness.js';
 
@@ -36,6 +37,19 @@ describe('process memory harness', () => {
       rssKb: 96000,
       command: expect.stringContaining('ccc run-daemon'),
     });
+  });
+
+  it('redacts owner tokens and API keys before storing command lines', () => {
+    const command = 'node worker.js --owner-token abcdef0123456789abcdef0123456789 OPENAI_API_KEY=sk-secret SPECKIT_OWNER_TOKEN=feedfacefeedfacefeedfacefeedface';
+
+    expect(redactSensitiveCommand(command)).toBe(
+      'node worker.js --owner-token <redacted> OPENAI_API_KEY=<redacted> SPECKIT_OWNER_TOKEN=<redacted>',
+    );
+
+    const rows = parsePsOutput(`  PID  PPID STAT    RSS COMMAND\n 9000     1 S     1000 ${command}\n`);
+    expect(rows[0].command).not.toContain('abcdef0123456789');
+    expect(rows[0].command).not.toContain('sk-secret');
+    expect(rows[0].command).toContain('--owner-token <redacted>');
   });
 
   it('classifies child and grandchild ancestry as current-session protected', () => {

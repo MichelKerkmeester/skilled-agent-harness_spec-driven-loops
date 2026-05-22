@@ -44,6 +44,7 @@ import { execFileSync } from 'node:child_process';
 import { resolve } from 'node:path';
 
 import { canonicalReadinessFromFreshness, queryTrustStateFromFreshness } from './readiness-contract.js';
+import { getCocoIndexBinaryPath } from './shared/cocoindex-path.js';
 import type { StructuralReadiness } from './ops-hardening.js';
 import type { SharedPayloadTrustState } from './shared/shared-payload.js';
 import type { ReadyAction } from './ensure-ready.js';
@@ -143,8 +144,12 @@ function isIndexStale(indexDir: string): boolean {
 async function probeCocoIndexReadinessUncached(
   workspaceRoot: string,
 ): Promise<CocoIndexReadinessBlock> {
-  const defaultCccBin = resolve(workspaceRoot, '.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc');
-  const cccBin = process.env.COCOINDEX_BIN_PATH ?? defaultCccBin;
+  let cccBin: string;
+  try {
+    cccBin = getCocoIndexBinaryPath(workspaceRoot);
+  } catch {
+    return buildReadiness('error', 'cocoindex_binary_untrusted');
+  }
   const indexDir = resolve(workspaceRoot, '.cocoindex_code');
 
   // 1. Binary missing

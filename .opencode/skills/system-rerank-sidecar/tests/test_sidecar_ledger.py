@@ -16,6 +16,7 @@ from scripts.sidecar_ledger import (  # noqa: E402
     classify_sidecar_owner,
     find_reusable_sidecar,
     ledger_path,
+    load_or_create_owner_token,
     reclaim_stale,
     read_ledger,
 )
@@ -155,13 +156,43 @@ def test_concurrent_sidecar_adds_do_not_lose_rows(tmp_path):
     assert ledger_pids == {row.pid for row in rows}
 
 
+def test_owner_token_is_random_persistent_and_not_path_hash(tmp_path, monkeypatch):
+    monkeypatch.delenv("RERANK_SIDECAR_OWNER_TOKEN", raising=False)
+    monkeypatch.setenv("SPECKIT_PROJECT_ROOT", str(tmp_path))
+
+    token = load_or_create_owner_token(tmp_path)
+    again = load_or_create_owner_token(tmp_path)
+
+    assert token == again
+    assert len(token) >= 32
+    assert token != ensure_module.hashlib.sha256(str(tmp_path.resolve()).encode("utf-8")).hexdigest()
+
+
+def test_health_probe_requires_owner_and_config_proof(monkeypatch):
+    owner = "owner-a"
+    config_hash = "hash-a"
+    monkeypatch.setattr(
+        ensure_module,
+        "health_payload",
+        lambda port, timeout_seconds=2.0: {
+            "status": "ok",
+            "owner_token_sha256": ensure_module._owner_token_digest(owner),
+            "canonical_config_hash": config_hash,
+        },
+    )
+
+    assert ensure_module.is_healthy(8765, expected_owner_token=owner, expected_config_hash=config_hash)
+    assert not ensure_module.is_healthy(8765, expected_owner_token="owner-b", expected_config_hash=config_hash)
+    assert not ensure_module.is_healthy(8765, expected_owner_token=owner, expected_config_hash="hash-b")
+
+
 def test_ensure_reuses_healthy_ledger_owner(tmp_path, monkeypatch):
     monkeypatch.setenv("RERANK_SIDECAR_STATE_DIR", str(tmp_path))
     monkeypatch.setenv("RERANK_SIDECAR_OWNER_TOKEN", "owner-a")
     config_hash = ensure_module._canonical_config_hash(8765)
     add_sidecar_row(tmp_path, _row(pid=os.getpid(), config_hash=config_hash))
 
-    monkeypatch.setattr(ensure_module, "is_healthy", lambda port, timeout_seconds=2.0: True)
+    monkeypatch.setattr(ensure_module, "is_healthy", lambda port, timeout_seconds=2.0, **kwargs: True)
 
     result = ensure_module.ensure_rerank_sidecar(
         port=8765,
@@ -186,13 +217,18 @@ def test_ensure_unknown_owner_spawns_on_different_port(tmp_path, monkeypatch):
     class FakeProc:
         pid = 999
 
-    monkeypatch.setattr(ensure_module, "is_healthy", lambda port, timeout_seconds=2.0: port == 8765)
-    monkeypatch.setattr(ensure_module, "wait_for_healthy", lambda port, deadline: True)
+        def poll(self):
+            return None
+
+    monkeypatch.setattr(ensure_module, "is_healthy", lambda port, timeout_seconds=2.0, **kwargs: port == 8765)
+    monkeypatch.setattr(ensure_module, "wait_for_healthy", lambda port, deadline, **kwargs: True)
     monkeypatch.setattr(ensure_module, "_find_available_port", lambda preferred_port: 8766)
     monkeypatch.setattr(ensure_module, "_open_sidecar_log", lambda: None)
 
     def fake_popen(*args, **kwargs):
         spawned_ports.append(kwargs["env"]["RERANK_SIDECAR_PORT"])
+        assert kwargs["env"]["RERANK_SIDECAR_OWNER_TOKEN"] == "owner-a"
+        assert kwargs["env"]["RERANK_SIDECAR_CONFIG_HASH"] == ensure_module._canonical_config_hash(8766)
         return FakeProc()
 
     monkeypatch.setattr(ensure_module.subprocess, "Popen", fake_popen)
@@ -220,8 +256,11 @@ def test_ensure_reclaims_stale_dead_pid_before_fresh_spawn(tmp_path, monkeypatch
     class FakeProc:
         pid = 202
 
-    monkeypatch.setattr(ensure_module, "is_healthy", lambda port, timeout_seconds=2.0: False)
-    monkeypatch.setattr(ensure_module, "wait_for_healthy", lambda port, deadline: True)
+        def poll(self):
+            return None
+
+    monkeypatch.setattr(ensure_module, "is_healthy", lambda port, timeout_seconds=2.0, **kwargs: False)
+    monkeypatch.setattr(ensure_module, "wait_for_healthy", lambda port, deadline, **kwargs: True)
     monkeypatch.setattr(ensure_module, "_open_sidecar_log", lambda: None)
     monkeypatch.setattr(ensure_module.subprocess, "Popen", lambda *args, **kwargs: FakeProc())
 
@@ -256,7 +295,9 @@ def test_ensure_records_spawned_sidecar_before_warmup_timeout(tmp_path, monkeypa
 
     fake_proc = FakeProc()
 
-    def fake_wait_for_healthy(port, deadline):
+    def fake_wait_for_healthy(port, deadline, **kwargs):
+        assert kwargs["expected_owner_token"] == "owner-a"
+        assert kwargs["expected_config_hash"] == ensure_module._canonical_config_hash(8765)
         observed_during_warmup.extend(row.pid for row in read_ledger(tmp_path))
         return False
 
@@ -282,3 +323,64 @@ def test_ensure_records_spawned_sidecar_before_warmup_timeout(tmp_path, monkeypa
         (303, ensure_module.signal.SIGKILL),
     ]
     assert read_ledger(tmp_path) == []
+
+
+def test_node_and_python_ensure_helpers_share_config_hash_contract(tmp_path, monkeypatch):
+    monkeypatch.setenv("RERANK_MODEL_NAME", "Qwen/Qwen3-Reranker-0.6B")
+    monkeypatch.setenv("RERANK_MODEL_REVISION", "e61197ed45024b0ed8a2d74b80b4d909f1255473")
+    monkeypatch.setenv("RERANK_ALLOWED_MODELS", "")
+    monkeypatch.setenv("RERANK_MODEL_REVISIONS", "")
+    cjs_path = SKILL_DIR.parents[1] / "bin" / "lib" / "ensure-rerank-sidecar.cjs"
+    node_script = (
+        f"const helper = require({json.dumps(str(cjs_path))});"
+        "console.log(helper.canonicalConfigHash(8765, process.env));"
+    )
+
+    node_hash = ensure_module.subprocess.check_output(["node", "-e", node_script], text=True).strip()
+
+    assert node_hash == ensure_module._canonical_config_hash(8765)
+
+
+def test_start_script_parses_dotenv_without_shell_eval_and_forwards_api_key(tmp_path):
+    skill_dir = tmp_path / "skill"
+    scripts_dir = skill_dir / "scripts"
+    python_path = skill_dir / ".venv" / "bin" / "python"
+    output_path = tmp_path / "env.json"
+    marker_path = tmp_path / "pwned"
+    scripts_dir.mkdir(parents=True)
+    python_path.parent.mkdir(parents=True)
+    (scripts_dir / "start.sh").write_text((SKILL_DIR / "scripts" / "start.sh").read_text(encoding="utf-8"), encoding="utf-8")
+    python_path.write_text(
+        "#!/usr/bin/env python3\n"
+        "import json, os\n"
+        f"open({json.dumps(str(output_path))}, 'w').write(json.dumps(dict(os.environ)))\n",
+        encoding="utf-8",
+    )
+    python_path.chmod(0o755)
+    (skill_dir / ".venv" / "bin" / "activate").write_text("", encoding="utf-8")
+    (skill_dir / ".env.local").write_text(
+        "\n".join(
+            [
+                "RERANK_API_KEY=secret-value",
+                f"RERANK_MODEL_NAME=$(touch {marker_path})",
+                "NODE_OPTIONS=--require bad.js",
+            ]
+        ),
+        encoding="utf-8",
+    )
+
+    ensure_module.subprocess.run(["bash", str(scripts_dir / "start.sh")], check=True, cwd=skill_dir)
+    captured = json.loads(output_path.read_text(encoding="utf-8"))
+
+    assert captured["RERANK_API_KEY"] == "secret-value"
+    assert captured["RERANK_MODEL_NAME"] == f"$(touch {marker_path})"
+    assert "NODE_OPTIONS" not in captured
+    assert not marker_path.exists()
+
+
+def test_use_model_restarts_by_ledger_not_command_substring():
+    script = (SKILL_DIR / "scripts" / "use-model.sh").read_text(encoding="utf-8")
+
+    assert "pkill -TERM -f" not in script
+    assert "read_ledger" in script
+    assert "ownerToken != owner_token" in script

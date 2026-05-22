@@ -14,10 +14,13 @@ from __future__ import annotations
 
 import asyncio
 import collections
+import hashlib
 import json
 import logging
 import math
 import os
+import pathlib
+import re
 import time
 from contextlib import asynccontextmanager
 from typing import Optional
@@ -44,9 +47,14 @@ DEFAULT_MODEL_REVISION = os.environ.get(
 )
 PORT = int(os.environ.get("RERANK_SIDECAR_PORT", "8765"))
 LOG_PATH = os.environ.get("RERANK_LOG_PATH", "").strip()
+LOG_MAX_BYTES = int(os.environ.get("RERANK_LOG_MAX_BYTES", str(1024 * 1024)))
+LOG_RAW_QUERIES = os.environ.get("RERANK_LOG_RAW_QUERIES", "").strip() == "1"
 DEVICE = os.environ.get("RERANK_DEVICE", "").strip()
 DTYPE = os.environ.get("RERANK_TORCH_DTYPE", "").strip().lower()
 RATE_LIMIT = int(os.environ.get("RERANK_RATE_LIMIT_PER_MIN", "100"))
+OWNER_TOKEN = os.environ.get("RERANK_SIDECAR_OWNER_TOKEN", "").strip()
+CONFIG_HASH = os.environ.get("RERANK_SIDECAR_CONFIG_HASH", "").strip()
+MAX_DOCUMENT_BYTES = int(os.environ.get("RERANK_MAX_DOCUMENT_BYTES", str(1024 * 1024)))
 _request_log: collections.deque[float] = collections.deque()
 
 # Allowlist of model names the sidecar will load on request. The default is
@@ -70,6 +78,15 @@ if _revisions_raw:
             "Ignoring invalid RERANK_MODEL_REVISIONS env: %s", exc
         )
 
+REVISION_PIN_RE = r"^[0-9a-fA-F]{40}$"
+for _allowed_model in sorted(ALLOWED_MODELS):
+    _revision = MODEL_REVISIONS.get(_allowed_model, "")
+    if not isinstance(_revision, str) or not re.match(REVISION_PIN_RE, _revision):
+        raise RuntimeError(
+            "RERANK_MODEL_REVISIONS must provide a 40-character commit revision "
+            f"for allowlisted model '{_allowed_model}' when trust_remote_code is enabled"
+        )
+
 _models: dict[str, CrossEncoder] = {}
 _locks: dict[str, asyncio.Lock] = {}
 _started_at = time.time()
@@ -84,7 +101,13 @@ def sigmoid(x: float) -> float:
     return z / (1.0 + z)
 
 
-def verify_rerank_secret(x_rerank_secret: str | None = Header(default=None)):
+def _owner_token_sha256() -> str:
+    if not OWNER_TOKEN:
+        return ""
+    return hashlib.sha256(OWNER_TOKEN.encode("utf-8")).hexdigest()
+
+
+def _require_authenticated(x_rerank_secret: str | None = Header(default=None)) -> None:
     required = os.environ.get("RERANK_API_KEY", "").strip()
     if not required:
         return
@@ -93,6 +116,10 @@ def verify_rerank_secret(x_rerank_secret: str | None = Header(default=None)):
             status_code=401,
             detail="Invalid or missing X-Rerank-Secret header",
         )
+
+
+def verify_rerank_secret(x_rerank_secret: str | None = Header(default=None)) -> None:
+    _require_authenticated(x_rerank_secret)
 
 
 def check_rate_limit() -> None:
@@ -107,6 +134,32 @@ def check_rate_limit() -> None:
             detail=f"Rate limit exceeded ({RATE_LIMIT}/min)",
         )
     _request_log.append(now)
+
+
+def _validate_document_bytes(documents: list[str]) -> None:
+    total_bytes = sum(len(doc.encode("utf-8")) for doc in documents)
+    if total_bytes > MAX_DOCUMENT_BYTES:
+        raise HTTPException(
+            status_code=413,
+            detail=f"document payload exceeds {MAX_DOCUMENT_BYTES} bytes",
+        )
+
+
+def _rotate_log_if_needed(path: str) -> None:
+    if LOG_MAX_BYTES <= 0:
+        return
+    try:
+        log_path = pathlib.Path(path)
+        if not log_path.exists() or log_path.stat().st_size < LOG_MAX_BYTES:
+            return
+        rotated_path = log_path.with_name(f"{log_path.name}.1")
+        try:
+            rotated_path.unlink()
+        except FileNotFoundError:
+            pass
+        log_path.replace(rotated_path)
+    except OSError as exc:
+        logger.warning("rerank log rotation failed: %s", exc)
 
 
 def _get_lock(model_name: str) -> asyncio.Lock:
@@ -201,13 +254,20 @@ async def health():
         "default_model": DEFAULT_MODEL_NAME,
         "allowed_models": sorted(ALLOWED_MODELS),
         "loaded_models": loaded,
+        "owner_token_sha256": _owner_token_sha256(),
+        "canonical_config_hash": CONFIG_HASH,
         "queue_depth": sum(1 for lock in _locks.values() if lock.locked()),
         "uptime_s": round(time.time() - _started_at, 2),
     }
 
 
 @app.post("/warmup")
-async def warmup(req: Optional[WarmupRequest] = None):
+async def warmup(
+    req: Optional[WarmupRequest] = None,
+    x_rerank_secret: str | None = Header(default=None),
+):
+    _require_authenticated(x_rerank_secret)
+    check_rate_limit()
     requested = req.model if req else None
     model_name = _resolve_model_name(requested)
     revision = MODEL_REVISIONS.get(model_name, "")
@@ -230,6 +290,7 @@ async def rerank(req: RerankRequest):
     check_rate_limit()
     if req.top_k is not None and req.top_k < 0:
         raise HTTPException(status_code=400, detail="top_k must be non-negative")
+    _validate_document_bytes(req.documents)
 
     model_name = _resolve_model_name(req.model)
     revision = MODEL_REVISIONS.get(model_name, "")
@@ -250,12 +311,16 @@ async def rerank(req: RerankRequest):
     latency_ms = int((time.time() - start) * 1000)
     if LOG_PATH:
         try:
+            _rotate_log_if_needed(LOG_PATH)
+            query_hash = hashlib.sha256(req.query.encode("utf-8")).hexdigest()
+            query_value = req.query if LOG_RAW_QUERIES else "<redacted>"
             with open(LOG_PATH, "a", encoding="utf-8") as f:
                 f.write(
                     json.dumps(
                         {
                             "ts": time.time(),
-                            "query": req.query,
+                            "query": query_value,
+                            "query_sha256": query_hash,
                             "doc_count": len(req.documents),
                             "top_k": req.top_k,
                             "latency_ms": latency_ms,

@@ -16,6 +16,8 @@ const { spawn, spawnSync } = require('child_process');
 
 const root = path.resolve(__dirname, '..', '..');
 const opencodeDir = path.join(root, '.opencode');
+const BLOCKED_CHILD_ENV_RE = /^(NODE_|npm_|NPM_)/;
+const DOTENV_ALLOW_RE = /^(SPECKIT_CODE_GRAPH_|MK_CODE_INDEX_|COCOINDEX_BIN_PATH$)/;
 
 // Load project-local env overrides BEFORE spawning the MCP child. .env.local wins over
 // .env, both are gitignored. Existing process.env wins over file values (do not override).
@@ -39,6 +41,10 @@ function loadEnvFile(filePath) {
     // already have terminated the line, but defend explicitly.
     if (val.includes('\n') || val.includes('\0')) {
       process.stderr.write(`[mk-code-index-launcher] env value for ${key} contains control chars; skipping\n`);
+      continue;
+    }
+    if (!DOTENV_ALLOW_RE.test(key)) {
+      process.stderr.write(`[mk-code-index-launcher] env ${key} from ${path.basename(filePath)} is not allowlisted; skipping\n`);
       continue;
     }
     if (!(key in process.env)) {
@@ -146,8 +152,44 @@ function canonicalizePath(pathValue) {
   }
 }
 
+function canonicalizeExistingPrefix(pathValue) {
+  const resolvedPath = path.resolve(pathValue);
+  if (fs.existsSync(resolvedPath)) return fs.realpathSync.native(resolvedPath);
+
+  const segments = [];
+  let current = resolvedPath;
+  while (!fs.existsSync(current)) {
+    const parent = path.dirname(current);
+    if (parent === current) return resolvedPath;
+    segments.unshift(path.basename(current));
+    current = parent;
+  }
+  return path.join(fs.realpathSync.native(current), ...segments);
+}
+
+function isWithinBase(basePath, candidatePath) {
+  return candidatePath === basePath || candidatePath.startsWith(`${basePath}${path.sep}`);
+}
+
+function isWithinRoot(candidatePath, requireCanonical = false) {
+  const canonicalRoot = fs.realpathSync.native(path.resolve(root));
+  const normalizedCandidate = canonicalizeExistingPrefix(candidatePath);
+  if (!isWithinBase(canonicalRoot, normalizedCandidate)) return false;
+  if (!requireCanonical && !fs.existsSync(path.resolve(candidatePath))) return true;
+  const candidate = canonicalizePath(candidatePath);
+  return isWithinBase(canonicalRoot, candidate);
+}
+
+function assertPathWithinRoot(candidatePath, label, requireCanonical = false) {
+  if (!isWithinRoot(candidatePath, requireCanonical)) {
+    throw new Error(`${label} must stay within workspace root ${root}: ${candidatePath}`);
+  }
+}
+
 function ensureCanonicalDir(dirPath) {
-  fs.mkdirSync(canonicalizePath(dirPath), { recursive: true, mode: 0o700 });
+  assertPathWithinRoot(dirPath, 'code graph DB directory');
+  fs.mkdirSync(path.resolve(dirPath), { recursive: true, mode: 0o700 });
+  assertPathWithinRoot(dirPath, 'code graph DB directory', true);
   return canonicalizePath(dirPath);
 }
 
@@ -157,7 +199,10 @@ function writeState(payload) {
 }
 
 function resolvedDbDir() {
-  return canonicalizePath(process.env.SPECKIT_CODE_GRAPH_DB_DIR ?? dbDir);
+  const candidate = process.env.SPECKIT_CODE_GRAPH_DB_DIR ?? dbDir;
+  assertPathWithinRoot(candidate, 'SPECKIT_CODE_GRAPH_DB_DIR');
+  if (fs.existsSync(candidate)) assertPathWithinRoot(candidate, 'SPECKIT_CODE_GRAPH_DB_DIR', true);
+  return canonicalizePath(candidate);
 }
 
 function leasePath() {
@@ -406,7 +451,7 @@ function clearAllLeaseFiles() {
 function run(command, args, options = {}) {
   const result = spawnSync(command, args, {
     cwd: options.cwd || root,
-    env: process.env,
+    env: buildChildEnv(),
     encoding: 'utf8',
     stdio: ['ignore', 'pipe', 'pipe'],
   });
@@ -423,6 +468,15 @@ function run(command, args, options = {}) {
   if (result.status !== 0) {
     throw new Error(`${command} ${args.join(' ')} exited ${result.status}`);
   }
+}
+
+function buildChildEnv(extra = {}) {
+  const nextEnv = {};
+  for (const [key, value] of Object.entries(process.env)) {
+    if (BLOCKED_CHILD_ENV_RE.test(key)) continue;
+    nextEnv[key] = value;
+  }
+  return { ...nextEnv, ...extra };
 }
 
 function ensureLayout(actions) {
@@ -547,7 +601,7 @@ function launchServer() {
   const server = path.join(kitDir, 'mcp_server', 'dist', 'index.js');
   childProcess = spawn(process.execPath, [server], {
     cwd: root,
-    env: process.env,
+    env: buildChildEnv(),
     stdio: 'inherit',
   });
 

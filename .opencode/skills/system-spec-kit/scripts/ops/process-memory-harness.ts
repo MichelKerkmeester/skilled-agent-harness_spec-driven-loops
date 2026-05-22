@@ -153,6 +153,16 @@ function hasOwnerToken(command: string): boolean {
   return /(?:^|\s)(?:--owner-token|--ownerToken|owner_token=|ownerToken=|SPECKIT_OWNER_TOKEN=)/.test(command);
 }
 
+export function redactSensitiveCommand(command: string): string {
+  return command
+    .replace(
+      /\b([A-Za-z_][A-Za-z0-9_]*(?:API_KEY|TOKEN|SECRET)|SPECKIT_OWNER_TOKEN|RERANK_SIDECAR_OWNER_TOKEN|owner_token|ownerToken)=([^\s]+)/g,
+      '$1=<redacted>',
+    )
+    .replace(/(^|\s)(--owner-token|--ownerToken)=([^\s]+)/g, '$1$2=<redacted>')
+    .replace(/(^|\s)(--owner-token|--ownerToken)\s+([^\s]+)/g, '$1$2 <redacted>');
+}
+
 export function hasKnownProjectOwnerMarker(command: string): boolean {
   return KNOWN_PROJECT_OWNER_MARKERS.some((marker) => command.includes(marker));
 }
@@ -192,7 +202,7 @@ export function parsePsOutput(output: string): ProcessRow[] {
       ppid: Number(match[2]),
       stat: match[3],
       rssKb: Number(match[4]),
-      command: match[5] ?? '',
+      command: redactSensitiveCommand(match[5] ?? ''),
     });
   }
   return rows;

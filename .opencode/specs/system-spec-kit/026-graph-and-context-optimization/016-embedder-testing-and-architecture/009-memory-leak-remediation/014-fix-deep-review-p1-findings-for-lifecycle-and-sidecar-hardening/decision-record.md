@@ -401,3 +401,213 @@ Registering an existing task ID raises `DuplicateTaskIdError`. `create_task()` c
 ### Consequences
 Duplicate task IDs fail loudly as logical bugs, and completion callbacks cannot mark the wrong row.
 <!-- /ANCHOR:adr-016 -->
+
+---
+
+<!-- ANCHOR:adr-017 -->
+## ADR-017: Rerank Startup Treats Dotenv as Data
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-SEC-001, DR009-SEC-011 |
+
+### Context
+The rerank start script sourced dotenv files as shell code and then launched with a narrow environment that dropped API keys before `uvicorn` started.
+
+### Decision
+Dotenv loading is a line-oriented safe parser. It exports only explicit rerank/Hugging Face keys and forwards API-key variables through an allowlisted `env -i` launch path.
+
+### Consequences
+Startup preserves required credentials without evaluating project-controlled shell syntax.
+<!-- /ANCHOR:adr-017 -->
+
+---
+
+<!-- ANCHOR:adr-018 -->
+## ADR-018: Warmup Uses the Rerank Auth Gate
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-SEC-002 |
+
+### Context
+The `/warmup` endpoint could initialize the model without the auth and rate-limit checks used by `/rerank`.
+
+### Decision
+Both endpoints call the same authentication helper, and `/warmup` also consumes the shared rate limiter.
+
+### Consequences
+Warmup no longer exposes an unauthenticated high-cost model-load path.
+<!-- /ANCHOR:adr-018 -->
+
+---
+
+<!-- ANCHOR:adr-019 -->
+## ADR-019: Sidecar Ownership Requires High-Entropy Proof
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-SEC-003, DR009-SEC-016, DR009-MNT-001 |
+
+### Context
+Reusable rerank sidecars were identified by predictable project-derived tokens, and health checks accepted any local responder on the expected port.
+
+### Decision
+Ensure helpers persist a random `token_urlsafe(24)` owner token, pass only its SHA-256 digest through `/health`, and also verify the canonical config hash before reuse. Python and CJS helpers share parity coverage for this contract.
+
+### Consequences
+A localhost process must prove possession of the project token and matching configuration before reuse.
+<!-- /ANCHOR:adr-019 -->
+
+---
+
+<!-- ANCHOR:adr-020 -->
+## ADR-020: Rerank Inputs and Logs Are Bounded
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-SEC-005, DR009-SEC-008 |
+
+### Context
+Rerank request validation capped item count but not document bytes, and optional audit logs could persist raw query text indefinitely.
+
+### Decision
+Requests enforce `RERANK_MAX_DOCUMENT_BYTES` before scoring. Logs redact query text by default, emit a SHA-256 digest for correlation, and rotate through `RERANK_LOG_MAX_BYTES`; raw query logging requires explicit opt-in.
+
+### Consequences
+Large payloads fail before model work, and logs no longer retain sensitive query text by default.
+<!-- /ANCHOR:adr-020 -->
+
+---
+
+<!-- ANCHOR:adr-021 -->
+## ADR-021: Trust-Remote-Code Models Require Revision Pins
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-SEC-006 |
+
+### Context
+Extra allowlisted rerank models could enable `trust_remote_code` without an immutable revision.
+
+### Decision
+Every model in the trust-remote-code allowlist must include a 40-character commit revision. Startup rejects unpinned entries.
+
+### Consequences
+Operators can still opt into extra remote-code models, but execution is pinned to a reviewed commit.
+<!-- /ANCHOR:adr-021 -->
+
+---
+
+<!-- ANCHOR:adr-022 -->
+## ADR-022: Code Graph Paths Stay Workspace-Contained
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-SEC-007, DR009-SEC-010, DR009-SEC-017 |
+
+### Context
+Code Graph accepted database, binary, and IPC paths that could escape the workspace or reclaim unrelated filesystem nodes.
+
+### Decision
+DB-dir overrides and `COCOINDEX_BIN_PATH` are resolved, canonicalized, and checked against the workspace before use. IPC socket unlinking requires workspace containment, socket type, and same uid.
+
+### Consequences
+Operator overrides remain available only for workspace-local assets, and stale IPC cleanup cannot unlink arbitrary files.
+<!-- /ANCHOR:adr-022 -->
+
+---
+
+<!-- ANCHOR:adr-023 -->
+## ADR-023: Code Graph Launches Without Project Node Runtime Flags
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-SEC-013 |
+
+### Context
+Project dotenv values could inject `NODE_OPTIONS` or related Node runtime variables into launcher child processes.
+
+### Decision
+The launcher dotenv parser only accepts Code Graph keys, and child process environments strip `NODE_*` plus npm runtime variables.
+
+### Consequences
+Project-local dotenv files cannot alter Node module loading, inspector state, or runtime flags for the Code Graph server.
+<!-- /ANCHOR:adr-023 -->
+
+---
+
+<!-- ANCHOR:adr-024 -->
+## ADR-024: Metadata Commands Use Arg Arrays
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-SEC-014 |
+
+### Context
+Stored Code Graph metadata was interpolated into shell commands for git diff operations.
+
+### Decision
+Metadata-derived git commands now use `execFileSync` with argv arrays, and revision strings must satisfy SHA validation before use.
+
+### Consequences
+Stored metadata is treated as data, not shell syntax.
+<!-- /ANCHOR:adr-024 -->
+
+---
+
+<!-- ANCHOR:adr-025 -->
+## ADR-025: External Executors Receive Minimal Environments
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-SEC-012 |
+
+### Context
+Deep-loop CLI executors inherited the full parent environment, including unrelated tokens.
+
+### Decision
+Non-native executor spawns use a common environment allowlist plus executor-specific credential prefixes. Native execution keeps the parent environment because it does not cross the external CLI boundary.
+
+### Consequences
+CLI dispatch receives only the credentials expected for that executor.
+<!-- /ANCHOR:adr-025 -->
+
+---
+
+<!-- ANCHOR:adr-026 -->
+## ADR-026: Process Control Uses Ownership Evidence
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-05-22 |
+| **Related Findings** | DR009-SEC-009, DR009-SEC-015 |
+
+### Context
+Model switching killed sidecars by command substring, while process inventory emitted owner tokens in command text.
+
+### Decision
+Model switching reads the rerank sidecar ledger and signals only exact PIDs with the current project owner token. Process inventory and sweep output redact API keys, secrets, and owner tokens before storage or display.
+
+### Consequences
+Process control is tied to ownership evidence, and diagnostics no longer leak reusable owner tokens.
+<!-- /ANCHOR:adr-026 -->

@@ -1,6 +1,6 @@
 import { mkdirSync, mkdtempSync, rmSync, symlinkSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { join, resolve } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { CanonicalDbDirError, resolveCanonicalDbDir } from '../../lib/canonical-db-dir.js';
@@ -31,15 +31,34 @@ describe('resolveCanonicalDbDir', () => {
     symlinkSync(realDir, aliasA, 'dir');
     symlinkSync(realDir, aliasB, 'dir');
 
-    expect(resolveCanonicalDbDir(aliasA)).toBe(resolveCanonicalDbDir(aliasB));
-    expect(resolveCanonicalDbDir(aliasA)).toBe(resolveCanonicalDbDir(realDir));
+    expect(resolveCanonicalDbDir(aliasA, root)).toBe(resolveCanonicalDbDir(aliasB, root));
+    expect(resolveCanonicalDbDir(aliasA, root)).toBe(resolveCanonicalDbDir(realDir, root));
   });
 
   it('creates a missing DB directory before canonicalization', () => {
     const root = tempRoot();
     const missingDir = join(root, 'missing', 'db');
 
-    expect(resolveCanonicalDbDir(missingDir)).toBe(resolveCanonicalDbDir(missingDir));
+    expect(resolveCanonicalDbDir(missingDir, root)).toBe(resolveCanonicalDbDir(missingDir, root));
+  });
+
+  it('rejects DB directories outside the workspace root', () => {
+    const root = tempRoot();
+    const outside = mkdtempSync(join(tmpdir(), 'cg-outside-db-'));
+    tempDirs.push(outside);
+
+    expect(() => resolveCanonicalDbDir(outside, root)).toThrow(CanonicalDbDirError);
+  });
+
+  it('rejects symlink escapes after canonicalization', () => {
+    const root = tempRoot();
+    const outside = mkdtempSync(join(tmpdir(), 'cg-outside-db-'));
+    tempDirs.push(outside);
+    const alias = join(root, 'db-link');
+    symlinkSync(outside, alias, 'dir');
+
+    expect(() => resolveCanonicalDbDir(alias, root)).toThrow(CanonicalDbDirError);
+    expect(resolve(alias).startsWith(root)).toBe(true);
   });
 
   it('surfaces EPERM canonicalization failures instead of guessing identity', async () => {
@@ -53,7 +72,7 @@ describe('resolveCanonicalDbDir', () => {
       throw error;
     });
 
-    expect(() => resolveCanonicalDbDir(dbDir)).toThrow(CanonicalDbDirError);
+    expect(() => resolveCanonicalDbDir(dbDir, root)).toThrow(CanonicalDbDirError);
     expect(realpathNative).toHaveBeenCalled();
   });
 });

@@ -270,6 +270,31 @@ describe('mk-code-index launcher lease', () => {
     expect(existsSync(workspace.pidFilePath)).toBe(false);
   });
 
+  it('rejects SPECKIT_CODE_GRAPH_DB_DIR outside the workspace', async () => {
+    const workspace = createWorkspace();
+    const outsideDbDir = mkdtempSync(join(tmpdir(), 'mk-code-index-outside-db-'));
+    tempDirs.push(outsideDbDir);
+
+    const run = spawnLauncher(workspace.launcherPath, workspace.root, {
+      SPECKIT_CODE_GRAPH_DB_DIR: outsideDbDir,
+    });
+    const exit = await waitForExit(run.child, 8000);
+
+    expect(exit.code).toBe(1);
+    expect(run.stderr).toContain('SPECKIT_CODE_GRAPH_DB_DIR must stay within workspace root');
+    expect(existsSync(join(outsideDbDir, '.mk-code-index-launcher.json'))).toBe(false);
+  });
+
+  it('does not load NODE_OPTIONS from project dotenv', async () => {
+    const workspace = createWorkspace();
+    writeFileSync(join(workspace.root, '.env.local'), 'NODE_OPTIONS=--require ./pwn.js\nSPECKIT_CODE_GRAPH_MAINTAINER_MODE=true\n');
+
+    const run = spawnLauncher(workspace.launcherPath, workspace.root);
+    await waitForLeasePid(workspace.pidFilePath, run.child.pid);
+
+    expect(run.stderr).toContain('env NODE_OPTIONS from .env.local is not allowlisted; skipping');
+  });
+
   // 002-REQ-004 / 004-REQ-009: dead-PID lease files are reclaimable.
   it('reclaims a dead-pid lease file and logs staleReclaimed', async () => {
     const workspace = createWorkspace();

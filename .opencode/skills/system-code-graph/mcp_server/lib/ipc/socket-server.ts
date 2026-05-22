@@ -8,6 +8,7 @@ import path from 'node:path';
 
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { isWithinWorkspace } from '../utils/workspace-path.js';
 
 const SOCKET_FILE_NAME = 'daemon-ipc.sock';
 const DEFAULT_MAX_SECONDARY_CLIENTS = 8;
@@ -56,10 +57,33 @@ function parseMaxClients(rawValue = process.env.SPECKIT_MAX_SECONDARY_CLIENTS): 
 }
 
 function resolveIpcSocketPath(dbDir: string): string {
-  const socketDir = process.env.SPECKIT_IPC_SOCKET_DIR
+  const rawSocketDir = process.env.SPECKIT_IPC_SOCKET_DIR
     ? path.resolve(process.env.SPECKIT_IPC_SOCKET_DIR)
     : path.resolve(dbDir);
+  const workspaceRoot = fs.realpathSync.native(process.cwd());
+  const socketDir = fs.existsSync(rawSocketDir)
+    ? fs.realpathSync.native(rawSocketDir)
+    : rawSocketDir;
+  if (!isWithinWorkspace(workspaceRoot, socketDir)) {
+    throw new Error(`IPC socket directory must stay within the workspace root: ${workspaceRoot}`);
+  }
   return path.join(socketDir, SOCKET_FILE_NAME);
+}
+
+function canUnlinkExistingSocket(socketPath: string): boolean {
+  const workspaceRoot = fs.realpathSync.native(process.cwd());
+  const parent = fs.realpathSync.native(path.dirname(socketPath));
+  if (!isWithinWorkspace(workspaceRoot, parent)) {
+    return false;
+  }
+  const stat = fs.lstatSync(socketPath);
+  if (!stat.isSocket()) {
+    return false;
+  }
+  if (typeof process.getuid === 'function' && stat.uid !== process.getuid()) {
+    return false;
+  }
+  return true;
 }
 
 function getIpcBridgeStats(): IpcBridgeStats {
@@ -148,6 +172,9 @@ async function startIpcSocketServer(options: IpcSocketServerOptions): Promise<Ip
   } catch (error: unknown) {
     const err = error as NodeJS.ErrnoException;
     if (err.code !== 'EADDRINUSE' || socketPath.startsWith('tcp://')) {
+      throw err;
+    }
+    if (!canUnlinkExistingSocket(socketPath)) {
       throw err;
     }
     try {

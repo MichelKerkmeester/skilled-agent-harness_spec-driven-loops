@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+import logging
 import threading
 import time
 from dataclasses import dataclass, field
@@ -12,6 +13,33 @@ from collections.abc import Callable
 from .cancel_protocol import CancelRequest, CancelStatus, match_cancel_request
 
 ActiveWorkStatus = Literal["running", "cancelling", "complete"]
+logger = logging.getLogger(__name__)
+
+
+class BoundedSet:
+    """Insertion-ordered set with a fixed maximum size."""
+
+    def __init__(self, max_size: int) -> None:
+        self.max_size = max_size
+        self._values: dict[str, None] = {}
+
+    def __contains__(self, value: object) -> bool:
+        return value in self._values
+
+    def __len__(self) -> int:
+        return len(self._values)
+
+    def add(self, value: str) -> bool:
+        if value in self._values:
+            return True
+        if len(self._values) >= self.max_size:
+            logger.warning("set-overflow: stale identity cap reached (%s)", self.max_size)
+            return False
+        self._values[value] = None
+        return True
+
+    def clear(self) -> None:
+        self._values.clear()
 
 
 @dataclass
@@ -43,9 +71,10 @@ class ActiveWorkRegistry:
         self._rows: list[ActiveWorkRow] = []
         self._completed_order: list[tuple[str, str | None]] = []
         self._max_completed_rows = 512
+        self._max_stale_identities = 1000
         self._removing_projects: set[str] = set()
-        self._stale_req_ids: set[str] = set()
-        self._stale_index_ids: set[str] = set()
+        self._stale_req_ids = BoundedSet(self._max_stale_identities)
+        self._stale_index_ids = BoundedSet(self._max_stale_identities)
 
     def add(self, row: ActiveWorkRow) -> None:
         with self._condition:

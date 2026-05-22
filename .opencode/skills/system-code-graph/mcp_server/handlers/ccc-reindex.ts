@@ -4,10 +4,10 @@
 // MCP tool handler for ccc_reindex — triggers incremental re-indexing.
 
 import { existsSync } from 'node:fs';
-import { resolve } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import * as graphDb from '../lib/code-graph-db.js';
 import { probeCocoIndexReadiness } from '../lib/ccc-readiness-probe.js';
+import { getCocoIndexBinaryPath } from '../lib/shared/cocoindex-path.js';
 
 const REINDEX_OUTPUT_MAX_LENGTH = 2000;
 
@@ -19,8 +19,20 @@ export interface ReindexArgs {
 export async function handleCccReindex(args: ReindexArgs): Promise<{ content: Array<{ type: string; text: string }> }> {
   try {
     const projectRoot = process.cwd();
-    const defaultCccBin = resolve(projectRoot, '.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc');
-    const cccBin = process.env.COCOINDEX_BIN_PATH ?? defaultCccBin;
+    let cccBin: string;
+    try {
+      cccBin = getCocoIndexBinaryPath(projectRoot);
+    } catch (error: unknown) {
+      return {
+        content: [{
+          type: 'text',
+          text: JSON.stringify({
+            status: 'error',
+            error: error instanceof Error ? error.message : String(error),
+          }),
+        }],
+      };
+    }
 
     if (!existsSync(cccBin)) {
       return {

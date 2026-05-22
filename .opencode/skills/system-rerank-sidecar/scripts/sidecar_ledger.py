@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import json
 import os
+import secrets
 import tempfile
 import fcntl
 from contextlib import contextmanager
@@ -14,6 +15,7 @@ from pathlib import Path
 from typing import Any, Callable, Literal
 
 LEDGER_FILE_NAME = ".sidecar-ledger.json"
+OWNER_TOKEN_FILE_NAME = ".sidecar-owner-token"
 SidecarClassification = Literal[
     "healthy-reusable",
     "unknown-owner-refuse",
@@ -85,6 +87,10 @@ def ledger_lock_path(state_dir: str | Path) -> Path:
     return Path(state_dir).expanduser().resolve() / f"{LEDGER_FILE_NAME}.lock"
 
 
+def owner_token_path(state_dir: str | Path) -> Path:
+    return Path(state_dir).expanduser().resolve() / OWNER_TOKEN_FILE_NAME
+
+
 @contextmanager
 def _locked_ledger(state_dir: str | Path):
     target_dir = Path(state_dir).expanduser().resolve()
@@ -103,6 +109,42 @@ def default_state_dir() -> Path:
     if configured:
         return Path(configured).expanduser()
     return Path.home() / ".cache" / "mk-reranker"
+
+
+def load_or_create_owner_token(state_dir: str | Path) -> str:
+    """Return a persistent, high-entropy owner token for this state directory."""
+    explicit = os.environ.get("RERANK_SIDECAR_OWNER_TOKEN", "").strip()
+    if explicit:
+        return explicit
+
+    target_dir = Path(state_dir).expanduser().resolve()
+    target_dir.mkdir(parents=True, exist_ok=True)
+    path = owner_token_path(target_dir)
+    try:
+        existing = path.read_text(encoding="utf-8").strip()
+        if existing:
+            return existing
+    except FileNotFoundError:
+        pass
+
+    token = secrets.token_urlsafe(24)
+    try:
+        fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+    except FileExistsError:
+        existing = path.read_text(encoding="utf-8").strip()
+        if existing:
+            return existing
+        raise
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as handle:
+            handle.write(f"{token}\n")
+    except Exception:
+        try:
+            path.unlink()
+        except OSError:
+            pass
+        raise
+    return token
 
 
 def process_liveness(pid: int) -> Literal["alive", "dead", "eperm"]:

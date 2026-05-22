@@ -112,13 +112,14 @@ describe('process sweep', () => {
       {
         pid: 4000,
         ppid: 1,
-        command: 'uvicorn rerank_sidecar:app --host 127.0.0.1 --port 8791 --owner-token phase-008',
+        command: 'uvicorn rerank_sidecar:app --host 127.0.0.1 --port 8791 --owner-token abcdef0123456789abcdef0123456789',
       },
     ]);
 
     const plan = planSweep(inventory(processes), { selfPid: 1000 });
 
     expect(plan.rows[0]).toMatchObject({
+      command: expect.stringContaining('--owner-token <redacted>'),
       classification: 'expected-warm-daemon',
       eligibleForTermination: false,
       rationale: 'expected-warm-preserved',

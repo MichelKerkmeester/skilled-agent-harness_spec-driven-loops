@@ -5,7 +5,7 @@
 // performs the reindex automatically. Shared helper for context,
 // query, and status handlers.
 
-import { execSync } from 'node:child_process';
+import { execFileSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { getDb, getLastGitHead, setLastGitHead, ensureFreshFiles } from './code-graph-db.js';
@@ -83,7 +83,7 @@ const GUARDED_FULL_SCAN_PARSE_ERROR_THRESHOLD = 0;
 
 function getCurrentGitHead(rootDir: string): string | null {
   try {
-    return execSync('git rev-parse HEAD', {
+    return execFileSync('git', ['rev-parse', 'HEAD'], {
       cwd: rootDir,
       encoding: 'utf-8',
       timeout: 5_000,
@@ -92,6 +92,10 @@ function getCurrentGitHead(rootDir: string): string | null {
   } catch {
     return null;
   }
+}
+
+function isCommitSha(value: string): boolean {
+  return /^[0-9a-fA-F]{40}$/.test(value);
 }
 
 /**
@@ -105,8 +109,11 @@ function getCurrentGitHead(rootDir: string): string | null {
  * whether a HEAD pointer change actually affects the indexed set.
  */
 function getGitDiffFilePaths(rootDir: string, fromSha: string, toSha: string): string[] | null {
+  if (!isCommitSha(fromSha) || !isCommitSha(toSha)) {
+    return null;
+  }
   try {
-    const out = execSync(`git diff --name-only ${fromSha}..${toSha}`, {
+    const out = execFileSync('git', ['diff', '--name-only', `${fromSha}..${toSha}`], {
       cwd: rootDir,
       encoding: 'utf-8',
       timeout: 5_000,

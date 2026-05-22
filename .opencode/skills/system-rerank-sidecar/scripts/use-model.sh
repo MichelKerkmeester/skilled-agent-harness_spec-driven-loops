@@ -72,11 +72,47 @@ if [[ ! "$MODEL" =~ ^[A-Za-z0-9._-]+/[A-Za-z0-9._-]+$ ]]; then
     exit 1
 fi
 
+if [[ -n "$DEVICE" && ! "$DEVICE" =~ ^(cpu|mps|cuda)$ ]]; then
+    echo "Error: --device must be one of cpu, mps, or cuda." >&2
+    exit 1
+fi
+
 VENV_PY="$SKILL_DIR/.venv/bin/python"
 if [[ ! -x "$VENV_PY" ]]; then
     echo "Error: sidecar venv missing at $VENV_PY. Run: bash scripts/install.sh" >&2
     exit 1
 fi
+
+stop_owned_sidecars() {
+    "$VENV_PY" - "$SKILL_DIR" <<'PY'
+import os
+import signal
+import sys
+from pathlib import Path
+
+skill_dir = Path(sys.argv[1])
+sys.path.insert(0, str(skill_dir))
+from scripts.sidecar_ledger import (  # noqa: E402
+    default_state_dir,
+    load_or_create_owner_token,
+    process_liveness,
+    read_ledger,
+)
+
+state_dir = default_state_dir()
+owner_token = load_or_create_owner_token(state_dir)
+for row in read_ledger(state_dir):
+    if row.ownerToken != owner_token:
+        continue
+    if process_liveness(row.pid) != "alive":
+        continue
+    try:
+        os.kill(row.pid, signal.SIGTERM)
+        print(row.pid)
+    except OSError:
+        pass
+PY
+}
 
 # Resolve revision (HEAD if unspecified) + check cache.
 HF_CACHE="${HF_HOME:-$HOME/.cache/huggingface}/hub"
@@ -120,6 +156,11 @@ if [[ -z "$REVISION" ]]; then
     fi
 fi
 
+if [[ ! "$REVISION" =~ ^[0-9a-fA-F]{40}$ ]]; then
+    echo "Error: revision must be a 40-character commit SHA for trust_remote_code models." >&2
+    exit 1
+fi
+
 # Write .env.local atomically
 TMP_ENV="$(mktemp)"
 {
@@ -136,8 +177,8 @@ if [[ "$RESTART" -eq 0 ]]; then
     exit 0
 fi
 
-# Stop existing sidecar
-pkill -TERM -f "uvicorn scripts.rerank_sidecar" 2>/dev/null || true
+# Stop existing sidecar owned by this project/state directory.
+stop_owned_sidecars >/tmp/rerank-sidecar-stopped-pids.txt
 sleep 1
 
 # Start fresh

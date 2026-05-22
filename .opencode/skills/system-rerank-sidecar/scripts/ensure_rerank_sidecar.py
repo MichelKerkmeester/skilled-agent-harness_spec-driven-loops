@@ -26,6 +26,7 @@ import time
 import urllib.error
 import urllib.request
 import hashlib
+import json
 from pathlib import Path
 from typing import Any
 
@@ -35,6 +36,7 @@ try:
         add_sidecar_row,
         default_state_dir,
         find_reusable_sidecar,
+        load_or_create_owner_token,
         now_iso,
         reclaim_stale,
     )
@@ -44,6 +46,7 @@ except ModuleNotFoundError:  # pragma: no cover - direct script execution
         add_sidecar_row,
         default_state_dir,
         find_reusable_sidecar,
+        load_or_create_owner_token,
         now_iso,
         reclaim_stale,
     )
@@ -67,30 +70,66 @@ def _resolve_port(value: Any, fallback: int = DEFAULT_PORT) -> int:
     return parsed if parsed > 0 else fallback
 
 
-def is_healthy(port: int, timeout_seconds: float = 2.0) -> bool:
+def _owner_token_digest(owner_token: str) -> str:
+    return hashlib.sha256(owner_token.encode("utf-8")).hexdigest()
+
+
+def health_payload(port: int, timeout_seconds: float = 2.0) -> dict[str, Any] | None:
     url = f"http://127.0.0.1:{port}/health"
     try:
         with urllib.request.urlopen(url, timeout=timeout_seconds) as response:
-            response.read(1)
-            return response.status == 200
+            body = response.read(8192)
+            if response.status != 200:
+                return None
+            parsed = json.loads(body.decode("utf-8"))
+            return parsed if isinstance(parsed, dict) else None
     except (OSError, urllib.error.URLError, TimeoutError):
+        return None
+    except (UnicodeDecodeError, json.JSONDecodeError):
+        return None
+
+
+def is_healthy(
+    port: int,
+    timeout_seconds: float = 2.0,
+    *,
+    expected_owner_token: str | None = None,
+    expected_config_hash: str | None = None,
+) -> bool:
+    payload = health_payload(port, timeout_seconds=timeout_seconds)
+    if payload is None:
         return False
+    if expected_owner_token is not None and payload.get("owner_token_sha256") != _owner_token_digest(expected_owner_token):
+        return False
+    if expected_config_hash is not None and payload.get("canonical_config_hash") != expected_config_hash:
+        return False
+    return True
 
 
-def wait_for_healthy(port: int, deadline: float) -> bool:
+def wait_for_healthy(
+    port: int,
+    deadline: float,
+    *,
+    expected_owner_token: str | None = None,
+    expected_config_hash: str | None = None,
+) -> bool:
     while time.monotonic() < deadline:
-        if is_healthy(port, timeout_seconds=2.0):
+        if is_healthy(
+            port,
+            timeout_seconds=2.0,
+            expected_owner_token=expected_owner_token,
+            expected_config_hash=expected_config_hash,
+        ):
             return True
         time.sleep(0.5)
     return False
 
 
-def _owner_token(skill_path: Path) -> str:
+def _owner_token(skill_path: Path, state_dir: Path) -> str:
     explicit = os.environ.get("RERANK_SIDECAR_OWNER_TOKEN", "").strip()
     if explicit:
         return explicit
-    project_root = os.environ.get("SPECKIT_PROJECT_ROOT", "").strip() or str(skill_path)
-    return hashlib.sha256(str(Path(project_root).expanduser().resolve()).encode("utf-8")).hexdigest()
+    return load_or_create_owner_token(state_dir)
 
 
 def _canonical_config_hash(port: int) -> str:
@@ -181,14 +220,19 @@ def ensure_rerank_sidecar(
         }
 
     skill_path = Path(sidecar_skill_path).resolve() if sidecar_skill_path else SIDECAR_SKILL_PATH
-    owner_token = _owner_token(skill_path)
-    config_hash = _canonical_config_hash(resolved_port)
     state_dir = default_state_dir()
+    owner_token = _owner_token(skill_path, state_dir)
+    config_hash = _canonical_config_hash(resolved_port)
     reusable, classifications = find_reusable_sidecar(
         state_dir,
         expected_owner_token=owner_token,
         canonical_config_hash=config_hash,
-        health_check=lambda ledger_port: is_healthy(ledger_port, timeout_seconds=2.0),
+        health_check=lambda ledger_port: is_healthy(
+            ledger_port,
+            timeout_seconds=2.0,
+            expected_owner_token=owner_token,
+            expected_config_hash=config_hash,
+        ),
     )
     if reusable is not None:
         return {
@@ -208,7 +252,12 @@ def ensure_rerank_sidecar(
         return {"spawned": False, "port": resolved_port, "fallback": "no-sidecar-skill"}
 
     log_file = _open_sidecar_log()
-    env = {**os.environ, "RERANK_SIDECAR_PORT": str(resolved_port)}
+    env = {
+        **os.environ,
+        "RERANK_SIDECAR_PORT": str(resolved_port),
+        "RERANK_SIDECAR_OWNER_TOKEN": owner_token,
+        "RERANK_SIDECAR_CONFIG_HASH": config_hash,
+    }
     proc = subprocess.Popen(
         ["bash", str(start_script)],
         stdin=subprocess.DEVNULL,
@@ -228,7 +277,12 @@ def ensure_rerank_sidecar(
     )
     add_sidecar_row(state_dir, row)
 
-    ok = wait_for_healthy(resolved_port, time.monotonic() + float(health_timeout_seconds))
+    ok = wait_for_healthy(
+        resolved_port,
+        time.monotonic() + float(health_timeout_seconds),
+        expected_owner_token=owner_token,
+        expected_config_hash=config_hash,
+    )
     if not ok:
         termination = _terminate_process_group(proc)
         reclaim_stale(state_dir)
@@ -239,6 +293,15 @@ def ensure_rerank_sidecar(
             "ownerPid": proc.pid,
             "fallback": "warmup-timeout",
             "termination": termination,
+            "ledger": "recorded-before-warmup",
+        }
+    if proc.poll() is not None:
+        reclaim_stale(state_dir)
+        return {
+            "spawned": False,
+            "port": resolved_port,
+            "ownerPid": proc.pid,
+            "fallback": "spawned-process-exited",
             "ledger": "recorded-before-warmup",
         }
 

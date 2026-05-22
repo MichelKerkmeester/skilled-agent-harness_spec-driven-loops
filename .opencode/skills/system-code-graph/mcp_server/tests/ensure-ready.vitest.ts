@@ -59,7 +59,7 @@ vi.mock('node:fs', () => ({
 }));
 
 vi.mock('node:child_process', () => ({
-  execSync: mocks.execSyncMock,
+  execFileSync: mocks.execSyncMock,
 }));
 
 // Mock structural-indexer to avoid real parsing
@@ -284,8 +284,8 @@ describe('ensure-ready', () => {
     it('keeps git HEAD drift as full-scan territory when tracked files look up-to-date on disk', async () => {
       mocks.getDbMock.mockReturnValue(createDbWithNodeCount(1));
       mocks.getLastGitHeadMock.mockReturnValue('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
-      mocks.execSyncMock.mockImplementation((command: string) => (
-        command.startsWith('git diff')
+      mocks.execSyncMock.mockImplementation((command: string, args: string[]) => (
+        args[0] === 'diff'
           ? 'fresh.ts\n'
           : 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\n'
       ));

@@ -412,3 +412,55 @@ Verification:
 - `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code` -> passed with non-blocking pre-existing Python shebang/docstring warnings.
 - `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/mcp-coco-index/mcp_server/tests/lifecycle` -> passed with non-blocking Python shebang/docstring warnings.
 - `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-rerank-sidecar/tests` -> passed with non-blocking Python shebang/docstring warnings.
+
+## B3 Commit Handoff
+
+Suggested commit: `fix(014/B3): sidecar + executor security hardening — DR009-SEC-001-017 + DR009-MNT-001`
+
+Findings closed: DR009-SEC-001, DR009-SEC-002, DR009-SEC-003, DR009-SEC-004, DR009-SEC-005, DR009-SEC-006, DR009-SEC-007, DR009-SEC-008, DR009-SEC-009, DR009-SEC-010, DR009-SEC-011, DR009-SEC-012, DR009-SEC-013, DR009-SEC-014, DR009-SEC-015, DR009-SEC-016, DR009-SEC-017, DR009-MNT-001.
+
+Changed/new files:
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-rerank-sidecar/scripts/rerank_sidecar.py`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-rerank-sidecar/scripts/start.sh`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-rerank-sidecar/scripts/ensure_rerank_sidecar.py`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-rerank-sidecar/scripts/sidecar_ledger.py`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-rerank-sidecar/scripts/use-model.sh`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/bin/lib/ensure-rerank-sidecar.cjs`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-rerank-sidecar/tests/test_rerank_sidecar.py`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-rerank-sidecar/tests/test_sidecar_ledger.py`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/lifecycle/active_work_registry.py`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/tests/lifecycle/test_active_work_registry.py`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/core/config.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/lib/canonical-db-dir.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/lib/shared/cocoindex-path.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/lib/ccc-readiness-probe.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/handlers/ccc-reindex.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/lib/ensure-ready.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/lib/ipc/socket-server.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/tests/lib/canonical-db-dir.vitest.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/tests/lib/security-hardening.vitest.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/tests/ensure-ready.vitest.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/tests/launcher-lease.vitest.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/bin/mk-code-index-launcher.cjs`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-runtime/tests/unit/executor-audit.vitest.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/ops/process-memory-harness.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/process-memory-harness.vitest.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/process-sweep.vitest.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening/checklist.md`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening/decision-record.md`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening/scratch/batch-plan.md`
+
+Verification:
+- `cd .opencode/skills/system-rerank-sidecar && python3 -m pytest tests/ -v 2>&1 | tail -40` -> blocked during collection by system Python missing `httpx`.
+- `cd .opencode/skills/system-rerank-sidecar && .venv/bin/python -m pytest tests/test_sidecar_ledger.py tests/test_rerank_sidecar.py::test_warmup_requires_auth_before_model_load tests/test_rerank_sidecar.py::test_rerank_rejects_oversized_document_payload tests/test_rerank_sidecar.py::test_rerank_log_redacts_query_by_default tests/test_rerank_sidecar.py::test_extra_allowlisted_model_requires_commit_revision -v 2>&1 | tail -80` -> 21 tests passed.
+- `cd .opencode/skills/system-rerank-sidecar && bash -n scripts/start.sh && bash -n scripts/use-model.sh && PYTHONPYCACHEPREFIX=/tmp/pycache-b3 python3 -m py_compile scripts/rerank_sidecar.py scripts/ensure_rerank_sidecar.py scripts/sidecar_ledger.py` -> passed.
+- `cd .opencode/skills/system-rerank-sidecar && .venv/bin/python -m pytest tests/ -v 2>&1 | tail -80` -> 22 passed, 3 failed because the sandbox denied binding/connecting to `127.0.0.1:8766` with `[Errno 1] Operation not permitted`.
+- `cd .opencode/skills/mcp-coco-index && python3 -m pytest mcp_server/tests/lifecycle/test_active_work_registry.py -v 2>&1 | tail -40` -> 5 tests passed.
+- `cd .opencode/skills/system-code-graph && node node_modules/vitest/vitest.mjs run mcp_server/tests/lib/ mcp_server/tests/launcher-lease.vitest.ts --config vitest.config.ts 2>&1 | tail -80` -> 5 files, 37 tests passed.
+- `cd .opencode/skills/system-spec-kit && node mcp_server/node_modules/vitest/vitest.mjs run ../deep-loop-runtime/tests/unit/executor-audit.vitest.ts --config mcp_server/vitest.config.ts 2>&1 | tail -80` -> 1 file, 22 tests passed.
+- `cd .opencode/skills/system-spec-kit && node mcp_server/node_modules/vitest/vitest.mjs run scripts/tests/process-memory-harness.vitest.ts scripts/tests/process-sweep.vitest.ts --config mcp_server/vitest.config.ts 2>&1 | tail -80` -> 2 files, 18 tests passed.
+- `cd .opencode/skills/system-code-graph && npm run typecheck -- --pretty false 2>&1 | tail -80` -> passed.
+- `cd .opencode/skills/system-spec-kit && npm run typecheck -- --pretty false 2>&1 | tail -80` -> passed.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening --strict` -> passed with 0 errors, 0 warnings.

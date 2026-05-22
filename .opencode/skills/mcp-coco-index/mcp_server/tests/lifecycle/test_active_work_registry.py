@@ -82,3 +82,18 @@ def test_concurrent_add_during_drain_is_rejected() -> None:
     result = registry.await_drain("project", timeout_seconds=0.2)
 
     assert result.drained is True
+
+
+def test_stale_identity_sets_are_bounded(caplog) -> None:
+    registry = ActiveWorkRegistry()
+    registry._max_stale_identities = 2
+    registry._stale_req_ids = type(registry._stale_req_ids)(2)
+    registry._stale_index_ids = type(registry._stale_index_ids)(2)
+
+    for idx in range(3):
+        registry._remember_stale(_row(req_id=f"req-{idx}", index_id=f"idx-{idx}"))
+
+    assert len(registry._stale_req_ids) == 2
+    assert len(registry._stale_index_ids) == 2
+    assert "set-overflow" in caplog.text
+    assert registry.cancel(CancelRequest(req_id="req-2")) == CancelStatus.NOT_FOUND

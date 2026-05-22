@@ -7,6 +7,7 @@ import {
   collectInventory,
   getProcessAncestry,
   hasKnownProjectOwnerMarker,
+  redactSensitiveCommand,
   syntheticFixtureSnapshot,
   type ClassifiedProcess,
   type Inventory,
@@ -106,7 +107,7 @@ export function planSweep(inventory: Inventory, opts: PlanSweepOptions): SweepPl
   const processRows: SweepPlanRow[] = inventory.processes.map((processRow) => ({
     pid: processRow.pid,
     ppid: processRow.ppid,
-    command: processRow.command,
+    command: redactSensitiveCommand(processRow.command),
     classification: processRow.classification,
     eligibleForTermination: false,
     rationale: 'pending-sweep-evaluation',

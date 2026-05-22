@@ -46,8 +46,8 @@ Status values: `open`, `closed`, `deferred`, `blocked`.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P1] Registry, report, and resource map are read before implementation.
-- [ ] CHK-002 [P1] Batch scope is selected from `scratch/batch-plan.md`.
+- [x] CHK-001 [P1] Registry, report, and resource map are read before implementation. Evidence: B3 required phase docs, batch plan, review iterations 002/004/006/010, and target source files were read before edits.
+- [x] CHK-002 [P1] Batch scope is selected from `scratch/batch-plan.md`. Evidence: Batch B3 only was implemented; B4-B6 rows remain open.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -55,8 +55,8 @@ Status values: `open`, `closed`, `deferred`, `blocked`.
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P1] Shared ownership helpers or parity tests cover mirrored protocols.
-- [ ] CHK-011 [P1] No implementation batch modifies review artifacts.
+- [x] CHK-010 [P1] Shared ownership helpers or parity tests cover mirrored protocols. Evidence: `tests/test_sidecar_ledger.py::test_node_and_python_ensure_helpers_share_config_hash_contract` passed.
+- [x] CHK-011 [P1] No implementation batch modifies review artifacts. Evidence: B3 edits are limited to implementation, tests, and phase docs; `review/**` artifacts were read-only.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -64,8 +64,8 @@ Status values: `open`, `closed`, `deferred`, `blocked`.
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P1] Batch-specific Vitest/pytest/shell tests pass.
-- [ ] CHK-021 [P1] Touched phase docs pass strict validation.
+- [ ] CHK-020 [P1] Batch-specific Vitest/pytest/shell tests pass. Evidence: targeted B3 unit suites passed; full rerank integration remains blocked by sandbox localhost bind/connect denial on `127.0.0.1:8766`.
+- [x] CHK-021 [P1] Touched phase docs pass strict validation. Evidence: `validate.sh <phase> --strict` passed with 0 errors and 0 warnings on 2026-05-22.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -91,24 +91,24 @@ Status values: `open`, `closed`, `deferred`, `blocked`.
 | DR009-COR-010 | P1 | B2 | closed | Evidence: `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/core/project.py:42` marks closed only after DB close succeeds and records degraded retryable state on failure; `mcp_server/tests/lifecycle/test_remove_project_lifecycle.py:388` covers retry after failed close. |
 | DR009-COR-012 | P2 | B2 | closed | Evidence: `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/lifecycle/daemon_task_registry.py:110` filters shutdown cancellation to running/queued rows; `mcp_server/tests/lifecycle/test_remove_project_lifecycle.py:440` covers completed history remaining complete while running rows cancel. |
 | DR009-MNT-003 | P1 | B2 | closed | Evidence: `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/lifecycle/daemon_task_registry.py:17` defines `DuplicateTaskIdError` and `:83` rejects duplicate registrations; `mcp_server/tests/lifecycle/test_remove_project_lifecycle.py:464` covers duplicate task ID rejection. |
-| DR009-SEC-001 | P1 | B3 | open | TBD: commit hash + rerank API-key startup test |
-| DR009-SEC-002 | P1 | B3 | open | TBD: commit hash + warmup auth/rate test |
-| DR009-SEC-003 | P1 | B3 | open | TBD: commit hash + ownership proof test |
-| DR009-SEC-004 | P1 | B3 | open | TBD: commit hash + stale identity retention test |
-| DR009-SEC-005 | P2 | B3 | open | TBD: commit hash or deferral rationale |
-| DR009-SEC-006 | P2 | B3 | open | TBD: commit hash or deferral rationale |
-| DR009-SEC-007 | P1 | B3 | open | TBD: commit hash + DB override containment test |
-| DR009-SEC-008 | P1 | B3 | open | TBD: commit hash + document-byte cap test |
-| DR009-SEC-009 | P1 | B3 | open | TBD: commit hash + ledger identity kill test |
-| DR009-SEC-010 | P1 | B3 | open | TBD: commit hash + CocoIndex binary containment test |
-| DR009-SEC-011 | P2 | B3 | open | TBD: commit hash or deferral rationale |
-| DR009-SEC-012 | P1 | B3 | open | TBD: commit hash + executor env allowlist test |
-| DR009-SEC-013 | P1 | B3 | open | TBD: commit hash + NODE_OPTIONS dotenv test |
-| DR009-SEC-014 | P1 | B3 | open | TBD: commit hash + arg-array git diff test |
-| DR009-SEC-015 | P1 | B3 | open | TBD: commit hash + process inventory redaction test |
-| DR009-SEC-016 | P1 | B3 | open | TBD: commit hash + unpredictable token test |
-| DR009-SEC-017 | P2 | B3 | open | TBD: commit hash or deferral rationale |
-| DR009-MNT-001 | P1 | B3 | open | TBD: commit hash + helper contract parity test |
+| DR009-SEC-001 | P1 | B3 | closed | Evidence: `system-rerank-sidecar/scripts/start.sh` now safe-parses dotenv and forwards allowlisted `RERANK_*_API_KEY`; `tests/test_sidecar_ledger.py::test_start_script_parses_dotenv_without_shell_eval_and_forwards_api_key` passed in the B3 targeted sidecar run. |
+| DR009-SEC-002 | P1 | B3 | closed | Evidence: `rerank_sidecar.py` routes both `/rerank` and `/warmup` through `_require_authenticated()` and rate limiting; `tests/test_rerank_sidecar.py::test_warmup_requires_auth_before_model_load` passed. |
+| DR009-SEC-003 | P1 | B3 | closed | Evidence: health payloads include `owner_token_sha256` plus `canonical_config_hash`, and ensure probes require both before reuse; `tests/test_sidecar_ledger.py::test_health_probe_requires_owner_and_config_proof` passed. |
+| DR009-SEC-004 | P1 | B3 | closed | Evidence: `ActiveWorkRegistry` stale cancel identities use bounded sets capped at 1000 with `set-overflow` logging; `mcp_server/tests/lifecycle/test_active_work_registry.py::test_stale_identity_sets_are_bounded` passed. |
+| DR009-SEC-005 | P2 | B3 | closed | Evidence: optional rerank logs redact raw query text by default, include `query_sha256`, and rotate via `RERANK_LOG_MAX_BYTES`; `tests/test_rerank_sidecar.py::test_rerank_log_redacts_query_by_default` passed. |
+| DR009-SEC-006 | P2 | B3 | closed | Evidence: trust-remote-code allowlist entries require 40-char commit revisions at startup; `tests/test_rerank_sidecar.py::test_extra_allowlisted_model_requires_commit_revision` passed. |
+| DR009-SEC-007 | P1 | B3 | closed | Evidence: DB-dir overrides canonicalize and must remain under the workspace at config, launcher, readiness, reindex, ensure-ready, and DB open paths; `mcp_server/tests/lib/canonical-db-dir.vitest.ts` and `mcp_server/tests/launcher-lease.vitest.ts` passed in the B3 Code Graph run. |
+| DR009-SEC-008 | P1 | B3 | closed | Evidence: rerank payloads enforce `RERANK_MAX_DOCUMENT_BYTES` before scoring and return 413 on overflow; `tests/test_rerank_sidecar.py::test_rerank_rejects_oversized_document_payload` passed. |
+| DR009-SEC-009 | P1 | B3 | closed | Evidence: `use-model.sh` restarts sidecars by exact ledger PID and matching project owner token, not command substring; `tests/test_sidecar_ledger.py::test_use_model_restarts_by_ledger_not_command_substring` passed. |
+| DR009-SEC-010 | P1 | B3 | closed | Evidence: `COCOINDEX_BIN_PATH` resolves through workspace containment and expected-local-bin checks before execution; `mcp_server/tests/lib/security-hardening.vitest.ts` passed in the B3 Code Graph run. |
+| DR009-SEC-011 | P2 | B3 | closed | Evidence: `start.sh` no longer sources dotenv as shell code and accepts only safe allowlisted key/value lines; `tests/test_sidecar_ledger.py::test_start_script_parses_dotenv_without_shell_eval_and_forwards_api_key` passed. |
+| DR009-SEC-012 | P1 | B3 | closed | Evidence: deep-loop non-native executor spawns now use explicit env allowlists with executor-specific prefixes; `deep-loop-runtime/tests/unit/executor-audit.vitest.ts` passed. |
+| DR009-SEC-013 | P1 | B3 | closed | Evidence: `mk-code-index-launcher.cjs` blocks `NODE_*` dotenv keys and strips Node/npm runtime env from child spawns; `mcp_server/tests/launcher-lease.vitest.ts::does not load NODE_OPTIONS from project dotenv` passed in the B3 Code Graph run. |
+| DR009-SEC-014 | P1 | B3 | closed | Evidence: Code Graph metadata-derived git operations now use `execFileSync` argv arrays with SHA validation instead of shell interpolation; `mcp_server/tests/ensure-ready.vitest.ts` passed in the B3 Code Graph run. |
+| DR009-SEC-015 | P1 | B3 | closed | Evidence: process inventory and sweep output redact API keys, secrets, and owner tokens before storage/emission; `scripts/tests/process-memory-harness.vitest.ts` and `scripts/tests/process-sweep.vitest.ts` passed. |
+| DR009-SEC-016 | P1 | B3 | closed | Evidence: Python and CJS rerank ensure helpers now use persistent `secrets.token_urlsafe(24)`-class owner tokens and health-proof hashes; `tests/test_sidecar_ledger.py::test_owner_token_is_random_persistent_and_not_path_hash` passed. |
+| DR009-SEC-017 | P2 | B3 | closed | Evidence: IPC socket unlinking first verifies workspace containment, socket type, and same uid before reclaiming; `mcp_server/tests/lib/security-hardening.vitest.ts` passed in the B3 Code Graph run. |
+| DR009-MNT-001 | P1 | B3 | closed | Evidence: Python and CJS rerank ensure helpers share owner-token/config-hash/health-proof contract with parity coverage; `tests/test_sidecar_ledger.py::test_node_and_python_ensure_helpers_share_config_hash_contract` passed. |
 | DR009-COR-004 | P1 | B4 | open | TBD: commit hash + corrupt JSONL tail test |
 | DR009-COR-006 | P1 | B4 | open | TBD: commit hash + degraded inventory test |
 | DR009-COR-016 | P2 | B4 | open | TBD: commit hash or deferral rationale |
@@ -144,8 +144,8 @@ Status values: `open`, `closed`, `deferred`, `blocked`.
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P1] Subprocess environment allowlists are tested where security findings touch spawn paths.
-- [ ] CHK-031 [P1] Owner tokens and sensitive command-line values are redacted in operator-facing outputs.
+- [x] CHK-030 [P1] Subprocess environment allowlists are tested where security findings touch spawn paths. Evidence: `executor-audit.vitest.ts`, launcher lease tests, and rerank start-script tests passed.
+- [x] CHK-031 [P1] Owner tokens and sensitive command-line values are redacted in operator-facing outputs. Evidence: `process-memory-harness.vitest.ts` and `process-sweep.vitest.ts` passed.
 <!-- /ANCHOR:security -->
 
 ---
@@ -153,7 +153,7 @@ Status values: `open`, `closed`, `deferred`, `blocked`.
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] `checklist.md` evidence is updated for every closed or deferred finding.
+- [x] CHK-040 [P1] `checklist.md` evidence is updated for every closed or deferred finding. Evidence: all 18 B3 rows are marked `closed` with test evidence.
 - [ ] CHK-041 [P1] `implementation-summary.md` records final status and residual risk.
 <!-- /ANCHOR:docs -->
 
@@ -162,8 +162,8 @@ Status values: `open`, `closed`, `deferred`, `blocked`.
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Scratch material remains under `scratch/`.
-- [ ] CHK-051 [P1] No generated temp files are left in implementation surfaces.
+- [x] CHK-050 [P1] Scratch material remains under `scratch/`. Evidence: B3 handoff was appended to `scratch/batch-plan.md`.
+- [x] CHK-051 [P1] No generated temp files are left in implementation surfaces. Evidence: no B3 temp files were created in implementation directories.
 <!-- /ANCHOR:file-org -->
 
 ---
