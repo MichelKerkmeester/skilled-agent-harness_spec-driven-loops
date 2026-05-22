@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-memory-leak-follow-ons-arc",
+  "description": "Phase parent for three deferred follow-on items from arc 009: system-code-graph suite triage, adapter resident-memory benchmark, and owner-lease heartbeat-staleness gap.",
+  "keywords": [
+    "memory",
+    "leak",
+    "follow-on",
+    "test-suite-triage",
+    "rss-benchmark",
+    "owner-lease",
+    "heartbeat"
+  ],
+  "lastUpdated": "2026-05-22T18:30:00Z",
+  "specId": "010",
+  "folderSlug": "memory-leak-follow-ons-arc",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture"
+  ],
+  "memorySequence": 10,
+  "memoryNameHistory": [],
+  "level": "phase"
+}

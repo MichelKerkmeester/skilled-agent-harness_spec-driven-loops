@@ -79,7 +79,8 @@ This parent is a control file for nine direct child arcs plus `research/`; detai
 | `006-mcp-launcher-concurrency-arc/` | launcher lease/concurrency hardening and 013 follow-up | In Progress |
 | `007-ollama-and-bge-promotion-arc/` | historical Ollama/BGE promotion arc superseded by Nomic | Closed / Superseded |
 | `008-rerank-sidecar-arc/` | shared rerank sidecar and Qwen/CocoIndex rerank work | In Progress |
-| `009-memory-leak-remediation-arc/` | dedicated memory/process lifecycle remediation across Spec Kit Memory, CocoIndex, Code Graph, sidecars, and deep-loop CLI workflows | Planned |
+| `009-memory-leak-remediation-arc/` | dedicated memory/process lifecycle remediation across Spec Kit Memory, CocoIndex, Code Graph, sidecars, and deep-loop CLI workflows | Completed |
+| `010-memory-leak-follow-ons-arc/` | deferred follow-ons from arc 009: code-graph suite triage, adapter RSS benchmark, owner-lease heartbeat-staleness gap | Planned |
 <!-- /ANCHOR:sub-phase-list -->
 
 ---
@@ -96,5 +97,5 @@ Current umbrella follow-up work is status reconciliation and scoped execution in
 - Hybrid search: default-on. Query expansion: default-off.
 - llama-cpp migration work is historical and superseded by the Ollama cascade.
 
-Resume work from the relevant child arc. The latest active arc is `009-memory-leak-remediation-arc/` while memory/process lifecycle remediation is being planned.
+Resume work from the relevant child arc. Arc `009-memory-leak-remediation-arc/` shipped; deferred follow-ons live under `010-memory-leak-follow-ons-arc/`.
 <!-- /ANCHOR:what-needs-done -->
