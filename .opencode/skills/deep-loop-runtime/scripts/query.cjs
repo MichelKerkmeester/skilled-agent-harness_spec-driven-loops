@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 'use strict';
 // MODULE: query entry point for deep-loop graph operations
-// Replaces the MCP tool mcp__mk_spec_memory__deep_loop_graph_query.
 // Input: CLI args (--spec-folder, --loop-type, --session-id, --query-type).
 // Output: JSON to stdout.
 // Exit codes: 0=ok, 1=script error, 2=DB error, 3=input validation error.

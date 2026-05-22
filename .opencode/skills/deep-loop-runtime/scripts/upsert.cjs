@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 'use strict';
 // MODULE: upsert entry point for deep-loop graph operations
-// Replaces the MCP tool mcp__mk_spec_memory__deep_loop_graph_upsert.
 // Input: CLI args (--spec-folder, --loop-type, --session-id, --nodes, --edges, or --events).
 // Output: JSON to stdout.
 // Exit codes: 0=ok, 1=script error, 2=DB error, 3=input validation error.
