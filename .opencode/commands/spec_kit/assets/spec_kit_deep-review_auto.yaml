@@ -482,11 +482,13 @@ workflow:
                e) hotspotSaturationGate: pass when review hotspots have been revisited enough times to satisfy the saturation heuristic
                f) claimAdjudicationGate: pass when claim_adjudication_gate_pass == true (i.e. last_claim_adjudication_passed != false OR there are no active P0/P1 findings to adjudicate); record last_claim_adjudication_passed and claim_adjudication_active_count
                g) fixCompletenessReplayGate: pass when security_sensitive_fix_scope == false OR every required closed-gate replay row passes with file:line or command evidence and producer/consumer/matrix coverage; record security_sensitive_fix_scope, fix_completeness_replay_required_rows, and fix_completeness_replay_passing_rows
+               h) candidateCoverageGate: skip entirely when `reviewDepthSchemaVersion` is not 2 on the latest iteration. Otherwise pass when the current iteration's `reviewDepthApplicability.scopeClass` is `trivial` with `enforcement: "skip"` AND `reviewDepthApplicability.evidenceRefs` is non-empty, OR when the reducer registry's `searchDebt` is empty AND `candidateCoverage.covered` is a superset of `searchCoverage.requiredBugClasses` for the lineage. Otherwise pass = false; record `searchDebt` items as blocked-stop evidence; blocker name = "candidateCoverageGate"; recovery_strategy = "Resolve deferred/blocked obligations in next iteration or downgrade scope explicitly to trivial with cited evidence."
+               i) graphlessFallbackGate: skip when `reviewDepthSchemaVersion` is not 2 OR the reducer registry's last-iteration `searchCoverage.graphCoverageMode` is `graph`. Applies when graphCoverageMode is `graphless_fallback` or `unavailable_blocked`. Pass when graphCoverageMode is `graphless_fallback` AND at least one `searchLedger` row exists for each entry in `searchCoverage.requiredBugClasses` with `searchActions[].method` in {"direct_read","exact_grep","semantic_search","code_graph_status_check","producer_consumer_trace","negative_test_inspection"} AND non-empty `evidenceRefs`. Fail automatically when graphCoverageMode is `unavailable_blocked`; record the explicit unavailability reason. Otherwise pass = false; blocker name = "graphlessFallbackGate"; recovery_strategy = "Add cited fallback ledger rows (direct read, exact search, producer/consumer trace, negative-test inspection) or set graphCoverageMode to 'graph' once graph data is available."
              if STOP is a candidate and any gate fails:
                decision = "BLOCKED"
                stop_blocked = true
                stopReason = "blockedStop"
-               blocked_by_json = JSON array of failing gate names (always include "claimAdjudicationGate" when claim_adjudication_gate_pass == false and "fixCompletenessReplayGate" when fix_completeness_replay_gate_pass == false)
+               blocked_by_json = JSON array of failing gate names (always include "claimAdjudicationGate" when claim_adjudication_gate_pass == false, "fixCompletenessReplayGate" when fix_completeness_replay_gate_pass == false, "candidateCoverageGate" when candidate_coverage_gate_pass == false, and "graphlessFallbackGate" when graphless_fallback_gate_pass == false)
                blocked_by_csv = comma-separated list of failing gate names
                convergence_gate_pass = boolean
                convergence_gate_score = numeric convergence score
@@ -504,7 +506,14 @@ workflow:
                security_sensitive_fix_scope = boolean
                fix_completeness_replay_required_rows = numeric count of closed-gate replay rows required for security-sensitive fix reruns
                fix_completeness_replay_passing_rows = numeric count of required closed-gate replay rows marked PASS with evidence
-               recovery_strategy = one-line hint describing the next review action needed to satisfy the failed gates (when claimAdjudicationGate is the failing gate, prefer the step-0 recovery_strategy already set)
+               candidate_coverage_gate_pass = boolean
+               candidate_coverage_search_debt_json = JSON array of reducer-owned searchDebt obligations blocking STOP, else []
+               candidate_coverage_missing_json = JSON array of required bug classes not present in candidateCoverage.covered, else []
+               graphless_fallback_gate_pass = boolean
+               graphless_fallback_mode = latest reducer-owned searchCoverage.graphCoverageMode value
+               graphless_fallback_missing_json = JSON array of required bug classes without cited fallback ledger rows, else []
+               graphless_fallback_unavailability_reason = explicit reason when graphCoverageMode == "unavailable_blocked", else empty string
+               recovery_strategy = one-line hint describing the next review action needed to satisfy the failed gates; combine candidateCoverageGate and graphlessFallbackGate recovery guidance when both fail (when claimAdjudicationGate is the failing gate, prefer the step-0 recovery_strategy already set)
           6. COMBINED STOP RULE:
                a) if STOP is legal AND graph_decision == "STOP_ALLOWED": decision = "STOP"
                b) if STOP is legal AND graph_decision == "STOP_BLOCKED":
@@ -546,6 +555,13 @@ workflow:
           - security_sensitive_fix_scope: "Boolean true when the review is a security-sensitive fix rerun"
           - fix_completeness_replay_required_rows: "Count of closed-gate replay rows required before STOP"
           - fix_completeness_replay_passing_rows: "Count of required closed-gate replay rows that passed with evidence"
+          - candidate_coverage_gate_pass: "Boolean pass/fail for candidateCoverageGate (false vetoes STOP for unresolved reducer-owned search debt or uncovered required bug classes)"
+          - candidate_coverage_search_debt_json: "JSON array of reducer-owned searchDebt obligations used as blocked-stop evidence"
+          - candidate_coverage_missing_json: "JSON array of required bug classes missing from candidateCoverage.covered"
+          - graphless_fallback_gate_pass: "Boolean pass/fail for graphlessFallbackGate (false vetoes STOP when graphless fallback evidence is absent or unavailable_blocked)"
+          - graphless_fallback_mode: "Latest reducer-owned searchCoverage.graphCoverageMode value"
+          - graphless_fallback_missing_json: "JSON array of required bug classes missing cited fallback ledger rows"
+          - graphless_fallback_unavailability_reason: "Explicit unavailability reason when graphCoverageMode == unavailable_blocked"
           - graph_decision: "CONTINUE | STOP_ALLOWED | STOP_BLOCKED from step_graph_convergence"
           - graph_signals_json: "JSON object returned by graph convergence"
           - graph_blockers_json: "JSON array of graph blockers"
@@ -555,7 +571,7 @@ workflow:
       step_emit_blocked_stop:
         action: "Persist blocked-stop evidence whenever the review legal-stop decision tree vetoes STOP"
         if_blocked:
-          append_jsonl: '{"type":"event","event":"blocked_stop","mode":"review","run":{current_iteration},"blockedBy":{blocked_by_json},"gateResults":{"convergenceGate":{"pass":{convergence_gate_pass},"score":{convergence_gate_score}},"dimensionCoverageGate":{"pass":{dimension_coverage_gate_pass},"covered":{dimension_coverage_gate_covered_json},"missing":{dimension_coverage_gate_missing_json}},"p0ResolutionGate":{"pass":{p0_resolution_gate_pass},"activeP0":{active_p0_count}},"evidenceDensityGate":{"pass":{evidence_density_gate_pass},"avgEvidencePerFinding":{avg_evidence_per_finding}},"hotspotSaturationGate":{"pass":{hotspot_saturation_gate_pass}},"claimAdjudicationGate":{"pass":{claim_adjudication_gate_pass},"activeP0P1":{claim_adjudication_active_count}},"fixCompletenessReplayGate":{"pass":{fix_completeness_replay_gate_pass},"securitySensitive":{security_sensitive_fix_scope},"requiredRows":{fix_completeness_replay_required_rows},"passingRows":{fix_completeness_replay_passing_rows}}},"graphBlockerDetail":{graph_blockers_json},"recoveryStrategy":"{recovery_strategy}","timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}'
+          append_jsonl: '{"type":"event","event":"blocked_stop","mode":"review","run":{current_iteration},"blockedBy":{blocked_by_json},"gateResults":{"convergenceGate":{"pass":{convergence_gate_pass},"score":{convergence_gate_score}},"dimensionCoverageGate":{"pass":{dimension_coverage_gate_pass},"covered":{dimension_coverage_gate_covered_json},"missing":{dimension_coverage_gate_missing_json}},"p0ResolutionGate":{"pass":{p0_resolution_gate_pass},"activeP0":{active_p0_count}},"evidenceDensityGate":{"pass":{evidence_density_gate_pass},"avgEvidencePerFinding":{avg_evidence_per_finding}},"hotspotSaturationGate":{"pass":{hotspot_saturation_gate_pass}},"claimAdjudicationGate":{"pass":{claim_adjudication_gate_pass},"activeP0P1":{claim_adjudication_active_count}},"fixCompletenessReplayGate":{"pass":{fix_completeness_replay_gate_pass},"securitySensitive":{security_sensitive_fix_scope},"requiredRows":{fix_completeness_replay_required_rows},"passingRows":{fix_completeness_replay_passing_rows}},"candidateCoverageGate":{"pass":{candidate_coverage_gate_pass},"searchDebt":{candidate_coverage_search_debt_json},"missing":{candidate_coverage_missing_json}},"graphlessFallbackGate":{"pass":{graphless_fallback_gate_pass},"mode":"{graphless_fallback_mode}","missing":{graphless_fallback_missing_json},"unavailabilityReason":"{graphless_fallback_unavailability_reason}"}},"graphBlockerDetail":{graph_blockers_json},"recoveryStrategy":"{recovery_strategy}","timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}'
           log: "Blocked STOP persisted for review loop. Failed gates: {blocked_by_csv}. Recovery strategy: {recovery_strategy}"
         if_not_blocked:
           proceed: true

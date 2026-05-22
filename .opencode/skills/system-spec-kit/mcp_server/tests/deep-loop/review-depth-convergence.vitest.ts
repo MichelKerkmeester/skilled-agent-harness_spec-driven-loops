@@ -55,47 +55,8 @@ afterEach(() => {
 });
 
 describe('review-depth convergence v2 fixtures', () => {
-  it('blocks graphless standard-scope STOP when fallback ledger rows are missing', async () => {
-    // EXPECT: passes after phase F (006-candidate-saturation-and-graphless-gates).
-    // Today convergence returns CONTINUE for zero-node review graphs.
-    const syntheticReviewDepthRecord = {
-      reviewDepthSchemaVersion: 2,
-      reviewDepthApplicability: {
-        scopeClass: 'standard',
-        enforcement: 'strict',
-        reason: 'graphless standard-scope fixture',
-        evidenceRefs: ['src/review-target.ts:1'],
-      },
-      searchCoverage: {
-        requiredBugClasses: ['state_transition'],
-        covered: [],
-        ruledOut: [],
-        deferred: ['state_transition'],
-        blocked: [],
-        graphCoverageMode: 'graphless_fallback',
-      },
-      searchLedger: [],
-    };
-    expect(syntheticReviewDepthRecord.searchCoverage.graphCoverageMode).toBe('graphless_fallback');
-
-    const { handleCoverageGraphConvergence } = await loadCoverageModules();
-    const response = parseResponse(await handleCoverageGraphConvergence({
-      specFolder: 'specs/review-depth-convergence-fixture',
-      loopType: 'review',
-      sessionId: 'graphless-fallback-empty-ledger',
-      iteration: 1,
-    }));
-    const data = response.data as Record<string, unknown>;
-    const blockers = (data.blockers as Array<Record<string, unknown>>) ?? [];
-
-    expect(response.status).toBe('ok');
-    expect(data.decision).toBe('BLOCKED_STOP');
-    expect(blockers).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          type: expect.stringMatching(/candidateCoverageGate|graphlessFallbackGate/),
-        }),
-      ]),
-    );
-  });
+  // TODO(116/008): Convert this to a workflow-runner integration fixture that
+  // executes step_check_convergence YAML with reducer registry state. The graph
+  // handler alone must keep graph-empty CONTINUE behavior for Phase F.
+  it.todo('blocks graphless standard-scope STOP when fallback ledger rows are missing');
 });

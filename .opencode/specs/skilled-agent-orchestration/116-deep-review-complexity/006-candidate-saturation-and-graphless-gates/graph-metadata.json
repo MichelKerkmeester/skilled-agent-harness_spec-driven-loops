@@ -4,19 +4,214 @@
   "spec_folder": "skilled-agent-orchestration/116-deep-review-complexity/006-candidate-saturation-and-graphless-gates",
   "parent_id": "skilled-agent-orchestration/116-deep-review-complexity",
   "children_ids": [],
-  "manual": {"depends_on": ["skilled-agent-orchestration/116-deep-review-complexity/005-search-ledger-persistence-and-reporting"], "supersedes": [], "related_to": []},
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/116-deep-review-complexity/005-search-ledger-persistence-and-reporting"
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
   "derived": {
-    "trigger_phrases": ["candidate saturation gates", "graphless fallback gate"],
-    "key_topics": ["candidateCoverageGate", "graphlessFallbackGate", "STOP_BLOCKED"],
+    "trigger_phrases": [
+      "candidate coverage gate",
+      "graphless fallback gate",
+      "review STOP blocked",
+      "candidate coverage gate plan",
+      "graphless fallback gate plan",
+      "116 candidate coverage tasks",
+      "116 graphless fallback tasks",
+      "116 candidate gate checklist",
+      "116 graphless fallback checklist",
+      "ADR candidate coverage gate",
+      "ADR graphless fallback gate",
+      "116 candidate saturation summary"
+    ],
+    "key_topics": [
+      "candidate",
+      "coverage",
+      "gate",
+      "graphless",
+      "fallback",
+      "review",
+      "stop",
+      "blocked",
+      "plan",
+      "116",
+      "tasks",
+      "checklist"
+    ],
     "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md", "plan.md", "tasks.md"],
-    "entities": ["spec_kit_deep-review_auto.yaml", "convergence.md"],
-    "causal_summary": "This phase uses persisted search coverage to block shallow no-finding stop decisions and support explicit graphless fallback proof.",
+    "status": "complete",
+    "key_files": [
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec_kit_deep-review_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec_kit_deep-review_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Candidate Saturation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Graphless Gates",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Populated Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decision",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime State",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Created Level",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase F adds two named review legal-stop gates to the deep-review command workflows: `candidateCoverageGate` and `graphlessFallbackGate`. The gates consume reducer-owned Phase E state and prevent a standard or complex v2 review from claiming STOP while search debt remains, required bug classes are uncovered, or graphless mode lacks cited fallback ledger proof.",
     "created_at": "2026-05-22T00:00:00Z",
-    "last_save_at": "2026-05-22T00:00:00Z",
-    "save_lineage": "phase_scaffold",
+    "last_save_at": "2026-05-22T12:12:26.183Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
-    "source_docs": ["spec.md", "plan.md", "tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ]
   }
 }

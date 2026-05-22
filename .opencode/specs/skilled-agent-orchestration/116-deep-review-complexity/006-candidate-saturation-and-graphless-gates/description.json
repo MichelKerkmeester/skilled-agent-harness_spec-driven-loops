@@ -1,12 +1,23 @@
 {
-  "level": "1",
+  "level": "3",
   "specFolder": "skilled-agent-orchestration/116-deep-review-complexity/006-candidate-saturation-and-graphless-gates",
-  "description": "Candidate saturation and graphless fallback stop gates for review-depth coverage.",
-  "keywords": ["116", "006", "candidate", "saturation", "graphless", "convergence"],
-  "lastUpdated": "2026-05-22T00:00:00.000Z",
+  "description": "Adds candidateCoverageGate and graphlessFallbackGate to the review legal-stop decision tree; STOP blocked when reducer-owned searchDebt remains or graphless mode lacks fallback ledger evidence.",
+  "keywords": [
+    "116",
+    "stop-gates",
+    "candidate-saturation",
+    "graphless-fallback",
+    "blocked-stop"
+  ],
+  "lastUpdated": "2026-05-22T12:12:26.183Z",
   "specId": "006",
   "folderSlug": "candidate-saturation-and-graphless-gates",
-  "parentChain": ["skilled-agent-orchestration", "116-deep-review-complexity"],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "116-deep-review-complexity"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "22-05-26_13-12__phase-005-reducer-registry-exposes.md"
+  ]
 }
