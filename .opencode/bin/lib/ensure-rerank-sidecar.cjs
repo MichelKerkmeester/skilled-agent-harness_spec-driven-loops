@@ -7,6 +7,7 @@ const path = require('path');
 const crypto = require('crypto');
 const childProcess = require('child_process');
 const { spawn } = childProcess;
+const { isAllowedSidecarEnvKey } = require('./sidecar-env-allowlist.cjs');
 
 const SIDECAR_SKILL_PATH = path.resolve(__dirname, '..', '..', 'skills', 'system-rerank-sidecar');
 const DEFAULT_PORT = 8765;
@@ -23,16 +24,14 @@ const REAPER_POLICY = {
 const MAX_HEALTH_BODY_BYTES = 65536; // 64KB - canonical health payload cap, matches Python
 const OWNER_TOKEN_WAIT_TIMEOUT_MS = 2000;
 const OWNER_TOKEN_WAIT_INTERVAL_MS = 10;
-const CHILD_ENV_ALLOWLIST = new Set([
-  'HOME',
-  'LANG',
-  'PATH',
-  'TEMP',
-  'TMP',
-  'TMPDIR',
-  'TRANSFORMERS_OFFLINE',
-  'PYTORCH_ENABLE_MPS_FALLBACK',
-]);
+const MAX_CONFIG_HASH_INPUT_BYTES = 4 * 1024;
+class ConfigHashInputError extends Error {
+  constructor(key, reason) {
+    super(`Invalid config hash input for ${key}: ${reason}`);
+    this.name = 'ConfigHashInputError';
+    this.key = key;
+  }
+}
 
 function log(message) {
   process.stderr.write(`[ensure-rerank-sidecar] ${message}\n`);
@@ -136,18 +135,10 @@ function ownerTokenPath(dir) {
   return path.join(dir, OWNER_TOKEN_FILE_NAME);
 }
 
-function isAllowedChildEnvKey(key) {
-  return CHILD_ENV_ALLOWLIST.has(key)
-    || key.startsWith('LC_')
-    || key.startsWith('SPECKIT_')
-    || key.startsWith('RERANK_')
-    || key.startsWith('HF_');
-}
-
 function buildSidecarEnv(parentEnv, overrides) {
   const childEnv = {};
   for (const [key, value] of Object.entries(parentEnv)) {
-    if (typeof value === 'string' && isAllowedChildEnvKey(key)) {
+    if (typeof value === 'string' && isAllowedSidecarEnvKey(key)) {
       childEnv[key] = value;
     }
   }
@@ -254,20 +245,61 @@ function loadOrCreateOwnerToken(dir, fsModule, processObj) {
   }
 }
 
+function validateConfigHashValue(key, value, totalBytes) {
+  if (typeof value !== 'string') {
+    throw new ConfigHashInputError(key, 'expected string value');
+  }
+  if (/[\x00-\x1F\x7F]/.test(value)) {
+    throw new ConfigHashInputError(key, 'contains unprintable control characters');
+  }
+  const nextTotal = totalBytes + Buffer.byteLength(value, 'utf8');
+  if (nextTotal > MAX_CONFIG_HASH_INPUT_BYTES) {
+    throw new ConfigHashInputError(key, `exceeds ${MAX_CONFIG_HASH_INPUT_BYTES}-byte total limit`);
+  }
+  return nextTotal;
+}
+
+function readConfigHashEnvValue(env, key, fallback) {
+  if (!Object.prototype.hasOwnProperty.call(env, key)) {
+    return fallback;
+  }
+  const value = env[key];
+  if (value === '') {
+    return fallback;
+  }
+  return value;
+}
+
+function validateConfigHashInputs(config) {
+  let totalBytes = 0;
+  for (const key of Object.keys(config).sort()) {
+    totalBytes = validateConfigHashValue(key, config[key], totalBytes);
+  }
+}
+
 function canonicalConfigHash(port, env) {
   // Empty string is treated as "not set" via || operator (matches Python contract)
   // Python sibling mirrors this contract in ensure_rerank_sidecar.py:135-150
   // Both implementations treat empty RERANK_MODEL_REVISION as "use default"
   const config = {
-    allowed: env.RERANK_ALLOWED_MODELS || '',
-    device: env.RERANK_DEVICE || '',
-    dtype: env.RERANK_TORCH_DTYPE || '',
-    model: env.RERANK_MODEL_NAME || 'Qwen/Qwen3-Reranker-0.6B',
+    RERANK_ALLOWED_MODELS: readConfigHashEnvValue(env, 'RERANK_ALLOWED_MODELS', ''),
+    RERANK_DEVICE: readConfigHashEnvValue(env, 'RERANK_DEVICE', ''),
+    RERANK_MODEL_NAME: readConfigHashEnvValue(env, 'RERANK_MODEL_NAME', 'Qwen/Qwen3-Reranker-0.6B'),
+    RERANK_MODEL_REVISION: readConfigHashEnvValue(env, 'RERANK_MODEL_REVISION', 'e61197ed45024b0ed8a2d74b80b4d909f1255473'),
+    RERANK_MODEL_REVISIONS: readConfigHashEnvValue(env, 'RERANK_MODEL_REVISIONS', ''),
+    RERANK_TORCH_DTYPE: readConfigHashEnvValue(env, 'RERANK_TORCH_DTYPE', ''),
     port: String(port),
-    revision: env.RERANK_MODEL_REVISION || 'e61197ed45024b0ed8a2d74b80b4d909f1255473',
-    revisions: env.RERANK_MODEL_REVISIONS || '',
   };
-  const stable = Object.keys(config).sort().map((key) => `${key}=${config[key]}`).join('\n');
+  validateConfigHashInputs(config);
+  const stable = [
+    `allowed=${config.RERANK_ALLOWED_MODELS}`,
+    `device=${config.RERANK_DEVICE}`,
+    `dtype=${config.RERANK_TORCH_DTYPE}`,
+    `model=${config.RERANK_MODEL_NAME}`,
+    `port=${config.port}`,
+    `revision=${config.RERANK_MODEL_REVISION}`,
+    `revisions=${config.RERANK_MODEL_REVISIONS}`,
+  ].join('\n');
   return crypto.createHash('sha256').update(stable, 'utf8').digest('hex');
 }
 
@@ -698,6 +730,8 @@ module.exports = {
   ensureRerankSidecar,
   healthPayload,
   canonicalConfigHash,
+  ConfigHashInputError,
+  buildSidecarEnv,
   loadOrCreateOwnerToken,
   writeLedger,
   processLiveness,

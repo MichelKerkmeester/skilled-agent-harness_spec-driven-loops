@@ -17,6 +17,7 @@ const {
   reapStaleSidecars,
   readLedger,
   canonicalConfigHash,
+  ConfigHashInputError,
 } = require('./ensure-rerank-sidecar.cjs');
 
 const MODULE_PATH = fileURLToPath(new URL('./ensure-rerank-sidecar.cjs', import.meta.url));
@@ -429,6 +430,39 @@ describe('ensureRerankSidecar — F49 child environment allowlist', () => {
     expect(env.RERANK_SIDECAR_PORT).toBe('8765');
     expect(env.RERANK_SIDECAR_OWNER_TOKEN).toBe('explicit-owner-token');
     expect(env.CUSTOM_TEST_SECRET).toBeUndefined();
+  });
+});
+
+describe('canonicalConfigHash — F17 input sanitization', () => {
+  it('keeps existing valid config hashes unchanged', () => {
+    const valid = {
+      RERANK_ALLOWED_MODELS: 'Qwen/Qwen3-Reranker-0.6B',
+      RERANK_DEVICE: 'mps',
+      RERANK_TORCH_DTYPE: 'fp16',
+      RERANK_MODEL_NAME: 'Qwen/Qwen3-Reranker-0.6B',
+      RERANK_MODEL_REVISION: 'e61197ed45024b0ed8a2d74b80b4d909f1255473',
+      RERANK_MODEL_REVISIONS: 'Qwen/Qwen3-Reranker-0.6B:e61197ed45024b0ed8a2d74b80b4d909f1255473',
+    };
+
+    expect(canonicalConfigHash(8765, valid)).toBe(canonicalConfigHash(8765, { ...valid }));
+  });
+
+  it('rejects oversized config values before hashing without logging the value', () => {
+    const oversized = 'x'.repeat(4 * 1024 + 1);
+
+    expect(() => canonicalConfigHash(8765, { RERANK_ALLOWED_MODELS: oversized })).toThrow(ConfigHashInputError);
+    expect(() => canonicalConfigHash(8765, { RERANK_ALLOWED_MODELS: oversized })).toThrow(/RERANK_ALLOWED_MODELS/);
+    expect(() => canonicalConfigHash(8765, { RERANK_ALLOWED_MODELS: oversized })).not.toThrow(oversized);
+  });
+
+  it('rejects non-string config values before hashing with the rejected key', () => {
+    expect(() => canonicalConfigHash(8765, { RERANK_MODEL_NAME: 1234 } as Record<string, unknown>)).toThrow(ConfigHashInputError);
+    expect(() => canonicalConfigHash(8765, { RERANK_MODEL_NAME: 1234 } as Record<string, unknown>)).toThrow(/RERANK_MODEL_NAME/);
+  });
+
+  it('rejects unprintable-byte config values before hashing with the rejected key', () => {
+    expect(() => canonicalConfigHash(8765, { RERANK_DEVICE: 'mps\u0000cuda' })).toThrow(ConfigHashInputError);
+    expect(() => canonicalConfigHash(8765, { RERANK_DEVICE: 'mps\u0000cuda' })).toThrow(/RERANK_DEVICE/);
   });
 });
 

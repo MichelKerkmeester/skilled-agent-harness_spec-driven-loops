@@ -7,7 +7,7 @@ import { join } from 'node:path';
 import { spawn } from 'node:child_process';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { buildSidecarEnv, SidecarClient, SidecarClientError, toBackendKind, RECOGNIZED_SPECKIT_ENV_VARS } from '../../lib/embedders/sidecar-client.js';
+import { buildSidecarEnv, SidecarClient, SidecarClientError, SIDECAR_ENV_ALLOWLIST, toBackendKind, RECOGNIZED_SPECKIT_ENV_VARS } from '../../lib/embedders/sidecar-client.js';
 
 const factoryMockState = vi.hoisted(() => ({
   createEmbeddingsProvider: vi.fn(),
@@ -113,12 +113,12 @@ const fs = require('node:fs');
 const readline = require('node:readline');
 if (${JSON.stringify(mode)} === 'ignore-term') {
   process.on('SIGTERM', () => {
-    if (process.env.MOCK_SIDECAR_SIGNAL_FILE) {
-      fs.appendFileSync(process.env.MOCK_SIDECAR_SIGNAL_FILE, 'SIGTERM\\n');
+    if (process.env.SPECKIT_TEST_SIDECAR_SIGNAL_FILE) {
+      fs.appendFileSync(process.env.SPECKIT_TEST_SIDECAR_SIGNAL_FILE, 'SIGTERM\\n');
     }
   });
 }
-const envOut = process.env.MOCK_SIDECAR_ENV_OUT;
+const envOut = process.env.SPECKIT_TEST_SIDECAR_ENV_OUT;
 if (envOut) {
   fs.writeFileSync(envOut, JSON.stringify({
     secret: process.env.UNSAFE_SECRET || null,
@@ -138,7 +138,7 @@ rl.on('line', (line) => {
     return;
   }
 	  if (${JSON.stringify(mode)} === 'record-ids') {
-	    const idFile = process.env.MOCK_SIDECAR_ID_FILE;
+	    const idFile = process.env.SPECKIT_TEST_SIDECAR_ID_FILE;
 	    if (idFile) {
 	      fs.appendFileSync(idFile, message.id + '\\n');
 	    }
@@ -167,18 +167,69 @@ describe('sidecar hardening', () => {
     rmSync(tmpDir, { recursive: true, force: true });
   });
 
-  it('filters inherited environment while preserving explicit sidecar values', () => {
+  it('filters inherited environment while preserving explicit sidecar values and warning on drops', () => {
+    const stderrSpy = vi.spyOn(process.stderr, 'write').mockImplementation(() => true);
     const env = buildSidecarEnv({
       PATH: '/bin',
       UNSAFE_SECRET: 'nope',
       SPECKIT_EMBEDDER_ALLOWED: 'yes',
+      LANG: 'en_US.UTF-8',
       LC_TEST: 'locale',
     });
 
     expect(env.PATH).toBe('/bin');
     expect(env.SPECKIT_EMBEDDER_ALLOWED).toBe('yes');
+    expect(env.LANG).toBe('en_US.UTF-8');
     expect(env.LC_TEST).toBe('locale');
     expect(env.UNSAFE_SECRET).toBeUndefined();
+    expect(stderrSpy).toHaveBeenCalledWith(expect.stringContaining('UNSAFE_SECRET'));
+    expect(stderrSpy).not.toHaveBeenCalledWith(expect.stringContaining('nope'));
+    stderrSpy.mockRestore();
+  });
+
+  it('uses the F49 launcher allowlist surface for the in-process sidecar (F16+F40)', () => {
+    expect(SIDECAR_ENV_ALLOWLIST.exact).toEqual([
+      'HOME',
+      'LANG',
+      'PATH',
+      'PYTORCH_ENABLE_MPS_FALLBACK',
+      'TEMP',
+      'TMP',
+      'TMPDIR',
+      'TRANSFORMERS_OFFLINE',
+    ]);
+    expect(SIDECAR_ENV_ALLOWLIST.prefixes).toEqual(['HF_', 'LC_', 'RERANK_', 'SPECKIT_']);
+  });
+
+  it('drops unrelated env keys with stderr warnings while forwarding allowed families (F16+F40)', () => {
+    const stderrSpy = vi.spyOn(process.stderr, 'write').mockImplementation(() => true);
+    const env = buildSidecarEnv({
+      PATH: '/bin',
+      LANG: 'en_US.UTF-8',
+      SPECKIT_ALLOWED_TEST_FLAG: '1',
+      XYZ_UNRELATED: 'drop-me',
+    });
+
+    expect(env.PATH).toBe('/bin');
+    expect(env.LANG).toBe('en_US.UTF-8');
+    expect(env.SPECKIT_ALLOWED_TEST_FLAG).toBe('1');
+    expect(env.XYZ_UNRELATED).toBeUndefined();
+    expect(stderrSpy).toHaveBeenCalledWith(expect.stringContaining('XYZ_UNRELATED'));
+    expect(stderrSpy).not.toHaveBeenCalledWith(expect.stringContaining('drop-me'));
+    stderrSpy.mockRestore();
+  });
+
+  it('prefers SPECKIT_RERANK values over overlapping RERANK values with a warning (F46)', () => {
+    const stderrSpy = vi.spyOn(process.stderr, 'write').mockImplementation(() => true);
+    const env = buildSidecarEnv({
+      SPECKIT_RERANK_MODEL_NAME: 'spec-kit-model',
+      RERANK_MODEL_NAME: 'rerank-model',
+    });
+
+    expect(env.SPECKIT_RERANK_MODEL_NAME).toBe('spec-kit-model');
+    expect(env.RERANK_MODEL_NAME).toBe('spec-kit-model');
+    expect(stderrSpy).toHaveBeenCalledWith(expect.stringContaining('SPECKIT_RERANK_MODEL_NAME overrides RERANK_MODEL_NAME'));
+    stderrSpy.mockRestore();
   });
 
   it('passes parent pid for worker-side parent-death polling and blocks unsafe inherited env', async () => {
@@ -194,7 +245,7 @@ describe('sidecar hardening', () => {
         ...process.env,
         UNSAFE_SECRET: 'nope',
         SPECKIT_EMBEDDER_ALLOWED: 'yes',
-        MOCK_SIDECAR_ENV_OUT: envOut,
+        SPECKIT_TEST_SIDECAR_ENV_OUT: envOut,
       },
     });
 
@@ -341,7 +392,7 @@ setInterval(() => {}, 1000);
       requestTimeoutMs: 2_000,
       env: {
         ...process.env,
-        MOCK_SIDECAR_ID_FILE: idFile,
+        SPECKIT_TEST_SIDECAR_ID_FILE: idFile,
       },
     });
 
@@ -412,7 +463,7 @@ setInterval(() => {}, 1000);
       requestTimeoutMs: 40,
       env: {
         ...process.env,
-        MOCK_SIDECAR_SIGNAL_FILE: signalFile,
+        SPECKIT_TEST_SIDECAR_SIGNAL_FILE: signalFile,
       },
     });
 

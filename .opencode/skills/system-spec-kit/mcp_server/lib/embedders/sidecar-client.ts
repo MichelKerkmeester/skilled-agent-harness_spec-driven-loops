@@ -5,6 +5,7 @@
 import { fork, type ChildProcess } from 'node:child_process';
 import { randomBytes } from 'node:crypto';
 import { existsSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -84,6 +85,14 @@ interface SidecarErrorResponse {
 
 type SidecarResponse = SidecarEmbeddingResponse | SidecarPongResponse | SidecarErrorResponse;
 
+interface SidecarEnvAllowlistModule {
+  readonly SIDECAR_ENV_ALLOWLIST: {
+    readonly exact: readonly string[];
+    readonly prefixes: readonly string[];
+  };
+  readonly isAllowedSidecarEnvKey: (key: string) => boolean;
+}
+
 type ValidatedEmbedInput =
   | {
     readonly valid: true;
@@ -115,10 +124,21 @@ const DEFAULT_PING_TIMEOUT_MS = 2_000;
 const DEFAULT_REQUEST_TIMEOUT_MS = 30_000;
 const DEFAULT_TERMINATION_GRACE_MS = 1_000;
 const MIN_TIMEOUT_MS = 1;
-const ALLOWED_ENV_KEYS = new Set(['PATH', 'HOME', 'LANG', 'LC_ALL', 'LC_CTYPE', 'TMPDIR']);
 const MAX_LINE_BYTES = 1024 * 1024; // 1MB
 const MAX_STDOUT_BUFFER_BYTES = 10 * 1024 * 1024; // 10MB
 const MAX_EMBED_INPUTS = 500;
+const require = createRequire(import.meta.url);
+const SIDECAR_CONFIG_PREFIX_ALIASES = [
+  ['SPECKIT_RERANK_ALLOWED_MODELS', 'RERANK_ALLOWED_MODELS'],
+  ['SPECKIT_RERANK_DEVICE', 'RERANK_DEVICE'],
+  ['SPECKIT_RERANK_MODEL_NAME', 'RERANK_MODEL_NAME'],
+  ['SPECKIT_RERANK_MODEL_REVISION', 'RERANK_MODEL_REVISION'],
+  ['SPECKIT_RERANK_MODEL_REVISIONS', 'RERANK_MODEL_REVISIONS'],
+  ['SPECKIT_RERANK_TORCH_DTYPE', 'RERANK_TORCH_DTYPE'],
+] as const;
+const SIDECAR_ENV_ALLOWLIST_MODULE = loadSidecarEnvAllowlistModule();
+
+export const SIDECAR_ENV_ALLOWLIST = SIDECAR_ENV_ALLOWLIST_MODULE.SIDECAR_ENV_ALLOWLIST;
 
 /**
  * Recognized SPECKIT_ environment variables for embedder sidecar configuration.
@@ -140,9 +160,14 @@ const MAX_EMBED_INPUTS = 500;
  * - `SPECKIT_EMBEDDER_SIDECAR_DIMENSIONS`: Embedding dimensions
  * - `SPECKIT_EMBEDDER_SIDECAR_PARENT_PID`: Parent process PID for liveness checks
  *
- * **Test-only prefixes (never used in production):**
- * - `SPECKIT_EMBEDDER_*`: Any other SPECKIT_EMBEDDER_ prefix is test-only
- * - `MOCK_SIDECAR_*`: Mock sidecar test prefix
+ * **Shared sidecar child env allowlist:**
+ * - Exact keys: `HOME`, `LANG`, `PATH`, `TEMP`, `TMP`, `TMPDIR`, `TRANSFORMERS_OFFLINE`, `PYTORCH_ENABLE_MPS_FALLBACK`
+ * - Prefixes: `LC_*`, `SPECKIT_*`, `RERANK_*`, `HF_*`
+ * - Disallowed keys are dropped with a key-only stderr warning.
+ *
+ * **Config-prefix overlap precedence:**
+ * - When `SPECKIT_RERANK_*` and matching `RERANK_*` keys both configure the same sidecar setting,
+ *   the `SPECKIT_RERANK_*` value wins and a key-only stderr warning is emitted.
  *
  * @see mcp_server/ENV_REFERENCE.md for canonical environment variable documentation
  */
@@ -180,6 +205,20 @@ function defaultWorkerPath(): string {
   }
 
   return join(currentDir, 'sidecar-worker.ts');
+}
+
+function loadSidecarEnvAllowlistModule(): SidecarEnvAllowlistModule {
+  const currentDir = dirname(fileURLToPath(import.meta.url));
+  const candidates = [
+    join(currentDir, '../../../../../bin/lib/sidecar-env-allowlist.cjs'),
+    join(currentDir, '../../../../../../../../../bin/lib/sidecar-env-allowlist.cjs'),
+  ];
+  for (const candidate of candidates) {
+    if (existsSync(candidate)) {
+      return require(candidate) as SidecarEnvAllowlistModule;
+    }
+  }
+  throw new Error('Unable to locate shared sidecar env allowlist module');
 }
 
 /**
@@ -252,12 +291,26 @@ async function terminateChildWithGracePeriod(child: ChildProcess, gracePeriodMs:
   }
 }
 
-function isAllowedEnvKey(key: string, explicitAllowlist: readonly string[] = []): boolean {
-  return ALLOWED_ENV_KEYS.has(key)
-    || key.startsWith('LC_')
-    || key.startsWith('SPECKIT_EMBEDDER_')
-    || key.startsWith('MOCK_SIDECAR_')
-    || explicitAllowlist.includes(key);
+function warnDroppedEnvKey(key: string, explicitAllowlist: readonly string[] = []): void {
+  const suffix = explicitAllowlist.includes(key) ? ' (legacy envAllowlist entries are ignored)' : '';
+  process.stderr.write(`[sidecar-env] dropped disallowed env key ${key}${suffix}\n`);
+}
+
+function warnPrefixOverlap(speckitKey: string, rerankKey: string): void {
+  process.stderr.write(`[sidecar-env] ${speckitKey} overrides ${rerankKey} for sidecar config\n`);
+}
+
+function applySidecarConfigPrefixPrecedence(env: NodeJS.ProcessEnv): NodeJS.ProcessEnv {
+  const out = { ...env };
+  for (const [speckitKey, rerankKey] of SIDECAR_CONFIG_PREFIX_ALIASES) {
+    const speckitValue = out[speckitKey];
+    const rerankValue = out[rerankKey];
+    if (speckitValue !== undefined && rerankValue !== undefined) {
+      warnPrefixOverlap(speckitKey, rerankKey);
+      out[rerankKey] = speckitValue;
+    }
+  }
+  return out;
 }
 
 /**
@@ -274,11 +327,13 @@ export function buildSidecarEnv(
   const out: NodeJS.ProcessEnv = {};
   for (const [key, value] of Object.entries(parentEnv)) {
     if (value === undefined) continue;
-    if (isAllowedEnvKey(key, explicitAllowlist)) {
+    if (SIDECAR_ENV_ALLOWLIST_MODULE.isAllowedSidecarEnvKey(key)) {
       out[key] = value;
+    } else {
+      warnDroppedEnvKey(key, explicitAllowlist);
     }
   }
-  return out;
+  return applySidecarConfigPrefixPrecedence(out);
 }
 
 function validateEmbedInput(texts: ReadonlyArray<string>, options: EmbedOptions = {}): ValidatedEmbedInput {
