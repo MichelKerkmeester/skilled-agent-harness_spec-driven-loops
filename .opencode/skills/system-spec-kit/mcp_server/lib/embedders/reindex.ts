@@ -188,11 +188,6 @@ function setJobStatus(
   });
 }
 
-function getCancellationStatus(db: Database.Database, jobId: string): ReindexJobStatus | null {
-  const row = db.prepare('SELECT status FROM embedder_jobs WHERE id = ?').get(jobId) as { status?: ReindexJobStatus } | undefined;
-  return row?.status ?? null;
-}
-
 function selectMemoryBatch(db: Database.Database, offset: number, limit: number): MemoryRow[] {
   return db.prepare(`
     SELECT id, content_text, title, file_path
@@ -369,10 +364,6 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
     setJobStatus(db, jobId, 'running');
 
     while (processed < initialJob.total) {
-      if (getCancellationStatus(db, jobId) === 'cancelled') {
-        return;
-      }
-
       const rows = selectMemoryBatch(db, processed, batchSize);
       if (rows.length === 0) {
         break;
@@ -388,10 +379,6 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
       processed += rows.length;
       setJobStatus(db, jobId, 'running', processed);
       await yieldToEventLoop();
-    }
-
-    if (getCancellationStatus(db, jobId) === 'cancelled') {
-      return;
     }
 
     const complete = db.transaction(() => {

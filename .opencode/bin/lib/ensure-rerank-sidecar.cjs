@@ -14,6 +14,18 @@ const DEFAULT_HEALTH_TIMEOUT_MS = 20000;
 const LEDGER_FILE_NAME = '.sidecar-ledger.json';
 const OWNER_TOKEN_FILE_NAME = '.sidecar-owner-token';
 const MAX_HEALTH_BODY_BYTES = 65536; // 64KB - canonical health payload cap, matches Python
+const OWNER_TOKEN_WAIT_TIMEOUT_MS = 2000;
+const OWNER_TOKEN_WAIT_INTERVAL_MS = 10;
+const CHILD_ENV_ALLOWLIST = new Set([
+  'HOME',
+  'LANG',
+  'PATH',
+  'TEMP',
+  'TMP',
+  'TMPDIR',
+  'TRANSFORMERS_OFFLINE',
+  'PYTORCH_ENABLE_MPS_FALLBACK',
+]);
 
 function log(message) {
   process.stderr.write(`[ensure-rerank-sidecar] ${message}\n`);
@@ -109,26 +121,121 @@ function ownerTokenPath(dir) {
   return path.join(dir, OWNER_TOKEN_FILE_NAME);
 }
 
+function isAllowedChildEnvKey(key) {
+  return CHILD_ENV_ALLOWLIST.has(key)
+    || key.startsWith('LC_')
+    || key.startsWith('SPECKIT_')
+    || key.startsWith('RERANK_')
+    || key.startsWith('HF_');
+}
+
+function buildSidecarEnv(parentEnv, overrides) {
+  const childEnv = {};
+  for (const [key, value] of Object.entries(parentEnv)) {
+    if (typeof value === 'string' && isAllowedChildEnvKey(key)) {
+      childEnv[key] = value;
+    }
+  }
+  return { ...childEnv, ...overrides };
+}
+
+function sleepSync(ms) {
+  if (typeof SharedArrayBuffer === 'function' && typeof Atomics === 'object' && typeof Atomics.wait === 'function') {
+    Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
+    return;
+  }
+  const deadline = Date.now() + ms;
+  while (Date.now() < deadline) {
+    // Synchronous fallback only used during rare owner-token creation races.
+  }
+}
+
+function readOwnerTokenIfPresent(tokenPath, fsModule) {
+  try {
+    const existing = fsModule.readFileSync(tokenPath, 'utf8').trim();
+    return existing || null;
+  } catch (error) {
+    if (error.code === 'ENOENT') return null;
+    throw error;
+  }
+}
+
+function waitForOwnerToken(tokenPath, fsModule, originalError) {
+  const deadline = Date.now() + OWNER_TOKEN_WAIT_TIMEOUT_MS;
+  while (Date.now() < deadline) {
+    const existing = readOwnerTokenIfPresent(tokenPath, fsModule);
+    if (existing) return existing;
+    sleepSync(OWNER_TOKEN_WAIT_INTERVAL_MS);
+  }
+  throw originalError;
+}
+
+function writeOwnerTokenAtomic(tokenPath, token, fsModule) {
+  const tmp = `${tokenPath}.tmp.${crypto.randomBytes(16).toString('hex')}`;
+  let fd;
+  try {
+    fd = fsModule.openSync(tmp, 'wx', 0o600);
+    fsModule.writeSync(fd, `${token}\n`);
+    if (typeof fsModule.fsyncSync === 'function') {
+      fsModule.fsyncSync(fd);
+    }
+  } catch (error) {
+    try {
+      if (typeof fd === 'number') fsModule.closeSync(fd);
+    } catch {
+      // Best-effort close before propagating the write failure.
+    }
+    try {
+      fsModule.unlinkSync?.(tmp);
+    } catch {
+      // Best-effort cleanup; the random temp path is never trusted.
+    }
+    throw error;
+  }
+
+  fsModule.closeSync(fd);
+  try {
+    fsModule.renameSync(tmp, tokenPath);
+  } catch (error) {
+    try {
+      fsModule.unlinkSync?.(tmp);
+    } catch {
+      // Best-effort cleanup after failed publish.
+    }
+    throw error;
+  }
+}
+
 function loadOrCreateOwnerToken(dir, fsModule, processObj) {
   const explicit = String(processObj.env.RERANK_SIDECAR_OWNER_TOKEN || '').trim();
   if (explicit) return explicit;
   fsModule.mkdirSync(dir, { recursive: true, mode: 0o700 });
   const tokenPath = ownerTokenPath(dir);
-  try {
-    const existing = fsModule.readFileSync(tokenPath, 'utf8').trim();
-    if (existing) return existing;
-  } catch (error) {
-    if (error.code !== 'ENOENT') throw error;
-  }
+  const existing = readOwnerTokenIfPresent(tokenPath, fsModule);
+  if (existing) return existing;
+
   const token = crypto.randomBytes(24).toString('base64url');
+  const lockPath = `${tokenPath}.lock`;
+  let lockFd;
   try {
-    fsModule.writeFileSync(tokenPath, `${token}\n`, { mode: 0o600, flag: 'wx' });
-    return token;
+    lockFd = fsModule.openSync(lockPath, 'wx', 0o600);
   } catch (error) {
     if (error.code !== 'EEXIST') throw error;
-    const existing = fsModule.readFileSync(tokenPath, 'utf8').trim();
-    if (!existing) throw error;
-    return existing;
+    return waitForOwnerToken(tokenPath, fsModule, error);
+  }
+
+  try {
+    const afterLockExisting = readOwnerTokenIfPresent(tokenPath, fsModule);
+    if (afterLockExisting) return afterLockExisting;
+    writeOwnerTokenAtomic(tokenPath, token, fsModule);
+    return token;
+  } finally {
+    fsModule.closeSync(lockFd);
+    try {
+      fsModule.unlinkSync?.(lockPath);
+    } catch {
+      // Lock cleanup is best-effort; a later contender will fail closed.
+    }
   }
 }
 
@@ -277,12 +384,11 @@ async function ensureRerankSidecar(options = {}) {
   const child = spawnFn('bash', [startScriptPath], {
     detached: true,
     stdio: ['ignore', logFd, logFd],
-    env: {
-      ...processObj.env,
+    env: buildSidecarEnv(processObj.env, {
       RERANK_SIDECAR_PORT: String(port),
       RERANK_SIDECAR_OWNER_TOKEN: ownerToken,
       RERANK_SIDECAR_CONFIG_HASH: configHash,
-    },
+    }),
   });
   child.unref();
   addLedgerRow(ledgerDir, {

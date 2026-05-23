@@ -1,0 +1,24 @@
+{
+  "specFolder": "004-fix-investigation-p1s-for-launcher-and-reindex-deadcode",
+  "description": "Close F15, F49, and F105 across the rerank sidecar launcher and embedder reindex loop.",
+  "keywords": [
+    "F15",
+    "F49",
+    "F105",
+    "ensure-rerank-sidecar",
+    "reindex"
+  ],
+  "lastUpdated": "2026-05-23T07:05:00.000Z",
+  "specId": "004",
+  "folderSlug": "fix-investigation-p1s-for-launcher-and-reindex-deadcode",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "010-system-spec-kit-mcp-sidecar-investigation",
+    "003-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
