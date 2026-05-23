@@ -19,8 +19,19 @@ import type { ParserProvenance } from '../context/shared-payload.js';
  * - 1.3 (May 20 nomic-embed-text-v1.5 default per ADR-013, no cross-encoder
  *   provider available; positional fallback-sort lands paraphrase queries
  *   around Z=1.4 consistently. 1.3 reflects the realistic steady-state
- *   floor under this configuration. The long-term fix is enabling the
- *   local reranker sidecar via RERANKER_LOCAL=true.)
+ *   floor under that configuration.)
+ *
+ * Post-022/013 state:
+ * - The local sidecar (Qwen/Qwen3-Reranker-0.6B on http://localhost:8765/rerank)
+ *   is the only supported reranker. Activation requires explicit
+ *   SPECKIT_CROSS_ENCODER=true AND RERANKER_LOCAL=true (no API-key
+ *   auto-activation since the voyage/cohere providers were removed).
+ * - Operators with both flags set should see Z floor rise toward the
+ *   1.5 baseline because the cross-encoder restores ranking lift on
+ *   paraphrase queries. Raising the constant to 1.5 unconditionally
+ *   would over-penalize operators running without the sidecar, so the
+ *   threshold stays conservative at 1.3 until a per-operator
+ *   reranker-presence signal is wired (deferred follow-on).
  */
 const Z_SCORE_THRESHOLD = 1.3;
 

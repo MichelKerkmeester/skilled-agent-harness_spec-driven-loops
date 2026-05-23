@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+# Pre-commit hook — advisory model-reference drift check.
+#
+# Runs validate-doc-model-refs.js on the working tree before each commit.
+# Advisory mode: prints warnings on drift but does NOT block the commit.
+# Bypass: SPECKIT_SKIP_DOC_MODEL_VALIDATE=1 git commit ...
+#
+# Install: bash .opencode/scripts/install-git-hooks.sh
+# Uninstall: rm .git/hooks/pre-commit
+
+set -u
+
+if [ "${SPECKIT_SKIP_DOC_MODEL_VALIDATE:-0}" = "1" ]; then
+  exit 0
+fi
+
+REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null)"
+if [ -z "$REPO_ROOT" ]; then
+  exit 0
+fi
+
+VALIDATOR="$REPO_ROOT/.opencode/skills/sk-doc/scripts/validate-doc-model-refs.js"
+if [ ! -f "$VALIDATOR" ]; then
+  exit 0
+fi
+
+if ! command -v node >/dev/null 2>&1; then
+  exit 0
+fi
+
+# Run validator; capture exit code. Non-zero exit means drift detected.
+# Advisory: warn on stderr but always exit 0 so the commit proceeds.
+OUT="$(node "$VALIDATOR" 2>&1)"
+RC=$?
+
+if [ "$RC" -ne 0 ]; then
+  echo "" >&2
+  echo "⚠️  doc-model-refs drift detected (advisory; commit not blocked):" >&2
+  echo "$OUT" | head -30 >&2
+  echo "" >&2
+  echo "Bypass next time: SPECKIT_SKIP_DOC_MODEL_VALIDATE=1 git commit ..." >&2
+  echo "Fix: update docs to cite canonical model names from registry.ts" >&2
+  echo "" >&2
+fi
+
+exit 0

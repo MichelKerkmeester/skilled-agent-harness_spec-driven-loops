@@ -780,7 +780,11 @@ test -f .opencode/skills/system-skill-advisor/mcp_server/dist/system-skill-advis
 ```bash
 npm --prefix .opencode/skills/system-skill-advisor/mcp_server install
 npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build
+# tsc does not copy non-TS assets — run this to copy data/*.json into dist/
+bash .opencode/scripts/copy-skill-advisor-dist-data.sh
 ```
+
+> **Build pipeline note:** `tsc` does not copy non-TypeScript files (e.g. `data/prompt-policy.default.json`) into `dist/`. The launcher fails on first start without that file. Run `bash .opencode/scripts/copy-skill-advisor-dist-data.sh` after every `npm run build` to keep the dist tree consistent. Operators may also add a local `postbuild` script to their (gitignored) `mcp_server/package.json` that invokes the same script — see `.opencode/scripts/copy-skill-advisor-dist-data.sh` header for the snippet.
 
 **Configure in `opencode.json`:**
 ```json
