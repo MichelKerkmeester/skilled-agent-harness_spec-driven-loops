@@ -1,0 +1,31 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-system-spec-kit-mcp-sidecar-investigation/005-fix-rerank-sidecar-accumulation-with-three-layer-reaper/001-implement-ledger-v2-schema-and-identity-verified-pid",
+  "description": "Level 2 child phase implementing rerank-sidecar ledger v2 owner identities, identity-verified PID liveness helpers, v1 compatibility, locked owner pruning/registration, and shared reaper fixture cases.",
+  "keywords": [
+    "ledger-v2",
+    "identity-verified-pid",
+    "rerank-sidecar-reaper",
+    "owner-liveness",
+    "cross-runtime-fixtures"
+  ],
+  "lastUpdated": "2026-05-23T12:00:00Z",
+  "specId": "001",
+  "folderSlug": "implement-ledger-v2-schema-and-identity-verified-pid",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "010-system-spec-kit-mcp-sidecar-investigation",
+    "005-fix-rerank-sidecar-accumulation-with-three-layer-reaper"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2",
+  "status": "completed",
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-system-spec-kit-mcp-sidecar-investigation/004-rerank-sidecar-accumulation-investigation-and-reaper-design/001-investigate-and-design-reaper-architecture"
+    ],
+    "related_to": []
+  }
+}

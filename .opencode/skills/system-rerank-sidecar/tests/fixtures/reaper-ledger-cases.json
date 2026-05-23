@@ -1,0 +1,274 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "name": "all-owners-alive-no-reap",
+      "ledger_state": {
+        "schema_version": 2,
+        "rows": [
+          {
+            "pid": 5001,
+            "port": 8765,
+            "owner_token": "owner-a",
+            "owners": [
+              {
+                "pid": 1001,
+                "create_timestamp": "Sat May 23 10:01:02 2026",
+                "comm": "node"
+              }
+            ]
+          }
+        ]
+      },
+      "process_table": {
+        "1001": {
+          "kill": "ok",
+          "ps_create_timestamp": "Sat May 23 10:01:02 2026",
+          "ps_comm": "node"
+        }
+      },
+      "expected_liveness": {
+        "pid_1001": "ok"
+      },
+      "expected_reap_decision": false
+    },
+    {
+      "name": "all-owners-dead-pid-not-recycled-reap",
+      "ledger_state": {
+        "schema_version": 2,
+        "rows": [
+          {
+            "pid": 5002,
+            "port": 8766,
+            "owner_token": "owner-a",
+            "owners": [
+              {
+                "pid": 1002,
+                "create_timestamp": "Sat May 23 10:02:02 2026",
+                "comm": "python"
+              }
+            ]
+          }
+        ]
+      },
+      "process_table": {
+        "1002": {
+          "kill": "esrch"
+        }
+      },
+      "expected_liveness": {
+        "pid_1002": "kill-0-esrch"
+      },
+      "expected_reap_decision": true
+    },
+    {
+      "name": "all-owners-dead-pid-recycled-reap",
+      "ledger_state": {
+        "schema_version": 2,
+        "rows": [
+          {
+            "pid": 5003,
+            "port": 8767,
+            "owner_token": "owner-a",
+            "owners": [
+              {
+                "pid": 1003,
+                "create_timestamp": "Sat May 23 10:03:02 2026",
+                "comm": "node"
+              }
+            ]
+          }
+        ]
+      },
+      "process_table": {
+        "1003": {
+          "kill": "ok",
+          "ps_create_timestamp": "Sat May 23 10:13:02 2026",
+          "ps_comm": "zsh"
+        }
+      },
+      "expected_liveness": {
+        "pid_1003": "pid-recycled"
+      },
+      "expected_reap_decision": true
+    },
+    {
+      "name": "mixed-owners-some-dead-no-reap",
+      "ledger_state": {
+        "schema_version": 2,
+        "rows": [
+          {
+            "pid": 5004,
+            "port": 8768,
+            "owner_token": "owner-a",
+            "owners": [
+              {
+                "pid": 1004,
+                "create_timestamp": "Sat May 23 10:04:02 2026",
+                "comm": "node"
+              },
+              {
+                "pid": 1005,
+                "create_timestamp": "Sat May 23 10:05:02 2026",
+                "comm": "python"
+              }
+            ]
+          }
+        ]
+      },
+      "process_table": {
+        "1004": {
+          "kill": "esrch"
+        },
+        "1005": {
+          "kill": "ok",
+          "ps_create_timestamp": "Sat May 23 10:05:02 2026",
+          "ps_comm": "python"
+        }
+      },
+      "expected_liveness": {
+        "pid_1004": "kill-0-esrch",
+        "pid_1005": "ok"
+      },
+      "expected_reap_decision": false
+    },
+    {
+      "name": "pid-1-owner-reap",
+      "ledger_state": {
+        "schema_version": 2,
+        "rows": [
+          {
+            "pid": 5005,
+            "port": 8769,
+            "owner_token": "owner-a",
+            "owners": [
+              {
+                "pid": 1,
+                "create_timestamp": "Sat May 23 10:06:02 2026",
+                "comm": "launchd"
+              }
+            ]
+          }
+        ]
+      },
+      "process_table": {
+        "1": {
+          "kill": "ok",
+          "ps_create_timestamp": "Sat May 23 10:06:02 2026",
+          "ps_comm": "launchd"
+        }
+      },
+      "expected_liveness": {
+        "pid_1": "pid-1-orphaned"
+      },
+      "expected_reap_decision": true
+    },
+    {
+      "name": "eperm-owner-no-reap",
+      "ledger_state": {
+        "schema_version": 2,
+        "rows": [
+          {
+            "pid": 5006,
+            "port": 8770,
+            "owner_token": "owner-a",
+            "owners": [
+              {
+                "pid": 1006,
+                "create_timestamp": "Sat May 23 10:07:02 2026",
+                "comm": "node"
+              }
+            ]
+          }
+        ]
+      },
+      "process_table": {
+        "1006": {
+          "kill": "eperm",
+          "ps_create_timestamp": "Sat May 23 10:07:02 2026",
+          "ps_comm": "node"
+        }
+      },
+      "expected_liveness": {
+        "pid_1006": "kill-0-eperm"
+      },
+      "expected_reap_decision": false
+    },
+    {
+      "name": "esrch-owner-reap",
+      "ledger_state": {
+        "schema_version": 2,
+        "rows": [
+          {
+            "pid": 5007,
+            "port": 8771,
+            "owner_token": "owner-a",
+            "owners": [
+              {
+                "pid": 1007,
+                "create_timestamp": "Sat May 23 10:08:02 2026",
+                "comm": "node"
+              }
+            ]
+          }
+        ]
+      },
+      "process_table": {
+        "1007": {
+          "kill": "esrch"
+        }
+      },
+      "expected_liveness": {
+        "pid_1007": "kill-0-esrch"
+      },
+      "expected_reap_decision": true
+    },
+    {
+      "name": "empty-owner-set-legacy-row-reap",
+      "ledger_state": {
+        "schema_version": 1,
+        "rows": [
+          {
+            "pid": 5008,
+            "port": 8772,
+            "owner_token": "owner-a",
+            "owners": []
+          }
+        ]
+      },
+      "process_table": {},
+      "expected_liveness": {},
+      "expected_reap_decision": true
+    },
+    {
+      "name": "unknown-owner-no-reap",
+      "ledger_state": {
+        "schema_version": 2,
+        "rows": [
+          {
+            "pid": 5009,
+            "port": 8773,
+            "owner_token": "owner-a",
+            "owners": [
+              {
+                "pid": 1009,
+                "create_timestamp": "Sat May 23 10:09:02 2026",
+                "comm": "node"
+              }
+            ]
+          }
+        ]
+      },
+      "process_table": {
+        "1009": {
+          "kill": "unknown",
+          "errno": 5
+        }
+      },
+      "expected_liveness": {
+        "pid_1009": "unknown"
+      },
+      "expected_reap_decision": false
+    }
+  ]
+}
