@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-system-spec-kit-mcp-sidecar-investigation/003-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/002-fix-investigation-p1s-for-execution-router-policy-and-shutdown-hooks",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-system-spec-kit-mcp-sidecar-investigation/003-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/002-fix-investigation-p1s-for-execution-router-policy-and-shutdown-hooks",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+    "derived": {
+    "trigger_phrases": ["arc 010 003 002 execution-router p1", "F6 F31 F52 F53 F58 F61 F74 remediation"],
+    "key_topics": ["execution-router", "testables seam", "dimension fallback", "shutdown hooks"],
+    "importance_tier": "critical",
+    "status": "completed",
+    "key_files": ["spec.md","plan.md","tasks.md","checklist.md","decision-record.md","implementation-summary.md"],
+    "entities": ["execution-router.ts", "execution-router.testables.ts", "execution-router.vitest.ts"],
+    "causal_summary": "Closed seven P1 execution-router findings with test-only seam extraction, pure policy resolution, config-to-default dimension fallback, shared signal hooks, and direct ready deletion.",
+    "created_at": "2026-05-23T06:21:18Z",
+    "last_save_at": "2026-05-23T06:30:00Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": ["spec.md","plan.md","tasks.md","checklist.md","decision-record.md","implementation-summary.md"]
+  }
+}

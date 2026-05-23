@@ -7,7 +7,7 @@ import { getStartupEmbeddingProfile } from '@spec-kit/shared/embeddings';
 import type { IEmbeddingProvider } from '@spec-kit/shared/types';
 
 import type { EmbedderAdapter } from './adapter.js';
-import { getAdapter, getManifest } from './registry.js';
+import { getAdapter } from './registry.js';
 import { SidecarClient, toBackendKind, type SidecarClientOptions, type SidecarWorkerInfo } from './sidecar-client.js';
 import type { BackendKind } from './types.js';
 
@@ -17,6 +17,7 @@ import type { BackendKind } from './types.js';
 
 export type EmbedderExecutionPolicy = 'auto' | 'direct' | 'sidecar';
 export type EmbedderExecutionInputType = 'document' | 'query';
+export type ExecutionRouterAdapter = Omit<EmbedderAdapter, 'ready'>;
 
 interface EmbedOptions {
   readonly inputType?: EmbedderExecutionInputType;
@@ -27,7 +28,8 @@ interface EmbedOptions {
 // ───────────────────────────────────────────────────────────────
 
 const SIDECAR_LOCAL_PROVIDERS = new Set(['hf-local', 'sentence-transformers']);
-const directAdapters = new Map<string, EmbedderAdapter>();
+const SHUTDOWN_SIGNALS: readonly NodeJS.Signals[] = ['SIGINT', 'SIGTERM', 'SIGHUP'];
+const directAdapters = new Map<string, ExecutionRouterAdapter>();
 const sidecarClients = new Map<string, SidecarClient>();
 let shutdownHooksRegistered = false;
 
@@ -43,20 +45,33 @@ function cacheKey(provider: string, model: string): string {
   return `${normalizeProvider(provider)}:${model}`;
 }
 
-function resolveExecutionPolicy(): EmbedderExecutionPolicy {
-  const raw = process.env.SPECKIT_EMBEDDER_EXECUTION?.trim().toLowerCase();
+function readExecutionPolicyEnv(): string | undefined {
+  return process.env.SPECKIT_EMBEDDER_EXECUTION?.trim().toLowerCase();
+}
+
+export function resolveExecutionPolicy(raw: string | undefined = readExecutionPolicyEnv()): EmbedderExecutionPolicy {
   if (raw === undefined || raw.length === 0 || raw === 'auto') {
     return 'auto';
   }
   if (raw === 'direct' || raw === 'sidecar') {
     return raw;
   }
-  console.warn(`[embedder-execution] Invalid SPECKIT_EMBEDDER_EXECUTION="${raw}"; using auto`);
   return 'auto';
 }
 
-function shouldUseSidecar(provider: string): boolean {
-  const policy = resolveExecutionPolicy();
+export function logPolicyResolution(
+  raw: string | undefined = readExecutionPolicyEnv(),
+  policy: EmbedderExecutionPolicy = resolveExecutionPolicy(raw),
+): void {
+  if (policy === 'auto' && raw !== undefined && raw.length > 0 && raw !== 'auto') {
+    console.warn(`[embedder-execution] Invalid SPECKIT_EMBEDDER_EXECUTION="${raw}"; using auto`);
+  }
+}
+
+export function shouldUseSidecar(provider: string): boolean {
+  const rawPolicy = readExecutionPolicyEnv();
+  const policy = resolveExecutionPolicy(rawPolicy);
+  logPolicyResolution(rawPolicy, policy);
   if (policy === 'direct') {
     return false;
   }
@@ -66,21 +81,17 @@ function shouldUseSidecar(provider: string): boolean {
   return SIDECAR_LOCAL_PROVIDERS.has(normalizeProvider(provider));
 }
 
-function resolveDimensions(provider: string, model: string, dimensions?: number): number {
+export function resolveDimensions(provider: string, model: string, dimensions?: number): number {
   if (typeof dimensions === 'number' && Number.isInteger(dimensions) && dimensions > 0) {
     return dimensions;
   }
 
-  const manifest = getManifest(model);
-  if (manifest) {
-    return manifest.dim;
-  }
-
   const profile = getStartupEmbeddingProfile();
-  if (profile.provider === provider && profile.model === model) {
-    return profile.dim;
+  if (normalizeProvider(profile.provider) !== normalizeProvider(provider) || profile.model !== model) {
+    console.warn(
+      `[embedder-execution] Falling back to default dimensions ${profile.dim} for ${provider}:${model}; default profile is ${profile.provider}:${profile.model}`,
+    );
   }
-
   return profile.dim;
 }
 
@@ -92,31 +103,28 @@ function normalizeProviderForFactory(provider: string): string {
   return normalized;
 }
 
-function registerShutdownHooks(): void {
+export function registerShutdownHooks(): void {
   if (shutdownHooksRegistered) {
     return;
   }
 
   shutdownHooksRegistered = true;
-  const shutdown = (): void => {
-    void shutdownAllSidecars();
+  const shutdown = async (): Promise<void> => {
+    await shutdownAllSidecars();
+  };
+  const handleSignal = async (signal: NodeJS.Signals): Promise<void> => {
+    await shutdown();
+    process.kill(process.pid, signal);
   };
   process.once('beforeExit', shutdown);
-  process.once('SIGINT', () => {
-    shutdown();
-    process.kill(process.pid, 'SIGINT');
-  });
-  process.once('SIGTERM', () => {
-    shutdown();
-    process.kill(process.pid, 'SIGTERM');
-  });
+  SHUTDOWN_SIGNALS.forEach((signal) => process.once(signal, handleSignal));
 }
 
 // ───────────────────────────────────────────────────────────────
 // 4. DIRECT ADAPTER
 // ───────────────────────────────────────────────────────────────
 
-class DirectProviderAdapter implements EmbedderAdapter {
+class DirectProviderAdapter {
   readonly name: string;
   readonly dim: number;
   readonly backend: BackendKind;
@@ -161,18 +169,6 @@ class DirectProviderAdapter implements EmbedderAdapter {
     return vectors;
   }
 
-  async ready(): Promise<boolean> {
-    if (this.registryAdapter) {
-      return this.registryAdapter.ready();
-    }
-    try {
-      const provider = await this.getProvider();
-      return provider.healthCheck();
-    } catch {
-      return false;
-    }
-  }
-
   private getProvider(): Promise<IEmbeddingProvider> {
     if (!this.providerPromise) {
       this.providerPromise = createEmbeddingsProvider({
@@ -190,7 +186,7 @@ class DirectProviderAdapter implements EmbedderAdapter {
 // 5. CORE LOGIC
 // ───────────────────────────────────────────────────────────────
 
-export function getEmbedderAdapter(provider: string, model: string, dimensionsOverride?: number): EmbedderAdapter {
+export function getEmbedderAdapter(provider: string, model: string, dimensionsOverride?: number): ExecutionRouterAdapter {
   const key = cacheKey(provider, model);
   const dimensions = resolveDimensions(provider, model, dimensionsOverride);
 
@@ -234,11 +230,8 @@ export async function shutdownAllSidecars(): Promise<void> {
   await Promise.all(clients.map((client) => client.shutdown()));
 }
 
-export const __embedderExecutionRouterTestables = {
-  resolveExecutionPolicy,
-  shouldUseSidecar,
-  clear(): void {
-    directAdapters.clear();
-    sidecarClients.clear();
-  },
-};
+export function clearEmbedderExecutionRouterState(): void {
+  directAdapters.clear();
+  sidecarClients.clear();
+  shutdownHooksRegistered = false;
+}

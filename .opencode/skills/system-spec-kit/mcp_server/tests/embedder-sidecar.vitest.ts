@@ -9,10 +9,10 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 import { SidecarClient } from '../lib/embedders/sidecar-client.js';
 import {
-  __embedderExecutionRouterTestables,
   getEmbedderAdapter,
   shutdownAllSidecars,
 } from '../lib/embedders/execution-router.js';
+import { __embedderExecutionRouterTestables } from '../lib/embedders/execution-router.testables.js';
 
 const ORIGINAL_EXECUTION = process.env.SPECKIT_EMBEDDER_EXECUTION;
 
