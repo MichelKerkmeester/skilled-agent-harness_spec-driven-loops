@@ -564,7 +564,7 @@ Required at Planning Gate for Level 3/3+ (optional Level 2). Record in decision-
 - **With Research**: `/spec_kit:complete "feature" :with-research` -- Research + 14 steps
 - **With Phases**: `/spec_kit:complete "feature" :with-phases --phases 3` -- Phase decomposition + 14 steps on first child
 - **Full Options**: `/spec_kit:complete "feature" :auto :with-research :with-phases`
-- **Split workflows**: `/spec_kit:deep-research` -> `/spec_kit:plan [:with-phases]` -> `/spec_kit:implement`
+- **Split workflows**: `/deep:start-research-loop` -> `/spec_kit:plan [:with-phases]` -> `/spec_kit:implement`
 
 ---
 

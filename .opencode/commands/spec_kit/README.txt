@@ -5,11 +5,11 @@ trigger_phrases:
   - "spec kit command"
   - "spec kit plan"
   - "spec kit implement"
-  - "spec kit deep-research"
+  - "deep research"
   - "spec kit debug"
   - "spec kit handover"
   - "spec kit resume"
-  - "spec kit deep-review"
+  - "deep review"
   - "spec kit phase"
   - "spec kit complete"
 ---
@@ -57,8 +57,8 @@ SEARCH ROUTING: semantic or concept code discovery routes to `mcp__cocoindex_cod
 |---------|------------|-------|-------------|
 | **plan** | `/spec_kit:plan <description> [:auto\|:confirm] [:with-phases]` | 7 | Create spec folder and plan without implementation. `:with-phases` adds phase decomposition pre-workflow |
 | **implement** | `/spec_kit:implement <spec-folder> [:auto\|:confirm]` | 9 | Execute pre-planned work (requires existing plan.md) |
-| **deep-research** | `/spec_kit:deep-research <topic> [:auto\|:confirm\|:review\|:review:auto\|:review:confirm]` | iterative | Autonomous deep research loop with convergence detection |
-| **deep-review** | `/spec_kit:deep-review <target> [:auto\|:confirm]` | iterative | Autonomous code review loop with severity-weighted findings |
+| **deep-research** | `/deep:start-research-loop <topic> [:auto\|:confirm\|:review\|:review:auto\|:review:confirm]` | iterative | Autonomous deep research loop with convergence detection |
+| **deep-review** | `/deep:start-review-loop <target> [:auto\|:confirm]` | iterative | Autonomous code review loop with severity-weighted findings |
 | **resume** | `/spec_kit:resume [spec-folder] [:auto\|:confirm]` | varies | Resume or recover work on an existing spec folder |
 | **plan --intake-only** | `/spec_kit:plan --intake-only [description] [:auto\|:confirm]` | intake-only | Standalone intake that publishes `spec.md`, `description.json`, and `graph-metadata.json` |
 | **complete** | `/spec_kit:complete <description> [:auto\|:confirm] [:with-research] [:with-phases]` | 14+ | Full end-to-end workflow combining all phases. `:with-phases` adds phase decomposition pre-workflow |
@@ -85,24 +85,29 @@ SEARCH ROUTING: semantic or concept code discovery routes to `mcp__cocoindex_cod
 spec_kit/
 ├── README.txt        # This file, 6-command index and workflow guide
 ├── complete.md       # /spec_kit:complete - Full end-to-end workflow
-├── deep-research.md  # /spec_kit:deep-research - Autonomous deep research loop
-├── deep-review.md    # /spec_kit:deep-review - Autonomous code review loop
 ├── implement.md      # /spec_kit:implement - Execute planned work
 ├── plan.md           # /spec_kit:plan - Planning only (+ `--intake-only` standalone intake)
 ├── resume.md         # /spec_kit:resume - Resume existing work
 └── assets/           # YAML workflow definitions
     ├── spec_kit_complete_auto.yaml
     ├── spec_kit_complete_confirm.yaml
-    ├── spec_kit_deep-research_auto.yaml
-    ├── spec_kit_deep-research_confirm.yaml
-    ├── spec_kit_deep-review_auto.yaml
-    ├── spec_kit_deep-review_confirm.yaml
     ├── spec_kit_implement_auto.yaml
     ├── spec_kit_implement_confirm.yaml
     ├── spec_kit_plan_auto.yaml
     ├── spec_kit_plan_confirm.yaml
     ├── spec_kit_resume_auto.yaml
     └── spec_kit_resume_confirm.yaml
+
+deep/                 # Deep workflows (research, review, AI council)
+├── start-research-loop.md    # /deep:start-research-loop - Autonomous deep research loop
+├── start-review-loop.md      # /deep:start-review-loop - Autonomous code review loop
+├── ask-ai-council.md         # /deep:ask-ai-council - Multi-topic deep AI council
+└── assets/
+    ├── deep_start-research-loop_auto.yaml
+    ├── deep_start-research-loop_confirm.yaml
+    ├── deep_start-review-loop_auto.yaml
+    ├── deep_start-review-loop_confirm.yaml
+    └── deep_ask-ai-council_auto.yaml
 
 > Note: `/doctor skill-advisor` previously lived under `spec_kit/`; it is now organized under `.opencode/commands/doctor/` alongside `mcp_install` and `mcp_debug` since it tunes runtime configuration rather than driving the spec workflow.
 ```
@@ -117,34 +122,34 @@ spec_kit/
 The typical development lifecycle follows this progression:
 
 ```text
-deep-research (optional)
+/deep:start-research-loop (optional)
     |
     v
-plan (create spec folder + plan.md)
+/spec_kit:plan (create spec folder + plan.md)
     |
     v
 phase (optional: decompose into phase children)
     |
     v
-implement (execute plan.md tasks)
+/spec_kit:implement (execute plan.md tasks)
     |
     v
-resume (continue in a new or interrupted session)
+/spec_kit:resume (continue in a new or interrupted session)
 ```
 
-The `complete` command combines deep-research, plan, and implement into a single invocation.
+The `complete` command combines research, plan, and implement into a single invocation.
 
 ### Agent Delegation
 
 | Command | Delegates To |
 |---------|-------------|
-| plan | Main agent owns planning and may reuse the shared intake contract (`../../skill/system-spec-kit/references/intake-contract.md`); @deep-research optional |
+| plan | Main agent owns planning and may reuse the shared intake contract (`../../skill/system-spec-kit/references/intake-contract.md`); /deep:start-research-loop optional |
 | implement | @general (code changes), distributed governance for packet docs |
-| deep-research | @deep-research (iterative investigation) |
-| deep-review | @deep-review (iterative code audit) |
+| deep-research | /deep:start-research-loop (iterative investigation) |
+| deep-review | /deep:start-review-loop (iterative code audit) |
 | resume | Loads memory context, continues from last state |
 | phase | Main agent creates packet folders, @general runs scripts as needed |
-| complete | @deep-research and @general as needed, with the shared intake contract (`../../skill/system-spec-kit/references/intake-contract.md`) when packet state requires repair |
+| complete | /deep:start-research-loop and @general as needed, with the shared intake contract (`../../skill/system-spec-kit/references/intake-contract.md`) when packet state requires repair |
 
 <!-- /ANCHOR:workflow-progression -->
 
@@ -183,7 +188,7 @@ Each mode maps to a YAML workflow file in `assets/`:
 /spec_kit:implement specs/012-rate-limiting :confirm
 
 # Deep research a topic before planning
-/spec_kit:deep-research "OAuth 2.0 token refresh patterns" :auto
+/deep:start-research-loop "OAuth 2.0 token refresh patterns" :auto
 
 # Decompose a complex feature into phases
 /spec_kit:plan:auto "Build hybrid RAG search system" :with-phases --phases 3

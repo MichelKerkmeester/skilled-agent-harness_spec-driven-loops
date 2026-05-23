@@ -529,7 +529,7 @@ Continue planning first child (001-[name]/)? [Y/n/review]
 ## 13. COMMAND CHAIN
 
 ```
-[/spec_kit:deep-research] → /spec_kit:plan [:with-phases] → [/spec_kit:implement]
+[/deep:start-research-loop] → /spec_kit:plan [:with-phases] → [/spec_kit:implement]
 ```
 
 Next step: `/spec_kit:implement [spec-folder-path]`
@@ -542,7 +542,7 @@ Next step: `/spec_kit:implement [spec-folder-path]`
 | ---------------------------- | ---------------------------------------- | ------------------------- |
 | Ready to implement           | `/spec_kit:implement [spec-folder-path]` | Continue to implementation|
 | Need stakeholder review      | Share `plan.md` for review               | Get approval before coding|
-| Technical uncertainty        | `/spec_kit:deep-research [topic]`        | Investigate first         |
+| Technical uncertainty        | `/deep:start-research-loop [topic]`        | Investigate first         |
 | Need to pause                | `/memory:save [spec-folder-path]`        | Refresh the indexed canonical spec document before pausing |
 | Refresh search support       | `/memory:save [spec-folder-path]`        | Refresh the indexed canonical spec document while canonical continuity stays in spec docs |
 
