@@ -8,6 +8,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 const fs = require('node:fs');
 const path = require('node:path');
+const crypto = require('node:crypto');
 const {
   ERROR_TYPES,
   classifyExitCode,
@@ -62,6 +63,27 @@ function listItems(text) {
     .filter((l) => /^[-*]\s+/.test(l.trim()))
     .map((l) => l.replace(/^[-*]\s+/, '').trim())
     .filter(Boolean);
+}
+
+function hashContent(content) {
+  return crypto.createHash('sha256').update(content).digest('hex');
+}
+
+function logProfileSelection(stateDir, candidateHash, chosenProfile, rationale, alternatives = []) {
+  const logEntry = {
+    timestamp: new Date().toISOString(),
+    candidate_hash: `sha256:${candidateHash}`,
+    chosen_profile: chosenProfile,
+    rationale: rationale,
+    alternatives: alternatives,
+  };
+  try {
+    const logPath = path.join(stateDir, 'profile-selection.log');
+    fs.mkdirSync(path.dirname(logPath), { recursive: true });
+    fs.appendFileSync(logPath, JSON.stringify(logEntry) + '\n', 'utf8');
+  } catch (err) {
+    // Silent ignore - logging failure should not crash profile generation
+  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -255,7 +277,7 @@ function buildProfile(agentPath, content) {
 function main() {
   const args = parseArgs(process.argv.slice(2));
   if (!args.agent) {
-    process.stderr.write('Usage: node generate-profile.cjs --agent=<path-to-agent.md> [--output=<path.json>]\n');
+    process.stderr.write('Usage: node generate-profile.cjs --agent=<path-to-agent.md> [--output=<path.json>] [--state-dir=<path>]\n');
     process.exit(2);
   }
   let content;
@@ -268,6 +290,18 @@ function main() {
     const json = `${JSON.stringify(profile, null, 2)}\n`;
     if (args.output) { writeJson(args.output, profile); }
     process.stdout.write(json);
+
+    // Log profile selection if state-dir is provided
+    if (args['state-dir']) {
+      const candidateHash = hashContent(content);
+      logProfileSelection(
+        args['state-dir'],
+        candidateHash,
+        profile.id,
+        'Derived profile generated from agent file',
+        []
+      );
+    }
   } catch (err) {
     fail(makeTypedError(ERROR_TYPES.PARSE_ERROR, `Failed to build profile: ${err.message}`, { agent: args.agent }));
   }

@@ -252,6 +252,69 @@ Profiles are generated on the fly from any agent file via `scripts/generate-prof
 
 ---
 
+## Mixed-Executor Dispatch (Recommended)
+
+For multi-iter evaluation sweeps, the mixed-executor pattern provides better breadth/synthesis balance than single-executor approaches. This pattern was proven in arc 119 (deep-research uplift) and is recommended for DAI operators running multi-iter sweeps.
+
+### Pattern: 8+2 Split
+
+- **Breadth iters (1-N-2)**: cli-devin SWE-1.6 for breadth exploration
+- **Synthesis iters (N-1, N)**: cli-codex gpt-5.5 for synthesis and quality pass
+
+### Example: 10-Iter Sweep
+
+- Iters 1-8: cli-devin SWE-1.6 (breadth)
+- Iter 9: cli-codex gpt-5.5 (synthesis)
+- Iter 10: cli-codex gpt-5.5 (final validation)
+
+### When to Use
+
+- Multi-iter evaluation sweeps (not single-shot scoring)
+- When breadth exploration and synthesis quality are both important
+- When false-positive reduction is a priority (see adjudication-iter below)
+
+### Precedent
+
+Arc 119 deep-research uplift methodology. See `.opencode/specs/skilled-agent-orchestration/119-deep-research-uplift/001-research-deep-review-changes/research/research-report.md` for the 10-iter research that validated this pattern.
+
+### Reference Doc
+
+See `references/mixed_executor_methodology.md` for detailed guidance on when to use the pattern, the 8+2 split mechanics, adjudication-iter implementation, and cross-link to 119.
+
+---
+
+## Adjudication-Iter Pattern (Recommended)
+
+For multi-iter evaluation sweeps, an adjudication-iter false-positive filter significantly reduces noise. This pattern was proven in arc 119 (deep-research uplift) with a 90%+ false-positive reduction rate.
+
+### Pattern: False-Positive Filter Pass
+
+- **Adjudication iter**: Typically at iter-7-equivalent (before synthesis iters)
+- **Mechanism**: Cross-finding adjudication to drop outdated and false-positive items
+- **Outcome**: Only confirmed findings proceed to synthesis
+
+### Example: 10-Iter Sweep with Adjudication
+
+- Iters 1-6: cli-devin SWE-1.6 (breadth)
+- Iter 7: cli-devin SWE-1.6 (adjudication pass)
+- Iters 8-10: cli-codex gpt-5.5 (synthesis on confirmed findings only)
+
+### When to Use
+
+- Multi-iter evaluation sweeps with adversarial passes
+- When false-positive rate is a concern (90%+ without adjudication per 119 precedent)
+- When synthesis quality depends on clean input
+
+### Precedent
+
+Arc 119 deep-research uplift methodology. Iteration 7 adjudication dropped 9 false-positive items and 4 outdated items, reducing the uplift queue from 20 to 7 confirmed findings.
+
+### Reference Doc
+
+See `references/mixed_executor_methodology.md` for detailed guidance on adjudication-iter implementation and cross-link to 119.
+
+---
+
 ## 4B. RUNTIME TRUTH CONTRACTS (Phase 005)
 
 ### Stop-Reason Taxonomy
