@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "status": "completed",
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/004-rerank-sidecar-accumulation-investigation-and-reaper-design/001-investigate-and-design-reaper-architecture",
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper/001-implement-ledger-v2-schema-and-identity-verified-pid"
+    ],
+    "related_to": []
+  },
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper/002-implement-layer-b-sidecar-self-check-and-in-flight-gate",
+  "description": "Spec: Layer B Sidecar Self-Check and In-Flight Gate",
+  "keywords": [
+    "spec",
+    "layer",
+    "sidecar",
+    "self-check",
+    "in-flight",
+    "gate"
+  ],
+  "lastUpdated": "2026-05-23T09:09:12.115Z",
+  "specId": "002",
+  "folderSlug": "implement-layer-b-sidecar-self-check-and-in-flight-gate",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "009-memory-leak-remediation",
+    "019-fix-rerank-sidecar-accumulation-with-three-layer-reaper"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/039-token-aware-chunking",
+  "description": "Feature Specification: Token-Aware Chunking for LlamaCppProvider",
+  "keywords": [
+    "feature",
+    "specification",
+    "token-aware",
+    "chunking",
+    "llamacppprovider"
+  ],
+  "lastUpdated": "2026-05-23T09:08:51.691Z",
+  "specId": "039",
+  "folderSlug": "token-aware-chunking",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "001-local-embeddings-foundation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "14-05-26_15-23__manual-context-save.md"
+  ]
+}

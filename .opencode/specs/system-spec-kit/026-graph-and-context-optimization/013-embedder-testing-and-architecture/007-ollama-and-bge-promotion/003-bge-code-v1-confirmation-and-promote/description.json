@@ -1,0 +1,28 @@
+{
+  "level": "feature",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote",
+  "description": "Spec: 016/007/003 4-Candidate Re-Baseline (Corrected Pipeline) + Promote Decision",
+  "keywords": [
+    "spec",
+    "016",
+    "007",
+    "003",
+    "4-candidate",
+    "re-baseline",
+    "corrected",
+    "pipeline",
+    "promote",
+    "decision"
+  ],
+  "lastUpdated": "2026-05-23T09:08:24.902Z",
+  "specId": "003",
+  "folderSlug": "bge-code-v1-confirmation-and-promote",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "007-ollama-and-bge-promotion"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

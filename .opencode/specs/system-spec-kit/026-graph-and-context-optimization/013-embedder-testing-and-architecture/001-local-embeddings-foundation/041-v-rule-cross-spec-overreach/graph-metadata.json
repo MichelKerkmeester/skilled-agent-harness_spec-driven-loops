@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/041-v-rule-cross-spec-overreach",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/041-v-rule-cross-spec-overreach",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/037-llama-cpp-embedding-worker-deep-dive",
+        "reason": "037 ADR-003 exposed V8 cross-spec overreach during live save validation.",
+        "source": "manual"
+      }
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "040 V-rule cross-spec overreach fix",
+      "V8 cross-spec contamination overreach",
+      "ADR numeric prefix false positive",
+      "current spec nested path extraction"
+    ],
+    "key_topics": [
+      "V8",
+      "validate-memory-quality",
+      "cross-spec-contamination",
+      "ADR",
+      "nested-spec-folder",
+      "scattered-foreign-spec"
+    ],
+    "importance_tier": "critical",
+    "status": "partial",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "040 fixes V8 overreach caused by numeric metric labels, ADR number conflation, nested path truncation, and too-low scattered foreign thresholds for decision-style documents.",
+    "created_at": "2026-05-14T00:00:00Z",
+    "last_save_at": "2026-05-14T15:37:00Z",
+    "save_lineage": "manual",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
+  }
+}

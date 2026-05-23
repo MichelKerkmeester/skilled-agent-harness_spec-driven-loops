@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/049-substrate-stress-coverage",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/049-substrate-stress-coverage",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "substrate stress",
+      "049 substrate stress",
+      "vitest substrate gate",
+      "049 substrate stress plan",
+      "vitest substrate gate plan",
+      "049 substrate stress tasks",
+      "substrate stress checklist",
+      "049 substrate stress checklist",
+      "vitest substrate gate verification",
+      "049 implementation summary",
+      "substrate stress implementation summary"
+    ],
+    "key_topics": [
+      "substrate",
+      "stress",
+      "049",
+      "vitest",
+      "gate",
+      "plan",
+      "tasks",
+      "checklist",
+      "verification",
+      "implementation",
+      "summary",
+      "canonical"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/substrate-runner-harness.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/query-expansion-bound-stress.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/token-aware-chunking-edge-stress.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/v-rule-save-flood-stress.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/package.json",
+      ".opencode/skills/system-spec-kit/mcp_server/vitest.stress.config.ts",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/046-shared-daemon-suite-runner/implementation-summary.md",
+      "mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs",
+      "mcp_server/stress_test/substrate/README.md",
+      "stress_test/substrate/README.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "stress_test/README.md",
+      "stress_test/substrate/run-substrate-stress-harness.mjs",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "run-substrate-stress-harness.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "substrate-runner-harness.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/substrate-runner-harness.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "query-expansion-bound-stress.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/query-expansion-bound-stress.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "token-aware-chunking-edge-stress.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/token-aware-chunking-edge-stress.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "v-rule-save-flood-stress.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/v-rule-save-flood-stress.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.stress.config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/vitest.stress.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Substrate Stress Coverage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Promote",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Promote",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Stress",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The canonical Vitest stress suite in `mcp_server/stress_test/` is provider-agnostic by design. It mocks `executePipeline` and uses synthetic candidates, so substrate paths such as llama-cpp embedding generation, V-rule save behavior, CocoIndex two-client coordination, query-expansion bounds, and token-budget edges had no canonical stress gate. The only substrate-level evidence lived in `_sandbox/24--local-llm-query-intelligence/evidence/run-mcp-direct.mjs` from packet 045.",
+    "created_at": "2026-05-14T21:40:55.576Z",
+    "last_save_at": "2026-05-15T06:21:30.150Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
+  }
+}

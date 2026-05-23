@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/021-local-llm-legacy-review",
+  "description": "Feature Specification: Local-LLM legacy and outdated-docs/config-drift review (post-014)",
+  "keywords": [
+    "feature",
+    "specification",
+    "local-llm",
+    "legacy",
+    "outdated-docs",
+    "config-drift",
+    "review",
+    "post-014"
+  ],
+  "lastUpdated": "2026-05-23T09:08:54.842Z",
+  "specId": "021",
+  "folderSlug": "local-llm-legacy-review",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "001-local-embeddings-foundation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

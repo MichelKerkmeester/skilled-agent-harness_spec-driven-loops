@@ -1,0 +1,37 @@
+{
+  "level": "2",
+  "status": "draft",
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-deep-research-drift-and-simplification",
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/002-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle"
+    ],
+    "related_to": []
+  },
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode",
+  "description": "Feature Specification: Fix Sidecar-Investigation Remaining P1s + P2s — Resource Bounds and Dead Code",
+  "keywords": [
+    "feature",
+    "specification",
+    "fix",
+    "sidecar-investigation",
+    "remaining",
+    "p1s",
+    "p2s",
+    "resource",
+    "bounds",
+    "dead",
+    "code"
+  ],
+  "lastUpdated": "2026-05-23T09:08:40.215Z",
+  "specId": "017",
+  "folderSlug": "fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "009-memory-leak-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

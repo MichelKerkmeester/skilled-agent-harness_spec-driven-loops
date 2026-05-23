@@ -1,0 +1,26 @@
+{
+  "level": "3",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/051-runtime-config-mk-code-index-parity-plus-findings",
+  "description": "Feature Specification: Runtime config mk-code-index parity plus findings",
+  "keywords": [
+    "feature",
+    "specification",
+    "runtime",
+    "config",
+    "mk-code-index",
+    "parity",
+    "plus",
+    "findings"
+  ],
+  "lastUpdated": "2026-05-23T09:08:56.378Z",
+  "specId": "051",
+  "folderSlug": "runtime-config-mk-code-index-parity-plus-findings",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "001-local-embeddings-foundation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

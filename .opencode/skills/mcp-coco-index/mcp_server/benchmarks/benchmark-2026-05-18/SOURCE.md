@@ -35,18 +35,10 @@ Three rules govern the split:
 3. **No file rewrites the spec.** This SOURCE.md only redirects.
 <!-- /ANCHOR:overview -->
 
-<!-- ANCHOR:spec-packet-path -->
-## 2. SPEC PACKET PATH
+<!-- ANCHOR:source-summary -->
+## 2. SOURCE SUMMARY
 
-```
-.opencode/specs/system-spec-kit/
-  026-graph-and-context-optimization/
-    016-embedder-testing-and-architecture/
-      004-code-index-stack/
-        004-extended-bake-off/
-```
-
-This is a phase-child packet under the `016` embedder-testing umbrella, inside the `004-code-index-stack` sub-phase. The packet is **COMPLETED (May 18, 2026)** with `completion_pct: 100` in its `implementation-summary.md`.
+This benchmark captures an extended bake-off on the CocoIndex code-index stack. The dataset, configuration, and run artifacts are fully described by the files in this folder; the benchmark is reproducible from the captured fixtures, manifests, and scripts. The associated work was completed on May 18, 2026.
 <!-- /ANCHOR:spec-packet-path -->
 
 <!-- ANCHOR:when-to-read-what -->

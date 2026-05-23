@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/003-skill-advisor-stack/001-pluggable-architecture",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/003-skill-advisor-stack/001-pluggable-architecture",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/003-skill-advisor-stack",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "022/001 pluggable architecture",
+      "skill-advisor EmbedderAdapter",
+      "skill-graph vec_metadata",
+      "022/001 plan",
+      "022/001 tasks",
+      "022/001 summary",
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/003-skill-advisor-stack/001-pluggable-architecture",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "013-embedder-testing-and-architecture",
+      "003-skill-advisor-stack",
+      "001-pluggable-architecture"
+    ],
+    "key_topics": [
+      "022",
+      "pluggable",
+      "adapter",
+      "registry",
+      "vec-metadata",
+      "skill-advisor",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "013-embedder-testing-and-architecture",
+      "003-skill-advisor-stack",
+      "001-pluggable-architecture",
+      "001"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "Author mcp_server/lib/embedders/ module mirroring 016 pattern: EmbedderAdapter + MANIFESTS + OllamaAdapter + dim-tagged vec_<dim> schema + vec_metadata pointer",
+    "created_at": "2026-05-18T08:07:25.979Z",
+    "last_save_at": "2026-05-19T19:44:28.899Z",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ]
+  }
+}

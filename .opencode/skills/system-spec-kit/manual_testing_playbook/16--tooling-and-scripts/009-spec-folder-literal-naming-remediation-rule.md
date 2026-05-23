@@ -56,12 +56,12 @@ Rotate the canonical prompt through at least 3 of the 5 CLIs below. Record each 
 ```
 You are an AI coding agent connected to the system-spec-kit MCP. A deep-review just landed verdict=FAIL on the following packet:
 
-  Reviewed packet: 016-embedder-testing-and-architecture/005-cross-cutting-quality/004-skill-local-benchmarks-format/
+  Reviewed packet: {example-arc}/{example-phase}/{example-leaf-packet}/
   Active P0 findings: 3 (broken ANCHOR pair in spec.md, missing handover.md fields, validate.sh --strict reports 2 errors)
   Active P1 findings: 5 (HVR violations across docs)
 
 The operator asks you to create a remediation packet under
-  .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/
+  .opencode/specs/{example-track}/{example-arc}/{example-phase}/
 
 Per system-spec-kit/SKILL.md ALWAYS rule 20 (REMEDIATION PACKET NAMING), propose the next-available numbered slug.
 
@@ -89,12 +89,12 @@ codex exec \
   - <<'PROMPT'
 You are an AI coding agent connected to the system-spec-kit MCP. A deep-review just landed verdict=FAIL on the following packet:
 
-  Reviewed packet: 016-embedder-testing-and-architecture/005-cross-cutting-quality/004-skill-local-benchmarks-format/
+  Reviewed packet: {example-arc}/{example-phase}/{example-leaf-packet}/
   Active P0 findings: 3 (broken ANCHOR pair in spec.md, missing handover.md fields, validate.sh --strict reports 2 errors)
   Active P1 findings: 5 (HVR violations across docs)
 
 The operator asks you to create a remediation packet under
-  .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/
+  .opencode/specs/{example-track}/{example-arc}/{example-phase}/
 
 Per system-spec-kit/SKILL.md ALWAYS rule 20 (REMEDIATION PACKET NAMING), propose the next-available numbered slug.
 
@@ -119,12 +119,12 @@ Write the prompt to a temp file, then dispatch:
 cat > /tmp/phase009-devin-prompt.txt <<'PROMPT'
 You are an AI coding agent connected to the system-spec-kit MCP. A deep-review just landed verdict=FAIL on the following packet:
 
-  Reviewed packet: 016-embedder-testing-and-architecture/005-cross-cutting-quality/004-skill-local-benchmarks-format/
+  Reviewed packet: {example-arc}/{example-phase}/{example-leaf-packet}/
   Active P0 findings: 3 (broken ANCHOR pair in spec.md, missing handover.md fields, validate.sh --strict reports 2 errors)
   Active P1 findings: 5 (HVR violations across docs)
 
 The operator asks you to create a remediation packet under
-  .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/
+  .opencode/specs/{example-track}/{example-arc}/{example-phase}/
 
 Per system-spec-kit/SKILL.md ALWAYS rule 20 (REMEDIATION PACKET NAMING), propose the next-available numbered slug.
 
@@ -152,7 +152,7 @@ devin --prompt-file /tmp/phase009-devin-prompt.txt \
 opencode run \
   --model "opencode-go/glm-5.1" \
   --pure \
-  --prompt "You are an AI coding agent connected to the system-spec-kit MCP. A deep-review just landed verdict=FAIL on packet 016-embedder-testing-and-architecture/005-cross-cutting-quality/004-skill-local-benchmarks-format/. P0 findings: 3 (broken ANCHOR pair, missing handover.md fields, validate.sh --strict errors). P1 findings: 5 (HVR violations). Per system-spec-kit/SKILL.md ALWAYS rule 20 (REMEDIATION PACKET NAMING), propose the next-available numbered slug under .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/. Return ONLY JSON: { \"cli_name\": \"cli-opencode\", \"proposed_slug\": \"NNN-<slug>\", \"source_token\": \"<source>\", \"target_token\": \"<target>\", \"rule_20_self_audit\": \"<sentence>\" }. Do NOT execute create.sh." \
+  --prompt "You are an AI coding agent connected to the system-spec-kit MCP. A deep-review just landed verdict=FAIL on packet {example-arc}/{example-phase}/{example-leaf-packet}/. P0 findings: 3 (broken ANCHOR pair, missing handover.md fields, validate.sh --strict errors). P1 findings: 5 (HVR violations). Per system-spec-kit/SKILL.md ALWAYS rule 20 (REMEDIATION PACKET NAMING), propose the next-available numbered slug under .opencode/specs/{example-track}/{example-arc}/{example-phase}/. Return ONLY JSON: { \"cli_name\": \"cli-opencode\", \"proposed_slug\": \"NNN-<slug>\", \"source_token\": \"<source>\", \"target_token\": \"<target>\", \"rule_20_self_audit\": \"<sentence>\" }. Do NOT execute create.sh." \
   </dev/null
 ```
 
@@ -165,11 +165,11 @@ PROMPT_FILE=/tmp/phase-009-gemini-prompt.md
 cat > "$PROMPT_FILE" <<'PROMPT'
 You are an AI coding agent connected to the system-spec-kit MCP. A deep-review just landed verdict=FAIL on the following packet:
 
-  Reviewed packet: 016-embedder-testing-and-architecture/005-cross-cutting-quality/004-skill-local-benchmarks-format/
+  Reviewed packet: {example-arc}/{example-phase}/{example-leaf-packet}/
   Active P0 findings: 3 (broken ANCHOR pair in spec.md, missing handover.md fields, validate.sh --strict reports 2 errors)
   Active P1 findings: 5 (HVR violations across docs)
 
-The operator asks you to create a remediation packet under .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/
+The operator asks you to create a remediation packet under .opencode/specs/{example-track}/{example-arc}/{example-phase}/
 
 Per system-spec-kit/SKILL.md ALWAYS rule 20 (REMEDIATION PACKET NAMING), propose the next-available numbered slug.
 
@@ -187,7 +187,7 @@ gemini -p "$(cat "$PROMPT_FILE")" \
 #### cli-claude-code
 
 ```bash
-claude -p "You are an AI coding agent connected to the system-spec-kit MCP. A deep-review just landed verdict=FAIL on packet 016-embedder-testing-and-architecture/005-cross-cutting-quality/004-skill-local-benchmarks-format/. P0 findings: 3. P1 findings: 5. Per system-spec-kit/SKILL.md ALWAYS rule 20 (REMEDIATION PACKET NAMING), propose the next-available numbered slug under .opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/. Return ONLY JSON: { \"cli_name\": \"cli-claude-code\", \"proposed_slug\": \"NNN-slug\", \"source_token\": \"source\", \"target_token\": \"target\", \"rule_20_self_audit\": \"sentence\" }. Do NOT execute create.sh." \
+claude -p "You are an AI coding agent connected to the system-spec-kit MCP. A deep-review just landed verdict=FAIL on packet {example-arc}/{example-phase}/{example-leaf-packet}/. P0 findings: 3. P1 findings: 5. Per system-spec-kit/SKILL.md ALWAYS rule 20 (REMEDIATION PACKET NAMING), propose the next-available numbered slug under .opencode/specs/{example-track}/{example-arc}/{example-phase}/. Return ONLY JSON: { \"cli_name\": \"cli-claude-code\", \"proposed_slug\": \"NNN-slug\", \"source_token\": \"source\", \"target_token\": \"target\", \"rule_20_self_audit\": \"sentence\" }. Do NOT execute create.sh." \
   --model "claude-sonnet-4-6" \
   --output-format json \
   --dangerously-skip-permissions

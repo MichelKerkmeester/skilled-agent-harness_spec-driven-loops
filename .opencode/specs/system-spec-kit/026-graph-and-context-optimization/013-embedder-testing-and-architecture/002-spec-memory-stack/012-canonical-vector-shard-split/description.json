@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/012-canonical-vector-shard-split",
+  "description": "Feature Specification: Canonical Vector Shard Split",
+  "keywords": [
+    "feature",
+    "specification",
+    "canonical",
+    "vector",
+    "shard",
+    "split"
+  ],
+  "lastUpdated": "2026-05-23T09:08:27.552Z",
+  "specId": "012",
+  "folderSlug": "canonical-vector-shard-split",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "002-spec-memory-stack"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

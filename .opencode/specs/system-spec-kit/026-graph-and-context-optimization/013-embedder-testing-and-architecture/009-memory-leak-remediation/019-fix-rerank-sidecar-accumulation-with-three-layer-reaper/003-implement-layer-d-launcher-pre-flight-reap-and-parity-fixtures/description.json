@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper/003-implement-layer-d-launcher-pre-flight-reap-and-parity-fixtures",
+  "description": "Feature Specification: Layer D Launcher Pre-Flight Reap and Parity Fixtures",
+  "keywords": [
+    "feature",
+    "specification",
+    "layer",
+    "launcher",
+    "pre-flight",
+    "reap",
+    "parity",
+    "fixtures"
+  ],
+  "lastUpdated": "2026-05-23T09:09:11.466Z",
+  "specId": "003",
+  "folderSlug": "implement-layer-d-launcher-pre-flight-reap-and-parity-fixtures",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "009-memory-leak-remediation",
+    "019-fix-rerank-sidecar-accumulation-with-three-layer-reaper"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

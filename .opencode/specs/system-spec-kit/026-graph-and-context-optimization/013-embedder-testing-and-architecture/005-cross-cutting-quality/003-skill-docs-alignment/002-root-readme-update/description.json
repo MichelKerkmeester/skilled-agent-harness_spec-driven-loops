@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment/002-root-readme-update",
+  "description": "Spec: 021/002 Root README update",
+  "keywords": [
+    "spec",
+    "021",
+    "002",
+    "root",
+    "readme",
+    "update"
+  ],
+  "lastUpdated": "2026-05-23T09:09:13.785Z",
+  "specId": "002",
+  "folderSlug": "root-readme-update",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "005-cross-cutting-quality",
+    "003-skill-docs-alignment"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

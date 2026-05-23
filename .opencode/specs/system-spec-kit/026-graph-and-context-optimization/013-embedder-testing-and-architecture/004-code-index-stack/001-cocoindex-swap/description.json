@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/001-cocoindex-swap",
+  "description": "Spec: 018/001 CocoIndex embedder swap to jina-code",
+  "keywords": [
+    "spec",
+    "018",
+    "001",
+    "cocoindex",
+    "embedder",
+    "swap",
+    "jina-code"
+  ],
+  "lastUpdated": "2026-05-23T09:08:33.065Z",
+  "specId": "001",
+  "folderSlug": "cocoindex-swap",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "004-code-index-stack"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

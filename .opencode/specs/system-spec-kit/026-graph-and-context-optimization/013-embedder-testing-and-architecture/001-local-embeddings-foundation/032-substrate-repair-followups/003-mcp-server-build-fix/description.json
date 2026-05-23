@@ -1,0 +1,33 @@
+{
+  "title": "003 mcp-server-build-fix",
+  "schema_version": 1,
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/003-mcp-server-build-fix",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/003-mcp-server-build-fix",
+  "summary": "Resolve 3 @modelcontextprotocol/sdk Cannot-find-module errors blocking mcp_server npm run build. Likely missing dep or stale import path post-system-code-graph extraction.",
+  "tags": [
+    "build-fix",
+    "mcp-sdk",
+    "package-deps",
+    "system-code-graph-extraction"
+  ],
+  "created_at": "2026-05-14T11:10:00Z",
+  "updated_at": "2026-05-14T11:10:00Z",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/003-mcp-server-build-fix",
+  "description": "003 mcp-server-build-fix",
+  "keywords": [
+    "003",
+    "mcp-server-build-fix"
+  ],
+  "lastUpdated": "2026-05-23T09:09:15.515Z",
+  "specId": "003",
+  "folderSlug": "mcp-server-build-fix",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "001-local-embeddings-foundation",
+    "032-substrate-repair-followups"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

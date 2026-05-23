@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/033-system-code-graph-import-path-cleanup",
+  "description": "Feature Specification: System Code Graph Import Path Cleanup",
+  "keywords": [
+    "feature",
+    "specification",
+    "system",
+    "code",
+    "graph",
+    "import",
+    "path",
+    "cleanup"
+  ],
+  "lastUpdated": "2026-05-23T09:09:00.830Z",
+  "specId": "033",
+  "folderSlug": "system-code-graph-import-path-cleanup",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "001-local-embeddings-foundation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

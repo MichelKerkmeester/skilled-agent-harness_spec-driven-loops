@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/020-deep-review-p1-p2-remediation",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/020-deep-review-p1-p2-remediation",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "020 deep review P1 remediation",
+      "mcp-coco-index P1 remediation",
+      "CodeRankEmbed Jina v3 hybrid RRF defaults",
+      "020 P1 remediation plan",
+      "mcp-coco-index deep review remediation",
+      "hybrid rerank nomic defaults remediation",
+      "020 P1 remediation tasks",
+      "020 P2 remediation tasks",
+      "mcp-coco-index P1 task list",
+      "mcp-coco-index P2 task list",
+      "deep review remediation tasks",
+      "020 P1 remediation checklist"
+    ],
+    "key_topics": [
+      "020",
+      "deep",
+      "review",
+      "remediation",
+      "mcp-coco-index",
+      "coderankembed",
+      "jina",
+      "hybrid",
+      "rrf",
+      "defaults",
+      "plan",
+      "rerank"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/settings.py",
+      ".opencode/skills/mcp-coco-index/tests/test_settings.py",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_config.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/rerankers_jina_v3.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_rerankers_jina_v3.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_daemon.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-19/benchmark_report.md",
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_rerank_matrix_analyze.py",
+      ".opencode/skills/mcp-coco-index/README.md",
+      ".opencode/skills/mcp-coco-index/SKILL.md",
+      ".opencode/skills/mcp-coco-index/INSTALL_GUIDE.md",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_dedup_mirrors.py",
+      "benchmarks/README.md",
+      "decision-record.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "settings.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/settings.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_settings.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/tests/test_settings.py",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "test_config.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_config.py",
+        "source": "derived"
+      },
+      {
+        "name": "rerankers_jina_v3.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/rerankers_jina_v3.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_rerankers_jina_v3.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_rerankers_jina_v3.py",
+        "source": "derived"
+      },
+      {
+        "name": "daemon.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_daemon.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_daemon.py",
+        "source": "derived"
+      },
+      {
+        "name": "benchmark_report.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-19/benchmark_report.md",
+        "source": "derived"
+      },
+      {
+        "name": "test_rerank_matrix_analyze.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_rerank_matrix_analyze.py",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-coco-index/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-coco-index/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL_GUIDE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-coco-index/INSTALL_GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "query.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_dedup_mirrors.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_dedup_mirrors.py",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 019 deep-review packet found nine P1 defects across the mcp-coco-index stack: stale defaults, docs that contradicted production behavior, unsafe env parsing, misleading success reporting, benchmark evidence hazards, overpowering hybrid boosts, and missing RCA for query-expansion regression. These findings affect fresh installs, operator rollback instructions, reranker stability, benchmark reproducibility, and trust in search quality evidence.",
+    "created_at": "2026-05-19T17:59:30Z",
+    "last_save_at": "2026-05-19T20:42:43.971Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ]
+  }
+}

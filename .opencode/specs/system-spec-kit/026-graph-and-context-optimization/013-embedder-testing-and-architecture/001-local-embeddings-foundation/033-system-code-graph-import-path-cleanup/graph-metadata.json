@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/033-system-code-graph-import-path-cleanup",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/033-system-code-graph-import-path-cleanup",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/039-token-aware-chunking"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "033 system code graph import path cleanup",
+      "mcp_server orphan shared dist",
+      "system-spec-kit shared duplicate emit",
+      "tsconfig rootDir shared cleanup",
+      "dist system-spec-kit shared stale"
+    ],
+    "key_topics": [
+      "033",
+      "system-code-graph",
+      "mcp_server",
+      "tsconfig",
+      "rootDir",
+      "shared",
+      "dist",
+      "finalize-dist"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/tsconfig.json",
+      ".opencode/skills/system-spec-kit/mcp_server/package.json",
+      ".opencode/skills/system-spec-kit/mcp_server/scripts/finalize-dist.mjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "mcp_server/tsconfig.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tsconfig.json",
+        "source": "manual"
+      },
+      {
+        "name": "finalize-dist.mjs",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/finalize-dist.mjs",
+        "source": "manual"
+      },
+      {
+        "name": "@spec-kit/shared",
+        "kind": "package",
+        "path": ".opencode/skills/system-spec-kit/shared/package.json",
+        "source": "manual"
+      }
+    ],
+    "causal_summary": "mcp_server resolved @spec-kit/shared imports to source through a tsconfig paths alias while compiling with rootDir ../.., so sibling bundle output could point at dist/system-spec-kit/shared. The cleanup makes shared resolve through the workspace package exports and finalizes the clean dist layout without regenerating the orphan shared tree.",
+    "created_at": "2026-05-14T15:33:29Z",
+    "last_save_at": "2026-05-14T15:39:08Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
+  }
+}

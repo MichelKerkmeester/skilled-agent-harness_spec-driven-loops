@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/005-q4-quantization/.backup-20260512-182825",
+  "description": "Feature Specification: Phase 5: q4-quantization",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "q4-quantization"
+  ],
+  "lastUpdated": "2026-05-23T09:09:17.464Z",
+  "specId": "",
+  "folderSlug": "backup-20260512-182825",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "001-local-embeddings-foundation",
+    "005-q4-quantization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

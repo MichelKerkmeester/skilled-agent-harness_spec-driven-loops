@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "status": "completed",
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/004-rerank-sidecar-accumulation-investigation-and-reaper-design/001-investigate-and-design-reaper-architecture"
+    ],
+    "related_to": []
+  },
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper/001-implement-ledger-v2-schema-and-identity-verified-pid",
+  "description": "Spec: Ledger v2 Schema and Identity-Verified PID Helpers",
+  "keywords": [
+    "spec",
+    "ledger",
+    "schema",
+    "identity-verified",
+    "pid",
+    "helpers"
+  ],
+  "lastUpdated": "2026-05-23T09:09:11.786Z",
+  "specId": "001",
+  "folderSlug": "implement-ledger-v2-schema-and-identity-verified-pid",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "009-memory-leak-remediation",
+    "019-fix-rerank-sidecar-accumulation-with-three-layer-reaper"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

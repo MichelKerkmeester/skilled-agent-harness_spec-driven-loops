@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/015-deep-research-drift-and-simplification",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/015-deep-research-drift-and-simplification",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc",
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-research sidecar drift simplification",
+      "system-spec-kit mcp sidecar research",
+      "arc 010 phase 001"
+    ],
+    "key_topics": [
+      "deep-research",
+      "drift",
+      "dead-code",
+      "security",
+      "over-engineering",
+      "simplification",
+      "refinement",
+      "sidecar",
+      "mcp"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/deep-research-config.json",
+      "research/deep-research-state.jsonl",
+      "research/deep-research-strategy.md",
+      "research/deep-research-dashboard.md",
+      "research/findings-registry.json"
+    ],
+    "causal_summary": "Research-only child phase for a 20-iteration investigation of system-spec-kit MCP sidecar drift, dead code, security, over-engineering, simplification, and refinement opportunities.",
+    "created_at": "2026-05-22T21:00:18Z",
+    "last_save_at": "2026-05-22T21:00:18Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/deep-research-strategy.md"
+    ]
+  }
+}

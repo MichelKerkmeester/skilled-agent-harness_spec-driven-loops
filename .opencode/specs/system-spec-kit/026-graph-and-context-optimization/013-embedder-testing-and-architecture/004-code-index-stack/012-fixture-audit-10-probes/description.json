@@ -1,0 +1,28 @@
+{
+  "level": "feature",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-10-probes",
+  "description": "Spec: 016/004/012 Fixture Audit (probe 10 first; full 18 second)",
+  "keywords": [
+    "spec",
+    "016",
+    "004",
+    "012",
+    "fixture",
+    "audit",
+    "probe",
+    "first",
+    "full",
+    "second"
+  ],
+  "lastUpdated": "2026-05-23T09:08:39.236Z",
+  "specId": "012",
+  "folderSlug": "fixture-audit-10-probes",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "004-code-index-stack"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

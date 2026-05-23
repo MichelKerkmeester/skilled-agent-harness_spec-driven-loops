@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/005-expected-daemon-classifier-and-process-sweep",
+  "description": "Spec: Expected Daemon Classifier and Process Sweep",
+  "keywords": [
+    "spec",
+    "expected",
+    "daemon",
+    "classifier",
+    "process",
+    "sweep"
+  ],
+  "lastUpdated": "2026-05-23T09:08:45.408Z",
+  "specId": "005",
+  "folderSlug": "expected-daemon-classifier-and-process-sweep",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "009-memory-leak-remediation"
+  ],
+  "memorySequence": 5,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/003-upstream-rebase-spike",
+  "description": "Feature Specification: 023F Upstream cocoindex-code Rebase Spike",
+  "keywords": [
+    "feature",
+    "specification",
+    "023f",
+    "upstream",
+    "cocoindex-code",
+    "rebase",
+    "spike"
+  ],
+  "lastUpdated": "2026-05-23T09:09:08.183Z",
+  "specId": "003",
+  "folderSlug": "upstream-rebase-spike",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "004-code-index-stack",
+    "023-deep-research-arc-blind-spots"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

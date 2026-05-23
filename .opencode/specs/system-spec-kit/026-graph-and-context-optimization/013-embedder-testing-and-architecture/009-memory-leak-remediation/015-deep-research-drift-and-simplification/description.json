@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/015-deep-research-drift-and-simplification",
+  "description": "Spec: Deep-Research Investigation of System-Spec-Kit MCP Sidecar",
+  "keywords": [
+    "spec",
+    "deep-research",
+    "investigation",
+    "system-spec-kit",
+    "mcp",
+    "sidecar"
+  ],
+  "lastUpdated": "2026-05-23T09:08:44.163Z",
+  "specId": "015",
+  "folderSlug": "deep-research-drift-and-simplification",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "009-memory-leak-remediation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

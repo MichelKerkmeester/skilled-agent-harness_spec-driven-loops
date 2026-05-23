@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc",
+  "description": "Rerank Sidecar Arc",
+  "keywords": [
+    "rerank",
+    "sidecar",
+    "arc"
+  ],
+  "lastUpdated": "2026-05-23T09:08:15.245Z",
+  "specId": "008",
+  "folderSlug": "rerank-sidecar-arc",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

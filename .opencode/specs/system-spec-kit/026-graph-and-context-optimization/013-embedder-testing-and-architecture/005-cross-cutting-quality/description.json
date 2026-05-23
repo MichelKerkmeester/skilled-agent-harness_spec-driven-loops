@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/005-cross-cutting-quality",
+  "description": "016/005: Cross-cutting quality (phase parent)",
+  "keywords": [
+    "016",
+    "005",
+    "cross-cutting",
+    "quality",
+    "phase",
+    "parent"
+  ],
+  "lastUpdated": "2026-05-23T09:08:17.369Z",
+  "specId": "005",
+  "folderSlug": "cross-cutting-quality",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "18-05-26_09-06__created-005-cross-cutting-quality-phase-parent.md"
+  ]
+}

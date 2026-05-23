@@ -1,0 +1,71 @@
+{
+  "topic": "Review: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/006-cocoindex-dedup-from-shared-sidecar",
+  "mode": "review",
+  "sessionId": "2026-05-20T20:30:00Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "reviewTarget": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/006-cocoindex-dedup-from-shared-sidecar",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": false,
+  "reviewScopeFiles": [
+    ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/006-cocoindex-dedup-from-shared-sidecar/spec.md",
+    ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/006-cocoindex-dedup-from-shared-sidecar/plan.md",
+    ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/006-cocoindex-dedup-from-shared-sidecar/tasks.md",
+    ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/006-cocoindex-dedup-from-shared-sidecar/implementation-summary.md",
+    ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/rerankers/reranker.py",
+    ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config/config.py",
+    ".opencode/skills/mcp-coco-index/mcp_server/tests/test_http_sidecar_adapter.py",
+    ".opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-20-cocoindex-via-sidecar/run_ab.py",
+    ".opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-20-cocoindex-via-sidecar/benchmark_report.md",
+    ".opencode/skills/mcp-coco-index/INSTALL_GUIDE.md",
+    ".opencode/skills/mcp-coco-index/SKILL.md",
+    ".opencode/skills/system-rerank-sidecar/feature_catalog/feature_catalog.md",
+    ".opencode/skills/system-rerank-sidecar/manual_testing_playbook/manual_testing_playbook.md"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "maxIterations": 20,
+  "convergenceThreshold": 0.1,
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 360,
+  "maxToolCallsPerIteration": 24,
+  "maxMinutesPerIteration": 25,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/006-cocoindex-dedup-from-shared-sidecar",
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-05-20T20:30:00Z",
+  "status": "complete",
+  "releaseReadinessState": "release-blocking",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "type": "cli-codex",
+    "model": "gpt-5.5",
+    "reasoningEffort": "xhigh",
+    "serviceTier": "fast",
+    "sandboxMode": null,
+    "timeoutSeconds": 1500
+  },
+  "qualityGateThreshold": true
+}

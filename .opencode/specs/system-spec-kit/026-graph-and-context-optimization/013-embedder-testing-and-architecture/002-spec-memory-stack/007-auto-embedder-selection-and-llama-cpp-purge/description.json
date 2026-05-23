@@ -1,0 +1,26 @@
+{
+  "level": "feature",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/007-auto-embedder-selection-and-llama-cpp-purge",
+  "description": "Spec: 016/002/007 Auto-Embedder Selection + llama-cpp Purge",
+  "keywords": [
+    "spec",
+    "016",
+    "002",
+    "007",
+    "auto-embedder",
+    "selection",
+    "llama-cpp",
+    "purge"
+  ],
+  "lastUpdated": "2026-05-23T09:08:29.675Z",
+  "specId": "007",
+  "folderSlug": "auto-embedder-selection-and-llama-cpp-purge",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "002-spec-memory-stack"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

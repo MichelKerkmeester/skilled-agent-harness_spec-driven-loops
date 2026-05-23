@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/010-final-regression-and-operator-runbook",
+  "description": "Spec: Final Regression and Operator Runbook",
+  "keywords": [
+    "spec",
+    "final",
+    "regression",
+    "operator",
+    "runbook"
+  ],
+  "lastUpdated": "2026-05-23T09:08:39.875Z",
+  "specId": "010",
+  "folderSlug": "final-regression-and-operator-runbook",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "009-memory-leak-remediation"
+  ],
+  "memorySequence": 10,
+  "memoryNameHistory": []
+}

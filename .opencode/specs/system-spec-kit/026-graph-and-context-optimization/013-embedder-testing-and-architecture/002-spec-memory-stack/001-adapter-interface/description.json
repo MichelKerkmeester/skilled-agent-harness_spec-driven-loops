@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/001-adapter-interface",
+  "description": "016/001: EmbedderAdapter interface + EmbedderRegistry",
+  "keywords": [
+    "016",
+    "001",
+    "embedderadapter",
+    "interface",
+    "embedderregistry"
+  ],
+  "lastUpdated": "2026-05-23T09:08:26.367Z",
+  "specId": "001",
+  "folderSlug": "adapter-interface",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "002-spec-memory-stack"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "17-05-26_07-35__scaffolded-013-embedder-testing-and-architecture.md"
+  ]
+}

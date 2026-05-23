@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/013-owner-lease-heartbeat-staleness-detection",
+  "description": "Spec: Owner-Lease Heartbeat-Staleness Detection",
+  "keywords": [
+    "spec",
+    "owner-lease",
+    "heartbeat-staleness",
+    "detection"
+  ],
+  "lastUpdated": "2026-05-23T09:08:43.190Z",
+  "specId": "013",
+  "folderSlug": "owner-lease-heartbeat-staleness-detection",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "009-memory-leak-remediation"
+  ],
+  "memorySequence": 13,
+  "memoryNameHistory": []
+}

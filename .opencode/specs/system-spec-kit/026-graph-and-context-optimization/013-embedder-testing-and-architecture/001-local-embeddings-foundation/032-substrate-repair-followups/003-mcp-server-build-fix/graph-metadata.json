@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/003-mcp-server-build-fix",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/003-mcp-server-build-fix",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": ["mcp_server build fix", "modelcontextprotocol sdk cannot find module", "post-extraction system-code-graph import paths"],
+    "key_topics": ["build-fix", "mcp-sdk", "package-deps"],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md"],
+    "entities": ["mcp_server", "system-code-graph", "@modelcontextprotocol/sdk", "package.json", "tsconfig.json", "npm-run-build"],
+    "causal_summary": "Completed Path A dependency repair: the standalone system-code-graph package imports @modelcontextprotocol/sdk but did not declare it. Added the dependency to the standalone package manifest/lockfile, verified npm run build exits 0, regenerated watched dist JS, and confirmed earlier retry/save-classifier dist markers survive.",
+    "created_at": "2026-05-14T11:10:00Z",
+    "last_save_at": "2026-05-14T11:12:00Z",
+    "save_lineage": "main-agent",
+    "last_accessed_at": "2026-05-14T11:12:00Z",
+    "source_docs": ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md"]
+  }
+}

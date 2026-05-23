@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/009-fp16-rerank",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/009-fp16-rerank",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/007-spec-memory-mps-rerank-promotion"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/008-cap-rerank-top-k"
+    ],
+    "superseded_by": [
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/005-opt-in-only-closure"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "009 fp16 rerank",
+      "rerank_torch_dtype",
+      "half precision qwen",
+      "fp16 cross-encoder mps"
+    ],
+    "key_topics": [
+      "fp16",
+      "torch-dtype",
+      "qwen",
+      "mps",
+      "memory-reduction",
+      "promote-or-hold"
+    ],
+    "importance_tier": "important",
+    "status": "superseded",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      ".opencode/skills/system-rerank-sidecar/scripts/rerank_sidecar.py",
+      ".opencode/skills/system-rerank-sidecar/scripts/start.sh"
+    ],
+    "last_indexed_at": "2026-05-21T09:00:00Z"
+  }
+}

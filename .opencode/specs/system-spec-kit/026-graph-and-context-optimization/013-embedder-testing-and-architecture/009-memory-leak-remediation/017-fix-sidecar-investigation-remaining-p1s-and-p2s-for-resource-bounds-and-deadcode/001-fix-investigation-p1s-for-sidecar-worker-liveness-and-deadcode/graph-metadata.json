@@ -1,0 +1,26 @@
+{
+  "spec_id": "001",
+  "folder_slug": "fix-investigation-p1s-for-sidecar-worker-liveness-and-deadcode",
+  "parent_chain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "009-memory-leak-remediation",
+    "017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode"
+  ],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-deep-research-drift-and-simplification"
+    ],
+    "related_to": []
+  },
+  "derived": {
+    "status": "draft",
+    "importance_tier": "critical",
+    "is_phase_parent": false,
+    "completion_pct": 0,
+    "parent_id": "017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode",
+    "last_active_at": "2026-05-23T06:00:00Z"
+  },
+  "lastUpdated": "2026-05-23T06:00:00Z"
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/003-skill-advisor-stack/003-install-guide-docs",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/003-skill-advisor-stack/003-install-guide-docs",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/003-skill-advisor-stack",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "022/003 install guide",
+      "skill-advisor onboarding docs",
+      "022/003 plan",
+      "022/003 tasks",
+      "010/003 summary",
+      "skill-advisor embedder docs",
+      "022/003 summary",
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/003-skill-advisor-stack/003-install-guide-docs",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "013-embedder-testing-and-architecture",
+      "003-skill-advisor-stack"
+    ],
+    "key_topics": [
+      "022",
+      "install-guide",
+      "readme",
+      "skill-advisor",
+      "embedder-docs",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "013-embedder-testing-and-architecture",
+      "003-skill-advisor-stack",
+      "003-install-guide-docs",
+      "003",
+      "install_guide"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "Document the new pluggable embedder + auto-detect for new users — mirror 019/002 for skill-advisor",
+    "created_at": "2026-05-18T08:07:25.980Z",
+    "last_save_at": "2026-05-19T19:44:28.899Z",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ]
+  }
+}

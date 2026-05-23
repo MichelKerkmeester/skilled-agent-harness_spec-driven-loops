@@ -58,16 +58,12 @@ A wayfinding doc. It does not duplicate the spec packet content. It tells you wh
 
 ---
 
-<!-- ANCHOR:spec-packet-location -->
-## 2. SPEC PACKET LOCATION
+<!-- ANCHOR:source-summary -->
+## 2. SOURCE SUMMARY
 
-```text
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/
-```
+This benchmark captures a six-embedder bake-off on the spec-memory dataset alongside retrieval-stage work. The dataset and configuration are fully described by the artifacts in this folder; the benchmark is self-contained and reproducible from the captured fixtures, manifests, and scripts.
 
-The packet sits under the `016-embedder-testing-and-architecture` umbrella, in the `002-spec-memory-stack` sub-phase, as packet `004-spec-memory-embedder-bake-off`. Its prior slug was `004-mxbai-swap-and-008-closure`; the rename happened on May 18, 2026 to reflect that the packet expanded beyond a single mxbai attempt into a six-embedder sweep plus retrieval-stage work.
-
-<!-- /ANCHOR:spec-packet-location -->
+<!-- /ANCHOR:source-summary -->
 
 ---
 
@@ -203,26 +199,12 @@ This mirrors the spec packet's `evidence/INDEX.md` for skill-local convenience. 
 
 ---
 
-<!-- ANCHOR:follow-on-packets -->
-## 6. FOLLOW-ON PACKETS
+<!-- ANCHOR:follow-on-narrative -->
+## 6. FOLLOW-ON NARRATIVE
 
-### Adversarial review
+Adversarial review, promotion to production, and CocoIndex-side activation evidence are captured in their respective benchmark folders and in the cross-cutting embedder-pluggability narrative at `.opencode/skills/system-spec-kit/references/embedder-pluggability.md`.
 
-`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/020-deep-review-016-019-stack/` — adversarial review of the 016 through 019 stack. Open `review/review-report.md` for the verdict.
-
-### Promotion arc
-
-`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/` — phase parent that promotes the Ollama + bge stack. Has six children numbered `001` through `006`. Renumbered from `013` on May 18, 2026; if you see references to `013-ollama-and-bge-promotion-arc/`, treat them as stale and follow the `007/...` path.
-
-### CocoIndex side
-
-`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/018-code-embedder-coderank/001-cocoindex-swap/` — companion activation evidence on the CocoIndex side. Open `evidence/reindex-execution-results.md` for the result.
-
-### Cross-cutting narrative
-
-`.opencode/skills/system-spec-kit/references/embedder-pluggability.md` — canonical narrative covering both MCPs.
-
-<!-- /ANCHOR:follow-on-packets -->
+<!-- /ANCHOR:follow-on-narrative -->
 
 ---
 

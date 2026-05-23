@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture",
+  "description": "016: Embedder testing and architecture (umbrella)",
+  "keywords": [
+    "016",
+    "embedder",
+    "testing",
+    "architecture",
+    "umbrella"
+  ],
+  "lastUpdated": "2026-05-23T09:10:03.735Z",
+  "specId": "013",
+  "folderSlug": "embedder-testing-and-architecture",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "17-05-26_07-35__scaffolded-013-embedder-testing-and-architecture-as.md",
+    "18-05-26_21-38__autonomous-run-kick-off-after-pre-compaction.md",
+    "23-05-26_11-00__renumbered-016-to-013-and-absorbed-010-into-009.md"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "title": "llama-cpp default flip",
+  "level": "2",
+  "status": "complete",
+  "importance_tier": "critical",
+  "contextType": "implementation",
+  "created_at": "2026-05-13T11:10:00Z",
+  "last_updated_at": "2026-05-13T11:10:00Z",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/017-llama-cpp-default-flip",
+  "description": "Feature Specification: 017 llama-cpp default flip",
+  "keywords": [
+    "feature",
+    "specification",
+    "017",
+    "llama-cpp",
+    "default",
+    "flip"
+  ],
+  "lastUpdated": "2026-05-23T09:08:47.555Z",
+  "specId": "017",
+  "folderSlug": "llama-cpp-default-flip",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "001-local-embeddings-foundation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/003-fix-investigation-p1s-for-sidecar-process-ownership-lifecycle",
+  "description": "Spec: Investigation P1 Fixes for Sidecar Process Ownership Lifecycle",
+  "keywords": [
+    "spec",
+    "investigation",
+    "fixes",
+    "sidecar",
+    "process",
+    "ownership",
+    "lifecycle"
+  ],
+  "lastUpdated": "2026-05-23T09:09:06.318Z",
+  "specId": "003",
+  "folderSlug": "fix-investigation-p1s-for-sidecar-process-ownership-lifecycle",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "009-memory-leak-remediation",
+    "016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

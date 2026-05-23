@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/019-lineage-and-metadata-repair-runner",
+  "description": "Feature Specification: Lineage and Metadata Repair Runner",
+  "keywords": [
+    "feature",
+    "specification",
+    "lineage",
+    "metadata",
+    "repair",
+    "runner"
+  ],
+  "lastUpdated": "2026-05-23T09:08:29.347Z",
+  "specId": "019",
+  "folderSlug": "lineage-and-metadata-repair-runner",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "002-spec-memory-stack"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

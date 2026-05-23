@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-05-22T06:06:19.694Z",
+  "generated": "2026-05-23T09:11:12.801Z",
   "folders": [
     {
       "specFolder": "00--ai-systems/001-global-shared",
@@ -641,7 +641,7 @@
         "dropdown",
         "fix"
       ],
-      "lastUpdated": "2026-05-22T06:06:19.694Z"
+      "lastUpdated": "2026-05-23T09:11:12.801Z"
     },
     {
       "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/019-form-attribute-audit",
@@ -691,7 +691,7 @@
         "anobel",
         "com"
       ],
-      "lastUpdated": "2026-05-22T06:06:19.694Z"
+      "lastUpdated": "2026-05-23T09:11:12.801Z"
     },
     {
       "specFolder": "00--anobel.com/039-link-card-collapse-expand/001-desktop-animation/z_archive/023-performance-review",
@@ -1601,7 +1601,7 @@
         "preflight",
         "scope-map"
       ],
-      "lastUpdated": "2026-05-21T10:22:37.612Z"
+      "lastUpdated": "2026-05-23T09:11:12.801Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/115-deep-ai-council-rename/002-sk-ai-council-skill-rename",
@@ -1659,7 +1659,7 @@
         "skills",
         "index"
       ],
-      "lastUpdated": "2026-05-21T10:22:37.629Z"
+      "lastUpdated": "2026-05-23T09:11:12.801Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/115-deep-ai-council-rename/006-reindex-and-validate",
@@ -1677,16 +1677,552 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/116-deep-review-complexity",
-      "description": "Feature Specification: Deep Review Complexity Research",
+      "description": "Phase parent for turning the completed deep-review complexity research into staged search-depth hardening across seeded fixtures, schema, validator enforcement, reducer/report persistence, convergence gates, graph vocabulary, and rollout playbooks.",
+      "keywords": [
+        "feature",
+        "specification",
+        "116",
+        "deep-review",
+        "search-depth",
+        "searchLedger",
+        "searchCoverage",
+        "candidate-generation",
+        "graphless-fallback",
+        "seeded-tests"
+      ],
+      "lastUpdated": "2026-05-22T16:17:10.184Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/116-deep-review-complexity/001-research-synthesis",
+      "description": "Feature Specification: 116/001 — Deep Review Complexity Research Synthesis",
+      "keywords": [
+        "feature",
+        "specification",
+        "116",
+        "001",
+        "deep",
+        "review",
+        "complexity",
+        "research",
+        "synthesis"
+      ],
+      "lastUpdated": "2026-05-22T19:07:31.259Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/116-deep-review-complexity/002-seeded-fixture-harness",
+      "description": "Feature Specification: 116/002 - Seeded Fixture Harness",
+      "keywords": [
+        "feature",
+        "specification",
+        "116",
+        "002",
+        "seeded",
+        "fixture",
+        "harness"
+      ],
+      "lastUpdated": "2026-05-22T19:07:31.265Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/116-deep-review-complexity/003-review-depth-schema-and-prompt-contract",
+      "description": "Feature Specification: 116/003 - Review-Depth Schema and Prompt Contract",
+      "keywords": [
+        "feature",
+        "specification",
+        "116",
+        "003",
+        "review-depth",
+        "schema",
+        "prompt",
+        "contract"
+      ],
+      "lastUpdated": "2026-05-22T19:07:31.272Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/116-deep-review-complexity/004-validator-v2-enforcement",
+      "description": "Feature Specification: 116/004 — Validator v2 Enforcement",
+      "keywords": [
+        "feature",
+        "specification",
+        "116",
+        "004",
+        "validator",
+        "enforcement"
+      ],
+      "lastUpdated": "2026-05-22T19:07:31.277Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/116-deep-review-complexity/005-search-ledger-persistence-and-reporting",
+      "description": "Feature Specification: 116/005 — Search Ledger Persistence and Reporting",
+      "keywords": [
+        "feature",
+        "specification",
+        "116",
+        "005",
+        "search",
+        "ledger",
+        "persistence",
+        "reporting"
+      ],
+      "lastUpdated": "2026-05-22T19:07:31.283Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/116-deep-review-complexity/006-candidate-saturation-and-graphless-gates",
+      "description": "Feature Specification: 116/006 - Candidate Saturation and Graphless Gates",
+      "keywords": [
+        "feature",
+        "specification",
+        "116",
+        "006",
+        "candidate",
+        "saturation",
+        "graphless",
+        "gates"
+      ],
+      "lastUpdated": "2026-05-22T19:07:31.289Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/116-deep-review-complexity/007-ledger-led-graph-vocabulary",
+      "description": "Feature Specification: 116/007 - Ledger-Led Graph Vocabulary",
+      "keywords": [
+        "feature",
+        "specification",
+        "116",
+        "007",
+        "ledger-led",
+        "graph",
+        "vocabulary"
+      ],
+      "lastUpdated": "2026-05-22T19:07:31.295Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/116-deep-review-complexity/008-playbooks-and-default-calibration",
+      "description": "Manual testing playbook scenarios for the v2 review-depth contract; deep-review SKILL.md version bump; iteration-default calibration deferred per rese",
+      "keywords": [
+        "manual",
+        "testing",
+        "playbook",
+        "scenarios",
+        "review-depth",
+        "contract",
+        "deep-review",
+        "skill",
+        "version",
+        "bump",
+        "iteration-default",
+        "calibration",
+        "deferred",
+        "per",
+        "research"
+      ],
+      "lastUpdated": "2026-05-22T13:09:03.296Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/117-deep-loop-core-isolation-deliberation",
+      "description": "AI Council deliberation evaluating whether to relocate 18 deep-loop / coverage-graph runtime files from system-spec-kit/mcp_server/ into the owning deep-* skill folders. 4-seat sk-ai-council via cli-codex gpt-5.5 (3 advocates + 1 adjudicator) ruled SPLIT; ruling superseded by user-directive FULL_ISOLATE_NO_MCP in arc 118.",
+      "keywords": [
+        "117",
+        "deep-loop",
+        "coverage-graph",
+        "isolation",
+        "relocation",
+        "ai-council",
+        "sk-ai-council",
+        "cli-codex",
+        "gpt-5.5-xhigh",
+        "skilled-agent-orchestration",
+        "architectural-decision",
+        "split-ruling"
+      ],
+      "lastUpdated": "2026-05-22T21:50:00.000Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp",
+      "description": "Feature Specification: 118 — Deep-Loop Full Isolation (No MCP)",
+      "keywords": [
+        "feature",
+        "specification",
+        "118",
+        "deep-loop",
+        "full",
+        "isolation",
+        "mcp"
+      ],
+      "lastUpdated": "2026-05-22T19:51:25.139Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/001-runtime-skill-scaffold",
+      "description": "Feature Specification: 118/001 — Runtime Skill Scaffold",
+      "keywords": [
+        "feature",
+        "specification",
+        "118",
+        "001",
+        "runtime",
+        "skill",
+        "scaffold"
+      ],
+      "lastUpdated": "2026-05-22T19:07:31.306Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/002-lib-runtime-migration",
+      "description": "Feature Specification: Lib Runtime Migration",
+      "keywords": [
+        "feature",
+        "specification",
+        "lib",
+        "runtime",
+        "migration"
+      ],
+      "lastUpdated": "2026-05-22T19:07:31.312Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/003-script-shim-and-db-relocation",
+      "description": "Feature Specification: 003 — Script Shim + DB Relocation",
+      "keywords": [
+        "feature",
+        "specification",
+        "003",
+        "script",
+        "shim",
+        "relocation"
+      ],
+      "lastUpdated": "2026-05-22T19:07:31.318Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/004-mcp-tool-surface-removal",
+      "description": "Feature Specification: 004 — MCP Tool Surface Removal",
+      "keywords": [
+        "feature",
+        "specification",
+        "004",
+        "mcp",
+        "tool",
+        "surface",
+        "removal"
+      ],
+      "lastUpdated": "2026-05-22T19:07:31.323Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/005-yaml-workflow-update",
+      "description": "Feature Specification: 118/005 — YAML Workflow Update (MCP → bash script)",
+      "keywords": [
+        "feature",
+        "specification",
+        "118",
+        "005",
+        "yaml",
+        "workflow",
+        "update",
+        "mcp",
+        "bash",
+        "script"
+      ],
+      "lastUpdated": "2026-05-22T19:07:31.328Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/006-collateral-doctor-playbook",
+      "description": "Feature Specification: 118/006 — Update /doctor + system-code-graph Playbook Collateral",
+      "keywords": [
+        "feature",
+        "specification",
+        "118",
+        "006",
+        "update",
+        "doctor",
+        "system-code-graph",
+        "playbook",
+        "collateral"
+      ],
+      "lastUpdated": "2026-05-22T19:07:31.333Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/007-test-migration",
+      "description": "Feature Specification: 118/007 — Test Migration (Split by Responsibility)",
+      "keywords": [
+        "feature",
+        "specification",
+        "118",
+        "007",
+        "test",
+        "migration",
+        "split",
+        "responsibility"
+      ],
+      "lastUpdated": "2026-05-22T19:07:31.338Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/008-verification-changelog-closeout",
+      "description": "Feature Specification: Verification + Changelog + Closeout",
+      "keywords": [
+        "feature",
+        "specification",
+        "verification",
+        "changelog",
+        "closeout"
+      ],
+      "lastUpdated": "2026-05-22T19:51:25.145Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/119-deep-research-uplift",
+      "description": "Phased deep-research investigation: which 118 deep-review upgrades should propagate to deep-research. 10-iter cli-devin SWE-1.6 (iters 1-8) + cli-codex gpt-5.5 high fast (iters 9-10). 3 phase children: research / applicability analysis / uplift recommendations.",
+      "keywords": [
+        "119",
+        "deep-research",
+        "deep-research-uplift",
+        "deep-review-learnings",
+        "deep-loop-runtime",
+        "cli-devin",
+        "swe-1.6",
+        "cli-codex",
+        "gpt-5.5-high-fast",
+        "skilled-agent-orchestration"
+      ],
+      "lastUpdated": "2026-05-23T04:44:54.213Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/120-deep-research-iteration-ordering-fix",
+      "description": "Feature Specification: 120 — Deep-Research Iteration Ordering Fix",
+      "keywords": [
+        "feature",
+        "specification",
+        "120",
+        "deep-research",
+        "iteration",
+        "ordering",
+        "fix"
+      ],
+      "lastUpdated": "2026-05-23T09:11:12.801Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/121-deep-research-uncovered-questions",
+      "description": "Packet 121 DR-003 adds deep-research uncovered question tracking in the reducer registry and dashboard.",
+      "keywords": [
+        "packet",
+        "121",
+        "dr-003",
+        "adds",
+        "deep-research",
+        "uncovered",
+        "question",
+        "tracking",
+        "reducer",
+        "registry",
+        "dashboard"
+      ],
+      "lastUpdated": "2026-05-23T03:56:41.959Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/122-deep-research-hygiene-fix-pack",
+      "description": "Packet 122 bundles deep-research negative knowledge dedup, workflow YAML script-path verification, and allowed-tools pruning audit.",
+      "keywords": [
+        "packet",
+        "122",
+        "bundles",
+        "deep-research",
+        "negative",
+        "knowledge",
+        "dedup",
+        "workflow",
+        "yaml",
+        "script-path",
+        "verification",
+        "allowed-tools",
+        "pruning",
+        "audit"
+      ],
+      "lastUpdated": "2026-05-23T03:56:41.979Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/123-deep-agent-improvement-uplift",
+      "description": "Feature Specification: 123 — Deep-Agent-Improvement Uplift",
+      "keywords": [
+        "feature",
+        "specification",
+        "123",
+        "deep-agent-improvement",
+        "uplift"
+      ],
+      "lastUpdated": "2026-05-23T09:11:12.801Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/124-deep-agent-improvement-correctness-fixes",
+      "description": "Packet 124: deep-agent-improvement correctness fixes",
+      "keywords": [
+        "packet",
+        "124",
+        "deep-agent-improvement",
+        "correctness",
+        "fixes"
+      ],
+      "lastUpdated": "2026-05-23T09:11:12.801Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/124-sk-ai-council-shared-runtime-deliberation",
+      "description": "Spec: sk-ai-council Shared Runtime Deliberation",
+      "keywords": [
+        "spec",
+        "sk-ai-council",
+        "shared",
+        "runtime",
+        "deliberation"
+      ],
+      "lastUpdated": "2026-05-23T09:11:12.801Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/125-deep-agent-improvement-doc-version-reconciliation",
+      "description": "Packet 125: Deep-Agent-Improvement Doc Version Reconciliation",
+      "keywords": [
+        "packet",
+        "125",
+        "deep-agent-improvement",
+        "doc",
+        "version",
+        "reconciliation"
+      ],
+      "lastUpdated": "2026-05-23T09:11:12.801Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/126-deep-agent-improvement-evaluator-hardening",
+      "description": "Packet 126: deep-agent-improvement evaluator hardening",
+      "keywords": [
+        "packet",
+        "126",
+        "deep-agent-improvement",
+        "evaluator",
+        "hardening"
+      ],
+      "lastUpdated": "2026-05-23T09:11:12.801Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/127-deep-agent-improvement-cross-runtime-promotion",
+      "description": "Packet 127: deep-agent-improvement cross-runtime promotion gate",
+      "keywords": [
+        "packet",
+        "127",
+        "deep-agent-improvement",
+        "cross-runtime",
+        "promotion",
+        "gate"
+      ],
+      "lastUpdated": "2026-05-23T09:11:12.801Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/128-deep-agent-improvement-mixed-executor-adjudication",
+      "description": "Feature Specification: 128 — Deep-Agent-Improvement Mixed-Executor + Adjudication Methodology",
+      "keywords": [
+        "feature",
+        "specification",
+        "128",
+        "deep-agent-improvement",
+        "mixed-executor",
+        "adjudication",
+        "methodology"
+      ],
+      "lastUpdated": "2026-05-23T09:11:12.801Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic",
+      "description": "Feature Specification: Deep AI Council Iterative Multi-Topic Skill Upgrade",
       "keywords": [
         "feature",
         "specification",
         "deep",
-        "review",
-        "complexity",
-        "research"
+        "council",
+        "iterative",
+        "multi-topic",
+        "skill",
+        "upgrade"
       ],
-      "lastUpdated": "2026-05-22T06:06:19.318Z"
+      "lastUpdated": "2026-05-23T09:11:12.801Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/001-research-and-architecture-design",
+      "description": "Feature Specification: Deep AI Council Research + Architecture Design",
+      "keywords": [
+        "feature",
+        "specification",
+        "deep",
+        "council",
+        "research",
+        "architecture",
+        "design"
+      ],
+      "lastUpdated": "2026-05-23T09:11:12.801Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/002-runtime-primitive-extraction",
+      "description": "Phase 002: extract or adapt council-compatible primitives from deep-loop-runtime per ADR-001, without creating a peer council-runtime package.",
+      "keywords": [
+        "runtime-primitive-extraction",
+        "deep-loop-runtime",
+        "adr-001",
+        "deep-ai-council"
+      ],
+      "lastUpdated": "2026-05-23T07:45:27Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/003-per-topic-multi-round-orchestration",
+      "description": "Feature Specification: Per-Topic Multi-Round Orchestration",
+      "keywords": [
+        "feature",
+        "specification",
+        "per-topic",
+        "multi-round",
+        "orchestration"
+      ],
+      "lastUpdated": "2026-05-23T09:11:12.801Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/004-multi-topic-session-and-findings-registry",
+      "description": "Feature Specification: Multi-Topic Session and Findings Registry",
+      "keywords": [
+        "feature",
+        "specification",
+        "multi-topic",
+        "session",
+        "findings",
+        "registry"
+      ],
+      "lastUpdated": "2026-05-23T09:11:12.801Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/005-command-and-skill-wiring",
+      "description": "Feature Specification: Command and Skill Wiring",
+      "keywords": [
+        "feature",
+        "specification",
+        "command",
+        "skill",
+        "wiring"
+      ],
+      "lastUpdated": "2026-05-23T09:11:12.801Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/006-parity-tests-and-cost-guards-and-docs",
+      "description": "Feature Specification: Parity Tests, Cost Guards, and Docs",
+      "keywords": [
+        "feature",
+        "specification",
+        "parity",
+        "tests",
+        "cost",
+        "guards",
+        "docs"
+      ],
+      "lastUpdated": "2026-05-23T09:11:12.801Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/130-deep-skills-unique-value-differentiation",
+      "description": "10-iter deep-research audit of deep-review vs deep-research vs (assumed-upgraded) deep-ai-council: characterize each skill's defensible single-best-fit, inventory overlap, recommend differentiation strategy + skill-advisor routing rules, name parity-test invariants.",
+      "keywords": [
+        "deep-skills-differentiation",
+        "deep-review",
+        "deep-research",
+        "deep-ai-council",
+        "skill-advisor-routing",
+        "boundary-analysis"
+      ],
+      "lastUpdated": "2026-05-23T06:00:00Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/001-cli-gemini-creation",
@@ -2512,7 +3048,7 @@
         "folder",
         "convention"
       ],
-      "lastUpdated": "2026-05-22T06:06:19.694Z"
+      "lastUpdated": "2026-05-23T09:11:12.801Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/043-cli-skill-improved-prompting",
@@ -5184,7 +5720,7 @@
         "standards",
         "contract"
       ],
-      "lastUpdated": "2026-05-22T06:06:19.694Z"
+      "lastUpdated": "2026-05-23T09:11:12.801Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/023-fix-baseline-test-failures",
@@ -5210,7 +5746,7 @@
         "concurrency",
         "fixes"
       ],
-      "lastUpdated": "2026-05-22T06:06:19.694Z"
+      "lastUpdated": "2026-05-23T09:11:12.801Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/025-readme-architecture-diagrams-topology",
@@ -6971,7 +7507,7 @@
         "isolation",
         "finalize"
       ],
-      "lastUpdated": "2026-05-22T06:06:19.694Z"
+      "lastUpdated": "2026-05-23T09:11:12.801Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/019-system-code-graph-uplift-phase-parent",
@@ -7462,7 +7998,7 @@
         "coverage",
         "audit"
       ],
-      "lastUpdated": "2026-05-22T06:06:19.694Z"
+      "lastUpdated": "2026-05-23T09:11:12.801Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/027-typescript-header-normalization",
@@ -8365,7 +8901,7 @@
       "lastUpdated": "2026-05-19T17:43:19.862Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture",
       "description": "016: Embedder testing and architecture (umbrella)",
       "keywords": [
         "016",
@@ -8374,10 +8910,10 @@
         "architecture",
         "umbrella"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.417Z"
+      "lastUpdated": "2026-05-23T09:10:03.735Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
       "description": "Feature Specification: Local embeddings Setup A — EmbeddingGemma-300m for code, EmbeddingGemma-300m for memory",
       "keywords": [
         "feature",
@@ -8389,187 +8925,186 @@
         "code",
         "memory"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.422Z"
+      "lastUpdated": "2026-05-23T09:08:17.054Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/001-prefix-registry-architecture",
-      "description": "Phase 1: prefix-registry-architecture",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/001-prefix-registry-architecture",
+      "description": "Feature Specification: Phase 1 — Prefix Registry Architecture",
       "keywords": [
+        "feature",
+        "specification",
         "phase",
-        "prefix-registry-architecture"
+        "prefix",
+        "registry",
+        "architecture"
       ],
-      "lastUpdated": "2026-05-12T16:27:48.242Z"
+      "lastUpdated": "2026-05-23T09:09:01.769Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/002-model-installation-and-compat",
-      "description": "Phase 2: model-installation-and-compat",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/002-model-installation-and-compat",
+      "description": "Feature Specification: Phase 2 — Model Installation & Compatibility",
       "keywords": [
+        "feature",
+        "specification",
         "phase",
-        "model-installation-and-compat"
+        "model",
+        "installation",
+        "compatibility"
       ],
-      "lastUpdated": "2026-05-12T16:27:48.918Z"
+      "lastUpdated": "2026-05-23T09:08:55.474Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/003-mcp-config-rollout",
-      "description": "Phase 3: mcp-config-rollout",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/003-mcp-config-rollout",
+      "description": "Feature Specification: Phase 3 — MCP Config Rollout",
       "keywords": [
+        "feature",
+        "specification",
         "phase",
-        "mcp-config-rollout"
+        "mcp",
+        "config",
+        "rollout"
       ],
-      "lastUpdated": "2026-05-12T16:27:49.587Z"
+      "lastUpdated": "2026-05-23T09:08:56.065Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/004-vec-store-rebuild",
-      "description": "Phase 4 — Vec-Store Rebuild. Memory side rebuilt under EmbeddingGemma-300m-ONNX 768-dim (2112/2112 success rows) after launcher kill + /mcp reconnect cleared an MCP-child lazy-load wedge. DELETE+rescan workaround bypassed UNCHANGED_EMBEDDING_STATUSES dedup; embedding_cache content-hash hits avoided model re-inference. CocoIndex side staged: 2.0GB MiniLM target_sqlite.db deleted, stale daemon killed; final EmbeddingGemma-300m rebuild pending user /mcp reconnect cocoindex_code.",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/004-vec-store-rebuild",
+      "description": "Feature Specification: Phase 4 — Vec-Store Rebuild",
       "keywords": [
-        "phase-4",
-        "vec-store-rebuild",
-        "memory-rebuild",
-        "cocoindex-rebuild",
-        "hf-local",
-        "embeddinggemma-300m-onnx",
-        "qwen3-embedding-4b",
-        "mcp-child-wedge",
-        "embedding-cache-hit",
-        "delete-pending-rescan"
-      ],
-      "lastUpdated": "2026-05-12T20:00:00Z"
-    },
-    {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/005-q4-quantization",
-      "description": "Phase 5 — Q4 Quantization. HF_EMBEDDINGS_DTYPE env var now selects ONNX variant (fp32 default, fp16, q4, q4f16, int8 etc). HfLocalProvider passes the resolved dtype to @huggingface/transformers.pipeline(). Standalone tests confirm fp32 (1.1s cold) and q4 (3.2s cold) both load EmbeddingGemma-300m-ONNX and produce 768-dim vectors. Recall benchmark deferred pending ground-truth queries. Default behavior unchanged (fp32).",
-      "keywords": [
-        "phase-5",
-        "q4-quantization",
-        "hf-embeddings-dtype",
-        "EmbeddingGemma-300m-ONNX",
-        "model-q4-onnx",
-        "transformers.js-dtype",
-        "ALLOWED_HF_DTYPES"
-      ],
-      "lastUpdated": "2026-05-12T21:40:00Z"
-    },
-    {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/006-bge-m3-hybrid-evaluation",
-      "description": "Phase 6: bge-m3-hybrid-evaluation",
-      "keywords": [
+        "feature",
+        "specification",
         "phase",
-        "bge-m3-hybrid-evaluation"
+        "vec-store",
+        "rebuild"
       ],
-      "lastUpdated": "2026-05-12T16:27:51.540Z"
+      "lastUpdated": "2026-05-23T09:08:50.247Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/007-voyage-cleanup-and-egress-monitoring",
-      "description": "Phase 7 — Voyage Cleanup + Egress Monitoring. Deleted 322MB stale Voyage 1024-dim sqlite + 141MB legacy context-index.sqlite (463MB reclaim). Added warn-once egress guard in factory.ts that surfaces VOYAGE_API_KEY drift when resolved provider is hf-local. tcpdump verification script shipped in scratch/ for 24h post-merge user verification.",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/005-q4-quantization",
+      "description": "Feature Specification: Phase 5 — Q4 Quantization",
       "keywords": [
-        "phase-7",
-        "voyage-cleanup",
-        "egress-monitoring",
-        "factory-voyage-drift",
-        "warnIfVoyageDriftDetected",
-        "tcpdump-verify",
-        "sqlite-cleanup"
-      ],
-      "lastUpdated": "2026-05-12T22:00:00Z"
-    },
-    {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/008-finalize-and-commit",
-      "description": "Phase 8: finalize-and-commit",
-      "keywords": [
+        "feature",
+        "specification",
         "phase",
-        "finalize-and-commit"
+        "quantization"
       ],
-      "lastUpdated": "2026-05-12T16:27:52.861Z"
+      "lastUpdated": "2026-05-23T09:09:00.212Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/009-cocoindex-ipc-fix",
-      "description": "Phase 9 (follow-on) — Diagnose and fix the cocoindex Rust↔Python IPC truncation bug that surfaced in 004. Daemon writes correct 768-dim EmbeddingGemma vectors to target_sqlite.db and direct sqlite-vec KNN queries return semantically relevant top-K results, but every cocoindex_code.search call returns msgspec.DecodeError: Input data was truncated. Also investigate why daemon stalls at 1335 markdown rows without progressing to source-code languages despite include_patterns coverage. Gates 006-bge-m3-hybrid-evaluation.",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/006-bge-m3-hybrid-evaluation",
+      "description": "Feature Specification: Phase 6 — bge-m3 Hybrid Evaluation",
       "keywords": [
-        "phase-9",
-        "cocoindex-ipc-fix",
-        "msgspec-truncation",
-        "search-response",
-        "rust-python-ipc",
-        "daemon-stall",
-        "qwen3-search-path"
+        "feature",
+        "specification",
+        "phase",
+        "bge-m3",
+        "hybrid",
+        "evaluation"
       ],
-      "lastUpdated": "2026-05-12T21:35:00Z"
+      "lastUpdated": "2026-05-23T09:08:55.177Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/010-cocoindex-code-only-patterns",
-      "description": "Phase 10 — Cocoindex Code-Only Patterns. Removed .md/.mdx/.txt/.rst from both .cocoindex_code/settings.yml and cocoindex_code/settings.py DEFAULT_INCLUDED_PATTERNS. Cocoindex is now a pure code-search index; documentation retrieval routes to spec-kit-memory. Pre-change index had 142,237 chunks (45% markdown, dominated by 4-runtime skill mirror). Clean rebuild in flight under the new patterns.",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/007-voyage-cleanup-and-egress-monitoring",
+      "description": "Feature Specification: Phase 7 — Voyage Cleanup + Egress Monitoring",
       "keywords": [
-        "phase-10",
-        "cocoindex-code-only",
-        "remove-markdown-cocoindex",
-        "DEFAULT_INCLUDED_PATTERNS-cleanup",
-        "skill-mirror-dedup",
-        "spec-kit-memory-vs-cocoindex"
+        "feature",
+        "specification",
+        "phase",
+        "voyage",
+        "cleanup",
+        "egress",
+        "monitoring"
       ],
-      "lastUpdated": "2026-05-13T06:55:00Z"
+      "lastUpdated": "2026-05-23T09:09:01.459Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/011-embeddinggemma-unification",
-      "description": "Phase 11 - EmbeddingGemma Unification. Makes EmbeddingGemma the default for Spec Kit Memory and CocoIndex, updates committed runtime/default docs, purges active Qwen3 current-state references, and records the CocoIndex query-prompt/doc-prompt asymmetry.",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/008-finalize-and-commit",
+      "description": "Feature Specification: Phase 8 — Finalize + Commit",
       "keywords": [
-        "phase-11",
-        "embeddinggemma-unification",
-        "google-embeddinggemma-300m",
-        "onnx-community-embeddinggemma",
-        "qwen3-purge",
-        "sentence-transformers"
+        "feature",
+        "specification",
+        "phase",
+        "finalize",
+        "commit"
       ],
-      "lastUpdated": "2026-05-13T07:35:00Z"
+      "lastUpdated": "2026-05-23T09:08:52.542Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/012-v3-remediation",
-      "description": "Phase 12 - v3 deep-review remediation. Flips memory-side hf-local dtype default to q8, adds dtype to memory DB filenames, restores launcher parity where writable, hardens CocoIndex search-only mode, and aligns Setup A docs.",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/009-cocoindex-ipc-fix",
+      "description": "Feature Specification: Phase 9 — Cocoindex IPC Fix",
       "keywords": [
-        "phase-12",
-        "v3-remediation",
-        "q8-default",
-        "launcher-parity",
-        "dtype-filename",
-        "voyage-guard",
-        "cocoindex-search-only"
-      ],
-      "lastUpdated": "2026-05-13T08:30:00Z"
-    },
-    {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/013-v4-cleanup",
-      "description": "v4 deep-review cleanup for local embeddings Setup A",
-      "keywords": [
-        "v4-cleanup",
-        "voyage-guard-final-site",
-        "memory-health-dtype",
-        "doc-currency",
-        "mutable-default-fix",
-        "factory-dtype-option",
-        "codex-config-currency"
-      ],
-      "lastUpdated": "2026-05-13T09:45:00Z"
-    },
-    {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/014-onnx-cross-platform-backend",
-      "description": "Opt-in ONNX Runtime embedding backend for cocoindex with cross-platform execution-provider selection (CoreML / DirectML / CUDA / OpenVINO / CPU).",
-      "keywords": [
-        "onnxruntime",
-        "cross-platform",
-        "coreml",
-        "directml",
-        "cuda",
-        "openvino",
-        "neural-engine",
-        "embedding-backend",
-        "embeddinggemma",
+        "feature",
+        "specification",
+        "phase",
         "cocoindex",
-        "parity-gate",
-        "ep-selection"
+        "ipc",
+        "fix"
       ],
-      "lastUpdated": "2026-05-13T10:15:00Z"
+      "lastUpdated": "2026-05-23T09:08:55.765Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/015-node-llama-cpp-evaluation",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/010-cocoindex-code-only-patterns",
+      "description": "Feature Specification: Phase 10 — Cocoindex Code-Only Patterns",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "cocoindex",
+        "code-only",
+        "patterns"
+      ],
+      "lastUpdated": "2026-05-23T09:08:57.971Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/011-embeddinggemma-unification",
+      "description": "Feature Specification: Phase 11 - EmbeddingGemma Unification",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "embeddinggemma",
+        "unification"
+      ],
+      "lastUpdated": "2026-05-23T09:08:59.898Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/012-v3-remediation",
+      "description": "Feature Specification: Phase 12 - v3 Remediation",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "remediation"
+      ],
+      "lastUpdated": "2026-05-23T09:09:02.386Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/013-v4-cleanup",
+      "description": "Feature Specification: Phase 13 - v4 Cleanup",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "cleanup"
+      ],
+      "lastUpdated": "2026-05-23T09:08:56.687Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/014-onnx-cross-platform-backend",
+      "description": "Feature Specification: 014/014 ONNX Runtime cross-platform embedding backend",
+      "keywords": [
+        "feature",
+        "specification",
+        "014",
+        "onnx",
+        "runtime",
+        "cross-platform",
+        "embedding",
+        "backend"
+      ],
+      "lastUpdated": "2026-05-23T09:08:57.012Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/015-node-llama-cpp-evaluation",
       "description": "Feature Specification: 015 node-llama-cpp Memory MCP embedding evaluation",
       "keywords": [
         "feature",
@@ -8581,10 +9116,10 @@
         "embedding",
         "evaluation"
       ],
-      "lastUpdated": "2026-05-16T17:59:28.660Z"
+      "lastUpdated": "2026-05-23T09:08:58.309Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/016-llama-cpp-retrieval-quality-probe",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/016-llama-cpp-retrieval-quality-probe",
       "description": "Feature Specification: 016 llama-cpp retrieval quality probe",
       "keywords": [
         "feature",
@@ -8595,10 +9130,10 @@
         "quality",
         "probe"
       ],
-      "lastUpdated": "2026-05-16T17:59:28.665Z"
+      "lastUpdated": "2026-05-23T09:08:52.267Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/017-llama-cpp-default-flip",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/017-llama-cpp-default-flip",
       "description": "Feature Specification: 017 llama-cpp default flip",
       "keywords": [
         "feature",
@@ -8608,10 +9143,10 @@
         "default",
         "flip"
       ],
-      "lastUpdated": "2026-05-16T17:59:28.670Z"
+      "lastUpdated": "2026-05-23T09:08:47.555Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/018-llama-cpp-auto-migration",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/018-llama-cpp-auto-migration",
       "description": "Feature Specification: 018 llama-cpp auto-migration (SUPERSEDED)",
       "keywords": [
         "feature",
@@ -8621,89 +9156,76 @@
         "auto-migration",
         "superseded"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.428Z"
+      "lastUpdated": "2026-05-23T09:09:02.073Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/019-readme-resource-map",
-      "description": "Research-only inventory of every README.md in the repo with staleness verdicts and per-file edit guidance for follow-on markdown-agent updates triggered by 014 line changes.",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/019-readme-resource-map",
+      "description": "Feature Specification: 019 README Resource Map and Post-014 Doc Cleanup",
       "keywords": [
+        "feature",
+        "specification",
+        "019",
         "readme",
-        "resource-map",
+        "resource",
+        "map",
         "post-014",
-        "doc-cleanup",
-        "staleness-audit",
-        "deepseek-research",
-        "markdown-agent-handoff"
+        "doc",
+        "cleanup"
       ],
-      "lastUpdated": "2026-05-13T14:49:27.783Z"
+      "lastUpdated": "2026-05-23T09:08:51.983Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/020-catalog-playbook-alignment-audit",
-      "description": "Level 3 audit and follow-up packet for feature catalog/manual testing playbook alignment plus targeted code graph scan remediation.",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/020-catalog-playbook-alignment-audit",
+      "description": "Feature Specification: Catalog/playbook alignment audit for local embeddings default set",
       "keywords": [
-        "catalog-playbook-alignment",
-        "local-embeddings",
-        "llama-cpp",
-        "hf-local",
-        "cocoindex",
-        "embeddinggemma",
-        "audit-handoff",
-        "documentation-follow-up",
-        "code-graph-scan",
-        "incremental-reindex"
+        "feature",
+        "specification",
+        "catalog",
+        "playbook",
+        "alignment",
+        "audit",
+        "local",
+        "embeddings",
+        "default",
+        "set"
       ],
-      "lastUpdated": "2026-05-13T18:29:19.082Z"
+      "lastUpdated": "2026-05-23T09:08:49.689Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/021-local-llm-legacy-review",
-      "description": "Level-2 review packet that owns a 20-iter /spec_kit:deep-review:auto run hunting legacy/dead/redundant code and outdated docs/configs/assets resulting from the local-LLM and default-embedding migration shipped in 014-local-embeddings-setup-a. Executor: cli-codex gpt-5.5 reasoning=high service_tier=fast.",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/021-local-llm-legacy-review",
+      "description": "Feature Specification: Local-LLM legacy and outdated-docs/config-drift review (post-014)",
       "keywords": [
+        "feature",
+        "specification",
         "local-llm",
-        "legacy-review",
-        "post-014",
-        "deep-review",
-        "cli-codex",
-        "gpt-5.5",
-        "embeddinggemma",
-        "voyage-residue",
-        "qwen3-residue",
-        "config-drift",
+        "legacy",
         "outdated-docs",
-        "embedding-default",
-        "hf-local",
-        "llama-cpp",
-        "review-packet",
-        "level-2"
+        "config-drift",
+        "review",
+        "post-014"
       ],
-      "lastUpdated": "2026-05-13T13:07:10.265Z"
+      "lastUpdated": "2026-05-23T09:08:54.842Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/022-local-llm-legacy-remediation",
-      "description": "Level-2 remediation packet executing 5 batched cli-codex dispatches to fix the actionable residue surfaced by sibling packet 021's deep-review (post user Q1=A / Q2=yes reclassification). Closes with a confirmatory /spec_kit:deep-review:auto re-run.",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/022-local-llm-legacy-remediation",
+      "description": "Feature Specification: Local-LLM legacy remediation (post-021 review)",
       "keywords": [
+        "feature",
+        "specification",
         "local-llm",
-        "legacy-remediation",
+        "legacy",
+        "remediation",
         "post-021",
-        "narrative-correction",
-        "embeddinggemma",
-        "model-name-purge",
-        "minilm-removal",
-        "nomic-removal",
-        "context-index-sqlite",
-        "profile-derived-paths",
-        "onnx-runtime-cleanup",
-        "cli-codex",
-        "gpt-5.5",
-        "remediation-packet",
-        "level-2",
-        "five-batches"
+        "review"
       ],
-      "lastUpdated": "2026-05-13T14:30:00.000Z"
+      "lastUpdated": "2026-05-23T09:08:47.883Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/023-post-remediation-re-review",
-      "description": "Post-remediation confirmatory re-review: 10-iter /spec_kit:deep-review:auto against the same scope as 021 to confirm FAIL -> PASS transition after 022",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/023-post-remediation-re-review",
+      "description": "Feature Specification: Post-remediation confirmatory re-review: 10-iter /spec_kit:deep-review:auto against the same scope as 021 to confirm FAIL -> PA",
       "keywords": [
+        "feature",
+        "specification",
         "post-remediation",
         "confirmatory",
         "re-review",
@@ -8715,40 +9237,27 @@
         "scope",
         "021",
         "confirm",
-        "fail",
-        "pass",
-        "transition",
-        "022",
-        "5-batch",
-        "remediation",
-        "lands",
-        "executor",
-        "cli-codex",
-        "gpt-5",
-        "reasoning",
-        "high",
-        "fast"
+        "fail"
       ],
-      "lastUpdated": "2026-05-13T15:40:34.521Z"
+      "lastUpdated": "2026-05-23T09:08:51.107Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/025-llm-model-runtime-inventory",
-      "description": "Level 1 inventory packet documenting which subsystems use the quantized EmbeddingGemma runtime (Variant A) vs the CocoIndex sentence-transformers runtime (Variant B) vs no embedding model at all.",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/025-llm-model-runtime-inventory",
+      "description": "Feature Specification: LLM and embedding-model runtime inventory per subsystem",
       "keywords": [
-        "embeddinggemma",
-        "model-runtime-inventory",
-        "variant-a-quantized",
-        "variant-b-cocoindex",
-        "memory-mcp",
-        "skill-advisor",
-        "code-graph-structural",
-        "deep-loop-graph",
-        "council-graph"
+        "feature",
+        "specification",
+        "llm",
+        "embedding-model",
+        "runtime",
+        "inventory",
+        "per",
+        "subsystem"
       ],
-      "lastUpdated": "2026-05-13T17:30:00Z"
+      "lastUpdated": "2026-05-23T09:08:49.388Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/028-local-llm-feature-test-suite",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/028-local-llm-feature-test-suite",
       "description": "Feature Specification: Local-LLM feature test suite (post-014)",
       "keywords": [
         "feature",
@@ -8758,10 +9267,10 @@
         "suite",
         "post-014"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.434Z"
+      "lastUpdated": "2026-05-23T09:08:58.966Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/029-local-llm-feature-test-suite-completion",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/029-local-llm-feature-test-suite-completion",
       "description": "Spec: local-LLM feature test suite completion",
       "keywords": [
         "spec",
@@ -8771,12 +9280,14 @@
         "suite",
         "completion"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.438Z"
+      "lastUpdated": "2026-05-23T09:08:58.627Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/029-post-027-findings-remediation",
-      "description": "Fix all 21 P1 + 16 P2 findings from 027 deep-review. 6 workstreams: profile identity & dtype contract, provider fallback correctness, profile-keyed DB",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/029-post-027-findings-remediation",
+      "description": "Feature Specification: Fix all 21 P1 + 16 P2 findings from 027 deep-review. 6 workstreams: profile identity & dtype contract, provider fallback correc",
       "keywords": [
+        "feature",
+        "specification",
         "fix",
         "findings",
         "027",
@@ -8788,31 +9299,12 @@
         "contract",
         "provider",
         "fallback",
-        "correctness",
-        "profile-keyed",
-        "naming",
-        "cleanup",
-        "operator",
-        "docs",
-        "catalog",
-        "drift",
-        "fixture",
-        "refresh",
-        "legacy",
-        "dependency",
-        "comment",
-        "residue",
-        "cli-codex",
-        "gpt-5",
-        "reasoning",
-        "high",
-        "standard",
-        "fast"
+        "correc"
       ],
-      "lastUpdated": "2026-05-13T19:18:31.102Z"
+      "lastUpdated": "2026-05-23T09:08:49.089Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups",
       "description": "032 — Substrate-repair Follow-ups (Phase Parent)",
       "keywords": [
         "032",
@@ -8821,10 +9313,10 @@
         "phase",
         "parent"
       ],
-      "lastUpdated": "2026-05-14T13:53:25.030Z"
+      "lastUpdated": "2026-05-23T09:08:53.639Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/001-governance-retention-decouple",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/001-governance-retention-decouple",
       "description": "001 — Governance Retention Decouple",
       "keywords": [
         "001",
@@ -8832,10 +9324,10 @@
         "retention",
         "decouple"
       ],
-      "lastUpdated": "2026-05-16T17:59:28.680Z"
+      "lastUpdated": "2026-05-23T09:09:15.904Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/002-rerun-24-scenarios-suite",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/002-rerun-24-scenarios-suite",
       "description": "Feature Specification: Re-run 24-- scenarios suite",
       "keywords": [
         "feature",
@@ -8844,28 +9336,28 @@
         "scenarios",
         "suite"
       ],
-      "lastUpdated": "2026-05-16T17:59:28.685Z"
+      "lastUpdated": "2026-05-23T09:09:14.827Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/003-mcp-server-build-fix",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/003-mcp-server-build-fix",
       "description": "003 mcp-server-build-fix",
       "keywords": [
         "003",
         "mcp-server-build-fix"
       ],
-      "lastUpdated": "2026-05-16T17:59:28.690Z"
+      "lastUpdated": "2026-05-23T09:09:15.515Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/004-failed-embedding-cleanup",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/004-failed-embedding-cleanup",
       "description": "004 failed-embedding-cleanup",
       "keywords": [
         "004",
         "failed-embedding-cleanup"
       ],
-      "lastUpdated": "2026-05-16T17:59:28.694Z"
+      "lastUpdated": "2026-05-23T09:09:15.141Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/005-stability-instrumentation",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/005-stability-instrumentation",
       "description": "Feature Specification: 005 substrate-stability-instrumentation",
       "keywords": [
         "feature",
@@ -8873,131 +9365,132 @@
         "005",
         "substrate-stability-instrumentation"
       ],
-      "lastUpdated": "2026-05-16T17:59:28.699Z"
+      "lastUpdated": "2026-05-23T09:09:16.238Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/033-system-code-graph-import-path-cleanup",
-      "description": "Remove stale shared-package emits from the system-spec-kit mcp_server dist tree and preserve the clean-build runtime entrypoint.",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/033-system-code-graph-import-path-cleanup",
+      "description": "Feature Specification: System Code Graph Import Path Cleanup",
       "keywords": [
-        "033",
-        "system-code-graph",
-        "import-path",
-        "cleanup",
-        "mcp-server",
-        "tsconfig",
-        "shared",
-        "dist"
+        "feature",
+        "specification",
+        "system",
+        "code",
+        "graph",
+        "import",
+        "path",
+        "cleanup"
       ],
-      "lastUpdated": "2026-05-14T15:39:08Z"
+      "lastUpdated": "2026-05-23T09:09:00.830Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/034-query-expansion-context-size",
-      "description": "034 - Query Expansion Context Size",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/034-query-expansion-context-size",
+      "description": "Feature Specification: 034 Query Expansion Context Size",
       "keywords": [
+        "feature",
+        "specification",
         "034",
-        "query-expansion",
-        "combinedQuery",
-        "embedding-expansion",
-        "context-size",
-        "llama-cpp"
+        "query",
+        "expansion",
+        "context",
+        "size"
       ],
-      "lastUpdated": "2026-05-14T15:45:00Z"
+      "lastUpdated": "2026-05-23T09:08:52.818Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/035-cocoindex-mcp-reliability",
-      "description": "035 - CocoIndex MCP Reliability",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/035-cocoindex-mcp-reliability",
+      "description": "Feature Specification: 035 CocoIndex MCP Reliability",
       "keywords": [
+        "feature",
+        "specification",
         "035",
         "cocoindex",
         "mcp",
-        "request-timeout",
-        "msgspec",
-        "daemon",
-        "json-rpc"
+        "reliability"
       ],
-      "lastUpdated": "2026-05-14T00:00:00Z"
+      "lastUpdated": "2026-05-23T09:08:48.791Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/036-failed-embedding-cleanup-retry",
-      "description": "036 — Failed Embedding Cleanup Retry",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/036-failed-embedding-cleanup-retry",
+      "description": "Feature Specification: 036 Failed Embedding Cleanup Retry",
       "keywords": [
+        "feature",
+        "specification",
         "036",
-        "failed-embedding",
+        "failed",
+        "embedding",
         "cleanup",
-        "retry",
-        "llama-cpp",
-        "repair-failed-embeddings",
-        "memory_index",
-        "vec_memories"
+        "retry"
       ],
-      "lastUpdated": "2026-05-14T00:30:00Z"
+      "lastUpdated": "2026-05-23T09:08:57.364Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/037-llama-cpp-embedding-worker-deep-dive",
-      "description": "037 — Llama-cpp Embedding Worker Deep-dive (+ Minimal Fix)",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/037-llama-cpp-embedding-worker-deep-dive",
+      "description": "Feature Specification: 037 llama-cpp embedding worker deep-dive",
       "keywords": [
+        "feature",
+        "specification",
         "037",
         "llama-cpp",
-        "embedding-worker",
-        "context-size",
-        "tokenizer",
-        "GGUF",
-        "Q8_0",
-        "node-llama-cpp"
+        "embedding",
+        "worker",
+        "deep-dive"
       ],
-      "lastUpdated": "2026-05-14T14:30:00Z"
+      "lastUpdated": "2026-05-23T09:08:49.974Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/038-embedding-error-propagation",
-      "description": "Embedding Provider Error Propagation",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/038-embedding-error-propagation",
+      "description": "Feature Specification: Embedding Provider Error Propagation",
       "keywords": [
+        "feature",
+        "specification",
         "embedding",
         "provider",
         "error",
         "propagation"
       ],
-      "lastUpdated": "2026-05-14T15:06:22.190317Z"
+      "lastUpdated": "2026-05-23T09:08:53.102Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/039-token-aware-chunking",
-      "description": "Token-Aware Chunking for LlamaCppProvider",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/039-token-aware-chunking",
+      "description": "Feature Specification: Token-Aware Chunking for LlamaCppProvider",
       "keywords": [
+        "feature",
+        "specification",
         "token-aware",
         "chunking",
         "llamacppprovider"
       ],
-      "lastUpdated": "2026-05-14T15:06:22.190317Z"
+      "lastUpdated": "2026-05-23T09:08:51.691Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/040-reset-stuck-embedding-rows",
-      "description": "Reset Stuck Embedding Rows",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/040-reset-stuck-embedding-rows",
+      "description": "Feature Specification: Reset Stuck Embedding Rows",
       "keywords": [
-        "040",
+        "feature",
+        "specification",
         "reset",
         "stuck",
         "embedding",
-        "rows",
-        "retry-manager",
-        "llama-cpp"
+        "rows"
       ],
-      "lastUpdated": "2026-05-14T15:15:00Z"
+      "lastUpdated": "2026-05-23T09:08:48.198Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/041-v-rule-cross-spec-overreach",
-      "description": "040 - V-rule Cross-spec Overreach Fix",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/041-v-rule-cross-spec-overreach",
+      "description": "Feature Specification: 040 V-rule cross-spec overreach fix",
       "keywords": [
+        "feature",
+        "specification",
         "040",
         "v-rule",
-        "V8",
         "cross-spec",
-        "ADR",
-        "decision-record",
-        "spec-folder"
+        "overreach",
+        "fix"
       ],
-      "lastUpdated": "2026-05-14T15:37:00Z"
+      "lastUpdated": "2026-05-23T09:08:53.370Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/042-cocoindex-ipc-observability",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/042-cocoindex-ipc-observability",
       "description": "Feature Specification: 041 CocoIndex IPC Observability",
       "keywords": [
         "feature",
@@ -9007,10 +9500,10 @@
         "ipc",
         "observability"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.445Z"
+      "lastUpdated": "2026-05-23T09:08:51.407Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/043-cocoindex-refresh-split",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/043-cocoindex-refresh-split",
       "description": "Feature Specification: 042 CocoIndex Refresh/Search Split",
       "keywords": [
         "feature",
@@ -9021,10 +9514,10 @@
         "search",
         "split"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.449Z"
+      "lastUpdated": "2026-05-23T09:08:54.521Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/044-suite-revalidation",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/044-suite-revalidation",
       "description": "Feature Specification: 043 Suite Revalidation",
       "keywords": [
         "feature",
@@ -9033,23 +9526,23 @@
         "suite",
         "revalidation"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.455Z"
+      "lastUpdated": "2026-05-23T09:08:57.651Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/045-template-contract-divergence",
-      "description": "Align memory_save template-contract enforcement with strict validation for canonical V2.2 spec docs.",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/045-template-contract-divergence",
+      "description": "Feature Specification: 044 Template contract divergence",
       "keywords": [
-        "memory_save",
-        "strict-validate",
-        "template-contract",
-        "spec-doc-health",
-        "manual-fallback",
-        "canonical-spec-doc"
+        "feature",
+        "specification",
+        "044",
+        "template",
+        "contract",
+        "divergence"
       ],
-      "lastUpdated": "2026-05-14T16:49:00Z"
+      "lastUpdated": "2026-05-23T09:09:00.515Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/046-shared-daemon-suite-runner",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/046-shared-daemon-suite-runner",
       "description": "Feature Specification: 045 Shared Daemon Suite Runner",
       "keywords": [
         "feature",
@@ -9060,41 +9553,35 @@
         "suite",
         "runner"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.460Z"
+      "lastUpdated": "2026-05-23T09:09:02.705Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/047-handover-anchor-naming",
-      "description": "Align handover_state routing with the canonical session-notes handover anchor and verify the planner path.",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/047-handover-anchor-naming",
+      "description": "Feature Specification: Handover Anchor Naming Alignment",
       "keywords": [
-        "align",
-        "routing",
-        "canonical",
-        "session-notes",
+        "feature",
+        "specification",
         "handover",
         "anchor",
-        "verify",
-        "planner",
-        "path"
+        "naming",
+        "alignment"
       ],
-      "lastUpdated": "2026-05-14T16:56:27.036Z"
+      "lastUpdated": "2026-05-23T09:08:54.204Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/048-v8-dominates-relaxation",
-      "description": "Relax V8 foreign-spec dominance detection for high-cross-reference docs and parent handovers while preserving strict generic-doc detection.",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/048-v8-dominates-relaxation",
+      "description": "Feature Specification: 047 V8 Dominates Relaxation",
       "keywords": [
-        "v8",
+        "feature",
+        "specification",
+        "047",
         "dominates",
-        "foreign-spec",
-        "handover",
-        "parent",
-        "allowlist",
-        "threshold",
-        "validator"
+        "relaxation"
       ],
-      "lastUpdated": "2026-05-14T17:16:00.000Z"
+      "lastUpdated": "2026-05-23T09:08:50.526Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/049-substrate-stress-coverage",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/049-substrate-stress-coverage",
       "description": "Feature Specification: 049 Substrate Stress Coverage",
       "keywords": [
         "feature",
@@ -9104,82 +9591,84 @@
         "stress",
         "coverage"
       ],
-      "lastUpdated": "2026-05-15T06:21:30.150Z"
+      "lastUpdated": "2026-05-23T09:08:59.274Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/050-all-skills-alignment-sweep",
-      "description": "All Skills Alignment Sweep",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/050-all-skills-alignment-sweep",
+      "description": "Feature Specification: All Skills Alignment Sweep",
       "keywords": [
+        "feature",
+        "specification",
         "skills",
         "alignment",
         "sweep"
       ],
-      "lastUpdated": "2026-05-15T06:25:16.000Z"
+      "lastUpdated": "2026-05-23T09:08:59.590Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/051-runtime-config-mk-code-index-parity-plus-findings",
-      "description": "Runtime config mk-code-index parity and bounded deep-review finding remediation",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/051-runtime-config-mk-code-index-parity-plus-findings",
+      "description": "Feature Specification: Runtime config mk-code-index parity plus findings",
       "keywords": [
+        "feature",
+        "specification",
         "runtime",
         "config",
         "mk-code-index",
         "parity",
-        "bounded",
-        "deep-review",
-        "finding",
-        "remediation"
+        "plus",
+        "findings"
       ],
-      "lastUpdated": "2026-05-15T06:25:16.000Z"
+      "lastUpdated": "2026-05-23T09:08:56.378Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/052-mk-spec-memory-rename",
-      "description": "Phase 1: rename-mcp-namespace-mk-spec-memory",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/052-mk-spec-memory-rename",
+      "description": "Rename MCP namespace to mk-spec-memory",
       "keywords": [
-        "phase",
-        "rename-mcp-namespace-mk-spec-memory"
-      ],
-      "lastUpdated": "2026-05-15T08:21:32.558Z"
-    },
-    {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/053-mk-spec-memory-rename-remediation",
-      "description": "Remediate 052 mk-spec-memory rename deep-review findings",
-      "keywords": [
-        "mk-spec-memory",
         "rename",
-        "remediation",
+        "mcp",
+        "namespace",
+        "mk-spec-memory"
+      ],
+      "lastUpdated": "2026-05-23T09:08:48.500Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/053-mk-spec-memory-rename-remediation",
+      "description": "Remediate 052 Deep-Review Findings",
+      "keywords": [
+        "remediate",
+        "052",
         "deep-review",
-        "namespace"
+        "findings"
       ],
-      "lastUpdated": "2026-05-15T06:25:16.000Z"
+      "lastUpdated": "2026-05-23T09:08:50.802Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/054-root-readme-deep-research",
-      "description": "Deep-research follow-on to Phase D's single-pass root README audit. Runs 20 cli-devin SWE 1.6 iterations clustered into 7 thematic tracks (counts/inventories, claim accuracy, HVR voice, diagrams, external refs/footer, FAQ/Quick Start, cross-runtime + residual). Synthesizes findings into a verified delta. Sonnet @markdown applies HVR-compliant surgical edits to ./README.md.",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/054-root-readme-deep-research",
+      "description": "056: Root README deep-research realignment",
       "keywords": [
-        "root-readme",
+        "056",
+        "root",
+        "readme",
         "deep-research",
-        "cli-devin-swe-1-6",
-        "hvr-sk-doc-style",
-        "sonnet-markdown-writer",
-        "20-iteration-sweep"
+        "realignment"
       ],
-      "lastUpdated": "2026-05-15T13:35:00Z"
+      "lastUpdated": "2026-05-23T09:08:53.919Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/055-cli-devin-deep-loop-alignment",
-      "description": "Translate the 056 + 058 cli-devin SWE 1.6 deep-loop retrospective into actionable updates across 6 surfaces: extend /spec_kit:deep-research + /spec_kit:deep-review executor enum to include cli-devin; add SWE-1.6-specific iter contract sections to @deep-research + @deep-review agents and to cli-devin/SKILL.md; author 2 new cli-devin references (deep-loop-iter-contract, agent-config-recipes) and 3 new assets (iter template + 2 SWE-1.6-locked agent-config JSONs for --agent-config flag).",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/055-cli-devin-deep-loop-alignment",
+      "description": "059: cli-devin deep-loop alignment across 6 surfaces",
       "keywords": [
+        "059",
         "cli-devin",
-        "deep-research-executor",
-        "deep-review-executor",
-        "swe-1.6-iter-contract",
-        "devin-agent-config",
-        "phase-059"
+        "deep-loop",
+        "alignment",
+        "across",
+        "surfaces"
       ],
-      "lastUpdated": "2026-05-15T19:00:00Z"
+      "lastUpdated": "2026-05-23T09:09:01.138Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack",
       "description": "016/001: mk-spec-memory stack (phase parent)",
       "keywords": [
         "016",
@@ -9189,10 +9678,10 @@
         "phase",
         "parent"
       ],
-      "lastUpdated": "2026-05-22T05:51:15.965Z"
+      "lastUpdated": "2026-05-23T09:08:16.202Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/001-adapter-interface",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/001-adapter-interface",
       "description": "016/001: EmbedderAdapter interface + EmbedderRegistry",
       "keywords": [
         "016",
@@ -9201,10 +9690,10 @@
         "interface",
         "embedderregistry"
       ],
-      "lastUpdated": "2026-05-17T12:55:57.028Z"
+      "lastUpdated": "2026-05-23T09:08:26.367Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/002-ollama-backend-and-multi-dim-schema",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/002-ollama-backend-and-multi-dim-schema",
       "description": "016/002: Ollama backend adapter + dim-tagged vec schema",
       "keywords": [
         "016",
@@ -9216,10 +9705,10 @@
         "vec",
         "schema"
       ],
-      "lastUpdated": "2026-05-17T12:55:57.032Z"
+      "lastUpdated": "2026-05-23T09:08:29.040Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/003-mcp-tools-and-reindex",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/003-mcp-tools-and-reindex",
       "description": "016/003: Embedder MCP tools + re-index orchestrator",
       "keywords": [
         "016",
@@ -9230,10 +9719,10 @@
         "re-index",
         "orchestrator"
       ],
-      "lastUpdated": "2026-05-17T12:55:57.037Z"
+      "lastUpdated": "2026-05-23T09:08:26.085Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off",
       "description": "016/004: mk-spec-memory text-embedder bake-off (6 candidates) + retrieval-rescue layer + cat-24/409 closure",
       "keywords": [
         "016",
@@ -9248,10 +9737,10 @@
         "409",
         "closure"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.472Z"
+      "lastUpdated": "2026-05-23T09:08:31.199Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/006-ollama-encode-path-wiring",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/006-ollama-encode-path-wiring",
       "description": "016/002/006: Ollama encode-path wiring",
       "keywords": [
         "016",
@@ -9261,10 +9750,10 @@
         "encode-path",
         "wiring"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.478Z"
+      "lastUpdated": "2026-05-23T09:08:30.613Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/007-auto-embedder-selection-and-llama-cpp-purge",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/007-auto-embedder-selection-and-llama-cpp-purge",
       "description": "Spec: 016/002/007 Auto-Embedder Selection + llama-cpp Purge",
       "keywords": [
         "spec",
@@ -9276,67 +9765,46 @@
         "llama-cpp",
         "purge"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.482Z"
+      "lastUpdated": "2026-05-23T09:08:29.675Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/008-byte-aware-health-telemetry",
-      "description": "Byte-aware health telemetry for context-server memory attribution, opt-in heap snapshots, cache byte estimates, and explicit V8 old-space cap support.",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/008-byte-aware-health-telemetry",
+      "description": "Feature Specification: Byte-Aware Health Telemetry",
       "keywords": [
+        "feature",
+        "specification",
         "byte-aware",
         "health",
-        "telemetry",
-        "context-server",
-        "memory",
-        "attribution",
-        "opt-in",
-        "heap",
-        "snapshots",
-        "cache",
-        "byte",
-        "estimates",
-        "explicit",
-        "old-space",
-        "cap",
-        "support"
-      ],
-      "lastUpdated": "2026-05-18T21:10:35.316Z"
-    },
-    {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/009-byte-bounded-embedding-cache",
-      "description": "Byte-bounded profile-aware document/query embedding cache with real health byte telemetry.",
-      "keywords": [
-        "byte-bounded",
-        "profile-aware",
-        "document",
-        "query",
-        "embedding",
-        "cache",
-        "real",
-        "health",
-        "byte",
         "telemetry"
       ],
-      "lastUpdated": "2026-05-18T21:38:59.837Z"
+      "lastUpdated": "2026-05-23T09:08:26.943Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/010-embedder-sidecar-execution",
-      "description": "Lazy child-process sidecar execution for heavy local embedder runtimes with MCP-owned cache and vector writes.",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/009-byte-bounded-embedding-cache",
+      "description": "Feature Specification: Byte-Bounded Embedding Cache",
       "keywords": [
+        "feature",
+        "specification",
+        "byte-bounded",
+        "embedding",
+        "cache"
+      ],
+      "lastUpdated": "2026-05-23T09:08:29.982Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/010-embedder-sidecar-execution",
+      "description": "Feature Specification: Embedder Sidecar Execution",
+      "keywords": [
+        "feature",
+        "specification",
         "embedder",
         "sidecar",
-        "hf-local",
-        "local",
-        "execution",
-        "child-process",
-        "rss",
-        "memory",
-        "health",
-        "worker"
+        "execution"
       ],
-      "lastUpdated": "2026-05-19T00:15:00.000Z"
+      "lastUpdated": "2026-05-23T09:08:30.312Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/011-lazy-startup-gating",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/011-lazy-startup-gating",
       "description": "Feature Specification: Lazy Startup Gating",
       "keywords": [
         "feature",
@@ -9345,10 +9813,10 @@
         "startup",
         "gating"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.488Z"
+      "lastUpdated": "2026-05-23T09:08:28.441Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/012-canonical-vector-shard-split",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/012-canonical-vector-shard-split",
       "description": "Feature Specification: Canonical Vector Shard Split",
       "keywords": [
         "feature",
@@ -9358,10 +9826,10 @@
         "shard",
         "split"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.497Z"
+      "lastUpdated": "2026-05-23T09:08:27.552Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/013-bm25-fts5-rag-fusion-investigation",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/013-bm25-fts5-rag-fusion-investigation",
       "description": "Feature Specification: BM25 FTS5 RAG Fusion Investigation",
       "keywords": [
         "feature",
@@ -9372,10 +9840,10 @@
         "fusion",
         "investigation"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.505Z"
+      "lastUpdated": "2026-05-23T09:08:30.906Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/014-fts5-default-lexical-with-guardrails",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/014-fts5-default-lexical-with-guardrails",
       "description": "Feature Specification: FTS5 Default Lexical With Guardrails",
       "keywords": [
         "feature",
@@ -9385,10 +9853,10 @@
         "lexical",
         "guardrails"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.510Z"
+      "lastUpdated": "2026-05-23T09:08:27.858Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/015-cascade-reorder-and-nomic-hf-local-default",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/015-cascade-reorder-and-nomic-hf-local-default",
       "description": "Spec: 016/002/015 Local-First Cascade Reorder + Nomic hf-local Default (ADR-014)",
       "keywords": [
         "spec",
@@ -9403,29 +9871,31 @@
         "default",
         "adr-014"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.519Z"
+      "lastUpdated": "2026-05-23T09:08:27.261Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/016-reindex-populates-vec-memories-knn-table",
-      "description": "Phase 1: reindex-populates-vec-memories-knn-table",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/016-reindex-populates-vec-memories-knn-table",
+      "description": "Feature Specification: Phase 1: reindex-populates-vec-memories-knn-table",
       "keywords": [
+        "feature",
+        "specification",
         "phase",
         "reindex-populates-vec-memories-knn-table"
       ],
-      "lastUpdated": "2026-05-19T19:14:13.717Z"
+      "lastUpdated": "2026-05-23T09:08:28.159Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/017-factory-shard-fallback-for-hf-voyage-openai",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/017-factory-shard-fallback-for-hf-voyage-openai",
       "description": "Feature Specification: factory-shard-fallback-for-hf-voyage-openai",
       "keywords": [
         "feature",
         "specification",
         "factory-shard-fallback-for-hf-voyage-openai"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.525Z"
+      "lastUpdated": "2026-05-23T09:08:28.753Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/018-constitutional-quality-gate-exemption",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/018-constitutional-quality-gate-exemption",
       "description": "Feature Specification: Phase 1: constitutional-quality-gate-exemption",
       "keywords": [
         "feature",
@@ -9433,10 +9903,10 @@
         "phase",
         "constitutional-quality-gate-exemption"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.533Z"
+      "lastUpdated": "2026-05-23T09:08:26.640Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/019-lineage-and-metadata-repair-runner",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/019-lineage-and-metadata-repair-runner",
       "description": "Feature Specification: Lineage and Metadata Repair Runner",
       "keywords": [
         "feature",
@@ -9446,31 +9916,10 @@
         "repair",
         "runner"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.538Z"
+      "lastUpdated": "2026-05-23T09:08:29.347Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/020-cli-process-memory-leak-deep-research",
-      "description": "CLI process memory leak deep research packet for 10 telemetry-gated /spec_kit:deep-research iterations across system-spec-kit and cli-X dispatchers.",
-      "keywords": [
-        "cli",
-        "process",
-        "memory",
-        "leak",
-        "deep",
-        "research",
-        "packet",
-        "telemetry-gated",
-        "deep-research",
-        "iterations",
-        "across",
-        "system-spec-kit",
-        "cli-x",
-        "dispatchers"
-      ],
-      "lastUpdated": "2026-05-22T05:50:49.521Z"
-    },
-    {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/003-skill-advisor-stack",
       "description": "022: Skill-advisor embedder parity (phase parent)",
       "keywords": [
         "022",
@@ -9480,22 +9929,24 @@
         "phase",
         "parent"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.544Z"
+      "lastUpdated": "2026-05-23T09:08:16.479Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack/001-pluggable-architecture",
-      "description": "EmbedderAdapter + MANIFESTS + schema for skill-advisor",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/003-skill-advisor-stack/001-pluggable-architecture",
+      "description": "Spec: 022/001 Pluggable embedder architecture for skill-advisor",
       "keywords": [
+        "spec",
+        "022",
+        "001",
         "pluggable",
-        "adapter",
-        "registry",
-        "vec-metadata",
+        "embedder",
+        "architecture",
         "skill-advisor"
       ],
-      "lastUpdated": "2026-05-17T21:25:00.000Z"
+      "lastUpdated": "2026-05-23T09:08:32.116Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack/002-jina-swap-and-reindex",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/003-skill-advisor-stack/002-jina-swap-and-reindex",
       "description": "Spec: 022/002 Jina-v3 swap + skill-graph reindex",
       "keywords": [
         "spec",
@@ -9506,21 +9957,23 @@
         "skill-graph",
         "reindex"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.550Z"
+      "lastUpdated": "2026-05-23T09:08:31.809Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack/003-install-guide-docs",
-      "description": "Skill-advisor INSTALL_GUIDE + README for new-user onboarding",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/003-skill-advisor-stack/003-install-guide-docs",
+      "description": "Spec: 022/003 Skill-advisor INSTALL_GUIDE + README docs",
       "keywords": [
-        "install-guide",
-        "readme",
+        "spec",
+        "022",
+        "003",
         "skill-advisor",
-        "embedder-docs"
+        "readme",
+        "docs"
       ],
-      "lastUpdated": "2026-05-17T21:25:00.000Z"
+      "lastUpdated": "2026-05-23T09:08:32.758Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack/004-skill-graph-db-writer-cross-wire",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/003-skill-advisor-stack/004-skill-graph-db-writer-cross-wire",
       "description": "Spec: 010/004 skill-graph-db Writer Cross-Wire to EmbedderAdapter Layer",
       "keywords": [
         "spec",
@@ -9532,10 +9985,10 @@
         "embedderadapter",
         "layer"
       ],
-      "lastUpdated": "2026-05-17T22:02:52.268Z"
+      "lastUpdated": "2026-05-23T09:08:32.458Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/003-skill-advisor-stack/006-shared-embedder-logic-with-spec-memory",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/003-skill-advisor-stack/006-shared-embedder-logic-with-spec-memory",
       "description": "Spec: shared embedder logic with spec-memory",
       "keywords": [
         "spec",
@@ -9544,10 +9997,10 @@
         "logic",
         "spec-memory"
       ],
-      "lastUpdated": "2026-05-21T18:08:46.928Z"
+      "lastUpdated": "2026-05-23T09:08:31.498Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack",
       "description": "018: Code embedder swap to nomic-ai/CodeRankEmbed (phase parent)",
       "keywords": [
         "018",
@@ -9559,49 +10012,50 @@
         "phase",
         "parent"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.562Z"
+      "lastUpdated": "2026-05-23T09:08:15.918Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/001-cocoindex-swap",
-      "description": "CocoIndex embedder default flip + MPS auto-detect patch",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/001-cocoindex-swap",
+      "description": "Spec: 018/001 CocoIndex embedder swap to jina-code",
       "keywords": [
+        "spec",
+        "018",
+        "001",
         "cocoindex",
         "embedder",
         "swap",
-        "coderank",
-        "mps",
-        "config"
+        "jina-code"
       ],
-      "lastUpdated": "2026-05-17T18:50:00.000Z"
+      "lastUpdated": "2026-05-23T09:08:33.065Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/002-baseline-fixture",
-      "description": "Deterministic code-retrieval fixture for embedder benchmarking",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/002-baseline-fixture",
+      "description": "Spec: 018/002 Code-retrieval baseline fixture",
       "keywords": [
-        "fixture",
+        "spec",
+        "018",
+        "002",
         "code-retrieval",
         "baseline",
-        "benchmark",
-        "deterministic"
+        "fixture"
       ],
-      "lastUpdated": "2026-05-17T18:50:00.000Z"
+      "lastUpdated": "2026-05-23T09:08:38.270Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/003-comparison-measure",
-      "description": "Comparison measurement + ADR-001 ratifying CocoIndex embedder choice",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/003-comparison-measure",
+      "description": "Spec: 018/003 Comparison + ADR-001 ratification",
       "keywords": [
+        "spec",
+        "018",
+        "003",
         "comparison",
-        "measurement",
-        "adr",
-        "cocoindex",
-        "embedder",
-        "benchmark",
+        "adr-001",
         "ratification"
       ],
-      "lastUpdated": "2026-05-17T18:50:00.000Z"
+      "lastUpdated": "2026-05-23T09:08:35.505Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off",
       "description": "Spec: 016/006/004 Extended Code-Embedder Bake-Off",
       "keywords": [
         "spec",
@@ -9612,34 +10066,36 @@
         "code-embedder",
         "bake-off"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.568Z"
+      "lastUpdated": "2026-05-23T09:08:36.907Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/005-declarative-registry",
-      "description": "CocoIndex embedder metadata catalog",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/005-declarative-registry",
+      "description": "Spec: 019/001 Declarative embedder registry for CocoIndex",
       "keywords": [
-        "registry",
+        "spec",
+        "019",
+        "001",
+        "declarative",
         "embedder",
-        "catalog",
-        "metadata",
+        "registry",
         "cocoindex"
       ],
-      "lastUpdated": "2026-05-17T20:20:00.000Z"
+      "lastUpdated": "2026-05-23T09:08:35.886Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/006-install-guide-updates",
-      "description": "INSTALL_GUIDE + README updates for new-user embedder choice",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/006-install-guide-updates",
+      "description": "Spec: 019/002 INSTALL_GUIDE + README updates",
       "keywords": [
-        "install-guide",
+        "spec",
+        "019",
+        "002",
         "readme",
-        "onboarding",
-        "embedder",
-        "documentation"
+        "updates"
       ],
-      "lastUpdated": "2026-05-17T20:20:00.000Z"
+      "lastUpdated": "2026-05-23T09:08:33.696Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/007-reranker-integration",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/007-reranker-integration",
       "description": "Spec: 016/011/001-reranker-integration — Reranker Integration",
       "keywords": [
         "spec",
@@ -9649,10 +10105,10 @@
         "reranker",
         "integration"
       ],
-      "lastUpdated": "2026-05-18T05:13:45.663Z"
+      "lastUpdated": "2026-05-23T09:08:34.304Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/008-chunking-strategy-tuning",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/008-chunking-strategy-tuning",
       "description": "Spec: 016/011/002-chunking-strategy-tuning — Chunking Strategy Tuning",
       "keywords": [
         "spec",
@@ -9663,10 +10119,10 @@
         "strategy",
         "tuning"
       ],
-      "lastUpdated": "2026-05-18T05:13:46.123Z"
+      "lastUpdated": "2026-05-23T09:08:34.610Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/009-hybrid-search-bm25-fusion",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/009-hybrid-search-bm25-fusion",
       "description": "Spec: 016/011/003-hybrid-search-bm25-fusion — Hybrid Search (BM25 + Semantic Fusion)",
       "keywords": [
         "spec",
@@ -9679,10 +10135,10 @@
         "semantic",
         "fusion"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.574Z"
+      "lastUpdated": "2026-05-23T09:08:38.901Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/010-daemon-resilience",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/010-daemon-resilience",
       "description": "Feature Specification: CocoIndex daemon resilience",
       "keywords": [
         "feature",
@@ -9691,10 +10147,10 @@
         "daemon",
         "resilience"
       ],
-      "lastUpdated": "2026-05-08T08:26:57.809Z"
+      "lastUpdated": "2026-05-23T09:08:35.211Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation",
       "description": "Spec: 016/004/011 Rerank Model Fit Investigation",
       "keywords": [
         "spec",
@@ -9706,10 +10162,10 @@
         "fit",
         "investigation"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.579Z"
+      "lastUpdated": "2026-05-23T09:08:36.276Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-10-probes",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-10-probes",
       "description": "Spec: 016/004/012 Fixture Audit (probe 10 first; full 18 second)",
       "keywords": [
         "spec",
@@ -9723,10 +10179,10 @@
         "full",
         "second"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.584Z"
+      "lastUpdated": "2026-05-23T09:08:39.236Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit",
       "description": "Spec: 016/004/013 Bench Harness Hardening + Full Fixture Audit",
       "keywords": [
         "spec",
@@ -9740,10 +10196,10 @@
         "fixture",
         "audit"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.590Z"
+      "lastUpdated": "2026-05-23T09:08:37.224Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/014-mirror-dedup-canonical-preference",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/014-mirror-dedup-canonical-preference",
       "description": "Spec: 016/004/014 Mirror Dedup with Canonical Preference",
       "keywords": [
         "spec",
@@ -9755,10 +10211,10 @@
         "canonical",
         "preference"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.596Z"
+      "lastUpdated": "2026-05-23T09:08:37.510Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/015-code-aware-chunking-tree-sitter",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/015-code-aware-chunking-tree-sitter",
       "description": "Spec: 016/004/015 Code-Aware (Tree-Sitter) Chunking — Stage B",
       "keywords": [
         "spec",
@@ -9770,10 +10226,10 @@
         "chunking",
         "stage"
       ],
-      "lastUpdated": "2026-05-20T05:03:42.687Z"
+      "lastUpdated": "2026-05-23T09:08:33.376Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/016-query-expansion-identifier-bridging",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/016-query-expansion-identifier-bridging",
       "description": "Spec: 016/004/016 Query Expansion — Identifier Bridging",
       "keywords": [
         "spec",
@@ -9784,10 +10240,10 @@
         "identifier",
         "bridging"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.601Z"
+      "lastUpdated": "2026-05-23T09:08:38.585Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/017-hybrid-fusion-empirical-recalibration",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/017-hybrid-fusion-empirical-recalibration",
       "description": "Spec: 016/004/017 Hybrid Fusion — Empirical RRF Recalibration",
       "keywords": [
         "spec",
@@ -9800,10 +10256,10 @@
         "rrf",
         "recalibration"
       ],
-      "lastUpdated": "2026-05-20T05:03:42.965Z"
+      "lastUpdated": "2026-05-23T09:08:34.916Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/018-rerank-matrix-rebench",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/018-rerank-matrix-rebench",
       "description": "Spec: 016/004/018 Rerank Matrix Re-Bench",
       "keywords": [
         "spec",
@@ -9814,42 +10270,34 @@
         "matrix",
         "re-bench"
       ],
-      "lastUpdated": "2026-05-20T05:03:43.233Z"
+      "lastUpdated": "2026-05-23T09:08:33.997Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/020-deep-review-p1-p2-remediation",
-      "description": "Remediate all nine P1 findings from the 019 deep-review across mcp-coco-index defaults, reranker robustness, daemon failure reporting, benchmark evidence handling, operator docs, hybrid boost calibration, and query-expansion RCA.",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/020-deep-review-p1-p2-remediation",
+      "description": "Spec: 020 Deep Review P1/P2 Remediation",
       "keywords": [
-        "mcp-coco-index",
-        "deep-review",
-        "P1",
-        "CodeRankEmbed",
-        "Jina",
-        "hybrid",
-        "RRF",
+        "spec",
+        "020",
+        "deep",
+        "review",
         "remediation"
       ],
-      "lastUpdated": "2026-05-19T18:17:10Z"
+      "lastUpdated": "2026-05-23T09:08:37.877Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots",
-      "description": "Phase parent for the 8-packet mcp-coco-index follow-on arc covering request budgets, retrieval observability, upstream drift, metadata fingerprints, doctor UX, registry metadata, calibration evidence, and deferred vec0 storage work.",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots",
+      "description": "Deep Research Arc Blind Spots",
       "keywords": [
-        "023",
-        "mcp-coco-index",
-        "deep-research",
-        "retrieval",
-        "observability",
-        "request-budget",
-        "metadata-fingerprint",
-        "fixture-calibration",
-        "upstream-drift",
-        "vec0"
+        "deep",
+        "research",
+        "arc",
+        "blind",
+        "spots"
       ],
-      "lastUpdated": "2026-05-20T09:11:27Z"
+      "lastUpdated": "2026-05-23T09:08:36.589Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/001-request-budget-hardening",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/001-request-budget-hardening",
       "description": "Spec: 023E Request Budget Hardening",
       "keywords": [
         "spec",
@@ -9858,10 +10306,10 @@
         "budget",
         "hardening"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.607Z"
+      "lastUpdated": "2026-05-23T09:09:08.774Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/002-retrieval-observability",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/002-retrieval-observability",
       "description": "Feature Specification: 023C Retrieval Observability",
       "keywords": [
         "feature",
@@ -9870,10 +10318,10 @@
         "retrieval",
         "observability"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.611Z"
+      "lastUpdated": "2026-05-23T09:09:06.929Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/003-upstream-rebase-spike",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/003-upstream-rebase-spike",
       "description": "Feature Specification: 023F Upstream cocoindex-code Rebase Spike",
       "keywords": [
         "feature",
@@ -9884,10 +10332,10 @@
         "rebase",
         "spike"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.622Z"
+      "lastUpdated": "2026-05-23T09:09:08.183Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/004-metadata-fingerprint",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/004-metadata-fingerprint",
       "description": "Feature Specification: 023A1 Metadata Fingerprint",
       "keywords": [
         "feature",
@@ -9896,10 +10344,10 @@
         "metadata",
         "fingerprint"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.631Z"
+      "lastUpdated": "2026-05-23T09:09:09.080Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/005-doctor-model-swap-ux",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/005-doctor-model-swap-ux",
       "description": "Feature Specification: 023D Doctor Model Swap UX",
       "keywords": [
         "feature",
@@ -9909,10 +10357,10 @@
         "model",
         "swap"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.637Z"
+      "lastUpdated": "2026-05-23T09:09:07.246Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/006-prompt-license-registry",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/006-prompt-license-registry",
       "description": "Feature Specification: 023A2 Prompt License Registry",
       "keywords": [
         "feature",
@@ -9922,10 +10370,10 @@
         "license",
         "registry"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.642Z"
+      "lastUpdated": "2026-05-23T09:09:07.549Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/007-fixture-calibration",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/007-fixture-calibration",
       "description": "Feature Specification: 023B Fixture Calibration",
       "keywords": [
         "feature",
@@ -9934,10 +10382,10 @@
         "fixture",
         "calibration"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.647Z"
+      "lastUpdated": "2026-05-23T09:09:09.371Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/008-vec0-migration-fix-deferred",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/008-vec0-migration-fix-deferred",
       "description": "Spec: 023/008 Vec0 Migration Fix Deferred",
       "keywords": [
         "spec",
@@ -9948,36 +10396,24 @@
         "fix",
         "deferred"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.652Z"
+      "lastUpdated": "2026-05-23T09:09:07.863Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/010-public-repo-docs-alignment",
-      "description": "Public Repo Docs Alignment",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/010-public-repo-docs-alignment",
+      "description": "Feature Specification: 010 Public Repo Docs Alignment",
       "keywords": [
+        "feature",
+        "specification",
+        "010",
         "public",
         "repo",
         "docs",
         "alignment"
       ],
-      "lastUpdated": "2026-05-20T15:26:01.430Z"
+      "lastUpdated": "2026-05-23T09:09:08.487Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/024-cli-deep-research-memory-leak-audit",
-      "description": "Spec: 024 CLI Deep Research Memory Leak Audit",
-      "keywords": [
-        "spec",
-        "024",
-        "cli",
-        "deep",
-        "research",
-        "memory",
-        "leak",
-        "audit"
-      ],
-      "lastUpdated": "2026-05-22T05:51:31.038Z"
-    },
-    {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/005-cross-cutting-quality",
       "description": "016/005: Cross-cutting quality (phase parent)",
       "keywords": [
         "016",
@@ -9987,10 +10423,10 @@
         "phase",
         "parent"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.658Z"
+      "lastUpdated": "2026-05-23T09:08:17.369Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit",
       "description": "017: Playbook quality audit",
       "keywords": [
         "017",
@@ -9998,10 +10434,10 @@
         "quality",
         "audit"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.663Z"
+      "lastUpdated": "2026-05-23T09:09:04.543Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/001-fairness-audit",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/001-fairness-audit",
       "description": "017/001: Playbook fairness audit",
       "keywords": [
         "017",
@@ -10010,10 +10446,10 @@
         "fairness",
         "audit"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.669Z"
+      "lastUpdated": "2026-05-23T09:09:13.408Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/002-tool-coverage-audit",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/002-tool-coverage-audit",
       "description": "017/002: Tool-surface coverage audit",
       "keywords": [
         "017",
@@ -10022,10 +10458,10 @@
         "coverage",
         "audit"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.674Z"
+      "lastUpdated": "2026-05-23T09:09:12.735Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/003-scenario-expansion",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/003-scenario-expansion",
       "description": "017/003: Scenario expansion",
       "keywords": [
         "017",
@@ -10033,10 +10469,10 @@
         "scenario",
         "expansion"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.679Z"
+      "lastUpdated": "2026-05-23T09:09:13.071Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/002-deep-review-stack",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/005-cross-cutting-quality/002-deep-review-stack",
       "description": "Spec: 020 Deep-review of 016-019 stack via cli-devin SWE 1.6",
       "keywords": [
         "spec",
@@ -10048,10 +10484,10 @@
         "cli-devin",
         "swe"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.685Z"
+      "lastUpdated": "2026-05-23T09:09:03.631Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment",
       "description": "021: Skill docs alignment for 016-019 changes (phase parent)",
       "keywords": [
         "021",
@@ -10063,45 +10499,51 @@
         "phase",
         "parent"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.690Z"
+      "lastUpdated": "2026-05-23T09:09:04.820Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment/001-skill-mds-audit",
-      "description": "Skill MDs / README / references / assets audit for stale embedder + architecture refs",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment/001-skill-mds-audit",
+      "description": "Spec: 021/001 Skill MDs audit for stale 016-019 refs",
       "keywords": [
+        "spec",
+        "021",
+        "001",
+        "skill",
+        "mds",
         "audit",
-        "skill-md",
-        "stale-refs",
-        "embedder",
-        "explore-agent"
+        "stale",
+        "016-019",
+        "refs"
       ],
-      "lastUpdated": "2026-05-17T20:40:00.000Z"
+      "lastUpdated": "2026-05-23T09:09:14.139Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment/002-root-readme-update",
-      "description": "Root README refresh for 016-019 changes",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment/002-root-readme-update",
+      "description": "Spec: 021/002 Root README update",
       "keywords": [
-        "root-readme",
-        "refresh",
-        "embedder",
-        "architecture"
+        "spec",
+        "021",
+        "002",
+        "root",
+        "readme",
+        "update"
       ],
-      "lastUpdated": "2026-05-17T20:40:00.000Z"
+      "lastUpdated": "2026-05-23T09:09:13.785Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment/003-embedder-pluggability-narrative",
-      "description": "Canonical embedder-pluggability narrative covering both MCPs out-of-box",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment/003-embedder-pluggability-narrative",
+      "description": "Spec: 021/003 Embedder-pluggability narrative",
       "keywords": [
-        "narrative",
-        "embedder",
-        "pluggability",
-        "out-of-box",
-        "opus-agent"
+        "spec",
+        "021",
+        "003",
+        "embedder-pluggability",
+        "narrative"
       ],
-      "lastUpdated": "2026-05-17T20:40:00.000Z"
+      "lastUpdated": "2026-05-23T09:09:14.488Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/004-skill-local-benchmarks-format",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/005-cross-cutting-quality/004-skill-local-benchmarks-format",
       "description": "016/005/004: Skill-local `benchmarks/` folder format + report promotion",
       "keywords": [
         "016",
@@ -10114,10 +10556,10 @@
         "report",
         "promotion"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.695Z"
+      "lastUpdated": "2026-05-23T09:09:03.313Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/005-cocoindex-install-hygiene",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/005-cross-cutting-quality/005-cocoindex-install-hygiene",
       "description": "016/005/005: CocoIndex install hygiene",
       "keywords": [
         "016",
@@ -10126,38 +10568,28 @@
         "install",
         "hygiene"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.700Z"
+      "lastUpdated": "2026-05-23T09:09:03.936Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/006-benchmark-format-to-sk-doc",
-      "description": "Invert ownership of benchmark format mechanics so sk-doc becomes single source of truth and sibling MCP skills retain only dated result folders plus s",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/005-cross-cutting-quality/006-benchmark-format-to-sk-doc",
+      "description": "Feature Specification: Consolidate benchmark format mechanics into a single sk-doc reference following the *_creation.md pattern",
       "keywords": [
-        "invert",
-        "ownership",
+        "feature",
+        "specification",
+        "consolidate",
         "benchmark",
         "format",
         "mechanics",
-        "sk-doc",
-        "becomes",
         "single",
-        "source",
-        "truth",
-        "sibling",
-        "mcp",
-        "skills",
-        "retain",
-        "only",
-        "dated",
-        "result",
-        "folders",
-        "plus",
-        "stack-specific",
-        "scripts"
+        "sk-doc",
+        "reference",
+        "following",
+        "pattern"
       ],
-      "lastUpdated": "2026-05-19T12:49:55.502Z"
+      "lastUpdated": "2026-05-23T09:09:03.005Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/007-cocoindex-install-hygiene-pipx-repair",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/005-cross-cutting-quality/007-cocoindex-install-hygiene-pipx-repair",
       "description": "Spec: CocoIndex install hygiene pipx repair",
       "keywords": [
         "spec",
@@ -10167,23 +10599,22 @@
         "pipx",
         "repair"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.705Z"
+      "lastUpdated": "2026-05-23T09:09:04.254Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/008-spec-memory-vitest-stabilization",
-      "description": "Spec: spec-memory vitest suite stabilization (scaffold-only)",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/005-cross-cutting-quality/008-spec-memory-vitest-stabilization",
+      "description": "Spec: spec-memory vitest suite stabilization",
       "keywords": [
-        "vitest",
-        "test-stabilization",
+        "spec",
         "spec-memory",
-        "mock-exports",
-        "fixture-drift",
-        "scaffold-only"
+        "vitest",
+        "suite",
+        "stabilization"
       ],
-      "lastUpdated": "2026-05-21T13:50:00Z"
+      "lastUpdated": "2026-05-23T09:08:39.560Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency",
       "description": "MCP Launcher Concurrency Arc",
       "keywords": [
         "mcp",
@@ -10191,10 +10622,10 @@
         "concurrency",
         "arc"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.710Z"
+      "lastUpdated": "2026-05-23T09:08:16.754Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/001-concurrent-daemon-corruption-fix",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/001-concurrent-daemon-corruption-fix",
       "description": "Concurrent Daemon Corruption Fix",
       "keywords": [
         "concurrent",
@@ -10202,39 +10633,39 @@
         "corruption",
         "fix"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.716Z"
+      "lastUpdated": "2026-05-23T09:08:19.771Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/002-cross-launcher-lease-propagation",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/002-cross-launcher-lease-propagation",
       "description": "Cross-Launcher Lease Propagation",
       "keywords": [
         "cross-launcher",
         "lease",
         "propagation"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.721Z"
+      "lastUpdated": "2026-05-23T09:08:19.487Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/003-launcher-race-and-error-surface-hardening",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/003-launcher-race-and-error-surface-hardening",
       "description": "Lease Hardening From Review",
       "keywords": [
         "lease",
         "hardening",
         "review"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.726Z"
+      "lastUpdated": "2026-05-23T09:08:20.048Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/004-launcher-diagnostics-and-signal-coverage",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/004-launcher-diagnostics-and-signal-coverage",
       "description": "P2 Cleanup From Review",
       "keywords": [
         "cleanup",
         "review"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.732Z"
+      "lastUpdated": "2026-05-23T09:08:20.330Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/005-lease-correctness-and-arc-traceability",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/005-lease-correctness-and-arc-traceability",
       "description": "Lease Correctness and Arc Traceability",
       "keywords": [
         "lease",
@@ -10242,10 +10673,10 @@
         "arc",
         "traceability"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.737Z"
+      "lastUpdated": "2026-05-23T09:08:20.615Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/006-lease-canonicalization-and-cleanup-ordering",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/006-lease-canonicalization-and-cleanup-ordering",
       "description": "Lease Canonicalization and Cleanup Ordering",
       "keywords": [
         "lease",
@@ -10253,10 +10684,10 @@
         "cleanup",
         "ordering"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.742Z"
+      "lastUpdated": "2026-05-23T09:08:20.888Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/007-skill-advisor-zombie-launcher-fix",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/007-skill-advisor-zombie-launcher-fix",
       "description": "Skill-Advisor Zombie Launcher Fix",
       "keywords": [
         "skill-advisor",
@@ -10264,10 +10695,10 @@
         "launcher",
         "fix"
       ],
-      "lastUpdated": "2026-05-18T17:02:01.829Z"
+      "lastUpdated": "2026-05-23T09:08:18.012Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/008-launcher-race-window-and-debug-log-hygiene",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/008-launcher-race-window-and-debug-log-hygiene",
       "description": "Launcher Race-Window Tightening + Debug-Log Hygiene",
       "keywords": [
         "launcher",
@@ -10276,10 +10707,10 @@
         "debug-log",
         "hygiene"
       ],
-      "lastUpdated": "2026-05-18T18:05:16.895Z"
+      "lastUpdated": "2026-05-23T09:08:18.917Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/009-launcher-eperm-parity-fix",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/009-launcher-eperm-parity-fix",
       "description": "Launcher EPERM Parity Fix",
       "keywords": [
         "launcher",
@@ -10287,25 +10718,21 @@
         "parity",
         "fix"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.747Z"
+      "lastUpdated": "2026-05-23T09:08:21.169Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/010-multi-client-stdio-socket-bridge",
-      "description": "Multi-client stdio-socket launcher bridge for MCP lease-held secondary sessions.",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/010-multi-client-stdio-socket-bridge",
+      "description": "Multi-client stdio-socket launcher bridge",
       "keywords": [
         "multi-client",
         "stdio-socket",
         "launcher",
-        "bridge",
-        "mcp",
-        "lease-held",
-        "secondary",
-        "sessions"
+        "bridge"
       ],
-      "lastUpdated": "2026-05-19T05:54:16.620Z"
+      "lastUpdated": "2026-05-23T09:08:21.449Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/011-sun-path-and-stale-lease-followups",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/011-sun-path-and-stale-lease-followups",
       "description": "Feature Specification: sun_path socket-dir + stale-lease reclaim followups",
       "keywords": [
         "feature",
@@ -10315,10 +10742,10 @@
         "reclaim",
         "followups"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.753Z"
+      "lastUpdated": "2026-05-23T09:08:18.600Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/012-daemon-bridge-socket-for-skill-advisor-and-code-index",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/012-daemon-bridge-socket-for-skill-advisor-and-code-index",
       "description": "Feature Specification: Daemon bridge socket for skill-advisor and code-index",
       "keywords": [
         "feature",
@@ -10329,10 +10756,10 @@
         "skill-advisor",
         "code-index"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.758Z"
+      "lastUpdated": "2026-05-23T09:08:19.208Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/013-launcher-lease-acquisition-reclaim",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/013-launcher-lease-acquisition-reclaim",
       "description": "Spec: launcher lease acquisition-time reclaim",
       "keywords": [
         "spec",
@@ -10341,10 +10768,10 @@
         "acquisition-time",
         "reclaim"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.762Z"
+      "lastUpdated": "2026-05-23T09:08:18.297Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/007-ollama-and-bge-promotion",
       "description": "Spec: 016/013 Ollama + BGE Promotion Arc",
       "keywords": [
         "spec",
@@ -10355,10 +10782,10 @@
         "promotion",
         "arc"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.768Z"
+      "lastUpdated": "2026-05-23T09:08:15.565Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/001-indexer-surface-investigation",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/007-ollama-and-bge-promotion/001-indexer-surface-investigation",
       "description": "Spec: 016/013/001 Indexer Surface Investigation",
       "keywords": [
         "spec",
@@ -10369,10 +10796,10 @@
         "surface",
         "investigation"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.772Z"
+      "lastUpdated": "2026-05-23T09:08:25.504Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/002-cocoindex-ollama-adapter",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/007-ollama-and-bge-promotion/002-cocoindex-ollama-adapter",
       "description": "Spec: 016/013/002 CocoIndex Ollama Adapter",
       "keywords": [
         "spec",
@@ -10383,10 +10810,10 @@
         "ollama",
         "adapter"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.777Z"
+      "lastUpdated": "2026-05-23T09:08:25.220Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/003-bge-code-v1-confirmation-and-promote",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote",
       "description": "Spec: 016/007/003 4-Candidate Re-Baseline (Corrected Pipeline) + Promote Decision",
       "keywords": [
         "spec",
@@ -10400,10 +10827,10 @@
         "promote",
         "decision"
       ],
-      "lastUpdated": "2026-05-21T10:55:37.988Z"
+      "lastUpdated": "2026-05-23T09:08:24.902Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/004-newer-text-embedders-survey",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/007-ollama-and-bge-promotion/004-newer-text-embedders-survey",
       "description": "Spec: 016/013/004 Newer Text Embedders Survey for mk-spec-memory",
       "keywords": [
         "spec",
@@ -10416,20 +10843,20 @@
         "survey",
         "mk-spec-memory"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.788Z"
+      "lastUpdated": "2026-05-23T09:08:25.785Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc",
       "description": "Rerank Sidecar Arc",
       "keywords": [
         "rerank",
         "sidecar",
         "arc"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.793Z"
+      "lastUpdated": "2026-05-23T09:08:15.245Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/001-flag-routing-fix-for-cross-encoder",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/001-flag-routing-fix-for-cross-encoder",
       "description": "Feature Specification: Flag-routing fix for cross-encoder HTTP local provider",
       "keywords": [
         "feature",
@@ -10441,10 +10868,10 @@
         "local",
         "provider"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.798Z"
+      "lastUpdated": "2026-05-23T09:08:24.330Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/002-system-rerank-sidecar-skill",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/002-system-rerank-sidecar-skill",
       "description": "Feature Specification: system-rerank-sidecar skill",
       "keywords": [
         "feature",
@@ -10452,27 +10879,23 @@
         "system-rerank-sidecar",
         "skill"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.804Z"
+      "lastUpdated": "2026-05-23T09:08:23.753Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/003-ensure-sidecar-from-launchers",
-      "description": "Phase 003 of the 008 rerank-sidecar arc. Add ensureRerankSidecar helper to both mk-spec-memory and cocoindex launchers. Probe /health; spawn detached if absent; attach as HTTP client if present. Port-bind EADDRINUSE is the atomicity primitive. Mirrors the lease pattern from packets 010/012 at port level for the shared rerank service.",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/003-ensure-sidecar-from-launchers",
+      "description": "Feature Specification: Ensure rerank sidecar from launchers",
       "keywords": [
-        "003",
-        "ensure-sidecar",
-        "launcher-integration",
-        "self-electing-primary",
-        "port-bind",
-        "detached-spawn",
-        "graceful-degradation",
-        "mk-spec-memory-launcher",
-        "mk-code-index-launcher",
-        "cocoindex-cli"
+        "feature",
+        "specification",
+        "ensure",
+        "rerank",
+        "sidecar",
+        "launchers"
       ],
-      "lastUpdated": "2026-05-20T00:00:00Z"
+      "lastUpdated": "2026-05-23T09:08:22.289Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/004-spec-memory-rerank-benchmark",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/004-spec-memory-rerank-benchmark",
       "description": "Feature Specification: spec-memory rerank A/B benchmark",
       "keywords": [
         "feature",
@@ -10481,10 +10904,10 @@
         "rerank",
         "benchmark"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.810Z"
+      "lastUpdated": "2026-05-23T09:08:24.618Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/005-promote-qwen-as-default",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/005-promote-qwen-as-default",
       "description": "Feature Specification: Promote Qwen3-Reranker-0.6B as the spec-memory default",
       "keywords": [
         "feature",
@@ -10494,10 +10917,10 @@
         "spec-memory",
         "default"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.815Z"
+      "lastUpdated": "2026-05-23T09:08:22.599Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/006-cocoindex-dedup-from-shared-sidecar",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/006-cocoindex-dedup-from-shared-sidecar",
       "description": "Feature Specification: Cocoindex dedup from shared rerank sidecar",
       "keywords": [
         "feature",
@@ -10508,10 +10931,10 @@
         "rerank",
         "sidecar"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.820Z"
+      "lastUpdated": "2026-05-23T09:08:24.041Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/007-spec-memory-mps-rerank-promotion",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/007-spec-memory-mps-rerank-promotion",
       "description": "Spec: spec-memory MPS rerank promotion candidate",
       "keywords": [
         "spec",
@@ -10521,119 +10944,109 @@
         "promotion",
         "candidate"
       ],
-      "lastUpdated": "2026-05-21T10:22:38.825Z"
+      "lastUpdated": "2026-05-23T09:08:21.717Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/008-cap-rerank-top-k",
-      "description": "Phase 008 of the 008 rerank-sidecar arc. Packet 007 found that MPS-Qwen OOMs at spec-memory's 50-doc batch size. This packet adds SPECKIT_RERANK_LOCAL_MAX_DOCS env override and re-benches at cap=10 — the smaller attention buffer should fit on Apple Silicon GPU. PROMOTE iff hit-rate +3, p95 ≤ +500ms, sidecar reach ≥ 95%.",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/008-cap-rerank-top-k",
+      "description": "Spec: cap spec-memory rerank top-k",
       "keywords": [
-        "008",
-        "cap-top-k",
-        "speckit_rerank_local_max_docs",
+        "spec",
+        "cap",
         "spec-memory",
-        "mps",
-        "qwen3-reranker",
-        "promote-or-hold"
+        "rerank",
+        "top-k"
       ],
-      "lastUpdated": "2026-05-21T09:00:00Z"
+      "lastUpdated": "2026-05-23T09:08:23.458Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/009-fp16-rerank",
-      "description": "Phase 009 of the 008 rerank-sidecar arc. Independent lever from packet 008 — cuts Qwen's memory footprint via fp16 weights so the same 50-doc batch may fit on Apple Silicon MPS without OOM. Adds RERANK_TORCH_DTYPE env var to the sidecar. PROMOTE iff hit-rate +3, p95 ≤ +500ms, sidecar reach ≥ 95%.",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/009-fp16-rerank",
+      "description": "Spec: fp16 cross-encoder weights on MPS",
       "keywords": [
-        "009",
+        "spec",
         "fp16",
-        "torch-dtype",
-        "rerank_torch_dtype",
-        "qwen3-reranker",
-        "mps",
-        "spec-memory",
-        "promote-or-hold"
-      ],
-      "lastUpdated": "2026-05-21T09:00:00Z"
-    },
-    {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/010-domain-tuned-reranker-finetune",
-      "description": "Phase 010 of the 008 rerank-sidecar arc. SCAFFOLD ONLY — execution gated on packets 008 + 009 verdicts plus the deep-research convergence on the 016 umbrella. Fine-tunes a small cross-encoder (ms-marco-base or BGE-base) on (query, spec-doc) triples drawn from spec-memory's corpus. The 2026-05-21 ms-marco bench showed off-the-shelf models reorder spec-memory's structured-markdown docs WORSE than positional fallback; this packet tests whether a domain-targeted fine-tune addresses that. If gates fail, rerank slot is documented as permanently non-load-bearing for this corpus.",
-      "keywords": [
-        "010",
-        "fine-tune",
-        "domain-tuned",
         "cross-encoder",
-        "ms-marco",
-        "bge-reranker-base",
-        "spec-memory",
-        "scaffold-only",
-        "execution-deferred"
+        "weights",
+        "mps"
       ],
-      "lastUpdated": "2026-05-21T09:00:00Z"
+      "lastUpdated": "2026-05-23T09:08:23.179Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc",
-      "description": "Phase parent: 3-step rerank decision arc for spec-memory (audit OFF → try bge-v2-m3 → fine-tune). Supersedes 010.",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/010-domain-tuned-reranker-finetune",
+      "description": "Spec: domain-tuned reranker fine-tune for spec-memory corpus",
       "keywords": [
-        "rerank-decision",
-        "spec-memory",
-        "off-baseline-audit",
-        "bge-reranker-v2-m3",
-        "domain-tuned-finetune",
-        "phase-parent"
-      ],
-      "lastUpdated": "2026-05-21T13:00:00Z"
-    },
-    {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/001-off-baseline-audit",
-      "description": "Phase 1: OFF baseline audit + WEIGHT_RERANKER penalty removal (conditional)",
-      "keywords": [
-        "off-baseline",
-        "weight-reranker-penalty",
-        "request-quality",
-        "scoring",
-        "spec-memory"
-      ],
-      "lastUpdated": "2026-05-21T13:00:00Z"
-    },
-    {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/002-bge-v2-m3-trial",
-      "description": "Phase 2: off-the-shelf bge-reranker-v2-m3 trial via sidecar allowlist + revision pin",
-      "keywords": [
-        "bge-reranker-v2-m3",
-        "off-the-shelf-rerank",
-        "sidecar-allowlist",
-        "spec-memory",
-        "apache-2.0-rerank"
-      ],
-      "lastUpdated": "2026-05-21T13:00:00Z"
-    },
-    {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/003-domain-tuned-finetune",
-      "description": "Phase 3: domain-tuned reranker fine-tune for spec-memory with template-stripping (supersedes 010)",
-      "keywords": [
-        "domain-tuned-rerank",
+        "spec",
+        "domain-tuned",
+        "reranker",
         "fine-tune",
-        "template-stripping",
-        "synthetic-triples",
         "spec-memory",
-        "anti-overfit"
+        "corpus"
       ],
-      "lastUpdated": "2026-05-21T13:00:00Z"
+      "lastUpdated": "2026-05-23T09:08:21.992Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/004-retrieval-and-fixture-audit",
-      "description": "Phase 0 decision gate: retrieval + fixture audit before Phase 3 fine-tune (AI Council 3-1 verdict)",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc",
+      "description": "011: spec-memory rerank decision arc",
       "keywords": [
-        "retrieval-audit",
-        "fixture-freshness",
-        "candidate-coverage",
-        "handler-parity",
-        "rerank-effect",
-        "branch-decision",
-        "decision-gate"
+        "011",
+        "spec-memory",
+        "rerank",
+        "decision",
+        "arc"
       ],
-      "lastUpdated": "2026-05-21T14:30:00Z"
+      "lastUpdated": "2026-05-23T09:08:22.899Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/005-opt-in-only-closure",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/001-off-baseline-audit",
+      "description": "Spec: OFF baseline audit + WEIGHT_RERANKER penalty removal",
+      "keywords": [
+        "spec",
+        "baseline",
+        "audit",
+        "penalty",
+        "removal"
+      ],
+      "lastUpdated": "2026-05-23T09:08:46.338Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/002-bge-v2-m3-trial",
+      "description": "Spec: bge-reranker-v2-m3 off-the-shelf trial",
+      "keywords": [
+        "spec",
+        "bge-reranker-v2-m3",
+        "off-the-shelf",
+        "trial"
+      ],
+      "lastUpdated": "2026-05-23T09:08:46.638Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/003-domain-tuned-finetune",
+      "description": "Spec: domain-tuned reranker fine-tune for spec-memory (with template-stripping)",
+      "keywords": [
+        "spec",
+        "domain-tuned",
+        "reranker",
+        "fine-tune",
+        "spec-memory",
+        "template-stripping"
+      ],
+      "lastUpdated": "2026-05-23T09:08:47.236Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/004-retrieval-and-fixture-audit",
+      "description": "Spec: retrieval + fixture audit (decision gate before Phase 3)",
+      "keywords": [
+        "spec",
+        "retrieval",
+        "fixture",
+        "audit",
+        "decision",
+        "gate",
+        "phase"
+      ],
+      "lastUpdated": "2026-05-23T09:08:46.013Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/005-opt-in-only-closure",
       "description": "Spec: spec-memory rerank — opt-in-only closure",
       "keywords": [
         "spec",
@@ -10642,7 +11055,458 @@
         "opt-in-only",
         "closure"
       ],
-      "lastUpdated": "2026-05-21T15:44:17.199Z"
+      "lastUpdated": "2026-05-23T09:08:46.927Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation",
+      "description": "Memory Leak Remediation Arc",
+      "keywords": [
+        "memory",
+        "leak",
+        "remediation",
+        "arc"
+      ],
+      "lastUpdated": "2026-05-23T09:08:17.687Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map",
+      "description": "Spec: Research Synthesis and Remediation Map",
+      "keywords": [
+        "spec",
+        "research",
+        "synthesis",
+        "remediation",
+        "map"
+      ],
+      "lastUpdated": "2026-05-23T09:08:43.504Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/002-telemetry-and-process-verification-harness",
+      "description": "Spec: Telemetry and Process Verification Harness",
+      "keywords": [
+        "spec",
+        "telemetry",
+        "process",
+        "verification",
+        "harness"
+      ],
+      "lastUpdated": "2026-05-23T09:08:41.537Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/003-cli-dispatch-containment-and-recursion-guards",
+      "description": "Spec: CLI Dispatch Containment and Recursion Guards",
+      "keywords": [
+        "spec",
+        "cli",
+        "dispatch",
+        "containment",
+        "recursion",
+        "guards"
+      ],
+      "lastUpdated": "2026-05-23T09:08:40.566Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/004-deep-loop-locks-state-and-recovery",
+      "description": "Spec: Deep Loop Locks, State, and Recovery",
+      "keywords": [
+        "spec",
+        "deep",
+        "loop",
+        "locks",
+        "state",
+        "recovery"
+      ],
+      "lastUpdated": "2026-05-23T09:08:45.090Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/005-expected-daemon-classifier-and-process-sweep",
+      "description": "Spec: Expected Daemon Classifier and Process Sweep",
+      "keywords": [
+        "spec",
+        "expected",
+        "daemon",
+        "classifier",
+        "process",
+        "sweep"
+      ],
+      "lastUpdated": "2026-05-23T09:08:45.408Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/006-cocoindex-remove-cancel-and-index-lifecycle",
+      "description": "Spec: CocoIndex Remove, Cancel, and Index Lifecycle",
+      "keywords": [
+        "spec",
+        "cocoindex",
+        "remove",
+        "cancel",
+        "index",
+        "lifecycle"
+      ],
+      "lastUpdated": "2026-05-23T09:08:41.215Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/007-code-graph-launcher-and-db-lifecycle",
+      "description": "Spec: Code Graph Launcher and DB Lifecycle",
+      "keywords": [
+        "spec",
+        "code",
+        "graph",
+        "launcher",
+        "lifecycle"
+      ],
+      "lastUpdated": "2026-05-23T09:08:44.783Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/008-sidecar-local-model-and-adapter-lifecycle",
+      "description": "Spec: Sidecar, Local Model, and Adapter Lifecycle",
+      "keywords": [
+        "spec",
+        "sidecar",
+        "local",
+        "model",
+        "adapter",
+        "lifecycle"
+      ],
+      "lastUpdated": "2026-05-23T09:08:44.481Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/009-spec-memory-runtime-retention-cleanup",
+      "description": "Spec: Spec Memory Runtime Retention Cleanup",
+      "keywords": [
+        "spec",
+        "memory",
+        "runtime",
+        "retention",
+        "cleanup"
+      ],
+      "lastUpdated": "2026-05-23T09:08:42.205Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/010-final-regression-and-operator-runbook",
+      "description": "Spec: Final Regression and Operator Runbook",
+      "keywords": [
+        "spec",
+        "final",
+        "regression",
+        "operator",
+        "runbook"
+      ],
+      "lastUpdated": "2026-05-23T09:08:39.875Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/011-system-code-graph-suite-triage",
+      "description": "Spec: system-code-graph Vitest Suite Triage",
+      "keywords": [
+        "spec",
+        "system-code-graph",
+        "vitest",
+        "suite",
+        "triage"
+      ],
+      "lastUpdated": "2026-05-23T09:08:42.535Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/012-adapter-resident-memory-benchmark",
+      "description": "Spec: Adapter Resident-Memory Benchmark",
+      "keywords": [
+        "spec",
+        "adapter",
+        "resident-memory",
+        "benchmark"
+      ],
+      "lastUpdated": "2026-05-23T09:08:43.838Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/013-owner-lease-heartbeat-staleness-detection",
+      "description": "Spec: Owner-Lease Heartbeat-Staleness Detection",
+      "keywords": [
+        "spec",
+        "owner-lease",
+        "heartbeat-staleness",
+        "detection"
+      ],
+      "lastUpdated": "2026-05-23T09:08:43.190Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening",
+      "description": "Spec: Deep-Review P1 Findings Remediation for Lifecycle and Sidecar Hardening",
+      "keywords": [
+        "spec",
+        "deep-review",
+        "findings",
+        "remediation",
+        "lifecycle",
+        "sidecar",
+        "hardening"
+      ],
+      "lastUpdated": "2026-05-23T09:08:41.878Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/015-deep-research-drift-and-simplification",
+      "description": "Spec: Deep-Research Investigation of System-Spec-Kit MCP Sidecar",
+      "keywords": [
+        "spec",
+        "deep-research",
+        "investigation",
+        "system-spec-kit",
+        "mcp",
+        "sidecar"
+      ],
+      "lastUpdated": "2026-05-23T09:08:44.163Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle",
+      "description": "Arc 010 Findings Remediation — Resource Bounds and Lifecycle",
+      "keywords": [
+        "arc",
+        "010",
+        "findings",
+        "remediation",
+        "resource",
+        "bounds",
+        "lifecycle"
+      ],
+      "lastUpdated": "2026-05-23T09:08:45.716Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/001-fix-investigation-p0s-for-resource-exhaustion-and-symlink-attack",
+      "description": "Spec: Investigation P0 Fixes for Resource Exhaustion and Symlink Attack",
+      "keywords": [
+        "spec",
+        "investigation",
+        "fixes",
+        "resource",
+        "exhaustion",
+        "symlink",
+        "attack"
+      ],
+      "lastUpdated": "2026-05-23T09:09:06.626Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/002-fix-investigation-p1s-for-resource-bounds-and-input-validation",
+      "description": "Spec: Investigation P1 Fixes for Resource Bounds and Input Validation",
+      "keywords": [
+        "spec",
+        "investigation",
+        "fixes",
+        "resource",
+        "bounds",
+        "input",
+        "validation"
+      ],
+      "lastUpdated": "2026-05-23T09:09:06.003Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/003-fix-investigation-p1s-for-sidecar-process-ownership-lifecycle",
+      "description": "Spec: Investigation P1 Fixes for Sidecar Process Ownership Lifecycle",
+      "keywords": [
+        "spec",
+        "investigation",
+        "fixes",
+        "sidecar",
+        "process",
+        "ownership",
+        "lifecycle"
+      ],
+      "lastUpdated": "2026-05-23T09:09:06.318Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/004-fix-investigation-p1s-for-ts-cjs-rerank-twin-parity",
+      "description": "Spec: Investigation P1 Fixes for TS CJS Rerank Twin Parity",
+      "keywords": [
+        "spec",
+        "investigation",
+        "fixes",
+        "cjs",
+        "rerank",
+        "twin",
+        "parity"
+      ],
+      "lastUpdated": "2026-05-23T09:09:05.701Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode",
+      "description": "Feature Specification: Fix Sidecar-Investigation Remaining P1s + P2s — Resource Bounds and Dead Code",
+      "keywords": [
+        "feature",
+        "specification",
+        "fix",
+        "sidecar-investigation",
+        "remaining",
+        "p1s",
+        "p2s",
+        "resource",
+        "bounds",
+        "dead",
+        "code"
+      ],
+      "lastUpdated": "2026-05-23T09:08:40.215Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/001-fix-investigation-p1s-for-sidecar-worker-liveness-and-deadcode",
+      "description": "Spec: Investigation P1 Fixes for Sidecar-Worker Liveness and Dead Code",
+      "keywords": [
+        "spec",
+        "investigation",
+        "fixes",
+        "sidecar-worker",
+        "liveness",
+        "dead",
+        "code"
+      ],
+      "lastUpdated": "2026-05-23T09:09:10.769Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/002-fix-investigation-p1s-for-execution-router-policy-and-shutdown-hooks",
+      "description": "Spec: Investigation P1 Fixes for Execution-Router Policy and Shutdown Hooks",
+      "keywords": [
+        "spec",
+        "investigation",
+        "fixes",
+        "execution-router",
+        "policy",
+        "shutdown",
+        "hooks"
+      ],
+      "lastUpdated": "2026-05-23T09:09:10.128Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/003-fix-investigation-p1s-for-sidecar-client-constructor-and-helpers",
+      "description": "Spec: Investigation P1 Fixes for Sidecar-Client Constructor and Helpers",
+      "keywords": [
+        "spec",
+        "investigation",
+        "fixes",
+        "sidecar-client",
+        "constructor",
+        "helpers"
+      ],
+      "lastUpdated": "2026-05-23T09:09:11.108Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/004-fix-investigation-p1s-for-launcher-and-reindex-deadcode",
+      "description": "Spec: Launcher and Reindex P1 Finding Closure",
+      "keywords": [
+        "spec",
+        "launcher",
+        "reindex",
+        "finding",
+        "closure"
+      ],
+      "lastUpdated": "2026-05-23T09:09:09.711Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/005-fix-investigation-p2s-for-deadcode-drift-comment-cleanup-sweep",
+      "description": "Spec: Investigation P2 Deadcode Drift Comment Cleanup Sweep",
+      "keywords": [
+        "spec",
+        "investigation",
+        "deadcode",
+        "drift",
+        "comment",
+        "cleanup",
+        "sweep"
+      ],
+      "lastUpdated": "2026-05-23T09:09:10.441Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/018-rerank-sidecar-accumulation-investigation-and-reaper-design",
+      "description": "Feature Specification: Rerank-Sidecar Accumulation Investigation + Reaper Design",
+      "keywords": [
+        "feature",
+        "specification",
+        "rerank-sidecar",
+        "accumulation",
+        "investigation",
+        "reaper",
+        "design"
+      ],
+      "lastUpdated": "2026-05-23T09:08:42.844Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/018-rerank-sidecar-accumulation-investigation-and-reaper-design/001-investigate-and-design-reaper-architecture",
+      "description": "Spec: Investigate Rerank-Sidecar Accumulation + Design Three-Layer Reaper Architecture",
+      "keywords": [
+        "spec",
+        "investigate",
+        "rerank-sidecar",
+        "accumulation",
+        "design",
+        "three-layer",
+        "reaper",
+        "architecture"
+      ],
+      "lastUpdated": "2026-05-23T09:09:05.408Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper",
+      "description": "Feature Specification: Fix Rerank-Sidecar Accumulation With Three-Layer Reaper",
+      "keywords": [
+        "feature",
+        "specification",
+        "fix",
+        "rerank-sidecar",
+        "accumulation",
+        "three-layer",
+        "reaper"
+      ],
+      "lastUpdated": "2026-05-23T09:08:40.889Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper/001-implement-ledger-v2-schema-and-identity-verified-pid",
+      "description": "Spec: Ledger v2 Schema and Identity-Verified PID Helpers",
+      "keywords": [
+        "spec",
+        "ledger",
+        "schema",
+        "identity-verified",
+        "pid",
+        "helpers"
+      ],
+      "lastUpdated": "2026-05-23T09:09:11.786Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper/002-implement-layer-b-sidecar-self-check-and-in-flight-gate",
+      "description": "Spec: Layer B Sidecar Self-Check and In-Flight Gate",
+      "keywords": [
+        "spec",
+        "layer",
+        "sidecar",
+        "self-check",
+        "in-flight",
+        "gate"
+      ],
+      "lastUpdated": "2026-05-23T09:09:12.115Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper/003-implement-layer-d-launcher-pre-flight-reap-and-parity-fixtures",
+      "description": "Feature Specification: Layer D Launcher Pre-Flight Reap and Parity Fixtures",
+      "keywords": [
+        "feature",
+        "specification",
+        "layer",
+        "launcher",
+        "pre-flight",
+        "reap",
+        "parity",
+        "fixtures"
+      ],
+      "lastUpdated": "2026-05-23T09:09:11.466Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper/004-implement-env-knobs-and-skill-docs",
+      "description": "Feature Specification: Rerank reaper env knobs and operator docs",
+      "keywords": [
+        "feature",
+        "specification",
+        "rerank",
+        "reaper",
+        "env",
+        "knobs",
+        "operator",
+        "docs"
+      ],
+      "lastUpdated": "2026-05-23T09:09:12.421Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening",
@@ -11065,7 +11929,7 @@
         "deep-review",
         "remediation"
       ],
-      "lastUpdated": "2026-05-22T06:06:19.694Z"
+      "lastUpdated": "2026-05-23T09:11:12.801Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-039-system-code-graph-deferred-followon",
@@ -11668,7 +12532,7 @@
         "knowledge",
         "base"
       ],
-      "lastUpdated": "2026-05-22T06:06:19.694Z"
+      "lastUpdated": "2026-05-23T09:11:12.801Z"
     },
     {
       "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch",
@@ -15923,7 +16787,7 @@
         "obsidian-export",
         "specification"
       ],
-      "lastUpdated": "2026-05-22T06:06:19.694Z"
+      "lastUpdated": "2026-05-23T09:11:12.801Z"
     },
     {
       "specFolder": "z_future/hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/openspec/specs/obsidian-plugin",
@@ -15932,7 +16796,7 @@
         "obsidian-plugin",
         "specification"
       ],
-      "lastUpdated": "2026-05-22T06:06:19.694Z"
+      "lastUpdated": "2026-05-23T09:11:12.801Z"
     },
     {
       "specFolder": "z_future/hybrid-rag-fusion-upgrade/002-hybrid-rag-adoption",

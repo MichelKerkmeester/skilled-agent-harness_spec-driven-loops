@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/002-cross-launcher-lease-propagation",
+  "description": "Cross-Launcher Lease Propagation",
+  "keywords": [
+    "cross-launcher",
+    "lease",
+    "propagation"
+  ],
+  "lastUpdated": "2026-05-23T09:08:19.487Z",
+  "specId": "002",
+  "folderSlug": "cross-launcher-lease-propagation",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "006-mcp-launcher-concurrency"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

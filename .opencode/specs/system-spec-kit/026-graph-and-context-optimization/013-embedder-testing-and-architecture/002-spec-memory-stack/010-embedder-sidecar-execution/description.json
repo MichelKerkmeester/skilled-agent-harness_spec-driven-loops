@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/010-embedder-sidecar-execution",
+  "description": "Feature Specification: Embedder Sidecar Execution",
+  "keywords": [
+    "feature",
+    "specification",
+    "embedder",
+    "sidecar",
+    "execution"
+  ],
+  "lastUpdated": "2026-05-23T09:08:30.312Z",
+  "specId": "010",
+  "folderSlug": "embedder-sidecar-execution",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "002-spec-memory-stack"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

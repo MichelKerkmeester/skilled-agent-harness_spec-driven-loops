@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/008-byte-aware-health-telemetry",
+  "description": "Feature Specification: Byte-Aware Health Telemetry",
+  "keywords": [
+    "feature",
+    "specification",
+    "byte-aware",
+    "health",
+    "telemetry"
+  ],
+  "lastUpdated": "2026-05-23T09:08:26.943Z",
+  "specId": "008",
+  "folderSlug": "byte-aware-health-telemetry",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "002-spec-memory-stack"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

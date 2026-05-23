@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/004-spec-memory-rerank-benchmark",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/004-spec-memory-rerank-benchmark",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/003-ensure-sidecar-from-launchers"
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "spec-memory rerank benchmark",
+      "qwen vs positional fallback",
+      "paraphrase recall fixture",
+      "cat-24/409 benchmark",
+      "memory_search rerank ab",
+      "004 rerank benchmark"
+    ],
+    "key_topics": [
+      "benchmark",
+      "ab-test",
+      "paraphrase",
+      "mrr",
+      "hit-rate",
+      "qwen-reranker"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/",
+      ".opencode/skills/sk-doc/references/benchmarks/FORMAT.md"
+    ],
+    "last_indexed_at": "2026-05-20T00:00:00Z"
+  }
+}

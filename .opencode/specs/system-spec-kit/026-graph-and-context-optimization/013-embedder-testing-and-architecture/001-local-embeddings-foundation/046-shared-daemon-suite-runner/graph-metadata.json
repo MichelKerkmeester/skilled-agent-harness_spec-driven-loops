@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/046-shared-daemon-suite-runner",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/046-shared-daemon-suite-runner",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/044-suite-revalidation"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/002-rerun-24-scenarios-suite",
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/042-cocoindex-ipc-observability"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "045 shared daemon suite runner",
+      "run mcp direct",
+      "single daemon scenario runner",
+      "24-- shared daemon validation"
+    ],
+    "key_topics": [
+      "shared daemon",
+      "mcp client",
+      "scenario runner",
+      "memory_search latency",
+      "cocoindex wired"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "_sandbox/24--local-llm-query-intelligence/evidence/run-mcp-direct.mjs",
+      "_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-shared-daemon.summary.tsv",
+      "_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-shared-daemon.cocoindex.stderr.log",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/shared-daemon-runner-helpers.vitest.ts"
+    ],
+    "entities": [
+      "StdioClientTransport",
+      "spec-kit-memory-launcher.cjs",
+      "memory_search",
+      "cocoindex_code.search",
+      "scenarios 403, 404, 407, and 410",
+      "run-mcp-direct.mjs"
+    ],
+    "causal_summary": "Packet 045 creates a direct MCP client runner that starts shared Spec Kit Memory and CocoIndex MCP clients, avoiding 043's per-child daemon contention. Scenarios 403, 404, 407, and 410 now PASS through shared daemon routing.",
+    "created_at": "2026-05-14T17:20:00Z",
+    "last_save_at": "2026-05-14T17:53:33Z",
+    "save_lineage": "manual_packet_update",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
+  }
+}

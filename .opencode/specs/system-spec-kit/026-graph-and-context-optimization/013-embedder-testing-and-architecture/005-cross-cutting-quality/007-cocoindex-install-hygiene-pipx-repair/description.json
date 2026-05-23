@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/005-cross-cutting-quality/007-cocoindex-install-hygiene-pipx-repair",
+  "description": "Spec: CocoIndex install hygiene pipx repair",
+  "keywords": [
+    "spec",
+    "cocoindex",
+    "install",
+    "hygiene",
+    "pipx",
+    "repair"
+  ],
+  "lastUpdated": "2026-05-23T09:09:04.254Z",
+  "specId": "007",
+  "folderSlug": "cocoindex-install-hygiene-pipx-repair",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "005-cross-cutting-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

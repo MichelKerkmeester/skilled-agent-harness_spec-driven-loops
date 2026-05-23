@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/002-system-rerank-sidecar-skill",
+  "description": "Feature Specification: system-rerank-sidecar skill",
+  "keywords": [
+    "feature",
+    "specification",
+    "system-rerank-sidecar",
+    "skill"
+  ],
+  "lastUpdated": "2026-05-23T09:08:23.753Z",
+  "specId": "002",
+  "folderSlug": "system-rerank-sidecar-skill",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "008-rerank-sidecar-arc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

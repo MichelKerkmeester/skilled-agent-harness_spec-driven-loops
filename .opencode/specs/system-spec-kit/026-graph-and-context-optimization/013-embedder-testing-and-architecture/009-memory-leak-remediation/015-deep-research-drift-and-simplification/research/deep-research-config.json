@@ -1,0 +1,84 @@
+{
+  "topic": "System-spec-kit MCP sidecar drift, dead-code, security, over-engineering, simplification, and refinement investigation",
+  "maxIterations": 20,
+  "convergenceThreshold": 0.1,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 600,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 25,
+  "progressiveSynthesis": true,
+  "resource_map_present": false,
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/015-deep-research-drift-and-simplification",
+  "createdAt": "2026-05-22T21:00:18Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executorMix": [
+    {
+      "iterationPattern": "odd",
+      "kind": "cli-devin",
+      "model": "swe-1.6"
+    },
+    {
+      "iterationPattern": "even",
+      "kind": "cli-opencode",
+      "model": "deepseek-v4-pro",
+      "variant": "high"
+    }
+  ],
+  "executorSchedule": [
+    {"iteration": 1, "kind": "cli-devin", "model": "swe-1.6", "angle": "drift detection"},
+    {"iteration": 2, "kind": "cli-opencode", "model": "deepseek-v4-pro", "variant": "high", "angle": "dead code"},
+    {"iteration": 3, "kind": "cli-devin", "model": "swe-1.6", "angle": "security risks"},
+    {"iteration": 4, "kind": "cli-opencode", "model": "deepseek-v4-pro", "variant": "high", "angle": "over-engineering"},
+    {"iteration": 5, "kind": "cli-devin", "model": "swe-1.6", "angle": "simplification opportunities"},
+    {"iteration": 6, "kind": "cli-opencode", "model": "deepseek-v4-pro", "variant": "high", "angle": "refinement"},
+    {"iteration": 7, "kind": "cli-devin", "model": "swe-1.6", "angle": "drift detection"},
+    {"iteration": 8, "kind": "cli-opencode", "model": "deepseek-v4-pro", "variant": "high", "angle": "dead code"},
+    {"iteration": 9, "kind": "cli-devin", "model": "swe-1.6", "angle": "security risks"},
+    {"iteration": 10, "kind": "cli-opencode", "model": "deepseek-v4-pro", "variant": "high", "angle": "over-engineering"},
+    {"iteration": 11, "kind": "cli-devin", "model": "swe-1.6", "angle": "simplification opportunities"},
+    {"iteration": 12, "kind": "cli-opencode", "model": "deepseek-v4-pro", "variant": "high", "angle": "refinement"},
+    {"iteration": 13, "kind": "cli-devin", "model": "swe-1.6", "angle": "drift detection"},
+    {"iteration": 14, "kind": "cli-opencode", "model": "deepseek-v4-pro", "variant": "high", "angle": "dead code"},
+    {"iteration": 15, "kind": "cli-devin", "model": "swe-1.6", "angle": "security risks"},
+    {"iteration": 16, "kind": "cli-opencode", "model": "deepseek-v4-pro", "variant": "high", "angle": "over-engineering"},
+    {"iteration": 17, "kind": "cli-devin", "model": "swe-1.6", "angle": "simplification opportunities"},
+    {"iteration": 18, "kind": "cli-opencode", "model": "deepseek-v4-pro", "variant": "high", "angle": "refinement"},
+    {"iteration": 19, "kind": "cli-devin", "model": "swe-1.6", "angle": "drift detection"},
+    {"iteration": 20, "kind": "cli-opencode", "model": "deepseek-v4-pro", "variant": "high", "angle": "dead code"}
+  ],
+  "lineage": {
+    "sessionId": "dr-2026-05-22T21-00-18Z-sidecar-investigation",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/findings-registry.json",
+    "dashboardFile": "research/deep-research-dashboard.md",
+    "strategyFile": "research/deep-research-strategy.md"
+  },
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "deltas/*.jsonl": "append-only",
+    "prompts/*.md": "write-once",
+    "research/research.md": "mutable"
+  }
+}

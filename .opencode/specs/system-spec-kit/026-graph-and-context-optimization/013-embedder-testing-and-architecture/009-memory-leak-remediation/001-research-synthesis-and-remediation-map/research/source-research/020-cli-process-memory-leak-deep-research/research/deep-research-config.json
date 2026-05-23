@@ -1,0 +1,32 @@
+{
+  "researchTopic": "Find memory leaks, orphan process buildup, and process containment failures in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit and related cli-X deep-flow orchestration.",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/020-cli-process-memory-leak-deep-research",
+  "targetPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 240,
+  "executionMode": "auto",
+  "status": "initialized",
+  "createdAt": "2026-05-22T05:58:00Z",
+  "preflightOverride": {
+    "swapPreflightBypassed": true,
+    "operatorInstruction": "ignore the preflight",
+    "recordedSwapUsage": "total = 44032.00M used = 43028.31M free = 1003.69M",
+    "recordedFreePages": 2237885
+  },
+  "executorPlan": [
+    { "iterations": [1, 2, 3, 4, 5], "executor": { "kind": "cli-claude-code", "model": "claude-opus-4-7", "reasoningEffort": "high", "serviceTier": null, "sandboxMode": "workspace-write", "timeoutSeconds": 1800 } },
+    { "iterations": [6, 7, 8, 9, 10], "executor": { "kind": "cli-codex", "model": "gpt-5.5", "reasoningEffort": "xhigh", "serviceTier": "fast", "sandboxMode": "workspace-write", "timeoutSeconds": 1800 } }
+  ],
+  "resource_map_present": false,
+  "resource_map": { "emit": true },
+  "progressiveSynthesis": false,
+  "lineage": {
+    "sessionId": "020-cli-process-memory-leak-deep-research-auto-20260522T055800Z",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  }
+}

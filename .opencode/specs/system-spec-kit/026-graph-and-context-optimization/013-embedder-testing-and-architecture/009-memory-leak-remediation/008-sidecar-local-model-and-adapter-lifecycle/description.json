@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/008-sidecar-local-model-and-adapter-lifecycle",
+  "description": "Spec: Sidecar, Local Model, and Adapter Lifecycle",
+  "keywords": [
+    "spec",
+    "sidecar",
+    "local",
+    "model",
+    "adapter",
+    "lifecycle"
+  ],
+  "lastUpdated": "2026-05-23T09:08:44.481Z",
+  "specId": "008",
+  "folderSlug": "sidecar-local-model-and-adapter-lifecycle",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "009-memory-leak-remediation"
+  ],
+  "memorySequence": 8,
+  "memoryNameHistory": []
+}

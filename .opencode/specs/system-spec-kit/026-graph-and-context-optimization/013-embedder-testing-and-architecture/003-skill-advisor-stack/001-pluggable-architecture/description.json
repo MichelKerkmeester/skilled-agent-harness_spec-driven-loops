@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/003-skill-advisor-stack/001-pluggable-architecture",
+  "description": "Spec: 022/001 Pluggable embedder architecture for skill-advisor",
+  "keywords": [
+    "spec",
+    "022",
+    "001",
+    "pluggable",
+    "embedder",
+    "architecture",
+    "skill-advisor"
+  ],
+  "lastUpdated": "2026-05-23T09:08:32.116Z",
+  "specId": "001",
+  "folderSlug": "pluggable-architecture",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "003-skill-advisor-stack"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

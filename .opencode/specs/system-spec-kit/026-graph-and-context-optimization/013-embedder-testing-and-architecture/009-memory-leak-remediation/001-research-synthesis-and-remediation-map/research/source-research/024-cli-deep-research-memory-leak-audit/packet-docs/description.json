@@ -1,0 +1,30 @@
+{
+  "level": "3",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit/packet-docs",
+  "description": "Spec: 024 CLI Deep Research Memory Leak Audit",
+  "keywords": [
+    "spec",
+    "024",
+    "cli",
+    "deep",
+    "research",
+    "memory",
+    "leak",
+    "audit"
+  ],
+  "lastUpdated": "2026-05-23T09:09:17.143Z",
+  "specId": "",
+  "folderSlug": "packet-docs",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "009-memory-leak-remediation",
+    "001-research-synthesis-and-remediation-map",
+    "research",
+    "source-research",
+    "024-cli-deep-research-memory-leak-audit"
+  ],
+  "memorySequence": 24,
+  "memoryNameHistory": []
+}

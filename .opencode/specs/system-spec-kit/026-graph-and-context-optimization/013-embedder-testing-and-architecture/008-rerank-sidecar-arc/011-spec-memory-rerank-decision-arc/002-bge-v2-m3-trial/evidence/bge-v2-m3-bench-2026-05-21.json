@@ -1,0 +1,3023 @@
+{
+  "generated_at": "2026-05-21T13:55:44.536Z",
+  "fixture_path": "mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/rerank-ab-fixture.json",
+  "output_path": "011/002-bge-v2-m3-trial/evidence/bge-v2-m3-bench-2026-05-21.json",
+  "harness_note": "Direct-handler replay against dist/handlers/memory-search.js. The live run completed all 50 probes but blocked on post-run /health before serializing payload rows because the sidecar stopped answering health; this file records the observed per-probe console metrics and baseline-shaped returned ids for comparability. The lifecycle failure is part of the HOLD verdict.",
+  "command": "SPECKIT_CROSS_ENCODER=true RERANKER_LOCAL=true node --input-type=module <direct handleMemorySearch fixture replay with localhost /rerank model override>",
+  "environment": {
+    "SPECKIT_CROSS_ENCODER": "true",
+    "RERANKER_LOCAL": "true",
+    "SPECKIT_SKIP_API_VALIDATION": "true",
+    "SPECKIT_RESPONSE_PROFILE_V1": "false",
+    "SPECKIT_INTENT_AUTO_PROFILE": "false",
+    "SPECKIT_PROGRESSIVE_DISCLOSURE_V1": "false",
+    "SPECKIT_FILE_WATCHER": "false",
+    "MEMORY_DB_PATH": "mcp_server/database/context-index.sqlite",
+    "rerank_request_model_override": "BAAI/bge-reranker-v2-m3",
+    "pre_run_sidecar_health": {
+      "status": "ok",
+      "model_loaded": true,
+      "model_name": "BAAI/bge-reranker-v2-m3",
+      "default_model": "BAAI/bge-reranker-v2-m3",
+      "allowed_models": [
+        "BAAI/bge-reranker-v2-m3"
+      ],
+      "loaded_models": [
+        "BAAI/bge-reranker-v2-m3"
+      ]
+    },
+    "post_run_sidecar_health": {
+      "status": "timeout",
+      "curl_exit": 28,
+      "http_status": 0
+    }
+  },
+  "summary": {
+    "fixture_count": 50,
+    "hit_rate_at_5": 0.12,
+    "ndcg_at_10": 0.11,
+    "recall_at_5": 0.12,
+    "per_category": {
+      "paraphrase": {
+        "probe_count": 27,
+        "hit_rate_at_5": 0.14814814814814814,
+        "recall_at_5": 0.14814814814814814,
+        "ndcg_at_10": 0.14814814814814814,
+        "zero_recall": false,
+        "miss_probe_ids": [
+          "fixture-001",
+          "fixture-002",
+          "fixture-004",
+          "fixture-005",
+          "fixture-007",
+          "fixture-008",
+          "fixture-012",
+          "fixture-013",
+          "fixture-016",
+          "fixture-019",
+          "fixture-021",
+          "fixture-022",
+          "fixture-031",
+          "fixture-034",
+          "fixture-036",
+          "fixture-038",
+          "fixture-041",
+          "fixture-042",
+          "fixture-043",
+          "fixture-044",
+          "fixture-045",
+          "fixture-046",
+          "fixture-047"
+        ]
+      },
+      "terminology": {
+        "probe_count": 11,
+        "hit_rate_at_5": 0.09090909090909091,
+        "recall_at_5": 0.09090909090909091,
+        "ndcg_at_10": 0.045454545454545456,
+        "zero_recall": false,
+        "miss_probe_ids": [
+          "fixture-011",
+          "fixture-014",
+          "fixture-015",
+          "fixture-017",
+          "fixture-018",
+          "fixture-020",
+          "fixture-035",
+          "fixture-037",
+          "fixture-048",
+          "fixture-049"
+        ]
+      },
+      "arc-context": {
+        "probe_count": 12,
+        "hit_rate_at_5": 0.08333333333333333,
+        "recall_at_5": 0.08333333333333333,
+        "ndcg_at_10": 0.08333333333333333,
+        "zero_recall": false,
+        "miss_probe_ids": [
+          "fixture-023",
+          "fixture-024",
+          "fixture-025",
+          "fixture-026",
+          "fixture-027",
+          "fixture-028",
+          "fixture-029",
+          "fixture-030",
+          "fixture-032",
+          "fixture-033",
+          "fixture-050"
+        ]
+      }
+    },
+    "zero_recall_categories": [],
+    "latency_ms": {
+      "p50": 609.126,
+      "p95": 10591.245
+    },
+    "stale_gold_memory_ids": [
+      {
+        "probe": "fixture-004",
+        "memory_id": 1404
+      },
+      {
+        "probe": "fixture-005",
+        "memory_id": 1047
+      },
+      {
+        "probe": "fixture-008",
+        "memory_id": 1007
+      },
+      {
+        "probe": "fixture-013",
+        "memory_id": 8184
+      },
+      {
+        "probe": "fixture-014",
+        "memory_id": 8183
+      },
+      {
+        "probe": "fixture-015",
+        "memory_id": 8189
+      },
+      {
+        "probe": "fixture-016",
+        "memory_id": 8186
+      },
+      {
+        "probe": "fixture-017",
+        "memory_id": 8192
+      },
+      {
+        "probe": "fixture-023",
+        "memory_id": 8553
+      },
+      {
+        "probe": "fixture-027",
+        "memory_id": 8551
+      },
+      {
+        "probe": "fixture-028",
+        "memory_id": 8552
+      },
+      {
+        "probe": "fixture-029",
+        "memory_id": 8547
+      },
+      {
+        "probe": "fixture-031",
+        "memory_id": 8544
+      },
+      {
+        "probe": "fixture-033",
+        "memory_id": 8543
+      },
+      {
+        "probe": "fixture-037",
+        "memory_id": 4546
+      },
+      {
+        "probe": "fixture-050",
+        "memory_id": 8551
+      }
+    ],
+    "verdict_thresholds": {
+      "recall_at_5_min": 0.17,
+      "recall_misses_max": 22,
+      "ranking_inversions_max": 0,
+      "hit_rate_at_5_min": 0.18,
+      "p95_latency_off_plus_500ms_max": 1057.529,
+      "requires_no_sidecar_crash": true
+    },
+    "verdict": "HOLD",
+    "failure_analysis": {
+      "ranking_inversion": [],
+      "recall_miss": [
+        "fixture-001",
+        "fixture-002",
+        "fixture-004",
+        "fixture-005",
+        "fixture-007",
+        "fixture-008",
+        "fixture-011",
+        "fixture-012",
+        "fixture-013",
+        "fixture-014",
+        "fixture-015",
+        "fixture-016",
+        "fixture-017",
+        "fixture-018",
+        "fixture-019",
+        "fixture-020",
+        "fixture-021",
+        "fixture-022",
+        "fixture-023",
+        "fixture-024",
+        "fixture-025",
+        "fixture-026",
+        "fixture-027",
+        "fixture-028",
+        "fixture-029",
+        "fixture-030",
+        "fixture-031",
+        "fixture-032",
+        "fixture-033",
+        "fixture-034",
+        "fixture-035",
+        "fixture-036",
+        "fixture-037",
+        "fixture-038",
+        "fixture-041",
+        "fixture-042",
+        "fixture-043",
+        "fixture-044",
+        "fixture-045",
+        "fixture-046",
+        "fixture-047",
+        "fixture-048",
+        "fixture-049",
+        "fixture-050"
+      ],
+      "empty_result": []
+    }
+  },
+  "probes": [
+    {
+      "fixture_id": "fixture-001",
+      "query": "documentation verification checklist for the CocoIndex complete-fork author docs phase",
+      "category": "paraphrase",
+      "difficulty": "easy",
+      "gold_doc_ids": [
+        "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/004-docs/checklist.md"
+      ],
+      "gold_memory_ids": [
+        2000
+      ],
+      "returned_doc_ids": [
+        "memory_index:1983",
+        "specs/system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/001-import-upstream/checklist.md",
+        "memory_index:686",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/028-documentation-alignment-readme-fill-in/checklist.md",
+        "memory_index:205",
+        "specs/skilled-agent-orchestration/z_archive/067-mcp-figma-transfer/001-barter-figma-agent/checklist.md",
+        "memory_index:6369",
+        "specs/system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras/001-exemplars-schema/checklist.md",
+        "memory_index:655",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/020-cocoindex-feature-catalog/checklist.md"
+      ],
+      "returned_memory_ids": [
+        1983,
+        686,
+        205,
+        6369,
+        655,
+        207,
+        206,
+        8882,
+        6359,
+        8877
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 3473.526,
+      "result_count": 10,
+      "scoringMethod": "cross-encoder",
+      "rerank_used": true,
+      "rerank_provider": "cross-encoder",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query+high-authority",
+        "triggers": [
+          "complex-query",
+          "high-authority"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-002",
+      "query": "checklist for fixing V8 cross-spec contamination and ADR numeric prefix overreach in the local embeddings migration",
+      "category": "paraphrase",
+      "difficulty": "medium",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/041-v-rule-cross-spec-overreach/spec.md"
+      ],
+      "gold_memory_ids": [
+        1620
+      ],
+      "returned_doc_ids": [
+        "memory_index:1482",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/001-prefix-registry-architecture/spec.md",
+        "memory_index:1601",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/037-llama-cpp-embedding-worker-deep-dive/decision-record.md",
+        "memory_index:1005",
+        "specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md",
+        "memory_index:1518",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/014-onnx-cross-platform-backend/decision-record.md",
+        "memory_index:1627",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/043-cocoindex-refresh-split/checklist.md"
+      ],
+      "returned_memory_ids": [
+        1482,
+        1601,
+        1005,
+        1518,
+        1627,
+        1535,
+        3416,
+        1521,
+        1604,
+        3444
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 10500.931,
+      "result_count": 10,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query+high-authority",
+        "triggers": [
+          "complex-query",
+          "high-authority"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-003",
+      "query": "deep-research summary comparing Contextador's retrieval ergonomics and MCP query surface against Public's existing substrate",
+      "category": "paraphrase",
+      "difficulty": "medium",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/003-contextador/implementation-summary.md"
+      ],
+      "gold_memory_ids": [
+        954
+      ],
+      "returned_doc_ids": [
+        "memory_index:954",
+        "specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/003-contextador/implementation-summary.md",
+        "memory_index:1071",
+        "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/003-code-graph-bug-surface-research/spec.md",
+        "memory_index:9486",
+        "specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/003-contextador/spec.md",
+        "memory_index:3797",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/013-bm25-fts5-rag-fusion-investigation/implementation-summary.md",
+        "memory_index:957",
+        "specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/003-contextador/tasks.md"
+      ],
+      "returned_memory_ids": [
+        954,
+        1071,
+        9486,
+        3797,
+        957
+      ],
+      "rank_at_5": 1,
+      "rank_at_10": 1,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "recall_at_5": 1,
+      "ndcg_at_10": 1,
+      "latency_ms": 10591.245,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query+high-authority",
+        "triggers": [
+          "complex-query",
+          "high-authority"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-004",
+      "query": "ADR about consolidating spec-kit templates into the level and addendum generator instead of leaving compose scripts separate",
+      "category": "paraphrase",
+      "difficulty": "medium",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/008-template-levels/001-template-level-consolidation-research/decision-record.md"
+      ],
+      "gold_memory_ids": [
+        1404
+      ],
+      "returned_doc_ids": [
+        "memory_index:1430",
+        "specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/006-command-markdown-yaml-workflow-alignment/decision-record.md",
+        "memory_index:9610",
+        "specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/001-template-level-consolidation-research/decision-record.md",
+        "memory_index:6088",
+        "specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/001-template-level-consolidation-research/plan.md",
+        "memory_index:9612",
+        "specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/001-template-level-consolidation-research/spec.md",
+        "memory_index:9611",
+        "specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/001-template-level-consolidation-research/implementation-summary.md"
+      ],
+      "returned_memory_ids": [
+        1430,
+        9610,
+        6088,
+        9612,
+        9611
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 10681.242,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query+high-authority",
+        "triggers": [
+          "complex-query",
+          "high-authority"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-005",
+      "query": "research packet for turning review findings into fix-completeness inventories and cross-surface planner checks",
+      "category": "paraphrase",
+      "difficulty": "hard",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/005-code-graph/009-fix-iteration-quality-meta-research/spec.md"
+      ],
+      "gold_memory_ids": [
+        1047
+      ],
+      "returned_doc_ids": [
+        "memory_index:5841",
+        "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/009-fix-iteration-quality-meta-research/plan.md",
+        "memory_index:9536",
+        "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/009-fix-iteration-quality-meta-research/spec.md",
+        "memory_index:4255",
+        "specs/skilled-agent-orchestration/z_archive/034-sk-deep-research-review-folders/plan.md",
+        "memory_index:1044",
+        "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/009-fix-iteration-quality-meta-research/checklist.md",
+        "memory_index:9374",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/001-workflow-correctness-audit/spec.md"
+      ],
+      "returned_memory_ids": [
+        5841,
+        9536,
+        4255,
+        1044,
+        9374
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 10637.554,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query+high-authority",
+        "triggers": [
+          "complex-query",
+          "high-authority"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-006",
+      "query": "implementation summary for the FIX-010-v2 remediation of packet docs, review strategy state, and inert planner imports",
+      "category": "paraphrase",
+      "difficulty": "easy",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/005-code-graph/009-fix-iteration-quality-meta-research/implementation-summary.md"
+      ],
+      "gold_memory_ids": [
+        1046
+      ],
+      "returned_doc_ids": [
+        "memory_index:1046",
+        "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/009-fix-iteration-quality-meta-research/implementation-summary.md",
+        "memory_index:5841",
+        "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/009-fix-iteration-quality-meta-research/plan.md",
+        "memory_index:9536",
+        "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/009-fix-iteration-quality-meta-research/spec.md",
+        "memory_index:1044",
+        "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/009-fix-iteration-quality-meta-research/checklist.md",
+        "memory_index:4873",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/020-deep-review-p1-p2-remediation/implementation-summary.md"
+      ],
+      "returned_memory_ids": [
+        1046,
+        5841,
+        9536,
+        1044,
+        4873
+      ],
+      "rank_at_5": 1,
+      "rank_at_10": 1,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "recall_at_5": 1,
+      "ndcg_at_10": 1,
+      "latency_ms": 10577.503,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query+high-authority",
+        "triggers": [
+          "complex-query",
+          "high-authority"
+        ]
+      },
+      "requestQuality": {
+        "label": "good"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-007",
+      "query": "file ledger resource map for the testing playbook trio follow-up quality pass",
+      "category": "paraphrase",
+      "difficulty": "easy",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/003-post-program-quality-pass/003-testing-playbook-trio-alignment/resource-map.md"
+      ],
+      "gold_memory_ids": [
+        729
+      ],
+      "returned_doc_ids": [
+        "memory_index:1534",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/020-catalog-playbook-alignment-audit/plan.md",
+        "memory_index:736",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/003-post-program-quality-pass/004-sk-doc-template-alignment/spec.md",
+        "memory_index:609",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/012-code-graph-catalog-and-playbook/checklist.md",
+        "memory_index:1536",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/020-catalog-playbook-alignment-audit/tasks.md",
+        "memory_index:1532",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/020-catalog-playbook-alignment-audit/checklist.md"
+      ],
+      "returned_memory_ids": [
+        1534,
+        736,
+        609,
+        1536,
+        1532
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 627.281,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query",
+        "triggers": [
+          "complex-query"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-008",
+      "query": "plan covering memory indexer invariants, PE lineage guardrails, scan recheck bypass, and constitutional tier cleanup",
+      "category": "paraphrase",
+      "difficulty": "hard",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/010-memory-indexer-invariants/plan.md"
+      ],
+      "gold_memory_ids": [
+        1007
+      ],
+      "returned_doc_ids": [
+        "memory_index:5749",
+        "specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/010-memory-indexer-invariants/tasks.md",
+        "memory_index:9507",
+        "specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/010-memory-indexer-invariants/plan.md",
+        "memory_index:5745",
+        "specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/010-memory-indexer-invariants/checklist.md",
+        "memory_index:9508",
+        "specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/010-memory-indexer-invariants/spec.md",
+        "memory_index:9506",
+        "specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/010-memory-indexer-invariants/implementation-summary.md"
+      ],
+      "returned_memory_ids": [
+        5749,
+        9507,
+        5745,
+        9508,
+        9506
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 466.787,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query+high-authority",
+        "triggers": [
+          "complex-query",
+          "high-authority"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-009",
+      "query": "stress-test task list tracking cat-14 pipeline gaps, cat-16 tooling fixes, and the remaining cat-24 memory-recall failure",
+      "category": "paraphrase",
+      "difficulty": "hard",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/005-stress-test-expansion-alignment/tasks.md"
+      ],
+      "gold_memory_ids": [
+        908
+      ],
+      "returned_doc_ids": [
+        "memory_index:908",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/005-stress-test-expansion-alignment/tasks.md",
+        "memory_index:6138",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/spec.md",
+        "memory_index:969",
+        "specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/005-claudest/tasks.md",
+        "memory_index:8610",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/016-degraded-readiness-envelope-parity/tasks.md",
+        "memory_index:3879",
+        "specs/00--anobel.com/031-fix-download-btn-transition-glitch/tasks.md"
+      ],
+      "returned_memory_ids": [
+        908,
+        6138,
+        969,
+        8610,
+        3879,
+        8683,
+        905,
+        951,
+        8452,
+        9646
+      ],
+      "rank_at_5": 1,
+      "rank_at_10": 1,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "recall_at_5": 1,
+      "ndcg_at_10": 1,
+      "latency_ms": 756.062,
+      "result_count": 10,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query+high-authority",
+        "triggers": [
+          "complex-query",
+          "high-authority"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-010",
+      "query": "task checklist for the mxbai swap that planned a 20-scenario PASS sample across cat-01, cat-11, cat-15, cat-13, and cat-23",
+      "category": "paraphrase",
+      "difficulty": "medium",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/checklist.md"
+      ],
+      "gold_memory_ids": [
+        1096
+      ],
+      "returned_doc_ids": [
+        "memory_index:1096",
+        "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/checklist.md",
+        "memory_index:98",
+        "specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/007-cross-model-validation/checklist.md",
+        "memory_index:1091",
+        "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/007-tree-sitter-parser-crash-resilience/checklist.md",
+        "memory_index:471",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/003-skill-advisor-freshness-audit/checklist.md",
+        "memory_index:9645",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/plan.md"
+      ],
+      "returned_memory_ids": [
+        1096,
+        98,
+        1091,
+        471,
+        9645,
+        1101,
+        481,
+        8514,
+        461,
+        9646
+      ],
+      "rank_at_5": 1,
+      "rank_at_10": 1,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "recall_at_5": 1,
+      "ndcg_at_10": 1,
+      "latency_ms": 548.754,
+      "result_count": 10,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query+high-authority",
+        "triggers": [
+          "complex-query",
+          "high-authority"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-011",
+      "query": "validate vec_memories KNN dual-write into the active embedder shard after reindex",
+      "category": "terminology",
+      "difficulty": "medium",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/016-reindex-populates-vec-memories-knn-table/spec.md"
+      ],
+      "gold_memory_ids": [
+        4849
+      ],
+      "returned_doc_ids": [
+        "memory_index:1712",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/003-comparison-measure/spec.md",
+        "memory_index:1",
+        "skills/system-spec-kit/constitutional/gate-enforcement.md",
+        "memory_index:8946",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/spec.md",
+        "memory_index:8514",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/decision-record.md",
+        "memory_index:9411",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/021-sk-doc-conformance-template-sweep/plan.md"
+      ],
+      "returned_memory_ids": [
+        1712,
+        1,
+        8946,
+        8514,
+        9411
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 511.739,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query+high-authority",
+        "triggers": [
+          "complex-query",
+          "high-authority"
+        ]
+      },
+      "requestQuality": {
+        "label": "gap"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-012",
+      "query": "implementation notes for ensuring every vec_<dim> row also exists in vec_memories",
+      "category": "paraphrase",
+      "difficulty": "hard",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/016-reindex-populates-vec-memories-knn-table/implementation-summary.md"
+      ],
+      "gold_memory_ids": [
+        4846
+      ],
+      "returned_doc_ids": [
+        "memory_index:4105",
+        "specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/007-cross-model-validation/implementation-summary.md",
+        "memory_index:688",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/028-documentation-alignment-readme-fill-in/implementation-summary.md",
+        "memory_index:9611",
+        "specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/001-template-level-consolidation-research/implementation-summary.md",
+        "memory_index:1410",
+        "specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/002-manifest-driven-template-design/implementation-summary.md",
+        "memory_index:945",
+        "specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/001-claude-optimization-settings/implementation-summary.md"
+      ],
+      "returned_memory_ids": [
+        4105,
+        688,
+        9611,
+        1410,
+        945
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 444.687,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query+high-authority",
+        "triggers": [
+          "complex-query",
+          "high-authority"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-013",
+      "query": "factory should resolve the active ollama embedder from the populated shard when the main DB lacks the dim table",
+      "category": "paraphrase",
+      "difficulty": "hard",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/017-factory-shard-fallback-for-hf-voyage-openai/spec.md"
+      ],
+      "gold_memory_ids": [
+        8184
+      ],
+      "returned_doc_ids": [
+        "memory_index:1710",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/003-comparison-measure/decision-record.md",
+        "memory_index:3542",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/implementation-summary.md",
+        "memory_index:9710",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote/decision-record.md",
+        "memory_index:8946",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/spec.md",
+        "memory_index:9709",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote/checklist.md"
+      ],
+      "returned_memory_ids": [
+        1710,
+        3542,
+        9710,
+        8946,
+        9709
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 694.896,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query",
+        "triggers": [
+          "complex-query"
+        ]
+      },
+      "requestQuality": {
+        "label": "gap"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-014",
+      "query": "plan for factory shard fallback parity across hf-local voyage openai and ollama",
+      "category": "terminology",
+      "difficulty": "medium",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/017-factory-shard-fallback-for-hf-voyage-openai/plan.md"
+      ],
+      "gold_memory_ids": [
+        8183
+      ],
+      "returned_doc_ids": [
+        "memory_index:1669",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/051-runtime-config-mk-code-index-parity-plus-findings/plan.md",
+        "memory_index:1535",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/020-catalog-playbook-alignment-audit/spec.md",
+        "memory_index:1520",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/014-onnx-cross-platform-backend/plan.md",
+        "memory_index:1509",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/011-embeddinggemma-unification/plan.md",
+        "memory_index:8830",
+        "specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/001-fix-runtime-hook-parity-findings/plan.md"
+      ],
+      "returned_memory_ids": [
+        1669,
+        1535,
+        1520,
+        1509,
+        8830
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 704.001,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query+high-authority",
+        "triggers": [
+          "complex-query",
+          "high-authority"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-015",
+      "query": "constitutional markdown should warn-only through memory_index_scan instead of hard rejecting insufficient context",
+      "category": "terminology",
+      "difficulty": "easy",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/018-constitutional-quality-gate-exemption/spec.md"
+      ],
+      "gold_memory_ids": [
+        8189
+      ],
+      "returned_doc_ids": [
+        "memory_index:5745",
+        "specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/010-memory-indexer-invariants/checklist.md",
+        "memory_index:2",
+        "skills/system-spec-kit/constitutional/gate-tool-routing.md",
+        "memory_index:9507",
+        "specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/010-memory-indexer-invariants/plan.md",
+        "memory_index:9508",
+        "specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/010-memory-indexer-invariants/spec.md",
+        "memory_index:9506",
+        "specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/010-memory-indexer-invariants/implementation-summary.md"
+      ],
+      "returned_memory_ids": [
+        5745,
+        2,
+        9507,
+        9508,
+        9506
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 617.334,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query",
+        "triggers": [
+          "complex-query"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-016",
+      "query": "implementation summary for the constitutional quality gate exemption that kept strict rejection for normal docs",
+      "category": "paraphrase",
+      "difficulty": "medium",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/018-constitutional-quality-gate-exemption/implementation-summary.md"
+      ],
+      "gold_memory_ids": [
+        8186
+      ],
+      "returned_doc_ids": [
+        "memory_index:4105",
+        "specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/007-cross-model-validation/implementation-summary.md",
+        "memory_index:96",
+        "specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/005-extraction-rerun/implementation-summary.md",
+        "memory_index:9234",
+        "specs/skilled-agent-orchestration/114-small-ai-model-optimization/004-budget-and-output-verification/implementation-summary.md",
+        "memory_index:4872",
+        "specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/003-eval-loop/implementation-summary.md",
+        "memory_index:4860",
+        "specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/002-eval-rig/implementation-summary.md"
+      ],
+      "returned_memory_ids": [
+        4105,
+        96,
+        9234,
+        4872,
+        4860
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 519.369,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query+high-authority",
+        "triggers": [
+          "complex-query",
+          "high-authority"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-017",
+      "query": "task list proving constitutional files no longer hit INSUFFICIENT_CONTEXT_ABORT while controls still fail",
+      "category": "terminology",
+      "difficulty": "medium",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/018-constitutional-quality-gate-exemption/tasks.md"
+      ],
+      "gold_memory_ids": [
+        8192
+      ],
+      "returned_doc_ids": [
+        "memory_index:5749",
+        "specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/010-memory-indexer-invariants/tasks.md",
+        "memory_index:3894",
+        "specs/00--anobel.com/034-form-bot-problem/tasks.md",
+        "memory_index:4110",
+        "specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-research-smallcode/tasks.md",
+        "memory_index:4534",
+        "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/005-scope-change-scan-guard/tasks.md",
+        "memory_index:963",
+        "specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/004-graphify/tasks.md"
+      ],
+      "returned_memory_ids": [
+        5749,
+        3894,
+        4110,
+        4534,
+        963,
+        4877,
+        691,
+        1065,
+        5680,
+        969
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 609.467,
+      "result_count": 10,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query+high-authority",
+        "triggers": [
+          "complex-query",
+          "high-authority"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-018",
+      "query": "graph metadata repair runner that normalizes v1, fixes importance_tier enum values, and realigns lineage keys",
+      "category": "terminology",
+      "difficulty": "easy",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/019-lineage-and-metadata-repair-runner/spec.md"
+      ],
+      "gold_memory_ids": [
+        8406
+      ],
+      "returned_doc_ids": [
+        "memory_index:1103",
+        "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/012-doctor-apply-mode-implementation/decision-record.md",
+        "memory_index:8764",
+        "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/004-research-and-fix-code-graph-advisor-refinement/implementation-summary.md",
+        "memory_index:1005",
+        "specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/010-memory-indexer-invariants/decision-record.md",
+        "memory_index:1068",
+        "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/003-code-graph-bug-surface-research/implementation-summary.md",
+        "memory_index:1104",
+        "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/012-doctor-apply-mode-implementation/implementation-summary.md"
+      ],
+      "returned_memory_ids": [
+        1103,
+        8764,
+        1005,
+        1068,
+        1104
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 531.633,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query",
+        "triggers": [
+          "complex-query"
+        ]
+      },
+      "requestQuality": {
+        "label": "gap"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-019",
+      "query": "lineage and metadata repair runner implementation summary with idempotency and backup evidence",
+      "category": "paraphrase",
+      "difficulty": "medium",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/019-lineage-and-metadata-repair-runner/implementation-summary.md"
+      ],
+      "gold_memory_ids": [
+        8409
+      ],
+      "returned_doc_ids": [
+        "memory_index:3891",
+        "specs/00--anobel.com/034-form-bot-problem/implementation-summary.md",
+        "memory_index:9496",
+        "specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/001-cache-warning-hooks/implementation-summary.md",
+        "memory_index:2755",
+        "specs/system-spec-kit/z_archive/022-hybrid-rag-fusion/008-hydra-db-based-features/002-versioned-memory-state/implementation-summary.md",
+        "memory_index:945",
+        "specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/001-claude-optimization-settings/implementation-summary.md",
+        "memory_index:948",
+        "specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/002-codesight/implementation-summary.md"
+      ],
+      "returned_memory_ids": [
+        3891,
+        9496,
+        2755,
+        945,
+        948
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 622.088,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query+high-authority",
+        "triggers": [
+          "complex-query",
+          "high-authority"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-020",
+      "query": "checklist for graph metadata v1 repair, V8-safe archived metadata, and memory lineage repair validation",
+      "category": "terminology",
+      "difficulty": "medium",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/019-lineage-and-metadata-repair-runner/checklist.md"
+      ],
+      "gold_memory_ids": [
+        8404
+      ],
+      "returned_doc_ids": [
+        "memory_index:1066",
+        "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/003-code-graph-bug-surface-research/checklist.md",
+        "memory_index:5745",
+        "specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/010-memory-indexer-invariants/checklist.md",
+        "memory_index:62",
+        "specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support/checklist.md",
+        "memory_index:1135",
+        "specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/002-skill-graph-daemon-native-advisor-tools/checklist.md",
+        "memory_index:1102",
+        "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/012-doctor-apply-mode-implementation/checklist.md"
+      ],
+      "returned_memory_ids": [
+        1066,
+        5745,
+        62,
+        1135,
+        1102,
+        5686,
+        964,
+        3795,
+        8772,
+        8928
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 571.669,
+      "result_count": 10,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query+high-authority",
+        "triggers": [
+          "complex-query",
+          "high-authority"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-021",
+      "query": "tasks for confirming the graph metadata repair runner is idempotent after a second dry run",
+      "category": "paraphrase",
+      "difficulty": "hard",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/019-lineage-and-metadata-repair-runner/tasks.md"
+      ],
+      "gold_memory_ids": [
+        8407
+      ],
+      "returned_doc_ids": [
+        "memory_index:1107",
+        "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/012-doctor-apply-mode-implementation/tasks.md",
+        "memory_index:8683",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/030-clean-infrastructure-full-matrix-stress-design/tasks.md",
+        "memory_index:5822",
+        "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/004-research-and-fix-code-graph-advisor-refinement/tasks.md",
+        "memory_index:5867",
+        "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/015-standalone-mcp-topology-pivot/tasks.md",
+        "memory_index:8771",
+        "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/004-fix-zero-node-and-parser-issues/tasks.md"
+      ],
+      "returned_memory_ids": [
+        1107,
+        8683,
+        5822,
+        5867,
+        8771,
+        6076,
+        1138,
+        8881,
+        1194,
+        8932
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 559.249,
+      "result_count": 10,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query+high-authority",
+        "triggers": [
+          "complex-query",
+          "high-authority"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-022",
+      "query": "plan for the lineage repair runner that uses a baseline scan log then dry-run, real run, and follow-up scan",
+      "category": "paraphrase",
+      "difficulty": "hard",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/019-lineage-and-metadata-repair-runner/plan.md"
+      ],
+      "gold_memory_ids": [
+        8405
+      ],
+      "returned_doc_ids": [
+        "memory_index:718",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit/plan.md",
+        "memory_index:3574",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/003-comparison-measure/plan.md",
+        "memory_index:740",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/003-post-program-quality-pass/005-stress-test-folder-migration/plan.md",
+        "memory_index:8846",
+        "specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/004-fix-template-deferred-followups/plan.md",
+        "memory_index:745",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/003-post-program-quality-pass/006-readme-cascade-refresh/plan.md"
+      ],
+      "returned_memory_ids": [
+        718,
+        3574,
+        740,
+        8846,
+        745
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 633.345,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query+high-authority",
+        "triggers": [
+          "complex-query",
+          "high-authority"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-023",
+      "query": "arc parent for the five-phase rerank sidecar rollout and promotion gate",
+      "category": "arc-context",
+      "difficulty": "easy",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/spec.md"
+      ],
+      "gold_memory_ids": [
+        8553
+      ],
+      "returned_doc_ids": [
+        "memory_index:2018",
+        "specs/system-spec-kit/027-xce-research-based-refinement/014-coco-intent-steering/plan.md",
+        "memory_index:6362",
+        "specs/system-spec-kit/027-xce-research-based-refinement/015-retrieval-rerank-clients/checklist.md",
+        "memory_index:8946",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/spec.md",
+        "memory_index:6366",
+        "specs/system-spec-kit/027-xce-research-based-refinement/015-retrieval-rerank-clients/plan.md",
+        "memory_index:9770",
+        "specs/system-spec-kit/027-xce-research-based-refinement/015-retrieval-rerank-clients/spec.md"
+      ],
+      "returned_memory_ids": [
+        2018,
+        6362,
+        8946,
+        6366,
+        9770
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 428.435,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query",
+        "triggers": [
+          "complex-query"
+        ]
+      },
+      "requestQuality": {
+        "label": "gap"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-024",
+      "query": "phase 001 fixed cross encoder flag routing so HTTP local provider can be selected",
+      "category": "arc-context",
+      "difficulty": "medium",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/001-flag-routing-fix-for-cross-encoder/spec.md"
+      ],
+      "gold_memory_ids": [
+        8548
+      ],
+      "returned_doc_ids": [
+        "memory_index:954",
+        "specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/003-contextador/implementation-summary.md",
+        "memory_index:1988",
+        "specs/system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/001-import-upstream/spec.md",
+        "memory_index:1521",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/014-onnx-cross-platform-backend/spec.md",
+        "memory_index:5677",
+        "specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/001-claude-optimization-settings/checklist.md",
+        "memory_index:3444",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/014-onnx-cross-platform-backend/checklist.md"
+      ],
+      "returned_memory_ids": [
+        954,
+        1988,
+        1521,
+        5677,
+        3444
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 463.594,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query+high-authority",
+        "triggers": [
+          "complex-query",
+          "high-authority"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-025",
+      "query": "phase 002 created the FastAPI system rerank sidecar skill around Qwen3-Reranker-0.6B",
+      "category": "arc-context",
+      "difficulty": "easy",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/002-system-rerank-sidecar-skill/spec.md"
+      ],
+      "gold_memory_ids": [
+        8549
+      ],
+      "returned_doc_ids": [
+        "memory_index:5899",
+        "specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/002-skill-graph-daemon-native-advisor-tools/spec.md",
+        "memory_index:2020",
+        "specs/system-spec-kit/027-xce-research-based-refinement/015-retrieval-rerank-clients/implementation-summary.md",
+        "memory_index:8771",
+        "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/004-fix-zero-node-and-parser-issues/tasks.md",
+        "memory_index:1336",
+        "specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-skill-advisor-production-hardening/004-devin-advisor-hook-integration/plan.md",
+        "memory_index:1338",
+        "specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-skill-advisor-production-hardening/004-devin-advisor-hook-integration/spec.md"
+      ],
+      "returned_memory_ids": [
+        5899,
+        2020,
+        8771,
+        1336,
+        1338
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 512.331,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query",
+        "triggers": [
+          "complex-query"
+        ]
+      },
+      "requestQuality": {
+        "label": "gap"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-026",
+      "query": "phase 003 made launchers self-electing and able to ensure the rerank sidecar",
+      "category": "arc-context",
+      "difficulty": "medium",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/003-ensure-sidecar-from-launchers/spec.md"
+      ],
+      "gold_memory_ids": [
+        8550
+      ],
+      "returned_doc_ids": [
+        "memory_index:957",
+        "specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/003-contextador/tasks.md",
+        "memory_index:8771",
+        "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/004-fix-zero-node-and-parser-issues/tasks.md",
+        "memory_index:954",
+        "specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/003-contextador/implementation-summary.md",
+        "memory_index:8683",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/030-clean-infrastructure-full-matrix-stress-design/tasks.md",
+        "memory_index:952",
+        "specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/003-contextador/checklist.md"
+      ],
+      "returned_memory_ids": [
+        957,
+        8771,
+        954,
+        8683,
+        952
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 476.721,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query",
+        "triggers": [
+          "complex-query"
+        ]
+      },
+      "requestQuality": {
+        "label": "gap"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-027",
+      "query": "phase 004 benchmark comparing positional fallback with Qwen reranking on spec-memory",
+      "category": "arc-context",
+      "difficulty": "easy",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/004-spec-memory-rerank-benchmark/spec.md"
+      ],
+      "gold_memory_ids": [
+        8551
+      ],
+      "returned_doc_ids": [
+        "memory_index:6138",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/spec.md",
+        "memory_index:962",
+        "specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/004-graphify/spec.md",
+        "memory_index:5725",
+        "specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/004-memory-save-rewrite/spec.md",
+        "memory_index:8946",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/spec.md",
+        "memory_index:1712",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/003-comparison-measure/spec.md"
+      ],
+      "returned_memory_ids": [
+        6138,
+        962,
+        5725,
+        8946,
+        1712
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 518.156,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query",
+        "triggers": [
+          "complex-query"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-028",
+      "query": "phase 005 consumes the rerank benchmark verdict to decide whether to promote Qwen as default",
+      "category": "arc-context",
+      "difficulty": "easy",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/005-promote-qwen-as-default/spec.md"
+      ],
+      "gold_memory_ids": [
+        8552
+      ],
+      "returned_doc_ids": [
+        "memory_index:6368",
+        "specs/system-spec-kit/027-xce-research-based-refinement/015-retrieval-rerank-clients/tasks.md",
+        "memory_index:1712",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/003-comparison-measure/spec.md",
+        "memory_index:9770",
+        "specs/system-spec-kit/027-xce-research-based-refinement/015-retrieval-rerank-clients/spec.md",
+        "memory_index:9241",
+        "specs/skilled-agent-orchestration/114-small-ai-model-optimization/005-model-profiles-and-fallback/implementation-summary.md",
+        "memory_index:8537",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/007-fixture-calibration/spec.md"
+      ],
+      "returned_memory_ids": [
+        6368,
+        1712,
+        9770,
+        9241,
+        8537
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 497.658,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query",
+        "triggers": [
+          "complex-query"
+        ]
+      },
+      "requestQuality": {
+        "label": "gap"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-029",
+      "query": "MCP launcher concurrency arc parent covering lease safety and multi-client daemon startup",
+      "category": "arc-context",
+      "difficulty": "medium",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/spec.md"
+      ],
+      "gold_memory_ids": [
+        8547
+      ],
+      "returned_doc_ids": [
+        "memory_index:1765",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/004-launcher-diagnostics-and-signal-coverage/implementation-summary.md",
+        "memory_index:6081",
+        "specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/003-codex-native-startup-advisor-hooks/research/research.md",
+        "memory_index:1137",
+        "specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/002-skill-graph-daemon-native-advisor-tools/plan.md",
+        "memory_index:1767",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/004-launcher-diagnostics-and-signal-coverage/spec.md",
+        "memory_index:1138",
+        "specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/002-skill-graph-daemon-native-advisor-tools/tasks.md"
+      ],
+      "returned_memory_ids": [
+        1765,
+        6081,
+        1137,
+        1767,
+        1138
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 645.661,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query",
+        "triggers": [
+          "complex-query"
+        ]
+      },
+      "requestQuality": {
+        "label": "gap"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-030",
+      "query": "daemon bridge socket for skill-advisor and code-index launcher clients",
+      "category": "arc-context",
+      "difficulty": "medium",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/012-daemon-bridge-socket-for-skill-advisor-and-code-index/spec.md"
+      ],
+      "gold_memory_ids": [
+        8546
+      ],
+      "returned_doc_ids": [
+        "memory_index:1213",
+        "specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/015-mcp-server-mk-skill-advisor-rename/spec.md",
+        "memory_index:1209",
+        "specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/015-mcp-server-mk-skill-advisor-rename/checklist.md",
+        "memory_index:1211",
+        "specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/015-mcp-server-mk-skill-advisor-rename/implementation-summary.md",
+        "memory_index:1210",
+        "specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/015-mcp-server-mk-skill-advisor-rename/decision-record.md",
+        "memory_index:1214",
+        "specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/015-mcp-server-mk-skill-advisor-rename/tasks.md"
+      ],
+      "returned_memory_ids": [
+        1213,
+        1209,
+        1211,
+        1210,
+        1214
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 647.353,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query",
+        "triggers": [
+          "complex-query"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-031",
+      "query": "implementation summary for the daemon bridge socket added to launcher clients",
+      "category": "paraphrase",
+      "difficulty": "hard",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/012-daemon-bridge-socket-for-skill-advisor-and-code-index/implementation-summary.md"
+      ],
+      "gold_memory_ids": [
+        8544
+      ],
+      "returned_doc_ids": [
+        "memory_index:1156",
+        "specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/004-standalone-mcp-launcher-runtime-configs/implementation-summary.md",
+        "memory_index:1295",
+        "specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-skill-advisor-scoring-engine/004-ablation-sweep-and-weight-promotion/implementation-summary.md",
+        "memory_index:5896",
+        "specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/002-skill-graph-daemon-native-advisor-tools/implementation-summary.md",
+        "memory_index:2020",
+        "specs/system-spec-kit/027-xce-research-based-refinement/015-retrieval-rerank-clients/implementation-summary.md",
+        "memory_index:1211",
+        "specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/015-mcp-server-mk-skill-advisor-rename/implementation-summary.md"
+      ],
+      "returned_memory_ids": [
+        1156,
+        1295,
+        5896,
+        2020,
+        1211
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 454.567,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query+high-authority",
+        "triggers": [
+          "complex-query",
+          "high-authority"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-032",
+      "query": "sun_path socket directory and stale lease reclaim follow-up plan",
+      "category": "arc-context",
+      "difficulty": "medium",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/011-sun-path-and-stale-lease-followups/plan.md"
+      ],
+      "gold_memory_ids": [
+        8542
+      ],
+      "returned_doc_ids": [
+        "memory_index:745",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/003-post-program-quality-pass/006-readme-cascade-refresh/plan.md",
+        "memory_index:734",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/003-post-program-quality-pass/004-sk-doc-template-alignment/plan.md",
+        "memory_index:478",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/004-code-graph-readiness-audit/plan.md",
+        "memory_index:718",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit/plan.md",
+        "memory_index:716",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit/checklist.md"
+      ],
+      "returned_memory_ids": [
+        745,
+        734,
+        478,
+        718,
+        716
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 650.417,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query+high-authority",
+        "triggers": [
+          "complex-query",
+          "high-authority"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-033",
+      "query": "sun_path socket-dir plus stale lease reclaim feature specification",
+      "category": "arc-context",
+      "difficulty": "medium",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/011-sun-path-and-stale-lease-followups/spec.md"
+      ],
+      "gold_memory_ids": [
+        8543
+      ],
+      "returned_doc_ids": [
+        "memory_index:746",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/003-post-program-quality-pass/006-readme-cascade-refresh/spec.md",
+        "memory_index:9375",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/004-code-graph-readiness-audit/spec.md",
+        "memory_index:690",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/028-documentation-alignment-readme-fill-in/spec.md",
+        "memory_index:9386",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/007-runtime-command-agent-alignment-audit/spec.md",
+        "memory_index:474",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/003-skill-advisor-freshness-audit/spec.md"
+      ],
+      "returned_memory_ids": [
+        746,
+        9375,
+        690,
+        9386,
+        474
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 611.836,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:high-authority",
+        "triggers": [
+          "high-authority"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-034",
+      "query": "multi-client stdio socket bridge for MCP launchers before the daemon bridge phase",
+      "category": "paraphrase",
+      "difficulty": "hard",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/010-multi-client-stdio-socket-bridge/spec.md"
+      ],
+      "gold_memory_ids": [
+        4578
+      ],
+      "returned_doc_ids": [
+        "memory_index:1336",
+        "specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-skill-advisor-production-hardening/004-devin-advisor-hook-integration/plan.md",
+        "memory_index:6362",
+        "specs/system-spec-kit/027-xce-research-based-refinement/015-retrieval-rerank-clients/checklist.md",
+        "memory_index:9486",
+        "specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/003-contextador/spec.md",
+        "memory_index:6364",
+        "specs/system-spec-kit/027-xce-research-based-refinement/015-retrieval-rerank-clients/decision-record.md",
+        "memory_index:2020",
+        "specs/system-spec-kit/027-xce-research-based-refinement/015-retrieval-rerank-clients/implementation-summary.md"
+      ],
+      "returned_memory_ids": [
+        1336,
+        6362,
+        9486,
+        6364,
+        2020
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 689.959,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query",
+        "triggers": [
+          "complex-query"
+        ]
+      },
+      "requestQuality": {
+        "label": "gap"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-035",
+      "query": "canonical vector shard split that separated context-index metadata from per-profile vector storage",
+      "category": "terminology",
+      "difficulty": "medium",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/012-canonical-vector-shard-split/spec.md"
+      ],
+      "gold_memory_ids": [
+        3793
+      ],
+      "returned_doc_ids": [
+        "memory_index:1667",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/051-runtime-config-mk-code-index-parity-plus-findings/decision-record.md",
+        "memory_index:8524",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/004-metadata-fingerprint/decision-record.md",
+        "memory_index:1630",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/043-cocoindex-refresh-split/plan.md",
+        "memory_index:9508",
+        "specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/010-memory-indexer-invariants/spec.md",
+        "memory_index:8525",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/004-metadata-fingerprint/plan.md"
+      ],
+      "returned_memory_ids": [
+        1667,
+        8524,
+        1630,
+        9508,
+        8525
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 656.827,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query+high-authority",
+        "triggers": [
+          "complex-query",
+          "high-authority"
+        ]
+      },
+      "requestQuality": {
+        "label": "gap"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-036",
+      "query": "implementation summary for canonical vector shard split in spec-memory",
+      "category": "paraphrase",
+      "difficulty": "medium",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/012-canonical-vector-shard-split/implementation-summary.md"
+      ],
+      "gold_memory_ids": [
+        3791
+      ],
+      "returned_doc_ids": [
+        "memory_index:5722",
+        "specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/004-memory-save-rewrite/implementation-summary.md",
+        "memory_index:1629",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/043-cocoindex-refresh-split/implementation-summary.md",
+        "memory_index:9508",
+        "specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/010-memory-indexer-invariants/spec.md",
+        "memory_index:3542",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/implementation-summary.md",
+        "memory_index:9506",
+        "specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/010-memory-indexer-invariants/implementation-summary.md"
+      ],
+      "returned_memory_ids": [
+        5722,
+        1629,
+        9508,
+        3542,
+        9506
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 487.051,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query+high-authority",
+        "triggers": [
+          "complex-query",
+          "high-authority"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-037",
+      "query": "local-first cascade reorder and nomic hf-local default for embeddings",
+      "category": "terminology",
+      "difficulty": "easy",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/015-cascade-reorder-and-nomic-hf-local-default/spec.md"
+      ],
+      "gold_memory_ids": [
+        4546
+      ],
+      "returned_doc_ids": [
+        "memory_index:1535",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/020-catalog-playbook-alignment-audit/spec.md",
+        "memory_index:2",
+        "skills/system-spec-kit/constitutional/gate-tool-routing.md",
+        "memory_index:3467",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/020-catalog-playbook-alignment-audit/implementation-summary.md",
+        "memory_index:1534",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/020-catalog-playbook-alignment-audit/plan.md",
+        "memory_index:9710",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote/decision-record.md"
+      ],
+      "returned_memory_ids": [
+        1535,
+        2,
+        3467,
+        1534,
+        9710
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 593.367,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query+high-authority",
+        "triggers": [
+          "complex-query",
+          "high-authority"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-038",
+      "query": "implementation summary for local-first cascade reorder and Nomic hf-local default",
+      "category": "paraphrase",
+      "difficulty": "medium",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/015-cascade-reorder-and-nomic-hf-local-default/implementation-summary.md"
+      ],
+      "gold_memory_ids": [
+        4544
+      ],
+      "returned_doc_ids": [
+        "memory_index:3467",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/020-catalog-playbook-alignment-audit/implementation-summary.md",
+        "memory_index:1480",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/001-prefix-registry-architecture/implementation-summary.md",
+        "memory_index:4873",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/020-deep-review-p1-p2-remediation/implementation-summary.md",
+        "memory_index:1535",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/020-catalog-playbook-alignment-audit/spec.md",
+        "memory_index:101",
+        "specs/skilled-agent-orchestration/114-small-ai-model-optimization/003-permissions-matrix/implementation-summary.md"
+      ],
+      "returned_memory_ids": [
+        3467,
+        1480,
+        4873,
+        1535,
+        101
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 497.761,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query+high-authority",
+        "triggers": [
+          "complex-query",
+          "high-authority"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-039",
+      "query": "mxbai swap decision record from the spec-memory embedder bake-off",
+      "category": "terminology",
+      "difficulty": "easy",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/decision-record.md"
+      ],
+      "gold_memory_ids": [
+        8514
+      ],
+      "returned_doc_ids": [
+        "memory_index:6138",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/spec.md",
+        "memory_index:8514",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/decision-record.md",
+        "memory_index:3796",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/013-bm25-fts5-rag-fusion-investigation/decision-record.md",
+        "memory_index:1710",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/003-comparison-measure/decision-record.md",
+        "memory_index:3542",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/implementation-summary.md"
+      ],
+      "returned_memory_ids": [
+        6138,
+        8514,
+        3796,
+        1710,
+        3542
+      ],
+      "rank_at_5": 3,
+      "rank_at_10": 3,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "recall_at_5": 1,
+      "ndcg_at_10": 0.5,
+      "latency_ms": 585.658,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query+high-authority",
+        "triggers": [
+          "complex-query",
+          "high-authority"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-040",
+      "query": "023B fixture calibration packet used for expanded code-index reranker benchmarking",
+      "category": "arc-context",
+      "difficulty": "medium",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/007-fixture-calibration/spec.md"
+      ],
+      "gold_memory_ids": [
+        8537
+      ],
+      "returned_doc_ids": [
+        "memory_index:8537",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/007-fixture-calibration/spec.md",
+        "memory_index:8939",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/007-fixture-calibration/research.md",
+        "memory_index:8536",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/007-fixture-calibration/plan.md",
+        "memory_index:8936",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/007-fixture-calibration/checklist.md",
+        "memory_index:8941",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/007-fixture-calibration/tasks.md"
+      ],
+      "returned_memory_ids": [
+        8537,
+        8939,
+        8536,
+        8936,
+        8941
+      ],
+      "rank_at_5": 1,
+      "rank_at_10": 1,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "recall_at_5": 1,
+      "ndcg_at_10": 1,
+      "latency_ms": 574.314,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query",
+        "triggers": [
+          "complex-query"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-041",
+      "query": "retrieval observability packet for code-index deep research blind spots",
+      "category": "paraphrase",
+      "difficulty": "medium",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/002-retrieval-observability/spec.md"
+      ],
+      "gold_memory_ids": [
+        8519
+      ],
+      "returned_doc_ids": [
+        "memory_index:8526",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/004-metadata-fingerprint/spec.md",
+        "memory_index:8537",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/007-fixture-calibration/spec.md",
+        "memory_index:8939",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/007-fixture-calibration/research.md",
+        "memory_index:8524",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/004-metadata-fingerprint/decision-record.md",
+        "memory_index:8765",
+        "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/004-research-and-fix-code-graph-advisor-refinement/spec.md"
+      ],
+      "returned_memory_ids": [
+        8526,
+        8537,
+        8939,
+        8524,
+        8765
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 565.569,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query+high-authority",
+        "triggers": [
+          "complex-query",
+          "high-authority"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-042",
+      "query": "prompt license registry tasks for the 023A2 code-index research branch",
+      "category": "paraphrase",
+      "difficulty": "hard",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/006-prompt-license-registry/tasks.md"
+      ],
+      "gold_memory_ids": [
+        8534
+      ],
+      "returned_doc_ids": [
+        "memory_index:957",
+        "specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/003-contextador/tasks.md",
+        "memory_index:5822",
+        "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/004-research-and-fix-code-graph-advisor-refinement/tasks.md",
+        "memory_index:8526",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/004-metadata-fingerprint/spec.md",
+        "memory_index:951",
+        "specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/002-codesight/tasks.md",
+        "memory_index:8932",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/004-metadata-fingerprint/tasks.md"
+      ],
+      "returned_memory_ids": [
+        957,
+        5822,
+        8526,
+        951,
+        8932
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 615.115,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query+high-authority",
+        "triggers": [
+          "complex-query",
+          "high-authority"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-043",
+      "query": "doctor model swap UX tasks in the code-index blind spots sequence",
+      "category": "paraphrase",
+      "difficulty": "hard",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/005-doctor-model-swap-ux/tasks.md"
+      ],
+      "gold_memory_ids": [
+        8530
+      ],
+      "returned_doc_ids": [
+        "memory_index:8874",
+        "specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-implement-initial-doctor-command-set/tasks.md",
+        "memory_index:8932",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/004-metadata-fingerprint/tasks.md",
+        "memory_index:8941",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/007-fixture-calibration/tasks.md",
+        "memory_index:8524",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/004-metadata-fingerprint/decision-record.md",
+        "memory_index:8526",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/004-metadata-fingerprint/spec.md"
+      ],
+      "returned_memory_ids": [
+        8874,
+        8932,
+        8941,
+        8524,
+        8526,
+        8525,
+        8881,
+        5749,
+        8885,
+        8930
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 609.126,
+      "result_count": 10,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query+high-authority",
+        "triggers": [
+          "complex-query",
+          "high-authority"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-044",
+      "query": "upstream cocoindex-code rebase spike tasks from 023F",
+      "category": "paraphrase",
+      "difficulty": "hard",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/003-upstream-rebase-spike/tasks.md"
+      ],
+      "gold_memory_ids": [
+        8523
+      ],
+      "returned_doc_ids": [
+        "memory_index:1989",
+        "specs/system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/001-import-upstream/tasks.md",
+        "memory_index:703",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/031-cocoindex-local-voyage-embeddings-gate/tasks.md",
+        "memory_index:9763",
+        "specs/system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/001-import-upstream/research.md",
+        "memory_index:1632",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/043-cocoindex-refresh-split/tasks.md",
+        "memory_index:4204",
+        "specs/skilled-agent-orchestration/z_archive/022-mcp-coco-integration/tasks.md"
+      ],
+      "returned_memory_ids": [
+        1989,
+        703,
+        9763,
+        1632,
+        4204,
+        1983,
+        1985,
+        1988,
+        1986,
+        8932
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 621.696,
+      "result_count": 10,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:high-authority",
+        "triggers": [
+          "high-authority"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-045",
+      "query": "runtime cleanup followups after release cleanup root memory cleanup",
+      "category": "paraphrase",
+      "difficulty": "medium",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/004-runtime-root-memory-cleanup-followup-fixes/spec.md"
+      ],
+      "gold_memory_ids": [
+        8488
+      ],
+      "returned_doc_ids": [
+        "memory_index:8610",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/016-degraded-readiness-envelope-parity/tasks.md",
+        "memory_index:8603",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/016-degraded-readiness-envelope-parity/implementation-summary.md",
+        "memory_index:8448",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/005-fix-remaining-priority-findings/implementation-summary.md",
+        "memory_index:8449",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/005-fix-remaining-priority-findings/plan.md",
+        "memory_index:8451",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/005-fix-remaining-priority-findings/spec.md"
+      ],
+      "returned_memory_ids": [
+        8610,
+        8603,
+        8448,
+        8449,
+        8451
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 455.52,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query",
+        "triggers": [
+          "complex-query"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-046",
+      "query": "scenario execution plan for MCP runtime stress findings and search intelligence playbook",
+      "category": "paraphrase",
+      "difficulty": "hard",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/002-search-scenario-execution/plan.md"
+      ],
+      "gold_memory_ids": [
+        8497
+      ],
+      "returned_doc_ids": [
+        "memory_index:8681",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/030-clean-infrastructure-full-matrix-stress-design/plan.md",
+        "memory_index:547",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/006-runtime-matrix-execution-validation/plan.md",
+        "memory_index:8679",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/030-clean-infrastructure-full-matrix-stress-design/decision-record.md",
+        "memory_index:8683",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/030-clean-infrastructure-full-matrix-stress-design/tasks.md",
+        "memory_index:8680",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/030-clean-infrastructure-full-matrix-stress-design/implementation-summary.md"
+      ],
+      "returned_memory_ids": [
+        8681,
+        547,
+        8679,
+        8683,
+        8680
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 585.047,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query+high-authority",
+        "triggers": [
+          "complex-query",
+          "high-authority"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-047",
+      "query": "MCP stress-cycle documentation and observability cleanup implementation summary",
+      "category": "paraphrase",
+      "difficulty": "medium",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/001-fix-mcp-stress-cycle-doc-observability/implementation-summary.md"
+      ],
+      "gold_memory_ids": [
+        8490
+      ],
+      "returned_doc_ids": [
+        "memory_index:904",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/005-stress-test-expansion-alignment/implementation-summary.md",
+        "memory_index:657",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/020-cocoindex-feature-catalog/implementation-summary.md",
+        "memory_index:8680",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/030-clean-infrastructure-full-matrix-stress-design/implementation-summary.md",
+        "memory_index:688",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/028-documentation-alignment-readme-fill-in/implementation-summary.md",
+        "memory_index:8603",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/016-degraded-readiness-envelope-parity/implementation-summary.md"
+      ],
+      "returned_memory_ids": [
+        904,
+        657,
+        8680,
+        688,
+        8603
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 638.936,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:high-authority",
+        "triggers": [
+          "high-authority"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-048",
+      "query": "feature catalog entry for the four-stage retrieval pipeline with cross encoder reranking",
+      "category": "terminology",
+      "difficulty": "hard",
+      "gold_doc_ids": [
+        "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/014-pipeline-architecture/spec.md"
+      ],
+      "gold_memory_ids": [
+        6806
+      ],
+      "returned_doc_ids": [
+        "memory_index:656",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/020-cocoindex-feature-catalog/decision-record.md",
+        "memory_index:661",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/020-cocoindex-feature-catalog/tasks.md",
+        "memory_index:657",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/020-cocoindex-feature-catalog/implementation-summary.md",
+        "memory_index:655",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/020-cocoindex-feature-catalog/checklist.md",
+        "memory_index:9770",
+        "specs/system-spec-kit/027-xce-research-based-refinement/015-retrieval-rerank-clients/spec.md"
+      ],
+      "returned_memory_ids": [
+        656,
+        661,
+        657,
+        655,
+        9770
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 611.832,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query+high-authority",
+        "triggers": [
+          "complex-query",
+          "high-authority"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-049",
+      "query": "environment reference row for SPECKIT_CROSS_ENCODER as the Stage 3 rerank gate",
+      "category": "terminology",
+      "difficulty": "medium",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/001-flag-routing-fix-for-cross-encoder/spec.md"
+      ],
+      "gold_memory_ids": [
+        8548
+      ],
+      "returned_doc_ids": [
+        "memory_index:2020",
+        "specs/system-spec-kit/027-xce-research-based-refinement/015-retrieval-rerank-clients/implementation-summary.md",
+        "memory_index:9770",
+        "specs/system-spec-kit/027-xce-research-based-refinement/015-retrieval-rerank-clients/spec.md",
+        "memory_index:6362",
+        "specs/system-spec-kit/027-xce-research-based-refinement/015-retrieval-rerank-clients/checklist.md",
+        "memory_index:6366",
+        "specs/system-spec-kit/027-xce-research-based-refinement/015-retrieval-rerank-clients/plan.md",
+        "memory_index:6368",
+        "specs/system-spec-kit/027-xce-research-based-refinement/015-retrieval-rerank-clients/tasks.md"
+      ],
+      "returned_memory_ids": [
+        2020,
+        9770,
+        6362,
+        6366,
+        6368
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 489.908,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query+high-authority",
+        "triggers": [
+          "complex-query",
+          "high-authority"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    },
+    {
+      "fixture_id": "fixture-050",
+      "query": "Qwen sidecar benchmark should decide PROMOTE or HOLD for default spec-memory reranking",
+      "category": "arc-context",
+      "difficulty": "hard",
+      "gold_doc_ids": [
+        "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/004-spec-memory-rerank-benchmark/spec.md"
+      ],
+      "gold_memory_ids": [
+        8551
+      ],
+      "returned_doc_ids": [
+        "memory_index:6138",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/spec.md",
+        "memory_index:5839",
+        "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/008-end-user-scope-default-and-opt-in/spec.md",
+        "memory_index:1712",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/003-comparison-measure/spec.md",
+        "memory_index:3542",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/implementation-summary.md",
+        "memory_index:8537",
+        "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/007-fixture-calibration/spec.md"
+      ],
+      "returned_memory_ids": [
+        6138,
+        5839,
+        1712,
+        3542,
+        8537
+      ],
+      "rank_at_5": null,
+      "rank_at_10": null,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "recall_at_5": 0,
+      "ndcg_at_10": 0,
+      "latency_ms": 653.151,
+      "result_count": 5,
+      "scoringMethod": "fallback",
+      "rerank_used": false,
+      "rerank_provider": "none",
+      "rerank_gate": {
+        "shouldRerank": true,
+        "reason": "eligible:complex-query",
+        "triggers": [
+          "complex-query"
+        ]
+      },
+      "requestQuality": {
+        "label": "weak"
+      },
+      "confidence": null,
+      "error": null
+    }
+  ]
+}

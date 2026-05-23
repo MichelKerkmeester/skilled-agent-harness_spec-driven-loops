@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/004-deep-loop-locks-state-and-recovery",
+  "description": "Spec: Deep Loop Locks, State, and Recovery",
+  "keywords": [
+    "spec",
+    "deep",
+    "loop",
+    "locks",
+    "state",
+    "recovery"
+  ],
+  "lastUpdated": "2026-05-23T09:08:45.090Z",
+  "specId": "004",
+  "folderSlug": "deep-loop-locks-state-and-recovery",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "009-memory-leak-remediation"
+  ],
+  "memorySequence": 4,
+  "memoryNameHistory": []
+}

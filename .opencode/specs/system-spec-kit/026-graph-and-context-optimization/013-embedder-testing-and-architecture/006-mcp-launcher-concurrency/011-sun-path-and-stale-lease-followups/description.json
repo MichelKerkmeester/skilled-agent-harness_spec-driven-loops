@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/011-sun-path-and-stale-lease-followups",
+  "description": "Feature Specification: sun_path socket-dir + stale-lease reclaim followups",
+  "keywords": [
+    "feature",
+    "specification",
+    "socket-dir",
+    "stale-lease",
+    "reclaim",
+    "followups"
+  ],
+  "lastUpdated": "2026-05-23T09:08:18.600Z",
+  "specId": "011",
+  "folderSlug": "sun-path-and-stale-lease-followups",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "006-mcp-launcher-concurrency"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

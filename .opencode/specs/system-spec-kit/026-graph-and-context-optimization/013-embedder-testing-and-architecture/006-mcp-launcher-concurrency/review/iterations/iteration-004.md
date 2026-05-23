@@ -1,0 +1,32 @@
+I have completed iteration 4 of the deep-review, focusing on the maintainability dimension for the phase-parent MCP launcher concurrency arc. 
+
+**Summary**: Found 3 P2 maintainability issues:
+1. Parent spec.md lacks a dedicated invariants section for cross-cutting architectural constraints
+2. Hard-coded timeout values are scattered across child specs with no central documentation of rationale
+3. Spec-memory's varied busy_timeout values lack tradeoff documentation
+
+These are hygiene issues that reduce long-term maintainability but are not blocking. The verdict is **CONDITIONAL** (P2 findings only, no P0/P1).
+
+The iteration file has been written to `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/review/iterations/iteration-004.md` with the exact structure specified, including file:line citations for all findings and cross-references to prior iterations.
+spec.md:1-60
+- Evidence: Parent spec.md mentions cross-cutting concerns (single-writer lease, WAL settings, signal-handler parity) in the phase map descriptions (lines 43-46) but does not have a dedicated section documenting these as architectural invariants that future maintainers must preserve. None of the child specs use the term "invariant" or have invariant sections.
+- Impact: Future maintainers modifying launcher code may not be aware of critical architectural constraints that must be preserved (e.g., single-writer lease enforcement, WAL mode requirements, signal-handler parity across all 3 launchers). This increases the risk of accidental violations during refactoring or feature work.
+- Suggested fix: Add a dedicated "Cross-Cutting Invariants" section to the parent spec.md (after the phase map, before "What Needs Done") that documents: (1) single-writer lease enforcement at launcher boundary is mandatory for all 3 launchers, (2) SQLite must use WAL mode with busy_timeout ≥ 5000ms, (3) signal handlers (SIGTERM, SIGINT, SIGQUIT, uncaughtException) must have parity across all 3 launchers, (4) lease file cleanup must be atomic and race-condition-safe.
+
+### [P2] Hard-coded timeout values scattered across child specs with no central documentation of rationale
+- File: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/001-concurrent-daemon-corruption-fix/spec.md:71,135; 002/spec.md:112; 003/spec.md:71,140; 004/spec.md:74,78
+- Evidence: Multiple hard-coded timeout values are mentioned across child specs: `busy_timeout=5000` (001/spec.md:71,135; 003/spec.md:143; 004/spec.md:74), `<2 seconds` launcher exit latency (001/spec.md:134,186), `5s` unconditional timeout replaced in 003 (003/spec.md:71,140), `<50ms` re-probe latency (003/spec.md:197), `100ms` concurrent spawn race window (001/spec.md:202), spec-memory varied timeouts `1s/5s/10s` (002/spec.md:112), `8s` spawn-twice timeout bumped from 5s (004/spec.md:78,150). No central documentation explains why these values were chosen or provides tuning guidance.
+- Impact: Future maintainers may not understand the rationale behind timeout values, making it difficult to tune them for different deployment environments or to assess whether changes are safe. Scattered values increase the risk of inconsistency across the 3 launchers.
+- Suggested fix: Add a "Timeout Constants and Rationale" section to the parent spec.md that centralizes all timeout values with their rationale: busy_timeout=5000ms (SQLite contention window), launcher exit latency <2s (user experience), re-probe latency <50ms (startup performance), concurrent spawn race window 100ms (bootstrap lock coverage), spec-memory per-DB timeouts (1s checkpoints, 5s most, 10s vector-index-store) with tradeoff explanations, spawn-twice timeout 8s (CI timing margin). Reference this section from child specs rather than duplicating values.
+
+### [P2] Spec-memory's varied busy_timeout values lack tradeoff documentation
+- File: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/002-cross-launcher-lease-propagation/spec.md:112
+- Evidence: 002/spec.md line 112 states "Tuning `busy_timeout` on spec-memory's varied DBs (1s on checkpoints, 5s on most, 10s on vector-index-store) — values are intentional per-DB." but does not explain the tradeoffs or selection criteria for why different databases need different timeouts.
+- Impact: Future maintainers may not understand why spec-memory uses varied timeout values, increasing the risk of inappropriate changes (e.g., standardizing all to 5000ms) that could cause performance regressions or correctness issues for specific database workloads.
+- Suggested fix: Document the rationale for spec-memory's varied busy_timeout values in the parent spec.md's "Timeout Constants and Rationale" section: checkpoints use 1s (low contention, fast fail), most DBs use 5s (standard contention window), vector-index-store uses 10s (long-running write operations). Explain the tradeoff between timeout length and failure detection speed.
+
+## Notes
+
+Dimension coverage: Maintainability dimension reviewed at arc-level (invariant documentation, timeout centralization, rationale documentation). Did NOT review child code implementation details (per phase-parent scope). Cross-phase maintainability observations: Parent spec phase map accurately describes what each child shipped. Child specs follow consistent 10-section structure (METADATA through COMPLEXITY), which aids maintainability. Lean-trio structure is appropriate (only spec.md, description.json, graph-metadata.json at parent level). graph-metadata.json structural state is correct (status "complete" lowercase, last_active_child_id points to 004, parent_id correct). description.json is accurate (importance_tier "important", trigger_phrases match). Child numbering is correct (001-004, no gaps/duplicates). No arc-level changelog exists (only per-phase changelogs), which is expected for a phase parent. Prior iterations: iteration-001 found P1 status mismatch, iteration-002 found 2 P2 security documentation gaps, iteration-003 found P1 evidence trail + P2 REQ-to-test traceability. This iteration's findings are distinct and specific to maintainability (invariant documentation, timeout centralization, rationale documentation).
+
+Review verdict: CONDITIONAL

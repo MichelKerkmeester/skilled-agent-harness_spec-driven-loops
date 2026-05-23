@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper/004-implement-env-knobs-and-skill-docs",
+  "description": "Feature Specification: Rerank reaper env knobs and operator docs",
+  "keywords": [
+    "feature",
+    "specification",
+    "rerank",
+    "reaper",
+    "env",
+    "knobs",
+    "operator",
+    "docs"
+  ],
+  "lastUpdated": "2026-05-23T09:09:12.421Z",
+  "specId": "004",
+  "folderSlug": "implement-env-knobs-and-skill-docs",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "009-memory-leak-remediation",
+    "019-fix-rerank-sidecar-accumulation-with-three-layer-reaper"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

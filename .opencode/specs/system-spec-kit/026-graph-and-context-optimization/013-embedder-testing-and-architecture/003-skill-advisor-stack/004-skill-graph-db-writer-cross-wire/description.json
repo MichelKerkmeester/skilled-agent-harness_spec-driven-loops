@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/003-skill-advisor-stack/004-skill-graph-db-writer-cross-wire",
+  "description": "Spec: 010/004 skill-graph-db Writer Cross-Wire to EmbedderAdapter Layer",
+  "keywords": [
+    "spec",
+    "010",
+    "004",
+    "skill-graph-db",
+    "writer",
+    "cross-wire",
+    "embedderadapter",
+    "layer"
+  ],
+  "lastUpdated": "2026-05-23T09:08:32.458Z",
+  "specId": "004",
+  "folderSlug": "skill-graph-db-writer-cross-wire",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "003-skill-advisor-stack"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "17-05-26_23-02__scaffolded-010-004-packet-as-follow-on-from-010.md"
+  ]
+}

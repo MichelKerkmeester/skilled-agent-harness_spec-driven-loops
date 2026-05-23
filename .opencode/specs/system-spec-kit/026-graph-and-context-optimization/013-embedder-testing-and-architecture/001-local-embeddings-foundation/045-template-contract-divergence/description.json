@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/045-template-contract-divergence",
+  "description": "Feature Specification: 044 Template contract divergence",
+  "keywords": [
+    "feature",
+    "specification",
+    "044",
+    "template",
+    "contract",
+    "divergence"
+  ],
+  "lastUpdated": "2026-05-23T09:09:00.515Z",
+  "specId": "045",
+  "folderSlug": "template-contract-divergence",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "001-local-embeddings-foundation"
+  ],
+  "memorySequence": 44,
+  "memoryNameHistory": []
+}
