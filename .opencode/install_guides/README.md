@@ -1088,7 +1088,7 @@ After the static checks above pass, run the interactive doctor surface to verify
 - `/doctor:update` rebuilds every database in dependency-safe order with snapshots + auto-rollback. Use it after upgrades or large packet moves.
 - `/doctor:mcp debug` checks all 6 MCP servers (Spec Kit Memory, Skill Advisor, System Code Graph, CocoIndex Code, Code Mode, Sequential Thinking) and offers guided repair with `--fix`.
 
-Full reference: `.opencode/commands/doctor.md` + `.opencode/commands/doctor/_routes.yaml`. Canonical 7 subsystem targets: memory, causal-graph, code-graph, deep-loop, cocoindex, skill-advisor, skill-budget.
+Full reference: `.opencode/commands/doctor/help.md` + `.opencode/commands/doctor/_routes.yaml`. Canonical 7 subsystem targets: memory, causal-graph, code-graph, deep-loop, cocoindex, skill-advisor, skill-budget.
 
 ---
 

@@ -29,10 +29,10 @@ The playbook peer at `manual_testing_playbook/23--doctor-commands/` covers twent
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/commands/doctor.md` | Router | `/doctor <target>` argv-positional dispatch source |
+| `.opencode/commands/doctor/help.md` | Router | `/doctor <target>` argv-positional dispatch source |
 | `.opencode/commands/doctor/_routes.yaml` | Manifest | Route manifest exposing each target's location and mutation class |
-| `.opencode/commands/doctor-update.md` | Command | `/doctor:update` cross-subsystem aligner with snapshot, validate, rollback, run-log |
-| `.opencode/commands/doctor-mcp.md` | Command | `/doctor:mcp install\|debug` MCP infra surface |
+| `.opencode/commands/doctor/update.md` | Command | `/doctor:update` cross-subsystem aligner with snapshot, validate, rollback, run-log |
+| `.opencode/commands/doctor/mcp.md` | Command | `/doctor:mcp install\|debug` MCP infra surface |
 | `manual_testing_playbook/23--doctor-commands/README.md` | Playbook | Scope and harness guide for twenty-five manual scenarios |
 | `manual_testing_playbook/23--doctor-commands/*.md` | Playbook | Per-scenario Markdown specs (DOC-323 through DOC-347, with gaps at 337 and 343) |
 | `manual_testing_playbook/_sandbox/23--doctor-commands/scenarios/` | Harness | Per-scenario shell wrappers, one per DOC-NNN entry |

@@ -43,7 +43,7 @@ The router itself never mutates anything. Each YAML workflow declares its own mu
 
 | File | Role |
 |------|------|
-| `.opencode/commands/doctor.md` | Router entry point: target resolution, per-target flag parser, YAML handoff |
+| `.opencode/commands/doctor/help.md` | Router entry point: target resolution, per-target flag parser, YAML handoff |
 | `.opencode/commands/doctor/mcp.md` | MCP infrastructure command: `install` / `debug` sub-action dispatch |
 | `.opencode/commands/doctor/update.md` | Multi-subsystem orchestrator (unchanged from 013) |
 | `.opencode/commands/doctor/_routes.yaml` | Canonical route manifest (7 routes + 2 MCP sub-routes) |
@@ -55,8 +55,8 @@ The router itself never mutates anything. Each YAML workflow declares its own mu
 
 | Path | Role |
 |------|------|
-| `.claude/commands/doctor.md` + `.claude/commands/doctor/{mcp,update}.md` | Auto-synced from `.opencode` (APFS clone) |
-| `.gemini/commands/doctor.toml` + `.gemini/commands/doctor/{mcp,update}.toml` | Manual TOML mirrors (regenerated from .opencode markdown via converter) |
+| `.claude/commands/doctor/help.md` + `.claude/commands/doctor/{mcp,update}.md` | Auto-synced from `.opencode` (APFS clone) |
+| `.gemini/commands/doctor/help.toml` + `.gemini/commands/doctor/{mcp,update}.toml` | Manual TOML mirrors (regenerated from .opencode markdown via converter) |
 | `.codex/prompts` | Symlink to `.opencode/commands` |
 
 ### Specification

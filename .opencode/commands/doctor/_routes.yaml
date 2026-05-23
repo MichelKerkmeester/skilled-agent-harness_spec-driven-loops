@@ -2,7 +2,7 @@
 # DOCTOR ROUTER — CANONICAL ROUTE MANIFEST
 # ─────────────────────────────────────────────────────────────────
 # Source of truth for /doctor <target> dispatch.
-# Read by: .opencode/commands/doctor.md (the router)
+# Read by: .opencode/commands/doctor/help.md (the router)
 # Validated by: .opencode/commands/doctor/scripts/route-validate.sh
 # Consumed by: Skill Advisor lexical lane (per-target trigger_phrases)
 #

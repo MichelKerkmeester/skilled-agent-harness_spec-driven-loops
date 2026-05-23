@@ -79,7 +79,7 @@ If the command proceeds, inspect Phase 2 disk-free preflight in `doctor_memory.y
 ## 4. SOURCE FILES
 
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Command entrypoint: `.opencode/commands/doctor.md`
+- Command entrypoint: `.opencode/commands/doctor/help.md`
 - YAML asset: `.opencode/commands/doctor/assets/doctor_memory.yaml`
 - Command contract: local doctor command behavior
 - Decision context: local doctor command ADRs

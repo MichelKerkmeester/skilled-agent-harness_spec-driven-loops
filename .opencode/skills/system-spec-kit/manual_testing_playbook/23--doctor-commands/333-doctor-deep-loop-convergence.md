@@ -76,7 +76,7 @@ If the convergence call is empty, inspect the state log's inferred `sessionId` a
 ## 4. SOURCE FILES
 
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Command entrypoint: [.opencode/commands/doctor.md](../../../../commands/doctor.md)
+- Command entrypoint: [.opencode/commands/doctor/help.md](../../../../commands/doctor/help.md)
 - Matching YAML asset: [.opencode/commands/doctor/assets/doctor_deep-loop.yaml](../../../../commands/doctor/assets/doctor_deep-loop.yaml)
 - Design context: local doctor command contract
 - Decision context: local doctor command ADRs
