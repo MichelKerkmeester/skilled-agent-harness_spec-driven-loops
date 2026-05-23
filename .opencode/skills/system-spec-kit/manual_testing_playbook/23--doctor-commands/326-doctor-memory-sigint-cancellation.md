@@ -80,7 +80,7 @@ If exit code is not 130, inspect signal handling in the apply workflow before ch
 ## 4. SOURCE FILES
 
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Command entrypoint: `.opencode/commands/doctor/help.md`
+- Command entrypoint: `.opencode/commands/doctor/speckit.md`
 - YAML asset: `.opencode/commands/doctor/assets/doctor_memory.yaml`
 - Command contract: local doctor command behavior
 - Decision context: local doctor command ADRs

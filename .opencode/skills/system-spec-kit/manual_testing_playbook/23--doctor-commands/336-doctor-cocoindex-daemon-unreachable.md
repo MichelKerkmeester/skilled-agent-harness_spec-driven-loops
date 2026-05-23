@@ -75,12 +75,12 @@ The CocoIndex database directory remains untouched: no index mtime or size chang
 
 ### Failure Triage
 
-If mutation flow proceeds, inspect `.opencode/commands/doctor/assets/doctor_cocoindex.yaml` Phase 1 daemon health probe and `daemon_coordination.unhealthy_signals`. If the refusal is correct but not helpful, compare the output against `.opencode/commands/doctor/help.md` output contract and add the missing recovery recommendation in the command implementation, not in this playbook file.
+If mutation flow proceeds, inspect `.opencode/commands/doctor/assets/doctor_cocoindex.yaml` Phase 1 daemon health probe and `daemon_coordination.unhealthy_signals`. If the refusal is correct but not helpful, compare the output against `.opencode/commands/doctor/speckit.md` output contract and add the missing recovery recommendation in the command implementation, not in this playbook file.
 
 ## 4. SOURCE FILES
 
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Command entrypoint: [.opencode/commands/doctor/help.md](../../../../commands/doctor/help.md)
+- Command entrypoint: [.opencode/commands/doctor/speckit.md](../../../../commands/doctor/speckit.md)
 - Matching YAML asset: [.opencode/commands/doctor/assets/doctor_cocoindex.yaml](../../../../commands/doctor/assets/doctor_cocoindex.yaml)
 - Diagnostic YAML asset: [.opencode/commands/doctor/assets/doctor_cocoindex.yaml](../../../../commands/doctor/assets/doctor_cocoindex.yaml)
 - Design context: local doctor command contract

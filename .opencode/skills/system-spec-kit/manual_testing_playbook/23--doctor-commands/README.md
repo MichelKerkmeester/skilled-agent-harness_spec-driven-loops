@@ -28,7 +28,7 @@ Per-scenario fixtures are fetched on demand by `_sandbox/.../harness/fetch-fixtu
 
 ## See Also
 
-- Router source: `.opencode/commands/doctor/help.md`
+- Router source: `.opencode/commands/doctor/speckit.md`
 - Route manifest: `.opencode/commands/doctor/_routes.yaml`
 - CI assertion: `.opencode/commands/doctor/scripts/route-validate.sh`
 - Root playbook index: `../manual_testing_playbook.md`

@@ -29,7 +29,7 @@ The playbook peer at `manual_testing_playbook/23--doctor-commands/` covers twent
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/commands/doctor/help.md` | Router | `/doctor <target>` argv-positional dispatch source |
+| `.opencode/commands/doctor/speckit.md` | Router | `/doctor <target>` argv-positional dispatch source |
 | `.opencode/commands/doctor/_routes.yaml` | Manifest | Route manifest exposing each target's location and mutation class |
 | `.opencode/commands/doctor/update.md` | Command | `/doctor:update` cross-subsystem aligner with snapshot, validate, rollback, run-log |
 | `.opencode/commands/doctor/mcp.md` | Command | `/doctor:mcp install\|debug` MCP infra surface |

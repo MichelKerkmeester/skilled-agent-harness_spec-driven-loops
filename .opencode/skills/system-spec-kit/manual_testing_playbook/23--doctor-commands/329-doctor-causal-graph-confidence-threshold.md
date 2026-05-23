@@ -75,7 +75,7 @@ If a `0.65` or `0.40` candidate is linked, fail with `confidence-threshold-viola
 ## 4. SOURCE FILES
 
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Command entrypoint: [.opencode/commands/doctor/help.md](../../../../commands/doctor/help.md)
+- Command entrypoint: [.opencode/commands/doctor/speckit.md](../../../../commands/doctor/speckit.md)
 - Matching YAML asset: [.opencode/commands/doctor/assets/doctor_causal-graph.yaml](../../../../commands/doctor/assets/doctor_causal-graph.yaml)
 - Design context: local doctor command contract
 - Decision context: local doctor command ADRs

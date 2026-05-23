@@ -3,7 +3,7 @@
 User-facing diagnostic guide for `/doctor code-graph` (Phase A — diagnostic-only). Audit the code-graph index for stale + missed files and bloat directories without modifying any source files. Phase B (apply mode) is gated on the resilience-research assets.
 
 > **Part of OpenCode Installation.** See the [Master Installation Guide](./README.md) for complete setup.
-> **Command:** `/doctor code-graph` (auto + confirm modes) — full reference in `.opencode/commands/doctor/help.md`.
+> **Command:** `/doctor code-graph` (auto + confirm modes) — full reference in `.opencode/commands/doctor/speckit.md`.
 > **Phase:** A (read-only). Phase B (apply mode) coming after the resilience-research assets stabilize.
 
 ---
@@ -151,13 +151,13 @@ When Phase B ships, this entire flow (apply → verify → rollback if regressed
 | `"detect_changes unavailable"` | Falls back to git status + index timestamp comparison |
 | Report path missing on completion | Check packet scratch directory exists; check disk space |
 | Bloat detection over-flags `dist/` | Expected for medium-tier patterns; review per-repo |
-| Command not found | Verify `.opencode/commands/doctor/help.md` exists; restart your AI client |
+| Command not found | Verify `.opencode/commands/doctor/speckit.md` exists; restart your AI client |
 
 ---
 
 ## 7. RESOURCES
 
-- **Command reference:** `.opencode/commands/doctor/help.md`
+- **Command reference:** `.opencode/commands/doctor/speckit.md`
 - **Workflow YAML:** `.opencode/commands/doctor/assets/doctor_code-graph_{auto,confirm}.yaml`
 - **Sibling doctor commands:** `/doctor:mcp install`, `/doctor:mcp debug`, `/doctor skill-advisor`
 - **Related guides:** [SET-UP - Skill Advisor](./SET-UP%20-%20Skill%20Advisor.md) (sibling 5-phase doctor command pattern)

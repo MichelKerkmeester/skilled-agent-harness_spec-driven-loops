@@ -82,7 +82,7 @@ If the daemon health probe fails, switch to DOC-336 if the daemon is unreachable
 ## 4. SOURCE FILES
 
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Command entrypoint: [.opencode/commands/doctor/help.md](../../../../commands/doctor/help.md)
+- Command entrypoint: [.opencode/commands/doctor/speckit.md](../../../../commands/doctor/speckit.md)
 - Matching YAML asset: [.opencode/commands/doctor/assets/doctor_cocoindex.yaml](../../../../commands/doctor/assets/doctor_cocoindex.yaml)
 - Design context: local doctor command contract
 - Decision context: local doctor command ADRs
