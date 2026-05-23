@@ -78,6 +78,8 @@ const DEFAULT_REQUEST_TIMEOUT_MS = 30_000;
 const DEFAULT_TERMINATION_GRACE_MS = 1_000;
 const MIN_TIMEOUT_MS = 1;
 const ALLOWED_ENV_KEYS = new Set(['PATH', 'HOME', 'LANG', 'LC_ALL', 'LC_CTYPE', 'TMPDIR']);
+const MAX_LINE_BYTES = 1024 * 1024; // 1MB
+const MAX_STDOUT_BUFFER_BYTES = 10 * 1024 * 1024; // 10MB
 
 // ───────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -474,6 +476,15 @@ export class SidecarClient implements EmbedderAdapter {
   }
 
   private handleStdout(chunk: string): void {
+    if (this.stdoutBuffer.length + chunk.length > MAX_STDOUT_BUFFER_BYTES) {
+      this.stdoutBuffer = '';
+      this.emitDispatchFailure('sidecar-stdout-buffer-cap-exceeded');
+      if (this.child) {
+        void this.terminateChild(this.child);
+      }
+      return;
+    }
+
     this.stdoutBuffer += chunk;
 
     let newlineIndex = this.stdoutBuffer.indexOf('\n');
@@ -481,6 +492,14 @@ export class SidecarClient implements EmbedderAdapter {
       const line = this.stdoutBuffer.slice(0, newlineIndex).trim();
       this.stdoutBuffer = this.stdoutBuffer.slice(newlineIndex + 1);
       if (line.length > 0) {
+        if (line.length > MAX_LINE_BYTES) {
+          this.stdoutBuffer = '';
+          this.emitDispatchFailure('sidecar-stdout-line-cap-exceeded');
+          if (this.child) {
+            void this.terminateChild(this.child);
+          }
+          return;
+        }
         this.handleResponseLine(line);
       }
       newlineIndex = this.stdoutBuffer.indexOf('\n');
@@ -526,6 +545,11 @@ export class SidecarClient implements EmbedderAdapter {
       pending.reject(error);
       this.pending.delete(id);
     }
+  }
+
+  private emitDispatchFailure(reason: string): void {
+    const pid = this.child?.pid ?? 'unknown';
+    process.stderr.write(`[sidecar:${pid}] dispatch_failure: ${reason}\n`);
   }
 
   private scheduleIdleEviction(): void {

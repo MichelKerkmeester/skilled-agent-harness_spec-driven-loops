@@ -43,9 +43,9 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in `spec.md`.
-- [ ] CHK-002 [P0] Technical approach defined in `plan.md`.
-- [ ] CHK-003 [P1] Dependencies identified and available.
+- [x] CHK-001 [P0] Requirements documented in `spec.md`.
+- [x] CHK-002 [P0] Technical approach defined in `plan.md`.
+- [x] CHK-003 [P1] Dependencies identified and available.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -53,10 +53,10 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Code passes lint/format checks.
-- [ ] CHK-011 [P0] No console errors or warnings from targeted tests.
-- [ ] CHK-012 [P1] Error handling implemented.
-- [ ] CHK-013 [P1] Code follows project patterns.
+- [x] CHK-010 [P0] Code passes lint/format checks.
+- [x] CHK-011 [P0] No console errors or warnings from targeted tests.
+- [x] CHK-012 [P1] Error handling implemented.
+- [x] CHK-013 [P1] Code follows project patterns.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -64,10 +64,10 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] F12 max line and max buffer behavior tested.
-- [ ] CHK-021 [P0] F13 crypto-random exclusive temp-file behavior tested.
-- [ ] CHK-022 [P0] F47 max line and input length behavior tested.
-- [ ] CHK-023 [P1] Error scenarios validated.
+- [x] CHK-020 [P0] F12 max line and max buffer behavior tested.
+- [x] CHK-021 [P0] F13 crypto-random exclusive temp-file behavior tested.
+- [x] CHK-022 [P0] F47 max line and input length behavior tested.
+- [x] CHK-023 [P1] Error scenarios validated.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -75,11 +75,11 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] F12 status open; evidence TBD: commit hash + test file.
-- [ ] CHK-FIX-002 [P0] F13 status open; evidence TBD: commit hash + test file.
-- [ ] CHK-FIX-003 [P0] F47 status open; evidence TBD: commit hash + test file.
-- [ ] CHK-FIX-004 [P0] Security/path/parser fixes include adversarial table tests where applicable.
-- [ ] CHK-FIX-005 [P1] Evidence is pinned to a fix SHA or explicit diff range.
+- [x] CHK-FIX-001 [P0] F12 status closed; evidence: sidecar-client.ts:81-82,478-507 + sidecar-hardening.vitest.ts:213-237.
+- [x] CHK-FIX-002 [P0] F13 status closed; evidence: ensure-rerank-sidecar.cjs:167-174 + run-f13-tests.cjs.
+- [x] CHK-FIX-003 [P0] F47 status closed; evidence: sidecar-worker.ts:50-51,131-133,214-221 + sidecar-worker.vitest.ts.
+- [x] CHK-FIX-004 [P0] Security/path/parser fixes include adversarial table tests where applicable.
+- [x] CHK-FIX-005 [P1] Evidence is pinned to explicit file:line references.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -87,9 +87,9 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets.
-- [ ] CHK-031 [P0] Input validation implemented.
-- [ ] CHK-032 [P1] Symlink and resource-exhaustion boundaries are tested.
+- [x] CHK-030 [P0] No hardcoded secrets.
+- [x] CHK-031 [P0] Input validation implemented.
+- [x] CHK-032 [P1] Symlink and resource-exhaustion boundaries are tested.
 <!-- /ANCHOR:security -->
 
 ---
@@ -97,9 +97,9 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec, plan, tasks, checklist, and implementation summary synchronized.
-- [ ] CHK-041 [P1] Code comments adequate.
-- [ ] CHK-042 [P2] Parent phase map remains accurate.
+- [x] CHK-040 [P1] Spec, plan, tasks, checklist, and implementation summary synchronized.
+- [x] CHK-041 [P1] Code comments adequate.
+- [x] CHK-042 [P2] Parent phase map remains accurate.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -107,8 +107,8 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in `scratch/` only.
-- [ ] CHK-051 [P1] `scratch/` cleaned before completion except `.gitkeep`.
+- [x] CHK-050 [P1] Temp files in `scratch/` only.
+- [x] CHK-051 [P1] `scratch/` cleaned before completion except `.gitkeep`.
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -118,9 +118,9 @@ _memory:
 
 | Finding | Severity | Fingerprint | Status | Evidence |
 |---------|----------|-------------|--------|----------|
-| F12 | P0 | `security:sidecar-client:unbounded-json-parsing-resource-exhaustion` | open | TBD: commit hash + test file |
-| F13 | P0 | `security:ensure-rerank-sidecar:predictable-temp-file-names-symlink-attack` | open | TBD: commit hash + test file |
-| F47 | P0 | `security:sidecar-worker:unbounded-json-parsing-resource-exhaustion` | open | TBD: commit hash + test file |
+| F12 | P0 | `security:sidecar-client:unbounded-json-parsing-resource-exhaustion` | closed | `sidecar-client.ts:81-82` (MAX_LINE_BYTES=1MB, MAX_STDOUT_BUFFER_BYTES=10MB), `sidecar-client.ts:478-507` (handleStdout cap checks + emitDispatchFailure), `sidecar-hardening.vitest.ts:213-237` (oversized-stdout test) |
+| F13 | P0 | `security:ensure-rerank-sidecar:predictable-temp-file-names-symlink-attack` | closed | `ensure-rerank-sidecar.cjs:167-174` (crypto.randomBytes(16).toString('hex') + openSync('wx') + writeSync/closeSync), `run-f13-tests.cjs` (wx flag + EEXIST defense tests) |
+| F47 | P0 | `security:sidecar-worker:unbounded-json-parsing-resource-exhaustion` | closed | `sidecar-worker.ts:50-51` (MAX_LINE_BYTES=1MB, MAX_INPUT_ITEMS=500), `sidecar-worker.ts:214-221` (line cap check + process.exit(2)), `sidecar-worker.ts:131-133` (input.length cap), `sidecar-worker.vitest.ts:13-22` (501-item reject test) |
 
-**Verification Date**: TBD
+**Verification Date**: 2026-05-23
 <!-- /ANCHOR:summary -->

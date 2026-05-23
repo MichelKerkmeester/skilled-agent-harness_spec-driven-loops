@@ -44,7 +44,14 @@ let providerPromise: Promise<IEmbeddingProvider> | null = null;
 let parentPollTimer: NodeJS.Timeout | null = null;
 
 // ───────────────────────────────────────────────────────────────
-// 3. HELPERS
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────
+
+const MAX_LINE_BYTES = 1024 * 1024; // 1MB
+const MAX_INPUT_ITEMS = 500;
+
+// ───────────────────────────────────────────────────────────────
+// 4. HELPERS
 // ───────────────────────────────────────────────────────────────
 
 function getProviderName(): string {
@@ -121,6 +128,10 @@ function parseRequest(line: string): WorkerRequest {
     throw new Error('Embed request input must be string[]');
   }
 
+  if (candidate.input.length > MAX_INPUT_ITEMS) {
+    throw new Error(`Embed request input exceeds maximum of ${MAX_INPUT_ITEMS} items`);
+  }
+
   return {
     id: parsed.id,
     type: 'embed',
@@ -188,7 +199,7 @@ async function handleRequest(request: WorkerRequest): Promise<void> {
 }
 
 // ───────────────────────────────────────────────────────────────
-// 4. ENTRYPOINT
+// 5. ENTRYPOINT
 // ───────────────────────────────────────────────────────────────
 
 const reader = readline.createInterface({
@@ -201,6 +212,16 @@ startParentDeathPolling();
 reader.on('line', (line: string) => {
   const trimmed = line.trim();
   if (trimmed.length === 0) {
+    return;
+  }
+
+  if (trimmed.length > MAX_LINE_BYTES) {
+    writeJson({
+      id: 0,
+      type: 'error',
+      message: `Line exceeds maximum length of ${MAX_LINE_BYTES} bytes`,
+    });
+    process.exit(2);
     return;
   }
 
@@ -227,3 +248,5 @@ reader.on('close', () => {
   }
   process.exit(0);
 });
+
+export const __sidecarWorkerTestables = { parseRequest };

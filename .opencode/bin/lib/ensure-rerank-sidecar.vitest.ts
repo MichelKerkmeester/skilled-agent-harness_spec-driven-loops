@@ -2,7 +2,10 @@ import { createRequire } from 'node:module';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 const require = createRequire(import.meta.url);
-const { ensureRerankSidecar } = require('./ensure-rerank-sidecar.cjs');
+const {
+  ensureRerankSidecar,
+  writeLedger,
+} = require('./ensure-rerank-sidecar.cjs');
 
 type HealthStep = 200 | 'error';
 
@@ -148,5 +151,51 @@ describe('ensureRerankSidecar', () => {
     expect(result).toEqual({ spawned: false, port: 8765, fallback: 'cross-encoder-disabled' });
     expect(http.get).not.toHaveBeenCalled();
     expect(spawn).not.toHaveBeenCalled();
+  });
+});
+
+describe('writeLedger — F13 temp-file security', () => {
+  it('uses crypto-random suffix and exclusive-create (wx) flag', () => {
+    const fsMock = {
+      mkdirSync: vi.fn(),
+      openSync: vi.fn(() => 99),
+      writeSync: vi.fn(),
+      closeSync: vi.fn(),
+      renameSync: vi.fn(),
+    };
+
+    writeLedger('/fake/dir', [{ pid: 123, port: 8765, ownerToken: 'tok', canonicalConfigHash: 'abc' }], fsMock);
+
+    expect(fsMock.mkdirSync).toHaveBeenCalledWith('/fake/dir', { recursive: true, mode: 0o700 });
+    expect(fsMock.openSync).toHaveBeenCalledTimes(1);
+
+    const tmpArg = fsMock.openSync.mock.calls[0][0] as string;
+    const flagArg = fsMock.openSync.mock.calls[0][1] as string;
+
+    expect(flagArg).toBe('wx');
+    expect(tmpArg).toMatch(/\.tmp\.[0-9a-f]{32}$/);
+    expect(fsMock.writeSync).toHaveBeenCalledTimes(1);
+    expect(fsMock.closeSync).toHaveBeenCalledWith(99);
+    expect(fsMock.renameSync).toHaveBeenCalledTimes(1);
+  });
+
+  it('fails with EEXIST when a symlink or file already exists at the temp path', () => {
+    const eeexist = Object.assign(new Error('EEXIST: file already exists'), { code: 'EEXIST' });
+    const fsMock = {
+      mkdirSync: vi.fn(),
+      openSync: vi.fn(() => { throw eeexist; }),
+      writeSync: vi.fn(),
+      closeSync: vi.fn(),
+      renameSync: vi.fn(),
+    };
+
+    expect(() =>
+      writeLedger('/fake/dir', [{ pid: 123, port: 8765, ownerToken: 'tok', canonicalConfigHash: 'abc' }], fsMock),
+    ).toThrow('EEXIST');
+
+    expect(fsMock.openSync).toHaveBeenCalledTimes(1);
+    expect(fsMock.openSync.mock.calls[0][1]).toBe('wx');
+    expect(fsMock.writeSync).not.toHaveBeenCalled();
+    expect(fsMock.renameSync).not.toHaveBeenCalled();
   });
 });

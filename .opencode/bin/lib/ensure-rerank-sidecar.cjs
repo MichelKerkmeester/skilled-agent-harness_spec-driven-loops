@@ -164,8 +164,13 @@ function readLedger(dir, fsModule) {
 function writeLedger(dir, rows, fsModule) {
   fsModule.mkdirSync(dir, { recursive: true, mode: 0o700 });
   const target = ledgerPath(dir);
-  const tmp = `${target}.tmp.${process.pid}.${Date.now()}`;
-  fsModule.writeFileSync(tmp, `${JSON.stringify({ version: 1, sidecars: rows }, null, 2)}\n`, { mode: 0o600 });
+  const tmp = `${target}.tmp.${crypto.randomBytes(16).toString('hex')}`;
+  const fd = fsModule.openSync(tmp, 'wx');
+  try {
+    fsModule.writeSync(fd, `${JSON.stringify({ version: 1, sidecars: rows }, null, 2)}\n`);
+  } finally {
+    fsModule.closeSync(fd);
+  }
   fsModule.renameSync(tmp, target);
 }
 
@@ -296,4 +301,6 @@ module.exports = {
   waitForHealthy,
   canonicalConfigHash,
   loadOrCreateOwnerToken,
+  writeLedger,
+  readLedger,
 };

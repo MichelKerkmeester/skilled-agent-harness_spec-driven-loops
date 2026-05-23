@@ -30,7 +30,7 @@ async function waitUntil(condition: () => boolean, timeoutMs: number): Promise<v
   }
 }
 
-function createWorker(dir: string, mode: 'env' | 'hang' | 'ignore-term'): string {
+function createWorker(dir: string, mode: 'env' | 'hang' | 'ignore-term' | 'oversized-stdout'): string {
   const workerPath = join(dir, `worker-${mode}.cjs`);
   writeFileSync(workerPath, `
 const fs = require('node:fs');
@@ -52,6 +52,11 @@ rl.on('line', (line) => {
   const message = JSON.parse(line);
   if (message.type === 'ping') { write({ id: message.id, type: 'pong' }); return; }
   if (message.type === 'shutdown') { process.exit(0); }
+  if (${JSON.stringify(mode)} === 'oversized-stdout') {
+    const oversized = 'x'.repeat(2 * 1024 * 1024);
+    write({ id: message.id, type: 'embedding', vectors: message.input.map(() => [1, 2, 3]), dimensions: message.dimensions, _padding: oversized });
+    return;
+  }
   if (${JSON.stringify(mode)} === 'hang' || ${JSON.stringify(mode)} === 'ignore-term') return;
   write({ id: message.id, type: 'embedding', vectors: message.input.map(() => [1, 2, 3]), dimensions: message.dimensions });
 });
@@ -203,5 +208,31 @@ setInterval(() => {}, 1000);
     } finally {
       if (parent.pid && pidAlive(parent.pid)) parent.kill('SIGKILL');
     }
+  });
+
+  it('terminates the child when stdout returns an oversized JSON line exceeding MAX_LINE_BYTES', async () => {
+    const client = new SidecarClient({
+      provider: 'hf-local',
+      model: 'model',
+      dimensions: 3,
+      workerPath: createWorker(tmpDir, 'oversized-stdout'),
+      pingTimeoutMs: 100,
+      requestTimeoutMs: 2_000,
+      env: process.env,
+    });
+
+    await client.ready();
+    const pid = client.getWorkerInfo()?.pid;
+    expect(pid).toBeGreaterThan(0);
+
+    const embedPromise = client.embed(['abc']);
+    await waitUntil(() => !pidAlive(pid!), 3_000);
+
+    expect(pidAlive(pid!)).toBe(false);
+    expect(client.getWorkerInfo()).toBeNull();
+
+    const result = await embedPromise.catch((error: Error) => error.message);
+    expect(result).toMatch(/timed out|exited/);
+    await client.shutdown();
   });
 });
