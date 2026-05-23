@@ -10,6 +10,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const crypto = require('node:crypto');
 const { emitResourceMap } = require('../../system-spec-kit/scripts/resource-map/extract-from-evidence.cjs');
 const { resolveArtifactRoot } = require('../../system-spec-kit/shared/review-research-paths.cjs');
 
@@ -50,6 +51,14 @@ function slugify(value) {
 
 function normalizeText(value) {
   return value.replace(/\s+/g, ' ').trim();
+}
+
+function contentHash(value) {
+  return crypto
+    .createHash('sha256')
+    .update(normalizeText(String(value)).toLowerCase())
+    .digest('hex')
+    .slice(0, 12);
 }
 
 function escapeRegExp(value) {
@@ -256,6 +265,25 @@ function uniqueById(items) {
     }
     seen.add(item.id);
     result.push(item);
+  }
+
+  return result;
+}
+
+function uniqueRuledOutByContent(items) {
+  const seen = new Set();
+  const result = [];
+
+  for (const item of items) {
+    const hash = item.contentHash || contentHash(item.text);
+    if (seen.has(hash)) {
+      continue;
+    }
+    seen.add(hash);
+    result.push({
+      ...item,
+      contentHash: hash,
+    });
   }
 
   return result;
@@ -517,8 +545,12 @@ function resolveNextFocus(registry, iterationFiles, iterationRecords) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, eventRecords, reducerState = {}) {
+  const questionCoverageRecords = iterationRecords.filter((record) => {
+    const status = normalizeText(String(record.status || 'complete')).toLowerCase();
+    return !['error', 'failed', 'failure', 'stuck', 'thought'].includes(status);
+  });
   const answeredSet = new Set(
-    iterationRecords.flatMap((record) => (Array.isArray(record.answeredQuestions) ? record.answeredQuestions : [])).map(normalizeText),
+    questionCoverageRecords.flatMap((record) => (Array.isArray(record.answeredQuestions) ? record.answeredQuestions : [])).map(normalizeText),
   );
 
   const keyedQuestions = strategyQuestions.map((question, index) => {
@@ -529,7 +561,7 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
       text: normalized,
       addedAtIteration: 0,
       resolvedAtIteration: resolved
-        ? iterationRecords.find((record) =>
+        ? questionCoverageRecords.find((record) =>
             Array.isArray(record.answeredQuestions)
               && record.answeredQuestions.map(normalizeText).includes(normalized),
           )?.run ?? 0
@@ -551,17 +583,20 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
       .sort((left, right) => left.addedAtIteration - right.addedAtIteration || left.text.localeCompare(right.text)),
   );
 
-  const ruledOutDirections = uniqueById(
-    iterationFiles
-      .flatMap((iteration) =>
-        iteration.deadEnds.concat(iteration.ruledOut).map((entry, index) => ({
-          id: `ruled-out-${iteration.run}-${index + 1}-${slugify(entry)}`,
+  const ruledOutDirectionCandidates = iterationFiles
+    .flatMap((iteration) =>
+      iteration.deadEnds.concat(iteration.ruledOut).map((entry) => {
+        const hash = contentHash(entry);
+        return {
+          id: `ruled-out-${hash}`,
           text: entry,
+          contentHash: hash,
           addedAtIteration: iteration.run,
-        })),
-      )
-      .sort((left, right) => left.addedAtIteration - right.addedAtIteration || left.text.localeCompare(right.text)),
-  );
+        };
+      }),
+    )
+    .sort((left, right) => left.addedAtIteration - right.addedAtIteration || left.text.localeCompare(right.text));
+  const ruledOutDirections = uniqueRuledOutByContent(ruledOutDirectionCandidates);
 
   const coverageBySources = buildCoverageBySources(iterationFiles, iterationRecords);
   const latestIteration = iterationRecords.filter((record) => record.type === 'iteration').at(-1);
@@ -582,6 +617,7 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
   const lineage = reducerState.lineage && typeof reducerState.lineage === 'object'
     ? reducerState.lineage
     : {};
+  const uncoveredQuestions = keyedQuestions.filter((question) => !question.resolved).map((question) => question.text);
 
   return {
     sessionId: lineage.sessionId || '',
@@ -602,6 +638,7 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
       addedAtIteration: question.addedAtIteration,
       resolvedAtIteration: question.resolvedAtIteration,
     })),
+    uncoveredQuestions,
     keyFindings,
     ruledOutDirections,
     blockedStopHistory,
@@ -785,6 +822,14 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
     ...registry.openQuestions.map((question) => `- [ ] ${question.text}`),
     '',
     '<!-- /ANCHOR:questions -->',
+    '<!-- ANCHOR:uncovered-questions -->',
+    '## Uncovered Questions',
+    `- Count: ${registry.uncoveredQuestions.length}`,
+    ...registry.uncoveredQuestions.length
+      ? registry.uncoveredQuestions.map((question) => `- [ ] ${question}`)
+      : ['- None'],
+    '',
+    '<!-- /ANCHOR:uncovered-questions -->',
     '<!-- ANCHOR:trend -->',
     '## 5. TREND',
     `- Last 3 ratios: ${lastThreeRatios}`,

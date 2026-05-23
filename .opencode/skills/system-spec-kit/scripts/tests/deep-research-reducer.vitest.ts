@@ -16,6 +16,12 @@ const reducerModule = require(path.join(
 )) as {
   reduceResearchState: (specFolder: string, options?: { write?: boolean }) => {
     registry: {
+      uncoveredQuestions: string[];
+      ruledOutDirections: Array<{
+        text: string;
+        contentHash?: string;
+        addedAtIteration: number;
+      }>;
       metrics: {
         iterationsCompleted: number;
         openQuestions: number;
@@ -239,6 +245,7 @@ describe('deep-research reducer', () => {
     expect(firstRun.registry.metrics.iterationsCompleted).toBe(2);
     expect(firstRun.registry.metrics.resolvedQuestions).toBe(2);
     expect(firstRun.registry.metrics.openQuestions).toBe(1);
+    expect(firstRun.registry.uncoveredQuestions).toEqual(['Question C']);
     expect(firstRun.registry.metrics.keyFindings).toBe(4);
 
     expect(firstRegistry).toBe(secondRegistry);
@@ -255,7 +262,94 @@ describe('deep-research reducer', () => {
 
     expect(firstDashboard).toContain('Session ID: session-001');
     expect(firstDashboard).toContain('convergenceScore: 0.61');
+    expect(firstDashboard).toContain('## Uncovered Questions');
+    expect(firstDashboard).toContain('- Count: 1');
     expect(firstDashboard).toContain('Question C');
+  });
+
+  it('DR-003: computes uncoveredQuestions from strategy questions minus answered union', () => {
+    const specFolder = makeFixtureSpecFolder();
+
+    const result = reducerModule.reduceResearchState(specFolder, { write: true });
+    const registry = JSON.parse(fs.readFileSync(result.registryPath, 'utf8')) as {
+      uncoveredQuestions: string[];
+    };
+
+    expect(result.registry.uncoveredQuestions).toEqual(['Question C']);
+    expect(registry.uncoveredQuestions).toEqual(['Question C']);
+  });
+
+  it('DR-003: reports no uncoveredQuestions when all strategy questions are answered', () => {
+    const specFolder = makeFixtureSpecFolder();
+    writeFile(
+      path.join(specFolder, 'research', 'deep-research-state.jsonl'),
+      [
+        '{"type":"config","topic":"Reducer fixture topic","maxIterations":5,"convergenceThreshold":0.05,"createdAt":"2026-04-03T00:00:00Z","specFolder":"fixture"}',
+        '{"type":"iteration","run":1,"status":"complete","focus":"First pass","findingsCount":2,"newInfoRatio":0.8,"answeredQuestions":["Question A"],"keyQuestions":["Question A","Question B"],"sourcesQueried":["https://example.com/one"],"toolsUsed":["Read"],"timestamp":"2026-04-03T00:05:00Z","durationMs":1000}',
+        '{"type":"iteration","run":2,"status":"insight","focus":"Second pass","findingsCount":2,"newInfoRatio":0.4,"answeredQuestions":["Question B"],"keyQuestions":["Question B","Question C"],"sourcesQueried":["https://example.com/two"],"toolsUsed":["Read"],"timestamp":"2026-04-03T00:10:00Z","durationMs":1200}',
+        '{"type":"iteration","run":3,"status":"complete","focus":"Final pass","findingsCount":1,"newInfoRatio":0.2,"answeredQuestions":["Question C"],"keyQuestions":["Question C"],"sourcesQueried":["https://example.com/three"],"toolsUsed":["Read"],"timestamp":"2026-04-03T00:15:00Z","durationMs":900}',
+        '',
+      ].join('\n'),
+    );
+
+    const result = reducerModule.reduceResearchState(specFolder, { write: true });
+    const dashboard = fs.readFileSync(result.dashboardPath, 'utf8');
+
+    expect(result.registry.uncoveredQuestions).toEqual([]);
+    expect(result.registry.metrics.openQuestions).toBe(0);
+    expect(dashboard).toContain('## Uncovered Questions');
+    expect(dashboard).toContain('- Count: 0');
+    expect(dashboard).toContain('- None');
+  });
+
+  it('DR-005: deduplicates ruled-out directions by content hash while preserving first seen iteration', () => {
+    const specFolder = makeFixtureSpecFolder();
+    writeFile(
+      path.join(specFolder, 'research', 'iterations', 'iteration-002.md'),
+      `# Iteration 2: Second pass
+
+## Focus
+Refine the remaining uncertainty.
+
+## Findings
+1. Finding three from the second pass.
+
+## Ruled Out
+- Retrying the same endpoint without new instrumentation.
+
+## Dead Ends
+- Browser-only profiling for this server-side problem.
+
+## Sources Consulted
+- https://example.com/two
+
+## Assessment
+- New information ratio: 0.4
+- Questions addressed: Question B
+- Questions answered: Question B
+
+## Reflection
+- What worked and why: The second pass confirmed the lineage edge with a direct source.
+- What did not work and why: Repeating weak evidence added no new confidence.
+- What I would do differently: Move directly to the unresolved question once the registry is stable.
+
+## Recommended Next Focus
+Question C
+`,
+    );
+
+    const result = reducerModule.reduceResearchState(specFolder, { write: true });
+
+    expect(result.registry.ruledOutDirections).toEqual([
+      expect.objectContaining({
+        text: 'Browser-only profiling for this server-side problem.',
+        addedAtIteration: 1,
+      }),
+      expect.objectContaining({
+        text: 'Retrying the same endpoint without new instrumentation.',
+        addedAtIteration: 1,
+      }),
+    ]);
   });
 
   it('prefers the latest lifecycle lineage and latest active synthesis_complete stop state', () => {
