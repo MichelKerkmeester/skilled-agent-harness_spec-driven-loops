@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0",
+  "nodeType": "spec-folder",
+  "path": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/001-identify-and-close-3-remaining-deferred-p2",
+  "title": "Identify and Close 3 Remaining Deferred P2 Findings",
+  "derived": {
+    "status": "blocked",
+    "level": 2,
+    "last_active_child_id": null
+  },
+  "relationships": {
+    "parent": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2",
+    "predecessors": [
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/001-fix-deferred-p2s-for-test-only-and-shared-exports",
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/003-fix-deferred-p2s-for-filesystem-durability",
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/004-fix-deferred-p2s-for-api-response-shape"
+    ],
+    "successors": []
+  },
+  "updated_at": "2026-05-23T13:30:00Z"
+}
