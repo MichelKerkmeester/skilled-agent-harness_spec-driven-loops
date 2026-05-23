@@ -132,13 +132,13 @@ export const HARDER_INTENT_PROMPT_CORPUS: ReadonlyArray<HarderIntentEntry> = [
   },
   {
     prompt: 'Have multiple perspectives argue the plan, compare tradeoffs, and leave the decision artifacts in the packet.',
-    expectedSkill: 'sk-ai-council',
+    expectedSkill: 'deep-ai-council',
     category: 'lexical-mis-route',
     reason: 'Planning and packet terms can route to system-spec-kit, but multi-perspective deliberation belongs to council.',
   },
   {
     prompt: 'Stage a structured design deliberation with separate seats and converge on the least risky option.',
-    expectedSkill: 'sk-ai-council',
+    expectedSkill: 'deep-ai-council',
     category: 'lexical-mis-route',
     reason: 'Design deliberation may match architecture/code planning; separate seats/convergence is council-owned.',
   },
