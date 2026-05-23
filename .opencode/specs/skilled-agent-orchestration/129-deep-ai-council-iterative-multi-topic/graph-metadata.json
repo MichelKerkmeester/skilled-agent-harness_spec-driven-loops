@@ -1,0 +1,25 @@
+{
+  "spec_id": "129",
+  "folder_slug": "deep-ai-council-iterative-multi-topic",
+  "parent_chain": [
+    "skilled-agent-orchestration"
+  ],
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/124-sk-ai-council-shared-runtime-deliberation"
+    ],
+    "related_to": [
+      "skilled-agent-orchestration/130-deep-skills-unique-value-differentiation"
+    ]
+  },
+  "derived": {
+    "status": "draft",
+    "importance_tier": "important",
+    "is_phase_parent": true,
+    "last_active_child_id": "001-research-and-architecture-design",
+    "last_active_at": "2026-05-23T06:00:00Z",
+    "child_phase_count": 1,
+    "completed_child_phase_count": 0
+  },
+  "lastUpdated": "2026-05-23T06:00:00Z"
+}

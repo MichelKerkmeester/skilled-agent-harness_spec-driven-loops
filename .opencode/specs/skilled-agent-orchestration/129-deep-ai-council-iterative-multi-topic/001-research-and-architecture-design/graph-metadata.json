@@ -1,0 +1,21 @@
+{
+  "spec_id": "001",
+  "folder_slug": "research-and-architecture-design",
+  "parent_chain": [
+    "skilled-agent-orchestration",
+    "129-deep-ai-council-iterative-multi-topic"
+  ],
+  "manual": {
+    "depends_on": [],
+    "related_to": []
+  },
+  "derived": {
+    "status": "draft",
+    "importance_tier": "important",
+    "is_phase_parent": false,
+    "completion_pct": 0,
+    "parent_id": "129-deep-ai-council-iterative-multi-topic",
+    "last_active_at": "2026-05-23T06:00:00Z"
+  },
+  "lastUpdated": "2026-05-23T06:00:00Z"
+}

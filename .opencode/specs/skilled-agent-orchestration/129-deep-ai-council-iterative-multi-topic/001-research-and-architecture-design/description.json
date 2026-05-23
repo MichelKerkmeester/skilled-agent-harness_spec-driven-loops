@@ -1,0 +1,26 @@
+{
+  "specFolder": "skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/001-research-and-architecture-design",
+  "description": "Phase 001: deep-research + ADR emission for deep-ai-council architecture. Decides runtime boundary, schemas, convergence semantics, cost guards, migration path. Feeds phases 002-006.",
+  "keywords": [
+    "deep-ai-council-architecture",
+    "runtime-boundary",
+    "convergence-semantics",
+    "findings-registry-schema",
+    "council-cost-guards"
+  ],
+  "lastUpdated": "2026-05-23T06:00:00Z",
+  "specId": "001",
+  "folderSlug": "research-and-architecture-design",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "129-deep-ai-council-iterative-multi-topic"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3",
+  "status": "draft",
+  "manual": {
+    "depends_on": [],
+    "related_to": []
+  }
+}

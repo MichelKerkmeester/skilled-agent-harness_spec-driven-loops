@@ -1,0 +1,3 @@
+{"type":"iteration","iter":1,"executor":"cli-devin","model":"swe-1.6","started_at":"2026-05-23T06:08:00.000Z","finished_at":"2026-05-23T06:08:30.000Z","findings_added":16,"converged":false}
+{"type":"iteration","iter":2,"executor":"cli-devin","model":"swe-1.6","started_at":"2026-05-23T08:10:00.000Z","finished_at":"2026-05-23T08:12:00.000Z","findings_added":16,"converged":false}
+{"type":"iteration","iter":3,"executor":"cli-devin","model":"swe-1.6","started_at":"2026-05-23T08:15:00.000Z","finished_at":"2026-05-23T08:18:00.000Z","findings_added":18,"converged":false}

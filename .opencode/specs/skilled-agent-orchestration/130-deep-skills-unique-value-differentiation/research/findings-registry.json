@@ -1,0 +1,707 @@
+{
+  "version": "1.0.0",
+  "findings": [
+    {
+      "id": "F1",
+      "iter": 1,
+      "fingerprint": "contract-surface:deep-review:input-shape-7-fields",
+      "severity": "info",
+      "title": "Input shape requires 7 mandatory setup fields",
+      "evidence": "The unified setup phase in deep-review.md requires resolution of 7 fields before loading the YAML workflow: review_target, review_target_type, review_dimensions, spec_folder, execution_mode, maxIterations, convergenceThreshold. The Default Resolution Table at lines 98-112 documents which fields resolve via flags, markers, auto-detection, or defaults.",
+      "source": ".opencode/commands/spec_kit/deep-review.md:15-22, 98-112"
+    },
+    {
+      "id": "F2",
+      "iter": 1,
+      "fingerprint": "contract-surface:deep-review:pre-bound-answers-schema",
+      "severity": "info",
+      "title": "Input shape supports PRE-BOUND SETUP ANSWERS for non-interactive :auto dispatch",
+      "evidence": "The PRE-BOUND SETUP ANSWERS schema at lines 66-95 defines a YAML marker block format for non-interactive :auto dispatch. The marker includes fields for review_target, review_target_type, review_dimensions, spec_folder, execution_mode, maxIterations, convergenceThreshold, executor, executor_model, executor_reasoning, executor_service_tier, executor_timeout, and resource_map_emit. Marker fields take precedence over $ARGUMENTS flags.",
+      "source": ".opencode/commands/spec_kit/deep-review.md:66-95"
+    },
+    {
+      "id": "F3",
+      "iter": 1,
+      "fingerprint": "contract-surface:deep-review:target-types-5",
+      "severity": "info",
+      "title": "Input shape supports 5 review target types",
+      "evidence": "The Default Resolution Table at line 101 and the Consolidated Setup Prompt at lines 174-179 document 5 valid review_target_type values: spec-folder, skill, agent, track, and files. Each type has a distinct scope discovery algorithm in the YAML workflow step_scope_discovery.",
+      "source": ".opencode/commands/spec_kit/deep-review.md:101, 174-179; .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:227-253"
+    },
+    {
+      "id": "F4",
+      "iter": 1,
+      "fingerprint": "contract-surface:deep-review:executor-kinds-6",
+      "severity": "info",
+      "title": "Input shape supports 6 executor kinds with optional model/reasoning/service-tier configuration",
+      "evidence": "The Consolidated Setup Prompt at lines 197-204 and the Default Resolution Table at lines 107-111 document 6 executor kinds: native, cli-codex, cli-gemini, cli-claude-code, cli-opencode, and cli-devin. Optional configuration includes executor_model, executor_reasoning, executor_service_tier, and executor_timeout. The executor config is stored under config.executor.* in deep-review-config.json.",
+      "source": ".opencode/commands/spec_kit/deep-review.md:107-111, 197-204"
+    },
+    {
+      "id": "F5",
+      "iter": 1,
+      "fingerprint": "contract-surface:deep-review:output-artifacts-9-files",
+      "severity": "info",
+      "title": "Output artifacts include 9 canonical files under resolved artifact_dir",
+      "evidence": "The state_paths section in both YAML workflows defines 9 canonical output files: deep-review-config.json, deep-review-state.jsonl, deep-review-findings-registry.json, deep-review-strategy.md, deep-review-dashboard.md, .deep-review-pause sentinel, prompts/ directory, iterations/iteration-{NNN}.md files, and deltas/iter-{NNN}.jsonl files. The workflow also emits review-report.md and resource-map.md at synthesis. Root specs use {spec_folder}/review/ while child phases use {spec_folder}/review/{packet}-pt-{NN}/.",
+      "source": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:82-108, 115-123"
+    },
+    {
+      "id": "F6",
+      "iter": 1,
+      "fingerprint": "contract-surface:deep-review:iteration-artifact-8-sections",
+      "severity": "info",
+      "title": "Output artifacts include per-iteration markdown with 8 required sections",
+      "evidence": "The deep-review agent definition at lines 189-196 specifies that iteration-{NNN}.md must include 8 sections: Dispatcher, Files Reviewed, Findings - New (with P0/P1/P2 subsections), Traceability Checks, Integration Evidence, Edge Cases, Confirmed-Clean Surfaces, Ruled Out, and Next Focus. The reducer reads both legacy section names and these live section names.",
+      "source": ".opencode/agents/deep-review.md:189-196"
+    },
+    {
+      "id": "F7",
+      "iter": 1,
+      "fingerprint": "contract-surface:deep-review:review-report-9-sections",
+      "severity": "info",
+      "title": "Output artifacts include review-report.md with 9 sections",
+      "evidence": "The ground truth review report shows 9 sections: 1. Summary, 2. Scope, 3. Methodology, 4. Findings (with P1/P2 subsections), 5. Recommendations, 6. Coverage, 7. Traceability, 8. Integration, 9. Release-readiness. The command entrypoint at line 267 mentions review-report.md as a synthesis output.",
+      "source": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/review/review-report.md:1-100; .opencode/commands/spec_kit/deep-review.md:267"
+    },
+    {
+      "id": "F8",
+      "iter": 1,
+      "fingerprint": "contract-surface:deep-review:state-files-3-core-plus-jsonl",
+      "severity": "info",
+      "title": "State files include 3 core persistence artifacts plus JSONL append log",
+      "evidence": "The step_classify_session in both YAML workflows inspects 3 core state artifacts: deep-review-config.json, deep-review-state.jsonl, and deep-review-strategy.md. The findings registry is also checked. Session classification depends on whether these artifacts exist and agree on mode/target. The JSONL state log receives append-only iteration records and event records (migration, resumed, restarted).",
+      "source": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:190-226; .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:179-222"
+    },
+    {
+      "id": "F9",
+      "iter": 1,
+      "fingerprint": "contract-surface:deep-review:state-ownership-split",
+      "severity": "info",
+      "title": "State file ownership is split between main loop and LEAF agent",
+      "evidence": "The main loop (YAML workflow) owns deep-review-config.json, deep-review-strategy.md, deep-review-dashboard.md, and deep-review-findings-registry.json. The LEAF agent (@deep-review) owns iteration-{NNN}.md and appends to deep-review-state.jsonl. The agent's Step 9 at line 210 requires appending exactly ONE type:\"iteration\" line per execution. The agent cannot modify config, registry, or strategy except for the strategy edit in Step 8.",
+      "source": ".opencode/agents/deep-review.md:189-211; .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:82-108"
+    },
+    {
+      "id": "F10",
+      "iter": 1,
+      "fingerprint": "contract-surface:deep-review:convergence-bayesian-signals",
+      "severity": "info",
+      "title": "Convergence semantics use Bayesian scoring via coverage-graph signals",
+      "evidence": "The deep-loop runtime SKILL.md at lines 134-135 documents bayesian-scorer.ts and coverage-graph-signals.ts as shared runtime libraries. The coverage-graph-signals module defines ReviewConvergenceSignals with dimensionCoverage, findingStability, p0ResolutionRate, evidenceDensity, and hotspotSaturation. The convergence.cjs script computes typed CONTINUE / STOP_ALLOWED / STOP_BLOCKED decisions.",
+      "source": ".opencode/skills/deep-loop-runtime/SKILL.md:134-135; .opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts:44-50"
+    },
+    {
+      "id": "F11",
+      "iter": 1,
+      "fingerprint": "contract-surface:deep-review:convergence-saturation-tiers",
+      "severity": "info",
+      "title": "Convergence semantics include saturation rate and P0/P1/P2 finding tiers",
+      "evidence": "The deep-review agent at lines 174-186 documents P0/P1/P2 severity classification with shared definitions from sk-code-review. P0 candidates require full Hunter/Skeptic/Referee adjudication in-iteration. Gate-relevant P1 requires compact skeptic/referee pass. The JSONL newFindingsRatio field uses weighted calculation (P0=10, P1=5, P2=1) with refinement at 0.5x.",
+      "source": ".opencode/agents/deep-review.md:174-186, 217"
+    },
+    {
+      "id": "F12",
+      "iter": 1,
+      "fingerprint": "contract-surface:deep-review:convergence-adversarial-p0",
+      "severity": "info",
+      "title": "Convergence semantics include adversarial adjudication for P0 findings",
+      "evidence": "The deep-review agent at line 183 requires running full Hunter/Skeptic/Referee adjudication for P0 candidates BEFORE writing to JSONL. The finding includes typed claim-adjudication fields: type, claim, evidenceRefs, counterevidenceSought, alternativeExplanation, finalSeverity, confidence, and downgradeTrigger. This is an adversarial self-check mechanism unique to deep-review.",
+      "source": ".opencode/agents/deep-review.md:182-183"
+    },
+    {
+      "id": "F13",
+      "iter": 1,
+      "fingerprint": "contract-surface:deep-review:command-modes-auto-confirm",
+      "severity": "info",
+      "title": "Command-mode suffixes are :auto and :confirm with three-tier resolution contract",
+      "evidence": "The command entrypoint at lines 38 and 52-64 documents :auto and :confirm suffixes. :auto follows a three-tier resolution contract: Tier 1 resolves confidently from flags/markers/defaults, Tier 2 asks targeted questions for 1-2 ambiguous fields, Tier 3 fails fast with named-missing-inputs error. :confirm uses a consolidated setup prompt with multi-gate approvals after setup.",
+      "source": ".opencode/commands/spec_kit/deep-review.md:38, 52-64"
+    },
+    {
+      "id": "F14",
+      "iter": 1,
+      "fingerprint": "contract-surface:deep-review:auto-non-interactive",
+      "severity": "info",
+      "title": "Command-mode :auto supports non-interactive dispatch via PRE-BOUND SETUP ANSWERS",
+      "evidence": "The PRE-BOUND SETUP ANSWERS schema at lines 66-95 is specifically for :auto non-interactive dispatch. The marker block allows binding all 7 required fields in the prompt body, avoiding interactive questions. The three-tier resolution contract at lines 56-58 applies only to :auto mode.",
+      "source": ".opencode/commands/spec_kit/deep-review.md:52-64, 66-95"
+    },
+    {
+      "id": "F15",
+      "iter": 1,
+      "fingerprint": "contract-surface:deep-review:unique-adversarial-p0",
+      "severity": "observation",
+      "title": "Convergence-distinctive value is adversarial P0 adjudication with coverage-graph signals",
+      "evidence": "Deep-review uniquely requires in-iteration adversarial adjudication for P0 findings (Hunter/Skeptic/Referee) with typed claim-adjudication fields. It also uses coverage-graph signals (dimensionCoverage, findingStability, p0ResolutionRate) for Bayesian convergence scoring. No sibling skill is known to combine adversarial self-checks with graph-based convergence signals.",
+      "source": ".opencode/agents/deep-review.md:182-183; .opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts:44-50"
+    },
+    {
+      "id": "F16",
+      "iter": 1,
+      "fingerprint": "contract-surface:deep-review:tier-contract-auto-only",
+      "severity": "info",
+      "title": "Tier 1/2/3 resolution contract applies only to :auto mode",
+      "evidence": "The three-tier resolution contract at lines 56-64 is explicitly under the `:auto` Setup Resolution section. Tier 1 resolves confidently, Tier 2 asks targeted questions, Tier 3 fails fast. :confirm mode uses the Consolidated Setup Prompt instead with multi-gate approvals. The Default Resolution Table at lines 98-112 documents which fields are Tier-2 candidates (review_target_type and spec_folder).",
+      "source": ".opencode/commands/spec_kit/deep-review.md:52-64, 98-112"
+    },
+    {
+      "id": "F17",
+      "iter": 2,
+      "fingerprint": "contract-surface:deep-research:input-shape-5-fields",
+      "severity": "info",
+      "title": "Input shape requires 5 mandatory setup fields",
+      "evidence": "The unified setup phase in deep-research.md requires resolution of 5 fields before loading the YAML workflow: research_topic, spec_folder, execution_mode, maxIterations, convergenceThreshold. This is 2 fewer fields than deep-review (which requires 7). The Default Resolution Table at lines 89-103 documents which fields resolve via flags, markers, auto-detection, or defaults.",
+      "source": ".opencode/commands/spec_kit/deep-research.md:14-20, 89-103"
+    },
+    {
+      "id": "F18",
+      "iter": 2,
+      "fingerprint": "contract-surface:deep-research:pre-bound-answers-schema",
+      "severity": "info",
+      "title": "Input shape supports PRE-BOUND SETUP ANSWERS for non-interactive :auto dispatch",
+      "evidence": "The PRE-BOUND SETUP ANSWERS schema at lines 68-85 defines a YAML marker block format for non-interactive :auto dispatch. The marker includes fields for research_topic, spec_folder, execution_mode, maxIterations, convergenceThreshold, executor, executor_model, executor_reasoning, executor_service_tier, executor_timeout, and resource_map_emit. Marker fields take precedence over $ARGUMENTS flags. This matches the deep-review schema structure.",
+      "source": ".opencode/commands/spec_kit/deep-research.md:68-85"
+    },
+    {
+      "id": "F19",
+      "iter": 2,
+      "fingerprint": "contract-surface:deep-research:no-target-types",
+      "severity": "info",
+      "title": "Input shape does NOT support target types (unlike deep-review's 5 types)",
+      "evidence": "Unlike deep-review which supports 5 review_target_type values (spec-folder, skill, agent, track, files), deep-research has no target_type field. The Default Resolution Table at lines 89-103 shows only research_topic, spec_folder, execution_mode, maxIterations, and convergenceThreshold. Deep-research operates on a single research_topic string rather than typed targets.",
+      "source": ".opencode/commands/spec_kit/deep-research.md:89-103"
+    },
+    {
+      "id": "F20",
+      "iter": 2,
+      "fingerprint": "contract-surface:deep-research:executor-kinds-6",
+      "severity": "info",
+      "title": "Input shape supports 6 executor kinds with optional model/reasoning/service-tier configuration",
+      "evidence": "The Default Resolution Table at lines 98-102 and the consolidated setup prompt at lines 173-179 document 6 executor kinds: native, cli-codex, cli-gemini, cli-claude-code, cli-opencode, and cli-devin. Optional configuration includes executor_model, executor_reasoning, executor_service_tier, and executor_timeout. This matches deep-review's executor configuration.",
+      "source": ".opencode/commands/spec_kit/deep-research.md:98-102, 173-179"
+    },
+    {
+      "id": "F21",
+      "iter": 2,
+      "fingerprint": "contract-surface:deep-research:output-artifacts-11-files",
+      "severity": "info",
+      "title": "Output artifacts include 11 canonical files under resolved artifact_dir",
+      "evidence": "The state_paths section in both YAML workflows defines 11 canonical output files: deep-research-config.json, deep-research-state.jsonl, findings-registry.json, deep-research-strategy.md, deep-research-dashboard.md, .deep-research-pause sentinel, .deep-research.lock lock file, prompts/ directory, iterations/iteration-{NNN}.md files, deltas/iter-{NNN}.jsonl files, and research.md. The workflow also emits resource-map.md at synthesis. This is 2 more files than deep-review (which has 9), due to the addition of .deep-research.lock lock file.",
+      "source": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:94-119"
+    },
+    {
+      "id": "F22",
+      "iter": 2,
+      "fingerprint": "contract-surface:deep-research:iteration-artifact-10-sections",
+      "severity": "info",
+      "title": "Output artifacts include per-iteration markdown with 10 required sections",
+      "evidence": "The deep-research agent definition at lines 181-222 specifies that iteration-{NNN}.md must include 10 sections: Focus, Findings, Ruled Out, Dead Ends, Edge Cases, Sources Consulted, Assessment, Reflection, Recommended Next Focus. This is 2 more sections than deep-review's 8-section structure. Deep-research adds explicit Dead Ends and Reflection sections.",
+      "source": ".opencode/agents/deep-research.md:181-222"
+    },
+    {
+      "id": "F23",
+      "iter": 2,
+      "fingerprint": "contract-surface:deep-research:research-report-17-sections",
+      "severity": "info",
+      "title": "Output artifacts include research.md with 17 sections",
+      "evidence": "The ground truth research report shows 17 sections: 1. Executive Summary, 2. Methodology, 3. Findings by Angle, 4. Findings by Surface, 5. Cross-Angle Themes, 6. P0/P1/P2 Summary, 7. Remediation Roadmap, 8. Coverage Analysis, 9. Source Diversity, 10. Convergence Analysis, 11. Executor Performance, 12. Negative Knowledge, 13. Open Questions, 14. Resolved Questions, 15. Key Findings, 16. Ruled Out Directions, 17. Next Steps. The command entrypoint at line 234 mentions research.md as a synthesis output. This is 8 more sections than deep-review's 9-section review-report.md.",
+      "source": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-system-spec-kit-mcp-sidecar-investigation/001-deep-research-drift-and-simplification/research/research.md:1-139; .opencode/commands/spec_kit/deep-research.md:234"
+    },
+    {
+      "id": "F24",
+      "iter": 2,
+      "fingerprint": "contract-surface:deep-research:state-files-3-core-plus-jsonl",
+      "severity": "info",
+      "title": "State files include 3 core persistence artifacts plus JSONL append log",
+      "evidence": "The step_classify_session in both YAML workflows inspects 3 core state artifacts: deep-research-config.json, deep-research-state.jsonl, and deep-research-strategy.md. The findings registry is also checked. Session classification depends on whether these artifacts exist and agree on mode/topic. The JSONL state log receives append-only iteration records and event records (migration, resumed, restarted). This matches deep-review's state file structure.",
+      "source": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:197-236; .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:157-200"
+    },
+    {
+      "id": "F25",
+      "iter": 2,
+      "fingerprint": "contract-surface:deep-research:state-ownership-split",
+      "severity": "info",
+      "title": "State file ownership is split between main loop and LEAF agent",
+      "evidence": "The main loop (YAML workflow) owns deep-research-config.json, deep-research-strategy.md, deep-research-dashboard.md, and findings-registry.json. The LEAF agent (@deep-research) owns iteration-{NNN}.md and appends to deep-research-state.jsonl. The agent's Step 8 at line 235 requires appending exactly ONE type:iteration line per execution. The agent cannot modify config, registry, or strategy except for the strategy edit in Step 8. This matches deep-review's ownership split.",
+      "source": ".opencode/agents/deep-research.md:226-232; .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:94-119"
+    },
+    {
+      "id": "F26",
+      "iter": 2,
+      "fingerprint": "contract-surface:deep-research:convergence-bayesian-signals",
+      "severity": "info",
+      "title": "Convergence semantics use Bayesian scoring via coverage-graph signals",
+      "evidence": "The deep-loop runtime SKILL.md at lines 134-135 documents bayesian-scorer.ts and coverage-graph-signals.ts as shared runtime libraries. The coverage-graph-signals module defines ReviewConvergenceSignals with dimensionCoverage, findingStability, p0ResolutionRate, evidenceDensity, and hotspotSaturation. The convergence.cjs script computes typed CONTINUE / STOP_ALLOWED / STOP_BLOCKED decisions. This matches deep-review's convergence mechanism.",
+      "source": ".opencode/skills/deep-loop-runtime/SKILL.md:134-135; .opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts:44-50"
+    },
+    {
+      "id": "F27",
+      "iter": 2,
+      "fingerprint": "contract-surface:deep-research:convergence-newinfo-ratio-no-tiers",
+      "severity": "info",
+      "title": "Convergence semantics use newInfoRatio calculation without severity tiers",
+      "evidence": "The deep-research agent at lines 264-269 documents newInfoRatio calculation: fully new findings count as 1.0, partially new as 0.5, with a +0.10 simplicity bonus capped at 1.0. Unlike deep-review's P0/P1/P2 severity tiers with weighted calculation (P0=10, P1=5, P2=1), deep-research has no severity classification system. Convergence is based purely on information novelty ratio.",
+      "source": ".opencode/agents/deep-research.md:264-269"
+    },
+    {
+      "id": "F28",
+      "iter": 2,
+      "fingerprint": "contract-surface:deep-research:convergence-no-adversarial",
+      "severity": "info",
+      "title": "Convergence semantics do NOT include adversarial adjudication",
+      "evidence": "Unlike deep-review which requires Hunter/Skeptic/Referee adjudication for P0 findings (iter-001 F12), deep-research has no adversarial self-check mechanism. The deep-research agent at lines 133-150 defines edge case handling (ambiguous input, contradictory evidence, missing dependency, partial success) but does not require adversarial adjudication for any finding severity.",
+      "source": ".opencode/agents/deep-research.md:133-150"
+    },
+    {
+      "id": "F29",
+      "iter": 2,
+      "fingerprint": "contract-surface:deep-research:command-modes-auto-confirm",
+      "severity": "info",
+      "title": "Command-mode suffixes are :auto and :confirm with three-tier resolution contract",
+      "evidence": "The command entrypoint at lines 52-66 documents :auto and :confirm suffixes. :auto follows a three-tier resolution contract: Tier 1 resolves confidently from flags/markers/defaults, Tier 2 asks targeted questions for 1-2 ambiguous fields, Tier 3 fails fast with named-missing-inputs error. :confirm uses a consolidated setup prompt with multi-gate approvals after setup. This matches deep-review's command-mode structure.",
+      "source": ".opencode/commands/spec_kit/deep-research.md:52-66"
+    },
+    {
+      "id": "F30",
+      "iter": 2,
+      "fingerprint": "contract-surface:deep-research:auto-non-interactive",
+      "severity": "info",
+      "title": "Command-mode :auto supports non-interactive dispatch via PRE-BOUND SETUP ANSWERS",
+      "evidence": "The PRE-BOUND SETUP ANSWERS schema at lines 68-85 is specifically for :auto non-interactive dispatch. The marker block allows binding all 5 required fields in the prompt body, avoiding interactive questions. The three-tier resolution contract at lines 56-64 applies only to :auto mode. This matches deep-review's non-interactive dispatch capability.",
+      "source": ".opencode/commands/spec_kit/deep-research.md:52-66, 68-85"
+    },
+    {
+      "id": "F31",
+      "iter": 2,
+      "fingerprint": "contract-surface:deep-research:unique-negative-knowledge",
+      "severity": "observation",
+      "title": "Convergence-distinctive value is negative knowledge and research charter without adversarial checks",
+      "evidence": "Deep-research uniquely emphasizes negative knowledge (ruled-out directions) as first-class research output through the Ruled Out and Dead Ends sections in iteration artifacts. It also uses a research charter (non-goals, stop conditions) validated at init. Unlike deep-review's adversarial P0 adjudication with coverage-graph signals, deep-research converges based purely on newInfoRatio without severity tiers or adversarial self-checks.",
+      "source": ".opencode/agents/deep-research.md:181-222, 264-269; .opencode/commands/spec_kit/deep-research.md:371-372"
+    },
+    {
+      "id": "F32",
+      "iter": 2,
+      "fingerprint": "contract-surface:deep-research:tier-contract-auto-only",
+      "severity": "info",
+      "title": "Tier 1/2/3 resolution contract applies only to :auto mode",
+      "evidence": "The three-tier resolution contract at lines 56-64 is explicitly under the :auto Setup Resolution section. Tier 1 resolves confidently, Tier 2 asks targeted questions, Tier 3 fails fast. :confirm mode uses the Consolidated Setup Prompt instead with multi-gate approvals. The Default Resolution Table at lines 89-103 documents which fields are Tier-2 candidates (spec_folder). This matches deep-review's tier contract.",
+      "source": ".opencode/commands/spec_kit/deep-research.md:56-64, 89-103"
+    },
+    {
+      "id": "F33",
+      "iter": 3,
+      "fingerprint": "contract-surface:deep-council:input-shape-6-fields",
+      "severity": "info",
+      "title": "Input shape requires 6 mandatory setup fields (PROPOSED)",
+      "evidence": "Packet 129 spec.md lines 77-82 propose 6 cost-guard fields for deep-council setup: max_rounds_per_topic (default 3), max_topics_per_session (default 5), saturation_threshold (default 0.2), plus implicit fields from current sk-ai-council: deliberation_topic, seat configurations, executor.*. This is 1 fewer field than deep-review (7 fields) and 1 more field than deep-research (5 fields). The cost-guard defaults are explicitly proposed in the In Scope section.",
+      "source": ".opencode/specs/skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/spec.md:77-82"
+    },
+    {
+      "id": "F34",
+      "iter": 3,
+      "fingerprint": "contract-surface:deep-council:multi-topic-input",
+      "severity": "info",
+      "title": "Input shape supports multi-topic deliberation (PROPOSED)",
+      "evidence": "Packet 129 spec.md line 78 proposes multi-topic session support: one spec folder hosts N topics, each topic has its own rounds/seats, cross-topic findings registry persists across topics. Unlike deep-review (single review_target) and deep-research (single research_topic), deep-council would accept N deliberation_topic values in a single session. This is a structural divergence from sibling skills.",
+      "source": ".opencode/specs/skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/spec.md:78"
+    },
+    {
+      "id": "F35",
+      "iter": 3,
+      "fingerprint": "contract-surface:deep-council:seat-configurations",
+      "severity": "info",
+      "title": "Input shape supports seat configurations with strategy lenses (PROPOSED)",
+      "evidence": "Current sk-ai-council SKILL.md lines 308-313 document seat selection with two or three distinct council seats with different reasoning lenses and, when real executors are available, different AI vantage targets. Packet 129 spec.md line 77 proposes retaining seat configurations in deep mode. Unlike deep-review and deep-research (which use a single executor per iteration), deep-council uses multi-seat deliberation within each round. This is a structural divergence.",
+      "source": ".opencode/skills/sk-ai-council/SKILL.md:308-313; .opencode/specs/skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/spec.md:77"
+    },
+    {
+      "id": "F36",
+      "iter": 3,
+      "fingerprint": "contract-surface:deep-council:executor-kinds-6",
+      "severity": "info",
+      "title": "Input shape supports 6 executor kinds (PROPOSED, inferred from current sk-ai-council)",
+      "evidence": "Current sk-ai-council SKILL.md lines 18-25 document in-CLI and external-CLI dispatch modes, with external-CLI dispatch invoked via cli-* skill family (cli-claude-code, cli-codex, cli-opencode). Packet 129 spec.md line 89 proposes keeping the one-CLI-per-round invariant in deep mode. This implies deep-council would support the same 6 executor kinds as deep-review and deep-research (native, cli-codex, cli-gemini, cli-claude-code, cli-opencode, cli-devin) but with the constraint that all seats within one round must use the same CLI.",
+      "source": ".opencode/skills/sk-ai-council/SKILL.md:18-25; .opencode/specs/skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/spec.md:89"
+    },
+    {
+      "id": "F37",
+      "iter": 3,
+      "fingerprint": "contract-surface:deep-council:output-artifacts-seat-tree",
+      "severity": "info",
+      "title": "Output artifacts include per-topic per-round seat artifacts (PROPOSED)",
+      "evidence": "Packet 129 spec.md line 78 proposes the artifact structure: ai-council/topics/topic-NNN/rounds/round-NNN/seats/. Current sk-ai-council SKILL.md lines 396-397 document folder_layout.md with ai-council/seats/round-001/ structure. Deep-council would extend this to N topics × M rounds per topic. This is a structural divergence from deep-review (iterations/iteration-{NNN}.md) and deep-research (iterations/iteration-{NNN}.md), which have a flat iteration structure.",
+      "source": ".opencode/specs/skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/spec.md:78; .opencode/skills/sk-ai-council/SKILL.md:396-397"
+    },
+    {
+      "id": "F38",
+      "iter": 3,
+      "fingerprint": "contract-surface:deep-council:output-artifacts-findings-registry",
+      "severity": "info",
+      "title": "Output artifacts include findings-registry with canonical fingerprint (PROPOSED)",
+      "evidence": "Packet 129 spec.md line 79 proposes session-wide findings registry keyed by canonical fingerprint with schema mirroring deep-review/deep-research ({angle}:{topic-slug}:{claim-slug}). Packet 129 spec.md line 31 lists an open question: Findings registry schema — borrow deep-review's directly or specialize for opinion-shaped findings? This matches deep-review's deep-review-findings-registry.json and deep-research's findings-registry.json structure.",
+      "source": ".opencode/specs/skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/spec.md:79, 31"
+    },
+    {
+      "id": "F39",
+      "iter": 3,
+      "fingerprint": "contract-surface:deep-council:output-artifacts-council-report",
+      "severity": "info",
+      "title": "Output artifacts include per-topic council-report.md (PROPOSED)",
+      "evidence": "Packet 129 spec.md line 140 lists an open question: Should deep-council write a single council-report.md per topic OR one session-wide synthesis that references per-topic reports? The example council-report.md from packet 117 shows 12 sections: Council Composition, Seat outputs, Task Classification, Strategy Comparison, Deliberation Notes, Winning Strategy, Recommended Plan, Implementation Steps, Prerequisites, Cross-References, Dropped Alternatives, Risks & Mitigations. This is distinct from deep-review's 9-section review-report.md and deep-research's 17-section research.md.",
+      "source": ".opencode/specs/skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/spec.md:140; .opencode/specs/skilled-agent-orchestration/117-deep-loop-core-isolation-deliberation/ai-council/council-report.md:1-125"
+    },
+    {
+      "id": "F40",
+      "iter": 3,
+      "fingerprint": "contract-surface:deep-council:output-artifacts-session-report",
+      "severity": "info",
+      "title": "Output artifacts include session-report.md (PROPOSED)",
+      "evidence": "Packet 129 spec.md line 78 proposes session-wide findings registry and line 140 asks about one session-wide synthesis that references per-topic reports. This implies a session-report.md artifact that aggregates findings across all topics, similar to deep-review's review-report.md and deep-research's research.md synthesis outputs. This is a structural addition not present in current sk-ai-council (which only has per-round council-report.md).",
+      "source": ".opencode/specs/skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/spec.md:78, 140"
+    },
+    {
+      "id": "F41",
+      "iter": 3,
+      "fingerprint": "contract-surface:deep-council:state-files-3-level-jsonl",
+      "severity": "info",
+      "title": "State files include 3-level JSONL hierarchy (PROPOSED)",
+      "evidence": "Packet 129 spec.md line 88 proposes schemas: council-config.json, topic-config.json, round-state.jsonl, findings-registry.json, session-state.jsonl. Packet 129 001/spec.md line 88 also lists these schemas. This is a 3-level hierarchy (session → topic → round) unlike deep-review and deep-research which have a 2-level hierarchy (session → iteration). Current sk-ai-council has ai-council-state.jsonl (single-level).",
+      "source": ".opencode/specs/skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/spec.md:88; .opencode/specs/skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/001-research-and-architecture-design/spec.md:88"
+    },
+    {
+      "id": "F42",
+      "iter": 3,
+      "fingerprint": "contract-surface:deep-council:state-ownership-split",
+      "severity": "info",
+      "title": "State file ownership is split between main loop and seat agents (PROPOSED)",
+      "evidence": "Current sk-ai-council SKILL.md lines 312-313 document that seat agents write individual seat artifacts under ai-council/seats/, while the main loop persists council-report.md and ai-council-state.jsonl. Packet 129 spec.md line 77 proposes retaining this pattern in deep mode with the addition of topic-level and session-level state owned by the main loop. This matches deep-review and deep-research's split ownership pattern (main loop owns config/registry/strategy, LEAF agent owns iteration artifacts).",
+      "source": ".opencode/skills/sk-ai-council/SKILL.md:312-313; .opencode/specs/skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/spec.md:77"
+    },
+    {
+      "id": "F43",
+      "iter": 3,
+      "fingerprint": "contract-surface:deep-council:convergence-adjudicator-stability",
+      "severity": "info",
+      "title": "Convergence semantics use per-topic adjudicator-verdict stability (PROPOSED)",
+      "evidence": "Packet 129 spec.md line 77 proposes iteration semantics: multi-round deliberation within a topic, adjudicator scores Round-N→N+1 stability + saturation, convergence when stability ≥ threshold OR max-rounds reached. Current sk-ai-council SKILL.md lines 295-298 document the two-of-three convergence rule or adjudicator independent ruling for single-round councils. Deep-council would extend this to multi-round stability scoring. This is distinct from deep-review's Bayesian coverage-graph signals and deep-research's newInfoRatio calculation.",
+      "source": ".opencode/specs/skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/spec.md:77; .opencode/skills/sk-ai-council/SKILL.md:295-298"
+    },
+    {
+      "id": "F44",
+      "iter": 3,
+      "fingerprint": "contract-surface:deep-council:convergence-session-saturation",
+      "severity": "info",
+      "title": "Convergence semantics include session-level saturation across topics (PROPOSED)",
+      "evidence": "Packet 129 spec.md line 80 proposes saturation/novelty detection: per-topic AND session-level; reuse deep-loop-runtime primitives where shape matches. Packet 129 spec.md line 77 defines cost-guard saturation_threshold (default 0.2). This is a dual-level convergence mechanism (per-topic + session-level) unlike deep-review and deep-research which have single-level convergence (session-level only).",
+      "source": ".opencode/specs/skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/spec.md:77, 80"
+    },
+    {
+      "id": "F45",
+      "iter": 3,
+      "fingerprint": "contract-surface:deep-council:convergence-no-severity-tiers",
+      "severity": "info",
+      "title": "Convergence semantics do NOT include severity tiers (PROPOSED)",
+      "evidence": "Packet 129 spec.md lines 77-82 propose cost guards (max_rounds_per_topic, max_topics_per_session, saturation_threshold) but do not mention finding severity tiers like deep-review's P0/P1/P2 classification. Packet 129 spec.md line 31 lists an open question about findings registry schema for opinion-shaped findings vs deep-review's evidence-shaped findings. This suggests deep-council may not use severity tiers, similar to deep-research which also lacks severity tiers.",
+      "source": ".opencode/specs/skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/spec.md:77-82, 31"
+    },
+    {
+      "id": "F46",
+      "iter": 3,
+      "fingerprint": "contract-surface:deep-council:convergence-no-adversarial",
+      "severity": "info",
+      "title": "Convergence semantics do NOT include adversarial adjudication (PROPOSED)",
+      "evidence": "Current sk-ai-council SKILL.md lines 295-298 document two-of-three convergence or adjudicator independent ruling, but do not mention adversarial self-check mechanisms like deep-review's Hunter/Skeptic/Referee adjudication for P0 findings. Packet 129 spec.md does not propose adding adversarial adjudication in deep mode. Deep-council convergence is based on adjudicator-verdict stability across rounds, not adversarial self-checks within a round.",
+      "source": ".opencode/skills/sk-ai-council/SKILL.md:295-298"
+    },
+    {
+      "id": "F47",
+      "iter": 3,
+      "fingerprint": "contract-surface:deep-council:command-modes-auto-confirm-deep",
+      "severity": "info",
+      "title": "Command-mode suffixes are :auto, :confirm, and :deep (PROPOSED)",
+      "evidence": "Packet 129 spec.md line 82 proposes New /spec_kit:deep-council command (or extended /spec_kit:ai-council :deep mode) wiring with auto/confirm setup parity. Packet 129 spec.md line 91 notes Migration path: how operators on single-round sk-ai-council move to deep mode (mode suffix :deep, default still single-round). This adds a third mode suffix (:deep) not present in deep-review or deep-research (which only have :auto and :confirm).",
+      "source": ".opencode/specs/skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/spec.md:82, 91"
+    },
+    {
+      "id": "F48",
+      "iter": 3,
+      "fingerprint": "contract-surface:deep-council:unique-multi-seat-opinion",
+      "severity": "observation",
+      "title": "Convergence-distinctive value is multi-seat opinion synthesis with cross-topic priors (PROPOSED)",
+      "evidence": "Deep-council uniquely combines multi-seat deliberation (2-4 seats with different strategy lenses per round) with iterative rounds (adjudicator-verdict stability) and multi-topic sessions (cross-topic findings registry as priors). Unlike deep-review's adversarial P0 adjudication with coverage-graph signals, and deep-research's negative knowledge with newInfoRatio convergence, deep-council converges based on opinion stability across diverse AI vantages. The cross-topic priors mechanism (new topic reads prior topics' findings) is unique to deep-council.",
+      "source": ".opencode/specs/skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/spec.md:77-80; .opencode/skills/sk-ai-council/SKILL.md:308-313"
+    },
+    {
+      "id": "F49",
+      "iter": 3,
+      "fingerprint": "contract-surface:deep-council:reuses-deep-loop-runtime",
+      "severity": "info",
+      "title": "Deep-council reuses deep-loop-runtime primitives for loop-lock, jsonl-repair, atomic-state (PROPOSED)",
+      "evidence": "Packet 129 spec.md line 83 proposes Reuse of deep-loop-runtime primitives (loop-lock, jsonl-repair, atomic-state, executor-audit) where applicable. Deep-loop-runtime SKILL.md lines 126-135 document these primitives. Packet 129 spec.md line 30 lists an open question: Reuse vs extend deep-loop-runtime — shared library or new council-runtime peer? This matches deep-review and deep-research which also consume deep-loop-runtime primitives.",
+      "source": ".opencode/specs/skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/spec.md:83, 30; .opencode/skills/deep-loop-runtime/SKILL.md:126-135"
+    },
+    {
+      "id": "F50",
+      "iter": 3,
+      "fingerprint": "contract-surface:deep-council:coverage-graph-signals-uncertain",
+      "severity": "info",
+      "title": "Deep-council may or may not use coverage-graph signals (OPEN QUESTION)",
+      "evidence": "Packet 129 spec.md line 80 proposes reuse deep-loop-runtime primitives where shape matches for saturation/novelty detection. Deep-loop-runtime SKILL.md lines 137-140 document coverage-graph-signals.ts for convergence signal extraction. However, packet 129 spec.md line 141 lists an open question: Stability scoring — adjudicator self-score, structural diff of advocate positions, OR Bayesian convergence from deep-loop-runtime's existing scorer? This uncertainty is a divergence from deep-review and deep-research which definitively use coverage-graph signals.",
+      "source": ".opencode/specs/skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/spec.md:80, 141; .opencode/skills/deep-loop-runtime/SKILL.md:137-140"
+    },
+    {
+      "id": "F51",
+      "iter": 4,
+      "fingerprint": "use-case-overlap:trigger-phrase:convergence-keyword",
+      "severity": "confusing",
+      "title": "Trigger-phrase overlap on convergence keyword",
+      "evidence": "Deep-review keyword triggers include convergence detection. Deep-research keyword triggers include convergence in intent signals for CONVERGENCE phase. Sk-ai-council keyword triggers include council convergence. An operator request like check convergence on the deep-research packet could route to any of the three skills, as all three have convergence-related triggers. This is confusing because convergence semantics differ significantly across skills (Bayesian coverage-graph signals for deep-review, newInfoRatio for deep-research, adjudicator-verdict stability for deep-council).",
+      "source": ".opencode/skills/deep-review/SKILL.md:112; .opencode/skills/deep-research/SKILL.md:154; .opencode/skills/sk-ai-council/SKILL.md:80"
+    },
+    {
+      "id": "F52",
+      "iter": 4,
+      "fingerprint": "use-case-overlap:trigger-phrase:loop-keyword",
+      "severity": "confusing",
+      "title": "Trigger-phrase overlap on loop keyword",
+      "evidence": "Deep-review keyword triggers include review loop and iterative review. Deep-research keyword triggers include research loop and iterative research. An operator request like run a loop on the spec folder could route to either deep-review or deep-research, as both skills use loop terminology. This is confusing because the loop semantics differ (review dimensions vs research angles) and the output artifacts differ (review-report.md vs research.md).",
+      "source": ".opencode/skills/deep-review/SKILL.md:112; .opencode/skills/deep-research/SKILL.md:107"
+    },
+    {
+      "id": "F53",
+      "iter": 4,
+      "fingerprint": "use-case-overlap:trigger-phrase:deep-keyword",
+      "severity": "helpful",
+      "title": "Trigger-phrase overlap on deep keyword",
+      "evidence": "Deep-review keyword triggers include deep review. Deep-research keyword triggers include deep research. Sk-ai-council keyword triggers include deep ai council. All three skills use deep as a prefix. This overlap is HELPFUL because it signals to the operator that all three skills are part of the deep-* family and share the deep-loop runtime infrastructure. The overlap is not confusing because the second word disambiguates (review vs research vs council).",
+      "source": ".opencode/skills/deep-review/SKILL.md:112; .opencode/skills/deep-research/SKILL.md:107; .opencode/skills/sk-ai-council/SKILL.md:92"
+    },
+    {
+      "id": "F54",
+      "iter": 4,
+      "fingerprint": "use-case-overlap:output-artifact:findings-registry-naming",
+      "severity": "confusing",
+      "title": "Output-artifact overlap on findings-registry.json naming pattern",
+      "evidence": "Deep-review uses deep-review-findings-registry.json. Deep-research uses findings-registry.json (no skill prefix). Deep-council proposes findings-registry.json with canonical fingerprint schema. The naming pattern overlap is confusing because deep-research and deep-council would both write files named findings-registry.json in their respective artifact directories, but the schema and semantics differ (evidence-shaped findings for deep-research vs opinion-shaped findings for deep-council). Deep-review's prefixed name is clearer. This could cause confusion when operators inspect artifact directories across different deep-* sessions.",
+      "source": "iter-001 F5; iter-002 F21; iter-003 F38"
+    },
+    {
+      "id": "F55",
+      "iter": 4,
+      "fingerprint": "use-case-overlap:state-file:jsonl-append-pattern",
+      "severity": "helpful",
+      "title": "State-file ownership overlap on JSONL append-only pattern",
+      "evidence": "All three skills use append-only JSONL state logs: deep-review uses deep-review-state.jsonl, deep-research uses deep-research-state.jsonl, deep-council proposes session-state.jsonl and round-state.jsonl. The JSONL append-only pattern overlap is HELPFUL because it reflects shared deep-loop-runtime infrastructure (atomic-state, jsonl-repair primitives). The pattern is not confusing because the file names are skill-prefixed (deep-review, deep-research) or hierarchy-scoped (session/round for deep-council), making ownership clear.",
+      "source": "iter-001 F8; iter-002 F24; iter-003 F41; iter-003 F49"
+    },
+    {
+      "id": "F56",
+      "iter": 4,
+      "fingerprint": "use-case-overlap:convergence:threshold-default-divergence",
+      "severity": "dangerous",
+      "title": "Convergence-threshold default divergence",
+      "evidence": "Deep-review default convergenceThreshold is 0.10. Deep-research default convergenceThreshold is 0.05. Deep-council proposes saturation_threshold default of 0.20. This divergence is DANGEROUS because operators familiar with one skill's default may incorrectly assume the same default applies to other skills. The semantics also differ (weighted P0/P1/P2 ratio for deep-review, newInfoRatio for deep-research, adjudicator-verdict stability for deep-council). An operator requesting run with default convergence could get significantly different iteration counts and stop conditions across skills without realizing it.",
+      "source": ".opencode/commands/spec_kit/deep-review.md:106; .opencode/commands/spec_kit/deep-research.md:97; iter-003 F43"
+    },
+    {
+      "id": "F57",
+      "iter": 4,
+      "fingerprint": "use-case-overlap:executor-config:flag-set-overlap",
+      "severity": "helpful",
+      "title": "Executor-config flag set overlap",
+      "evidence": "All three skills accept the same executor configuration flags: --executor, --model, --reasoning-effort, --service-tier, --executor-timeout. All three support the same 6 executor kinds: native, cli-codex, cli-gemini, cli-claude-code, cli-opencode, cli-devin. This overlap is HELPFUL because it provides a consistent executor configuration surface across the deep-* family, reducing operator cognitive load. The overlap is not confusing because the executor contract is shared via deep-loop-runtime's executor-config.ts.",
+      "source": ".opencode/commands/spec_kit/deep-review.md:137-142; .opencode/commands/spec_kit/deep-research.md:124-129; iter-001 F4; iter-002 F20; iter-003 F36"
+    },
+    {
+      "id": "F58",
+      "iter": 4,
+      "fingerprint": "use-case-overlap:operator-intent:audit-research-packet",
+      "severity": "confusing",
+      "title": "Operator-intent overlap on audit the deep-research packet drift",
+      "evidence": "An operator request audit the deep-research packet drift could route to either deep-review (audit code quality of the research packet implementation) or deep-research (audit the research findings for drift from original topic). Deep-review supports spec-folder review target type, which would cover the research packet folder. Deep-research can be invoked on the same topic to re-investigate. The right skill is ambiguous without additional context about whether the operator wants code-quality audit (deep-review) or findings-consistency audit (deep-research). This is confusing because both skills can legitimately claim jurisdiction over auditing a research packet.",
+      "source": "iter-001 F3"
+    },
+    {
+      "id": "F59",
+      "iter": 4,
+      "fingerprint": "use-case-overlap:operator-intent:evaluate-architecture-options",
+      "severity": "confusing",
+      "title": "Operator-intent overlap on evaluate options for architecture decision",
+      "evidence": "An operator request evaluate options for architecture decision could route to deep-research (research architecture patterns and trade-offs), deep-review (review existing architecture code for quality), or deep-council (multi-seat deliberation on architecture strategy). Deep-research is appropriate for discovering architecture options via investigation. Deep-review is appropriate if architecture code already exists and needs quality audit. Deep-council is appropriate for comparing 2-3 proposed architecture strategies via multi-seat deliberation. The right skill is ambiguous without context about whether options exist (deep-council), need discovery (deep-research), or need code audit (deep-review). This is confusing because all three skills can legitimately claim jurisdiction over evaluating architecture options.",
+      "source": "iter-001 F3; iter-002 F19; iter-003 F35"
+    },
+    {
+      "id": "F60",
+      "iter": 4,
+      "fingerprint": "use-case-overlap:operator-intent:iterate-findings-convergence",
+      "severity": "dangerous",
+      "title": "Operator-intent overlap on iterate findings until convergence",
+      "evidence": "An operator request iterate findings until convergence could route to any of the three skills, as all three use iterative loops with convergence detection. However, the convergence semantics and finding types differ significantly: deep-review uses P0/P1/P2 severity tiers with weighted ratio, deep-research uses newInfoRatio without severity tiers, deep-council uses adjudicator-verdict stability without severity tiers. An operator expecting P0/P1/P2 severity classification (deep-review style) would get a different experience if routed to deep-research or deep-council. This is DANGEROUS because the operator's mental model of findings and convergence may not match the actual skill's semantics, leading to unexpected iteration counts and stop conditions.",
+      "source": "iter-001 F11; iter-002 F27; iter-003 F43"
+    },
+    {
+      "id": "F61",
+      "iter": 4,
+      "fingerprint": "use-case-overlap:state-file:strategy-ownership-pattern",
+      "severity": "helpful",
+      "title": "State-file overlap on strategy.md ownership pattern",
+      "evidence": "All three skills use a strategy.md file owned by the main loop: deep-review uses deep-review-strategy.md, deep-research uses deep-research-strategy.md, deep-council proposes topic-config.json (functionally equivalent to strategy). The strategy ownership pattern overlap is HELPFUL because it reflects shared deep-loop-runtime infrastructure and provides a consistent main loop owns strategy, LEAF agent owns iteration artifacts pattern. The overlap is not confusing because the file names are skill-prefixed or hierarchy-scoped, making ownership clear.",
+      "source": "iter-001 F8; iter-001 F9; iter-002 F24; iter-002 F25; iter-003 F41; iter-003 F42"
+    },
+    {
+      "id": "F62",
+      "iter": 4,
+      "fingerprint": "use-case-overlap:output-artifact:synthesis-report-structure",
+      "severity": "confusing",
+      "title": "Output-artifact overlap on synthesis report structure",
+      "evidence": "Deep-review outputs review-report.md with 9 sections. Deep-research outputs research.md with 17 sections. Deep-council proposes council-report.md with 12 sections per topic plus optional session-report.md. All three are synthesis reports that aggregate iteration findings, but the section structures differ significantly. An operator expecting a 9-section review-report style would get a different structure if routed to deep-research (17 sections) or deep-council (12 sections). This is confusing because the operator's mental model of synthesis report may not match the actual skill's output structure, leading to difficulty locating specific information (e.g., Coverage section exists in review-report.md but not in research.md).",
+      "source": "iter-001 F7; iter-002 F23; iter-003 F39; iter-003 F40"
+    },
+    {
+      "id": "F63",
+      "iter": 5,
+      "fingerprint": "routing-fixtures:fixture-001:audit-embedder-drift",
+      "severity": "info",
+      "title": "Fixture-001: deeply audit the embedder sidecar lifecycle hardening for drift",
+      "evidence": "Correct skill: deep-review. Target is code subsystem (embedder sidecar), intent is audit (adversarial framing), dimensions are correctness+security+maintainability. The operator wants to find code defects and drift from hardening requirements, which matches deep-review's adversarial P0 adjudication and coverage-graph signals. Wrong-plausible sibling: deep-research (operator might think investigate drift maps to research, but deep-research is for discovering new knowledge, not auditing existing code against requirements). Confidence: HIGH. Ambiguity source: iter-004 F58 (trigger-phrase overlap audit + drift).",
+      "source": "iter-005"
+    },
+    {
+      "id": "F64",
+      "iter": 5,
+      "fingerprint": "routing-fixtures:fixture-002:investigate-schema-negative-knowledge",
+      "severity": "info",
+      "title": "Fixture-002: investigate whether the spec kit memory schema supports cross-packet negative knowledge",
+      "evidence": "Correct skill: deep-research. Intent is investigation to discover whether a capability exists (knowledge discovery), target is a research question about schema capabilities. This matches deep-research's emphasis on negative knowledge (ruled-out directions) and research charter validation. The operator wants to know does this exist or not, which is a research question, not a code audit. Wrong-plausible sibling: deep-review (operator might think review the schema maps to deep-review, but deep-review requires a review_target and focuses on code quality defects, not capability discovery). Confidence: HIGH. Ambiguity source: iter-004 F59 (operator-intent overlap on investigate vs review).",
+      "source": "iter-005"
+    },
+    {
+      "id": "F65",
+      "iter": 5,
+      "fingerprint": "routing-fixtures:fixture-003:evaluate-three-strategies",
+      "severity": "info",
+      "title": "Fixture-003: evaluate three proposed strategies for deep-council convergence detection and recommend the best one",
+      "evidence": "Correct skill: deep-ai-council (proposed). Intent is strategy comparison and recommendation, operator explicitly states three proposed strategies exist. This matches deep-council's multi-seat deliberation with different strategy lenses per round. The operator wants opinion synthesis on existing options, not discovery of new options or code audit. Wrong-plausible siblings: deep-research (operator might think evaluate strategies maps to research, but deep-research is for discovering options via investigation, not comparing existing options), deep-review (operator might think review the strategies maps to deep-review, but deep-review requires code artifacts to audit; strategy comparison is opinion-based, not evidence-based code defect finding). Confidence: HIGH. Ambiguity source: iter-004 F59 (operator-intent overlap on evaluate options).",
+      "source": "iter-005"
+    },
+    {
+      "id": "F66",
+      "iter": 5,
+      "fingerprint": "routing-fixtures:fixture-004:loop-findings-stabilize",
+      "severity": "info",
+      "title": "Fixture-004: run a loop on the deep-research packet until findings stabilize",
+      "evidence": "Correct skill: deep-review. Operator uses loop terminology (iter-004 F52 overlap) but specifies findings stabilize which maps to deep-review's Bayesian coverage-graph signals (findingStability, dimensionCoverage). The operator wants adversarial P0 adjudication with severity tiers, which deep-review provides. Deep-research lacks severity tiers and adversarial adjudication. Wrong-plausible sibling: deep-research (operator says deep-research packet which could imply deep-research skill, but findings stabilize with severity expectations maps to deep-review's convergence semantics; deep-research uses newInfoRatio without severity tiers). Confidence: MED. Ambiguity source: iter-004 F52 (trigger-phrase overlap loop) + iter-004 F60 (operator-intent overlap on iterate findings until convergence).",
+      "source": "iter-005"
+    },
+    {
+      "id": "F67",
+      "iter": 5,
+      "fingerprint": "routing-fixtures:fixture-005:convergence-investigation",
+      "severity": "info",
+      "title": "Fixture-005: check convergence on the embedder testing architecture investigation",
+      "evidence": "Correct skill: deep-research. Operator uses convergence keyword (iter-004 F51 overlap) but specifies investigation which maps to deep-research's research charter and negative knowledge emphasis. The operator wants to know when investigation has exhausted new information (newInfoRatio), not when code defects are saturated (deep-review's weighted P0/P1/P2 ratio). Wrong-plausible sibling: deep-review (operator says convergence which is a deep-review trigger, but investigation implies knowledge discovery, not code audit; deep-review's adversarial P0 adjudication and coverage-graph signals are inappropriate for a research investigation that may not have code artifacts to audit). Confidence: MED. Ambiguity source: iter-004 F51 (trigger-phrase overlap convergence) + iter-004 F56 (convergence-threshold default divergence).",
+      "source": "iter-005"
+    },
+    {
+      "id": "F68",
+      "iter": 5,
+      "fingerprint": "routing-fixtures:fixture-006:deliberate-coverage-graph",
+      "severity": "info",
+      "title": "Fixture-006: deliberate on whether deep-council should use coverage-graph signals or adjudicator self-scoring for stability",
+      "evidence": "Correct skill: deep-ai-council (proposed). Intent is deliberation on a design decision with two existing options (coverage-graph signals vs adjudicator self-scoring). This matches deep-council's multi-seat opinion synthesis. The operator wants diverse AI vantages to weigh trade-offs, not code audit or knowledge discovery. Wrong-plausible siblings: deep-research (operator might think research the options maps to deep-research, but the options already exist; deep-research is for discovering options, not comparing existing options), deep-review (operator might think review the options maps to deep-review, but this is a design decision, not a code audit; deep-review's adversarial P0 adjudication is inappropriate for opinion-based design deliberation). Confidence: HIGH. Ambiguity source: iter-004 F59 (operator-intent overlap on evaluate options).",
+      "source": "iter-005"
+    },
+    {
+      "id": "F69",
+      "iter": 5,
+      "fingerprint": "routing-fixtures:fixture-007:audit-research-packet-drift",
+      "severity": "info",
+      "title": "Fixture-007: audit the deep-research packet for drift from the original embedder investigation topic",
+      "evidence": "Correct skill: deep-research. Intent is findings-consistency audit (drift from original topic), not code-quality audit. The operator wants to verify that research findings remain aligned with the original investigation charter, which matches deep-research's research charter validation and negative knowledge emphasis. Deep-research can re-investigate the topic to check for drift. Wrong-plausible sibling: deep-review (operator says audit which is a deep-review trigger (iter-004 F58), but the audit target is findings consistency, not code quality; deep-review's adversarial P0 adjudication and coverage-graph signals are inappropriate for checking whether research findings drifted from the original topic). Confidence: MED. Ambiguity source: iter-004 F58 (operator-intent overlap on audit the deep-research packet drift).",
+      "source": "iter-005"
+    },
+    {
+      "id": "F70",
+      "iter": 5,
+      "fingerprint": "routing-fixtures:fixture-008:iterate-architecture-decision",
+      "severity": "info",
+      "title": "Fixture-008: iterate on the spec folder until the architecture decision converges",
+      "evidence": "Correct skill: deep-ai-council (proposed) — TIE-BREAKER. Operator uses iterate and converge (iter-004 F60 overlap) but specifies architecture decision which implies a design decision with existing options. Deep-council is the best fit because architecture decisions typically involve comparing 2-3 proposed strategies via multi-seat deliberation. Deep-review is wrong because architecture decisions are opinion-based, not code defect finding. Deep-research is wrong because options likely already exist (operator says the architecture decision singular, implying a specific decision under deliberation). Wrong-plausible siblings: deep-review (operator might think iterate on spec folder maps to deep-review (spec-folder is a valid review_target_type), but architecture decision implies opinion synthesis, not code audit; deep-review's adversarial P0 adjudication is inappropriate for design decisions), deep-research (operator might think iterate until converges maps to deep-research (newInfoRatio convergence), but architecture decision implies options exist and need comparison, not discovery; deep-research is for discovering options, not comparing existing options). Confidence: LOW (genuinely contested). Ambiguity source: iter-004 F60 (operator-intent overlap on iterate findings until convergence) + iter-004 F59 (operator-intent overlap on evaluate architecture options). Tie-breaker rationale: Deep-council wins because (1) architecture decision strongly implies multi-seat deliberation on existing options, (2) deep-review's adversarial P0 adjudication is a poor fit for opinion-based decisions, (3) deep-research's newInfoRatio convergence assumes knowledge discovery, not option comparison. However, this fixture is intentionally ambiguous to test routing robustness — a clarifying question would be ideal in production.",
+      "source": "iter-005"
+    }
+  ],
+  "fingerprints": [
+    "contract-surface:deep-review:input-shape-7-fields",
+    "contract-surface:deep-review:pre-bound-answers-schema",
+    "contract-surface:deep-review:target-types-5",
+    "contract-surface:deep-review:executor-kinds-6",
+    "contract-surface:deep-review:output-artifacts-9-files",
+    "contract-surface:deep-review:iteration-artifact-8-sections",
+    "contract-surface:deep-review:review-report-9-sections",
+    "contract-surface:deep-review:state-files-3-core-plus-jsonl",
+    "contract-surface:deep-review:state-ownership-split",
+    "contract-surface:deep-review:convergence-bayesian-signals",
+    "contract-surface:deep-review:convergence-saturation-tiers",
+    "contract-surface:deep-review:convergence-adversarial-p0",
+    "contract-surface:deep-review:command-modes-auto-confirm",
+    "contract-surface:deep-review:auto-non-interactive",
+    "contract-surface:deep-review:unique-adversarial-p0",
+    "contract-surface:deep-review:tier-contract-auto-only",
+    "contract-surface:deep-research:input-shape-5-fields",
+    "contract-surface:deep-research:pre-bound-answers-schema",
+    "contract-surface:deep-research:no-target-types",
+    "contract-surface:deep-research:executor-kinds-6",
+    "contract-surface:deep-research:output-artifacts-11-files",
+    "contract-surface:deep-research:iteration-artifact-10-sections",
+    "contract-surface:deep-research:research-report-17-sections",
+    "contract-surface:deep-research:state-files-3-core-plus-jsonl",
+    "contract-surface:deep-research:state-ownership-split",
+    "contract-surface:deep-research:convergence-bayesian-signals",
+    "contract-surface:deep-research:convergence-newinfo-ratio-no-tiers",
+    "contract-surface:deep-research:convergence-no-adversarial",
+    "contract-surface:deep-research:command-modes-auto-confirm",
+    "contract-surface:deep-research:auto-non-interactive",
+    "contract-surface:deep-research:unique-negative-knowledge",
+    "contract-surface:deep-research:tier-contract-auto-only",
+    "contract-surface:deep-council:input-shape-6-fields",
+    "contract-surface:deep-council:multi-topic-input",
+    "contract-surface:deep-council:seat-configurations",
+    "contract-surface:deep-council:executor-kinds-6",
+    "contract-surface:deep-council:output-artifacts-seat-tree",
+    "contract-surface:deep-council:output-artifacts-findings-registry",
+    "contract-surface:deep-council:output-artifacts-council-report",
+    "contract-surface:deep-council:output-artifacts-session-report",
+    "contract-surface:deep-council:state-files-3-level-jsonl",
+    "contract-surface:deep-council:state-ownership-split",
+    "contract-surface:deep-council:convergence-adjudicator-stability",
+    "contract-surface:deep-council:convergence-session-saturation",
+    "contract-surface:deep-council:convergence-no-severity-tiers",
+    "contract-surface:deep-council:convergence-no-adversarial",
+    "contract-surface:deep-council:command-modes-auto-confirm-deep",
+    "contract-surface:deep-council:unique-multi-seat-opinion",
+    "contract-surface:deep-council:reuses-deep-loop-runtime",
+    "contract-surface:deep-council:coverage-graph-signals-uncertain",
+    "use-case-overlap:trigger-phrase:convergence-keyword",
+    "use-case-overlap:trigger-phrase:loop-keyword",
+    "use-case-overlap:trigger-phrase:deep-keyword",
+    "use-case-overlap:output-artifact:findings-registry-naming",
+    "use-case-overlap:state-file:jsonl-append-pattern",
+    "use-case-overlap:convergence:threshold-default-divergence",
+    "use-case-overlap:executor-config:flag-set-overlap",
+    "use-case-overlap:operator-intent:audit-research-packet",
+    "use-case-overlap:operator-intent:evaluate-architecture-options",
+    "use-case-overlap:operator-intent:iterate-findings-convergence",
+    "use-case-overlap:state-file:strategy-ownership-pattern",
+    "use-case-overlap:output-artifact:synthesis-report-structure",
+    "routing-fixtures:fixture-001:audit-embedder-drift",
+    "routing-fixtures:fixture-002:investigate-schema-negative-knowledge",
+    "routing-fixtures:fixture-003:evaluate-three-strategies",
+    "routing-fixtures:fixture-004:loop-findings-stabilize",
+    "routing-fixtures:fixture-005:convergence-investigation",
+    "routing-fixtures:fixture-006:deliberate-coverage-graph",
+    "routing-fixtures:fixture-007:audit-research-packet-drift",
+    "routing-fixtures:fixture-008:iterate-architecture-decision"
+  ]
+}

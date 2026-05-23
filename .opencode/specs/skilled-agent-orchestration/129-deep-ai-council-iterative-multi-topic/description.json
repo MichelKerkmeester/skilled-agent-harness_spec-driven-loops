@@ -1,0 +1,30 @@
+{
+  "specFolder": "skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic",
+  "description": "Phase parent for upgrading sk-ai-council into a deep skill: iterative rounds within a topic, multi-topic sessions, shared findings registry, saturation-based convergence, cost guards. Mirrors deep-review/deep-research architecture; consumes deep-loop-runtime primitives.",
+  "keywords": [
+    "deep-ai-council",
+    "iterative-council",
+    "multi-topic-deliberation",
+    "council-findings-registry",
+    "saturation-convergence",
+    "sk-ai-council-upgrade"
+  ],
+  "lastUpdated": "2026-05-23T06:00:00Z",
+  "specId": "129",
+  "folderSlug": "deep-ai-council-iterative-multi-topic",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2",
+  "status": "draft",
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/124-sk-ai-council-shared-runtime-deliberation"
+    ],
+    "related_to": [
+      "skilled-agent-orchestration/130-deep-skills-unique-value-differentiation"
+    ]
+  }
+}
