@@ -1,0 +1,131 @@
+{
+  "iteration": 1,
+  "executor": "cli-devin",
+  "model": "swe-1.6",
+  "prompt_framework": "RCAF",
+  "started_at": "2026-05-23T17:17:45Z",
+  "ended_at": "2026-05-23T17:19:18Z",
+  "wall_clock_seconds": 93,
+  "logic_gaps": [
+    {
+      "gap_id": "LG-0001",
+      "description": "reduce-state.cjs has no code paths to process documented `userPaused` and `stuckRecovery` event types listed in state_format.md \u00a73 stopReason enum (lines 382-407); reducer only handles `resumed`/`restarted` lifecycle events at lines 389/441",
+      "evidence": [
+        ".opencode/skills/deep-review/references/state_format.md:382-407",
+        ".opencode/skills/deep-review/scripts/reduce-state.cjs:389",
+        ".opencode/skills/deep-review/scripts/reduce-state.cjs:441"
+      ],
+      "severity": "P1",
+      "in_scope_check": {
+        "already_in_spec": false,
+        "already_in_audit_findings": false
+      }
+    },
+    {
+      "gap_id": "LG-0002",
+      "description": "reduce-state.cjs normalizes blockedBy array entries generically (lines 807-823) but does not validate against the 4 documented gate names (dimensionCoverageGate, p0ResolutionGate, evidenceDensityGate, hotspotSaturationGate) from state_format.md \u00a73 lines 319-329",
+      "evidence": [
+        ".opencode/skills/deep-review/references/state_format.md:319-329",
+        ".opencode/skills/deep-review/scripts/reduce-state.cjs:807-823"
+      ],
+      "severity": "P2",
+      "in_scope_check": {
+        "already_in_spec": false,
+        "already_in_audit_findings": false
+      }
+    },
+    {
+      "gap_id": "LG-0003",
+      "description": "reduce-state.cjs reads only `compositeStop` from convergenceSignals at line 745; ignores documented `rollingAvg` (weight 0.30) and `madScore` (weight 0.25) signals from state_format.md \u00a73 lines 229-238, making it impossible to compute the documented weighted convergence score",
+      "evidence": [
+        ".opencode/skills/deep-review/references/state_format.md:229-238",
+        ".opencode/skills/deep-review/scripts/reduce-state.cjs:745"
+      ],
+      "severity": "P1",
+      "in_scope_check": {
+        "already_in_spec": false,
+        "already_in_audit_findings": false
+      }
+    },
+    {
+      "gap_id": "LG-0004",
+      "description": "reduce-state.cjs has zero implementation for graphEvents array processing (grep across 1657 LOC returns no matches), breaking the coverage-graph integration contract documented in state_format.md \u00a73 lines 242-294 (event payload shape + namespace rules)",
+      "evidence": [
+        ".opencode/skills/deep-review/references/state_format.md:242-294",
+        ".opencode/skills/deep-review/scripts/reduce-state.cjs:1-1657"
+      ],
+      "severity": "P1",
+      "in_scope_check": {
+        "already_in_spec": false,
+        "already_in_audit_findings": false
+      }
+    },
+    {
+      "gap_id": "LG-0005",
+      "description": "reduce-state.cjs deltaRecordToFinding function (lines 505-541) reads only `findingClass` at line 538; does not read or preserve documented required findingDetails fields `scopeProof` and `affectedSurfaceHints` from state_format.md \u00a73 lines 203-204 and 226 \u2014 fields are silently dropped during reduction",
+      "evidence": [
+        ".opencode/skills/deep-review/references/state_format.md:203-204",
+        ".opencode/skills/deep-review/references/state_format.md:226",
+        ".opencode/skills/deep-review/scripts/reduce-state.cjs:505-541"
+      ],
+      "severity": "P1",
+      "in_scope_check": {
+        "already_in_spec": false,
+        "already_in_audit_findings": false
+      }
+    },
+    {
+      "gap_id": "LG-0006",
+      "description": "reduce-state.cjs has zero implementation for traceabilityChecks field processing (grep across 1657 LOC returns no matches), breaking the protocol-integration contract documented in state_format.md \u00a73 lines 421-447 (protocol execution result schema)",
+      "evidence": [
+        ".opencode/skills/deep-review/references/state_format.md:421-447",
+        ".opencode/skills/deep-review/scripts/reduce-state.cjs:1-1657"
+      ],
+      "severity": "P1",
+      "in_scope_check": {
+        "already_in_spec": false,
+        "already_in_audit_findings": false
+      }
+    },
+    {
+      "gap_id": "LG-0007",
+      "description": "reduce-state.cjs implements comprehensive search-depth processing \u2014 `searchCoverage` (lines 924-931, 939-952), `searchLedger` (lines 955-996), `reviewDepthSchemaVersion` (line 934) \u2014 that is not documented in state_format.md iteration-record schema (\u00a73 lines 166-447); reducer features ship without canonical spec coverage",
+      "evidence": [
+        ".opencode/skills/deep-review/references/state_format.md:166-447",
+        ".opencode/skills/deep-review/scripts/reduce-state.cjs:924-996"
+      ],
+      "severity": "P2",
+      "in_scope_check": {
+        "already_in_spec": false,
+        "already_in_audit_findings": false
+      }
+    },
+    {
+      "gap_id": "LG-0008",
+      "description": "reduce-state.cjs finding registry uses findingId (line 311) for deduplication; has zero implementation of content_hash computation or two-tier deduplication algorithm documented in SKILL.md \u00a78 lines 514-538; grep for content_hash returns zero matches in the reducer",
+      "evidence": [
+        ".opencode/skills/deep-review/SKILL.md:514-538",
+        ".opencode/skills/deep-review/scripts/reduce-state.cjs:306-319"
+      ],
+      "severity": "P1",
+      "in_scope_check": {
+        "already_in_spec": false,
+        "already_in_audit_findings": false
+      }
+    }
+  ],
+  "novel_findings": [
+    "The drift pattern is systemic: the documented spec at state_format.md \u00a73 describes a richer event/field/signal model than the reducer implements. The reducer is essentially a v1 implementation while the docs describe a v2 contract.",
+    "The reducer's actually-implemented `searchCoverage` / `searchLedger` / `reviewDepthSchemaVersion` triplet (LG-0007) suggests there IS a v2 contract being built \u2014 but in code, not in docs. Future packets should reconcile in the doc-leading direction OR the code-leading direction explicitly.",
+    "All 8 gaps fall under ADR-002 surgical-edit-scope exclusion (reducer is bug-scan-only). They must be merged into resource-map.md Phase-5 Augmentation for follow-on packets rather than fixed in this cleanup release."
+  ],
+  "delta_vs_prev_iter": "first_iteration",
+  "convergence_signals": {
+    "unique_gaps_so_far": 8,
+    "p0_count": 0,
+    "p1_count": 6,
+    "p2_count": 2,
+    "duplicates_with_prior_iters": 0
+  },
+  "notes": "First iteration of phase-5 deep-research loop. RQ scoped to documentation-code drift in scripts/reduce-state.cjs. Surfaced 8 substantive drift gaps, all novel against spec.md and audit-findings.jsonl. cli-devin SWE-1.6 wall-clock 93 seconds. Recipe strip-down (verification_enabled / bayesian_scoring_enabled / fallback_chain removed \u2014 devin binary v2026.5.6 rejects custom contract fields; sequential_thinking enforced via user-scope MCP + system_instructions mandate)."
+}

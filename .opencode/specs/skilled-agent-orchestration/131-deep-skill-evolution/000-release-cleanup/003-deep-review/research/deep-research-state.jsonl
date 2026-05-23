@@ -1,0 +1,1 @@
+{"iter_id":"001","timestamp_utc":"2026-05-23T17:17:00.000Z","executor":"cli-devin","model":"swe-1.6","status":"complete","findings_count":8,"gaps_count":7,"primary_evidence_files":[".opencode/skills/deep-review/SKILL.md",".opencode/skills/deep-review/references/state_format.md",".opencode/skills/deep-review/scripts/reduce-state.cjs"]}
