@@ -1,0 +1,12 @@
+{
+  "level": "phase",
+  "specFolder": "skilled-agent-orchestration/123-deep-agent-improvement-uplift",
+  "description": "Phased 10-iter deep-research on whether arc 117-122 learnings should propagate to deep-agent-improvement skill. Mixed-executor: cli-devin SWE-1.6 iters 1-8, cli-codex gpt-5.5 high fast iters 9-10. 3 phase children: research / applicability / recommendations.",
+  "keywords": ["123", "deep-agent-improvement", "uplift", "117-122-learnings", "10-iter", "cli-devin", "cli-codex", "mixed-executor", "skilled-agent-orchestration"],
+  "lastUpdated": "2026-05-23T06:30:00.000Z",
+  "specId": "123",
+  "folderSlug": "deep-agent-improvement-uplift",
+  "parentChain": ["skilled-agent-orchestration"],
+  "memorySequence": 123,
+  "memoryNameHistory": []
+}

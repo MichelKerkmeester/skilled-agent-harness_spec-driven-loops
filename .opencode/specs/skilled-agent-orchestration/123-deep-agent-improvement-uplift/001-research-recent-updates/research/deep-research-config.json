@@ -1,0 +1,14 @@
+{
+  "researchTopic": "How can deep-agent-improvement skill be improved by applying findings/teachings/patterns from arcs 117-122 (deep-review + deep-research recent updates)?",
+  "specFolder": "skilled-agent-orchestration/123-deep-agent-improvement-uplift/001-research-recent-updates",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.10,
+  "executionMode": "auto",
+  "config": {
+    "executor_strategy": "mixed",
+    "iters_1_to_8": { "type": "cli-devin", "model": "swe-1.6", "permissionMode": "dangerous" },
+    "iters_9_to_10": { "type": "cli-codex", "model": "gpt-5.5", "reasoningEffort": "high", "serviceTier": "fast" }
+  },
+  "createdAt": "2026-05-23T06:30:00Z",
+  "status": "active"
+}

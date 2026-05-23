@@ -1,0 +1,12 @@
+{
+  "level": "phase-child",
+  "specFolder": "skilled-agent-orchestration/123-deep-agent-improvement-uplift/001-research-recent-updates",
+  "description": "10-iter deep-research dispatch on recent arc 117-122 updates and their applicability to deep-agent-improvement. Mixed-executor: cli-devin SWE-1.6 iters 1-8 + cli-codex gpt-5.5 high fast iters 9-10. Outputs research-report.md + per-iter artifacts.",
+  "keywords": ["123/001", "deep-agent-improvement", "10-iter", "cli-devin", "cli-codex"],
+  "lastUpdated": "2026-05-23T06:30:00.000Z",
+  "specId": "001",
+  "folderSlug": "research-recent-updates",
+  "parentChain": ["skilled-agent-orchestration", "123-deep-agent-improvement-uplift"],
+  "memorySequence": 123001,
+  "memoryNameHistory": []
+}

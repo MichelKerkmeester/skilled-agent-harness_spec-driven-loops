@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/123-deep-agent-improvement-uplift",
+  "spec_folder": "skilled-agent-orchestration/123-deep-agent-improvement-uplift",
+  "parent_id": "skilled-agent-orchestration",
+  "children_ids": [
+    "skilled-agent-orchestration/123-deep-agent-improvement-uplift/001-research-recent-updates",
+    "skilled-agent-orchestration/123-deep-agent-improvement-uplift/002-applicability-analysis",
+    "skilled-agent-orchestration/123-deep-agent-improvement-uplift/003-improvement-recommendations"
+  ],
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp",
+      "skilled-agent-orchestration/119-deep-research-uplift"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "skilled-agent-orchestration/120-deep-research-iteration-ordering-fix",
+      "skilled-agent-orchestration/121-deep-research-uncovered-questions",
+      "skilled-agent-orchestration/122-deep-research-hygiene-fix-pack"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": ["deep-agent-improvement uplift", "123 deep-research", "agent improvement from review research learnings"],
+    "key_topics": ["deep-agent-improvement", "uplift", "applicability-mapping", "mixed-executor", "adjudication-iter"],
+    "importance_tier": "important",
+    "status": "active",
+    "key_files": ["spec.md", "001-research-recent-updates/research/research-report.md"],
+    "entities": ["deep-agent-improvement", "deep-review", "deep-research", "deep-loop-runtime", "cli-devin", "cli-codex"],
+    "causal_summary": "10-iter mixed-executor deep-research on which patterns/findings from arcs 117-122 (deep-review FULL_ISOLATE + deep-research uplift) should propagate to deep-agent-improvement. Output: applicability mapping + prioritized improvement packet roadmap.",
+    "created_at": "2026-05-23T06:30:00Z",
+    "last_save_at": "2026-05-23T06:30:00Z",
+    "save_lineage": "manual_phase_parent_scaffold",
+    "last_accessed_at": null,
+    "source_docs": ["spec.md"]
+  }
+}
