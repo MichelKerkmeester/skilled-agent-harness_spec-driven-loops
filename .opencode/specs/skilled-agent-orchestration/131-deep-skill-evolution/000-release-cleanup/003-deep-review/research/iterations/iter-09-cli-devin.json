@@ -1,0 +1,52 @@
+{
+  "iteration": 9,
+  "executor": "cli-devin",
+  "model": "swe-1.6",
+  "prompt_framework": "RCAF",
+  "started_at": "2026-05-23T17:44:30Z",
+  "ended_at": "2026-05-23T17:46:10Z",
+  "wall_clock_seconds": 100,
+  "logic_gaps": [
+    {
+      "gap_id": "LG-0031",
+      "description": "convergence.md has a 3-way within-doc contradiction on the legal-stop gate bundle: (a) \u00a7Section-1 blocked_stop event example at lines 105-117 lists 7 gates with Gate suffix (convergenceGate, dimensionCoverageGate, p0ResolutionGate, evidenceDensityGate, hotspotSaturationGate, claimAdjudicationGate, fixCompletenessReplayGate); (b) \u00a76 LEGAL-STOP GATE BUNDLE table at lines 404-410 lists 6 gates WITHOUT Gate suffix (findingStability, dimensionCoverage, p0Resolution, evidenceDensity, hotspotSaturation, fixCompletenessReplay) \u2014 note: claimAdjudicationGate is MISSING from this table; (c) \u00a76 buildReviewLegalStop pseudocode at lines 415-444 implements only the 6 gates from the table, also missing claimAdjudication. The event-example is the AUTHORITATIVE shape (reducer reads it verbatim per the \u00a7Section-1 prose), so the \u00a76 table + impl pseudocode drift away from the load-bearing event shape. RESOLUTION at synthesis: rewrite \u00a76 table + impl to match the 7-gate event shape with Gate suffix.",
+      "evidence": [
+        ".opencode/skills/deep-review/references/convergence.md:105-117",
+        ".opencode/skills/deep-review/references/convergence.md:404-410",
+        ".opencode/skills/deep-review/references/convergence.md:415-444"
+      ],
+      "severity": "P0",
+      "in_scope_check": {
+        "already_in_spec": false,
+        "already_in_audit_findings": false
+      }
+    },
+    {
+      "gap_id": "LG-0032",
+      "description": "loop_protocol.md has a within-doc gate-count drift: \u00a7Step-2 Check Convergence (lines 182-186) states the decision tree has '5 gates' but \u00a7Step-4a Claim Adjudication (line 351) describes claimAdjudicationGate as a hard STOP gate consulted by the legal-stop decision tree, implying at least 6 gates. Either Step-2 count is stale (should be 6+) or Step-4a's positioning of claimAdjudicationGate as part of the decision tree is wrong.",
+      "evidence": [
+        ".opencode/skills/deep-review/references/loop_protocol.md:182-186",
+        ".opencode/skills/deep-review/references/loop_protocol.md:351"
+      ],
+      "severity": "P1",
+      "in_scope_check": {
+        "already_in_spec": false,
+        "already_in_audit_findings": false
+      }
+    }
+  ],
+  "novel_findings": [
+    "Iter 9 surfaces 2 within-doc contradictions, both about gate-count drift. LG-0031 P0 is the most consequential gap of phase 5 because the event-shape is load-bearing (reducer reads gate names verbatim), and the \u00a76 table + impl describe a different model than the event example shows.",
+    "LG-0031 + LG-0032 + LG-0013 (extended gates not in feature_catalog) + LG-0016 (DRV-018 quality gates count drift) form a cluster: the legal-stop gate model has accumulated drift across SKILL.md, convergence.md (within-doc), loop_protocol.md (within-doc), feature_catalog/, and DRV-018 scenario. A follow-on packet should reconcile all of these against the AUTHORITATIVE event shape (7 gates with Gate suffix).",
+    "Iter 9 found ONLY within-doc drift \u2014 zero new cross-surface or doc-vs-code drift. Iters 8 + 9 together confirm the SEVERITY MODEL is internally consistent but the GATE MODEL is broadly drifted. This is the strongest convergence signal of phase 5: we've identified the load-bearing root-cause cluster."
+  ],
+  "delta_vs_prev_iter": "new gaps surfaced",
+  "convergence_signals": {
+    "unique_gaps_so_far": 32,
+    "p0_count": 3,
+    "p1_count": 15,
+    "p2_count": 14,
+    "duplicates_with_prior_iters": 0
+  },
+  "notes": "Iter 9 RQ: within-doc consistency. Wall-clock 100s. 2 novel gaps, both gate-count drift. LG-0031 P0 confirmed via direct read of convergence.md lines 98-123 + 400-450 \u2014 event example uses 7 Gate-suffix names, table+impl use 6 non-Gate names + miss claimAdjudication. Reducer reads event shape verbatim, so \u00a76 table + impl are the drifted surfaces. Connects to LG-0013 + LG-0016 to form a gate-model cluster (4 of 32 gaps about the same root cause)."
+}
