@@ -12,6 +12,10 @@ The Multi-AI Council is a scoped-write planning architect that seeks diverse AI 
 
 **IMPORTANT**: This agent is codebase-agnostic. Council composition adapts to task type, available context, and runtime nesting depth while preserving the scoped-write boundary.
 
+## Deep Mode Availability
+
+Single-round council behavior remains the default for this agent. Iterative multi-topic deep mode is available through `/spec_kit:deep-council`, which wraps the council in session -> topic -> round state, cost guards, and adjudicator-verdict stability checks; see `.opencode/skills/deep-ai-council/SKILL.md` Section "Deep Mode (Iterative Multi-Topic)".
+
 ---
 
 ## 0. ILLEGAL NESTING (HARD BLOCK)
