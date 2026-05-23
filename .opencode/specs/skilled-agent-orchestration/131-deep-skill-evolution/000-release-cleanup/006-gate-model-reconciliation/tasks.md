@@ -82,7 +82,7 @@ _memory:
 - [x] T023 generate-description.js + graph-metadata for spec folder; parent children_ids updated
 - [x] T024 Strict validate exit 0
 - [x] T025 Fill implementation-summary.md (no placeholders)
-- [ ] T026 Scope-strict commit + push
+- [x] T026 Scope-strict commit + push (commit 057b672a11, pushed to origin/main)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -90,7 +90,7 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] All tasks `[x]` (except T026 commit, in progress)
+- [x] All tasks `[x]`
 - [x] All 6 surfaces enumerate the same 9 gates
 - [x] Strict validate exit 0
 - [x] LG-0013/0016/0031/0032 closed (cross-referenced in implementation-summary.md)
