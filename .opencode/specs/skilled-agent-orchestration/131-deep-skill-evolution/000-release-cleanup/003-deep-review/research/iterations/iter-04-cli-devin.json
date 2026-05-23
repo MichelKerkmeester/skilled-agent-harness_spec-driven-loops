@@ -1,0 +1,54 @@
+{
+  "iteration": 4,
+  "executor": "cli-devin",
+  "model": "swe-1.6",
+  "prompt_framework": "RCAF",
+  "started_at": "2026-05-23T17:26:30Z",
+  "ended_at": "2026-05-23T17:28:45Z",
+  "wall_clock_seconds": 135,
+  "logic_gaps": [
+    {
+      "gap_id": "LG-0021",
+      "description": "4 thresholds in references/convergence.md \u00a71 Key Defaults (rollingStopThreshold 0.08, noProgressThreshold 0.05, minStabilizationPasses 1, compositeStopScore 0.60) are documented as global defaults but only present in assets/review_mode_contract.yaml (lines 141-145), not in assets/deep_review_config.json. Likely intentional split (yaml=static contract, json=per-instance state) but convergence.md doesn't clarify the surface where each default lives. DOWNGRADED P1\u2192P2 after cross-verification: pattern is design-correct, only the doc clarity is at issue.",
+      "evidence": [
+        ".opencode/skills/deep-review/references/convergence.md:46-50",
+        ".opencode/skills/deep-review/assets/review_mode_contract.yaml:141-145",
+        ".opencode/skills/deep-review/assets/deep_review_config.json"
+      ],
+      "severity": "P2",
+      "in_scope_check": {
+        "already_in_spec": false,
+        "already_in_audit_findings": false
+      }
+    },
+    {
+      "gap_id": "LG-0022",
+      "description": "Security-Sensitive Fix Overrides documented in references/convergence.md \u00a7Security-Sensitive Fix Overrides (lines 66-76) promise three behaviors: minStabilizationPasses=2, requiredClosedFindingReplay=true, requiredFixCompletenessGate=true. Verification: requiredClosedFindingReplay and requiredFixCompletenessGate have ZERO matches across config.json, yaml, and reduce-state.cjs (1657 LOC). minStabilizationPasses appears in yaml (line 141) only as the general default (=1), not as the security-sensitive override (=2). Runtime literally cannot apply the override convergence.md documents. Operators reading the docs would assume automatic override; in reality, the override does nothing. **P0: documented behavior with no implementation surface.**",
+      "evidence": [
+        ".opencode/skills/deep-review/references/convergence.md:66-76",
+        ".opencode/skills/deep-review/assets/deep_review_config.json",
+        ".opencode/skills/deep-review/assets/review_mode_contract.yaml:141",
+        ".opencode/skills/deep-review/scripts/reduce-state.cjs:1-1657"
+      ],
+      "severity": "P0",
+      "in_scope_check": {
+        "already_in_spec": false,
+        "already_in_audit_findings": false
+      }
+    }
+  ],
+  "novel_findings": [
+    "iter 4 surfaces the first P0 of phase 5. LG-0022 is a documentation-promise-no-implementation gap: convergence.md describes an automatic security-sensitive override that the runtime cannot apply.",
+    "Resolution path for LG-0022 has 2 options: (a) implement the override in reducer (out of scope per ADR-002 \u2014 defer to follow-on) OR (b) rewrite convergence.md \u00a7Security-Sensitive Fix Overrides to mark the section as 'SPEC ONLY / future implementation' (in scope; doc edit only). Option B is appropriate for this packet.",
+    "Cross-verification confirmed the agent's claim. yaml has minStabilizationPasses=1 as general default; the security-sensitive value (=2) and the 2 boolean flags exist nowhere."
+  ],
+  "delta_vs_prev_iter": "new gaps surfaced",
+  "convergence_signals": {
+    "unique_gaps_so_far": 22,
+    "p0_count": 1,
+    "p1_count": 12,
+    "p2_count": 9,
+    "duplicates_with_prior_iters": 0
+  },
+  "notes": "Iter 4 RQ: convergence-defaults drift docs vs config vs yaml vs code. Wall-clock 135s. 2 novel gaps. LG-0021 downgraded P1\u2192P2 after main-agent cross-verification (thresholds split is design-correct). LG-0022 P0 confirmed via grep across config/yaml/reducer \u2014 security-sensitive override has no runtime implementation."
+}
