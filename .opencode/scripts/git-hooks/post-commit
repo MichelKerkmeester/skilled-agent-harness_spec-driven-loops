@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+# Post-commit hook — advisory code-graph staleness mitigation.
+#
+# When a commit changes more files than the configured threshold, mark the
+# code-graph SQLite stale so the next Claude Code session triggers a fresh
+# full scan on launcher boot. Without this, drift accumulates silently
+# (the launcher only detects drift at boot; multiple commits without a
+# session restart can leave the graph weeks out of date).
+#
+# Default threshold: 100 files changed (post-commit). Tunable via
+#   SPECKIT_CODE_GRAPH_POST_COMMIT_REBUILD_THRESHOLD=<int>
+# Bypass entirely (skip hook): SPECKIT_SKIP_CODE_GRAPH_POST_COMMIT=1
+# Disable just the rebuild (still print advisory): SPECKIT_CODE_GRAPH_POST_COMMIT_DRY_RUN=1
+#
+# Install: bash .opencode/scripts/install-git-hooks.sh
+# Uninstall: bash .opencode/scripts/install-git-hooks.sh --uninstall
+
+set -u
+
+if [ "${SPECKIT_SKIP_CODE_GRAPH_POST_COMMIT:-0}" = "1" ]; then
+  exit 0
+fi
+
+REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null)"
+if [ -z "$REPO_ROOT" ]; then
+  exit 0
+fi
+
+THRESHOLD="${SPECKIT_CODE_GRAPH_POST_COMMIT_REBUILD_THRESHOLD:-100}"
+DRY_RUN="${SPECKIT_CODE_GRAPH_POST_COMMIT_DRY_RUN:-0}"
+
+# Count files changed in the just-completed commit (HEAD).
+CHANGED="$(git diff-tree --no-commit-id --name-only -r HEAD 2>/dev/null | wc -l | tr -d ' ')"
+if [ -z "$CHANGED" ] || [ "$CHANGED" -lt 1 ]; then
+  exit 0
+fi
+
+if [ "$CHANGED" -lt "$THRESHOLD" ]; then
+  # Small commit — let the launcher's selective-rescan path handle it on next boot.
+  exit 0
+fi
+
+DB_DIR="$REPO_ROOT/.opencode/.spec-kit/code-graph/database"
+SQLITE="$DB_DIR/code-graph.sqlite"
+SHM="$DB_DIR/code-graph.sqlite-shm"
+WAL="$DB_DIR/code-graph.sqlite-wal"
+READINESS="$DB_DIR/.code-graph-readiness.json"
+
+if [ ! -f "$SQLITE" ] && [ ! -f "$READINESS" ]; then
+  # Nothing to invalidate — already absent or never built.
+  exit 0
+fi
+
+if [ "$DRY_RUN" = "1" ]; then
+  echo "" >&2
+  echo "⚠️  code-graph: $CHANGED files changed in HEAD (>= $THRESHOLD); DRY-RUN — would invalidate $DB_DIR" >&2
+  echo "" >&2
+  exit 0
+fi
+
+# Invalidate the DB + lease files. Next launcher boot will detect empty DB
+# and run an inline full scan during MCP startup.
+rm -f "$SQLITE" "$SHM" "$WAL" "$READINESS" \
+      "$DB_DIR/.mk-code-index-launcher.json" \
+      "$DB_DIR/.code-graph-owner.json"
+
+echo "" >&2
+echo "⚠️  code-graph: $CHANGED files changed in HEAD (>= $THRESHOLD)" >&2
+echo "    Invalidated code-graph SQLite + lease files." >&2
+echo "    Next Claude Code session will run an inline full scan on boot (~3-5 min)." >&2
+echo "    Bypass next time: SPECKIT_SKIP_CODE_GRAPH_POST_COMMIT=1 git commit ..." >&2
+echo "    Adjust threshold: SPECKIT_CODE_GRAPH_POST_COMMIT_REBUILD_THRESHOLD=<int>" >&2
+echo "" >&2
+
+exit 0

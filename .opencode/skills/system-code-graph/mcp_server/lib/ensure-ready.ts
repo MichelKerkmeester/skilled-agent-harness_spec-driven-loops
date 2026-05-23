@@ -73,8 +73,23 @@ export interface EnsureReadyOptions {
 /** Maximum time (ms) before auto-indexing is aborted */
 const AUTO_INDEX_TIMEOUT_MS = 10_000;
 
-/** Maximum stale files before we switch from selective to full reindex */
-export const SELECTIVE_REINDEX_THRESHOLD = 50;
+/**
+ * Maximum stale files before we switch from selective to full reindex.
+ *
+ * Operators can tune via `SPECKIT_CODE_GRAPH_SELECTIVE_REINDEX_THRESHOLD`
+ * (positive integer). Default `50` balances incremental-rescan speed
+ * (fast for small diffs) against full-scan throughput (one expensive pass
+ * for bulk changes). Raise to delay full-scans (favors session-boot
+ * latency over freshness). Lower to keep the DB tighter at the cost of
+ * more frequent full-scans.
+ */
+function resolveSelectiveReindexThreshold(): number {
+  const raw = process.env.SPECKIT_CODE_GRAPH_SELECTIVE_REINDEX_THRESHOLD;
+  if (typeof raw !== 'string' || raw.trim() === '') return 50;
+  const parsed = Number.parseInt(raw.trim(), 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : 50;
+}
+export const SELECTIVE_REINDEX_THRESHOLD = resolveSelectiveReindexThreshold();
 const GUARDED_FULL_SCAN_PARSE_ERROR_THRESHOLD = 0;
 
 // ───────────────────────────────────────────────────────────────
