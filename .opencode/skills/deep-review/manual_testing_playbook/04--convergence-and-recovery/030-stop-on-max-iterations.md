@@ -84,5 +84,5 @@ Privilege the convergence reference for exact algorithm and use YAML workflow st
 - Group: CONVERGENCE AND RECOVERY
 - Playbook ID: DRV-030
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `04--convergence-and-recovery/015-stop-on-max-iterations.md`
+- Feature file path: `04--convergence-and-recovery/030-stop-on-max-iterations.md`
 - Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-review/` as of 2026-03-28.

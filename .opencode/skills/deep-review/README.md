@@ -399,7 +399,7 @@ A: Raise `--max-iterations` above the number of completed iterations and re-invo
 | State format    | `.opencode/skills/deep-review/references/state_format.md`    | Config, JSONL, reducer registry, strategy, dashboard, and report schemas |
 | Convergence     | `.opencode/skills/deep-review/references/convergence.md`     | Stop algorithms, stuck recovery, signal math, and graph-aware legal-stop checks |
 | Quick reference | `.opencode/skills/deep-review/references/quick_reference.md` | One-page cheat sheet including lifecycle states and packet files         |
-| Graph playbook  | `.opencode/skills/deep-review/manual_testing_playbook/04--convergence-and-recovery/021-graph-convergence-review.md` | Operator test case for graph-backed legal-stop behavior |
+| Graph playbook  | `.opencode/skills/deep-review/manual_testing_playbook/04--convergence-and-recovery/032-graph-convergence-review.md` | Operator test case for graph-backed legal-stop behavior |
 
 ### Skill-Local References
 

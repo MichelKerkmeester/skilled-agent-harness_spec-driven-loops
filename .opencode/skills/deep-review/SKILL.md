@@ -19,17 +19,7 @@ Runtime path resolution:
 - Claude runtime: `.claude/agents/*.md`
 - Codex runtime: `.codex/agents/*.toml`
 
-## Convergence Threshold Semantics
-
-**Default:** 0.10 (weighted P0/P1/P2 severity ratio)
-
-**Semantic:** `convergenceThreshold` compares new severity-weighted findings (P0=10, P1=5, P2=1) against accumulated findings. Lower = more iterations / higher signal threshold.
-
-**NOT INTERCHANGEABLE with siblings:**
-- `deep-research` uses 0.05 default on newInfoRatio (negative-knowledge emphasis)
-- `deep-ai-council` (proposed) uses 0.20 default on adjudicator-verdict stability
-
-Carrying threshold expectations across siblings will cause unexpected iteration counts. See 130 research at `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/006-deep-skills-differentiation/001-unique-value-differentiation/research/research.md` §2 F56/F78, §5 Recommendation, and §6 Parity Invariants.
+Convergence threshold semantics and sibling-parity notes (deep-review 0.10 vs deep-research 0.05 vs deep-ai-council 0.20) live in `references/convergence.md` §1 under "Threshold Semantics and Sibling Parity".
 
 ## 1. WHEN TO USE
 
@@ -60,7 +50,7 @@ This skill is invoked EXCLUSIVELY through the `/deep:start-review-loop` command.
 - Write a custom bash/shell dispatcher to parallelize iterations
 - Invoke cli-codex / cli-gemini / cli-claude-code directly in a loop to simulate iterations
 - Manually write iteration prompts to `/tmp` and dispatch them via `copilot -p`
-- Dispatch the `@deep-review` LEAF agent via the Task tool for iteration loops (the agent is LEAF — a single iteration — and MUST be driven by the command's workflow)
+- Dispatch the `@deep-review` LEAF agent via the Task tool for iteration loops (the agent is LEAF, a single iteration, and MUST be driven by the command's workflow)
 - Skip the state machine: `deep-review-state.jsonl`, `deep-review-config.json`, `deltas/`, `prompts/`, `logs/`
 - Manage iteration state outside the resolved local review packet under `{spec_folder}/review/`
 
@@ -70,44 +60,6 @@ This skill is invoked EXCLUSIVELY through the `/deep:start-review-loop` command.
 - Let `scripts/reduce-state.cjs` be the SINGLE state writer
 - Require every iteration to produce BOTH the markdown narrative AND the JSONL delta (dispatch scripts must fail if either is missing)
 - Use `resolveArtifactRoot(specFolder, 'review')` from `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs` to locate the canonical review root
-
-### Executor Selection Contract
-
-Executor settings are owned by the YAML workflow and rendered prompt pack. Do not bypass the workflow by hand-dispatching review iterations. Each iteration must stay LEAF-only and produce the required markdown plus JSONL delta.
-
-**Invariants** every executor path MUST satisfy:
-
-1. Produce an iteration markdown file at `{state_paths.iteration_pattern}` (non-empty).
-2. Append a JSONL delta record to `{state_paths.state_log}` with required fields: `type`, `iteration`, `dimensions`, `filesReviewed`, `findingsSummary`, `findingsNew`, `findingDetails`, `newFindingsRatio`.
-3. Respect the LEAF-agent constraint: no sub-dispatch, no nested loops. Max 12 tool calls per iteration.
-
-**Failure modes**:
-
-- Missing iteration file → `iteration_file_missing` from `post-dispatch-validate.ts`, emits `schema_mismatch` conflict event.
-- Empty iteration file → `iteration_file_empty`, same downstream.
-- JSONL not appended → `jsonl_not_appended`.
-- JSONL missing required fields → `jsonl_missing_fields`.
-- JSONL malformed → `jsonl_parse_error`.
-- 3 consecutive failures → existing `stuck_recovery` event (unchanged).
-
-**JSONL audit field**: Non-native executor runs append an `executor` block with model and runtime settings to the iteration's JSONL record via `executor-audit.ts`. Native runs are recoverable from YAML alone.
-
-**Template**: The executor-agnostic iteration prompt lives at `.opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl`. It is rendered by `prompt-pack.ts` before dispatch and either (a) injected as the agent's context (native) or (b) piped to `codex exec` stdin (cli-codex).
-
-**Config surface**: Defined in `assets/deep_review_config.json` under the `executor` key. Schema is in `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts`. CLI flag precedence is: `--executor/--model/--reasoning-effort/--service-tier/--executor-timeout > config file > schema default`.
-
-**What NEVER changes regardless of executor route**:
-
-- YAML owns state (`deep-review-state.jsonl`, strategy.md, registry, dashboard).
-- `reduce-state.cjs` is the single state writer.
-- Convergence detection, lifecycle events (new/resume/restart), review dimensions pass (correctness, security, traceability, maintainability), and stuck_recovery all stay YAML-driven.
-- The `@deep-review` LEAF agent definition is untouched — it is the native executor, not the only one.
-
-### Code-Graph Readiness TrustState Surface
-
-On this skill surface, the live code-graph readiness contract only reaches four TrustState values: `live`, `stale`, `absent`, and `unavailable`.
-
-`cached`, `imported`, `rebuilt`, and `rehomed` remain declared in the shared TrustState type for compatibility and downstream schema stability, but the seven code-graph handlers and readiness helpers used here do not emit them today.
 
 ### Trigger Phrases
 
@@ -371,9 +323,9 @@ Review mode is lineage-aware. Supported lifecycle modes are `new`, `resume`, and
 
 | Severity | Criteria | Blocking |
 |----------|----------|---------|
-| **P0** | Correctness failure, security vulnerability, spec contradiction | Yes — blocks PASS verdict |
-| **P1** | Degraded behavior, incomplete implementation, missing validation | Conditional — triggers CONDITIONAL verdict |
-| **P2** | Style, naming, minor improvements, documentation gaps | No — PASS with advisories |
+| **P0** | Correctness failure, security vulnerability, spec contradiction | Yes, blocks PASS verdict |
+| **P1** | Degraded behavior, incomplete implementation, missing validation | Conditional, triggers CONDITIONAL verdict |
+| **P2** | Style, naming, minor improvements, documentation gaps | No, PASS with advisories |
 
 ### Verdicts
 
@@ -401,7 +353,45 @@ Review verdict: FAIL
 
 **Mapping rule:** PASS if no P0 or P1 findings in this iteration; CONDITIONAL if any P1 (but no P0) findings; FAIL if any P0 findings. P2-only findings → PASS.
 
-Downstream automation (including the synthesis phase and CI gate parser) parses this final line via exact string match — do not vary the format.
+Downstream automation (including the synthesis phase and CI gate parser) parses this final line via exact string match, do not vary the format.
+
+### Executor Selection Contract
+
+Executor settings are owned by the YAML workflow and rendered prompt pack. Do not bypass the workflow by hand-dispatching review iterations. Each iteration must stay LEAF-only and produce the required markdown plus JSONL delta.
+
+**Invariants** every executor path MUST satisfy:
+
+1. Produce an iteration markdown file at `{state_paths.iteration_pattern}` (non-empty).
+2. Append a JSONL delta record to `{state_paths.state_log}` with required fields: `type`, `iteration`, `dimensions`, `filesReviewed`, `findingsSummary`, `findingsNew`, `findingDetails`, `newFindingsRatio`.
+3. Respect the LEAF-agent constraint: no sub-dispatch, no nested loops. Max 12 tool calls per iteration.
+
+**Failure modes**:
+
+- Missing iteration file → `iteration_file_missing` from `post-dispatch-validate.ts`, emits `schema_mismatch` conflict event.
+- Empty iteration file → `iteration_file_empty`, same downstream.
+- JSONL not appended → `jsonl_not_appended`.
+- JSONL missing required fields → `jsonl_missing_fields`.
+- JSONL malformed → `jsonl_parse_error`.
+- 3 consecutive failures → existing `stuck_recovery` event (unchanged).
+
+**JSONL audit field**: Non-native executor runs append an `executor` block with model and runtime settings to the iteration's JSONL record via `executor-audit.ts`. Native runs are recoverable from YAML alone.
+
+**Template**: The executor-agnostic iteration prompt lives at `.opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl`. It is rendered by `prompt-pack.ts` before dispatch and either (a) injected as the agent's context (native) or (b) piped to `codex exec` stdin (cli-codex).
+
+**Config surface**: Defined in `assets/deep_review_config.json` under the `executor` key. Schema is in `.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts`. CLI flag precedence is: `--executor/--model/--reasoning-effort/--service-tier/--executor-timeout > config file > schema default`.
+
+**What NEVER changes regardless of executor route**:
+
+- YAML owns state (`deep-review-state.jsonl`, strategy.md, registry, dashboard).
+- `reduce-state.cjs` is the single state writer.
+- Convergence detection, lifecycle events (new/resume/restart), review dimensions pass (correctness, security, traceability, maintainability), and stuck_recovery all stay YAML-driven.
+- The `@deep-review` LEAF agent definition is untouched: it is the native executor, not the only one.
+
+### Code-Graph Readiness TrustState Surface
+
+On this skill surface, the live code-graph readiness contract only reaches four TrustState values: `live`, `stale`, `absent`, and `unavailable`.
+
+`cached`, `imported`, `rebuilt`, and `rehomed` remain declared in the shared TrustState type for compatibility and downstream schema stability, but the seven code-graph handlers and readiness helpers used here do not emit them today.
 
 ---
 
@@ -421,15 +411,15 @@ Downstream automation (including the synthesis phase and CI gate parser) parses 
 
 ### ❌ NEVER
 
-1. **Dispatch sub-agents** — `@deep-review` is LEAF-only; it cannot dispatch additional agents. When dispatch is requested, use the canonical REFUSE wording (ALWAYS rule 14).
-2. **Hold findings in context** — Write everything to iteration files; context is discarded after each dispatch.
-3. **Exceed TCB** — Target 8-11 tool calls per iteration (max 12); breadth over depth per cycle.
-4. **Ask the user** — Autonomous execution; the agent makes best-judgment decisions without pausing.
-5. **Skip convergence checks** — Every iteration must be evaluated against convergence criteria before the next dispatch.
-6. **Modify config after init** — `deep-review-config.json` is read-only after initialization.
-7. **Modify files under review** — The review loop is observation-only; no code changes during audit.
-8. **Use WebFetch** — Review is code-only; no external resource fetching is permitted.
-9. **Implement fixes during review** — Report findings only; implementation is a separate follow-up step.
+1. **Dispatch sub-agents**, `@deep-review` is LEAF-only; it cannot dispatch additional agents. When dispatch is requested, use the canonical REFUSE wording (ALWAYS rule 14).
+2. **Hold findings in context**, Write everything to iteration files; context is discarded after each dispatch.
+3. **Exceed TCB**, Target 8-11 tool calls per iteration (max 12); breadth over depth per cycle.
+4. **Ask the user**, Autonomous execution; the agent makes best-judgment decisions without pausing.
+5. **Skip convergence checks**, Every iteration must be evaluated against convergence criteria before the next dispatch.
+6. **Modify config after init**, `deep-review-config.json` is read-only after initialization.
+7. **Modify files under review**, The review loop is observation-only; no code changes during audit.
+8. **Use WebFetch**, Review is code-only; no external resource fetching is permitted.
+9. **Implement fixes during review**, Report findings only; implementation is a separate follow-up step.
 
 ### Iteration Status Enum
 
@@ -439,17 +429,21 @@ Downstream automation (including the synthesis phase and CI gate parser) parses 
 
 ### ⚠️ ESCALATE IF
 
-1. **3+ consecutive timeouts** — Infrastructure issue; pause loop and report to user.
-2. **State file corruption** — Cannot reconstruct iteration history from JSONL or iteration files.
-3. **All dimensions covered with P0 findings remaining** — Human sign-off required before shipping.
-4. **Security vulnerabilities discovered in production code** — Escalate immediately; do not defer to report synthesis.
-5. **All recovery tiers exhausted** — No automatic recovery path remaining in convergence protocol.
+1. **3+ consecutive timeouts**, Infrastructure issue; pause loop and report to user.
+2. **State file corruption**, Cannot reconstruct iteration history from JSONL or iteration files.
+3. **All dimensions covered with P0 findings remaining**, Human sign-off required before shipping.
+4. **Security vulnerabilities discovered in production code**, Escalate immediately; do not defer to report synthesis.
+5. **All recovery tiers exhausted**, No automatic recovery path remaining in convergence protocol.
 
 ---
 
-## 5. REFERENCES
+## 5. REFERENCES AND RELATED RESOURCES
 
-The router discovers markdown references dynamically. Primary docs: `references/quick_reference.md`, `references/loop_protocol.md`, `references/state_format.md`, and `references/convergence.md`. Local assets provide config, strategy, dashboard, and review contract templates.
+The router discovers reference, asset, and script docs dynamically. Start with `references/convergence.md`, `references/loop_protocol.md`, `references/quick_reference.md`, `references/state_format.md`, `assets/deep_review_dashboard.md`, `assets/deep_review_strategy.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
+
+Scripts: `scripts/reduce-state.cjs`, `scripts/runtime-capabilities.cjs`.
+
+Related skills: `deep-research` for investigation loops, `sk-code-review` for single-pass review doctrine, and `system-spec-kit` for command-owned state and continuity saves.
 
 ---
 
@@ -457,16 +451,38 @@ The router discovers markdown references dynamically. Primary docs: `references/
 
 ### Loop Completion
 
-- Review loop ran to convergence or max iterations
-- All configured review dimensions have at least one iteration of coverage
-- All state files present and consistent (`config.json`, `state.jsonl`, `strategy.md`)
-- `review/resource-map.md` produced from converged deltas unless `config.resource_map.emit == false` (operator flag: `--no-resource-map`)
-- `review/review-report.md` produced with all 9 core sections, plus `## Resource Map Coverage Gate` when `resource_map_present == true`
-- Canonical continuity surfaces updated via `generate-context.js`
+A review loop is considered complete when every item below holds:
 
-Quality gates require valid config, initialized strategy, state log, per-iteration markdown and JSONL, final report, evidence completeness, scope alignment, severity coverage, and P0 adversarial recheck.
+- The loop reached convergence (composite stop score above `compositeStopScore`, with required gates green) OR hit `maxIterations` without false-positive STOP.
+- Every configured review dimension has at least one full iteration of coverage recorded in `deep-review-state.jsonl` and reflected in `deep-review-strategy.md`.
+- Required traceability protocols (`spec_code`, `checklist_evidence`) executed at least once; overlay protocols that apply to the target type ran or were explicitly marked N/A.
+- All canonical state files exist and parse cleanly: `deep-review-config.json`, `deep-review-state.jsonl`, `deep-review-findings-registry.json`, `deep-review-strategy.md`, `deep-review-dashboard.md`, and one `iterations/iteration-NNN.md` per dispatched iteration.
+- `review/resource-map.md` was emitted from converged delta evidence unless `config.resource_map.emit == false` (operator flag `--no-resource-map`).
+- `review/review-report.md` carries all 9 core sections (Executive Summary, Planning Trigger, Active Finding Registry, Remediation Workstreams, Spec Seed, Plan Seed, Traceability Status, Deferred Items, Audit Appendix) plus the conditional `## Resource Map Coverage Gate` section when `resource_map_present == true`.
+- Canonical continuity surfaces updated via `generate-context.js` (description.json, graph-metadata.json, indexed memory entries).
 
-The final report records stop reason, iteration count, dimension coverage, severity counts, verdict, and release-readiness state.
+### Quality Gates
+
+Each gate is binary: pass or block. STOP cannot be legal until every gate passes.
+
+- **Config validity**: `deep-review-config.json` parses, names every required field, and lineage block matches the current run (`sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun`, `releaseReadinessState`).
+- **Strategy initialization**: `deep-review-strategy.md` carries the Files Under Review table, Cross-Reference Status grouped by core vs overlay, Known Context, and Review Boundaries.
+- **State consistency**: `deep-review-state.jsonl` opens with the config record and appends one iteration record per dispatched iteration; reducer-owned fields in `deep-review-findings-registry.json` reconcile against JSONL totals.
+- **Iteration completeness**: every dispatched iteration produced both an `iterations/iteration-NNN.md` (non-empty, ending with the canonical `Review verdict: PASS|CONDITIONAL|FAIL` line) AND a JSONL delta record with `findingDetails[]`, `findingsSummary`, `newFindingsRatio`.
+- **Severity coverage**: every reported finding carries `severity` in {P0, P1, P2}, `category`, `file:line` evidence, `finding_class`, and a `content_hash` for synthesis dedup.
+- **Adversarial replay**: every P0 finding survived adversarial self-check; rejected P0s downgraded with rationale recorded in the iteration narrative.
+- **Coverage threshold**: `dimensions_covered_count == configured_dimensions_count` AND required traceability protocols covered, stable for at least `minStabilizationPasses` iterations.
+- **Security-sensitive override**: when the run targets security, path handling, env precedence, schema boundaries, persistence, or shared policy, the gates from `references/convergence.md` "Security-Sensitive Fix Overrides" apply (`minStabilizationPasses=2`, closed-finding replay required, fix-completeness gate enforced).
+
+### Validation Success
+
+The release-readiness handoff is valid when:
+
+- The final report records stop reason, iteration count, dimension coverage, severity counts (P0/P1/P2), verdict (PASS / CONDITIONAL / FAIL), and release-readiness state (`in-progress`, `converged`, `release-blocking`).
+- Verdict logic matches: PASS = no P0/P1 findings (P2 advisories permitted with `hasAdvisories: true`); CONDITIONAL = P1 findings present with remediation plan; FAIL = any P0 confirmed after adversarial self-check.
+- `resource-map.md` Phase-5 Augmentation section (if present) lists novel logic gaps with iteration source links, or explicitly records the empty-result case.
+- `skill_advisor.py "run a deep review loop" --threshold 0.8` still surfaces the skill after any graph-metadata edits.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` exits 0 on the target spec folder.
 
 ---
 
@@ -495,21 +511,13 @@ Recover context via `/speckit:resume` in the order `handover.md -> _memory.conti
 
 ---
 
-## 8. REFERENCES AND RELATED RESOURCES
+## 8. FINDING DEDUPLICATION
 
-The router discovers reference, asset, and script docs dynamically. Start with `references/convergence.md`, `references/loop_protocol.md`, `references/quick_reference.md`, `references/state_format.md`, `assets/deep_review_dashboard.md`, `assets/deep_review_strategy.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
-
-Scripts: `scripts/reduce-state.cjs`, `scripts/runtime-capabilities.cjs`.
-
----
-
-## 9. FINDING DEDUP (Packet 110, H-7)
-
-### 9.1 Two-Tier Deduplication
+### 8.1 Two-Tier Deduplication
 
 Finding dedup uses a two-tier match at synthesis time:
 
-1. **PRIMARY: content_hash** — `sha256(file_path + "\u001f" + line_range + "\u001f" + finding_type + "\u001f" + normalized_description_80chars)`
+1. **PRIMARY: content_hash**, `sha256(file_path + "\u001f" + line_range + "\u001f" + finding_type + "\u001f" + normalized_description_80chars)`
    - `file_path`: repo-relative path of the finding
    - `line_range`: e.g., `"42"` or `"42-56"`
    - `finding_type`: one of `security`, `correctness`, `performance`, `maintainability`, `test_quality`, `contract_safety`, `removal`
@@ -519,22 +527,12 @@ Finding dedup uses a two-tier match at synthesis time:
    - Applied when one or both records lack a `content_hash` field
    - Preserves the existing behavior unchanged
 
-### 9.2 Synthesis Behavior
+### 8.2 Synthesis Behavior
 
 When the same `content_hash` appears across iterations from different dimensions, the synthesis step collapses them to **ONE entry** with `dimensions: [<list of all dimensions that emitted this finding>]` rather than emitting multiple records.
 
 Backward compatibility: state records without `content_hash` field fall back to the existing `file:line + normalized_title` behavior. No migration is required for existing JSONL state files.
 
-### 9.3 Emission Requirement
+### 8.3 Emission Requirement
 
-Every finding emitted into the JSONL delta (field `findingDetails[]`) MUST include a `content_hash` field computed per §9.1. The reducer (`reduce-state.cjs`) reads this field for synthesis dedup.
-
----
-
-## 10. H-9 DEFERRED
-
-H-9 (bounded evidence interpolation) is **deferred to packet 111+**. Current deep-review prompts point agents at files and state rather than embedding all evidence inline. When H-9 is implemented, it must name the exact evidence interpolation path and variables to bound before describing candidate file:line windows.
-
----
-
-Related skills: `deep-research` for investigation loops, `sk-code-review` for single-pass review doctrine, and `system-spec-kit` for command-owned state and continuity saves.
+Every finding emitted into the JSONL delta (field `findingDetails[]`) MUST include a `content_hash` field computed per §8.1. The reducer (`reduce-state.cjs`) reads this field for synthesis dedup.

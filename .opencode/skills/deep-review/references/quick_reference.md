@@ -206,6 +206,6 @@ Each @deep-review iteration:
 | `generate-context.js` | Memory save script |
 
 For review-specific protocol documentation, see local `references/`:
-- `loop_protocol.md` — Review loop lifecycle (4 phases)
-- `state_format.md` — Review state file schemas
-- `convergence.md` — Review convergence algorithms
+- `loop_protocol.md`, Review loop lifecycle (4 phases)
+- `state_format.md`, Review state file schemas
+- `convergence.md`, Review convergence algorithms

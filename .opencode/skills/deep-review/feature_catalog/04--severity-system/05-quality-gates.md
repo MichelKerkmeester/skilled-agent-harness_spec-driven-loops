@@ -36,7 +36,7 @@ Gate failures also affect verdicts. A quality-gate failure yields FAIL regardles
 | File | Type | Role |
 |---|---|---|
 | `manual_testing_playbook/04--convergence-and-recovery/018-review-quality-guards-block-premature-stop.md` | Manual scenario | Verifies that failed gates block early stop. |
-| `manual_testing_playbook/04--convergence-and-recovery/022-blocked-stop-reducer-surfacing.md` | Manual scenario | Confirms gate failures persist as blocked-stop reducer state. |
+| `manual_testing_playbook/04--convergence-and-recovery/033-blocked-stop-reducer-surfacing.md` | Manual scenario | Confirms gate failures persist as blocked-stop reducer state. |
 | `manual_testing_playbook/06--synthesis-save-and-guardrails/026-review-verdict-determines-post-review-workflow.md` | Manual scenario | Verifies gate outcomes shape the final verdict path. |
 
 ---

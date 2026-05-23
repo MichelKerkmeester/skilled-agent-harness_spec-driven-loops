@@ -34,8 +34,8 @@ The reducer contract is fail-closed by default. Malformed JSONL or missing machi
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/04--convergence-and-recovery/022-blocked-stop-reducer-surfacing.md` | Manual scenario | Verifies blocked-stop history reaches reducer-owned state. |
-| `manual_testing_playbook/04--convergence-and-recovery/023-fail-closed-reducer.md` | Manual scenario | Exercises fail-closed reducer behavior. |
+| `manual_testing_playbook/04--convergence-and-recovery/033-blocked-stop-reducer-surfacing.md` | Manual scenario | Verifies blocked-stop history reaches reducer-owned state. |
+| `manual_testing_playbook/04--convergence-and-recovery/034-fail-closed-reducer.md` | Manual scenario | Exercises fail-closed reducer behavior. |
 | `manual_testing_playbook/06--synthesis-save-and-guardrails/028-finding-deduplication-and-registry.md` | Manual scenario | Verifies registry alignment with synthesis-time deduplication. |
 
 ---

@@ -34,11 +34,11 @@ Even when the weighted vote requests STOP, the loop still has to pass the review
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/04--convergence-and-recovery/015-stop-on-max-iterations.md` | Manual scenario | Verifies the hard iteration ceiling. |
+| `manual_testing_playbook/04--convergence-and-recovery/030-stop-on-max-iterations.md` | Manual scenario | Verifies the hard iteration ceiling. |
 | `manual_testing_playbook/04--convergence-and-recovery/016-composite-review-convergence-stop-behavior.md` | Manual scenario | Exercises the weighted stop vote. |
 | `manual_testing_playbook/04--convergence-and-recovery/019-stuck-recovery-widens-dimension-focus.md` | Manual scenario | Verifies least-covered-dimension recovery behavior. |
-| `manual_testing_playbook/04--convergence-and-recovery/021-graph-convergence-review.md` | Manual scenario | Verifies graph-assisted convergence and blockers. |
-| `manual_testing_playbook/04--convergence-and-recovery/022-blocked-stop-reducer-surfacing.md` | Manual scenario | Confirms blocked-stop events surface into reducer-owned state. |
+| `manual_testing_playbook/04--convergence-and-recovery/032-graph-convergence-review.md` | Manual scenario | Verifies graph-assisted convergence and blockers. |
+| `manual_testing_playbook/04--convergence-and-recovery/033-blocked-stop-reducer-surfacing.md` | Manual scenario | Confirms blocked-stop events surface into reducer-owned state. |
 
 ---
 

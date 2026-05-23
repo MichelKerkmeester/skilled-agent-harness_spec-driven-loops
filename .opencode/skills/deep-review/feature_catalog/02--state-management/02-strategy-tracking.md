@@ -36,7 +36,7 @@ The reducer also depends on machine-owned anchors in this file. Missing anchors 
 |---|---|---|
 | `manual_testing_playbook/03--iteration-execution-and-state-discipline/010-strategy-next-focus-and-dimension-rotation.md` | Manual scenario | Verifies next-focus selection and dimension rotation. |
 | `manual_testing_playbook/03--iteration-execution-and-state-discipline/009-review-iteration-writes-findings-jsonl-and-strategy-update.md` | Manual scenario | Checks that strategy updates accompany the iteration output. |
-| `manual_testing_playbook/04--convergence-and-recovery/022-blocked-stop-reducer-surfacing.md` | Manual scenario | Verifies blocked-stop state can override next focus in reducer-driven summaries. |
+| `manual_testing_playbook/04--convergence-and-recovery/033-blocked-stop-reducer-surfacing.md` | Manual scenario | Verifies blocked-stop state can override next focus in reducer-driven summaries. |
 
 ---
 

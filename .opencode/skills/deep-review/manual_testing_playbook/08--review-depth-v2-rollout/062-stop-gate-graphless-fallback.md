@@ -55,7 +55,7 @@ With `graphCoverageMode: 'graphless_fallback'` and empty `searchLedger`, the rev
 - Workflow YAML: `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` (`step_check_convergence` legal-stop decision tree, graphlessFallbackGate branch).
 - Confirm mirror: `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`.
 - Schema: `.opencode/skills/deep-review/references/state_format.md` (`graphCoverageMode` enum + fallback-method conventions).
-- Fixture: `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-convergence.vitest.ts` (workflow-runner integration TODO).
+- Fixture: `.opencode/skills/deep-loop-runtime/tests/integration/review-depth-convergence.vitest.ts` (workflow-runner integration TODO).
 - ADR: `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/006-complexity-candidate-saturation-gates/decision-record.md`.
 
 ## 5. SOURCE_METADATA

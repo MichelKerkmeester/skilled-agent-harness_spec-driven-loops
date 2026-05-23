@@ -11,6 +11,8 @@ Stop condition algorithms, quality guards, and stuck recovery for the deep revie
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Convergence detection determines when the autonomous review loop should stop iterating. After every iteration the orchestrator evaluates three possible outcomes:
 
 | Outcome | Meaning |
@@ -28,6 +30,13 @@ Release-readiness states are derived alongside convergence:
 
 When the loop stops and enters synthesis, the workflow emits `{artifact_dir}/resource-map.md` from converged review deltas before compiling `review-report.md`. Operators can disable that write with `--no-resource-map`.
 
+### When to Use
+
+- Evaluating whether the autonomous review loop should stop, continue, or recover.
+- Tuning convergence thresholds, stuck-recovery cadence, or stabilization windows.
+- Debugging a stuck-recovery escalation or a premature STOP vote.
+- Auditing the release-readiness classification logic before shipping.
+
 ### Key Defaults
 
 | Setting | Value | Purpose |
@@ -39,6 +48,20 @@ When the loop stops and enters synthesis, the workflow emits `{artifact_dir}/res
 | `stuckThreshold` | 2 | Consecutive no-progress iterations before recovery |
 | `minStabilizationPasses` | 1 | Coverage signal requires at least one stabilization pass |
 | `compositeStopScore` | 0.60 | Weighted stop-score needed before guard evaluation |
+
+### Threshold Semantics and Sibling Parity
+
+`convergenceThreshold` (default 0.10) compares new severity-weighted findings (P0=10, P1=5, P2=1) against accumulated findings. Lower values demand more iterations and a higher signal threshold before STOP is legal.
+
+**Not interchangeable with sibling deep-loop skills:**
+
+| Skill | Default | Signal |
+|---|---|---|
+| `deep-review` | 0.10 | severity-weighted P0/P1/P2 ratio |
+| `deep-research` | 0.05 | newInfoRatio (negative-knowledge emphasis) |
+| `deep-ai-council` (proposed) | 0.20 | adjudicator-verdict stability |
+
+Carrying threshold expectations across siblings will cause unexpected iteration counts. Tune each skill against its own default and its own signal, not by analogy.
 
 ### Security-Sensitive Fix Overrides
 
@@ -54,7 +77,7 @@ STOP is not legal until the review report contains a closed-gate replay table th
 
 ### Shared Stop Contract
 
-Every terminal stop and every blocked-stop vote MUST emit the shared stop contract from REQ-001: a named `stopReason` enum plus — when STOP is vetoed — a `blocked_stop` event written to `deep-review-state.jsonl`. There is no nested `legalStop` wrapper on the persisted path; earlier drafts of this document implied one, and that drift was the source of F009 in the 042 closing audit.
+Every terminal stop and every blocked-stop vote MUST emit the shared stop contract from REQ-001: a named `stopReason` enum plus, when STOP is vetoed, a `blocked_stop` event written to `deep-review-state.jsonl`. There is no nested `legalStop` wrapper on the persisted path; earlier drafts of this document implied one, and that drift was the source of F009 in the 042 closing audit.
 
 #### stopReason Enum
 
@@ -70,7 +93,7 @@ Every terminal stop and every blocked-stop vote MUST emit the shared stop contra
 
 #### blocked_stop Event (canonical, persisted)
 
-`step_emit_blocked_stop` in both `deep_start-review-loop_{auto,confirm}.yaml` appends the following record to `deep-review-state.jsonl` whenever the legal-stop decision tree vetoes STOP. The gate names and their shapes are load-bearing — the reducer reads them verbatim:
+`step_emit_blocked_stop` in both `deep_start-review-loop_{auto,confirm}.yaml` appends the following record to `deep-review-state.jsonl` whenever the legal-stop decision tree vetoes STOP. The gate names and their shapes are load-bearing, the reducer reads them verbatim:
 
 ```json
 {
@@ -100,7 +123,7 @@ Every terminal stop and every blocked-stop vote MUST emit the shared stop contra
 }
 ```
 
-- `blockedBy`: array of gate names that failed (string[] — never structured objects). Empty when STOP is legal, in which case no `blocked_stop` event is emitted.
+- `blockedBy`: array of gate names that failed (string[], never structured objects). Empty when STOP is legal, in which case no `blocked_stop` event is emitted.
 - `gateResults`: named sub-records keyed by `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, and `fixCompletenessReplayGate`. Each sub-record has a `pass` boolean plus gate-specific fields (score, covered/missing, activeP0, avgEvidencePerFinding, activeP0P1, securitySensitive, requiredRows, passingRows). The reducer reads these verbatim and does not coerce shapes.
 - `graphBlockerDetail`: array of structured graph blockers copied from the latest graph convergence decision. Empty when graph convergence did not veto STOP.
 - `recoveryStrategy`: human-readable one-liner describing what the next iteration should do before another stop attempt.
@@ -176,7 +199,7 @@ The recovery entry uses `stopReason=stuckRecovery` while the loop is in recovery
 
 ## 4. COMPOSITE CONVERGENCE
 
-Three independent signals each cast a stop/continue vote. Stop when the weighted stop-score meets or exceeds the consensus threshold. The signal set below matches the authoritative 3-signal vote in `deep_start-review-loop_{auto,confirm}.yaml` `step_check_convergence` and the quick-reference convergence table — the 3rd signal is **dimension coverage**, not a standalone novelty ratio.
+Three independent signals each cast a stop/continue vote. Stop when the weighted stop-score meets or exceeds the consensus threshold. The signal set below matches the authoritative 3-signal vote in `deep_start-review-loop_{auto,confirm}.yaml` `step_check_convergence` and the quick-reference convergence table, the 3rd signal is **dimension coverage**, not a standalone novelty ratio.
 
 | Signal | Weight | Min Iterations | Measures |
 |--------|--------|---------------|----------|
@@ -210,7 +233,7 @@ if len(evidenceIterations) >= 3:
 
 ### Signal 3: Dimension Coverage (weight 0.45)
 
-Highest-weight signal. Votes STOP once every configured review dimension AND every required traceability protocol has been covered by at least one iteration, and the coverage set has been stable for at least `minStabilizationPasses` iterations (default 1). This is the signal the YAML workflow actually evaluates — earlier drafts of this reference labelled it "Novelty Ratio", which was drift.
+Highest-weight signal. Votes STOP once every configured review dimension AND every required traceability protocol has been covered by at least one iteration, and the coverage set has been stable for at least `minStabilizationPasses` iterations (default 1). This is the signal the YAML workflow evaluates.
 
 ```
 dimensionStop =
@@ -219,7 +242,7 @@ dimensionStop =
   AND coverage_age >= config.minStabilizationPasses
 ```
 
-The latest severity-weighted newFindingsRatio is still tracked (the dashboard and registry surface it as `newFindingsRatio`), but it does NOT cast an independent stop vote — it feeds the rolling average and MAD noise-floor signals only.
+The latest severity-weighted newFindingsRatio is still tracked (the dashboard and registry surface it as `newFindingsRatio`), but it does NOT cast an independent stop vote, it feeds the rolling average and MAD noise-floor signals only.
 
 ### Weighted Vote
 

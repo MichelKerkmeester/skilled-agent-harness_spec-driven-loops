@@ -91,5 +91,5 @@ Privilege `deep-review-findings-registry.json` as the reducer-owned source of tr
 - Group: CONVERGENCE AND RECOVERY
 - Playbook ID: DRV-033
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `04--convergence-and-recovery/022-blocked-stop-reducer-surfacing.md`
+- Feature file path: `04--convergence-and-recovery/033-blocked-stop-reducer-surfacing.md`
 - Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-review/` as of 2026-04-11.

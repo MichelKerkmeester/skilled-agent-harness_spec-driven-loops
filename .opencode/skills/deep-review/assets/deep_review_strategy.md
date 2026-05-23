@@ -17,7 +17,7 @@ Serves as the "persistent brain" for a deep review session. Records which dimens
 
 - **Init:** Orchestrator copies this template to `{artifact_dir}/deep-review-strategy.md` and populates Topic, Review Dimensions, Known Context, and Review Boundaries from config and memory context.
 - **Per iteration:** Agent reads Next Focus, reviews the assigned dimension/files, updates findings, marks dimensions complete, and sets new Next Focus.
-- **Mutability:** Mutable — updated by both orchestrator and agents throughout the session.
+- **Mutability:** Mutable, updated by both orchestrator and agents throughout the session.
 - **Protection:** None (shared mutable state). Orchestrator validates consistency on resume.
 - **Ownership:** Machine-managed metrics and coverage blocks are wrapped in explicit ownership markers. Human commentary and operator overrides live outside those markers.
 
@@ -30,10 +30,10 @@ Serves as the "persistent brain" for a deep review session. Records which dimens
 
 ## 3. REVIEW DIMENSIONS (remaining)
 <!-- MACHINE-OWNED: START -->
-- [ ] D1 Correctness — Logic errors, off-by-one, wrong return types, broken invariants
-- [ ] D2 Security — Injection, auth bypass, secrets exposure, unsafe deserialization
-- [ ] D3 Traceability — Spec/code alignment, checklist evidence, cross-reference integrity
-- [ ] D4 Maintainability — Patterns, clarity, documentation quality, safe follow-on change cost
+- [ ] D1 Correctness, Logic errors, off-by-one, wrong return types, broken invariants
+- [ ] D2 Security, Injection, auth bypass, secrets exposure, unsafe deserialization
+- [ ] D3 Traceability, Spec/code alignment, checklist evidence, cross-reference integrity
+- [ ] D4 Maintainability, Patterns, clarity, documentation quality, safe follow-on change cost
 <!-- MACHINE-OWNED: END -->
 
 ---

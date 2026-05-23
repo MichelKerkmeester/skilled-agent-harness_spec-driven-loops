@@ -94,5 +94,5 @@ Privilege `reduce-state.cjs` for exit semantics and `review-reducer-fail-closed.
 - Group: CONVERGENCE AND RECOVERY
 - Playbook ID: DRV-034
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `04--convergence-and-recovery/023-fail-closed-reducer.md`
+- Feature file path: `04--convergence-and-recovery/034-fail-closed-reducer.md`
 - Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-review/` as of 2026-04-11.

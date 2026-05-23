@@ -91,7 +91,7 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 
 | File | Lines | Role |
 |---|---:|---|
-| `.opencode/commands/speckit/deep-review.md` | 169-188, 361-365 | Command owns loop dispatch; agent is one iteration |
+| `.opencode/commands/deep/start-review-loop.md` | 169-188, 361-365 | Command owns loop dispatch; agent is one iteration |
 | `.opencode/skills/deep-review/SKILL.md` | 43-61, 90-95 | Command-only loop invocation and LEAF invariant |
 | `.opencode/agents/deep-review.md` | 37-48, 388-404 | Illegal nesting hard block and never rules |
 

@@ -116,6 +116,22 @@ See [`01--loop-lifecycle/05-memory-save.md`](01--loop-lifecycle/05-memory-save.m
 
 ---
 
+### Resource map emission
+
+#### Description
+
+Emits a convergence-time `resource-map.md` from review delta evidence with a clean opt-out path.
+
+#### Current Reality
+
+The reducer runs an explicit `--emit-resource-map` pass during synthesis that reads converged delta files and writes `{artifact_dir}/resource-map.md`, grouped by category and annotated with per-file P0/P1/P2 counts. Enabled by default via `config.resource_map.emit = true`; operators can disable per run with `--no-resource-map`.
+
+#### Source Files
+
+See [`01--loop-lifecycle/06-resource-map-emission.md`](01--loop-lifecycle/06-resource-map-emission.md) for full implementation and validation file listings.
+
+---
+
 ## 3. STATE MANAGEMENT
 
 These entries describe the review packet files, how they change over time, and how reducer-owned state feeds the loop, dashboard, and synthesis surfaces.

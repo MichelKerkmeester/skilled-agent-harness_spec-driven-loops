@@ -100,7 +100,7 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 
 | File | Lines | Role |
 |---|---:|---|
-| `.opencode/commands/speckit/deep-review.md` | 192-205, 361-365 | Review outputs and read-only agent model |
+| `.opencode/commands/deep/start-review-loop.md` | 192-205, 361-365 | Review outputs and read-only agent model |
 | `.opencode/skills/deep-review/SKILL.md` | 111-117, 411-438 | State ownership and never-modify rules |
 | `.opencode/agents/deep-review.md` | 326-335, 424-435 | Write safety and pre-delivery protected-file check |
 

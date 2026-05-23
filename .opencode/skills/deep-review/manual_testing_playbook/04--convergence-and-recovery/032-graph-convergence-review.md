@@ -48,7 +48,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate the graph-backed legal-stop gate and report whether blocked-stop state persists when coverage fails.
 ### Commands
 1. `bash: rg -n 'blockedStop|dimensionCoverage|buildReviewLegalStop|graphEvents|graph-aware review convergence' .opencode/skills/deep-review/references/convergence.md`
-2. `bash: rg -n 'dimensionCoverage|threshold|STOP_BLOCKED|blocking' .opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts`
+2. `bash: rg -n 'dimensionCoverage|threshold|STOP_BLOCKED|blocking' .opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts`
 3. `bash: rg -n 'blocked_stop|blockedStop|dimensionCoverage' .opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl`
 ### Expected
 Legal-stop docs map failed gate evaluation to `blockedStop`; the graph convergence handler evaluates review `dimensionCoverage`; fixture evidence shows persisted `blocked_stop` blocked by `dimensionCoverage`.
@@ -73,7 +73,7 @@ Privilege `references/convergence.md` for the review stop contract and the fixtu
 | File | Role |
 |---|---|
 | `.opencode/skills/deep-review/references/convergence.md` | Canonical review legal-stop and graph-aware convergence contract |
-| `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts` | Graph convergence handler; review `dimensionCoverage` threshold and blocking behavior |
+| `.opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts` | Graph convergence handler; review `dimensionCoverage` threshold and blocking behavior |
 | `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl` | Concrete blocked-stop fixture showing `dimensionCoverage` in `blockedBy` |
 
 ---
@@ -83,5 +83,5 @@ Privilege `references/convergence.md` for the review stop contract and the fixtu
 - Group: CONVERGENCE AND RECOVERY
 - Playbook ID: DRV-032
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `04--convergence-and-recovery/021-graph-convergence-review.md`
+- Feature file path: `04--convergence-and-recovery/032-graph-convergence-review.md`
 - Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-review/` as of 2026-04-10.

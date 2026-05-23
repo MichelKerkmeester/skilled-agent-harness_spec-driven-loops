@@ -53,11 +53,11 @@ The review-loop graph accepts and persists `BUG_CLASS`, `INVARIANT`, `PRODUCER`,
 
 ## 4. SOURCE REFERENCES
 
-- Allow-list: `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts` (`VALID_KINDS['review']` constant).
-- Upsert handler: `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts` (dynamic kind validation via `VALID_KINDS[loopType]`).
+- Allow-list: `.opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts` (`VALID_KINDS['review']` constant).
+- Upsert handler: `.opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts` (dynamic kind validation via `VALID_KINDS[loopType]`).
 - YAML event filter: `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` (event-normalization block).
 - Confirm mirror: `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`.
-- Fixture: `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-graph.vitest.ts`.
+- Fixture: `.opencode/skills/deep-loop-runtime/tests/integration/review-depth-graph.vitest.ts`.
 - Phase spec: `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/007-complexity-ledger-led-graph-vocab/spec.md`.
 
 ## 5. SOURCE_METADATA

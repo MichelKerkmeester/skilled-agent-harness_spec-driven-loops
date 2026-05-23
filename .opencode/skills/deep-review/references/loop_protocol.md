@@ -1,6 +1,6 @@
 ---
 title: Deep Review Loop Protocol
-description: Complete lifecycle specification for the autonomous deep review loop — initialization, iteration, convergence, synthesis, and save phases.
+description: Complete lifecycle specification for the autonomous deep review loop, initialization, iteration, convergence, synthesis, and save phases.
 ---
 
 # Deep Review Loop Protocol
@@ -11,7 +11,16 @@ Complete lifecycle specification for the autonomous deep review loop.
 
 ## 1. OVERVIEW
 
+### Purpose
+
 The deep review loop has 4 phases: initialization, iteration (repeated), synthesis, and save. The YAML workflow manages the lifecycle; the `@deep-review` agent (LEAF-only, no WebFetch) executes individual review iterations with fresh context each time.
+
+### When to Use
+
+- Initiating a deep-review loop on a spec folder, skill, agent, or track.
+- Resuming a paused or interrupted review session from prior state.
+- Validating the 4-phase lifecycle and lineage protocol against current behavior.
+- Auditing iteration-dispatch, convergence, or save-phase contracts before changes.
 
 ```
 ┌──────────────┐     ┌───────────────────────────────┐     ┌───────────────┐     ┌──────────┐
@@ -256,7 +265,7 @@ CONSTRAINT: Target files are READ-ONLY -- never modify code under review
 
 #### Executor Resolution (spec 018 + 019)
 
-Before dispatching, the YAML resolves the executor via `parseExecutorConfig` from `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts`. The resolved `config.executor.kind` selects the dispatch branch:
+Before dispatching, the YAML resolves the executor via `parseExecutorConfig` from `.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts`. The resolved `config.executor.kind` selects the dispatch branch:
 
 - `native` (spec 018): dispatch `@deep-review` agent with model Opus.
 - `cli-codex` (spec 018): pipe rendered prompt via stdin to `codex exec --model X -c model_reasoning_effort=Y -c service_tier=Z -c approval_policy=never --sandbox workspace-write`.
@@ -542,7 +551,7 @@ If memory save fails:
 
 ### Purpose
 
-Enable review sessions to resume seamlessly from prior state when interrupted by context compaction, process termination, or intentional pause.
+Enable review sessions to resume cleanly from prior state when interrupted by context compaction, process termination, or intentional pause.
 
 ### Resume Detection
 

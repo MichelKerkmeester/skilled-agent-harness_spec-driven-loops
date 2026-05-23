@@ -51,8 +51,8 @@ The validator surfaces `legacy_unversioned_record` while `DEEP_REVIEW_V2_ENFORCE
 
 ## 4. SOURCE REFERENCES
 
-- Validator: `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts` (`PostDispatchAdvisory`, `legacy_unversioned_record`).
-- Fixture: `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-validator.vitest.ts`.
+- Validator: `.opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts` (`PostDispatchAdvisory`, `legacy_unversioned_record`).
+- Fixture: `.opencode/skills/deep-loop-runtime/tests/integration/review-depth-validator.vitest.ts`.
 - Rollout policy: `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/004-complexity-validator-v2-enforcement/decision-record.md` (ADR-001).
 
 ## 5. SOURCE_METADATA

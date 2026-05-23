@@ -1,6 +1,6 @@
 ---
 title: Deep Review State Format
-description: State file schemas for the autonomous deep review loop — config, JSONL log, strategy, iteration files, and review report.
+description: State file schemas for the autonomous deep review loop, config, JSONL log, strategy, iteration files, and review report.
 ---
 
 # Deep Review State Format
@@ -40,6 +40,13 @@ The deep review loop uses 8 state files under the resolved `{artifact_dir}/` own
 ```
 
 `{artifact_dir}` comes from `resolveArtifactRoot(specFolder, 'review')`. Root-spec runs resolve directly to `{spec_folder}/review/`. Child-phase and sub-phase runs use **flat-first**: a first run with an empty `review/` resolves directly to `{spec_folder}/review/` (no `pt-NN` wrapper). A `pt-NN` packet is allocated only when prior content for a non-matching target already exists. Continuation runs reuse the existing flat artifact (or matching `pt-NN` packet).
+
+### When to Use
+
+- Validating deep-review state files emitted by an iteration or by the reducer.
+- Implementing a state consumer (e.g. dashboard, advisor probe, downstream packet).
+- Debugging JSONL reducer output or auditing schema-version transitions.
+- Authoring fixtures that need to round-trip through the reducer.
 
 ---
 
@@ -112,7 +119,7 @@ Created during initialization. Not modified after creation.
 | sessionId | string | -- | Stable identifier for the current review lineage |
 | parentSessionId | string \| null | `null` | Parent lineage reference for restart flows |
 | lineageMode | string | `"new"` | `new`, `resume`, `restart`. `fork` and `completed-continue` are deferred and not emitted by the current runtime |
-| generation | number | 1 | Lineage generation number — incremented on `restart`, unchanged on `resume` |
+| generation | number | 1 | Lineage generation number, incremented on `restart`, unchanged on `resume` |
 | continuedFromRun | number \| null | `null` | Count of completed iteration records at the lifecycle boundary (set on `resume` and `restart`) |
 | maxIterations | number | 7 | Hard cap on loop iterations |
 | convergenceThreshold | number | 0.10 | Stop when severity-weighted new findings ratio below this |
@@ -274,7 +281,7 @@ The optional `graphEvents` array records coverage graph mutations emitted by a r
 
 #### Namespace Rules (REQ-028, REQ-029)
 
-`graphEvents` entries are scoped by the session that emits them. The coverage graph DB uses a composite primary key of `(spec_folder, loop_type, session_id, id)`, so two independent review sessions in the same spec folder MAY reuse the same logical `id` without collision — each session gets its own row.
+`graphEvents` entries are scoped by the session that emits them. The coverage graph DB uses a composite primary key of `(spec_folder, loop_type, session_id, id)`, so two independent review sessions in the same spec folder MAY reuse the same logical `id` without collision, each session gets its own row.
 
 Concrete obligations for producers:
 
@@ -458,16 +465,16 @@ When `activeP2 > 0` on PASS, set `hasAdvisories: true`.
 Frozen v2 contract:
 
 Top-level review iteration fields when `reviewDepthSchemaVersion: 2`:
-- `reviewDepthSchemaVersion: 2` — discriminator
-- `reviewDepthApplicability` — `{ scopeClass: 'trivial'|'standard'|'complex', enforcement: 'strict'|'warn'|'skip', reason: string, evidenceRefs: string[] }`
-- `targetSelection` — `{ selectedTargets: string[], selectionReason: string, discoveryMethods: string[], omittedHighRiskTargets: string[], graphStatus: 'available'|'unavailable'|'partial', semanticSearchStatus: 'available'|'unavailable'|'partial', evidenceRefs: string[] }`
-- `searchCoverage` — `{ requiredBugClasses: string[], covered: string[], ruledOut: string[], deferred: string[], blocked: string[], graphCoverageMode: 'graph'|'graphless_fallback'|'unavailable_blocked' }`
-- `searchLedger[]` — array of ledger rows
+- `reviewDepthSchemaVersion: 2`, discriminator
+- `reviewDepthApplicability`, `{ scopeClass: 'trivial'|'standard'|'complex', enforcement: 'strict'|'warn'|'skip', reason: string, evidenceRefs: string[] }`
+- `targetSelection`, `{ selectedTargets: string[], selectionReason: string, discoveryMethods: string[], omittedHighRiskTargets: string[], graphStatus: 'available'|'unavailable'|'partial', semanticSearchStatus: 'available'|'unavailable'|'partial', evidenceRefs: string[] }`
+- `searchCoverage`, `{ requiredBugClasses: string[], covered: string[], ruledOut: string[], deferred: string[], blocked: string[], graphCoverageMode: 'graph'|'graphless_fallback'|'unavailable_blocked' }`
+- `searchLedger[]`, array of ledger rows
 
 Ledger row fields:
 - Required: `id, dimension, targetRefs, bugClass, disposition, rationale`
-- `hypothesis` (string) OR `invariant` (string) — at least one
-- `searchActions[]` — `{ method: string, queryOrPath: string, result: string, evidenceRefs: string[] }`
+- `hypothesis` (string) OR `invariant` (string), at least one
+- `searchActions[]`, `{ method: string, queryOrPath: string, result: string, evidenceRefs: string[] }`
 - Disposition-specific link (exactly one):
   - `finding` → `linkedFindingId` (must reference an id present in `findingDetails[]`)
   - `ruled_out` → `ruledOutReason`
@@ -598,9 +605,9 @@ Updated at the end of each iteration. Serves as the persistent brain across fres
 |---------------|-------------------|
 | review-dimensions | Key Questions (remaining) |
 | completed-dimensions | Answered Questions |
-| running-findings | _(none — review-specific)_ |
-| cross-reference-status | _(none — review-specific)_ |
-| files-under-review | _(none — review-specific)_ |
+| running-findings | _(none, review-specific)_ |
+| cross-reference-status | _(none, review-specific)_ |
+| files-under-review | _(none, review-specific)_ |
 | review-boundaries | Research Boundaries |
 
 Sections unchanged from research: topic, what-worked, what-failed, exhausted-approaches, ruled-out-directions, next-focus, known-context.
@@ -700,14 +707,14 @@ Write-once files. One per iteration, zero-padded 3-digit naming.
 
 ## Findings
 
-### P0 — Blocker
-- **F[NNN]**: [Title] — `file:line` — [Description with evidence]
+### P0, Blocker
+- **F[NNN]**: [Title], `file:line`, [Description with evidence]
 
-### P1 — Required
-- **F[NNN]**: [Title] — `file:line` — [Description with evidence]
+### P1, Required
+- **F[NNN]**: [Title], `file:line`, [Description with evidence]
 
-### P2 — Suggestion
-- **F[NNN]**: [Title] — `file:line` — [Description with evidence]
+### P2, Suggestion
+- **F[NNN]**: [Title], `file:line`, [Description with evidence]
 
 ## Cross-Reference Results
 | Protocol | Status | Gate | Evidence | Notes |
@@ -720,7 +727,7 @@ Write-once files. One per iteration, zero-padded 3-digit naming.
 - Novelty justification: [breakdown]
 
 ## Ruled Out
-- [Approach]: [Why] — [Evidence]
+- [Approach]: [Why], [Evidence]
 
 ## Dead Ends
 - [Direction]: [Why]
@@ -794,7 +801,7 @@ Auto-generated summary. Never manually edited.
 
 ## 9. CLAIM ADJUDICATION
 
-Every new P0/P1 finding must carry a **typed claim-adjudication packet**. The packet is parsed by `step_post_iteration_claim_adjudication` in the review workflow and its pass/fail result is persisted as a `claim_adjudication` event in `deep-review-state.jsonl`. The next iteration's `step_check_convergence` legal-stop decision tree reads the latest event via `claimAdjudicationGate` (gate `f`) — a missing or failed packet vetoes STOP even if every other gate passes. Prose-only adjudication blocks are no longer accepted.
+Every new P0/P1 finding must carry a **typed claim-adjudication packet**. The packet is parsed by `step_post_iteration_claim_adjudication` in the review workflow and its pass/fail result is persisted as a `claim_adjudication` event in `deep-review-state.jsonl`. The next iteration's `step_check_convergence` legal-stop decision tree reads the latest event via `claimAdjudicationGate` (gate `f`), a missing or failed packet vetoes STOP even if every other gate passes. Prose-only adjudication blocks are no longer accepted.
 
 ### Typed Packet Schema (required)
 
@@ -805,10 +812,10 @@ Embed the packet inside the iteration file for each new P0/P1 finding. The orche
   "findingId": "F003",
   "claim": "Coverage-graph upsert identity is bare `id`, so cross-session collisions overwrite prior rows.",
   "evidenceRefs": [
-    ".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:154",
-    ".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302"
+    ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts:154",
+    ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts:292-302"
   ],
-  "counterevidenceSought": "Grepped the module for compound-key upserts, checked migration scripts, and inspected session-isolation.vitest.ts for a collision regression — none found.",
+  "counterevidenceSought": "Grepped the module for compound-key upserts, checked migration scripts, and inspected session-isolation.vitest.ts for a collision regression, none found.",
   "alternativeExplanation": "Could be intentional single-tenant design, but phase 008 REQ-024 explicitly requires session isolation, so this is rejected.",
   "finalSeverity": "P1",
   "confidence": 0.86,
@@ -826,7 +833,7 @@ Embed the packet inside the iteration file for each new P0/P1 finding. The orche
 | `findingId` | string | Must match the finding ID in the iteration body and registry |
 | `claim` | string | The single assertion the finding makes (one sentence, evidence-backed) |
 | `evidenceRefs` | string[] | `file:line` or `file:range` citations that substantiate the claim (at least one entry) |
-| `counterevidenceSought` | string | Where the reviewer looked for contradicting evidence (commands, paths, docs) — blank string is not acceptable |
+| `counterevidenceSought` | string | Where the reviewer looked for contradicting evidence (commands, paths, docs), blank string is not acceptable |
 | `alternativeExplanation` | string | An alternative reading of the evidence, even if the reviewer rejects it |
 | `finalSeverity` | `"P0"` \| `"P1"` \| `"P2"` | Severity after adjudication (may differ from the severity originally asserted) |
 | `confidence` | number `[0, 1]` | Reviewer confidence in `finalSeverity` |

@@ -55,7 +55,7 @@ The review cannot legally stop. The blocked_stop output names `candidateCoverage
 - Workflow YAML: `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` (`step_check_convergence` legal-stop decision tree).
 - Confirm mirror: `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`.
 - Reducer: `.opencode/skills/deep-review/scripts/reduce-state.cjs` (registry exposing `candidateCoverage`, `searchDebt`).
-- Fixture: `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-convergence.vitest.ts` (workflow-runner integration TODO).
+- Fixture: `.opencode/skills/deep-loop-runtime/tests/integration/review-depth-convergence.vitest.ts` (workflow-runner integration TODO).
 - ADR: `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/006-complexity-candidate-saturation-gates/decision-record.md`.
 
 ## 5. SOURCE_METADATA

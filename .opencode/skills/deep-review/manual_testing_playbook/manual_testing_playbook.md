@@ -41,12 +41,14 @@ Canonical package artifacts:
 - [12. SYNTHESIS, SAVE, AND GUARDRAILS](#12--synthesis-save-and-guardrails)
 - [13. AUTOMATED TEST CROSS-REFERENCE](#13--automated-test-cross-reference)
 - [14. FEATURE CATALOG CROSS-REFERENCE INDEX](#14--feature-catalog-cross-reference-index)
+- [15. COMMAND FLOW STRESS TESTS](#15--command-flow-stress-tests)
+- [16. REVIEW DEPTH V2 ROLLOUT](#16--review-depth-v2-rollout)
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 32 deterministic scenarios across 6 categories validating the current `deep-review` skill surface. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
+This playbook provides 45 deterministic scenarios across 8 categories validating the current `deep-review` skill surface. The first 6 categories cover dimension/lifecycle review (33 scenarios); §15 covers command-flow stress tests (6 scenarios under CP-052..057), and §16 covers the review-depth v2 rollout (6 scenarios under DRV-058..063). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
 
 ### REALISTIC TEST MODEL
 
@@ -374,7 +376,7 @@ Prompt: `Validate the deep-review hard iteration cap and report whether synthesi
 Expected signals: `maxIterations=7` default, unconditional exit at that count, synthesis phase runs after hard stop, review-report.md is still produced.
 
 #### Test Execution
-> **Feature File:** [DRV-030](04--convergence-and-recovery/015-stop-on-max-iterations.md)
+> **Feature File:** [DRV-030](04--convergence-and-recovery/030-stop-on-max-iterations.md)
 
 ### DRV-031 | Composite review convergence stop behavior
 
@@ -452,7 +454,7 @@ Prompt: `Validate the graph-backed legal-stop gate and report whether blocked-st
 Expected signals: review convergence docs describe `blockedStop` when legal-stop gates fail; graph convergence handler enforces review `dimensionCoverage`; fixture evidence shows `blocked_stop` with `blockedBy: ["dimensionCoverage", ...]`.
 
 #### Test Execution
-> **Feature File:** [DRV-032](04--convergence-and-recovery/021-graph-convergence-review.md)
+> **Feature File:** [DRV-032](04--convergence-and-recovery/032-graph-convergence-review.md)
 
 ### DRV-033 | Review reducer surfaces blocked-stop history across registry, dashboard, and next-focus
 
@@ -465,7 +467,7 @@ Prompt: `Validate blocked-stop reducer surfacing in deep-review dashboard and st
 Expected signals: `blockedStopHistory` is non-empty; review entries preserve `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, and `hotspotSaturationGate`; `BLOCKED STOPS` renders the same blocked-stop data; the strategy `next-focus` anchor contains the blocked-stop recovery strategy.
 
 #### Test Execution
-> **Feature File:** [DRV-033](04--convergence-and-recovery/022-blocked-stop-reducer-surfacing.md)
+> **Feature File:** [DRV-033](04--convergence-and-recovery/033-blocked-stop-reducer-surfacing.md)
 
 ### DRV-034 | Review reducer fails closed on corruption and missing anchors
 
@@ -478,7 +480,7 @@ Prompt: `Validate deep-review reducer fail-closed behavior for malformed JSONL a
 Expected signals: corrupt JSONL exits `2` without `--lenient`; `corruptionWarnings` is populated in the registry; missing anchors throw `Missing machine-owned anchor ...`; `--lenient` exits `0` while preserving `corruptionWarnings`; `--create-missing-anchors` appends the `next-focus` anchor and allows the reducer to proceed.
 
 #### Test Execution
-> **Feature File:** [DRV-034](04--convergence-and-recovery/023-fail-closed-reducer.md)
+> **Feature File:** [DRV-034](04--convergence-and-recovery/034-fail-closed-reducer.md)
 
 
 ---
@@ -651,11 +653,11 @@ No dedicated automated test suite currently exists for `deep-review`. This playb
 - DRV-018: [Review quality guards block premature stop](04--convergence-and-recovery/018-review-quality-guards-block-premature-stop.md)
 - DRV-019: [Stuck recovery widens dimension focus](04--convergence-and-recovery/019-stuck-recovery-widens-dimension-focus.md)
 - DRV-020: [Dimension coverage convergence signal](04--convergence-and-recovery/020-dimension-coverage-convergence-signal.md)
-- DRV-030: [Stop on max iterations](04--convergence-and-recovery/015-stop-on-max-iterations.md)
+- DRV-030: [Stop on max iterations](04--convergence-and-recovery/030-stop-on-max-iterations.md)
 - DRV-031: [Composite review convergence stop behavior](04--convergence-and-recovery/016-composite-review-convergence-stop-behavior.md)
-- DRV-032: [Review graph convergence signals participate in legal-stop gates](04--convergence-and-recovery/021-graph-convergence-review.md)
-- DRV-033: [Review reducer surfaces blocked-stop history across registry, dashboard, next-focus](04--convergence-and-recovery/022-blocked-stop-reducer-surfacing.md)
-- DRV-034: [Review reducer fails closed on corruption and missing anchors](04--convergence-and-recovery/023-fail-closed-reducer.md)
+- DRV-032: [Review graph convergence signals participate in legal-stop gates](04--convergence-and-recovery/032-graph-convergence-review.md)
+- DRV-033: [Review reducer surfaces blocked-stop history across registry, dashboard, next-focus](04--convergence-and-recovery/033-blocked-stop-reducer-surfacing.md)
+- DRV-034: [Review reducer fails closed on corruption and missing anchors](04--convergence-and-recovery/034-fail-closed-reducer.md)
 
 ### PAUSE, RESUME, AND FAULT TOLERANCE
 
@@ -672,6 +674,15 @@ No dedicated automated test suite currently exists for `deep-review`. This playb
 - DRV-028: [Finding deduplication and registry](06--synthesis-save-and-guardrails/028-finding-deduplication-and-registry.md)
 - DRV-029: [Resource map emission](06--synthesis-save-and-guardrails/029-resource-map-emission.md)
 
+### COMMAND FLOW STRESS TESTS
+
+- CP-052: [Deep-review setup-to-YAML handoff (sandboxed)](07--command-flow-stress-tests/052-setup-yaml-handoff.md)
+- CP-053: [Three-artifact iteration contract (sandboxed)](07--command-flow-stress-tests/053-three-artifact-iteration-contract.md)
+- CP-054: [Resource-map coverage gate (sandboxed)](07--command-flow-stress-tests/054-resource-map-coverage-gate.md)
+- CP-055: [Synthesis and save boundary (sandboxed)](07--command-flow-stress-tests/055-synthesis-save-boundary.md)
+- CP-056: [LEAF-only nested dispatch refusal (sandboxed)](07--command-flow-stress-tests/056-leaf-only-nested-dispatch-refusal.md)
+- CP-057: [Write boundary and reducer-owned files (sandboxed)](07--command-flow-stress-tests/057-write-boundary-reducer-owned-files.md)
+
 ### REVIEW-DEPTH V2 ROLLOUT
 
 - DRV-058: [Validator warn rollout for legacy unversioned records](08--review-depth-v2-rollout/058-validator-warn-rollout.md)
@@ -680,3 +691,120 @@ No dedicated automated test suite currently exists for `deep-review`. This playb
 - DRV-061: [candidateCoverageGate STOP blocker](08--review-depth-v2-rollout/061-stop-gate-candidate-coverage.md)
 - DRV-062: [graphlessFallbackGate STOP blocker](08--review-depth-v2-rollout/062-stop-gate-graphless-fallback.md)
 - DRV-063: [Ledger-led graph vocabulary upserts (BUG_CLASS / INVARIANT / PRODUCER / CONSUMER / TEST)](08--review-depth-v2-rollout/063-graph-vocabulary.md)
+
+---
+
+## 15. COMMAND FLOW STRESS TESTS
+
+This category covers 6 sandboxed stress-test scenarios that exercise the full command-to-runtime handoff against a synthetic spec folder under `/tmp/cp-deep-review-sandbox`. Setup uses `07--command-flow-stress-tests/setup-cp-sandbox.sh`. Each scenario validates a single contract boundary in isolation.
+
+### Naming Convention: CP- vs DRV-
+
+Tests in this category carry the `CP-` (Command Pattern) prefix instead of the standard `DRV-` (Deep Review) prefix. The distinction is intentional and load-bearing:
+
+- `DRV-NNN` tests validate review-loop behavior on real or synthetic targets, exercising the iteration / convergence / synthesis contracts.
+- `CP-NNN` tests validate the command-flow boundary itself (setup-to-YAML handoff, three-artifact contract, write boundaries, nested-dispatch refusal) using a sandboxed spec folder so the same scenarios run repeatably without touching real packets.
+
+The convention was established by the `z_archive/062-deep-loop-command-flow-stress-tests/004-deep-review-stress-runs` packet and carried forward into the release surface. Keep CP-NNN for command-flow scenarios; new behavioral tests added to dirs 01-06 or 08 use DRV-NNN.
+
+### CP-052 | Deep-review setup-to-YAML handoff (sandboxed)
+
+#### Description
+Verify the command setup phase produces a YAML-handoff bundle that the runtime workflow can consume without modification.
+
+#### Test Execution
+> **Feature File:** [CP-052](07--command-flow-stress-tests/052-setup-yaml-handoff.md)
+
+### CP-053 | Three-artifact iteration contract (sandboxed)
+
+#### Description
+Verify each iteration produces exactly three artifacts: iteration markdown, JSONL delta append, and strategy update.
+
+#### Test Execution
+> **Feature File:** [CP-053](07--command-flow-stress-tests/053-three-artifact-iteration-contract.md)
+
+### CP-054 | Resource-map coverage gate (sandboxed)
+
+#### Description
+Verify the resource-map coverage audit pass runs when `{spec_folder}/resource-map.md` is present and skips cleanly when absent.
+
+#### Test Execution
+> **Feature File:** [CP-054](07--command-flow-stress-tests/054-resource-map-coverage-gate.md)
+
+### CP-055 | Synthesis and save boundary (sandboxed)
+
+#### Description
+Verify synthesis writes `review-report.md` and the save phase routes through `generate-context.js` without leaking state to context.
+
+#### Test Execution
+> **Feature File:** [CP-055](07--command-flow-stress-tests/055-synthesis-save-boundary.md)
+
+### CP-056 | LEAF-only nested dispatch refusal (sandboxed)
+
+#### Description
+Verify the runtime agent refuses any nested-dispatch attempt with the canonical REFUSE wording.
+
+#### Test Execution
+> **Feature File:** [CP-056](07--command-flow-stress-tests/056-leaf-only-nested-dispatch-refusal.md)
+
+### CP-057 | Write boundary and reducer-owned files (sandboxed)
+
+#### Description
+Verify that only the reducer mutates reducer-owned files (registry, dashboard, strategy) and that iterations stay write-once for their own narrative.
+
+#### Test Execution
+> **Feature File:** [CP-057](07--command-flow-stress-tests/057-write-boundary-reducer-owned-files.md)
+
+---
+
+## 16. REVIEW DEPTH V2 ROLLOUT
+
+This category covers 6 scenarios that validate the review-depth v2 contract rollout: validator warn/strict modes, reducer search-debt persistence, stop-gate blockers, graphless fallback, and ledger-led graph vocabulary upserts. Tests carry standard DRV- IDs since they live inside the deep-review release surface.
+
+### DRV-058 | Validator warn rollout for legacy unversioned records
+
+#### Description
+Verify the validator emits warnings (not failures) when records lack the v2 schema version field, preserving backward compatibility during rollout.
+
+#### Test Execution
+> **Feature File:** [DRV-058](08--review-depth-v2-rollout/058-validator-warn-rollout.md)
+
+### DRV-059 | Validator strict v2 with all five failure codes
+
+#### Description
+Verify strict-mode validator emits all five v2 failure codes when records violate the new schema contract.
+
+#### Test Execution
+> **Feature File:** [DRV-059](08--review-depth-v2-rollout/059-validator-strict-v2.md)
+
+### DRV-060 | Reducer search-debt registry + dashboard + report persistence
+
+#### Description
+Verify the reducer accumulates search-debt across iterations and surfaces it in the registry, dashboard, and final report.
+
+#### Test Execution
+> **Feature File:** [DRV-060](08--review-depth-v2-rollout/060-reducer-search-debt.md)
+
+### DRV-061 | candidateCoverageGate STOP blocker
+
+#### Description
+Verify the candidateCoverageGate blocks STOP votes until candidate coverage reaches the configured threshold.
+
+#### Test Execution
+> **Feature File:** [DRV-061](08--review-depth-v2-rollout/061-stop-gate-candidate-coverage.md)
+
+### DRV-062 | graphlessFallbackGate STOP blocker
+
+#### Description
+Verify the graphlessFallbackGate blocks STOP votes when graph backing is required but unavailable, falling back to a documented degraded path.
+
+#### Test Execution
+> **Feature File:** [DRV-062](08--review-depth-v2-rollout/062-stop-gate-graphless-fallback.md)
+
+### DRV-063 | Ledger-led graph vocabulary upserts
+
+#### Description
+Verify ledger-led upserts emit the canonical graph vocabulary (BUG_CLASS, INVARIANT, PRODUCER, CONSUMER, TEST) during synthesis.
+
+#### Test Execution
+> **Feature File:** [DRV-063](08--review-depth-v2-rollout/063-graph-vocabulary.md)
