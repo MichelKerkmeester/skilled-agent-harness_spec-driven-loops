@@ -43,9 +43,7 @@
       ".opencode/skills/cli-opencode/assets/permissions-matrix.example-readonly.json",
       ".opencode/skills/cli-opencode/assets/permissions-matrix.example-packet-local.json",
       ".opencode/skills/cli-opencode/assets/permissions-matrix.example-repo-wide.json",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/permissions-gate.ts",
       ".opencode/skills/cli-opencode/SKILL.md",
-      ".opencode/skills/sk-ai-small-model/references/pattern-index.md",
       ".opencode/skills/cli-opencode/references/destructive_scope_violations.md",
       "spec.md",
       "plan.md",
@@ -86,21 +84,9 @@
         "source": "derived"
       },
       {
-        "name": "permissions-gate.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/permissions-gate.ts",
-        "source": "derived"
-      },
-      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/cli-opencode/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "pattern-index.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-ai-small-model/references/pattern-index.md",
         "source": "derived"
       },
       {
@@ -198,11 +184,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Schema",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase B of the 114 follow-on roadmap. Replace the four-layer prose mitigation shipped to cli-opencode after the RM-8 2026-05-04 incident (44 files deleted by deepseek-v4-pro under `--dangerously-skip-permissions`) with a structured JSON permissions-matrix that a runtime pre-tool-call gate enforces deterministically. The schema encodes file-glob × operation-class × scope tuples; the enforcer rejects any tool call falling outside the allowlist BEFORE execution. Effort: ~12 hours. Highest blast-radius prevention in the 114 arc — proven against the RM-8 replay scenario in 001-research-smallcode/iter-009.",
     "created_at": "2026-05-18T12:32:47.354Z",
-    "last_save_at": "2026-05-19T13:51:38.411Z",
+    "last_save_at": "2026-05-23T09:22:40.257Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

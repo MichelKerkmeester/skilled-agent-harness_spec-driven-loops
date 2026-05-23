@@ -1,0 +1,47 @@
+{"iter":1,"change_id":"C-001","type":"RUNTIME-RELOCATION","scope":"deep-loop-runtime/ root folder structure","evidence":"commit 954702a8f4","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-002","type":"COLLATERAL","scope":"118 parent + 8 child spec folders","evidence":"commit bd77886d0a","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-003","type":"RUNTIME-RELOCATION","scope":"lib/deep-loop/ + lib/coverage-graph/ → deep-loop-runtime/lib/","evidence":"commit 107c522599 phase 002","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-004","type":"SCRIPT-SHIM","scope":"deep-loop-runtime/scripts/{convergence,upsert,query,status}.cjs","evidence":"commit 107c522599 phase 003","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-005","type":"RUNTIME-RELOCATION","scope":"deep-loop-graph.sqlite → deep-loop-runtime/storage/","evidence":"commit 107c522599 phase 003","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-006","type":"MCP-REMOVAL","scope":"mcp_server/handlers/coverage-graph/*.ts deleted","evidence":"commit 107c522599 phase 004","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-007","type":"MCP-REMOVAL","scope":"tool-schemas.ts + tools/index.ts deep_loop_graph_* entries","evidence":"commit 107c522599 phase 004","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-008","type":"WORKFLOW-YAML","scope":"spec_kit_deep-{review,research}_{auto,confirm}.yaml","evidence":"commit 107c522599 phase 005","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-009","type":"COLLATERAL","scope":"doctor.md, doctor/_routes.yaml, doctor/update.md","evidence":"commit e590c12e19","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-010","type":"COLLATERAL","scope":"009-deep-loop-graph-convergence-yaml-fire.md","evidence":"commit e590c12e19","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-011","type":"COLLATERAL","scope":"feature_catalog.md deep_loop_graph_* entries","evidence":"commit e590c12e19","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-012","type":"TEST-MIGRATION","scope":"mcp_server/tests/deep-loop/ → deep-loop-runtime/tests/unit/","evidence":"commit be2e777a4f","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-013","type":"TEST-MIGRATION","scope":"integration fixtures → deep-loop-runtime/tests/integration/","evidence":"commit be2e777a4f","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-014","type":"TEST-MIGRATION","scope":"deep-loop-runtime/tests/integration/*.script.vitest.ts","evidence":"commit be2e777a4f","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-015","type":"TEST-MIGRATION","scope":"deep-loop-runtime/tests/lifecycle/db-open-close.vitest.ts","evidence":"commit be2e777a4f","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-016","type":"TEST-MIGRATION","scope":"tests/helpers/spawn-cjs.ts","evidence":"commit be2e777a4f","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-017","type":"TEST-MIGRATION","scope":"mcp_server/vitest.config.ts include pattern","evidence":"commit be2e777a4f","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-018","type":"DOC-COMPLIANCE","scope":"deep-loop-runtime/SKILL.md","evidence":"commit 1a32678e7b","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-019","type":"DOC-COMPLIANCE","scope":"deep-loop-runtime/README.md","evidence":"commit 1a32678e7b","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-020","type":"CANONICAL-COMPANIONS","scope":"deep-loop-runtime/feature_catalog/","evidence":"commit 71042e1a33","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-021","type":"CANONICAL-COMPANIONS","scope":"deep-loop-runtime/manual_testing_playbook/","evidence":"commit 71042e1a33","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-022","type":"CANONICAL-COMPANIONS","scope":"deep-loop-runtime/references/","evidence":"commit 71042e1a33","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-023","type":"CANONICAL-COMPANIONS","scope":"deep-loop-runtime/graph-metadata.json","evidence":"commit 71042e1a33","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-024","type":"VERSION-BUMP","scope":"deep-review/SKILL.md","evidence":"commit 14b40f23b3","deep_review_specific":true,"bilateral":false}
+{"iter":1,"change_id":"C-025","type":"VERSION-BUMP","scope":"deep-review/changelog/v1.4.0.0.md","evidence":"commit 14b40f23b3","deep_review_specific":true,"bilateral":false}
+{"iter":1,"change_id":"C-026","type":"VERSION-BUMP","scope":"deep-loop-runtime/SKILL.md","evidence":"commit 14b40f23b3","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-027","type":"VERSION-BUMP","scope":"deep-loop-runtime/changelog/v1.0.0.md","evidence":"commit 14b40f23b3","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-028","type":"COLLATERAL","scope":"116-deep-review-complexity/008-playbooks-and-default-calibration/resource-map.md","evidence":"commit 14b40f23b3","deep_review_specific":true,"bilateral":false}
+{"iter":1,"change_id":"C-029","type":"COLLATERAL","scope":"118 child description.json files","evidence":"commit 14b40f23b3","deep_review_specific":true,"bilateral":false}
+{"iter":1,"change_id":"C-030","type":"MCP-REMOVAL","scope":"deep-loop-runtime/scripts/*.cjs header comments","evidence":"commit d485837718","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-031","type":"COLLATERAL","scope":"117/description.json","evidence":"commit d485837718","deep_review_specific":true,"bilateral":false}
+{"iter":1,"change_id":"C-032","type":"FIX-PACK","scope":"deep-loop-runtime/lib/deep-loop/executor-audit.ts","evidence":"commit f8f3bdcac6","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-033","type":"FIX-PACK","scope":"deep-loop-runtime/tests/unit/executor-audit.vitest.ts","evidence":"commit f8f3bdcac6","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-034","type":"REVIEW-ARTIFACTS","scope":"118/review/ config, strategy, state, iterations, deltas, prompts","evidence":"commit f8f3bdcac6","deep_review_specific":true,"bilateral":false}
+{"iter":1,"change_id":"C-035","type":"REVIEW-ARTIFACTS","scope":"118/review/ iterations, deltas, prompts, review-report","evidence":"commit aa593eb897","deep_review_specific":true,"bilateral":false}
+{"iter":1,"change_id":"C-036","type":"FIX-PACK","scope":"deep-loop-runtime/references/state_format.md","evidence":"commit 56456514ce","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-037","type":"DOC-COMPLIANCE","scope":"deep-loop-runtime/changelog/v1.0.0.md","evidence":"commit 56456514ce","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-038","type":"FIX-PACK","scope":"118 phase children tasks.md","evidence":"commit 56456514ce","deep_review_specific":true,"bilateral":false}
+{"iter":1,"change_id":"C-039","type":"FIX-PACK","scope":"deep-loop-runtime/scripts/lib/cli-guards.cjs","evidence":"commit 56456514ce","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-040","type":"FIX-PACK","scope":"deep-loop-runtime/scripts/*.cjs","evidence":"commit 56456514ce","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-041","type":"FIX-PACK","scope":".deep-loop-graph-writer.lock + DEEP_LOOP_SCRIPT_LOCK_HOLD_MS","evidence":"commit 56456514ce","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-042","type":"FIX-PACK","scope":"deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts","evidence":"commit 56456514ce","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-043","type":"FIX-PACK","scope":"deep-loop-runtime/lib/deep-loop/executor-audit.ts + executor-config.ts","evidence":"commit 56456514ce","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-044","type":"VERSION-BUMP","scope":"deep-research/SKILL.md","evidence":"commit 56456514ce","deep_review_specific":true,"bilateral":false}
+{"iter":1,"change_id":"C-045","type":"VERSION-BUMP","scope":"deep-research/changelog/v1.12.0.0.md","evidence":"commit 56456514ce","deep_review_specific":true,"bilateral":false}
+{"iter":1,"change_id":"C-046","type":"FIX-PACK","scope":"deep-loop-runtime/changelog/v1.0.0.md","evidence":"commit 56456514ce","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-047","type":"COLLATERAL","scope":"117/ai-council/ + ADR-001","evidence":"commit 1e35680075","deep_review_specific":true,"bilateral":false}

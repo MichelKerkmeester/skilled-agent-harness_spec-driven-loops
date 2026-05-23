@@ -11,7 +11,7 @@ import {
   spawnCjs,
   uniqueNamespace,
   type ScriptNamespace,
-} from '../_helpers/spawn-cjs';
+} from '../helpers/spawn-cjs';
 
 const namespaces: ScriptNamespace[] = [];
 const writerLockPath = resolve(runtimeRoot, 'storage', '.deep-loop-graph-writer.lock');

@@ -4,7 +4,7 @@ import { join } from 'node:path';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { spawnCjs } from '../_helpers/spawn-cjs';
+import { spawnCjs } from '../helpers/spawn-cjs';
 
 const tempDirs: string[] = [];
 

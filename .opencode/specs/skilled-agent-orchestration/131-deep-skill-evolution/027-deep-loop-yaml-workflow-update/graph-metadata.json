@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/005-yaml-workflow-update",
+  "spec_folder": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/005-yaml-workflow-update",
+  "parent_id": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "118 yaml workflow update",
+      "deep-loop graph mcp removal yaml",
+      "deep-review yaml bash shim",
+      "deep-research yaml bash shim",
+      "118 yaml plan",
+      "deep-loop workflow yaml rewrite plan",
+      "118 yaml tasks",
+      "deep-loop yaml rewrite tasks",
+      "118 yaml checklist",
+      "deep-loop yaml verification",
+      "118 yaml implementation summary",
+      "deep-loop yaml rewrite summary"
+    ],
+    "key_topics": [
+      "118",
+      "yaml",
+      "workflow",
+      "update",
+      "deep-loop",
+      "graph",
+      "mcp",
+      "removal",
+      "deep-review",
+      "bash",
+      "shim",
+      "deep-research"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
+      ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+      ".opencode/skills/deep-loop-runtime/scripts/upsert.cjs",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec_kit_deep-review_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec_kit_deep-review_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec_kit_deep-research_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec_kit_deep-research_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "convergence.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "upsert.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/upsert.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Workflow Update",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffolded Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Replace",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Direct",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The four `spec_kit_deep-{review,research}_{auto,confirm}.yaml` workflow files invoke graph convergence and graph upsert via the `mcp_tool:` block targeting `mcp__mk_spec_memory__deep_loop_graph_convergence` and `mcp__mk_spec_memory__deep_loop_graph_upsert`. Phase 004 removes those MCP handlers and tool schema entries from the spec-kit MCP server, so any remaining YAML reference would dispatch to an unavailable tool name and fail every deep-loop run.",
+    "created_at": "2026-05-22T19:55:00Z",
+    "last_save_at": "2026-05-23T09:22:40.358Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
+  }
+}

@@ -11,29 +11,190 @@
   },
   "derived": {
     "trigger_phrases": [
-      "sk doc playbook markdown agent coverage",
-      "sk doc playbook markdown agent coverage graph metadata"
+      "sk-doc playbook markdown agent",
+      "markdown agent dispatch coverage"
     ],
     "key_topics": [
-      "doc",
+      "sk-doc",
       "playbook",
       "markdown",
       "agent",
-      "coverage"
+      "dispatch",
+      "coverage",
+      "phase",
+      "003",
+      "introduced",
+      "dedicated",
+      "documentation",
+      "executor"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      ".codex/config.toml",
+      ".opencode/skills/sk-doc/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/sk-doc/manual_testing_playbook/06--agent-dispatch/001-markdown-agent-cli-claude-code.md",
+      ".opencode/skills/sk-doc/manual_testing_playbook/06--agent-dispatch/002-markdown-agent-cli-codex.md",
+      ".opencode/skills/sk-doc/manual_testing_playbook/06--agent-dispatch/003-markdown-agent-cli-opencode.md",
+      "implementation-summary.md",
+      "evidence/SD-018-cli-claude-code.txt",
+      "evidence/SD-019-cli-codex.txt",
+      "evidence/SD-020-cli-opencode.txt",
+      "tasks.md",
       "spec.md",
       "plan.md",
-      "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      ".opencode/skills/sk-doc/manual_testing_playbook/04--cross-cli-dispatch/001-short-prompt-baseline.md"
     ],
-    "entities": [],
-    "causal_summary": "Graph metadata for the current packet.",
+    "entities": [
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "001-markdown-agent-cli-claude-code.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/manual_testing_playbook/06--agent-dispatch/001-markdown-agent-cli-claude-code.md",
+        "source": "derived"
+      },
+      {
+        "name": "002-markdown-agent-cli-codex.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/manual_testing_playbook/06--agent-dispatch/002-markdown-agent-cli-codex.md",
+        "source": "derived"
+      },
+      {
+        "name": "003-markdown-agent-cli-opencode.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/manual_testing_playbook/06--agent-dispatch/003-markdown-agent-cli-opencode.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SD-018-cli-claude-code.txt",
+        "kind": "file",
+        "path": "evidence/SD-018-cli-claude-code.txt",
+        "source": "derived"
+      },
+      {
+        "name": "SD-019-cli-codex.txt",
+        "kind": "file",
+        "path": "evidence/SD-019-cli-codex.txt",
+        "source": "derived"
+      },
+      {
+        "name": "SD-020-cli-opencode.txt",
+        "kind": "file",
+        "path": "evidence/SD-020-cli-opencode.txt",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "001-short-prompt-baseline.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/manual_testing_playbook/04--cross-cli-dispatch/001-short-prompt-baseline.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Author",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Scenario",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 003 introduced the `@markdown` agent as the dedicated sk-doc documentation executor, but the sk-doc manual testing playbook was not updated. The playbook has zero scenarios that dispatch `@markdown` as an executor. Its preamble even claims \"Each of the 3 CLI runtimes (cli-codex, cli-opencode)\" — admitting an unfilled third-CLI slot. The dedicated documentation executor is therefore untested by the very playbook that owns sk-doc routing validation.",
     "created_at": "2026-05-11T05:27:26Z",
-    "last_save_at": "2026-05-19T13:51:38.354Z",
+    "last_save_at": "2026-05-23T09:22:40.145Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

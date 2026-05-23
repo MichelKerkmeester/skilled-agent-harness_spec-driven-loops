@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Phase 003 implements dedicated derived graph support for Deep AI Council deliberation. The graph adds bounded MCP query and convergence context without making graph rows authoritative over packet-local council artifacts.",
     "created_at": "2026-05-10T06:35:40Z",
-    "last_save_at": "2026-05-19T13:51:38.339Z",
+    "last_save_at": "2026-05-23T09:22:40.096Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

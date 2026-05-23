@@ -1,0 +1,30 @@
+{
+  "specFolder": "skilled-agent-orchestration/131-deep-skill-evolution",
+  "description": "Phase parent unifying 17 packets (115-130) into 45 thematic phases covering ai-council + deep-review + deep-loop + deep-research + deep-agent-improvem",
+  "keywords": [
+    "phase",
+    "parent",
+    "unifying",
+    "packets",
+    "115-130",
+    "thematic",
+    "phases",
+    "covering",
+    "ai-council",
+    "deep-review",
+    "deep-loop",
+    "deep-research",
+    "deep-agent-improvement",
+    "deep-skills",
+    "differentiation"
+  ],
+  "lastUpdated": "2026-05-23T09:22:21.862Z",
+  "specId": "131",
+  "folderSlug": "deep-skill-evolution",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

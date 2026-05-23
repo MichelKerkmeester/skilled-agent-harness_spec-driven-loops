@@ -1,0 +1,9 @@
+{"type":"round_start","round":1,"spec_folder":"skilled-agent-orchestration/117-deep-loop-core-isolation-deliberation","executor":"cli-codex","model":"gpt-5.5","seats_planned":4,"convergence_rule":"two_of_three_advocates_plus_adjudicator","timestamp":"2026-05-22T17:50:00Z"}
+{"type":"seat_returned","round":1,"seat":1,"seat_letter":"A","executor":"cli-codex","lens":"isolation-architect","model":"gpt-5.5","reasoning":"xhigh","recommendation":"ISOLATE","confidence":94,"timestamp":"2026-05-22T16:55:00Z"}
+{"type":"seat_returned","round":1,"seat":2,"seat_letter":"B","executor":"cli-codex","lens":"status-quo-defender","model":"gpt-5.5","reasoning":"xhigh","recommendation":"KEEP","confidence":88,"timestamp":"2026-05-22T17:00:00Z"}
+{"type":"seat_returned","round":1,"seat":3,"seat_letter":"C","executor":"cli-codex","lens":"pragmatist","model":"gpt-5.5","reasoning":"high","recommendation":"SPLIT","confidence":91,"timestamp":"2026-05-22T17:05:00Z"}
+{"type":"seat_returned","round":1,"seat":4,"seat_letter":"D","executor":"cli-codex","lens":"adjudicator","model":"gpt-5.5","reasoning":"xhigh","recommendation":"SPLIT","confidence":92,"override_advocate_majority":false,"timestamp":"2026-05-22T17:10:00Z"}
+{"type":"deliberation_synthesized","round":1,"convergence":"3-way-split-no-advocate-majority","ruling":"SPLIT","ruling_source":"Seat D — Adjudicator (independent)","timestamp":"2026-05-22T17:12:00Z"}
+{"type":"council_complete","spec_folder":"skilled-agent-orchestration/117-deep-loop-core-isolation-deliberation","rounds_completed":1,"final_ruling":"SPLIT","plan_confidence":92,"timestamp":"2026-05-22T17:15:00Z"}
+{"type":"artifact_written","path":"ai-council/council-report.md","timestamp":"2026-05-22T17:15:00Z"}
+{"type":"artifact_written","path":"decision-record.md","timestamp":"2026-05-22T17:15:00Z"}

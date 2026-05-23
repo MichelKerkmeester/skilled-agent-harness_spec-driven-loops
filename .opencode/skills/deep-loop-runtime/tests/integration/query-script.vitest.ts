@@ -7,7 +7,7 @@ import {
   seedReviewNode,
   uniqueNamespace,
   type ScriptNamespace,
-} from '../_helpers/spawn-cjs';
+} from '../helpers/spawn-cjs';
 
 const namespaces: ScriptNamespace[] = [];
 

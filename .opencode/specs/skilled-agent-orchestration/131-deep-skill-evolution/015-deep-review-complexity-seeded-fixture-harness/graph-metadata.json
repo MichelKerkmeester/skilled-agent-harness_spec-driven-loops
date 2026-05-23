@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/116-deep-review-complexity/002-seeded-fixture-harness",
+  "spec_folder": "skilled-agent-orchestration/116-deep-review-complexity/002-seeded-fixture-harness",
+  "parent_id": "skilled-agent-orchestration/116-deep-review-complexity",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-review seeded fixtures",
+      "review-depth fixture harness",
+      "116 seeded fixture plan",
+      "116 seeded fixture tasks",
+      "review-depth fixture tasks",
+      "116 seeded fixture checklist",
+      "review-depth fixture verification",
+      "116 seeded fixture summary",
+      "review-depth fixture handoff"
+    ],
+    "key_topics": [
+      "deep-review",
+      "seeded",
+      "fixtures",
+      "review-depth",
+      "fixture",
+      "harness",
+      "116",
+      "plan",
+      "tasks",
+      "checklist",
+      "verification",
+      "summary"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/skilled-agent-orchestration/116-deep-review-complexity/002-seeded-fixture-harness/spec.md",
+      ".opencode/specs/skilled-agent-orchestration/116-deep-review-complexity/002-seeded-fixture-harness/plan.md",
+      ".opencode/specs/skilled-agent-orchestration/116-deep-review-complexity/002-seeded-fixture-harness/tasks.md",
+      ".opencode/specs/skilled-agent-orchestration/116-deep-review-complexity/002-seeded-fixture-harness/checklist.md",
+      ".opencode/specs/skilled-agent-orchestration/116-deep-review-complexity/002-seeded-fixture-harness/description.json",
+      ".opencode/specs/skilled-agent-orchestration/116-deep-review-complexity/002-seeded-fixture-harness/graph-metadata.json",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-reducer.vitest.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/116-deep-review-complexity/002-seeded-fixture-harness/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/116-deep-review-complexity/002-seeded-fixture-harness/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/116-deep-review-complexity/002-seeded-fixture-harness/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/116-deep-review-complexity/002-seeded-fixture-harness/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/specs/skilled-agent-orchestration/116-deep-review-complexity/002-seeded-fixture-harness/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/skilled-agent-orchestration/116-deep-review-complexity/002-seeded-fixture-harness/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "review-depth-reducer.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-reducer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Seeded Fixture Harness",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Populated Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Targeted Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completed Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Documentation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 001 found that `deep-review` can validate active findings while still failing to prove enough pre-finding candidate search. Without seeded failing fixtures first, later phases could add `searchLedger` fields, graph nodes, or reducer keys without proving that shallow no-finding review records are rejected.",
+    "created_at": "2026-05-22T00:00:00Z",
+    "last_save_at": "2026-05-23T09:22:40.300Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
+  }
+}

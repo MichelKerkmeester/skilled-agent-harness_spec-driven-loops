@@ -12,7 +12,7 @@ const {
   installSignalHandlers,
   maybeThrowTestFault,
   validateNamespaceValue,
-} = require('./_lib/cli-guards.cjs');
+} = require('./lib/cli-guards.cjs');
 
 const TSX_LOADER = path.resolve(
   __dirname,

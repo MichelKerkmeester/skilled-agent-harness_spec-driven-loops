@@ -1,0 +1,15 @@
+{"iter":9,"adjudicates":"F-001","verdict":"CONFIRMED","new_severity":"P1","evidence":"const specFolder = ensureString(args, 'specFolder'); (convergence.cjs:231) - no path validation before use in database operations"}
+{"iter":9,"adjudicates":"F-002","verdict":"CONFIRMED","new_severity":"P1","evidence":"ADR-001 line 80 documents shared helper scripts/lib/db-open.cjs but file does not exist; scripts use direct try/finally pattern"}
+{"iter":9,"adjudicates":"F-005","verdict":"CONFIRMED","new_severity":"P1","evidence":"Feature catalog references deleted path: .opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:42-120"}
+{"iter":9,"adjudicates":"F-006","verdict":"FALSE-POSITIVE","new_severity":"drop","evidence":"Cross-reference index links are correct: [01--executor/001-executor-config.md](01--executor/001-executor-config.md) - file exists at that path"}
+{"iter":9,"adjudicates":"F-010","verdict":"CONFIRMED","new_severity":"P1","evidence":"All 4 script tests only assert exit code 3; missing coverage for exit 1 (script error) and exit 2 (DB error)"}
+{"iter":9,"adjudicates":"F-011","verdict":"CONFIRMED","new_severity":"P1","evidence":"Test runs sequential invocations only; never spawns concurrent writers to test lock rejection semantics"}
+{"iter":9,"adjudicates":"F-014","verdict":"CONFIRMED","new_severity":"P1","evidence":"completion_pct: 5 (001/tasks.md:26) with all tasks unchecked but phase marked complete in implementation-summary.md"}
+{"iter":9,"adjudicates":"F-015","verdict":"CONFIRMED","new_severity":"P1","evidence":"completion_pct: 5 (002/tasks.md:18) with all tasks unchecked but phase marked complete in implementation-summary.md"}
+{"iter":9,"adjudicates":"F-016","verdict":"CONFIRMED","new_severity":"P1","evidence":"completion_pct: 5 (003/tasks.md:19) with all tasks unchecked but phase marked complete in implementation-summary.md"}
+{"iter":9,"adjudicates":"F-017","verdict":"CONFIRMED","new_severity":"P1","evidence":"completion_pct: 5 (004/tasks.md:23) with all tasks unchecked but phase marked complete in implementation-summary.md"}
+{"iter":9,"adjudicates":"F-021","verdict":"DUPLICATE","new_severity":"drop","evidence":"Same issue as F-002 - ADR-001 documents withDatabase helper that doesn't exist"}
+{"iter":9,"adjudicates":"F-022","verdict":"CONFIRMED","new_severity":"P1","evidence":"README still lists deleted handlers: +-- upsert.ts # deep_loop_graph_upsert handler (coverage-graph/README.md:71-74)"}
+{"iter":9,"adjudicates":"F-026","verdict":"CONFIRMED","new_severity":"P1","evidence":"Changelog entries v1.7.0.0 through v1.11.0.0 contain no entry for deep-loop-runtime dependency switch from arc 118"}
+{"iter":9,"adjudicates":"F-027","verdict":"CONFIRMED","new_severity":"P1","evidence":"Documentation shows deltaPath but code uses deltaFilePath; missing previousStateLogSize and requiredJsonlFields"}
+{"iter":9,"adjudicates":"F-028","verdict":"CONFIRMED","new_severity":"P1","evidence":"Documentation shows acquiredAtIso but code uses startedAtIso; missing packetId field"}

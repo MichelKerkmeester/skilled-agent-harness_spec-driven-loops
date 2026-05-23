@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/120-deep-research-iteration-ordering-fix",
+  "description": "Feature Specification: 120 — Deep-Research Iteration Ordering Fix",
+  "keywords": [
+    "feature",
+    "specification",
+    "120",
+    "deep-research",
+    "iteration",
+    "ordering",
+    "fix"
+  ],
+  "lastUpdated": "2026-05-23T09:11:13.011Z",
+  "specId": "120",
+  "folderSlug": "deep-research-iteration-ordering-fix",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 120,
+  "memoryNameHistory": []
+}

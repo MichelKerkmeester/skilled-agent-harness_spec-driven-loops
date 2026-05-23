@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/008-verification-changelog-closeout",
+  "spec_folder": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/008-verification-changelog-closeout",
+  "parent_id": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "118/008 closeout",
+      "118 verification closeout",
+      "deep-review v1.4.0.0 bump",
+      "deep-loop-runtime initial changelog",
+      "118 parent status complete",
+      "118/008 plan",
+      "118 closeout plan",
+      "deep-review v1.4.0.0 plan",
+      "118/008 tasks",
+      "118 closeout tasks",
+      "118/008 checklist",
+      "118 closeout checklist"
+    ],
+    "key_topics": [
+      "118",
+      "008",
+      "closeout",
+      "verification",
+      "deep-review",
+      "bump",
+      "deep-loop-runtime",
+      "initial",
+      "changelog",
+      "parent",
+      "status",
+      "complete"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-review/SKILL.md",
+      ".opencode/skills/deep-review/changelog/v1.4.0.0.md",
+      ".opencode/skills/deep-loop-runtime/SKILL.md",
+      ".opencode/specs/skilled-agent-orchestration/116-deep-review-complexity/008-playbooks-and-default-calibration/resource-map.md",
+      ".opencode/specs/skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/spec.md",
+      ".opencode/specs/skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/008-verification-changelog-closeout/spec.md",
+      ".opencode/specs/skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/008-verification-changelog-closeout/checklist.md",
+      ".opencode/specs/skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/008-verification-changelog-closeout/tasks.md",
+      ".opencode/specs/skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/008-verification-changelog-closeout/implementation-summary.md",
+      ".opencode/skills/sk-doc/assets/changelog_template.md",
+      "implementation-summary.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-review/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.4.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-review/changelog/v1.4.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/008-verification-changelog-closeout/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/008-verification-changelog-closeout/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/008-verification-changelog-closeout/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/008-verification-changelog-closeout/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "changelog_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/assets/changelog_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Phase Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Predecessor Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Successor Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Runner",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Scripts",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Verification",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Commands",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After phases 001 through 007 land, the arc's code work is mechanically complete: the runtime skill exists, 13 lib files have moved, 4 .cjs scripts replace the MCP tool surface, YAML workflows + collateral point at scripts, tests are split, and the MCP server no longer ships deep_loop_graph_* tools. What is missing is the closing audit — proof the sweep is green, the version envelope is bumped, the new runtime skill ships an initial release entry, the 116 arc's deferred resource-map is filled in against the new file locations, and the parent packet flips from Active to Complete with refreshed graph metadata. Without this phase the arc has no single commit that demonstrates the migration shipped clean.",
+    "created_at": "2026-05-22T19:55:00Z",
+    "last_save_at": "2026-05-23T09:22:40.373Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
+  }
+}

@@ -51,7 +51,6 @@
       "mcp_server/package.json",
       "scripts/test-council-matrix.sh",
       "mcp_server/tests/council-playbook-anchor-integrity.vitest.ts",
-      ".codex/agents/deep-ai-council.toml",
       "tests/fixtures/council-value/dac-030.ts",
       ".opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/007-council-graph-derived-projection-rebuilds-from-artifacts.md",
       ".opencode/skills/system-spec-kit/mcp_server/tests/fixtures/council-value/dac-030.ts",
@@ -107,12 +106,6 @@
         "name": "seed-helpers.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/tests/fixtures/council-value/seed-helpers.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deep-ai-council.toml",
-        "kind": "file",
-        "path": ".codex/agents/deep-ai-council.toml",
         "source": "derived"
       },
       {
@@ -204,11 +197,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After 101/006 shipped, six residual gaps remained: (1) no runnable council-test gate, so the 8-day test-rot window that surfaced in 101/004 can recur; (2) the playbook's §17 FEATURE CATALOG CROSS-REFERENCE INDEX carries 32 \"No feature catalog exists yet\" placeholders inherited from packet 002; (3) playbook scenario → vitest test-name anchors are one-way strings with no integrity check; (4) DAC-025's \"delete graph + replay from artifacts\" path is doc-only with no helper script; (5) the Codex TOML runtime mirror is only checked for sandbox/permission strings, not name + description prose; (6) DAC-030 and DAC-032 fixture helpers normalize operator-facing answers from grouped runtime responses without code-level provenance for future maintainers.",
     "created_at": "2026-05-11T11:00:00Z",
-    "last_save_at": "2026-05-19T13:51:38.345Z",
+    "last_save_at": "2026-05-23T09:22:40.129Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

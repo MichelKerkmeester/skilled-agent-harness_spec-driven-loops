@@ -19,10 +19,7 @@
       "implementation",
       "summary",
       "template",
-      "impl summary core",
-      "skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite/003-sk-git-skill-update",
-      "skilled-agent-orchestration",
-      "112-commit-standards-and-retroactive-rewrite"
+      "impl summary core"
     ],
     "key_topics": [
       "112-sk-git-skill-update",
@@ -197,7 +194,7 @@
     ],
     "causal_summary": "This is **Phase 3** of the 112 packet. Phase 002 produces `commit-standards.md`, `derivation-heuristics.md`, and 7 Accepted ADRs. This phase is the mechanical step that takes those outputs and applies them to the `sk-git` skill content.",
     "created_at": "2026-05-16T09:42:34Z",
-    "last_save_at": "2026-05-19T13:51:38.386Z",
+    "last_save_at": "2026-05-23T09:22:40.211Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

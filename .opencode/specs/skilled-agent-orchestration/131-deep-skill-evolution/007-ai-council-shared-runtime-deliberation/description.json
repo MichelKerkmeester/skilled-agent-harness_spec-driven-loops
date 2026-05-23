@@ -1,0 +1,22 @@
+{
+  "level": "3",
+  "status": "completed",
+  "decision": "HYBRID",
+  "specFolder": "skilled-agent-orchestration/124-sk-ai-council-shared-runtime-deliberation",
+  "description": "Spec: sk-ai-council Shared Runtime Deliberation",
+  "keywords": [
+    "spec",
+    "sk-ai-council",
+    "shared",
+    "runtime",
+    "deliberation"
+  ],
+  "lastUpdated": "2026-05-23T09:11:13.024Z",
+  "specId": "124",
+  "folderSlug": "sk-ai-council-shared-runtime-deliberation",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
