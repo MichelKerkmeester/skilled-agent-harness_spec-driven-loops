@@ -14,12 +14,14 @@
     "gpt-5.5-high-fast",
     "skilled-agent-orchestration"
   ],
-  "lastUpdated": "2026-05-22T22:35:00.000Z",
+  "lastUpdated": "2026-05-23T04:44:54.213Z",
   "specId": "119",
   "folderSlug": "deep-research-uplift",
   "parentChain": [
     "skilled-agent-orchestration"
   ],
-  "memorySequence": 119,
-  "memoryNameHistory": []
+  "memorySequence": 120,
+  "memoryNameHistory": [
+    "23-05-26_05-44__continued-119-deep-research-arc-into.md"
+  ]
 }
