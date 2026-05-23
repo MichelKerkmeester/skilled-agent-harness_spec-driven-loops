@@ -27,7 +27,7 @@ Without the gate, a review can terminate with PASS verdict even though the agent
 
 ### Prerequisites
 
-- `review-depth-convergence.vitest.ts` exists under `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/` (note: marked `it.todo` pending workflow-runner integration, manual harness required today).
+- `review-depth-convergence.vitest.ts` exists under `.opencode/skills/deep-loop-runtime/tests/integration/` (note: marked `it.todo` pending workflow-runner integration, manual harness required today).
 - A standard or complex v2 session can set `searchCoverage` with uncovered required bug classes.
 - Reducer state can expose `candidateCoverage` and `searchDebt`.
 

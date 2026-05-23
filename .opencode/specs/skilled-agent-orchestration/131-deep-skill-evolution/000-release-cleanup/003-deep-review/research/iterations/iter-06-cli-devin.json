@@ -1,0 +1,67 @@
+{
+  "iteration": 6,
+  "executor": "cli-devin",
+  "model": "swe-1.6",
+  "prompt_framework": "RCAF",
+  "started_at": "2026-05-23T17:34:00Z",
+  "ended_at": "2026-05-23T17:36:20Z",
+  "wall_clock_seconds": 140,
+  "logic_gaps": [
+    {
+      "gap_id": "LG-0025",
+      "description": "5 dir-08 playbook scenarios (058/059/061/062/063) contained stale 'exists under .opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/' references for review-depth-validator/convergence/graph.vitest.ts despite AF-0023 migrating those test paths. AF-0023 had patched the `## Commands` rg-grep lines but missed the prose-style 'exists under' references in SOURCE METADATA blocks (line 30 of each file). **Resolved inline during iter 6**: 5 files patched to use deep-loop-runtime/tests/integration/ via Python substitution. File 060 reducer ref intentionally retained (the test DID stay in system-spec-kit).",
+      "evidence": [
+        ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/058-validator-warn-rollout.md:30",
+        ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/059-validator-strict-v2.md:30",
+        ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/061-stop-gate-candidate-coverage.md:30",
+        ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/062-stop-gate-graphless-fallback.md:30",
+        ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/063-graph-vocabulary.md:30"
+      ],
+      "severity": "P0",
+      "in_scope_check": {
+        "already_in_spec": false,
+        "already_in_audit_findings": false
+      }
+    },
+    {
+      "gap_id": "LG-0026",
+      "description": "review-depth-reducer.vitest.ts remains in `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/` while sibling tests (review-depth-validator/convergence/graph) moved to `.opencode/skills/deep-loop-runtime/tests/integration/` during 118 FULL_ISOLATE_NO_MCP. Architectural inconsistency: 3 of 4 review-depth tests migrated to deep-loop-runtime, 1 (reducer) did not. This may be intentional (reducer logic lives in deep-review's own scripts/reduce-state.cjs, so its test belongs near the spec-kit MCP harness) or oversight. Doc reference in 060 IS accurate; finding is about migration completeness not doc drift.",
+      "evidence": [
+        ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/060-reducer-search-debt.md:30",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-reducer.vitest.ts",
+        ".opencode/skills/deep-loop-runtime/tests/integration/"
+      ],
+      "severity": "P1",
+      "in_scope_check": {
+        "already_in_spec": false,
+        "already_in_audit_findings": false
+      }
+    },
+    {
+      "gap_id": "LG-0027",
+      "description": "changelog/v1.3.1.0.md references `deep-review-expected behavior-parity.vitest.ts` (likely a typo or stale name); actual file is `deep-review-contract-parity.vitest.ts`. Historical changelog preserved per AF-0019 chronological-fidelity policy; finding recorded for awareness but no doc edit.",
+      "evidence": [
+        ".opencode/skills/deep-review/changelog/v1.3.1.0.md"
+      ],
+      "severity": "P2",
+      "in_scope_check": {
+        "already_in_spec": false,
+        "already_in_audit_findings": false
+      }
+    }
+  ],
+  "novel_findings": [
+    "Phase 5 self-resolved one of its own findings: LG-0025 P0 was fixed inline during iter 6 surfacing (5 files patched). Demonstrates the loop's ability to close gaps as they're found when they fall in the doc-edit scope (ADR-002 surgical-edit permits P0/P1 immediate fixes).",
+    "LG-0025 reveals an AF-0023 migration gap: I patched grep-command paths in Phase 2 but missed prose-style 'exists under' source-metadata references. Future migration sweeps should scan BOTH command lines AND source-metadata blocks.",
+    "All 3 iter 6 findings are NOVEL (zero duplicates of iters 1-5). Cross-skill dependency dimension surfaced a different class of bugs (path-ref staleness in source-metadata) than the doc-vs-code drift class of iters 1-5."
+  ],
+  "delta_vs_prev_iter": "new gaps surfaced",
+  "convergence_signals": {
+    "unique_gaps_so_far": 27,
+    "p0_count": 2,
+    "p1_count": 14,
+    "p2_count": 11,
+    "duplicates_with_prior_iters": 0
+  },
+  "notes": "Iter 6 RQ: cross-skill dependency drift. Wall-clock 140s. 3 novel gaps surfaced (zero duplicates \u2014 different class of bug than iters 1-5). LG-0025 P0 fixed inline during iter 6 (5 dir-08 files patched). LG-0026 P1 is migration-inconsistency note; doc is accurate. LG-0027 P2 historical changelog typo preserved."
+}

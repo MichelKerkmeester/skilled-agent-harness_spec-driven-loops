@@ -27,7 +27,7 @@ The strict tier is the contract enforcement that gives the v2 schema operational
 
 ### Prerequisites
 
-- `review-depth-validator.vitest.ts` exists under `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/`.
+- `review-depth-validator.vitest.ts` exists under `.opencode/skills/deep-loop-runtime/tests/integration/`.
 - Shell can set `DEEP_REVIEW_V2_ENFORCEMENT=strict`.
 - Malformed v2 records can be selected or constructed with `reviewDepthSchemaVersion`, `reviewDepthApplicability`, `targetSelection`, `searchCoverage`, and `searchLedger`.
 

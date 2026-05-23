@@ -27,7 +27,7 @@ Empty graph CONTINUE has historically meant "no graph data, proceed to inline vo
 
 ### Prerequisites
 
-- `review-depth-convergence.vitest.ts` exists under `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/` (note: marked `it.todo` pending workflow-runner integration, manual harness required today).
+- `review-depth-convergence.vitest.ts` exists under `.opencode/skills/deep-loop-runtime/tests/integration/` (note: marked `it.todo` pending workflow-runner integration, manual harness required today).
 - A standard or complex v2 session can set `graphCoverageMode` to `graphless_fallback`.
 - The session can leave `searchLedger` empty for the gate to trip.
 

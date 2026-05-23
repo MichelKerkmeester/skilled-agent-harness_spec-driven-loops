@@ -27,7 +27,7 @@ Without graph-side persistence, the ledger has nowhere to project its richer sem
 
 ### Prerequisites
 
-- `review-depth-graph.vitest.ts` exists under `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/`.
+- `review-depth-graph.vitest.ts` exists under `.opencode/skills/deep-loop-runtime/tests/integration/`.
 - Graph upsert test fixtures can include `BUG_CLASS`, `INVARIANT`, `PRODUCER`, `CONSUMER`, and `TEST` events with valid review-loop relations.
 - The graph test path can verify persisted review-loop nodes.
 

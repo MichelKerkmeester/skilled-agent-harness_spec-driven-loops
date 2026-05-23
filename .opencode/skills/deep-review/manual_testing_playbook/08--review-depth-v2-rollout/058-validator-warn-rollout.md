@@ -27,7 +27,7 @@ Without the warn surface, an operator cannot stage rollout: they would have to e
 
 ### Prerequisites
 
-- `review-depth-validator.vitest.ts` exists under `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/`.
+- `review-depth-validator.vitest.ts` exists under `.opencode/skills/deep-loop-runtime/tests/integration/`.
 - Shell can set `DEEP_REVIEW_V2_ENFORCEMENT=warn`.
 - A legacy iteration record fixture is available that omits `reviewDepthSchemaVersion`.
 
