@@ -6,6 +6,7 @@ const {
   ensureRerankSidecar,
   writeLedger,
   healthPayload,
+  processLiveness,
 } = require('./ensure-rerank-sidecar.cjs');
 
 type HealthStep = 200 | 'error';
@@ -301,5 +302,57 @@ describe('healthPayload — F85 body cap', () => {
     const result = await healthPayload(8765, 2000, { http: httpMock });
 
     expect(result).toEqual({ status: 'ok' });
+  });
+});
+
+describe('processLiveness — F88 explicit error handling', () => {
+  it('returns alive with reason for successful kill signal', () => {
+    const processMock = createProcessMock();
+    processMock.kill = vi.fn();
+
+    const result = processLiveness(1234, processMock);
+
+    expect(result).toEqual({ alive: true, reason: 'kill-success' });
+    expect(processMock.kill).toHaveBeenCalledWith(1234, 0);
+  });
+
+  it('returns dead with reason for ESRCH error', () => {
+    const processMock = createProcessMock();
+    const esrchError = Object.assign(new Error('No such process'), { code: 'ESRCH' });
+    processMock.kill = vi.fn(() => { throw esrchError; });
+
+    const result = processLiveness(1234, processMock);
+
+    expect(result).toEqual({ alive: false, reason: 'esrch' });
+    expect(processMock.kill).toHaveBeenCalledWith(1234, 0);
+  });
+
+  it('returns alive with reason for EPERM error', () => {
+    const processMock = createProcessMock();
+    const epermError = Object.assign(new Error('Operation not permitted'), { code: 'EPERM' });
+    processMock.kill = vi.fn(() => { throw epermError; });
+
+    const result = processLiveness(1234, processMock);
+
+    expect(result).toEqual({ alive: true, reason: 'eperm-other-owner' });
+    expect(processMock.kill).toHaveBeenCalledWith(1234, 0);
+  });
+
+  it('returns alive with unknown-default-alive reason and logs stderr for unknown error codes (F88)', () => {
+    const processMock = createProcessMock();
+    const unknownError = Object.assign(new Error('Unknown error'), { code: 'UNKNOWN' });
+    processMock.kill = vi.fn(() => { throw unknownError; });
+
+    const result = processLiveness(1234, processMock);
+
+    expect(result).toEqual({
+      alive: true,
+      reason: 'unknown-default-alive',
+      errorCode: 'UNKNOWN',
+    });
+    expect(processMock.kill).toHaveBeenCalledWith(1234, 0);
+    expect(processMock.stderr.write).toHaveBeenCalledWith(
+      '[processLiveness] unexpected error code UNKNOWN for pid 1234\n'
+    );
   });
 });

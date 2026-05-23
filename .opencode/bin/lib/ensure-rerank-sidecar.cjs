@@ -189,11 +189,12 @@ function addLedgerRow(dir, row, fsModule) {
 function processLiveness(pid, processObj) {
   try {
     processObj.kill(pid, 0);
-    return 'alive';
+    return { alive: true, reason: 'kill-success' };
   } catch (error) {
-    if (error.code === 'ESRCH') return 'dead';
-    if (error.code === 'EPERM') return 'eperm';
-    return 'alive';
+    if (error.code === 'ESRCH') return { alive: false, reason: 'esrch' };
+    if (error.code === 'EPERM') return { alive: true, reason: 'eperm-other-owner' };
+    processObj.stderr.write(`[processLiveness] unexpected error code ${error.code} for pid ${pid}\n`);
+    return { alive: true, reason: 'unknown-default-alive', errorCode: error.code };
   }
 }
 
@@ -202,11 +203,10 @@ async function findReusableSidecar(dir, ownerToken, configHash, deps, processObj
   const kept = [];
   for (const row of rows) {
     const liveness = processLiveness(row.pid, processObj);
-    if (liveness === 'dead') continue;
+    if (!liveness.alive) continue;
     kept.push(row);
     if (
-      liveness === 'alive'
-      && row.ownerToken === ownerToken
+      row.ownerToken === ownerToken
       && row.canonicalConfigHash === configHash
       && await isHealthy(row.port, 2000, { ...deps, expectedOwnerToken: ownerToken, expectedConfigHash: configHash })
     ) {
@@ -309,4 +309,5 @@ module.exports = {
   loadOrCreateOwnerToken,
   writeLedger,
   readLedger,
+  processLiveness,
 };

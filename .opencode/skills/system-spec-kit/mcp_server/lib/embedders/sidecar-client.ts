@@ -141,13 +141,6 @@ function toErrorMessage(error: unknown): string {
   return error instanceof Error ? error.message : String(error);
 }
 
-function sleep(ms: number): Promise<void> {
-  return new Promise((resolve) => {
-    const timer = setTimeout(resolve, ms);
-    timer.unref?.();
-  });
-}
-
 function signalChildProcessGroup(child: ChildProcess, signal: NodeJS.Signals): void {
   if (child.pid && process.platform !== 'win32') {
     try {
@@ -416,14 +409,12 @@ export class SidecarClient implements EmbedderAdapter {
         await waitForChildExit(child, DEFAULT_TERMINATION_GRACE_MS);
       }
       this.cleanupChild(child);
-      await sleep(0);
-    })();
-    try {
-      await this.termination;
-    } finally {
+    })().finally(() => {
       this.termination = null;
       this.shuttingDown = false;
-    }
+    });
+
+    await this.termination;
   }
 
   private cleanupChild(child: ChildProcess | null = this.child): void {

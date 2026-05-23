@@ -43,9 +43,9 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in `spec.md`.
-- [ ] CHK-002 [P0] Technical approach defined in `plan.md`.
-- [ ] CHK-003 [P1] Dependencies identified and available.
+- [x] CHK-001 [P0] Requirements documented in `spec.md`.
+- [x] CHK-002 [P0] Technical approach defined in `plan.md`.
+- [x] CHK-003 [P1] Dependencies identified and available.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -53,10 +53,10 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Code passes lint/format checks.
-- [ ] CHK-011 [P0] No console errors or warnings from targeted tests.
-- [ ] CHK-012 [P1] Error handling implemented.
-- [ ] CHK-013 [P1] Code follows project patterns.
+- [x] CHK-010 [P0] Code passes lint/format checks.
+- [x] CHK-011 [P0] No console errors or warnings from targeted tests.
+- [x] CHK-012 [P1] Error handling implemented.
+- [x] CHK-013 [P1] Code follows project patterns.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -64,10 +64,10 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] F79 concurrent termination behavior tested.
-- [ ] CHK-021 [P0] F88 liveness classification behavior tested.
-- [ ] CHK-022 [P1] Edge cases tested.
-- [ ] CHK-023 [P1] Error scenarios validated.
+- [x] CHK-020 [P0] F79 concurrent termination behavior tested.
+- [x] CHK-021 [P0] F88 liveness classification behavior tested.
+- [x] CHK-022 [P1] Edge cases tested.
+- [x] CHK-023 [P1] Error scenarios validated.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -75,8 +75,8 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] F79 status open; evidence TBD: commit hash + test file.
-- [ ] CHK-FIX-002 [P0] F88 status open; evidence TBD: commit hash + test file.
+- [x] CHK-FIX-001 [P0] F79 status closed; evidence: sidecar-client.ts:404-425 (single-promise lifecycle), test: sidecar-hardening.vitest.ts:318-339.
+- [x] CHK-FIX-002 [P0] F88 status closed; evidence: ensure-rerank-sidecar.cjs:189-199 (explicit error handling), test: ensure-rerank-sidecar.vitest.ts:308-358.
 - [ ] CHK-FIX-003 [P1] Ownership/liveness contract recorded in `implementation-summary.md`.
 - [ ] CHK-FIX-004 [P1] Evidence is pinned to a fix SHA or explicit diff range.
 <!-- /ANCHOR:fix-completeness -->
@@ -86,9 +86,9 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets.
-- [ ] CHK-031 [P0] Input validation implemented where applicable.
-- [ ] CHK-032 [P1] Unknown liveness behavior is explicit and tested.
+- [x] CHK-030 [P0] No hardcoded secrets.
+- [x] CHK-031 [P0] Input validation implemented where applicable.
+- [x] CHK-032 [P1] Unknown liveness behavior is explicit and tested.
 <!-- /ANCHOR:security -->
 
 ---
@@ -97,8 +97,8 @@ _memory:
 ## Documentation
 
 - [ ] CHK-040 [P1] Spec, plan, tasks, checklist, and implementation summary synchronized.
-- [ ] CHK-041 [P1] Code comments adequate.
-- [ ] CHK-042 [P2] Parent phase map remains accurate.
+- [x] CHK-041 [P1] Code comments adequate.
+- [x] CHK-042 [P2] Parent phase map remains accurate.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -106,8 +106,8 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in `scratch/` only.
-- [ ] CHK-051 [P1] `scratch/` cleaned before completion except `.gitkeep`.
+- [x] CHK-050 [P1] Temp files in `scratch/` only.
+- [x] CHK-051 [P1] `scratch/` cleaned before completion except `.gitkeep`.
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -117,8 +117,8 @@ _memory:
 
 | Finding | Severity | Fingerprint | Status | Evidence |
 |---------|----------|-------------|--------|----------|
-| F79 | P1 | `over-engineering:sidecar-client:terminatechild-dual-promise-lifecycle` | open | TBD: commit hash + test file |
-| F88 | P1 | `security:ensure-rerank-sidecar:processliveness-incorrect-default-alive-fallthrough` | open | TBD: commit hash + test file |
+| F79 | P1 | `over-engineering:sidecar-client:terminatechild-dual-promise-lifecycle` | closed | sidecar-client.ts:404-425 + sidecar-hardening.vitest.ts:318-339 |
+| F88 | P1 | `security:ensure-rerank-sidecar:processliveness-incorrect-default-alive-fallthrough` | closed | ensure-rerank-sidecar.cjs:189-199 + ensure-rerank-sidecar.vitest.ts:308-358 |
 
-**Verification Date**: TBD
+**Verification Date**: 2026-05-23
 <!-- /ANCHOR:summary -->

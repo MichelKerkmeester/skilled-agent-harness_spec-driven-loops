@@ -314,4 +314,27 @@ setInterval(() => {}, 1000);
 
     await client.shutdown();
   });
+
+  it('uses single-promise termination lifecycle for SIGTERM-ignoring child (F79)', async () => {
+    const client = new SidecarClient({
+      provider: 'hf-local',
+      model: 'model',
+      dimensions: 3,
+      workerPath: createWorker(tmpDir, 'ignore-term'),
+      pingTimeoutMs: 100,
+      requestTimeoutMs: 2_000,
+      env: process.env,
+    });
+
+    await client.ready();
+    const pid = client.getWorkerInfo()?.pid;
+    expect(pid).toBeGreaterThan(0);
+
+    // Trigger termination which should use single-promise lifecycle
+    await client.shutdown();
+
+    // Verify child was killed after SIGKILL escalation
+    expect(client.getWorkerInfo()).toBeNull();
+    expect(pidAlive(pid!)).toBe(false);
+  });
 });
