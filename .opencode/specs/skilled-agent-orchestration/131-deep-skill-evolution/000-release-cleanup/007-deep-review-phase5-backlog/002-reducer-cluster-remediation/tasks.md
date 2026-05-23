@@ -79,7 +79,7 @@ _memory:
 - [x] T022 Annotate 003-deep-review resource-map reducer-gap terminal states
 - [x] T023 generate-description + graph-metadata; strict validate exit 0
 - [x] T024 Fill implementation-summary.md
-- [ ] T025 Scope-strict commit + push
+- [x] T025 Scope-strict commit + push (commit dfd5449f89, pushed to origin/main)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -87,11 +87,11 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks `[x]`
-- [ ] 5 reducer behaviors implemented + green vitest
-- [ ] Existing reducer suite green
-- [ ] Strict validate exit 0
-- [ ] All 9 reducer gaps annotated terminal in resource-map
+- [x] All tasks `[x]`
+- [x] 5 reducer behaviors implemented + green vitest
+- [x] Existing reducer suite green
+- [x] Strict validate exit 0
+- [x] All 9 reducer gaps annotated terminal in resource-map
 <!-- /ANCHOR:completion -->
 
 ---
