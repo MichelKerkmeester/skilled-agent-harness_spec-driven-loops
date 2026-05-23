@@ -106,13 +106,17 @@ function waitForWorkerExit(child: ReturnType<typeof spawn>, timeoutMs = 2_000): 
   });
 }
 
-function createWorker(dir: string, mode: 'env' | 'hang' | 'ignore-term' | 'oversized-stdout' | 'record-ids'): string {
+function createWorker(dir: string, mode: 'env' | 'hang' | 'ignore-term' | 'oversized-stdout' | 'record-ids' | 'unknown-response'): string {
   const workerPath = join(dir, `worker-${mode}.cjs`);
   writeFileSync(workerPath, `
 const fs = require('node:fs');
 const readline = require('node:readline');
 if (${JSON.stringify(mode)} === 'ignore-term') {
-  process.on('SIGTERM', () => {});
+  process.on('SIGTERM', () => {
+    if (process.env.MOCK_SIDECAR_SIGNAL_FILE) {
+      fs.appendFileSync(process.env.MOCK_SIDECAR_SIGNAL_FILE, 'SIGTERM\\n');
+    }
+  });
 }
 const envOut = process.env.MOCK_SIDECAR_ENV_OUT;
 if (envOut) {
@@ -133,15 +137,19 @@ rl.on('line', (line) => {
     write({ id: message.id, type: 'embedding', vectors: message.input.map(() => [1, 2, 3]), dimensions: message.dimensions, _padding: oversized });
     return;
   }
-  if (${JSON.stringify(mode)} === 'record-ids') {
-    const idFile = process.env.MOCK_SIDECAR_ID_FILE;
-    if (idFile) {
-      fs.appendFileSync(idFile, message.id + '\\n');
-    }
-    write({ id: message.id, type: 'embedding', vectors: message.input.map(() => [1, 2, 3]), dimensions: message.dimensions });
-    return;
-  }
-  if (${JSON.stringify(mode)} === 'hang' || ${JSON.stringify(mode)} === 'ignore-term') return;
+	  if (${JSON.stringify(mode)} === 'record-ids') {
+	    const idFile = process.env.MOCK_SIDECAR_ID_FILE;
+	    if (idFile) {
+	      fs.appendFileSync(idFile, message.id + '\\n');
+	    }
+	    write({ id: message.id, type: 'embedding', vectors: message.input.map(() => [1, 2, 3]), dimensions: message.dimensions });
+	    return;
+	  }
+	  if (${JSON.stringify(mode)} === 'unknown-response') {
+	    write({ id: message.id, type: 'mystery', detail: 'unexpected discriminator' });
+	    return;
+	  }
+	  if (${JSON.stringify(mode)} === 'hang' || ${JSON.stringify(mode)} === 'ignore-term') return;
   write({ id: message.id, type: 'embedding', vectors: message.input.map(() => [1, 2, 3]), dimensions: message.dimensions });
 });
 `, 'utf8');
@@ -210,11 +218,12 @@ describe('sidecar hardening', () => {
       env: process.env,
     });
 
-    await client.ready();
+    const embedPromise = client.embed(['abc']);
+    await waitUntil(() => client.getWorkerInfo() !== null, 1_000);
     const pid = client.getWorkerInfo()?.pid;
     expect(pid).toBeGreaterThan(0);
 
-    await expect(client.embed(['abc'])).rejects.toThrow('timed out');
+    await expect(embedPromise).rejects.toThrow('timed out');
     await waitUntil(() => client.getWorkerInfo() === null && !pidAlive(pid!), 2_500);
 
     expect(client.getWorkerInfo()).toBeNull();
@@ -233,11 +242,12 @@ describe('sidecar hardening', () => {
       env: process.env,
     });
 
-    await client.ready();
+    const embedPromise = client.embed(['abc']);
+    await waitUntil(() => client.getWorkerInfo() !== null, 1_000);
     const pid = client.getWorkerInfo()?.pid;
     expect(pid).toBeGreaterThan(0);
 
-    await expect(client.embed(['abc'])).rejects.toThrow('timed out');
+    await expect(embedPromise).rejects.toThrow('timed out');
     await waitUntil(() => client.getWorkerInfo() === null, 2_500);
 
     expect(client.getWorkerInfo()).toBeNull();
@@ -305,11 +315,11 @@ setInterval(() => {}, 1000);
       env: process.env,
     });
 
-    await client.ready();
+    const embedPromise = client.embed(['abc']);
+    await waitUntil(() => client.getWorkerInfo() !== null, 1_000);
     const pid = client.getWorkerInfo()?.pid;
     expect(pid).toBeGreaterThan(0);
 
-    const embedPromise = client.embed(['abc']);
     await waitUntil(() => !pidAlive(pid!), 3_000);
 
     expect(pidAlive(pid!)).toBe(false);
@@ -391,25 +401,32 @@ setInterval(() => {}, 1000);
     await client.shutdown();
   });
 
-  it('uses single-promise termination lifecycle for SIGTERM-ignoring child (F79)', async () => {
+  it('uses grace-period SIGTERM to SIGKILL sequencing for SIGTERM-ignoring child (F57+F79)', async () => {
+    const signalFile = join(tmpDir, 'signals.txt');
     const client = new SidecarClient({
       provider: 'hf-local',
       model: 'model',
       dimensions: 3,
       workerPath: createWorker(tmpDir, 'ignore-term'),
       pingTimeoutMs: 100,
-      requestTimeoutMs: 2_000,
-      env: process.env,
+      requestTimeoutMs: 40,
+      env: {
+        ...process.env,
+        MOCK_SIDECAR_SIGNAL_FILE: signalFile,
+      },
     });
 
-    await client.ready();
+    const startedAt = Date.now();
+    const embedPromise = client.embed(['abc']);
+    await waitUntil(() => client.getWorkerInfo() !== null, 1_000);
     const pid = client.getWorkerInfo()?.pid;
     expect(pid).toBeGreaterThan(0);
 
-    // Trigger termination which should use single-promise lifecycle
-    await client.shutdown();
+    await expect(embedPromise).rejects.toThrow('timed out');
+    await waitUntil(() => client.getWorkerInfo() === null, 2_500);
 
-    // Verify child was killed after SIGKILL escalation
+    expect(Date.now() - startedAt).toBeGreaterThanOrEqual(900);
+    expect(readFileSync(signalFile, 'utf8')).toContain('SIGTERM');
     expect(client.getWorkerInfo()).toBeNull();
     expect(pidAlive(pid!)).toBe(false);
   });
@@ -451,6 +468,26 @@ setInterval(() => {}, 1000);
     expect(client).toBeDefined();
     expect(client.name).toBe('model');
     expect(client.dim).toBe(3);
+  });
+
+  it('rejects unknown sidecar response types with a structured client error (F62)', async () => {
+    const client = new SidecarClient({
+      provider: 'hf-local',
+      model: 'model',
+      dimensions: 3,
+      workerPath: createWorker(tmpDir, 'unknown-response'),
+      pingTimeoutMs: 100,
+      requestTimeoutMs: 2_000,
+      env: process.env,
+    });
+
+    await expect(client.embed(['abc'])).rejects.toMatchObject({
+      name: 'SidecarClientError',
+      code: 'sidecar-response-type-unknown',
+      message: expect.stringContaining('unknown type "mystery"'),
+    });
+
+    await client.shutdown();
   });
 
   // F70: types.ts has correct canonical-location comment

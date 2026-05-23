@@ -1,0 +1,31 @@
+{
+  "spec_id": "003",
+  "folder_slug": "fix-investigation-p1s-for-sidecar-client-constructor-and-helpers",
+  "parent_chain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "010-system-spec-kit-mcp-sidecar-investigation",
+    "003-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode"
+  ],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-system-spec-kit-mcp-sidecar-investigation/001-deep-research-drift-and-simplification",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-system-spec-kit-mcp-sidecar-investigation/002-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/003-fix-investigation-p1s-for-sidecar-process-ownership-lifecycle",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-system-spec-kit-mcp-sidecar-investigation/002-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/004-fix-investigation-p1s-for-ts-cjs-rerank-twin-parity"
+    ],
+    "related_to": [
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-system-spec-kit-mcp-sidecar-investigation/003-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/001-fix-investigation-p1s-for-sidecar-worker-liveness-and-deadcode",
+      "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-system-spec-kit-mcp-sidecar-investigation/003-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/002-fix-investigation-p1s-for-execution-router-policy-and-shutdown-hooks"
+    ]
+  },
+  "derived": {
+    "status": "completed",
+    "importance_tier": "critical",
+    "is_phase_parent": false,
+    "completion_pct": 100,
+    "parent_id": "003-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode",
+    "last_active_at": "2026-05-23T06:45:00Z"
+  },
+  "lastUpdated": "2026-05-23T06:45:00Z"
+}
