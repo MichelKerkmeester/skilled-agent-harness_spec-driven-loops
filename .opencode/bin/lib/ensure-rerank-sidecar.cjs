@@ -33,6 +33,13 @@ class ConfigHashInputError extends Error {
   }
 }
 
+class StateDirValidationError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = 'StateDirValidationError';
+  }
+}
+
 function log(message) {
   process.stderr.write(`[ensure-rerank-sidecar] ${message}\n`);
 }
@@ -54,7 +61,19 @@ function ownerTokenDigest(ownerToken) {
   return crypto.createHash('sha256').update(ownerToken, 'utf8').digest('hex');
 }
 
-async function healthPayload(port, timeoutMs, deps = {}) {
+function normalizeHealthPayload(raw, port) {
+  const ownerCount = Number(raw?.ownerCount ?? raw?.owner_count ?? 0);
+  const lastReapTs = Number(raw?.lastReapTs ?? raw?.last_reap_ts ?? 0);
+  const payloadPort = Number(raw?.port ?? port);
+  return {
+    status: typeof raw?.status === 'string' ? raw.status : 'unreachable',
+    port: Number.isInteger(payloadPort) && payloadPort > 0 ? payloadPort : Number(port),
+    ownerCount: Number.isInteger(ownerCount) && ownerCount >= 0 ? ownerCount : 0,
+    lastReapTs: Number.isFinite(lastReapTs) && lastReapTs >= 0 ? lastReapTs : 0,
+  };
+}
+
+async function readRawHealthPayload(port, timeoutMs, deps = {}) {
   const httpModule = deps.http ?? http;
   return new Promise((resolve) => {
     const req = httpModule.get({ host: '127.0.0.1', port, path: '/health', timeout: timeoutMs }, (res) => {
@@ -89,8 +108,12 @@ async function healthPayload(port, timeoutMs, deps = {}) {
   });
 }
 
+async function healthPayload(port, timeoutMs, deps = {}) {
+  return normalizeHealthPayload(await readRawHealthPayload(port, timeoutMs, deps), port);
+}
+
 async function isHealthy(port, timeoutMs, deps = {}) {
-  const payload = await healthPayload(port, timeoutMs, deps);
+  const payload = await readRawHealthPayload(port, timeoutMs, deps);
   if (!payload) return false;
   if (deps.expectedOwnerToken && payload.owner_token_sha256 !== ownerTokenDigest(deps.expectedOwnerToken)) {
     return false;
@@ -110,6 +133,20 @@ async function waitForHealthy(port, deadline, deps = {}) {
   return false;
 }
 
+function randomHex(bytes, deps = {}) {
+  return (deps.crypto ?? crypto).randomBytes(bytes).toString('hex');
+}
+
+function fsyncDirOf(targetPath, fsModule) {
+  if (typeof fsModule.openSync !== 'function' || typeof fsModule.fsyncSync !== 'function') return;
+  const dirFd = fsModule.openSync(path.dirname(targetPath), 'r');
+  try {
+    fsModule.fsyncSync(dirFd);
+  } finally {
+    fsModule.closeSync(dirFd);
+  }
+}
+
 function openSidecarLogFd(fsModule, osModule) {
   const candidates = [
     path.join(osModule.homedir(), '.cache', 'mk-reranker'),
@@ -117,8 +154,12 @@ function openSidecarLogFd(fsModule, osModule) {
   ];
   for (const cacheDir of candidates) {
     try {
-      fsModule.mkdirSync(cacheDir, { recursive: true });
-      return fsModule.openSync(path.join(cacheDir, 'sidecar.log'), 'a');
+      fsModule.mkdirSync(cacheDir, { recursive: true, mode: 0o700 });
+      const fd = fsModule.openSync(path.join(cacheDir, 'sidecar.log'), 'a', 0o600);
+      if (typeof fsModule.fchmodSync === 'function') {
+        fsModule.fchmodSync(fd, 0o600);
+      }
+      return fd;
     } catch {
       // Try the next log directory; logging must not block MCP startup.
     }
@@ -126,9 +167,46 @@ function openSidecarLogFd(fsModule, osModule) {
   return 'ignore';
 }
 
-function stateDir(processObj, osModule) {
+function hasTraversalSegment(inputPath) {
+  return String(inputPath).split(/[\\/]+/).includes('..');
+}
+
+function pathInside(parentPath, candidatePath) {
+  const relative = path.relative(parentPath, candidatePath);
+  return relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative));
+}
+
+function assertWritableDir(dir, fsModule) {
+  try {
+    fsModule.mkdirSync(dir, { recursive: true, mode: 0o700 });
+    if (typeof fsModule.accessSync === 'function') {
+      fsModule.accessSync(dir, fs.constants.W_OK);
+    }
+  } catch {
+    throw new StateDirValidationError(`RERANK_SIDECAR_STATE_DIR must be writable: ${dir}`);
+  }
+}
+
+function stateDir(processObj, osModule, fsModule = fs) {
   const configured = String(processObj.env.RERANK_SIDECAR_STATE_DIR || '').trim();
-  return configured ? path.resolve(configured) : path.join(osModule.homedir(), '.cache', 'mk-reranker');
+  const home = path.resolve(String(processObj.env.HOME || osModule.homedir()));
+  if (!configured) {
+    const defaultDir = path.join(home, '.cache', 'mk-reranker');
+    assertWritableDir(defaultDir, fsModule);
+    return defaultDir;
+  }
+  if (!path.isAbsolute(configured)) {
+    throw new StateDirValidationError(`RERANK_SIDECAR_STATE_DIR must be an absolute path: ${configured}`);
+  }
+  if (hasTraversalSegment(configured)) {
+    throw new StateDirValidationError(`RERANK_SIDECAR_STATE_DIR must not contain '..' segments: ${configured}`);
+  }
+  const resolved = path.resolve(configured);
+  if (!pathInside(home, resolved)) {
+    throw new StateDirValidationError(`RERANK_SIDECAR_STATE_DIR must be under HOME (${home}): ${resolved}`);
+  }
+  assertWritableDir(resolved, fsModule);
+  return resolved;
 }
 
 function ownerTokenPath(dir) {
@@ -176,8 +254,8 @@ function waitForOwnerToken(tokenPath, fsModule, originalError) {
   throw originalError;
 }
 
-function writeOwnerTokenAtomic(tokenPath, token, fsModule) {
-  const tmp = `${tokenPath}.tmp.${crypto.randomBytes(16).toString('hex')}`;
+function writeOwnerTokenAtomic(tokenPath, token, fsModule, deps = {}) {
+  const tmp = `${tokenPath}.tmp.${randomHex(16, deps)}`;
   let fd;
   try {
     fd = fsModule.openSync(tmp, 'wx', 0o600);
@@ -202,6 +280,7 @@ function writeOwnerTokenAtomic(tokenPath, token, fsModule) {
   fsModule.closeSync(fd);
   try {
     fsModule.renameSync(tmp, tokenPath);
+    fsyncDirOf(tokenPath, fsModule);
   } catch (error) {
     try {
       fsModule.unlinkSync?.(tmp);
@@ -212,7 +291,7 @@ function writeOwnerTokenAtomic(tokenPath, token, fsModule) {
   }
 }
 
-function loadOrCreateOwnerToken(dir, fsModule, processObj) {
+function loadOrCreateOwnerToken(dir, fsModule, processObj, deps = {}) {
   const explicit = String(processObj.env.RERANK_SIDECAR_OWNER_TOKEN || '').trim();
   if (explicit) return explicit;
   fsModule.mkdirSync(dir, { recursive: true, mode: 0o700 });
@@ -220,7 +299,7 @@ function loadOrCreateOwnerToken(dir, fsModule, processObj) {
   const existing = readOwnerTokenIfPresent(tokenPath, fsModule);
   if (existing) return existing;
 
-  const token = crypto.randomBytes(24).toString('base64url');
+  const token = (deps.crypto ?? crypto).randomBytes(24).toString('base64url');
   const lockPath = `${tokenPath}.lock`;
   let lockFd;
   try {
@@ -233,7 +312,7 @@ function loadOrCreateOwnerToken(dir, fsModule, processObj) {
   try {
     const afterLockExisting = readOwnerTokenIfPresent(tokenPath, fsModule);
     if (afterLockExisting) return afterLockExisting;
-    writeOwnerTokenAtomic(tokenPath, token, fsModule);
+    writeOwnerTokenAtomic(tokenPath, token, fsModule, deps);
     return token;
   } finally {
     fsModule.closeSync(lockFd);
@@ -421,7 +500,7 @@ function withLedgerLockSync(dir, fsModule, callback) {
   fsModule.mkdirSync(dir, { recursive: true, mode: 0o700 });
   const target = ledgerPath(dir);
   const lockPath = `${target}.lock`;
-  const lockFd = fsModule.openSync(lockPath, 'wx');
+  const lockFd = fsModule.openSync(lockPath, 'wx', 0o600);
   try {
     return callback();
   } finally {
@@ -438,7 +517,7 @@ async function withLedgerLockAsync(dir, fsModule, callback) {
   fsModule.mkdirSync(dir, { recursive: true, mode: 0o700 });
   const target = ledgerPath(dir);
   const lockPath = `${target}.lock`;
-  const lockFd = fsModule.openSync(lockPath, 'wx');
+  const lockFd = fsModule.openSync(lockPath, 'wx', 0o600);
   try {
     return await callback();
   } finally {
@@ -468,27 +547,31 @@ function serializeRow(row) {
   return serialized;
 }
 
-function writeLedgerUnlocked(dir, rows, fsModule) {
+function writeLedgerUnlocked(dir, rows, fsModule, deps = {}) {
   fsModule.mkdirSync(dir, { recursive: true, mode: 0o700 });
   const target = ledgerPath(dir);
-  const tmp = `${target}.tmp.${crypto.randomBytes(16).toString('hex')}`;
+  const tmp = `${target}.tmp.${randomHex(16, deps)}`;
   const fd = fsModule.openSync(tmp, 'wx');
   try {
     fsModule.writeSync(fd, `${JSON.stringify({ version: LEDGER_VERSION, sidecars: rows.map(serializeRow) }, null, 2)}\n`);
+    if (typeof fsModule.fsyncSync === 'function') {
+      fsModule.fsyncSync(fd);
+    }
   } finally {
     fsModule.closeSync(fd);
   }
   fsModule.renameSync(tmp, target);
+  fsyncDirOf(target, fsModule);
 }
 
-function writeLedger(dir, rows, fsModule) {
-  return withLedgerLockSync(dir, fsModule, () => writeLedgerUnlocked(dir, rows, fsModule));
+function writeLedger(dir, rows, fsModule, deps = {}) {
+  return withLedgerLockSync(dir, fsModule, () => writeLedgerUnlocked(dir, rows, fsModule, deps));
 }
 
-function addLedgerRow(dir, row, fsModule) {
+function addLedgerRow(dir, row, fsModule, deps = {}) {
   const rows = readLedger(dir, fsModule).filter((existing) => existing.pid !== row.pid);
   rows.push(row);
-  writeLedger(dir, rows, fsModule);
+  writeLedger(dir, rows, fsModule, deps);
 }
 
 function processLiveness(pid, processObj, recordedCreateTimestamp = null, recordedComm = null, deps = {}) {
@@ -552,12 +635,12 @@ function registerOwnerInRows(rows, sidecarPid, owner) {
   return { rows: updated, changed };
 }
 
-function lockedRegisterOwner(dir, sidecarPid, owner, fsModule) {
+function lockedRegisterOwner(dir, sidecarPid, owner, fsModule, deps = {}) {
   return withLedgerLockSync(dir, fsModule, () => {
     const currentRows = readLedgerUnlocked(dir, fsModule);
     const result = registerOwnerInRows(currentRows, sidecarPid, owner);
     if (result.changed) {
-      writeLedgerUnlocked(dir, result.rows, fsModule);
+      writeLedgerUnlocked(dir, result.rows, fsModule, deps);
     }
     return result.rows;
   });
@@ -573,8 +656,11 @@ function writeReaperTelemetry(ledgerDir, event, fsModule, processObj, osModule) 
   if (typeof fsModule.appendFileSync !== 'function') return;
   const target = reaperTelemetryPath(ledgerDir, processObj, osModule);
   try {
-    fsModule.mkdirSync(path.dirname(target), { recursive: true });
-    fsModule.appendFileSync(target, `${JSON.stringify(event)}\n`, 'utf8');
+    fsModule.mkdirSync(path.dirname(target), { recursive: true, mode: 0o700 });
+    fsModule.appendFileSync(target, `${JSON.stringify(event)}\n`, { encoding: 'utf8', mode: 0o600 });
+    if (typeof fsModule.chmodSync === 'function') {
+      fsModule.chmodSync(target, 0o600);
+    }
   } catch {
     // Telemetry must never prevent launcher cleanup or reuse.
   }
@@ -615,7 +701,7 @@ async function reapStaleSidecars(dir, deps, processObj, fsModule, osModule) {
       }, fsModule, processObj, osModule);
     }
     if (reaped.length > 0) {
-      writeLedgerUnlocked(dir, kept, fsModule);
+      writeLedgerUnlocked(dir, kept, fsModule, deps);
     }
     return reaped;
   });
@@ -637,62 +723,77 @@ async function findReusableSidecar(dir, ownerToken, configHash, deps, processObj
     }
   }
   if (kept.length !== rows.length) {
-    writeLedger(dir, kept, fsModule);
+    writeLedger(dir, kept, fsModule, deps);
   }
   return null;
 }
 
-async function ensureRerankSidecar(options = {}) {
+function resolveLauncherDeps(options) {
   const deps = options.deps ?? {};
-  const fsModule = deps.fs ?? fs;
-  const osModule = deps.os ?? os;
-  const spawnFn = deps.spawn ?? spawn;
-  const processObj = deps.process ?? process;
-  const logger = deps.log ?? log;
-  const port = resolvePort(options.port ?? processObj.env.RERANK_SIDECAR_PORT);
-  const timeoutMs = resolveTimeoutMs(options.healthTimeoutMs ?? DEFAULT_HEALTH_TIMEOUT_MS);
+  return {
+    ...deps,
+    fs: deps.fs ?? fs,
+    os: deps.os ?? os,
+    spawn: deps.spawn ?? spawn,
+    process: deps.process ?? process,
+    log: deps.log ?? log,
+    fetch: deps.fetch ?? globalThis.fetch,
+  };
+}
+
+function shouldSkipDisabled(options, processObj) {
   const skipIfDisabled = options.skipIfDisabled !== false;
   const crossEncoderEnabled = String(processObj.env.SPECKIT_CROSS_ENCODER || '').toLowerCase() === 'true';
+  return skipIfDisabled && !crossEncoderEnabled;
+}
+
+function resolveStartScriptPath(options) {
   const sidecarSkillPath = options.sidecarSkillPath
     ? path.resolve(options.sidecarSkillPath)
     : SIDECAR_SKILL_PATH;
-  const startScriptPath = path.join(sidecarSkillPath, 'scripts', 'start.sh');
-  const ledgerDir = stateDir(processObj, osModule);
-  const ownerToken = loadOrCreateOwnerToken(ledgerDir, fsModule, processObj);
-  const configHash = canonicalConfigHash(port, processObj.env);
+  return path.join(sidecarSkillPath, 'scripts', 'start.sh');
+}
 
-  if (skipIfDisabled && !crossEncoderEnabled) {
-    return { spawned: false, port, fallback: 'cross-encoder-disabled' };
+function resolveLedgerDir(processObj, osModule, fsModule) {
+  try {
+    return stateDir(processObj, osModule, fsModule);
+  } catch (error) {
+    if (error instanceof StateDirValidationError && processObj.stderr?.write) {
+      processObj.stderr.write(`[ensure-rerank-sidecar] ${error.message}\n`);
+    }
+    throw error;
   }
+}
 
-  const currentOwner = currentOwnerIdentity(processObj, deps);
-  await reapStaleSidecars(ledgerDir, deps, processObj, fsModule, osModule);
-
+async function reuseExistingSidecar(ledgerDir, ownerToken, configHash, currentOwner, deps, processObj, fsModule) {
   const reusable = await findReusableSidecar(ledgerDir, ownerToken, configHash, deps, processObj, fsModule);
   if (reusable) {
-    lockedRegisterOwner(ledgerDir, reusable.pid, currentOwner, fsModule);
+    lockedRegisterOwner(ledgerDir, reusable.pid, currentOwner, fsModule, deps);
     return { spawned: false, port: reusable.port, ownerPid: reusable.pid, ledger: 'healthy-reusable' };
   }
+  return null;
+}
 
-  if (await isHealthy(port, 2000, deps)) {
-    return { spawned: false, port, fallback: 'unknown-healthy-port' };
-  }
-
-  if (!fsModule.existsSync(startScriptPath)) {
-    logger(`sidecar skill missing at ${startScriptPath}; degrading to positional fallback`);
-    return { spawned: false, port, fallback: 'no-sidecar-skill' };
-  }
-
-  const logFd = openSidecarLogFd(fsModule, osModule);
-  const child = spawnFn('bash', [startScriptPath], {
+function spawnSidecarProcess(startScriptPath, port, ownerToken, configHash, deps) {
+  const logFd = openSidecarLogFd(deps.fs, deps.os);
+  return deps.spawn('bash', [startScriptPath], {
     detached: true,
     stdio: ['ignore', logFd, logFd],
-    env: buildSidecarEnv(processObj.env, {
+    env: buildSidecarEnv(deps.process.env, {
       RERANK_SIDECAR_PORT: String(port),
       RERANK_SIDECAR_OWNER_TOKEN: ownerToken,
       RERANK_SIDECAR_CONFIG_HASH: configHash,
     }),
   });
+}
+
+async function spawnAndRecordSidecar(context) {
+  const { startScriptPath, port, ownerToken, configHash, currentOwner, deps, timeoutMs, ledgerDir } = context;
+  if (!deps.fs.existsSync(startScriptPath)) {
+    deps.log(`sidecar skill missing at ${startScriptPath}; degrading to positional fallback`);
+    return { spawned: false, port, fallback: 'no-sidecar-skill' };
+  }
+  const child = spawnSidecarProcess(startScriptPath, port, ownerToken, configHash, deps);
   child.unref();
   addLedgerRow(ledgerDir, {
     pid: child.pid,
@@ -700,12 +801,12 @@ async function ensureRerankSidecar(options = {}) {
     ownerToken,
     startedAtIso: new Date().toISOString(),
     lastHealthIso: new Date().toISOString(),
-    executablePath: processObj.execPath,
+    executablePath: deps.process.execPath,
     canonicalConfigHash: configHash,
     owners: [currentOwner],
     ownersListPresent: true,
     reaper: REAPER_POLICY,
-  }, fsModule);
+  }, deps.fs, deps);
 
   const ok = await waitForHealthy(port, Date.now() + timeoutMs, {
     ...deps,
@@ -714,24 +815,61 @@ async function ensureRerankSidecar(options = {}) {
   });
   if (!ok) {
     try {
-      processObj.kill(child.pid, 'SIGTERM');
+      deps.process.kill(child.pid, 'SIGTERM');
     } catch {
       // Best-effort cleanup; caller degrades to positional fallback either way.
     }
-    logger(`sidecar warmup timed out after ${timeoutMs}ms`);
+    deps.log(`sidecar warmup timed out after ${timeoutMs}ms`);
     return { spawned: false, port, ownerPid: child.pid, fallback: 'warmup-timeout', ledger: 'recorded-before-warmup' };
   }
 
-  logger(`sidecar spawned PID=${child.pid} listening on :${port}`);
+  deps.log(`sidecar spawned PID=${child.pid} listening on :${port}`);
   return { spawned: true, port, ownerPid: child.pid, ledger: 'recorded' };
+}
+
+async function ensureRerankSidecar(options = {}) {
+  const deps = resolveLauncherDeps(options);
+  const port = resolvePort(options.port ?? deps.process.env.RERANK_SIDECAR_PORT);
+  const timeoutMs = resolveTimeoutMs(options.healthTimeoutMs ?? DEFAULT_HEALTH_TIMEOUT_MS);
+  if (shouldSkipDisabled(options, deps.process)) {
+    return { spawned: false, port, fallback: 'cross-encoder-disabled' };
+  }
+
+  const startScriptPath = resolveStartScriptPath(options);
+  const ledgerDir = resolveLedgerDir(deps.process, deps.os, deps.fs);
+  const ownerToken = loadOrCreateOwnerToken(ledgerDir, deps.fs, deps.process, deps);
+  const configHash = canonicalConfigHash(port, deps.process.env);
+  const currentOwner = currentOwnerIdentity(deps.process, deps);
+
+  await reapStaleSidecars(ledgerDir, deps, deps.process, deps.fs, deps.os);
+  const reusable = await reuseExistingSidecar(ledgerDir, ownerToken, configHash, currentOwner, deps, deps.process, deps.fs);
+  if (reusable) return reusable;
+
+  if (await isHealthy(port, 2000, deps)) {
+    return { spawned: false, port, fallback: 'unknown-healthy-port' };
+  }
+
+  return spawnAndRecordSidecar({
+    startScriptPath,
+    port,
+    ownerToken,
+    configHash,
+    currentOwner,
+    deps,
+    timeoutMs,
+    ledgerDir,
+  });
 }
 
 module.exports = {
   ensureRerankSidecar,
   healthPayload,
+  normalizeHealthPayload,
   canonicalConfigHash,
   ConfigHashInputError,
+  StateDirValidationError,
   buildSidecarEnv,
+  fsyncDirOf,
   loadOrCreateOwnerToken,
   writeLedger,
   processLiveness,

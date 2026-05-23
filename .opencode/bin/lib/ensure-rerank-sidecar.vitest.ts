@@ -18,6 +18,8 @@ const {
   readLedger,
   canonicalConfigHash,
   ConfigHashInputError,
+  StateDirValidationError,
+  normalizeHealthPayload,
 } = require('./ensure-rerank-sidecar.cjs');
 
 const MODULE_PATH = fileURLToPath(new URL('./ensure-rerank-sidecar.cjs', import.meta.url));
@@ -106,6 +108,9 @@ function createFsMock(startScriptExists: boolean) {
     mkdirSync: vi.fn(),
     openSync: vi.fn(() => 42),
     fsyncSync: vi.fn(),
+    accessSync: vi.fn(),
+    fchmodSync: vi.fn(),
+    chmodSync: vi.fn(),
     readFileSync: vi.fn(() => ''),
     writeSync: vi.fn(),
     writeFileSync: vi.fn(),
@@ -254,18 +259,46 @@ describe('ensureRerankSidecar', () => {
   it('opts out without probing or spawning when SPECKIT_CROSS_ENCODER is false', async () => {
     const http = createHttpMock([200]);
     const spawn = vi.fn();
+    const fsMock = createFsMock(true);
     const result = await ensureRerankSidecar({
       deps: {
-        fs: createFsMock(true),
+        fs: fsMock,
         http,
-        process: createProcessMock({ SPECKIT_CROSS_ENCODER: 'false' }),
+        process: createProcessMock({
+          SPECKIT_CROSS_ENCODER: 'false',
+          RERANK_SIDECAR_STATE_DIR: '../bad-state-dir',
+        }),
         spawn,
       },
     });
 
     expect(result).toEqual({ spawned: false, port: 8765, fallback: 'cross-encoder-disabled' });
     expect(http.get).not.toHaveBeenCalled();
+    expect(fsMock.mkdirSync).not.toHaveBeenCalled();
     expect(spawn).not.toHaveBeenCalled();
+  });
+
+  it('honors skipIfDisabled=false by continuing through injected dependencies', async () => {
+    const child = { pid: 1234, unref: vi.fn() };
+    const spawnMock = vi.fn(() => child);
+    const fsMock = createFsMock(true);
+
+    await ensureRerankSidecar({
+      healthTimeoutMs: 1,
+      skipIfDisabled: false,
+      deps: {
+        fs: fsMock,
+        http: createHttpMock(['error']),
+        log: vi.fn(),
+        os: { homedir: vi.fn(() => '/tmp/test-home') },
+        process: createProcessMock({ SPECKIT_CROSS_ENCODER: 'false' }),
+        sleep: vi.fn(async () => undefined),
+        spawn: spawnMock,
+      },
+    });
+
+    expect(fsMock.mkdirSync).toHaveBeenCalled();
+    expect(spawnMock).toHaveBeenCalledOnce();
   });
 });
 
@@ -275,6 +308,7 @@ describe('writeLedger — F13 temp-file security', () => {
       mkdirSync: vi.fn(),
       openSync: vi.fn(() => 99),
       writeSync: vi.fn(),
+      fsyncSync: vi.fn(),
       closeSync: vi.fn(),
       renameSync: vi.fn(),
     };
@@ -282,7 +316,7 @@ describe('writeLedger — F13 temp-file security', () => {
     writeLedger('/fake/dir', [{ pid: 123, port: 8765, ownerToken: 'tok', canonicalConfigHash: 'abc' }], fsMock);
 
     expect(fsMock.mkdirSync).toHaveBeenCalledWith('/fake/dir', { recursive: true, mode: 0o700 });
-    expect(fsMock.openSync).toHaveBeenCalledTimes(2);
+    expect(fsMock.openSync).toHaveBeenCalledTimes(3);
 
     const tmpArg = fsMock.openSync.mock.calls[1][0] as string;
     const flagArg = fsMock.openSync.mock.calls[1][1] as string;
@@ -290,26 +324,33 @@ describe('writeLedger — F13 temp-file security', () => {
     expect(flagArg).toBe('wx');
     expect(tmpArg).toMatch(/\.tmp\.[0-9a-f]{32}$/);
     expect(fsMock.writeSync).toHaveBeenCalledTimes(1);
+    expect(fsMock.fsyncSync).toHaveBeenCalledWith(99);
     expect(fsMock.closeSync).toHaveBeenCalledWith(99);
     expect(fsMock.renameSync).toHaveBeenCalledTimes(1);
+    expect(fsMock.openSync.mock.calls[2]).toEqual(['/fake/dir', 'r']);
   });
 
   it('fails with EEXIST when a symlink or file already exists at the temp path', () => {
     const eeexist = Object.assign(new Error('EEXIST: file already exists'), { code: 'EEXIST' });
     const fsMock = {
       mkdirSync: vi.fn(),
-      openSync: vi.fn(() => { throw eeexist; }),
+      openSync: vi.fn((target: string) => {
+        if (target.endsWith('.lock')) return 77;
+        throw eeexist;
+      }),
       writeSync: vi.fn(),
+      fsyncSync: vi.fn(),
       closeSync: vi.fn(),
       renameSync: vi.fn(),
+      unlinkSync: vi.fn(),
     };
 
     expect(() =>
       writeLedger('/fake/dir', [{ pid: 123, port: 8765, ownerToken: 'tok', canonicalConfigHash: 'abc' }], fsMock),
     ).toThrow('EEXIST');
 
-    expect(fsMock.openSync).toHaveBeenCalledTimes(1);
-    expect(fsMock.openSync.mock.calls[0][1]).toBe('wx');
+    expect(fsMock.openSync).toHaveBeenCalledTimes(2);
+    expect(fsMock.openSync.mock.calls[1][1]).toBe('wx');
     expect(fsMock.writeSync).not.toHaveBeenCalled();
     expect(fsMock.renameSync).not.toHaveBeenCalled();
   });
@@ -344,6 +385,7 @@ describe('loadOrCreateOwnerToken — F15 atomic owner token write', () => {
       expect.stringMatching(/\.sidecar-owner-token\.tmp\.[0-9a-f]{32}$/),
       '/fake/owner-dir/.sidecar-owner-token',
     );
+    expect(fsMock.openSync.mock.calls[2]).toEqual(['/fake/owner-dir', 'r']);
     expect(fsMock.unlinkSync).toHaveBeenCalledWith('/fake/owner-dir/.sidecar-owner-token.lock');
   });
 
@@ -396,11 +438,12 @@ describe('ensureRerankSidecar — F49 child environment allowlist', () => {
   it('passes allowlisted env keys and strips unrelated parent variables', async () => {
     const child = { pid: 1234, unref: vi.fn() };
     const spawnMock = vi.fn(() => child);
+    const fsMock = createFsMock(true);
 
     await ensureRerankSidecar({
       healthTimeoutMs: 1,
       deps: {
-        fs: createFsMock(true),
+        fs: fsMock,
         http: createHttpMock(['error']),
         log: vi.fn(),
         os: { homedir: vi.fn(() => '/tmp/test-home') },
@@ -421,6 +464,9 @@ describe('ensureRerankSidecar — F49 child environment allowlist', () => {
     });
 
     const env = spawnMock.mock.calls[0][2].env as Record<string, string>;
+    const spawnOptions = spawnMock.mock.calls[0][2] as { stdio: Array<string | number> };
+    const logOpenCall = fsMock.openSync.mock.calls.find((call) => String(call[0]).endsWith('sidecar.log'));
+
     expect(env.PATH).toBe('/usr/bin:/bin');
     expect(env.HOME).toBe('/tmp/test-home');
     expect(env.LANG).toBe('en_US.UTF-8');
@@ -430,6 +476,60 @@ describe('ensureRerankSidecar — F49 child environment allowlist', () => {
     expect(env.RERANK_SIDECAR_PORT).toBe('8765');
     expect(env.RERANK_SIDECAR_OWNER_TOKEN).toBe('explicit-owner-token');
     expect(env.CUSTOM_TEST_SECRET).toBeUndefined();
+    expect(spawnOptions.stdio).toEqual(['ignore', 42, 42]);
+    expect(logOpenCall).toEqual([expect.stringContaining('sidecar.log'), 'a', 0o600]);
+    expect(fsMock.fchmodSync).toHaveBeenCalledWith(42, 0o600);
+  });
+});
+
+describe('ensureRerankSidecar — F89 state-dir validation', () => {
+  it.each([
+    ['relative path', 'relative/state'],
+    ['traversal segment', '/Users/test/../state'],
+    ['outside HOME', '/tmp/outside-home'],
+  ])('rejects %s', async (_name, configuredPath) => {
+    const processMock = createProcessMock({
+      HOME: '/Users/test',
+      SPECKIT_CROSS_ENCODER: 'true',
+      RERANK_SIDECAR_STATE_DIR: configuredPath,
+    });
+
+    await expect(ensureRerankSidecar({
+      deps: {
+        fs: createFsMock(true),
+        http: createHttpMock(['error']),
+        os: { homedir: vi.fn(() => '/Users/test') },
+        process: processMock,
+        spawn: vi.fn(),
+      },
+    })).rejects.toThrow(StateDirValidationError);
+    expect(processMock.stderr.write).toHaveBeenCalledWith(
+      expect.stringContaining('RERANK_SIDECAR_STATE_DIR'),
+    );
+  });
+
+  it('rejects non-writable state dirs before spawning', async () => {
+    const fsMock = createFsMock(true);
+    fsMock.accessSync.mockImplementation(() => {
+      throw Object.assign(new Error('EACCES'), { code: 'EACCES' });
+    });
+    const processMock = createProcessMock({
+      HOME: '/Users/test',
+      SPECKIT_CROSS_ENCODER: 'true',
+      RERANK_SIDECAR_STATE_DIR: '/Users/test/state',
+    });
+    const spawnMock = vi.fn();
+
+    await expect(ensureRerankSidecar({
+      deps: {
+        fs: fsMock,
+        http: createHttpMock(['error']),
+        os: { homedir: vi.fn(() => '/Users/test') },
+        process: processMock,
+        spawn: spawnMock,
+      },
+    })).rejects.toThrow(/must be writable/);
+    expect(spawnMock).not.toHaveBeenCalled();
   });
 });
 
@@ -677,6 +777,43 @@ describe('Layer D launcher pre-flight reap parity fixtures', () => {
 });
 
 describe('healthPayload — F85 body cap', () => {
+  it('normalizes successful and failed probes to the F59 stable shape', async () => {
+    await expect(healthPayload(8765, 2000, {
+      http: createHealthPayloadHttpMock([
+        { status: 'ok', port: '8766', owner_count: 3, last_reap_ts: 1779556800000 },
+      ]),
+    })).resolves.toEqual({
+      status: 'ok',
+      port: 8766,
+      ownerCount: 3,
+      lastReapTs: 1779556800000,
+    });
+
+    await expect(healthPayload(8765, 2000, {
+      http: createHealthPayloadHttpMock(['error']),
+    })).resolves.toEqual({
+      status: 'unreachable',
+      port: 8765,
+      ownerCount: 0,
+      lastReapTs: 0,
+    });
+  });
+
+  it('normalizes malformed health fields without changing the response keys', () => {
+    expect(Object.keys(normalizeHealthPayload({ status: 'ok', port: 'bad', ownerCount: -1, lastReapTs: 'bad' }, 8765))).toEqual([
+      'status',
+      'port',
+      'ownerCount',
+      'lastReapTs',
+    ]);
+    expect(normalizeHealthPayload({ status: 'ok', port: 'bad', ownerCount: -1, lastReapTs: 'bad' }, 8765)).toEqual({
+      status: 'ok',
+      port: 8765,
+      ownerCount: 0,
+      lastReapTs: 0,
+    });
+  });
+
   it.skip('resolves null when response body exceeds MAX_HEALTH_BODY_BYTES (64KB)', async () => {
     let capturedReq: any = null;
 
@@ -845,5 +982,34 @@ describe('processLiveness — F88 explicit error handling', () => {
       reason: 'pid-1-orphaned',
     });
     expect(processMock.kill).not.toHaveBeenCalled();
+  });
+});
+
+describe('ensure-rerank-sidecar structure — F67 helper split', () => {
+  it('keeps launcher functions at or below 40 lines', () => {
+    const source = readFileSync(MODULE_PATH, 'utf8').split('\n');
+    const functions: Array<{ name: string; lines: number }> = [];
+
+    for (let index = 0; index < source.length; index += 1) {
+      const match = source[index].match(/^async function (\w+)|^function (\w+)/);
+      if (!match) continue;
+      let depth = 0;
+      let seenBody = false;
+      for (let cursor = index; cursor < source.length; cursor += 1) {
+        for (const char of source[cursor]) {
+          if (char === '{') {
+            depth += 1;
+            seenBody = true;
+          }
+          if (char === '}') depth -= 1;
+        }
+        if (seenBody && depth === 0) {
+          functions.push({ name: match[1] ?? match[2], lines: cursor - index + 1 });
+          break;
+        }
+      }
+    }
+
+    expect(functions.filter((fn) => fn.lines > 40)).toEqual([]);
   });
 });

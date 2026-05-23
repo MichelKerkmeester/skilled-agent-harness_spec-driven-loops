@@ -1,0 +1,16 @@
+{
+  "title": "Filesystem Durability Closure for F22 F28 F59 F66 F67 F72 F89 F103 F104",
+  "description": "Level 2 packet closing rerank sidecar deferred P2 findings for filesystem durability, state-dir validation, log semantics, health shape, dependency injection, and helper extraction.",
+  "contextType": "implementation",
+  "importance_tier": "important",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/003-fix-deferred-p2s-for-filesystem-durability",
+  "level": 2,
+  "status": "complete",
+  "trigger_phrases": [
+    "020 003 filesystem durability",
+    "F22 F28 F59 F66 F67 F72 F89 F103 F104 sidecar",
+    "ensure rerank sidecar durability"
+  ],
+  "created_at": "2026-05-23T12:30:00Z",
+  "updated_at": "2026-05-23T10:31:09Z"
+}
