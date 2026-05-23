@@ -20,7 +20,7 @@ Runtime path resolution:
 - Gemini runtime: `.gemini/agents/*.md`
 
 Operator contract precedence for this skill surface:
-- Command entrypoint syntax in `.opencode/commands/deep/research.md`
+- Command entrypoint syntax in `.opencode/commands/deep/start-research-loop.md`
 - Convergence math in `references/convergence.md` and the deep-research YAML workflow
 - Runtime agent inventories from the checked-in runtime directories above
 
@@ -57,7 +57,7 @@ Use this skill when:
 
 ### FORBIDDEN INVOCATION PATTERNS
 
-This skill is invoked EXCLUSIVELY through the `/deep:research` command. The command's YAML workflow owns state, dispatch, and convergence.
+This skill is invoked EXCLUSIVELY through the `/deep:start-research-loop` command. The command's YAML workflow owns state, dispatch, and convergence.
 
 **NEVER:**
 - Write a custom bash/shell dispatcher to parallelize iterations
@@ -68,8 +68,8 @@ This skill is invoked EXCLUSIVELY through the `/deep:research` command. The comm
 - Manage iteration state outside the resolved local research packet under `{spec_folder}/research/`
 
 **ALWAYS:**
-- Invoke via `/deep:research:auto` or `/deep:research:confirm`
-- Let the command's YAML workflow own dispatch (auto: `.opencode/commands/deep/assets/deep_research_auto.yaml`)
+- Invoke via `/deep:start-research-loop:auto` or `/deep:start-research-loop:confirm`
+- Let the command's YAML workflow own dispatch (auto: `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`)
 - Let `scripts/reduce-state.cjs` be the SINGLE state writer
 - Require every iteration to produce BOTH the markdown narrative AND the JSONL delta (dispatch scripts must fail if either is missing)
 - Use `resolveArtifactRoot(specFolder, 'research')` from `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs` to locate the canonical research root
@@ -252,7 +252,7 @@ When `{spec_folder}/resource-map.md` is absent at init:
 
 ### Architecture: 3-Layer Integration
 
-`/deep:research` owns the YAML workflow, which initializes state, dispatches one LEAF iteration at a time, evaluates convergence, synthesizes `research/research.md`, and saves continuity. The `@deep-research` agent executes only one research cycle per dispatch.
+`/deep:start-research-loop` owns the YAML workflow, which initializes state, dispatches one LEAF iteration at a time, evaluates convergence, synthesizes `research/research.md`, and saves continuity. The `@deep-research` agent executes only one research cycle per dispatch.
 
 ### State Packet Location
 
@@ -329,7 +329,7 @@ Research continuity is externalized to files, each iteration starts fresh, conve
 
 ### EXPERIMENTAL / REFERENCE-ONLY FEATURES
 
-These concepts remain documented for future design work, but they are not part of the live executable contract for `/deep:research`:
+These concepts remain documented for future design work, but they are not part of the live executable contract for `/deep:start-research-loop`:
 1. **Wave orchestration** -- parallel question fan-out, pruning, and breakthrough logic
 2. **Checkpoint commits** -- per-iteration git commits
 3. **Wave orchestration on the same lineage** -- parallel fan-out remains reference-only
@@ -396,7 +396,7 @@ Before research, recover context with `/spec_kit:resume` using `handover.md -> _
 
 | Command | Relationship |
 |---------|-------------|
-| `/deep:research` | Primary invocation point |
+| `/deep:start-research-loop` | Primary invocation point |
 | `/spec_kit:resume` | Canonical recovery surface before resuming or extending an active packet |
 | `/spec_kit:plan` | Next step after deep research completes |
 | `/memory:save` | Manual memory save (deep research auto-saves) |

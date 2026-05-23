@@ -88,9 +88,9 @@ _memory:
 - [ ] T022 Rename: `spec_kit_deep-council_*` filenames → `deep_ai-council_*`
 
 ### Command MD Internal Updates
-- [ ] T023 Update `commands/deep/review.md` asset-path block → `deep/assets/deep_review_*`
-- [ ] T024 Update `commands/deep/research.md` asset-path block → `deep/assets/deep_research_*`
-- [ ] T025 Update `commands/deep/ai-council.md` asset-path block → `deep/assets/deep_ai-council_*`
+- [ ] T023 Update `commands/deep/start-review-loop.md` asset-path block → `deep/assets/deep_start-review-loop_*`
+- [ ] T024 Update `commands/deep/start-research-loop.md` asset-path block → `deep/assets/deep_start-research-loop_*`
+- [ ] T025 Update `commands/deep/ask-ai-council.md` asset-path block → `deep/assets/deep_ask-ai-council_*`
 
 ### Gemini TOML Migrations
 - [ ] T026 [P] `mv` `.gemini/commands/spec_kit/deep-review.toml` → `.gemini/commands/deep/review.toml`
@@ -165,9 +165,9 @@ _memory:
 - [ ] T061 `spec_kit_deep-review_` → `deep_review_`
 - [ ] T062 `spec_kit_deep-research_` → `deep_research_`
 - [ ] T063 `spec_kit/assets/spec_kit_deep-` → `deep/assets/deep_` (path refs)
-- [ ] T064 `/spec_kit:deep-review` → `/deep:review`
-- [ ] T065 `/spec_kit:deep-research` → `/deep:research`
-- [ ] T066 `/spec_kit:deep-council` → `/deep:ai-council`
+- [ ] T064 `/spec_kit:deep-review` → `/deep:start-review-loop`
+- [ ] T065 `/spec_kit:deep-research` → `/deep:start-research-loop`
+- [ ] T066 `/spec_kit:deep-council` → `/deep:ask-ai-council`
 
 ### Scope Control
 - [ ] T067 Include: `.opencode/specs/**/*.md`, `.opencode/specs/**/*.json`, `.opencode/skills/**/*.md` (changelog + feature_catalog + playbook)

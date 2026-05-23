@@ -11,9 +11,9 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/131-deep-skill-evolution/007-deep-commands-relocation"
     last_updated_at: "2026-05-23T00:00:00Z"
     last_updated_by: "deepseek-v4-pro"
-    recent_action: "WAVE 2 complete — 25 live refs updated (SKILL.md + advisor + agents + graph-metadata)"
+    recent_action: "correction wave — slash-command renamed (deep:start-*-loop, deep:ask-ai-council)"
     next_safe_action: "dispatch WAVE 3 (skill-graph recompile + vitest sweep)"
-    completion_pct: 40
+    completion_pct: 50
 ---
 # Implementation Summary: 131/007 — Deep-* Commands Relocation
 
@@ -80,7 +80,7 @@ Deliverables for WAVEs 1-5 are defined in `tasks.md` and will be executed via cl
 | Decision | Why |
 |----------|-----|
 | Co-locate assets in `commands/deep/assets/` | Single tree for command definition + assets reduces cognitive load. |
-| Use `deep_ai-council_*` naming (skill slug) | Consistent with `deep:ai-council` skill name and `commands/deep/ai-council.md`. |
+| Use `deep_ai-council_*` naming (skill slug) | Consistent with `deep:ai-council` skill name and `commands/deep/ask-ai-council.md`. |
 | Plain `mv` not `git mv` | Avoids `.git/index.lock` conflicts with cli-opencode sandbox. |
 | Sequential cli-opencode dispatch | One dispatch at a time per cli-* memory rule. |
 | WAVE 4 included | User confirmed historical bulk-sed for grep cleanliness. |

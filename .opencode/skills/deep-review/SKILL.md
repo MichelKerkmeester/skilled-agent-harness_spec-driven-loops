@@ -54,7 +54,7 @@ Use this skill when:
 
 ### FORBIDDEN INVOCATION PATTERNS
 
-This skill is invoked EXCLUSIVELY through the `/deep:review` command. The command's YAML workflow owns state, dispatch, and convergence.
+This skill is invoked EXCLUSIVELY through the `/deep:start-review-loop` command. The command's YAML workflow owns state, dispatch, and convergence.
 
 **NEVER:**
 - Write a custom bash/shell dispatcher to parallelize iterations
@@ -65,8 +65,8 @@ This skill is invoked EXCLUSIVELY through the `/deep:review` command. The comman
 - Manage iteration state outside the resolved local review packet under `{spec_folder}/review/`
 
 **ALWAYS:**
-- Invoke via `/deep:review :auto` or `/deep:review :confirm`
-- Let the command's YAML workflow own dispatch (auto: `.opencode/commands/deep/assets/deep_review_auto.yaml`)
+- Invoke via `/deep:start-review-loop :auto` or `/deep:start-review-loop :confirm`
+- Let the command's YAML workflow own dispatch (auto: `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`)
 - Let `scripts/reduce-state.cjs` be the SINGLE state writer
 - Require every iteration to produce BOTH the markdown narrative AND the JSONL delta (dispatch scripts must fail if either is missing)
 - Use `resolveArtifactRoot(specFolder, 'review')` from `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs` to locate the canonical review root
@@ -332,7 +332,7 @@ When `{spec_folder}/resource-map.md` is absent at init:
 
 ### Architecture
 
-`/deep:review` owns the loop. The YAML workflow initializes state, dispatches one LEAF review iteration at a time, evaluates convergence, synthesizes `review-report.md`, and saves continuity. The LEAF agent reads state, reviews one dimension, writes `iteration-NNN.md`, updates strategy, and appends JSONL.
+`/deep:start-review-loop` owns the loop. The YAML workflow initializes state, dispatches one LEAF review iteration at a time, evaluates convergence, synthesizes `review-report.md`, and saves continuity. The LEAF agent reads state, reviews one dimension, writes `iteration-NNN.md`, updates strategy, and appends JSONL.
 
 ### State Packet Location
 
@@ -480,7 +480,7 @@ Key integrations:
 - **Gate 2**: Skill routing via `skill_advisor.py` (keywords: deep review, code audit, iterative review)
 - **Gate 3**: File modifications require spec folder question per the root doc Gate 3; the spec folder determines the `{spec_folder}/review/` state packet location
 - **Continuity**: `/spec_kit:resume` is the operator-facing recovery surface; canonical packet continuity is written via `generate-context.js`
-- **Command**: `/deep:review` is the primary invocation point
+- **Command**: `/deep:start-review-loop` is the primary invocation point
 
 ### Continuity Integration
 

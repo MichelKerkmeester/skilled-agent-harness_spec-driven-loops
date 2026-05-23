@@ -64,7 +64,7 @@ Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_
 
 Under `execution_mode = AUTONOMOUS` from the `:auto` suffix, follow the three-tier flow:
 
-1. **Tier 1 - Resolve confidently**: parse `$ARGUMENTS` flags, the `PRE-BOUND SETUP ANSWERS:` block, and the Default Resolution Table below. When every required field is resolved, persist to `{spec_folder}/ai-council/council-session.json` or the YAML-designated setup artifact, bind runtime YAML placeholders, set `STATUS: PASSED`, and load `.opencode/commands/deep/assets/deep_ai-council_auto.yaml`. End Section 0.
+1. **Tier 1 - Resolve confidently**: parse `$ARGUMENTS` flags, the `PRE-BOUND SETUP ANSWERS:` block, and the Default Resolution Table below. When every required field is resolved, persist to `{spec_folder}/ai-council/council-session.json` or the YAML-designated setup artifact, bind runtime YAML placeholders, set `STATUS: PASSED`, and load `.opencode/commands/deep/assets/deep_ask-ai-council_auto.yaml`. End Section 0.
 2. **Tier 2 - Targeted ask**: when one or two required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2 fields: `spec_folder` and `topics` when the prompt contains multiple plausible topic lists. Missing `deliberation_topic` is absence, not ambiguity - go to Tier 3.
 3. **Tier 3 - Fail fast**: emit the named-missing-inputs error format with `/spec_kit:deep-council:auto` as the command name. Exit non-zero. Do not load YAML.
 
@@ -321,8 +321,8 @@ Use this when a planning problem needs more than one council topic, more than on
 
 After setup phase passes, load and execute the appropriate YAML prompt based on `execution_mode`:
 
-- **AUTONOMOUS**: `.opencode/commands/deep/assets/deep_ai-council_auto.yaml`
-- **INTERACTIVE**: `.opencode/commands/deep/assets/deep_ai-council_confirm.yaml`
+- **AUTONOMOUS**: `.opencode/commands/deep/assets/deep_ask-ai-council_auto.yaml`
+- **INTERACTIVE**: `.opencode/commands/deep/assets/deep_ask-ai-council_confirm.yaml`
 
 The YAML contains the full loop workflow: initialization, session orchestration, topic iteration, findings-registry use, synthesis, and memory save.
 
@@ -379,6 +379,6 @@ Full protocol documentation: `.opencode/skills/deep-ai-council/SKILL.md` Section
 
 Key references:
 
-- Command workflow assets: `.opencode/commands/deep/assets/deep_ai-council_auto.yaml` and `.opencode/commands/deep/assets/deep_ai-council_confirm.yaml`
+- Command workflow assets: `.opencode/commands/deep/assets/deep_ask-ai-council_auto.yaml` and `.opencode/commands/deep/assets/deep_ask-ai-council_confirm.yaml`
 - Skill package: `.opencode/skills/deep-ai-council/SKILL.md`
 - State hierarchy ADR: `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council/008-iterative-research-and-architecture/decision-record.md`

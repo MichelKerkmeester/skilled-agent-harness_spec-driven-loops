@@ -834,7 +834,7 @@ For details, see the [Skill Advisor README](.opencode/skills/system-skill-adviso
 - Semantic coverage graph with 7 relation types, question coverage tracking, sourceDiversity and evidenceDepth guards
 - Progressive synthesis, negative knowledge preservation, quality guards (source diversity, focus alignment, weak-source checks)
 - Fail-closed corruption handling, graph convergence fallback scoring, terminal stop metadata parsing
-- Lifecycle modes: `new`, `resume`, `restart`. Dispatched by `/deep:research` command
+- Lifecycle modes: `new`, `resume`, `restart`. Dispatched by `/deep:start-research-loop` command
 
 **deep-review** 
 - Autonomous code quality auditing system with iterative LEAF cycles
@@ -843,7 +843,7 @@ For details, see the [Skill Advisor README](.opencode/skills/system-skill-adviso
 - Binary quality gates (evidence, scope, coverage), graph-aware legal-stop checks, semantic coverage graph
 - 9-section review report with PASS/CONDITIONAL/FAIL verdict
 - Fail-closed corruption, claim-adjudication `finalSeverity`, stale STOP veto auto-clearing
-- Lifecycle modes: `new`, `resume`, `restart`. Dispatched by `/deep:review` command
+- Lifecycle modes: `new`, `resume`, `restart`. Dispatched by `/deep:start-review-loop` command
 
 **deep-loop-runtime**
 - Shared runtime infrastructure for deep-review + deep-research loop workflows (post-arc-118)
@@ -994,7 +994,7 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 **Deep Research**
 - Autonomous research agent executing single LEAF (Loop, Externalize, Analyze, Finish) iterations
 - State externalized via JSONL + strategy.md for pause/resume across sessions
-- Loop orchestration managed by `/deep:research` command, not this agent
+- Loop orchestration managed by `/deep:start-research-loop` command, not this agent
 - Has permission to write `research.md` and `scratch/` inside spec folders
 - 3-signal convergence model: Rolling Average (0.45), MAD Noise Floor (0.30), Coverage/Age (0.25) with 0.60 threshold
 - Semantic coverage graph: each iteration emits `graphEvents` with relation types (ANSWERS, SUPPORTS, CONTRADICTS, SUPERSEDES, DERIVED_FROM, COVERS, CITES)
@@ -1010,7 +1010,7 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 **Deep Review**
 - Autonomous code quality auditor using LEAF architecture for single review iterations
 - Reviews code but NEVER modifies target files (read-only on code)
-- Loop orchestration managed by `/deep:review` command, not this agent
+- Loop orchestration managed by `/deep:start-review-loop` command, not this agent
 - Produces P0/P1/P2 severity-ranked findings with `file:line` evidence across 4 review dimensions (Correctness, Security, Traceability, Maintainability)
 - Severity-weighted convergence: P0 contributes weight 10.0, P1 contributes 5.0, P2 contributes 1.0. Refinements contribute 0.5x those weights
 - 3-signal convergence model: Rolling Average (0.45), MAD Noise Floor (0.30), Dimension Coverage (0.25)
@@ -1099,12 +1099,12 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 ```text
 /spec_kit:plan --intake-only
   ├─► /spec_kit:plan -> /spec_kit:implement
-  ├─► /deep:research -> /spec_kit:plan
+  ├─► /deep:start-research-loop -> /spec_kit:plan
   └─► /spec_kit:complete
        └─► reuses the shared intake contract from /spec_kit:plan --intake-only when folder_state still needs intake
 ```
 
-`/deep:research` only enters that chain after a real `spec.md` exists. It follows `spec_check_protocol.md` for advisory-lock handling, `folder_state` classification and bounded generated-fence sync.
+`/deep:start-research-loop` only enters that chain after a real `spec.md` exists. It follows `spec_check_protocol.md` for advisory-lock handling, `folder_state` classification and bounded generated-fence sync.
 
 &nbsp;
 #### MEMORY

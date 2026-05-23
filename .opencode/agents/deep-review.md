@@ -28,7 +28,7 @@ Executes ONE review iteration within an autonomous review loop: read externalize
 
 **Code Graph Ownership**: `code_graph_*`, `ccc_*`, and `detect_changes` remain stable MCP tool IDs, but their implementation and package docs are owned by `.opencode/skills/system-code-graph/`.
 
-**CRITICAL**: This agent executes a SINGLE review iteration, not the full loop. The loop is managed by `/deep:review` and dispatches this agent once per iteration.
+**CRITICAL**: This agent executes a SINGLE review iteration, not the full loop. The loop is managed by `/deep:start-review-loop` and dispatches this agent once per iteration.
 
 **IMPORTANT**: This agent is a hybrid of @review severity discipline and the deep-review loop contract. It reviews code but does NOT modify code under review.
 
@@ -263,9 +263,9 @@ Use Read, Write, Edit, Grep, Glob, Bash, memory tools, code graph tools, and Coc
 
 | Integration | Canonical Surface | Agent Contract |
 |-------------|-------------------|----------------|
-| Dispatcher command | `.opencode/commands/deep/review.md` (`/deep:review`) | Owns the loop and dispatches this agent once per iteration |
-| Auto workflow | `.opencode/commands/deep/assets/deep_review_auto.yaml` | Owns loop state and reducer refresh |
-| Confirm workflow | `.opencode/commands/deep/assets/deep_review_confirm.yaml` | Owns approval pauses and reducer refresh |
+| Dispatcher command | `.opencode/commands/deep/start-review-loop.md` (`/deep:start-review-loop`) | Owns the loop and dispatches this agent once per iteration |
+| Auto workflow | `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Owns loop state and reducer refresh |
+| Confirm workflow | `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Owns approval pauses and reducer refresh |
 | Orchestrator agent | `@orchestrate` | Caller/coordinator only; this agent must not call it back |
 | Single-pass reviewer | `@review` | Separate non-iterative reviewer; do not delegate to it |
 | Research agent | `@deep-research` | Separate research iteration agent; do not delegate review work to it |

@@ -175,7 +175,7 @@ Complete the relocation: move workflow assets to co-located `commands/deep/asset
 | NFR-P01 | Wall-clock time ≤ 90 minutes for all 6 waves | WAVE 0 (5 min), WAVE 1 (15 min), WAVE 2 (20 min), WAVE 3 (10 min), WAVE 4 (20 min), WAVE 5 (5 min) = ~75 min nominal |
 | NFR-R01 | Sequential cli-opencode dispatch discipline | ONE cli-* dispatch at a time across the cli-* family; main agent commits per wave |
 | NFR-T01 | Vitest 100% PASS after WAVE 3 | All 4 test suites pass with 0 failures |
-| NFR-R02 | No runtime regression | All existing deep-* workflows (`/deep:review`, `/deep:research`, `/deep:ai-council`) continue to execute after WAVE 1-3 |
+| NFR-R02 | No runtime regression | All existing deep-* workflows (`/deep:start-review-loop`, `/deep:start-research-loop`, `/deep:ask-ai-council`) continue to execute after WAVE 1-3 |
 | NFR-R03 | Symlink integrity preserved | `.codex/commands/` → `.opencode/commands/` and `.claude/commands/deep/` mirrors remain functional |
 <!-- /ANCHOR:nfr -->
 
@@ -224,13 +224,13 @@ Complete the relocation: move workflow assets to co-located `commands/deep/asset
 <!-- ANCHOR:user-stories -->
 ## 11. USER STORIES
 
-### US-001: Operator Types `/deep:review` Consistently Across Runtimes
+### US-001: Operator Types `/deep:start-review-loop` Consistently Across Runtimes
 
-**As a** CLI operator, **I want** to invoke deep-* commands using a consistent `/deep:<skill>` slash syntax across all runtimes (opencode, claude, codex, gemini), **so that** I don't need to remember whether a particular runtime uses `/spec_kit:deep-review` vs `/deep:review`.
+**As a** CLI operator, **I want** to invoke deep-* commands using a consistent `/deep:<skill>` slash syntax across all runtimes (opencode, claude, codex, gemini), **so that** I don't need to remember whether a particular runtime uses `/spec_kit:deep-review` vs `/deep:start-review-loop`.
 
 **Acceptance Criteria**:
-1. Given I am in an opencode session, When I type `/deep:review`, Then the deep-review workflow executes.
-2. Given I am in a claude session, When I type `/deep:research`, Then the deep-research workflow executes.
+1. Given I am in an opencode session, When I type `/deep:start-review-loop`, Then the deep-review workflow executes.
+2. Given I am in a claude session, When I type `/deep:start-research-loop`, Then the deep-research workflow executes.
 3. Given I am in any runtime, When I search for old `/spec_kit:deep-*` references in agent docs, Then I find zero live matches.
 4. Given the skill advisor receives "deep review packet", Then `deep-review` surfaces in the top recommendations.
 <!-- /ANCHOR:user-stories -->

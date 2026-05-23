@@ -61,16 +61,16 @@ NEW: .opencode/commands/deep/assets/deep_{skill}_{auto,confirm}.yaml
 
 **2. Name assets with skill slug, not command slug: `deep_ai-council_*` matches `deep:ai-council` skill name.**
 
-The registry skill name is `deep:ai-council` (not `deep:council`). Using `deep_ai-council_auto.yaml` keeps the asset filename consistent with the skill identifier.
+The registry skill name is `deep:ai-council` (not `deep:council`). Using `deep_ask-ai-council_auto.yaml` keeps the asset filename consistent with the skill identifier.
 
 Naming table:
 ```
-OLD: spec_kit_deep-review_auto.yaml     → NEW: deep_review_auto.yaml
-OLD: spec_kit_deep-review_confirm.yaml  → NEW: deep_review_confirm.yaml
-OLD: spec_kit_deep-research_auto.yaml    → NEW: deep_research_auto.yaml
-OLD: spec_kit_deep-research_confirm.yaml → NEW: deep_research_confirm.yaml
-OLD: spec_kit_deep-council_auto.yaml     → NEW: deep_ai-council_auto.yaml
-OLD: spec_kit_deep-council_confirm.yaml  → NEW: deep_ai-council_confirm.yaml
+OLD: spec_kit_deep-review_auto.yaml     → NEW: deep_start-review-loop_auto.yaml
+OLD: spec_kit_deep-review_confirm.yaml  → NEW: deep_start-review-loop_confirm.yaml
+OLD: spec_kit_deep-research_auto.yaml    → NEW: deep_start-research-loop_auto.yaml
+OLD: spec_kit_deep-research_confirm.yaml → NEW: deep_start-research-loop_confirm.yaml
+OLD: spec_kit_deep-council_auto.yaml     → NEW: deep_ask-ai-council_auto.yaml
+OLD: spec_kit_deep-council_confirm.yaml  → NEW: deep_ask-ai-council_confirm.yaml
 ```
 
 **3. Preserve historical references in `z_archive/` and early changelogs as audit trail; update all live operator-facing surfaces.**
@@ -95,7 +95,7 @@ WAVE 4 (bulk-sed of ~5,267 spec docs) updates historical references for cleanlin
 
 **Positive**:
 - Clean co-location: command definitions + assets in one tree (`commands/deep/`)
-- Sibling-consistent naming: `deep_ai-council_*` matches `deep:ai-council` skill name and `commands/deep/ai-council.md` file
+- Sibling-consistent naming: `deep_ai-council_*` matches `deep:ai-council` skill name and `commands/deep/ask-ai-council.md` file
 - Grep-friendly codebase: no stale `spec_kit/` references in live surfaces after WAVE 1-2
 - Cross-runtime consistency: Gemini TOMLs live alongside their opencode command counterparts
 

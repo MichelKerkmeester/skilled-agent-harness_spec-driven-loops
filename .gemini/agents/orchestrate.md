@@ -584,7 +584,7 @@ When ANY context pressure signal fires:
 | -------------------------------------- | -------------------- | -------------------------------------- |
 | Sub-agent stuck 3+ times on same error | Surface prompted offer; user dispatches `Task tool → @debug` | Fresh perspective debugging (user-invoked) |
 | Session ending or user says "stopping" | `/memory:save`       | Preserve canonical continuity          |
-| Need formal research before planning   | `/deep:research` | Autonomous iterative research loop  |
+| Need formal research before planning   | `/deep:start-research-loop` | Autonomous iterative research loop  |
 | Claiming task completion               | `/spec_kit:complete` | Verification workflow with checklist   |
 | Need to save important context         | `/memory:save`       | Preserve decisions and findings        |
 | Resuming prior work (known spec)       | `/spec_kit:resume`   | Recover via `handover.md` -> `_memory.continuity` -> spec docs |

@@ -249,14 +249,14 @@ SKILL_ALIAS_GROUPS = {
     "memory:save": {"command-memory-save", "/memory:save", "memory:save"},
     "deep-research": {
         "command-spec-kit-deep-research",
-        "/deep:research",
-        "deep:research",
+        "/deep:start-research-loop",
+        "deep:start-research-loop",
         "deep-research",
     },
     "deep-review": {
         "command-spec-kit-deep-review",
-        "/deep:review",
-        "deep:review",
+        "/deep:start-review-loop",
+        "deep:start-review-loop",
         "deep-review",
     },
     "deep-ai-council": {
@@ -1670,9 +1670,9 @@ PHRASE_INTENT_BOOSTERS = {
     "auto review security audit": [("deep-review", 2.5)],
     "auto review audit": [("deep-review", 2.2)],
     "auto review loop": [("deep-review", 2.5)],
-    ":review": [("deep-review", 3.0)],
-    ":review:auto": [("deep-review", 3.0)],
-    ":review:confirm": [("deep-review", 3.0)],
+    ":start-review-loop": [("deep-review", 3.0)],
+    ":start-review-loop:auto": [("deep-review", 3.0)],
+    ":start-review-loop:confirm": [("deep-review", 3.0)],
     "mcp server code": [("sk-code", 1.8)],
     "system code style guidance": [("sk-code", 1.7)],
     "python shell json standards": [("sk-code", 1.9)],
@@ -1753,7 +1753,7 @@ COMMAND_BRIDGES = {
     # ─────────────────────────────────────────────────────────────────
     # T-SAP-03 (R46-001): per-subcommand bridges for /spec_kit family.
     # Previously all /spec_kit:* subcommands collapsed to `command-spec-kit`
-    # at `kind_priority=2`, so `/deep:research` lost its owning-skill
+    # at `kind_priority=2`, so `/deep:start-research-loop` lost its owning-skill
     # signal (should route to `deep-research`, not `command-spec-kit`).
     # Dict insertion order IS iteration order in Python 3.7+, so the specific
     # subcommand markers MUST appear BEFORE the deprecated generic bridge —
@@ -1777,13 +1777,13 @@ COMMAND_BRIDGES = {
         "owning_skill": "system-spec-kit",
     },
     "command-spec-kit-deep-research": {
-        "description": "Run the autonomous deep-research loop using /deep:research.",
-        "slash_markers": ["/deep:research", "deep:research"],
+        "description": "Run the autonomous deep-research loop using /deep:start-research-loop.",
+        "slash_markers": ["/deep:start-research-loop", "deep:start-research-loop"],
         "owning_skill": "deep-research",
     },
     "command-spec-kit-deep-review": {
-        "description": "Run the autonomous deep-review loop using /deep:review.",
-        "slash_markers": ["/deep:review", "deep:review"],
+        "description": "Run the autonomous deep-review loop using /deep:start-review-loop.",
+        "slash_markers": ["/deep:start-review-loop", "deep:start-review-loop"],
         "owning_skill": "deep-review",
     },
     "command-spec-kit-resume": {
@@ -2981,8 +2981,8 @@ ITERATION_LOOP_PHRASES = (
     "autoresearch", "auto research", "research loop", "review loop",
     "iterative research", "iterative review", "autonomous research", "autonomous review",
     "iterations of", ":auto", "convergence detection",
-    "/deep:research", "/deep:review",
-    "deep:research", "deep:review",
+    "/deep:start-research-loop", "/deep:start-review-loop",
+    "deep:start-research-loop", "deep:start-review-loop",
 )
 
 # T-SAP-02 (R45-002): Deep-research disambiguation phrases. When the prompt
@@ -3000,8 +3000,8 @@ DEEP_RESEARCH_DISAMBIGUATION_PHRASES = (
     "iterative research",
     "autonomous research",
     "auto research",
-    "/deep:research",
-    "deep:research",
+    "/deep:start-research-loop",
+    "deep:start-research-loop",
 )
 
 # Symmetric guard for deep-review vs code-review wording collisions.
@@ -3016,8 +3016,8 @@ DEEP_REVIEW_DISAMBIGUATION_PHRASES = (
     "review loop",
     "iterative review",
     "autonomous review",
-    "/deep:review",
-    "deep:review",
+    "/deep:start-review-loop",
+    "deep:start-review-loop",
 )
 
 DISAMBIGUATION_MARGIN = 0.10

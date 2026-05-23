@@ -111,12 +111,12 @@ AFTER:
     research.md
     ai-council.md
     assets/                           ← co-located
-      deep_review_auto.yaml
-      deep_review_confirm.yaml
-      deep_research_auto.yaml
-      deep_research_confirm.yaml
-      deep_ai-council_auto.yaml
-      deep_ai-council_confirm.yaml
+      deep_start-review-loop_auto.yaml
+      deep_start-review-loop_confirm.yaml
+      deep_start-research-loop_auto.yaml
+      deep_start-research-loop_confirm.yaml
+      deep_ask-ai-council_auto.yaml
+      deep_ask-ai-council_confirm.yaml
   .gemini/commands/deep/
     review.toml                       ← migrated
     research.toml                     ← migrated
