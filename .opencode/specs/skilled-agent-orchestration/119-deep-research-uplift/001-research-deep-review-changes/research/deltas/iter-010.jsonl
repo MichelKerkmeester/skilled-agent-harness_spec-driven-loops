@@ -1,0 +1,1 @@
+{"iter":10,"type":"verdict","verdict":"PASS","hasAdvisories":true,"P0":0,"P1_actionable":2,"P2_actionable":3,"recommended_packets":3,"convergence":"sustained","gates":{"evidence":"PASS","scope":"PASS","coverage":"PASS"},"packets":["120-deep-research-iteration-ordering-fix","121-deep-research-uncovered-questions","122-deep-research-hygiene-fix-pack"]}

@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/119-deep-research-uplift",
+  "spec_folder": "skilled-agent-orchestration/119-deep-research-uplift",
+  "parent_id": "skilled-agent-orchestration",
+  "children_ids": [
+    "skilled-agent-orchestration/119-deep-research-uplift/001-research-deep-review-changes",
+    "skilled-agent-orchestration/119-deep-research-uplift/002-applicability-analysis",
+    "skilled-agent-orchestration/119-deep-research-uplift/003-uplift-recommendations"
+  ],
+  "manual": {
+    "depends_on": ["skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp"],
+    "supersedes": [],
+    "related_to": [
+      "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-research uplift",
+      "deep-research from deep-review learnings",
+      "119 deep-research investigation"
+    ],
+    "key_topics": [
+      "deep-research-uplift",
+      "deep-review-learnings",
+      "applicability-analysis",
+      "10-iter-research",
+      "mixed-executor-cli-devin-cli-codex"
+    ],
+    "importance_tier": "important",
+    "status": "active",
+    "key_files": [
+      "spec.md",
+      "001-research-deep-review-changes/research/research.md"
+    ],
+    "entities": [
+      "deep-research",
+      "deep-review",
+      "deep-loop-runtime",
+      "cli-devin",
+      "cli-codex",
+      "swe-1.6",
+      "gpt-5.5"
+    ],
+    "causal_summary": "Phased deep-research packet investigating whether 118 deep-review upgrades (FULL_ISOLATE_NO_MCP runtime relocation, sk-doc canonical companions, 27-finding fix-pack) should propagate to deep-research. 10-iter research with mixed executors (cli-devin swe-1.6 iters 1-8 + cli-codex gpt-5.5 high fast iters 9-10) — user-specified executor strategy. Output: applicability mapping (phase 002) + prioritized uplift plan (phase 003).",
+    "created_at": "2026-05-22T22:35:00Z",
+    "last_save_at": "2026-05-22T22:35:00Z",
+    "save_lineage": "manual_phase_parent_scaffold",
+    "last_accessed_at": null,
+    "source_docs": ["spec.md"]
+  }
+}

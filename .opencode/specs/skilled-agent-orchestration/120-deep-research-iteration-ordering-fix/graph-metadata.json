@@ -5,9 +5,9 @@
   "parent_id": "skilled-agent-orchestration",
   "children_ids": [],
   "manual": {
-    "depends_on": ["skilled-agent-orchestration/119-deep-research-uplift-from-deep-review-learnings"],
+    "depends_on": ["skilled-agent-orchestration/119-deep-research-uplift"],
     "supersedes": [],
-    "related_to": ["skilled-agent-orchestration/119-deep-research-uplift-from-deep-review-learnings"]
+    "related_to": ["skilled-agent-orchestration/119-deep-research-uplift"]
   },
   "derived": {
     "trigger_phrases": ["DR-006 lexical sort fix", "120 deep-research", "numeric sort iteration files"],

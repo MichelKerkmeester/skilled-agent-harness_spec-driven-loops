@@ -74,5 +74,5 @@ _memory:
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- 119 source: `../119-deep-research-uplift-from-deep-review-learnings/003-uplift-recommendations/uplift-roadmap.md`
+- 119 source: `../119-deep-research-uplift/003-uplift-recommendations/uplift-roadmap.md`
 <!-- /ANCHOR:cross-refs -->

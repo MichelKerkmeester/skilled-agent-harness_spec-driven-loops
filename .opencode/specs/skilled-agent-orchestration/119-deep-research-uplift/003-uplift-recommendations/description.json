@@ -1,0 +1,12 @@
+{
+  "level": "phase-child",
+  "specFolder": "skilled-agent-orchestration/119-deep-research-uplift/003-uplift-recommendations",
+  "description": "3-packet follow-on roadmap closing the 5 actionable items from the 10-iter deep-research investigation. Outputs: uplift-roadmap.md with prioritized packet 120/121/122 plan.",
+  "keywords": ["119/003", "uplift-roadmap", "packet-120", "packet-121", "packet-122"],
+  "lastUpdated": "2026-05-23T06:00:00.000Z",
+  "specId": "003",
+  "folderSlug": "uplift-recommendations",
+  "parentChain": ["skilled-agent-orchestration", "119-deep-research-uplift"],
+  "memorySequence": 119003,
+  "memoryNameHistory": []
+}
