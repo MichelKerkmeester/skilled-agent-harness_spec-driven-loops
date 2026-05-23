@@ -53,6 +53,7 @@ except ModuleNotFoundError:  # pragma: no cover - direct script execution
 
 DEFAULT_PORT = 8765
 DEFAULT_HEALTH_TIMEOUT_SECONDS = 20.0
+MAX_HEALTH_BODY_BYTES = 65536  # 64KB to match JS ensure-rerank-sidecar.cjs
 SCRIPT_DIR = Path(__file__).resolve().parent
 SIDECAR_SKILL_PATH = SCRIPT_DIR.parent
 START_SCRIPT_PATH = SCRIPT_DIR / "start.sh"
@@ -78,7 +79,7 @@ def health_payload(port: int, timeout_seconds: float = 2.0) -> dict[str, Any] | 
     url = f"http://127.0.0.1:{port}/health"
     try:
         with urllib.request.urlopen(url, timeout=timeout_seconds) as response:
-            body = response.read(8192)
+            body = response.read(MAX_HEALTH_BODY_BYTES)
             if response.status != 200:
                 return None
             parsed = json.loads(body.decode("utf-8"))
@@ -133,13 +134,14 @@ def _owner_token(skill_path: Path, state_dir: Path) -> str:
 
 
 def _canonical_config_hash(port: int) -> str:
+    # Empty string is treated as "not set" to match JS behavior (|| operator)
+    # JS sibling mirrors this contract in ensure-rerank-sidecar.cjs:135-150
+    revision_env = os.environ.get("RERANK_MODEL_REVISION", "").strip()
+    revision = revision_env if revision_env else "e61197ed45024b0ed8a2d74b80b4d909f1255473"
     config = {
         "port": str(port),
         "model": os.environ.get("RERANK_MODEL_NAME", "Qwen/Qwen3-Reranker-0.6B"),
-        "revision": os.environ.get(
-            "RERANK_MODEL_REVISION",
-            "e61197ed45024b0ed8a2d74b80b4d909f1255473",
-        ),
+        "revision": revision,
         "allowed": os.environ.get("RERANK_ALLOWED_MODELS", ""),
         "revisions": os.environ.get("RERANK_MODEL_REVISIONS", ""),
         "device": os.environ.get("RERANK_DEVICE", ""),

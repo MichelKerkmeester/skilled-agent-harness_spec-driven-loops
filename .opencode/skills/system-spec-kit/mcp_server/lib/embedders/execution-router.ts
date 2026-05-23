@@ -8,7 +8,7 @@ import type { IEmbeddingProvider } from '@spec-kit/shared/types';
 
 import type { EmbedderAdapter } from './adapter.js';
 import { getAdapter, getManifest } from './registry.js';
-import { SidecarClient, type SidecarWorkerInfo } from './sidecar-client.js';
+import { SidecarClient, toBackendKind, type SidecarClientOptions, type SidecarWorkerInfo } from './sidecar-client.js';
 import type { BackendKind } from './types.js';
 
 // ───────────────────────────────────────────────────────────────
@@ -41,17 +41,6 @@ function normalizeProvider(provider: string): string {
 
 function cacheKey(provider: string, model: string): string {
   return `${normalizeProvider(provider)}:${model}`;
-}
-
-function toBackendKind(provider: string): BackendKind {
-  const normalized = normalizeProvider(provider);
-  if (normalized === 'ollama') {
-    return 'ollama';
-  }
-  if (normalized === 'openai' || normalized === 'voyage' || normalized === 'api') {
-    return 'api';
-  }
-  return 'sentence-transformers';
 }
 
 function resolveExecutionPolicy(): EmbedderExecutionPolicy {
@@ -142,7 +131,7 @@ class DirectProviderAdapter implements EmbedderAdapter {
   ) {
     this.name = model;
     this.dim = dimensions;
-    this.backend = toBackendKind(provider);
+    this.backend = toBackendKind(normalizeProvider(provider));
     this.registryAdapter = normalizeProvider(provider) === 'ollama' ? getAdapter(model) : undefined;
   }
 
@@ -208,12 +197,13 @@ export function getEmbedderAdapter(provider: string, model: string, dimensionsOv
   if (shouldUseSidecar(provider)) {
     let client = sidecarClients.get(key);
     if (!client) {
-      client = new SidecarClient({
+      const options: SidecarClientOptions = {
         provider: normalizeProvider(provider),
         model,
         dimensions,
-        backend: toBackendKind(provider),
-      });
+        backend: toBackendKind(normalizeProvider(provider)),
+      };
+      client = new SidecarClient(options);
       sidecarClients.set(key, client);
       registerShutdownHooks();
     }

@@ -26,7 +26,7 @@ SidecarClassification = Literal[
 ]
 
 HealthChecker = Callable[[int], bool]
-ProcessLivenessChecker = Callable[[int], Literal["alive", "dead", "eperm"]]
+ProcessLivenessChecker = Callable[[int], dict[str, Any]]
 
 
 @dataclass(frozen=True)
@@ -147,18 +147,24 @@ def load_or_create_owner_token(state_dir: str | Path) -> str:
     return token
 
 
-def process_liveness(pid: int) -> Literal["alive", "dead", "eperm"]:
+def process_liveness(pid: int) -> dict[str, Any]:
+    """Check process liveness with structured return matching JS contract.
+    
+    Returns dict with keys: alive (bool), reason (str), errorCode (str | None).
+    Mirrors ensure-rerank-sidecar.cjs:192-202 contract.
+    """
     if pid <= 0:
-        return "dead"
+        return {"alive": False, "reason": "invalid-pid"}
     try:
         os.kill(pid, 0)
-        return "alive"
+        return {"alive": True, "reason": "kill-success"}
     except ProcessLookupError:
-        return "dead"
+        return {"alive": False, "reason": "esrch"}
     except PermissionError:
-        return "eperm"
-    except OSError:
-        return "alive"
+        return {"alive": True, "reason": "eperm-other-owner"}
+    except OSError as e:
+        sys.stderr.write(f"[processLiveness] unexpected error code {e.errno} for pid {pid}\n")
+        return {"alive": True, "reason": "unknown-default-alive", "errorCode": str(e.errno)}
 
 
 def read_ledger(state_dir: str | Path) -> list[SidecarLedgerRow]:
@@ -241,9 +247,9 @@ def classify_sidecar_owner(
     process_liveness_check: ProcessLivenessChecker = process_liveness,
 ) -> SidecarClassification:
     liveness = process_liveness_check(row.pid)
-    if liveness == "dead":
+    if not liveness["alive"]:
         return "stale-pid-reclaim"
-    if liveness == "eperm":
+    if liveness["reason"] == "eperm-other-owner":
         return "eperm-unknown"
     if row.ownerToken != expected_owner_token:
         return "unknown-owner-refuse"
@@ -261,7 +267,7 @@ def reclaim_stale(
 ) -> list[SidecarLedgerRow]:
     with _locked_ledger(state_dir):
         rows = _read_ledger_unlocked(state_dir)
-        kept = [row for row in rows if process_liveness_check(row.pid) != "dead"]
+        kept = [row for row in rows if process_liveness_check(row.pid)["alive"]]
         if len(kept) != len(rows):
             _write_ledger_atomic_unlocked(state_dir, kept)
         return kept

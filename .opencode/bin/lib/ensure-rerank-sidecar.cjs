@@ -13,7 +13,7 @@ const DEFAULT_PORT = 8765;
 const DEFAULT_HEALTH_TIMEOUT_MS = 20000;
 const LEDGER_FILE_NAME = '.sidecar-ledger.json';
 const OWNER_TOKEN_FILE_NAME = '.sidecar-owner-token';
-const MAX_HEALTH_BODY_BYTES = 65536; // 64KB
+const MAX_HEALTH_BODY_BYTES = 65536; // 64KB - canonical health payload cap, matches Python
 
 function log(message) {
   process.stderr.write(`[ensure-rerank-sidecar] ${message}\n`);
@@ -133,6 +133,9 @@ function loadOrCreateOwnerToken(dir, fsModule, processObj) {
 }
 
 function canonicalConfigHash(port, env) {
+  // Empty string is treated as "not set" via || operator (matches Python contract)
+  // Python sibling mirrors this contract in ensure_rerank_sidecar.py:135-150
+  // Both implementations treat empty RERANK_MODEL_REVISION as "use default"
   const config = {
     allowed: env.RERANK_ALLOWED_MODELS || '',
     device: env.RERANK_DEVICE || '',
@@ -170,14 +173,28 @@ function readLedger(dir, fsModule) {
 function writeLedger(dir, rows, fsModule) {
   fsModule.mkdirSync(dir, { recursive: true, mode: 0o700 });
   const target = ledgerPath(dir);
+  const lockPath = `${target}.lock`;
   const tmp = `${target}.tmp.${crypto.randomBytes(16).toString('hex')}`;
-  const fd = fsModule.openSync(tmp, 'wx');
+  
+  // Advisory file lock to match Python's fcntl.flock(LOCK_EX) pattern
+  // Python sibling uses fcntl in sidecar_ledger.py:94-104
+  const lockFd = fsModule.openSync(lockPath, 'wx');
   try {
-    fsModule.writeSync(fd, `${JSON.stringify({ version: 1, sidecars: rows }, null, 2)}\n`);
+    const fd = fsModule.openSync(tmp, 'wx');
+    try {
+      fsModule.writeSync(fd, `${JSON.stringify({ version: 1, sidecars: rows }, null, 2)}\n`);
+    } finally {
+      fsModule.closeSync(fd);
+    }
+    fsModule.renameSync(tmp, target);
   } finally {
-    fsModule.closeSync(fd);
+    fsModule.closeSync(lockFd);
+    try {
+      fsModule.unlinkSync(lockPath);
+    } catch {
+      // Lock file cleanup is best-effort; may already be removed by concurrent process
+    }
   }
-  fsModule.renameSync(tmp, target);
 }
 
 function addLedgerRow(dir, row, fsModule) {

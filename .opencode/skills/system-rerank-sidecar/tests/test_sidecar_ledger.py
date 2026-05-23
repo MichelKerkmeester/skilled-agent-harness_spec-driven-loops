@@ -49,7 +49,7 @@ def test_healthy_matching_owner_reuses_and_refreshes_health_timestamp(tmp_path):
         expected_owner_token="owner-a",
         canonical_config_hash="hash-a",
         health_check=lambda port: port == 8765,
-        process_liveness_check=lambda pid: "alive",
+        process_liveness_check=lambda pid: {"alive": True, "reason": "kill-success"},
         current_time_iso="2026-05-22T01:00:00Z",
     )
 
@@ -69,7 +69,7 @@ def test_unknown_owner_refuses_reuse_and_preserves_row(tmp_path):
         expected_owner_token="owner-a",
         canonical_config_hash="hash-a",
         health_check=lambda port: True,
-        process_liveness_check=lambda pid: "alive",
+        process_liveness_check=lambda pid: {"alive": True, "reason": "kill-success"},
     )
 
     assert reusable is None
@@ -83,7 +83,7 @@ def test_stale_exact_pid_cleanup_reclaims_dead_row(tmp_path):
 
     kept = reclaim_stale(
         tmp_path,
-        process_liveness_check=lambda pid: "dead" if pid == 111 else "alive",
+        process_liveness_check=lambda pid: {"alive": pid != 111, "reason": "dead" if pid == 111 else "kill-success"},
     )
 
     assert [row.pid for row in kept] == [222]
@@ -98,7 +98,7 @@ def test_eperm_alive_is_unknown_and_not_reclaimed(tmp_path):
             expected_owner_token="owner-a",
             canonical_config_hash="hash-a",
             health_check=lambda port: True,
-            process_liveness_check=lambda pid: "eperm",
+            process_liveness_check=lambda pid: {"alive": True, "reason": "eperm-other-owner"},
         )
         == "eperm-unknown"
     )
@@ -113,7 +113,7 @@ def test_port_down_but_pid_alive_preserves_row(tmp_path):
         expected_owner_token="owner-a",
         canonical_config_hash="hash-a",
         health_check=lambda port: False,
-        process_liveness_check=lambda pid: "alive",
+        process_liveness_check=lambda pid: {"alive": True, "reason": "kill-success"},
     )
 
     assert reusable is None
@@ -130,7 +130,7 @@ def test_config_hash_mismatch_preserves_row(tmp_path):
         expected_owner_token="owner-a",
         canonical_config_hash="hash-new",
         health_check=lambda port: True,
-        process_liveness_check=lambda pid: "alive",
+        process_liveness_check=lambda pid: {"alive": True, "reason": "kill-success"},
     )
 
     assert reusable is None
@@ -384,3 +384,55 @@ def test_use_model_restarts_by_ledger_not_command_substring():
     assert "pkill -TERM -f" not in script
     assert "read_ledger" in script
     assert "ownerToken != owner_token" in script
+
+
+def test_process_liveness_returns_structured_dict_matching_js_contract():
+    """F102: Python processLiveness returns structured dict matching JS contract."""
+    from scripts.sidecar_ledger import process_liveness
+
+    # Test alive case
+    result = process_liveness(os.getpid())
+    assert isinstance(result, dict)
+    assert result["alive"] is True
+    assert result["reason"] == "kill-success"
+    assert "errorCode" not in result
+
+    # Test invalid pid case
+    result = process_liveness(-1)
+    assert result["alive"] is False
+    assert result["reason"] == "invalid-pid"
+
+    # Test dead pid case (use a very high pid that shouldn't exist)
+    result = process_liveness(999999999)
+    assert result["alive"] is False
+    assert result["reason"] == "esrch"
+
+
+def test_health_payload_uses_64kb_cap_matching_js():
+    """F101: Python health payload uses 64KB cap matching JS MAX_HEALTH_BODY_BYTES."""
+    from scripts import ensure_rerank_sidecar as ensure_module
+
+    assert ensure_module.MAX_HEALTH_BODY_BYTES == 65536  # 64KB
+
+
+def test_empty_revision_treated_as_not_set_in_config_hash():
+    """F1: Empty revision string is treated as 'not set' in config hash."""
+    from scripts import ensure_rerank_sidecar as ensure_module
+
+    # Both empty string and missing env should use the same default
+    import os
+    old_rev = os.environ.get("RERANK_MODEL_REVISION")
+    try:
+        os.environ["RERANK_MODEL_REVISION"] = ""
+        hash_empty = ensure_module._canonical_config_hash(8765)
+        
+        del os.environ["RERANK_MODEL_REVISION"]
+        hash_missing = ensure_module._canonical_config_hash(8765)
+        
+        # Both should use the default revision
+        assert hash_empty == hash_missing
+    finally:
+        if old_rev is not None:
+            os.environ["RERANK_MODEL_REVISION"] = old_rev
+        elif "RERANK_MODEL_REVISION" in os.environ:
+            del os.environ["RERANK_MODEL_REVISION"]

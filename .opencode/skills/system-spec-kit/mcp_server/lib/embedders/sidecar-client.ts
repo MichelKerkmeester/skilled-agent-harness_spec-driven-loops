@@ -18,11 +18,23 @@ import { clearRegisteredTimer, registerTimeout } from '../runtime/timer-registry
 
 export type EmbedderSidecarInputType = 'document' | 'query';
 
+/**
+ * Production-only options for SidecarClient.
+ * Test-only fields (workerPath, idleMs, pingTimeoutMs, requestTimeoutMs, envAllowlist, env)
+ * are available via SidecarClientTestOptions for test consumers.
+ */
 export interface SidecarClientOptions {
   readonly provider: string;
   readonly model: string;
   readonly dimensions: number;
   readonly backend?: BackendKind;
+}
+
+/**
+ * Test-only options extending production options.
+ * Use only in test files to inject test doubles or override behavior.
+ */
+export interface SidecarClientTestOptions extends SidecarClientOptions {
   readonly workerPath?: string;
   readonly idleMs?: number;
   readonly pingTimeoutMs?: number;
@@ -92,6 +104,44 @@ const MAX_LINE_BYTES = 1024 * 1024; // 1MB
 const MAX_STDOUT_BUFFER_BYTES = 10 * 1024 * 1024; // 10MB
 const MAX_EMBED_INPUTS = 500;
 
+/**
+ * Recognized SPECKIT_ environment variables for embedder sidecar configuration.
+ *
+ * **Cross-encoder sidecar (ensure-rerank-sidecar.cjs):**
+ * - `SPECKIT_CROSS_ENCODER`: Set to "true" to enable the cross-encoder sidecar (default: disabled)
+ *
+ * **Embedder sidecar client (sidecar-client.ts):**
+ * - `SPECKIT_EMBEDDER_SIDECAR_IDLE_MS`: Idle timeout before worker eviction (default: 300000)
+ * - `SPECKIT_EMBEDDER_SIDECAR_PING_TIMEOUT_MS`: Health check ping timeout (default: 2000)
+ * - `SPECKIT_EMBEDDER_SIDECAR_REQUEST_TIMEOUT_MS`: Embed request timeout (default: 30000)
+ *
+ * **Embedder execution router (execution-router.ts):**
+ * - `SPECKIT_EMBEDDER_EXECUTION`: Execution policy - "auto", "direct", or "sidecar" (default: "auto")
+ *
+ * **Internal sidecar worker environment (set by parent, not user-configurable):**
+ * - `SPECKIT_EMBEDDER_SIDECAR_PROVIDER`: Provider name (e.g., "hf-local", "ollama")
+ * - `SPECKIT_EMBEDDER_SIDECAR_MODEL`: Model name
+ * - `SPECKIT_EMBEDDER_SIDECAR_DIMENSIONS`: Embedding dimensions
+ * - `SPECKIT_EMBEDDER_SIDECAR_PARENT_PID`: Parent process PID for liveness checks
+ *
+ * **Test-only prefixes (never used in production):**
+ * - `SPECKIT_EMBEDDER_*`: Any other SPECKIT_EMBEDDER_ prefix is test-only
+ * - `MOCK_SIDECAR_*`: Mock sidecar test prefix
+ *
+ * @see mcp_server/ENV_REFERENCE.md for canonical environment variable documentation
+ */
+export const RECOGNIZED_SPECKIT_ENV_VARS = [
+  'SPECKIT_CROSS_ENCODER',
+  'SPECKIT_EMBEDDER_SIDECAR_IDLE_MS',
+  'SPECKIT_EMBEDDER_SIDECAR_PING_TIMEOUT_MS',
+  'SPECKIT_EMBEDDER_SIDECAR_REQUEST_TIMEOUT_MS',
+  'SPECKIT_EMBEDDER_EXECUTION',
+  'SPECKIT_EMBEDDER_SIDECAR_PROVIDER',
+  'SPECKIT_EMBEDDER_SIDECAR_MODEL',
+  'SPECKIT_EMBEDDER_SIDECAR_DIMENSIONS',
+  'SPECKIT_EMBEDDER_SIDECAR_PARENT_PID',
+] as const;
+
 // ───────────────────────────────────────────────────────────────
 // 3. HELPERS
 // ───────────────────────────────────────────────────────────────
@@ -116,10 +166,13 @@ function defaultWorkerPath(): string {
   return join(currentDir, 'sidecar-worker.ts');
 }
 
-function toBackendKind(provider: string, fallback?: BackendKind): BackendKind {
-  if (fallback) {
-    return fallback;
-  }
+/**
+ * Canonical backend kind normalization.
+ * Imported by execution-router.ts to avoid duplicate implementations.
+ * Contract: undefined input defaults to 'sentence-transformers'.
+ * This is the single canonical implementation - do not duplicate.
+ */
+export function toBackendKind(provider: string | undefined): BackendKind {
   if (provider === 'ollama') {
     return 'ollama';
   }
@@ -226,18 +279,20 @@ export class SidecarClient implements EmbedderAdapter {
   private termination: Promise<void> | null = null;
 
   constructor(options: SidecarClientOptions) {
+    // Internal cast to access test-only fields when needed
+    const opts = options as SidecarClientTestOptions;
     this.provider = options.provider;
     this.name = options.model;
     this.dim = options.dimensions;
-    this.backend = toBackendKind(options.provider, options.backend);
-    this.workerPath = options.workerPath ?? defaultWorkerPath();
-    this.idleMs = options.idleMs ?? parsePositiveIntegerEnv('SPECKIT_EMBEDDER_SIDECAR_IDLE_MS', DEFAULT_IDLE_MS);
-    this.pingTimeoutMs = options.pingTimeoutMs
+    this.backend = options.backend ?? toBackendKind(options.provider);
+    this.workerPath = opts.workerPath ?? defaultWorkerPath();
+    this.idleMs = opts.idleMs ?? parsePositiveIntegerEnv('SPECKIT_EMBEDDER_SIDECAR_IDLE_MS', DEFAULT_IDLE_MS);
+    this.pingTimeoutMs = opts.pingTimeoutMs
       ?? parsePositiveIntegerEnv('SPECKIT_EMBEDDER_SIDECAR_PING_TIMEOUT_MS', DEFAULT_PING_TIMEOUT_MS);
-    this.requestTimeoutMs = options.requestTimeoutMs
+    this.requestTimeoutMs = opts.requestTimeoutMs
       ?? parsePositiveIntegerEnv('SPECKIT_EMBEDDER_SIDECAR_REQUEST_TIMEOUT_MS', DEFAULT_REQUEST_TIMEOUT_MS);
-    this.envAllowlist = options.envAllowlist ?? [];
-    this.env = options.env ?? process.env;
+    this.envAllowlist = opts.envAllowlist ?? [];
+    this.env = opts.env ?? process.env;
   }
 
   async embed(texts: ReadonlyArray<string>, options: SidecarEmbedOptions = {}): Promise<Float32Array[]> {

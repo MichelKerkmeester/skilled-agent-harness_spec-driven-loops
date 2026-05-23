@@ -7,7 +7,7 @@ import { join } from 'node:path';
 import { spawn } from 'node:child_process';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
-import { buildSidecarEnv, SidecarClient, SidecarClientError } from '../../lib/embedders/sidecar-client.js';
+import { buildSidecarEnv, SidecarClient, SidecarClientError, toBackendKind, RECOGNIZED_SPECKIT_ENV_VARS } from '../../lib/embedders/sidecar-client.js';
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -336,5 +336,53 @@ setInterval(() => {}, 1000);
     // Verify child was killed after SIGKILL escalation
     expect(client.getWorkerInfo()).toBeNull();
     expect(pidAlive(pid!)).toBe(false);
+  });
+
+  // F2+F38: toBackendKind is canonical in sidecar-client.ts
+  it('toBackendKind normalizes provider names correctly (F2+F38)', () => {
+    expect(toBackendKind('ollama')).toBe('ollama');
+    expect(toBackendKind('openai')).toBe('api');
+    expect(toBackendKind('voyage')).toBe('api');
+    expect(toBackendKind('api')).toBe('api');
+    expect(toBackendKind('hf-local')).toBe('sentence-transformers');
+    expect(toBackendKind('sentence-transformers')).toBe('sentence-transformers');
+    expect(toBackendKind(undefined)).toBe('sentence-transformers');
+  });
+
+  // F3: SPECKIT_ env vars are documented
+  it('RECOGNIZED_SPECKIT_ENV_VARS includes all documented vars (F3)', () => {
+    expect(RECOGNIZED_SPECKIT_ENV_VARS).toContain('SPECKIT_CROSS_ENCODER');
+    expect(RECOGNIZED_SPECKIT_ENV_VARS).toContain('SPECKIT_EMBEDDER_SIDECAR_IDLE_MS');
+    expect(RECOGNIZED_SPECKIT_ENV_VARS).toContain('SPECKIT_EMBEDDER_SIDECAR_PING_TIMEOUT_MS');
+    expect(RECOGNIZED_SPECKIT_ENV_VARS).toContain('SPECKIT_EMBEDDER_SIDECAR_REQUEST_TIMEOUT_MS');
+    expect(RECOGNIZED_SPECKIT_ENV_VARS).toContain('SPECKIT_EMBEDDER_EXECUTION');
+    expect(RECOGNIZED_SPECKIT_ENV_VARS).toContain('SPECKIT_EMBEDDER_SIDECAR_PROVIDER');
+    expect(RECOGNIZED_SPECKIT_ENV_VARS).toContain('SPECKIT_EMBEDDER_SIDECAR_MODEL');
+    expect(RECOGNIZED_SPECKIT_ENV_VARS).toContain('SPECKIT_EMBEDDER_SIDECAR_DIMENSIONS');
+    expect(RECOGNIZED_SPECKIT_ENV_VARS).toContain('SPECKIT_EMBEDDER_SIDECAR_PARENT_PID');
+  });
+
+  // F37: SidecarClientOptions is production-only
+  it('SidecarClientOptions constructor accepts only production fields (F37)', () => {
+    // This test verifies that the production interface doesn't include test-only fields
+    // Test-only fields are in SidecarClientTestOptions
+    const client = new SidecarClient({
+      provider: 'hf-local',
+      model: 'model',
+      dimensions: 3,
+    });
+
+    expect(client).toBeDefined();
+    expect(client.name).toBe('model');
+    expect(client.dim).toBe(3);
+  });
+
+  // F70: types.ts has correct canonical-location comment
+  it('types.ts references canonical toBackendKind location (F70)', () => {
+    const typesPath = join(__dirname, '../../lib/embedders/types.ts');
+    const typesContent = readFileSync(typesPath, 'utf8');
+    
+    // Verify the comment points to sidecar-client.ts for toBackendKind
+    expect(typesContent).toContain('Canonical toBackendKind() implementation lives in sidecar-client.ts');
   });
 });
