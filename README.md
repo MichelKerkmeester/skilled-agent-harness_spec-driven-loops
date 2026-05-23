@@ -913,7 +913,7 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 - DEPTH thinking methodology with 3-10 iteration rounds of progressive refinement
 - CLEAR quality scoring: Clarity, Logic, Expression, Reliability (40+/50 pass threshold)
 
-**sk-ai-council**
+**deep-ai-council**
 - Multi-seat planning council dispatching diverse AI reasoning seats for strategic decisions
 - Cross-seat critique and convergence checks produce evidence-backed recommendations
 - Packet-local artifact persistence via `ai-council/**` output directory

@@ -1,23 +1,23 @@
 ---
 title: "Implementation Summary: 115/005"
-description: "Placeholder pending execution"
+description: "4 root surfaces updated for deep-ai-council naming"
 trigger_phrases: ["115 005 impl summary"]
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/115-deep-ai-council-rename/005-root-docs-hooks-and-index"
-    last_updated_at: "2026-05-21T00:00:00Z"
+    last_updated_at: "2026-05-23T07:12:42Z"
     last_updated_by: "main_agent"
-    recent_action: "Authored 005 impl-summary"
-    next_safe_action: "Execute 005 phase"
+    recent_action: "4 root surfaces updated"
+    next_safe_action: "dispatch 006 reindex+validate"
     blockers: []
-    key_files: ["spec.md", "plan.md", "tasks.md"]
+    key_files: ["README.md", "AGENTS.md", ".github/hooks/scripts/pre-push-council.sh", ".opencode/skills/README.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000115005"
       session_id: "115-005-impl-init"
       parent_session_id: null
-    completion_pct: 20
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -26,7 +26,7 @@ _memory:
 
 # Implementation Summary: 115/005
 
-Placeholder pending execution.
+Root documentation, the council pre-push hook, and the skills index now use the `deep-ai-council` identity for packet 115/005.
 
 ---
 
@@ -35,7 +35,7 @@ Placeholder pending execution.
 | Field | Value |
 |---|---|
 | Phase | 5 of 6 |
-| Status | Planned |
+| Status | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -43,39 +43,55 @@ Placeholder pending execution.
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Target artifacts (per `spec.md` §3 + 001/scratch/resource-map.md §1 Phase 005):
-- `README.md` line 935 skill catalog entry
-- `AGENTS.md` line 162 Quick Reference Workflow row + line 336 Agent Definition (CLAUDE.md is symlink — automatic propagation)
-- `.github/hooks/scripts/pre-push-council.sh` `CHANGED_FILES` glob pattern update
-- `.opencode/skills/README.md` skill listing entry
-
-Pattern source: see `.opencode/skills/system-spec-kit/references/rename-pattern.md` §1 SURFACE TAXONOMY (Live root behavioral docs + Live cross-references rows).
+Updated packet 115/005 root surfaces:
+- `README.md` skill catalog heading now uses `deep-ai-council`.
+- `AGENTS.md` already had zero `sk-ai-council` occurrences and already named Deep AI Council.
+- `.github/hooks/scripts/pre-push-council.sh` now matches `.opencode/skills/deep-ai-council/` and supports an explicit `CHANGED_FILES` smoke input.
+- `.opencode/skills/README.md` skills index, tree entry, and compatibility row now use `deep-ai-council`.
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-(post-execution)
+Applied scoped textual updates across the 4 root surfaces named by `001-preflight-and-rename-plan/scratch/rename-plan.json` under `operations.005-root-docs-hooks-and-index.files_in_scope`.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-None expected.
+- Treated `rename-plan.json` as the source of truth for direction: `sk-ai-council` to `deep-ai-council`.
+- Left `AGENTS.md` content unchanged because the old skill name was already absent.
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-Verification commands defined in `tasks.md` Phase 3: `rg "deep-ai-council" README.md AGENTS.md .github/hooks/scripts/pre-push-council.sh .opencode/skills/README.md` (expect 0); `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh 005 --strict` (expect exit 0). Hook smoke via test-commit on a renamed-path file.
+Verification commands:
+- `grep -c "sk-ai-council"` across the 4 root surfaces: expected 0 for each file.
+- `CHANGED_FILES=".opencode/skills/deep-ai-council/SKILL.md" bash .github/hooks/scripts/pre-push-council.sh && echo "Hook OK"`.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/115-deep-ai-council-rename/005-root-docs-hooks-and-index --strict`.
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-None expected.
+No `checklist.md` exists for this Level 1 packet; completion evidence is recorded in `tasks.md` and this implementation summary.
 <!-- /ANCHOR:limitations -->
+
+## Commit Handoff
+
+Suggested commit: `feat(115/005): root docs + hooks + skills-index (sk → deep)`
+
+Explicit paths for `git add`:
+- `README.md`
+- `AGENTS.md`
+- `.github/hooks/scripts/pre-push-council.sh`
+- `.opencode/skills/README.md`
+- `.opencode/specs/skilled-agent-orchestration/115-deep-ai-council-rename/005-root-docs-hooks-and-index/spec.md`
+- `.opencode/specs/skilled-agent-orchestration/115-deep-ai-council-rename/005-root-docs-hooks-and-index/plan.md`
+- `.opencode/specs/skilled-agent-orchestration/115-deep-ai-council-rename/005-root-docs-hooks-and-index/tasks.md`
+- `.opencode/specs/skilled-agent-orchestration/115-deep-ai-council-rename/005-root-docs-hooks-and-index/implementation-summary.md`

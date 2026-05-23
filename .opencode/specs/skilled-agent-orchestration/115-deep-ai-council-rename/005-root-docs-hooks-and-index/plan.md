@@ -71,7 +71,7 @@ Direct-edit pattern, 4 disjoint files.
 ## 5. TESTING STRATEGY
 | Test | Tool |
 |------|------|
-| rg | `rg -c "deep-ai-council"` |
+| rg | `rg -c "sk-ai-council"` |
 | Hook smoke | bash hook with test commit |
 | Strict validate | validate.sh --strict |
 <!-- /ANCHOR:testing -->

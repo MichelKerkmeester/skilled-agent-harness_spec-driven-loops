@@ -34,7 +34,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 (parallel after 001) |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Parent Spec** | `../spec.md` |
 | **Phase** | 5 of 6 |
 | **Handoff Criteria** | 4 root docs + git hook updated; rg = 0 |
@@ -92,7 +92,7 @@ Memory files (007 pattern: not in 115's primary scope; can be follow-on).
 | REQ-001 | Root README.md updated | grep |
 | REQ-002 | AGENTS.md Agent Definitions + Quick Reference updated | grep |
 | REQ-003 | Git hook CHANGED_FILES glob matches new paths | grep + smoke-test |
-| REQ-004 | rg "deep-ai-council" on these 4 files = 0 | rg |
+| REQ-004 | rg "sk-ai-council" on these 4 files = 0 | rg |
 <!-- /ANCHOR:requirements -->
 
 ---
