@@ -76,9 +76,9 @@ Run individual scripts from the repository root with the documented arguments.
 
 | Path | Purpose |
 |---|---|
-| `audit-trail.js` | JS source file in this folder. |
-| `persist-artifacts.js` | JS source file in this folder. |
-| `rollback.js` | JS source file in this folder. |
+| `audit-trail.cjs` | CJS source file in this folder. |
+| `persist-artifacts.cjs` | CJS source file in this folder. |
+| `rollback.cjs` | CJS source file in this folder. |
 
 <!-- /ANCHOR:structure -->
 

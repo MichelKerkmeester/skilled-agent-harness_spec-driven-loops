@@ -60,13 +60,13 @@ specs/<track>/<NNN-name>/ai-council/
 
 `council-report.md` is the final synthesized plan. It includes council composition, comparison, roadmap, rejected alternatives, risks, confidence, and convergence status.
 
-**Canonical writer:** the council writes these artifacts directly with `.opencode/skills/deep-ai-council/scripts/lib/persist-artifacts.js` named exports. Each writer is scoped to `ai-council/**` and appends an `artifact_written` audit event. `.opencode/skills/deep-ai-council/scripts/persist-artifacts.cjs` remains a helper fallback for non-council callers.
+**Canonical writer:** the council writes these artifacts directly with `.opencode/skills/deep-ai-council/scripts/lib/persist-artifacts.cjs` named exports. Each writer is scoped to `ai-council/**` and appends an `artifact_written` audit event. `.opencode/skills/deep-ai-council/scripts/persist-artifacts.cjs` remains a helper fallback for non-council callers.
 
 **Schema authority:** the §8 OUTPUT FORMAT shape this layout is derived from is documented at `references/output_schema.md`.
 
 Cross-references:
 - Agent body: `.opencode/agents/deep-ai-council.md` §12 OUTPUT PROTOCOL (this layout) + §13 INVOCATION CONTRACT + §14 STATE SCHEMA + §16 COUNCIL PERSISTENCE PROTOCOL + §18 ROLLBACK FOR OPERATORS
-- Council writer library: `.opencode/skills/deep-ai-council/scripts/lib/persist-artifacts.js`
+- Council writer library: `.opencode/skills/deep-ai-council/scripts/lib/persist-artifacts.cjs`
 - Helper fallback: `.opencode/skills/deep-ai-council/scripts/persist-artifacts.cjs`
 - Schema: `.opencode/skills/deep-ai-council/references/output_schema.md`
 - State format: `.opencode/skills/deep-ai-council/references/state_format.md`
