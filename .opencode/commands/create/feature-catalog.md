@@ -435,7 +435,7 @@ Custom skill root:
 | Command | Purpose |
 | --- | --- |
 | `/create:testing-playbook` | Creates the manual validation package that should cross-reference the catalog |
-| `/create:sk-skill ... reference-only` | Creates companion standards/reference docs inside a skill |
+| `/create:skill ... reference-only` | Creates companion standards/reference docs inside a skill |
 | `/memory:save` | Saves implementation context to the active spec folder |
 
 ---

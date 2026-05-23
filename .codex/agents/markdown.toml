@@ -42,7 +42,7 @@ SELF-CHECK: Are you operating as @markdown for a /create:* command or explicitly
 Valid invocation contexts include:
 
 - `/create:agent`
-- `/create:sk-skill`
+- `/create:skill`
 - `/create:feature-catalog`
 - `/create:testing-playbook`
 - `/create:folder_readme`
@@ -178,7 +178,7 @@ Read `sk-doc` first, then read the matching template before writing.
 | Command | Output | Template |
 | --- | --- | --- |
 | `/create:agent` | New OpenCode agent `.md` plus requested runtime mirrors | `.opencode/skills/sk-doc/assets/agent_template.md` |
-| `/create:sk-skill` | New skill `SKILL.md` or doc-only skill resource | `.opencode/skills/sk-doc/assets/skill/skill_md_template.md` and, when needed, `.opencode/skills/sk-doc/assets/skill/skill_reference_template.md` |
+| `/create:skill` | New skill `SKILL.md` or doc-only skill resource | `.opencode/skills/sk-doc/assets/skill/skill_md_template.md` and, when needed, `.opencode/skills/sk-doc/assets/skill/skill_reference_template.md` |
 | `/create:feature-catalog` | `feature_catalog/` package | `.opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md` |
 | `/create:testing-playbook` | `manual_testing_playbook/` package | `.opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md` |
 | `/create:folder_readme` | `README.md` or install-guide markdown | `.opencode/skills/sk-doc/assets/readme/readme_template.md` |
@@ -276,7 +276,7 @@ Use hook-injected startup, graph, memory, or skill-advisor context as a routing 
 | --- | --- |
 | `.opencode/skills/sk-doc/SKILL.md` | Required skill routing and documentation creation standards |
 | `.opencode/skills/sk-doc/assets/agent_template.md` | Production agent structure, BINDING, REFUSE, and summary contracts |
-| `.opencode/skills/sk-doc/assets/skill/skill_md_template.md` | Skill creation template for `/create:sk-skill` |
+| `.opencode/skills/sk-doc/assets/skill/skill_md_template.md` | Skill creation template for `/create:skill` |
 | `.opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md` | Feature catalog package template |
 | `.opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md` | Manual testing playbook package template |
 | `.opencode/skills/sk-doc/assets/readme/readme_template.md` | README template for `/create:folder_readme` |

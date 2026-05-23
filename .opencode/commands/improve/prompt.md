@@ -44,7 +44,7 @@ SELF-CHECK: Are you operating as the @general agent?
     │   ┌────────────────────────────────────────────────────────────┐
     │   │ ⛔ GENERAL AGENT REQUIRED                                  │
     │   │                                                            │
-    │   │ This command orchestrates sk-prompt skill         │
+    │   │ This command orchestrates sk-prompt skill                  │
     │   │ invocation and optional @prompt-improver dispatch.         │
     │   │                                                            │
     │   │ To proceed, restart with:                                  │
@@ -587,8 +587,8 @@ STATUS=OK SCORE=44/50 FRAMEWORK=RCAF SAVED=specs/012-onboarding/prompts/api-auth
 
 | Command                   | Purpose                                                                              |
 | ------------------------- | ------------------------------------------------------------------------------------ |
-| `/create:sk-skill ... full-create` | Create a new OpenCode skill (if the enhanced prompt should become a skill) |
-| `/create:sk-skill ... reference-only` | Create reference documentation (if prompt engineering patterns should be documented) |
+| `/create:skill ... full-create` | Create a new OpenCode skill (if the enhanced prompt should become a skill) |
+| `/create:skill ... reference-only` | Create reference documentation (if prompt engineering patterns should be documented) |
 | `/create:folder_readme`   | Create supporting documentation artifact (if prompt results should be packaged)      |
 
 ---

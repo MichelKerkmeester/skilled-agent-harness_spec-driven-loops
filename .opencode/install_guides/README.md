@@ -1343,7 +1343,7 @@ You have completed the installation. Here is your roadmap for getting started.
 
 | Category | Commands                                                                                                |
 | -------- | ------------------------------------------------------------------------------------------------------- |
-| Create   | `/create:agent`, `/create:changelog`, `/create:feature-catalog`, `/create:folder_readme`, `/create:prompt`, `/create:sk-skill`, `/create:testing-playbook` |
+| Create   | `/create:agent`, `/create:changelog`, `/create:feature-catalog`, `/create:folder_readme`, `/create:prompt`, `/create:skill`, `/create:testing-playbook` |
 | Memory   | `/memory:search`, `/memory:learn`, `/memory:manage`, `/memory:save` |
 | SpecKit  | `/spec_kit:complete`, `/deep:start-research-loop`, `/deep:start-review-loop`, `/spec_kit:implement`, `/spec_kit:plan`, `/spec_kit:plan --intake-only`, `/spec_kit:resume` |
 | Utility  | `/agent_router` |

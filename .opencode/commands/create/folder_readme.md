@@ -612,7 +612,7 @@ This command creates standalone documentation:
 ```
 
 **Related commands:**
-- `/create:sk-skill` — Unified skill creation/update workflows
+- `/create:skill` — Unified skill creation/update workflows
 
 ---
 

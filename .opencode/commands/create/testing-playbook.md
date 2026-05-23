@@ -447,7 +447,7 @@ Custom skill root:
 | Command | Purpose |
 | --- | --- |
 | `/create:feature-catalog` | Creates the current-state feature inventory the playbook should cross-reference |
-| `/create:sk-skill ... reference-only` | Creates companion standards/reference docs inside a skill |
+| `/create:skill ... reference-only` | Creates companion standards/reference docs inside a skill |
 | `/memory:save` | Saves implementation context to the active spec folder |
 
 ---
