@@ -15,6 +15,7 @@ const { appendRoundStateRecord } = require('../../deep-loop-runtime/lib/council/
 const { evaluateCouncilCostGuards, normalizeCostGuards } = require('../../deep-loop-runtime/lib/council/cost-guards.cjs');
 const { validateSessionStateHierarchy } = require('../../deep-loop-runtime/lib/council/session-state-hierarchy.cjs');
 const { orchestrateTopic } = require('./orchestrate-topic.cjs');
+const { appendFinding, getCrossTopicPriors } = require('./lib/findings-registry.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -66,6 +67,112 @@ function appendTopicCompletion(statePath, payload) {
     type: 'topic_completed',
     ...payload,
   });
+}
+
+function pad3(value) {
+  return String(value).padStart(3, '0');
+}
+
+function lastRoundId(topicResult) {
+  if (Array.isArray(topicResult.rounds) && topicResult.rounds.length > 0) {
+    const lastRound = topicResult.rounds[topicResult.rounds.length - 1];
+    if (isRecord(lastRound) && typeof lastRound.round_id === 'string') {
+      return lastRound.round_id;
+    }
+  }
+  if (Number.isInteger(topicResult.rounds_completed) && topicResult.rounds_completed > 0) {
+    return `round-${pad3(topicResult.rounds_completed)}`;
+  }
+  return null;
+}
+
+function topicFinding(topic, topicResult, sessionState) {
+  const verdict = isRecord(topicResult.final_verdict) ? topicResult.final_verdict : {};
+  const roundId = lastRoundId(topicResult);
+  const recommended = verdict.recommended_option || topicResult.stop_reason || 'undecided';
+  return {
+    session_id: sessionState.session.session_id,
+    topic_id: topic.topic_id,
+    topic_slug: topic.topic_slug,
+    round_id: roundId,
+    finding_type: 'topic-final-verdict',
+    claim: `Topic ${topic.topic_id} final verdict: ${recommended}`,
+    stance: 'support',
+    confidence: verdict.confidence,
+    final_verdict: verdict,
+    evidence: {
+      final_verdict: verdict,
+      stability_score: topicResult.stability_score,
+      stop_reason: topicResult.stop_reason,
+      rounds_completed: topicResult.rounds_completed,
+    },
+    source_iter: roundId,
+    source_artifacts: roundId
+      ? [`ai-council/topics/${topic.topic_id}/rounds/${roundId}/deliberation.md`]
+      : [`ai-council/topics/${topic.topic_id}/topic-report.md`],
+  };
+}
+
+function sessionSynthesisFinding(sessionState, topicResults, stopReason) {
+  const completedTopicIds = topicResults.map((result) => result.topic_id).filter(Boolean);
+  return {
+    session_id: sessionState.session.session_id,
+    topic_id: 'session',
+    topic_slug: 'session',
+    finding_type: 'session-synthesis',
+    claim: `Session ${sessionState.session.session_id} completed ${topicResults.length} topic(s): ${stopReason}`,
+    stance: 'synthesis',
+    confidence: null,
+    evidence: {
+      completed_topic_ids: completedTopicIds,
+      stop_reason: stopReason,
+      topic_results: topicResults,
+    },
+    source_iter: 'session-close',
+    source_artifacts: ['ai-council/session-report.md'],
+  };
+}
+
+function withCrossTopicPriors(topic, sessionState, executorConfig, priors) {
+  if (!priors.length) {
+    return {
+      topic,
+      sessionState,
+      executorConfig,
+    };
+  }
+  const priorFingerprints = [
+    ...(Array.isArray(topic.prior_fingerprints) ? topic.prior_fingerprints : []),
+    ...priors.map((prior) => prior.fingerprint),
+  ];
+  const enrichedTopic = {
+    ...topic,
+    prior_fingerprints: [...new Set(priorFingerprints)],
+    prior_findings: priors,
+  };
+  const configuredBrief = executorConfig.topic_brief || executorConfig.topicBrief || topic.topic_brief || topic.brief || {};
+  const topicBrief = {
+    ...(isRecord(configuredBrief) ? configuredBrief : {}),
+    topic_id: enrichedTopic.topic_id,
+    title: enrichedTopic.title || enrichedTopic.topic_slug || enrichedTopic.topic_id,
+    prior_fingerprints: enrichedTopic.prior_fingerprints,
+    prior_findings: priors,
+    session_id: sessionState.session.session_id,
+  };
+  return {
+    topic: enrichedTopic,
+    sessionState: {
+      ...sessionState,
+      current: {
+        ...sessionState.current,
+        topic: enrichedTopic,
+      },
+    },
+    executorConfig: {
+      ...executorConfig,
+      topic_brief: topicBrief,
+    },
+  };
 }
 
 function sessionSaturationDecision(topicResult, completedCount, guards, executorConfig) {
@@ -122,26 +229,36 @@ async function orchestrateSession(options = {}) {
       break;
     }
 
+    const priors = index === 0 ? [] : getCrossTopicPriors(packetSpecFolder, { topic_id: topic.topic_id });
+    const enriched = withCrossTopicPriors(topic, {
+      ...sessionState,
+      session: {
+        ...sessionState.session,
+        current_topic: topicNumber,
+      },
+    }, executorConfig, priors);
+
     const topicResult = await runTopic({
-      topic_id: topic.topic_id,
+      topic_id: enriched.topic.topic_id,
       session_state: {
-        ...sessionState,
+        ...enriched.sessionState,
         session: {
-          ...sessionState.session,
+          ...enriched.sessionState.session,
           current_topic: topicNumber,
         },
         current: {
-          ...sessionState.current,
-          topic,
+          ...enriched.sessionState.current,
+          topic: enriched.topic,
         },
       },
-      executor_config: executorConfig,
+      executor_config: enriched.executorConfig,
     });
     topicResults.push(topicResult);
+    appendFinding(packetSpecFolder, topicFinding(enriched.topic, topicResult, sessionState));
 
     appendTopicCompletion(statePath, {
       session_id: sessionState.session.session_id,
-      topic_id: topic.topic_id,
+      topic_id: enriched.topic.topic_id,
       topic_number: topicNumber,
       rounds_completed: topicResult.rounds_completed,
       final_verdict: topicResult.final_verdict,
@@ -162,6 +279,8 @@ async function orchestrateSession(options = {}) {
       break;
     }
   }
+
+  appendFinding(packetSpecFolder, sessionSynthesisFinding(sessionState, topicResults, stopReason));
 
   return {
     session_id: sessionState.session.session_id,

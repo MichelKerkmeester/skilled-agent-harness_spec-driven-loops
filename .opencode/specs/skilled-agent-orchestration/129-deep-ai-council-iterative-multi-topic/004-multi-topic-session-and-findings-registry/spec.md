@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/004-multi-topic-session-and-findings-registry"
-    last_updated_at: "2026-05-23T09:30:00Z"
+    last_updated_at: "2026-05-23T08:04:54Z"
     last_updated_by: "codex"
-    recent_action: "Scaffold 004-multi-topic-session-and-findings-registry for Wave 6 dispatch"
-    next_safe_action: "dispatch Wave 6 phase 004"
+    recent_action: "findings-registry + cross-topic priors + workflow YAML scaffolds"
+    next_safe_action: "dispatch F4 -- 129/005 command + skill wiring"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:1290210000000000000000000000000000000000000000000000000000000001"
       session_id: "wave-5-e1-2026-05-23"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ This placeholder phase consumes ADR-002 and ADR-005 from 129/001 and will be fil
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-05-23 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -76,7 +76,12 @@ Implement the phase slice defined by ADR-002 and ADR-005, leaving unrelated pack
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| See 001 research affected surface table | Modify/Create | Exact files are chosen by the Wave 6 implementer. |
+| `.opencode/skills/deep-ai-council/scripts/lib/findings-registry.cjs` | Create | Session-wide registry writer for topic verdict and synthesis findings. |
+| `.opencode/skills/deep-ai-council/scripts/orchestrate-session.cjs` | Modify | Append findings and inject cross-topic priors after topic 1. |
+| `.opencode/skills/deep-ai-council/scripts/tests/findings-registry.vitest.ts` | Create | Registry writer, load, priors, and concurrent append coverage. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-council_auto.yaml` | Create | Autonomous workflow scaffold for F4 command wiring. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-council_confirm.yaml` | Create | Interactive workflow scaffold for F4 command wiring. |
+| `004-multi-topic-session-and-findings-registry/*` | Modify | Phase docs, checklist, continuity, and commit handoff. |
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -92,8 +97,8 @@ Implement the phase slice defined by ADR-002 and ADR-005, leaving unrelated pack
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: Phase implementation satisfies its ADR references.
-- **SC-002**: Tests or explicit validation evidence are recorded.
+- **SC-001**: Phase implementation satisfies ADR-002 and ADR-005 through session-level registry and priors.
+- **SC-002**: Tests and validation evidence are recorded in `implementation-summary.md`.
 - **SC-003**: Phase strict validation passes.
 <!-- /ANCHOR:success-criteria -->
 
@@ -150,7 +155,7 @@ Implement the phase slice defined by ADR-002 and ADR-005, leaving unrelated pack
 <!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
-- Implementation details pending Wave 6.
+- None for F3. F4 owns command activation in `deep-council.md`.
 <!-- /ANCHOR:questions -->
 
 ## RELATED DOCUMENTS
