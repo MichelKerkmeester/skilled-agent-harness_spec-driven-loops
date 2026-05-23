@@ -25,12 +25,12 @@ const {
   makeTypedError,
   parseTypedError,
   serializeTypedError,
-} = require('./_lib/typed-errors.cjs');
+} = require('./lib/typed-errors.cjs');
 const {
   WEIGHTED_SCORE_GATE,
   PROMOTION_GATES,
   evaluatePromotionGates,
-} = require('./_lib/promotion-gates.cjs');
+} = require('./lib/promotion-gates.cjs');
 
 function parseArgs(argv) {
   const args = {};

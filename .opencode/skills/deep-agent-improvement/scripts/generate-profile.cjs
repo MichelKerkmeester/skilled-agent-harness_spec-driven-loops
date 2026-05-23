@@ -14,7 +14,7 @@ const {
   classifyExitCode,
   makeTypedError,
   serializeTypedError,
-} = require('./_lib/typed-errors.cjs');
+} = require('./lib/typed-errors.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS

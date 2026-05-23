@@ -34,7 +34,7 @@ Promotion is a narrow, gated operation that moves a packet-local candidate into 
 
 **Requirement:** Weighted score >= 70, baseline delta above runtime threshold, and every scored dimension meeting its named promotion gate.
 
-**Per-dimension gates:** `scripts/_lib/promotion-gates.cjs` is the source of truth.
+**Per-dimension gates:** `scripts/lib/promotion-gates.cjs` is the source of truth.
 
 | Dimension | Minimum Score |
 | --- | ---: |
@@ -270,7 +270,7 @@ node .opencode/skills/deep-agent-improvement/scripts/rollback-candidate.cjs \
 || Path | Role |
 |---|---|
 | `scripts/promote-candidate.cjs` | Promotion gate validation and mutation |
-| `scripts/_lib/promotion-gates.cjs` | Named weighted, benchmark, and per-dimension gate values |
+| `scripts/lib/promotion-gates.cjs` | Named weighted, benchmark, and per-dimension gate values |
 | `scripts/rollback-candidate.cjs` | Rollback execution and verification |
 | `scripts/check-mirror-drift.cjs` | Post-promotion mirror sync check |
 | `scripts/score-candidate.cjs` | Prompt scoring gate |

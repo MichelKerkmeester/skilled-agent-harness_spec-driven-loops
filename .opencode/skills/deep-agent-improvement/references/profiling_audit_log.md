@@ -123,7 +123,7 @@ try {
 ### Dependencies
 
 - Uses existing `fs` and `path` modules (already imported)
-- Uses existing typed-error helper from `_lib/typed-errors.cjs` (already imported)
+- Uses existing typed-error helper from `lib/typed-errors.cjs` (already imported)
 - No new dependencies required
 
 ---
@@ -162,4 +162,4 @@ grep '"chosen_profile":"strict"' improvement/profile-selection.log
 - DAI-004 finding: See packet 123 improvement roadmap for DAI-004 context
 - Packet 128 spec: `.opencode/specs/skilled-agent-orchestration/128-deep-agent-improvement-mixed-executor-adjudication/spec.md`
 - generate-profile.cjs: `.opencode/skills/deep-agent-improvement/scripts/generate-profile.cjs`
-- typed-errors.cjs: `.opencode/skills/deep-agent-improvement/scripts/_lib/typed-errors.cjs`
+- typed-errors.cjs: `.opencode/skills/deep-agent-improvement/scripts/lib/typed-errors.cjs`

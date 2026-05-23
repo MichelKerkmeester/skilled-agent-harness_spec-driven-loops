@@ -44,7 +44,7 @@ Task format: `T### [P?] Description (path) [finding]`.
 - [x] T002 Read packet 123 improvement roadmap (`123.../improvement-roadmap.md`) [context].
 - [x] T003 Read packet 123 applicability table (`123.../applicability-table.md`) [context].
 - [x] T004 Read `deep-agent-improvement` skill source and relevant references (`.opencode/skills/deep-agent-improvement/`) [context].
-- [x] T005 Read `cli-guards.cjs` typed exit-code pattern (`.opencode/skills/deep-loop-runtime/scripts/_lib/cli-guards.cjs`) [DAI-009].
+- [x] T005 Read `cli-guards.cjs` typed exit-code pattern (`.opencode/skills/deep-loop-runtime/scripts/lib/cli-guards.cjs`) [DAI-009].
 - [x] T006 Read Level 3 templates (`.opencode/skills/system-spec-kit/templates/examples/level_3/`) [docs].
 
 <!-- /ANCHOR:phase-1 -->
@@ -54,7 +54,7 @@ Task format: `T### [P?] Description (path) [finding]`.
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T010 Add typed error helper (`.opencode/skills/deep-agent-improvement/scripts/_lib/typed-errors.cjs`) [DAI-009].
+- [x] T010 Add typed error helper (`.opencode/skills/deep-agent-improvement/scripts/lib/typed-errors.cjs`) [DAI-009].
 - [x] T011 Wire typed profile-generation errors (`generate-profile.cjs`) [DAI-009].
 - [x] T012 Preserve child profile error types in scorer (`score-candidate.cjs`) [DAI-009].
 - [x] T013 Replace zero-check perfect scoring with null dimensions (`score-candidate.cjs`) [DAI-010].

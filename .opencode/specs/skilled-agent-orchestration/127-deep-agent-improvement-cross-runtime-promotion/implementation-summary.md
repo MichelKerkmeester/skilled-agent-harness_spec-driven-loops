@@ -49,8 +49,8 @@ The packet also adds partial mirror sync state semantics. State records use `mir
 
 | File | Change |
 | --- | --- |
-| `.opencode/skills/deep-agent-improvement/scripts/_lib/mirror-sync-verify.cjs` | New verifier helper for four runtime mirrors, Markdown bodies, Codex TOML bodies, token comparison, and requested return shape. |
-| `.opencode/skills/deep-agent-improvement/scripts/_lib/promotion-gates.cjs` | Added mirror sync state constants and gate evaluation. |
+| `.opencode/skills/deep-agent-improvement/scripts/lib/mirror-sync-verify.cjs` | New verifier helper for four runtime mirrors, Markdown bodies, Codex TOML bodies, token comparison, and requested return shape. |
+| `.opencode/skills/deep-agent-improvement/scripts/lib/promotion-gates.cjs` | Added mirror sync state constants and gate evaluation. |
 | `.opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs` | Added hard gate for agent-definition targets, structured rejection, and optional state-file write. |
 | `.opencode/skills/deep-agent-improvement/scripts/reduce-state.cjs` | Added mirror sync state collection and dashboard section. |
 | `.opencode/skills/deep-agent-improvement/scripts/tests/mirror-sync-verify.vitest.ts` | Added requested Vitest fixtures. |
@@ -76,8 +76,8 @@ The packet also adds partial mirror sync state semantics. State records use `mir
 
 | Command | Result | Notes |
 | --- | --- | --- |
-| `node --check .opencode/skills/deep-agent-improvement/scripts/_lib/mirror-sync-verify.cjs` | PASS | Syntax clean. |
-| `node --check .opencode/skills/deep-agent-improvement/scripts/_lib/promotion-gates.cjs` | PASS | Syntax clean. |
+| `node --check .opencode/skills/deep-agent-improvement/scripts/lib/mirror-sync-verify.cjs` | PASS | Syntax clean. |
+| `node --check .opencode/skills/deep-agent-improvement/scripts/lib/promotion-gates.cjs` | PASS | Syntax clean. |
 | `node --check .opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs` | PASS | Syntax clean. |
 | `node --check .opencode/skills/deep-agent-improvement/scripts/reduce-state.cjs` | PASS | Syntax clean. |
 | Direct verifier smoke for `deep-agent-improvement` | PASS | All four live mirrors returned `allInSync: true`. |
@@ -107,8 +107,8 @@ Suggested commit: `feat(127): deep-agent-improvement cross-runtime promotion gat
 Explicit paths for `git add`:
 
 ```text
-.opencode/skills/deep-agent-improvement/scripts/_lib/mirror-sync-verify.cjs
-.opencode/skills/deep-agent-improvement/scripts/_lib/promotion-gates.cjs
+.opencode/skills/deep-agent-improvement/scripts/lib/mirror-sync-verify.cjs
+.opencode/skills/deep-agent-improvement/scripts/lib/promotion-gates.cjs
 .opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs
 .opencode/skills/deep-agent-improvement/scripts/reduce-state.cjs
 .opencode/skills/deep-agent-improvement/scripts/tests/mirror-sync-verify.vitest.ts

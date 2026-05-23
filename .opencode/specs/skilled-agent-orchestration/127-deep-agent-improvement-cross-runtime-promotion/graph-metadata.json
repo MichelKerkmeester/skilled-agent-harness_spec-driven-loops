@@ -34,8 +34,8 @@
     "importance_tier": "important",
     "status": "implemented",
     "key_files": [
-      ".opencode/skills/deep-agent-improvement/scripts/_lib/mirror-sync-verify.cjs",
-      ".opencode/skills/deep-agent-improvement/scripts/_lib/promotion-gates.cjs",
+      ".opencode/skills/deep-agent-improvement/scripts/lib/mirror-sync-verify.cjs",
+      ".opencode/skills/deep-agent-improvement/scripts/lib/promotion-gates.cjs",
       ".opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs",
       ".opencode/skills/deep-agent-improvement/scripts/reduce-state.cjs",
       ".opencode/skills/deep-agent-improvement/scripts/tests/mirror-sync-verify.vitest.ts",
@@ -52,13 +52,13 @@
       {
         "name": "mirror-sync-verify.cjs",
         "kind": "file",
-        "path": ".opencode/skills/deep-agent-improvement/scripts/_lib/mirror-sync-verify.cjs",
+        "path": ".opencode/skills/deep-agent-improvement/scripts/lib/mirror-sync-verify.cjs",
         "source": "manual"
       },
       {
         "name": "promotion-gates.cjs",
         "kind": "file",
-        "path": ".opencode/skills/deep-agent-improvement/scripts/_lib/promotion-gates.cjs",
+        "path": ".opencode/skills/deep-agent-improvement/scripts/lib/promotion-gates.cjs",
         "source": "manual"
       },
       {

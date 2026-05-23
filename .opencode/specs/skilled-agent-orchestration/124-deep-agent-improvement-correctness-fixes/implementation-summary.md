@@ -56,7 +56,7 @@ Files changed:
 
 | File | Action | Purpose |
 | --- | --- | --- |
-| `.opencode/skills/deep-agent-improvement/scripts/_lib/typed-errors.cjs` | Created | Shared typed error helper. |
+| `.opencode/skills/deep-agent-improvement/scripts/lib/typed-errors.cjs` | Created | Shared typed error helper. |
 | `.opencode/skills/deep-agent-improvement/scripts/generate-profile.cjs` | Modified | Typed failure output and exit codes. |
 | `.opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs` | Modified | Typed child failure handling and explicit null dimensions. |
 | `.opencode/skills/deep-agent-improvement/scripts/scan-integration.cjs` | Modified | Plural OpenCode paths and four-runtime mirror list. |
@@ -148,7 +148,7 @@ fix(124): deep-agent-improvement correctness fixes — 5 P0 + 3 P1
 Explicit `git add` paths:
 
 ```text
-.opencode/skills/deep-agent-improvement/scripts/_lib/typed-errors.cjs
+.opencode/skills/deep-agent-improvement/scripts/lib/typed-errors.cjs
 .opencode/skills/deep-agent-improvement/scripts/generate-profile.cjs
 .opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs
 .opencode/skills/deep-agent-improvement/scripts/scan-integration.cjs

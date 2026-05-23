@@ -70,7 +70,7 @@ Local evaluator hardening with shared constants and additive result fields.
 
 ### Key Components
 
-- `scripts/_lib/promotion-gates.cjs`: source of truth for weighted, benchmark, and per-dimension gate values.
+- `scripts/lib/promotion-gates.cjs`: source of truth for weighted, benchmark, and per-dimension gate values.
 - `scripts/score-candidate.cjs`: computes deterministic input hashes and emits cacheable score results.
 - `scripts/promote-candidate.cjs`: enforces named promotion gates.
 - `scripts/mutation-coverage.cjs`: computes collision-resistant signatures for empty fields.
@@ -194,7 +194,7 @@ candidate file + profile + manifest + integration scan
 
 ### Rollback Procedure
 
-1. Revert changes to `scripts/_lib/promotion-gates.cjs`, scorer, promotion, mutation coverage, candidate lineage, reducer, tests, and references.
+1. Revert changes to `scripts/lib/promotion-gates.cjs`, scorer, promotion, mutation coverage, candidate lineage, reducer, tests, and references.
 2. Remove packet 126 docs if the packet is abandoned.
 3. Re-run syntax checks and a scorer smoke against an existing candidate.
 

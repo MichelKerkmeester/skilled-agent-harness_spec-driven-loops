@@ -1,28 +1,15 @@
 {
   "level": "3",
   "specFolder": "skilled-agent-orchestration/124-deep-agent-improvement-correctness-fixes",
-  "description": "Deep-agent-improvement packet 124 correctness fixes closing 5 P0 and 3 P1 findings with typed profile errors, null scoring, path fixes, version truth,",
+  "description": "Packet 124: deep-agent-improvement correctness fixes",
   "keywords": [
-    "deep-agent-improvement",
     "packet",
     "124",
+    "deep-agent-improvement",
     "correctness",
-    "fixes",
-    "closing",
-    "findings",
-    "typed",
-    "profile",
-    "errors",
-    "null",
-    "scoring",
-    "path",
-    "version",
-    "truth",
-    "mirror",
-    "sync",
-    "flagging"
+    "fixes"
   ],
-  "lastUpdated": "2026-05-23T05:52:41.477Z",
+  "lastUpdated": "2026-05-23T09:11:13.020Z",
   "specId": "124",
   "folderSlug": "deep-agent-improvement-correctness-fixes",
   "parentChain": [

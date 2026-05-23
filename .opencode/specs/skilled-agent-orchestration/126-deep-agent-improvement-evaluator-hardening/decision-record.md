@@ -53,7 +53,7 @@ Use a deterministic evaluator contract:
 1. Score output includes `rubricVersion` and `inputHash`.
 2. `inputHash` is SHA-256 over rubric version, candidate content, baseline content when present, manifest input, dynamic profile, dimension weights, promotion gates, and integration-scan coverage after volatile timestamps are removed.
 3. Cache entries are keyed by `inputHash`; `--no-cache` opts out of cache lookup/write.
-4. Promotion gates live in `scripts/_lib/promotion-gates.cjs` as `PROMOTION_GATES` plus named weighted and benchmark constants.
+4. Promotion gates live in `scripts/lib/promotion-gates.cjs` as `PROMOTION_GATES` plus named weighted and benchmark constants.
 5. Null dimensions remain explicit in `unscoredDimensions`, `promotionGates.unscored`, and the reducer dashboard's "Unscored Dimensions" section.
 6. Runtime mirror coverage is a warning/checkpoint only in packet 126; packet 127 owns full sync enforcement.
 <!-- /ANCHOR:adr-001-decision -->
@@ -104,7 +104,7 @@ Negative:
 
 Implementation files:
 
-- `.opencode/skills/deep-agent-improvement/scripts/_lib/promotion-gates.cjs`
+- `.opencode/skills/deep-agent-improvement/scripts/lib/promotion-gates.cjs`
 - `.opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs`
 - `.opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs`
 - `.opencode/skills/deep-agent-improvement/scripts/mutation-coverage.cjs`

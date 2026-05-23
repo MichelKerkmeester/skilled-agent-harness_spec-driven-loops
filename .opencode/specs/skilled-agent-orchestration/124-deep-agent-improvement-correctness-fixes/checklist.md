@@ -52,7 +52,7 @@ _memory:
 ## Code Quality
 
 - [x] CHK-010 [P0] Typed profile error handling implemented.
-  - Evidence: `.opencode/skills/deep-agent-improvement/scripts/_lib/typed-errors.cjs`, `generate-profile.cjs`, `score-candidate.cjs`.
+  - Evidence: `.opencode/skills/deep-agent-improvement/scripts/lib/typed-errors.cjs`, `generate-profile.cjs`, `score-candidate.cjs`.
 - [x] CHK-011 [P0] Empty scoring dimensions are explicit nulls.
   - Evidence: `score-candidate.cjs` returns `score: null` and `unscoredDimensions`.
 - [x] CHK-012 [P1] Scanner plural path hardcodes fixed.
@@ -142,7 +142,7 @@ _memory:
 - [x] CHK-061 [P1] No downstream packet folders touched.
   - Evidence: No edits to packets 125-128.
 - [x] CHK-062 [P1] Helper is local to target skill.
-  - Evidence: `.opencode/skills/deep-agent-improvement/scripts/_lib/typed-errors.cjs`.
+  - Evidence: `.opencode/skills/deep-agent-improvement/scripts/lib/typed-errors.cjs`.
 
 <!-- /ANCHOR:file-org -->
 

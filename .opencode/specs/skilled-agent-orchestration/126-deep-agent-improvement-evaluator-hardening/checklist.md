@@ -68,7 +68,7 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [x] CHK-FIX-001 [P0] DAI-001 closed. Evidence: `_lib/promotion-gates.cjs`, scorer `promotionGates`, promotion enforcement.
+- [x] CHK-FIX-001 [P0] DAI-001 closed. Evidence: `lib/promotion-gates.cjs`, scorer `promotionGates`, promotion enforcement.
 - [x] CHK-FIX-002 [P0] DAI-005 closed. Evidence: scorer `rubricVersion`, `inputHash`, cache, `--no-cache`.
 - [x] CHK-FIX-003 [P0] DAI-012 closed. Evidence: `EMPTY_FIELD_SENTINELS` and regression.
 - [x] CHK-FIX-004 [P1] DAI-022 coverage signal closed. Evidence: scorer `runtimeMirrorCoverage` checkpoint.

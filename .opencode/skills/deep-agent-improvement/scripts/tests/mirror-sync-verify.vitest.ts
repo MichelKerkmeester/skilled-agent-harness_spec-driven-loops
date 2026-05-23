@@ -11,7 +11,7 @@ const require = createRequire(import.meta.url);
 
 const mirrorSync = require(path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/deep-agent-improvement/scripts/_lib/mirror-sync-verify.cjs',
+  '.opencode/skills/deep-agent-improvement/scripts/lib/mirror-sync-verify.cjs',
 )) as {
   verifyMirrorSync: (
     agentName: string,

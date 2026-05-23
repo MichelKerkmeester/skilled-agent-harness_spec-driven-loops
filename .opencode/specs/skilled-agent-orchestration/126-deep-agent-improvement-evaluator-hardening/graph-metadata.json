@@ -39,7 +39,7 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-agent-improvement/scripts/_lib/promotion-gates.cjs",
+      ".opencode/skills/deep-agent-improvement/scripts/lib/promotion-gates.cjs",
       ".opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs",
       ".opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs",
       ".opencode/skills/deep-agent-improvement/scripts/mutation-coverage.cjs",
@@ -59,7 +59,7 @@
       {
         "name": "promotion-gates.cjs",
         "kind": "file",
-        "path": ".opencode/skills/deep-agent-improvement/scripts/_lib/promotion-gates.cjs",
+        "path": ".opencode/skills/deep-agent-improvement/scripts/lib/promotion-gates.cjs",
         "source": "manual"
       },
       {

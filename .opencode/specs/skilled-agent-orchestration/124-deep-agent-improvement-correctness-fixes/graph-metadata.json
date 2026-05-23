@@ -41,7 +41,7 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-agent-improvement/scripts/_lib/typed-errors.cjs",
+      ".opencode/skills/deep-agent-improvement/scripts/lib/typed-errors.cjs",
       ".opencode/skills/deep-agent-improvement/scripts/generate-profile.cjs",
       ".opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs",
       ".opencode/skills/deep-agent-improvement/scripts/scan-integration.cjs",
@@ -58,7 +58,7 @@
       ".opencode/specs/skilled-agent-orchestration/123-deep-agent-improvement-uplift/001-research-recent-updates/research/research-report.md",
       ".opencode/specs/skilled-agent-orchestration/123-deep-agent-improvement-uplift/003-improvement-recommendations/improvement-roadmap.md",
       ".opencode/specs/skilled-agent-orchestration/123-deep-agent-improvement-uplift/002-applicability-analysis/applicability-table.md",
-      ".opencode/skills/deep-loop-runtime/scripts/_lib/cli-guards.cjs",
+      ".opencode/skills/deep-loop-runtime/scripts/lib/cli-guards.cjs",
       "spec.md",
       "plan.md"
     ],
@@ -66,7 +66,7 @@
       {
         "name": "typed-errors.cjs",
         "kind": "file",
-        "path": ".opencode/skills/deep-agent-improvement/scripts/_lib/typed-errors.cjs",
+        "path": ".opencode/skills/deep-agent-improvement/scripts/lib/typed-errors.cjs",
         "source": "derived"
       },
       {
@@ -168,7 +168,7 @@
       {
         "name": "cli-guards.cjs",
         "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/_lib/cli-guards.cjs",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/lib/cli-guards.cjs",
         "source": "derived"
       },
       {

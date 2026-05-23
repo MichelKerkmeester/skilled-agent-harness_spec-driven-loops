@@ -87,7 +87,7 @@ The purpose is to make evaluator artifacts comparable, inspectable, and resistan
 
 | File Path | Change Type | Description |
 | --- | --- | --- |
-| `.opencode/skills/deep-agent-improvement/scripts/_lib/promotion-gates.cjs` | Create | Shared named gate constants and evaluator. |
+| `.opencode/skills/deep-agent-improvement/scripts/lib/promotion-gates.cjs` | Create | Shared named gate constants and evaluator. |
 | `.opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs` | Modify | Input hashing/cache, gate metadata, mirror coverage warning. |
 | `.opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs` | Modify | Per-dimension and named benchmark/weighted gate enforcement. |
 | `.opencode/skills/deep-agent-improvement/scripts/mutation-coverage.cjs` | Modify | Distinct empty-field sentinels in signatures. |
@@ -136,7 +136,7 @@ The purpose is to make evaluator artifacts comparable, inspectable, and resistan
 | Dependency | Packet 124 null scoring | High | Build dashboard visibility on `score: null` and `unscoredDimensions`. |
 | Dependency | Packet 122 content hash precedent | Medium | Hash normalized full proposal content, not fuzzy similarity. |
 | Risk | Cache staleness from volatile scanner/profile fields | Medium | Strip timestamps/generatedAt from the input hash. |
-| Risk | Gate thresholds become policy drift | Medium | Centralize values in `_lib/promotion-gates.cjs` and document them. |
+| Risk | Gate thresholds become policy drift | Medium | Centralize values in `lib/promotion-gates.cjs` and document them. |
 | Risk | Mirror coverage warning confused with sync enforcement | Medium | Name it coverage-only and leave full gate to packet 127. |
 <!-- /ANCHOR:risks -->
 

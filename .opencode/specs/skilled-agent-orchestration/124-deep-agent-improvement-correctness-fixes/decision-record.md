@@ -118,7 +118,7 @@ Negative:
 
 Implementation files:
 
-- `.opencode/skills/deep-agent-improvement/scripts/_lib/typed-errors.cjs`
+- `.opencode/skills/deep-agent-improvement/scripts/lib/typed-errors.cjs`
 - `.opencode/skills/deep-agent-improvement/scripts/generate-profile.cjs`
 - `.opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs`
 - `.opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs`

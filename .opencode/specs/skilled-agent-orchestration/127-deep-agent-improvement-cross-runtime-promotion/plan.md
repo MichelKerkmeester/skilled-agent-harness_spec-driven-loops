@@ -71,8 +71,8 @@ Reusable verifier plus narrow hard gate.
 
 ### Key Components
 
-- `_lib/mirror-sync-verify.cjs`: runtime path map, Markdown body extraction, Codex TOML body extraction, token comparison, and aggregate result shape.
-- `_lib/promotion-gates.cjs`: mirror sync state constants and gate evaluation.
+- `lib/mirror-sync-verify.cjs`: runtime path map, Markdown body extraction, Codex TOML body extraction, token comparison, and aggregate result shape.
+- `lib/promotion-gates.cjs`: mirror sync state constants and gate evaluation.
 - `promote-candidate.cjs`: agent-definition target detection, candidate-body verification, structured rejection, and optional state-file write.
 - `reduce-state.cjs`: resume/dashboard visibility for latest mirror sync state and default recovery action.
 - `references/promotion_rules.md` and `references/mirror_drift_policy.md`: operator-facing contract updates.
@@ -192,7 +192,7 @@ candidate body + target path
 
 ### Rollback Procedure
 
-1. Remove `_lib/mirror-sync-verify.cjs` and its test.
+1. Remove `lib/mirror-sync-verify.cjs` and its test.
 2. Revert promotion-gates, promote-candidate, reduce-state, and reference-doc edits.
 3. Re-run syntax checks and any available DAI tests.
 

@@ -47,7 +47,7 @@ Packet 126 closes all six requested P1 evaluator-hardening items. The evaluator 
 
 | File | Action | Purpose |
 | --- | --- | --- |
-| `.opencode/skills/deep-agent-improvement/scripts/_lib/promotion-gates.cjs` | Added | Shared gate constants and evaluator. |
+| `.opencode/skills/deep-agent-improvement/scripts/lib/promotion-gates.cjs` | Added | Shared gate constants and evaluator. |
 | `.opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs` | Modified | `rubricVersion`, `inputHash`, cache, `--no-cache`, promotion gate output, runtime mirror coverage. |
 | `.opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs` | Modified | Named weighted, benchmark, delta, and per-dimension gate checks. |
 | `.opencode/skills/deep-agent-improvement/scripts/mutation-coverage.cjs` | Modified | Field-specific sentinels for empty signature parts. |
@@ -97,7 +97,7 @@ The implementation keeps behavior additive where possible. Existing CLI and help
 
 | Check | Status | Evidence |
 | --- | --- | --- |
-| Syntax checks | PASS | `node --check` passed for `score-candidate.cjs`, `promote-candidate.cjs`, `mutation-coverage.cjs`, `candidate-lineage.cjs`, `reduce-state.cjs`, and `_lib/promotion-gates.cjs`. |
+| Syntax checks | PASS | `node --check` passed for `score-candidate.cjs`, `promote-candidate.cjs`, `mutation-coverage.cjs`, `candidate-lineage.cjs`, `reduce-state.cjs`, and `lib/promotion-gates.cjs`. |
 | Direct smoke | PASS | Node smoke printed `PASS direct smoke: DAI-005, DAI-012, content-hash dedup, unscored dashboard`. |
 | Vitest attempt | BLOCKED | `npm exec --prefix .opencode -- vitest ...` failed with `ENOTFOUND registry.npmjs.org`; local Vitest binary is absent. |
 | Strict validation | PASS | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/126-deep-agent-improvement-evaluator-hardening --strict` exited 0. |
@@ -167,7 +167,7 @@ Suggested commit: `feat(126): deep-agent-improvement evaluator hardening — rep
 Explicit paths for `git add`:
 
 ```text
-.opencode/skills/deep-agent-improvement/scripts/_lib/promotion-gates.cjs
+.opencode/skills/deep-agent-improvement/scripts/lib/promotion-gates.cjs
 .opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs
 .opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs
 .opencode/skills/deep-agent-improvement/scripts/mutation-coverage.cjs

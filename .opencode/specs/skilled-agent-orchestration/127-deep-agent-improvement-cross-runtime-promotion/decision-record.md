@@ -95,7 +95,7 @@ Negative:
 | Simplicity | PASS | One reusable verifier plus local promotion/reducer wiring. |
 | Correctness | PASS | All four runtimes are checked for presence and body drift; Codex body is extracted before comparison. |
 | Scope | PASS | No actual runtime agent definitions or sibling skills are edited. |
-| Maintainability | PASS | Mirror state constants live in `_lib/promotion-gates.cjs`; verifier is standalone. |
+| Maintainability | PASS | Mirror state constants live in `lib/promotion-gates.cjs`; verifier is standalone. |
 | Verifiability | PASS | Syntax checks pass; Vitest fixtures cover all-in-sync, missing mirror, and Codex drift once the runner is available. |
 <!-- /ANCHOR:adr-001-five-checks -->
 
@@ -104,8 +104,8 @@ Negative:
 
 Implementation files:
 
-- `.opencode/skills/deep-agent-improvement/scripts/_lib/mirror-sync-verify.cjs`
-- `.opencode/skills/deep-agent-improvement/scripts/_lib/promotion-gates.cjs`
+- `.opencode/skills/deep-agent-improvement/scripts/lib/mirror-sync-verify.cjs`
+- `.opencode/skills/deep-agent-improvement/scripts/lib/promotion-gates.cjs`
 - `.opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs`
 - `.opencode/skills/deep-agent-improvement/scripts/reduce-state.cjs`
 - `.opencode/skills/deep-agent-improvement/scripts/tests/mirror-sync-verify.vitest.ts`

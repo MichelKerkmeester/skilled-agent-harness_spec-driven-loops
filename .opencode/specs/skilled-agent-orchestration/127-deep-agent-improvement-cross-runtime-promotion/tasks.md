@@ -47,10 +47,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T010 Create `_lib/mirror-sync-verify.cjs` with four runtime path map.
+- [x] T010 Create `lib/mirror-sync-verify.cjs` with four runtime path map.
 - [x] T011 Implement Markdown body extraction and Codex TOML `developer_instructions` extraction.
 - [x] T012 Implement normalized token comparison with runtime path normalization.
-- [x] T013 Extend `_lib/promotion-gates.cjs` with mirror sync state and gate evaluation.
+- [x] T013 Extend `lib/promotion-gates.cjs` with mirror sync state and gate evaluation.
 - [x] T014 Wire `promote-candidate.cjs` to enforce hard mirror sync for agent-definition targets.
 - [x] T015 Emit structured `MIRROR_SYNC_GATE_FAILED` error with present/missing/drift runtime lists.
 - [x] T016 Add optional state-file writes for `mirror_sync_state`.

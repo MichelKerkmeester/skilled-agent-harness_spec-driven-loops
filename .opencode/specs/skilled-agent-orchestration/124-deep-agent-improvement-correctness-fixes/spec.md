@@ -91,7 +91,7 @@ These are correctness issues, not polish. Left open, they can hide infra failure
 
 | File Path | Change Type | Purpose |
 | --- | --- | --- |
-| `.opencode/skills/deep-agent-improvement/scripts/_lib/typed-errors.cjs` | Create | Shared typed error helper. |
+| `.opencode/skills/deep-agent-improvement/scripts/lib/typed-errors.cjs` | Create | Shared typed error helper. |
 | `.opencode/skills/deep-agent-improvement/scripts/generate-profile.cjs` | Modify | Emit typed profile-generation failures and exit codes. |
 | `.opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs` | Modify | Preserve profile error type and handle unscored dimensions as null. |
 | `.opencode/skills/deep-agent-improvement/scripts/scan-integration.cjs` | Modify | Use plural `.opencode/commands` and `.opencode/skills`; include OpenCode mirror. |

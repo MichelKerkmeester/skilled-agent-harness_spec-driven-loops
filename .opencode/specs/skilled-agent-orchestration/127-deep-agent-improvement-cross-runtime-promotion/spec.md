@@ -65,7 +65,7 @@ The purpose is to make cross-runtime parity a promotion invariant for agent-defi
 ### In Scope
 
 - Hard promotion rejection for agent-definition targets when any of the four runtime mirrors is missing or content-drifted.
-- Reusable `_lib/mirror-sync-verify.cjs` helper returning present, missing, drift, and aggregate sync status.
+- Reusable `lib/mirror-sync-verify.cjs` helper returning present, missing, drift, and aggregate sync status.
 - Codex TOML body-token comparison rather than TOML wrapper byte comparison.
 - `mirror_sync_state` recording with `all_landed`, `partial:<runtime-list>`, and `verification_failed` states.
 - Reducer/dashboard surfacing for mirror sync recovery state.
@@ -81,8 +81,8 @@ The purpose is to make cross-runtime parity a promotion invariant for agent-defi
 
 | File Path | Change Type | Description |
 | --- | --- | --- |
-| `.opencode/skills/deep-agent-improvement/scripts/_lib/mirror-sync-verify.cjs` | Create | Four-runtime mirror verifier. |
-| `.opencode/skills/deep-agent-improvement/scripts/_lib/promotion-gates.cjs` | Modify | Mirror sync state constants and gate evaluation. |
+| `.opencode/skills/deep-agent-improvement/scripts/lib/mirror-sync-verify.cjs` | Create | Four-runtime mirror verifier. |
+| `.opencode/skills/deep-agent-improvement/scripts/lib/promotion-gates.cjs` | Modify | Mirror sync state constants and gate evaluation. |
 | `.opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs` | Modify | Hard gate plus structured rejection and state recording. |
 | `.opencode/skills/deep-agent-improvement/scripts/reduce-state.cjs` | Modify | Resume/dashboard visibility for mirror sync state. |
 | `.opencode/skills/deep-agent-improvement/scripts/tests/mirror-sync-verify.vitest.ts` | Create | Four-runtime verifier regression tests. |
@@ -98,7 +98,7 @@ The purpose is to make cross-runtime parity a promotion invariant for agent-defi
 | ID | Requirement | Acceptance Criteria |
 | --- | --- | --- |
 | REQ-001 | Hard four-runtime sync gate | Promotion rejects agent-definition targets when any mirror is missing or drifted. |
-| REQ-002 | Reusable verifier | `_lib/mirror-sync-verify.cjs` exports `verifyMirrorSync(agentName, content, options)` returning `presentRuntimes`, `missingRuntimes`, `driftRuntimes`, and `allInSync`. |
+| REQ-002 | Reusable verifier | `lib/mirror-sync-verify.cjs` exports `verifyMirrorSync(agentName, content, options)` returning `presentRuntimes`, `missingRuntimes`, `driftRuntimes`, and `allInSync`. |
 | REQ-003 | Codex TOML exception | Codex mirror comparison extracts `developer_instructions` and compares body tokens, not TOML bytes. |
 | REQ-004 | Partial state semantics | Promotion state records `mirror_sync_state` as `all_landed`, `partial:<list>`, or `verification_failed`. |
 | REQ-005 | Resume recovery behavior | Reducer surfaces latest mirror sync state and recovery action; default recovery is rollback of partial mirrors. |

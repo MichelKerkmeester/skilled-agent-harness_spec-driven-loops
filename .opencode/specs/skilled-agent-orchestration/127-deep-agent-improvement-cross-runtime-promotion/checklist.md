@@ -70,7 +70,7 @@ _memory:
 
 - [x] CHK-FIX-001 [P0] Multi-runtime sync gate closed. Evidence: promotion now verifies agent-definition mirrors unconditionally.
 - [x] CHK-FIX-002 [P1] DAI-006 partial state closed. Evidence: `mirror_sync_state` and reducer dashboard support.
-- [x] CHK-FIX-003 [P1] Reusable verifier closed. Evidence: `_lib/mirror-sync-verify.cjs` exports `verifyMirrorSync`.
+- [x] CHK-FIX-003 [P1] Reusable verifier closed. Evidence: `lib/mirror-sync-verify.cjs` exports `verifyMirrorSync`.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -99,7 +99,7 @@ _memory:
 ## File Organization
 
 - [x] CHK-050 [P1] Spec docs are under packet 127. Evidence: `.opencode/specs/skilled-agent-orchestration/127-*`.
-- [x] CHK-051 [P1] Helper lives under DAI `_lib`. Evidence: `scripts/_lib/mirror-sync-verify.cjs`.
+- [x] CHK-051 [P1] Helper lives under DAI `lib`. Evidence: `scripts/lib/mirror-sync-verify.cjs`.
 - [x] CHK-052 [P1] Test lives under DAI script tests. Evidence: `scripts/tests/mirror-sync-verify.vitest.ts`.
 <!-- /ANCHOR:file-org -->
 

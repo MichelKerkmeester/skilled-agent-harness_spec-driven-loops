@@ -63,7 +63,7 @@ Task format: `T### [P?] Description (path) {deps: T###}`.
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T007 Add shared promotion gate constants (`scripts/_lib/promotion-gates.cjs`) {deps: T005}.
+- [x] T007 Add shared promotion gate constants (`scripts/lib/promotion-gates.cjs`) {deps: T005}.
 - [x] T008 Wire named gates into scorer output (`scripts/score-candidate.cjs`) {deps: T007}.
 - [x] T009 Wire named gates into promotion enforcement (`scripts/promote-candidate.cjs`) {deps: T007}.
 - [x] T010 Add scorer input hash/cache and `--no-cache` (`scripts/score-candidate.cjs`) {deps: T008}.
