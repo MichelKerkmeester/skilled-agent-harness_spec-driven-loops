@@ -4,7 +4,8 @@
   "spec_folder": "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/007-deep-review-phase5-backlog",
   "parent_id": "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup",
   "children_ids": [
-    "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/007-deep-review-phase5-backlog/001-doc-cluster-remediation"
+    "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/007-deep-review-phase5-backlog/001-doc-cluster-remediation",
+    "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/007-deep-review-phase5-backlog/002-reducer-cluster-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -29,8 +30,8 @@
       "reducer"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
-    "last_active_child_id": "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/007-deep-review-phase5-backlog/001-doc-cluster-remediation",
+    "status": "complete",
+    "last_active_child_id": "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/007-deep-review-phase5-backlog/002-reducer-cluster-remediation",
     "key_files": [
       "spec.md",
       "001-doc-cluster-remediation/spec.md"

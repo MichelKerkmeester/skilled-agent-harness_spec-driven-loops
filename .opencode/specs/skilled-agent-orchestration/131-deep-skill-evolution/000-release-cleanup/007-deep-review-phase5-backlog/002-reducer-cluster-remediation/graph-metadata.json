@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/007-deep-review-phase5-backlog/002-reducer-cluster-remediation",
+  "spec_folder": "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/007-deep-review-phase5-backlog/002-reducer-cluster-remediation",
+  "parent_id": "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/007-deep-review-phase5-backlog",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/003-deep-review",
+      "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/006-gate-model-reconciliation"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "reducer cluster remediation",
+      "reduce-state.cjs behavioral changes",
+      "ADR-002 reopening"
+    ],
+    "key_topics": [
+      "reducer",
+      "reduce-state",
+      "deep-review",
+      "content_hash",
+      "dedup",
+      "traceability",
+      "dashboard",
+      "field-validation"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-review/scripts/reduce-state.cjs",
+      ".opencode/skills/system-spec-kit/scripts/tests/reducer-backlog-remediation.vitest.ts",
+      "spec.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "Reopened ADR-002 to implement 5 surgical additive behavioral changes to the loop-critical reduce-state.cjs (LG-0001 dashboard pause/stuck, LG-0005 scopeProof/affectedSurfaceHints carry-through, LG-0006 traceabilityChecks rollup, LG-0008 content_hash two-tier dedup per SKILL.md 8.1, LG-0033 additive field validation) with 16 new vitest cases and zero regression. Documented 4 by-design gaps (LG-0002/0003/0004/0023).",
+    "created_at": "2026-05-23T19:05:00.000Z",
+    "last_save_at": "2026-05-23T19:05:00.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ]
+  }
+}

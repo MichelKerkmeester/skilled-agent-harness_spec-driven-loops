@@ -463,6 +463,32 @@ function deriveDashboardStatus(config, records, terminalStop) {
   if (terminalStop) {
     return 'COMPLETE';
   }
+  // LG-0001: surface pause/recovery state. The reducer already tracks iteration,
+  // resume/restart, and synthesis events; userPaused and stuckRecovery were the
+  // gap. If the most recent loop signal is a pause or recovery event (no later
+  // iteration/resume that would supersede it), reflect that on the dashboard
+  // instead of defaulting to RUNNING.
+  let latestPauseStuckIndex = -1;
+  let latestPauseStuckKind = null;
+  let latestProgressIndex = -1;
+  (Array.isArray(records) ? records : []).forEach((record, index) => {
+    if (record?.type === 'iteration') {
+      latestProgressIndex = index;
+      return;
+    }
+    if (record?.type !== 'event') {
+      return;
+    }
+    if (record.event === 'userPaused' || record.event === 'stuckRecovery') {
+      latestPauseStuckIndex = index;
+      latestPauseStuckKind = record.event;
+    } else if (record.event === 'resumed' || record.event === 'restarted' || record.event === 'synthesis_complete') {
+      latestProgressIndex = index;
+    }
+  });
+  if (latestPauseStuckIndex > latestProgressIndex && latestPauseStuckKind) {
+    return latestPauseStuckKind === 'userPaused' ? 'PAUSED' : 'RECOVERING';
+  }
   const rawStatus = normalizeText(config.status || '').toLowerCase() || 'initialized';
   if (rawStatus === 'complete' || rawStatus === 'completed') {
     return 'COMPLETE';
@@ -537,7 +563,82 @@ function deltaRecordToFinding(record) {
     description,
     findingClass: record.findingClass || null,
     deltaStatus: record.status || null,
+    // LG-0005: carry the documented findingDetails fields (state_format.md line 226)
+    // through to the registry instead of dropping them.
+    scopeProof: typeof record.scopeProof === 'string' ? record.scopeProof : null,
+    affectedSurfaceHints: asStringList(record.affectedSurfaceHints),
+    // LG-0008: carry content_hash so the registry can apply the documented
+    // two-tier dedup (SKILL.md 8.1). Null when the record predates the contract.
+    contentHash: typeof record.content_hash === 'string' && record.content_hash
+      ? record.content_hash
+      : (typeof record.contentHash === 'string' && record.contentHash ? record.contentHash : null),
   };
+}
+
+/**
+ * LG-0008: two-tier dedup key per SKILL.md 8.1.
+ * Primary: content_hash. Fallback (records predating the contract): the legacy
+ * `file:line + normalized-title` key. Returns a namespaced string so the two
+ * tiers never collide.
+ */
+function findingDedupKey(finding) {
+  if (finding.contentHash) {
+    return `ch:${finding.contentHash}`;
+  }
+  const file = finding.file || '';
+  const line = isFiniteNumber(finding.line) ? finding.line : '';
+  const title = normalizeText(finding.title || '').toLowerCase().slice(0, 80);
+  return `fl:${file}:${line}|${title}`;
+}
+
+function dedupeDimensions(dimensions) {
+  const seen = new Set();
+  const out = [];
+  for (const dimension of dimensions) {
+    if (!dimension) continue;
+    if (seen.has(dimension)) continue;
+    seen.add(dimension);
+    out.push(dimension);
+  }
+  return out;
+}
+
+/**
+ * LG-0008: collapse cross-dimension restatements (same content_hash, different
+ * findingId) into one canonical entry carrying a merged `dimensions[]` list,
+ * matching the synthesis dedup contract in SKILL.md 8.1. Same-findingId entries
+ * are already merged upstream by the findingId-keyed map, so this only collapses
+ * genuine cross-dimension/cross-id duplicates. Additive: a finding with a unique
+ * key keeps its single-element `dimensions` list and an empty `mergedFindingIds`.
+ */
+function collapseFindingsByDedupKey(findingEntries) {
+  const byKey = new Map();
+  for (const finding of findingEntries) {
+    const key = findingDedupKey(finding);
+    const existing = byKey.get(key);
+    if (!existing) {
+      byKey.set(key, {
+        ...finding,
+        dimensions: dedupeDimensions([finding.dimension]),
+        mergedFindingIds: [],
+      });
+      continue;
+    }
+    // Keep the earliest-discovered finding as canonical; fold the duplicate in.
+    if (isFiniteNumber(finding.firstSeen) && finding.firstSeen < existing.firstSeen) {
+      existing.firstSeen = finding.firstSeen;
+    }
+    if (isFiniteNumber(finding.lastSeen) && finding.lastSeen > existing.lastSeen) {
+      existing.lastSeen = finding.lastSeen;
+    }
+    existing.dimensions = dedupeDimensions([...existing.dimensions, finding.dimension]);
+    if (finding.findingId && finding.findingId !== existing.findingId
+      && !existing.mergedFindingIds.includes(finding.findingId)) {
+      existing.mergedFindingIds.push(finding.findingId);
+    }
+    existing.transitions = mergeTransitions(existing.transitions, finding.transitions);
+  }
+  return [...byKey.values()];
 }
 
 function buildFindingRegistry(iterationFiles, iterationRecords, deltaRecords = []) {
@@ -657,10 +758,17 @@ function buildFindingRegistry(iterationFiles, iterationRecords, deltaRecords = [
     }
   }
 
+  // LG-0008: collapse cross-dimension restatements before splitting open/resolved.
+  const collapsedFindings = collapseFindingsByDedupKey([...findingById.values()]);
+
   const openFindings = [];
   const resolvedFindings = [];
-  for (const finding of findingById.values()) {
-    if (resolvedIdSet.has(finding.findingId)) {
+  for (const finding of collapsedFindings) {
+    // A collapsed finding is resolved only when its canonical id and every
+    // merged id are resolved, so a duplicate that lingers keeps the entry open.
+    const allIds = [finding.findingId, ...(finding.mergedFindingIds || [])];
+    const resolved = allIds.length > 0 && allIds.every((id) => resolvedIdSet.has(id));
+    if (resolved) {
       finding.status = 'resolved';
       resolvedFindings.push(finding);
     } else {
@@ -791,6 +899,38 @@ function buildGraphConvergenceRollup(records) {
     score: computeGraphConvergenceScore(latest.signals),
     decision: normalizeText(latest.decision || '') || null,
     blockers: Array.isArray(latest.blockers) ? latest.blockers : [],
+  };
+}
+
+/**
+ * LG-0006: aggregate the latest `traceabilityChecks` payload (state_format.md
+ * traceabilityChecks schema) into the registry. Iteration records emitted during
+ * Traceability-dimension passes carry it; the reducer was dropping it. Returns
+ * the latest summary + results, or a zeroed rollup when none has been emitted.
+ */
+function buildTraceabilityRollup(iterationRecords) {
+  const latest = (Array.isArray(iterationRecords) ? iterationRecords : [])
+    .filter((record) => record && typeof record === 'object'
+      && record.traceabilityChecks && typeof record.traceabilityChecks === 'object')
+    .at(-1);
+
+  if (!latest) {
+    return {
+      summary: {
+        required: 0, executed: 0, pass: 0, partial: 0,
+        fail: 0, blocked: 0, notApplicable: 0, gatingFailures: 0,
+      },
+      results: [],
+    };
+  }
+
+  const tc = latest.traceabilityChecks;
+  return {
+    summary: (tc.summary && typeof tc.summary === 'object') ? tc.summary : {
+      required: 0, executed: 0, pass: 0, partial: 0,
+      fail: 0, blocked: 0, notApplicable: 0, gatingFailures: 0,
+    },
+    results: Array.isArray(tc.results) ? tc.results : [],
   };
 }
 
@@ -1012,6 +1152,52 @@ function buildSearchLedgerState(iterationRecords) {
   };
 }
 
+/**
+ * LG-0033: enforce the documented Validation Rules (state_format.md "Validation
+ * Rules") at the field level. parseJsonlDetailed only guards JSON syntax. This
+ * adds non-fatal, additive field warnings so the reduce still completes (it does
+ * NOT throw or change the default pass/fail for currently-valid state). Each
+ * warning names the record index and the violated rule.
+ */
+function validateReviewRecordFields(records) {
+  const warnings = [];
+  const severityBuckets = ['P0', 'P1', 'P2'];
+  (Array.isArray(records) ? records : []).forEach((record, index) => {
+    if (!record || typeof record !== 'object') {
+      return;
+    }
+    if (typeof record.type !== 'string' || !record.type) {
+      warnings.push({ index, rule: 'type-required', detail: 'record is missing a string `type` field' });
+      return;
+    }
+    if (record.type === 'iteration' || record.event === 'synthesis_complete') {
+      if (record.mode !== undefined && record.mode !== 'review') {
+        warnings.push({ index, rule: 'mode-review', detail: `mode must be "review", saw "${record.mode}"` });
+      }
+    }
+    if (record.type === 'iteration') {
+      if (record.newFindingsRatio !== undefined
+        && (typeof record.newFindingsRatio !== 'number'
+          || record.newFindingsRatio < 0 || record.newFindingsRatio > 1)) {
+        warnings.push({ index, rule: 'newFindingsRatio-range', detail: 'newFindingsRatio must be 0.0-1.0' });
+      }
+      for (const field of ['findingsSummary', 'findingsNew']) {
+        const value = record[field];
+        if (value !== undefined) {
+          if (!value || typeof value !== 'object' || Array.isArray(value)
+            || !severityBuckets.every((key) => key in value)) {
+            warnings.push({ index, rule: `${field}-severity-keys`, detail: `${field} must contain P0, P1, P2 keys` });
+          }
+        }
+      }
+      if (record.findingDetails !== undefined && !Array.isArray(record.findingDetails)) {
+        warnings.push({ index, rule: 'findingDetails-array', detail: 'findingDetails must be an array' });
+      }
+    }
+  });
+  return warnings;
+}
+
 function buildRegistry(strategyDimensions, iterationFiles, iterationRecords, config, corruptionWarnings = [], deltaRecords = []) {
   const terminalStop = buildTerminalStopState(iterationRecords);
   const lineage = buildLineageState(config, iterationRecords, terminalStop);
@@ -1022,6 +1208,8 @@ function buildRegistry(strategyDimensions, iterationFiles, iterationRecords, con
   const graphConvergence = buildGraphConvergenceRollup(iterationRecords);
   const blockedStopHistory = buildBlockedStopHistory(iterationRecords);
   const searchLedgerState = buildSearchLedgerState(iterationRecords);
+  const traceability = buildTraceabilityRollup(iterationRecords);
+  const fieldWarnings = validateReviewRecordFields(iterationRecords);
   const status = deriveDashboardStatus(config, iterationRecords, terminalStop);
 
   // Part C REQ-018: split repeatedFindings into two semantically distinct buckets
@@ -1071,6 +1259,8 @@ function buildRegistry(strategyDimensions, iterationFiles, iterationRecords, con
     ruledOutCandidates: searchLedgerState.ruledOutCandidates,
     cleanSearchProof: searchLedgerState.cleanSearchProof,
     searchCoverage: searchLedgerState.searchCoverage,
+    traceability,
+    fieldWarnings,
     corruptionWarnings,
   };
 }
@@ -1654,4 +1844,10 @@ module.exports = {
   parseFindingLine,
   replaceAnchorSection,
   reduceReviewState,
+  deltaRecordToFinding,
+  deriveDashboardStatus,
+  collapseFindingsByDedupKey,
+  findingDedupKey,
+  buildTraceabilityRollup,
+  validateReviewRecordFields,
 };

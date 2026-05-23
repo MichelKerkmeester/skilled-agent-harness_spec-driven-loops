@@ -342,15 +342,15 @@ The `007-deep-review-phase5-backlog` arc drives every deferred gap to a terminal
 | LG-0021 | WON'T FIX | Design-correct split: convergence thresholds live in YAML by intent, not config.json |
 | LG-0026 | WON'T FIX | Test-location is an architectural decision, not a docs gap |
 | LG-0027 | WON'T FIX | Historical changelog filename preserved per AF-0019 chronological fidelity |
-| LG-0001 | reducer (007/002) | userPaused / stuckRecovery event handling |
-| LG-0002 | reducer (007/002) | gate-name validation |
-| LG-0003 | reducer (007/002) | rollingAvg + madScore reads |
-| LG-0004 | reducer (007/002) | graphEvents handling (verify reducer-vs-MCP responsibility) |
-| LG-0005 | reducer (007/002) | scopeProof + affectedSurfaceHints |
-| LG-0006 | reducer (007/002) | traceabilityChecks handling |
-| LG-0008 | reducer (007/002) | content_hash two-tier dedup |
-| LG-0023 | reducer (007/002) | emitResourceMap main-flow integration (likely already landed, verify) |
-| LG-0033 | reducer (007/002) | parseJsonlDetailed required-field validation |
+| LG-0001 | FIXED (007/002) | `deriveDashboardStatus` surfaces userPaused/stuckRecovery (PAUSED/RECOVERING) |
+| LG-0002 | BY-DESIGN (007/002) | reducer is intentionally gate-name-agnostic (006); allowlist would reject future gates |
+| LG-0003 | BY-DESIGN (007/002) | `computeConvergenceScore` reads compositeStop, the pre-blended composite of rollingAvg + MAD |
+| LG-0004 | BY-DESIGN (007/002) | graphEvents are consumed by the MCP coverage-graph handler into deep-loop-graph.sqlite, not the JSONL reducer |
+| LG-0005 | FIXED (007/002) | `deltaRecordToFinding` carries scopeProof + affectedSurfaceHints into registry |
+| LG-0006 | FIXED (007/002) | `buildTraceabilityRollup` aggregates traceabilityChecks into the registry |
+| LG-0008 | FIXED (007/002) | `collapseFindingsByDedupKey` applies content_hash two-tier dedup per SKILL.md 8.1 |
+| LG-0023 | BY-DESIGN (007/002) | emitResourceMap `--emit-resource-map` gating is the design; synthesis passes the flag |
+| LG-0033 | FIXED (007/002) | `validateReviewRecordFields` adds additive field-level warnings per state_format rules |
 
 ### Convergence signal
 
