@@ -1,0 +1,25 @@
+{
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/127-deep-agent-improvement-cross-runtime-promotion",
+  "description": "Packet 127 implements a hard four-runtime mirror sync promotion gate for deep-agent-improvement agent definitions, including Codex TOML body comparison and partial mirror recovery state.",
+  "keywords": [
+    "deep-agent-improvement",
+    "packet",
+    "127",
+    "cross-runtime",
+    "promotion",
+    "mirror-sync",
+    "agent-definitions",
+    "codex-toml",
+    "partial-state",
+    "rollback"
+  ],
+  "lastUpdated": "2026-05-23T00:00:00.000Z",
+  "specId": "127",
+  "folderSlug": "deep-agent-improvement-cross-runtime-promotion",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

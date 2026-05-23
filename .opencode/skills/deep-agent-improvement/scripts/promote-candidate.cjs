@@ -13,8 +13,13 @@ const {
   BENCHMARK_AGGREGATE_GATE,
   PROMOTION_GATES,
   WEIGHTED_SCORE_GATE,
+  evaluateMirrorSyncGate,
   evaluatePromotionGates,
 } = require('./_lib/promotion-gates.cjs');
+const {
+  inferAgentNameFromPath,
+  verifyMirrorSync,
+} = require('./_lib/mirror-sync-verify.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -52,22 +57,14 @@ function ensureParent(filePath) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
 }
 
-function runtimeMirrorPaths(target) {
-  const name = path.basename(target, path.extname(target));
-  return [
-    `.opencode/agents/${name}.md`,
-    `.claude/agents/${name}.md`,
-    `.codex/agents/${name}.toml`,
-    `.gemini/agents/${name}.md`,
-  ];
+function writeJson(filePath, data) {
+  ensureParent(filePath);
+  fs.writeFileSync(filePath, `${JSON.stringify(data, null, 2)}\n`, 'utf8');
 }
 
-function checkRuntimeMirrorLanding(target) {
-  const expected = runtimeMirrorPaths(target);
-  return {
-    expected,
-    missing: expected.filter((filePath) => !fs.existsSync(filePath)),
-  };
+function appendJsonl(filePath, data) {
+  ensureParent(filePath);
+  fs.appendFileSync(filePath, `${JSON.stringify(data)}\n`, 'utf8');
 }
 
 function readScoreDelta(score) {
@@ -75,6 +72,50 @@ function readScoreDelta(score) {
     return score.delta.total;
   }
   return score ? score.delta : null;
+}
+
+function isAgentDefinitionTarget(target) {
+  const normalized = (path.isAbsolute(target) ? path.relative(process.cwd(), target) : target)
+    .split(path.sep)
+    .join('/');
+  return /^(\.\/)?\.(opencode|claude|gemini)\/agents\/[^/]+\.md$/.test(normalized)
+    || /^(\.\/)?\.codex\/agents\/[^/]+\.toml$/.test(normalized);
+}
+
+function expectedFormatForTarget(target) {
+  const normalized = (path.isAbsolute(target) ? path.relative(process.cwd(), target) : target)
+    .split(path.sep)
+    .join('/');
+  return normalized.includes('.codex/agents/') ? 'codex-toml' : 'markdown';
+}
+
+function writeMirrorSyncState(stateFilePath, state) {
+  if (!stateFilePath) {
+    return;
+  }
+  const payload = {
+    type: 'mirror_sync_state',
+    timestamp: new Date().toISOString(),
+    ...state,
+  };
+  if (stateFilePath.endsWith('.jsonl')) {
+    appendJsonl(stateFilePath, payload);
+  } else {
+    writeJson(stateFilePath, payload);
+  }
+}
+
+function rejectWithStructuredError(errorType, message, details, stateFilePath) {
+  if (details?.mirror_sync_state) {
+    writeMirrorSyncState(stateFilePath, details);
+  }
+  process.stderr.write(`${JSON.stringify({
+    status: 'error',
+    errorType,
+    message,
+    details,
+  }, null, 2)}\n`);
+  process.exit(1);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -119,15 +160,11 @@ function main() {
   const resolvedRepeatabilityReportPath = repeatabilityReportPath || path.join(path.dirname(benchmarkReportPath), 'repeatability.json');
   const repeatabilityReport = readOptionalJson(resolvedRepeatabilityReportPath);
   const config = readJson(configPath);
+  const mirrorStateFilePath = args['state-file'] || config?.promotion?.mirrorSyncStateFile || null;
   const allowedCanonicalTarget = resolveAllowedCanonicalTarget(manifestPath);
   const threshold = Number(config?.scoring?.thresholdDelta || 1);
   const proposalOnly = config?.proposalOnly;
   const promotionEnabled = config?.promotionEnabled;
-  const requireRuntimeMirrors = args['require-runtime-mirrors'] === true
-    || args['require-runtime-mirrors'] === 'true'
-    || process.env.DEEP_AGENT_IMPROVEMENT_REQUIRE_RUNTIME_MIRRORS === '1'
-    || config?.promotion?.requireRuntimeMirrors === true;
-
   if (score.status !== 'scored') {
     process.stderr.write('Cannot promote: score file is not in scored state\n');
     process.exit(1);
@@ -215,13 +252,46 @@ function main() {
     process.exit(1);
   }
 
-  // TODO(packet-127): make runtime mirror landing unconditional once promotion writes all 4 mirrors.
-  if (requireRuntimeMirrors) {
-    const mirrorLanding = checkRuntimeMirrorLanding(target);
-    if (mirrorLanding.missing.length > 0) {
-      process.stderr.write(`Cannot promote: runtime mirror sync incomplete; missing ${mirrorLanding.missing.join(', ')}\n`);
-      process.exit(1);
+  let runtimeMirrorSync = null;
+  if (isAgentDefinitionTarget(target)) {
+    const agentName = inferAgentNameFromPath(target);
+    const candidateContent = fs.readFileSync(candidate, 'utf8');
+    const syncResult = verifyMirrorSync(agentName, candidateContent, {
+      repoRoot: process.cwd(),
+      expectedFormat: expectedFormatForTarget(target),
+    });
+    const mirrorGate = evaluateMirrorSyncGate(syncResult);
+    runtimeMirrorSync = mirrorGate.result;
+
+    if (!mirrorGate.passed) {
+      rejectWithStructuredError(
+        'MIRROR_SYNC_GATE_FAILED',
+        'Cannot promote: 4-runtime agent mirror sync verification failed',
+        {
+          target,
+          candidate,
+          agentName,
+          mirror_sync_state: mirrorGate.mirror_sync_state,
+          recoveryAction: mirrorGate.recoveryAction,
+          defaultRecovery: 'rollback partial mirrors before resume to maintain 4-runtime invariant',
+          presentRuntimes: syncResult.presentRuntimes,
+          missingRuntimes: syncResult.missingRuntimes,
+          driftRuntimes: syncResult.driftRuntimes,
+          verification: syncResult,
+        },
+        mirrorStateFilePath
+      );
     }
+
+    writeMirrorSyncState(mirrorStateFilePath, {
+      target,
+      candidate,
+      agentName,
+      mirror_sync_state: mirrorGate.mirror_sync_state,
+      recoveryAction: mirrorGate.recoveryAction,
+      defaultRecovery: null,
+      verification: syncResult,
+    });
   }
 
   ensureParent(path.join(archiveDir, 'placeholder'));
@@ -238,7 +308,8 @@ function main() {
     backupPath,
     benchmarkReport: benchmarkReportPath,
     repeatabilityReport: resolvedRepeatabilityReportPath,
-    runtimeMirrors: requireRuntimeMirrors ? checkRuntimeMirrorLanding(target).expected : null,
+    runtimeMirrors: runtimeMirrorSync,
+    mirror_sync_state: runtimeMirrorSync ? 'all_landed' : null,
     delta: scoreDelta,
     threshold,
     timestamp: new Date().toISOString(),

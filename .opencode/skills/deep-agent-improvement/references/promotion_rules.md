@@ -37,6 +37,7 @@ When promotion is enabled, the shipped promotion script enforces:
 - a matching `benchmark-pass` report (when benchmarks are configured for the target)
 - a passing repeatability report
 - explicit operator approval plus manifest boundary enforcement for the specific target
+- a hard four-runtime mirror sync gate when the target is an agent definition under `.opencode/agents/`, `.claude/agents/`, `.codex/agents/`, or `.gemini/agents/`
 
 ---
 
@@ -77,6 +78,9 @@ Promotion is allowed only when:
 - rollback steps are documented
 - the explicit approval gate is passed
 - the target is not classified `fixed` or `forbidden` in the manifest
+- agent-definition targets are present and content-aligned across all four runtime mirrors; Codex TOML is checked by extracted body tokens, not by byte-equivalence of the TOML wrapper
+
+If mirror verification fails, promotion rejects with a structured `MIRROR_SYNC_GATE_FAILED` error. The optional promotion state file records `mirror_sync_state` as `all_landed`, `partial:<runtime-list>`, or `verification_failed`. Resume behavior defaults to rolling back partial mirror landings before another promotion attempt; operators may instead retry failed mirrors or pause for an explicit decision.
 
 ---
 
@@ -86,4 +90,3 @@ Promotion is allowed only when:
 - `rollback_runbook.md`
 - `no_go_conditions.md`
 - `../scripts/promote-candidate.cjs`
-

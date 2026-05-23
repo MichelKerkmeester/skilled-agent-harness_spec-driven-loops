@@ -15,6 +15,11 @@ const PROMOTION_GATES = Object.freeze({
 
 const BENCHMARK_AGGREGATE_GATE = 85;
 
+const MIRROR_SYNC_STATES = Object.freeze({
+  allLanded: 'all_landed',
+  verificationFailed: 'verification_failed',
+});
+
 function evaluatePromotionGates(dimensions) {
   const byName = new Map((dimensions || []).map((dimension) => [dimension.name, dimension]));
   const results = {};
@@ -46,9 +51,35 @@ function evaluatePromotionGates(dimensions) {
   };
 }
 
+function buildPartialMirrorSyncState(presentRuntimes) {
+  const landed = [...new Set(presentRuntimes || [])].sort();
+  return landed.length > 0 ? `partial:${landed.join(',')}` : MIRROR_SYNC_STATES.verificationFailed;
+}
+
+function evaluateMirrorSyncGate(syncResult) {
+  if (syncResult?.allInSync) {
+    return {
+      passed: true,
+      mirror_sync_state: MIRROR_SYNC_STATES.allLanded,
+      recoveryAction: null,
+      result: syncResult,
+    };
+  }
+
+  return {
+    passed: false,
+    mirror_sync_state: buildPartialMirrorSyncState(syncResult?.presentRuntimes || []),
+    recoveryAction: 'rollback_partial_mirrors',
+    result: syncResult || null,
+  };
+}
+
 module.exports = {
   WEIGHTED_SCORE_GATE,
   PROMOTION_GATES,
   BENCHMARK_AGGREGATE_GATE,
+  MIRROR_SYNC_STATES,
+  buildPartialMirrorSyncState,
+  evaluateMirrorSyncGate,
   evaluatePromotionGates,
 };

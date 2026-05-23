@@ -32,6 +32,8 @@ Mirror drift is real maintenance work, but it is downstream from experiment trut
 
 Runtime mirrors are not phase-one experiment targets. They are downstream packaging surfaces.
 
+For guarded promotion of agent definitions, downstream does not mean optional. Before an agent-definition candidate can be promoted, `.opencode/agents/`, `.claude/agents/`, `.codex/agents/`, and `.gemini/agents/` must all contain the corresponding agent and must match the proposed body. Codex TOML is compared by its extracted `developer_instructions` body tokens so runtime wrapper metadata does not create false drift.
+
 ---
 
 ## 3. AFTER CANONICAL CHANGE
@@ -42,6 +44,8 @@ After a canonical promotion:
 2. Record the sync work under a packaging-specific note or follow-up packet
 3. Decide whether to sync immediately or record explicit follow-up debt
 4. Do not treat mirror changes as evaluator evidence for the original experiment
+
+If a resume detects `mirror_sync_state: "partial:<runtime-list>"`, the default recovery is rollback of partial mirror landings before further promotion work. Operators may override that default only by choosing to retry failed mirrors or by recording an explicit operator decision. `verification_failed` means the verifier could not establish a safe runtime set and must be treated as a stop condition.
 
 ### Integration Scanner
 
@@ -73,4 +77,3 @@ Forbidden outcomes:
 - `rollback_runbook.md`
 - `promotion_rules.md`
 - `../scripts/check-mirror-drift.cjs`
-

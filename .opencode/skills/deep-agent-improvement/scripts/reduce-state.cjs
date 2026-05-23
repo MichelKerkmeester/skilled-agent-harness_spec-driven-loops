@@ -469,6 +469,23 @@ function summarizeSampleQuality(records, registry) {
   };
 }
 
+function collectMirrorSyncStates(records) {
+  return records
+    .filter((record) => record.type === 'mirror_sync_state' || typeof record.mirror_sync_state === 'string')
+    .map((record) => ({
+      timestamp: record.timestamp || null,
+      target: record.target || null,
+      candidate: record.candidate || null,
+      agentName: record.agentName || null,
+      mirror_sync_state: record.mirror_sync_state || null,
+      recoveryAction: record.recoveryAction || null,
+      defaultRecovery: record.defaultRecovery || null,
+      presentRuntimes: record.presentRuntimes || record.verification?.presentRuntimes || [],
+      missingRuntimes: record.missingRuntimes || record.verification?.missingRuntimes || [],
+      driftRuntimes: record.driftRuntimes || record.verification?.driftRuntimes || [],
+    }));
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. PROFILE BUCKET
 // ─────────────────────────────────────────────────────────────────────────────
@@ -659,10 +676,16 @@ function buildRegistry(records) {
 
   globalMetrics.targetProfiles = Object.keys(profiles).length;
 
+  const mirrorSyncHistory = collectMirrorSyncStates(records);
+
   return {
     globalMetrics,
     insufficientDataIterations,
     insufficientSampleIterations,
+    mirrorSync: {
+      latest: mirrorSyncHistory.length > 0 ? mirrorSyncHistory[mirrorSyncHistory.length - 1] : null,
+      history: mirrorSyncHistory,
+    },
     profiles,
   };
 }
@@ -1000,6 +1023,28 @@ function renderMutationCoverageSection(summary) {
 `;
 }
 
+function renderMirrorSyncSection(summary) {
+  const latest = summary?.latest;
+  if (!latest) {
+    return `## Mirror Sync Recovery
+
+- Not available.
+`;
+  }
+
+  return `## Mirror Sync Recovery
+
+| Field | Value |
+| --- | --- |
+| Latest state | ${formatDashboardValue(latest.mirror_sync_state)} |
+| Recovery action | ${formatDashboardValue(latest.recoveryAction)} |
+| Default recovery | ${formatDashboardValue(latest.defaultRecovery)} |
+| Present runtimes | ${formatDashboardValue((latest.presentRuntimes || []).join(', ') || 'none')} |
+| Missing runtimes | ${formatDashboardValue((latest.missingRuntimes || []).join(', ') || 'none')} |
+| Drift runtimes | ${formatDashboardValue((latest.driftRuntimes || []).join(', ') || 'none')} |
+`;
+}
+
 function renderDashboard(registry, sampleQuality) {
   const sections = Object.values(registry.profiles)
     .sort((left, right) => left.profileId.localeCompare(right.profileId))
@@ -1019,6 +1064,7 @@ function renderDashboard(registry, sampleQuality) {
     renderJournalSummarySection(registry.journalSummary),
     renderCandidateLineageSection(registry.candidateLineage),
     renderMutationCoverageSection(registry.mutationCoverage),
+    renderMirrorSyncSection(registry.mirrorSync),
   ].join('\n');
 
   return `# Agent Improvement Dashboard
