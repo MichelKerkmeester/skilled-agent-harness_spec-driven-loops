@@ -115,7 +115,9 @@ Every terminal stop and every blocked-stop vote MUST emit the shared stop contra
     "evidenceDensityGate": { "pass": true, "avgEvidencePerFinding": 1.6 },
     "hotspotSaturationGate": { "pass": true },
     "claimAdjudicationGate": { "pass": true, "activeP0P1": 2 },
-    "fixCompletenessReplayGate": { "pass": true, "securitySensitive": false, "requiredRows": 0, "passingRows": 0 }
+    "fixCompletenessReplayGate": { "pass": true, "securitySensitive": false, "requiredRows": 0, "passingRows": 0 },
+    "candidateCoverageGate": { "pass": true, "searchDebt": [], "missing": [] },
+    "graphlessFallbackGate": { "pass": true, "mode": "graph_available", "missing": [], "unavailabilityReason": "" }
   },
   "graphBlockerDetail": [],
   "recoveryStrategy": "Dispatch the next iteration at the maintainability dimension and re-check after resolving the remaining P0.",
@@ -126,7 +128,7 @@ Every terminal stop and every blocked-stop vote MUST emit the shared stop contra
 ```
 
 - `blockedBy`: array of gate names that failed (string[], never structured objects). Empty when STOP is legal, in which case no `blocked_stop` event is emitted.
-- `gateResults`: named sub-records keyed by `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, and `fixCompletenessReplayGate`. Each sub-record has a `pass` boolean plus gate-specific fields (score, covered/missing, activeP0, avgEvidencePerFinding, activeP0P1, securitySensitive, requiredRows, passingRows). The reducer reads these verbatim and does not coerce shapes.
+- `gateResults`: named sub-records keyed by `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, `fixCompletenessReplayGate`, `candidateCoverageGate`, and `graphlessFallbackGate`. This is the full 9-gate set emitted by `step_emit_blocked_stop` in both `deep_start-review-loop_{auto,confirm}.yaml`. Each sub-record has a `pass` boolean plus gate-specific fields (score, covered/missing, activeP0, avgEvidencePerFinding, activeP0P1, securitySensitive, requiredRows, passingRows, searchDebt, mode, unavailabilityReason). The reducer reads these verbatim and does not coerce shapes. `candidateCoverageGate` and `graphlessFallbackGate` are v2-rollout gates, they pass trivially when the review-depth-v2 search path is inactive (no search debt, graph available).
 - `graphBlockerDetail`: array of structured graph blockers copied from the latest graph convergence decision. Empty when graph convergence did not veto STOP.
 - `recoveryStrategy`: human-readable one-liner describing what the next iteration should do before another stop attempt.
 - When the graph convergence verdict is `STOP_BLOCKED`, fold the graph blocker gate name into `blockedBy` and preserve the structured blocker objects under `graphBlockerDetail`.
@@ -401,9 +403,9 @@ A new critical finding always signals significant remaining work. The 0.50 floor
 
 ## 6. LEGAL-STOP GATE BUNDLE
 
-> **KNOWN DRIFT, gate model has two naming conventions.** The `blocked_stop` event shape in §Section-1 (lines 98-117) uses 7 gates with the `Gate` suffix (`convergenceGate` / `dimensionCoverageGate` / `p0ResolutionGate` / `evidenceDensityGate` / `hotspotSaturationGate` / `claimAdjudicationGate` / `fixCompletenessReplayGate`). The §6 table below uses 6 gates WITHOUT the `Gate` suffix (`findingStability` / `dimensionCoverage` / `p0Resolution` / `evidenceDensity` / `hotspotSaturation` / `fixCompletenessReplay`) and OMITS `claimAdjudicationGate`. The reducer reads the event-shape names verbatim. This §6 table is the high-level conceptual model. Reconciliation is tracked at LG-0031 in `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/003-deep-review/research/iterations/iter-09-cli-devin.json`. Treat the §Section-1 event shape as authoritative when writing or reading JSONL state. Note the mapping: `findingStability` (§6) corresponds to `convergenceGate` (§Section-1).
+> **GATE MODEL, two naming conventions mapped to one authoritative set.** The authoritative producer is `step_emit_blocked_stop` in both `deep_start-review-loop_{auto,confirm}.yaml`, which emits **9 gates** with the `Gate` suffix: `convergenceGate` / `dimensionCoverageGate` / `p0ResolutionGate` / `evidenceDensityGate` / `hotspotSaturationGate` / `claimAdjudicationGate` / `fixCompletenessReplayGate` / `candidateCoverageGate` / `graphlessFallbackGate`. The §Section-1 event shape (lines 98-119) mirrors this set verbatim and the reducer reads those names verbatim, so treat the event shape as authoritative when writing or reading JSONL state. The §6 table below is the high-level conceptual model and uses descriptive names WITHOUT the `Gate` suffix where one reads more naturally (for example `findingStability` maps to `convergenceGate`); each row carries its event-shape name so the mapping is explicit. `candidateCoverageGate` and `graphlessFallbackGate` are v2-rollout gates that pass trivially when the review-depth-v2 search path is inactive. The gate-model drift cluster (LG-0013, LG-0016, LG-0031, LG-0032) was reconciled in `006-gate-model-reconciliation`.
 
-Deep review treats STOP as legal only when the full review-specific gate bundle passes together. Convergence math may request STOP, but the workflow must still evaluate these 6 conceptual gates (or 7 named gates in event-shape form) and persist a blocked-stop event when any gate fails.
+Deep review treats STOP as legal only when the full review-specific gate bundle passes together. Convergence math may request STOP, but the workflow must still evaluate these 9 gates and persist a blocked-stop event when any gate fails.
 
 | Gate (§6 conceptual) | Event-shape name (§Section-1) | Rule | Fail Action |
 |------|------|------|-------------|
@@ -414,6 +416,8 @@ Deep review treats STOP as legal only when the full review-specific gate bundle 
 | **hotspotSaturation** | `hotspotSaturationGate` | Review hotspots must be revisited enough times to satisfy the saturation heuristic | Block STOP, persist `blockedStop` |
 | (no §6 counterpart) | `claimAdjudicationGate` | Each new P0/P1 finding must carry a typed adjudication packet, missing or failing packets veto STOP | Block STOP, persist `blockedStop` |
 | **fixCompletenessReplay** | `fixCompletenessReplayGate` | Security-sensitive fix reruns must replay previously closed P0/P1 gates and validate producer/consumer/matrix coverage from the remediation packet | Block STOP, persist `blockedStop` |
+| **candidateCoverage** (v2 rollout) | `candidateCoverageGate` | Search debt must be cleared and every required bug class must have candidate coverage before STOP, passes trivially when the v2 search path is inactive | Block STOP, persist `blockedStop` |
+| **graphlessFallback** (v2 rollout) | `graphlessFallbackGate` | When the code graph is unavailable, required bug classes must carry cited fallback ledger rows, passes trivially when the graph is available | Block STOP, persist `blockedStop` |
 
 ### Gate Evaluation
 
@@ -445,6 +449,14 @@ function buildReviewLegalStop(state, config, coverage):
     fixCompletenessReplay: {
       pass: not isSecuritySensitiveFixRerun(state, config) or allRequiredReplayRowsPass(state.reviewReport),
       detail: "Security-sensitive fix reruns include closed-gate replay evidence and producer/consumer/matrix coverage before STOP."
+    },
+    candidateCoverage: {
+      pass: not isReviewDepthV2Active(state, config) or (searchDebtCleared(state) and allRequiredBugClassesCovered(state)),
+      detail: "Search debt is cleared and every required bug class has candidate coverage. Passes trivially when the v2 search path is inactive."
+    },
+    graphlessFallback: {
+      pass: state.searchCoverage.graphCoverageMode == "graph_available" or allRequiredBugClassesHaveFallbackRows(state),
+      detail: "When the code graph is unavailable, required bug classes carry cited fallback ledger rows. Passes trivially when the graph is available."
     }
   }
 
@@ -468,6 +480,8 @@ When convergence math returns STOP, invoke `buildReviewLegalStop()`. If it retur
 | `evidenceDensity` | Re-read weakly supported findings and add concrete `file:line` citations before they count toward a stop decision. |
 | `hotspotSaturation` | Revisit undersampled hotspots or adjacent call sites until the saturation heuristic passes. |
 | `fixCompletenessReplay` | Replay prior active or remediated P0/P1 gates, then record producer, consumer, and matrix coverage evidence before re-checking STOP. |
+| `candidateCoverage` | Clear outstanding search debt and run candidate discovery for the missing bug classes before re-checking STOP. |
+| `graphlessFallback` | Add cited fallback ledger rows for the required bug classes, or restore graph availability, before re-checking STOP. |
 
 ### Legacy Stop-Reason Mapping
 

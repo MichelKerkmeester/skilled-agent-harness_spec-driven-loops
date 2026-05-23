@@ -326,7 +326,11 @@ When the review legal-stop decision tree returns `blocked`, append a first-class
     },
     "p0ResolutionGate": { "pass": false, "activeP0": 1 },
     "evidenceDensityGate": { "pass": true, "avgEvidencePerFinding": 1.5 },
-    "hotspotSaturationGate": { "pass": true }
+    "hotspotSaturationGate": { "pass": true },
+    "claimAdjudicationGate": { "pass": true, "activeP0P1": 2 },
+    "fixCompletenessReplayGate": { "pass": true, "securitySensitive": false, "requiredRows": 0, "passingRows": 0 },
+    "candidateCoverageGate": { "pass": true, "searchDebt": [], "missing": [] },
+    "graphlessFallbackGate": { "pass": true, "mode": "graph_available", "missing": [], "unavailabilityReason": "" }
   },
   "recoveryStrategy": "Cover the missing review dimensions, then resolve the active P0.",
   "timestamp": "2026-04-11T09:45:00Z",
@@ -334,6 +338,8 @@ When the review legal-stop decision tree returns `blocked`, append a first-class
   "generation": 1
 }
 ```
+
+`gateResults` carries the full 9-gate set emitted by `step_emit_blocked_stop` in both `deep_start-review-loop_{auto,confirm}.yaml`: `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, `fixCompletenessReplayGate`, `candidateCoverageGate`, and `graphlessFallbackGate`. The last two are v2-rollout gates that pass trivially when the review-depth-v2 search path is inactive. See `convergence.md` §Section-1 for the authoritative shape.
 
 **Required:** `type`, `event`, `mode`, `run`, `blockedBy`, `gateResults`, `recoveryStrategy`, `timestamp`, `sessionId`, `generation`
 

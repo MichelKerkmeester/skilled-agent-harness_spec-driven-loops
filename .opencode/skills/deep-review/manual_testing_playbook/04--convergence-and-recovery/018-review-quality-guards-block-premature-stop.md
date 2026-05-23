@@ -17,6 +17,8 @@ This scenario validates review quality guards block premature stop for `DRV-018`
 
 Quality guards are the review-specific safety net that prevents the loop from stopping when convergence signals look good but the review output is incomplete or unreliable. Unlike research mode, review mode enforces evidence completeness on every finding, scope containment against the declared review target, and coverage of all configured dimensions including traceability protocols.
 
+These 3 contract-level binary gates (evidence, scope, coverage) declared in `review_mode_contract.yaml` are the coarse layer. The legal-stop decision tree expands them into the 9 named event-shape gates emitted by `step_emit_blocked_stop`: `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, `fixCompletenessReplayGate`, `candidateCoverageGate`, and `graphlessFallbackGate`. This scenario validates the 3 binary gates, the 9-gate bundle is the authoritative stop check (see `references/convergence.md` §6).
+
 ---
 
 ## 2. SCENARIO CONTRACT
@@ -70,7 +72,7 @@ Privilege the convergence reference for gate definitions and the YAML workflow f
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-review/references/convergence.md` | Canonical quality guard definitions, use Section 10.4 for review-specific gates |
+| `.opencode/skills/deep-review/references/convergence.md` | Canonical quality guard definitions, use §6 LEGAL-STOP GATE BUNDLE for the 9 review-specific gates |
 | `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Workflow algorithm, inspect quality guard enforcement in convergence step |
 | `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Workflow algorithm, inspect quality guard enforcement in convergence step |
 | `.opencode/skills/deep-review/references/quick_reference.md` | Quality guard summary, use `ANCHOR:quality-guards` |

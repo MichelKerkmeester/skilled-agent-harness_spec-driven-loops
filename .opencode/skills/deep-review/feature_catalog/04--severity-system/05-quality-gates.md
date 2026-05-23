@@ -13,7 +13,21 @@ The quality-gate system turns convergence from a simple score threshold into a l
 
 ## 2. CURRENT REALITY
 
-The gate model is split across two layers. The contract-level binary gates are Evidence, Scope, and Coverage. The review-specific legal-stop bundle expands that into concrete stop checks such as dimension coverage, P0 resolution, evidence density, hotspot saturation, and claim adjudication. If any required gate fails, STOP is vetoed and the loop appends a `blocked_stop` event with the failing gates and a recovery hint.
+The gate model is split across two layers. The contract-level binary gates are Evidence, Scope, and Coverage. The review-specific legal-stop bundle expands that into nine concrete stop checks emitted by `step_emit_blocked_stop` in both `deep_start-review-loop_{auto,confirm}.yaml`:
+
+| Gate | Checks |
+|---|---|
+| `convergenceGate` | Rolling average, MAD noise floor, and novelty ratio all indicate low-yield churn |
+| `dimensionCoverageGate` | Every configured review dimension examined, traceability coverage stabilized |
+| `p0ResolutionGate` | No unresolved P0 findings remain active |
+| `evidenceDensityGate` | Evidence density across active findings meets the threshold |
+| `hotspotSaturationGate` | Review hotspots revisited enough to satisfy saturation |
+| `claimAdjudicationGate` | Every new P0/P1 finding carries a typed adjudication packet |
+| `fixCompletenessReplayGate` | Security-sensitive fix reruns replay closed gates with producer/consumer/matrix coverage |
+| `candidateCoverageGate` | Search debt cleared and required bug classes covered (v2 rollout, passes trivially when inactive) |
+| `graphlessFallbackGate` | Required bug classes carry fallback ledger rows when the graph is unavailable (v2 rollout) |
+
+If any required gate fails, STOP is vetoed and the loop appends a `blocked_stop` event with the failing gates and a recovery hint. See `references/convergence.md` §Section-1 for the authoritative event shape.
 
 Gate failures also affect verdicts. A quality-gate failure yields FAIL regardless of raw finding counts, and unresolved blockers or missing evidence keep the review in a non-terminal state until a later iteration repairs the packet or closes the gap.
 
