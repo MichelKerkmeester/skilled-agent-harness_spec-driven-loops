@@ -1,9 +1,9 @@
 ---
-title: "deep-loop-runtime Storage"
+title: "deep-loop-runtime Database"
 description: "Persistent SQLite state for deep-loop execution history and convergence metadata."
 ---
 
-# deep-loop-runtime Storage
+# deep-loop-runtime Database
 
 ## TABLE OF CONTENTS
 

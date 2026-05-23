@@ -25,7 +25,7 @@ Integration surfaces:
 - TypeScript imports from `lib/deep-loop/`.
 - TypeScript imports from `lib/coverage-graph/`.
 - Direct JSON stdout scripts under `scripts/`.
-- Runtime SQLite storage under `storage/`.
+- Runtime SQLite storage under `database/`.
 
 The removed MCP tool surface is not an integration point.
 
@@ -64,7 +64,7 @@ Research graph semantics: `loopType` is `research`; node kinds include `QUESTION
 
 | Route | Target | Mutation class |
 |---|---|---|
-| `deep-loop` | `.opencode/skills/deep-loop-runtime/storage/deep-loop-graph.sqlite` | `mutates` |
+| `deep-loop` | `.opencode/skills/deep-loop-runtime/database/deep-loop-graph.sqlite` | `mutates` |
 
 Doctor integration patterns:
 

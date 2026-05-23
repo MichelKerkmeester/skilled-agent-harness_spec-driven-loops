@@ -160,5 +160,26 @@ This phase delivered **10 iterations** of the deep-research loop (iters 1-2 + 4-
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation placeholder]** — [Fill with specific limitation discovered post-implementation, or write "None identified." if nothing applies. Candidates: single-model phase-5 blind spots from ADR-002 all-cli-devin choice; code-class findings from ADR-004 left for follow-on packets; assets/ absence per ADR-003 means future asset content needs a new packet.]
+1. Single-model phase-5 blind spots are possible from the ADR-002 all-cli-devin SWE-1.6 choice; mitigated by the bundle gate + the cross-doc consistency the loop achieved.
+2. Code-class findings surfaced during phase 2 were deferred per ADR-004; the test-coverage subset (DR-012..DR-015) was closed in child packet `001-doc-remediation` under that packet's ADR-002 tests/ relaxation.
+3. `assets/` remains absent by design (ADR-003); future asset content would need a new packet.
 <!-- /ANCHOR:limitations -->
+
+---
+
+## Follow-on Structural Changes (post-packet)
+
+Two structural cleanups landed against this skill after the doc-remediation packet, documented here per operator direction (root-spec home rather than a new child packet). Shipped as deep-loop-runtime **v1.3.0** (`changelog/v1.3.0.0.md`).
+
+### storage/ to database/ rename + sqlite gitignore
+
+- Renamed the runtime SQLite directory `storage/` to `database/` (`git mv`), matching the sibling `system-spec-kit/mcp_server/database/` convention.
+- Single load-bearing code change: `COVERAGE_GRAPH_DATABASE_DIR` constant in `lib/coverage-graph/coverage-graph-db.ts` (`'storage'` to `'database'`). The 4 `.cjs` scripts + the writer-lock path derive from this constant, so one edit covers the runtime. The lifecycle test's hardcoded lock path was updated to match.
+- Untracked the runtime-owned `deep-loop-graph.sqlite` (`git rm --cached`) and added `.gitignore` rules (`database/*.sqlite*`) so external repo users regenerate the DB on first run instead of shipping a stale binary. `database/README.md` stays tracked.
+- Current-state docs updated to `database/`; historical changelogs (v1.0.0.0, v1.1.0.0, v1.2.0.0) keep their `storage/` references as accurate point-in-time records.
+- **Verification**: alignment verifier PASS (54 files, 0 findings); 19 runtime tests (lifecycle + 3 script integration suites) pass at the new path; `git diff` shows no other code touched.
+
+### Test subfolder READMEs + sk-code alignment
+
+- Added `tests/{unit,integration,lifecycle,council}/README.md` (helpers/ already had one); `tests/README.md` §2 links each.
+- `verify_alignment_drift.py --root .opencode/skills/deep-loop-runtime` reports PASS — test `.vitest.ts` files are exempt from the `MODULE:` header requirement per opencode TS conventions, carry LF endings, and use conformant import order.

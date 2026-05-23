@@ -132,3 +132,9 @@ tmp/
 .claude/specs/00--barter
 .codex/specs/00--barter
 .agents/specs/00--barter
+
+# deep-loop-runtime runtime-owned SQLite (regenerated on first run; external users do not ship the binary DB)
+.opencode/skills/deep-loop-runtime/database/*.sqlite
+.opencode/skills/deep-loop-runtime/database/*.sqlite-shm
+.opencode/skills/deep-loop-runtime/database/*.sqlite-wal
+.opencode/skills/deep-loop-runtime/database/*.sqlite.bak*

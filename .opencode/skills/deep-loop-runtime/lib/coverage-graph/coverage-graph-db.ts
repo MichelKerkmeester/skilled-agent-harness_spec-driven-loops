@@ -100,7 +100,7 @@ export const COVERAGE_GRAPH_DATABASE_DIR = join(
   dirname(fileURLToPath(import.meta.url)),
   '..',
   '..',
-  'storage',
+  'database',
 );
 
 const MIN_WEIGHT = 0.0;

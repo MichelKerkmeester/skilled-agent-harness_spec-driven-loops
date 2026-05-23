@@ -63,7 +63,7 @@ Arc 118 (FULL_ISOLATE_NO_MCP, user-directive override of the 117 AI Council SPLI
 | Before (pre-arc-118) | After (this skill) |
 |----------------------|--------------------|
 | Runtime lib under `system-spec-kit/mcp_server/lib/` | Runtime lib under `.opencode/skills/deep-loop-runtime/lib/` |
-| Coverage-graph SQLite owned by MCP server | SQLite owned by this skill at `storage/deep-loop-graph.sqlite` |
+| Coverage-graph SQLite owned by MCP server | SQLite owned by this skill at `database/deep-loop-graph.sqlite` |
 | 4 MCP tools (`deep_loop_graph_*`) marshal calls | 4 direct `.cjs` scripts with `--flag value` argv contracts |
 | Tests scattered across `mcp_server/tests/deep-loop/` | Tests live here under `tests/` (unit + integration + lifecycle) |
 | Two consumer skills depended on MCP-server internals | Two consumer skills call a peer skill through a stable script interface |
@@ -78,7 +78,7 @@ Arc 118 (FULL_ISOLATE_NO_MCP, user-directive override of the 117 AI Council SPLI
 | 🗺️ Coverage graph | SQLite schema, query builders, signal extraction for evidence graphs | `lib/coverage-graph/` (3 TS modules) |
 | 🏛️ Council primitives | Multi-seat dispatch, round-state JSONL, adjudicator verdict scoring, cost guards, session-state hierarchy | `lib/council/` (5 cjs modules) |
 | ⚙️ Script entry points | `convergence`, `upsert`, `query`, `status` direct-invocation scripts | `scripts/*.cjs` |
-| 💾 Runtime storage | Session-scoped SQLite at `storage/deep-loop-graph.sqlite` | `storage/` |
+| 💾 Runtime storage | Session-scoped SQLite at `database/deep-loop-graph.sqlite` | `database/` |
 | 🧪 Runtime tests | 27 vitest files covering unit (14), integration (7), lifecycle (1), council (5) | `tests/` |
 
 > Multiple emoji shown above are a single decorative cluster, not a per-row emoji ban violation.
@@ -224,7 +224,7 @@ Common argv (`--spec-folder`, `--loop-type review|research`, `--session-id`) plu
 
 ### 3.7 STORAGE
 
-Runtime-owned SQLite database at `storage/deep-loop-graph.sqlite`. Schema version 2. Owned exclusively by `lib/coverage-graph/coverage-graph-db.ts` (per the ALWAYS rule in SKILL.md §4 RULES). No other module opens this connection.
+Runtime-owned SQLite database at `database/deep-loop-graph.sqlite`. Schema version 2. Owned exclusively by `lib/coverage-graph/coverage-graph-db.ts` (per the ALWAYS rule in SKILL.md §4 RULES). No other module opens this connection.
 
 The database is session-scoped through node and edge tagging, not through per-session files. One database holds graphs for every active session.
 <!-- /ANCHOR:features -->
@@ -253,7 +253,7 @@ The database is session-scoped through node and edge tagging, not through per-se
 │   ├── status.cjs
 │   ├── lib/cli-guards.cjs                # Shared input validation
 │   └── README.md
-├── storage/
+├── database/
 │   ├── deep-loop-graph.sqlite            # Runtime-owned SQLite
 │   └── README.md
 ├── feature_catalog/                      # 23 sk-doc feature entries across 8 domains (+08--council)
@@ -283,7 +283,7 @@ Total: 79 files, 15,645 lines across runtime + tests + docs.
 
 | Variable | Purpose | Default |
 |----------|---------|---------|
-| `DEEP_LOOP_DB_PATH` | Override the SQLite storage path (advanced testing only) | `storage/deep-loop-graph.sqlite` |
+| `DEEP_LOOP_DB_PATH` | Override the SQLite storage path (advanced testing only) | `database/deep-loop-graph.sqlite` |
 | `DEEP_LOOP_LOG_LEVEL` | Adjust script logging verbosity (`debug`, `info`, `warn`, `error`) | `info` |
 | `DEEP_LOOP_LOCK_TIMEOUT_MS` | Lock-acquisition wait before timeout error | `5000` |
 
@@ -373,7 +373,7 @@ try {
 
 ### Script exits with code 2 (DB error)
 
-The SQLite database is missing, corrupt or locked by another writer. Check `storage/deep-loop-graph.sqlite` exists and is writable. If the lockfile at `storage/deep-loop-graph.lock` is stale (process holding it died without releasing), delete it after confirming no live writer exists (`ps aux | grep convergence.cjs`).
+The SQLite database is missing, corrupt or locked by another writer. Check `database/deep-loop-graph.sqlite` exists and is writable. If the lockfile at `database/deep-loop-graph.lock` is stale (process holding it died without releasing), delete it after confirming no live writer exists (`ps aux | grep convergence.cjs`).
 
 ### Script exits with code 3 (input validation error)
 
@@ -385,7 +385,7 @@ The novelty signal is not dropping. Check `lib/deep-loop/bayesian-scorer.ts` for
 
 ### Loop-lock acquisition times out
 
-`DEEP_LOOP_LOCK_TIMEOUT_MS` default is 5 seconds. If a long-running upsert is in flight, raise the timeout. If a stale lock survived a crash, the lockfile at `storage/<loop-type>.lock` may need manual removal after confirming no live writer.
+`DEEP_LOOP_LOCK_TIMEOUT_MS` default is 5 seconds. If a long-running upsert is in flight, raise the timeout. If a stale lock survived a crash, the lockfile at `database/<loop-type>.lock` may need manual removal after confirming no live writer.
 
 ### Tests fail with "table coverage_nodes not found"
 

@@ -112,7 +112,7 @@
       ".opencode/skills/deep-loop-runtime/lib/council/session-state-hierarchy.cjs",
       ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
       ".opencode/skills/deep-loop-runtime/scripts/lib/cli-guards.cjs",
-      ".opencode/skills/deep-loop-runtime/storage/deep-loop-graph.sqlite",
+      ".opencode/skills/deep-loop-runtime/database/deep-loop-graph.sqlite",
       ".opencode/skills/deep-loop-runtime/tests/unit/executor-config.vitest.ts",
       ".opencode/skills/deep-loop-runtime/tests/council/multi-seat-dispatch.vitest.ts",
       ".opencode/skills/deep-loop-runtime/tests/council/round-state-jsonl.vitest.ts"

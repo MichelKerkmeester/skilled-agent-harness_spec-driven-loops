@@ -21,13 +21,13 @@ vitest harnesses validating runtime primitives. Run via the system-spec-kit vite
 
 ## 2. TEST SUITES
 
-| Directory | Purpose |
-|-----------|---------|
-| `council/` | Council primitives: multi-seat dispatch, verdict scoring, cost guards, round state, and session hierarchy |
-| `helpers/` | Shared fixtures and child-process helpers used by multiple suites |
-| `integration/` | Direct script invocation and review-depth coverage-graph fixtures |
-| `lifecycle/` | SQLite open, close, and writer-lock lifecycle checks |
-| `unit/` | Per-module unit tests for deep-loop runtime primitives |
+| Directory | Purpose | README |
+|-----------|---------|--------|
+| `council/` | Council primitives: multi-seat dispatch, verdict scoring, cost guards, round state, and session hierarchy | [`council/README.md`](council/README.md) |
+| `helpers/` | Shared fixtures and child-process helpers used by multiple suites | [`helpers/README.md`](helpers/README.md) |
+| `integration/` | Direct script invocation and review-depth coverage-graph fixtures | [`integration/README.md`](integration/README.md) |
+| `lifecycle/` | SQLite open, close, and writer-lock lifecycle checks | [`lifecycle/README.md`](lifecycle/README.md) |
+| `unit/` | Per-module unit tests for deep-loop runtime primitives | [`unit/README.md`](unit/README.md) |
 
 ## 3. TEST HELPERS
 

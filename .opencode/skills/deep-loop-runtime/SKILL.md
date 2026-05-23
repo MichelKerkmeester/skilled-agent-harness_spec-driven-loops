@@ -1,6 +1,6 @@
 ---
 name: deep-loop-runtime
-version: 1.2.0
+version: 1.3.0
 description: "Shared deep-loop runtime: executor + prompt-pack + validation + atomic state + coverage-graph + Bayesian scoring + fallback routing."
 allowed-tools: [Bash, Read, Glob, Grep]
 ---
@@ -77,7 +77,7 @@ TASK CONTEXT
 lib/deep-loop/*.ts            # 10 runtime modules (executor, prompt-pack, validation, state, scoring, routing)
 lib/coverage-graph/*.ts       # 3 schema + query + signals modules
 scripts/*.cjs                 # 4 entry points (convergence, upsert, query, status)
-storage/*.sqlite              # runtime-owned SQLite (deep-loop-graph.sqlite)
+database/*.sqlite              # runtime-owned SQLite (deep-loop-graph.sqlite)
 tests/{unit,integration,lifecycle}/  # 21+ vitest files split by responsibility
 ```
 
@@ -114,7 +114,7 @@ The runtime exposes deep-loop primitives to consumer workflows through two paths
 [deep-review/deep-research workflow YAML]
             │
             ├─ bash: node .../scripts/<name>.cjs   (coverage-graph mutations)
-            │       └─→ lib/coverage-graph/*.ts → storage/deep-loop-graph.sqlite
+            │       └─→ lib/coverage-graph/*.ts → database/deep-loop-graph.sqlite
             │
             └─ ts-import: lib/deep-loop/<lib>.ts   (runtime primitives)
                     └─→ atomic-state, prompt-pack, post-dispatch-validate, etc.
@@ -163,7 +163,7 @@ Four `.cjs` scripts replace the 4 deleted MCP tools, each honoring the same JSON
 | `scripts/query.cjs` | `deep_loop_graph_query` | Inspects uncovered questions, unverified claims, contradictions | 0=ok, 1=script, 2=DB, 3=input |
 | `scripts/status.cjs` | `deep_loop_graph_status` | Session-scoped health report | 0=ok, 1=script, 2=DB, 3=input |
 
-Each script: parses argv → opens `storage/deep-loop-graph.sqlite` → calls the lib function → writes JSON to stdout → closes DB in `finally` → exits with the appropriate code.
+Each script: parses argv → opens `database/deep-loop-graph.sqlite` → calls the lib function → writes JSON to stdout → closes DB in `finally` → exits with the appropriate code.
 
 ### Test Organization
 
@@ -195,7 +195,7 @@ The system-spec-kit `mcp_server/vitest.config.ts` includes `'../deep-loop-runtim
 - **NEVER** register MCP tools from this skill — the 118 ADR-001 explicitly removed the MCP surface; reintroducing tools defeats the FULL_ISOLATE direction
 - **NEVER** open the SQLite DB outside `lib/coverage-graph/coverage-graph-db.ts` — single owner of the connection
 - **NEVER** import from `system-spec-kit/mcp_server/lib/deep-loop/` or `system-spec-kit/mcp_server/lib/coverage-graph/` — those locations are empty since phase 002; import from this skill instead
-- **NEVER** write to `storage/deep-loop-graph.sqlite` without holding the `loop-lock`
+- **NEVER** write to `database/deep-loop-graph.sqlite` without holding the `loop-lock`
 - **NEVER** swallow exceptions in script entry points — propagate to the exit-code matrix
 
 ### ESCALATE IF
@@ -214,7 +214,7 @@ In scope:
 - runtime libraries under `lib/deep-loop/`
 - coverage-graph runtime libraries under `lib/coverage-graph/`
 - `.cjs` script entry points under `scripts/`
-- runtime-owned SQLite storage under `storage/`
+- runtime-owned SQLite storage under `database/`
 - runtime tests under `tests/`
 
 Out of scope:
@@ -231,7 +231,7 @@ Out of scope:
 - `lib/deep-loop/` holds shared deep-loop runtime libraries.
 - `lib/coverage-graph/` holds coverage-graph schema, query, and signal helpers.
 - `scripts/` holds `.cjs` entry points used by workflow YAML and collateral commands.
-- `storage/` owns relocated runtime SQLite artifacts.
+- `database/` owns relocated runtime SQLite artifacts.
 - `tests/` holds runtime-owned tests split from the MCP server surface.
 
 Shipped layout:
@@ -241,7 +241,7 @@ Shipped layout:
 | `lib/deep-loop/` | 10 files | Shared executor config, audit, prompt-pack, validation, state, repair, locking, permissions, scoring, and fallback routing. |
 | `lib/coverage-graph/` | 3 files | Coverage-graph schema owner, query helpers, and signal interpretation. |
 | `scripts/` | 4 files | Direct `status`, `query`, `upsert`, and `convergence` entry points replacing the removed deep-loop MCP tools. |
-| `storage/` | SQLite | Runtime-owned `deep-loop-graph.sqlite`. |
+| `database/` | SQLite | Runtime-owned `deep-loop-graph.sqlite`. |
 | `tests/` | Unit, integration, lifecycle | Runtime-owned tests discovered by the system-spec-kit MCP server Vitest config. |
 
 ---

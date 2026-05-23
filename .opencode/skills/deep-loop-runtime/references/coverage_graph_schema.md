@@ -12,7 +12,7 @@ contextType: reference
 
 # Deep Loop Runtime Coverage Graph Schema
 
-SQLite schema and operational notes for `.opencode/skills/deep-loop-runtime/storage/deep-loop-graph.sqlite`.
+SQLite schema and operational notes for `.opencode/skills/deep-loop-runtime/database/deep-loop-graph.sqlite`.
 
 ---
 
@@ -22,7 +22,7 @@ The coverage graph is session-scoped evidence storage for deep-research and deep
 
 Schema version: `2`.
 
-Storage directory: `.opencode/skills/deep-loop-runtime/storage/`.
+Storage directory: `.opencode/skills/deep-loop-runtime/database/`.
 
 Database file: `deep-loop-graph.sqlite`.
 

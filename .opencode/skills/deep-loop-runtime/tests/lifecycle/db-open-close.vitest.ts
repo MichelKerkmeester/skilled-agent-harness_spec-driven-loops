@@ -14,7 +14,7 @@ import {
 } from '../helpers/spawn-cjs';
 
 const namespaces: ScriptNamespace[] = [];
-const writerLockPath = resolve(runtimeRoot, 'storage', '.deep-loop-graph-writer.lock');
+const writerLockPath = resolve(runtimeRoot, 'database', '.deep-loop-graph-writer.lock');
 
 /**
  * Waits for the writer lock file to appear within the given timeout.

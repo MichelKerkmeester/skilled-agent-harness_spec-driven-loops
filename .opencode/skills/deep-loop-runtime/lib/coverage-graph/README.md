@@ -34,4 +34,4 @@ Convergence-detection primitives for deep-review and deep-research. Computes dim
 ## 4. RELATED RESOURCES
 
 - `lib/deep-loop/` - shared state primitives used alongside coverage-graph
-- `storage/deep-loop-graph.sqlite` - persistence layer
+- `database/deep-loop-graph.sqlite` - persistence layer
