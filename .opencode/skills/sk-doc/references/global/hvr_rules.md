@@ -7,6 +7,8 @@ description: Linguistic standards that eliminate detectable AI patterns and enfo
 
 Linguistic standards for all documentation output. These rules eliminate AI-detectable patterns and ensure every piece of writing reads as if a knowledgeable human wrote it.
 
+---
+
 ## 1. OVERVIEW
 
 ### Purpose

@@ -103,7 +103,7 @@ For each of the 5 clusters:
 
 ### Files likely to be modified (per cluster)
 
-- Cluster 1: `tests/stage1-expansion.vitest.ts` + maybe `tests/_helpers/embedder-mock.ts` if one exists
+- Cluster 1: `tests/stage1-expansion.vitest.ts` + maybe `tests/helpers/embedder-mock.ts` if one exists
 - Cluster 2: `tests/runtime-routing.vitest.ts` + the MCP child-spawn helper
 - Cluster 3: `tests/launcher-lease.vitest.ts` + maybe `lib/launcher/lease.ts` timing constants
 - Cluster 4: ~20 test files + likely a shared fixture under `tests/fixtures/`

@@ -73,7 +73,7 @@ outputs:
 
 ```bash
 node .opencode/skills/deep-loop-runtime/scripts/status.cjs \
-  --spec-folder ".opencode/specs/skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp" \
+  --spec-folder ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution" \
   --loop-type review \
   --session-id phase-006-smoke
 ```
@@ -165,10 +165,10 @@ The 4 deleted `mcp__mk_spec_memory__deep_loop_graph_*` MCP tools have no replace
 |----------|---------|
 | [`SKILL.md`](SKILL.md) | Operational contract: when to use, smart routing, runtime architecture, RULES (ALWAYS / NEVER / ESCALATE IF) |
 | [`changelog/v1.0.0.md`](changelog/v1.0.0.md) | Initial shipped release notes |
-| `.opencode/specs/skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/spec.md` | Phase parent for the FULL_ISOLATE_NO_MCP arc |
-| `.opencode/specs/skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/003-script-shim-and-db-relocation/decision-record.md` | ADR-001: script interface contract + DB lifecycle ownership transfer |
-| `.opencode/specs/skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/004-mcp-tool-surface-removal/decision-record.md` | ADR-001: MCP tool surface removal rationale |
-| `.opencode/specs/skilled-agent-orchestration/117-deep-loop-core-isolation-deliberation/decision-record.md` | 117 council ruling (SPLIT, superseded by 118) |
+| `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/spec.md` | Phase parent for the FULL_ISOLATE_NO_MCP arc |
+| `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/003-deep-loop-runtime/004-script-shim-db-relocation/decision-record.md` | ADR-001: script interface contract + DB lifecycle ownership transfer |
+| `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/003-deep-loop-runtime/005-mcp-tool-surface-removal/decision-record.md` | ADR-001: MCP tool surface removal rationale |
+| `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/003-deep-loop-runtime/001-core-isolation-deliberation/decision-record.md` | 117 council ruling (SPLIT, superseded by 118) |
 | `.opencode/skills/deep-review/SKILL.md` | Consumer skill — deep-review (v1.4.0.0 depends on this runtime) |
 | `.opencode/skills/deep-research/SKILL.md` | Consumer skill — deep-research |
 <!-- /ANCHOR:related -->

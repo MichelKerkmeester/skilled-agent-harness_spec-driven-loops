@@ -162,7 +162,7 @@ Final gate: `npx vitest run tests/` exit 0 OR documented `.skip` reasons for any
 - mk-spec-memory mcp_server source code (read-only)
 - `vitest` test runner (already installed via npm)
 - `vi.fn()` + `vi.mock()` API
-- SQLite test DB lifecycle helpers (likely under `tests/_helpers/`)
+- SQLite test DB lifecycle helpers (likely under `tests/helpers/`)
 - The 2026-05-21 deep-research finding inventory (this packet was scoped from those findings)
 <!-- /ANCHOR:dependencies -->
 

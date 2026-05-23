@@ -1,0 +1,60 @@
+{
+  "title": "Deep-Agent-Improvement Doc Version Reconciliation",
+  "level": 2,
+  "packet_id": "131-deep-skill-evolution/005-deep-agent-improvement/005-doc-version-reconciliation",
+  "priority": "P1",
+  "status": "in_progress",
+  "created_at": "2026-05-23T07:00:00Z",
+  "predecessor": "131-deep-skill-evolution/005-deep-agent-improvement/004-correctness-fixes",
+  "successor": "131-deep-skill-evolution/005-deep-agent-improvement/006-evaluator-hardening",
+  "scope": {
+    "in_scope": [
+      "Author references/score_dimensions.md",
+      "Author references/promotion_gate_contract.md",
+      "Author references/candidate_proposal_format.md",
+      "Update graph-metadata.json with new reference docs",
+      "Create Level 2 spec docs",
+      "Validate all new docs with sk-doc"
+    ],
+    "out_of_scope": [
+      "Modifying SKILL.md or README.md",
+      "Modifying scripts/ or assets/",
+      "Modifying existing feature_catalog/ or manual_testing_playbook/",
+      "Touching packets 126/127/128"
+    ]
+  },
+  "requirements": {
+    "p0": [
+      "score_dimensions.md authored and validated",
+      "promotion_gate_contract.md authored and validated",
+      "candidate_proposal_format.md authored and validated",
+      "graph-metadata.json updated with new reference docs"
+    ],
+    "p1": [
+      "Level 2 spec docs authored",
+      "Packet metadata files created",
+      "sk-doc validation passes on all new .md files",
+      "strict-validate passes on packet 125 spec folder"
+    ]
+  },
+  "specFolder": "skilled-agent-orchestration/131-deep-skill-evolution/005-deep-agent-improvement/005-doc-version-reconciliation",
+  "description": "Packet 125: Deep-Agent-Improvement Doc Version Reconciliation",
+  "keywords": [
+    "packet",
+    "125",
+    "deep-agent-improvement",
+    "doc",
+    "version",
+    "reconciliation"
+  ],
+  "lastUpdated": "2026-05-23T09:11:13.029Z",
+  "specId": "125",
+  "folderSlug": "005-doc-version-reconciliation",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "131-deep-skill-evolution",
+    "005-deep-agent-improvement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

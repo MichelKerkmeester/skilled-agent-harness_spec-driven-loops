@@ -1,0 +1,37 @@
+{
+  "trigger_phrases": [
+    "118/003 script shim",
+    "deep-loop script shim",
+    "deep-loop DB relocation",
+    "convergence.cjs upsert.cjs query.cjs status.cjs",
+    "deep-loop-runtime storage",
+    "118/003 plan",
+    "118/003 tasks",
+    "118/003 checklist",
+    "118/003 ADR-001",
+    "118/003 summary"
+  ],
+  "level": "3",
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "specFolder": "skilled-agent-orchestration/131-deep-skill-evolution/003-deep-loop-runtime/004-script-shim-db-relocation",
+  "description": "Feature Specification: 003 \u2014 Script Shim + DB Relocation",
+  "keywords": [
+    "feature",
+    "specification",
+    "003",
+    "script",
+    "shim",
+    "relocation"
+  ],
+  "lastUpdated": "2026-05-22T19:07:31.318Z",
+  "specId": "003",
+  "folderSlug": "004-script-shim-db-relocation",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "131-deep-skill-evolution",
+    "003-deep-loop-runtime"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

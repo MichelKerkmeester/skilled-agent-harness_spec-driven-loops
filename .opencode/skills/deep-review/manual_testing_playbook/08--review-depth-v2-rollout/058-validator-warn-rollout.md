@@ -53,7 +53,7 @@ The validator surfaces `legacy_unversioned_record` while `DEEP_REVIEW_V2_ENFORCE
 
 - Validator: `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts` (`PostDispatchAdvisory`, `legacy_unversioned_record`).
 - Fixture: `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-validator.vitest.ts`.
-- Rollout policy: `.opencode/specs/skilled-agent-orchestration/116-deep-review-complexity/004-validator-v2-enforcement/decision-record.md` (ADR-001).
+- Rollout policy: `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/004-complexity-validator-v2-enforcement/decision-record.md` (ADR-001).
 
 ## 5. SOURCE_METADATA
 
@@ -61,6 +61,6 @@ The validator surfaces `legacy_unversioned_record` while `DEEP_REVIEW_V2_ENFORCE
 - Playbook ID: DRV-058
 - Layer partition: validator
 - Expected verdict mode: GREEN under DEEP_REVIEW_V2_ENFORCEMENT=warn
-- Sourcing methodology: 116-deep-review-complexity arc completion (8 phase children shipped 2026-05-22)
+- Sourcing methodology: 131-deep-skill-evolution arc completion (8 phase children shipped 2026-05-22)
 - Preflight: documented in 116 parent spec.md phase-map
 - Wall-time estimate: ~5 min

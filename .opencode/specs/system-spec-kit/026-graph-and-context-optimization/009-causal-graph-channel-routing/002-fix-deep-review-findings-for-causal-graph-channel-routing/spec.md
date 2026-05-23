@@ -359,7 +359,7 @@ Overall complexity: **Medium-Low**. Warrants Level 3 (decision-record.md) only b
 ## OPEN QUESTIONS
 
 - Should P1-001 (redundant `classifyIntent`) stay downgraded to P2 (perf advisory) or be re-raised to P1 once burst-load perf is measured? Default: ship the dedup fix and keep severity at P2.
-- Should the new shared `test-env.ts` helper live at `mcp_server/tests/__helpers__/` or `mcp_server/tests/_helpers/`? Default: `__helpers__/` matches Jest/Vitest convention.
+- Should the new shared `test-env.ts` helper live at `mcp_server/tests/__helpers__/` or `mcp_server/tests/helpers/`? Default: `__helpers__/` matches Jest/Vitest convention.
 - Should the changelog row 73 fix branch (P1-003) verify by `ls` first OR always create the file regardless? Default: `ls` first; create only if missing.
 <!-- /ANCHOR:questions -->
 

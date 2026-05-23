@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council/007-shared-runtime-deliberation",
+  "spec_folder": "skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council/007-shared-runtime-deliberation",
+  "parent_id": "skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-ai-council shared runtime deliberation",
+      "ai-council runtime extraction",
+      "council runtime hybrid",
+      "124 sk-ai-council council",
+      "124 sk-ai-council plan",
+      "ai-council runtime deliberation plan",
+      "124 sk-ai-council tasks",
+      "ai-council runtime deliberation tasks",
+      "124 sk-ai-council checklist",
+      "ai-council runtime deliberation checklist",
+      "124 sk-ai-council decision",
+      "ai-council runtime ADR"
+    ],
+    "key_topics": [
+      "sk-ai-council",
+      "shared",
+      "runtime",
+      "deliberation",
+      "ai-council",
+      "extraction",
+      "council",
+      "hybrid",
+      "124",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "decision-record.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council/007-shared-runtime-deliberation/description.json",
+      ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council/007-shared-runtime-deliberation/graph-metadata.json",
+      "ai-council/council-report.md",
+      "ai-council/ai-council-strategy.md",
+      "ai-council/seats/round-001/seat-01-advocate-extract.md",
+      "scratch/.gitkeep",
+      "ai-council/ai-council-state.jsonl"
+    ],
+    "entities": [
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council/007-shared-runtime-deliberation/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council/007-shared-runtime-deliberation/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "council-report.md",
+        "kind": "doc",
+        "path": "ai-council/council-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council-strategy.md",
+        "kind": "doc",
+        "path": "ai-council/ai-council-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "seat-01-advocate-extract.md",
+        "kind": "doc",
+        "path": "ai-council/seats/round-001/seat-01-advocate-extract.md",
+        "source": "derived"
+      },
+      {
+        "name": ".gitkeep",
+        "kind": "file",
+        "path": "scratch/.gitkeep",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council-state.jsonl",
+        "kind": "file",
+        "path": "ai-council/ai-council-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "Shared Runtime Deliberation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Packet Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Planning",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This packet records a four-seat AI Council deliberation on whether `sk-ai-council` should become a shared runtime similar to `deep-loop-runtime`. The ruling is **HYBRID**: do not extract the whole council skill now; extract only reusable state, scoped-write, and convergence primitives if consumer growth or duplicate-runtime pressure appears.",
+    "created_at": "2026-05-23T05:04:55Z",
+    "last_save_at": "2026-05-23T09:53:18.749092Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-23T05:04:55Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ]
+  }
+}

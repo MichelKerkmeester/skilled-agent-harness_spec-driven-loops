@@ -160,6 +160,6 @@ grep '"chosen_profile":"strict"' improvement/profile-selection.log
 ## Related References
 
 - DAI-004 finding: See packet 123 improvement roadmap for DAI-004 context
-- Packet 128 spec: `.opencode/specs/skilled-agent-orchestration/128-deep-agent-improvement-mixed-executor-adjudication/spec.md`
+- Packet 128 spec: `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication/spec.md`
 - generate-profile.cjs: `.opencode/skills/deep-agent-improvement/scripts/generate-profile.cjs`
 - typed-errors.cjs: `.opencode/skills/deep-agent-improvement/scripts/lib/typed-errors.cjs`

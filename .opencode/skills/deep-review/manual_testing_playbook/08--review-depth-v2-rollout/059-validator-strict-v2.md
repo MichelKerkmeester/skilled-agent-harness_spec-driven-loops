@@ -63,6 +63,6 @@ Under `DEEP_REVIEW_V2_ENFORCEMENT=strict`, all five v2 failure codes fire on the
 - Playbook ID: DRV-059
 - Layer partition: validator
 - Expected verdict mode: GREEN under DEEP_REVIEW_V2_ENFORCEMENT=strict
-- Sourcing methodology: 116-deep-review-complexity arc completion (8 phase children shipped 2026-05-22)
+- Sourcing methodology: 131-deep-skill-evolution arc completion (8 phase children shipped 2026-05-22)
 - Preflight: documented in 116 parent spec.md phase-map
 - Wall-time estimate: ~10 min

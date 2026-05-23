@@ -258,9 +258,9 @@ Shipped layout:
 
 ## 8. REFERENCES
 
-- 118 phase parent: `.opencode/specs/skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp/spec.md`
+- 118 phase parent: `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/spec.md`
 - 118 phase 003: script shim and DB relocation (ADR-001 documents the script interface contract)
 - 118 phase 004: MCP tool surface removal (ADR-001 documents the deletion rationale)
 - 118 phase 008: v1.0.0 closeout, changelog, and resource-map updates
-- 117 council deliberation: `.opencode/specs/skilled-agent-orchestration/117-deep-loop-core-isolation-deliberation/`
+- 117 council deliberation: `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/003-deep-loop-runtime/001-core-isolation-deliberation/`
 - changelog: `changelog/v1.0.0.md`

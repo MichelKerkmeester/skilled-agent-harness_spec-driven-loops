@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council/002-rename-sk-skill",
+  "spec_folder": "skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council/002-rename-sk-skill",
+  "parent_id": "skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "115 skill dir rename",
+      "deep-ai-council skill rename execution",
+      "115 002 plan",
+      "skill dir rename plan",
+      "115 002 tasks",
+      "115 002 implementation summary"
+    ],
+    "key_topics": [
+      "115",
+      "skill",
+      "dir",
+      "rename",
+      "deep-ai-council",
+      "execution",
+      "002",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "phase"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-ai-council/SKILL.md",
+      ".opencode/skills/deep-ai-council/changelog/v1.3.0.0.md",
+      "changelog/v1.0.0.0.md",
+      "changelog/v3.0.0.0.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-ai-council/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.3.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-ai-council/changelog/v1.3.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.0.0.md",
+        "kind": "doc",
+        "path": "changelog/v1.0.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v3.0.0.0.md",
+        "kind": "doc",
+        "path": "changelog/v3.0.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Mirror",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "this",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "rename",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "what-built",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 2 of 6 in 115. Sibling-parallel with 003/004/005 after 001.",
+    "created_at": "2026-05-21T06:57:08Z",
+    "last_save_at": "2026-05-23T09:53:18.749092Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ]
+  }
+}

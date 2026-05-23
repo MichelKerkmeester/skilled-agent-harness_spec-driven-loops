@@ -1,0 +1,22 @@
+{
+  "specFolder": "skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review",
+  "description": "Phase parent for 8 deep-review complexity hardening sub-phases: research synthesis, seeded fixture harness, schema + prompt contract, validator v2 enf",
+  "keywords": [
+    "deep-review",
+    "complexity",
+    "schema",
+    "validator",
+    "ledger",
+    "saturation"
+  ],
+  "lastUpdated": "2026-05-23T09:52:56.265976Z",
+  "specId": "002",
+  "folderSlug": "002-deep-review",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "131-deep-skill-evolution"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

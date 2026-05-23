@@ -1,0 +1,27 @@
+{
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/006-complexity-candidate-saturation-gates",
+  "description": "Feature Specification: 116/006 - Candidate Saturation and Graphless Gates",
+  "keywords": [
+    "feature",
+    "specification",
+    "116",
+    "006",
+    "candidate",
+    "saturation",
+    "graphless",
+    "gates"
+  ],
+  "lastUpdated": "2026-05-22T19:07:31.289Z",
+  "specId": "006",
+  "folderSlug": "006-complexity-candidate-saturation-gates",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "131-deep-skill-evolution",
+    "002-deep-review"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "22-05-26_13-12__phase-005-reducer-registry-exposes.md"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "level": "3",
+  "status": "completed",
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council/009-iterative-runtime-primitive-extraction"
+    ],
+    "related_to": []
+  },
+  "specFolder": "skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council/010-iterative-per-topic-multi-round",
+  "description": "Feature Specification: Per-Topic Multi-Round Orchestration",
+  "keywords": [
+    "feature",
+    "specification",
+    "per-topic",
+    "multi-round",
+    "orchestration"
+  ],
+  "lastUpdated": "2026-05-23T09:11:13.066Z",
+  "specId": "003",
+  "folderSlug": "010-iterative-per-topic-multi-round",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "131-deep-skill-evolution",
+    "001-ai-council"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

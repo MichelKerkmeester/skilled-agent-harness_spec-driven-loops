@@ -103,7 +103,7 @@ state_paths:
   state_log: "{spec_folder}/improvement/agent-improvement-state.jsonl"
   strategy: "{spec_folder}/improvement/agent-improvement-strategy.md"
   charter: "{spec_folder}/improvement/agent-improvement-charter.md"
-  manifest: "{spec_folder}/improvement/target-manifest.jsonc"
+  manifest: "{spec_folder}/improvement/target_manifest.jsonc"
   dashboard: "{spec_folder}/improvement/agent-improvement-dashboard.md"
   registry: "{spec_folder}/improvement/experiment-registry.json"
   integration_report: "{spec_folder}/improvement/integration-report.json"
@@ -162,7 +162,7 @@ workflow:
         command: "node -e \"const lineage=require('./.opencode/skills/deep-agent-improvement/scripts/candidate-lineage.cjs'); lineage.recordCandidate('{spec_folder}/improvement/candidate-lineage.json',{candidateId:'{candidate_id}',sessionId:'{session_id}',waveIndex:0,mutationType:'candidate-proposal',parentCandidateId:null,iteration:Number('{iteration}')});\""
       step_score_candidate:
         description: "Score candidate across 5 dimensions (dynamic) or keyword checks (static)"
-        command: "node .opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs --candidate={candidate_path} --baseline={target_path} --manifest={spec_folder}/improvement/target-manifest.jsonc --profile={target_profile} --target={target_path} --output={score_output_path}"
+        command: "node .opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs --candidate={candidate_path} --baseline={target_path} --manifest={spec_folder}/improvement/target_manifest.jsonc --profile={target_profile} --target={target_path} --output={score_output_path}"
       step_emit_journal_event_candidate_scored:
         description: "Emit candidate_scored journal event after scoring completes"
         command: "node .opencode/skills/deep-agent-improvement/scripts/improvement-journal.cjs --emit candidate_scored --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"scoreOutputPath\":\"{score_output_path}\",\"weightedScore\":\"{weighted_score}\"}'"

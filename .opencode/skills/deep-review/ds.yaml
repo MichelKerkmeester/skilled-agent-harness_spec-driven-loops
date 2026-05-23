@@ -1,0 +1,118 @@
+role: senior skill documentation maintainer with editorial and architectural authority
+
+context:
+  repository: [ SKILL_REPO_LINK ]
+
+standards:
+- sk_doc_templates: [ SK_DOC_TEMPLATES_LINK ]
+- hvr_style_guide: [ HVR_DEFINITION_OR_LINK ]
+
+reference_docs:
+  public_root_readme: [ PUBLIC_ROOT_README_LINK ]
+  system_speckit_readme: [ SYSTEM_SPECKIT_README_LINK ]
+
+scope: five sequential phases — spec first, validation gate before autonomous execution
+
+phases:
+# ─────────────────────────────────────────────────────────────────────────────
+# Phase 1: Initial Spec Creation
+# ─────────────────────────────────────────────────────────────────────────────
+- phase: 1
+  name: initial spec creation
+  target: [ SPEC_DESTINATION_LINK ]
+  purpose: plan the work in phases 2-5 before executing any of it
+  deliverables:
+  - spec.md: scope, success criteria, risk register, phase boundaries
+  - schemas/*.json: data shapes for audit findings, changelog, validation report
+  - resource-map.yaml: every artifact touched in phases 2-4 mapped to its sk-doc template
+  success_criteria:
+  - spec defines exit criteria for every downstream phase
+  - resource-map enumerates 100% of artifacts in scope
+  - json schemas validate against sample outputs from each phase
+  output: phased spec folder ready to drive phases 2-5
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Phase 2: Skill Audit
+# ─────────────────────────────────────────────────────────────────────────────
+- phase: 2
+  name: skill audit
+  target: [ SKILL_DIRECTORY_LINK ]
+  driven_by: resource-map.yaml from phase 1
+  artifacts: [ SKILL.md, Skill Asset, Skill Reference, README.md, Smart Router ]
+  actions:
+  - assess each artifact for usefulness, relevance, correctness
+  - identify bugs with file + line references
+  - align each artifact with sk-doc skill templates 1:1
+  - update Smart Router and README only if other changes require it
+  success_criteria:
+  - 100% sk-doc conformance
+  - zero broken references or dead links
+  - every bug resolved or deferred with rationale
+  output: audit findings conforming to phase 1 changelog schema
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Phase 3: README Rewrite
+# ─────────────────────────────────────────────────────────────────────────────
+- phase: 3
+  name: README rewrite
+  target: [ SKILL_README_LINK ]
+  tone_anchor: public_root_readme at ~70% intensity
+  structural_anchor: system_speckit_readme
+  actions:
+  - rewrite README to be complete, relevant, descriptive
+  - cover every unique feature with what, why, and how it connects
+  - write in HVR style per sk-doc standards
+  - lean marketing over technical, one notch below root README
+  success_criteria:
+  - every unique feature has purpose + 1-2 sentence description
+  - cross-system connections explicitly named with target
+  output: full README rewrite in place + changelog
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Phase 4: Alignment Validation Gate
+# ─────────────────────────────────────────────────────────────────────────────
+- phase: 4
+  name: alignment validation gate
+  target: [ SKILL_DIRECTORY_LINK ]
+  blocking: true # phase 5 cannot start until this passes
+  artifacts_in_scope:
+  - Markdown files, README files, SKILL.md
+  - Skill Asset, Skill Reference
+  - Feature Catalog, Manual Testing Playbook
+  actions:
+  - validate each artifact against sk-doc templates 1:1
+  - log every deviation with severity + recommended fix
+  success_criteria: 100% conformance OR explicit deviation log
+  output: per-artifact pass/fail report (phase 1 validation schema)
+  review_gate: human approval required before phase 5
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Phase 5: Deep Research and YAML Merge
+# ─────────────────────────────────────────────────────────────────────────────
+- phase: 5
+  name: deep research and yaml merge
+  prerequisites: [ phase 4 passed, human approval received ]
+  steps:
+  - step: 5a
+    name: run 10 iterations of /spec_kit:deep-research
+    toolchain: CLI-DEVIN with SWE 1.6 per skill workflows
+    input: phase 1 spec.md + audit findings from phase 2
+    define_before_running:
+    - per-iteration output schema
+    - convergence criteria across 10 iterations
+
+  - step: 5b
+    name: merge missing logic into resource-map.yaml
+    source: converged outputs from step 5a
+    target: resource-map.yaml from phase 1
+    scope: only logic gaps not already captured in spec.md
+  success_criteria:
+  - 10 iterations executed and archived
+  - resource-map.yaml contains all converged logic
+  output: iteration archive + updated resource-map.yaml + final change report
+
+format:
+  delivery: phase-by-phase with explicit handoff
+  review_gates:
+  - between phase 4 and phase 5
+  stop_on_failure: true

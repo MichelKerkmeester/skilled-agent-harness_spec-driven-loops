@@ -56,7 +56,7 @@ The review cannot legally stop. The blocked_stop output names `candidateCoverage
 - Confirm mirror: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`.
 - Reducer: `.opencode/skills/deep-review/scripts/reduce-state.cjs` (registry exposing `candidateCoverage`, `searchDebt`).
 - Fixture: `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-convergence.vitest.ts` (workflow-runner integration TODO).
-- ADR: `.opencode/specs/skilled-agent-orchestration/116-deep-review-complexity/006-candidate-saturation-and-graphless-gates/decision-record.md`.
+- ADR: `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/006-complexity-candidate-saturation-gates/decision-record.md`.
 
 ## 5. SOURCE_METADATA
 
@@ -64,6 +64,6 @@ The review cannot legally stop. The blocked_stop output names `candidateCoverage
 - Playbook ID: DRV-061
 - Layer partition: workflow YAML legal-stop
 - Expected verdict mode: GREEN (blocked_stop emitted)
-- Sourcing methodology: 116-deep-review-complexity arc completion (8 phase children shipped 2026-05-22)
+- Sourcing methodology: 131-deep-skill-evolution arc completion (8 phase children shipped 2026-05-22)
 - Preflight: documented in 116 parent spec.md phase-map
 - Wall-time estimate: ~10 min

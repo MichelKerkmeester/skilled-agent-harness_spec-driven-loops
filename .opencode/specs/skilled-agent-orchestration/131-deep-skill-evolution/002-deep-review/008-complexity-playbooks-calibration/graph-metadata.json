@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration",
+  "spec_folder": "skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration",
+  "parent_id": "skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-review playbook",
+      "review-depth manual scenario",
+      "SKILL version bump",
+      "116/008 resource map",
+      "review-depth resource map",
+      "deep-review complexity path catalog"
+    ],
+    "key_topics": [
+      "deep-review",
+      "playbook",
+      "review-depth",
+      "manual",
+      "scenario",
+      "skill",
+      "version",
+      "bump",
+      "116",
+      "008",
+      "resource",
+      "map"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/deep-review/SKILL.md",
+      ".opencode/skills/deep-review/assets/deep_review_config.json",
+      ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration/spec.md",
+      ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration/plan.md",
+      ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration/tasks.md",
+      ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration/checklist.md",
+      ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration/implementation-summary.md",
+      ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration/description.json",
+      ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration/graph-metadata.json",
+      ".opencode/skills/deep-review/references/state_format.md",
+      ".opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl",
+      ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/058-validator-warn-rollout.md",
+      ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/059-validator-strict-v2.md",
+      ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/060-reducer-search-debt.md",
+      ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/061-stop-gate-candidate-coverage.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-review/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep_review_config.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-review/assets/deep_review_config.json",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "state_format.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-review/references/state_format.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_pack_iteration.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "058-validator-warn-rollout.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/058-validator-warn-rollout.md",
+        "source": "derived"
+      },
+      {
+        "name": "059-validator-strict-v2.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/059-validator-strict-v2.md",
+        "source": "derived"
+      },
+      {
+        "name": "060-reducer-search-debt.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/060-reducer-search-debt.md",
+        "source": "derived"
+      },
+      {
+        "name": "061-stop-gate-candidate-coverage.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/061-stop-gate-candidate-coverage.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Default Calibration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Populated Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Commit Handoff",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Primary Constraint",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 002-007 shipped the v2 review-depth contract across fixtures, schema, validator, reducer, STOP gates, and graph vocabulary. Operators now need a compact manual playbook that exercises those shipped surfaces without changing production defaults prematurely.",
+    "created_at": "2026-05-22T00:00:00Z",
+    "last_save_at": "2026-05-23T09:53:18.749092Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ]
+  }
+}

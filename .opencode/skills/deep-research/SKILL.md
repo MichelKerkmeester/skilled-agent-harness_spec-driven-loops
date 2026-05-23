@@ -20,7 +20,7 @@ Runtime path resolution:
 - Gemini runtime: `.gemini/agents/*.md`
 
 Operator contract precedence for this skill surface:
-- Command entrypoint syntax in `.opencode/commands/spec_kit/deep-research.md`
+- Command entrypoint syntax in `.opencode/commands/deep/research.md`
 - Convergence math in `references/convergence.md` and the deep-research YAML workflow
 - Runtime agent inventories from the checked-in runtime directories above
 
@@ -34,7 +34,7 @@ Operator contract precedence for this skill surface:
 - `deep-review` uses 0.10 default on weighted P0/P1/P2 severity ratio
 - `deep-ai-council` (proposed) uses 0.20 default on adjudicator-verdict stability
 
-Carrying threshold expectations across siblings will cause unexpected iteration counts. See 130 research at `.opencode/specs/skilled-agent-orchestration/130-deep-skills-unique-value-differentiation/research/research.md` §2 F56/F78, §5 Recommendation, and §6 Parity Invariants.
+Carrying threshold expectations across siblings will cause unexpected iteration counts. See 130 research at `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/006-deep-skills-differentiation/001-unique-value-differentiation/research/research.md` §2 F56/F78, §5 Recommendation, and §6 Parity Invariants.
 
 ## 1. WHEN TO USE
 
@@ -57,7 +57,7 @@ Use this skill when:
 
 ### FORBIDDEN INVOCATION PATTERNS
 
-This skill is invoked EXCLUSIVELY through the `/spec_kit:deep-research` command. The command's YAML workflow owns state, dispatch, and convergence.
+This skill is invoked EXCLUSIVELY through the `/deep:research` command. The command's YAML workflow owns state, dispatch, and convergence.
 
 **NEVER:**
 - Write a custom bash/shell dispatcher to parallelize iterations
@@ -68,8 +68,8 @@ This skill is invoked EXCLUSIVELY through the `/spec_kit:deep-research` command.
 - Manage iteration state outside the resolved local research packet under `{spec_folder}/research/`
 
 **ALWAYS:**
-- Invoke via `/spec_kit:deep-research:auto` or `/spec_kit:deep-research:confirm`
-- Let the command's YAML workflow own dispatch (auto: `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`)
+- Invoke via `/deep:research:auto` or `/deep:research:confirm`
+- Let the command's YAML workflow own dispatch (auto: `.opencode/commands/deep/assets/deep_research_auto.yaml`)
 - Let `scripts/reduce-state.cjs` be the SINGLE state writer
 - Require every iteration to produce BOTH the markdown narrative AND the JSONL delta (dispatch scripts must fail if either is missing)
 - Use `resolveArtifactRoot(specFolder, 'research')` from `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs` to locate the canonical research root
@@ -252,7 +252,7 @@ When `{spec_folder}/resource-map.md` is absent at init:
 
 ### Architecture: 3-Layer Integration
 
-`/spec_kit:deep-research` owns the YAML workflow, which initializes state, dispatches one LEAF iteration at a time, evaluates convergence, synthesizes `research/research.md`, and saves continuity. The `@deep-research` agent executes only one research cycle per dispatch.
+`/deep:research` owns the YAML workflow, which initializes state, dispatches one LEAF iteration at a time, evaluates convergence, synthesizes `research/research.md`, and saves continuity. The `@deep-research` agent executes only one research cycle per dispatch.
 
 ### State Packet Location
 
@@ -329,7 +329,7 @@ Research continuity is externalized to files, each iteration starts fresh, conve
 
 ### EXPERIMENTAL / REFERENCE-ONLY FEATURES
 
-These concepts remain documented for future design work, but they are not part of the live executable contract for `/spec_kit:deep-research`:
+These concepts remain documented for future design work, but they are not part of the live executable contract for `/deep:research`:
 1. **Wave orchestration** -- parallel question fan-out, pruning, and breakthrough logic
 2. **Checkpoint commits** -- per-iteration git commits
 3. **Wave orchestration on the same lineage** -- parallel fan-out remains reference-only
@@ -396,7 +396,7 @@ Before research, recover context with `/spec_kit:resume` using `handover.md -> _
 
 | Command | Relationship |
 |---------|-------------|
-| `/spec_kit:deep-research` | Primary invocation point |
+| `/deep:research` | Primary invocation point |
 | `/spec_kit:resume` | Canonical recovery surface before resuming or extending an active packet |
 | `/spec_kit:plan` | Next step after deep research completes |
 | `/memory:save` | Manual memory save (deep research auto-saves) |

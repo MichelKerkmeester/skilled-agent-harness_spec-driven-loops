@@ -3,6 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { ALLOWED_HF_LOCAL_DTYPES, EmbeddingProfile, normalizeProfileDtype } from '../profile.js';
+import { getCanonicalFallback } from '../registry.js';
 import { semanticChunk, MAX_TEXT_LENGTH } from '../../chunking.js';
 import type { IEmbeddingProvider, ProviderMetadata, TaskPrefixMap } from '../../types.js';
 
@@ -10,7 +11,8 @@ import type { IEmbeddingProvider, ProviderMetadata, TaskPrefixMap } from '../../
 // 1. CONFIGURATION
 // ---------------------------------------------------------------
 
-const DEFAULT_MODEL: string = 'BAAI/bge-base-en-v1.5';
+// Derived from registry MANIFESTS[0] per ADR-013/014 (single source of truth).
+const DEFAULT_MODEL: string = getCanonicalFallback('hf-local');
 const EMBEDDING_DIM: number = 768;
 // MAX_TEXT_LENGTH imported from chunking.ts (single source of truth)
 const EMBEDDING_TIMEOUT: number = 30000;

@@ -275,7 +275,7 @@ For multi-iter evaluation sweeps, the mixed-executor pattern provides better bre
 
 ### Precedent
 
-Arc 119 deep-research uplift methodology. See `.opencode/specs/skilled-agent-orchestration/119-deep-research-uplift/001-research-deep-review-changes/research/research-report.md` for the 10-iter research that validated this pattern.
+Arc 119 deep-research uplift methodology. See `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/004-deep-research/001-uplift-research-deep-review-changes/research/research-report.md` for the 10-iter research that validated this pattern.
 
 ### Reference Doc
 

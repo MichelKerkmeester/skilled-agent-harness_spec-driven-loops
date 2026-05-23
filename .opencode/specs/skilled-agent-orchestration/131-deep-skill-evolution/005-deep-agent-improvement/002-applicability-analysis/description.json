@@ -1,0 +1,21 @@
+{
+  "level": "phase-child",
+  "specFolder": "skilled-agent-orchestration/131-deep-skill-evolution/005-deep-agent-improvement/002-applicability-analysis",
+  "description": "Applicability classification table for each pattern/finding from arcs 117-122 to deep-agent-improvement: APPLY / SKIP / ADAPT / ALREADY-DONE.",
+  "keywords": [
+    "123/002",
+    "applicability",
+    "117-122-mapping",
+    "deep-agent-improvement"
+  ],
+  "lastUpdated": "2026-05-23T06:30:00.000Z",
+  "specId": "002",
+  "folderSlug": "002-applicability-analysis",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "131-deep-skill-evolution",
+    "005-deep-agent-improvement"
+  ],
+  "memorySequence": 123002,
+  "memoryNameHistory": []
+}

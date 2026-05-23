@@ -15,6 +15,7 @@ import {
   validateApiKey,
   VALIDATION_TIMEOUT_MS,
 } from './embeddings/factory.js';
+import { getCanonicalFallback } from './embeddings/registry.js';
 import { semanticChunk, MAX_TEXT_LENGTH, RESERVED_OVERVIEW, RESERVED_OUTCOME, MIN_SECTION_LENGTH } from './chunking.js';
 import type {
   IEmbeddingProvider,
@@ -869,8 +870,10 @@ function getProviderMetadata(): ProviderMetadata | ProviderInfo {
 const EMBEDDING_DIM: number = 768;
 const EMBEDDING_TIMEOUT: number = 30000;
 // MAX_TEXT_LENGTH is imported from chunking.ts (single source of truth)
-// DEFAULT_MODEL_NAME is the fallback; use get_model_name() for the actual active model
-export const DEFAULT_MODEL_NAME: string = 'BAAI/bge-base-en-v1.5';
+// DEFAULT_MODEL_NAME is the fallback; use get_model_name() for the actual active model.
+// Derived from registry MANIFESTS[0] per ADR-013/014 — adding a new top entry to
+// shared/embeddings/registry.ts auto-updates this export.
+export const DEFAULT_MODEL_NAME: string = getCanonicalFallback('hf-local');
 // Legacy alias for backwards compatibility
 export let MODEL_NAME: string = detectConfiguredModelName();
 const BATCH_RATE_LIMIT_DELAY: number = BATCH_DELAY_MS; // Alias for export

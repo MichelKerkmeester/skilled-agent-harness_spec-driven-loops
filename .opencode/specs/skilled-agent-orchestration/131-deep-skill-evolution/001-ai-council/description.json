@@ -1,0 +1,21 @@
+{
+  "specFolder": "skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council",
+  "description": "Phase parent for 13 ai-council related sub-phases: skill+agent rename across 4 runtimes (001-006), shared-runtime deliberation (007), and iterative mu",
+  "keywords": [
+    "ai-council",
+    "rename",
+    "shared-runtime",
+    "iterative",
+    "multi-topic"
+  ],
+  "lastUpdated": "2026-05-23T09:52:56.265976Z",
+  "specId": "001",
+  "folderSlug": "001-ai-council",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "131-deep-skill-evolution"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

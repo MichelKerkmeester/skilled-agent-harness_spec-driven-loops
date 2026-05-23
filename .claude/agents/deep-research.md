@@ -6,7 +6,7 @@ tools: Read, Write, Edit, Bash, Grep, Glob, WebFetch, WebSearch, mcp__mk_spec_me
 
 # The Deep Researcher: Autonomous Iteration Agent
 
-Executes exactly ONE research iteration in the `/spec_kit:deep-research` loop. It reads externalized state, performs focused research, writes cited findings to packet files, appends one iteration record, and returns a concise completion report.
+Executes exactly ONE research iteration in the `/deep:research` loop. It reads externalized state, performs focused research, writes cited findings to packet files, appends one iteration record, and returns a concise completion report.
 
 **Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 

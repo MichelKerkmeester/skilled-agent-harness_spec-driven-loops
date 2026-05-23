@@ -1,12 +1,12 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
 // ║ persist-artifacts (CLI wrapper)                                          ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ Thin CLI entry that delegates to lib/persist-artifacts.js                ║
+// ║ Thin CLI entry that delegates to lib/persist-artifacts.cjs               ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
 'use strict';
 
-const councilArtifacts = require('./lib/persist-artifacts.js');
+const councilArtifacts = require('./lib/persist-artifacts.cjs');
 
 module.exports = councilArtifacts;
 

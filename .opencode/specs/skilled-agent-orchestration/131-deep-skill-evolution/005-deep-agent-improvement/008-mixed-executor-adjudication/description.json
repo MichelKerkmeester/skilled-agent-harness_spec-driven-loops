@@ -1,0 +1,24 @@
+{
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/131-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication",
+  "description": "Feature Specification: 128 \u2014 Deep-Agent-Improvement Mixed-Executor + Adjudication Methodology",
+  "keywords": [
+    "feature",
+    "specification",
+    "128",
+    "deep-agent-improvement",
+    "mixed-executor",
+    "adjudication",
+    "methodology"
+  ],
+  "lastUpdated": "2026-05-23T09:11:13.051Z",
+  "specId": "128",
+  "folderSlug": "008-mixed-executor-adjudication",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "131-deep-skill-evolution",
+    "005-deep-agent-improvement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

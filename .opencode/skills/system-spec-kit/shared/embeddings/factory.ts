@@ -17,6 +17,7 @@ import {
   resolveOllamaCanonicalModel,
 } from './providers/ollama.js';
 import { EmbeddingProfile, resolveActiveProfileDtype } from './profile.js';
+import { getCanonicalFallback } from './registry.js';
 import { VoyageProvider, MODEL_DIMENSIONS as VOYAGE_MODEL_DIMENSIONS, resolveVoyageBaseUrl } from './providers/voyage.js';
 import type {
   IEmbeddingProvider,
@@ -140,12 +141,17 @@ function warnIfVoyageWouldShadowLocal(explicitProvider: string | null): void {
   }
 }
 
-const DEFAULT_PROVIDER_MODELS: Readonly<Record<SupportedProviderName, string>> = {
-  voyage: 'voyage-code-3',
-  openai: 'text-embedding-3-small',
-  'hf-local': 'BAAI/bge-base-en-v1.5',
-  ollama: 'jina-embeddings-v3',
-};
+// Per-provider canonical fallback names — derived from registry MANIFESTS[0]
+// (for ollama / hf-local) and CLOUD_CANONICAL (for voyage / openai). This map
+// is frozen at module load so a registry change (re-order MANIFESTS, swap
+// CLOUD_CANONICAL) auto-propagates without code edits here. See ADR-013/014
+// and shared/embeddings/registry.ts:getCanonicalFallback().
+const DEFAULT_PROVIDER_MODELS: Readonly<Record<SupportedProviderName, string>> = Object.freeze({
+  voyage: getCanonicalFallback('voyage'),
+  openai: getCanonicalFallback('openai'),
+  'hf-local': getCanonicalFallback('hf-local'),
+  ollama: getCanonicalFallback('ollama'),
+});
 
 // Correctness: one canonical dimension map for startup and runtime
 export const VALID_PROVIDER_DIMENSIONS = Object.freeze({

@@ -1,0 +1,31 @@
+{
+  "level": "3",
+  "status": "complete",
+  "manual": {
+    "depends_on": [],
+    "related_to": [
+      "skilled-agent-orchestration/131-deep-skill-evolution/006-deep-skills-differentiation/001-unique-value-differentiation"
+    ]
+  },
+  "specFolder": "skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council/008-iterative-research-and-architecture",
+  "description": "Feature Specification: Deep AI Council Research + Architecture Design",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep",
+    "council",
+    "research",
+    "architecture",
+    "design"
+  ],
+  "lastUpdated": "2026-05-23T09:11:13.061Z",
+  "specId": "001",
+  "folderSlug": "008-iterative-research-and-architecture",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "131-deep-skill-evolution",
+    "001-ai-council"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

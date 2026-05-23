@@ -102,7 +102,7 @@ In arc 119 (deep-research uplift), iteration 7 adjudication:
 - Reduced the uplift queue from 20 to 7 confirmed findings
 - Achieved 90%+ false-positive reduction
 
-See `.opencode/specs/skilled-agent-orchestration/119-deep-research-uplift/001-research-deep-review-changes/research/research-report.md` for the full 10-iter research.
+See `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/004-deep-research/001-uplift-research-deep-review-changes/research/research-report.md` for the full 10-iter research.
 
 ---
 
@@ -119,9 +119,9 @@ This methodology is adapted from arc 119 (deep-research uplift). The 119 researc
 
 ### Source Documents
 
-- 119 spec: `.opencode/specs/skilled-agent-orchestration/119-deep-research-uplift/spec.md`
-- 119 research report: `.opencode/specs/skilled-agent-orchestration/119-deep-research-uplift/001-research-deep-review-changes/research/research-report.md`
-- 119 improvement roadmap: `.opencode/specs/skilled-agent-orchestration/123-deep-agent-improvement-uplift/003-improvement-recommendations/improvement-roadmap.md`
+- 119 spec: `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/spec.md`
+- 119 research report: `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/004-deep-research/001-uplift-research-deep-review-changes/research/research-report.md`
+- 119 improvement roadmap: `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/005-deep-agent-improvement/003-recommendations/improvement-roadmap.md`
 
 ---
 
@@ -150,5 +150,5 @@ Operators can manually implement the mixed-executor pattern by:
 ## Related References
 
 - DAI SKILL.md: Sections "Mixed-Executor Dispatch (Recommended)" and "Adjudication-Iter Pattern (Recommended)"
-- Packet 128 spec: `.opencode/specs/skilled-agent-orchestration/128-deep-agent-improvement-mixed-executor-adjudication/spec.md`
+- Packet 128 spec: `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication/spec.md`
 - Packet 128 ADR-001: `decision-record.md` in packet 128
