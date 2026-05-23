@@ -5,9 +5,17 @@
 import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { spawn } from 'node:child_process';
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { buildSidecarEnv, SidecarClient, SidecarClientError, toBackendKind, RECOGNIZED_SPECKIT_ENV_VARS } from '../../lib/embedders/sidecar-client.js';
+
+const factoryMockState = vi.hoisted(() => ({
+  createEmbeddingsProvider: vi.fn(),
+}));
+
+vi.mock('@spec-kit/shared/embeddings/factory', () => ({
+  createEmbeddingsProvider: factoryMockState.createEmbeddingsProvider,
+}));
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -28,6 +36,74 @@ async function waitUntil(condition: () => boolean, timeoutMs: number): Promise<v
     if (condition()) return;
     await sleep(10);
   }
+}
+
+async function loadSidecarWorkerTestables() {
+  const mod = await import('../../lib/embedders/sidecar-worker.js');
+  return mod.__sidecarWorkerTestables;
+}
+
+function spawnRealSidecarWorker() {
+  const workerPath = join(__dirname, '../../lib/embedders/sidecar-worker.ts');
+  const tsxLoaderPath = join(__dirname, '../../../scripts/node_modules/tsx/dist/loader.mjs');
+
+  return spawn(process.execPath, ['--import', tsxLoaderPath, workerPath], {
+    stdio: ['pipe', 'pipe', 'pipe'],
+    env: {
+      ...process.env,
+      SPECKIT_EMBEDDER_SIDECAR_PARENT_PID: '',
+    },
+  });
+}
+
+function readWorkerJsonLine(child: ReturnType<typeof spawn>, timeoutMs = 2_000): Promise<Record<string, unknown>> {
+  return new Promise((resolve, reject) => {
+    let buffer = '';
+    const timer = setTimeout(() => {
+      cleanup();
+      reject(new Error('Timed out waiting for worker stdout'));
+    }, timeoutMs);
+    const cleanup = (): void => {
+      clearTimeout(timer);
+      child.stdout?.off('data', onData);
+      child.off('exit', onExit);
+    };
+    const onExit = (code: number | null, signal: NodeJS.Signals | null): void => {
+      cleanup();
+      reject(new Error(`Worker exited before stdout line: code=${code ?? 'null'} signal=${signal ?? 'null'}`));
+    };
+    const onData = (chunk: Buffer | string): void => {
+      buffer += chunk.toString();
+      const newlineIndex = buffer.indexOf('\n');
+      if (newlineIndex === -1) {
+        return;
+      }
+      const line = buffer.slice(0, newlineIndex);
+      cleanup();
+      resolve(JSON.parse(line) as Record<string, unknown>);
+    };
+
+    child.stdout?.on('data', onData);
+    child.once('exit', onExit);
+  });
+}
+
+function waitForWorkerExit(child: ReturnType<typeof spawn>, timeoutMs = 2_000): Promise<{ code: number | null; signal: NodeJS.Signals | null }> {
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => {
+      cleanup();
+      reject(new Error('Timed out waiting for worker exit'));
+    }, timeoutMs);
+    const cleanup = (): void => {
+      clearTimeout(timer);
+      child.off('exit', onExit);
+    };
+    const onExit = (code: number | null, signal: NodeJS.Signals | null): void => {
+      cleanup();
+      resolve({ code, signal });
+    };
+    child.once('exit', onExit);
+  });
 }
 
 function createWorker(dir: string, mode: 'env' | 'hang' | 'ignore-term' | 'oversized-stdout' | 'record-ids'): string {
@@ -384,5 +460,157 @@ setInterval(() => {}, 1000);
     
     // Verify the comment points to sidecar-client.ts for toBackendKind
     expect(typesContent).toContain('Canonical toBackendKind() implementation lives in sidecar-client.ts');
+  });
+
+  it('classifies PID 1 as an orphaned parent (F14)', async () => {
+    const { parentProcessLiveness } = await loadSidecarWorkerTestables();
+    const killSpy = vi.spyOn(process, 'kill');
+
+    try {
+      expect(parentProcessLiveness(1)).toEqual({
+        alive: false,
+        reason: 'pid-1-orphaned',
+      });
+      expect(killSpy).not.toHaveBeenCalled();
+    } finally {
+      killSpy.mockRestore();
+    }
+  });
+
+  it('classifies kill(0) EPERM as an alive but permission-denied parent (F14)', async () => {
+    const { parentProcessLiveness } = await loadSidecarWorkerTestables();
+    const killSpy = vi.spyOn(process, 'kill').mockImplementation(() => {
+      throw Object.assign(new Error('permission denied'), { code: 'EPERM', errno: -1 });
+    });
+
+    try {
+      expect(parentProcessLiveness(12345)).toEqual({
+        alive: true,
+        reason: 'kill-0-eperm',
+        errorCode: -1,
+      });
+    } finally {
+      killSpy.mockRestore();
+    }
+  });
+
+  it('classifies kill(0) ESRCH as a dead parent (F14)', async () => {
+    const { parentProcessLiveness } = await loadSidecarWorkerTestables();
+    const killSpy = vi.spyOn(process, 'kill').mockImplementation(() => {
+      throw Object.assign(new Error('no such process'), { code: 'ESRCH', errno: -3 });
+    });
+
+    try {
+      expect(parentProcessLiveness(12345)).toEqual({
+        alive: false,
+        reason: 'kill-0-esrch',
+        errorCode: -3,
+      });
+    } finally {
+      killSpy.mockRestore();
+    }
+  });
+
+  it('returns a pre-parse error with the recoverable request id for partial JSON (F94)', async () => {
+    const child = spawnRealSidecarWorker();
+    try {
+      child.stdin.write('{"id":321,"type":"embed"\n');
+      const response = await readWorkerJsonLine(child);
+
+      expect(response).toMatchObject({
+        id: 321,
+        type: 'error',
+        phase: 'parse',
+        code: 'invalid-json',
+      });
+      expect(response.message).not.toContain('"id":0');
+
+      child.stdin.write(`${JSON.stringify({ id: 999, type: 'shutdown' })}\n`);
+      await waitForWorkerExit(child);
+    } finally {
+      if (child.pid && pidAlive(child.pid)) {
+        child.kill('SIGKILL');
+      }
+    }
+  });
+
+  it('exits 1 with stderr on unparseable input without a recoverable id (F94)', async () => {
+    const child = spawnRealSidecarWorker();
+    let stderr = '';
+    child.stderr.on('data', (chunk: Buffer | string) => {
+      stderr += chunk.toString();
+    });
+
+    try {
+      child.stdin.write('not json\n');
+      const exit = await waitForWorkerExit(child);
+
+      expect(exit.code).toBe(1);
+      expect(stderr).toMatch(/sidecar-worker: pre-parse failure/);
+    } finally {
+      if (child.pid && pidAlive(child.pid)) {
+        child.kill('SIGKILL');
+      }
+    }
+  });
+
+  it('evicts a rejected provider promise so the next getProvider call retries (F95)', async () => {
+    const { getProvider, resetProviderCacheForTests } = await loadSidecarWorkerTestables();
+    const provider = {
+      embedDocument: vi.fn(),
+      embedQuery: vi.fn(),
+    };
+
+    resetProviderCacheForTests();
+    factoryMockState.createEmbeddingsProvider.mockReset();
+    factoryMockState.createEmbeddingsProvider
+      .mockRejectedValueOnce(new Error('transient provider failure'))
+      .mockResolvedValueOnce(provider);
+
+    const request = {
+      id: 1,
+      type: 'embed' as const,
+      input: ['abc'],
+      model: 'model',
+      dimensions: 3,
+    };
+
+    await expect(getProvider(request)).rejects.toThrow('transient provider failure');
+    expect(factoryMockState.createEmbeddingsProvider).toHaveBeenCalledTimes(1);
+
+    await expect(getProvider(request)).resolves.toBe(provider);
+    expect(factoryMockState.createEmbeddingsProvider).toHaveBeenCalledTimes(2);
+
+    resetProviderCacheForTests();
+  });
+
+  it('caches provider success after retrying a rejected provider promise (F95)', async () => {
+    const { getProvider, resetProviderCacheForTests } = await loadSidecarWorkerTestables();
+    const provider = {
+      embedDocument: vi.fn(),
+      embedQuery: vi.fn(),
+    };
+
+    resetProviderCacheForTests();
+    factoryMockState.createEmbeddingsProvider.mockReset();
+    factoryMockState.createEmbeddingsProvider
+      .mockRejectedValueOnce(new Error('first attempt failed'))
+      .mockResolvedValueOnce(provider);
+
+    const request = {
+      id: 1,
+      type: 'embed' as const,
+      input: ['abc'],
+      model: 'model',
+      dimensions: 3,
+    };
+
+    await expect(getProvider(request)).rejects.toThrow('first attempt failed');
+    await expect(getProvider(request)).resolves.toBe(provider);
+    await expect(getProvider(request)).resolves.toBe(provider);
+
+    expect(factoryMockState.createEmbeddingsProvider).toHaveBeenCalledTimes(2);
+
+    resetProviderCacheForTests();
   });
 });
