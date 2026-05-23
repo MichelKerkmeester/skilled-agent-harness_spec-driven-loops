@@ -499,19 +499,53 @@ The phase-3 README rewrite needs an explicit tone target. The root `Public/READM
 
 ---
 
-<!-- ANCHOR:adr-006-placeholder -->
-## ADR-006: [RESERVED — Phase-4 human approval gate record]
+<!-- ANCHOR:adr-006 -->
+## ADR-006: Phase-4 alignment validation gate APPROVED, Phase 5 dispatch authorized
 
 ### Metadata
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed (Reserved) |
-| **Date** | [filled at phase 4 -> 5 transition] |
-| **Deciders** | TBD (human reviewer) |
+| **Status** | Accepted |
+| **Date** | 2026-05-23 |
+| **Deciders** | Operator (single-word "Approve" reply to the Phase-4 surfaced report in chat) |
 
-This ADR is filled at the phase-4 -> phase-5 transition. It records: who approved, on what date, scope of approval, and explicit confirmation that the validation report was reviewed before phase 5 began. Phase 5 task T066 verifies ADR-006 is present and non-placeholder before any dispatch.
-<!-- /ANCHOR:adr-006-placeholder -->
+---
+
+### Context
+
+Phase 4 ran the alignment validation gate against every artifact under `.opencode/skills/deep-review/` in resource-map scope. The walker produced `validation-report.jsonl` (96 schema-validated rows) and `validation-report.md` (human-readable summary) and was pushed to main as commit `1d316482c3`. The verdict was PASS: 95 of 96 artifacts at 100% template match, 1 at 100% with the documented NOT-APPLICABLE deviation for `assets/prompt_pack_iteration.md.tmpl` (intentional renderer-template exemption per AF-0016), zero FAIL.
+
+The gate was the explicit blocker before Phase 5 (10-iteration cli-devin SWE-1.6 deep-research loop per ADR-001). Without an approval record here, Phase 5 dispatch was forbidden.
+
+### Decision
+
+**Approved.** Phase 5 may proceed under the contracts already specified by ADR-001 through ADR-005.
+
+### Approval Record
+
+| Field | Value |
+|---|---|
+| Approver | Operator |
+| Approval date | 2026-05-23 |
+| Approval mechanism | Single-word "Approve" reply to the Phase-4 surfaced report in this session |
+| Approval scope | Phase 5 dispatch under ADR-001 (CLI-DEVIN SWE-1.6 x10), ADR-002 (surgical-edit), ADR-003 (resource-map.md only), ADR-004 (Smart Router preservation), ADR-005 (README tone calibration) |
+| Validation report reference | [`validation-report.md`](./validation-report.md) commit `1d316482c3` |
+| Audit findings reference | [`audit-findings.jsonl`](./audit-findings.jsonl) (23 findings, all resolved as of Phase 4 close) |
+
+### Out of Scope for This Approval
+
+Per the explicit out-of-scope list in `validation-report.md` §7:
+
+- Behavioral changes to `scripts/reduce-state.cjs` (out of scope per ADR-002, bug-scan only)
+- Smart Router edits without an explicit ADR-007 cascade record (per ADR-004)
+- Skipping the per-iteration SIGKILL + `/tmp` sweep discipline (per the `feedback_deep_loop_iter_one_at_a_time` memory)
+- Switching the Phase 5 toolchain away from cli-devin SWE-1.6 (ADR-001 locks single executor)
+
+### Implementation
+
+Phase 5 task ledger T080 through T119 unblocked. Pre-flight: verify `cli-devin` binary present, verify SWE-1.6 model reachable, read `cli-devin/SKILL.md` + `sk-prompt-small-model/SKILL.md` + `sk-prompt/SKILL.md` per the CLI dispatch rule and small-model dispatch rule (CLAUDE.md §1).
+<!-- /ANCHOR:adr-006 -->
 
 ---
 

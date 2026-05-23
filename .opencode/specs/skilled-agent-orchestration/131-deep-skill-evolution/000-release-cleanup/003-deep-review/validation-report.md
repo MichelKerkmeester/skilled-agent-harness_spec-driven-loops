@@ -236,23 +236,24 @@ By signing the approval block below, the operator confirms:
 - Skipping the per-iteration SIGKILL + /tmp sweep discipline (per the `feedback_deep_loop_iter_one_at_a_time` memory)
 - Switching the Phase 5 toolchain away from cli-devin SWE-1.6 (ADR-001 locks single executor)
 
-### Approval Block (operator to fill)
+### Approval Block (filled 2026-05-23)
 
 | Field | Value |
 |---|---|
-| Approver | _[operator to fill]_ |
-| Approval date (ISO 8601) | _[operator to fill]_ |
-| Approval scope | _Phase 5 dispatch under ADR-001 through ADR-005_ |
-| ADR-006 anchor | _[operator to author in `decision-record.md`]_ |
-| Phase-5 prologue checks | cli-devin binary present (`devin --version` returns successfully); SWE-1.6 model reachable; `/tmp/devin-*` orphan sweep clean |
+| Approver | Operator |
+| Approval date (ISO 8601) | 2026-05-23 |
+| Approval mechanism | Single-word "Approve" reply to the Phase-4 surfaced report in this session |
+| Approval scope | Phase 5 dispatch under ADR-001 through ADR-005 |
+| ADR-006 anchor | [`decision-record.md#adr-006`](./decision-record.md) Status Accepted |
+| Phase-5 prologue checks | cli-devin binary present (`devin --version` returns successfully). SWE-1.6 model reachable. `/tmp/devin-*` orphan sweep clean. |
 
-When the operator returns approval:
+Approval-driven actions completed:
 
-1. Author ADR-006 in `decision-record.md` with date + approver + scope + reference to this report
-2. Update `tasks.md` T065 + T066 to checked
-3. Update `checklist.md` CHK-104 to checked with evidence pointer to ADR-006
-4. Commit + push
-5. Begin Phase 5 step 5a (T080 through T105) per the locked toolchain
+1. ADR-006 authored in `decision-record.md` with date, approver, scope, validation-report reference
+2. `tasks.md` T065 + T066 checked
+3. `checklist.md` CHK-104 checked with evidence pointer to ADR-006
+4. Commit + push under the approval-record commit
+5. Phase 5 step 5a (T080 through T105) cleared to begin under the locked toolchain
 
 ---
 

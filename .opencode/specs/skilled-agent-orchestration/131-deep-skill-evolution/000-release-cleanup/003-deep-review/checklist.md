@@ -147,7 +147,7 @@ _memory:
 - [ ] CHK-101 [P1] All ADRs carry status `Proposed` or `Accepted`
 - [ ] CHK-102 [P1] Each ADR documents alternatives with rejection rationale
 - [ ] CHK-103 [P2] ADR-007 (Smart Router edit) added if and only if phase-2 cascade forces it
-- [ ] CHK-104 [P0] ADR-006 (human approval) added before any phase-5 dispatch
+- [x] CHK-104 [P0] ADR-006 (human approval) added before any phase-5 dispatch — Accepted 2026-05-23 by Operator, validation-report.md commit `1d316482c3`
 <!-- /ANCHOR:arch-verify -->
 
 ---
