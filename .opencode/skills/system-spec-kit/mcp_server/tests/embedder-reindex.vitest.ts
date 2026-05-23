@@ -2,6 +2,10 @@
 // TEST: Embedder Reindex Orchestrator (016/003)
 // -------------------------------------------------------------------
 
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+
 import Database from 'better-sqlite3';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
@@ -31,17 +35,19 @@ vi.mock('../lib/embedders/registry.js', () => ({
 }));
 
 import {
-  cancelJob,
   getJobStatus,
+  InvalidDatabaseDirError,
   resumeReindexJobs,
   startReindex,
 } from '../lib/embedders/reindex.js';
+import { __embedderReindexTestables } from '../lib/embedders/reindex.testables.js';
 import { getActiveEmbedder, setActiveEmbedder } from '../lib/embedders/schema.js';
 
 const ORIGINAL_BATCH_SIZE = process.env.EMBEDDER_REINDEX_BATCH_SIZE;
 
-function createDatabase(): Database.Database {
-  const db = new Database(':memory:');
+function createDatabase(): { readonly db: Database.Database; readonly dir: string } {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'embedder-reindex-'));
+  const db = new Database(path.join(dir, 'memory.db'));
   db.exec(`
     CREATE TABLE memory_index (
       id INTEGER PRIMARY KEY,
@@ -54,7 +60,7 @@ function createDatabase(): Database.Database {
   for (let id = 1; id <= 10; id += 1) {
     insert.run(id, `memory content ${id}`, `title ${id}`, `/tmp/${id}.md`);
   }
-  return db;
+  return { db, dir };
 }
 
 async function waitForJob(
@@ -74,15 +80,19 @@ async function waitForJob(
 
 describe('embedder reindex orchestrator', () => {
   let db: Database.Database;
+  let dbDir: string;
 
   beforeEach(() => {
     process.env.EMBEDDER_REINDEX_BATCH_SIZE = '2';
     mocks.adapter.embed.mockClear();
-    db = createDatabase();
+    const fixture = createDatabase();
+    db = fixture.db;
+    dbDir = fixture.dir;
   });
 
   afterEach(() => {
     db.close();
+    fs.rmSync(dbDir, { recursive: true, force: true });
     if (ORIGINAL_BATCH_SIZE === undefined) {
       delete process.env.EMBEDDER_REINDEX_BATCH_SIZE;
     } else {
@@ -91,7 +101,7 @@ describe('embedder reindex orchestrator', () => {
   });
 
   it('creates a persisted job and flips the active pointer only after completion', async () => {
-    const jobId = startReindex({ toName: 'mxbai-embed-large-v1' }, { db, autoStart: false });
+    const jobId = __embedderReindexTestables.startReindex({ toName: 'mxbai-embed-large-v1' }, { db, autoStart: false });
 
     expect(getJobStatus(jobId, db)).toMatchObject({
       id: jobId,
@@ -111,6 +121,36 @@ describe('embedder reindex orchestrator', () => {
     expect(getActiveEmbedder(db)).toEqual({ name: 'mxbai-embed-large-v1', dim: 1024 });
     const vectorCount = db.prepare('SELECT COUNT(*) AS count FROM vec_1024').get() as { count: number };
     expect(vectorCount.count).toBe(10);
+  });
+
+  it('auto-starts production reindex jobs and gates paused starts behind testables (F43)', async () => {
+    const jobId = startReindex({ toName: 'mxbai-embed-large-v1' }, { db });
+
+    const completed = await waitForJob(db, jobId, (status) => status.status === 'completed');
+
+    expect(completed.processed).toBe(10);
+    expect(getActiveEmbedder(db)).toEqual({ name: 'mxbai-embed-large-v1', dim: 1024 });
+  });
+
+  it('throws a clear InvalidDatabaseDirError for in-memory databases before queuing work (F110)', () => {
+    const memoryDb = new Database(':memory:');
+    try {
+      memoryDb.exec(`
+        CREATE TABLE memory_index (
+          id INTEGER PRIMARY KEY,
+          content_text TEXT,
+          title TEXT,
+          file_path TEXT
+        )
+      `);
+
+      expect(() => startReindex({ toName: 'mxbai-embed-large-v1' }, { db: memoryDb }))
+        .toThrow(InvalidDatabaseDirError);
+      expect(() => startReindex({ toName: 'mxbai-embed-large-v1' }, { db: memoryDb }))
+        .toThrow('requires a file-backed database');
+    } finally {
+      memoryDb.close();
+    }
   });
 
   it('resumes a running job from the persisted processed offset', async () => {
@@ -155,16 +195,16 @@ describe('embedder reindex orchestrator', () => {
   });
 
   it('cancels a queued job before it runs', () => {
-    const jobId = startReindex({ toName: 'mxbai-embed-large-v1' }, { db, autoStart: false });
+    const jobId = __embedderReindexTestables.startReindex({ toName: 'mxbai-embed-large-v1' }, { db, autoStart: false });
 
-    const cancelled = cancelJob(jobId, db);
+    const cancelled = __embedderReindexTestables.cancelJob(jobId, db);
 
     expect(cancelled).toMatchObject({ id: jobId, status: 'cancelled' });
   });
 
   it('marks failed jobs and leaves the active pointer unchanged', async () => {
     mocks.adapter.embed.mockRejectedValueOnce(new Error('embed failed'));
-    const jobId = startReindex({ toName: 'mxbai-embed-large-v1' }, { db, autoStart: false });
+    const jobId = __embedderReindexTestables.startReindex({ toName: 'mxbai-embed-large-v1' }, { db, autoStart: false });
 
     resumeReindexJobs(db);
     const failed = await waitForJob(db, jobId, (status) => status.status === 'failed');

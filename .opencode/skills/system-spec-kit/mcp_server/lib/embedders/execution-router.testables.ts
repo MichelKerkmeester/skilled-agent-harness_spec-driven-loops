@@ -4,7 +4,9 @@
 
 import {
   clearEmbedderExecutionRouterState,
+  getDirectAdapterCacheKeys,
   logPolicyResolution,
+  onCredentialCacheInvalidation,
   registerShutdownHooks,
   resolveDimensions,
   resolveExecutionPolicy,
@@ -13,7 +15,9 @@ import {
 
 export const __embedderExecutionRouterTestables = {
   clear: clearEmbedderExecutionRouterState,
+  getDirectAdapterCacheKeys,
   logPolicyResolution,
+  onCredentialCacheInvalidation,
   registerShutdownHooks,
   resolveDimensions,
   resolveExecutionPolicy,

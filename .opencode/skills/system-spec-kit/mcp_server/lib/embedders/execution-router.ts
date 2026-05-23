@@ -18,6 +18,16 @@ import type { BackendKind } from './types.js';
 type EmbedderExecutionPolicy = 'auto' | 'direct' | 'sidecar';
 export type ExecutionRouterAdapter = Omit<EmbedderAdapter, 'ready'>;
 
+export interface CredentialCacheInvalidationEvent {
+  readonly reason: 'active-adapter-rotated' | 'router-state-cleared';
+  readonly previousKey: string | null;
+  readonly nextKey: string | null;
+  readonly clearedDirectAdapterKeys: readonly string[];
+  readonly staleWindow: 'until-next-adapter-resolution';
+}
+
+export type CredentialCacheInvalidationListener = (event: CredentialCacheInvalidationEvent) => void;
+
 // ───────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ───────────────────────────────────────────────────────────────
@@ -26,7 +36,15 @@ const SIDECAR_LOCAL_PROVIDERS = new Set(['hf-local', 'sentence-transformers']);
 const SHUTDOWN_SIGNALS: readonly NodeJS.Signals[] = ['SIGINT', 'SIGTERM', 'SIGHUP'];
 const directAdapters = new Map<string, ExecutionRouterAdapter>();
 const sidecarClients = new Map<string, SidecarClient>();
+const credentialCacheInvalidationListeners = new Set<CredentialCacheInvalidationListener>();
+const registeredShutdownHandlers: Array<{
+  readonly signal: NodeJS.Signals;
+  readonly handler: (signal: NodeJS.Signals) => Promise<void>;
+}> = [];
+let beforeExitShutdownHandler: (() => Promise<void>) | null = null;
 let shutdownHooksRegistered = false;
+let shutdownSignalInFlight = false;
+let activeAdapterKey: string | null = null;
 
 // ───────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -86,6 +104,42 @@ export function resolveDimensions(provider: string, model: string, dimensions?: 
   return profile.dim;
 }
 
+export function onCredentialCacheInvalidation(listener: CredentialCacheInvalidationListener): () => void {
+  credentialCacheInvalidationListeners.add(listener);
+  return () => {
+    credentialCacheInvalidationListeners.delete(listener);
+  };
+}
+
+function emitCredentialCacheInvalidation(event: CredentialCacheInvalidationEvent): void {
+  for (const listener of credentialCacheInvalidationListeners) {
+    listener(event);
+  }
+}
+
+function clearDirectAdapterCredentialCache(
+  reason: CredentialCacheInvalidationEvent['reason'],
+  previousKey: string | null,
+  nextKey: string | null,
+): void {
+  const clearedDirectAdapterKeys = Array.from(directAdapters.keys());
+  directAdapters.clear();
+  emitCredentialCacheInvalidation({
+    reason,
+    previousKey,
+    nextKey,
+    clearedDirectAdapterKeys,
+    staleWindow: 'until-next-adapter-resolution',
+  });
+}
+
+function reconcileActiveAdapterKey(nextKey: string): void {
+  if (activeAdapterKey !== null && activeAdapterKey !== nextKey) {
+    clearDirectAdapterCredentialCache('active-adapter-rotated', activeAdapterKey, nextKey);
+  }
+  activeAdapterKey = nextKey;
+}
+
 export function registerShutdownHooks(): void {
   if (shutdownHooksRegistered) {
     return;
@@ -96,11 +150,26 @@ export function registerShutdownHooks(): void {
     await shutdownAllSidecars();
   };
   const handleSignal = async (signal: NodeJS.Signals): Promise<void> => {
-    await shutdown();
-    process.kill(process.pid, signal);
+    if (shutdownSignalInFlight) {
+      console.warn(`[embedder-execution] Ignoring duplicate ${signal} while sidecar shutdown is already in progress`);
+      return;
+    }
+
+    shutdownSignalInFlight = true;
+    void shutdown()
+      .catch((error: unknown) => {
+        console.warn(`[embedder-execution] Sidecar shutdown during ${signal} failed: ${error instanceof Error ? error.message : String(error)}`);
+      })
+      .finally(() => {
+        process.kill(process.pid, signal);
+      });
   };
-  process.once('beforeExit', shutdown);
-  SHUTDOWN_SIGNALS.forEach((signal) => process.once(signal, handleSignal));
+  beforeExitShutdownHandler = shutdown;
+  process.once('beforeExit', beforeExitShutdownHandler);
+  SHUTDOWN_SIGNALS.forEach((signal) => {
+    process.once(signal, handleSignal);
+    registeredShutdownHandlers.push({ signal, handler: handleSignal });
+  });
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -154,11 +223,17 @@ class DirectProviderAdapter {
 
   private getProvider(): Promise<IEmbeddingProvider> {
     if (!this.providerPromise) {
-      this.providerPromise = createEmbeddingsProvider({
+      const created = createEmbeddingsProvider({
         provider: this.provider === 'api' ? 'openai' : this.provider,
         model: this.name,
         dim: this.dim,
         warmup: false,
+      });
+      this.providerPromise = created.catch((error: unknown) => {
+        if (this.providerPromise === created) {
+          this.providerPromise = null;
+        }
+        throw error;
       });
     }
     return this.providerPromise;
@@ -173,6 +248,7 @@ export function getEmbedderAdapter(provider: string, model: string, dimensionsOv
   const normalizedProvider = normalizeProvider(provider);
   const key = `${normalizedProvider}:${model}`;
   const dimensions = resolveDimensions(normalizedProvider, model, dimensionsOverride);
+  reconcileActiveAdapterKey(key);
 
   if (shouldUseSidecar(normalizedProvider)) {
     let client = sidecarClients.get(key);
@@ -215,7 +291,23 @@ export async function shutdownAllSidecars(): Promise<void> {
 }
 
 export function clearEmbedderExecutionRouterState(): void {
+  const previousKey = activeAdapterKey;
+  clearDirectAdapterCredentialCache('router-state-cleared', previousKey, null);
+  for (const { signal, handler } of registeredShutdownHandlers) {
+    process.off(signal, handler);
+  }
+  registeredShutdownHandlers.length = 0;
+  if (beforeExitShutdownHandler) {
+    process.off('beforeExit', beforeExitShutdownHandler);
+    beforeExitShutdownHandler = null;
+  }
   directAdapters.clear();
   sidecarClients.clear();
   shutdownHooksRegistered = false;
+  shutdownSignalInFlight = false;
+  activeAdapterKey = null;
+}
+
+export function getDirectAdapterCacheKeys(): readonly string[] {
+  return Array.from(directAdapters.keys());
 }

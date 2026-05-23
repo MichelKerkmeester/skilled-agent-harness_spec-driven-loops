@@ -42,6 +42,10 @@ describe('execution router', () => {
     delete process.env.SPECKIT_EMBEDDER_EXECUTION;
     mockState.getAdapter.mockReset();
     mockState.createEmbeddingsProvider.mockReset();
+    mockState.createEmbeddingsProvider.mockImplementation(async ({ model }: { model: string }) => ({
+      embedDocument: vi.fn(async () => new Float32Array(model === 'model-a' ? [1, 0] : [0, 1])),
+      embedQuery: vi.fn(async () => new Float32Array(model === 'model-a' ? [2, 0] : [0, 2])),
+    }));
     mockState.profile = {
       provider: 'hf-local',
       model: 'default-model',
@@ -125,6 +129,60 @@ describe('execution router', () => {
     expect(signalCalls.map(([event]) => event)).toEqual(['SIGINT', 'SIGTERM', 'SIGHUP']);
     expect(new Set(signalCalls.map(([, handler]) => handler)).size).toBe(1);
     expect(signalCalls[0][1].constructor.name).toBe('AsyncFunction');
+  });
+
+  it('treats duplicate SIGTERM re-entry as a no-op and warns once (F51)', async () => {
+    const testables = await loadTestables();
+    const onceSpy = vi.spyOn(process, 'once').mockImplementation(() => process);
+    const killSpy = vi.spyOn(process, 'kill').mockImplementation(() => true);
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+
+    testables.registerShutdownHooks();
+    const signalHandler = onceSpy.mock.calls
+      .find(([event]) => event === 'SIGTERM')?.[1] as ((signal: NodeJS.Signals) => Promise<void>) | undefined;
+
+    expect(signalHandler).toBeDefined();
+    await signalHandler!('SIGTERM');
+    await signalHandler!('SIGTERM');
+    await new Promise<void>((resolve) => {
+      setImmediate(resolve);
+    });
+
+    expect(killSpy).toHaveBeenCalledTimes(1);
+    expect(killSpy).toHaveBeenCalledWith(process.pid, 'SIGTERM');
+    expect(warnSpy).toHaveBeenCalledWith(
+      '[embedder-execution] Ignoring duplicate SIGTERM while sidecar shutdown is already in progress',
+    );
+  });
+
+  it('clears direct provider credential cache when the active adapter rotates (F90)', async () => {
+    const router = await loadRouter();
+    const testables = await loadTestables();
+    const events: unknown[] = [];
+    const unsubscribe = testables.onCredentialCacheInvalidation((event) => events.push(event));
+
+    try {
+      process.env.SPECKIT_EMBEDDER_EXECUTION = 'direct';
+      const adapterA = router.getEmbedderAdapter('openai', 'model-a', 2);
+      await adapterA.embed(['first']);
+
+      expect(testables.getDirectAdapterCacheKeys()).toEqual(['openai:model-a']);
+
+      const adapterB = router.getEmbedderAdapter('voyage', 'model-b', 2);
+      await adapterB.embed(['second']);
+
+      expect(testables.getDirectAdapterCacheKeys()).toEqual(['voyage:model-b']);
+      expect(mockState.createEmbeddingsProvider).toHaveBeenCalledTimes(2);
+      expect(events).toContainEqual({
+        reason: 'active-adapter-rotated',
+        previousKey: 'openai:model-a',
+        nextKey: 'voyage:model-b',
+        clearedDirectAdapterKeys: ['openai:model-a'],
+        staleWindow: 'until-next-adapter-resolution',
+      });
+    } finally {
+      unsubscribe();
+    }
   });
 
   it('does not expose DirectProviderAdapter.ready through direct router adapters (F74)', async () => {

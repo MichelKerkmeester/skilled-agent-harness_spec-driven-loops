@@ -46,8 +46,11 @@ export interface StartReindexOptions {
   readonly toName: string;
 }
 
-interface ReindexRuntimeOptions {
+export interface ReindexRuntimeOptions {
   readonly db?: Database.Database;
+}
+
+interface ReindexInternalRuntimeOptions extends ReindexRuntimeOptions {
   readonly autoStart?: boolean;
 }
 
@@ -103,6 +106,13 @@ const runningJobs = new Set<string>();
 // ───────────────────────────────────────────────────────────────
 // 3. HELPERS
 // ───────────────────────────────────────────────────────────────
+
+export class InvalidDatabaseDirError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'InvalidDatabaseDirError';
+  }
+}
 
 function resolveDb(db?: Database.Database): Database.Database {
   return db ?? initializeDb();
@@ -268,6 +278,16 @@ function getDatabaseDir(db: Database.Database): string | null {
   return path.dirname(row.file);
 }
 
+function requireDatabaseDir(db: Database.Database, operation: string): string {
+  const databaseDir = getDatabaseDir(db);
+  if (!databaseDir) {
+    throw new InvalidDatabaseDirError(
+      `Embedder reindex ${operation} requires a file-backed database; received an in-memory or anonymous database without a database directory`,
+    );
+  }
+  return databaseDir;
+}
+
 function writeVectorsToKnn(
   db: Database.Database,
   rows: MemoryRow[],
@@ -316,10 +336,7 @@ function writeVectorsToShard(
   rows: MemoryRow[],
   embeddings: Float32Array[],
 ): void {
-  const databaseDir = getDatabaseDir(db);
-  if (!databaseDir) {
-    return;
-  }
+  const databaseDir = requireDatabaseDir(db, 'vector shard write');
 
   const shard = new Database(profile.getVectorShardPath(databaseDir));
   try {
@@ -444,7 +461,15 @@ export function startReindex(
   options: StartReindexOptions,
   runtimeOptions: ReindexRuntimeOptions = {},
 ): string {
+  return startReindexInternal(options, runtimeOptions);
+}
+
+function startReindexInternal(
+  options: StartReindexOptions,
+  runtimeOptions: ReindexInternalRuntimeOptions = {},
+): string {
   const db = resolveDb(runtimeOptions.db);
+  requireDatabaseDir(db, 'startup');
   ensureJobTable(db);
 
   const manifest = getManifest(options.toName);
@@ -500,6 +525,7 @@ export function cancelJob(jobId: string, db?: Database.Database): ReindexJob | n
 
 export function resumeReindexJobs(db?: Database.Database): ReindexJob[] {
   const resolvedDb = resolveDb(db);
+  requireDatabaseDir(resolvedDb, 'resume');
   ensureJobTable(resolvedDb);
   const rows = resolvedDb.prepare(`
     SELECT ${JOB_SELECT_COLUMNS}
@@ -513,6 +539,13 @@ export function resumeReindexJobs(db?: Database.Database): ReindexJob[] {
     enqueueJob(resolvedDb, job.id);
   }
   return jobs;
+}
+
+export function startReindexForTest(
+  options: StartReindexOptions,
+  runtimeOptions: ReindexInternalRuntimeOptions = {},
+): string {
+  return startReindexInternal(options, runtimeOptions);
 }
 
 export function estimateEta(job: ReindexJob | null): number | null {
