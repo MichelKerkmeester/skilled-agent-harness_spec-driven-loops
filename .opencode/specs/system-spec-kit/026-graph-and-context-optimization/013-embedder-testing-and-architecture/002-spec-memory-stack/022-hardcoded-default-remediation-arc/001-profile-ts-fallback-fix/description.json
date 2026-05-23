@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/001-profile-ts-fallback-fix",
+  "description": "Spec: 016/002/022/001 profile.ts Fallback Fix",
+  "keywords": [
+    "spec",
+    "016",
+    "002",
+    "022",
+    "001",
+    "profile",
+    "fallback",
+    "fix"
+  ],
+  "lastUpdated": "2026-05-23T15:25:00.898Z",
+  "specId": "001",
+  "folderSlug": "profile-ts-fallback-fix",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "002-spec-memory-stack",
+    "022-hardcoded-default-remediation-arc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

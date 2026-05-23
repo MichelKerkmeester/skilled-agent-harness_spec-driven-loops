@@ -11,6 +11,7 @@ import { isRecord } from './utils/json-guard.js';
 
 import type { ChildProcess } from 'node:child_process';
 import type { AdvisorThresholds } from './prompt-cache.js';
+import { SKILL_ADVISOR_COMPAT_CONTRACT, resolvedConfidenceThreshold, resolvedUncertaintyThreshold } from './compat/contract.js';
 
 export interface AdvisorRecommendation {
   readonly skill: string;
@@ -78,8 +79,8 @@ function defaultTimeoutMs(): number {
 }
 
 function thresholdArgs(thresholdConfig: AdvisorThresholds | undefined): string[] {
-  const confidenceThreshold = String(thresholdConfig?.confidenceThreshold ?? 0.8);
-  const uncertaintyThreshold = String(thresholdConfig?.uncertaintyThreshold ?? 0.35);
+  const confidenceThreshold = String(thresholdConfig?.confidenceThreshold ?? resolvedConfidenceThreshold());
+  const uncertaintyThreshold = String(thresholdConfig?.uncertaintyThreshold ?? resolvedUncertaintyThreshold());
   const args = ['--threshold', confidenceThreshold, '--uncertainty', uncertaintyThreshold];
   if (thresholdConfig?.confidenceOnly) {
     args.push('--confidence-only');

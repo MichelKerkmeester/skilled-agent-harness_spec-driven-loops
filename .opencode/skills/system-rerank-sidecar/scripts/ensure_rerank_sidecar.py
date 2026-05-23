@@ -61,7 +61,11 @@ except ModuleNotFoundError:  # pragma: no cover - direct script execution
         should_reap_row,
     )
 
-DEFAULT_PORT = 8765
+# Canonical port imported from sidecar_defaults (022/008 dedup).
+try:
+    from scripts.sidecar_defaults import DEFAULT_PORT
+except ModuleNotFoundError:  # pragma: no cover - direct script execution
+    from sidecar_defaults import DEFAULT_PORT  # type: ignore[no-redef]
 DEFAULT_HEALTH_TIMEOUT_SECONDS = 20.0
 DEFAULT_REAP_HEALTH_TIMEOUT_SECONDS = 0.1
 MAX_HEALTH_BODY_BYTES = 65536  # 64KB to match JS ensure-rerank-sidecar.cjs
@@ -148,11 +152,16 @@ def _owner_token(skill_path: Path, state_dir: Path) -> str:
 def _canonical_config_hash(port: int) -> str:
     # Empty string is treated as "not set" to match JS behavior (|| operator)
     # JS sibling mirrors this contract in ensure-rerank-sidecar.cjs:135-150
+    # Canonical defaults imported from sidecar_defaults (022/008 dedup).
+    try:
+        from scripts.sidecar_defaults import DEFAULT_MODEL_NAME, DEFAULT_MODEL_REVISION
+    except ModuleNotFoundError:  # pragma: no cover
+        from sidecar_defaults import DEFAULT_MODEL_NAME, DEFAULT_MODEL_REVISION  # type: ignore[no-redef]
     revision_env = os.environ.get("RERANK_MODEL_REVISION", "").strip()
-    revision = revision_env if revision_env else "e61197ed45024b0ed8a2d74b80b4d909f1255473"
+    revision = revision_env if revision_env else DEFAULT_MODEL_REVISION
     config = {
         "port": str(port),
-        "model": os.environ.get("RERANK_MODEL_NAME", "Qwen/Qwen3-Reranker-0.6B"),
+        "model": os.environ.get("RERANK_MODEL_NAME", DEFAULT_MODEL_NAME),
         "revision": revision,
         "allowed": os.environ.get("RERANK_ALLOWED_MODELS", ""),
         "revisions": os.environ.get("RERANK_MODEL_REVISIONS", ""),

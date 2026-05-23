@@ -216,3 +216,28 @@ export function getCanonicalFallback(provider: CanonicalProvider): string {
   // is `nomic-ai/nomic-embed-text-v1.5` on HuggingFace.
   return `nomic-ai/${first.name}`;
 }
+
+// ───────────────────────────────────────────────────────────────
+// Canonical reranker model names (ADR-022 audit P1)
+// ───────────────────────────────────────────────────────────────
+// Single source of truth for reranker model defaults used by
+// cross-encoder.ts PROVIDER_CONFIG entries. P1 audit closure
+// eliminates the hardcoded "cross-encoder/ms-marco-MiniLM-L-6-v2"
+// string duplicated from PROVIDER_CONFIG.local.model.
+//
+// Only the local reranker is supported. Cloud reranker providers were
+// removed in 022/013 because their auto-resolution from API-key presence
+// (`VOYAGE_API_KEY`, `COHERE_API_KEY`) created a silent re-routing footgun
+// when those keys were set for unrelated purposes (e.g. embeddings).
+// The local reranker is served by the system-rerank-sidecar
+// (`Qwen/Qwen3-Reranker-0.6B` on http://localhost:8765/rerank).
+
+export type RerankerProvider = 'local';
+
+const RERANKER_CANONICAL: Readonly<Record<RerankerProvider, string>> = Object.freeze({
+  local: 'cross-encoder/ms-marco-MiniLM-L-6-v2',
+});
+
+export function getRerankerFallback(provider: RerankerProvider): string {
+  return RERANKER_CANONICAL[provider];
+}

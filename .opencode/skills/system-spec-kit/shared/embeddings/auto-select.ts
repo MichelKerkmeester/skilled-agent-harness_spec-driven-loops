@@ -8,6 +8,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { promisify } from 'node:util';
 
+import { getCanonicalFallback, MANIFESTS } from './registry.js';
 import type { ProviderResolution } from '../types.js';
 
 // ───────────────────────────────────────────────────────────────────
@@ -93,41 +94,41 @@ interface OllamaManifest {
 // 2. CONSTANTS
 // ───────────────────────────────────────────────────────────────────
 
-const DEFAULT_TIMEOUT_MS = 2_500;
-const DEFAULT_LOCK_STALE_MS = 30_000;
-const DEFAULT_SLEEP_MS = 25;
-const VOYAGE_MODEL = 'voyage-code-3';
+// 022/009: cascade-probe timing constants. Each accepts an optional env-var
+// override so operators can tune the cascade without code edits. Defaults are
+// the empirically tuned values from the 015 cascade-reorder packet.
+function parsePositiveInt(value: string | undefined, fallback: number): number {
+  if (typeof value !== 'string') return fallback;
+  const parsed = Number.parseInt(value.trim(), 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+}
+
+const DEFAULT_TIMEOUT_MS = parsePositiveInt(
+  process.env.SPECKIT_CASCADE_PROBE_TIMEOUT_MS,
+  2_500,
+);
+const DEFAULT_LOCK_STALE_MS = parsePositiveInt(
+  process.env.SPECKIT_CASCADE_LOCK_STALE_MS,
+  30_000,
+);
+const DEFAULT_SLEEP_MS = parsePositiveInt(
+  process.env.SPECKIT_CASCADE_SLEEP_MS,
+  25,
+);
+const VOYAGE_MODEL = getCanonicalFallback('voyage');
 const VOYAGE_DIM = 1024;
-const OPENAI_MODEL = 'text-embedding-3-small';
+const OPENAI_MODEL = getCanonicalFallback('openai');
 const OPENAI_DIM = 1536;
-// ADR-014: hf-local fallback uses nomic-embed-text-v1.5 to align with the
-// in-Ollama default (ADR-013). New users with Python + sentence-transformers
-// and no Ollama get the same embedder as Ollama-equipped users.
-const HF_LOCAL_MODEL = 'nomic-ai/nomic-embed-text-v1.5';
+const HF_LOCAL_MODEL = getCanonicalFallback('hf-local');
 const HF_LOCAL_DIM = 768;
 
-const OLLAMA_PRIORITY: readonly OllamaManifest[] = Object.freeze([
-  {
-    name: 'nomic-embed-text-v1.5',
-    dim: 768,
-    ollamaName: 'nomic-embed-text:v1.5',
-  },
-  {
-    name: 'jina-embeddings-v3',
-    dim: 1024,
-    ollamaName: 'hf.co/gaianet/jina-embeddings-v3-GGUF:Q4_K_M',
-  },
-  {
-    name: 'bge-m3',
-    dim: 1024,
-    ollamaName: 'bge-m3:latest',
-  },
-  {
-    name: 'mxbai-embed-large-v1',
-    dim: 1024,
-    ollamaName: 'mxbai-embed-large:latest',
-  },
-]);
+const OLLAMA_PRIORITY: readonly OllamaManifest[] = Object.freeze(
+  MANIFESTS.map(m => ({
+    name: m.name,
+    dim: m.dim,
+    ollamaName: m.ollamaName!,
+  })),
+);
 
 const execFileAsync = promisify(execFile);
 

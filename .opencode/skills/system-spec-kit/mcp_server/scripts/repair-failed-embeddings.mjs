@@ -27,10 +27,6 @@ const DEFAULT_BATCH_SIZE = 10;
 const BATCH_SLEEP_MS = 1000;
 const PREVIEW_LIMIT = 5;
 
-// The repair job is throughput-insensitive and should be reliable on headless
-// or sandboxed macOS sessions where Metal command-queue creation can fail.
-process.env.NODE_LLAMA_CPP_GPU ??= 'false';
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const SYSTEM_SPEC_KIT_ROOT = path.resolve(__dirname, '../..');

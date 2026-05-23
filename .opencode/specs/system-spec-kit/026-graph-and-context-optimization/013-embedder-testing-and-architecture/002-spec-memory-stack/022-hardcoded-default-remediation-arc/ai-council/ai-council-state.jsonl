@@ -1,0 +1,9 @@
+{"schema_version":"1.2","protocol":"ai-council","producer":"persist-artifacts@1.2.0","event":"round_start","round":1,"timestamp":"2026-05-23T17:00:00Z","seats":["seat-001","seat-002","seat-003","seat-004","seat-005"]}
+{"schema_version":"1.2","protocol":"ai-council","producer":"persist-artifacts@1.2.0","event":"seat_returned","round":1,"seat":"seat-001","timestamp":"2026-05-23T17:05:00Z","status":"ok","lens":"RISK-AVERSE"}
+{"schema_version":"1.2","protocol":"ai-council","producer":"persist-artifacts@1.2.0","event":"seat_returned","round":1,"seat":"seat-002","timestamp":"2026-05-23T17:05:00Z","status":"ok","lens":"VELOCITY"}
+{"schema_version":"1.2","protocol":"ai-council","producer":"persist-artifacts@1.2.0","event":"seat_returned","round":1,"seat":"seat-003","timestamp":"2026-05-23T17:05:00Z","status":"ok","lens":"ARCHITECTURE"}
+{"schema_version":"1.2","protocol":"ai-council","producer":"persist-artifacts@1.2.0","event":"seat_returned","round":1,"seat":"seat-004","timestamp":"2026-05-23T17:05:00Z","status":"ok","lens":"FAILURE-MODE"}
+{"schema_version":"1.2","protocol":"ai-council","producer":"persist-artifacts@1.2.0","event":"seat_returned","round":1,"seat":"seat-005","timestamp":"2026-05-23T17:05:00Z","status":"ok","lens":"OPERATIONAL"}
+{"schema_version":"1.2","protocol":"ai-council","producer":"persist-artifacts@1.2.0","event":"deliberation_synthesized","round":1,"timestamp":"2026-05-23T17:15:00Z","convergence_score":0.82}
+{"schema_version":"1.2","protocol":"ai-council","producer":"persist-artifacts@1.2.0","event":"round_end","round":1,"timestamp":"2026-05-23T17:15:00Z","new_findings_count":3}
+{"schema_version":"1.2","protocol":"ai-council","producer":"persist-artifacts@1.2.0","event":"council_complete","timestamp":"2026-05-23T17:15:00Z","final_report_path":"ai-council/council-report.md","convergence":true}

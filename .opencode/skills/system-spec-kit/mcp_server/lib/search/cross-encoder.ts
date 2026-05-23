@@ -3,24 +3,23 @@
 // ───────────────────────────────────────────────────────────────
 // Feature catalog: local and cloud neural reranking
 //
-// Neural reranking via external APIs (Voyage rerank-2.5, Cohere
-// Rerank-english-v3.0) or a local cross-encoder model
-// (ms-marco-MiniLM-L-6-v2). When no provider is configured the
-// Module returns a positional fallback (scored 0–0.5) and marks
-// Results with scoringMethod:'fallback' so callers can distinguish
-// Real model scores from synthetic ones.
+// Neural reranking via the local cross-encoder sidecar
+// (`Qwen/Qwen3-Reranker-0.6B` on http://localhost:8765/rerank,
+// with `cross-encoder/ms-marco-MiniLM-L-6-v2` as the canonical
+// fallback model). When the sidecar is not configured the
+// module returns a positional fallback (scored 0–0.5) and marks
+// results with scoringMethod:'fallback' so callers can distinguish
+// real model scores from synthetic ones.
 //
-// T204 / OQ-02 DECISION (2026-02-10):
-// The filename "cross-encoder.ts" is ACCURATE.  All three
-// Providers invoke real ML-based reranking — either cloud APIs
-// That run neural rerankers server-side (Voyage, Cohere) or a
-// Local cross-encoder model.  The positional fallback is NOT a
-// Cross-encoder, but is already clearly separated via the
-// ScoringMethod discriminator.  No rename required.
+// Cloud reranker providers (Voyage, Cohere) were removed in
+// 022/013 — their auto-resolution from API-key presence created
+// a silent re-routing footgun when those keys were set for
+// unrelated purposes (e.g. embeddings).
 /* ───────────────────────────────────────────────────────────────
    1. CONFIGURATION
 ----------------------------------------------------------------*/
 
+import { getRerankerFallback } from '../../../shared/embeddings/registry.js';
 import { isCrossEncoderEnabled } from './search-flags.js';
 
 interface ProviderConfigEntry {
@@ -33,25 +32,9 @@ interface ProviderConfigEntry {
 }
 
 const PROVIDER_CONFIG: Record<string, ProviderConfigEntry> = {
-  voyage: {
-    name: 'voyage',
-    model: 'rerank-2.5',
-    endpoint: 'https://api.voyageai.com/v1/rerank',
-    apiKeyEnv: 'VOYAGE_API_KEY',
-    maxDocuments: 100,
-    timeout: 15000,
-  },
-  cohere: {
-    name: 'cohere',
-    model: 'rerank-english-v3.0',
-    endpoint: 'https://api.cohere.ai/v1/rerank',
-    apiKeyEnv: 'COHERE_API_KEY',
-    maxDocuments: 100,
-    timeout: 15000,
-  },
   local: {
     name: 'local',
-    model: 'cross-encoder/ms-marco-MiniLM-L-6-v2',
+    model: getRerankerFallback('local'),
     endpoint: 'http://localhost:8765/rerank',
     apiKeyEnv: '',
     maxDocuments: 50,
@@ -90,7 +73,7 @@ interface RerankResult {
   provider: string;
   /**
    * P3-16: Discriminator for score origin.
-   *   'cross-encoder'      — score from a neural reranker (Voyage / Cohere API or local model)
+   *   'cross-encoder'      — score from the local neural reranker (sidecar at localhost:8765)
    *   'cross-encoder-tail' — F-011-C1-03: candidate fell outside the provider
    *                          maxDocuments window; original ordering preserved,
    *                          synthetic positional score appended after the
@@ -162,10 +145,10 @@ function enforceCacheBound(): void {
 const latencyTracker: { durations: number[] } = { durations: [] };
 const MAX_LATENCY_SAMPLES = 100;
 
-// T3-15 circuit breaker — prevents cascading failures when external
-// Rerank APIs (Voyage, Cohere) are down. After FAILURE_THRESHOLD consecutive
-// Failures, the circuit opens and calls skip the API for COOLDOWN_MS, returning
-// Positional fallback scores instead.
+// T3-15 circuit breaker — prevents cascading failures when the local
+// Rerank sidecar is unreachable. After FAILURE_THRESHOLD consecutive
+// Failures, the circuit opens and calls skip the sidecar for COOLDOWN_MS,
+// Returning positional fallback scores instead.
 const CIRCUIT_FAILURE_THRESHOLD = 3;
 const CIRCUIT_COOLDOWN_MS = 60_000; // 1 minute
 
@@ -221,9 +204,8 @@ function resolveProvider(): string | null {
     return null;
   }
 
-  // Check API keys in priority order
-  if (process.env.VOYAGE_API_KEY) return 'voyage';
-  if (process.env.COHERE_API_KEY) return 'cohere';
+  // 022/013: cloud reranker auto-resolution removed. The local sidecar is
+  // the only supported reranker; activate it via RERANKER_LOCAL=true.
   if (process.env.RERANKER_LOCAL?.toLowerCase().trim() === 'true') return 'local';
 
   return null;
@@ -283,90 +265,6 @@ function hashString(value: string): string {
 /* ───────────────────────────────────────────────────────────────
    7. PROVIDER-SPECIFIC RERANKING
 ----------------------------------------------------------------*/
-
-async function rerankVoyage(
-  query: string,
-  documents: RerankDocument[]
-): Promise<RerankResult[]> {
-  const config = PROVIDER_CONFIG.voyage;
-  const apiKey = process.env[config.apiKeyEnv];
-  if (!apiKey) throw new Error('VOYAGE_API_KEY not set');
-
-  // P3-13: Build map of document ID → input position (pre-rerank rank)
-  const inputRankMap = new Map<number | string, number>();
-  documents.forEach((d, i) => inputRankMap.set(d.id, i));
-
-  const response = await fetch(config.endpoint, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${apiKey}`,
-    },
-    body: JSON.stringify({
-      model: config.model,
-      query,
-      documents: documents.map(d => d.content),
-    }),
-    signal: AbortSignal.timeout(config.timeout),
-  });
-
-  if (!response.ok) {
-    throw new Error(`Voyage rerank failed: ${response.status} ${response.statusText}`);
-  }
-
-  const data = await response.json() as { data: RerankApiResult[] };
-
-  return data.data.map((item: RerankApiResult) => ({
-    ...documents[item.index],
-    rerankerScore: item.relevance_score,
-    score: item.relevance_score,
-    originalRank: inputRankMap.get(documents[item.index].id) ?? item.index,
-    provider: 'voyage',
-    scoringMethod: 'cross-encoder' as const,
-  })).sort((a: RerankResult, b: RerankResult) => b.rerankerScore - a.rerankerScore);
-}
-
-async function rerankCohere(
-  query: string,
-  documents: RerankDocument[]
-): Promise<RerankResult[]> {
-  const config = PROVIDER_CONFIG.cohere;
-  const apiKey = process.env[config.apiKeyEnv];
-  if (!apiKey) throw new Error('COHERE_API_KEY not set');
-
-  // P3-13: Build map of document ID → input position (pre-rerank rank)
-  const inputRankMap = new Map<number | string, number>();
-  documents.forEach((d, i) => inputRankMap.set(d.id, i));
-
-  const response = await fetch(config.endpoint, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${apiKey}`,
-    },
-    body: JSON.stringify({
-      model: config.model,
-      query,
-      documents: documents.map(d => d.content),
-    }),
-    signal: AbortSignal.timeout(config.timeout),
-  });
-
-  if (!response.ok) {
-    throw new Error(`Cohere rerank failed: ${response.status} ${response.statusText}`);
-  }
-
-  const data = await response.json() as { results: RerankApiResult[] };
-
-  return data.results.map((item: RerankApiResult) => ({
-    ...documents[item.index],
-    rerankerScore: item.relevance_score,
-    score: item.relevance_score,
-    originalRank: inputRankMap.get(documents[item.index].id) ?? item.index,
-    provider: 'cohere',
-    scoringMethod: 'cross-encoder' as const,
-  })).sort((a: RerankResult, b: RerankResult) => b.rerankerScore - a.rerankerScore);
-}
 
 async function rerankLocal(
   query: string,
@@ -467,9 +365,9 @@ async function rerankResults(
   const start = Date.now();
 
   // F-011-C1-03: enforce provider maxDocuments BEFORE the API call. The
-  // PROVIDER_CONFIG declared a per-provider cap (Voyage / Cohere = 100,
-  // local = 50) but the previous code never applied it — providers received
-  // the entire candidate list, inflating API quota usage and payload size.
+  // PROVIDER_CONFIG declares a per-provider cap (local = 50) — without it the
+  // local sidecar would receive the entire candidate list, inflating payload
+  // size and per-batch latency.
   // We split into head (top-N for the provider) and tail (remainder, kept
   // in original order with `cross-encoder-tail` marker so callers can audit
   // that those rows did NOT receive a neural score). Documents arrive in
@@ -498,12 +396,6 @@ async function rerankResults(
     let results: RerankResult[];
 
     switch (provider) {
-      case 'voyage':
-        results = await rerankVoyage(query, head);
-        break;
-      case 'cohere':
-        results = await rerankCohere(query, head);
-        break;
       case 'local':
         results = await rerankLocal(query, head);
         break;
@@ -637,8 +529,6 @@ export {
   generateCacheKey,
 
   // Reranking
-  rerankVoyage,
-  rerankCohere,
   rerankLocal,
   rerankResults,
 

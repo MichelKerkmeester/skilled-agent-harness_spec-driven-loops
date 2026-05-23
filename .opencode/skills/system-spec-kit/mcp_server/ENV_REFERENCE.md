@@ -299,6 +299,22 @@ the publication guard helpers used by the evaluation dashboard.
 | `SPECKIT_RESULT_PROVENANCE` | `true` | boolean | Include graph evidence metadata (edges, communities, boost factors) in search results (Phase C T027). Graduated ON. | `lib/search/search-flags.ts` |
 <!-- /ANCHOR:graph -->
 
+---
+
+## CODE GRAPH
+
+Code-graph P1 config defaults with env-var overrides.  Numeric values are parsed as positive integers; object values accept JSON partial-override strings.  Malformed JSON logs a warning and falls back to the hardcoded defaults below.
+
+| Variable | Default | Type | Description | Source |
+|----------|---------|------|-------------|--------|
+| `SPECKIT_CODE_GRAPH_TTL_MS` | `60000` | number (positive int) | Owner-lease TTL in milliseconds. | `.opencode/skills/system-code-graph/mcp_server/lib/config-defaults.ts` |
+| `SPECKIT_CODE_GRAPH_FIND_FILES_MAX_DEPTH` | `20` | number (positive int) | Maximum directory descent depth during file discovery. | `.opencode/skills/system-code-graph/mcp_server/lib/config-defaults.ts` |
+| `SPECKIT_CODE_GRAPH_QUARANTINE_AGE_DAYS` | `14` | number (positive int) | Minimum age (days) for parser-skip-list entries to become eligible for repair-node re-parsing. | `.opencode/skills/system-code-graph/mcp_server/lib/config-defaults.ts` |
+| `SPECKIT_CODE_GRAPH_FLOORS_JSON` | `{"constitutional":700,"codeGraph":1200,"cocoIndex":900,"triggered":400,"overflow":800}` | JSON string (partial merge) | Budget-allocator floor overrides.  Provide a JSON object with any subset of keys; missing keys retain their default values. | `.opencode/skills/system-code-graph/mcp_server/lib/config-defaults.ts` |
+| `SPECKIT_CODE_GRAPH_EDGE_WEIGHTS_JSON` | `{"CONTAINS":1.0,"IMPORTS":1.0,"EXPORTS":1.0,"EXTENDS":0.95,"IMPLEMENTS":0.95,"DECORATES":0.9,"OVERRIDES":0.9,"TYPE_OF":0.85,"CALLS":0.8,"TESTED_BY":0.6}` | JSON string (partial merge) | Edge-weight overrides for the structural indexer.  Provide a JSON object with any subset of edge-type keys. | `.opencode/skills/system-code-graph/mcp_server/lib/config-defaults.ts` |
+
+---
+
 `code_graph_status` and the startup brief now surface a packet-independent `graphQualitySummary` derived from persisted detector provenance plus the latest edge-enrichment summary. Operators can use that reader to confirm whether the current graph was built with `structured`/`regex` provenance and whether the latest edge-quality signal is coming from `direct_call`, `import`, `type_reference`, `test_coverage`, or `inferred_heuristic` evidence.
 
 ---
@@ -436,7 +452,7 @@ the publication guard helpers used by the evaluation dashboard.
 <!-- ANCHOR:reranker -->
 ## 14. RERANKER
 
-When `VOYAGE_API_KEY` is present and local reranking is not forced, the default remote reranker resolves to Voyage `rerank-2.5`. Users without API keys still keep the existing local fallback paths.
+The only supported reranker is the local sidecar (`Qwen/Qwen3-Reranker-0.6B` on `http://localhost:8765/rerank`). Activate it via `RERANKER_LOCAL=true`. Cloud reranker providers (Voyage, Cohere) were removed in 022/013 because their auto-resolution from API-key presence created a silent re-routing footgun when those keys were set for unrelated purposes (e.g. embeddings).
 
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|
@@ -499,6 +515,40 @@ These variables are no longer active but may still appear in compatibility code.
 
 ---
 
+<!-- ANCHOR:skill-advisor -->
+## SKILL ADVISOR
+
+Skill-advisor threshold and calibration overrides for tuning the 5-lane scorer and prompt-policy engine at runtime without code changes.
+
+| Variable | Default | Type | Description | Source |
+|----------|---------|------|-------------|--------|
+| `SPECKIT_ADVISOR_CONFIDENCE_THRESHOLD` | `0.8` | number (0..1) | Override the confidence threshold used by the 5-lane fusion scorer. Below this value, a recommendation is filtered out unless `confidenceOnly` mode is active. Parsed as a float; values outside [0,1] fall back to the default. | `mcp_server/lib/compat/contract.ts` |
+| `SPECKIT_ADVISOR_UNCERTAINTY_THRESHOLD` | `0.35` | number (0..1) | Override the uncertainty ceiling used by the 5-lane fusion scorer. Above this value, a recommendation is filtered out. Parsed as a float; values outside [0,1] fall back to the default. | `mcp_server/lib/compat/contract.ts` |
+| `SPECKIT_ADVISOR_CALIBRATION_OVERRIDE_JSON` | (none) | JSON string | Partial override for routing calibration bonuses. Accepts a JSON object with optional keys `memorySaveBonus`, `createAgentBonus`, `testingPlaybookBonus` (all number). Merged with SCORING_CALIBRATION defaults; parse failures log a warning and fall back. | `mcp_server/lib/scorer/scoring-constants.ts` |
+| `SPECKIT_ADVISOR_PROMPT_POLICY_PATH` | (bundled default) | string | Override path to the JSON file containing prompt-policy linguistic sets (EXACT_SKIP_COMMANDS, CASUAL_ACKNOWLEDGEMENTS, WORK_INTENT_VERBS, STOP_WORDS, GOVERNANCE_MARKERS) and fire-threshold constants. When unset, the bundled `data/prompt-policy.default.json` is used. | `mcp_server/lib/prompt-policy.ts` |
+| `SPECKIT_ADVISOR_PROMPT_POLICY_MIN_VISIBLE_CHARS` | `15` | number | Minimum visible character count for the short-casual-acknowledgement skip path in prompt-policy. | `mcp_server/lib/prompt-policy.ts` |
+| `SPECKIT_ADVISOR_PROMPT_POLICY_MEANINGFUL_TOKEN_FLOOR` | `3` | number | Minimum meaningful token count required by the work-intent-with-meaningful-tokens fire rule. | `mcp_server/lib/prompt-policy.ts` |
+| `SPECKIT_ADVISOR_PROMPT_POLICY_LENGTH_AND_TOKEN_VISIBLE_CHARS` | `20` | number | The visible-character threshold for the length-and-token-threshold fire rule. | `mcp_server/lib/prompt-policy.ts` |
+| `SPECKIT_ADVISOR_PROMPT_POLICY_LENGTH_AND_TOKEN_MEANINGFUL_FLOOR` | `4` | number | The meaningful-token threshold for the length-and-token-threshold fire rule. | `mcp_server/lib/prompt-policy.ts` |
+| `SPECKIT_ADVISOR_PROMPT_POLICY_LONG_NON_CASUAL_CHARS` | `50` | number | The visible-character threshold for the long-non-casual-prompt fire rule. | `mcp_server/lib/prompt-policy.ts` |
+| `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON` | `{"explicit_author":0.42,"lexical":0.28,"graph_causal":0.13,"derived_generated":0.12,"semantic_shadow":0.05}` | JSON string (partial merge) | Override live-lane weights for the 5-lane fusion scorer. JSON object with any subset of `explicit_author`, `lexical`, `graph_causal`, `derived_generated`, `semantic_shadow` (all numbers in `[0, 1]`). Missing keys retain defaults; invalid JSON, non-object values, out-of-range numbers, and unknown lane ids fall back to defaults. | `mcp_server/lib/scorer/lane-registry.ts` |
+| `SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON` | `{"explicit_author":0.40,"lexical":0.25,"graph_causal":0.20,"derived_generated":0.10,"semantic_shadow":0.05}` | JSON string (partial merge) | Override shadow-mode lane weights for the 5-lane fusion scorer's `weightedScore` calculation in `advisor-recommend.ts`. Same shape, merge semantics, and validation rules as `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON`. | `mcp_server/lib/scorer/lane-registry.ts` |
+<!-- /ANCHOR:skill-advisor -->
+
+---
+
+## EMBEDDER CASCADE PROBE
+
+Cascade-probe timing overrides for the embedder auto-selection cascade. Defaults are the empirically tuned values from the 015 cascade-reorder packet; operators can tune timeout / lock-staleness / sleep without code changes via env vars (022/009).
+
+| Variable | Default | Type | Description | Source |
+|----------|---------|------|-------------|--------|
+| `SPECKIT_CASCADE_PROBE_TIMEOUT_MS` | `2500` | number (ms) | Per-provider HTTP probe timeout for the auto-select cascade (Voyage, OpenAI, Ollama tags endpoint). Falls back to default when env unset / non-numeric / non-positive. | `shared/embeddings/auto-select.ts` |
+| `SPECKIT_CASCADE_LOCK_STALE_MS` | `30000` | number (ms) | Lock staleness threshold for the cross-process auto-select advisory lock. Locks older than this are reclaimed. Falls back to default when env unset / non-numeric / non-positive. | `shared/embeddings/auto-select.ts` |
+| `SPECKIT_CASCADE_SLEEP_MS` | `25` | number (ms) | Polling sleep interval while waiting for the auto-select lock to release. Falls back to default when env unset / non-numeric / non-positive. | `shared/embeddings/auto-select.ts` |
+
+---
+
 <!-- ANCHOR:quick-start -->
 ## 18. QUICK START EXAMPLES
 
@@ -557,4 +607,4 @@ export SPECKIT_CROSS_ENCODER=false
 
 ---
 
-*Generated from source code analysis. Last updated: 2026-04-01.*
+*Generated from source code analysis. Last updated: 2026-05-23.*

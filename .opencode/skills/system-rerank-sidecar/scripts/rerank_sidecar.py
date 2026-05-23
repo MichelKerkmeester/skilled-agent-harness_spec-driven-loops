@@ -46,12 +46,24 @@ from scripts import sidecar_ledger
 # (e.g. proxy through a TLS terminator), do it externally; this sidecar
 # is designed for trusted local consumers only.
 
-DEFAULT_MODEL_NAME = os.environ.get("RERANK_MODEL_NAME", "Qwen/Qwen3-Reranker-0.6B")
-DEFAULT_MODEL_REVISION = os.environ.get(
-    "RERANK_MODEL_REVISION",
-    "e61197ed45024b0ed8a2d74b80b4d909f1255473",
-)
-PORT = int(os.environ.get("RERANK_SIDECAR_PORT", "8765"))
+# Canonical defaults imported from sidecar_defaults (022/008 dedup; previously
+# duplicated as inline literals across .cjs + .sh + this file + ensure_rerank_sidecar.py).
+try:
+    from scripts.sidecar_defaults import (
+        DEFAULT_PORT as _SIDECAR_DEFAULT_PORT,
+        DEFAULT_MODEL_NAME as _SIDECAR_DEFAULT_MODEL_NAME,
+        DEFAULT_MODEL_REVISION as _SIDECAR_DEFAULT_MODEL_REVISION,
+    )
+except ModuleNotFoundError:  # pragma: no cover - direct script execution
+    from sidecar_defaults import (  # type: ignore[no-redef]
+        DEFAULT_PORT as _SIDECAR_DEFAULT_PORT,
+        DEFAULT_MODEL_NAME as _SIDECAR_DEFAULT_MODEL_NAME,
+        DEFAULT_MODEL_REVISION as _SIDECAR_DEFAULT_MODEL_REVISION,
+    )
+
+DEFAULT_MODEL_NAME = os.environ.get("RERANK_MODEL_NAME", _SIDECAR_DEFAULT_MODEL_NAME)
+DEFAULT_MODEL_REVISION = os.environ.get("RERANK_MODEL_REVISION", _SIDECAR_DEFAULT_MODEL_REVISION)
+PORT = int(os.environ.get("RERANK_SIDECAR_PORT", str(_SIDECAR_DEFAULT_PORT)))
 LOG_PATH = os.environ.get("RERANK_LOG_PATH", "").strip()
 LOG_MAX_BYTES = int(os.environ.get("RERANK_LOG_MAX_BYTES", str(1024 * 1024)))
 LOG_RAW_QUERIES = os.environ.get("RERANK_LOG_RAW_QUERIES", "").strip() == "1"

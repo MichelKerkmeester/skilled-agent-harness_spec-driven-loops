@@ -5,6 +5,7 @@
 import { createHmac, createHash } from 'node:crypto';
 import { performance } from 'node:perf_hooks';
 import { isSpeckitMetricsEnabled, speckitMetrics } from './metrics.js';
+import { SKILL_ADVISOR_COMPAT_CONTRACT, resolvedConfidenceThreshold, resolvedUncertaintyThreshold } from './compat/contract.js';
 
 export const ADVISOR_PROMPT_CACHE_TTL_MS = 5 * 60 * 1000;
 export const ADVISOR_PROMPT_CACHE_DEFAULT_MAX_TOKENS = 80;
@@ -45,8 +46,8 @@ const DEFAULT_SECRET = createHash('sha256')
 
 function stableThresholdConfig(thresholdConfig: AdvisorThresholds | undefined): string {
   return JSON.stringify({
-    confidenceThreshold: thresholdConfig?.confidenceThreshold ?? 0.8,
-    uncertaintyThreshold: thresholdConfig?.uncertaintyThreshold ?? 0.35,
+    confidenceThreshold: thresholdConfig?.confidenceThreshold ?? resolvedConfidenceThreshold(),
+    uncertaintyThreshold: thresholdConfig?.uncertaintyThreshold ?? resolvedUncertaintyThreshold(),
     confidenceOnly: thresholdConfig?.confidenceOnly ?? false,
     showRejections: thresholdConfig?.showRejections ?? false,
     includeAttribution: thresholdConfig?.includeAttribution ?? false,

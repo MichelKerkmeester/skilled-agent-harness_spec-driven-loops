@@ -3,6 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 
 import { canonicalFold } from './shared/unicode-normalization.js';
+import { SKILL_ADVISOR_COMPAT_CONTRACT, resolvedConfidenceThreshold, resolvedUncertaintyThreshold } from './compat/contract.js';
 import type { AdvisorRecommendation } from './subprocess.js';
 
 // ───────────────────────────────────────────────────────────────
@@ -124,10 +125,10 @@ export function renderAdvisorBrief(
   const recommendations = result.recommendations.filter((recommendation) => (
     recommendation.passes_threshold === true
     || (
-      recommendation.confidence >= (thresholdConfig?.confidenceThreshold ?? 0.8)
+      recommendation.confidence >= (thresholdConfig?.confidenceThreshold ?? resolvedConfidenceThreshold())
       && (
         thresholdConfig?.confidenceOnly === true
-        || recommendation.uncertainty <= (thresholdConfig?.uncertaintyThreshold ?? 0.35)
+        || recommendation.uncertainty <= (thresholdConfig?.uncertaintyThreshold ?? resolvedUncertaintyThreshold())
       )
     )
   ));

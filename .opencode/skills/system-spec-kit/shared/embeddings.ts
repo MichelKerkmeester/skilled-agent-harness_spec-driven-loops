@@ -767,11 +767,11 @@ function detectConfiguredModelName(): string {
   const effectiveProvider = providerInfo.effectiveProvider || providerInfo.provider;
   switch (effectiveProvider) {
     case 'voyage':
-      return providerInfo.config.VOYAGE_EMBEDDINGS_MODEL || 'voyage-code-3';
+      return providerInfo.config.VOYAGE_EMBEDDINGS_MODEL || getCanonicalFallback('voyage');
     case 'openai':
-      return providerInfo.config.OPENAI_EMBEDDINGS_MODEL || 'text-embedding-3-small';
+      return providerInfo.config.OPENAI_EMBEDDINGS_MODEL || getCanonicalFallback('openai');
     case 'ollama':
-      return providerInfo.config.OLLAMA_EMBEDDINGS_MODEL || 'jina-embeddings-v3';
+      return providerInfo.config.OLLAMA_EMBEDDINGS_MODEL || getCanonicalFallback('ollama');
     case 'hf-local':
     default:
       return providerInfo.config.HF_EMBEDDINGS_MODEL || DEFAULT_MODEL_NAME;

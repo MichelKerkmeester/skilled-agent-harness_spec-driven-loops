@@ -33,73 +33,64 @@ describe('cross-encoder circuit breaker', () => {
   });
 
   it('starts with circuit closed (0 failures)', () => {
-    const state = getCircuit('voyage');
+    const state = getCircuit('local');
     expect(state.failures).toBe(0);
     expect(state.openedAt).toBeNull();
-    expect(isCircuitOpen('voyage')).toBe(false);
+    expect(isCircuitOpen('local')).toBe(false);
   });
 
   it('recordFailure increments failure count', () => {
-    recordFailure('voyage');
-    expect(getCircuit('voyage').failures).toBe(1);
-    recordFailure('voyage');
-    expect(getCircuit('voyage').failures).toBe(2);
+    recordFailure('local');
+    expect(getCircuit('local').failures).toBe(1);
+    recordFailure('local');
+    expect(getCircuit('local').failures).toBe(2);
   });
 
   it(`opens circuit at CIRCUIT_FAILURE_THRESHOLD (${CIRCUIT_FAILURE_THRESHOLD}) failures`, () => {
     // Record failures up to threshold
     for (let i = 0; i < CIRCUIT_FAILURE_THRESHOLD; i++) {
-      recordFailure('voyage');
+      recordFailure('local');
     }
-    expect(getCircuit('voyage').openedAt).not.toBeNull();
-    expect(isCircuitOpen('voyage')).toBe(true);
+    expect(getCircuit('local').openedAt).not.toBeNull();
+    expect(isCircuitOpen('local')).toBe(true);
   });
 
   it('isCircuitOpen returns true when opened', () => {
     // Open the circuit
     for (let i = 0; i < CIRCUIT_FAILURE_THRESHOLD; i++) {
-      recordFailure('cohere');
+      recordFailure('local');
     }
-    expect(isCircuitOpen('cohere')).toBe(true);
+    expect(isCircuitOpen('local')).toBe(true);
   });
 
   it('isCircuitOpen returns false after CIRCUIT_COOLDOWN_MS elapses', () => {
     // Open the circuit
     for (let i = 0; i < CIRCUIT_FAILURE_THRESHOLD; i++) {
-      recordFailure('voyage');
+      recordFailure('local');
     }
-    expect(isCircuitOpen('voyage')).toBe(true);
+    expect(isCircuitOpen('local')).toBe(true);
 
     // Advance time past cooldown
     vi.advanceTimersByTime(CIRCUIT_COOLDOWN_MS);
 
     // Half-open: first check after cooldown resets and returns false
-    expect(isCircuitOpen('voyage')).toBe(false);
+    expect(isCircuitOpen('local')).toBe(false);
   });
 
   it('recordSuccess resets failures to 0', () => {
-    recordFailure('voyage');
-    recordFailure('voyage');
-    expect(getCircuit('voyage').failures).toBe(2);
+    recordFailure('local');
+    recordFailure('local');
+    expect(getCircuit('local').failures).toBe(2);
 
-    recordSuccess('voyage');
-    expect(getCircuit('voyage').failures).toBe(0);
-    expect(getCircuit('voyage').openedAt).toBeNull();
+    recordSuccess('local');
+    expect(getCircuit('local').failures).toBe(0);
+    expect(getCircuit('local').openedAt).toBeNull();
   });
 
-  it('different providers have independent circuit states', () => {
-    // Trip voyage circuit
-    for (let i = 0; i < CIRCUIT_FAILURE_THRESHOLD; i++) {
-      recordFailure('voyage');
-    }
-    expect(isCircuitOpen('voyage')).toBe(true);
-    expect(isCircuitOpen('cohere')).toBe(false);
-
-    // cohere failures don't affect voyage
-    recordFailure('cohere');
-    expect(getCircuit('cohere').failures).toBe(1);
-    expect(getCircuit('voyage').failures).toBe(CIRCUIT_FAILURE_THRESHOLD);
-  });
+  // 022/013: 'different providers have independent circuit states' test removed —
+  // the only supported reranker provider is 'local'. The circuit-breaker Map
+  // still keys by string, but the multi-provider isolation contract is no
+  // longer a behavior worth asserting.
 
   it('half-open: first check after cooldown resets openedAt and failures', () => {
     // Open the circuit
@@ -121,10 +112,10 @@ describe('cross-encoder circuit breaker', () => {
 
   it('circuit stays open within cooldown window', () => {
     for (let i = 0; i < CIRCUIT_FAILURE_THRESHOLD; i++) {
-      recordFailure('voyage');
+      recordFailure('local');
     }
     // Advance to just before cooldown expires
     vi.advanceTimersByTime(CIRCUIT_COOLDOWN_MS - 1);
-    expect(isCircuitOpen('voyage')).toBe(true);
+    expect(isCircuitOpen('local')).toBe(true);
   });
 });

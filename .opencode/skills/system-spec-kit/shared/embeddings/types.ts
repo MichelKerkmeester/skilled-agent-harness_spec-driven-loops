@@ -6,10 +6,7 @@
 // re-export from here.
 //
 // Promoted from mk-spec-memory's mcp_server/lib/embedders/types.ts in
-// phase 003/006. The previous skill-advisor variant included a `llama-cpp`
-// backend kind plus a `modelPath` field; phase 007 of 002-spec-memory-stack
-// purged llama-cpp, and phase 003/006 propagates that purge to
-// skill-advisor.
+// phase 003/006 so both skills share the canonical surface.
 // ───────────────────────────────────────────────────────────────
 
 /**

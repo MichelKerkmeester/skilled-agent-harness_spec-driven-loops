@@ -22,6 +22,7 @@ import {
   type AdvisorThresholds,
 } from './prompt-cache.js';
 import { onCacheInvalidation } from './freshness/cache-invalidation.js';
+import { SKILL_ADVISOR_COMPAT_CONTRACT, resolvedConfidenceThreshold, resolvedUncertaintyThreshold } from './compat/contract.js';
 import { shouldFireAdvisor } from './prompt-policy.js';
 import {
   runAdvisorSubprocess,
@@ -107,8 +108,8 @@ interface CachedAdvisorHookResult extends AdvisorHookResult {
 
 const DEFAULT_TOKEN_CAP = 80;
 const HARD_TOKEN_CAP = 120;
-export const DEFAULT_ADVISOR_CONFIDENCE_THRESHOLD = 0.8;
-export const DEFAULT_ADVISOR_UNCERTAINTY_THRESHOLD = 0.35;
+export const DEFAULT_ADVISOR_CONFIDENCE_THRESHOLD = resolvedConfidenceThreshold();
+export const DEFAULT_ADVISOR_UNCERTAINTY_THRESHOLD = resolvedUncertaintyThreshold();
 const DEFAULT_METRICS: AdvisorHookMetrics = {
   durationMs: 0,
   cacheHit: false,

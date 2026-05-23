@@ -3,6 +3,59 @@
 // ───────────────────────────────────────────────────────────────
 
 import { canonicalFold } from './shared/unicode-normalization.js';
+import { readFileSync } from 'node:fs';
+import { join, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+interface PromptPolicyConfig {
+  sets: {
+    EXACT_SKIP_COMMANDS: string[];
+    CASUAL_ACKNOWLEDGEMENTS: string[];
+    WORK_INTENT_VERBS: string[];
+    STOP_WORDS: string[];
+    GOVERNANCE_MARKERS: string[];
+  };
+  thresholds: {
+    MIN_VISIBLE_CHARS: number;
+    MIN_MEANINGFUL_TOKENS: number;
+    LENGTH_AND_TOKEN_VISIBLE_CHARS: number;
+    LENGTH_AND_TOKEN_MEANINGFUL_FLOOR: number;
+    LONG_NON_CASUAL_CHARS: number;
+  };
+}
+
+const policyJsonPath = process.env.SPECKIT_ADVISOR_PROMPT_POLICY_PATH
+  ?? join(__dirname, '..', 'data', 'prompt-policy.default.json');
+
+function loadPolicyConfig(): PromptPolicyConfig {
+  const raw = readFileSync(policyJsonPath, 'utf-8');
+  return JSON.parse(raw) as PromptPolicyConfig;
+}
+
+const policyConfig = loadPolicyConfig();
+
+const EXACT_SKIP_COMMANDS = new Set(policyConfig.sets.EXACT_SKIP_COMMANDS);
+const CASUAL_ACKNOWLEDGEMENTS = new Set(policyConfig.sets.CASUAL_ACKNOWLEDGEMENTS);
+const WORK_INTENT_VERBS = new Set(policyConfig.sets.WORK_INTENT_VERBS);
+const STOP_WORDS = new Set(policyConfig.sets.STOP_WORDS);
+const GOVERNANCE_MARKERS = policyConfig.sets.GOVERNANCE_MARKERS;
+
+function resolveNumericThreshold(envName: string, defaultValue: number): number {
+  const raw = process.env[envName];
+  if (raw === undefined) return defaultValue;
+  const parsed = parseInt(raw, 10);
+  if (isNaN(parsed)) return defaultValue;
+  return parsed;
+}
+
+const MIN_VISIBLE_CHARS = resolveNumericThreshold('SPECKIT_ADVISOR_PROMPT_POLICY_MIN_VISIBLE_CHARS', policyConfig.thresholds.MIN_VISIBLE_CHARS);
+const MIN_MEANINGFUL_TOKENS = resolveNumericThreshold('SPECKIT_ADVISOR_PROMPT_POLICY_MEANINGFUL_TOKEN_FLOOR', policyConfig.thresholds.MIN_MEANINGFUL_TOKENS);
+const LENGTH_AND_TOKEN_VISIBLE_CHARS = resolveNumericThreshold('SPECKIT_ADVISOR_PROMPT_POLICY_LENGTH_AND_TOKEN_VISIBLE_CHARS', policyConfig.thresholds.LENGTH_AND_TOKEN_VISIBLE_CHARS);
+const LENGTH_AND_TOKEN_MEANINGFUL_FLOOR = resolveNumericThreshold('SPECKIT_ADVISOR_PROMPT_POLICY_LENGTH_AND_TOKEN_MEANINGFUL_FLOOR', policyConfig.thresholds.LENGTH_AND_TOKEN_MEANINGFUL_FLOOR);
+const LONG_NON_CASUAL_CHARS = resolveNumericThreshold('SPECKIT_ADVISOR_PROMPT_POLICY_LONG_NON_CASUAL_CHARS', policyConfig.thresholds.LONG_NON_CASUAL_CHARS);
 
 export interface AdvisorPromptPolicyResult {
   readonly fire: boolean;
@@ -12,87 +65,6 @@ export interface AdvisorPromptPolicyResult {
   readonly visibleCharCount: number;
   readonly metalinguisticMentions: string[];
 }
-
-const EXACT_SKIP_COMMANDS = new Set(['/help', '/clear', '/exit', '/quit']);
-const CASUAL_ACKNOWLEDGEMENTS = new Set([
-  'ok',
-  'okay',
-  'k',
-  'kk',
-  'yes',
-  'yep',
-  'yeah',
-  'no',
-  'nope',
-  'thanks',
-  'thank you',
-  'thx',
-  'hi',
-  'hey',
-  'hello',
-]);
-const WORK_INTENT_VERBS = new Set([
-  'add',
-  'analyze',
-  'build',
-  'change',
-  'check',
-  'configure',
-  'create',
-  'debug',
-  'delete',
-  'diagnose',
-  'edit',
-  'fix',
-  'generate',
-  'implement',
-  'inspect',
-  'install',
-  'investigate',
-  'modify',
-  'move',
-  'patch',
-  'refactor',
-  'remove',
-  'rename',
-  'repair',
-  'review',
-  'run',
-  'ship',
-  'test',
-  'update',
-  'validate',
-  'verify',
-  'write',
-]);
-const STOP_WORDS = new Set([
-  'a',
-  'an',
-  'and',
-  'for',
-  'i',
-  'in',
-  'is',
-  'it',
-  'me',
-  'of',
-  'on',
-  'or',
-  'please',
-  'the',
-  'this',
-  'to',
-  'with',
-]);
-const GOVERNANCE_MARKERS = [
-  'spec kit',
-  'speckit',
-  'gate 3',
-  'deep review',
-  'deep research',
-  'memory save',
-  'skill advisor',
-];
 
 function normalizePrompt(prompt: string): string {
   return canonicalFold(prompt).replace(/\s+/g, ' ').trim();
@@ -159,7 +131,7 @@ export function shouldFireAdvisor(prompt: string): AdvisorPromptPolicyResult {
   const workIntent = hasWorkIntentVerb(tokens);
   const casual = CASUAL_ACKNOWLEDGEMENTS.has(canonicalLower);
 
-  if (!explicitMarker && !workIntent && visibleCharCount <= 15 && casual) {
+  if (!explicitMarker && !workIntent && visibleCharCount <= MIN_VISIBLE_CHARS && casual) {
     return {
       fire: false,
       reason: 'short_casual_acknowledgement',
@@ -181,7 +153,7 @@ export function shouldFireAdvisor(prompt: string): AdvisorPromptPolicyResult {
     };
   }
 
-  if (workIntent && meaningful.length >= 3) {
+  if (workIntent && meaningful.length >= MIN_MEANINGFUL_TOKENS) {
     return {
       fire: true,
       reason: 'work_intent_with_meaningful_tokens',
@@ -192,7 +164,7 @@ export function shouldFireAdvisor(prompt: string): AdvisorPromptPolicyResult {
     };
   }
 
-  if (visibleCharCount >= 20 && meaningful.length >= 4) {
+  if (visibleCharCount >= LENGTH_AND_TOKEN_VISIBLE_CHARS && meaningful.length >= LENGTH_AND_TOKEN_MEANINGFUL_FLOOR) {
     return {
       fire: true,
       reason: 'length_and_token_threshold',
@@ -203,7 +175,7 @@ export function shouldFireAdvisor(prompt: string): AdvisorPromptPolicyResult {
     };
   }
 
-  if (visibleCharCount >= 50 && !casual) {
+  if (visibleCharCount >= LONG_NON_CASUAL_CHARS && !casual) {
     return {
       fire: true,
       reason: 'long_non_casual_prompt',

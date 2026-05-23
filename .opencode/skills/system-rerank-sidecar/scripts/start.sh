@@ -40,6 +40,8 @@ load_dotenv_file() {
 load_dotenv_file .env
 load_dotenv_file .env.local
 
+# 022/008 cross-language sync: 8765 default mirrors sidecar_defaults.py:DEFAULT_PORT.
+# When changing the default, update sidecar_defaults.py AND .opencode/bin/lib/ensure-rerank-sidecar.cjs:DEFAULT_PORT in lockstep.
 PORT="${RERANK_SIDECAR_PORT:-8765}"
 
 if [[ ! -f .venv/bin/activate ]]; then
@@ -68,6 +70,7 @@ env_args=(
     "TRANSFORMERS_OFFLINE=${TRANSFORMERS_OFFLINE:-1}"
     "PYTORCH_ENABLE_MPS_FALLBACK=${PYTORCH_ENABLE_MPS_FALLBACK:-1}"
     "RERANK_SIDECAR_PORT=$PORT"
+    # 022/008 cross-language sync: Qwen3-Reranker-0.6B mirrors sidecar_defaults.py:DEFAULT_MODEL_NAME.
     "RERANK_MODEL_NAME=${RERANK_MODEL_NAME:-Qwen/Qwen3-Reranker-0.6B}"
     "RERANK_MODEL_REVISION=${RERANK_MODEL_REVISION:-e61197ed45024b0ed8a2d74b80b4d909f1255473}"
 )

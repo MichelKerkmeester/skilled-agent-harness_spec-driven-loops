@@ -28,11 +28,11 @@ contextType: "verification"
    +++ b/.opencode/skills/system-spec-kit/shared/embeddings.ts
    @@ -100,7 +100,7 @@ export class EmbeddingPipeline {
       // ... ~5 lines of context ...
-   diff --git a/.opencode/skills/system-spec-kit/shared/embeddings/providers/llama-cpp.ts b/.opencode/skills/system-spec-kit/shared/embeddings/providers/llama-cpp.ts
+   diff --git a/.opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts b/.opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts
    index 111..222 100644
-   --- a/.opencode/skills/system-spec-kit/shared/embeddings/providers/llama-cpp.ts
-   +++ b/.opencode/skills/system-spec-kit/shared/embeddings/providers/llama-cpp.ts
-   @@ -50,3 +50,3 @@ export class LlamaCppProvider {
+   --- a/.opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts
+   +++ b/.opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts
+   @@ -50,3 +50,3 @@ export class HfLocalProvider {
       // ... ~3 lines of context ...
    ```
 
@@ -47,7 +47,7 @@ contextType: "verification"
    - `status` !== `"blocked"`
    - `affectedFiles` length === 2
    - `affectedFiles[0].path` includes `shared/embeddings.ts`
-   - `affectedFiles[1].path` includes `shared/embeddings/providers/llama-cpp.ts`
+   - `affectedFiles[1].path` includes `shared/embeddings/providers/hf-local.ts`
    - `affectedSymbols` length ≥ 2 (one symbol per file, possibly more if multiple symbols overlap the changed lines)
    - Each symbol has `path`, `name`, `kind`, `startLine`, `endLine`
 

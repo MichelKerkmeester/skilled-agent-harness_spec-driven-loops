@@ -409,7 +409,7 @@ function buildLatencyWorkload() {
   const short = [
     'resume',
     'memory save',
-    'llama cpp',
+    'ollama embed',
     'gate 3',
     'validate',
     'cocoindex',
@@ -427,7 +427,7 @@ function buildLatencyWorkload() {
   ];
   const medium = [
     'How does memory_search rank canonical spec documents?',
-    'Find context about local llama cpp embedding worker failures.',
+    'Find context about local Ollama embedding worker failures.',
     'What packet documented the Metal context contention?',
     'Show prior work on query expansion context size.',
     'Find implementation summaries for substrate repair followups.',

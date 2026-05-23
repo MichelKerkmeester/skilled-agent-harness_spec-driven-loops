@@ -314,7 +314,7 @@ Forbidden targets include all spec folder docs, authored skill source, all agent
       "end": "2026-05-09T13:07:00Z",
       "duration_seconds": 300,
       "exit": 0,
-      "snapshot_path": "mcp_server/database/context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite.pre-doctor-update.3.4.1.0.20260509T130100Z.bak"
+      "snapshot_path": "mcp_server/database/context-index__hf-local__onnx-community-embeddinggemma-300m-onnx__768__q8.sqlite.pre-doctor-update.3.4.1.0.20260509T130100Z.bak"
     }
   ],
   "final_status": "ok|failed|rolled_back|cancelled|unrollbackable|restart_required"

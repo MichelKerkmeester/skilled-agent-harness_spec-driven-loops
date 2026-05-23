@@ -199,7 +199,7 @@ The format convention itself lives at `.opencode/skills/sk-doc/references/benchm
 
 - `cocoindex_code/config.py` — current `_DEFAULT_MODEL` lives here.
 - `cocoindex_code/registered_embedders.py` — vetted-candidate registry with RAM / disk / dim / MPS metadata.
-- `cocoindex_code/reranker.py` — cross-encoder rerank stage; current default `BAAI/bge-reranker-v2-m3`.
+- `cocoindex_code/reranker.py` — cross-encoder rerank stage; current default `Qwen/Qwen3-Reranker-0.6B` (per 023B follow-on; `BAAI/bge-reranker-v2-m3` retained as opt-in fallback for the v1.10 baseline).
 
 ### Spec packets
 

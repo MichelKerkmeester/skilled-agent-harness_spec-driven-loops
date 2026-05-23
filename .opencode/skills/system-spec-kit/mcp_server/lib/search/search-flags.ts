@@ -33,20 +33,12 @@ function isOptInEnabled(variableName: string): boolean {
 /**
  * Returns true when the env var is explicitly set to a falsy value
  * (false, 0, no, off, disabled). This is the veto signal — used to
- * hard-disable a feature even when other opt-in signals are present
- * (e.g. SPECKIT_CROSS_ENCODER=false vetos cross-encoder even with
- * a valid VOYAGE_API_KEY set).
+ * hard-disable a feature explicitly (e.g. `SPECKIT_CROSS_ENCODER=false`
+ * vetos cross-encoder).
  */
 function isOptOutExplicit(variableName: string): boolean {
   const value = process.env[variableName]?.toLowerCase().trim();
   return value !== undefined && FALSY_OPT_OUT.has(value);
-}
-
-function looksLikeValidApiKey(value: string | undefined): boolean {
-  if (!value) return false;
-  const trimmed = value.trim();
-  if (trimmed.length < 20) return false;
-  return true;
 }
 
 /**
@@ -54,11 +46,14 @@ function looksLikeValidApiKey(value: string | undefined): boolean {
  * Does NOT include RERANKER_LOCAL — that's a separate legacy-shim flag handled by
  * isLocalRerankerEnabled(). Including it here would conflate two semantically distinct
  * rerankers and break the suppression contract in isLocalRerankerEnabled().
+ *
+ * 022/013: VOYAGE_API_KEY / COHERE_API_KEY no longer auto-enable cross-encoder.
+ * Those keys are used for embeddings, and the auto-activation silently re-routed
+ * reranking to cloud providers whenever they were set. Operators now opt in
+ * explicitly via SPECKIT_CROSS_ENCODER=true.
  */
 function hasAnyCrossEncoderOptInSignal(): boolean {
   if (isOptOutExplicit('SPECKIT_CROSS_ENCODER')) return false; // explicit veto
-  if (looksLikeValidApiKey(process.env.VOYAGE_API_KEY)) return true;
-  if (looksLikeValidApiKey(process.env.COHERE_API_KEY)) return true;
   if (isOptInEnabled('SPECKIT_CROSS_ENCODER')) return true;
   return false;
 }

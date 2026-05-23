@@ -1,0 +1,396 @@
+#!/usr/bin/env node
+// ───────────────────────────────────────────────────────────────
+// MODULE: sk-doc Doc-Model-Reference Validator
+// ───────────────────────────────────────────────────────────────
+// 022/010 follow-on per ADR-D (Doc-Implementation Cross-Checking Mandate).
+// Detects doc drift where markdown cites a non-canonical model name as default.
+
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+// ───────────────────────────────────────────────────────────────
+// Canonical model loaders
+// ───────────────────────────────────────────────────────────────
+
+function loadCanonicalModels() {
+  const registryPath = path.join(
+    __dirname,
+    '../../system-spec-kit/shared/embeddings/registry.ts'
+  );
+  const cocoIndexPath = path.join(
+    __dirname,
+    '../../mcp-coco-index/mcp_server/cocoindex_code/embedders/registered_embedders.py'
+  );
+
+  const canonical = new Set();
+
+  // Load from registry.ts
+  if (fs.existsSync(registryPath)) {
+    const registryContent = fs.readFileSync(registryPath, 'utf-8');
+
+    // Extract MANIFESTS[].name
+    const manifestNameMatches = registryContent.matchAll(/name:\s*['"]([^'"]+)['"]/g);
+    for (const match of manifestNameMatches) {
+      canonical.add(match[1]);
+    }
+
+    // Extract CLOUD_CANONICAL values
+    // 022/011 bugfix: was missing /g flag → matchAll throws TypeError swallowed by outer
+    // try/catch → canonical set silently empty → false-positive DRIFT on every cited name.
+    const cloudCanonicalMatches = registryContent.matchAll(
+      /CLOUD_CANONICAL.*?{([^}]+)}/gs
+    );
+    for (const match of cloudCanonicalMatches) {
+      const objContent = match[1];
+      const valueMatches = objContent.matchAll(/['"]([^'"]+)['"]/g);
+      for (const valueMatch of valueMatches) {
+        if (valueMatch[1] !== 'voyage' && valueMatch[1] !== 'openai') {
+          canonical.add(valueMatch[1]);
+        }
+      }
+    }
+
+    // Extract RERANKER_CANONICAL values
+    // 022/011 bugfix: was missing /g flag (same bug as CLOUD_CANONICAL above).
+    const rerankerCanonicalMatches = registryContent.matchAll(
+      /RERANKER_CANONICAL.*?{([^}]+)}/gs
+    );
+    for (const match of rerankerCanonicalMatches) {
+      const objContent = match[1];
+      const valueMatches = objContent.matchAll(/['"]([^'"]+)['"]/g);
+      for (const valueMatch of valueMatches) {
+        if (
+          valueMatch[1] !== 'local' &&
+          valueMatch[1] !== 'voyage' &&
+          valueMatch[1] !== 'cohere' &&
+          valueMatch[1] !== ''
+        ) {
+          canonical.add(valueMatch[1]);
+        }
+      }
+    }
+  }
+
+  // Load from registered_embedders.py
+  if (fs.existsSync(cocoIndexPath)) {
+    const cocoContent = fs.readFileSync(cocoIndexPath, 'utf-8');
+
+    // Extract DEFAULT_EMBEDDER_NAME and DEFAULT_RERANKER_NAME
+    const defaultEmbedderMatch = cocoContent.match(
+      /DEFAULT_EMBEDDER_NAME\s*=\s*["']([^"']+)["']/
+    );
+    if (defaultEmbedderMatch) {
+      canonical.add(defaultEmbedderMatch[1]);
+    }
+
+    const defaultRerankerMatch = cocoContent.match(
+      /DEFAULT_RERANKER_NAME\s*=\s*["']([^"']+)["']/
+    );
+    if (defaultRerankerMatch) {
+      canonical.add(defaultRerankerMatch[1]);
+    }
+
+    // Extract names from MANIFESTS or similar declarations
+    const nameMatches = cocoContent.matchAll(/name\s*=\s*["']([^"']+)["']/g);
+    for (const match of nameMatches) {
+      canonical.add(match[1]);
+    }
+  }
+
+  // 022/011 bugfix: normalize wrapper prefixes (e.g. sbert/) so docs that cite
+  // the underlying HuggingFace model id (`nomic-ai/CodeRankEmbed`) match
+  // canonical entries that include the wrapper prefix (`sbert/nomic-ai/CodeRankEmbed`).
+  const WRAPPER_PREFIXES = ['sbert/'];
+  for (const name of Array.from(canonical)) {
+    for (const prefix of WRAPPER_PREFIXES) {
+      if (name.startsWith(prefix)) {
+        canonical.add(name.slice(prefix.length));
+      }
+    }
+  }
+
+  return canonical;
+}
+
+// ───────────────────────────────────────────────────────────────
+// File utilities
+// ───────────────────────────────────────────────────────────────
+
+function findMarkdownFiles(rootDir, excludePatterns) {
+  const files = [];
+
+  function walkDir(dir, relativePath = '') {
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+
+    for (const entry of entries) {
+      const fullPath = path.join(dir, entry.name);
+      const relPath = path.join(relativePath, entry.name);
+
+      // Check if this path should be excluded
+      let shouldExclude = false;
+      for (const pattern of excludePatterns) {
+        // Convert glob pattern to regex
+        const regexPattern = pattern
+          .replace(/\*\*/g, '.*')
+          .replace(/\*/g, '[^/]*')
+          .replace(/\?/g, '.');
+        const regex = new RegExp(regexPattern);
+        if (regex.test(relPath) || regex.test(entry.name)) {
+          shouldExclude = true;
+          break;
+        }
+      }
+
+      if (shouldExclude) {
+        continue;
+      }
+
+      if (entry.isDirectory()) {
+        walkDir(fullPath, relPath);
+      } else if (entry.isFile() && entry.name.endsWith('.md')) {
+        files.push(fullPath);
+      }
+    }
+  }
+
+  walkDir(rootDir);
+  return files;
+}
+
+// ───────────────────────────────────────────────────────────────
+// Doc scanning
+// ───────────────────────────────────────────────────────────────
+
+const LEGACY_MODEL_NAMES = [
+  'embeddinggemma-300m',
+  'BAAI/bge-base-en-v1.5',
+  'BAAI/bge-reranker-v2-m3',
+  'jina-v2-base-code',
+  'jina-embeddings-v3',
+  'jinaai/jina-reranker-v3',
+  'cross-encoder/ms-marco-MiniLM-L-6-v2',
+  'onnx-community/embeddinggemma-300m-ONNX',
+  'unsloth/embeddinggemma-300m-GGUF',
+];
+
+// Common model org prefixes to help identify actual model names
+// 022/011 bugfix: added `sbert/` wrapper prefix used by CocoIndex's sbert/ namespace
+// (e.g. sbert/nomic-ai/CodeRankEmbed). Without this, multi-level wrapped names
+// were not extractable by the regex on line 210 and false-positive flagged as drift.
+const MODEL_ORG_PREFIXES = [
+  'sbert/',
+  'BAAI/',
+  'jinaai/',
+  'jina/',
+  'nomic-ai/',
+  'Qwen/',
+  'cross-encoder/',
+  'onnx-community/',
+  'unsloth/',
+  'gaianet/',
+  'voyageai/',
+  'sentence-transformers/',
+  'intfloat/',
+  'thenlper/',
+  'microsoft/',
+  'facebook/',
+  'google/',
+  'openai/',
+  'anthropic/',
+  'cohere/',
+];
+
+const DEFAULT_MARKER_WORDS = [
+  'current default',
+  'default',
+  'shipped default',
+  'production default',
+  'the default',
+];
+
+const INTENTIONAL_MARKER_WORDS = [
+  'historical',
+  'former default',
+  'superseded',
+  'pre-',
+  'opt-in fallback',
+  'previous default',
+];
+
+function getModelPattern(canonicalModels) {
+  // Match specific legacy model names OR org/name pattern with model-like characteristics
+  const legacyPattern = LEGACY_MODEL_NAMES.map(escapeRegex).join('|');
+  // More specific org/name pattern that looks like actual model identifiers
+  // Only match if it starts with known model org prefixes
+  const orgPattern = MODEL_ORG_PREFIXES.map(escapeRegex).join('|');
+  // 022/011 bugfix: added `/` to the suffix character class so multi-level wrapped
+  // names like sbert/nomic-ai/CodeRankEmbed extract as a whole identifier instead
+  // of being truncated to nomic-ai/CodeRankEmbed (which then fails canonical lookup).
+  const orgNamePattern = `(${orgPattern})[a-zA-Z0-9._/-]+`;
+  return new RegExp(`(${legacyPattern}|${orgNamePattern})`, 'g');
+}
+
+function escapeRegex(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function scanDoc(filePath, canonicalModels, verbose = false) {
+  const content = fs.readFileSync(filePath, 'utf-8');
+  const lines = content.split('\n');
+  const modelPattern = getModelPattern(canonicalModels);
+  const drift = [];
+  const intentional = [];
+
+  lines.forEach((line, lineIndex) => {
+    let match;
+    while ((match = modelPattern.exec(line)) !== null) {
+      const matchedText = match[0];
+      // Extract the actual model name (strip quotes if present)
+      let modelName = matchedText.replace(/^["']|["']$/g, '');
+
+      // Skip if it's in the canonical set
+      if (canonicalModels.has(modelName)) {
+        continue;
+      }
+
+      // Get context (50 chars before and after)
+      const matchStart = match.index;
+      const matchEnd = match.index + matchedText.length;
+      const contextStart = Math.max(0, matchStart - 50);
+      const contextEnd = Math.min(line.length, matchEnd + 50);
+      const context = line.substring(contextStart, contextEnd).toLowerCase();
+
+      // Check for default markers
+      const hasDefaultMarker = DEFAULT_MARKER_WORDS.some((word) =>
+        context.includes(word)
+      );
+
+      // Check for intentional markers
+      const hasIntentionalMarker = INTENTIONAL_MARKER_WORDS.some((word) =>
+        context.includes(word)
+      );
+
+      if (hasDefaultMarker && !hasIntentionalMarker) {
+        drift.push({
+          line: lineIndex + 1,
+          value: modelName,
+          context: line.substring(contextStart, contextEnd),
+        });
+      } else if (verbose) {
+        intentional.push({
+          line: lineIndex + 1,
+          value: modelName,
+          context: line.substring(contextStart, contextEnd),
+          reason: hasIntentionalMarker
+            ? 'intentional marker'
+            : 'no default marker',
+        });
+      }
+    }
+  });
+
+  return { drift, intentional };
+}
+
+// ───────────────────────────────────────────────────────────────
+// Main execution
+// ───────────────────────────────────────────────────────────────
+
+function main() {
+  const args = process.argv.slice(2);
+  const verbose = args.includes('--verbose');
+  const help = args.includes('--help');
+
+  if (help) {
+    console.log(`
+Doc-Model-Reference Validator
+==============================
+
+Detects doc drift where markdown cites a non-canonical model name as default.
+
+Usage:
+  node validate-doc-model-refs.js [--verbose] [--help]
+
+Options:
+  --verbose  Print all matches with context (drift + intentional)
+  --help     Show this help message
+
+Exits:
+  0 - No drift found
+  1 - Drift detected or error
+
+Canonical sources:
+  - .opencode/skills/system-spec-kit/shared/embeddings/registry.ts
+  - .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/embedders/registered_embedders.py
+
+Scanned paths:
+  - .opencode/skills/**/*.md (excludes changelog/, scratch/, benchmarks/, *archive*, research/iterations/)
+`);
+    process.exit(0);
+  }
+
+  try {
+    const canonicalModels = loadCanonicalModels();
+    const skillsRoot = path.join(__dirname, '../../..');
+
+    const excludePatterns = [
+      '**/changelog/**',
+      '**/scratch/**',
+      '**/benchmarks/**',
+      '**/*archive*',
+      '**/research/iterations/**',
+    ];
+
+    const files = findMarkdownFiles(skillsRoot, excludePatterns);
+
+    let totalDrift = 0;
+    const driftResults = [];
+
+    for (const file of files) {
+      const { drift, intentional } = scanDoc(file, canonicalModels, verbose);
+
+      if (drift.length > 0) {
+        totalDrift += drift.length;
+        driftResults.push({ file, drift });
+      }
+
+      if (verbose && intentional.length > 0) {
+        console.log(`\n${file} (intentional matches):`);
+        intentional.forEach((match) => {
+          console.log(
+            `  Line ${match.line}: '${match.value}' - ${match.reason}`
+          );
+          console.log(`    Context: ${match.context}`);
+        });
+      }
+    }
+
+    if (driftResults.length > 0) {
+      console.log('\nDRIFT DETECTED:\n');
+      driftResults.forEach(({ file, drift }) => {
+        const relPath = path.relative(skillsRoot, file);
+        drift.forEach((match) => {
+          console.log(
+            `DRIFT: ${relPath}:${match.line}: cites '${match.value}' as default`
+          );
+          console.log(`  Context: ${match.context}`);
+        });
+      });
+      console.log(`\nTotal drift: ${totalDrift} occurrence(s)`);
+      process.exit(1);
+    } else {
+      if (verbose) {
+        console.log('No drift detected.');
+      }
+      process.exit(0);
+    }
+  } catch (error) {
+    console.error(`Error: ${error.message}`);
+    process.exit(1);
+  }
+}
+
+main();

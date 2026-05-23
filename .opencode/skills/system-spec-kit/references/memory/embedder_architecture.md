@@ -171,8 +171,8 @@ Embedding execution is routed through `mcp_server/lib/embedders/execution-router
 
 `SPECKIT_EMBEDDER_EXECUTION` controls routing:
 
-| Value | Voyage/OpenAI | Ollama | hf-local | Future sentence-transformers / llama-cpp |
-|-------|---------------|--------|----------|------------------------------------------|
+| Value | Voyage/OpenAI | Ollama | hf-local | Future sentence-transformers |
+|-------|---------------|--------|----------|------------------------------|
 | `auto` | direct | direct | sidecar | sidecar |
 | `direct` | direct | direct | direct | direct |
 | `sidecar` | sidecar | sidecar | sidecar | sidecar |

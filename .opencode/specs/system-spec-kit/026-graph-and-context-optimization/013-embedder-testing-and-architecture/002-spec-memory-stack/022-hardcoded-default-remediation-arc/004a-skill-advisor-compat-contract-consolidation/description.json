@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/004a-skill-advisor-compat-contract-consolidation",
+  "description": "Spec: 022/004a Skill-Advisor Compat-Contract Consolidation (Wave 1)",
+  "keywords": [
+    "spec",
+    "022",
+    "004a",
+    "skill-advisor",
+    "compat-contract",
+    "consolidation",
+    "wave"
+  ],
+  "lastUpdated": "2026-05-23T15:25:00.925Z",
+  "specId": "004",
+  "folderSlug": "a-skill-advisor-compat-contract-consolidation",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "002-spec-memory-stack",
+    "022-hardcoded-default-remediation-arc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

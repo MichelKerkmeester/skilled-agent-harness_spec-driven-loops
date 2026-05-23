@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/013-remove-voyage-cohere-residue",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/013-remove-voyage-cohere-residue",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc",
+  "children_ids": [],
+  "migrated": false,
+  "migration_source": "new-phase-2026-05-23",
+  "manual": {
+    "depends_on": [
+      {"packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/011-arc-022-followons", "reason": "Step 4a of 011 filled the voyage/cohere RERANKER_CANONICAL placeholders that this packet removes entirely"}
+    ],
+    "supersedes": [],
+    "related_to": [
+      {"packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/012-remove-llama-cpp-residue", "reason": "Sibling cleanup pass; 012 closed the llama-cpp narrative tail, 013 closes the voyage/cohere cloud-reranker footgun"}
+    ]
+  },
+  "derived": {
+    "trigger_phrases": ["022/013 remove voyage cohere", "remove voyage cohere reranker", "cloud reranker footgun removal", "speckit cross encoder activation"],
+    "key_topics": ["remove-voyage-cohere", "cloud-reranker-removal", "auto-routing-footgun", "speckit-cross-encoder", "reranker-local-only"],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/shared/embeddings/registry.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/05-5-embedding-and-api.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder-circuit-breaker.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {"name": "RerankerProvider", "kind": "type", "path": ".opencode/skills/system-spec-kit/shared/embeddings/registry.ts", "source": "derived"},
+      {"name": "RERANKER_CANONICAL", "kind": "const", "path": ".opencode/skills/system-spec-kit/shared/embeddings/registry.ts", "source": "derived"},
+      {"name": "resolveProvider", "kind": "function", "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts", "source": "derived"},
+      {"name": "hasAnyCrossEncoderOptInSignal", "kind": "function", "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts", "source": "derived"}
+    ],
+    "causal_summary": "Operator identified the cloud-reranker auto-routing footgun: VOYAGE_API_KEY and COHERE_API_KEY were being treated as cross-encoder activation signals AND as auto-routing triggers in resolveProvider(). Since Voyage sells both embeddings AND reranking under the same key, an operator setting VOYAGE_API_KEY for embeddings would unintentionally also activate Voyage reranking. This packet removes the cloud paths entirely: RerankerProvider type narrowed to 'local'; PROVIDER_CONFIG voyage/cohere entries + rerankVoyage()/rerankCohere() functions deleted; hasAnyCrossEncoderOptInSignal() no longer auto-enables on API-key presence. Post-013 activation requires explicit SPECKIT_CROSS_ENCODER=true + RERANKER_LOCAL=true. 8 files modified, 1 test file deleted, ~340 net LOC removed, 31/31 tests pass.",
+    "created_at": "2026-05-23T21:00:00.000000Z",
+    "last_save_at": "2026-05-23T21:00:00.000000Z",
+    "save_lineage": "new-phase-scaffolding",
+    "last_accessed_at": null,
+    "source_docs": ["spec.md", "plan.md", "tasks.md", "implementation-summary.md"]
+  }
+}

@@ -4,6 +4,8 @@
 // Distributes a total token budget across multiple context sources
 // using floor allocations + overflow redistribution.
 
+import { CODE_GRAPH_DEFAULTS } from './config-defaults.js';
+
 /** Per-source budget configuration */
 export interface SourceBudget {
   name: string;
@@ -29,13 +31,7 @@ export interface AllocationResult {
 }
 
 /** Default floor layout for the 4000-token compact brief budget */
-export const DEFAULT_FLOORS = {
-  constitutional: 700,
-  codeGraph: 1200,
-  cocoIndex: 900,
-  triggered: 400,
-  overflow: 800,
-} as const;
+export const DEFAULT_FLOORS = CODE_GRAPH_DEFAULTS.floors;
 
 /** Priority order for overflow redistribution (highest first) */
 const PRIORITY_ORDER = ['constitutional', 'codeGraph', 'cocoIndex', 'sessionState', 'triggered'] as const;

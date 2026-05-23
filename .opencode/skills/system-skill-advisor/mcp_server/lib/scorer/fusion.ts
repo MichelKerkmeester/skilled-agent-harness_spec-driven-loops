@@ -25,6 +25,7 @@ import {
   liveWeightTotal,
 } from './weights-config.js';
 import { isLiveScorerLane } from './lane-registry.js';
+import { SKILL_ADVISOR_COMPAT_CONTRACT, resolvedConfidenceThreshold, resolvedUncertaintyThreshold } from '../compat/contract.js';
 import type {
   AdvisorProjection,
   AdvisorScoredRecommendation,
@@ -38,8 +39,8 @@ import type {
 } from './types.js';
 import type { NormalizedAffordance } from '../affordance-normalizer.js';
 
-const DEFAULT_CONFIDENCE_THRESHOLD = 0.8;
-const DEFAULT_UNCERTAINTY_THRESHOLD = 0.35;
+const DEFAULT_CONFIDENCE_THRESHOLD = resolvedConfidenceThreshold();
+const DEFAULT_UNCERTAINTY_THRESHOLD = resolvedUncertaintyThreshold();
 const TASK_INTENT = /\b(add|append|build|change|configure|create|edit|fix|generate|implement|modify|move|patch|refactor|rename|replace|run|start|sweep|update|write)\b/;
 const DEEP_RESEARCH_CYCLE = /\b(automated research cycle|looped investigation|continue iteration|resume iteration|overnight run|overnight research run|packet-local iteration|delta record|canonical jsonl|same lineage)\b/;
 const FILE_SAVE_OPERATION = /\bsave\b.{0,48}\b(file|files|document|documents|buffer|tab|workspace)\b|\b(file|files|document|documents|buffer|tab|workspace)\b.{0,48}\bsave\b/;
@@ -278,17 +279,17 @@ function primaryIntentBonus(promptLower: string, recommendation: AdvisorScoredRe
   if (promptLower.includes('/deep:start-research-loop') && recommendation.skill === 'sk-deep-research') return R.slashCommandDeepResearchBonus;
   if (promptLower.includes('/deep:start-review-loop') && recommendation.skill === 'sk-deep-review') return R.slashCommandDeepReviewBonus;
   if (/\b(save context|save memory)\b/.test(promptLower)) {
-    if (recommendation.skill === 'memory:save') return 0.55;
-    if (recommendation.skill === 'system-spec-kit') return -0.25;
+    if (recommendation.skill === 'memory:save') return R.saveContextMemorySaveBonus;
+    if (recommendation.skill === 'system-spec-kit') return R.saveContextMemorySpecKitPenalty;
   }
   if (/\b(create (a )?new agent|create agent)\b/.test(promptLower) || promptLower.includes('/create:agent')) {
-    if (recommendation.skill === 'create:agent') return 0.55;
-    if (recommendation.skill === 'sk-doc') return -0.18;
+    if (recommendation.skill === 'create:agent') return R.createAgentCreateAgentBonus;
+    if (recommendation.skill === 'sk-doc') return R.createAgentSkDocPenalty;
   }
   if (/\bcreate (a )?(test|testing) playbook\b/.test(promptLower) || promptLower.includes('/create:testing-playbook')) {
-    if (recommendation.skill === 'create:testing-playbook' || recommendation.skill === 'command-create-testing-playbook') return 0.65;
-    if (recommendation.skill === 'sk-doc') return -0.3;
-    if (recommendation.skill === 'sk-deep-review' || recommendation.skill === 'deep-agent-improvement') return -0.2;
+    if (recommendation.skill === 'create:testing-playbook' || recommendation.skill === 'command-create-testing-playbook') return R.createTestingPlaybookBonus;
+    if (recommendation.skill === 'sk-doc') return R.createTestingPlaybookSkDocPenalty;
+    if (recommendation.skill === 'sk-deep-review' || recommendation.skill === 'deep-agent-improvement') return R.createTestingPlaybookOtherSkillsPenalty;
   }
   if (/\bphase folder\b/.test(promptLower)) {
     if (recommendation.skill === 'system-spec-kit') return R.phaseFolderSpecKitBonus;

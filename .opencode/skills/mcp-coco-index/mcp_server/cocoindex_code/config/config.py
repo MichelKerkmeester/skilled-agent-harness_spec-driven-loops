@@ -22,6 +22,11 @@ _DEFAULT_MODEL = DEFAULT_EMBEDDER_NAME  # 018 follow-on: ties bge-code-v1 on hit
 _DEFAULT_CHUNK_SIZE = 1500
 _DEFAULT_CHUNK_OVERLAP = 200
 _DEFAULT_MIN_CHUNK_SIZE = 250
+# Module-level default for COCOINDEX_RERANK_VIA_SIDECAR (used by both
+# Config.from_env below AND rerankers/reranker.py::_rerank_via_sidecar_enabled
+# at runtime). Single source of truth prevents silent drift between the two
+# code paths that parse the env var independently (022/006 dedup).
+_DEFAULT_RERANK_VIA_SIDECAR = True
 _DEFAULT_CODE_AWARE_CHUNKING = True
 _DEFAULT_TREE_SITTER_LANGUAGES: dict[str, object] = {}
 _DEFAULT_HYBRID_VECTOR_WEIGHT = 0.9  # 017 empirical: tied hit rate across V=[0.7,0.9], V=0.9 picks lower p95
@@ -767,7 +772,7 @@ class Config:
             _DEFAULT_PATH_CLASS_FACTORS,
         )
         rerank_adapter = os.environ.get("COCOINDEX_RERANK_ADAPTER", "").strip().lower()
-        rerank_via_sidecar = _parse_bool_env("COCOINDEX_RERANK_VIA_SIDECAR", True)
+        rerank_via_sidecar = _parse_bool_env("COCOINDEX_RERANK_VIA_SIDECAR", _DEFAULT_RERANK_VIA_SIDECAR)
         commercial_safe_profile = _parse_bool_env("COCOINDEX_COMMERCIAL_SAFE_PROFILE", False)
         _enforce_commercial_safe_profile(
             enabled=commercial_safe_profile,

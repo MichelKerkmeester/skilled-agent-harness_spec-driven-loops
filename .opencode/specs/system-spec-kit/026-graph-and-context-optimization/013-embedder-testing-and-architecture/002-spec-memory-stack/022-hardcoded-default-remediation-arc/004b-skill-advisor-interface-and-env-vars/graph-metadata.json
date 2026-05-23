@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/004b-skill-advisor-interface-and-env-vars",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/004b-skill-advisor-interface-and-env-vars",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc",
+  "children_ids": [],
+  "migrated": false,
+  "migration_source": "new-phase-2026-05-23",
+  "manual": {
+    "depends_on": [
+      {"packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/004a-skill-advisor-compat-contract-consolidation", "reason": "Wave 1 prerequisite"}
+    ],
+    "supersedes": [],
+    "related_to": [
+      {"packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/021-hardcoded-default-audit-deep-research", "reason": "closes 9 P1 + 2 P2 from f-iter004-015..025"}
+    ]
+  },
+  "derived": {
+    "trigger_phrases": ["022/004b skill-advisor interface env-vars", "prompt-policy JSON config", "resolvedConfidenceThreshold"],
+    "key_topics": ["skill-advisor", "RoutingCalibration", "SPECKIT_ADVISOR_CONFIDENCE_THRESHOLD", "SPECKIT_ADVISOR_PROMPT_POLICY_PATH", "prompt-policy.default.json", "resolvedConfidenceThreshold", "resolvedUncertaintyThreshold"],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/compat/contract.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/scoring-constants.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/prompt-policy.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/data/prompt-policy.default.json"
+    ],
+    "entities": [
+      {"name": "resolvedConfidenceThreshold", "kind": "function", "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/compat/contract.ts", "source": "derived"},
+      {"name": "RoutingCalibration", "kind": "interface", "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/scoring-constants.ts", "source": "derived"}
+    ],
+    "causal_summary": "Phase 004b dispatched via cli-opencode + deepseek-v4-pro atomic 3-wave. Wave 2 expanded RoutingCalibration; Wave 3 added 3 env vars + resolved* helpers; Wave 4 externalized prompt-policy to JSON + 5 env vars. SPECKIT_ADVISOR_LANE_WEIGHTS_JSON skipped (lane-registry has no extension point — deferred). 9 P1 + 2 P2 closed. Bundle gate PASS.",
+    "created_at": "2026-05-23T18:00:00.000000Z",
+    "last_save_at": "2026-05-23T18:00:00.000000Z",
+    "save_lineage": "new-phase-scaffolding",
+    "last_accessed_at": null,
+    "source_docs": ["spec.md"]
+  }
+}

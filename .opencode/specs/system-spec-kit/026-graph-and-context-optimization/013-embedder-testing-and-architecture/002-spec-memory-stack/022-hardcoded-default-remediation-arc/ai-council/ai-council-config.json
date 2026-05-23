@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.2",
+  "protocol": "ai-council",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc",
+  "current_round": 1,
+  "max_rounds": 3,
+  "seats_per_round": 5,
+  "convergence_signal": "two-of-three-agree",
+  "convergence_threshold": 0.20,
+  "created_at": "2026-05-23T17:00:00Z",
+  "updated_at": "2026-05-23T17:00:00Z",
+  "status": "in_progress",
+  "council_topic": "022 Remediation Arc Remaining Execution Strategy — phase ordering, dispatch risk, ADR-B governance, convergence gate, failure mode, phase 004 wave split"
+}

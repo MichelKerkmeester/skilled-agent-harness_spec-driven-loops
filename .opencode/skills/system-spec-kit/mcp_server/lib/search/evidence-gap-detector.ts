@@ -19,8 +19,8 @@ import type { ParserProvenance } from '../context/shared-payload.js';
  * - 1.3 (May 20 nomic-embed-text-v1.5 default per ADR-013, no cross-encoder
  *   provider available; positional fallback-sort lands paraphrase queries
  *   around Z=1.4 consistently. 1.3 reflects the realistic steady-state
- *   floor under this configuration. The long-term fix is enabling a real
- *   reranker via VOYAGE_API_KEY, COHERE_API_KEY, or RERANKER_LOCAL=true.)
+ *   floor under this configuration. The long-term fix is enabling the
+ *   local reranker sidecar via RERANKER_LOCAL=true.)
  */
 const Z_SCORE_THRESHOLD = 1.3;
 

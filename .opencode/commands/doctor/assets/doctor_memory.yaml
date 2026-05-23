@@ -20,7 +20,7 @@ operating_mode:
 
 memory_doctor_invariant: |
   Memory doctor workflows treat the active provider-keyed profile DBs
-  (llama-cpp, hf-local, voyage, and openai profiles matching
+  (ollama, hf-local, voyage, and openai profiles matching
   context-index__*.sqlite) as the only memory-owned mutable stores, and only
   :apply modes may rebuild them.
   Diagnostic modes are report-only. Apply modes rely on ADR-001's per-file

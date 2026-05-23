@@ -36,9 +36,14 @@ def _rerank_via_sidecar_enabled() -> bool:
     must read the same default or the dispatch silently diverges from the
     documented behavior.
     """
+    # Canonical default imported from config.py to keep the two code paths
+    # aligned (022/006 dedup; the prior inline `return True` literal could
+    # drift from Config.from_env's parsing default silently).
+    from ..config.config import _DEFAULT_RERANK_VIA_SIDECAR
+
     raw = os.environ.get("COCOINDEX_RERANK_VIA_SIDECAR")
     if raw is None or raw.strip() == "":
-        return True
+        return _DEFAULT_RERANK_VIA_SIDECAR
     return raw.strip().lower() in {"1", "true", "yes", "on"}
 
 

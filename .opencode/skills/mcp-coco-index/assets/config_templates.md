@@ -72,7 +72,7 @@ Notes:
       "environment": {
         "COCOINDEX_CODE_ROOT_PATH": ".",
         "_NOTE_1": "Install: bash .opencode/skills/mcp-coco-index/scripts/install.sh",
-        "_NOTE_2": "Default embedding: google/embeddinggemma-300m (local sentence-transformers, no API key needed, 768d)",
+        "_NOTE_2": "Default embedding: sbert/nomic-ai/CodeRankEmbed (local sentence-transformers, no API key needed, 768d)",
         "_NOTE_3": "Index stored in .cocoindex_code/ (gitignored)"
       }
     }
@@ -137,7 +137,7 @@ Notes:
       "env": {
         "COCOINDEX_CODE_ROOT_PATH": ".",
         "_NOTE_1": "Install: bash .opencode/skills/mcp-coco-index/scripts/install.sh",
-        "_NOTE_2": "Default embedding: google/embeddinggemma-300m (local sentence-transformers, no API key needed, 768d)",
+        "_NOTE_2": "Default embedding: sbert/nomic-ai/CodeRankEmbed (local sentence-transformers, no API key needed, 768d)",
         "_NOTE_3": "Index stored in .cocoindex_code/ (gitignored)"
       }
     }
@@ -157,7 +157,7 @@ args = ["mcp"]
 [mcp_servers.cocoindex_code.env]
 COCOINDEX_CODE_ROOT_PATH = "."
 _NOTE_1 = "Install: bash .opencode/skills/mcp-coco-index/scripts/install.sh"
-_NOTE_2 = "Default embedding: google/embeddinggemma-300m (local sentence-transformers, no API key needed, 768d)"
+_NOTE_2 = "Default embedding: sbert/nomic-ai/CodeRankEmbed (local sentence-transformers, no API key needed, 768d)"
 _NOTE_3 = "If you switch to LiteLLM with VOYAGE_API_KEY, use voyage/voyage-code-3 and rebuild the index"
 _NOTE_4 = "Index stored in .cocoindex_code/ (gitignored)"
 ```

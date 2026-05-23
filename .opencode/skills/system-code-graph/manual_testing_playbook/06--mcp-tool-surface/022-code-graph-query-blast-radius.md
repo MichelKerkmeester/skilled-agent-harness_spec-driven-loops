@@ -34,7 +34,7 @@ contextType: "verification"
    mcp__mk_code_index__code_graph_query({
      operation: "blast_radius",
      subject: ".opencode/skills/system-spec-kit/shared/embeddings.ts",
-     subjects: [".opencode/skills/system-spec-kit/shared/embeddings/providers/llama-cpp.ts"],
+     subjects: [".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts"],
      unionMode: "multi",
      limit: 30
    })

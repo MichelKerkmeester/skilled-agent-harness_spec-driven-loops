@@ -11,19 +11,16 @@ const originalEnv = { ...process.env };
 const originalFetch = globalThis.fetch;
 
 function resetEnv() {
-  delete process.env.VOYAGE_API_KEY;
-  delete process.env.COHERE_API_KEY;
+  delete process.env.SPECKIT_CROSS_ENCODER;
   delete process.env.RERANKER_LOCAL;
   crossEncoder.resetProvider();
   crossEncoder.resetSession();
 }
 
 function restoreAll() {
-  process.env.VOYAGE_API_KEY = originalEnv.VOYAGE_API_KEY;
-  process.env.COHERE_API_KEY = originalEnv.COHERE_API_KEY;
+  process.env.SPECKIT_CROSS_ENCODER = originalEnv.SPECKIT_CROSS_ENCODER;
   process.env.RERANKER_LOCAL = originalEnv.RERANKER_LOCAL;
-  if (!originalEnv.VOYAGE_API_KEY) delete process.env.VOYAGE_API_KEY;
-  if (!originalEnv.COHERE_API_KEY) delete process.env.COHERE_API_KEY;
+  if (!originalEnv.SPECKIT_CROSS_ENCODER) delete process.env.SPECKIT_CROSS_ENCODER;
   if (!originalEnv.RERANKER_LOCAL) delete process.env.RERANKER_LOCAL;
   globalThis.fetch = originalFetch;
   crossEncoder.resetProvider();
@@ -137,132 +134,9 @@ describe('Cross Encoder Extended Tests', () => {
     });
   });
 
-  // ───────────────────────────────────────────────────────────────
-  // 2. RERANKVOYAGE
-  // ───────────────────────────────────────────────────────────────
-  describe('2. rerankVoyage', () => {
-    it('throws when VOYAGE_API_KEY missing', async () => {
-      await expect(
-        crossEncoder.rerankVoyage('query', [{ id: 1, content: 'doc' }])
-      ).rejects.toThrow('VOYAGE_API_KEY not set');
-    });
-
-    it('successful API call returns sorted results', async () => {
-      process.env.VOYAGE_API_KEY = 'test-voyage-api-key-XXXXXXXXX';
-      mockFetch(200, {
-        data: [
-          { index: 1, relevance_score: 0.95 },
-          { index: 0, relevance_score: 0.72 },
-        ],
-      });
-
-      const docs: RerankDocument[] = [
-        { id: 'a', content: 'first document' },
-        { id: 'b', content: 'second document' },
-      ];
-      const results = await crossEncoder.rerankVoyage('test query', docs);
-
-      expect(Array.isArray(results)).toBe(true);
-      expect(results.length).toBe(2);
-      // Sorted by score descending → first result should have higher score
-      expect(results[0].rerankerScore).toBeGreaterThanOrEqual(results[1].rerankerScore);
-      expect(results[0].provider).toBe('voyage');
-      expect(results[0].scoringMethod).toBe('cross-encoder');
-    });
-
-    it('originalRank maps to input position', async () => {
-      process.env.VOYAGE_API_KEY = 'test-voyage-api-key-XXXXXXXXX';
-      mockFetch(200, {
-        data: [
-          { index: 1, relevance_score: 0.9 },
-          { index: 0, relevance_score: 0.5 },
-          { index: 2, relevance_score: 0.7 },
-        ],
-      });
-
-      const docs: RerankDocument[] = [
-        { id: 'x', content: 'doc x' },
-        { id: 'y', content: 'doc y' },
-        { id: 'z', content: 'doc z' },
-      ];
-      const results = await crossEncoder.rerankVoyage('query', docs);
-
-      // OriginalRank should map from the inputRankMap (position in input array)
-      // Doc at index 1 (id 'y') has originalRank 1
-      const topResult = results[0]; // highest score: index 1 → id 'y', score 0.9
-      expect(topResult.id).toBe('y');
-      expect(topResult.originalRank).toBe(1);
-    });
-
-    it('throws on non-OK HTTP response', async () => {
-      process.env.VOYAGE_API_KEY = 'test-voyage-api-key-XXXXXXXXX';
-      mockFetch(500, { error: 'Server error' });
-
-      await expect(
-        crossEncoder.rerankVoyage('query', [{ id: 1, content: 'doc' }])
-      ).rejects.toThrow(/Voyage rerank failed: 500/);
-    });
-
-    it('throws on network error', async () => {
-      process.env.VOYAGE_API_KEY = 'test-voyage-api-key-XXXXXXXXX';
-      mockFetch(0, null, true); // shouldThrow = true → network error
-
-      await expect(
-        crossEncoder.rerankVoyage('query', [{ id: 1, content: 'doc' }])
-      ).rejects.toThrow('Network error');
-    });
-  });
-
-  // ───────────────────────────────────────────────────────────────
-  // 3. RERANKCOHERE
-  // ───────────────────────────────────────────────────────────────
-  describe('3. rerankCohere', () => {
-    it('throws when COHERE_API_KEY missing', async () => {
-      await expect(
-        crossEncoder.rerankCohere('query', [{ id: 1, content: 'doc' }])
-      ).rejects.toThrow('COHERE_API_KEY not set');
-    });
-
-    it('successful API call returns sorted results', async () => {
-      process.env.COHERE_API_KEY = 'test-cohere-api-key-XXXXXXXXX';
-      mockFetch(200, {
-        results: [
-          { index: 0, relevance_score: 0.88 },
-          { index: 1, relevance_score: 0.65 },
-        ],
-      });
-
-      const docs: RerankDocument[] = [
-        { id: 10, content: 'alpha document' },
-        { id: 20, content: 'beta document' },
-      ];
-      const results = await crossEncoder.rerankCohere('search query', docs);
-
-      expect(Array.isArray(results)).toBe(true);
-      expect(results.length).toBe(2);
-      expect(results[0].rerankerScore).toBeGreaterThanOrEqual(results[1].rerankerScore);
-      expect(results[0].provider).toBe('cohere');
-      expect(results[0].scoringMethod).toBe('cross-encoder');
-    });
-
-    it('throws on non-OK HTTP response', async () => {
-      process.env.COHERE_API_KEY = 'test-cohere-api-key-XXXXXXXXX';
-      mockFetch(403, { message: 'Forbidden' });
-
-      await expect(
-        crossEncoder.rerankCohere('query', [{ id: 1, content: 'doc' }])
-      ).rejects.toThrow(/Cohere rerank failed: 403/);
-    });
-
-    it('throws on network error', async () => {
-      process.env.COHERE_API_KEY = 'test-cohere-api-key-XXXXXXXXX';
-      mockFetch(0, null, true);
-
-      await expect(
-        crossEncoder.rerankCohere('query', [{ id: 1, content: 'doc' }])
-      ).rejects.toThrow('Network error');
-    });
-  });
+  // 022/013: rerankVoyage + rerankCohere tests removed alongside the
+  // cloud reranker provider purge. The local sidecar path is still
+  // exercised by describe(4. rerankLocal) below.
 
   // ───────────────────────────────────────────────────────────────
   // 4. RERANKLOCAL
@@ -331,10 +205,11 @@ describe('Cross Encoder Extended Tests', () => {
   // 5. RERANKRESULTS WITH PROVIDER-SPECIFIC PATHS
   // ───────────────────────────────────────────────────────────────
   describe('5. rerankResults (provider paths)', () => {
-    it('routes to Voyage when VOYAGE_API_KEY set', async () => {
-      process.env.VOYAGE_API_KEY = 'test-voyage-api-key-XXXXXXXXX';
+    it('routes to local sidecar when SPECKIT_CROSS_ENCODER=true + RERANKER_LOCAL=true', async () => {
+      process.env.SPECKIT_CROSS_ENCODER = 'true';
+      process.env.RERANKER_LOCAL = 'true';
       mockFetch(200, {
-        data: [
+        results: [
           { index: 0, relevance_score: 0.77 },
         ],
       });
@@ -343,30 +218,15 @@ describe('Cross Encoder Extended Tests', () => {
       const results = await crossEncoder.rerankResults('query', docs, { useCache: false });
 
       expect(results.length).toBe(1);
-      expect(results[0].provider).toBe('voyage');
+      expect(results[0].provider).toBe('local');
       expect(results[0].scoringMethod).toBe('cross-encoder');
       // Length penalty applied: 100 chars is medium → *1.0
       expect(results[0].rerankerScore).toBeCloseTo(0.77, 9);
     });
 
-    it('routes to Cohere when COHERE_API_KEY set', async () => {
-      process.env.COHERE_API_KEY = 'test-cohere-api-key-XXXXXXXXX';
-      mockFetch(200, {
-        results: [
-          { index: 0, relevance_score: 0.66 },
-        ],
-      });
-
-      const docs = [{ id: 2, content: 'b'.repeat(100) }];
-      const results = await crossEncoder.rerankResults('query', docs, { useCache: false });
-
-      expect(results.length).toBe(1);
-      expect(results[0].provider).toBe('cohere');
-      expect(results[0].scoringMethod).toBe('cross-encoder');
-    });
-
-    it('does not route cross-encoder provider selection from RERANKER_LOCAL=true', async () => {
-      process.env.RERANKER_LOCAL = 'true';
+    it('returns fallback when SPECKIT_CROSS_ENCODER set but RERANKER_LOCAL not set', async () => {
+      process.env.SPECKIT_CROSS_ENCODER = 'true';
+      // RERANKER_LOCAL intentionally absent
       mockFetch(200, {
         results: [
           { index: 0, relevance_score: 0.55 },
@@ -382,9 +242,10 @@ describe('Cross Encoder Extended Tests', () => {
     });
 
     it('keeps provider scores unchanged after removing the length penalty', async () => {
-      process.env.VOYAGE_API_KEY = 'test-voyage-api-key-XXXXXXXXX';
+      process.env.SPECKIT_CROSS_ENCODER = 'true';
+      process.env.RERANKER_LOCAL = 'true';
       mockFetch(200, {
-        data: [
+        results: [
           { index: 0, relevance_score: 1.0 },
         ],
       });
@@ -396,7 +257,8 @@ describe('Cross Encoder Extended Tests', () => {
     });
 
     it('provider error falls back gracefully', async () => {
-      process.env.VOYAGE_API_KEY = 'test-voyage-api-key-XXXXXXXXX';
+      process.env.SPECKIT_CROSS_ENCODER = 'true';
+      process.env.RERANKER_LOCAL = 'true';
       mockFetch(500, { error: 'Internal error' });
 
       const docs = [{ id: 5, content: 'doc content' }];
@@ -431,12 +293,13 @@ describe('Cross Encoder Extended Tests', () => {
   // ───────────────────────────────────────────────────────────────
   describe('6. rerankResults (caching)', () => {
     it('second call with same input uses cache', async () => {
-      process.env.VOYAGE_API_KEY = 'test-voyage-api-key-XXXXXXXXX';
+      process.env.SPECKIT_CROSS_ENCODER = 'true';
+      process.env.RERANKER_LOCAL = 'true';
 
       let fetchCallCount = 0;
       globalThis.fetch = vi.fn(async (..._args: Parameters<typeof fetch>): Promise<Response> => {
         fetchCallCount++;
-        return new Response(JSON.stringify({ data: [{ index: 0, relevance_score: 0.8 }] }), {
+        return new Response(JSON.stringify({ results: [{ index: 0, relevance_score: 0.8 }] }), {
           status: 200,
           statusText: 'OK',
           headers: { 'Content-Type': 'application/json' },
@@ -460,13 +323,14 @@ describe('Cross Encoder Extended Tests', () => {
     });
 
     it('same IDs with changed content miss cache', async () => {
-      process.env.VOYAGE_API_KEY = 'test-voyage-api-key-XXXXXXXXX';
+      process.env.SPECKIT_CROSS_ENCODER = 'true';
+      process.env.RERANKER_LOCAL = 'true';
 
       let fetchCallCount = 0;
       globalThis.fetch = vi.fn(async (..._args: Parameters<typeof fetch>): Promise<Response> => {
         fetchCallCount++;
         const relevanceScore = fetchCallCount === 1 ? 0.25 : 0.91;
-        return new Response(JSON.stringify({ data: [{ index: 0, relevance_score: relevanceScore }] }), {
+        return new Response(JSON.stringify({ results: [{ index: 0, relevance_score: relevanceScore }] }), {
           status: 200,
           statusText: 'OK',
           headers: { 'Content-Type': 'application/json' },
@@ -490,12 +354,13 @@ describe('Cross Encoder Extended Tests', () => {
     });
 
     it('expired cache entry records stale-hit and eviction telemetry', async () => {
-      process.env.VOYAGE_API_KEY = 'test-voyage-api-key-XXXXXXXXX';
+      process.env.SPECKIT_CROSS_ENCODER = 'true';
+      process.env.RERANKER_LOCAL = 'true';
 
       let fetchCallCount = 0;
       globalThis.fetch = vi.fn(async (..._args: Parameters<typeof fetch>): Promise<Response> => {
         fetchCallCount++;
-        return new Response(JSON.stringify({ data: [{ index: 0, relevance_score: 0.8 }] }), {
+        return new Response(JSON.stringify({ results: [{ index: 0, relevance_score: 0.8 }] }), {
           status: 200,
           statusText: 'OK',
           headers: { 'Content-Type': 'application/json' },
@@ -505,7 +370,7 @@ describe('Cross Encoder Extended Tests', () => {
       const docs = [{ id: 'stale-1', content: 'cache me' }];
       await crossEncoder.rerankResults('stale query', docs, { useCache: true });
 
-      const cacheKey = crossEncoder.generateCacheKey('stale query', docs, 'voyage');
+      const cacheKey = crossEncoder.generateCacheKey('stale query', docs, 'local');
       const cached = crossEncoder.__testables.cache.get(cacheKey);
       expect(cached).toBeDefined();
       if (cached) {
@@ -540,12 +405,13 @@ describe('Cross Encoder Extended Tests', () => {
     });
 
     it('useCache=false bypasses cache', async () => {
-      process.env.VOYAGE_API_KEY = 'test-voyage-api-key-XXXXXXXXX';
+      process.env.SPECKIT_CROSS_ENCODER = 'true';
+      process.env.RERANKER_LOCAL = 'true';
 
       let fetchCallCount = 0;
       globalThis.fetch = vi.fn(async (..._args: Parameters<typeof fetch>): Promise<Response> => {
         fetchCallCount++;
-        return new Response(JSON.stringify({ data: [{ index: 0, relevance_score: 0.8 }] }), {
+        return new Response(JSON.stringify({ results: [{ index: 0, relevance_score: 0.8 }] }), {
           status: 200,
           statusText: 'OK',
           headers: { 'Content-Type': 'application/json' },
@@ -572,8 +438,9 @@ describe('Cross Encoder Extended Tests', () => {
   // ───────────────────────────────────────────────────────────────
   describe('7. rerankResults (latency tracking)', () => {
     it('tracks latency after successful provider call', async () => {
-      process.env.VOYAGE_API_KEY = 'test-voyage-api-key-XXXXXXXXX';
-      mockFetch(200, { data: [{ index: 0, relevance_score: 0.5 }] });
+      process.env.SPECKIT_CROSS_ENCODER = 'true';
+      process.env.RERANKER_LOCAL = 'true';
+      mockFetch(200, { results: [{ index: 0, relevance_score: 0.5 }] });
 
       const docs = [{ id: 'lat-1', content: 'a'.repeat(100) }];
       await crossEncoder.rerankResults('latency-test', docs, { useCache: false });
@@ -585,21 +452,6 @@ describe('Cross Encoder Extended Tests', () => {
     });
   });
 
-  // ───────────────────────────────────────────────────────────────
-  // 8. VOYAGE PROVIDER PRIORITY OVER COHERE
-  // ───────────────────────────────────────────────────────────────
-  describe('8. Provider priority', () => {
-    it('Voyage takes priority over Cohere when both keys set', async () => {
-      process.env.VOYAGE_API_KEY = 'test-voyage-api-key-XXXXXXXXX';
-      process.env.COHERE_API_KEY = 'test-cohere-api-key-XXXXXXXXX';
-
-      mockFetch(200, { data: [{ index: 0, relevance_score: 0.7 }] });
-
-      const docs = [{ id: 'pri-1', content: 'a'.repeat(100) }];
-      const results = await crossEncoder.rerankResults('priority-test', docs, { useCache: false });
-
-      // Voyage has higher priority than Cohere
-      expect(results[0].provider).toBe('voyage');
-    });
-  });
+  // 022/013: describe('8. Provider priority') removed alongside the
+  // Voyage/Cohere cloud reranker purge. Local is now the only provider.
 });

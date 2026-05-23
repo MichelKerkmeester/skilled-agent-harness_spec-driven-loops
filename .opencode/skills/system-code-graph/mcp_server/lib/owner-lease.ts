@@ -17,6 +17,7 @@ import { dirname, join, resolve } from 'node:path';
 import { execFileSync } from 'node:child_process';
 
 import { resolveCanonicalDbDir } from './canonical-db-dir.js';
+import { CODE_GRAPH_DEFAULTS } from './config-defaults.js';
 
 export interface OwnerLeaseData {
   ownerPid: number;
@@ -58,7 +59,7 @@ export interface OwnerClassificationOptions {
 }
 
 const OWNER_LEASE_FILE_NAME = '.code-graph-owner.json';
-const DEFAULT_TTL_MS = 60_000;
+const DEFAULT_TTL_MS = CODE_GRAPH_DEFAULTS.ttlMs;
 
 function fsyncPath(path: string): void {
   let fd: number | undefined;

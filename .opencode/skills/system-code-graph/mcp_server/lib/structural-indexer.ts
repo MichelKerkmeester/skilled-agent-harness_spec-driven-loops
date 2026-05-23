@@ -24,6 +24,7 @@ import { shouldIndexForCodeGraph } from './shared/index-scope.js';
 import { resolveCanonicalPath } from './shared/canonical-path.js';
 import { isSpeckitMetricsEnabled, speckitMetrics } from './shared/metrics-stub.js';
 import { runPhases, type Phase } from './phase-runner.js';
+import { CODE_GRAPH_DEFAULTS } from './config-defaults.js';
 
 interface IgnoreInstance {
   add(patterns: string | string[]): IgnoreInstance;
@@ -84,7 +85,7 @@ export interface IndexFilesResult extends Array<ParseResult> {
 const require = createRequire(import.meta.url);
 let ignoreFactory: IgnoreFactory | null = null;
 const MAX_GITIGNORE_BYTES = 1024 * 1024;
-const FIND_FILES_MAX_DEPTH = 20;
+const FIND_FILES_MAX_DEPTH = CODE_GRAPH_DEFAULTS.findFilesMaxDepth;
 const FIND_FILES_MAX_NODES = 50_000;
 const parseResultCaptures = new WeakMap<ParseResult, RawCapture[]>();
 const MODULE_RESOLUTION_EXTENSIONS = ['.ts', '.tsx', '.mts', '.cts', '.js', '.jsx', '.mjs', '.cjs', '.d.ts'];

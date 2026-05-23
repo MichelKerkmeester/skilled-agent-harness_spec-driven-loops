@@ -34,10 +34,14 @@ from ..core.shared import (
     CodeChunk,
 )
 
-# Chunking configuration
-CHUNK_SIZE = 1500
-MIN_CHUNK_SIZE = 250
-CHUNK_OVERLAP = 200
+# Chunking configuration — derived from config/config.py canonical defaults
+# (022/006 dedup: consolidates the 3 chunk-size constants previously duplicated
+# inline at this module + at config/config.py:22-24).
+from ..config.config import (
+    _DEFAULT_CHUNK_SIZE as CHUNK_SIZE,
+    _DEFAULT_MIN_CHUNK_SIZE as MIN_CHUNK_SIZE,
+    _DEFAULT_CHUNK_OVERLAP as CHUNK_OVERLAP,
+)
 
 # Chunking splitter (stateless, can be module-level)
 splitter = RecursiveSplitter()

@@ -2,6 +2,7 @@
 // MODULE: Code Graph Indexer Types
 // ───────────────────────────────────────────────────────────────
 import { createHash } from 'node:crypto';
+import { CODE_GRAPH_DEFAULTS } from './config-defaults.js';
 import {
   resolveIndexScopePolicy,
   type IndexScopePolicy,
@@ -20,18 +21,7 @@ export type EdgeType =
   | 'EXTENDS' | 'IMPLEMENTS' | 'TESTED_BY'
   | 'DECORATES' | 'OVERRIDES' | 'TYPE_OF';
 
-export const DEFAULT_EDGE_WEIGHTS: Readonly<Record<EdgeType, number>> = {
-  CONTAINS: 1.0,
-  IMPORTS: 1.0,
-  EXPORTS: 1.0,
-  EXTENDS: 0.95,
-  IMPLEMENTS: 0.95,
-  DECORATES: 0.9,
-  OVERRIDES: 0.9,
-  TYPE_OF: 0.85,
-  CALLS: 0.8,
-  TESTED_BY: 0.6,
-};
+export const DEFAULT_EDGE_WEIGHTS: Readonly<Record<EdgeType, number>> = CODE_GRAPH_DEFAULTS.edgeWeights as Readonly<Record<EdgeType, number>>;
 
 /** Honest graph-local detector provenance classes for structural indexing lanes. */
 export type DetectorProvenance = 'ast' | 'structured' | 'regex' | 'heuristic';

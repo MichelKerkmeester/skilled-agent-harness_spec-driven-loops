@@ -5,6 +5,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import type { ParsedProfileSlug, ProfileJson } from '../types.js';
+import { getCanonicalFallback, type CanonicalProvider } from './registry.js';
 
 // ---------------------------------------------------------------
 // 1. UTILITY FUNCTIONS
@@ -183,16 +184,20 @@ export function resolveActiveProfileProvider(): ActiveProfileProvider {
 }
 
 function resolveActiveProfileModel(provider: ActiveProfileProvider): string {
+  // Derived from registry MANIFESTS[0] + CLOUD_CANONICAL per ADR-013/014.
+  // Pre-022 the switch returned inline string literals (`'BAAI/bge-base-en-v1.5'`,
+  // `'jina-embeddings-v3'`, etc.) — see audit packet 021 findings f-iter001-001/002
+  // and ADR-amendment in 022/010 for the verification clause.
   switch (provider) {
     case 'voyage':
-      return process.env.VOYAGE_EMBEDDINGS_MODEL || 'voyage-code-3';
+      return process.env.VOYAGE_EMBEDDINGS_MODEL || getCanonicalFallback('voyage');
     case 'openai':
-      return process.env.OPENAI_EMBEDDINGS_MODEL || 'text-embedding-3-small';
+      return process.env.OPENAI_EMBEDDINGS_MODEL || getCanonicalFallback('openai');
     case 'ollama':
-      return process.env.OLLAMA_EMBEDDINGS_MODEL || 'jina-embeddings-v3';
+      return process.env.OLLAMA_EMBEDDINGS_MODEL || getCanonicalFallback('ollama');
     case 'hf-local':
     default:
-      return process.env.HF_EMBEDDINGS_MODEL || 'BAAI/bge-base-en-v1.5';
+      return process.env.HF_EMBEDDINGS_MODEL || getCanonicalFallback('hf-local');
   }
 }
 

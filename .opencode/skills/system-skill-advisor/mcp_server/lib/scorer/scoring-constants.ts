@@ -128,6 +128,16 @@ export interface RoutingCalibration {
   // phase-folder intent
   readonly phaseFolderSpecKitBonus: number;
   readonly phaseFolderDeepResearchPenalty: number;
+  // save-context / save-memory intent
+  readonly saveContextMemorySaveBonus: number;
+  readonly saveContextMemorySpecKitPenalty: number;
+  // create-agent intent
+  readonly createAgentCreateAgentBonus: number;
+  readonly createAgentSkDocPenalty: number;
+  // create-testing-playbook intent
+  readonly createTestingPlaybookBonus: number;
+  readonly createTestingPlaybookSkDocPenalty: number;
+  readonly createTestingPlaybookOtherSkillsPenalty: number;
 }
 
 export interface ScoringCalibration {
@@ -188,5 +198,38 @@ export const SCORING_CALIBRATION: ScoringCalibration = Object.freeze({
     slashCommandDeepReviewBonus: 0.45,
     phaseFolderSpecKitBonus: 0.35,
     phaseFolderDeepResearchPenalty: -0.25,
+    saveContextMemorySaveBonus: 0.55,
+    saveContextMemorySpecKitPenalty: -0.25,
+    createAgentCreateAgentBonus: 0.55,
+    createAgentSkDocPenalty: -0.18,
+    createTestingPlaybookBonus: 0.65,
+    createTestingPlaybookSkDocPenalty: -0.3,
+    createTestingPlaybookOtherSkillsPenalty: -0.2,
   }),
 });
+
+export interface RoutingCalibrationOverride {
+  memorySaveBonus?: number;
+  createAgentBonus?: number;
+  testingPlaybookBonus?: number;
+}
+
+export function resolvedCalibration(): ScoringCalibration {
+  const raw = process.env.SPECKIT_ADVISOR_CALIBRATION_OVERRIDE_JSON;
+  if (!raw) return SCORING_CALIBRATION;
+  try {
+    const override = JSON.parse(raw) as RoutingCalibrationOverride;
+    return {
+      ...SCORING_CALIBRATION,
+      routing: Object.freeze({
+        ...SCORING_CALIBRATION.routing,
+        ...(override.memorySaveBonus !== undefined ? { saveContextMemorySaveBonus: override.memorySaveBonus } : {}),
+        ...(override.createAgentBonus !== undefined ? { createAgentCreateAgentBonus: override.createAgentBonus } : {}),
+        ...(override.testingPlaybookBonus !== undefined ? { createTestingPlaybookBonus: override.testingPlaybookBonus } : {}),
+      }),
+    };
+  } catch {
+    console.warn('[skill-advisor] Failed to parse SPECKIT_ADVISOR_CALIBRATION_OVERRIDE_JSON; using defaults');
+    return SCORING_CALIBRATION;
+  }
+}

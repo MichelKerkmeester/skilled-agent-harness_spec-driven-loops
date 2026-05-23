@@ -29,6 +29,7 @@ import {
 import { persistApplyMetadata, type ApplyResultStatus } from './apply-metadata.js';
 import { handleCodeGraphScan, type ScanArgs } from '../handlers/scan.js';
 import { handleCodeGraphStatus } from '../handlers/status.js';
+import { CODE_GRAPH_DEFAULTS } from './config-defaults.js';
 
 export type ApplyStalenessState = 'fresh' | 'soft-stale' | 'hard-stale';
 export type ApplyOperation = 'rescan' | 'prune-excludes' | 'repair-nodes' | 'recover-sqlite-corruption' | 'rollback-bad-apply';
@@ -96,7 +97,7 @@ export interface ApplyRunResult {
   message: string;
 }
 
-const DEFAULT_QUARANTINE_AGE_DAYS = 14;
+const DEFAULT_QUARANTINE_AGE_DAYS = CODE_GRAPH_DEFAULTS.quarantineAgeDays;
 
 function parseMcpJson(response: { content: Array<{ text: string }> }): unknown {
   const text = response.content[0]?.text;

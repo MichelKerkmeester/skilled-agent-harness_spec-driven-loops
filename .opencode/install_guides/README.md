@@ -188,7 +188,7 @@ Answer these questions to configure your installation:
 - **GitHub Copilot** → Requires GitHub authentication
 - **OpenAI / Codex** → Requires `OPENAI_API_KEY`
 - **Gemini (Google)** → Requires `GEMINI_API_KEY`
-> **Note:** Spec Kit Memory embeddings support multiple providers: `llama-cpp` (local when GGUF runtime is installed), HF Local (fallback ONNX CPU), Voyage (cloud when `VOYAGE_API_KEY` is set), and OpenAI (cloud when `OPENAI_API_KEY` is set). The default `auto` cascade works out of the box with no API key. See [Section 10.2](#102-spec-kit-memory-context-preservation) for details.
+> **Note:** Spec Kit Memory embeddings support multiple providers: HF Local (default ONNX CPU), Ollama (local HTTP daemon when reachable), Voyage (cloud when `VOYAGE_API_KEY` is set), and OpenAI (cloud when `OPENAI_API_KEY` is set). The default `auto` cascade works out of the box with no API key. See [Section 10.2](#102-spec-kit-memory-context-preservation) for details.
 
 ### Windows-Specific Configuration
 
@@ -301,8 +301,7 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 
 **Disk breakdown:**
 - MCP servers: ~500MB
-- EmbeddingGemma model (default, llama-cpp Q8_0 GGUF or HF Local ONNX q8): ~310MB
-- node-llama-cpp Metal dylib (Apple Silicon): ~50MB
+- EmbeddingGemma model (default, HF Local ONNX q8): ~310MB
 - Spec Kit Memory database: ~50MB typical (grows with rows)
 
 **Quick Verification:**
@@ -491,7 +490,7 @@ node --version | grep -E "^v(1[89]|2[0-9])" && python3 --version | grep -E "3\.(
 <!-- ANCHOR:phase-2-local-embeddings -->
 ## 9. PHASE 2: LOCAL EMBEDDINGS
 
-Spec Kit Memory resolves the active local embedding profile automatically. When the GGUF runtime is installed, the `llama-cpp` profile is selected. Otherwise, the cascade falls back to the HF Local ONNX profile.
+Spec Kit Memory resolves the active local embedding profile automatically. The HF Local ONNX profile runs on Node.js without external services. When an Ollama daemon is reachable on `localhost:11434`, the cascade can promote to Ollama.
 
 No separate local model service is required for Memory MCP embeddings. Continue to Phase 3 for MCP server setup.
 
@@ -581,20 +580,20 @@ Spec Kit Memory now supports four providers in cascade:
 
 | Provider | When to use | Dimension | Requirements |
 |----------|-------------|-----------|------------|
-| **llama-cpp** | Local profile when GGUF runtime is installed | 768 | `node-llama-cpp` + GGUF model |
-| **HF Local** | Fallback when llama-cpp is unavailable | 768 | Node.js only |
+| **HF Local** | Local default, Node.js only | 768 | Node.js only |
+| **Ollama** | Local daemon, opt-in | 768 | Ollama on `localhost:11434` |
 | **Voyage** | Cloud opt-in | 1024 | `VOYAGE_API_KEY` |
 | **OpenAI** | Cloud opt-in | 1536/3072 | `OPENAI_API_KEY` |
 
-**Default provider:** `auto`. The active default profile depends on the runtime: llama-cpp when the GGUF runtime is installed, HF Local otherwise.
+**Default provider:** `auto`. The active default is HF Local; the cascade promotes to Ollama, Voyage, or OpenAI when their probes succeed.
 
 **Provider selection (cascade order when `EMBEDDINGS_PROVIDER=auto` or unset):**
 1. Explicit `EMBEDDINGS_PROVIDER` env var (if set and not `auto`)
-2. `VOYAGE_API_KEY` if present (cloud opt-in)
-3. `OPENAI_API_KEY` if present (cloud opt-in)
-4. **llama-cpp** if `node-llama-cpp` loads and the GGUF model is reachable
-5. **HF Local** as fallback when the llama-cpp probe fails
-- Manual override: `export EMBEDDINGS_PROVIDER=llama-cpp|hf-local|voyage|openai|auto`
+2. **Ollama** if the local daemon is reachable on `localhost:11434`
+3. **HF Local** as the default local provider
+4. **Voyage** when `VOYAGE_API_KEY` is set
+5. **OpenAI** when `OPENAI_API_KEY` is set
+- Manual override: `export EMBEDDINGS_PROVIDER=ollama|hf-local|voyage|openai|auto`
 
 **Location:** Bundled in project at `.opencode/skills/system-spec-kit/`
 
@@ -615,7 +614,7 @@ Spec Kit Memory now supports four providers in cascade:
 
 **Optional environment variables:**
 ```bash
-# Provider selection (llama-cpp|hf-local|voyage|openai|auto)
+# Provider selection (ollama|hf-local|voyage|openai|auto)
 export EMBEDDINGS_PROVIDER=auto  # Default: auto-cascade provider selection
 
 # Voyage config (cloud opt-in)
@@ -626,14 +625,12 @@ export VOYAGE_EMBEDDINGS_MODEL=voyage-4  # Default
 export OPENAI_API_KEY=sk-...
 export OPENAI_EMBEDDINGS_MODEL=text-embedding-3-small  # Default
 
-# HF Local config (if using HF local)
-export HF_EMBEDDINGS_MODEL=onnx-community/embeddinggemma-300m-ONNX  # Default (fallback path)
+# HF Local config (default local provider)
+export HF_EMBEDDINGS_MODEL=onnx-community/embeddinggemma-300m-ONNX  # Default
 export HF_EMBEDDINGS_DTYPE=q8  # Default (also: fp32, fp16, q4, int8, uint8, bnb4)
 
-# llama-cpp config (default local provider)
-export LLAMA_CPP_EMBEDDINGS_MODEL=unsloth/embeddinggemma-300m-GGUF  # Default
-export LLAMA_CPP_EMBEDDINGS_GGUF_FILE=embeddinggemma-300M-Q8_0.gguf  # Default
-export MEMORY_AUTO_MIGRATE_HF_TO_LLAMA=true  # Set to "false" to disable 018 auto-migration
+# Ollama config (local daemon opt-in)
+export OLLAMA_EMBEDDINGS_MODEL=nomic-embed-text-v1.5  # Default
 
 # Database directory (optional - default: .opencode/skills/system-spec-kit/mcp_server/database/)
 export MEMORY_DB_DIR=/path/to/database
@@ -653,7 +650,7 @@ ls -la .opencode/skills/system-spec-kit/mcp_server/database/
 
 - [ ] Context server JS file exists
 - [ ] Database directory exists (or will be created)
-- [ ] Embeddings provider loads on first run (auto-cascade: `VOYAGE_API_KEY` -> `OPENAI_API_KEY` -> llama-cpp when GGUF runtime is installed -> hf-local)
+- [ ] Embeddings provider loads on first run (auto-cascade: ollama (if reachable) -> hf-local default -> `VOYAGE_API_KEY` -> `OPENAI_API_KEY`)
 
 **Quick Verification:**
 ```bash
@@ -1408,7 +1405,7 @@ node .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js
 ```
 
 ### Embeddings not working
-1. Auto-cascade is `VOYAGE_API_KEY` -> `OPENAI_API_KEY` -> llama-cpp when GGUF runtime is installed -> hf-local
+1. Auto-cascade is ollama (if reachable) -> hf-local default -> `VOYAGE_API_KEY` -> `OPENAI_API_KEY`
 2. Clear corrupted model cache: `rm -rf .opencode/skills/system-spec-kit/mcp_server/node_modules/@huggingface/transformers/.cache`
 3. Restart MCP server (model re-downloads on first use)
 4. If using cloud provider: verify API key is set and `EMBEDDINGS_PROVIDER` matches
