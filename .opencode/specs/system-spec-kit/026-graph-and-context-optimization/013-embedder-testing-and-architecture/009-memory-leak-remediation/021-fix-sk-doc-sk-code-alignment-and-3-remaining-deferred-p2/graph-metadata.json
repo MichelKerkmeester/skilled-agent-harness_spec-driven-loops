@@ -1,0 +1,27 @@
+{
+  "spec_id": "021",
+  "folder_slug": "fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2",
+  "parent_chain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "009-memory-leak-remediation"
+  ],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes"
+    ],
+    "related_to": []
+  },
+  "derived": {
+    "status": "draft",
+    "importance_tier": "important",
+    "is_phase_parent": true,
+    "last_active_child_id": "001-identify-and-close-3-remaining-deferred-p2",
+    "last_active_at": "2026-05-23T13:00:00Z",
+    "child_phase_count": 0,
+    "completed_child_phase_count": 0,
+    "parent_id": "009-memory-leak-remediation"
+  },
+  "lastUpdated": "2026-05-23T13:00:00Z"
+}
