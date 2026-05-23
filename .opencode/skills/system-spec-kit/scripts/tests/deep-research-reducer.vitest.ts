@@ -364,4 +364,36 @@ describe('deep-research reducer', () => {
     expect(result).toBeTruthy();
     expect(result.registry.metrics.iterationsCompleted).toBeGreaterThanOrEqual(1);
   });
+
+  it('DR-006: sorts unpadded iteration files numerically', () => {
+    // Pre-fix bug: default lexical .sort() ordered iteration-10.md between iteration-1.md
+    // and iteration-2.md. Fix at reduce-state.cjs L874 uses numeric extractor.
+    const specFolder = fs.mkdtempSync(path.join(os.tmpdir(), 'deep-research-reducer-dr006-'));
+    tempDirs.push(specFolder);
+    writeFile(
+      path.join(specFolder, 'research', 'deep-research-config.json'),
+      JSON.stringify({ topic: 'DR-006', maxIterations: 11, convergenceThreshold: 0.05, createdAt: '2026-05-23T00:00:00Z', specFolder: 'fixture' }, null, 2),
+    );
+    // Strategy needs the same anchors the reducer parses; reuse the makeFixtureSpecFolder structure conceptually.
+    const strategyTemplatePath = path.join(makeFixtureSpecFolder(), 'research', 'deep-research-strategy.md');
+    fs.copyFileSync(strategyTemplatePath, path.join(specFolder, 'research', 'deep-research-strategy.md'));
+    writeFile(
+      path.join(specFolder, 'research', 'deep-research-state.jsonl'),
+      [
+        '{"type":"config","topic":"DR-006","maxIterations":11,"convergenceThreshold":0.05,"createdAt":"2026-05-23T00:00:00Z","specFolder":"fixture"}',
+        '{"type":"iteration","run":1,"status":"complete","focus":"first","findingsCount":1,"newInfoRatio":0.5,"answeredQuestions":[],"keyQuestions":["Q1"],"sourcesQueried":[],"toolsUsed":[],"timestamp":"2026-05-23T00:01:00Z","durationMs":100}',
+        '{"type":"iteration","run":2,"status":"complete","focus":"second","findingsCount":1,"newInfoRatio":0.5,"answeredQuestions":[],"keyQuestions":["Q1"],"sourcesQueried":[],"toolsUsed":[],"timestamp":"2026-05-23T00:02:00Z","durationMs":100}',
+        '{"type":"iteration","run":10,"status":"complete","focus":"tenth","findingsCount":1,"newInfoRatio":0.5,"answeredQuestions":[],"keyQuestions":["Q1"],"sourcesQueried":[],"toolsUsed":[],"timestamp":"2026-05-23T00:10:00Z","durationMs":100}',
+        '{"type":"iteration","run":11,"status":"complete","focus":"eleventh","findingsCount":1,"newInfoRatio":0.5,"answeredQuestions":[],"keyQuestions":["Q1"],"sourcesQueried":[],"toolsUsed":[],"timestamp":"2026-05-23T00:11:00Z","durationMs":100}',
+        '',
+      ].join('\n'),
+    );
+    writeFile(path.join(specFolder, 'research', 'iterations', 'iteration-1.md'), '# Iter 1\n');
+    writeFile(path.join(specFolder, 'research', 'iterations', 'iteration-2.md'), '# Iter 2\n');
+    writeFile(path.join(specFolder, 'research', 'iterations', 'iteration-10.md'), '# Iter 10\n');
+    writeFile(path.join(specFolder, 'research', 'iterations', 'iteration-11.md'), '# Iter 11\n');
+
+    const result = reducerModule.reduceResearchState(specFolder, { write: true });
+    expect(result.registry.metrics.iterationsCompleted).toBe(4);
+  });
 });

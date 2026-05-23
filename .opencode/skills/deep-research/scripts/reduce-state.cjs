@@ -871,7 +871,12 @@ function reduceResearchState(specFolder, options = {}) {
   const iterationFiles = fs.existsSync(iterationDir)
     ? fs.readdirSync(iterationDir)
         .filter((fileName) => /^iteration-\d+\.md$/.test(fileName))
-        .sort()
+        .sort((a, b) => {
+          // DR-006: numeric sort on trailing iter number; default .sort() puts iteration-10.md between iteration-1.md and iteration-2.md.
+          const numA = parseInt(a.match(/iteration-(\d+)\.md$/)?.[1] ?? '0', 10);
+          const numB = parseInt(b.match(/iteration-(\d+)\.md$/)?.[1] ?? '0', 10);
+          return numA - numB;
+        })
         .map((fileName) => parseIterationFile(path.join(iterationDir, fileName)))
     : [];
 

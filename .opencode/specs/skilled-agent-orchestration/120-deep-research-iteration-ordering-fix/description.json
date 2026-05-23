@@ -1,0 +1,12 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/120-deep-research-iteration-ordering-fix",
+  "description": "Numeric-sort fix for DR-006 — replaces default lexical .sort() with regex-based numeric extractor in reduce-state.cjs:874. Regression test added.",
+  "keywords": ["120", "DR-006", "deep-research", "lexical-sort-fix", "reduce-state", "numeric-sort"],
+  "lastUpdated": "2026-05-23T05:45:00.000Z",
+  "specId": "120",
+  "folderSlug": "deep-research-iteration-ordering-fix",
+  "parentChain": ["skilled-agent-orchestration"],
+  "memorySequence": 120,
+  "memoryNameHistory": []
+}
