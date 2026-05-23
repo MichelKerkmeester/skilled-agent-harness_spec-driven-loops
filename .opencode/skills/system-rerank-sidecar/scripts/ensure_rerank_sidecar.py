@@ -31,32 +31,44 @@ from pathlib import Path
 from typing import Any
 
 try:
+    from scripts import sidecar_ledger
     from scripts.sidecar_ledger import (
         SidecarLedgerRow,
         add_sidecar_row,
+        current_owner_identity,
         default_state_dir,
         find_reusable_sidecar,
+        locked_register_owner,
         load_or_create_owner_token,
         now_iso,
+        process_liveness,
         reclaim_stale,
+        should_reap_row,
     )
 except ModuleNotFoundError:  # pragma: no cover - direct script execution
+    import sidecar_ledger  # type: ignore[no-redef]
     from sidecar_ledger import (  # type: ignore[no-redef]
         SidecarLedgerRow,
         add_sidecar_row,
+        current_owner_identity,
         default_state_dir,
         find_reusable_sidecar,
+        locked_register_owner,
         load_or_create_owner_token,
         now_iso,
+        process_liveness,
         reclaim_stale,
+        should_reap_row,
     )
 
 DEFAULT_PORT = 8765
 DEFAULT_HEALTH_TIMEOUT_SECONDS = 20.0
+DEFAULT_REAP_HEALTH_TIMEOUT_SECONDS = 0.1
 MAX_HEALTH_BODY_BYTES = 65536  # 64KB to match JS ensure-rerank-sidecar.cjs
 SCRIPT_DIR = Path(__file__).resolve().parent
 SIDECAR_SKILL_PATH = SCRIPT_DIR.parent
 START_SCRIPT_PATH = SCRIPT_DIR / "start.sh"
+OWNER_SOURCE = "ensure_rerank_sidecar.py"
 
 
 def _log(message: str) -> None:
@@ -176,6 +188,135 @@ def _open_sidecar_log():
     return subprocess.DEVNULL
 
 
+def _reaper_health_timeout_seconds() -> float:
+    try:
+        parsed = float(os.environ.get("RERANK_SIDECAR_REAPER_HEALTH_TIMEOUT_MS", "")) / 1000.0
+    except ValueError:
+        return DEFAULT_REAP_HEALTH_TIMEOUT_SECONDS
+    return parsed if parsed > 0 else DEFAULT_REAP_HEALTH_TIMEOUT_SECONDS
+
+
+def _reaper_telemetry_path(state_dir: Path) -> Path:
+    configured = os.environ.get("RERANK_SIDECAR_REAPER_TELEMETRY_PATH", "").strip()
+    if configured:
+        return Path(configured).expanduser().resolve()
+    return Path.home() / "Library" / "Logs" / "spec-kit" / "sidecar-reaper.jsonl"
+
+
+def _write_reaper_telemetry(state_dir: Path, event: dict[str, Any]) -> None:
+    target = _reaper_telemetry_path(state_dir)
+    try:
+        target.parent.mkdir(parents=True, exist_ok=True)
+        with target.open("a", encoding="utf-8") as handle:
+            handle.write(json.dumps(event, sort_keys=True) + "\n")
+    except OSError:
+        return
+
+
+def _raw_ledger_payload(state_dir: Path) -> Any:
+    try:
+        return json.loads(sidecar_ledger.ledger_path(state_dir).read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {"version": sidecar_ledger.LEDGER_VERSION, "sidecars": []}
+
+
+def _raw_rows(payload: Any) -> list[Any]:
+    if isinstance(payload, list):
+        return payload
+    if not isinstance(payload, dict):
+        return []
+    if isinstance(payload.get("sidecars"), list):
+        return payload["sidecars"]
+    if isinstance(payload.get("rows"), list):
+        return payload["rows"]
+    return []
+
+
+def _row_pid(raw: Any) -> int | None:
+    if not isinstance(raw, dict):
+        return None
+    try:
+        pid = int(raw.get("pid", raw.get("sidecar_pid")))
+    except (TypeError, ValueError):
+        return None
+    return pid if pid > 0 else None
+
+
+def _raw_rows_missing_owners(raw_rows: list[Any]) -> set[int]:
+    missing: set[int] = set()
+    for raw in raw_rows:
+        pid = _row_pid(raw)
+        if pid is not None and isinstance(raw, dict) and "owners" not in raw:
+            missing.add(pid)
+    return missing
+
+
+def _write_raw_ledger_atomic_unlocked(state_dir: Path, raw_rows: list[Any]) -> None:
+    state_dir.mkdir(parents=True, exist_ok=True)
+    target = sidecar_ledger.ledger_path(state_dir)
+    fd, temp_name = tempfile.mkstemp(
+        prefix=f"{sidecar_ledger.LEDGER_FILE_NAME}.tmp.{os.getpid()}.",
+        dir=str(state_dir),
+        text=True,
+    )
+    temp_path = Path(temp_name)
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as handle:
+            json.dump({"version": sidecar_ledger.LEDGER_VERSION, "sidecars": raw_rows}, handle, indent=2, sort_keys=True)
+            handle.write("\n")
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temp_path, target)
+    except Exception:
+        try:
+            temp_path.unlink()
+        except OSError:
+            pass
+        raise
+
+
+def preflight_reap_sidecars(state_dir: Path) -> list[SidecarLedgerRow]:
+    """Reap ledger-managed sidecars whose registered owners are dead and health is unreachable."""
+    timeout_seconds = _reaper_health_timeout_seconds()
+    with sidecar_ledger._locked_ledger(state_dir):  # type: ignore[attr-defined]
+        payload = _raw_ledger_payload(state_dir)
+        raw_rows = _raw_rows(payload)
+        missing_owner_rows = _raw_rows_missing_owners(raw_rows)
+        rows = sidecar_ledger._read_ledger_unlocked(state_dir)  # type: ignore[attr-defined]
+        reaped: list[SidecarLedgerRow] = []
+        reaped_pids: set[int] = set()
+
+        for row in rows:
+            if row.pid in missing_owner_rows:
+                continue
+            if not should_reap_row(row, owner_liveness_check=process_liveness):
+                continue
+            if is_healthy(row.port, timeout_seconds=timeout_seconds):
+                continue
+            try:
+                os.kill(row.pid, signal.SIGTERM)
+            except OSError:
+                pass
+            reaped.append(row)
+            reaped_pids.add(row.pid)
+            _write_reaper_telemetry(
+                state_dir,
+                {
+                    "timestamp": now_iso(),
+                    "event": "launcher-preflight-reap",
+                    "pid": row.pid,
+                    "port": row.port,
+                    "owner_count": len(row.owners),
+                    "reason": "owners-dead-health-unreachable",
+                },
+            )
+
+        if reaped_pids:
+            kept_raw_rows = [raw for raw in raw_rows if _row_pid(raw) not in reaped_pids]
+            _write_raw_ledger_atomic_unlocked(state_dir, kept_raw_rows)
+        return reaped
+
+
 def _terminate_process_group(proc: subprocess.Popen[Any], grace_seconds: float = 2.0) -> str:
     """Terminate a spawned sidecar session before returning degraded fallback."""
     try:
@@ -225,6 +366,8 @@ def ensure_rerank_sidecar(
     state_dir = default_state_dir()
     owner_token = _owner_token(skill_path, state_dir)
     config_hash = _canonical_config_hash(resolved_port)
+    owner = current_owner_identity(source=OWNER_SOURCE)
+    preflight_reap_sidecars(state_dir)
     reusable, classifications = find_reusable_sidecar(
         state_dir,
         expected_owner_token=owner_token,
@@ -237,6 +380,7 @@ def ensure_rerank_sidecar(
         ),
     )
     if reusable is not None:
+        locked_register_owner(state_dir, sidecar_pid=reusable.pid, source=OWNER_SOURCE)
         return {
             "spawned": False,
             "port": reusable.port,
@@ -276,6 +420,7 @@ def ensure_rerank_sidecar(
         lastHealthIso=now_iso(),
         executablePath=sys.executable,
         canonicalConfigHash=config_hash,
+        owners=(owner,),
     )
     add_sidecar_row(state_dir, row)
 

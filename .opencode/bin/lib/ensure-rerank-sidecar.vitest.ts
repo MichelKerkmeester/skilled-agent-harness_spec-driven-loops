@@ -1,5 +1,5 @@
 import { spawn } from 'node:child_process';
-import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
@@ -13,9 +13,14 @@ const {
   writeLedger,
   healthPayload,
   processLiveness,
+  shouldReapRow,
+  reapStaleSidecars,
+  readLedger,
+  canonicalConfigHash,
 } = require('./ensure-rerank-sidecar.cjs');
 
 const MODULE_PATH = fileURLToPath(new URL('./ensure-rerank-sidecar.cjs', import.meta.url));
+const FIXTURE_PATH = fileURLToPath(new URL('../../skills/system-rerank-sidecar/tests/fixtures/reaper-ledger-cases.json', import.meta.url));
 
 type HealthStep = 200 | 'error';
 
@@ -58,6 +63,42 @@ function createHttpMock(steps: HealthStep[]) {
   return { get };
 }
 
+function createHealthPayloadHttpMock(steps: Array<Record<string, unknown> | 'error'>) {
+  const get = vi.fn((_options, callback) => {
+    const handlers = new Map<string, Function>();
+    const req = {
+      on: vi.fn((event: string, handler: Function) => {
+        handlers.set(event, handler);
+        return req;
+      }),
+      destroy: vi.fn(),
+    };
+
+    const step = steps.shift() ?? 'error';
+    queueMicrotask(() => {
+      if (step === 'error') {
+        handlers.get('error')?.(new Error('ECONNREFUSED'));
+        return;
+      }
+      const body = JSON.stringify(step);
+      callback({
+        statusCode: 200,
+        resume: vi.fn(),
+        setEncoding: vi.fn(),
+        on: vi.fn((event: string, handler: Function) => {
+          if (event === 'data') queueMicrotask(() => handler(body));
+          if (event === 'end') queueMicrotask(() => handler());
+          return callback;
+        }),
+      });
+    });
+
+    return req;
+  });
+
+  return { get };
+}
+
 function createFsMock(startScriptExists: boolean) {
   return {
     existsSync: vi.fn(() => startScriptExists),
@@ -75,10 +116,54 @@ function createFsMock(startScriptExists: boolean) {
 
 function createProcessMock(env: Record<string, string> = {}) {
   return {
+    pid: 4321,
+    execPath: process.execPath,
     env,
     kill: vi.fn(),
     stderr: { write: vi.fn() },
   };
+}
+
+function fixtureCases() {
+  const payload = JSON.parse(readFileSync(FIXTURE_PATH, 'utf8'));
+  expect(payload.version).toBe(1);
+  return payload.cases as Array<any>;
+}
+
+function createFixtureProcessMock(table: Record<string, any>) {
+  const killed: Array<[number, string | number | undefined]> = [];
+  const processMock = createProcessMock();
+  processMock.kill = vi.fn((pid: number, signal?: string | number) => {
+    if (signal !== 0) {
+      killed.push([pid, signal]);
+      return;
+    }
+    const entry = table[String(pid)];
+    const mode = entry?.kill ?? 'esrch';
+    if (mode === 'ok') return;
+    if (mode === 'eperm') {
+      throw Object.assign(new Error('mock eperm'), { code: 'EPERM' });
+    }
+    if (mode === 'unknown') {
+      throw Object.assign(new Error('mock unknown'), { code: String(entry.errno ?? 'UNKNOWN') });
+    }
+    throw Object.assign(new Error('mock esrch'), { code: 'ESRCH' });
+  });
+  return { processMock, killed };
+}
+
+function createFixtureExecSync(table: Record<string, any>) {
+  return vi.fn((command: string) => {
+    if (command.includes('$$')) {
+      return 'Sat May 23 10:30:02 2026 node\n';
+    }
+    const match = command.match(/-p\s+(\d+)/);
+    const entry = match ? table[match[1]] : null;
+    if (!entry || !entry.ps_create_timestamp) {
+      throw new Error('missing ps entry');
+    }
+    return `${entry.ps_create_timestamp} ${entry.ps_comm}\n`;
+  });
 }
 
 describe('ensureRerankSidecar', () => {
@@ -347,6 +432,216 @@ describe('ensureRerankSidecar — F49 child environment allowlist', () => {
   });
 });
 
+describe('Layer D launcher pre-flight reap parity fixtures', () => {
+  it.each(fixtureCases())('matches Python fixture decision for $name', (fixtureCase) => {
+    const stateDir = mkdtempSync(path.join(tmpdir(), 'rerank-ledger-fixture-'));
+    try {
+      writeFileSync(
+        path.join(stateDir, '.sidecar-ledger.json'),
+        `${JSON.stringify({
+          version: fixtureCase.ledger_state.schema_version,
+          rows: fixtureCase.ledger_state.rows,
+        })}\n`,
+      );
+      const rows = readLedger(stateDir, { readFileSync }) as Array<any>;
+      const row = rows[0];
+      const { processMock } = createFixtureProcessMock(fixtureCase.process_table);
+      const execSync = createFixtureExecSync(fixtureCase.process_table);
+
+      const observedLiveness: Record<string, string> = {};
+      for (const owner of row.owners) {
+        const result = processLiveness(owner.pid, processMock, owner.createTimestamp, owner.comm, { execSync });
+        observedLiveness[`pid_${owner.pid}`] = result.reason;
+      }
+
+      expect(observedLiveness).toEqual(fixtureCase.expected_liveness);
+      expect(shouldReapRow(row, processMock, { execSync })).toBe(fixtureCase.expected_reap_decision);
+    } finally {
+      rmSync(stateDir, { recursive: true, force: true });
+    }
+  });
+
+  it('reaps owners-dead rows only when health is unreachable', async () => {
+    const stateDir = mkdtempSync(path.join(tmpdir(), 'rerank-preflight-reap-'));
+    try {
+      writeFileSync(
+        path.join(stateDir, '.sidecar-ledger.json'),
+        JSON.stringify({
+          version: 2,
+          sidecars: [
+            {
+              pid: 5002,
+              port: 8766,
+              ownerToken: 'owner-a',
+              startedAtIso: '2026-05-23T10:00:00Z',
+              lastHealthIso: '2026-05-23T10:00:00Z',
+              executablePath: '/usr/bin/python3',
+              canonicalConfigHash: 'hash-a',
+              owners: [
+                {
+                  pid: 1002,
+                  createTimestamp: 'Sat May 23 10:02:02 2026',
+                  comm: 'python',
+                  ownerId: 'pytest:1002:Sat May 23 10:02:02 2026:python',
+                  registeredAtIso: '2026-05-23T10:02:03Z',
+                  lastSeenIso: '2026-05-23T10:02:03Z',
+                  source: 'pytest',
+                },
+              ],
+            },
+          ],
+        }),
+      );
+      const { processMock, killed } = createFixtureProcessMock({ 1002: { kill: 'esrch' } });
+
+      const reaped = await reapStaleSidecars(
+        stateDir,
+        { http: createHealthPayloadHttpMock(['error']) },
+        processMock,
+        { ...require('node:fs'), appendFileSync: vi.fn() },
+        { homedir: vi.fn(() => stateDir) },
+      );
+
+      expect(reaped.map((row: any) => row.pid)).toEqual([5002]);
+      expect(killed).toEqual([[5002, 'SIGTERM']]);
+      expect(readLedger(stateDir, require('node:fs'))).toEqual([]);
+    } finally {
+      rmSync(stateDir, { recursive: true, force: true });
+    }
+  });
+
+  it('does not kill a health-unreachable sidecar while any owner is live', async () => {
+    const stateDir = mkdtempSync(path.join(tmpdir(), 'rerank-preflight-live-owner-'));
+    try {
+      writeFileSync(
+        path.join(stateDir, '.sidecar-ledger.json'),
+        JSON.stringify({
+          version: 2,
+          sidecars: [
+            {
+              pid: 5004,
+              port: 8768,
+              ownerToken: 'owner-a',
+              startedAtIso: '2026-05-23T10:00:00Z',
+              lastHealthIso: '2026-05-23T10:00:00Z',
+              executablePath: '/usr/bin/python3',
+              canonicalConfigHash: 'hash-a',
+              owners: [
+                {
+                  pid: 1005,
+                  createTimestamp: 'Sat May 23 10:05:02 2026',
+                  comm: 'python',
+                  ownerId: 'pytest:1005:Sat May 23 10:05:02 2026:python',
+                  registeredAtIso: '2026-05-23T10:05:03Z',
+                  lastSeenIso: '2026-05-23T10:05:03Z',
+                  source: 'pytest',
+                },
+              ],
+            },
+          ],
+        }),
+      );
+      const { processMock, killed } = createFixtureProcessMock({
+        1005: {
+          kill: 'ok',
+          ps_create_timestamp: 'Sat May 23 10:05:02 2026',
+          ps_comm: 'python',
+        },
+      });
+
+      const reaped = await reapStaleSidecars(
+        stateDir,
+        {
+          execSync: createFixtureExecSync({
+            1005: {
+              ps_create_timestamp: 'Sat May 23 10:05:02 2026',
+              ps_comm: 'python',
+            },
+          }),
+          http: createHealthPayloadHttpMock(['error']),
+        },
+        processMock,
+        { ...require('node:fs'), appendFileSync: vi.fn() },
+        { homedir: vi.fn(() => stateDir) },
+      );
+
+      expect(reaped).toEqual([]);
+      expect(killed).toEqual([]);
+      expect((readLedger(stateDir, require('node:fs')) as Array<any>).map((row) => row.pid)).toEqual([5004]);
+    } finally {
+      rmSync(stateDir, { recursive: true, force: true });
+    }
+  });
+
+  it('migrates a healthy legacy v1 row by registering the current launcher owner', async () => {
+    const stateDir = mkdtempSync(path.join(tmpdir(), 'rerank-legacy-migration-'));
+    try {
+      const env = {
+        SPECKIT_CROSS_ENCODER: 'true',
+        RERANK_SIDECAR_STATE_DIR: stateDir,
+        RERANK_SIDECAR_OWNER_TOKEN: 'owner-a',
+      };
+      const configHash = canonicalConfigHash(8765, env);
+      writeFileSync(
+        path.join(stateDir, '.sidecar-ledger.json'),
+        JSON.stringify({
+          version: 1,
+          sidecars: [
+            {
+              pid: 5008,
+              port: 8765,
+              ownerToken: 'owner-a',
+              startedAtIso: '2026-05-23T10:00:00Z',
+              lastHealthIso: '2026-05-23T10:00:00Z',
+              executablePath: '/usr/bin/python3',
+              canonicalConfigHash: configHash,
+            },
+          ],
+        }),
+      );
+      const processMock = createProcessMock(env);
+      processMock.pid = 2222;
+      processMock.kill = vi.fn();
+      const execSyncMock = vi.fn(() => 'Sat May 23 10:30:02 2026 node\n');
+
+      const result = await ensureRerankSidecar({
+        deps: {
+          execSync: execSyncMock,
+          fs: require('node:fs'),
+          http: createHealthPayloadHttpMock([
+            {
+              status: 'ok',
+              owner_token_sha256: '95256875151043abdcafdd26fd390c650d6311e1d7185df477ce50736b6a5d0b',
+              canonical_config_hash: configHash,
+            },
+          ]),
+          os: { homedir: vi.fn(() => stateDir) },
+          process: processMock,
+          spawn: vi.fn(),
+        },
+      });
+
+      const payload = JSON.parse(readFileSync(path.join(stateDir, '.sidecar-ledger.json'), 'utf8'));
+      expect(result).toEqual({ spawned: false, port: 8765, ownerPid: 5008, ledger: 'healthy-reusable' });
+      expect(payload.version).toBe(2);
+      expect(payload.sidecars[0].owners).toHaveLength(1);
+      expect(payload.sidecars[0].owners[0]).toMatchObject({
+        pid: 2222,
+        createTimestamp: 'Sat May 23 10:30:02 2026',
+        comm: 'node',
+        source: 'ensure-rerank-sidecar.cjs',
+      });
+      expect(execSyncMock).toHaveBeenCalledWith(
+        'ps -p 2222 -o lstart=,comm=',
+        expect.objectContaining({ encoding: 'utf8' }),
+      );
+    } finally {
+      vi.restoreAllMocks();
+      rmSync(stateDir, { recursive: true, force: true });
+    }
+  });
+});
+
 describe('healthPayload — F85 body cap', () => {
   it.skip('resolves null when response body exceeds MAX_HEALTH_BODY_BYTES (64KB)', async () => {
     let capturedReq: any = null;
@@ -434,13 +729,13 @@ describe('healthPayload — F85 body cap', () => {
 });
 
 describe('processLiveness — F88 explicit error handling', () => {
-  it('returns alive with reason for successful kill signal', () => {
+  it('returns alive unknown when kill succeeds but no recorded identity is available', () => {
     const processMock = createProcessMock();
     processMock.kill = vi.fn();
 
     const result = processLiveness(1234, processMock);
 
-    expect(result).toEqual({ alive: true, reason: 'kill-success' });
+    expect(result).toEqual({ alive: true, reason: 'unknown' });
     expect(processMock.kill).toHaveBeenCalledWith(1234, 0);
   });
 
@@ -451,7 +746,7 @@ describe('processLiveness — F88 explicit error handling', () => {
 
     const result = processLiveness(1234, processMock);
 
-    expect(result).toEqual({ alive: false, reason: 'esrch' });
+    expect(result).toEqual({ alive: false, reason: 'kill-0-esrch' });
     expect(processMock.kill).toHaveBeenCalledWith(1234, 0);
   });
 
@@ -460,13 +755,19 @@ describe('processLiveness — F88 explicit error handling', () => {
     const epermError = Object.assign(new Error('Operation not permitted'), { code: 'EPERM' });
     processMock.kill = vi.fn(() => { throw epermError; });
 
-    const result = processLiveness(1234, processMock);
+    const result = processLiveness(
+      1234,
+      processMock,
+      'Sat May 23 10:07:02 2026',
+      'node',
+      { execSync: vi.fn(() => 'Sat May 23 10:07:02 2026 node\n') },
+    );
 
-    expect(result).toEqual({ alive: true, reason: 'eperm-other-owner' });
+    expect(result).toEqual({ alive: true, reason: 'kill-0-eperm' });
     expect(processMock.kill).toHaveBeenCalledWith(1234, 0);
   });
 
-  it('returns alive with unknown-default-alive reason and logs stderr for unknown error codes (F88)', () => {
+  it('returns alive with unknown reason and logs stderr for unknown error codes (F88)', () => {
     const processMock = createProcessMock();
     const unknownError = Object.assign(new Error('Unknown error'), { code: 'UNKNOWN' });
     processMock.kill = vi.fn(() => { throw unknownError; });
@@ -475,12 +776,40 @@ describe('processLiveness — F88 explicit error handling', () => {
 
     expect(result).toEqual({
       alive: true,
-      reason: 'unknown-default-alive',
+      reason: 'unknown',
       errorCode: 'UNKNOWN',
     });
     expect(processMock.kill).toHaveBeenCalledWith(1234, 0);
     expect(processMock.stderr.write).toHaveBeenCalledWith(
       '[processLiveness] unexpected error code UNKNOWN for pid 1234\n'
     );
+  });
+
+  it('returns dead when PID identity indicates recycling', () => {
+    const processMock = createProcessMock();
+    processMock.kill = vi.fn();
+
+    const result = processLiveness(
+      1234,
+      processMock,
+      'Sat May 23 10:07:02 2026',
+      'node',
+      { execSync: vi.fn(() => 'Sat May 23 10:17:02 2026 zsh\n') },
+    );
+
+    expect(result).toEqual({ alive: false, reason: 'pid-recycled' });
+  });
+
+  it('returns dead for PID 1 before kill checks', () => {
+    const processMock = createProcessMock();
+    processMock.kill = vi.fn(() => {
+      throw new Error('PID 1 should not be signalled');
+    });
+
+    expect(processLiveness(1, processMock, 'Sat May 23 10:07:02 2026', 'launchd')).toEqual({
+      alive: false,
+      reason: 'pid-1-orphaned',
+    });
+    expect(processMock.kill).not.toHaveBeenCalled();
   });
 });
