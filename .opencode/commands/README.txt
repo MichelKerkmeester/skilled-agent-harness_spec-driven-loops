@@ -75,7 +75,7 @@ command/
 │   ├── changelog.md          # Create changelog entry
 │   ├── feature-catalog.md    # Create or update feature catalog package
 │   ├── folder_readme.md      # Create folder README
-│   ├── sk-skill.md           # Create or update skill package/files
+│   ├── skill.md              # Create or update skill package/files
 │   ├── testing-playbook.md   # Create or update manual testing playbook package
 │   └── assets/               # YAML workflow definitions (12 files)
 ├── doctor/                   # MCP server diagnostic and install commands
@@ -120,7 +120,7 @@ Scaffold OpenCode components using the `sk-doc` skill. Each command supports `:a
 | Changelog | `/create:changelog <spec-folder-or-component>` | Create a changelog entry from recent work |
 | Feature Catalog | `/create:feature-catalog <skill> [create\|update]` | Create or update a rooted `feature_catalog/` package |
 | Folder README | `/create:folder_readme [readme\|install] <target>` | Unified README and install guide workflow |
-| Skill | `/create:sk-skill <name> <operation> [type]` | Unified skill create/update/reference/asset workflow |
+| Skill | `/create:skill <name> <operation> [type]` | Unified skill create/update/reference/asset workflow |
 | Testing Playbook | `/create:testing-playbook <skill> [create\|update]` | Create or update a rooted `manual_testing_playbook/` package |
 
 ### Doctor Commands
@@ -191,7 +191,7 @@ Structured workflows for the spec folder development lifecycle.
 ```
 /create:feature-catalog system-spec-kit create :confirm
 /create:testing-playbook system-spec-kit update :auto
-/create:sk-skill my-new-skill full-create :auto
+/create:skill my-new-skill full-create :auto
 /memory:save specs/007-feature
 /spec_kit:plan "Add user authentication" :auto
 ```
