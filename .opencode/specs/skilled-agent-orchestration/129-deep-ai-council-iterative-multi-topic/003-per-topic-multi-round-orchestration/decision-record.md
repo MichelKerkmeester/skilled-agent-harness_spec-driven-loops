@@ -8,17 +8,19 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/003-per-topic-multi-round-orchestration"
-    last_updated_at: "2026-05-23T09:30:00Z"
+    last_updated_at: "2026-05-23T07:53:20Z"
     last_updated_by: "codex"
-    recent_action: "Scaffold 003-per-topic-multi-round-orchestration for Wave 6 dispatch"
-    next_safe_action: "dispatch Wave 6 phase 003"
+    recent_action: "orchestrate-topic + orchestrate-session authored, 5 tests PASS"
+    next_safe_action: "dispatch F3 -- 129/004 multi-topic session + registry"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/deep-ai-council/scripts/orchestrate-topic.cjs"
+      - ".opencode/skills/deep-ai-council/scripts/orchestrate-session.cjs"
     session_dedup:
       fingerprint: "sha256:1290160000000000000000000000000000000000000000000000000000000006"
       session_id: "wave-5-e1-2026-05-23"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -28,7 +30,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 
 <!-- ANCHOR:adr-001 -->
-## ADR-001: Implementation-Specific Decision Placeholder
+## ADR-001: Consume F1 Primitives From Council Scripts
 
 ### Metadata
 
@@ -41,13 +43,13 @@ _memory:
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-Phase 001 ADRs define the architecture. This phase may need an implementation-specific decision after reading the target files.
+Phase 001 ADRs define the architecture. F1 placed shared primitives in `deep-loop-runtime/lib/council/`, while this phase owns council-specific orchestration under `deep-ai-council/scripts/`.
 <!-- /ANCHOR:adr-001-context -->
 
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-Pending Wave 6 implementation.
+Implement `orchestrate-topic.cjs` as the topic-local loop and `orchestrate-session.cjs` as the session wrapper. Both scripts consume F1 primitives directly and keep executor calls injectable for deterministic tests and future CLI dispatch wiring.
 <!-- /ANCHOR:adr-001-decision -->
 
 <!-- ANCHOR:adr-001-alternatives -->
@@ -55,13 +57,14 @@ Pending Wave 6 implementation.
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| Pending | Pending | Pending | n/a |
+| Direct primitive consumption | Minimal adapter code; matches ADR-001 boundary | Requires orchestration-specific tests here | 9/10 |
+| Add another runtime layer | Centralizes more logic | Reopens ADR-001 and duplicates F1 surface | 4/10 |
 <!-- /ANCHOR:adr-001-alternatives -->
 
 <!-- ANCHOR:adr-001-consequences -->
 ### Consequences
 
-Pending.
+The council skill now owns the per-topic and session loop contracts without modifying F1 runtime primitives. F3 can build the findings registry and broader multi-topic session command on top of these exports.
 <!-- /ANCHOR:adr-001-consequences -->
 
 <!-- ANCHOR:adr-001-five-checks -->
@@ -69,16 +72,16 @@ Pending.
 
 | Check | Result |
 |-------|--------|
-| Simplicity | Pending |
-| Scope | Pending |
-| Maintainability | Pending |
-| Testability | Pending |
-| Reversibility | Pending |
+| Simplicity | Pass - two focused scripts consume existing primitives. |
+| Scope | Pass - no changes outside allowed files and packet docs. |
+| Maintainability | Pass - executor/adjudicator boundaries are injected. |
+| Testability | Pass - 5 Vitest scenarios cover topic and session stops. |
+| Reversibility | Pass - new files can be removed without changing F1. |
 <!-- /ANCHOR:adr-001-five-checks -->
 
 <!-- ANCHOR:adr-001-impl -->
 ### Implementation
 
-Pending.
+Implemented in `.opencode/skills/deep-ai-council/scripts/orchestrate-topic.cjs` and `.opencode/skills/deep-ai-council/scripts/orchestrate-session.cjs`.
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
