@@ -24,7 +24,7 @@ def test_changelog_paths_detect_as_changelog() -> None:
 
 
 def test_real_skill_changelog_has_no_blocking_errors() -> None:
-    changelog_path = REPO_ROOT / ".opencode/skills/sk-ai-council/changelog/v1.0.0.0.md"
+    changelog_path = REPO_ROOT / ".opencode/skills/deep-ai-council/changelog/v1.0.0.0.md"
 
     result = validate_document(str(changelog_path), rules=load_rules())
 
