@@ -10,15 +10,15 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/002-runtime-primitive-extraction"
     last_updated_at: "2026-05-23T09:30:00Z"
     last_updated_by: "codex"
-    recent_action: "Scaffold 002-runtime-primitive-extraction for Wave 6 dispatch"
-    next_safe_action: "dispatch Wave 6 phase 002"
+    recent_action: "5 council primitives + 5 vitest harnesses authored"
+    next_safe_action: "dispatch F2 — 129/003 orchestration"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:1290010000000000000000000000000000000000000000000000000000000001"
       session_id: "wave-5-e1-2026-05-23"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -34,7 +34,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-05-23 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -68,11 +68,14 @@ Implement the phase slice defined by ADR-001, leaving unrelated packet work to l
 - Re-opening ADR-001..ADR-005 without an explicit new decision.
 - Editing packet 130 or packet 115.
 
-### Files to Change
+### Files Changed
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| See 001 research affected surface table | Modify/Create | Exact files are chosen by the Wave 6 implementer. |
+| `.opencode/skills/deep-loop-runtime/lib/council/*.cjs` | Create | Five council runtime primitives for dispatch, state, scoring, guards, and hierarchy. |
+| `.opencode/skills/deep-loop-runtime/tests/council/*.vitest.ts` | Create | Five targeted Vitest harnesses covering the primitive contracts. |
+| `.opencode/skills/deep-loop-runtime/SKILL.md` | Modify | Added Council Primitives section with ADR-001 rationale. |
+| `002-runtime-primitive-extraction/*` | Modify | Synchronized phase completion docs and validation evidence. |
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -129,6 +132,5 @@ Implement the phase slice defined by ADR-001, leaving unrelated packet work to l
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Implementation details pending Wave 6.
+- None. Phase 002 is complete and hands off to 129/003 orchestration.
 <!-- /ANCHOR:questions -->
-

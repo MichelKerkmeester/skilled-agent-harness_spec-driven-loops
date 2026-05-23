@@ -139,6 +139,19 @@ The runtime exposes deep-loop primitives to consumer workflows through two paths
 - `coverage-graph-query.ts` — query builders
 - `coverage-graph-signals.ts` — convergence signal extraction
 
+## Council Primitives
+
+Packet 129/001 ADR-001 extends `deep-loop-runtime/lib/` with council-compatible infrastructure primitives while keeping operator-facing and domain workflow semantics in `deep-ai-council`. These primitives are consumed by downstream packet 129 phases 003-006 for per-topic orchestration, multi-topic session state, command wiring, parity tests, and docs.
+
+**`lib/council/` (5 modules):**
+- `multi-seat-dispatch.cjs` — runs seat executors in parallel for one council round, preserves seat result order, and returns fulfilled/rejected per-seat outcomes plus round summary counts.
+- `round-state-jsonl.cjs` — appends per-round JSONL records with a lock-file single-writer guard, repairs corrupt trailing JSONL before append, fsyncs writes, and exposes round-state readers for resume.
+- `adjudicator-verdict-scoring.cjs` — scores Round-N -> Round-N+1 adjudicator verdict deltas using ADR-003 weights for option change, confidence delta, material-risk Jaccard delta, axis flip rate, and blocking-disagreement delta.
+- `cost-guards.cjs` — normalizes and enforces ADR-004 defaults for `max_rounds_per_topic`, `max_topics_per_session`, `saturation_threshold`, and `seats_per_round`, including upper-bound seat-output calculation.
+- `session-state-hierarchy.cjs` — creates and validates the ADR-002 session -> topic -> round state shape, including stable `topic-NNN-slug` and `round-NNN` ids.
+
+The existing `lib/deep-loop/atomic-state.ts`, `lib/deep-loop/jsonl-repair.ts`, and `lib/deep-loop/loop-lock.ts` remain the sibling runtime contracts. Council modules mirror those durability semantics in a council-scoped CJS surface so downstream `deep-ai-council` phases can consume them without modifying deep-review or deep-research behavior.
+
 ### Script Entry Points
 
 Four `.cjs` scripts replace the 4 deleted MCP tools, each honoring the same JSON-in / JSON-out contract documented in phase 003 ADR-001:
