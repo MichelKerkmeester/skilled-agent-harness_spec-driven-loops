@@ -1,0 +1,30 @@
+{
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/007-deep-review-phase5-backlog",
+  "description": "Phase parent closing the 22 deferred 003-deep-review phase-5 gaps via a doc child and a reducer child.",
+  "keywords": [
+    "phase",
+    "parent",
+    "closing",
+    "deferred",
+    "003-deep-review",
+    "phase-5",
+    "gaps",
+    "via",
+    "doc",
+    "child",
+    "reducer"
+  ],
+  "lastUpdated": "2026-05-23T19:03:46.958Z",
+  "specId": "007",
+  "folderSlug": "deep-review-phase5-backlog",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "131-deep-skill-evolution",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

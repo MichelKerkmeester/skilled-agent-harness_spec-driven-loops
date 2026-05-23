@@ -1,0 +1,31 @@
+{
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/007-deep-review-phase5-backlog/001-doc-cluster-remediation",
+  "description": "Doc-cluster backlog remediation: 6 feature_catalog entries for genuinely-open gaps, verified-closed annotations, won't-fix closures.",
+  "keywords": [
+    "doc-cluster",
+    "backlog",
+    "remediation",
+    "entries",
+    "genuinely-open",
+    "gaps",
+    "verified-closed",
+    "annotations",
+    "won",
+    "t-fix",
+    "closures"
+  ],
+  "lastUpdated": "2026-05-23T19:03:46.668Z",
+  "specId": "001",
+  "folderSlug": "doc-cluster-remediation",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "131-deep-skill-evolution",
+    "000-release-cleanup",
+    "007-deep-review-phase5-backlog"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -323,6 +323,35 @@ Pairs with `implementation-summary.md`, the summary narrates *what and why*. Thi
 | LG-0030 | iter-07 | P2 | No CP scenario for stuck detection and recovery flow | Scope expansion |
 | LG-0033 | iter-10 | P1 | JSONL schema enforcement gap (reducer parseJsonlDetailed validates syntax only, not required fields) | ADR-002 (reducer behavior change) |
 
+### Phase-5 backlog terminal states (007 remediation)
+
+The `007-deep-review-phase5-backlog` arc drives every deferred gap to a terminal state. Doc-cluster gaps are resolved by `007/001-doc-cluster-remediation`, reducer gaps by `007/002-reducer-cluster-remediation`. LG-0013/LG-0016/LG-0031/LG-0032 were already closed by `006-gate-model-reconciliation`.
+
+| LG-#### | Terminal state | Evidence |
+|---|---|---|
+| LG-0009 | FIXED (007/001) | `feature_catalog/01--loop-lifecycle/07-resource-map-coverage-gate.md` |
+| LG-0010 | FIXED (007/001) | `feature_catalog/04--severity-system/06-convergence-signals.md` |
+| LG-0011 | FIXED (007/001) | `feature_catalog/04--severity-system/07-security-sensitive-fix-overrides.md` |
+| LG-0012 | FIXED (007/001) | `feature_catalog/01--loop-lifecycle/08-executor-selection-contract.md` |
+| LG-0014 | FIXED (007/001) | `feature_catalog/02--state-management/06-graph-convergence-event.md` |
+| LG-0015 | FIXED (007/001) | `feature_catalog/02--state-management/07-pause-sentinel.md` |
+| LG-0007 | ALREADY CLOSED | `references/state_format.md` lines 469-582 document searchCoverage/searchLedger/reviewDepthSchemaVersion |
+| LG-0028 | ALREADY CLOSED | DRV-006 (`step_migrate_legacy_review_state`) covers legacy state migration |
+| LG-0029 | ALREADY CLOSED | DRV-005 covers resume/restart/completed session classification |
+| LG-0030 | ALREADY CLOSED | DRV-019 covers stuck detection and recovery |
+| LG-0021 | WON'T FIX | Design-correct split: convergence thresholds live in YAML by intent, not config.json |
+| LG-0026 | WON'T FIX | Test-location is an architectural decision, not a docs gap |
+| LG-0027 | WON'T FIX | Historical changelog filename preserved per AF-0019 chronological fidelity |
+| LG-0001 | reducer (007/002) | userPaused / stuckRecovery event handling |
+| LG-0002 | reducer (007/002) | gate-name validation |
+| LG-0003 | reducer (007/002) | rollingAvg + madScore reads |
+| LG-0004 | reducer (007/002) | graphEvents handling (verify reducer-vs-MCP responsibility) |
+| LG-0005 | reducer (007/002) | scopeProof + affectedSurfaceHints |
+| LG-0006 | reducer (007/002) | traceabilityChecks handling |
+| LG-0008 | reducer (007/002) | content_hash two-tier dedup |
+| LG-0023 | reducer (007/002) | emitResourceMap main-flow integration (likely already landed, verify) |
+| LG-0033 | reducer (007/002) | parseJsonlDetailed required-field validation |
+
 ### Convergence signal
 
 | Iter | Novel | Dupes | Trend |

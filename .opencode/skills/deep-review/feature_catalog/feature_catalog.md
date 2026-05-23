@@ -25,10 +25,10 @@ Use this catalog as the canonical inventory for the live `deep-review` feature s
 
 | Category | Coverage | Primary Surfaces |
 |---|---:|---|
-| Loop lifecycle | 5 features | `SKILL.md`, `references/loop_protocol.md`, deep-review workflows |
-| State management | 5 features | `references/state_format.md`, review packet files, reducer outputs |
+| Loop lifecycle | 7 features | `SKILL.md`, `references/loop_protocol.md`, deep-review workflows |
+| State management | 7 features | `references/state_format.md`, review packet files, reducer outputs |
 | Review dimensions | 4 features | `assets/review_mode_contract.yaml`, `assets/deep_review_strategy.md` |
-| Severity system | 5 features | `references/convergence.md`, `references/state_format.md`, review contract |
+| Severity system | 7 features | `references/convergence.md`, `references/state_format.md`, review contract |
 
 ---
 
@@ -132,6 +132,38 @@ See [`01--loop-lifecycle/06-resource-map-emission.md`](01--loop-lifecycle/06-res
 
 ---
 
+### Resource Map Coverage Gate
+
+#### Description
+
+Reports how well the review covered the artifacts declared in the spec folder's `resource-map.md` before a verdict is finalized.
+
+#### Current Reality
+
+A conditional synthesis section emitted only when `config.resource_map_present == true`, inserted as section 8 of the review report. It reports touched entries, untouched entries (`expected-by-scope` vs `gap`), and implementation paths absent from the map. It is descriptive and does not by itself block STOP.
+
+#### Source Files
+
+See [`01--loop-lifecycle/07-resource-map-coverage-gate.md`](01--loop-lifecycle/07-resource-map-coverage-gate.md) for full implementation and validation file listings.
+
+---
+
+### Executor selection contract
+
+#### Description
+
+Resolves which executor runs each iteration and enforces per-kind flag compatibility before dispatch.
+
+#### Current Reality
+
+`parseExecutorConfig` resolves `config.executor.kind` into one of four dispatch branches (`native`, `cli-codex`, `cli-gemini`, `cli-claude-code`). Unsupported flags throw `ExecutorConfigError` at parse time. All branches share prompt rendering, output validation, and executor audit append.
+
+#### Source Files
+
+See [`01--loop-lifecycle/08-executor-selection-contract.md`](01--loop-lifecycle/08-executor-selection-contract.md) for full implementation and validation file listings.
+
+---
+
 ## 3. STATE MANAGEMENT
 
 These entries describe the review packet files, how they change over time, and how reducer-owned state feeds the loop, dashboard, and synthesis surfaces.
@@ -213,6 +245,38 @@ Publishes the current review status as a machine-owned summary surface.
 #### Source Files
 
 See [`02--state-management/05-dashboard.md`](02--state-management/05-dashboard.md) for full implementation and validation file listings.
+
+---
+
+### Graph convergence event
+
+#### Description
+
+A first-class `deep-review-state.jsonl` event recording the graph-assisted STOP decision before the inline vote can finalize STOP.
+
+#### Current Reality
+
+The workflow appends a `graph_convergence` event carrying a `decision` enum (`STOP_ALLOWED`, `STOP_BLOCKED`, `CONTINUE`), a signal snapshot, and blockers. Final STOP is legal only when the inline decision says STOP and the latest graph decision is `STOP_ALLOWED`. The reducer rolls these into the findings-registry graph-convergence history.
+
+#### Source Files
+
+See [`02--state-management/06-graph-convergence-event.md`](02--state-management/06-graph-convergence-event.md) for full implementation and validation file listings.
+
+---
+
+### Pause sentinel
+
+#### Description
+
+File-based graceful suspension that halts the autonomous loop between iterations and emits a normalized `userPaused` event.
+
+#### Current Reality
+
+Step 2a checks for `review/.deep-review-pause` before each dispatch. When present, the loop logs a `userPaused` event and halts until the operator deletes the file, then resumes from persisted state. A normalization rule rewrites raw `paused` and `stuck_recovery` conditions to `userPaused` and `stuckRecovery` before they are persisted.
+
+#### Source Files
+
+See [`02--state-management/07-pause-sentinel.md`](02--state-management/07-pause-sentinel.md) for full implementation and validation file listings.
 
 ---
 
@@ -365,3 +429,35 @@ The legal-stop bundle combines evidence, scope, coverage, P0 resolution, evidenc
 #### Source Files
 
 See [`04--severity-system/05-quality-gates.md`](04--severity-system/05-quality-gates.md) for full implementation and validation file listings.
+
+---
+
+### Semantic convergence signals
+
+#### Description
+
+Two supplementary stop signals (semanticNovelty and findingStability) that measure conceptual novelty and finding-set stability beyond the severity-weighted composite vote.
+
+#### Current Reality
+
+`semanticNovelty` measures conceptually new insight per iteration, and a plateau below 0.15 for 2+ consecutive evidence iterations supports STOP as a diagnostic sub-check. `findingStability` measures unchanged-finding ratio across iterations, where 0.85 and above supports STOP and below 0.50 prevents it. Both feed the legal-stop gate evaluation rather than the composite stop-score.
+
+#### Source Files
+
+See [`04--severity-system/06-convergence-signals.md`](04--severity-system/06-convergence-signals.md) for full implementation and validation file listings.
+
+---
+
+### Security-sensitive fix overrides
+
+#### Description
+
+A spec-only contract for tighter convergence thresholds and closed-gate replay on review reruns after security-sensitive fixes.
+
+#### Current Reality
+
+SPEC ONLY. The runtime does not auto-detect security sensitivity or apply these overrides today, and operators must enforce them manually. The target contract raises `minStabilizationPasses` to 2 and turns on `requiredClosedFindingReplay` and `requiredFixCompletenessGate`, requiring a closed-gate replay table before STOP once implemented.
+
+#### Source Files
+
+See [`04--severity-system/07-security-sensitive-fix-overrides.md`](04--severity-system/07-security-sensitive-fix-overrides.md) for full implementation and validation file listings.
