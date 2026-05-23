@@ -1,0 +1,170 @@
+{
+  "version": 1,
+  "packet": "010/004/001-investigate-and-design-reaper-architecture",
+  "generatedAt": "2026-05-23T10:45:00Z",
+  "findings": [
+    {
+      "id": "F001",
+      "fingerprint": "lifecycle:cocoindex-client:daemon-detaches-with-start-new-session",
+      "severity": "P1",
+      "status": "confirmed",
+      "claim": "CocoIndex daemon startup detaches from the calling process group, so caller terminal death does not imply daemon death.",
+      "evidence": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/core/client.py:263",
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/core/client.py:327"
+      ],
+      "recommendedAction": "Keep daemon detach but do not rely on parent shell/process-group lifetime for rerank sidecar cleanup."
+    },
+    {
+      "id": "F002",
+      "fingerprint": "lifecycle:cocoindex-cli:mcp-default-ensures-sidecar",
+      "severity": "P1",
+      "status": "confirmed",
+      "claim": "CocoIndex MCP auto-ensures the rerank sidecar before server startup and defaults rerank-via-sidecar on.",
+      "evidence": [
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py:139",
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py:163",
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py:1196",
+        ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config/config.py:770"
+      ],
+      "recommendedAction": "Place pre-flight reap before Python ensure reuse/spawn so default-on MCP starts clean stale workers."
+    },
+    {
+      "id": "F003",
+      "fingerprint": "lifecycle:python-launcher:detached-sidecar-start-new-session",
+      "severity": "P0",
+      "status": "confirmed",
+      "claim": "The Python launcher detaches the rerank sidecar with start_new_session=True and writes a sidecar PID ledger row.",
+      "evidence": [
+        ".opencode/skills/system-rerank-sidecar/scripts/ensure_rerank_sidecar.py:263",
+        ".opencode/skills/system-rerank-sidecar/scripts/ensure_rerank_sidecar.py:269",
+        ".opencode/skills/system-rerank-sidecar/scripts/ensure_rerank_sidecar.py:271"
+      ],
+      "recommendedAction": "Keep detach and add owner registration plus pre-flight reap."
+    },
+    {
+      "id": "F004",
+      "fingerprint": "lifecycle:js-launcher:detached-spawn-unref",
+      "severity": "P0",
+      "status": "confirmed",
+      "claim": "The JS launcher detaches and unreferences the rerank sidecar, then writes a sidecar PID ledger row.",
+      "evidence": [
+        ".opencode/bin/lib/ensure-rerank-sidecar.cjs:391",
+        ".opencode/bin/lib/ensure-rerank-sidecar.cjs:392",
+        ".opencode/bin/lib/ensure-rerank-sidecar.cjs:400",
+        ".opencode/bin/lib/ensure-rerank-sidecar.cjs:401"
+      ],
+      "recommendedAction": "Keep detached warm-model reuse and add JS owner identity registration plus pre-flight reap."
+    },
+    {
+      "id": "F005",
+      "fingerprint": "lifecycle:start-sh:uvicorn-single-worker-exec",
+      "severity": "P1",
+      "status": "confirmed",
+      "claim": "The start script execs one uvicorn worker for the sidecar app, so each stale process can retain a model cache.",
+      "evidence": [
+        ".opencode/skills/system-rerank-sidecar/scripts/start.sh:88",
+        ".opencode/skills/system-rerank-sidecar/scripts/start.sh:89",
+        ".opencode/skills/system-rerank-sidecar/scripts/rerank_sidecar.py:90"
+      ],
+      "recommendedAction": "Keep workers=1 and ensure every stale worker has an automatic exit path."
+    },
+    {
+      "id": "F006",
+      "fingerprint": "lifecycle:ledger:schema-lacks-owner-identity-list",
+      "severity": "P0",
+      "status": "confirmed",
+      "claim": "The ledger schema records sidecar process data and owner token but no owner PID identity list.",
+      "evidence": [
+        ".opencode/skills/system-rerank-sidecar/scripts/sidecar_ledger.py:32",
+        ".opencode/skills/system-rerank-sidecar/scripts/sidecar_ledger.py:40",
+        ".opencode/skills/system-rerank-sidecar/scripts/sidecar_ledger.py:60",
+        ".opencode/skills/system-rerank-sidecar/scripts/sidecar_ledger.py:69"
+      ],
+      "recommendedAction": "Extend ledger rows with versioned owners array containing pid, createTimestamp, comm, registeredAtIso, lastSeenIso, and source."
+    },
+    {
+      "id": "F007",
+      "fingerprint": "lifecycle:ledger:reclaim-stale-removes-dead-sidecar-rows-only",
+      "severity": "P0",
+      "status": "confirmed",
+      "claim": "Python reclaim_stale removes ledger rows only when the sidecar PID is already dead.",
+      "evidence": [
+        ".opencode/skills/system-rerank-sidecar/scripts/sidecar_ledger.py:263",
+        ".opencode/skills/system-rerank-sidecar/scripts/sidecar_ledger.py:270",
+        ".opencode/skills/system-rerank-sidecar/scripts/sidecar_ledger.py:272"
+      ],
+      "recommendedAction": "Add a process reaper predicate based on all owners dead plus health/config state, not only dead sidecar PID cleanup."
+    },
+    {
+      "id": "F008",
+      "fingerprint": "lifecycle:js-launcher:reuse-gc-keeps-alive-ownerless-sidecars",
+      "severity": "P0",
+      "status": "confirmed",
+      "claim": "JS reuse cleanup keeps alive sidecar rows and drops only rows whose sidecar PID is dead.",
+      "evidence": [
+        ".opencode/bin/lib/ensure-rerank-sidecar.cjs:332",
+        ".opencode/bin/lib/ensure-rerank-sidecar.cjs:336",
+        ".opencode/bin/lib/ensure-rerank-sidecar.cjs:337",
+        ".opencode/bin/lib/ensure-rerank-sidecar.cjs:347"
+      ],
+      "recommendedAction": "Run JS pre-flight reap before findReusableSidecar returns or spawn starts."
+    },
+    {
+      "id": "F009",
+      "fingerprint": "lifecycle:python-launcher:reuse-classification-is-sidecar-process-centric",
+      "severity": "P0",
+      "status": "confirmed",
+      "claim": "Python reuse classification checks sidecar PID, owner token, config hash, and health, but no owner-death predicate.",
+      "evidence": [
+        ".opencode/skills/system-rerank-sidecar/scripts/sidecar_ledger.py:241",
+        ".opencode/skills/system-rerank-sidecar/scripts/sidecar_ledger.py:249",
+        ".opencode/skills/system-rerank-sidecar/scripts/sidecar_ledger.py:254",
+        ".opencode/skills/system-rerank-sidecar/scripts/sidecar_ledger.py:258",
+        ".opencode/skills/system-rerank-sidecar/scripts/sidecar_ledger.py:276"
+      ],
+      "recommendedAction": "Mirror JS pre-flight reap and owner pruning in Python."
+    },
+    {
+      "id": "F010",
+      "fingerprint": "lifecycle:app:no-owner-heartbeat-or-idle-exit",
+      "severity": "P0",
+      "status": "confirmed",
+      "claim": "The FastAPI sidecar has shutdown cleanup but no owner heartbeat or idle self-exit.",
+      "evidence": [
+        ".opencode/skills/system-rerank-sidecar/scripts/rerank_sidecar.py:230",
+        ".opencode/skills/system-rerank-sidecar/scripts/rerank_sidecar.py:235",
+        ".opencode/skills/system-rerank-sidecar/scripts/rerank_sidecar.py:247",
+        ".opencode/skills/system-rerank-sidecar/scripts/rerank_sidecar.py:289"
+      ],
+      "recommendedAction": "Add lifespan-managed background reaper task plus idle/in-flight accounting."
+    },
+    {
+      "id": "F011",
+      "fingerprint": "lifecycle:health:token-and-config-prove-reuse-not-owner-liveness",
+      "severity": "P1",
+      "status": "confirmed",
+      "claim": "Health returns owner token hash and config hash for reuse matching, but no owner liveness, idle, or in-flight state.",
+      "evidence": [
+        ".opencode/skills/system-rerank-sidecar/scripts/rerank_sidecar.py:247",
+        ".opencode/skills/system-rerank-sidecar/scripts/rerank_sidecar.py:257",
+        ".opencode/skills/system-rerank-sidecar/scripts/rerank_sidecar.py:258",
+        ".opencode/skills/system-rerank-sidecar/scripts/rerank_sidecar.py:259"
+      ],
+      "recommendedAction": "Extend health or telemetry with reaper state without making health polls reset idle."
+    },
+    {
+      "id": "F012",
+      "fingerprint": "lifecycle:python-launcher:healthy-port-collision-can-spawn-new-port",
+      "severity": "P1",
+      "status": "confirmed",
+      "claim": "Python shifts to a new port when the configured port is healthy but not reusable, which can allow stale sidecars to survive while another sidecar starts.",
+      "evidence": [
+        ".opencode/skills/system-rerank-sidecar/scripts/ensure_rerank_sidecar.py:247",
+        ".opencode/skills/system-rerank-sidecar/scripts/ensure_rerank_sidecar.py:248",
+        ".opencode/skills/system-rerank-sidecar/scripts/ensure_rerank_sidecar.py:249"
+      ],
+      "recommendedAction": "Run pre-flight reap and migration before choosing a fallback port."
+    }
+  ]
+}
