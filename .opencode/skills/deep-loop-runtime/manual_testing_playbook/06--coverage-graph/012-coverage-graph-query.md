@@ -7,6 +7,8 @@ description: "Manual validation scenario for Coverage graph query in the deep-lo
 
 This document captures the realistic user-testing contract, execution flow, and metadata for `DLR-012`.
 
+---
+
 ## 1. OVERVIEW
 
 Builds coverage-gap, contradiction, provenance-chain, unverified-claim, and hot-node read models.
@@ -38,7 +40,7 @@ Graph state is the convergence evidence layer for deep-review and deep-research.
 ### Steps
 
 1. Inspect `lib/coverage-graph/coverage-graph-query.ts` for the implementation contract.
-2. Inspect `tests/integration/query-script.vitest.ts` for the primary regression coverage.
+2. Inspect `tests/unit/coverage-graph-query.vitest.ts` for the primary unit regression coverage, and `tests/integration/query-script.vitest.ts` for end-to-end script-surface coverage.
 3. Run or inspect the matching test assertions for this feature.
 4. Capture the source lines, command output, or test assertions that prove the expected signals.
 5. Record PASS, PARTIAL, FAIL, or SKIP with rationale.
@@ -68,7 +70,8 @@ Coverage graph query matches the documented current reality, the source anchors 
 
 | File | Role |
 |---|---|
-| `tests/integration/query-script.vitest.ts` | Primary regression coverage for Coverage graph query. |
+| `tests/unit/coverage-graph-query.vitest.ts` | Primary unit regression coverage for Coverage graph query (8 tests). |
+| `tests/integration/query-script.vitest.ts` | End-to-end script-surface coverage for Coverage graph query. |
 
 ---
 

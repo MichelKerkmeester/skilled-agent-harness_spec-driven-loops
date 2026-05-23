@@ -7,6 +7,8 @@ description: "Manual validation scenario for Coverage graph signals in the deep-
 
 This document captures the realistic user-testing contract, execution flow, and metadata for `DLR-013`.
 
+---
+
 ## 1. OVERVIEW
 
 Computes convergence signals, node centrality signals, snapshots, and momentum for research and review graphs.
@@ -38,7 +40,7 @@ Graph state is the convergence evidence layer for deep-review and deep-research.
 ### Steps
 
 1. Inspect `lib/coverage-graph/coverage-graph-signals.ts` for the implementation contract.
-2. Inspect `tests/integration/convergence-script.vitest.ts` for the primary regression coverage.
+2. Inspect `tests/unit/coverage-graph-signals.vitest.ts` for the primary unit regression coverage, and `tests/integration/convergence-script.vitest.ts` for end-to-end script-surface coverage.
 3. Run or inspect the matching test assertions for this feature.
 4. Capture the source lines, command output, or test assertions that prove the expected signals.
 5. Record PASS, PARTIAL, FAIL, or SKIP with rationale.
@@ -68,7 +70,8 @@ Coverage graph signals matches the documented current reality, the source anchor
 
 | File | Role |
 |---|---|
-| `tests/integration/convergence-script.vitest.ts` | Primary regression coverage for Coverage graph signals. |
+| `tests/unit/coverage-graph-signals.vitest.ts` | Primary unit regression coverage for Coverage graph signals (9 tests). |
+| `tests/integration/convergence-script.vitest.ts` | End-to-end script-surface coverage for Coverage graph signals. |
 
 ---
 
