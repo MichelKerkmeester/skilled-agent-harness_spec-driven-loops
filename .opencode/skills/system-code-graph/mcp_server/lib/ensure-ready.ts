@@ -780,11 +780,6 @@ export function getGraphFreshness(rootDir: string): GraphFreshness {
 // Used by `code_graph_status` so operators can distinguish
 // "needs full scan" vs "needs selective reindex" vs "fresh"
 // without invoking `code_graph_scan` (which mutates).
-//
-// See:
-//   .opencode/specs/system-spec-kit/026-graph-and-context-optimization/
-//   011-mcp-runtime-stress-remediation/011-post-stress-followup-research/
-//   research/research.md §5 (Q-P2)
 
 export interface GraphReadinessSnapshot {
   freshness: GraphFreshness;

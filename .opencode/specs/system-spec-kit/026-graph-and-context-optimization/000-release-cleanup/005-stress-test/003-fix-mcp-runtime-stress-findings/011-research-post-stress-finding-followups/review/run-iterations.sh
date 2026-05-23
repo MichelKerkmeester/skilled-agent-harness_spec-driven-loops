@@ -4,7 +4,7 @@
 
 set -uo pipefail
 
-PACKET=".opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/011-post-stress-finding-remediation-research"
+PACKET=".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-mcp-runtime-stress-remediation/011-post-stress-finding-remediation-research"
 REV="${PACKET}/review"
 ITER_DIR_ABS="${PWD}/${REV}/iterations"
 DELTA_DIR_ABS="${PWD}/${REV}/deltas"
@@ -65,7 +65,7 @@ $(echo -e "${PRIOR_ITERS}")
 - ${PWD}/${STRATEGY}
 
 **Source-of-evidence** (re-read selectively):
-- 4 implementation-summary.md files at \`${PWD}/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/{012,013,014,015}-*/implementation-summary.md\`
+- 4 implementation-summary.md files at \`${PWD}/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-mcp-runtime-stress-remediation/{012,013,014,015}-*/implementation-summary.md\`
 - 4 review-report.md files at the same packets
 - ${PWD}/.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts
 - ${PWD}/.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts
@@ -128,11 +128,11 @@ EOF
     log "WARN: ${ITER_OUT} missing — checking misplaced output"
     # Check 012/013/014/015 + research/ for misplaced files (codex sometimes infers wrong destination)
     for SOURCE_DIR in \
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/012-copilot-target-authority-gate-helper/review/iterations" \
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/013-code-graph-degraded-stress-cell/review/iterations" \
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/014-code-graph-status-readiness-snapshot/review/iterations" \
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/015-cocoindex-seed-telemetry-passthrough/review/iterations" \
-        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/011-post-stress-finding-remediation-research/research/iterations"; do
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-mcp-runtime-stress-remediation/012-copilot-target-authority-gate-helper/review/iterations" \
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-mcp-runtime-stress-remediation/013-code-graph-degraded-stress-cell/review/iterations" \
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-mcp-runtime-stress-remediation/014-code-graph-status-readiness-snapshot/review/iterations" \
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-mcp-runtime-stress-remediation/015-cocoindex-seed-telemetry-passthrough/review/iterations" \
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-mcp-runtime-stress-remediation/011-post-stress-finding-remediation-research/research/iterations"; do
       if [ -f "${SOURCE_DIR}/iteration-${NNN}.md" ]; then
         log "Moving misplaced ${SOURCE_DIR}/iteration-${NNN}.md -> ${ITER_OUT}"
         mv "${SOURCE_DIR}/iteration-${NNN}.md" "${ITER_OUT}"

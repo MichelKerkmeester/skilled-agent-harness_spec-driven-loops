@@ -70,9 +70,9 @@ vi.mock('/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.open
   getGraphReadinessSnapshot: vi.fn(),
 }));
 
-const PACKET = '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/029-clean-infrastructure-stress-test';
-const PRIOR_V103 = '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion';
-const PRIOR_V102 = '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/010-stress-test-close-loop-measurement-rerun';
+const PACKET = '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-spec-kit/026-graph-and-context-optimization/014-mcp-runtime-stress-remediation/029-clean-infrastructure-stress-test';
+const PRIOR_V103 = '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-spec-kit/026-graph-and-context-optimization/014-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion';
+const PRIOR_V102 = '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-spec-kit/026-graph-and-context-optimization/014-mcp-runtime-stress-remediation/010-stress-test-close-loop-measurement-rerun';
 const PHASE_E = '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-search-rag-measurement-implementation/measurements';
 const MEASUREMENTS = resolve(PACKET, 'measurements');
 const EXPORT_BASE = resolve(MEASUREMENTS, 'v1-0-4-harness-export');
@@ -305,8 +305,8 @@ function pipelineFixture(
     results: candidates.map((candidate, candidateIndex) => ({
       id: stableNumericId(testCase, channel, candidateIndex),
       title: candidate.title,
-      file_path: `specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/029-clean-infrastructure-stress-test/measurements/${testCase.id}/${candidate.id}.md`,
-      spec_folder: 'system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/029-clean-infrastructure-stress-test',
+      file_path: `specs/system-spec-kit/026-graph-and-context-optimization/014-mcp-runtime-stress-remediation/029-clean-infrastructure-stress-test/measurements/${testCase.id}/${candidate.id}.md`,
+      spec_folder: 'system-spec-kit/026-graph-and-context-optimization/014-mcp-runtime-stress-remediation/029-clean-infrastructure-stress-test',
       document_type: 'spec',
       context_type: 'spec',
       importance_tier: 'important',

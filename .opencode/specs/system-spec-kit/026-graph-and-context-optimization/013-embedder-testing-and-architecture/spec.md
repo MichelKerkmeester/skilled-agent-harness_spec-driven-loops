@@ -20,8 +20,8 @@ _memory:
     key_files:
       - "spec.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000016000"
-      session_id: "016-scaffold"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000013000"
+      session_id: "013-scaffold"
       parent_session_id: null
     completion_pct: 75
     open_questions: []
@@ -35,7 +35,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- CONTENT DISCIPLINE: PHASE PARENT — only spec.md + description.json + graph-metadata.json at this level. -->
 
-# 016: Embedder testing and architecture (umbrella)
+# 013: Embedder testing and architecture (umbrella)
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -49,7 +49,7 @@ _memory:
 | Branch | main |
 | Predecessor | `008-spec-memory-mcp-stress-test` (cat-24/409 PARTIAL — embedding model bottleneck) |
 | Related | `014-local-embeddings-migration` (existing EmbeddingGemma setup work — Complete) |
-| Related | `115-embedding-model-evaluation` (sibling-track scaffold; superseded by this 016 packet via "build pluggable layer FIRST" decision) |
+| Related | `115-embedding-model-evaluation` (sibling-track scaffold; superseded by this 013 packet via "build pluggable layer FIRST" decision) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -57,7 +57,7 @@ _memory:
 <!-- ANCHOR:root-purpose -->
 ## 2. ROOT PURPOSE
 
-Track the end-to-end embedder and reranker program across the 016 umbrella. The current production posture is no longer the original Jina/mxbai scaffold: mk-spec-memory defaults to the Nomic/CodeRankEmbed local bi-encoder path through the Ollama -> hf-local Nomic cascade, CocoIndex defaults to `sbert/nomic-ai/CodeRankEmbed` for code embeddings, and CocoIndex reranks through `Qwen/Qwen3-Reranker-0.6B` via the shared sidecar by default.
+Track the end-to-end embedder and reranker program across the 013 umbrella. The current production posture is no longer the original Jina/mxbai scaffold: mk-spec-memory defaults to the Nomic/CodeRankEmbed local bi-encoder path through the Ollama -> hf-local Nomic cascade, CocoIndex defaults to `sbert/nomic-ai/CodeRankEmbed` for code embeddings, and CocoIndex reranks through `Qwen/Qwen3-Reranker-0.6B` via the shared sidecar by default.
 
 mk-spec-memory's reranker default is configured as `cross-encoder/ms-marco-MiniLM-L-6-v2`, but `SPECKIT_CROSS_ENCODER` remains default-off per the arc 008 HOLD verdicts. Skill-advisor is still actively running gemma; alignment to mk-spec-memory's Nomic default is tracked outside this cleanup in `003/006-shared-embedder-logic`.
 

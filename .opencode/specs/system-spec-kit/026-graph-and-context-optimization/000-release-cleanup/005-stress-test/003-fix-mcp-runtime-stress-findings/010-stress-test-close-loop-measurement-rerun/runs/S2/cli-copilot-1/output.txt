@@ -122,7 +122,7 @@ I’ve got enough to curate this instead of surfacing hundreds of hits. One last
 - `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/012-memory-save-quality-pipeline/`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-memory-terminology/`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-graph-impact-and-affordance-uplift/005-memory-causal-trust-display/`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/009-memory-search-citation-response-policy/`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-mcp-runtime-stress-remediation/009-memory-search-citation-response-policy/`
 
 If you just want the quickest read path, start with:
 `mcp_server/README.md` → `system-spec-kit/README.md` → `026-graph-and-context-optimization/003-continuity-memory-runtime/`

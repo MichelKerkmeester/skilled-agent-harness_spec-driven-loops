@@ -1,5 +1,16 @@
-// MODULE: Council Adjudicator Verdict Scoring
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ Council Adjudicator Verdict Scoring                                      ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
 'use strict';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const DEFAULT_SATURATION_THRESHOLD = 0.2;
 const DEFAULT_WEIGHTS = Object.freeze({
@@ -9,6 +20,10 @@ const DEFAULT_WEIGHTS = Object.freeze({
   axis_flip_rate: 0.15,
   blocking_delta: 0.10,
 });
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function isRecord(value) {
   return value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -77,6 +92,29 @@ function normalizeVerdict(verdict, label) {
   };
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Compute the weighted delta between two council adjudicator verdicts.
+ *
+ * Scores stability across five dimensions: recommended option change,
+ * confidence delta, risk Jaccard delta, decision-axis flip rate, and
+ * blocking disagreement delta. Returns a structured result with the
+ * overall verdict delta, a stability flag, and per-component scores.
+ *
+ * @param {Object} previousVerdict - The earlier adjudicator verdict.
+ * @param {Object} currentVerdict - The later adjudicator verdict.
+ * @param {Object} [options] - Scoring options.
+ * @param {Object} [options.weights] - Per-dimension weight overrides
+ *   (merged with DEFAULT_WEIGHTS).
+ * @param {number} [options.saturationThreshold=0.2] - Delta threshold
+ *   below which the verdict is considered stable.
+ * @returns {Object} Structured scoring result with verdict_delta, stable,
+ *   saturation_threshold, components, and weights.
+ * @throws {TypeError} If either verdict is not an object.
+ */
 function scoreVerdictDelta(previousVerdict, currentVerdict, options = {}) {
   const previous = normalizeVerdict(previousVerdict, 'previous');
   const current = normalizeVerdict(currentVerdict, 'current');
@@ -107,6 +145,20 @@ function scoreVerdictDelta(previousVerdict, currentVerdict, options = {}) {
   };
 }
 
+/**
+ * Compute pairwise verdict deltas across a sequence of adjudicator
+ * verdicts and assess whether the latest rounds have stabilized.
+ *
+ * Stability is declared when the last two consecutive pairwise deltas
+ * are both within the saturation threshold.
+ *
+ * @param {Array<Object>} verdicts - Ordered array of adjudicator verdicts
+ *   (earliest first).
+ * @param {Object} [options] - Scoring options forwarded to
+ *   scoreVerdictDelta.
+ * @returns {Object} Structured progression result with deltas,
+ *   consecutive_stable_rounds, and stable.
+ */
 function scoreVerdictProgression(verdicts, options = {}) {
   if (!Array.isArray(verdicts) || verdicts.length < 2) {
     return { deltas: [], consecutive_stable_rounds: 0, stable: false };
@@ -124,6 +176,10 @@ function scoreVerdictProgression(verdicts, options = {}) {
     stable: consecutiveStableRounds >= 2,
   };
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
   DEFAULT_SATURATION_THRESHOLD,

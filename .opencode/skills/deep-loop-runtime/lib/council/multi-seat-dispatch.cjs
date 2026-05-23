@@ -1,5 +1,20 @@
-// MODULE: Council Multi-Seat Dispatch
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ Council Multi-Seat Dispatch                                              ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
 'use strict';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function isRecord(value) {
   return value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -35,6 +50,32 @@ function normalizeTimestamp(value) {
   return new Date().toISOString();
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Dispatch a single council seat and capture its result or error.
+ *
+ * Wraps the seat-specific dispatch function and records timing,
+ * status (fulfilled/rejected), and any error details so the
+ * multi-seat dispatcher can aggregate per-round results.
+ *
+ * @param {Object} params - Seat dispatch parameters.
+ * @param {Object} params.seat - Normalized seat descriptor with id
+ *   and input.
+ * @param {number} params.index - Zero-based seat index within the round.
+ * @param {string} params.roundId - Normalized round identifier.
+ * @param {Function} params.dispatchSeat - Async function that accepts
+ *   (seatInput, context) and returns the seat's output.
+ * @param {Object} params.context - Arbitrary context forwarded to
+ *   dispatchSeat.
+ * @param {Function} params.now - Callable returning a Date or ISO
+ *   timestamp for timing.
+ * @returns {Promise<Object>} Per-seat result with seat_id, status,
+ *   started_at_iso, completed_at_iso, duration_ms, and
+ *   output or error.
+ */
 async function settleSeat({ seat, index, roundId, dispatchSeat, context, now }) {
   const startedAtIso = normalizeTimestamp(now());
   const startedAtMs = Date.now();
@@ -63,6 +104,28 @@ async function settleSeat({ seat, index, roundId, dispatchSeat, context, now }) 
   }
 }
 
+/**
+ * Dispatch all council seats for a single deliberation round in parallel.
+ *
+ * Normalizes inputs, dispatches each seat concurrently via
+ * Promise.all, and returns an aggregated round result with per-seat
+ * outcomes and a summary (total / succeeded / failed / all_failed).
+ *
+ * @param {Object} options - Dispatch configuration.
+ * @param {string} options.roundId - Round identifier (non-empty string).
+ * @param {Array<string|Object>} options.seats - Array of seat
+ *   descriptors (string IDs or objects with id and input).
+ * @param {Function} options.dispatchSeat - Async dispatch function
+ *   invoked per seat.
+ * @param {Object} [options.context={}] - Arbitrary context forwarded
+ *   to each seat dispatch.
+ * @param {Function} [options.now] - Callable returning a Date or ISO
+ *   timestamp (default: () => new Date()).
+ * @returns {Promise<Object>} Round result with round_id,
+ *   started_at_iso, completed_at_iso, results array, and summary.
+ * @throws {TypeError} If options is not an object, roundId is invalid,
+ *   seats is empty, or dispatchSeat is not a function.
+ */
 async function dispatchCouncilSeats(options) {
   if (!isRecord(options)) {
     throw new TypeError('dispatchCouncilSeats options must be an object');
@@ -105,6 +168,10 @@ async function dispatchCouncilSeats(options) {
     },
   };
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
   dispatchCouncilSeats,

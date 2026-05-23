@@ -5,7 +5,7 @@
 
 set -uo pipefail
 
-PACKET=".opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/011-research-post-stress-finding-followups"
+PACKET=".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-mcp-runtime-stress-remediation/011-research-post-stress-finding-followups"
 RES="${PACKET}/research"
 ITER_DIR_ABS="${PWD}/${RES}/iterations"
 DELTA_DIR_ABS="${PWD}/${RES}/deltas"
@@ -66,10 +66,10 @@ $(echo -e "${PRIOR_ITERS}")
 - ${PWD}/${STRATEGY}
 
 **Source-of-evidence** (re-read as needed):
-- ${PWD}/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/010-stress-test-close-loop-measurement-rerun/findings.md
+- ${PWD}/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-mcp-runtime-stress-remediation/010-stress-test-close-loop-measurement-rerun/findings.md
 - ${PWD}/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/004-memory-save-rewrite/spec.md
-- ${PWD}/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/005-code-graph-fail-fast-routing/spec.md
-- ${PWD}/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/004-cocoindex-overfetch-dedup-rerank/spec.md
+- ${PWD}/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-mcp-runtime-stress-remediation/005-code-graph-fail-fast-routing/spec.md
+- ${PWD}/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-mcp-runtime-stress-remediation/004-cocoindex-overfetch-dedup-rerank/spec.md
 - ${PWD}/.opencode/skills/system-spec-kit/mcp_server/lib/ops/file-watcher.ts
 - ${PWD}/.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts
 - ${PWD}/.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts
@@ -161,8 +161,8 @@ EOF
   if [ ! -f "${ITER_OUT}" ]; then
     log "WARN: ${ITER_OUT} missing after iteration ${N}"
     # Check if codex wrote to wrong location and move
-    local WRONG_ITER=".opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/010-stress-test-close-loop-measurement-rerun/research/iterations/iteration-${NNN}.md"
-    local WRONG_DELTA=".opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/010-stress-test-close-loop-measurement-rerun/research/deltas/iter-${NNN}.jsonl"
+    local WRONG_ITER=".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-mcp-runtime-stress-remediation/010-stress-test-close-loop-measurement-rerun/research/iterations/iteration-${NNN}.md"
+    local WRONG_DELTA=".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-mcp-runtime-stress-remediation/010-stress-test-close-loop-measurement-rerun/research/deltas/iter-${NNN}.jsonl"
     if [ -f "${WRONG_ITER}" ]; then
       log "Moving misplaced ${WRONG_ITER} -> ${ITER_OUT}"
       mv "${WRONG_ITER}" "${ITER_OUT}"

@@ -1,5 +1,16 @@
-// MODULE: Council Cost Guards
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ Council Cost Guards                                                      ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
 'use strict';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const DEFAULT_COUNCIL_COST_GUARDS = Object.freeze({
   max_rounds_per_topic: 3,
@@ -8,10 +19,37 @@ const DEFAULT_COUNCIL_COST_GUARDS = Object.freeze({
   seats_per_round: 3,
 });
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 function isPositiveInteger(value) {
   return Number.isInteger(value) && value > 0;
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Validate and merge user-provided cost guards with sensible defaults.
+ *
+ * Ensures max_rounds_per_topic, max_topics_per_session, and
+ * seats_per_round are all positive integers, and saturation_threshold
+ * is a number between 0 and 1.
+ *
+ * @param {Object} [input={}] - Partial cost guards overrides.
+ * @param {number} [input.max_rounds_per_topic=3] - Maximum deliberation
+ *   rounds per topic.
+ * @param {number} [input.max_topics_per_session=5] - Maximum topics per
+ *   council session.
+ * @param {number} [input.seats_per_round=3] - Number of AI seats per
+ *   deliberation round.
+ * @param {number} [input.saturation_threshold=0.2] - Verdict delta
+ *   threshold for declaring saturation.
+ * @returns {Object} Fully populated cost guards record.
+ * @throws {RangeError} If any guard value is outside its allowed range.
+ */
 function normalizeCostGuards(input = {}) {
   const guards = {
     ...DEFAULT_COUNCIL_COST_GUARDS,
@@ -28,6 +66,20 @@ function normalizeCostGuards(input = {}) {
   return guards;
 }
 
+/**
+ * Compute the theoretical upper bound for a council session from cost
+ * guards.
+ *
+ * Derives max_rounds (topics × rounds-per-topic) and max_seat_outputs
+ * (topics × rounds × seats) so callers can pre-validate budgets without
+ * running the full session.
+ *
+ * @param {Object} [input={}] - Partial cost guards forwarded to
+ *   normalizeCostGuards.
+ * @returns {Object} Cost guards augmented with max_rounds and
+ *   max_seat_outputs.
+ * @throws {RangeError} If any guard value is invalid.
+ */
 function computeCouncilCostUpperBound(input = {}) {
   const guards = normalizeCostGuards(input);
   return {
@@ -37,6 +89,28 @@ function computeCouncilCostUpperBound(input = {}) {
   };
 }
 
+/**
+ * Evaluate whether a council session should continue or stop based on
+ * cost guard limits and stability signals.
+ *
+ * Checks topic count, round count, verdict delta against the saturation
+ * threshold, and consecutive stable round count. Returns a
+ * continue_allowed flag and a list of triggered stop reasons.
+ *
+ * @param {Object} [input={}] - Session progress snapshot.
+ * @param {Object} [input.guards] - Cost guards overrides (or pass keys
+ *   directly at the top level).
+ * @param {number} [input.topicNumber] - Current topic index (1-based).
+ * @param {number} [input.currentTopic] - Alias for topicNumber.
+ * @param {number} [input.roundNumber] - Current round index (1-based).
+ * @param {number} [input.currentRound] - Alias for roundNumber.
+ * @param {number} [input.verdictDelta] - Latest pairwise verdict delta.
+ * @param {number} [input.consecutiveStableRounds] - Count of consecutive
+ *   stable rounds so far.
+ * @returns {Object} Assessment with continue_allowed, stop_reasons
+ *   (string array), and an upper_bound pre-computation.
+ * @throws {RangeError} If guard values are invalid.
+ */
 function evaluateCouncilCostGuards(input = {}) {
   const guards = normalizeCostGuards(input.guards || input);
   const topicNumber = Number(input.topicNumber || input.currentTopic || 1);
@@ -64,6 +138,10 @@ function evaluateCouncilCostGuards(input = {}) {
     upper_bound: computeCouncilCostUpperBound(guards),
   };
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
   DEFAULT_COUNCIL_COST_GUARDS,

@@ -28,7 +28,7 @@ import {
 } from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/decision-audit.ts';
 import { recordShadowDelta } from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/shadow/shadow-sink.ts';
 
-const PACKET = '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion';
+const PACKET = '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-spec-kit/026-graph-and-context-optimization/014-mcp-runtime-stress-remediation/021-stress-test-enterprise-wiring-expansion';
 const MEASUREMENTS = resolve(PACKET, 'measurements');
 const ENVELOPES = resolve(MEASUREMENTS, 'v1-0-3-envelopes.jsonl');
 const AUDIT = resolve(MEASUREMENTS, 'v1-0-3-audit-log-sample.jsonl');

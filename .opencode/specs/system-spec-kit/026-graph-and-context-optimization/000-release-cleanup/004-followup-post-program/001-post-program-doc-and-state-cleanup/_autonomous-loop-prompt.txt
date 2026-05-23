@@ -11,7 +11,7 @@ You are dispatched to execute a full **review → synthesize → implement** aut
 The previous deep-review program closed 56/65 findings across 8 packets via 4 remediation sub-phases. Validator status post-program:
 
 - **Validator-green source packets (5)**: 008/007, 008/008, 009/002, 009/005, 006/008
-- **Validator-FAIL source packets (3)**: 005-memory-indexer-invariants, 011-mcp-runtime-stress-remediation (template debt; remediation sub-phases ARE green), 006/001 (DEFERRED — license audit P0 gates further work)
+- **Validator-FAIL source packets (3)**: 005-memory-indexer-invariants, 014-mcp-runtime-stress-remediation (template debt; remediation sub-phases ARE green), 006/001 (DEFERRED — license audit P0 gates further work)
 - **Validator-green remediation sub-phases**: all 4 (001/002/003/004 under 005-review-remediation)
 
 Pre-investigation surfaced 4 leverage tiers:
@@ -33,10 +33,10 @@ Write `review-report.md` at `specs/.../001-post-program-doc-and-state-cleanup/re
 
 **Specific review angles:**
 
-- **A1** Survey `derived.status` in graph-metadata.json across: 005-memory-indexer-invariants, 011-mcp-runtime-stress-remediation, 008/002-skill-graph-daemon-native-advisor-tools, 005-review-remediation/{001,002,003,004}. Flag any that don't reflect their actual completion state.
+- **A1** Survey `derived.status` in graph-metadata.json across: 005-memory-indexer-invariants, 014-mcp-runtime-stress-remediation, 008/002-skill-graph-daemon-native-advisor-tools, 005-review-remediation/{001,002,003,004}. Flag any that don't reflect their actual completion state.
 - **A2** Confirm 005-review-remediation/{001,004} sub-phase `derived.status` is `planned` while their `implementation-summary.md` says complete with green tests. P1 if confirmed.
 - **A3** Read `026/spec.md` PHASE DOCUMENTATION MAP. Confirm 005-review-remediation isn't listed as a child of `000-release-cleanup`. P2 traceability.
-- **A4** Run `validate.sh --strict` on `005-memory-indexer-invariants` and `011-mcp-runtime-stress-remediation`. Catalog the failure modes. Same kind of template debt as fixed in the program's hygiene pass for 7 OTHER packets.
+- **A4** Run `validate.sh --strict` on `005-memory-indexer-invariants` and `014-mcp-runtime-stress-remediation`. Catalog the failure modes. Same kind of template debt as fixed in the program's hygiene pass for 7 OTHER packets.
 - **B1** Audit cross-cutting consistency of the 6 new SSOT helpers introduced by the program:
   - `mcp_server/lib/utils/index-scope.ts` `isIndexableConstitutionalMemoryPath()` (storage)
   - `mcp_server/skill_advisor/lib/auth/trusted-caller.ts` `requireTrustedCaller()` (auth)

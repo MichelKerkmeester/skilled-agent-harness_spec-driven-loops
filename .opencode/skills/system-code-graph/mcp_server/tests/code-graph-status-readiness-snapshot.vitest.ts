@@ -6,12 +6,7 @@
 // graph database. The snapshot replaces the previous behavior where
 // `readiness.action` was hard-coded to "none" regardless of state.
 //
-// Source of truth:
-//   .opencode/specs/system-spec-kit/026-graph-and-context-optimization/
-//   011-mcp-runtime-stress-remediation/011-post-stress-followup-research/
-//   research/research.md §5 (Q-P2)
-//
-// Falsifiable success criteria (research §5.5):
+// Falsifiable success criteria:
 //   A. Fresh state            → readiness.action = "none"
 //   B. Empty graph            → readiness.action = "full_scan"
 //   C. Broad stale (>50 files)→ readiness.action = "full_scan"
