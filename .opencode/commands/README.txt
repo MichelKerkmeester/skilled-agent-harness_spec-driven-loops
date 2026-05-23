@@ -45,7 +45,7 @@ Commands are organized into five groups:
 | **doctor** | `command/doctor/` | 2 | MCP server diagnostics, installation, and repair (mcp_debug, mcp_install) |
 | **improve** | `command/improve/` | 2 | Evaluate and improve AI agents and prompts with structured scoring |
 | **memory** | `command/memory/` | 4 | Memory system operations (search, save, learn, manage with shared lifecycle) |
-| **spec_kit** | `command/spec_kit/` | 6 | Spec folder workflows (plan, implement, deep-research, deep-review, resume, complete) |
+| **speckit** | `command/speckit/` | 6 | Spec folder workflows (plan, implement, deep-research, deep-review, resume, complete) |
 
 One standalone command (`agent_router.md`) lives at the root level for routing requests to AI systems.
 
@@ -93,7 +93,7 @@ command/
 │   ├── manage.md             # Database management, ingest, and shared lifecycle
 │   ├── save.md               # Save conversation context
 │   └── README.txt            # Memory command index
-└── spec_kit/                 # Spec folder workflow commands
+└── speckit/                  # Spec folder workflow commands
     ├── complete.md           # Full end-to-end workflow
     ├── deep-research.md      # Iterative deep research workflow
     ├── deep-review.md        # Iterative code review workflow
@@ -173,7 +173,7 @@ Structured workflows for the spec folder development lifecycle.
 <!-- ANCHOR:instructions -->
 ## 5. INSTRUCTIONS
 
-1. Choose the command group that matches your intent: `create`, `improve`, `memory`, or `spec_kit`.
+1. Choose the command group that matches your intent: `create`, `improve`, `memory`, or `speckit`.
 2. Use the canonical slash-command form `/<group>:<command>` unless the command is a top-level utility such as `/agent_router`.
 3. Prefer the unified commands over historical split commands.
 4. When a command supports `:auto` and `:confirm`, pick the mode that matches how much checkpointing you want.
@@ -226,7 +226,7 @@ Structured workflows for the spec folder development lifecycle.
 <!-- ANCHOR:execution-modes -->
 ## 7. EXECUTION MODES
 
-Most commands in `create/`, `improve/`, and `spec_kit/` support two execution modes controlled by a suffix argument.
+Most commands in `create/`, `improve/`, and `speckit/` support two execution modes controlled by a suffix argument.
 
 | Mode | Suffix | Behavior |
 |------|--------|----------|
@@ -237,7 +237,7 @@ Each mode maps to a separate YAML workflow file in the command's `assets/` folde
 - Auto: `<command>_auto.yaml`
 - Confirm: `<command>_confirm.yaml`
 
-The `spec_kit:complete` command supports two additional modes:
+The `speckit:complete` command supports two additional modes:
 - `:with-research` adds a research phase before planning
 
 <!-- /ANCHOR:execution-modes -->
@@ -295,6 +295,6 @@ A: Run `/speckit:resume`. This is the canonical recovery surface for packet work
 | [sk-doc SKILL.md](../skills/sk-doc/SKILL.md) | Documentation standards and component creation |
 | [system-spec-kit SKILL.md](../skills/system-spec-kit/SKILL.md) | Spec folder workflow and memory system |
 | [Memory Commands](memory/README.txt) | Memory save, analyze, learn, manage, and shared commands |
-| [Spec Kit Commands](spec_kit/README.txt) | SpecKit plan, implement, complete, and workflow commands |
+| [Spec Kit Commands](speckit/README.txt) | SpecKit plan, implement, complete, and workflow commands |
 
 <!-- /ANCHOR:related-documents -->

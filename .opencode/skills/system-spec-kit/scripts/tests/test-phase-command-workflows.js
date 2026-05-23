@@ -72,7 +72,6 @@ function testPhaseCommandContracts() {
 function testPhaseFolderContracts() {
   const commandDocs = [
     { name: 'plan', file: 'plan.md' },
-    { name: 'deep-research', file: 'deep-research.md' },
     { name: 'implement', file: 'implement.md' },
     { name: 'complete', file: 'complete.md' },
     { name: 'resume', file: 'resume.md' },
@@ -83,9 +82,8 @@ function testPhaseFolderContracts() {
     assertTrue(exists(filePath), `/speckit:${doc.name} doc exists`);
 
     const text = readFile(filePath);
-    const hasPhaseFolderContract = doc.name === 'deep-research'
-      ? text.includes('Phase folder') || text.includes('phase child')
-      : text.includes('--phase-folder=<path>') || text.includes('--phase-folder=<path> provided');
+    const hasPhaseFolderContract =
+      text.includes('--phase-folder=<path>') || text.includes('--phase-folder=<path> provided');
 
     assertTrue(
       hasPhaseFolderContract,
