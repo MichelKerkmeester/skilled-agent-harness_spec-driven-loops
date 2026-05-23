@@ -1,0 +1,42 @@
+---
+title: "deep-ai-council Test Suite"
+description: "Integration + parity vitests for deep-ai-council orchestration: orchestrate-topic, orchestrate-session, findings-registry, integration e2e."
+---
+
+# deep-ai-council Tests
+
+## TABLE OF CONTENTS
+
+- [1. OVERVIEW](#1--overview)
+- [2. TEST INVENTORY](#2--test-inventory)
+- [3. HOW TO RUN](#3--how-to-run)
+- [4. RELATED RESOURCES](#4--related-resources)
+
+---
+
+## 1. OVERVIEW
+
+vitest harnesses validating deep-ai-council orchestration and registry behavior. Run via the sibling `system-spec-kit` vitest config.
+
+## 2. TEST INVENTORY
+
+| Test File | Coverage |
+|-----------|----------|
+| `orchestrate-topic.vitest.ts` | Per-topic multi-round orchestration; verdict-stable + max-rounds + saturation termination |
+| `orchestrate-session.vitest.ts` | Multi-topic session loop + cross-topic cost guards |
+| `findings-registry.vitest.ts` | Canonical fingerprint append + loadRegistry + getCrossTopicPriors |
+| `integration-deep-mode-e2e.vitest.ts` | Full session through orchestrators + registry + state hierarchy |
+
+## 3. HOW TO RUN
+
+```bash
+cd .opencode/skills/system-spec-kit/mcp_server
+node_modules/.bin/vitest run --no-coverage \
+  /absolute/path/to/.opencode/skills/deep-ai-council/scripts/tests/<filename>.vitest.ts
+```
+
+## 4. RELATED RESOURCES
+
+- `.opencode/skills/deep-ai-council/SKILL.md` - skill overview
+- `.opencode/skills/deep-ai-council/scripts/orchestrate-topic.cjs` - primary subject under test
+- `.opencode/skills/deep-loop-runtime/lib/council/` - primitives consumed by orchestrators

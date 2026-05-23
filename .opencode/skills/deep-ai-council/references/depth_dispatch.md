@@ -15,6 +15,26 @@ contextType: "reference"
 
 Depth controls whether a council may launch seats in parallel or must deliberate inline. The goal is useful diversity without illegal nesting.
 
+## Deep Mode (Iterative Multi-Topic)
+
+Deep mode is the iterative, multi-topic council workflow exposed through `/spec_kit:deep-council`. It is additive to the existing single-round council behavior: regular `ai-council` runs still produce one planning report and packet-local `ai-council/**` artifacts, while deep mode owns a session loop with topic-by-topic rounds, adjudicator-verdict stability checks, and a session-wide findings registry.
+
+Use `/spec_kit:deep-council:auto` for non-interactive bounded runs when setup answers are pre-bound, and `/spec_kit:deep-council:confirm` when the operator should approve setup, loop, synthesis, and save gates. The command Markdown owns setup resolution and then loads `.opencode/commands/spec_kit/assets/spec_kit_deep-council_auto.yaml` or `.opencode/commands/spec_kit/assets/spec_kit_deep-council_confirm.yaml` for execution.
+
+Deep mode uses the packet 129 three-level state hierarchy:
+
+```text
+session
+  -> topic
+     -> round
+```
+
+The session stores `council-session.json`, append-only session state, the session-wide findings registry, and `session-report.md`. Each topic stores topic config/state, per-topic reports, and round folders with seat, deliberation, critique, and verdict artifacts. Cross-topic priors move by registry fingerprint, not copied prose.
+
+Default cost guards are intentionally conservative: `max_rounds_per_topic = 3`, `max_topics_per_session = 5`, `saturation_threshold = 0.20`, and three seats per round. The default upper bound is 45 seat outputs, but stable verdict deltas should stop topics earlier. Operators may tune these values through command setup answers, and `:auto` must surface the computed upper bound before dispatch.
+
+Choose deep mode when the planning problem has multiple separable topics, requires more than one round per topic, or needs auditable convergence/cost controls. Choose single-round council mode when one deliberation report is enough and extra loop machinery would only add cost.
+
 ---
 
 ## 1. OVERVIEW
@@ -267,7 +287,7 @@ Dishonest label:
 cli-opencode agreed with cli-codex.
 ```
 
-— ALSO violates the one-CLI-per-round invariant (these would need to be TWO dedicated rounds, not one). See `SKILL.md §4` ALWAYS rule 6.
+— ALSO violates the one-CLI-per-round invariant (these would need to be TWO dedicated rounds, not one). See `SKILL.md §5` ALWAYS rule 6.
 
 Unless those tools actually ran (and were dispatched as separate rounds).
 

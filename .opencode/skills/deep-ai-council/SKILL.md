@@ -2,7 +2,7 @@
 name: deep-ai-council
 description: "AI Council: multi-seat planning, artifact persistence, convergence checks, packet-local ai-council outputs."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 4.0.0.0
+version: 2.0.0.0
 ---
 
 <!-- Keywords: deep-ai-council, ai council, council deliberation, multi-seat planning, ai-council artifacts, council convergence, planning council, council artifact persistence -->
@@ -11,49 +11,17 @@ version: 4.0.0.0
 
 Planning-only council deliberation with diverse seats, convergence checks, and packet-local `ai-council/**` artifact persistence.
 
-## Convergence Threshold Semantics
-
-**Default:** 0.20 (proposed) on adjudicator-verdict stability across rounds
-
-**Semantic:** the deep-ai-council threshold scores per-topic Round-N -> Round-N+1 verdict deltas from the adjudicator. Lower = more rounds / higher stability threshold.
-
-**NOT INTERCHANGEABLE with siblings:**
-- `deep-review` uses 0.10 default on weighted P0/P1/P2 severity ratio
-- `deep-research` uses 0.05 default on newInfoRatio (negative-knowledge emphasis)
-
-Carrying threshold expectations across siblings will cause unexpected iteration counts. See 130 research at `.opencode/specs/skilled-agent-orchestration/130-deep-skills-unique-value-differentiation/research/research.md` §2 F56/F78, §5 Recommendation, and §6 Parity Invariants.
+> Convergence threshold semantics: see [`references/convergence_signals.md`](references/convergence_signals.md). Deep Mode (iterative multi-topic): see [`references/depth_dispatch.md`](references/depth_dispatch.md).
 
 ---
 
-## Deep Mode (Iterative Multi-Topic)
-
-Deep mode is the iterative, multi-topic council workflow exposed through `/spec_kit:deep-council`. It is additive to the existing single-round council behavior: regular `ai-council` runs still produce one planning report and packet-local `ai-council/**` artifacts, while deep mode owns a session loop with topic-by-topic rounds, adjudicator-verdict stability checks, and a session-wide findings registry.
-
-Use `/spec_kit:deep-council:auto` for non-interactive bounded runs when setup answers are pre-bound, and `/spec_kit:deep-council:confirm` when the operator should approve setup, loop, synthesis, and save gates. The command Markdown owns setup resolution and then loads `.opencode/commands/spec_kit/assets/spec_kit_deep-council_auto.yaml` or `.opencode/commands/spec_kit/assets/spec_kit_deep-council_confirm.yaml` for execution.
-
-Deep mode uses the packet 129 three-level state hierarchy:
-
-```text
-session
-  -> topic
-     -> round
-```
-
-The session stores `council-session.json`, append-only session state, the session-wide findings registry, and `session-report.md`. Each topic stores topic config/state, per-topic reports, and round folders with seat, deliberation, critique, and verdict artifacts. Cross-topic priors move by registry fingerprint, not copied prose.
-
-Default cost guards are intentionally conservative: `max_rounds_per_topic = 3`, `max_topics_per_session = 5`, `saturation_threshold = 0.20`, and three seats per round. The default upper bound is 45 seat outputs, but stable verdict deltas should stop topics earlier. Operators may tune these values through command setup answers, and `:auto` must surface the computed upper bound before dispatch.
-
-Choose deep mode when the planning problem has multiple separable topics, requires more than one round per topic, or needs auditable convergence/cost controls. Choose single-round council mode when one deliberation report is enough and extra loop machinery would only add cost.
-
----
-
-## 0. OPERATIONAL MODES — IN-CLI (PRIMARY) + EXTERNAL-CLI (SECONDARY)
+## 1. OPERATIONAL MODES — IN-CLI (PRIMARY) + EXTERNAL-CLI (SECONDARY)
 
 The council is **primarily an IN-CLI capability**. When invoked from inside an active runtime (OpenCode, Claude Code, Codex), the council deliberates using THAT runtime's own models and reasoning lenses as seats. No external dispatch is required for the common case — the active CLI's own model bench (e.g. Opus + Sonnet + Haiku on Claude Code; gpt-5.5 + gpt-5.5-pro + gpt-5.5-xhigh on Codex; opencode-go gateway models on OpenCode) supplies the seat diversity for a round.
 
 **External-CLI dispatch is a SECONDARY, optional mode** for cases where a different AI vantage adds value (e.g. a fresh Codex perspective from inside a Claude Code session, or DeepSeek/Kimi via cli-opencode from inside a Codex session). It is invoked via the `cli-*` skill family (`cli-claude-code`, `cli-codex`, `cli-opencode`) — never directly from this skill.
 
-**Both modes obey the one-CLI-per-round invariant** (§4 ALWAYS rule 6):
+**Both modes obey the one-CLI-per-round invariant** (§5 ALWAYS rule 6):
 - In-CLI round: all seats use the current runtime's models.
 - External-CLI round: all seats use ONE external CLI (e.g. all `cli-codex` seats with different reasoning levels, OR all `cli-opencode` seats with different gateway models).
 - Cross-CLI deliberation is staged as MULTIPLE rounds (one in-CLI + one external, or two different externals) — never folded into the same round.
@@ -62,7 +30,7 @@ The default and most common council run is a single in-CLI round. Add external r
 
 ---
 
-## 1. WHEN TO USE
+## 2. WHEN TO USE
 
 ### Activation Triggers
 
@@ -116,7 +84,7 @@ Do not use this skill for:
 
 ---
 
-## 2. SMART ROUTING
+## 3. SMART ROUTING
 
 ### Primary Detection Signal
 
@@ -312,7 +280,7 @@ def route_sk_ai_council_resources(user_request, task=None):
 
 ---
 
-## 3. HOW IT WORKS
+## 4. HOW IT WORKS
 
 ### Council Workflow Overview
 
@@ -355,13 +323,13 @@ node .opencode/skills/deep-ai-council/scripts/persist-artifacts.cjs <packet> --i
 node .opencode/skills/deep-ai-council/scripts/advise-council-completion.cjs <packet>
 ```
 
-**References**: load `output_schema.md` first, then intent-specific references through Section 2.
+**References**: load `output_schema.md` first, then intent-specific references through Section 3.
 
 **Manual testing**: load `manual_testing_playbook/manual_testing_playbook.md` only for operator validation and release checks.
 
 ---
 
-## 4. RULES
+## 5. RULES
 
 ### ✅ ALWAYS
 
@@ -418,7 +386,7 @@ node .opencode/skills/deep-ai-council/scripts/advise-council-completion.cjs <pac
 
 ---
 
-## 5. REFERENCES
+## 6. REFERENCES
 
 Ordered by load priority — most-loaded intent first.
 
@@ -434,10 +402,13 @@ Ordered by load priority — most-loaded intent first.
 - `references/convergence_signals.md` - convergence and escape-hatch rules.
 - `references/graph_support.md` - derived council graph boundaries, tool surface, and recovery behavior.
 - `manual_testing_playbook/manual_testing_playbook.md` - operator validation scenarios.
+- `README.md` - human-facing overview.
+
+Related skills: `deep-research` for evidence-first investigation vantages and `system-spec-kit` for packet documentation, validation, resume, and memory continuity.
 
 ---
 
-## 6. SUCCESS CRITERIA
+## 7. SUCCESS CRITERIA
 
 ### Council Skill Completion Checklist
 
@@ -452,7 +423,7 @@ Council alignment is complete when:
 ### Quality Targets
 
 - **Structure**: SKILL.md follows sk-doc required section order and frontmatter.
-- **Routing**: Section 2 is the only authoritative routing source.
+- **Routing**: Section 3 is the only authoritative routing source.
 - **Reference shape**: reference filenames are snake_case and intro sections are short.
 - **Playbook coverage**: manual testing package has 18 scenarios across 7 categories.
 - **Boundary discipline**: graph rows never replace `ai-council/**` artifacts and council seats do not mutate graph storage directly.
@@ -465,7 +436,7 @@ Council alignment is complete when:
 
 ---
 
-## 7. INTEGRATION POINTS
+## 8. INTEGRATION POINTS
 
 ### Validation Workflow Integration
 
@@ -504,11 +475,3 @@ The council is a planning LEAF. It hands recommendations, risk analysis, and pac
 ### External Tools
 
 No external tools are required. External CLIs may contribute seats only when the caller actually runs them and labels the result accurately.
-
----
-
-## 8. REFERENCES AND RELATED RESOURCES
-
-Start with `references/output_schema.md`, then load intent-specific references through Section 2, including `scoring_rubric.md`, `depth_dispatch.md`, `failure_handling.md`, `anti_patterns.md`, and `graph_support.md` when those topics match. Use `README.md` for human-facing overview and `manual_testing_playbook/manual_testing_playbook.md` for operator validation.
-
-Related skills: `deep-research` for evidence-first investigation vantages and `system-spec-kit` for packet documentation, validation, resume, and memory continuity.
