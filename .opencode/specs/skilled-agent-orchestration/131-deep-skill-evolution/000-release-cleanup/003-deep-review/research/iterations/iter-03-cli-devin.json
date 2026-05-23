@@ -1,0 +1,86 @@
+{
+  "iteration": 3,
+  "executor": "cli-devin",
+  "model": "swe-1.6",
+  "prompt_framework": "RCAF",
+  "started_at": "2026-05-23T17:23:00Z",
+  "ended_at": "2026-05-23T17:25:30Z",
+  "wall_clock_seconds": 150,
+  "logic_gaps": [
+    {
+      "gap_id": "LG-0016",
+      "description": "DRV-018 scenario at manual_testing_playbook/04--convergence-and-recovery/018-review-quality-guards-block-premature-stop.md:31 claims '3 binary gates (evidence, scope, coverage)' but runtime contract in references/convergence.md:127 specifies 7 gates: convergenceGate, dimensionCoverageGate, p0ResolutionGate, evidenceDensityGate, hotspotSaturationGate, claimAdjudicationGate, fixCompletenessReplayGate. Either the playbook test is checking a deprecated 3-gate model or the docs need to clarify a simplified user-facing 3-gate view",
+      "evidence": [
+        ".opencode/skills/deep-review/manual_testing_playbook/04--convergence-and-recovery/018-review-quality-guards-block-premature-stop.md:31",
+        ".opencode/skills/deep-review/references/convergence.md:127"
+      ],
+      "severity": "P1",
+      "in_scope_check": {
+        "already_in_spec": false,
+        "already_in_audit_findings": false
+      }
+    },
+    {
+      "gap_id": "LG-0017",
+      "description": "DRV-017 scenario at manual_testing_playbook/04--convergence-and-recovery/017-p0-override-blocks-convergence.md:47 references `.opencode/skills/deep-research/references/convergence.md` (wrong skill path); correct path is `.opencode/skills/deep-review/references/convergence.md`",
+      "evidence": [
+        ".opencode/skills/deep-review/manual_testing_playbook/04--convergence-and-recovery/017-p0-override-blocks-convergence.md:47"
+      ],
+      "severity": "P2",
+      "in_scope_check": {
+        "already_in_spec": false,
+        "already_in_audit_findings": false
+      }
+    },
+    {
+      "gap_id": "LG-0018",
+      "description": "DRV-018 scenario at manual_testing_playbook/04--convergence-and-recovery/018-review-quality-guards-block-premature-stop.md:47 references `.opencode/skills/deep-research/references/convergence.md` (wrong skill path); correct path is `.opencode/skills/deep-review/references/convergence.md`",
+      "evidence": [
+        ".opencode/skills/deep-review/manual_testing_playbook/04--convergence-and-recovery/018-review-quality-guards-block-premature-stop.md:47"
+      ],
+      "severity": "P2",
+      "in_scope_check": {
+        "already_in_spec": false,
+        "already_in_audit_findings": false
+      }
+    },
+    {
+      "gap_id": "LG-0019",
+      "description": "DRV-019 scenario at manual_testing_playbook/04--convergence-and-recovery/019-stuck-recovery-widens-dimension-focus.md:47 references `.opencode/skills/deep-research/references/convergence.md` (wrong skill path); correct path is `.opencode/skills/deep-review/references/convergence.md`",
+      "evidence": [
+        ".opencode/skills/deep-review/manual_testing_playbook/04--convergence-and-recovery/019-stuck-recovery-widens-dimension-focus.md:47"
+      ],
+      "severity": "P2",
+      "in_scope_check": {
+        "already_in_spec": false,
+        "already_in_audit_findings": false
+      }
+    },
+    {
+      "gap_id": "LG-0020",
+      "description": "DRV-020 scenario at manual_testing_playbook/04--convergence-and-recovery/020-dimension-coverage-convergence-signal.md:47 references `.opencode/skills/deep-research/references/convergence.md` (wrong skill path); correct path is `.opencode/skills/deep-review/references/convergence.md`",
+      "evidence": [
+        ".opencode/skills/deep-review/manual_testing_playbook/04--convergence-and-recovery/020-dimension-coverage-convergence-signal.md:47"
+      ],
+      "severity": "P2",
+      "in_scope_check": {
+        "already_in_spec": false,
+        "already_in_audit_findings": false
+      }
+    }
+  ],
+  "novel_findings": [
+    "LG-0017..LG-0020 form a class-of-bug: 4 dir-04 scenarios systematically copy-paste the wrong skill path. Suggests a search-replace error during the deep-research \u2192 deep-review skill split was incomplete in playbook scenarios.",
+    "iter 3 sampled only 16 of 45 scenarios; iter 10 capstone should re-scan the remaining 29 to confirm no further drift in dirs 01-03 + 05-08.",
+    "DRV-018's 3-gate claim is likely simplified user-facing language (evidence + scope + coverage are the 3 gate FAMILIES, with 7 specific gate names inside them). Either rewrite DRV-018 to use the 7 names or update convergence.md to surface a 3-family overview."
+  ],
+  "delta_vs_prev_iter": "new gaps surfaced",
+  "convergence_signals": {
+    "unique_gaps_so_far": 20,
+    "p0_count": 0,
+    "p1_count": 12,
+    "p2_count": 8,
+    "duplicates_with_prior_iters": 0
+  },
+  "notes": "Iter 3 RQ: playbook vs runtime-contracts drift. SWE-1.6 + RCAF + sequential_thinking. Wall-clock 150s. Sampled 16/45 scenarios (2 per category). All 5 gaps novel. LG-0017..LG-0020 are repeated path-ref bugs (class-of-bug) \u2014 mechanically fixable but P2 per surgical-edit scope; defer to follow-on."
+}
