@@ -1,0 +1,20 @@
+{
+  "spec_folder": "skilled-agent-orchestration/124-sk-ai-council-shared-runtime-deliberation",
+  "round": 1,
+  "current_round": 1,
+  "max_rounds": 1,
+  "seats_per_round": 4,
+  "convergence_signal": "two_of_three_advocates_plus_adjudicator",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.5",
+    "service_tier": "fast",
+    "reasoning_effort_advocates": "xhigh",
+    "reasoning_effort_pragmatist": "high",
+    "reasoning_effort_adjudicator": "xhigh"
+  },
+  "status": "initialized",
+  "created_at": "2026-05-23T05:04:55Z",
+  "last_updated_at": "2026-05-23T05:04:55Z",
+  "deliberation_topic": "Should sk-ai-council be refactored from a per-skill helper into a shared runtime (similar to deep-loop-runtime), and would that be useful?"
+}
