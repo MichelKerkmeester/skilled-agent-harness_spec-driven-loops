@@ -242,6 +242,18 @@ NEVER split questions into multiple prompts
 
 Conduct autonomous iterative code review with convergence detection. Each iteration dispatches a fresh LEAF agent (`@deep-review`) that reads externalized state, performs focused review work across configured dimensions, and writes findings to files.
 
+## Convergence Threshold Semantics
+
+**Default:** 0.10 (weighted P0/P1/P2 severity ratio)
+
+**Semantic:** `convergenceThreshold` compares new severity-weighted findings (P0=10, P1=5, P2=1) against accumulated findings. Lower = more iterations / higher signal threshold.
+
+**NOT INTERCHANGEABLE with siblings:**
+- `deep-research` uses 0.05 default on newInfoRatio (negative-knowledge emphasis)
+- `deep-ai-council` (proposed) uses 0.20 default on adjudicator-verdict stability
+
+Carrying threshold expectations across siblings will cause unexpected iteration counts. See 130 research at `.opencode/specs/skilled-agent-orchestration/130-deep-skills-unique-value-differentiation/research/research.md` §2 F56/F78, §5 Recommendation, and §6 Parity Invariants.
+
 ```yaml
 role: Deep Review Loop Manager
 purpose: Run iterative review cycles until convergence or max iterations

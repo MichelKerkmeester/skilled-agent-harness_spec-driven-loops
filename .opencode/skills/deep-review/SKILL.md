@@ -19,6 +19,18 @@ Runtime path resolution:
 - Claude runtime: `.claude/agents/*.md`
 - Codex runtime: `.codex/agents/*.toml`
 
+## Convergence Threshold Semantics
+
+**Default:** 0.10 (weighted P0/P1/P2 severity ratio)
+
+**Semantic:** `convergenceThreshold` compares new severity-weighted findings (P0=10, P1=5, P2=1) against accumulated findings. Lower = more iterations / higher signal threshold.
+
+**NOT INTERCHANGEABLE with siblings:**
+- `deep-research` uses 0.05 default on newInfoRatio (negative-knowledge emphasis)
+- `deep-ai-council` (proposed) uses 0.20 default on adjudicator-verdict stability
+
+Carrying threshold expectations across siblings will cause unexpected iteration counts. See 130 research at `.opencode/specs/skilled-agent-orchestration/130-deep-skills-unique-value-differentiation/research/research.md` §2 F56/F78, §5 Recommendation, and §6 Parity Invariants.
+
 ## 1. WHEN TO USE
 
 ### When to Use This Skill

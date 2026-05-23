@@ -34,6 +34,18 @@ Executes ONE review iteration within an autonomous review loop: read externalize
 
 > **SPEC FOLDER PERMISSION:** @deep-review may write only the resolved local-owner review packet for the target spec. Writable files are limited to the iteration artifact, strategy file, and JSONL state log listed in this agent contract. Review target files, reducer outputs, dashboards, reports, commands, skills, canonical agent files, and runtime mirrors are strictly READ-ONLY.
 
+## Convergence Threshold Semantics
+
+**Default:** 0.10 (weighted P0/P1/P2 severity ratio)
+
+**Semantic:** `convergenceThreshold` compares new severity-weighted findings (P0=10, P1=5, P2=1) against accumulated findings. Lower = more iterations / higher signal threshold.
+
+**NOT INTERCHANGEABLE with siblings:**
+- `deep-research` uses 0.05 default on newInfoRatio (negative-knowledge emphasis)
+- `deep-ai-council` (proposed) uses 0.20 default on adjudicator-verdict stability
+
+Carrying threshold expectations across siblings will cause unexpected iteration counts. See 130 research at `.opencode/specs/skilled-agent-orchestration/130-deep-skills-unique-value-differentiation/research/research.md` §2 F56/F78, §5 Recommendation, and §6 Parity Invariants.
+
 ---
 
 ## 0. ILLEGAL NESTING (HARD BLOCK)

@@ -216,6 +216,18 @@ Conduct autonomous iterative deep research with convergence detection. Each iter
 
 For code review and quality auditing, see `/spec_kit:deep-review`.
 
+## Convergence Threshold Semantics
+
+**Default:** 0.05 on newInfoRatio (fully-new=1.0, partially-new=0.5, +0.10 simplicity bonus, capped 1.0)
+
+**Semantic:** `convergenceThreshold` compares newly discovered information against accumulated research knowledge with negative-knowledge emphasis. Lower = more iterations / higher signal threshold.
+
+**NOT INTERCHANGEABLE with siblings:**
+- `deep-review` uses 0.10 default on weighted P0/P1/P2 severity ratio
+- `deep-ai-council` (proposed) uses 0.20 default on adjudicator-verdict stability
+
+Carrying threshold expectations across siblings will cause unexpected iteration counts. See 130 research at `.opencode/specs/skilled-agent-orchestration/130-deep-skills-unique-value-differentiation/research/research.md` §2 F56/F78, §5 Recommendation, and §6 Parity Invariants.
+
 ```yaml
 role: Deep Research Loop Manager
 purpose: Run iterative research cycles until convergence or max iterations

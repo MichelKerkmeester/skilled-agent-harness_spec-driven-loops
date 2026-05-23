@@ -24,6 +24,18 @@ Operator contract precedence for this skill surface:
 - Convergence math in `references/convergence.md` and the deep-research YAML workflow
 - Runtime agent inventories from the checked-in runtime directories above
 
+## Convergence Threshold Semantics
+
+**Default:** 0.05 on newInfoRatio (fully-new=1.0, partially-new=0.5, +0.10 simplicity bonus, capped 1.0)
+
+**Semantic:** `convergenceThreshold` compares newly discovered information against accumulated research knowledge with negative-knowledge emphasis. Lower = more iterations / higher signal threshold.
+
+**NOT INTERCHANGEABLE with siblings:**
+- `deep-review` uses 0.10 default on weighted P0/P1/P2 severity ratio
+- `deep-ai-council` (proposed) uses 0.20 default on adjudicator-verdict stability
+
+Carrying threshold expectations across siblings will cause unexpected iteration counts. See 130 research at `.opencode/specs/skilled-agent-orchestration/130-deep-skills-unique-value-differentiation/research/research.md` §2 F56/F78, §5 Recommendation, and §6 Parity Invariants.
+
 ## 1. WHEN TO USE
 
 ### When to Use This Skill
@@ -250,7 +262,9 @@ Example (first run on a child phase): `.../026-graph.../019-system-hardening/001
 
 Example (subsequent run with prior content for a different target): `004-desc-regen/research/004-desc-regen-pt-02/` (pt-NN allocated as a sibling to the prior content).
 
-State files include `deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`, `findings-registry.json`, `deep-research-dashboard.md`, `.deep-research-pause`, `.deep-research.lock`, `resource-map.md`, `research.md`, and `iterations/iteration-NNN.md`.
+State files include `deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`, `deep-research-findings-registry.json`, `deep-research-dashboard.md`, `.deep-research-pause`, `.deep-research.lock`, `resource-map.md`, `research.md`, and `iterations/iteration-NNN.md`.
+
+v(next): `deep-research-findings-registry.json` is the canonical registry name for sibling-skill consistency per 130 research F54.
 
 ### Core Innovation: Fresh Context Per Iteration
 

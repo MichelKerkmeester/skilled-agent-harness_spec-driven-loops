@@ -99,7 +99,7 @@ state_paths:
   config: "{artifact_dir}/deep-research-config.json"
   state_log: "{artifact_dir}/deep-research-state.jsonl"
   strategy: "{artifact_dir}/deep-research-strategy.md"
-  registry: "{artifact_dir}/findings-registry.json"
+  registry: "{artifact_dir}/deep-research-findings-registry.json"
   dashboard: "{artifact_dir}/deep-research-dashboard.md"
   pause_sentinel: "{artifact_dir}/.deep-research-pause"
   lock_file: "{artifact_dir}/.deep-research.lock"
@@ -241,6 +241,7 @@ workflow:
         populate:
           topic: "{research_topic}"
           maxIterations: "{max_iterations}"
+          # Semantic: newInfoRatio with negative-knowledge emphasis. See SKILL.md §"Convergence Threshold Semantics".
           convergenceThreshold: "{convergence_threshold}"
           stuckThreshold: 3
           maxDurationMinutes: 120
@@ -871,7 +872,7 @@ workflow:
           - file_exists: "{state_paths.iteration_pattern}"
           - jsonl_appended: "New iteration record in state.jsonl"
           - strategy_updated: "Reducer refreshed strategy machine-owned sections"
-          - registry_updated: "Reducer refreshed findings-registry.json"
+          - registry_updated: "Reducer refreshed deep-research-findings-registry.json"
         extract:
           - newInfoRatio: "From latest JSONL iteration record"
           - findings_count: "From latest JSONL iteration record"
@@ -1057,7 +1058,7 @@ workflow:
       Artifacts:
         - research/research.md (compiled from {iteration_count} iterations)
         - {iteration_count} iteration files in research/
-        - State files: config.json, state.jsonl, strategy.md, findings-registry.json, dashboard.md
+        - State files: config.json, state.jsonl, strategy.md, deep-research-findings-registry.json, dashboard.md
         - Memory context saved
 
       STATUS=OK PATH={spec_folder}

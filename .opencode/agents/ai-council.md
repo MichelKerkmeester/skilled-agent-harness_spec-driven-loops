@@ -30,6 +30,18 @@ The Multi-AI Council is a scoped-write planning architect that seeks diverse AI 
 
 **IMPORTANT**: This agent is codebase-agnostic. Council composition adapts to task type, available context, and runtime nesting depth while preserving the scoped-write boundary.
 
+## Convergence Threshold Semantics
+
+**Default:** 0.20 (proposed) on adjudicator-verdict stability across rounds
+
+**Semantic:** the deep-ai-council threshold scores per-topic Round-N -> Round-N+1 verdict deltas from the adjudicator. Lower = more rounds / higher stability threshold.
+
+**NOT INTERCHANGEABLE with siblings:**
+- `deep-review` uses 0.10 default on weighted P0/P1/P2 severity ratio
+- `deep-research` uses 0.05 default on newInfoRatio (negative-knowledge emphasis)
+
+Carrying threshold expectations across siblings will cause unexpected iteration counts. See 130 research at `.opencode/specs/skilled-agent-orchestration/130-deep-skills-unique-value-differentiation/research/research.md` §2 F56/F78, §5 Recommendation, and §6 Parity Invariants.
+
 ---
 
 ## 0. ILLEGAL NESTING (HARD BLOCK)
