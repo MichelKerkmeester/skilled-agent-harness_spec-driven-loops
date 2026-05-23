@@ -4,6 +4,8 @@ import { existsSync, lstatSync, readlinkSync, realpathSync } from 'node:fs';
 import { homedir } from 'node:os';
 import path from 'node:path';
 
+// ───── TYPE DEFINITIONS ─────
+
 export type OperationClass = 'read' | 'write' | 'edit' | 'delete' | 'execute';
 export type PermissionScope = 'packet-local' | 'repo-wide' | 'external';
 export type PermissionEffect = 'allow' | 'deny';
@@ -33,6 +35,8 @@ export type PreDispatchToolCall = {
   args: Record<string, unknown>;
 };
 
+// ───── CONSTANTS ─────
+
 type NormalizedTarget = {
   operation: OperationClass;
   targets: string[];
@@ -54,6 +58,8 @@ const DEFAULT_DENY_REASON = 'default-deny (matrix empty or malformed)';
 const MAX_SYMLINK_DEPTH = 10;
 const globCache = new Map<string, RegExp>();
 let repoRootCache: string | null | undefined;
+
+// ───── HELPERS ─────
 
 function isPermissionsMatrix(value: unknown): value is PermissionsMatrix {
   if (value === null || typeof value !== 'object' || Array.isArray(value)) return false;
@@ -371,6 +377,19 @@ function evaluateNormalizedTarget(operation: OperationClass, targets: string[], 
   };
 }
 
+// ───── EXPORTS ─────
+
+/**
+ * Evaluate whether a single tool call is allowed by the permissions matrix.
+ *
+ * Matches the tool name and args against the active matrix using glob-based
+ * path matching with specificity ordering.
+ *
+ * @param toolName - Name of the tool being called.
+ * @param args - Tool call arguments.
+ * @param activeMatrix - The permissions matrix to evaluate against.
+ * @returns Evaluation result with allow/deny and reasoning.
+ */
 export function evaluateToolCall(
   toolName: string,
   args: Record<string, unknown>,
@@ -397,6 +416,15 @@ export function evaluateToolCall(
   }
 }
 
+/**
+ * Evaluate a batch of pre-dispatch tool calls against the permissions matrix.
+ *
+ * All tool calls must pass; the first denial is returned immediately.
+ *
+ * @param toolCalls - Array of tool calls to evaluate.
+ * @param activeMatrix - The permissions matrix to evaluate against (null/omitted = passthrough).
+ * @returns Evaluation result with allow/deny and reasoning.
+ */
 export function evaluatePreDispatchToolCalls(
   toolCalls: PreDispatchToolCall[],
   activeMatrix?: PermissionsMatrix | null,

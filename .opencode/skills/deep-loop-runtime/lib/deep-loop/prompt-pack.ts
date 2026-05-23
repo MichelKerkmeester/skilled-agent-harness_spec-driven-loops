@@ -1,14 +1,18 @@
-// ───────────────────────────────────────────────────────────────
 // MODULE: Deep-Loop Prompt Pack Renderer
-// ───────────────────────────────────────────────────────────────
 
 import { readFileSync } from 'node:fs';
 import { z } from '../../../system-spec-kit/mcp_server/node_modules/zod/index.js';
 
+// ───── TYPE DEFINITIONS ─────
+
 export type PromptPackVariables = Record<string, string | number>;
+
+// ───── CONSTANTS ─────
 
 const PROMPT_PACK_TOKEN_PATTERN = /\{([a-zA-Z_][a-zA-Z0-9_]*)\}/g;
 const promptPackVariableNameSchema = z.string().regex(/^[a-zA-Z_][a-zA-Z0-9_]*$/);
+
+// ───── DOMAIN ERRORS ─────
 
 export class PromptPackError extends Error {
   missingVariables: string[];
@@ -19,6 +23,8 @@ export class PromptPackError extends Error {
     this.missingVariables = missingVariables;
   }
 }
+
+// ───── HELPERS ─────
 
 function extractTemplateTokens(template: string): string[] {
   const tokens = new Set<string>();
@@ -33,6 +39,19 @@ function extractTemplateTokens(template: string): string[] {
   return [...tokens];
 }
 
+// ───── EXPORTS ─────
+
+/**
+ * Render a prompt pack template by substituting variables.
+ *
+ * Reads the template file and replaces all `{variableName}` tokens
+ * with values from the variables map.
+ *
+ * @param templatePath - Path to the prompt pack template file.
+ * @param variables - Mapping of variable names to replacement values.
+ * @returns Rendered template string with all variables substituted.
+ * @throws {@link PromptPackError} If any required variables are missing.
+ */
 export function renderPromptPack(templatePath: string, variables: PromptPackVariables): string {
   const template = readFileSync(templatePath, 'utf8');
   const missingVariables = new Set<string>();
@@ -53,6 +72,13 @@ export function renderPromptPack(templatePath: string, variables: PromptPackVari
   return rendered;
 }
 
+/**
+ * Validate that a prompt pack template contains expected variables.
+ *
+ * @param templatePath - Path to the prompt pack template file.
+ * @param expectedVariables - Variable names that should be present.
+ * @returns Report with present, missing, and extra variables.
+ */
 export function validatePromptPackTemplate(
   templatePath: string,
   expectedVariables: string[],

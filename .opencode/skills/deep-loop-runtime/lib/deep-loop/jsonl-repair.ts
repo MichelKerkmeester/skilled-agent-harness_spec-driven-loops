@@ -1,13 +1,15 @@
-// ───────────────────────────────────────────────────────────────
 // MODULE: Deep-Loop JSONL Repair
-// ───────────────────────────────────────────────────────────────
 
 import { appendFileSync, existsSync, readFileSync, truncateSync } from 'node:fs';
+
+// ───── TYPE DEFINITIONS ─────
 
 export type JsonlRepairResult = {
   repaired: boolean;
   droppedBytes: number;
 };
+
+// ───── HELPERS ─────
 
 function byteLength(value: string): number {
   return Buffer.byteLength(value, 'utf8');
@@ -61,6 +63,17 @@ function validPrefixByteLength(content: string): number {
   }
 }
 
+// ───── EXPORTS ─────
+
+/**
+ * Repair a JSONL file by truncating any trailing malformed content.
+ *
+ * Scans from the beginning, keeps all complete valid JSON lines,
+ * and truncates anything after the last valid record.
+ *
+ * @param path - Path to the JSONL file.
+ * @returns Repair result with whether repair occurred and bytes dropped.
+ */
 export function repairJsonlTail(path: string): JsonlRepairResult {
   if (!existsSync(path)) {
     return { repaired: false, droppedBytes: 0 };
@@ -83,6 +96,12 @@ export function repairJsonlTail(path: string): JsonlRepairResult {
   return { repaired: true, droppedBytes };
 }
 
+/**
+ * Append a JSON record as a new JSONL line.
+ *
+ * @param path - Path to the JSONL file.
+ * @param record - Object to serialize and append.
+ */
 export function appendJsonlRecord(path: string, record: Record<string, unknown>): void {
   appendFileSync(path, `${JSON.stringify(record)}\n`, { encoding: 'utf8', flag: 'a' });
 }

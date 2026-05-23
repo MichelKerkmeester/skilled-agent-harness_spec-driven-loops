@@ -1,6 +1,4 @@
-// ───────────────────────────────────────────────────────────────────
 // MODULE: Deep-Loop Executor Audit
-// ───────────────────────────────────────────────────────────────────
 
 import { spawn, spawnSync } from 'node:child_process';
 import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
@@ -8,6 +6,8 @@ import { basename, join } from 'node:path';
 
 import type { ExecutorConfig, ExecutorKind } from './executor-config.js';
 import { appendJsonlRecord as appendJsonlRecordSafe, repairJsonlTail } from './jsonl-repair.js';
+
+// ───── TYPE DEFINITIONS ─────
 
 export const CLI_DISPATCH_STACK_ENV = 'SPECKIT_CLI_DISPATCH_STACK' as const;
 
@@ -35,15 +35,13 @@ export type ExecutorDispatchAllowedResult =
       detail: string;
     };
 
+// ───── CONSTANTS ─────
+
 type ExecutorDispatchGuardContext = {
   env?: Record<string, string | undefined>;
   ancestryCmdlines?: string[];
   statePaths?: string[];
 };
-
-function getExecutorKind(config: ExecutorConfig): ExecutorKind {
-  return config.kind ?? (config as ExecutorConfig & { type?: ExecutorKind }).type ?? 'native';
-}
 
 const EXECUTOR_BINARY_BY_KIND: Partial<Record<ExecutorKind, string>> = {
   'cli-codex': 'codex',
@@ -94,6 +92,25 @@ const EXECUTOR_ENV_PREFIXES_BY_KIND: Partial<Record<ExecutorKind, string[]>> = {
   'cli-devin': ['DEVIN_'],
 };
 
+type RunAuditedExecutorCommandInput = {
+  command: string;
+  args: string[];
+  cwd: string;
+  timeoutSeconds: number;
+  stateLogPath: string;
+  executor: ExecutorConfig;
+  iteration: number;
+  input?: string;
+  guardContext?: ExecutorDispatchGuardContext;
+  timeoutGraceMs?: number;
+};
+
+// ───── HELPERS ─────
+
+function getExecutorKind(config: ExecutorConfig): ExecutorKind {
+  return config.kind ?? (config as ExecutorConfig & { type?: ExecutorKind }).type ?? 'native';
+}
+
 function isAllowedExecutorEnvKey(key: string, kind: ExecutorKind): boolean {
   if (EXECUTOR_COMMON_ENV_ALLOWLIST.has(key) || key.startsWith('LC_')) {
     return true;
@@ -110,14 +127,6 @@ function splitDispatchStack(stack: string | undefined): string[] {
     .split(':')
     .map((entry) => entry.trim())
     .filter((entry) => entry.length > 0);
-}
-
-export function detectSameKindFromStack(stack: string | undefined, kind: ExecutorKind): boolean {
-  if (kind === 'native') {
-    return false;
-  }
-
-  return splitDispatchStack(stack).includes(kind);
 }
 
 function commandLineContainsBinary(commandLine: string, binary: string): boolean {
@@ -165,27 +174,6 @@ function readLinuxAncestorCmdlines(startPid: number = process.ppid): string[] {
   return cmdlines;
 }
 
-export function detectFromAncestry(kind: ExecutorKind, ancestryCmdlines: string[] = readLinuxAncestorCmdlines()): boolean {
-  const binary = EXECUTOR_BINARY_BY_KIND[kind];
-  if (!binary) {
-    return false;
-  }
-
-  return ancestryCmdlines.some((commandLine) => commandLineContainsBinary(commandLine, binary));
-}
-
-export function detectFromRuntimeEnv(
-  kind: ExecutorKind,
-  env: Record<string, string | undefined> = process.env,
-): boolean {
-  const sessionEnvName = EXECUTOR_SESSION_ENV_BY_KIND[kind];
-  if (!sessionEnvName) {
-    return false;
-  }
-
-  return typeof env[sessionEnvName] === 'string' && env[sessionEnvName]?.trim() !== '';
-}
-
 function getDefaultStatePaths(kind: ExecutorKind, env: Record<string, string | undefined>): string[] {
   const paths: string[] = [];
   for (const envName of EXECUTOR_STATE_ENV_BY_KIND[kind] ?? []) {
@@ -220,108 +208,6 @@ function pathIsReadableDirectory(path: string): boolean {
   } catch {
     return false;
   }
-}
-
-export function detectFromLockfile(kind: ExecutorKind, statePaths: string[] = getDefaultStatePaths(kind, process.env)): boolean {
-  if (kind === 'native') {
-    return false;
-  }
-
-  const names = candidateLockfileNames(kind);
-  for (const statePath of statePaths) {
-    const directories = [statePath, join(statePath, 'locks')];
-    for (const directory of directories) {
-      if (!pathIsReadableDirectory(directory)) {
-        continue;
-      }
-      const entries = new Set(readdirSync(directory));
-      if (names.some((name) => entries.has(name))) {
-        return true;
-      }
-    }
-  }
-
-  return false;
-}
-
-export function validateExecutorDispatchAllowed(
-  config: ExecutorConfig,
-  context: ExecutorDispatchGuardContext = {},
-): ExecutorDispatchAllowedResult {
-  const kind = getExecutorKind(config);
-  if (kind === 'native') {
-    return { allowed: true };
-  }
-
-  const env = context.env ?? process.env;
-  const stack = env[CLI_DISPATCH_STACK_ENV];
-  if (detectSameKindFromStack(stack, kind)) {
-    return {
-      allowed: false,
-      layer: 'stack',
-      reason: recursionReasonForLayer('stack'),
-      detail: `${kind} already appears in ${CLI_DISPATCH_STACK_ENV}`,
-    };
-  }
-
-  if (detectFromAncestry(kind, context.ancestryCmdlines)) {
-    return {
-      allowed: false,
-      layer: 'ancestry',
-      reason: recursionReasonForLayer('ancestry'),
-      detail: `${kind} executor binary appears in process ancestry`,
-    };
-  }
-
-  if (detectFromRuntimeEnv(kind, env)) {
-    const envName = EXECUTOR_SESSION_ENV_BY_KIND[kind] ?? 'runtime session env';
-    return {
-      allowed: false,
-      layer: 'env',
-      reason: recursionReasonForLayer('env'),
-      detail: `${envName} is set for ${kind}`,
-    };
-  }
-
-  const statePaths = context.statePaths ?? getDefaultStatePaths(kind, env);
-  if (detectFromLockfile(kind, statePaths)) {
-    return {
-      allowed: false,
-      layer: 'lockfile',
-      reason: recursionReasonForLayer('lockfile'),
-      detail: `${kind} dispatch lockfile exists in runtime state path`,
-    };
-  }
-
-  return { allowed: true };
-}
-
-export function buildExecutorDispatchEnv(
-  config: ExecutorConfig,
-  parentEnv: Record<string, string | undefined> = process.env,
-): Record<string, string | undefined> {
-  const kind = getExecutorKind(config);
-  if (kind === 'native') {
-    return { ...parentEnv };
-  }
-
-  const nextEnv: Record<string, string | undefined> = {};
-  for (const [key, value] of Object.entries(parentEnv)) {
-    if (value !== undefined && isAllowedExecutorEnvKey(key, kind)) {
-      nextEnv[key] = value;
-    }
-  }
-  nextEnv[CLI_DISPATCH_STACK_ENV] = [...splitDispatchStack(parentEnv[CLI_DISPATCH_STACK_ENV]), kind].join(':');
-  return nextEnv;
-}
-
-export function buildExecutorAuditRecord(executor: ExecutorConfig): Record<string, unknown> {
-  return {
-    kind: getExecutorKind(executor),
-    model: executor.model,
-    reasoningEffort: executor.reasoningEffort,
-    serviceTier: executor.serviceTier,
-  };
 }
 
 function findLastNonEmptyLineIndex(lines: string[]): number {
@@ -410,6 +296,216 @@ function findLatestIterationEvent(lines: string[], iteration: number): Record<st
   return null;
 }
 
+function killProcessGroup(pid: number | undefined, signal: NodeJS.Signals): void {
+  if (typeof pid !== 'number') {
+    return;
+  }
+
+  try {
+    process.kill(process.platform === 'win32' ? pid : -pid, signal);
+  } catch {
+  }
+}
+
+// ───── EXPORTS ─────
+
+/**
+ * Detect whether the same executor kind already appears in the dispatch stack.
+ *
+ * @param stack - The SPECKIT_CLI_DISPATCH_STACK env value.
+ * @param kind - The executor kind to check.
+ * @returns True if the kind is already present in the stack.
+ */
+export function detectSameKindFromStack(stack: string | undefined, kind: ExecutorKind): boolean {
+  if (kind === 'native') {
+    return false;
+  }
+
+  return splitDispatchStack(stack).includes(kind);
+}
+
+/**
+ * Detect whether an executor binary appears in the process ancestry.
+ *
+ * Reads Linux /proc ancestor cmdlines to find the executor binary.
+ *
+ * @param kind - The executor kind to check.
+ * @param ancestryCmdlines - Pre-computed ancestor command lines (optional).
+ * @returns True if the executor binary is found in the ancestry.
+ */
+export function detectFromAncestry(kind: ExecutorKind, ancestryCmdlines: string[] = readLinuxAncestorCmdlines()): boolean {
+  const binary = EXECUTOR_BINARY_BY_KIND[kind];
+  if (!binary) {
+    return false;
+  }
+
+  return ancestryCmdlines.some((commandLine) => commandLineContainsBinary(commandLine, binary));
+}
+
+/**
+ * Detect whether a runtime session environment variable is set for an executor.
+ *
+ * @param kind - The executor kind to check.
+ * @param env - Environment variable map (defaults to process.env).
+ * @returns True if the session environment variable is set.
+ */
+export function detectFromRuntimeEnv(
+  kind: ExecutorKind,
+  env: Record<string, string | undefined> = process.env,
+): boolean {
+  const sessionEnvName = EXECUTOR_SESSION_ENV_BY_KIND[kind];
+  if (!sessionEnvName) {
+    return false;
+  }
+
+  return typeof env[sessionEnvName] === 'string' && env[sessionEnvName]?.trim() !== '';
+}
+
+/**
+ * Detect whether a dispatch lockfile exists in executor state directories.
+ *
+ * @param kind - The executor kind to check.
+ * @param statePaths - State directory paths to scan (defaults to auto-detected).
+ * @returns True if a lockfile is found.
+ */
+export function detectFromLockfile(kind: ExecutorKind, statePaths: string[] = getDefaultStatePaths(kind, process.env)): boolean {
+  if (kind === 'native') {
+    return false;
+  }
+
+  const names = candidateLockfileNames(kind);
+  for (const statePath of statePaths) {
+    const directories = [statePath, join(statePath, 'locks')];
+    for (const directory of directories) {
+      if (!pathIsReadableDirectory(directory)) {
+        continue;
+      }
+      const entries = new Set(readdirSync(directory));
+      if (names.some((name) => entries.has(name))) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
+/**
+ * Validate that an executor dispatch is allowed.
+ *
+ * Checks stack, ancestry, runtime env, and lockfile layers for recursion
+ * guard violations per the deep-loop dispatch contract.
+ *
+ * @param config - Executor configuration.
+ * @param context - Optional environment, ancestry, and state path context.
+ * @returns Dispatch result indicating whether dispatch is allowed.
+ */
+export function validateExecutorDispatchAllowed(
+  config: ExecutorConfig,
+  context: ExecutorDispatchGuardContext = {},
+): ExecutorDispatchAllowedResult {
+  const kind = getExecutorKind(config);
+  if (kind === 'native') {
+    return { allowed: true };
+  }
+
+  const env = context.env ?? process.env;
+  const stack = env[CLI_DISPATCH_STACK_ENV];
+  if (detectSameKindFromStack(stack, kind)) {
+    return {
+      allowed: false,
+      layer: 'stack',
+      reason: recursionReasonForLayer('stack'),
+      detail: `${kind} already appears in ${CLI_DISPATCH_STACK_ENV}`,
+    };
+  }
+
+  if (detectFromAncestry(kind, context.ancestryCmdlines)) {
+    return {
+      allowed: false,
+      layer: 'ancestry',
+      reason: recursionReasonForLayer('ancestry'),
+      detail: `${kind} executor binary appears in process ancestry`,
+    };
+  }
+
+  if (detectFromRuntimeEnv(kind, env)) {
+    const envName = EXECUTOR_SESSION_ENV_BY_KIND[kind] ?? 'runtime session env';
+    return {
+      allowed: false,
+      layer: 'env',
+      reason: recursionReasonForLayer('env'),
+      detail: `${envName} is set for ${kind}`,
+    };
+  }
+
+  const statePaths = context.statePaths ?? getDefaultStatePaths(kind, env);
+  if (detectFromLockfile(kind, statePaths)) {
+    return {
+      allowed: false,
+      layer: 'lockfile',
+      reason: recursionReasonForLayer('lockfile'),
+      detail: `${kind} dispatch lockfile exists in runtime state path`,
+    };
+  }
+
+  return { allowed: true };
+}
+
+/**
+ * Build the environment for a dispatched executor.
+ *
+ * Filters the parent environment to only include allowed keys per executor kind
+ * and appends the current kind to the dispatch stack.
+ *
+ * @param config - Executor configuration.
+ * @param parentEnv - Parent environment (defaults to process.env).
+ * @returns Filtered environment with dispatch stack updated.
+ */
+export function buildExecutorDispatchEnv(
+  config: ExecutorConfig,
+  parentEnv: Record<string, string | undefined> = process.env,
+): Record<string, string | undefined> {
+  const kind = getExecutorKind(config);
+  if (kind === 'native') {
+    return { ...parentEnv };
+  }
+
+  const nextEnv: Record<string, string | undefined> = {};
+  for (const [key, value] of Object.entries(parentEnv)) {
+    if (value !== undefined && isAllowedExecutorEnvKey(key, kind)) {
+      nextEnv[key] = value;
+    }
+  }
+  nextEnv[CLI_DISPATCH_STACK_ENV] = [...splitDispatchStack(parentEnv[CLI_DISPATCH_STACK_ENV]), kind].join(':');
+  return nextEnv;
+}
+
+/**
+ * Build an executor audit record for provenance logging.
+ *
+ * @param executor - Executor configuration.
+ * @returns Audit record with kind, model, reasoning effort, and service tier.
+ */
+export function buildExecutorAuditRecord(executor: ExecutorConfig): Record<string, unknown> {
+  return {
+    kind: getExecutorKind(executor),
+    model: executor.model,
+    reasoningEffort: executor.reasoningEffort,
+    serviceTier: executor.serviceTier,
+  };
+}
+
+/**
+ * Write the first executor provenance record for an iteration.
+ *
+ * Updates the iteration start record in the JSONL state log with executor
+ * audit data, or creates a new iteration_start record if none exists.
+ *
+ * @param stateLogPath - Path to the JSONL state log.
+ * @param executor - Executor configuration.
+ * @param iteration - Current iteration number.
+ */
 export function writeFirstRecordExecutor(stateLogPath: string, executor: ExecutorConfig, iteration: number): void {
   if (getExecutorKind(executor) === 'native') {
     return;
@@ -444,6 +540,15 @@ export function writeFirstRecordExecutor(stateLogPath: string, executor: Executo
   });
 }
 
+/**
+ * Emit a dispatch failure event to the JSONL state log.
+ *
+ * @param stateLogPath - Path to the JSONL state log.
+ * @param executor - Executor configuration.
+ * @param reason - Dispatch failure reason.
+ * @param iteration - Current iteration number.
+ * @param detail - Optional failure detail string.
+ */
 export function emitDispatchFailure(
   stateLogPath: string,
   executor: ExecutorConfig,
@@ -467,22 +572,14 @@ export function emitDispatchFailure(
   });
 }
 
-type RunAuditedExecutorCommandInput = {
-  command: string;
-  args: string[];
-  cwd: string;
-  timeoutSeconds: number;
-  stateLogPath: string;
-  executor: ExecutorConfig;
-  iteration: number;
-  input?: string;
-  guardContext?: ExecutorDispatchGuardContext;
-  timeoutGraceMs?: number;
-};
-
 /**
- * Run a non-native executor command and translate timeout or crash paths into
- * typed dispatch_failure events before the validator checks the iteration.
+ * Run a non-native executor command synchronously and log dispatch failures.
+ *
+ * Detects timeout, crash, and non-zero exit conditions and translates
+ * them into typed dispatch_failure JSONL events.
+ *
+ * @param input - Command input with executor config and state log path.
+ * @returns Always returns 0 (failures are logged, not thrown).
  */
 export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput): number {
   const dispatchAllowed = validateExecutorDispatchAllowed(input.executor, input.guardContext);
@@ -552,21 +649,14 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
   return 0;
 }
 
-function killProcessGroup(pid: number | undefined, signal: NodeJS.Signals): void {
-  if (typeof pid !== 'number') {
-    return;
-  }
-
-  try {
-    process.kill(process.platform === 'win32' ? pid : -pid, signal);
-  } catch {
-    // The process may already have exited between timeout detection and cleanup.
-  }
-}
-
 /**
- * Async supervisor used by process-lifecycle fixtures that need signal
- * escalation. The synchronous export is retained for existing callers.
+ * Run a non-native executor command asynchronously with signal escalation.
+ *
+ * Uses spawn + detached process group for graceful timeout handling with
+ * SIGTERM escalation to SIGKILL after the grace period.
+ *
+ * @param input - Command input with executor config and state log path.
+ * @returns Promise resolving to 0 after process completes.
  */
 export async function runAuditedExecutorCommandAsync(input: RunAuditedExecutorCommandInput): Promise<number> {
   const dispatchAllowed = validateExecutorDispatchAllowed(input.executor, input.guardContext);
@@ -673,6 +763,13 @@ export async function runAuditedExecutorCommandAsync(input: RunAuditedExecutorCo
   return 0;
 }
 
+/**
+ * Append executor audit information to the last JSONL record in the state log.
+ *
+ * @param stateLogPath - Path to the JSONL state log.
+ * @param executor - Executor configuration.
+ * @throws If the state log is empty or the last record is not an object.
+ */
 export function appendExecutorAuditToLastRecord(stateLogPath: string, executor: ExecutorConfig): void {
   if (getExecutorKind(executor) === 'native') {
     return;

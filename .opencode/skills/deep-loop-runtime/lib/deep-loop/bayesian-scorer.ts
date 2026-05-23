@@ -1,11 +1,15 @@
-// ───────────────────────────────────────────────────────────────
 // MODULE: Deep-Loop Bayesian Scorer
-// ───────────────────────────────────────────────────────────────
 
-// ───────────────────────────────────────────────────────────────
-// 1. CORE LOGIC
-// ───────────────────────────────────────────────────────────────
+// ───── CORE LOGIC ─────
 
+/**
+ * Compute a Bayesian estimate of success probability using Laplace smoothing.
+ *
+ * @param success - Number of successful outcomes (non-negative integer).
+ * @param total - Total number of trials (non-negative integer, >= success).
+ * @returns Smoothed probability: (success + 1) / (total + 2).
+ * @throws RangeError If inputs are not valid integers or success exceeds total.
+ */
 export function computeScore(success: number, total: number): number {
   if (!Number.isInteger(success) || !Number.isInteger(total)) {
     throw new RangeError('success and total must be integers');
@@ -20,6 +24,14 @@ export function computeScore(success: number, total: number): number {
   return (success + 1) / (total + 2);
 }
 
+/**
+ * Determine whether a model should be demoted based on score and call count.
+ *
+ * @param score - Current Bayesian score (finite number).
+ * @param totalCalls - Number of calls involving this model (non-negative integer).
+ * @returns True if score < 0.5 and totalCalls >= 3.
+ * @throws RangeError If inputs are invalid.
+ */
 export function shouldDemote(score: number, totalCalls: number): boolean {
   if (!Number.isFinite(score)) {
     throw new RangeError('score must be finite');

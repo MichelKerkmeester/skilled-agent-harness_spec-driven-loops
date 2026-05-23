@@ -1,10 +1,6 @@
-// ───────────────────────────────────────────────────────────────
 // MODULE: Deep-Loop Fallback Router
-// ───────────────────────────────────────────────────────────────
 
-// ───────────────────────────────────────────────────────────────
-// 1. TYPE DEFINITIONS
-// ───────────────────────────────────────────────────────────────
+// ───── TYPE DEFINITIONS ─────
 
 export type FallbackAction = 'fallback' | 'fail-fast';
 
@@ -24,18 +20,24 @@ export type ModelRegistry = {
   readonly models: readonly ModelProfile[];
 };
 
-// ───────────────────────────────────────────────────────────────
-// 2. HELPERS
-// ───────────────────────────────────────────────────────────────
+// ───── HELPERS ─────
 
 function findModel(registry: ModelRegistry, modelId: string): ModelProfile | undefined {
   return registry.models.find((model) => model.id === modelId);
 }
 
-// ───────────────────────────────────────────────────────────────
-// 3. CORE LOGIC
-// ───────────────────────────────────────────────────────────────
+// ───── CORE LOGIC ─────
 
+/**
+ * Resolve the fallback route when a model exhausts its quota pool.
+ *
+ * Checks whether the failed model has a configured fallback target in a
+ * different quota pool and returns the appropriate route.
+ *
+ * @param failedModelId - The model ID that failed.
+ * @param registry - The model registry with fallback configurations.
+ * @returns A route indicating whether to fallback or fail-fast, with a reason.
+ */
 export function resolveFallback(failedModelId: string, registry: ModelRegistry): FallbackRoute {
   const failedModel = findModel(registry, failedModelId);
   if (failedModel === undefined) {

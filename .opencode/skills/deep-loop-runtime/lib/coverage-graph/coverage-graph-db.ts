@@ -1,25 +1,16 @@
-// ───────────────────────────────────────────────────────────────
 // MODULE: Coverage Graph Database
-// ───────────────────────────────────────────────────────────────
-// SQLite storage for deep-loop coverage graphs (nodes + edges + snapshots).
-// Uses dedicated deep-loop-graph.sqlite alongside the memory index DB.
-// Follows code-graph-db.ts patterns for schema versioning and transaction safety.
 
 import Database from '../../../system-spec-kit/mcp_server/node_modules/better-sqlite3/lib/index.js';
 import { mkdirSync, statSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-// ───────────────────────────────────────────────────────────────
-// 1. TYPES
-// ───────────────────────────────────────────────────────────────
+// ───── TYPE DEFINITIONS ─────
 
 export type LoopType = 'research' | 'review';
 
-/** Research node kinds */
 export type ResearchNodeKind = 'QUESTION' | 'FINDING' | 'CLAIM' | 'SOURCE';
 
-/** Review node kinds */
 export type ReviewNodeKind =
   | 'DIMENSION'
   | 'FILE'
@@ -32,10 +23,8 @@ export type ReviewNodeKind =
   | 'CONSUMER'
   | 'TEST';
 
-/** All valid node kinds across both loop types */
 export type NodeKind = ResearchNodeKind | ReviewNodeKind;
 
-/** Research edge relation types */
 export type ResearchRelation =
   | 'ANSWERS'
   | 'SUPPORTS'
@@ -45,7 +34,6 @@ export type ResearchRelation =
   | 'COVERS'
   | 'CITES';
 
-/** Review edge relation types */
 export type ReviewRelation =
   | 'COVERS'
   | 'EVIDENCE_FOR'
@@ -56,10 +44,8 @@ export type ReviewRelation =
   | 'IN_DIMENSION'
   | 'IN_FILE';
 
-/** All valid relation types */
 export type Relation = ResearchRelation | ReviewRelation;
 
-/** A coverage graph node */
 export interface CoverageNode {
   id: string;
   specFolder: string;
@@ -74,7 +60,6 @@ export interface CoverageNode {
   updatedAt?: string;
 }
 
-/** A coverage graph edge */
 export interface CoverageEdge {
   id: string;
   specFolder: string;
@@ -88,7 +73,6 @@ export interface CoverageEdge {
   createdAt?: string;
 }
 
-/** A coverage snapshot (per-iteration metrics) */
 export interface CoverageSnapshot {
   id?: number;
   specFolder: string;
@@ -101,16 +85,13 @@ export interface CoverageSnapshot {
   createdAt?: string;
 }
 
-/** Namespace components for isolation */
 export interface Namespace {
   specFolder: string;
   loopType: LoopType;
   sessionId?: string;
 }
 
-// ───────────────────────────────────────────────────────────────
-// 2. CONSTANTS
-// ───────────────────────────────────────────────────────────────
+// ───── CONSTANTS ─────
 
 export const SCHEMA_VERSION = 2;
 
@@ -122,11 +103,9 @@ export const COVERAGE_GRAPH_DATABASE_DIR = join(
   'storage',
 );
 
-/** Weight clamping bounds */
 const MIN_WEIGHT = 0.0;
 const MAX_WEIGHT = 2.0;
 
-/** Initial weight estimates for research relations */
 export const RESEARCH_WEIGHTS: Record<ResearchRelation, number> = {
   ANSWERS: 1.3,
   SUPPORTS: 1.0,
@@ -137,7 +116,6 @@ export const RESEARCH_WEIGHTS: Record<ResearchRelation, number> = {
   CITES: 1.0,
 };
 
-/** Initial weight estimates for review relations */
 export const REVIEW_WEIGHTS: Record<ReviewRelation, number> = {
   COVERS: 1.3,
   EVIDENCE_FOR: 1.0,
@@ -149,7 +127,6 @@ export const REVIEW_WEIGHTS: Record<ReviewRelation, number> = {
   IN_FILE: 1.0,
 };
 
-/** Valid node kinds by loop type */
 export const VALID_KINDS: Record<LoopType, readonly string[]> = {
   research: ['QUESTION', 'FINDING', 'CLAIM', 'SOURCE'] as const,
   review: [
@@ -166,20 +143,13 @@ export const VALID_KINDS: Record<LoopType, readonly string[]> = {
   ] as const,
 };
 
-/** Valid relation types by loop type */
 export const VALID_RELATIONS: Record<LoopType, readonly string[]> = {
   research: ['ANSWERS', 'SUPPORTS', 'CONTRADICTS', 'SUPERSEDES', 'DERIVED_FROM', 'COVERS', 'CITES'] as const,
   review: ['COVERS', 'EVIDENCE_FOR', 'CONTRADICTS', 'RESOLVES', 'CONFIRMS', 'ESCALATES', 'IN_DIMENSION', 'IN_FILE'] as const,
 };
 
-// ───────────────────────────────────────────────────────────────
-// 3. SCHEMA
-// ───────────────────────────────────────────────────────────────
+// ───── SCHEMA ─────
 
-// Schema v2 (REQ-028): primary keys are composite
-// `(spec_folder, loop_type, session_id, id)` so two sessions can reuse the
-// same logical node/edge ID without overwriting each other's rows. Every
-// read, write, update, and delete must scope the bare id by namespace.
 const SCHEMA_SQL = `
   CREATE TABLE IF NOT EXISTS coverage_nodes (
     spec_folder TEXT NOT NULL,
@@ -244,16 +214,22 @@ const SCHEMA_SQL = `
   CREATE INDEX IF NOT EXISTS idx_coverage_snapshot_session ON coverage_snapshots(session_id);
 `;
 
-// ───────────────────────────────────────────────────────────────
-// 4. DATABASE LIFECYCLE
-// ───────────────────────────────────────────────────────────────
+// ───── DATABASE LIFECYCLE ─────
 
 let db: Database.Database | null = null;
 let dbPath: string | null = null;
 let statementDb: Database.Database | null = null;
 const preparedStatements = new Map<string, Database.Statement>();
 
-/** Initialize (or get) the coverage graph database */
+/**
+ * Initialize (or get) the coverage graph database.
+ *
+ * Creates the database directory and file, applies schema migrations,
+ * and enables WAL journaling and foreign keys.
+ *
+ * @param dbDir - Directory for the database file.
+ * @returns The initialized Database instance.
+ */
 export function initDb(dbDir: string): Database.Database {
   if (db) return db;
 
@@ -264,12 +240,6 @@ export function initDb(dbDir: string): Database.Database {
     db.pragma('journal_mode = WAL');
     db.pragma('foreign_keys = ON');
 
-    // Schema migration: v1 used a single `id TEXT PRIMARY KEY`, which let
-    // two sessions with the same logical node/edge id overwrite each other
-    // (REQ-028 / F004 in the 042 closing audit). v2 switches to a composite
-    // primary key of (spec_folder, loop_type, session_id, id). Live upgrades
-    // drop the v1 tables before creating the v2 schema — this is a dev-only
-    // coverage cache, not durable state, so a drop is safe and idempotent.
     const schemaTableExists = db.prepare(
       "SELECT name FROM sqlite_master WHERE type='table' AND name='schema_version'",
     ).get() as { name: string } | undefined;
@@ -304,9 +274,9 @@ export function initDb(dbDir: string): Database.Database {
     }
 
     return db;
-  } catch (err) {
+  } catch (err: unknown) {
     if (db) {
-      try { db.close(); } catch { /* best effort cleanup */ }
+      try { db.close(); } catch { }
     }
     db = null;
     dbPath = null;
@@ -314,13 +284,19 @@ export function initDb(dbDir: string): Database.Database {
   }
 }
 
-/** Get the current database instance (lazy-initializes if needed) */
+/**
+ * Get the current database instance (lazy-initializes if needed).
+ *
+ * @returns The Database instance.
+ */
 export function getDb(): Database.Database {
   if (!db) initDb(COVERAGE_GRAPH_DATABASE_DIR);
   return db!;
 }
 
-/** Close the database connection */
+/**
+ * Close the database connection and clear cached state.
+ */
 export function closeDb(): void {
   if (db) {
     db.close();
@@ -331,7 +307,8 @@ export function closeDb(): void {
   }
 }
 
-/** Reuse prepared statements for hot coverage-graph operations. */
+// ───── HELPERS ─────
+
 function prepareStatement(sql: string): Database.Statement {
   const currentDb = getDb();
   if (statementDb !== currentDb) {
@@ -347,7 +324,6 @@ function prepareStatement(sql: string): Database.Statement {
   return statement;
 }
 
-/** Build a namespace filter clause for SQL queries */
 function buildNamespaceWhere(ns: Namespace): { clause: string; params: unknown[] } {
   const parts: string[] = ['spec_folder = ?', 'loop_type = ?'];
   const params: unknown[] = [ns.specFolder, ns.loopType];
@@ -357,380 +333,6 @@ function buildNamespaceWhere(ns: Namespace): { clause: string; params: unknown[]
   }
   return { clause: parts.join(' AND '), params };
 }
-
-// ───────────────────────────────────────────────────────────────
-// 5. WEIGHT CLAMPING
-// ───────────────────────────────────────────────────────────────
-
-/** Clamp weight to valid range [0.0, 2.0] */
-export function clampWeight(weight: number): number {
-  if (!Number.isFinite(weight)) return 1.0;
-  return Math.max(MIN_WEIGHT, Math.min(MAX_WEIGHT, weight));
-}
-
-// ───────────────────────────────────────────────────────────────
-// 6. NODE OPERATIONS
-// ───────────────────────────────────────────────────────────────
-
-/**
- * Insert or update a node scoped to `(specFolder, loopType, sessionId, id)`.
- * Returns the node ID. Every existence check is namespace-qualified so two
- * sessions reusing the same logical id cannot collide (REQ-028).
- */
-export function upsertNode(node: CoverageNode): string {
-  const d = getDb();
-  const now = new Date().toISOString();
-  const metadataStr = node.metadata ? JSON.stringify(node.metadata) : null;
-
-  const existing = prepareStatement(
-    'SELECT id FROM coverage_nodes WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
-  ).get(node.specFolder, node.loopType, node.sessionId, node.id) as { id: string } | undefined;
-  if (existing) {
-    prepareStatement(`
-      UPDATE coverage_nodes SET
-        kind = ?, name = ?, content_hash = ?, iteration = ?,
-        metadata = ?, updated_at = ?
-      WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?
-    `).run(
-      node.kind, node.name, node.contentHash ?? null, node.iteration ?? null,
-      metadataStr, now,
-      node.specFolder, node.loopType, node.sessionId, node.id,
-    );
-    return node.id;
-  }
-
-  prepareStatement(`
-    INSERT INTO coverage_nodes (
-      spec_folder, loop_type, session_id, id, kind, name,
-      content_hash, iteration, metadata, created_at, updated_at
-    )
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-  `).run(
-    node.specFolder, node.loopType, node.sessionId, node.id,
-    node.kind, node.name, node.contentHash ?? null,
-    node.iteration ?? null, metadataStr, now, now,
-  );
-  return node.id;
-}
-
-/** Get a node by ID inside a namespace. */
-export function getNode(ns: Namespace, id: string): CoverageNode | null {
-  if (!ns.sessionId) return null;
-  const d = getDb();
-  const row = prepareStatement(
-    'SELECT * FROM coverage_nodes WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
-  ).get(ns.specFolder, ns.loopType, ns.sessionId, id) as Record<string, unknown> | undefined;
-  return row ? rowToNode(row) : null;
-}
-
-/** Get all nodes in a namespace */
-export function getNodes(ns: Namespace): CoverageNode[] {
-  const d = getDb();
-  const { clause, params } = buildNamespaceWhere(ns);
-  const rows = prepareStatement(`SELECT * FROM coverage_nodes WHERE ${clause}`).all(...params) as Record<string, unknown>[];
-  return rows.map(rowToNode);
-}
-
-/** Get nodes of a specific kind in a namespace */
-export function getNodesByKind(ns: Namespace, kind: NodeKind): CoverageNode[] {
-  const d = getDb();
-  const { clause, params } = buildNamespaceWhere(ns);
-  const rows = prepareStatement(`SELECT * FROM coverage_nodes WHERE ${clause} AND kind = ?`).all(...params, kind) as Record<string, unknown>[];
-  return rows.map(rowToNode);
-}
-
-/** Delete a node and its connected edges inside a namespace. */
-export function deleteNode(ns: Namespace, id: string): boolean {
-  if (!ns.sessionId) return false;
-  const d = getDb();
-  const tx = d.transaction(() => {
-    prepareStatement(
-      'DELETE FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND (source_id = ? OR target_id = ?)',
-    ).run(ns.specFolder, ns.loopType, ns.sessionId, id, id);
-    const result = prepareStatement(
-      'DELETE FROM coverage_nodes WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
-    ).run(ns.specFolder, ns.loopType, ns.sessionId, id);
-    return result.changes > 0;
-  });
-  return tx();
-}
-
-// ───────────────────────────────────────────────────────────────
-// 7. EDGE OPERATIONS
-// ───────────────────────────────────────────────────────────────
-
-/**
- * Insert or update an edge scoped to `(specFolder, loopType, sessionId, id)`.
- * Rejects self-loops and clamps weights. Returns the edge ID or null if
- * rejected. Namespace scoping is load-bearing: two sessions that both emit
- * an edge with the same logical id get independent rows (REQ-028).
- */
-export function upsertEdge(edge: CoverageEdge): string | null {
-  // Self-loop rejection
-  if (edge.sourceId === edge.targetId) {
-    return null;
-  }
-
-  const d = getDb();
-  const weight = clampWeight(edge.weight);
-  const now = new Date().toISOString();
-  const metadataStr = edge.metadata ? JSON.stringify(edge.metadata) : null;
-
-  const existing = prepareStatement(
-    'SELECT id FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
-  ).get(edge.specFolder, edge.loopType, edge.sessionId, edge.id) as { id: string } | undefined;
-  if (existing) {
-    prepareStatement(`
-      UPDATE coverage_edges SET
-        relation = ?, weight = ?, metadata = ?
-      WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?
-    `).run(
-      edge.relation, weight, metadataStr,
-      edge.specFolder, edge.loopType, edge.sessionId, edge.id,
-    );
-    return edge.id;
-  }
-
-  prepareStatement(`
-    INSERT INTO coverage_edges (
-      spec_folder, loop_type, session_id, id, source_id, target_id,
-      relation, weight, metadata, created_at
-    )
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-  `).run(
-    edge.specFolder, edge.loopType, edge.sessionId, edge.id,
-    edge.sourceId, edge.targetId,
-    edge.relation, weight, metadataStr, now,
-  );
-  return edge.id;
-}
-
-/** Get an edge by ID inside a namespace. */
-export function getEdge(ns: Namespace, id: string): CoverageEdge | null {
-  if (!ns.sessionId) return null;
-  const d = getDb();
-  const row = prepareStatement(
-    'SELECT * FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
-  ).get(ns.specFolder, ns.loopType, ns.sessionId, id) as Record<string, unknown> | undefined;
-  return row ? rowToEdge(row) : null;
-}
-
-/** Get all edges in a namespace */
-export function getEdges(ns: Namespace): CoverageEdge[] {
-  const d = getDb();
-  const { clause, params } = buildNamespaceWhere(ns);
-  const rows = prepareStatement(`SELECT * FROM coverage_edges WHERE ${clause}`).all(...params) as Record<string, unknown>[];
-  return rows.map(rowToEdge);
-}
-
-/** Get edges from a source node inside a namespace. */
-export function getEdgesFrom(ns: Namespace, sourceId: string): CoverageEdge[] {
-  if (!ns.sessionId) return [];
-  const d = getDb();
-  const rows = prepareStatement(
-    'SELECT * FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND source_id = ?',
-  ).all(ns.specFolder, ns.loopType, ns.sessionId, sourceId) as Record<string, unknown>[];
-  return rows.map(rowToEdge);
-}
-
-/** Get edges to a target node inside a namespace. */
-export function getEdgesTo(ns: Namespace, targetId: string): CoverageEdge[] {
-  if (!ns.sessionId) return [];
-  const d = getDb();
-  const rows = prepareStatement(
-    'SELECT * FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND target_id = ?',
-  ).all(ns.specFolder, ns.loopType, ns.sessionId, targetId) as Record<string, unknown>[];
-  return rows.map(rowToEdge);
-}
-
-/** Update an edge's weight and/or metadata inside a namespace. */
-export function updateEdge(
-  ns: Namespace,
-  id: string,
-  updates: { weight?: number; metadata?: Record<string, unknown> },
-): boolean {
-  if (!ns.sessionId) return false;
-  const d = getDb();
-  const existing = prepareStatement(
-    'SELECT * FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
-  ).get(ns.specFolder, ns.loopType, ns.sessionId, id) as Record<string, unknown> | undefined;
-  if (!existing) return false;
-
-  const weight = updates.weight !== undefined ? clampWeight(updates.weight) : existing.weight as number;
-  const metadataStr = updates.metadata ? JSON.stringify(updates.metadata) : existing.metadata as string | null;
-
-  prepareStatement(
-    'UPDATE coverage_edges SET weight = ?, metadata = ? WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
-  ).run(weight, metadataStr, ns.specFolder, ns.loopType, ns.sessionId, id);
-  return true;
-}
-
-/** Delete an edge by ID inside a namespace. */
-export function deleteEdge(ns: Namespace, id: string): boolean {
-  if (!ns.sessionId) return false;
-  const d = getDb();
-  const result = prepareStatement(
-    'DELETE FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
-  ).run(ns.specFolder, ns.loopType, ns.sessionId, id);
-  return result.changes > 0;
-}
-
-// ───────────────────────────────────────────────────────────────
-// 8. SNAPSHOT OPERATIONS
-// ───────────────────────────────────────────────────────────────
-
-/** Create a coverage snapshot for a given iteration */
-export function createSnapshot(snapshot: CoverageSnapshot): number {
-  const d = getDb();
-  const metricsStr = JSON.stringify(snapshot.metrics);
-
-  const result = prepareStatement(`
-    INSERT INTO coverage_snapshots (
-      spec_folder, loop_type, session_id, iteration, metrics, node_count, edge_count
-    )
-    VALUES (?, ?, ?, ?, ?, ?, ?)
-    ON CONFLICT(spec_folder, loop_type, session_id, iteration) DO UPDATE SET
-      metrics = excluded.metrics,
-      node_count = excluded.node_count,
-      edge_count = excluded.edge_count
-  `).run(
-    snapshot.specFolder, snapshot.loopType, snapshot.sessionId, snapshot.iteration,
-    metricsStr, snapshot.nodeCount, snapshot.edgeCount,
-  );
-  return Number(result.lastInsertRowid);
-}
-
-/** Get the latest snapshot for a namespace */
-export function getLatestSnapshot(specFolder: string, loopType: LoopType, sessionId?: string): CoverageSnapshot | null {
-  const d = getDb();
-  if (sessionId) {
-    const row = prepareStatement(`
-      SELECT * FROM coverage_snapshots
-      WHERE spec_folder = ? AND loop_type = ? AND session_id = ?
-      ORDER BY iteration DESC LIMIT 1
-    `).get(specFolder, loopType, sessionId) as Record<string, unknown> | undefined;
-    return row ? rowToSnapshot(row) : null;
-  }
-  const row = prepareStatement(`
-    SELECT * FROM coverage_snapshots
-    WHERE spec_folder = ? AND loop_type = ?
-    ORDER BY iteration DESC LIMIT 1
-  `).get(specFolder, loopType) as Record<string, unknown> | undefined;
-  return row ? rowToSnapshot(row) : null;
-}
-
-/** Get all snapshots for a namespace (ordered by iteration) */
-export function getSnapshots(specFolder: string, loopType: LoopType, sessionId?: string): CoverageSnapshot[] {
-  const d = getDb();
-  if (sessionId) {
-    const rows = prepareStatement(`
-      SELECT * FROM coverage_snapshots
-      WHERE spec_folder = ? AND loop_type = ? AND session_id = ?
-      ORDER BY iteration ASC
-    `).all(specFolder, loopType, sessionId) as Record<string, unknown>[];
-    return rows.map(rowToSnapshot);
-  }
-  const rows = prepareStatement(`
-    SELECT * FROM coverage_snapshots
-    WHERE spec_folder = ? AND loop_type = ?
-    ORDER BY iteration ASC
-  `).all(specFolder, loopType) as Record<string, unknown>[];
-  return rows.map(rowToSnapshot);
-}
-
-// ───────────────────────────────────────────────────────────────
-// 9. STATS AND COUNTS
-// ───────────────────────────────────────────────────────────────
-
-/** Get graph statistics for a namespace */
-export function getStats(specFolder: string, loopType: LoopType): {
-  totalNodes: number;
-  totalEdges: number;
-  nodesByKind: Record<string, number>;
-  edgesByRelation: Record<string, number>;
-  lastIteration: number | null;
-  schemaVersion: number;
-  dbFileSize: number | null;
-} {
-  const d = getDb();
-
-  const totalNodes = (prepareStatement(
-    'SELECT COUNT(*) as c FROM coverage_nodes WHERE spec_folder = ? AND loop_type = ?',
-  ).get(specFolder, loopType) as { c: number }).c;
-
-  const totalEdges = (prepareStatement(
-    'SELECT COUNT(*) as c FROM coverage_edges WHERE spec_folder = ? AND loop_type = ?',
-  ).get(specFolder, loopType) as { c: number }).c;
-
-  const nodesByKind: Record<string, number> = {};
-  const kindRows = prepareStatement(
-    'SELECT kind, COUNT(*) as c FROM coverage_nodes WHERE spec_folder = ? AND loop_type = ? GROUP BY kind',
-  ).all(specFolder, loopType) as { kind: string; c: number }[];
-  for (const r of kindRows) nodesByKind[r.kind] = r.c;
-
-  const edgesByRelation: Record<string, number> = {};
-  const relRows = prepareStatement(
-    'SELECT relation, COUNT(*) as c FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? GROUP BY relation',
-  ).all(specFolder, loopType) as { relation: string; c: number }[];
-  for (const r of relRows) edgesByRelation[r.relation] = r.c;
-
-  const lastIterRow = prepareStatement(
-    'SELECT MAX(iteration) as max_iter FROM coverage_snapshots WHERE spec_folder = ? AND loop_type = ?',
-  ).get(specFolder, loopType) as { max_iter: number | null } | undefined;
-  const lastIteration = lastIterRow?.max_iter ?? null;
-
-  let dbFileSize: number | null = null;
-  if (dbPath) {
-    try { dbFileSize = statSync(dbPath).size; } catch { /* file may not exist yet */ }
-  }
-
-  return {
-    totalNodes,
-    totalEdges,
-    nodesByKind,
-    edgesByRelation,
-    lastIteration,
-    schemaVersion: SCHEMA_VERSION,
-    dbFileSize,
-  };
-}
-
-// ───────────────────────────────────────────────────────────────
-// 10. BATCH UPSERT (TRANSACTION)
-// ───────────────────────────────────────────────────────────────
-
-/** Batch upsert nodes and edges in a single transaction */
-export function batchUpsert(
-  nodes: CoverageNode[],
-  edges: CoverageEdge[],
-): { insertedNodes: number; insertedEdges: number; rejectedEdges: number } {
-  const d = getDb();
-  let insertedNodes = 0;
-  let insertedEdges = 0;
-  let rejectedEdges = 0;
-
-  const tx = d.transaction(() => {
-    for (const node of nodes) {
-      upsertNode(node);
-      insertedNodes++;
-    }
-    for (const edge of edges) {
-      const result = upsertEdge(edge);
-      if (result) {
-        insertedEdges++;
-      } else {
-        rejectedEdges++;
-      }
-    }
-  });
-  tx();
-
-  return { insertedNodes, insertedEdges, rejectedEdges };
-}
-
-// ───────────────────────────────────────────────────────────────
-// 11. ROW CONVERTERS
-// ───────────────────────────────────────────────────────────────
 
 function rowToNode(r: Record<string, unknown>): CoverageNode {
   return {
@@ -775,4 +377,453 @@ function rowToSnapshot(r: Record<string, unknown>): CoverageSnapshot {
     edgeCount: r.edge_count as number,
     createdAt: r.created_at as string | undefined,
   };
+}
+
+// ───── EXPORTS ─────
+
+/**
+ * Clamp weight to valid range [0.0, 2.0].
+ *
+ * @param weight - Raw weight value.
+ * @returns Clamped weight in [0.0, 2.0]. Non-finite values default to 1.0.
+ */
+export function clampWeight(weight: number): number {
+  if (!Number.isFinite(weight)) return 1.0;
+  return Math.max(MIN_WEIGHT, Math.min(MAX_WEIGHT, weight));
+}
+
+/**
+ * Insert or update a node scoped to the full namespace.
+ *
+ * Every existence check is namespace-qualified so two sessions reusing
+ * the same logical id cannot collide.
+ *
+ * @param node - Coverage node to upsert.
+ * @returns The node ID.
+ */
+export function upsertNode(node: CoverageNode): string {
+  const d = getDb();
+  const now = new Date().toISOString();
+  const metadataStr = node.metadata ? JSON.stringify(node.metadata) : null;
+
+  const existing = prepareStatement(
+    'SELECT id FROM coverage_nodes WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
+  ).get(node.specFolder, node.loopType, node.sessionId, node.id) as { id: string } | undefined;
+  if (existing) {
+    prepareStatement(`
+      UPDATE coverage_nodes SET
+        kind = ?, name = ?, content_hash = ?, iteration = ?,
+        metadata = ?, updated_at = ?
+      WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?
+    `).run(
+      node.kind, node.name, node.contentHash ?? null, node.iteration ?? null,
+      metadataStr, now,
+      node.specFolder, node.loopType, node.sessionId, node.id,
+    );
+    return node.id;
+  }
+
+  prepareStatement(`
+    INSERT INTO coverage_nodes (
+      spec_folder, loop_type, session_id, id, kind, name,
+      content_hash, iteration, metadata, created_at, updated_at
+    )
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `).run(
+    node.specFolder, node.loopType, node.sessionId, node.id,
+    node.kind, node.name, node.contentHash ?? null,
+    node.iteration ?? null, metadataStr, now, now,
+  );
+  return node.id;
+}
+
+/**
+ * Get a node by ID inside a namespace.
+ *
+ * @param ns - Namespace for scoping.
+ * @param id - Node ID.
+ * @returns The node or null if not found (or if sessionId is missing).
+ */
+export function getNode(ns: Namespace, id: string): CoverageNode | null {
+  if (!ns.sessionId) return null;
+  const d = getDb();
+  const row = prepareStatement(
+    'SELECT * FROM coverage_nodes WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
+  ).get(ns.specFolder, ns.loopType, ns.sessionId, id) as Record<string, unknown> | undefined;
+  return row ? rowToNode(row) : null;
+}
+
+/**
+ * Get all nodes in a namespace.
+ *
+ * @param ns - Namespace for scoping.
+ * @returns Array of coverage nodes.
+ */
+export function getNodes(ns: Namespace): CoverageNode[] {
+  const d = getDb();
+  const { clause, params } = buildNamespaceWhere(ns);
+  const rows = prepareStatement(`SELECT * FROM coverage_nodes WHERE ${clause}`).all(...params) as Record<string, unknown>[];
+  return rows.map(rowToNode);
+}
+
+/**
+ * Get nodes of a specific kind in a namespace.
+ *
+ * @param ns - Namespace for scoping.
+ * @param kind - Node kind to filter by.
+ * @returns Array of matching coverage nodes.
+ */
+export function getNodesByKind(ns: Namespace, kind: NodeKind): CoverageNode[] {
+  const d = getDb();
+  const { clause, params } = buildNamespaceWhere(ns);
+  const rows = prepareStatement(`SELECT * FROM coverage_nodes WHERE ${clause} AND kind = ?`).all(...params, kind) as Record<string, unknown>[];
+  return rows.map(rowToNode);
+}
+
+/**
+ * Delete a node and its connected edges inside a namespace.
+ *
+ * @param ns - Namespace for scoping.
+ * @param id - Node ID to delete.
+ * @returns True if a node was deleted.
+ */
+export function deleteNode(ns: Namespace, id: string): boolean {
+  if (!ns.sessionId) return false;
+  const d = getDb();
+  const tx = d.transaction(() => {
+    prepareStatement(
+      'DELETE FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND (source_id = ? OR target_id = ?)',
+    ).run(ns.specFolder, ns.loopType, ns.sessionId, id, id);
+    const result = prepareStatement(
+      'DELETE FROM coverage_nodes WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
+    ).run(ns.specFolder, ns.loopType, ns.sessionId, id);
+    return result.changes > 0;
+  });
+  return tx();
+}
+
+/**
+ * Insert or update an edge scoped to the full namespace.
+ *
+ * Rejects self-loops and clamps weights. Two sessions that both emit
+ * an edge with the same logical id get independent rows.
+ *
+ * @param edge - Coverage edge to upsert.
+ * @returns The edge ID or null if rejected (self-loop).
+ */
+export function upsertEdge(edge: CoverageEdge): string | null {
+  if (edge.sourceId === edge.targetId) {
+    return null;
+  }
+
+  const d = getDb();
+  const weight = clampWeight(edge.weight);
+  const now = new Date().toISOString();
+  const metadataStr = edge.metadata ? JSON.stringify(edge.metadata) : null;
+
+  const existing = prepareStatement(
+    'SELECT id FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
+  ).get(edge.specFolder, edge.loopType, edge.sessionId, edge.id) as { id: string } | undefined;
+  if (existing) {
+    prepareStatement(`
+      UPDATE coverage_edges SET
+        relation = ?, weight = ?, metadata = ?
+      WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?
+    `).run(
+      edge.relation, weight, metadataStr,
+      edge.specFolder, edge.loopType, edge.sessionId, edge.id,
+    );
+    return edge.id;
+  }
+
+  prepareStatement(`
+    INSERT INTO coverage_edges (
+      spec_folder, loop_type, session_id, id, source_id, target_id,
+      relation, weight, metadata, created_at
+    )
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `).run(
+    edge.specFolder, edge.loopType, edge.sessionId, edge.id,
+    edge.sourceId, edge.targetId,
+    edge.relation, weight, metadataStr, now,
+  );
+  return edge.id;
+}
+
+/**
+ * Get an edge by ID inside a namespace.
+ *
+ * @param ns - Namespace for scoping.
+ * @param id - Edge ID.
+ * @returns The edge or null if not found (or if sessionId is missing).
+ */
+export function getEdge(ns: Namespace, id: string): CoverageEdge | null {
+  if (!ns.sessionId) return null;
+  const d = getDb();
+  const row = prepareStatement(
+    'SELECT * FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
+  ).get(ns.specFolder, ns.loopType, ns.sessionId, id) as Record<string, unknown> | undefined;
+  return row ? rowToEdge(row) : null;
+}
+
+/**
+ * Get all edges in a namespace.
+ *
+ * @param ns - Namespace for scoping.
+ * @returns Array of coverage edges.
+ */
+export function getEdges(ns: Namespace): CoverageEdge[] {
+  const d = getDb();
+  const { clause, params } = buildNamespaceWhere(ns);
+  const rows = prepareStatement(`SELECT * FROM coverage_edges WHERE ${clause}`).all(...params) as Record<string, unknown>[];
+  return rows.map(rowToEdge);
+}
+
+/**
+ * Get edges from a source node inside a namespace.
+ *
+ * @param ns - Namespace for scoping.
+ * @param sourceId - Source node ID.
+ * @returns Array of outgoing edges.
+ */
+export function getEdgesFrom(ns: Namespace, sourceId: string): CoverageEdge[] {
+  if (!ns.sessionId) return [];
+  const d = getDb();
+  const rows = prepareStatement(
+    'SELECT * FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND source_id = ?',
+  ).all(ns.specFolder, ns.loopType, ns.sessionId, sourceId) as Record<string, unknown>[];
+  return rows.map(rowToEdge);
+}
+
+/**
+ * Get edges to a target node inside a namespace.
+ *
+ * @param ns - Namespace for scoping.
+ * @param targetId - Target node ID.
+ * @returns Array of incoming edges.
+ */
+export function getEdgesTo(ns: Namespace, targetId: string): CoverageEdge[] {
+  if (!ns.sessionId) return [];
+  const d = getDb();
+  const rows = prepareStatement(
+    'SELECT * FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND target_id = ?',
+  ).all(ns.specFolder, ns.loopType, ns.sessionId, targetId) as Record<string, unknown>[];
+  return rows.map(rowToEdge);
+}
+
+/**
+ * Update an edge's weight and/or metadata inside a namespace.
+ *
+ * @param ns - Namespace for scoping.
+ * @param id - Edge ID to update.
+ * @param updates - New weight and/or metadata.
+ * @returns True if the edge was found and updated.
+ */
+export function updateEdge(
+  ns: Namespace,
+  id: string,
+  updates: { weight?: number; metadata?: Record<string, unknown> },
+): boolean {
+  if (!ns.sessionId) return false;
+  const d = getDb();
+  const existing = prepareStatement(
+    'SELECT * FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
+  ).get(ns.specFolder, ns.loopType, ns.sessionId, id) as Record<string, unknown> | undefined;
+  if (!existing) return false;
+
+  const weight = updates.weight !== undefined ? clampWeight(updates.weight) : existing.weight as number;
+  const metadataStr = updates.metadata ? JSON.stringify(updates.metadata) : existing.metadata as string | null;
+
+  prepareStatement(
+    'UPDATE coverage_edges SET weight = ?, metadata = ? WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
+  ).run(weight, metadataStr, ns.specFolder, ns.loopType, ns.sessionId, id);
+  return true;
+}
+
+/**
+ * Delete an edge by ID inside a namespace.
+ *
+ * @param ns - Namespace for scoping.
+ * @param id - Edge ID to delete.
+ * @returns True if the edge was deleted.
+ */
+export function deleteEdge(ns: Namespace, id: string): boolean {
+  if (!ns.sessionId) return false;
+  const d = getDb();
+  const result = prepareStatement(
+    'DELETE FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
+  ).run(ns.specFolder, ns.loopType, ns.sessionId, id);
+  return result.changes > 0;
+}
+
+/**
+ * Create a coverage snapshot for a given iteration.
+ *
+ * @param snapshot - Snapshot data to persist.
+ * @returns The auto-incremented snapshot ID.
+ */
+export function createSnapshot(snapshot: CoverageSnapshot): number {
+  const d = getDb();
+  const metricsStr = JSON.stringify(snapshot.metrics);
+
+  const result = prepareStatement(`
+    INSERT INTO coverage_snapshots (
+      spec_folder, loop_type, session_id, iteration, metrics, node_count, edge_count
+    )
+    VALUES (?, ?, ?, ?, ?, ?, ?)
+    ON CONFLICT(spec_folder, loop_type, session_id, iteration) DO UPDATE SET
+      metrics = excluded.metrics,
+      node_count = excluded.node_count,
+      edge_count = excluded.edge_count
+  `).run(
+    snapshot.specFolder, snapshot.loopType, snapshot.sessionId, snapshot.iteration,
+    metricsStr, snapshot.nodeCount, snapshot.edgeCount,
+  );
+  return Number(result.lastInsertRowid);
+}
+
+/**
+ * Get the latest snapshot for a namespace.
+ *
+ * @param specFolder - Spec folder for scoping.
+ * @param loopType - Loop type ('research' or 'review').
+ * @param sessionId - Optional session ID for scoping.
+ * @returns The latest snapshot or null if none found.
+ */
+export function getLatestSnapshot(specFolder: string, loopType: LoopType, sessionId?: string): CoverageSnapshot | null {
+  const d = getDb();
+  if (sessionId) {
+    const row = prepareStatement(`
+      SELECT * FROM coverage_snapshots
+      WHERE spec_folder = ? AND loop_type = ? AND session_id = ?
+      ORDER BY iteration DESC LIMIT 1
+    `).get(specFolder, loopType, sessionId) as Record<string, unknown> | undefined;
+    return row ? rowToSnapshot(row) : null;
+  }
+  const row = prepareStatement(`
+    SELECT * FROM coverage_snapshots
+    WHERE spec_folder = ? AND loop_type = ?
+    ORDER BY iteration DESC LIMIT 1
+  `).get(specFolder, loopType) as Record<string, unknown> | undefined;
+  return row ? rowToSnapshot(row) : null;
+}
+
+/**
+ * Get all snapshots for a namespace (ordered by iteration).
+ *
+ * @param specFolder - Spec folder for scoping.
+ * @param loopType - Loop type ('research' or 'review').
+ * @param sessionId - Optional session ID for scoping.
+ * @returns Array of snapshots in ascending iteration order.
+ */
+export function getSnapshots(specFolder: string, loopType: LoopType, sessionId?: string): CoverageSnapshot[] {
+  const d = getDb();
+  if (sessionId) {
+    const rows = prepareStatement(`
+      SELECT * FROM coverage_snapshots
+      WHERE spec_folder = ? AND loop_type = ? AND session_id = ?
+      ORDER BY iteration ASC
+    `).all(specFolder, loopType, sessionId) as Record<string, unknown>[];
+    return rows.map(rowToSnapshot);
+  }
+  const rows = prepareStatement(`
+    SELECT * FROM coverage_snapshots
+    WHERE spec_folder = ? AND loop_type = ?
+    ORDER BY iteration ASC
+  `).all(specFolder, loopType) as Record<string, unknown>[];
+  return rows.map(rowToSnapshot);
+}
+
+/**
+ * Get graph statistics for a namespace.
+ *
+ * @param specFolder - Spec folder for scoping.
+ * @param loopType - Loop type ('research' or 'review').
+ * @returns Statistics including node/edge counts, breakdowns, and schema info.
+ */
+export function getStats(specFolder: string, loopType: LoopType): {
+  totalNodes: number;
+  totalEdges: number;
+  nodesByKind: Record<string, number>;
+  edgesByRelation: Record<string, number>;
+  lastIteration: number | null;
+  schemaVersion: number;
+  dbFileSize: number | null;
+} {
+  const d = getDb();
+
+  const totalNodes = (prepareStatement(
+    'SELECT COUNT(*) as c FROM coverage_nodes WHERE spec_folder = ? AND loop_type = ?',
+  ).get(specFolder, loopType) as { c: number }).c;
+
+  const totalEdges = (prepareStatement(
+    'SELECT COUNT(*) as c FROM coverage_edges WHERE spec_folder = ? AND loop_type = ?',
+  ).get(specFolder, loopType) as { c: number }).c;
+
+  const nodesByKind: Record<string, number> = {};
+  const kindRows = prepareStatement(
+    'SELECT kind, COUNT(*) as c FROM coverage_nodes WHERE spec_folder = ? AND loop_type = ? GROUP BY kind',
+  ).all(specFolder, loopType) as { kind: string; c: number }[];
+  for (const r of kindRows) nodesByKind[r.kind] = r.c;
+
+  const edgesByRelation: Record<string, number> = {};
+  const relRows = prepareStatement(
+    'SELECT relation, COUNT(*) as c FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? GROUP BY relation',
+  ).all(specFolder, loopType) as { relation: string; c: number }[];
+  for (const r of relRows) edgesByRelation[r.relation] = r.c;
+
+  const lastIterRow = prepareStatement(
+    'SELECT MAX(iteration) as max_iter FROM coverage_snapshots WHERE spec_folder = ? AND loop_type = ?',
+  ).get(specFolder, loopType) as { max_iter: number | null } | undefined;
+  const lastIteration = lastIterRow?.max_iter ?? null;
+
+  let dbFileSize: number | null = null;
+  if (dbPath) {
+    try { dbFileSize = statSync(dbPath).size; } catch { }
+  }
+
+  return {
+    totalNodes,
+    totalEdges,
+    nodesByKind,
+    edgesByRelation,
+    lastIteration,
+    schemaVersion: SCHEMA_VERSION,
+    dbFileSize,
+  };
+}
+
+/**
+ * Batch upsert nodes and edges in a single transaction.
+ *
+ * @param nodes - Nodes to upsert.
+ * @param edges - Edges to upsert.
+ * @returns Counts of inserted nodes, inserted edges, and rejected edges.
+ */
+export function batchUpsert(
+  nodes: CoverageNode[],
+  edges: CoverageEdge[],
+): { insertedNodes: number; insertedEdges: number; rejectedEdges: number } {
+  const d = getDb();
+  let insertedNodes = 0;
+  let insertedEdges = 0;
+  let rejectedEdges = 0;
+
+  const tx = d.transaction(() => {
+    for (const node of nodes) {
+      upsertNode(node);
+      insertedNodes++;
+    }
+    for (const edge of edges) {
+      const result = upsertEdge(edge);
+      if (result) {
+        insertedEdges++;
+      } else {
+        rejectedEdges++;
+      }
+    }
+  });
+  tx();
+
+  return { insertedNodes, insertedEdges, rejectedEdges };
 }

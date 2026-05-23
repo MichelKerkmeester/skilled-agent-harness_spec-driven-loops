@@ -5,6 +5,8 @@ import { existsSync, readFileSync, statSync } from 'node:fs';
 import type { ExecutorKind } from './executor-config.js';
 import { appendJsonlRecord, repairJsonlTail } from './jsonl-repair.js';
 
+// ───── TYPE DEFINITIONS ─────
+
 export type VerificationLanguage = 'python' | 'typescript' | 'javascript' | 'rust' | 'go';
 
 export type PostDispatchRecipeConfig = {
@@ -19,13 +21,6 @@ export type PostDispatchValidateInput = {
   previousStateLogSize: number;
   requiredJsonlFields: string[];
   executorKind?: ExecutorKind;
-  /**
-   * Per-iteration delta file path (e.g. `deltas/iter-003.jsonl`). When supplied,
-   * the validator asserts the file exists and is non-empty. The file is the
-   * structured-delta stream that complements the canonical state-log append —
-   * it MUST include at least one record whose `type === 'iteration'` so the
-   * reducer can rehydrate iteration state from the delta after interruption.
-   */
   deltaFilePath?: string;
   recipeConfig?: PostDispatchRecipeConfig;
 };
@@ -88,37 +83,20 @@ export type PostDispatchValidateResult =
       warnings?: PostDispatchAdvisory[];
     };
 
-function getLastNonEmptyLine(content: string): string | null {
-  const lines = content.split(/\r?\n/);
+// ───── DOMAIN ERRORS ─────
 
-  for (let index = lines.length - 1; index >= 0; index -= 1) {
-    const line = lines[index];
-    if (line.trim() !== '') {
-      return line;
-    }
+export class PostDispatchValidationError extends Error {
+  result: PostDispatchValidateResult;
+
+  constructor(result: PostDispatchValidateResult) {
+    super(result.ok ? 'Post-dispatch validation unexpectedly succeeded' : `${result.reason}: ${result.details}`);
+    this.name = 'PostDispatchValidationError';
+    this.result = result;
   }
-
-  return null;
 }
 
-function isObjectRecord(value: unknown): value is Record<string, unknown> {
-  return value !== null && !Array.isArray(value) && typeof value === 'object';
-}
+// ───── CONSTANTS ─────
 
-function isStringArray(value: unknown): value is string[] {
-  return Array.isArray(value) && value.every((entry) => typeof entry === 'string');
-}
-
-function isNonEmptyStringArray(value: unknown): value is string[] {
-  return isStringArray(value) && value.length > 0;
-}
-
-/**
- * Canonical iteration record type. The reducer counts records where
- * `type === CANONICAL_ITERATION_TYPE` ONLY. Variants such as
- * `"iteration_delta"`, `"iter"`, or any other spelling are silently ignored and
- * will surface as iteration-count drift in the reducer output.
- */
 const CANONICAL_ITERATION_TYPE = 'iteration' as const;
 const DEFAULT_VERIFICATION_THRESHOLD = 0.5;
 const SUPPORTED_VERIFICATION_LANGUAGES = new Set<VerificationLanguage>([
@@ -149,20 +127,138 @@ const REVIEW_ITERATION_FIELDS = [
   'durationMs',
 ] as const;
 const V2_SCOPE_CLASSES = new Set(['trivial', 'standard', 'complex']);
-// Per-record applicability enum (validates iteration record's reviewDepthApplicability.enforcement field at line 199).
-// Distinct from the global env-var rollout enum V2EnforcementMode below — per-record uses `skip` (record-exempt),
-// env-var uses `off` (rollout-disabled).
 const V2_ENFORCEMENT_MODES = new Set(['strict', 'warn', 'skip']);
 const V2_GRAPH_COVERAGE_MODES = new Set(['graph', 'graphless_fallback', 'unavailable_blocked']);
 
-// Global rollout-posture enum for DEEP_REVIEW_V2_ENFORCEMENT env var (parsed by getV2EnforcementMode below).
-// `off` here means rollout-disabled (skip all v2 enforcement). Distinct from per-record `skip` in V2_ENFORCEMENT_MODES.
 type V2EnforcementMode = 'warn' | 'strict' | 'off';
 type V2ValidationFailure = {
   reason: PostDispatchFailureReason;
   details: string;
   fieldPath?: string;
 };
+
+// ───── HELPERS ─────
+
+function getLastNonEmptyLine(content: string): string | null {
+  const lines = content.split(/\r?\n/);
+
+  for (let index = lines.length - 1; index >= 0; index -= 1) {
+    const line = lines[index];
+    if (line.trim() !== '') {
+      return line;
+    }
+  }
+
+  return null;
+}
+
+function isObjectRecord(value: unknown): value is Record<string, unknown> {
+  return value !== null && !Array.isArray(value) && typeof value === 'object';
+}
+
+function isStringArray(value: unknown): value is string[] {
+  return Array.isArray(value) && value.every((entry) => typeof entry === 'string');
+}
+
+function isNonEmptyStringArray(value: unknown): value is string[] {
+  return isStringArray(value) && value.length > 0;
+}
+
+function isVerificationLanguage(value: string): value is VerificationLanguage {
+  return SUPPORTED_VERIFICATION_LANGUAGES.has(value as VerificationLanguage);
+}
+
+function normalizeFenceLanguage(language: string): VerificationLanguage | null {
+  const normalized = language.trim().toLowerCase();
+  if (normalized === 'py' || normalized === 'python') return 'python';
+  if (normalized === 'ts' || normalized === 'tsx' || normalized === 'typescript') return 'typescript';
+  if (normalized === 'js' || normalized === 'mjs' || normalized === 'javascript') return 'javascript';
+  if (normalized === 'rs' || normalized === 'rust') return 'rust';
+  if (normalized === 'go' || normalized === 'golang') return 'go';
+  return null;
+}
+
+function extractCodeBlocks(
+  content: string,
+  allowedLanguages: VerificationLanguage[],
+): Array<{ language: VerificationLanguage; code: string }> {
+  const blocks: Array<{ language: VerificationLanguage; code: string }> = [];
+  const fencePattern = /```([a-zA-Z0-9_-]+)\n([\s\S]*?)```/g;
+  let match: RegExpExecArray | null;
+
+  while ((match = fencePattern.exec(content)) !== null) {
+    const language = normalizeFenceLanguage(match[1] ?? '');
+    if (language && (allowedLanguages.length === 0 || allowedLanguages.includes(language))) {
+      blocks.push({ language, code: match[2] ?? '' });
+    }
+  }
+
+  return blocks;
+}
+
+function bracesBalanced(code: string): boolean {
+  let balance = 0;
+  for (const char of code) {
+    if (char === '{') balance += 1;
+    if (char === '}') balance -= 1;
+    if (balance < 0) return false;
+  }
+  return balance === 0;
+}
+
+function hasPlaceholderOrTruncation(code: string): boolean {
+  return /TODO|NotImplementedError|pass\s+#\s*placeholder|\[\.\.\. truncated|\.\.\. rest of|\.\.\. more/i.test(code);
+}
+
+function hasObviousRuntimeFailure(code: string): boolean {
+  return /throw new Error|raise\s+\w*Error|panic!\s*\(|process\.exit\s*\(\s*1\s*\)|Deno\.exit\s*\(\s*1\s*\)/.test(code);
+}
+
+function hasSyntaxShape(language: VerificationLanguage, code: string): boolean {
+  if (code.trim() === '') return false;
+  if (hasPlaceholderOrTruncation(code)) return false;
+  if (language === 'javascript' || language === 'typescript' || language === 'rust' || language === 'go') {
+    return bracesBalanced(code);
+  }
+  if (language === 'python') {
+    return !/^\s*(def|class|if|for|while|try|with)\b[^\n:]*$/m.test(code);
+  }
+  return true;
+}
+
+function scoreCodeBlock(language: VerificationLanguage, code: string): VerificationStageScores {
+  const compiled = hasSyntaxShape(language, code);
+  const executed = compiled && !hasObviousRuntimeFailure(code);
+  const testsPassed = executed && !/assert\s+false|expect\([^)]*\)\.toBeFalsy\(\)|FAIL:/i.test(code);
+  const lintClean = compiled && !/[ \t]+$/m.test(code) && !hasPlaceholderOrTruncation(code);
+
+  return {
+    compiled,
+    executed,
+    testsPassed,
+    lintClean,
+    autoFixed: false,
+  };
+}
+
+function buildVerificationDegradedEvent(input: {
+  confidence: number;
+  threshold: number;
+  language: VerificationLanguage;
+  details: string;
+}): string {
+  return JSON.stringify({
+    type: 'event',
+    event: 'verification_degraded',
+    status: 'degraded',
+    confidence: input.confidence,
+    threshold: input.threshold,
+    language: input.language,
+    reason: 'verification_degraded',
+    detail: input.details,
+    timestamp: new Date().toISOString(),
+  });
+}
 
 function getV2EnforcementMode(): V2EnforcementMode {
   const raw = process.env.DEEP_REVIEW_V2_ENFORCEMENT?.trim().toLowerCase();
@@ -183,6 +279,30 @@ function v2Failure(
   fieldPath?: string,
 ): V2ValidationFailure {
   return { reason, details, fieldPath };
+}
+
+function warningsFromV2Failures(failures: V2ValidationFailure[]): PostDispatchAdvisory[] {
+  return failures.map((failure) => ({
+    code: `warn_${failure.reason}`,
+    detail: failure.details,
+    fieldPath: failure.fieldPath,
+  }));
+}
+
+function findLastIterationRecord(content: string): Record<string, unknown> | null {
+  const lines = content.split(/\r?\n/);
+  for (let index = lines.length - 1; index >= 0; index -= 1) {
+    const line = lines[index]?.trim();
+    if (!line) continue;
+    try {
+      const parsed = JSON.parse(line);
+      if (isObjectRecord(parsed) && parsed.type === CANONICAL_ITERATION_TYPE) {
+        return parsed;
+      }
+    } catch {
+    }
+  }
+  return null;
 }
 
 function validateV2IterationRecord(
@@ -300,108 +420,17 @@ function validateV2IterationRecord(
   return failures;
 }
 
-function warningsFromV2Failures(failures: V2ValidationFailure[]): PostDispatchAdvisory[] {
-  return failures.map((failure) => ({
-    code: `warn_${failure.reason}`,
-    detail: failure.details,
-    fieldPath: failure.fieldPath,
-  }));
-}
+// ───── EXPORTS ─────
 
-function findLastIterationRecord(content: string): Record<string, unknown> | null {
-  const lines = content.split(/\r?\n/);
-  for (let index = lines.length - 1; index >= 0; index -= 1) {
-    const line = lines[index]?.trim();
-    if (!line) continue;
-    try {
-      const parsed = JSON.parse(line);
-      if (isObjectRecord(parsed) && parsed.type === CANONICAL_ITERATION_TYPE) {
-        return parsed;
-      }
-    } catch {
-      // fall through
-    }
-  }
-  return null;
-}
-
-function isVerificationLanguage(value: string): value is VerificationLanguage {
-  return SUPPORTED_VERIFICATION_LANGUAGES.has(value as VerificationLanguage);
-}
-
-function normalizeFenceLanguage(language: string): VerificationLanguage | null {
-  const normalized = language.trim().toLowerCase();
-  if (normalized === 'py' || normalized === 'python') return 'python';
-  if (normalized === 'ts' || normalized === 'tsx' || normalized === 'typescript') return 'typescript';
-  if (normalized === 'js' || normalized === 'mjs' || normalized === 'javascript') return 'javascript';
-  if (normalized === 'rs' || normalized === 'rust') return 'rust';
-  if (normalized === 'go' || normalized === 'golang') return 'go';
-  return null;
-}
-
-function extractCodeBlocks(
-  content: string,
-  allowedLanguages: VerificationLanguage[],
-): Array<{ language: VerificationLanguage; code: string }> {
-  const blocks: Array<{ language: VerificationLanguage; code: string }> = [];
-  const fencePattern = /```([a-zA-Z0-9_-]+)\n([\s\S]*?)```/g;
-  let match: RegExpExecArray | null;
-
-  while ((match = fencePattern.exec(content)) !== null) {
-    const language = normalizeFenceLanguage(match[1] ?? '');
-    if (language && (allowedLanguages.length === 0 || allowedLanguages.includes(language))) {
-      blocks.push({ language, code: match[2] ?? '' });
-    }
-  }
-
-  return blocks;
-}
-
-function bracesBalanced(code: string): boolean {
-  let balance = 0;
-  for (const char of code) {
-    if (char === '{') balance += 1;
-    if (char === '}') balance -= 1;
-    if (balance < 0) return false;
-  }
-  return balance === 0;
-}
-
-function hasPlaceholderOrTruncation(code: string): boolean {
-  return /TODO|NotImplementedError|pass\s+#\s*placeholder|\[\.\.\. truncated|\.\.\. rest of|\.\.\. more/i.test(code);
-}
-
-function hasObviousRuntimeFailure(code: string): boolean {
-  return /throw new Error|raise\s+\w*Error|panic!\s*\(|process\.exit\s*\(\s*1\s*\)|Deno\.exit\s*\(\s*1\s*\)/.test(code);
-}
-
-function hasSyntaxShape(language: VerificationLanguage, code: string): boolean {
-  if (code.trim() === '') return false;
-  if (hasPlaceholderOrTruncation(code)) return false;
-  if (language === 'javascript' || language === 'typescript' || language === 'rust' || language === 'go') {
-    return bracesBalanced(code);
-  }
-  if (language === 'python') {
-    return !/^\s*(def|class|if|for|while|try|with)\b[^\n:]*$/m.test(code);
-  }
-  return true;
-}
-
-function scoreCodeBlock(language: VerificationLanguage, code: string): VerificationStageScores {
-  const compiled = hasSyntaxShape(language, code);
-  const executed = compiled && !hasObviousRuntimeFailure(code);
-  const testsPassed = executed && !/assert\s+false|expect\([^)]*\)\.toBeFalsy\(\)|FAIL:/i.test(code);
-  const lintClean = compiled && !/[ \t]+$/m.test(code) && !hasPlaceholderOrTruncation(code);
-
-  return {
-    compiled,
-    executed,
-    testsPassed,
-    lintClean,
-    autoFixed: false,
-  };
-}
-
+/**
+ * Compute a verification confidence score from stage scores.
+ *
+ * Weighted scoring: compiled (0.35), executed (0.25), testsPassed (0.25),
+ * lintClean (0.1), minus autoFixed penalty (0.05).
+ *
+ * @param stages - Verification stage scores.
+ * @returns Confidence score in [0.0, 1.0].
+ */
 export function computeVerificationConfidence(stages: VerificationStageScores): number {
   let score = 0;
   if (stages.compiled) score += 0.35;
@@ -412,25 +441,16 @@ export function computeVerificationConfidence(stages: VerificationStageScores): 
   return Math.max(0, Math.min(1, Number(score.toFixed(4))));
 }
 
-function buildVerificationDegradedEvent(input: {
-  confidence: number;
-  threshold: number;
-  language: VerificationLanguage;
-  details: string;
-}): string {
-  return JSON.stringify({
-    type: 'event',
-    event: 'verification_degraded',
-    status: 'degraded',
-    confidence: input.confidence,
-    threshold: input.threshold,
-    language: input.language,
-    reason: 'verification_degraded',
-    detail: input.details,
-    timestamp: new Date().toISOString(),
-  });
-}
-
+/**
+ * Run optional verification pass on code blocks extracted from the iteration file.
+ *
+ * Scans the iteration file for fenced code blocks in configured languages
+ * and scores their quality against the threshold.
+ *
+ * @param iterationFile - Path to the iteration output file.
+ * @param recipeConfig - Verification recipe configuration.
+ * @returns Pass result with confidence, threshold, and language info.
+ */
 export function runOptionalVerificationPass(
   iterationFile: string,
   recipeConfig?: PostDispatchRecipeConfig,
@@ -482,6 +502,16 @@ export function runOptionalVerificationPass(
   };
 }
 
+/**
+ * Validate post-dispatch iteration outputs.
+ *
+ * Verifies that the JSONL state log was appended, the iteration file exists
+ * and is non-empty, required fields are present, and optional v2 depth checks
+ * and code verification passes are applied.
+ *
+ * @param input - Validation input with paths, field requirements, and config.
+ * @returns Validation result indicating pass/fail with details.
+ */
 export function validateIterationOutputs(input: PostDispatchValidateInput): PostDispatchValidateResult {
   const warnings: PostDispatchAdvisory[] = [];
 
@@ -527,8 +557,6 @@ export function validateIterationOutputs(input: PostDispatchValidateInput): Post
       return { ok: false, reason: 'iteration_file_empty', details: input.iterationFile };
     }
 
-    // Canonical type guard: the state-log append MUST use `"type":"iteration"`.
-    // Variants such as `"iteration_delta"` are silently dropped by the reducer.
     if (parsedRecord.type !== CANONICAL_ITERATION_TYPE) {
       return {
         ok: false,
@@ -592,7 +620,6 @@ export function validateIterationOutputs(input: PostDispatchValidateInput): Post
       };
     }
 
-    // Per-iteration delta file assertion (when requested by the caller).
     let deltaIterationRecord: Record<string, unknown> | null = null;
     if (input.deltaFilePath) {
       if (!existsSync(input.deltaFilePath)) {
@@ -685,16 +712,12 @@ export function validateIterationOutputs(input: PostDispatchValidateInput): Post
   return warnings.length > 0 ? { ok: true, warnings } : { ok: true };
 }
 
-export class PostDispatchValidationError extends Error {
-  result: PostDispatchValidateResult;
-
-  constructor(result: PostDispatchValidateResult) {
-    super(result.ok ? 'Post-dispatch validation unexpectedly succeeded' : `${result.reason}: ${result.details}`);
-    this.name = 'PostDispatchValidationError';
-    this.result = result;
-  }
-}
-
+/**
+ * Validate iteration outputs and throw on failure.
+ *
+ * @param input - Validation input with paths, field requirements, and config.
+ * @throws {@link PostDispatchValidationError} If validation fails.
+ */
 export function validateOrThrow(input: PostDispatchValidateInput): void {
   const result = validateIterationOutputs(input);
 

@@ -1,11 +1,12 @@
-// ───────────────────────────────────────────────────────────────
 // MODULE: Coverage Graph Signals
-// ───────────────────────────────────────────────────────────────
-// Server-side signal computation and snapshot generation for
-// research and review convergence metrics.
-// Follows graph-signals.ts patterns for degree, depth, and momentum.
 
 import Database from '../../../system-spec-kit/mcp_server/node_modules/better-sqlite3/lib/index.js';
+import type {
+  Namespace,
+  LoopType,
+  CoverageNode,
+  CoverageEdge,
+} from './coverage-graph-db.js';
 import {
   getDb,
   getNodes,
@@ -13,15 +14,9 @@ import {
   createSnapshot,
   getSnapshots,
   getStats,
-  type Namespace,
-  type LoopType,
-  type CoverageNode,
-  type CoverageEdge,
 } from './coverage-graph-db.js';
 
-// ───────────────────────────────────────────────────────────────
-// 1. TYPES
-// ───────────────────────────────────────────────────────────────
+// ───── TYPE DEFINITIONS ─────
 
 export interface NodeSignal {
   nodeId: string;
@@ -59,6 +54,8 @@ export interface SignalSnapshot {
   edgeCount: number;
 }
 
+// ───── CONSTANTS ─────
+
 type ResearchSignalNodeLike = {
   id: string;
   kind: string;
@@ -75,6 +72,8 @@ interface SqlFragment {
   clause: string;
   params: unknown[];
 }
+
+// ───── HELPERS ─────
 
 function buildNamespacePredicate(alias: string, ns: Namespace): SqlFragment {
   const prefix = alias ? `${alias}.` : '';
@@ -103,41 +102,41 @@ function buildCompositeNodeJoin(
       AND ${nodeAlias}.id = ${edgeAlias}.${edgeNodeColumn}`;
 }
 
-// ───────────────────────────────────────────────────────────────
-// 2. NODE-LEVEL SIGNALS
-// ───────────────────────────────────────────────────────────────
+function parseNodeMetadata(metadata: CoverageNode['metadata'] | string | null | undefined): Record<string, unknown> | null {
+  if (!metadata) return null;
+  if (typeof metadata === 'string') {
+    try {
+      const parsed = JSON.parse(metadata) as unknown;
+      return parsed && typeof parsed === 'object' ? parsed as Record<string, unknown> : null;
+    } catch {
+      return null;
+    }
+  }
+  return typeof metadata === 'object' ? metadata as Record<string, unknown> : null;
+}
 
-/**
- * Compute degree, depth, and weight signals for all nodes in a namespace.
- */
-export function computeNodeSignals(ns: Namespace): NodeSignal[] {
-  const nodes = getNodes(ns);
-  const edges = getEdges(ns);
-
-  // Build adjacency maps
-  const inDegreeMap = new Map<string, number>();
-  const outDegreeMap = new Map<string, number>();
-  const weightSumMap = new Map<string, number>();
+function buildAnsweringFindingsByQuestion(edges: ReadonlyArray<ResearchSignalEdgeLike>): Map<string, string[]> {
+  const answeringFindings = new Map<string, string[]>();
 
   for (const edge of edges) {
-    outDegreeMap.set(edge.sourceId, (outDegreeMap.get(edge.sourceId) ?? 0) + 1);
-    inDegreeMap.set(edge.targetId, (inDegreeMap.get(edge.targetId) ?? 0) + 1);
-    weightSumMap.set(edge.sourceId, (weightSumMap.get(edge.sourceId) ?? 0) + edge.weight);
-    weightSumMap.set(edge.targetId, (weightSumMap.get(edge.targetId) ?? 0) + edge.weight);
+    if (edge.relation !== 'ANSWERS') continue;
+    if (!answeringFindings.has(edge.targetId)) answeringFindings.set(edge.targetId, []);
+    answeringFindings.get(edge.targetId)!.push(edge.sourceId);
   }
 
-  // BFS depth from root nodes (nodes with no incoming edges)
-  const depthMap = computeDepths(nodes, edges);
+  return answeringFindings;
+}
 
-  return nodes.map(node => ({
-    nodeId: node.id,
-    kind: node.kind,
-    degree: (inDegreeMap.get(node.id) ?? 0) + (outDegreeMap.get(node.id) ?? 0),
-    inDegree: inDegreeMap.get(node.id) ?? 0,
-    outDegree: outDegreeMap.get(node.id) ?? 0,
-    depth: depthMap.get(node.id) ?? 0,
-    weightSum: weightSumMap.get(node.id) ?? 0,
-  }));
+function buildCitedSourcesByFinding(edges: ReadonlyArray<ResearchSignalEdgeLike>): Map<string, string[]> {
+  const citedSources = new Map<string, string[]>();
+
+  for (const edge of edges) {
+    if (edge.relation !== 'CITES') continue;
+    if (!citedSources.has(edge.sourceId)) citedSources.set(edge.sourceId, []);
+    citedSources.get(edge.sourceId)!.push(edge.targetId);
+  }
+
+  return citedSources;
 }
 
 /**
@@ -198,72 +197,89 @@ function computeDepths(nodes: CoverageNode[], edges: CoverageEdge[]): Map<string
   return depthMap;
 }
 
-// ───────────────────────────────────────────────────────────────
-// 3. RESEARCH CONVERGENCE SIGNALS
-// ───────────────────────────────────────────────────────────────
+function computeHotspotSaturation(d: Database.Database, ns: Namespace): number {
+  const nodeNamespace = buildNamespacePredicate('', ns);
+  const edgeNamespace = buildNamespacePredicate('e', ns);
+  const files = d.prepare(`
+    SELECT id, metadata FROM coverage_nodes
+    WHERE ${nodeNamespace.clause} AND kind = 'FILE'
+  `).all(...nodeNamespace.params) as Array<{ id: string; metadata: string | null }>;
+
+  const hotspotFiles: string[] = [];
+  for (const f of files) {
+    if (f.metadata) {
+      try {
+        const meta = JSON.parse(f.metadata);
+        if (meta.hotspot_score && meta.hotspot_score > 0) {
+          hotspotFiles.push(f.id);
+        }
+      } catch { }
+    }
+  }
+
+  if (hotspotFiles.length === 0) return 1.0;
+
+  let saturated = 0;
+  for (const fileId of hotspotFiles) {
+    const dimCoverage = (d.prepare(`
+      SELECT COUNT(DISTINCT e.source_id) as c
+      FROM coverage_edges e
+      JOIN coverage_nodes n ON ${buildCompositeNodeJoin('n', 'e', 'source_id')}
+      WHERE ${edgeNamespace.clause}
+        AND e.target_id = ?
+        AND e.relation = 'COVERS'
+        AND n.kind = 'DIMENSION'
+    `).get(...edgeNamespace.params, fileId) as { c: number }).c;
+
+    if (dimCoverage >= 2) saturated++;
+  }
+
+  return hotspotFiles.length > 0 ? saturated / hotspotFiles.length : 1.0;
+}
+
+// ───── CORE LOGIC ─────
 
 /**
- * Compute research convergence signals.
+ * Compute degree, depth, and weight signals for all nodes in a namespace.
+ *
+ * @param ns - Namespace identifying the coverage graph.
+ * @returns Array of node-level signal objects.
  */
-export function computeResearchSignals(ns: Namespace): ResearchConvergenceSignals {
+export function computeNodeSignals(ns: Namespace): NodeSignal[] {
   const nodes = getNodes(ns);
   const edges = getEdges(ns);
 
-  const questionCoverage = computeResearchQuestionCoverageFromData(nodes, edges);
-  const claimVerificationRate = computeResearchClaimVerificationRateFromData(nodes);
-  const contradictionDensity = computeResearchContradictionDensityFromData(edges);
-  const sourceDiversity = computeResearchSourceDiversityFromData(nodes, edges);
-  const evidenceDepth = computeResearchEvidenceDepthFromData(nodes, edges);
-
-  return {
-    questionCoverage,
-    claimVerificationRate,
-    contradictionDensity,
-    sourceDiversity,
-    evidenceDepth,
-  };
-}
-
-function parseNodeMetadata(metadata: CoverageNode['metadata'] | string | null | undefined): Record<string, unknown> | null {
-  if (!metadata) return null;
-  if (typeof metadata === 'string') {
-    try {
-      const parsed = JSON.parse(metadata) as unknown;
-      return parsed && typeof parsed === 'object' ? parsed as Record<string, unknown> : null;
-    } catch {
-      return null;
-    }
-  }
-  return typeof metadata === 'object' ? metadata as Record<string, unknown> : null;
-}
-
-function buildAnsweringFindingsByQuestion(edges: ReadonlyArray<ResearchSignalEdgeLike>): Map<string, string[]> {
-  const answeringFindings = new Map<string, string[]>();
+  const inDegreeMap = new Map<string, number>();
+  const outDegreeMap = new Map<string, number>();
+  const weightSumMap = new Map<string, number>();
 
   for (const edge of edges) {
-    if (edge.relation !== 'ANSWERS') continue;
-    if (!answeringFindings.has(edge.targetId)) answeringFindings.set(edge.targetId, []);
-    answeringFindings.get(edge.targetId)!.push(edge.sourceId);
+    outDegreeMap.set(edge.sourceId, (outDegreeMap.get(edge.sourceId) ?? 0) + 1);
+    inDegreeMap.set(edge.targetId, (inDegreeMap.get(edge.targetId) ?? 0) + 1);
+    weightSumMap.set(edge.sourceId, (weightSumMap.get(edge.sourceId) ?? 0) + edge.weight);
+    weightSumMap.set(edge.targetId, (weightSumMap.get(edge.targetId) ?? 0) + edge.weight);
   }
 
-  return answeringFindings;
-}
+  const depthMap = computeDepths(nodes, edges);
 
-function buildCitedSourcesByFinding(edges: ReadonlyArray<ResearchSignalEdgeLike>): Map<string, string[]> {
-  const citedSources = new Map<string, string[]>();
-
-  for (const edge of edges) {
-    if (edge.relation !== 'CITES') continue;
-    if (!citedSources.has(edge.sourceId)) citedSources.set(edge.sourceId, []);
-    citedSources.get(edge.sourceId)!.push(edge.targetId);
-  }
-
-  return citedSources;
+  return nodes.map(node => ({
+    nodeId: node.id,
+    kind: node.kind,
+    degree: (inDegreeMap.get(node.id) ?? 0) + (outDegreeMap.get(node.id) ?? 0),
+    inDegree: inDegreeMap.get(node.id) ?? 0,
+    outDegree: outDegreeMap.get(node.id) ?? 0,
+    depth: depthMap.get(node.id) ?? 0,
+    weightSum: weightSumMap.get(node.id) ?? 0,
+  }));
 }
 
 /**
  * Canonical research question coverage: questions with at least two ANSWERS
  * edges divided by all research questions in the graph.
+ *
+ * @param nodes - Research nodes in the graph.
+ * @param edges - Research edges in the graph.
+ * @returns Coverage ratio in [0, 1].
  */
 export function computeResearchQuestionCoverageFromData(
   nodes: ReadonlyArray<ResearchSignalNodeLike>,
@@ -291,6 +307,9 @@ export function computeResearchQuestionCoverageFromData(
  * Canonical research claim verification rate: verified claims divided by all
  * claim nodes, where verified means verification_status exists and is not
  * "unresolved".
+ *
+ * @param nodes - Research nodes in the graph.
+ * @returns Verification rate in [0, 1].
  */
 export function computeResearchClaimVerificationRateFromData(
   nodes: ReadonlyArray<ResearchSignalNodeLike>,
@@ -312,6 +331,9 @@ export function computeResearchClaimVerificationRateFromData(
 /**
  * Canonical research contradiction density: CONTRADICTS edges divided by all
  * research edges in the graph.
+ *
+ * @param edges - Research edges in the graph.
+ * @returns Contradiction density in [0, 1].
  */
 export function computeResearchContradictionDensityFromData(
   edges: ReadonlyArray<ResearchSignalEdgeLike>,
@@ -330,6 +352,10 @@ export function computeResearchContradictionDensityFromData(
  * Canonical research source diversity: for each question, count distinct
  * source metadata quality classes reachable through ANSWERS -> CITES paths,
  * then average that count across all questions.
+ *
+ * @param nodes - Research nodes in the graph.
+ * @param edges - Research edges in the graph.
+ * @returns Average source diversity score.
  */
 export function computeResearchSourceDiversityFromData(
   nodes: ReadonlyArray<ResearchSignalNodeLike>,
@@ -375,6 +401,10 @@ export function computeResearchSourceDiversityFromData(
  * Canonical research evidence depth: average path length across all
  * question -> finding paths, scoring 2 when the finding cites at least one
  * source and 1 when it does not.
+ *
+ * @param nodes - Research nodes in the graph.
+ * @param edges - Research edges in the graph.
+ * @returns Average evidence depth score.
  */
 export function computeResearchEvidenceDepthFromData(
   nodes: ReadonlyArray<ResearchSignalNodeLike>,
@@ -401,12 +431,36 @@ export function computeResearchEvidenceDepthFromData(
   return pathCount > 0 ? totalDepth / pathCount : 0;
 }
 
-// ───────────────────────────────────────────────────────────────
-// 4. REVIEW CONVERGENCE SIGNALS
-// ───────────────────────────────────────────────────────────────
+/**
+ * Compute research convergence signals from raw node and edge data.
+ *
+ * @param ns - Namespace identifying the coverage graph.
+ * @returns Research convergence signals with all five metrics.
+ */
+export function computeResearchSignals(ns: Namespace): ResearchConvergenceSignals {
+  const nodes = getNodes(ns);
+  const edges = getEdges(ns);
+
+  const questionCoverage = computeResearchQuestionCoverageFromData(nodes, edges);
+  const claimVerificationRate = computeResearchClaimVerificationRateFromData(nodes);
+  const contradictionDensity = computeResearchContradictionDensityFromData(edges);
+  const sourceDiversity = computeResearchSourceDiversityFromData(nodes, edges);
+  const evidenceDepth = computeResearchEvidenceDepthFromData(nodes, edges);
+
+  return {
+    questionCoverage,
+    claimVerificationRate,
+    contradictionDensity,
+    sourceDiversity,
+    evidenceDepth,
+  };
+}
 
 /**
- * Compute review convergence signals.
+ * Compute review convergence signals using SQL aggregation.
+ *
+ * @param ns - Namespace identifying the coverage graph.
+ * @returns Review convergence signals with all five metrics.
  */
 export function computeReviewSignals(ns: Namespace): ReviewConvergenceSignals {
   const d = getDb();
@@ -415,7 +469,6 @@ export function computeReviewSignals(ns: Namespace): ReviewConvergenceSignals {
   const edgeNamespace = buildNamespacePredicate('e', ns);
   const bareEdgeNamespace = buildNamespacePredicate('', ns);
 
-  // dimensionCoverage: dimensions with >= 1 COVERS edge / all dimensions
   const allDimensions = (d.prepare(
     `SELECT COUNT(*) as c FROM coverage_nodes WHERE ${nodeNamespace.clause} AND kind = 'DIMENSION'`,
   ).get(...nodeNamespace.params) as { c: number }).c;
@@ -433,7 +486,6 @@ export function computeReviewSignals(ns: Namespace): ReviewConvergenceSignals {
 
   const dimensionCoverage = allDimensions > 0 ? coveredDimensions / allDimensions : 0;
 
-  // findingStability: findings with 0 CONTRADICTS edges / all findings
   const allFindings = (d.prepare(
     `SELECT COUNT(*) as c FROM coverage_nodes WHERE ${nodeNamespace.clause} AND kind = 'FINDING'`,
   ).get(...nodeNamespace.params) as { c: number }).c;
@@ -451,7 +503,6 @@ export function computeReviewSignals(ns: Namespace): ReviewConvergenceSignals {
 
   const findingStability = allFindings > 0 ? stableFindings / allFindings : 0;
 
-  // p0ResolutionRate: P0 findings with RESOLVES edge / P0 findings
   const allP0 = d.prepare(`
     SELECT id, metadata FROM coverage_nodes
     WHERE ${nodeNamespace.clause} AND kind = 'FINDING'
@@ -471,20 +522,18 @@ export function computeReviewSignals(ns: Namespace): ReviewConvergenceSignals {
           ).get(...edgeNamespace.params, finding.id) as { c: number }).c;
           if (hasResolve > 0) p0Resolved++;
         }
-      } catch { /* skip */ }
+      } catch { }
     }
   }
 
-  const p0ResolutionRate = p0Count > 0 ? p0Resolved / p0Count : 1.0; // No P0s = fully resolved
+  const p0ResolutionRate = p0Count > 0 ? p0Resolved / p0Count : 1.0;
 
-  // evidenceDensity: average EVIDENCE_FOR edges per finding
   const totalEvidenceEdges = (d.prepare(
     `SELECT COUNT(*) as c FROM coverage_edges WHERE ${bareEdgeNamespace.clause} AND relation = 'EVIDENCE_FOR'`,
   ).get(...bareEdgeNamespace.params) as { c: number }).c;
 
   const evidenceDensity = allFindings > 0 ? totalEvidenceEdges / allFindings : 0;
 
-  // hotspotSaturation: hotspot files with >= 2 dimension coverage / hotspot files
   const hotspotSaturation = computeHotspotSaturation(d, ns);
 
   return {
@@ -496,55 +545,15 @@ export function computeReviewSignals(ns: Namespace): ReviewConvergenceSignals {
   };
 }
 
-function computeHotspotSaturation(d: Database.Database, ns: Namespace): number {
-  const nodeNamespace = buildNamespacePredicate('', ns);
-  const edgeNamespace = buildNamespacePredicate('e', ns);
-  // Find FILE nodes with hotspot_score > 0 in metadata
-  const files = d.prepare(`
-    SELECT id, metadata FROM coverage_nodes
-    WHERE ${nodeNamespace.clause} AND kind = 'FILE'
-  `).all(...nodeNamespace.params) as Array<{ id: string; metadata: string | null }>;
-
-  const hotspotFiles: string[] = [];
-  for (const f of files) {
-    if (f.metadata) {
-      try {
-        const meta = JSON.parse(f.metadata);
-        if (meta.hotspot_score && meta.hotspot_score > 0) {
-          hotspotFiles.push(f.id);
-        }
-      } catch { /* skip */ }
-    }
-  }
-
-  if (hotspotFiles.length === 0) return 1.0; // No hotspots = fully saturated
-
-  let saturated = 0;
-  for (const fileId of hotspotFiles) {
-    // Count distinct dimensions that COVER this file
-    const dimCoverage = (d.prepare(`
-      SELECT COUNT(DISTINCT e.source_id) as c
-      FROM coverage_edges e
-      JOIN coverage_nodes n ON ${buildCompositeNodeJoin('n', 'e', 'source_id')}
-      WHERE ${edgeNamespace.clause}
-        AND e.target_id = ?
-        AND e.relation = 'COVERS'
-        AND n.kind = 'DIMENSION'
-    `).get(...edgeNamespace.params, fileId) as { c: number }).c;
-
-    if (dimCoverage >= 2) saturated++;
-  }
-
-  return hotspotFiles.length > 0 ? saturated / hotspotFiles.length : 1.0;
-}
-
-// ───────────────────────────────────────────────────────────────
-// 5. COMPOSITE SIGNAL COMPUTATION
-// ───────────────────────────────────────────────────────────────
+// ───── EXPORTS ─────
 
 /**
  * Compute all convergence signals for a namespace.
+ *
  * Dispatches to research or review signal computation based on loop type.
+ *
+ * @param ns - Namespace identifying the coverage graph.
+ * @returns Research or review convergence signals.
  */
 export function computeSignals(ns: Namespace): ConvergenceSignals {
   if (ns.loopType === 'research') {
@@ -555,7 +564,13 @@ export function computeSignals(ns: Namespace): ConvergenceSignals {
 
 /**
  * Create a signal snapshot for a given iteration.
- * Persists convergence signals and node-level signals.
+ *
+ * Computes convergence signals and node-level signals, then persists
+ * them via the coverage graph database.
+ *
+ * @param ns - Namespace identifying the coverage graph.
+ * @param iteration - Current iteration number.
+ * @returns Signal snapshot with signals, node signals, and counts.
  */
 export function createSignalSnapshot(ns: Namespace, iteration: number): SignalSnapshot {
   const signals = computeSignals(ns);
@@ -570,10 +585,6 @@ export function createSignalSnapshot(ns: Namespace, iteration: number): SignalSn
     edgeCount: stats.totalEdges,
   };
 
-  // Persist to database. CoverageSnapshot requires a concrete sessionId; the
-  // Namespace may still carry undefined in bootstrap/debug contexts, so fall
-  // back to a 'legacy' sentinel so pre-ADR-001 aggregations still persist
-  // without violating the type.
   createSnapshot({
     specFolder: ns.specFolder,
     loopType: ns.loopType,
@@ -591,12 +602,13 @@ export function createSignalSnapshot(ns: Namespace, iteration: number): SignalSn
   return snapshot;
 }
 
-// ───────────────────────────────────────────────────────────────
-// 6. MOMENTUM (DELTA BETWEEN SNAPSHOTS)
-// ───────────────────────────────────────────────────────────────
-
 /**
  * Compute momentum (change rate) between the latest and previous snapshots.
+ *
+ * @param specFolder - Spec folder for namespace scoping.
+ * @param loopType - Loop type ('research' or 'review').
+ * @param sessionId - Optional session ID for scoping.
+ * @returns Map of metric names to deltas, or null if fewer than 2 snapshots.
  */
 export function computeMomentum(
   specFolder: string,

@@ -1,9 +1,9 @@
-// ───────────────────────────────────────────────────────────────
 // MODULE: Deep-Loop Lock
-// ───────────────────────────────────────────────────────────────
 
 import { closeSync, existsSync, fsyncSync, openSync, readFileSync, renameSync, rmSync, unlinkSync, writeFileSync } from 'node:fs';
 import { dirname } from 'node:path';
+
+// ───── TYPE DEFINITIONS ─────
 
 import type { ExecutorKind } from './executor-config.js';
 
@@ -20,6 +20,8 @@ export type LoopLockAcquireResult =
   | { acquired: true; lock: LoopLockData; reclaimed?: LoopLockData }
   | { acquired: false; holder: LoopLockData };
 
+// ───── DOMAIN ERRORS ─────
+
 export class LoopLockHeldError extends Error {
   holder: LoopLockData;
 
@@ -29,6 +31,8 @@ export class LoopLockHeldError extends Error {
     this.holder = holder;
   }
 }
+
+// ───── HELPERS ─────
 
 type SerializedLoopLockData = {
   owner_pid: number;
@@ -113,9 +117,8 @@ function writeLoopLockAtomic(lockPath: string, data: LoopLockData): void {
     try {
       fsyncPath(dirname(lockPath));
     } catch {
-      // Directory fsync is best-effort across local filesystems.
     }
-  } catch (error) {
+  } catch (error: unknown) {
     rmSync(tempPath, { force: true });
     throw error;
   }
@@ -142,11 +145,21 @@ function writeLoopLockExclusive(lockPath: string, data: LoopLockData): boolean {
   try {
     fsyncPath(dirname(lockPath));
   } catch {
-    // Directory fsync is best-effort across local filesystems.
   }
   return true;
 }
 
+// ───── EXPORTS ─────
+
+/**
+ * Check whether a process is still alive.
+ *
+ * Uses kill(pid, 0) as a POSIX signal check. Returns true for
+ * processes the current user has permission to signal.
+ *
+ * @param pid - Process ID to check.
+ * @returns True if the process exists and is reachable.
+ */
 export function processAlive(pid: number): boolean {
   if (!Number.isInteger(pid) || pid <= 0) {
     return false;
@@ -164,6 +177,16 @@ export function processAlive(pid: number): boolean {
   }
 }
 
+/**
+ * Determine whether a loop lock has expired or the owner process is dead.
+ *
+ * A lock is stale if the owner PID no longer exists or the heartbeat
+ * has exceeded twice the TTL.
+ *
+ * @param data - The loop lock data to check.
+ * @param now - Reference timestamp (defaults to now).
+ * @returns True if the lock is stale and can be reclaimed.
+ */
 export function isStaleLoopLock(data: LoopLockData, now: Date = new Date()): boolean {
   const heartbeatMs = Date.parse(data.lastHeartbeatIso);
   const ttlMs = Number.isFinite(data.ttlMs) ? data.ttlMs : 0;
@@ -172,6 +195,13 @@ export function isStaleLoopLock(data: LoopLockData, now: Date = new Date()): boo
   return expired || !processAlive(data.ownerPid);
 }
 
+/**
+ * Acquire the deep-loop lock, reclaiming stale locks automatically.
+ *
+ * @param lockPath - File path for the lock file.
+ * @param data - Lock metadata for the acquiring process.
+ * @returns Result indicating whether the lock was acquired and by whom.
+ */
 export function acquireLoopLock(lockPath: string, data: LoopLockData): LoopLockAcquireResult {
   const holder = existsSync(lockPath) ? readLoopLock(lockPath) : null;
   if (holder && !isStaleLoopLock(holder)) {
@@ -190,6 +220,14 @@ export function acquireLoopLock(lockPath: string, data: LoopLockData): LoopLockA
   return holder ? { acquired: true, lock: data, reclaimed: holder } : { acquired: true, lock: data };
 }
 
+/**
+ * Refresh the loop lock heartbeat for the owning process.
+ *
+ * @param lockPath - File path for the lock file.
+ * @param ownerPid - PID of the owning process (must match current owner).
+ * @param now - Reference timestamp (defaults to now).
+ * @returns True if the heartbeat was successfully refreshed.
+ */
 export function refreshLoopLock(lockPath: string, ownerPid: number, now: Date = new Date()): boolean {
   const holder = existsSync(lockPath) ? readLoopLock(lockPath) : null;
   if (!holder || holder.ownerPid !== ownerPid) {
@@ -203,6 +241,13 @@ export function refreshLoopLock(lockPath: string, ownerPid: number, now: Date = 
   return true;
 }
 
+/**
+ * Release the loop lock for the owning process.
+ *
+ * @param lockPath - File path for the lock file.
+ * @param ownerPid - PID of the owning process (must match current owner).
+ * @returns True if the lock was successfully released.
+ */
 export function releaseLoopLock(lockPath: string, ownerPid: number): boolean {
   const holder = existsSync(lockPath) ? readLoopLock(lockPath) : null;
   if (!holder || holder.ownerPid !== ownerPid) {

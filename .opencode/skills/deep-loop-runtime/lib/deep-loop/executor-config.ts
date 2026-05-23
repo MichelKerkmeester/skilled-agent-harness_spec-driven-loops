@@ -1,8 +1,8 @@
-// ───────────────────────────────────────────────────────────────
 // MODULE: Deep-Loop Executor Config
-// ───────────────────────────────────────────────────────────────
 
 import { z } from '../../../system-spec-kit/mcp_server/node_modules/zod/index.js';
+
+// ───── TYPE DEFINITIONS ─────
 
 export const EXECUTOR_KINDS = ['native', 'cli-codex', 'cli-gemini', 'cli-claude-code', 'cli-opencode', 'cli-devin'] as const;
 export type ExecutorKind = typeof EXECUTOR_KINDS[number];
@@ -17,6 +17,8 @@ const SANDBOX_MODES = ['read-only', 'workspace-write', 'danger-full-access'] as 
 export type SandboxMode = typeof SANDBOX_MODES[number];
 export type GeminiSandboxMode = 'docker' | 'none';
 export type ClaudePermissionMode = 'plan' | 'acceptEdits' | 'bypassPermissions';
+
+// ───── CONSTANTS ─────
 
 export const executorConfigSchema = z.object({
   kind: z.enum(EXECUTOR_KINDS).default('native'),
@@ -34,17 +36,7 @@ export const EXECUTOR_KIND_FLAG_SUPPORT: Record<ExecutorKind, readonly (keyof Ex
   'cli-codex': ['model', 'reasoningEffort', 'serviceTier', 'sandboxMode', 'timeoutSeconds'],
   'cli-gemini': ['model', 'sandboxMode', 'timeoutSeconds'],
   'cli-claude-code': ['model', 'reasoningEffort', 'sandboxMode', 'timeoutSeconds'],
-  // cli-opencode: opencode run --variant <high|medium|minimal> maps to reasoningEffort.
-  // sandboxMode is NOT supported — opencode CLI has no read-only equivalent and the
-  // YAML branches always pass --dangerously-skip-permissions. Including sandboxMode
-  // here without a runtime branch would be a schema-runtime contract violation
-  // (see packet 102 P1-028); reject it like we reject serviceTier for non-codex.
   'cli-opencode': ['model', 'reasoningEffort', 'timeoutSeconds'],
-  // cli-devin: devin --model <swe-1.6|deepseek-v4|glm-5.1|kimi-k2.6> with
-  // --permission-mode <auto|dangerous> resolved from sandboxMode. reasoningEffort is
-  // NOT supported — Devin's per-model reasoning depth is fixed at the CLI surface.
-  // serviceTier is also NOT supported. See cli-devin SKILL.md §2 for the dispatch
-  // contract and packet 037/000 for the wiring decision.
   'cli-devin': ['model', 'sandboxMode', 'timeoutSeconds'],
 };
 
@@ -55,32 +47,7 @@ export const DEVIN_SUPPORTED_MODELS = ['swe-1.6', 'deepseek-v4', 'glm-5.1', 'kim
 export type DevinSupportedModel = typeof DEVIN_SUPPORTED_MODELS[number];
 export type DevinPermissionMode = 'auto' | 'dangerous';
 
-function normalizeSandboxMode(mode: SandboxMode | null | undefined): SandboxMode {
-  return mode ?? 'workspace-write';
-}
-
-export function resolveCodexSandboxMode(mode: SandboxMode | null | undefined): SandboxMode {
-  return normalizeSandboxMode(mode);
-}
-
-export function resolveGeminiSandboxMode(mode: SandboxMode | null | undefined): GeminiSandboxMode {
-  return normalizeSandboxMode(mode) === 'danger-full-access' ? 'none' : 'docker';
-}
-
-export function resolveClaudePermissionMode(mode: SandboxMode | null | undefined): ClaudePermissionMode {
-  switch (normalizeSandboxMode(mode)) {
-    case 'read-only':
-      return 'plan';
-    case 'danger-full-access':
-      return 'bypassPermissions';
-    default:
-      return 'acceptEdits';
-  }
-}
-
-export function resolveDevinPermissionMode(mode: SandboxMode | null | undefined): DevinPermissionMode {
-  return normalizeSandboxMode(mode) === 'danger-full-access' ? 'dangerous' : 'auto';
-}
+// ───── DOMAIN ERRORS ─────
 
 type ExecutorConfigIssue = {
   path: PropertyKey[];
@@ -107,8 +74,14 @@ export class ExecutorConfigError extends Error {
   }
 }
 
+// ───── HELPERS ─────
+
 function isRecord(value: unknown): value is Record<string, unknown> {
   return value !== null && !Array.isArray(value) && typeof value === 'object';
+}
+
+function normalizeSandboxMode(mode: SandboxMode | null | undefined): SandboxMode {
+  return mode ?? 'workspace-write';
 }
 
 function normalizeExecutorConfigInput(raw: unknown): unknown {
@@ -145,6 +118,65 @@ function normalizeIssues(error: z.ZodError<ExecutorConfig>): ExecutorConfigIssue
   }));
 }
 
+// ───── EXPORTS ─────
+
+/**
+ * Map a generic sandbox mode to the Codex CLI sandbox mode.
+ *
+ * @param mode - Generic sandbox mode or undefined.
+ * @returns Codex-compatible sandbox mode.
+ */
+export function resolveCodexSandboxMode(mode: SandboxMode | null | undefined): SandboxMode {
+  return normalizeSandboxMode(mode);
+}
+
+/**
+ * Map a generic sandbox mode to the Gemini CLI sandbox mode.
+ *
+ * @param mode - Generic sandbox mode or undefined.
+ * @returns 'docker' for workspace-write/read-only, 'none' for danger-full-access.
+ */
+export function resolveGeminiSandboxMode(mode: SandboxMode | null | undefined): GeminiSandboxMode {
+  return normalizeSandboxMode(mode) === 'danger-full-access' ? 'none' : 'docker';
+}
+
+/**
+ * Map a generic sandbox mode to the Claude Code permission mode.
+ *
+ * @param mode - Generic sandbox mode or undefined.
+ * @returns Claude-compatible permission mode.
+ */
+export function resolveClaudePermissionMode(mode: SandboxMode | null | undefined): ClaudePermissionMode {
+  switch (normalizeSandboxMode(mode)) {
+    case 'read-only':
+      return 'plan';
+    case 'danger-full-access':
+      return 'bypassPermissions';
+    default:
+      return 'acceptEdits';
+  }
+}
+
+/**
+ * Map a generic sandbox mode to the Devin CLI permission mode.
+ *
+ * @param mode - Generic sandbox mode or undefined.
+ * @returns 'auto' for workspace-write/read-only, 'dangerous' for danger-full-access.
+ */
+export function resolveDevinPermissionMode(mode: SandboxMode | null | undefined): DevinPermissionMode {
+  return normalizeSandboxMode(mode) === 'danger-full-access' ? 'dangerous' : 'auto';
+}
+
+/**
+ * Parse and validate a raw executor configuration.
+ *
+ * Normalizes legacy `type` fields, validates against the Zod schema,
+ * and enforces executor-kind-specific field support.
+ *
+ * @param raw - Raw input to parse (JSON-parsed object).
+ * @returns Validated ExecutorConfig.
+ * @throws {@link ExecutorConfigError} If validation fails.
+ */
 export function parseExecutorConfig(raw: unknown): ExecutorConfig {
   const parsed = executorConfigSchema.safeParse(normalizeExecutorConfigInput(raw));
   if (!parsed.success) {
@@ -225,6 +257,12 @@ export function parseExecutorConfig(raw: unknown): ExecutorConfig {
   return config;
 }
 
+/**
+ * Resolve an executor configuration by merging CLI and file sources.
+ *
+ * @param sources - CLI and file partial configs (CLI takes precedence).
+ * @returns Validated ExecutorConfig.
+ */
 export function resolveExecutorConfig(sources: {
   cli?: Partial<ExecutorConfig>;
   file?: Partial<ExecutorConfig>;
