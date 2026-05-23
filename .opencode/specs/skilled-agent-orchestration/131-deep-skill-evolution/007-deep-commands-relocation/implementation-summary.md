@@ -11,8 +11,9 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/131-deep-skill-evolution/007-deep-commands-relocation"
     last_updated_at: "2026-05-23T00:00:00Z"
     last_updated_by: "deepseek-v4-pro"
-    recent_action: "Created placeholder."
-    next_safe_action: "Fill at WAVE 5 closure."
+    recent_action: "WAVE 1 complete — assets relocated, gemini TOMLs migrated"
+    next_safe_action: "dispatch WAVE 2 (live references)"
+    completion_pct: 20
 ---
 # Implementation Summary: 131/007 — Deep-* Commands Relocation
 

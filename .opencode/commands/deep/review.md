@@ -21,8 +21,8 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory
 >    - `maxIterations`
 >    - `convergenceThreshold`
 > 2. Load the corresponding YAML file from `assets/` only after all setup values are resolved:
->    - Auto: `spec_kit_deep-review_auto.yaml`
->    - Confirm: `spec_kit_deep-review_confirm.yaml`
+>    - Auto: `deep_review_auto.yaml`
+>    - Confirm: `deep_review_confirm.yaml`
 > 3. Execute the YAML workflow step by step using those resolved values
 >
 > All content below is reference context for the YAML workflow. Do not treat reference sections as direct instructions to execute.
@@ -55,7 +55,7 @@ Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_
 
 Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 
-1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/review/deep-review-config.json` (shape: `reviewTarget`, `reviewTargetType`, `reviewDimensions`, `specFolder`, `maxIterations`, `convergenceThreshold`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`. End §0.
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/review/deep-review-config.json` (shape: `reviewTarget`, `reviewTargetType`, `reviewDimensions`, `specFolder`, `maxIterations`, `convergenceThreshold`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_review_auto.yaml`. End §0.
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `review_target_type`, `spec_folder`. **Ordering rule**: if `review_target_type` is ambiguous, ask only for `review_target_type` first — the answer may make `spec_folder` self-evident on the next Tier 1 pass. Missing `review_target` is absence, not ambiguity — go to Tier 3.
 
@@ -252,7 +252,7 @@ Conduct autonomous iterative code review with convergence detection. Each iterat
 - `deep-research` uses 0.05 default on newInfoRatio (negative-knowledge emphasis)
 - `deep-ai-council` (proposed) uses 0.20 default on adjudicator-verdict stability
 
-Carrying threshold expectations across siblings will cause unexpected iteration counts. See 130 research at `.opencode/specs/skilled-agent-orchestration/130-deep-skills-unique-value-differentiation/research/research.md` §2 F56/F78, §5 Recommendation, and §6 Parity Invariants.
+Carrying threshold expectations across siblings will cause unexpected iteration counts. See 130 research at `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/006-deep-skills-differentiation/001-unique-value-differentiation/research/research.md` §2 F56/F78, §5 Recommendation, and §6 Parity Invariants.
 
 ```yaml
 role: Deep Review Loop Manager
@@ -323,8 +323,8 @@ Run an iterative loop for code review: Initialize the review packet under `{arti
 
 After setup phase passes, load and execute the appropriate YAML prompt based on execution_mode:
 
-- **AUTONOMOUS**: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-- **INTERACTIVE**: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+- **AUTONOMOUS**: `.opencode/commands/deep/assets/deep_review_auto.yaml`
+- **INTERACTIVE**: `.opencode/commands/deep/assets/deep_review_confirm.yaml`
 
 The YAML contains the full loop workflow: initialization, iteration dispatch, convergence detection, synthesis, and memory save.
 

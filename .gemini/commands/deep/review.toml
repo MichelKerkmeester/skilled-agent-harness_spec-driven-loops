@@ -5,6 +5,6 @@ argument-hint: "<target> [:auto|:confirm] [--max-iterations=N] [--convergence=N]
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search, mcp__cocoindex_code__search
 ---
 
-Read the command spec and execute: .opencode/commands/spec_kit/deep-review.md
+Read the command spec and execute: .opencode/commands/deep/review.md
 
 User request: {{args}}"""
