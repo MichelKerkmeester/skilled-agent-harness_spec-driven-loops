@@ -44,7 +44,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-review quality guards for evidence, scope, and coverage before any STOP decision.
 ### Commands
-1. `bash: rg -n 'quality.guard|binary.gate|evidence.*gate|scope.*gate|coverage.*gate|QUALITY_GUARD|gate.*pass' .opencode/skills/deep-research/references/convergence.md`
+1. `bash: rg -n 'quality.guard|binary.gate|evidence.*gate|scope.*gate|coverage.*gate|QUALITY_GUARD|gate.*pass' .opencode/skills/deep-review/references/convergence.md`
 2. `bash: rg -n 'quality_guard|binary_gate|evidence_gate|scope_gate|coverage_gate|guard.*check|gate.*pass' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
 3. `bash: rg -n 'Quality Guard|Evidence|Scope|Coverage|binary gate|gate.*pass|inference.only' .opencode/skills/deep-review/references/quick_reference.md .opencode/skills/deep-review/SKILL.md .opencode/skills/deep-review/README.md`
 ### Expected
@@ -70,7 +70,7 @@ Privilege the convergence reference for gate definitions and the YAML workflow f
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-research/references/convergence.md` | Canonical quality guard definitions, use Section 10.4 for review-specific gates |
+| `.opencode/skills/deep-review/references/convergence.md` | Canonical quality guard definitions, use Section 10.4 for review-specific gates |
 | `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Workflow algorithm, inspect quality guard enforcement in convergence step |
 | `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Workflow algorithm, inspect quality guard enforcement in convergence step |
 | `.opencode/skills/deep-review/references/quick_reference.md` | Quality guard summary, use `ANCHOR:quality-guards` |

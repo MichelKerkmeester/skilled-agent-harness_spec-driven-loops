@@ -1,0 +1,43 @@
+{
+  "iteration": 10,
+  "executor": "cli-devin",
+  "model": "swe-1.6",
+  "prompt_framework": "RCAF",
+  "started_at": "2026-05-23T17:47:30Z",
+  "ended_at": "2026-05-23T17:49:20Z",
+  "wall_clock_seconds": 110,
+  "logic_gaps": [
+    {
+      "gap_id": "LG-0033",
+      "description": "JSONL schema enforcement gap: the deep_start-review-loop YAML workflow (auto + confirm) assumes specific JSONL record shapes with required fields (type/event/mode/sessionId/etc.) but the reducer's parseJsonlDetailed function at scripts/reduce-state.cjs:127-151 validates JSON SYNTAX only, not SCHEMA compliance. Malformed records missing required fields pass through silently; downstream consumers (dashboard, analysis tools) may encounter undefined-field-access errors. state_format.md \u00a73 defines required fields but no runtime validator enforces them.",
+      "evidence": [
+        ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:206",
+        ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:215",
+        ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:566",
+        ".opencode/skills/deep-review/scripts/reduce-state.cjs:127-151",
+        ".opencode/skills/deep-review/references/state_format.md:180-212",
+        ".opencode/skills/deep-review/references/state_format.md:299-365"
+      ],
+      "severity": "P1",
+      "in_scope_check": {
+        "already_in_spec": false,
+        "already_in_audit_findings": false
+      }
+    }
+  ],
+  "novel_findings": [
+    "**META-PATTERN 1: Gate-model drift cluster.** Four gaps (LG-0013 + LG-0016 + LG-0031 + LG-0032) share a single root cause: the legal-stop gate model was extended from 3\u21927 gates but propagation was incomplete across feature_catalog, playbook DRV-018, convergence.md (within-doc), loop_protocol.md (within-doc). Coordinated remediation: reconcile all surfaces against the AUTHORITATIVE 7-gate event shape at convergence.md:105-117.",
+    "**META-PATTERN 2: Documentation-promise-no-implementation cluster.** Three gaps (LG-0022 + LG-0004 + LG-0006) share the pattern where docs describe behavior with no runtime implementation (security-sensitive overrides, graphEvents processing, traceabilityChecks). Either implement (out of scope per ADR-002) or mark docs as SPEC ONLY / future-implementation. Synthesis applies the mark-as-SPEC option inline for LG-0022.",
+    "**META-PATTERN 3: Path-reference staleness from skill split.** Five gaps (LG-0017 + LG-0018 + LG-0019 + LG-0020 + LG-0025) stem from incomplete path updates during deep-research \u2192 deep-review skill split and AF-0023 migration. LG-0025 fixed inline during iter 6. LG-0017..LG-0020 mechanical P2 fixes applied at synthesis. Class-of-bug: search-replace operations missed prose-style references (SOURCE METADATA blocks) while updating command-line references.",
+    "Phase 5 stop reason: ADR-001 mandated 10 iters complete (no early-stop). Convergence signal: iter 8 (zero gaps) + iter 9 (only within-doc cross-references) + iter 10 (only 1 novel gap + 3 meta-pattern aggregations) confirms the loop is saturated. Truly novel-gap rate dropped from 8 (iter 1) to 1 (iter 10)."
+  ],
+  "delta_vs_prev_iter": "new gaps surfaced",
+  "convergence_signals": {
+    "unique_gaps_so_far": 33,
+    "p0_count": 3,
+    "p1_count": 15,
+    "p2_count": 15,
+    "duplicates_with_prior_iters": 0
+  },
+  "notes": "Iter 10 capstone. Wall-clock 110s. Surfaced LG-0033 (JSONL schema enforcement gap, P1) and aggregated all 32 prior gaps into 3 meta-patterns (gate-model drift, doc-promise-no-impl, path-ref staleness). Phase 5 ENDS HERE. Total: 33 cumulative gaps (3 P0 + 15 P1 + 15 P2) across 10 iters."
+}

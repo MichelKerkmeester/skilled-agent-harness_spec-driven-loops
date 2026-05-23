@@ -73,7 +73,7 @@ Check the strategy template for explicit dimension tracking sections and verify 
 | `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Loop dimension extraction and dispatch, inspect `step_read_state` and `step_dispatch_review_agent` |
 | `.opencode/skills/deep-review/assets/deep_review_strategy.md` | Strategy template, inspect "Next Focus" and dimension tracking sections |
 | `.opencode/skills/deep-review/references/quick_reference.md` | Convergence signals, use `ANCHOR:convergence` and `ANCHOR:review-dimensions` |
-| `.opencode/skills/deep-research/references/convergence.md` | Shared convergence algorithm, inspect dimension coverage signal |
+| `.opencode/skills/deep-review/references/convergence.md` | Shared convergence algorithm, inspect dimension coverage signal |
 
 ---
 

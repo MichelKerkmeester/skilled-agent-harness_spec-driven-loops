@@ -1,6 +1,6 @@
 ---
 title: "Resource Map: deep-review skill release cleanup"
-description: "Full path catalog of every deep-review skill artifact in audit scope plus this spec folder's own outputs. Per-row Note column reserves the audit_status field populated in phase 2; Phase-5 Augmentation section reserved for novel logic gaps surfaced in phase 5."
+description: "Full path catalog of every deep-review skill artifact in audit scope plus this spec folder's own outputs. Per-row Note column reserves the audit_status field populated in phase 2. Phase-5 Augmentation section reserved for novel logic gaps surfaced in phase 5."
 trigger_phrases:
   - "deep-review release cleanup resource map"
   - "artifact inventory"
@@ -42,7 +42,7 @@ Use this map alongside `spec.md` and `plan.md` when:
 - Phase 5 deep-research iterations need a baseline of "already in scope" so novel gaps are recognizable.
 - A future reviewer or downstream packet needs a single-glance blast radius without reading `implementation-summary.md` end-to-end.
 
-Pairs with `implementation-summary.md` — the summary narrates *what and why*; this map lists *which files*. Do not duplicate narrative, decisions, or test evidence here — those belong in `implementation-summary.md`, `decision-record.md`, or `checklist.md`.
+Pairs with `implementation-summary.md`, the summary narrates *what and why*. This map lists *which files*. Do not duplicate narrative, decisions, or test evidence here, those belong in `implementation-summary.md`, `decision-record.md`, or `checklist.md`.
 <!-- /ANCHOR:when-to-use -->
 
 ---
@@ -52,7 +52,7 @@ Pairs with `implementation-summary.md` — the summary narrates *what and why*; 
 
 - **Total references**: ~104 (95 deep-review artifacts + 11 spec-folder artifacts + a handful of external anchors)
 - **By category**: READMEs=2, Documents=12, Skills=86, Specs=11, Scripts=3, Config=1, Meta=1
-- **Missing on disk**: 0 at phase 1; updated each phase
+- **Missing on disk**: 0 at phase 1. Updated each phase
 - **Scope**: All deep-review skill files under audit in phases 2-4, plus this spec folder's own deliverables, plus a small set of cross-system anchors cited in phase 3 README rewrite
 - **Generated**: 2026-05-23T00:00:00Z (phase 1 baseline)
 
@@ -68,8 +68,8 @@ Pairs with `implementation-summary.md` — the summary narrates *what and why*; 
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skills/deep-review/README.md` | Updated (phase 3 full rewrite) | OK | audit_status:PASS_WITH_DEVIATIONS; 452 LOC; tone anchor Public/README.md @ ~70% (ADR-005); structural anchor system-spec-kit/README.md |
-| `.opencode/skills/deep-review/scripts/README.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 134 LOC; scripts/ subdir README; bug-scan only |
+| `.opencode/skills/deep-review/README.md` | Updated (phase 3 full rewrite) | OK | audit_status:PASS_WITH_DEVIATIONS, 452 LOC, tone anchor Public/README.md @ ~70% (ADR-005), structural anchor system-spec-kit/README.md |
+| `.opencode/skills/deep-review/scripts/README.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 134 LOC, scripts/ subdir README, bug-scan only |
 <!-- /ANCHOR:readmes -->
 
 ---
@@ -83,7 +83,7 @@ Pairs with `implementation-summary.md` — the summary narrates *what and why*; 
 |------|--------|--------|------|
 | `Public/README.md` | Cited | OK | Tone anchor (~70% intensity per ADR-005) |
 | `.opencode/skills/system-spec-kit/README.md` | Cited | OK | Structural anchor (10-section pattern) |
-| `.opencode/skills/sk-doc/references/global/hvr_rules.md` | Cited | OK | HVR rules; pass threshold 85+ |
+| `.opencode/skills/sk-doc/references/global/hvr_rules.md` | Cited | OK | HVR rules, pass threshold 85+ |
 | `.opencode/skills/sk-doc/references/skill_creation.md` | Cited | OK | Skill creation standards |
 | `.opencode/skills/sk-doc/references/readme_creation.md` | Cited | OK | README creation standards |
 | `.opencode/skills/sk-doc/references/feature_catalog_creation.md` | Cited | OK | Feature catalog standards |
@@ -106,92 +106,92 @@ Pairs with `implementation-summary.md` — the summary narrates *what and why*; 
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skills/deep-review/SKILL.md` | Updated (version bump only, surgical audit) | OK | audit_status:PASS_WITH_DEVIATIONS; 540 LOC; v1.8.0.0->v1.9.0.0; Smart Router §2 PRESERVED by ADR-004 |
+| `.opencode/skills/deep-review/SKILL.md` | Updated (version bump only, surgical audit) | OK | audit_status:PASS_WITH_DEVIATIONS, 540 LOC, v1.8.0.0->v1.9.0.0, Smart Router §2 PRESERVED by ADR-004 |
 
 ### 5.2 References (4 files, 2700 LOC total)
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skills/deep-review/references/convergence.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 727 LOC; convergence algorithm + stop conditions; template=skill_reference_template.md |
-| `.opencode/skills/deep-review/references/loop_protocol.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 824 LOC; 4-phase lifecycle + lineage protocol |
-| `.opencode/skills/deep-review/references/quick_reference.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 211 LOC; one-page cheat sheet |
-| `.opencode/skills/deep-review/references/state_format.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 938 LOC; largest reference; canonical schemas for all state files |
+| `.opencode/skills/deep-review/references/convergence.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 727 LOC, convergence algorithm + stop conditions, template=skill_reference_template.md |
+| `.opencode/skills/deep-review/references/loop_protocol.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 824 LOC, 4-phase lifecycle + lineage protocol |
+| `.opencode/skills/deep-review/references/quick_reference.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 211 LOC, one-page cheat sheet |
+| `.opencode/skills/deep-review/references/state_format.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 938 LOC, largest reference, canonical schemas for all state files |
 
 ### 5.3 Assets (6 files, 1101 LOC total)
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skills/deep-review/assets/deep_review_strategy.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 187 LOC; template=skill_asset_template.md |
-| `.opencode/skills/deep-review/assets/deep_review_dashboard.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 138 LOC; dashboard template |
-| `.opencode/skills/deep-review/assets/deep_review_config.json` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 92 LOC; default config |
-| `.opencode/skills/deep-review/assets/runtime_capabilities.json` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 74 LOC; runtime capabilities |
-| `.opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 116 LOC; iteration prompt template |
-| `.opencode/skills/deep-review/assets/review_mode_contract.yaml` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 494 LOC; largest asset; mode contract spec |
+| `.opencode/skills/deep-review/assets/deep_review_strategy.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 187 LOC, template=skill_asset_template.md |
+| `.opencode/skills/deep-review/assets/deep_review_dashboard.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 138 LOC, dashboard template |
+| `.opencode/skills/deep-review/assets/deep_review_config.json` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 92 LOC, default config |
+| `.opencode/skills/deep-review/assets/runtime_capabilities.json` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 74 LOC, runtime capabilities |
+| `.opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 116 LOC, iteration prompt template |
+| `.opencode/skills/deep-review/assets/review_mode_contract.yaml` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 494 LOC, largest asset, mode contract spec |
 
 ### 5.4 Feature Catalog (21 files, ~1380 LOC total)
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skills/deep-review/feature_catalog/feature_catalog.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 351 LOC; root inventory; template=feature_catalog_template.md |
-| `.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/01-initialization.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 50 LOC |
-| `.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/02-iteration-dispatch.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 51 LOC |
-| `.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/03-convergence-check.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 50 LOC |
-| `.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/04-synthesis.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 48 LOC |
-| `.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/05-memory-save.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 46 LOC |
-| `.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 50 LOC |
-| `.opencode/skills/deep-review/feature_catalog/02--state-management/01-jsonl-state-log.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 49 LOC |
-| `.opencode/skills/deep-review/feature_catalog/02--state-management/02-strategy-tracking.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 48 LOC |
-| `.opencode/skills/deep-review/feature_catalog/02--state-management/03-config-management.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 48 LOC |
-| `.opencode/skills/deep-review/feature_catalog/02--state-management/04-findings-registry.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 48 LOC |
-| `.opencode/skills/deep-review/feature_catalog/02--state-management/05-dashboard.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 47 LOC |
-| `.opencode/skills/deep-review/feature_catalog/03--review-dimensions/01-correctness.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 48 LOC |
-| `.opencode/skills/deep-review/feature_catalog/03--review-dimensions/02-security.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 48 LOC |
-| `.opencode/skills/deep-review/feature_catalog/03--review-dimensions/03-traceability.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 48 LOC |
-| `.opencode/skills/deep-review/feature_catalog/03--review-dimensions/04-maintainability.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 48 LOC |
-| `.opencode/skills/deep-review/feature_catalog/04--severity-system/01-severity-classification.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 47 LOC |
-| `.opencode/skills/deep-review/feature_catalog/04--severity-system/02-adversarial-self-check.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 46 LOC |
-| `.opencode/skills/deep-review/feature_catalog/04--severity-system/03-claim-adjudication.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 48 LOC |
-| `.opencode/skills/deep-review/feature_catalog/04--severity-system/04-verdicts.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 47 LOC |
-| `.opencode/skills/deep-review/feature_catalog/04--severity-system/05-quality-gates.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 49 LOC |
+| `.opencode/skills/deep-review/feature_catalog/feature_catalog.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 351 LOC, root inventory, template=feature_catalog_template.md |
+| `.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/01-initialization.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 50 LOC |
+| `.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/02-iteration-dispatch.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 51 LOC |
+| `.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/03-convergence-check.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 50 LOC |
+| `.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/04-synthesis.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 48 LOC |
+| `.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/05-memory-save.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 46 LOC |
+| `.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 50 LOC |
+| `.opencode/skills/deep-review/feature_catalog/02--state-management/01-jsonl-state-log.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 49 LOC |
+| `.opencode/skills/deep-review/feature_catalog/02--state-management/02-strategy-tracking.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 48 LOC |
+| `.opencode/skills/deep-review/feature_catalog/02--state-management/03-config-management.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 48 LOC |
+| `.opencode/skills/deep-review/feature_catalog/02--state-management/04-findings-registry.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 48 LOC |
+| `.opencode/skills/deep-review/feature_catalog/02--state-management/05-dashboard.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 47 LOC |
+| `.opencode/skills/deep-review/feature_catalog/03--review-dimensions/01-correctness.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 48 LOC |
+| `.opencode/skills/deep-review/feature_catalog/03--review-dimensions/02-security.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 48 LOC |
+| `.opencode/skills/deep-review/feature_catalog/03--review-dimensions/03-traceability.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 48 LOC |
+| `.opencode/skills/deep-review/feature_catalog/03--review-dimensions/04-maintainability.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 48 LOC |
+| `.opencode/skills/deep-review/feature_catalog/04--severity-system/01-severity-classification.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 47 LOC |
+| `.opencode/skills/deep-review/feature_catalog/04--severity-system/02-adversarial-self-check.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 46 LOC |
+| `.opencode/skills/deep-review/feature_catalog/04--severity-system/03-claim-adjudication.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 48 LOC |
+| `.opencode/skills/deep-review/feature_catalog/04--severity-system/04-verdicts.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 47 LOC |
+| `.opencode/skills/deep-review/feature_catalog/04--severity-system/05-quality-gates.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 49 LOC |
 
 ### 5.5 Manual Testing Playbook (45 files + 1 shell script, ~4720 LOC total)
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skills/deep-review/manual_testing_playbook/manual_testing_playbook.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 682 LOC; root orchestrator; template=manual_testing_playbook_template.md |
-| `.opencode/skills/deep-review/manual_testing_playbook/01--entry-points-and-modes/*.md` | Analyzed (3 files) | OK | audit_status:PASS_WITH_DEVIATIONS; 001-003; 86-87 LOC each |
-| `.opencode/skills/deep-review/manual_testing_playbook/02--initialization-and-state-setup/*.md` | Analyzed (4 files) | OK | audit_status:PASS_WITH_DEVIATIONS; 004-007; 85-87 LOC each |
-| `.opencode/skills/deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/*.md` | Analyzed (8 files) | OK | audit_status:PASS_WITH_DEVIATIONS; 008-015; 86-88 LOC each |
-| `.opencode/skills/deep-review/manual_testing_playbook/04--convergence-and-recovery/*.md` | Analyzed (9 files) | OK | audit_status:PASS_WITH_DEVIATIONS; 015-023; 87-98 LOC each (note: legacy duplicate "015" filename overlap between dirs 03 and 04 — flag for phase 2) |
-| `.opencode/skills/deep-review/manual_testing_playbook/05--pause-resume-and-fault-tolerance/*.md` | Analyzed (4 files) | OK | audit_status:PASS_WITH_DEVIATIONS; 021-024; 88-89 LOC each (note: legacy duplicate "021-024" overlap with dir 04 — flag for phase 2) |
-| `.opencode/skills/deep-review/manual_testing_playbook/06--synthesis-save-and-guardrails/*.md` | Analyzed (5 files) | OK | audit_status:PASS_WITH_DEVIATIONS; 025-029; 88-102 LOC each |
-| `.opencode/skills/deep-review/manual_testing_playbook/07--command-flow-stress-tests/*.md` | Analyzed (6 files) | OK | audit_status:PASS_WITH_DEVIATIONS; 052-057; 97-117 LOC each |
-| `.opencode/skills/deep-review/manual_testing_playbook/07--command-flow-stress-tests/setup-cp-sandbox.sh` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 98 LOC; shell script; bug-scan only |
-| `.opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/*.md` | Analyzed (6 files) | OK | audit_status:PASS_WITH_DEVIATIONS; 058-063; 66-71 LOC each |
+| `.opencode/skills/deep-review/manual_testing_playbook/manual_testing_playbook.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 682 LOC, root orchestrator, template=manual_testing_playbook_template.md |
+| `.opencode/skills/deep-review/manual_testing_playbook/01--entry-points-and-modes/*.md` | Analyzed (3 files) | OK | audit_status:PASS_WITH_DEVIATIONS, 001-003, 86-87 LOC each |
+| `.opencode/skills/deep-review/manual_testing_playbook/02--initialization-and-state-setup/*.md` | Analyzed (4 files) | OK | audit_status:PASS_WITH_DEVIATIONS, 004-007, 85-87 LOC each |
+| `.opencode/skills/deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/*.md` | Analyzed (8 files) | OK | audit_status:PASS_WITH_DEVIATIONS, 008-015, 86-88 LOC each |
+| `.opencode/skills/deep-review/manual_testing_playbook/04--convergence-and-recovery/*.md` | Analyzed (9 files) | OK | audit_status:PASS_WITH_DEVIATIONS, 015-023, 87-98 LOC each (note: legacy duplicate "015" filename overlap between dirs 03 and 04, flag for phase 2) |
+| `.opencode/skills/deep-review/manual_testing_playbook/05--pause-resume-and-fault-tolerance/*.md` | Analyzed (4 files) | OK | audit_status:PASS_WITH_DEVIATIONS, 021-024, 88-89 LOC each (note: legacy duplicate "021-024" overlap with dir 04, flag for phase 2) |
+| `.opencode/skills/deep-review/manual_testing_playbook/06--synthesis-save-and-guardrails/*.md` | Analyzed (5 files) | OK | audit_status:PASS_WITH_DEVIATIONS, 025-029, 88-102 LOC each |
+| `.opencode/skills/deep-review/manual_testing_playbook/07--command-flow-stress-tests/*.md` | Analyzed (6 files) | OK | audit_status:PASS_WITH_DEVIATIONS, 052-057, 97-117 LOC each |
+| `.opencode/skills/deep-review/manual_testing_playbook/07--command-flow-stress-tests/setup-cp-sandbox.sh` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 98 LOC, shell script, bug-scan only |
+| `.opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/*.md` | Analyzed (6 files) | OK | audit_status:PASS_WITH_DEVIATIONS, 058-063, 66-71 LOC each |
 
 ### 5.6 Changelog (12 files, +1 added in phase 3)
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skills/deep-review/changelog/v1.0.0.0.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 70 LOC; format-only check |
-| `.opencode/skills/deep-review/changelog/v1.1.0.0.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 63 LOC |
-| `.opencode/skills/deep-review/changelog/v1.2.0.0.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 105 LOC |
-| `.opencode/skills/deep-review/changelog/v1.3.0.0.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 92 LOC |
-| `.opencode/skills/deep-review/changelog/v1.3.1.0.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 129 LOC |
-| `.opencode/skills/deep-review/changelog/v1.3.2.0.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 87 LOC |
-| `.opencode/skills/deep-review/changelog/v1.3.3.0.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 58 LOC |
-| `.opencode/skills/deep-review/changelog/v1.4.0.0.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 35 LOC |
-| `.opencode/skills/deep-review/changelog/v1.5.0.0.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 111 LOC |
-| `.opencode/skills/deep-review/changelog/v1.6.0.0.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 127 LOC |
-| `.opencode/skills/deep-review/changelog/v1.7.0.0.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 95 LOC |
-| `.opencode/skills/deep-review/changelog/v1.8.0.0.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 68 LOC; current head |
-| `.opencode/skills/deep-review/changelog/v1.9.0.0.md` | Created (phase 3) | PLANNED | audit_status:PASS_WITH_DEVIATIONS; authored at end of phase 3 per changelog-entry.schema.json |
+| `.opencode/skills/deep-review/changelog/v1.0.0.0.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 70 LOC, format-only check |
+| `.opencode/skills/deep-review/changelog/v1.1.0.0.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 63 LOC |
+| `.opencode/skills/deep-review/changelog/v1.2.0.0.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 105 LOC |
+| `.opencode/skills/deep-review/changelog/v1.3.0.0.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 92 LOC |
+| `.opencode/skills/deep-review/changelog/v1.3.1.0.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 129 LOC |
+| `.opencode/skills/deep-review/changelog/v1.3.2.0.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 87 LOC |
+| `.opencode/skills/deep-review/changelog/v1.3.3.0.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 58 LOC |
+| `.opencode/skills/deep-review/changelog/v1.4.0.0.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 35 LOC |
+| `.opencode/skills/deep-review/changelog/v1.5.0.0.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 111 LOC |
+| `.opencode/skills/deep-review/changelog/v1.6.0.0.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 127 LOC |
+| `.opencode/skills/deep-review/changelog/v1.7.0.0.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 95 LOC |
+| `.opencode/skills/deep-review/changelog/v1.8.0.0.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 68 LOC, current head |
+| `.opencode/skills/deep-review/changelog/v1.9.0.0.md` | Created (phase 3) | PLANNED | audit_status:PASS_WITH_DEVIATIONS, authored at end of phase 3 per changelog-entry.schema.json |
 
 ### 5.7 Operator engagement spec
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skills/deep-review/ds.yaml` | Cited | OK | 118 LOC; this engagement's source spec; NOT modified |
+| `.opencode/skills/deep-review/ds.yaml` | Cited | OK | 118 LOC, this engagement's source spec, NOT modified |
 <!-- /ANCHOR:skills -->
 
 ---
@@ -228,9 +228,9 @@ Pairs with `implementation-summary.md` — the summary narrates *what and why*; 
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skills/deep-review/scripts/reduce-state.cjs` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 1657 LOC; primary reducer; bug-scan only — no behavioral edits (ADR-002) |
-| `.opencode/skills/deep-review/scripts/runtime-capabilities.cjs` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 114 LOC; runtime capability detection |
-| `.opencode/skills/deep-review/manual_testing_playbook/07--command-flow-stress-tests/setup-cp-sandbox.sh` | (Listed under §5.5 Skills per category precedence — manual_testing_playbook content belongs to the Skill bucket) | OK | Cross-ref only |
+| `.opencode/skills/deep-review/scripts/reduce-state.cjs` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 1657 LOC, primary reducer, bug-scan only, no behavioral edits (ADR-002) |
+| `.opencode/skills/deep-review/scripts/runtime-capabilities.cjs` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 114 LOC, runtime capability detection |
+| `.opencode/skills/deep-review/manual_testing_playbook/07--command-flow-stress-tests/setup-cp-sandbox.sh` | (Listed under §5.5 Skills per category precedence, manual_testing_playbook content belongs to the Skill bucket) | OK | Cross-ref only |
 <!-- /ANCHOR:scripts -->
 
 ---
@@ -242,12 +242,12 @@ Pairs with `implementation-summary.md` — the summary narrates *what and why*; 
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skills/deep-review/scripts/tests/fixtures/blocked-stop-session/README.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 27 LOC; fixture index |
-| `.opencode/skills/deep-review/scripts/tests/fixtures/blocked-stop-session/review/deep-review-config.json` | Cited | OK | 42 LOC; fixture state |
-| `.opencode/skills/deep-review/scripts/tests/fixtures/blocked-stop-session/review/deep-review-dashboard.md` | Cited | OK | 100 LOC; fixture state |
-| `.opencode/skills/deep-review/scripts/tests/fixtures/blocked-stop-session/review/deep-review-findings-registry.json` | Cited | OK | 269 LOC; fixture state |
-| `.opencode/skills/deep-review/scripts/tests/fixtures/blocked-stop-session/review/deep-review-strategy.md` | Cited | OK | 189 LOC; fixture state |
-| `.opencode/skills/deep-review/scripts/tests/fixtures/blocked-stop-session/review/iterations/*.md` | Cited (3 files) | OK | 20-23 LOC each; iteration-001/002/003 fixtures |
+| `.opencode/skills/deep-review/scripts/tests/fixtures/blocked-stop-session/README.md` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 27 LOC, fixture index |
+| `.opencode/skills/deep-review/scripts/tests/fixtures/blocked-stop-session/review/deep-review-config.json` | Cited | OK | 42 LOC, fixture state |
+| `.opencode/skills/deep-review/scripts/tests/fixtures/blocked-stop-session/review/deep-review-dashboard.md` | Cited | OK | 100 LOC, fixture state |
+| `.opencode/skills/deep-review/scripts/tests/fixtures/blocked-stop-session/review/deep-review-findings-registry.json` | Cited | OK | 269 LOC, fixture state |
+| `.opencode/skills/deep-review/scripts/tests/fixtures/blocked-stop-session/review/deep-review-strategy.md` | Cited | OK | 189 LOC, fixture state |
+| `.opencode/skills/deep-review/scripts/tests/fixtures/blocked-stop-session/review/iterations/*.md` | Cited (3 files) | OK | 20-23 LOC each, iteration-001/002/003 fixtures |
 <!-- /ANCHOR:tests -->
 
 ---
@@ -259,7 +259,7 @@ Pairs with `implementation-summary.md` — the summary narrates *what and why*; 
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skills/deep-review/graph-metadata.json` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS; 181 LOC; skill advisor input; not edited unless cascade forces it (then skill-graph compile required) |
+| `.opencode/skills/deep-review/graph-metadata.json` | Analyzed | OK | audit_status:PASS_WITH_DEVIATIONS, 181 LOC, skill advisor input, not edited unless cascade forces it (then skill-graph compile required) |
 | `.opencode/skills/deep-review/assets/*.json` | (Listed under §5.3 Skills per category precedence) | OK | Cross-ref only |
 <!-- /ANCHOR:config -->
 
@@ -270,18 +270,75 @@ Pairs with `implementation-summary.md` — the summary narrates *what and why*; 
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `CLAUDE.md` | Cited | OK | Governance — §1 CLI dispatch rule + small-model dispatch rule (load-bearing for phase 5) |
+| `CLAUDE.md` | Cited | OK | Governance, §1 CLI dispatch rule + small-model dispatch rule (load-bearing for phase 5) |
 <!-- /ANCHOR:meta -->
 
 ---
 
 ## Phase-5 Augmentation
 
-> **Reserved section**. Populated after step 5b merge. Each row = one novel logic gap surfaced by deep-research iterations that is NOT already in `spec.md` or `audit-findings.jsonl`. If 10 iterations converge with no novel gaps, this section explicitly records the empty result with a single row noting the convergence reason and iteration count.
+> Populated 2026-05-23 after step 5b merge. 33 cumulative logic gaps surfaced across 10 iterations of cli-devin SWE-1.6. **9 closed inline this packet** (4 P2 path-refs + 1 P2 SKILL.md clarification + 2 P0 doc rewrites + 1 P0 inline fix + 1 P1 cross-ref note). **24 deferred to follow-on with rationale below**. Full per-iter detail in `research/iterations/iter-{01..10}-cli-devin.json` + `research/convergence-summary.md`.
 
-| Gap ID | Source Iter | Severity | Description | Recommended Action |
-|--------|-------------|----------|-------------|--------------------|
-| [phase 5 fills] | iter-NN-cli-devin | P0/P1/P2 | [novel gap not in spec or audit-findings] | [follow-on task or deferral rationale] |
+### Phase-5 fix log (inline-closed in this packet)
+
+| LG-#### | Source iter | Severity | Surface | Action taken inline |
+|---|---|---|---|---|
+| LG-0017 | iter-03 | P2 | playbook DRV-017 line 47 | Path-ref fix: deep-research → deep-review |
+| LG-0018 | iter-03 | P2 | playbook DRV-018 line 47 | Same |
+| LG-0019 | iter-03 | P2 | playbook DRV-019 line 47 | Same |
+| LG-0020 | iter-03 | P2 | playbook DRV-020 line 47 | Same |
+| LG-0022 | iter-04 | P0 | convergence.md §Security-Sensitive Fix Overrides | Added `STATUS: SPEC ONLY (future implementation)` marker. Operators must enforce manually today. |
+| LG-0024 | iter-05 | P2 | SKILL.md §4 ALWAYS rule 7 | Added "Owner: workflow, not reducer" note clarifying generate-context.js routing |
+| LG-0025 | iter-06 | P0 | 5 dir-08 playbook files (058/059/061/062/063) | Test-path migration: system-spec-kit/mcp_server/tests/deep-loop/ → deep-loop-runtime/tests/integration/ |
+| LG-0031 | iter-09 | P0 | convergence.md §6 LEGAL-STOP GATE BUNDLE | Added within-doc note flagging 7-vs-6 gate naming drift + 3rd column mapping conceptual ↔ event-shape names |
+| LG-0032 | iter-09 | P1 | loop_protocol.md §Step-2 Check Convergence | Reconciled gate count (5 → 7) + cross-reference to convergence.md §Section-1 authoritative shape |
+| (sweep) | iter-10 synthesis | P2 | DRV-010, DRV-014, DRV-016, DRV-030 (4 more files outside iter 3 sample) | Same path-ref scrub as LG-0017..LG-0020 |
+
+### Phase-5 deferred (24 gaps requiring follow-on packets)
+
+| LG-#### | Source iter | Severity | Surface | Deferred reason |
+|---|---|---|---|---|
+| LG-0001 | iter-01 | P1 | reduce-state.cjs vs state_format.md §3 (userPaused / stuckRecovery event handling) | ADR-002 reducer is bug-scan only, needs code change |
+| LG-0002 | iter-01 | P2 | reduce-state.cjs vs state_format.md §3 (gate-name validation) | ADR-002 |
+| LG-0003 | iter-01 | P1 | reduce-state.cjs reads only compositeStop, ignores rollingAvg + madScore | ADR-002 |
+| LG-0004 | iter-01 | P1 | reduce-state.cjs zero impl for graphEvents | ADR-002, meta-pattern 2 cluster |
+| LG-0005 | iter-01 | P1 | reduce-state.cjs drops scopeProof + affectedSurfaceHints fields | ADR-002 |
+| LG-0006 | iter-01 | P1 | reduce-state.cjs zero impl for traceabilityChecks | ADR-002, meta-pattern 2 cluster |
+| LG-0007 | iter-01 | P2 | searchCoverage/searchLedger/reviewDepthSchemaVersion undocumented in state_format.md | ADR-002 + needs doc-side spec authoring (scope expansion) |
+| LG-0008 | iter-01 | P1 | reduce-state.cjs zero impl for content_hash two-tier deduplication | ADR-002 |
+| LG-0009 | iter-02 | P1 | feature_catalog missing Resource Map Coverage Gate entry | Scope expansion (adding new catalog entries beyond surgical-edit) |
+| LG-0010 | iter-02 | P1 | feature_catalog missing semanticNovelty + findingStability entries | Same |
+| LG-0011 | iter-02 | P1 | feature_catalog missing Security-Sensitive Fix Overrides entry | Same |
+| LG-0012 | iter-02 | P2 | feature_catalog missing Executor Selection Contract entry | Same |
+| LG-0013 | iter-02 | P1 | feature_catalog/04--severity-system/05-quality-gates.md under-described (4 gate names not enumerated) | Scope expansion, meta-pattern 1 partial closure (cross-ref inline added, full enumeration deferred) |
+| LG-0014 | iter-02 | P1 | feature_catalog missing graph_convergence dedicated entry | Scope expansion |
+| LG-0015 | iter-02 | P2 | feature_catalog missing pause sentinel dedicated entry | Scope expansion |
+| LG-0016 | iter-03 | P1 | playbook DRV-018 claims 3 quality gates vs runtime 7 | Meta-pattern 1: needs DRV-018 rewrite to 7-gate naming, rewriting playbook scenario is mid-scope, defer to follow-on that reconciles all gate-model surfaces together |
+| LG-0021 | iter-04 | P2 | 4 thresholds doc in convergence.md live in yaml not config.json | Doc-clarity note only, deferred as design-correct split |
+| LG-0023 | iter-05 | P1 | emitResourceMap CLI-flag-gated, not integrated into main reduceReviewState flow | ADR-002 (reducer behavior change) |
+| LG-0026 | iter-06 | P1 | review-depth-reducer.vitest.ts in system-spec-kit/ while siblings in deep-loop-runtime/ | Architectural decision outside this packet (test location, not docs) |
+| LG-0027 | iter-06 | P2 | v1.3.1.0 changelog typo (deep-review-expected behavior-parity.vitest.ts vs deep-review-contract-parity.vitest.ts) | Historical changelog preserved per AF-0019 |
+| LG-0028 | iter-07 | P2 | No CP scenario for legacy state migration (scratch/ → review/) | Scope expansion (adding new CP-NNN test scenario) |
+| LG-0029 | iter-07 | P2 | No CP scenario for session classification (resume / restart / completed-session) | Scope expansion |
+| LG-0030 | iter-07 | P2 | No CP scenario for stuck detection and recovery flow | Scope expansion |
+| LG-0033 | iter-10 | P1 | JSONL schema enforcement gap (reducer parseJsonlDetailed validates syntax only, not required fields) | ADR-002 (reducer behavior change) |
+
+### Convergence signal
+
+| Iter | Novel | Dupes | Trend |
+|---:|---:|---:|---|
+| 1 | 8 | 0 | initial burst |
+| 2 | 7 | 0 | sustained |
+| 3 | 5 | 0 | mild dropoff |
+| 4 | 2 | 0 | dropoff (with first P0) |
+| 5 | 2 | 14 | saturation visible (70% dup rate) |
+| 6 | 3 | 0 | new dimension (cross-skill) reset signal |
+| 7 | 3 | 4 | new dimension reset, then saturation again |
+| 8 | **0** | 0 | **first plateau** |
+| 9 | 2 | 0 | within-doc dimension reset |
+| 10 | 1 | 0 | capstone (meta-patterns) |
+
+Saturation confirmed at iter 8 (zero novel) and re-confirmed by the 1-novel-gap output of iter 10 capstone. ADR-001's no-early-stop discipline held: 10 iters ran regardless. Per-iter wall-clock 88-170 s (mean 128 s). Total phase-5 dispatch wall-clock 22.4 min.
 
 ---
 
@@ -292,29 +349,29 @@ Pairs with `implementation-summary.md` — the summary narrates *what and why*; 
 - Paths are **relative to the repo root** (e.g., `.opencode/skills/deep-review/SKILL.md`), not absolute.
 - One path per row. Glob suffixes (`/**`, `/*`) used in §5.5 where every file under the glob received the same Action (Analyzed).
 
-**Action column:** what this packet did to the file. `Analyzed` = read for audit context (phase 2 default); `Updated` = surgical edit applied; `Created` = new file; `Cited` = external doc referenced as anchor; `Validated` = phase-4 validation pass.
+**Action column:** what this packet did to the file. `Analyzed` = read for audit context (phase 2 default). `Updated` = surgical edit applied. `Created` = new file. `Cited` = external doc referenced as anchor. `Validated` = phase-4 validation pass.
 
 **Status column:** state at the moment this map was written/updated. `OK` = exists on disk now. `PLANNED` = will be created in a downstream phase. `MISSING` = referenced but absent (no such case at phase-1 baseline).
 
 **Category precedence applied here:**
-1. `Specs > Config` — spec-folder JSON belongs to §Specs.
-2. `Meta > READMEs` — root-level CLAUDE.md sits under §Meta.
-3. `Skills > Documents` — every markdown inside `.opencode/skills/deep-review/**` lives in §5.
-4. `Tests > Scripts` — §8 Tests covers fixtures under `scripts/tests/`.
+1. `Specs > Config`, spec-folder JSON belongs to §Specs.
+2. `Meta > READMEs`, root-level CLAUDE.md sits under §Meta.
+3. `Skills > Documents`, every markdown inside `.opencode/skills/deep-review/**` lives in §5.
+4. `Tests > Scripts`, §8 Tests covers fixtures under `scripts/tests/`.
 
 **Category deletion:**
 - §3 Commands, §4 Agents all empty for this packet and intentionally omitted.
 - Original numbering preserved (§5 Skills, §6 Specs, §7 Scripts, §8 Tests, §9 Config, §10 Meta) per template author rule (no renumbering after deletion).
 
 **Phase progression:**
-- Phase 1 (baseline): every PENDING row populated; PLANNED rows reserved for downstream creation.
+- Phase 1 (baseline): every PENDING row populated. PLANNED rows reserved for downstream creation.
 - Phase 2: Note column `audit_status:PASS_WITH_DEVIATIONS` updated to `PASS` / `PASS_WITH_DEVIATIONS` / `FAIL` per artifact.
-- Phase 3: README.md row's `audit_status` updated post-rewrite; v1.9.0.0.md row flipped PLANNED -> OK.
+- Phase 3: README.md row's `audit_status` updated post-rewrite. V1.9.0.0.md row flipped PLANNED -> OK.
 - Phase 4: per-row validation match% appended to Note column from `validation-report.jsonl`.
 - Phase 5: Phase-5 Augmentation section populated from `research/iterations/*.json` merge.
 
 **Size budget:**
-- This file is intentionally larger than the 250-LOC suggested cap because the audit scope (~95 deep-review artifacts) needs row-level visibility for phase 2 dispatch. Glob-grouping is applied where it does not erode that visibility (§5.5 manual testing playbook sub-categories collapsed by directory; §5.6 changelog enumerated since each file gets format-checked separately).
+- This file is intentionally larger than the 250-LOC suggested cap because the audit scope (~95 deep-review artifacts) needs row-level visibility for phase 2 dispatch. Glob-grouping is applied where it does not erode that visibility (§5.5 manual testing playbook sub-categories collapsed by directory. §5.6 changelog enumerated since each file gets format-checked separately).
 
 **Reference reading:**
 - `.opencode/skills/system-spec-kit/templates/README.md` (template architecture)

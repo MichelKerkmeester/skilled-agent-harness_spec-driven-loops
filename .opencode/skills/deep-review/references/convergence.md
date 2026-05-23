@@ -65,7 +65,9 @@ Carrying threshold expectations across siblings will cause unexpected iteration 
 
 ### Security-Sensitive Fix Overrides
 
-For review reruns after fixes involving security, path disclosure, auth/authz, sandboxing, env precedence, public schemas, persistence, or user-visible error payloads:
+> **STATUS: SPEC ONLY (future implementation).** The override matrix below describes the contract that a future release should apply automatically when the review target involves security-sensitive surfaces. As of v1.9.0.0, the runtime does NOT auto-detect security-sensitivity and does NOT apply these overrides. `requiredClosedFindingReplay` and `requiredFixCompletenessGate` exist in no config / yaml / reducer surface (verified by grep). Operators running a security-sensitive review must manually tighten thresholds via `--convergence` + `--max-iterations` and manually maintain the closed-gate replay table. The contract below stands as the target spec for the next implementation pass. (See LG-0022 in `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/003-deep-review/research/iterations/iter-04-cli-devin.json`.)
+
+For review reruns after fixes involving security, path disclosure, auth/authz, sandboxing, env precedence, public schemas, persistence, or user-visible error payloads (intended contract, not yet runtime-enforced):
 
 | Setting | General Default | Security-Sensitive Fix Default |
 |---------|-----------------|--------------------------------|
@@ -73,7 +75,7 @@ For review reruns after fixes involving security, path disclosure, auth/authz, s
 | `requiredClosedFindingReplay` | false | true for prior P0/P1 and any prior security/path P2 |
 | `requiredFixCompletenessGate` | false | true |
 
-STOP is not legal until the review report contains a closed-gate replay table that marks each prior active or remediated P0/P1 as `PASS`, `FAIL`, or `carried forward`, with file:line or command evidence.
+When implemented, STOP must not be legal until the review report contains a closed-gate replay table that marks each prior active or remediated P0/P1 as `PASS`, `FAIL`, or `carried forward`, with file:line or command evidence. Operators today must enforce this rule manually.
 
 ### Shared Stop Contract
 
@@ -399,16 +401,19 @@ A new critical finding always signals significant remaining work. The 0.50 floor
 
 ## 6. LEGAL-STOP GATE BUNDLE
 
-Deep review treats STOP as legal only when the full review-specific gate bundle passes together. Convergence math may request STOP, but the workflow must still evaluate these 5 gates and persist a blocked-stop event when any gate fails.
+> **KNOWN DRIFT, gate model has two naming conventions.** The `blocked_stop` event shape in §Section-1 (lines 98-117) uses 7 gates with the `Gate` suffix (`convergenceGate` / `dimensionCoverageGate` / `p0ResolutionGate` / `evidenceDensityGate` / `hotspotSaturationGate` / `claimAdjudicationGate` / `fixCompletenessReplayGate`). The §6 table below uses 6 gates WITHOUT the `Gate` suffix (`findingStability` / `dimensionCoverage` / `p0Resolution` / `evidenceDensity` / `hotspotSaturation` / `fixCompletenessReplay`) and OMITS `claimAdjudicationGate`. The reducer reads the event-shape names verbatim. This §6 table is the high-level conceptual model. Reconciliation is tracked at LG-0031 in `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/003-deep-review/research/iterations/iter-09-cli-devin.json`. Treat the §Section-1 event shape as authoritative when writing or reading JSONL state. Note the mapping: `findingStability` (§6) corresponds to `convergenceGate` (§Section-1).
 
-| Gate | Rule | Fail Action |
-|------|------|-------------|
-| **findingStability** | Rolling average, MAD noise floor, and novelty ratio must all indicate low-yield review churn | Block STOP, persist `blockedStop` |
-| **dimensionCoverage** | Every configured review dimension must have been examined at least once, with required traceability coverage stabilized | Block STOP, persist `blockedStop` |
-| **p0Resolution** | No unresolved P0 findings may remain active at stop time | Block STOP, persist `blockedStop` |
-| **evidenceDensity** | Evidence density across active findings must meet the configured threshold | Block STOP, persist `blockedStop` |
-| **hotspotSaturation** | Review hotspots must be revisited enough times to satisfy the saturation heuristic | Block STOP, persist `blockedStop` |
-| **fixCompletenessReplay** | Security-sensitive fix reruns must replay previously closed P0/P1 gates and validate producer/consumer/matrix coverage from the remediation packet | Block STOP, persist `blockedStop` |
+Deep review treats STOP as legal only when the full review-specific gate bundle passes together. Convergence math may request STOP, but the workflow must still evaluate these 6 conceptual gates (or 7 named gates in event-shape form) and persist a blocked-stop event when any gate fails.
+
+| Gate (§6 conceptual) | Event-shape name (§Section-1) | Rule | Fail Action |
+|------|------|------|-------------|
+| **findingStability** | `convergenceGate` | Rolling average, MAD noise floor, and novelty ratio must all indicate low-yield review churn | Block STOP, persist `blockedStop` |
+| **dimensionCoverage** | `dimensionCoverageGate` | Every configured review dimension must have been examined at least once, with required traceability coverage stabilized | Block STOP, persist `blockedStop` |
+| **p0Resolution** | `p0ResolutionGate` | No unresolved P0 findings may remain active at stop time | Block STOP, persist `blockedStop` |
+| **evidenceDensity** | `evidenceDensityGate` | Evidence density across active findings must meet the configured threshold | Block STOP, persist `blockedStop` |
+| **hotspotSaturation** | `hotspotSaturationGate` | Review hotspots must be revisited enough times to satisfy the saturation heuristic | Block STOP, persist `blockedStop` |
+| (no §6 counterpart) | `claimAdjudicationGate` | Each new P0/P1 finding must carry a typed adjudication packet, missing or failing packets veto STOP | Block STOP, persist `blockedStop` |
+| **fixCompletenessReplay** | `fixCompletenessReplayGate` | Security-sensitive fix reruns must replay previously closed P0/P1 gates and validate producer/consumer/matrix coverage from the remediation packet | Block STOP, persist `blockedStop` |
 
 ### Gate Evaluation
 

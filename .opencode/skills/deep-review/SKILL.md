@@ -279,7 +279,7 @@ When `{spec_folder}/resource-map.md` exists at init, deep review treats it as a 
 When `{spec_folder}/resource-map.md` is absent at init:
 
 - Persist `resource_map_present: false`.
-- Log `resource-map.md not present; skipping coverage gate` in `Known Context`.
+- Log `resource-map.md not present. Skipping coverage gate` in `Known Context`.
 - Skip the coverage-gate pass and omit the report section without failing the loop.
 
 ### Architecture
@@ -405,7 +405,7 @@ On this skill surface, the live code-graph readiness contract only reaches four 
 4. Cite every finding with `[SOURCE: file:line]`. Reject inference-only findings.
 5. Re-read cited code before recording any P0.
 6. Keep target files read-only.
-7. Use `generate-context.js` for continuity saves.
+7. Use `generate-context.js` for continuity saves. **Owner**: the YAML workflow (`deep_start-review-loop_{auto,confirm}.yaml`) calls `generate-context.js` at the save phase. The reducer (`scripts/reduce-state.cjs`) does NOT call it directly. Operators should not invoke the reducer expecting continuity-save side effects.
 8. Emit setup `BINDING:` lines before workflow output.
 9. Refuse nested dispatch with: `REFUSE: nested Task tool dispatch is forbidden for LEAF agents. Returning partial findings instead.`
 

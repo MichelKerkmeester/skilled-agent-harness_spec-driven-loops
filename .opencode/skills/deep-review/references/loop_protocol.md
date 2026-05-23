@@ -123,7 +123,7 @@ Set up all state files for a new review session. Discover the scope, order dimen
    - Cross-Reference Status table grouped by core vs overlay
    - Known Context from `memory_context()` results (if any)
    - Resource-map snapshot when `{spec_folder}/resource-map.md` exists at init
-   - `resource-map.md not present; skipping coverage gate` when it does not
+   - `resource-map.md not present. Skipping coverage gate` when it does not
    - Review Boundaries from config
 9a. **Initialize resource-map coverage state**:
    - If `{spec_folder}/resource-map.md` exists at init: set `resource_map_present = true`, add `Resource Map Coverage` to the Review Charter, and persist a concise map summary in `Known Context`
@@ -179,7 +179,7 @@ Run `shouldContinue_review()` (see `../deep-research/references/convergence.md` 
   - Evidence, scope, and coverage gates pass
 - Otherwise: `CONTINUE`
 
-If convergence math or a hard-stop candidate points to STOP, the workflow must run the review legal-stop decision tree before actually stopping. That decision tree records five review-specific gates: `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, and `hotspotSaturationGate`. If any gate fails, the loop does **not** stop. Instead it emits a first-class `blocked_stop` JSONL event with:
+If convergence math or a hard-stop candidate points to STOP, the workflow must run the review legal-stop decision tree before actually stopping. That decision tree records seven review-specific gates: `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, and `fixCompletenessReplayGate` (see `convergence.md` §Section-1 blocked_stop event example for the authoritative shape). The Step 4a claim-adjudication path treats `claimAdjudicationGate` as a hard STOP gate, so the count covers both the convergence decision tree and the adjudication enforcement path. If any gate fails, the loop does **not** stop. Instead it emits a first-class `blocked_stop` JSONL event with:
 
 - `blockedBy`: array of the failed review gate names
 - `gateResults`: per-gate pass/fail payloads using the review gate names above
@@ -325,7 +325,7 @@ When `config.resource_map_present == true`, at least one loop iteration MUST aud
    - implementation paths absent from the map
 5. Emit any resulting findings with category `resource-map-coverage`
 
-When `config.resource_map_present == false`, skip this audit and rely on the `Known Context` note: `resource-map.md not present; skipping coverage gate`.
+When `config.resource_map_present == false`, skip this audit and rely on the `Known Context` note: `resource-map.md not present. Skipping coverage gate`.
 
 #### Step 4: Evaluate Results
 
