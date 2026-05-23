@@ -48,7 +48,8 @@
     "persist council artifacts",
     "ai-council artifacts",
     "council graph",
-    "derived council graph"
+    "derived council graph",
+    "/deep:ask-ai-council"
   ],
   "derived": {
     "trigger_phrases": [

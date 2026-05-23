@@ -3,7 +3,7 @@
   "packet_id": "131-deep-skill-evolution",
   "skill_id": "deep-loop-runtime",
   "family": "deep-loop",
-  "category": "shared-runtime",
+  "category": "system",
   "importance_tier": "important",
   "edges": {
     "depends_on": [
@@ -96,11 +96,11 @@
     "key_files": [
       ".opencode/skills/deep-loop-runtime/SKILL.md",
       ".opencode/skills/deep-loop-runtime/README.md",
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/",
-      ".opencode/skills/deep-loop-runtime/lib/coverage-graph/",
-      ".opencode/skills/deep-loop-runtime/scripts/",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+      ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts",
+      ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
       ".opencode/skills/deep-loop-runtime/storage/deep-loop-graph.sqlite",
-      ".opencode/skills/deep-loop-runtime/tests/"
+      ".opencode/skills/deep-loop-runtime/tests/unit/executor-config.vitest.ts"
     ],
     "entities": [
       {
@@ -111,19 +111,19 @@
       },
       {
         "name": "coverage-graph",
-        "kind": "runtime",
-        "path": ".opencode/skills/deep-loop-runtime/lib/coverage-graph/",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts",
         "source": "derived"
       },
       {
         "name": "deep-review",
-        "kind": "consumer-skill",
+        "kind": "skill",
         "path": ".opencode/skills/deep-review/SKILL.md",
         "source": "derived"
       },
       {
         "name": "deep-research",
-        "kind": "consumer-skill",
+        "kind": "skill",
         "path": ".opencode/skills/deep-research/SKILL.md",
         "source": "derived"
       },

@@ -40,6 +40,11 @@
         "target": "deep-ai-council",
         "weight": 0.7,
         "context": "provides spec-folder packet context and memory-save workflows for council artifact handoff"
+      },
+      {
+        "target": "deep-loop-runtime",
+        "weight": 0.7,
+        "context": "provides zod, sqlite, TSX loader, command YAML consumers for consumer deep-loop skills"
       }
     ]
   },

@@ -16,6 +16,11 @@
         "target": "deep-ai-council",
         "weight": 0.4,
         "context": "planning council can request evidence-first research vantage"
+      },
+      {
+        "target": "deep-loop-runtime",
+        "weight": 0.6,
+        "context": "shared runtime provider for deep-loop skills"
       }
     ],
     "conflicts_with": [],
@@ -40,7 +45,8 @@
   "intent_signals": [
     "deep research",
     "research loop",
-    "investigate"
+    "investigate",
+    "/deep:start-research-loop"
   ],
   "derived": {
     "trigger_phrases": [

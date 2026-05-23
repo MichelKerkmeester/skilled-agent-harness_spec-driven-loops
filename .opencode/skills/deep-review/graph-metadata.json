@@ -17,6 +17,11 @@
         "target": "deep-research",
         "weight": 0.5,
         "context": "autonomous loop peer with shared externalized-state workflow"
+      },
+      {
+        "target": "deep-loop-runtime",
+        "weight": 0.6,
+        "context": "shared runtime provider for deep-loop skills"
       }
     ],
     "conflicts_with": [],
@@ -53,7 +58,8 @@
     "iterative spec review",
     "review iteration",
     "convergence detection",
-    "review packet"
+    "review packet",
+    "/deep:start-review-loop"
   ],
   "derived": {
     "trigger_phrases": [

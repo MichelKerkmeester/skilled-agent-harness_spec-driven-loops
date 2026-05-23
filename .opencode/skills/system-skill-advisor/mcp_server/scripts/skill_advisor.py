@@ -2735,7 +2735,7 @@ def _apply_deep_skill_routing_layer(
     mapped_scores = {
         "deep-review": score_map["deep-review"],
         "deep-research": score_map["deep-research"],
-        "sk-ai-council": score_map["deep-ai-council"],
+        "deep-ai-council": score_map["deep-ai-council"],
     }
 
     for recommendation in recommendations:
