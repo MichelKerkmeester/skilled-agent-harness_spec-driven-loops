@@ -7,6 +7,8 @@ description: "Manual validation scenario for Coverage graph DB in the deep-loop-
 
 This document captures the realistic user-testing contract, execution flow, and metadata for `DLR-011`.
 
+---
+
 ## 1. OVERVIEW
 
 Owns the SQLite schema, namespace scoping, node and edge mutations, snapshots, and connection lifecycle.

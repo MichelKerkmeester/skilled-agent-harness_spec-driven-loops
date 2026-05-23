@@ -7,6 +7,8 @@ description: "Manual validation scenario for upsert.cjs in the deep-loop-runtime
 
 This document captures the realistic user-testing contract, execution flow, and metadata for `DLR-015`.
 
+---
+
 ## 1. OVERVIEW
 
 Stores coverage graph nodes and edges from JSON arrays or iteration graph event files.

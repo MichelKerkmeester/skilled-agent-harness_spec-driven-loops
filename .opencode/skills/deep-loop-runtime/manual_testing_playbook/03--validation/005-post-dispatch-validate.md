@@ -7,6 +7,8 @@ description: "Manual validation scenario for Post-dispatch validate in the deep-
 
 This document captures the realistic user-testing contract, execution flow, and metadata for `DLR-005`.
 
+---
+
 ## 1. OVERVIEW
 
 Validates iteration artifacts after dispatch: checks iteration file existence, state-log growth, required JSONL fields, optional code-verification pass (compile/execute/test/lint), and appends degraded verification events when optional checks fail.

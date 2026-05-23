@@ -50,6 +50,8 @@
       "research/convergence-summary.md",
       "research/resource-map.md",
       "findings/audit-findings.jsonl",
+      "database/README.md",
+      "tests/README.md",
       ".opencode/skills/cli-devin/SKILL.md",
       ".opencode/skills/system-spec-kit/README.md",
       "changelog/v1.1.0.0.md",
@@ -62,9 +64,7 @@
       "feature_catalog/feature_catalog.md",
       "plan.md",
       "scripts/spec/validate.sh",
-      "validation/validation-report.jsonl",
-      "tasks.md",
-      "checklist.md"
+      "validation/validation-report.jsonl"
     ],
     "entities": [
       {
@@ -92,15 +92,15 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skills/cli-devin/SKILL.md",
+        "path": "database/README.md",
         "source": "derived"
       },
       {
-        "name": "README.md",
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/README.md",
+        "path": ".opencode/skills/cli-devin/SKILL.md",
         "source": "derived"
       },
       {
@@ -152,18 +152,6 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,12 +198,24 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview Sequential",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Sequential",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `deep-loop-runtime` skill (v1.0.0) is the shared peer-runtime layer extracted by arc 118 (FULL_ISOLATE_NO_MCP) from `deep-review` + `deep-research`. It owns 15,645 LOC across 79 files: executor config + audit, prompt-pack rendering, post-dispatch validation, atomic state, JSONL repair, loop locking, permissions gate, Bayesian scoring, fallback routing, coverage-graph (schema + query + signals), council session-state hierarchy, four script entry points, SQLite storage, and 22 vitest files. The documentation surface has never been audited end-to-end against the current sk-doc templates, and the README (174 LOC, TOC + quick-start dominant) is undersized relative to what the skill actually owns. Before the broader `131-deep-skill-evolution` arc begins, this sub-phase brings the documentation surface to 100% sk-doc conformance, rewrites the README in current marketing-leaning HVR voice, and seeds a deep-research loop on top of a validated baseline.",
     "created_at": "2026-05-23T14:30:00.000Z",
-    "last_save_at": "2026-05-23T18:38:12.935Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-05-23T20:14:39.708Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -226,6 +226,8 @@
       "implementation-summary.md",
       "research/research.md",
       "resource-map.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": "2026-05-23T20:14:39.708Z"
   }
 }

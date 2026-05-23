@@ -7,6 +7,8 @@ description: "Manual validation scenario for Permissions gate in the deep-loop-r
 
 This document captures the realistic user-testing contract, execution flow, and metadata for `DLR-009`.
 
+---
+
 ## 1. OVERVIEW
 
 Evaluates pre-dispatch tool calls against packet-local, repo-wide, and external permission rules.

@@ -7,6 +7,8 @@ description: "Manual validation scenario for Multi-seat dispatch in the deep-loo
 
 This document captures the realistic user-testing contract, execution flow, and metadata for `DLR-018`.
 
+---
+
 ## 1. OVERVIEW
 
 Runs seat executors in parallel for one council round; preserves seat result order; returns fulfilled or rejected per-seat outcomes plus round summary counts.

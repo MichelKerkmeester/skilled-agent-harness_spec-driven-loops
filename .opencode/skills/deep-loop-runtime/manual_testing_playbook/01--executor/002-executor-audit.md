@@ -7,6 +7,8 @@ description: "Manual validation scenario for Executor audit in the deep-loop-run
 
 This document captures the realistic user-testing contract, execution flow, and metadata for `DLR-002`.
 
+---
+
 ## 1. OVERVIEW
 
 Records executor provenance and guards recursive external-CLI dispatch inside iteration state logs.

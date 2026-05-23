@@ -7,6 +7,8 @@ description: "Manual validation scenario for JSONL repair in the deep-loop-runti
 
 This document captures the realistic user-testing contract, execution flow, and metadata for `DLR-007`.
 
+---
+
 ## 1. OVERVIEW
 
 Repairs corrupted JSONL tails and appends valid records without preserving partial trailing lines.

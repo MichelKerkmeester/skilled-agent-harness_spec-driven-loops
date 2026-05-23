@@ -7,6 +7,8 @@ description: "Manual validation scenario for convergence.cjs in the deep-loop-ru
 
 This document captures the realistic user-testing contract, execution flow, and metadata for `DLR-014`.
 
+---
+
 ## 1. OVERVIEW
 
 Computes graph-aware CONTINUE, STOP_ALLOWED, or STOP_BLOCKED decisions for a session namespace.

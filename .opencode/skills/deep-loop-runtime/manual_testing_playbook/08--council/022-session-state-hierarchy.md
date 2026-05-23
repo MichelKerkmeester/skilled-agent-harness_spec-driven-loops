@@ -7,6 +7,8 @@ description: "Manual validation scenario for Session state hierarchy in the deep
 
 This document captures the realistic user-testing contract, execution flow, and metadata for `DLR-022`.
 
+---
+
 ## 1. OVERVIEW
 
 Creates and validates the ADR-002 session->topic->round state shape, including stable topic-NNN-slug and round-NNN ids.

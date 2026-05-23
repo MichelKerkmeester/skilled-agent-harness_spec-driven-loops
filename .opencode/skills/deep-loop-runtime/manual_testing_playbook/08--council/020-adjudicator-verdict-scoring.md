@@ -7,6 +7,8 @@ description: "Manual validation scenario for Adjudicator verdict scoring in the 
 
 This document captures the realistic user-testing contract, execution flow, and metadata for `DLR-020`.
 
+---
+
 ## 1. OVERVIEW
 
 Scores Round-N to Round-N+1 adjudicator verdict deltas using ADR-003 weights for option change, confidence delta, material-risk Jaccard delta, axis flip rate, and blocking-disagreement delta.

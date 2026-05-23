@@ -7,6 +7,8 @@ description: "Manual validation scenario for Atomic state in the deep-loop-runti
 
 This document captures the realistic user-testing contract, execution flow, and metadata for `DLR-006`.
 
+---
+
 ## 1. OVERVIEW
 
 Writes JSON state files through temp-file, fsync, rename, and cleanup semantics.

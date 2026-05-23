@@ -7,6 +7,8 @@ description: "Manual validation scenario for Bayesian scorer in the deep-loop-ru
 
 This document captures the realistic user-testing contract, execution flow, and metadata for `DLR-010`.
 
+---
+
 ## 1. OVERVIEW
 
 Two primitives: computeScore returns a Bayesian success probability via Laplace smoothing (success+1)/(total+2); shouldDemote returns true when score<0.5 and totalCalls>=3.

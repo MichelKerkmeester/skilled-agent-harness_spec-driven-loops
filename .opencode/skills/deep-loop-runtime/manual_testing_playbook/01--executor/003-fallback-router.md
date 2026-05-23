@@ -7,6 +7,8 @@ description: "Manual validation scenario for Fallback router in the deep-loop-ru
 
 This document captures the realistic user-testing contract, execution flow, and metadata for `DLR-003`.
 
+---
+
 ## 1. OVERVIEW
 
 Resolves the fallback route when a model exhausts its quota pool. Returns fallback (to a configured target in a different pool) or fail-fast based on the model registry.

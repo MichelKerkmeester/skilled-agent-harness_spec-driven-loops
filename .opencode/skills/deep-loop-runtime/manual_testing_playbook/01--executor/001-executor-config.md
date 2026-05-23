@@ -7,6 +7,8 @@ description: "Manual validation scenario for Executor config in the deep-loop-ru
 
 This document captures the realistic user-testing contract, execution flow, and metadata for `DLR-001`.
 
+---
+
 ## 1. OVERVIEW
 
 Parses and normalizes per-iteration executor configuration for native and CLI-backed deep-loop dispatch.

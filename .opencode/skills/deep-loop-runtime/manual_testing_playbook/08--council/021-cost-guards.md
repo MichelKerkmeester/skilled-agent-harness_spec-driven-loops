@@ -7,6 +7,8 @@ description: "Manual validation scenario for Cost guards in the deep-loop-runtim
 
 This document captures the realistic user-testing contract, execution flow, and metadata for `DLR-021`.
 
+---
+
 ## 1. OVERVIEW
 
 Normalizes and enforces ADR-004 defaults for max_rounds_per_topic, max_topics_per_session, saturation_threshold, and seats_per_round; computes upper-bound seat-output budgets.

@@ -7,6 +7,8 @@ description: "Manual validation scenario for query.cjs in the deep-loop-runtime 
 
 This document captures the realistic user-testing contract, execution flow, and metadata for `DLR-016`.
 
+---
+
 ## 1. OVERVIEW
 
 Reads session-scoped coverage graph views through a direct JSON stdout script interface.

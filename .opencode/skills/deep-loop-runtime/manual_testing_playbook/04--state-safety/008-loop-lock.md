@@ -7,6 +7,8 @@ description: "Manual validation scenario for Loop lock in the deep-loop-runtime 
 
 This document captures the realistic user-testing contract, execution flow, and metadata for `DLR-008`.
 
+---
+
 ## 1. OVERVIEW
 
 Provides a single-writer lock with stale-lock detection, heartbeat refresh, and owner-scoped release.

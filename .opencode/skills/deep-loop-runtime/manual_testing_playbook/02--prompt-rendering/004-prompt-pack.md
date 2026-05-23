@@ -7,6 +7,8 @@ description: "Manual validation scenario for Prompt pack in the deep-loop-runtim
 
 This document captures the realistic user-testing contract, execution flow, and metadata for `DLR-004`.
 
+---
+
 ## 1. OVERVIEW
 
 Renders prompt-pack templates with checked placeholder variables.

@@ -7,6 +7,8 @@ description: "Manual validation scenario for Round-state JSONL in the deep-loop-
 
 This document captures the realistic user-testing contract, execution flow, and metadata for `DLR-019`.
 
+---
+
 ## 1. OVERVIEW
 
 Appends per-round JSONL records with a lock-file single-writer guard; repairs corrupt trailing JSONL before append; fsyncs writes; exposes round-state readers for resume.

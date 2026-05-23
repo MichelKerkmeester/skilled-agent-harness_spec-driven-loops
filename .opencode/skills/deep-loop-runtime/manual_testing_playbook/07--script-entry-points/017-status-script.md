@@ -7,6 +7,8 @@ description: "Manual validation scenario for status.cjs in the deep-loop-runtime
 
 This document captures the realistic user-testing contract, execution flow, and metadata for `DLR-017`.
 
+---
+
 ## 1. OVERVIEW
 
 Reports session-scoped coverage graph health, counts, schema version, and current signals.
