@@ -59,6 +59,7 @@ Reference scout findings set the initial inspection boundary: the primary sideca
 | Phase | Focus | Priority | Status |
 |---|---|---|---|
 | `001-deep-research-drift-and-simplification/` | Deep research on sidecar drift, dead code, security, over-engineering, simplification, and refinement | P0 | Planned |
+| `002-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/` | Phased remediation packet for P0/P1 resource bounds, lifecycle, and TS/CJS rerank parity findings from arc 010/001 | P0 | Planned |
 
 ### Phase Transition Rules
 

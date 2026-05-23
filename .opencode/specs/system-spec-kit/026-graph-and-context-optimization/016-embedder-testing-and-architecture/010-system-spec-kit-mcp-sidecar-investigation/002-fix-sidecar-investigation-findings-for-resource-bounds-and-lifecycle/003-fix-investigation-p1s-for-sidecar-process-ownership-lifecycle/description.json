@@ -1,0 +1,27 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-system-spec-kit-mcp-sidecar-investigation/002-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/003-fix-investigation-p1s-for-sidecar-process-ownership-lifecycle",
+  "description": "Arc 010 phase 002 child: 003-fix-investigation-p1s-for-sidecar-process-ownership-lifecycle",
+  "keywords": [
+    "arc",
+    "010",
+    "phase",
+    "002",
+    "child",
+    "003-fix-investigation-p1s-for-sidecar-process-ownership-lifecycle"
+  ],
+  "lastUpdated": "2026-05-23T03:50:00.946Z",
+  "specId": "003",
+  "folderSlug": "fix-investigation-p1s-for-sidecar-process-ownership-lifecycle",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "010-system-spec-kit-mcp-sidecar-investigation",
+    "002-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -4,7 +4,8 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-system-spec-kit-mcp-sidecar-investigation",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture",
   "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-system-spec-kit-mcp-sidecar-investigation/001-deep-research-drift-and-simplification"
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-system-spec-kit-mcp-sidecar-investigation/001-deep-research-drift-and-simplification",
+    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-system-spec-kit-mcp-sidecar-investigation/002-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle"
   ],
   "manual": {
     "depends_on": [
@@ -48,8 +49,8 @@
     "last_save_at": "2026-05-22T21:00:18Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-system-spec-kit-mcp-sidecar-investigation/001-deep-research-drift-and-simplification",
-    "last_active_at": "2026-05-22T21:00:18Z",
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-system-spec-kit-mcp-sidecar-investigation/002-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle",
+    "last_active_at": "2026-05-23T00:00:00Z",
     "source_docs": [
       "spec.md",
       "001-deep-research-drift-and-simplification/spec.md"

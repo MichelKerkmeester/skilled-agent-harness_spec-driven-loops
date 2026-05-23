@@ -1,0 +1,27 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-system-spec-kit-mcp-sidecar-investigation/002-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/001-fix-investigation-p0s-for-resource-exhaustion-and-symlink-attack",
+  "description": "Arc 010 phase 002 child: 001-fix-investigation-p0s-for-resource-exhaustion-and-symlink-attack",
+  "keywords": [
+    "arc",
+    "010",
+    "phase",
+    "002",
+    "child",
+    "001-fix-investigation-p0s-for-resource-exhaustion-and-symlink-attack"
+  ],
+  "lastUpdated": "2026-05-23T03:50:00.427Z",
+  "specId": "001",
+  "folderSlug": "fix-investigation-p0s-for-resource-exhaustion-and-symlink-attack",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "016-embedder-testing-and-architecture",
+    "010-system-spec-kit-mcp-sidecar-investigation",
+    "002-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
