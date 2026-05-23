@@ -2,7 +2,9 @@
 // MODULE: Embedders — sidecar client testables
 // ───────────────────────────────────────────────────────────────
 
-import type { SidecarClientOptions, SidecarClientTestOptions } from './sidecar-client.js';
+import { SidecarClient, type SidecarClientOptions, type SidecarClientTestOptions } from './sidecar-client.js';
+
+export const buildSidecarEnv = SidecarClient.__buildSidecarEnvForTestables;
 
 export const __sidecarClientTypeFixtures = {
   productionOptionsRejectTestFields(): SidecarClientOptions {

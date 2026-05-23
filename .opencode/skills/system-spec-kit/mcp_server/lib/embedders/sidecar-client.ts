@@ -47,8 +47,14 @@ export interface SidecarClientTestOptions extends SidecarClientOptions {
 export interface SidecarWorkerInfo {
   readonly pid: number;
   readonly model: string;
+  readonly lastRequestAt: number;
+  readonly idleForMs: number;
+  readonly requestCount: number;
+  /** @deprecated Use `lastRequestAt`. Kept for one release cycle. */
   readonly last_request_at: number;
+  /** @deprecated Use `idleForMs`. Kept for one release cycle. */
   readonly idle_for_ms: number;
+  /** @deprecated Use `requestCount`. Kept for one release cycle. */
   readonly request_count: number;
 }
 
@@ -59,11 +65,28 @@ export interface EmbedOptions {
 
 type SidecarAdapter = Omit<EmbedderAdapter, 'ready'>;
 
+type PendingResponseType = 'embedding' | 'pong';
+
 interface PendingRequest {
-  readonly resolve: (value: unknown) => void;
+  readonly type: PendingResponseType;
+  readonly resolve: (value: SidecarEmbeddingResponse | SidecarPongResponse) => void;
   readonly reject: (reason: unknown) => void;
   readonly timer?: NodeJS.Timeout;
 }
+
+interface SidecarEmbedRequest {
+  readonly type: 'embed';
+  readonly input: string[];
+  readonly model: string;
+  readonly dimensions: number;
+  readonly inputType: EmbedderSidecarInputType;
+}
+
+interface SidecarControlRequest {
+  readonly type: 'ping' | 'shutdown';
+}
+
+type SidecarRequest = SidecarEmbedRequest | SidecarControlRequest;
 
 interface SidecarEmbeddingResponse {
   readonly id: number;
@@ -137,6 +160,7 @@ const SIDECAR_CONFIG_PREFIX_ALIASES = [
   ['SPECKIT_RERANK_TORCH_DTYPE', 'RERANK_TORCH_DTYPE'],
 ] as const;
 const SIDECAR_ENV_ALLOWLIST_MODULE = loadSidecarEnvAllowlistModule();
+const legacyAliasWarnings = new Set<string>();
 
 export const SIDECAR_ENV_ALLOWLIST = SIDECAR_ENV_ALLOWLIST_MODULE.SIDECAR_ENV_ALLOWLIST;
 
@@ -320,7 +344,7 @@ function applySidecarConfigPrefixPrecedence(env: NodeJS.ProcessEnv): NodeJS.Proc
  * sidecar prefixes are forwarded so unrelated parent-process variables do not
  * leak into the worker process.
  */
-export function buildSidecarEnv(
+function buildSidecarEnv(
   parentEnv: NodeJS.ProcessEnv,
   explicitAllowlist: readonly string[] = [],
 ): NodeJS.ProcessEnv {
@@ -334,6 +358,55 @@ export function buildSidecarEnv(
     }
   }
   return applySidecarConfigPrefixPrecedence(out);
+}
+
+function warnLegacyAlias(legacyName: string, replacementName: string): void {
+  if (legacyAliasWarnings.has(legacyName)) {
+    return;
+  }
+  legacyAliasWarnings.add(legacyName);
+  process.stderr.write(`[sidecar-client] ${legacyName} is deprecated; use ${replacementName} instead\n`);
+}
+
+function addDeprecatedAlias<T extends object, K extends string, V>(
+  target: T,
+  legacyName: K,
+  replacementName: string,
+  value: V,
+): T & Record<K, V> {
+  Object.defineProperty(target, legacyName, {
+    enumerable: true,
+    configurable: false,
+    get() {
+      warnLegacyAlias(legacyName, replacementName);
+      return value;
+    },
+  });
+  return target as T & Record<K, V>;
+}
+
+function buildWorkerInfoWithAliases(
+  values: Pick<SidecarWorkerInfo, 'pid' | 'model' | 'lastRequestAt' | 'idleForMs' | 'requestCount'>,
+): SidecarWorkerInfo {
+  const info = { ...values };
+  const withLastRequestAt = addDeprecatedAlias(info, 'last_request_at', 'lastRequestAt', values.lastRequestAt);
+  const withIdleForMs = addDeprecatedAlias(withLastRequestAt, 'idle_for_ms', 'idleForMs', values.idleForMs);
+  return addDeprecatedAlias(withIdleForMs, 'request_count', 'requestCount', values.requestCount);
+}
+
+function expectedResponseTypeForRequest(requestType: SidecarRequest['type']): PendingResponseType {
+  return requestType === 'embed' ? 'embedding' : 'pong';
+}
+
+function isPendingRequest(value: unknown): value is PendingRequest {
+  return typeof value === 'object'
+    && value !== null
+    && 'type' in value
+    && (value.type === 'embedding' || value.type === 'pong')
+    && 'resolve' in value
+    && typeof value.resolve === 'function'
+    && 'reject' in value
+    && typeof value.reject === 'function';
 }
 
 function validateEmbedInput(texts: ReadonlyArray<string>, options: EmbedOptions = {}): ValidatedEmbedInput {
@@ -359,7 +432,7 @@ function validateEmbedInput(texts: ReadonlyArray<string>, options: EmbedOptions 
 /** Lifecycle-managed adapter that dispatches embedding requests to a forked worker process. */
 export class SidecarClient implements SidecarAdapter {
   readonly name: string;
-  readonly dim: number;
+  readonly dimensions: number;
   readonly backend: BackendKind;
 
   private readonly provider: string;
@@ -371,7 +444,7 @@ export class SidecarClient implements SidecarAdapter {
   private readonly env: NodeJS.ProcessEnv;
   private child: ChildProcess | null = null;
   private stdoutBuffer = '';
-  private pending = new Map<number, PendingRequest>();
+  private pending = new Map<number, unknown>();
   private idleTimer: NodeJS.Timeout | null = null;
   private lastRequestAt = 0;
   private requestCount = 0;
@@ -383,7 +456,7 @@ export class SidecarClient implements SidecarAdapter {
   constructor(options: SidecarClientOptions | SidecarClientTestOptions) {
     this.provider = options.provider;
     this.name = options.model;
-    this.dim = options.dimensions;
+    this.dimensions = options.dimensions;
     this.backend = options.backend ?? toBackendKind(options.provider);
     this.workerPath = 'workerPath' in options && options.workerPath !== undefined
       ? options.workerPath
@@ -399,6 +472,12 @@ export class SidecarClient implements SidecarAdapter {
       : parsePositiveIntegerEnv('SPECKIT_EMBEDDER_SIDECAR_REQUEST_TIMEOUT_MS', DEFAULT_REQUEST_TIMEOUT_MS);
     this.envAllowlist = 'envAllowlist' in options && options.envAllowlist !== undefined ? options.envAllowlist : [];
     this.env = 'env' in options && options.env !== undefined ? options.env : process.env;
+  }
+
+  /** @deprecated Use `dimensions`. Kept for one release cycle. */
+  get dim(): number {
+    warnLegacyAlias('dim', 'dimensions');
+    return this.dimensions;
   }
 
   /** Embed a batch of texts through the sidecar worker. */
@@ -417,16 +496,16 @@ export class SidecarClient implements SidecarAdapter {
     this.requestCount += 1;
     this.scheduleIdleEviction();
 
-    const response = await this.sendRequest<SidecarEmbeddingResponse>({
+    const response = await this.sendRequest({
       type: 'embed',
       input: [...validation.texts],
       model: this.name,
-      dimensions: this.dim,
+      dimensions: this.dimensions,
       inputType: validation.options.inputType ?? 'document',
     });
 
-    if (response.dimensions !== this.dim) {
-      throw new Error(`Sidecar embedding dimension mismatch for ${this.name}: expected ${this.dim}, got ${response.dimensions}`);
+    if (response.dimensions !== this.dimensions) {
+      throw new Error(`Sidecar embedding dimension mismatch for ${this.name}: expected ${this.dimensions}, got ${response.dimensions}`);
     }
 
     if (response.vectors.length !== validation.texts.length) {
@@ -434,8 +513,8 @@ export class SidecarClient implements SidecarAdapter {
     }
 
     return response.vectors.map((vector) => {
-      if (vector.length !== this.dim) {
-        throw new Error(`Sidecar vector dimension mismatch for ${this.name}: expected ${this.dim}, got ${vector.length}`);
+      if (vector.length !== this.dimensions) {
+        throw new Error(`Sidecar vector dimension mismatch for ${this.name}: expected ${this.dimensions}, got ${vector.length}`);
       }
       return new Float32Array(vector);
     });
@@ -447,13 +526,13 @@ export class SidecarClient implements SidecarAdapter {
       return null;
     }
 
-    return {
+    return buildWorkerInfoWithAliases({
       pid: this.child.pid,
       model: this.name,
-      last_request_at: this.lastRequestAt,
-      idle_for_ms: this.lastRequestAt > 0 ? Math.max(0, now - this.lastRequestAt) : 0,
-      request_count: this.requestCount,
-    };
+      lastRequestAt: this.lastRequestAt,
+      idleForMs: this.lastRequestAt > 0 ? Math.max(0, now - this.lastRequestAt) : 0,
+      requestCount: this.requestCount,
+    });
   }
 
   /** Gracefully stop the worker and clear client-owned timers/listeners. */
@@ -507,7 +586,7 @@ export class SidecarClient implements SidecarAdapter {
         ...buildSidecarEnv(this.env, this.envAllowlist),
         SPECKIT_EMBEDDER_SIDECAR_PROVIDER: this.provider,
         SPECKIT_EMBEDDER_SIDECAR_MODEL: this.name,
-        SPECKIT_EMBEDDER_SIDECAR_DIMENSIONS: String(this.dim),
+        SPECKIT_EMBEDDER_SIDECAR_DIMENSIONS: String(this.dimensions),
         SPECKIT_EMBEDDER_SIDECAR_PARENT_PID: String(process.pid),
       },
     });
@@ -581,17 +660,25 @@ export class SidecarClient implements SidecarAdapter {
 
   private async ping(): Promise<boolean> {
     try {
-      const response = await this.sendRequest<SidecarPongResponse>({ type: 'ping' }, this.pingTimeoutMs);
+      const response = await this.sendRequest({ type: 'ping' }, this.pingTimeoutMs);
       return response.type === 'pong';
     } catch {
       return false;
     }
   }
 
-  private sendRequest<T extends SidecarResponse>(
-    payload: Record<string, unknown>,
+  private sendRequest(
+    payload: SidecarEmbedRequest,
+    timeoutMs?: number,
+  ): Promise<SidecarEmbeddingResponse>;
+  private sendRequest(
+    payload: SidecarControlRequest,
+    timeoutMs?: number,
+  ): Promise<SidecarPongResponse>;
+  private sendRequest(
+    payload: SidecarRequest,
     timeoutMs: number = this.requestTimeoutMs,
-  ): Promise<T> {
+  ): Promise<SidecarEmbeddingResponse | SidecarPongResponse> {
     this.ensureWorker();
     const child = this.child;
     if (!child?.stdin || child.killed) {
@@ -601,7 +688,7 @@ export class SidecarClient implements SidecarAdapter {
     const id = randomBytes(4).readUInt32BE(0);
     const request = { id, ...payload };
 
-    return new Promise<T>((resolve, reject) => {
+    return new Promise<SidecarEmbeddingResponse | SidecarPongResponse>((resolve, reject) => {
       let timer: NodeJS.Timeout | undefined;
       if (timeoutMs !== undefined) {
         timer = registerTimeout(() => {
@@ -612,7 +699,8 @@ export class SidecarClient implements SidecarAdapter {
       }
 
       this.pending.set(id, {
-        resolve: (value: unknown) => resolve(value as T),
+        type: expectedResponseTypeForRequest(payload.type),
+        resolve,
         reject,
         timer,
       });
@@ -680,12 +768,29 @@ export class SidecarClient implements SidecarAdapter {
     }
 
     const responseId = response.id;
-    const pending = this.pending.get(responseId);
-    if (!pending) {
+    const pendingEntry = this.pending.get(responseId);
+    if (!pendingEntry) {
       return;
     }
 
     this.pending.delete(responseId);
+    if (!isPendingRequest(pendingEntry)) {
+      const error = new SidecarClientError(
+        'sidecar-pending-entry-invalid',
+        `Sidecar pending entry for request ${responseId} is malformed`,
+      );
+      if (typeof pendingEntry === 'object'
+        && pendingEntry !== null
+        && 'reject' in pendingEntry
+        && typeof pendingEntry.reject === 'function') {
+        pendingEntry.reject(error);
+      } else {
+        process.stderr.write(`[sidecar:${this.child?.pid ?? 'unknown'}] ${error.message}\n`);
+      }
+      return;
+    }
+
+    const pending = pendingEntry;
     if (pending.timer) {
       clearRegisteredTimer(pending.timer);
     }
@@ -704,10 +809,18 @@ export class SidecarClient implements SidecarAdapter {
       return;
     }
     if (type === 'pong') {
+      if (pending.type !== 'pong') {
+        pending.reject(new SidecarClientError('sidecar-response-type-mismatch', `Sidecar response for request ${responseId} returned pong for pending ${pending.type} request`));
+        return;
+      }
       pending.resolve({ id: responseId, type: 'pong' });
       return;
     }
     if (type === 'embedding') {
+      if (pending.type !== 'embedding') {
+        pending.reject(new SidecarClientError('sidecar-response-type-mismatch', `Sidecar response for request ${responseId} returned embedding for pending ${pending.type} request`));
+        return;
+      }
       if (!isNumberMatrix(response.vectors) || typeof response.dimensions !== 'number') {
         pending.reject(new SidecarClientError('sidecar-response-invalid-embedding', `Sidecar embedding response for request ${responseId} is malformed`));
         return;
@@ -726,6 +839,10 @@ export class SidecarClient implements SidecarAdapter {
 
   private rejectAllPending(error: Error): void {
     for (const [id, pending] of this.pending.entries()) {
+      if (!isPendingRequest(pending)) {
+        this.pending.delete(id);
+        continue;
+      }
       if (pending.timer) {
         clearRegisteredTimer(pending.timer);
       }
@@ -755,5 +872,12 @@ export class SidecarClient implements SidecarAdapter {
       clearRegisteredTimer(this.idleTimer);
       this.idleTimer = null;
     }
+  }
+
+  static __buildSidecarEnvForTestables(
+    parentEnv: NodeJS.ProcessEnv,
+    explicitAllowlist: readonly string[] = [],
+  ): NodeJS.ProcessEnv {
+    return buildSidecarEnv(parentEnv, explicitAllowlist);
   }
 }

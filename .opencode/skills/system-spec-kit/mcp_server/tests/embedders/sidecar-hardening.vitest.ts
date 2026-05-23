@@ -7,7 +7,8 @@ import { join } from 'node:path';
 import { spawn } from 'node:child_process';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { buildSidecarEnv, SidecarClient, SidecarClientError, SIDECAR_ENV_ALLOWLIST, toBackendKind, RECOGNIZED_SPECKIT_ENV_VARS } from '../../lib/embedders/sidecar-client.js';
+import { SidecarClient, SidecarClientError, SIDECAR_ENV_ALLOWLIST, toBackendKind, RECOGNIZED_SPECKIT_ENV_VARS } from '../../lib/embedders/sidecar-client.js';
+import { buildSidecarEnv } from '../../lib/embedders/sidecar-client.testables.js';
 
 const factoryMockState = vi.hoisted(() => ({
   createEmbeddingsProvider: vi.fn(),
@@ -187,6 +188,15 @@ describe('sidecar hardening', () => {
     stderrSpy.mockRestore();
   });
 
+  it('exposes buildSidecarEnv only through the testables module (F9)', async () => {
+    const productionModule = await import('../../lib/embedders/sidecar-client.js');
+    const testablesModule = await import('../../lib/embedders/sidecar-client.testables.js');
+
+    expect('buildSidecarEnv' in productionModule).toBe(false);
+    expect(typeof testablesModule.buildSidecarEnv).toBe('function');
+    expect(testablesModule.buildSidecarEnv({ PATH: '/bin' }).PATH).toBe('/bin');
+  });
+
   it('uses the F49 launcher allowlist surface for the in-process sidecar (F16+F40)', () => {
     expect(SIDECAR_ENV_ALLOWLIST.exact).toEqual([
       'HOME',
@@ -256,6 +266,43 @@ describe('sidecar hardening', () => {
     expect(observed.secret).toBeNull();
     expect(observed.allowed).toBe('yes');
     expect(observed.parentPid).toBe(String(process.pid));
+  });
+
+  it('returns canonical worker info fields and deprecated legacy aliases with one warning per alias (F32+F39)', async () => {
+    const stderrSpy = vi.spyOn(process.stderr, 'write').mockImplementation(() => true);
+    const client = new SidecarClient({
+      provider: 'hf-local',
+      model: 'model',
+      dimensions: 3,
+      workerPath: createWorker(tmpDir, 'env'),
+      pingTimeoutMs: 100,
+      requestTimeoutMs: 200,
+      env: process.env,
+    });
+
+    await client.embed(['abc']);
+    const info = client.getWorkerInfo(1_000_000);
+
+    expect(info).not.toBeNull();
+    expect(info?.lastRequestAt).toBeGreaterThan(0);
+    expect(info?.idleForMs).toBeGreaterThanOrEqual(0);
+    expect(info?.requestCount).toBe(1);
+    expect(Object.keys(info ?? {})).toEqual(expect.arrayContaining([
+      'lastRequestAt',
+      'idleForMs',
+      'requestCount',
+      'last_request_at',
+      'idle_for_ms',
+      'request_count',
+    ]));
+
+    expect(info?.idle_for_ms).toBe(info?.idleForMs);
+    expect(info?.idle_for_ms).toBe(info?.idleForMs);
+    const idleWarnings = stderrSpy.mock.calls.filter((call) => String(call[0]).includes('idle_for_ms is deprecated'));
+    expect(idleWarnings).toHaveLength(1);
+
+    await client.shutdown();
+    stderrSpy.mockRestore();
   });
 
   it('kills the owned worker when an embed request times out', async () => {
@@ -518,7 +565,47 @@ setInterval(() => {}, 1000);
 
     expect(client).toBeDefined();
     expect(client.name).toBe('model');
+    expect(client.dimensions).toBe(3);
+  });
+
+  it('keeps dim as a deprecated alias for dimensions with a one-time warning (F97)', () => {
+    const stderrSpy = vi.spyOn(process.stderr, 'write').mockImplementation(() => true);
+    const client = new SidecarClient({
+      provider: 'hf-local',
+      model: 'model',
+      dimensions: 3,
+    });
+
+    expect(client.dimensions).toBe(3);
     expect(client.dim).toBe(3);
+    expect(client.dim).toBe(3);
+
+    const dimWarnings = stderrSpy.mock.calls.filter((call) => String(call[0]).includes('dim is deprecated'));
+    expect(dimWarnings).toHaveLength(1);
+    stderrSpy.mockRestore();
+  });
+
+  it('rejects malformed pending entries before resolving a sidecar response (F99)', () => {
+    const client = new SidecarClient({
+      provider: 'hf-local',
+      model: 'model',
+      dimensions: 3,
+    });
+    const pending = (client as unknown as { pending: Map<number, unknown> }).pending;
+    const handleResponseLine = (client as unknown as { handleResponseLine: (line: string) => void }).handleResponseLine.bind(client);
+    const reject = vi.fn();
+
+    pending.set(123, {
+      resolve: vi.fn(),
+      reject,
+    });
+
+    handleResponseLine(JSON.stringify({ id: 123, type: 'embedding', vectors: [[1, 2, 3]], dimensions: 3 }));
+
+    expect(reject).toHaveBeenCalledWith(expect.objectContaining({
+      name: 'SidecarClientError',
+      code: 'sidecar-pending-entry-invalid',
+    }));
   });
 
   it('rejects unknown sidecar response types with a structured client error (F62)', async () => {
