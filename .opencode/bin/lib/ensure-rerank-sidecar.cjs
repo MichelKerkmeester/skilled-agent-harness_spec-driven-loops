@@ -13,6 +13,7 @@ const DEFAULT_PORT = 8765;
 const DEFAULT_HEALTH_TIMEOUT_MS = 20000;
 const LEDGER_FILE_NAME = '.sidecar-ledger.json';
 const OWNER_TOKEN_FILE_NAME = '.sidecar-owner-token';
+const MAX_HEALTH_BODY_BYTES = 65536; // 64KB
 
 function log(message) {
   process.stderr.write(`[ensure-rerank-sidecar] ${message}\n`);
@@ -34,6 +35,11 @@ async function healthPayload(port, timeoutMs, deps = {}) {
       let body = '';
       res.setEncoding('utf8');
       res.on('data', (chunk) => {
+        if (body.length + chunk.length > MAX_HEALTH_BODY_BYTES) {
+          req.destroy();
+          resolve(null);
+          return;
+        }
         body += chunk;
       });
       res.on('end', () => {

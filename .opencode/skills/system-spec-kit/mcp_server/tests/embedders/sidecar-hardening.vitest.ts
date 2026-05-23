@@ -7,7 +7,7 @@ import { join } from 'node:path';
 import { spawn } from 'node:child_process';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
-import { buildSidecarEnv, SidecarClient } from '../../lib/embedders/sidecar-client.js';
+import { buildSidecarEnv, SidecarClient, SidecarClientError } from '../../lib/embedders/sidecar-client.js';
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -30,7 +30,7 @@ async function waitUntil(condition: () => boolean, timeoutMs: number): Promise<v
   }
 }
 
-function createWorker(dir: string, mode: 'env' | 'hang' | 'ignore-term' | 'oversized-stdout'): string {
+function createWorker(dir: string, mode: 'env' | 'hang' | 'ignore-term' | 'oversized-stdout' | 'record-ids'): string {
   const workerPath = join(dir, `worker-${mode}.cjs`);
   writeFileSync(workerPath, `
 const fs = require('node:fs');
@@ -55,6 +55,14 @@ rl.on('line', (line) => {
   if (${JSON.stringify(mode)} === 'oversized-stdout') {
     const oversized = 'x'.repeat(2 * 1024 * 1024);
     write({ id: message.id, type: 'embedding', vectors: message.input.map(() => [1, 2, 3]), dimensions: message.dimensions, _padding: oversized });
+    return;
+  }
+  if (${JSON.stringify(mode)} === 'record-ids') {
+    const idFile = process.env.MOCK_SIDECAR_ID_FILE;
+    if (idFile) {
+      fs.appendFileSync(idFile, message.id + '\\n');
+    }
+    write({ id: message.id, type: 'embedding', vectors: message.input.map(() => [1, 2, 3]), dimensions: message.dimensions });
     return;
   }
   if (${JSON.stringify(mode)} === 'hang' || ${JSON.stringify(mode)} === 'ignore-term') return;
@@ -233,6 +241,77 @@ setInterval(() => {}, 1000);
 
     const result = await embedPromise.catch((error: Error) => error.message);
     expect(result).toMatch(/timed out|exited/);
+    await client.shutdown();
+  });
+
+  it('generates cryptographically random request IDs (F48)', async () => {
+    const idFile = join(tmpDir, 'request-ids.txt');
+    const client = new SidecarClient({
+      provider: 'hf-local',
+      model: 'model',
+      dimensions: 3,
+      workerPath: createWorker(tmpDir, 'record-ids'),
+      pingTimeoutMs: 100,
+      requestTimeoutMs: 2_000,
+      env: {
+        ...process.env,
+        MOCK_SIDECAR_ID_FILE: idFile,
+      },
+    });
+
+    await client.embed(['abc']);
+    await client.embed(['def']);
+    await client.embed(['ghi']);
+    await client.shutdown();
+
+    const ids = readFileSync(idFile, 'utf8').trim().split('\n').map(Number);
+    expect(ids).toHaveLength(3);
+
+    // Check that IDs are not sequential
+    const isSequential = ids.every((id, i) => i === 0 || id === ids[i - 1] + 1);
+    expect(isSequential).toBe(false);
+
+    // Check that IDs are not monotonic
+    const isMonotonic = ids.every((id, i) => i === 0 || id > ids[i - 1]);
+    expect(isMonotonic).toBe(false);
+  });
+
+  it('rejects embed requests exceeding MAX_EMBED_INPUTS cap (F86)', async () => {
+    const client = new SidecarClient({
+      provider: 'hf-local',
+      model: 'model',
+      dimensions: 3,
+      workerPath: createWorker(tmpDir, 'env'),
+      pingTimeoutMs: 100,
+      requestTimeoutMs: 2_000,
+      env: process.env,
+    });
+
+    const oversizedBatch = new Array(501).fill('x');
+    await expect(client.embed(oversizedBatch)).rejects.toThrow(SidecarClientError);
+    await expect(client.embed(oversizedBatch)).rejects.toMatchObject({
+      code: 'embed-input-cap-exceeded',
+      message: expect.stringContaining('500-item cap'),
+    });
+
+    await client.shutdown();
+  });
+
+  it('accepts embed requests at the MAX_EMBED_INPUTS boundary (F86)', async () => {
+    const client = new SidecarClient({
+      provider: 'hf-local',
+      model: 'model',
+      dimensions: 3,
+      workerPath: createWorker(tmpDir, 'env'),
+      pingTimeoutMs: 100,
+      requestTimeoutMs: 2_000,
+      env: process.env,
+    });
+
+    const boundaryBatch = new Array(500).fill('x');
+    const result = await client.embed(boundaryBatch);
+    expect(result).toHaveLength(500);
+
     await client.shutdown();
   });
 });

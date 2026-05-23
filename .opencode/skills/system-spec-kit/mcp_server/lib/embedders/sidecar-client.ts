@@ -3,6 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 
 import { fork, type ChildProcess } from 'node:child_process';
+import { randomBytes } from 'node:crypto';
 import { existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -68,6 +69,15 @@ interface SidecarErrorResponse {
 
 type SidecarResponse = SidecarEmbeddingResponse | SidecarPongResponse | SidecarErrorResponse;
 
+export class SidecarClientError extends Error {
+  readonly code: string;
+  constructor(code: string, message: string) {
+    super(message);
+    this.name = 'SidecarClientError';
+    this.code = code;
+  }
+}
+
 // ───────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ───────────────────────────────────────────────────────────────
@@ -80,6 +90,7 @@ const MIN_TIMEOUT_MS = 1;
 const ALLOWED_ENV_KEYS = new Set(['PATH', 'HOME', 'LANG', 'LC_ALL', 'LC_CTYPE', 'TMPDIR']);
 const MAX_LINE_BYTES = 1024 * 1024; // 1MB
 const MAX_STDOUT_BUFFER_BYTES = 10 * 1024 * 1024; // 10MB
+const MAX_EMBED_INPUTS = 500;
 
 // ───────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -213,7 +224,6 @@ export class SidecarClient implements EmbedderAdapter {
   private readonly envAllowlist: readonly string[];
   private readonly env: NodeJS.ProcessEnv;
   private child: ChildProcess | null = null;
-  private nextId = 1;
   private stdoutBuffer = '';
   private pending = new Map<number, PendingRequest>();
   private idleTimer: NodeJS.Timeout | null = null;
@@ -240,6 +250,13 @@ export class SidecarClient implements EmbedderAdapter {
   async embed(texts: ReadonlyArray<string>, options: SidecarEmbedOptions = {}): Promise<Float32Array[]> {
     if (texts.length === 0) {
       return [];
+    }
+
+    if (texts.length > MAX_EMBED_INPUTS) {
+      throw new SidecarClientError(
+        'embed-input-cap-exceeded',
+        `embed batch exceeds ${MAX_EMBED_INPUTS}-item cap`,
+      );
     }
 
     await this.ensureHealthyWorker();
@@ -442,8 +459,7 @@ export class SidecarClient implements EmbedderAdapter {
       return Promise.reject(new Error(`Embedder sidecar is unavailable for ${this.provider}:${this.name}`));
     }
 
-    const id = this.nextId;
-    this.nextId += 1;
+    const id = randomBytes(4).readUInt32BE(0);
     const request = { id, ...payload };
 
     return new Promise<T>((resolve, reject) => {
