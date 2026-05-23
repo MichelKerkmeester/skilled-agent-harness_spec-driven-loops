@@ -15,6 +15,8 @@
 #   23 - Index missing or empty
 #   24 - Required config wiring missing
 #   25 - Required daemon not running
+#   26 - Runtime Python imports missing (e.g. tree_sitter, grammars, cocoindex)
+#        — caused by install.sh `--no-deps` fallback or stale pipx install
 
 set -euo pipefail
 
@@ -161,6 +163,43 @@ if echo "$VERSION_OUTPUT" | grep -q "spec-kit-fork"; then
   echo "✓ Fork version detected: $VERSION_OUTPUT"
 else
   echo "⚠ WARNING: ccc version does not contain 'spec-kit-fork' marker. Re-run install.sh to restore the fork."
+fi
+
+# ─────────────────────────────────────────────────────────────────────────────
+# RUNTIME IMPORT TEST: catches the `--no-deps` install.sh fallback path and
+# stale pipx installs where the binary works (no runtime imports during
+# `ccc --help`) but later `ccc index` / `ccc search` fail with
+# ModuleNotFoundError. Resolves the python by parsing the ccc shebang so it
+# works both for the in-tree .venv install and the pipx install.
+# ─────────────────────────────────────────────────────────────────────────────
+DEP_CHECK_PY=""
+if [[ -x "$CCC_BIN" ]]; then
+    SHEBANG_PY="$(head -1 "$CCC_BIN" | sed -n 's|^#!\(/[^ ]*\).*|\1|p')"
+    [[ -n "$SHEBANG_PY" && -x "$SHEBANG_PY" ]] && DEP_CHECK_PY="$SHEBANG_PY"
+fi
+if [[ -z "$DEP_CHECK_PY" && -x "$SKILL_DIR/mcp_server/.venv/bin/python" ]]; then
+    DEP_CHECK_PY="$SKILL_DIR/mcp_server/.venv/bin/python"
+fi
+
+DEP_CHECK_MODULES="tree_sitter tree_sitter_python tree_sitter_typescript tree_sitter_javascript tree_sitter_go tree_sitter_rust tree_sitter_java cocoindex"
+DEP_CHECK_MISSING=()
+if [[ -n "$DEP_CHECK_PY" ]]; then
+    for mod in $DEP_CHECK_MODULES; do
+        "$DEP_CHECK_PY" -c "import $mod" 2>/dev/null || DEP_CHECK_MISSING+=("$mod")
+    done
+    if [[ ${#DEP_CHECK_MISSING[@]} -eq 0 ]]; then
+        log_pass "Runtime imports OK (tree_sitter + grammars + cocoindex)"
+    else
+        log_warn "Runtime imports FAILED — missing modules: ${DEP_CHECK_MISSING[*]}"
+        echo "  ⚠ Fix via: $DEP_CHECK_PY -m pip install \"tree-sitter>=0.21\" tree-sitter-{go,java,javascript,python,rust,typescript}"
+        echo "  ⚠ Or re-run install.sh after resolving the underlying dependency-resolution issue."
+        if [[ "$STRICT_MODE" == true ]]; then
+            # Exit code 26 = runtime dep missing (distinct from 20 = binary missing).
+            exit 26
+        fi
+    fi
+else
+    log_warn "Cannot resolve Python interpreter for dep-import test (CCC_BIN=$CCC_BIN)"
 fi
 
 if [[ "$READINESS_SKILL_PAYLOAD_READY" == true ]]; then

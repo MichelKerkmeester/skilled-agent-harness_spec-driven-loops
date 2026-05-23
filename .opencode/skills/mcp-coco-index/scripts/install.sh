@@ -55,13 +55,38 @@ install_package() {
 
     echo "  Installing $PACKAGE_NAME (target: $target)..."
     if ! "$VENV_DIR/bin/pip" install --upgrade --quiet --no-build-isolation --editable "$target"; then
-        echo "  Dependency resolution failed; retrying local editable install without dependency resolution..."
+        echo ""
+        echo "  ╔════════════════════════════════════════════════════════════════════════╗"
+        echo "  ║ WARNING: Dependency resolution failed — retrying without deps.        ║"
+        echo "  ║ The package will install but tree-sitter, sentence-transformers, etc. ║"
+        echo "  ║ may be missing. After this install completes, run doctor.sh to        ║"
+        echo "  ║ detect the missing modules. If doctor flags missing deps, fix them    ║"
+        echo "  ║ via: $VENV_DIR/bin/pip install -e ${target//$SKILL_DIR/<SKILL_DIR>}    ║"
+        echo "  ╚════════════════════════════════════════════════════════════════════════╝"
+        echo ""
         "$VENV_DIR/bin/pip" install --upgrade --quiet --no-build-isolation --no-deps --editable "$target"
+        INSTALL_FALLBACK_TRIGGERED=1
+        # Best-effort recovery: explicitly sync the known runtime-critical deps so a
+        # `--no-deps` fallback does not produce a runtime-broken install. If any of
+        # these fail, doctor.sh will surface the missing modules later.
+        echo "  Best-effort dep recovery: installing tree-sitter + grammars + sentence-transformers..."
+        "$VENV_DIR/bin/pip" install --upgrade --quiet \
+            "tree-sitter>=0.21" \
+            tree-sitter-go tree-sitter-java tree-sitter-javascript \
+            tree-sitter-python tree-sitter-rust tree-sitter-typescript \
+            2>&1 | tail -3 || echo "  (tree-sitter recovery non-fatal failure — doctor.sh will report)"
     fi
 
     local version
     version="$("$VENV_DIR/bin/pip" show "$PACKAGE_NAME" 2>/dev/null | grep "^Version:" | cut -d' ' -f2)"
     echo "  Installed: $PACKAGE_NAME $version"
+    if [[ "${INSTALL_FALLBACK_TRIGGERED:-0}" == "1" ]]; then
+        echo ""
+        echo "  ⚠ POST-INSTALL CHECK REQUIRED: --no-deps fallback was triggered."
+        echo "  ⚠ Run: bash $(dirname "${BASH_SOURCE[0]}")/doctor.sh --strict"
+        echo "  ⚠ If doctor reports missing modules (e.g. tree_sitter, sentence_transformers),"
+        echo "  ⚠ re-run install.sh after fixing the underlying network/conflict issue."
+    fi
 }
 
 verify_binary() {
