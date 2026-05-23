@@ -1,0 +1,25 @@
+{
+  "specFolder": "132-speckit-rename",
+  "description": "Feature Specification: rename commands/spec_kit/ -> commands/speckit/",
+  "keywords": [
+    "feature",
+    "specification",
+    "rename",
+    "commands",
+    "speckit"
+  ],
+  "lastUpdated": "2026-05-23T14:05:12.003Z",
+  "specId": "132",
+  "folderSlug": "speckit-rename",
+  "parentChain": [
+    "..",
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "23-05-26_15-01__renamed-the-speckit-slash-command-directory-from.md",
+    "23-05-26_15-05__renamed-the-speckit-slash-command-directory-from.md"
+  ]
+}
