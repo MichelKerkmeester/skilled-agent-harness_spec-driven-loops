@@ -48,8 +48,14 @@ if [[ ! -f .venv/bin/activate ]]; then
 fi
 
 # Env allowlist: scrub parent-shell secrets before exec'ing uvicorn. Only the
-# minimal system + Python runtime + RERANK_*/HF_* knobs cross the boundary
-# (DR-003-P2-001 — fix env-var leak; complement to RS-023 advisory in playbook).
+# minimal system + Python runtime + explicitly approved HF/RERANK knobs cross
+# the boundary (DR-003-P2-001 - env-var leak mitigation).
+#
+# Reaper knobs:
+#   RERANK_SIDECAR_REAPER_HEARTBEAT_SECONDS: owner-liveness check cadence.
+#   RERANK_SIDECAR_REAPER_DISABLE: set 1 to inhibit self-reap for debugging.
+#   RERANK_SIDECAR_REAPER_TELEMETRY_PATH: lifecycle JSONL forensic log path.
+#   RERANK_SIDECAR_IDLE_TIMEOUT_SECONDS: idle self-exit timeout; 0 disables.
 RUNTIME_PYTHON="$SKILL_DIR/.venv/bin/python"
 env_args=(
     "HOME=$HOME"
@@ -76,7 +82,9 @@ for key in \
     RERANK_API_KEY RERANK_ALLOWED_MODELS RERANK_MODEL_REVISIONS RERANK_DEVICE \
     RERANK_TORCH_DTYPE RERANK_LOG_PATH RERANK_LOG_MAX_BYTES RERANK_LOG_RAW_QUERIES \
     RERANK_RATE_LIMIT_PER_MIN RERANK_MAX_DOCUMENT_BYTES RERANK_SIDECAR_OWNER_TOKEN \
-    RERANK_SIDECAR_CONFIG_HASH
+    RERANK_SIDECAR_CONFIG_HASH RERANK_SIDECAR_REAPER_HEARTBEAT_SECONDS \
+    RERANK_SIDECAR_REAPER_DISABLE RERANK_SIDECAR_REAPER_TELEMETRY_PATH \
+    RERANK_SIDECAR_IDLE_TIMEOUT_SECONDS
 do
     add_env_if_set "$key"
 done

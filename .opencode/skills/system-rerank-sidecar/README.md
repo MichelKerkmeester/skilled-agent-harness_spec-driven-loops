@@ -1,6 +1,6 @@
 # system-rerank-sidecar — Local FastAPI Cross-Encoder Sidecar
 
-Local HTTP service for shared Qwen cross-encoder reranking. Serves `GET /health`, `POST /warmup`, and `POST /rerank` on `127.0.0.1:8765` by default. Consumed by mk-spec-memory (opt-in per arc 008 phase 005 HOLD) and available to any MCP that wants shared cross-encoder rerank without bundling its own model.
+Local HTTP service for shared Qwen cross-encoder reranking. Serves `GET /health`, `POST /warmup`, and `POST /rerank` on `127.0.0.1:8765` by default. Consumed by mk-spec-memory when opted in and available to any MCP that wants shared cross-encoder rerank without bundling its own model.
 
 ---
 
@@ -44,6 +44,14 @@ Provides one local HTTP endpoint that exposes `Qwen/Qwen3-Reranker-0.6B` via the
 | Concurrent workers | 1 (asyncio.Lock serializes `predict()`) |
 | Cold-load latency | ~5-10s on Mac CPU, ~3-5s on MPS |
 | Sigmoid normalized | yes (response boundary) |
+| Owner check cadence | 45 seconds |
+| Idle timeout | 30 minutes |
+
+### Operator Lifecycle
+
+The sidecar terminates itself when all registered owners die or when it is idle for more than 30 minutes. The launcher also pre-flight-reaps stale sidecars before starting a new one, so normal operation should not require manually running `kill -9` against `rerank_sidecar` processes.
+
+Forensic reap events are logged to `~/Library/Logs/spec-kit/sidecar-reaper.jsonl` by default. Set `RERANK_SIDECAR_REAPER_TELEMETRY_PATH` before launch to write that lifecycle JSONL somewhere else.
 
 ---
 
@@ -106,6 +114,10 @@ Copy `.env.example` to `.env.local` for local overrides. `scripts/start.sh` load
 | `RERANK_MODEL_REVISION` | `e61197ed...` | Pinned model commit sha |
 | `RERANK_LOG_PATH` | unset | Optional JSONL request log path |
 | `RERANK_DEVICE` | unset | Optional override: `cpu`, `mps`, `cuda` |
+| `RERANK_SIDECAR_REAPER_HEARTBEAT_SECONDS` | `45` | Owner-liveness check cadence |
+| `RERANK_SIDECAR_IDLE_TIMEOUT_SECONDS` | `1800` | Idle self-exit timeout in seconds; `0` disables idle exit |
+| `RERANK_SIDECAR_REAPER_TELEMETRY_PATH` | `~/Library/Logs/spec-kit/sidecar-reaper.jsonl` | Lifecycle/reap JSONL telemetry path |
+| `RERANK_SIDECAR_REAPER_DISABLE` | unset | Set `1` to disable owner-death and idle self-reap for debugging |
 
 ---
 
@@ -149,6 +161,20 @@ RERANK_DEVICE=cpu bash scripts/start.sh
 RERANK_LOG_PATH=/tmp/rerank.jsonl bash scripts/start.sh
 ```
 
+### Override reaper telemetry path
+
+```bash
+RERANK_SIDECAR_REAPER_TELEMETRY_PATH=/tmp/sidecar-reaper.jsonl bash scripts/start.sh
+```
+
+### Inhibit the reaper for manual debugging
+
+Set this only when you need the sidecar to stay alive while inspecting it interactively:
+
+```bash
+RERANK_SIDECAR_REAPER_DISABLE=1 bash scripts/start.sh
+```
+
 ### Switch reranker model
 
 `scripts/use-model.sh` is the one-step swapper — updates `.env.local`, downloads weights if missing, restarts the sidecar, probes `/health` + `/warmup`.
@@ -185,7 +211,8 @@ bash scripts/use-model.sh <model> --no-restart
 | Slow first request | cold model | `POST /warmup` first; confirm `.env.example` revision matches local snapshot |
 | Bad downstream scores | caller is re-normalizing already-sigmoid `[0,1]` values | Preserve score ordering; do not re-clamp |
 | `/warmup` times out | CPU saturation | Try `RERANK_DEVICE=mps` on Apple Silicon |
-| Sustained `/rerank` p95 > 5s | known issue | Per arc 008 phase 004 HOLD — CPU/MPS device tuning required before production use |
+| Sustained `/rerank` p95 > 5s | known issue | CPU/MPS device tuning required before production use |
+| Stale sidecar processes after launcher exit | reaper disabled, heartbeat too long, or telemetry path unwritable | Confirm `RERANK_SIDECAR_REAPER_DISABLE` is unset, wait heartbeat plus slack, then inspect `~/Library/Logs/spec-kit/sidecar-reaper.jsonl` |
 
 ---
 
@@ -207,12 +234,9 @@ bash scripts/use-model.sh <model> --no-restart
 - `bin/lib/launcher-ipc-bridge.cjs` — sibling helper (lease pattern at file level; this sidecar uses port-bind atomicity instead)
 - `mcp-coco-index/mcp_server/cocoindex_code/rerankers/reranker.py` — CrossEncoderRerankerAdapter that this sidecar mirrors
 
-### Arc 008 evidence
+### Evidence
 
-- Phase 002 commit `b3db00d2f` — sidecar shipped
-- Phase 003 commit `3ad09c6c3` — ensure-helper integration
-- Phase 004 commit `c1258a54b` — A/B benchmark; **HOLD verdict**
-- Phase 005 commit `06ff42cb9` — HOLD path executed (sidecar stays opt-in)
+- Sidecar launch, ensure-helper integration, and HOLD-path benchmark commits are recorded in git history.
 - Benchmark report: `mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/benchmark_report.md`
 
 ### External

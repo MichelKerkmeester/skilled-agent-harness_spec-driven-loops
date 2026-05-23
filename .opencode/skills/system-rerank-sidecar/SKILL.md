@@ -25,7 +25,7 @@ Dedicated local HTTP sidecar that owns model loading, request serialization, sig
 ### When NOT to Use
 
 - **Don't author calls directly from agents** — the sidecar is HTTP infrastructure consumed by other MCPs' launcher helpers, not a tool the AI agent invokes per-query.
-- **Don't enable as default on memory-constrained hosts** — arc 008 phase 004 measured p95 ~11s under sustained load on CPU. Promotion requires CPU→MPS device tuning first. Per phase 005 HOLD verdict, the sidecar stays opt-in via `SPECKIT_CROSS_ENCODER=true`.
+- **Don't enable as default on memory-constrained hosts** — sustained CPU reranking has shown latency high enough that CPU/MPS tuning is still required before default promotion. The sidecar stays opt-in via `SPECKIT_CROSS_ENCODER=true`.
 - **Don't run inside the same process as another reranker** — multiple workers load multiple model copies. Keep `--workers 1` (enforced by `scripts/start.sh`).
 
 ---
@@ -39,7 +39,7 @@ Dedicated local HTTP sidecar that owns model loading, request serialization, sig
 | User says "rerank", "cross-encoder", "Qwen reranker", or names `localhost:8765` | Route here |
 | `SPECKIT_CROSS_ENCODER=true` referenced in launcher or env config | Route here for setup/debug |
 | `/health`, `/warmup`, `/rerank` HTTP probe failures | Route here for triage |
-| Phase 005 HOLD verdict, p95 latency tuning, CPU→MPS device decisions | Route here |
+| HOLD verdict, p95 latency tuning, CPU→MPS device decisions | Route here |
 | MCP launcher (`mk-spec-memory-launcher.cjs`, cocoindex `cli.py::mcp`) startup with rerank ensure | Route here |
 
 ### Routing Pseudocode
@@ -180,6 +180,18 @@ bash scripts/start.sh
 #   runs FastAPI lifespan shutdown hook, releases model reference
 ```
 
+### Reaper Lifecycle
+
+The sidecar has three cleanup layers:
+
+1. **Layer A idle backstop:** the app exits after 30 minutes without `/warmup` or `/rerank` work. `/health` probes do not refresh idle time.
+2. **Layer B owner self-check:** a lifespan task checks registered launcher owners every 45 seconds and exits when all registered owners are dead.
+3. **Layer D launcher pre-flight reap:** launchers remove stale, unhealthy sidecar rows before reusing or spawning a sidecar.
+
+`/warmup` and `/rerank` run inside an in-flight gate. If owner death or idle timeout fires during active work, shutdown waits until active requests drain, then sends SIGTERM through the normal FastAPI shutdown path.
+
+Manual debugging can inhibit the reaper with `RERANK_SIDECAR_REAPER_DISABLE=1` before launch. Use this only for interactive inspection; normal operation should rely on owner-death cleanup, idle timeout, and launcher pre-flight reap.
+
 ### Environment Variables
 
 | Variable | Default | Purpose |
@@ -189,8 +201,12 @@ bash scripts/start.sh
 | `RERANK_MODEL_REVISION` | `e61197ed45024b0ed8a2d74b80b4d909f1255473` | Pinned model commit sha |
 | `RERANK_LOG_PATH` | unset | Optional JSONL request log path |
 | `RERANK_DEVICE` | unset | Optional device override: `cpu`, `mps`, or `cuda` |
+| `RERANK_SIDECAR_REAPER_HEARTBEAT_SECONDS` | `45` | Owner-liveness check cadence |
+| `RERANK_SIDECAR_IDLE_TIMEOUT_SECONDS` | `1800` | Idle self-exit timeout in seconds; `0` disables idle exit for manual debug |
+| `RERANK_SIDECAR_REAPER_TELEMETRY_PATH` | `~/Library/Logs/spec-kit/sidecar-reaper.jsonl` | Lifecycle/reap JSONL telemetry path |
+| `RERANK_SIDECAR_REAPER_DISABLE` | unset | Set `1` to disable owner-death and idle self-reap for debugging |
 
-`scripts/start.sh` loads `.env` first and `.env.local` second so operators can keep local overrides out of version control. `scripts/start.sh` also clears all parent-shell env vars except a `HOME`/`PATH`/`LANG`/`TMPDIR`/`HF_*`/`RERANK_*` allowlist before exec'ing uvicorn (env-var leak mitigation).
+`scripts/start.sh` loads `.env` first and `.env.local` second so operators can keep local overrides out of version control. `scripts/start.sh` also clears parent-shell env vars and forwards only `HOME`/`PATH`/`LANG`/`TMPDIR`, approved HuggingFace/PyTorch settings, approved rerank settings, and per-model API keys before exec'ing uvicorn.
 
 ## Security
 
@@ -229,8 +245,8 @@ Both consumers (mk-spec-memory + mcp-coco-index) inherit the change automaticall
 
 ### Consumers
 
-- **mk-spec-memory** consumes via `mcp_server/lib/search/cross-encoder.ts:local` when `SPECKIT_CROSS_ENCODER=true` or `RERANKER_LOCAL=true`. Per the 011/005 opt-in closure, this is opt-in only (not default).
-- **mcp-coco-index** consumes via `HttpSidecarRerankerAdapter` (`cocoindex_code/rerankers/reranker.py`). Default-on as of arc 008 phase 006 (`COCOINDEX_RERANK_VIA_SIDECAR=true`); bundled `CrossEncoderRerankerAdapter` is retained as the HTTP-failure fallback. The cocoindex MCP startup auto-ensures the sidecar via `cli.py::_ensure_rerank_sidecar_for_mcp`.
+- **mk-spec-memory** consumes via `mcp_server/lib/search/cross-encoder.ts:local` when `SPECKIT_CROSS_ENCODER=true` or `RERANKER_LOCAL=true`. This is opt-in only.
+- **mcp-coco-index** consumes via `HttpSidecarRerankerAdapter` (`cocoindex_code/rerankers/reranker.py`) when `COCOINDEX_RERANK_VIA_SIDECAR=true`; bundled `CrossEncoderRerankerAdapter` is retained as the HTTP-failure fallback. The cocoindex MCP startup auto-ensures the sidecar via `cli.py::_ensure_rerank_sidecar_for_mcp`.
 
 ### RAM Budget + macOS Notes
 
@@ -267,7 +283,7 @@ Expect ~1.5 GB warm memory pressure for Qwen + PyTorch + sentence-transformers. 
 ### ❌ NEVER
 
 1. Never expose the sidecar on a non-loopback interface.
-2. Never spawn the sidecar with the full parent environment — use a sidecar-specific allowlist (per arc 008 review iter 002 P1 finding).
+2. Never spawn the sidecar with the full parent environment — use a sidecar-specific allowlist.
 3. Never write to the sidecar from agents — read-only HTTP client via `cross-encoder.ts:local` is the only consumer surface.
 4. Never assume `trust_remote_code=True` is safe without revision pinning + `local_files_only=True`.
 5. Never disable `local_files_only` to let HuggingFace fetch updates silently. Cache misses must fail loudly so operators see them.
@@ -275,9 +291,9 @@ Expect ~1.5 GB warm memory pressure for Qwen + PyTorch + sentence-transformers. 
 ### ⚠️ ESCALATE IF
 
 1. `/warmup` times out repeatedly → CPU saturation; consider `RERANK_DEVICE=mps` on Apple Silicon.
-2. `/rerank` p95 > 5s under sustained load → revisit promotion gate (arc 008 phase 004 HOLD root cause).
+2. `/rerank` p95 > 5s under sustained load → revisit the promotion gate and CPU/MPS tuning.
 3. Cache snapshot directory is empty → pre-cache via `huggingface-cli download Qwen/Qwen3-Reranker-0.6B --revision <sha>`.
-4. Multiple sidecar processes detected → port-bind race lost; investigate which launcher misbehaved (per arc 008 phase 003 self-electing-primary semantics).
+4. Multiple sidecar processes detected → port-bind race lost; investigate which launcher misbehaved.
 
 ---
 
@@ -298,16 +314,13 @@ Expect ~1.5 GB warm memory pressure for Qwen + PyTorch + sentence-transformers. 
 
 - `cross-encoder.ts:54-62` (mk-spec-memory) — the HTTP client wrapper for `local` provider
 - `bin/lib/ensure-rerank-sidecar.cjs` — Node-side ensure helper (mk-spec-memory)
-- `bin/lib/launcher-ipc-bridge.cjs` — sibling helper at the same level (packet 010/012 lease pattern)
+- `bin/lib/launcher-ipc-bridge.cjs` — sibling helper at the same level
 - `mcp-coco-index/mcp_server/cocoindex_code/rerankers/reranker.py` — CrossEncoderRerankerAdapter the sidecar mirrors
 
-### Arc 008 Evidence Trail
+### Evidence Trail
 
-- Phase 002 commit `b3db00d2f` — sidecar shipped
-- Phase 003 commit `3ad09c6c3` — ensure-helper integration
-- Phase 004 commit `c1258a54b` — A/B benchmark + HOLD verdict
-- Phase 005 commit `06ff42cb9` — HOLD path executed (sidecar stays opt-in)
-- Phase 004 benchmark report: `mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/benchmark_report.md` §8 RECOMMENDATIONS
+- Sidecar launch, ensure-helper integration, and HOLD-path benchmark commits are recorded in git history.
+- Benchmark report: `mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/benchmark_report.md` §8 RECOMMENDATIONS
 
 ### External
 

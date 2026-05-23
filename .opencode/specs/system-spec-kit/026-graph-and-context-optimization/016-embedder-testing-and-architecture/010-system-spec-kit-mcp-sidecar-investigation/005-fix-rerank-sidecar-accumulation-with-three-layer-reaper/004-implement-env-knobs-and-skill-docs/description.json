@@ -1,0 +1,23 @@
+{
+  "specFolder": "004-implement-env-knobs-and-skill-docs",
+  "description": "Forward approved rerank reaper env knobs through the launcher allowlist and document operator lifecycle, telemetry, and smoke runbook.",
+  "keywords": [
+    "rerank",
+    "reaper",
+    "env",
+    "allowlist",
+    "skill",
+    "docs",
+    "telemetry",
+    "smoke"
+  ],
+  "lastUpdated": "2026-05-23T08:00:00.000Z",
+  "specId": "004",
+  "folderSlug": "implement-env-knobs-and-skill-docs",
+  "parentChain": [
+    "005-fix-rerank-sidecar-accumulation-with-three-layer-reaper"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
