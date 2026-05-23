@@ -1,0 +1,27 @@
+{
+  "spec_id": "020",
+  "folder_slug": "fix-investigation-deferred-p2s-for-behavior-and-api-changes",
+  "parent_chain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "009-memory-leak-remediation"
+  ],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode"
+    ],
+    "related_to": []
+  },
+  "derived": {
+    "status": "draft",
+    "importance_tier": "important",
+    "is_phase_parent": true,
+    "last_active_child_id": "001-fix-deferred-p2s-for-test-only-and-shared-exports",
+    "last_active_at": "2026-05-23T12:00:00Z",
+    "child_phase_count": 0,
+    "completed_child_phase_count": 0,
+    "parent_id": "009-memory-leak-remediation"
+  },
+  "lastUpdated": "2026-05-23T12:00:00Z"
+}
