@@ -9,17 +9,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/002-align-rerank-sidecar-cjs-and-sidecar-worker-with-sk-code"
-    last_updated_at: "2026-05-23T00:00:00Z"
+    last_updated_at: "2026-05-23T12:05:00Z"
     last_updated_by: "codex"
-    recent_action: "Scaffolded"
-    next_safe_action: "Add documentation-only source annotations"
+    recent_action: "Implemented and verified"
+    next_safe_action: "Parent agent may review and commit packet"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0210020210020210020210020210020210020210020210020210020210020210"
       session_id: "021-002-sk-code-rerank-sidecar-worker-docs"
       parent_session_id: null
-    completion_pct: 10
+    completion_pct: 100
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks: Rerank Sidecar CJS and Sidecar Worker sk-code Alignment
@@ -45,8 +45,8 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T-001 Scaffold packet docs from sibling Level 2 shape.
-- [ ] T-002 Run strict scaffold validation before source edits.
-- [ ] T-003 Read target source files and sk-code JS/TS style guidance.
+- [x] T-002 Run strict scaffold validation before source edits.
+- [x] T-003 Read target source files and sk-code JS/TS style guidance.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -54,10 +54,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T-004 Add CJS module header and logical section dividers to `ensure-rerank-sidecar.cjs`.
-- [ ] T-005 Add JSDoc to exported and non-trivial internal CJS helpers.
-- [ ] T-006 Add TSDoc to listed `sidecar-worker.ts` helpers.
-- [ ] T-007 Inspect source diff and confirm documentation-only changes.
+- [x] T-004 Add CJS module header and logical section dividers to `ensure-rerank-sidecar.cjs`.
+- [x] T-005 Add JSDoc to exported and non-trivial internal CJS helpers.
+- [x] T-006 Add TSDoc to listed `sidecar-worker.ts` helpers.
+- [x] T-007 Inspect source diff and confirm documentation-only changes.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -65,12 +65,12 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T-010 Run both drift verifier scopes.
-- [ ] T-011 Run embedders vitest.
-- [ ] T-012 Run launcher vitest.
-- [ ] T-013 Run mcp-server typecheck.
-- [ ] T-014 Fill checklist, ADR, and implementation summary.
-- [ ] T-015 Run final strict validation.
+- [x] T-010 Run both drift verifier scopes.
+- [x] T-011 Run embedders vitest.
+- [x] T-012 Run launcher vitest.
+- [x] T-013 Run mcp-server typecheck.
+- [x] T-014 Fill checklist, ADR, and implementation summary.
+- [x] T-015 Run final strict validation.
 <!-- /ANCHOR:phase-3 -->
 
 ---

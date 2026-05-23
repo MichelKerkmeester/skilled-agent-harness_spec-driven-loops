@@ -75,6 +75,12 @@ const DEFAULT_MODEL: string = getCanonicalFallback('hf-local');
 // 4. HELPERS
 // ───────────────────────────────────────────────────────────────
 
+/**
+ * Resolve the model name for a request, preferring the sidecar env override.
+ *
+ * @param requestModel - Model name supplied by the launcher request.
+ * @returns Effective model name used to create the provider.
+ */
 function getModelName(requestModel: string): string {
   const envModel = process.env.SPECKIT_EMBEDDER_SIDECAR_MODEL?.trim();
   if (envModel) {
@@ -92,6 +98,13 @@ function getModelName(requestModel: string): string {
   return DEFAULT_MODEL;
 }
 
+/**
+ * Validate and return the requested embedding dimensionality.
+ *
+ * @param requestDimensions - Dimensions supplied by the launcher request.
+ * @returns Positive integer dimensions for provider construction.
+ * @throws Error when dimensions are not a positive integer.
+ */
 function getDimensions(requestDimensions: number): number {
   if (Number.isInteger(requestDimensions) && requestDimensions > 0) {
     return requestDimensions;
@@ -100,6 +113,13 @@ function getDimensions(requestDimensions: number): number {
   throw new Error(`Sidecar request dimensions must be a positive integer, got ${requestDimensions}`);
 }
 
+/**
+ * Normalize legacy and canonical sidecar provider names.
+ *
+ * @param provider - Raw provider name from configuration.
+ * @returns Canonical provider identifier accepted by the embedding factory.
+ * @throws Error when the provider is unsupported.
+ */
 function normalizeSidecarProvider(provider: string): SidecarWorkerProvider {
   const normalized = provider.trim().toLowerCase();
   if (normalized === 'sentence-transformers') {
@@ -114,6 +134,12 @@ function normalizeSidecarProvider(provider: string): SidecarWorkerProvider {
   throw new Error(`Unsupported sidecar provider: ${provider}`);
 }
 
+/**
+ * Read and normalize the required sidecar provider setting.
+ *
+ * @returns Canonical provider identifier accepted by the embedding factory.
+ * @throws Error when `SPECKIT_EMBEDDER_SIDECAR_PROVIDER` is missing or unsupported.
+ */
 function getSidecarProvider(): SidecarWorkerProvider {
   const rawProvider = process.env.SPECKIT_EMBEDDER_SIDECAR_PROVIDER;
   if (!rawProvider || rawProvider.trim().length === 0) {
@@ -123,18 +149,44 @@ function getSidecarProvider(): SidecarWorkerProvider {
   return normalizeSidecarProvider(rawProvider);
 }
 
+/**
+ * Convert an unknown thrown value into a stable error detail string.
+ *
+ * @param error - Unknown thrown value.
+ * @returns Error message for `Error` instances, otherwise stringified value.
+ */
 function toErrorDetail(error: unknown): string {
   return error instanceof Error ? error.message : String(error);
 }
 
+/**
+ * Build the structured worker error payload shared by stdout and stderr paths.
+ *
+ * @param phase - Worker phase that produced the error.
+ * @param code - Machine-readable error code.
+ * @param detail - Human-readable error detail.
+ * @returns Structured worker error detail.
+ */
 function createWorkerError(phase: WorkerErrorPhase, code: string, detail: string): WorkerErrorDetail {
   return { phase, code, detail };
 }
 
+/**
+ * Serialize a worker error for response payloads and diagnostic lines.
+ *
+ * @param error - Structured worker error detail.
+ * @returns JSON string representation of the error detail.
+ */
 function errorMessage(error: WorkerErrorDetail): string {
   return JSON.stringify(error);
 }
 
+/**
+ * Extract a string `code` property from an unknown error.
+ *
+ * @param error - Unknown thrown value.
+ * @returns String error code, or undefined when absent.
+ */
 function errorCodeFrom(error: unknown): string | undefined {
   if (!error || typeof error !== 'object' || !('code' in error)) {
     return undefined;
@@ -143,6 +195,12 @@ function errorCodeFrom(error: unknown): string | undefined {
   return typeof code === 'string' ? code : undefined;
 }
 
+/**
+ * Extract a numeric `errno` property from an unknown error.
+ *
+ * @param error - Unknown thrown value.
+ * @returns Numeric errno, or undefined when absent.
+ */
 function errnoFrom(error: unknown): number | undefined {
   if (!error || typeof error !== 'object' || !('errno' in error)) {
     return undefined;
@@ -151,6 +209,12 @@ function errnoFrom(error: unknown): number | undefined {
   return typeof errno === 'number' ? errno : undefined;
 }
 
+/**
+ * Check whether the recorded parent process is still alive.
+ *
+ * @param pid - Parent process id to inspect.
+ * @returns Liveness status plus a reason suitable for diagnostics.
+ */
 function parentProcessLiveness(pid: number): ParentLiveness {
   if (!Number.isInteger(pid) || pid <= 0) {
     return { alive: false, reason: 'unknown' };
@@ -176,6 +240,11 @@ function parentProcessLiveness(pid: number): ParentLiveness {
   }
 }
 
+/**
+ * Start polling parent process liveness and exit when the parent disappears.
+ *
+ * @returns Nothing.
+ */
 function startParentDeathPolling(): void {
   const parentPid = Number.parseInt(process.env.SPECKIT_EMBEDDER_SIDECAR_PARENT_PID || '', 10);
   if (!Number.isInteger(parentPid) || parentPid <= 0) {
@@ -196,10 +265,22 @@ function startParentDeathPolling(): void {
   parentPollTimer.unref?.();
 }
 
+/**
+ * Narrow an unknown value to an array of strings.
+ *
+ * @param value - Unknown value from a parsed request.
+ * @returns True when every item is a string.
+ */
 function isStringArray(value: unknown): value is string[] {
   return Array.isArray(value) && value.every((item) => typeof item === 'string');
 }
 
+/**
+ * Narrow an unknown parsed payload to the minimal request envelope.
+ *
+ * @param value - Unknown parsed JSON payload.
+ * @returns True when the payload has numeric `id` and string `type` fields.
+ */
 function isRequestEnvelope(value: unknown): value is { readonly id: number; readonly type: string } {
   return Boolean(value)
     && typeof value === 'object'
@@ -207,6 +288,14 @@ function isRequestEnvelope(value: unknown): value is { readonly id: number; read
     && typeof (value as { readonly type?: unknown }).type === 'string';
 }
 
+/**
+ * Parse and validate one newline-delimited worker request.
+ *
+ * @param line - Raw JSON line from stdin.
+ * @returns Validated worker request.
+ * @throws SyntaxError when the line is not valid JSON.
+ * @throws Error when the envelope, request type, input list, or input count is invalid.
+ */
 function parseRequest(line: string): WorkerRequest {
   const parsed = JSON.parse(line) as unknown;
   if (!isRequestEnvelope(parsed)) {
@@ -240,10 +329,23 @@ function parseRequest(line: string): WorkerRequest {
   };
 }
 
+/**
+ * Write a newline-delimited JSON payload to stdout.
+ *
+ * @param payload - Response payload to serialize.
+ * @returns Nothing.
+ */
 function writeJson(payload: Record<string, unknown>): void {
   process.stdout.write(`${JSON.stringify(payload)}\n`);
 }
 
+/**
+ * Write a structured worker error response to stdout.
+ *
+ * @param id - Request id associated with the failure.
+ * @param error - Structured worker error detail.
+ * @returns Nothing.
+ */
 function writeError(id: number, error: WorkerErrorDetail): void {
   writeJson({
     id,
@@ -255,6 +357,12 @@ function writeError(id: number, error: WorkerErrorDetail): void {
   });
 }
 
+/**
+ * Recover a numeric request id from malformed or oversized input.
+ *
+ * @param line - Raw JSON-like input line.
+ * @returns Safe integer request id, or null when no id can be recovered.
+ */
 function recoverRequestId(line: string): number | null {
   const match = /"id"\s*:\s*(\d+)/.exec(line);
   if (!match) {
@@ -265,6 +373,12 @@ function recoverRequestId(line: string): number | null {
   return Number.isSafeInteger(id) ? id : null;
 }
 
+/**
+ * Convert parse or validation exceptions into structured worker request errors.
+ *
+ * @param error - Unknown exception from request parsing.
+ * @returns Worker error detail with parse or validation phase.
+ */
 function requestErrorFrom(error: unknown): WorkerErrorDetail {
   if (error instanceof SyntaxError) {
     return createWorkerError('parse', 'invalid-json', toErrorDetail(error));
@@ -273,6 +387,13 @@ function requestErrorFrom(error: unknown): WorkerErrorDetail {
   return createWorkerError('validation', 'request-invalid', toErrorDetail(error));
 }
 
+/**
+ * Lazily create or reuse the embedding provider for embed requests.
+ *
+ * @param request - Validated embed request carrying model and dimension settings.
+ * @returns Shared embedding provider instance.
+ * @throws Error when provider configuration or provider creation fails.
+ */
 async function getProvider(request: EmbedRequest): Promise<IEmbeddingProvider> {
   if (!providerPromise) {
     const created = createEmbeddingsProvider({
@@ -292,6 +413,13 @@ async function getProvider(request: EmbedRequest): Promise<IEmbeddingProvider> {
   return providerPromise;
 }
 
+/**
+ * Handle one embed request and write the embedding response.
+ *
+ * @param request - Validated embed request.
+ * @returns Promise that resolves after the response is written.
+ * @throws Error when provider creation fails, embedding returns null, or dimensions mismatch.
+ */
 async function handleEmbed(request: EmbedRequest): Promise<void> {
   const provider = await getProvider(request);
   const vectors: number[][] = [];
@@ -317,6 +445,12 @@ async function handleEmbed(request: EmbedRequest): Promise<void> {
   });
 }
 
+/**
+ * Dispatch a validated worker request.
+ *
+ * @param request - Validated ping, shutdown, or embed request.
+ * @returns Promise that resolves after the request is handled.
+ */
 async function handleRequest(request: WorkerRequest): Promise<void> {
   if (request.type === 'ping') {
     writeJson({ id: request.id, type: 'pong' });
@@ -404,6 +538,11 @@ reader.on('close', () => {
   process.exit(0);
 });
 
+/**
+ * Clear the cached provider instance for test isolation.
+ *
+ * @returns Nothing.
+ */
 function resetProviderCacheForTests(): void {
   providerPromise = null;
 }

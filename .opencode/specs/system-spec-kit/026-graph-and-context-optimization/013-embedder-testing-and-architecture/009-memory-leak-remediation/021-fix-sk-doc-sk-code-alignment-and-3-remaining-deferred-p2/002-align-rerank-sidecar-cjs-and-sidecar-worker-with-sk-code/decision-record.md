@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/002-align-rerank-sidecar-cjs-and-sidecar-worker-with-sk-code"
-    last_updated_at: "2026-05-23T00:00:00Z"
+    last_updated_at: "2026-05-23T12:05:00Z"
     last_updated_by: "codex"
-    recent_action: "Scaffolded"
-    next_safe_action: "Add documentation-only source annotations"
+    recent_action: "Implemented and verified"
+    next_safe_action: "Parent agent may review and commit packet"
     blockers: []
     key_files:
       - "decision-record.md"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0210020210020210020210020210020210020210020210020210020210020210"
       session_id: "021-002-sk-code-rerank-sidecar-worker-docs"
       parent_session_id: null
-    completion_pct: 10
+    completion_pct: 100
 ---
 # Decision Record: Rerank Sidecar CJS and Sidecar Worker sk-code Alignment
 
@@ -55,13 +55,13 @@ Runtime semantics stay unchanged. Any accidental executable diff is reverted bef
 
 ## Verification Notes
 
-- Scaffold strict validation: pending.
-- Drift verifier for `.opencode/bin/lib`: pending.
-- Drift verifier for mcp-server embedders lib: pending.
-- Embedders vitest: pending.
-- Launcher vitest: pending.
-- mcp-server typecheck: pending.
-- Final strict validation: pending.
+- 2026-05-23: Scaffold strict validation passed with errors 0, warnings 0.
+- 2026-05-23: Drift verifier for `.opencode/bin/lib` passed with findings 0, errors 0, warnings 0, violations 0.
+- 2026-05-23: Drift verifier for mcp-server embedders lib passed with findings 0, errors 0, warnings 0, violations 0.
+- 2026-05-23: Embedders vitest passed: 4 files, 54 tests, exit 0.
+- 2026-05-23: Exact requested launcher vitest command failed before test load because `.opencode/skills/system-spec-kit/node_modules/vitest/vitest.mjs` is absent; equivalent installed-runner command from `.opencode` passed: 1 file, 37 passed, 5 skipped, exit 0.
+- 2026-05-23: `npm run typecheck --workspace=@spec-kit/mcp-server` exited 0.
+- 2026-05-23: Final strict validation passed with errors 0, warnings 0.
 
 ## DEFERRED
 
