@@ -1,0 +1,36 @@
+{
+  "level": "2",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/001-fix-deferred-p2s-for-test-only-and-shared-exports",
+  "description": "Completed F44 and F109 by moving system-spec-kit test-only barrel consumers to direct shared imports and deleting unused embedders barrel exports.",
+  "keywords": [
+    "completed",
+    "f44",
+    "f109",
+    "moving",
+    "system-spec-kit",
+    "test-only",
+    "barrel",
+    "consumers",
+    "direct",
+    "shared",
+    "imports",
+    "deleting",
+    "unused",
+    "embedders",
+    "exports"
+  ],
+  "lastUpdated": "2026-05-23T10:08:27.413Z",
+  "specId": "001",
+  "folderSlug": "fix-deferred-p2s-for-test-only-and-shared-exports",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "009-memory-leak-remediation",
+    "020-fix-investigation-deferred-p2s-for-behavior-and-api-changes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

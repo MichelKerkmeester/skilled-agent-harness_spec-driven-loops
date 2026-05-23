@@ -9,9 +9,9 @@ import { describe, it, expect } from 'vitest';
 import {
   getManifest,
   listManifests,
-  listSupportedDimensions,
 } from '../lib/embedders/registry.js';
-import type { EmbedderManifest } from '../lib/embedders/index.js';
+import { listSupportedDimensions } from '@spec-kit/shared/embeddings/registry.js';
+import type { EmbedderManifest } from '@spec-kit/shared/embeddings/types.js';
 
 describe('016/001 EmbedderRegistry', () => {
   it('lists 7 manifests in declaration order', () => {

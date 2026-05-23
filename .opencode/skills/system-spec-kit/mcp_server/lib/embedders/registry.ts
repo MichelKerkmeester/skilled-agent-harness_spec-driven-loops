@@ -5,4 +5,10 @@
 // Phase 003/006 of the 016 umbrella.
 // ───────────────────────────────────────────────────────────────
 
-export * from '@spec-kit/shared/embeddings/registry.js';
+export {
+  getAdapter,
+  getManifest,
+  listManifests,
+  MANIFESTS,
+  NotImplementedError,
+} from '@spec-kit/shared/embeddings/registry.js';
