@@ -4,51 +4,13 @@
   "spec_folder": "skilled-agent-orchestration/131-deep-skill-evolution",
   "parent_id": null,
   "children_ids": [
-    "skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council-rename-preflight-and-plan",
-    "skilled-agent-orchestration/131-deep-skill-evolution/002-ai-council-rename-sk-skill",
-    "skilled-agent-orchestration/131-deep-skill-evolution/003-ai-council-rename-agent-4-runtime",
-    "skilled-agent-orchestration/131-deep-skill-evolution/004-ai-council-rename-sibling-edges-typescript",
-    "skilled-agent-orchestration/131-deep-skill-evolution/005-ai-council-rename-root-docs-hooks-index",
-    "skilled-agent-orchestration/131-deep-skill-evolution/006-ai-council-rename-reindex-validate",
-    "skilled-agent-orchestration/131-deep-skill-evolution/007-ai-council-shared-runtime-deliberation",
-    "skilled-agent-orchestration/131-deep-skill-evolution/008-ai-council-iterative-research-and-architecture",
-    "skilled-agent-orchestration/131-deep-skill-evolution/009-ai-council-iterative-runtime-primitive-extraction",
-    "skilled-agent-orchestration/131-deep-skill-evolution/010-ai-council-iterative-per-topic-multi-round",
-    "skilled-agent-orchestration/131-deep-skill-evolution/011-ai-council-iterative-session-findings-registry",
-    "skilled-agent-orchestration/131-deep-skill-evolution/012-ai-council-iterative-command-and-skill-wiring",
-    "skilled-agent-orchestration/131-deep-skill-evolution/013-ai-council-iterative-parity-cost-docs",
-    "skilled-agent-orchestration/131-deep-skill-evolution/014-deep-review-complexity-research-synthesis",
-    "skilled-agent-orchestration/131-deep-skill-evolution/015-deep-review-complexity-seeded-fixture-harness",
-    "skilled-agent-orchestration/131-deep-skill-evolution/016-deep-review-complexity-schema-prompt-contract",
-    "skilled-agent-orchestration/131-deep-skill-evolution/017-deep-review-complexity-validator-v2-enforcement",
-    "skilled-agent-orchestration/131-deep-skill-evolution/018-deep-review-complexity-search-ledger-persistence",
-    "skilled-agent-orchestration/131-deep-skill-evolution/019-deep-review-complexity-candidate-saturation-gates",
-    "skilled-agent-orchestration/131-deep-skill-evolution/020-deep-review-complexity-ledger-led-graph-vocab",
-    "skilled-agent-orchestration/131-deep-skill-evolution/021-deep-review-complexity-playbooks-calibration",
-    "skilled-agent-orchestration/131-deep-skill-evolution/022-deep-loop-core-isolation-deliberation",
-    "skilled-agent-orchestration/131-deep-skill-evolution/023-deep-loop-runtime-skill-scaffold",
-    "skilled-agent-orchestration/131-deep-skill-evolution/024-deep-loop-lib-runtime-migration",
-    "skilled-agent-orchestration/131-deep-skill-evolution/025-deep-loop-script-shim-db-relocation",
-    "skilled-agent-orchestration/131-deep-skill-evolution/026-deep-loop-mcp-tool-surface-removal",
-    "skilled-agent-orchestration/131-deep-skill-evolution/027-deep-loop-yaml-workflow-update",
-    "skilled-agent-orchestration/131-deep-skill-evolution/028-deep-loop-collateral-doctor-playbook",
-    "skilled-agent-orchestration/131-deep-skill-evolution/029-deep-loop-test-migration",
-    "skilled-agent-orchestration/131-deep-skill-evolution/030-deep-loop-verification-changelog-closeout",
-    "skilled-agent-orchestration/131-deep-skill-evolution/031-deep-research-uplift-research-deep-review-changes",
-    "skilled-agent-orchestration/131-deep-skill-evolution/032-deep-research-uplift-applicability-analysis",
-    "skilled-agent-orchestration/131-deep-skill-evolution/033-deep-research-uplift-recommendations",
-    "skilled-agent-orchestration/131-deep-skill-evolution/034-deep-research-iteration-ordering-fix",
-    "skilled-agent-orchestration/131-deep-skill-evolution/035-deep-research-uncovered-questions",
-    "skilled-agent-orchestration/131-deep-skill-evolution/036-deep-research-hygiene-fix-pack",
-    "skilled-agent-orchestration/131-deep-skill-evolution/037-deep-agent-improvement-research-recent-updates",
-    "skilled-agent-orchestration/131-deep-skill-evolution/038-deep-agent-improvement-applicability-analysis",
-    "skilled-agent-orchestration/131-deep-skill-evolution/039-deep-agent-improvement-recommendations",
-    "skilled-agent-orchestration/131-deep-skill-evolution/040-deep-agent-improvement-correctness-fixes",
-    "skilled-agent-orchestration/131-deep-skill-evolution/041-deep-agent-improvement-doc-version-reconciliation",
-    "skilled-agent-orchestration/131-deep-skill-evolution/042-deep-agent-improvement-evaluator-hardening",
-    "skilled-agent-orchestration/131-deep-skill-evolution/043-deep-agent-improvement-cross-runtime-promotion",
-    "skilled-agent-orchestration/131-deep-skill-evolution/044-deep-agent-improvement-mixed-executor-adjudication",
-    "skilled-agent-orchestration/131-deep-skill-evolution/045-deep-skills-unique-value-differentiation"
+    "skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council",
+    "skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review",
+    "skilled-agent-orchestration/131-deep-skill-evolution/003-deep-loop-runtime",
+    "skilled-agent-orchestration/131-deep-skill-evolution/004-deep-research",
+    "skilled-agent-orchestration/131-deep-skill-evolution/005-deep-agent-improvement",
+    "skilled-agent-orchestration/131-deep-skill-evolution/006-deep-skills-differentiation",
+    "skilled-agent-orchestration/131-deep-skill-evolution/007-deep-commands-relocation"
   ],
   "migrated": false,
   "migration_source": "consolidation-115-130",
@@ -56,71 +18,71 @@
     "depends_on": [],
     "supersedes": [
       {
-        "packet_id": "skilled-agent-orchestration/115-deep-ai-council-rename",
+        "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution",
         "reason": "consolidated into 131-deep-skill-evolution"
       },
       {
-        "packet_id": "skilled-agent-orchestration/116-deep-review-complexity",
+        "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution",
         "reason": "consolidated into 131-deep-skill-evolution"
       },
       {
-        "packet_id": "skilled-agent-orchestration/117-deep-loop-core-isolation-deliberation",
+        "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution/003-deep-loop-runtime/001-core-isolation-deliberation",
         "reason": "consolidated into 131-deep-skill-evolution"
       },
       {
-        "packet_id": "skilled-agent-orchestration/118-deep-loop-full-isolation-no-mcp",
+        "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution",
         "reason": "consolidated into 131-deep-skill-evolution"
       },
       {
-        "packet_id": "skilled-agent-orchestration/119-deep-research-uplift",
+        "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution",
         "reason": "consolidated into 131-deep-skill-evolution"
       },
       {
-        "packet_id": "skilled-agent-orchestration/120-deep-research-iteration-ordering-fix",
+        "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution/004-deep-research/004-iteration-ordering-fix",
         "reason": "consolidated into 131-deep-skill-evolution"
       },
       {
-        "packet_id": "skilled-agent-orchestration/121-deep-research-uncovered-questions",
+        "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution/004-deep-research/005-uncovered-questions",
         "reason": "consolidated into 131-deep-skill-evolution"
       },
       {
-        "packet_id": "skilled-agent-orchestration/122-deep-research-hygiene-fix-pack",
+        "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution/004-deep-research/006-hygiene-fix-pack",
         "reason": "consolidated into 131-deep-skill-evolution"
       },
       {
-        "packet_id": "skilled-agent-orchestration/123-deep-agent-improvement-uplift",
+        "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution",
         "reason": "consolidated into 131-deep-skill-evolution"
       },
       {
-        "packet_id": "skilled-agent-orchestration/124-deep-agent-improvement-correctness-fixes",
+        "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution/005-deep-agent-improvement/004-correctness-fixes",
         "reason": "consolidated into 131-deep-skill-evolution"
       },
       {
-        "packet_id": "skilled-agent-orchestration/124-sk-ai-council-shared-runtime-deliberation",
+        "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council/007-shared-runtime-deliberation",
         "reason": "consolidated into 131-deep-skill-evolution"
       },
       {
-        "packet_id": "skilled-agent-orchestration/125-deep-agent-improvement-doc-version-reconciliation",
+        "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution/005-deep-agent-improvement/005-doc-version-reconciliation",
         "reason": "consolidated into 131-deep-skill-evolution"
       },
       {
-        "packet_id": "skilled-agent-orchestration/126-deep-agent-improvement-evaluator-hardening",
+        "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution/005-deep-agent-improvement/006-evaluator-hardening",
         "reason": "consolidated into 131-deep-skill-evolution"
       },
       {
-        "packet_id": "skilled-agent-orchestration/127-deep-agent-improvement-cross-runtime-promotion",
+        "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution/005-deep-agent-improvement/007-cross-runtime-promotion",
         "reason": "consolidated into 131-deep-skill-evolution"
       },
       {
-        "packet_id": "skilled-agent-orchestration/128-deep-agent-improvement-mixed-executor-adjudication",
+        "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication",
         "reason": "consolidated into 131-deep-skill-evolution"
       },
       {
-        "packet_id": "skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic",
+        "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution",
         "reason": "consolidated into 131-deep-skill-evolution"
       },
       {
-        "packet_id": "skilled-agent-orchestration/130-deep-skills-unique-value-differentiation",
+        "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution/006-deep-skills-differentiation/001-unique-value-differentiation",
         "reason": "consolidated into 131-deep-skill-evolution"
       }
     ],
@@ -150,15 +112,12 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      "001-ai-council-rename-preflight-and-plan/spec.md",
-      "007-ai-council-shared-runtime-deliberation/spec.md",
-      "008-ai-council-iterative-research-and-architecture/spec.md",
-      "014-deep-review-complexity-research-synthesis/spec.md",
-      "022-deep-loop-core-isolation-deliberation/spec.md",
-      "023-deep-loop-runtime-skill-scaffold/spec.md",
-      "031-deep-research-uplift-research-deep-review-changes/spec.md",
-      "037-deep-agent-improvement-research-recent-updates/spec.md",
-      "045-deep-skills-unique-value-differentiation/spec.md"
+      "001-ai-council/spec.md",
+      "002-deep-review/spec.md",
+      "003-deep-loop-runtime/spec.md",
+      "004-deep-research/spec.md",
+      "005-deep-agent-improvement/spec.md",
+      "006-deep-skills-differentiation/spec.md"
     ],
     "entities": [
       {
@@ -200,12 +159,12 @@
     ],
     "causal_summary": "Consolidate 17 independently-created packets (115-130) \u2014 covering the co-evolution of ai-council, deep-review, deep-loop-runtime, deep-research, and deep-agent-improvement \u2014 into a single multi-phased spec folder with 45 thematically-ordered child phases. Preserves all shipped artifacts while unifying the resume ladder, continuity recovery, and cross-arc impact analysis under one parent.",
     "created_at": "2026-05-23T09:23:18.906998Z",
-    "last_save_at": "2026-05-23T09:23:18.906998Z",
+    "last_save_at": "2026-05-23T09:53:18.749092Z",
     "save_lineage": "consolidation",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "last_active_child_id": "skilled-agent-orchestration/131-deep-skill-evolution/037-deep-agent-improvement-research-recent-updates"
+    "last_active_child_id": "skilled-agent-orchestration/131-deep-skill-evolution/007-deep-commands-relocation"
   }
 }

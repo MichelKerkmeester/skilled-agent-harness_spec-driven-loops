@@ -1,0 +1,24 @@
+{
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/131-deep-skill-evolution/007-deep-commands-relocation",
+  "description": "Feature Specification: 131/007 — Deep-* Commands Relocation",
+  "keywords": [
+    "deep",
+    "commands",
+    "relocation",
+    "assets",
+    "references",
+    "cross-runtime",
+    "wave",
+    "refactor"
+  ],
+  "lastUpdated": "2026-05-23T00:00:00.000Z",
+  "specId": "007",
+  "folderSlug": "007-deep-commands-relocation",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "131-deep-skill-evolution"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

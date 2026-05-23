@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution/007-deep-commands-relocation",
+  "spec_folder": "skilled-agent-orchestration/131-deep-skill-evolution/007-deep-commands-relocation",
+  "parent_id": "skilled-agent-orchestration/131-deep-skill-evolution",
+  "children_ids": [],
+  "migrated": false,
+  "migration_source": null,
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution/006-deep-skills-differentiation",
+        "reason": "predecessor phase; 006 audited deep-* skill boundaries that 007 relocates"
+      }
+    ],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council",
+        "reason": "ai-council command MD + agents affected by relocation"
+      },
+      {
+        "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review",
+        "reason": "deep-review command MD + agents affected by relocation"
+      },
+      {
+        "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution/003-deep-loop-runtime",
+        "reason": "deep-loop runtime manages executor config used by deep-* dispatch"
+      },
+      {
+        "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution/004-deep-research",
+        "reason": "deep-research command MD + agents affected by relocation"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep commands relocation",
+      "deep:review assets",
+      "deep:research assets",
+      "deep:ai-council assets",
+      "spec_kit deep-* migration",
+      "131/007"
+    ],
+    "key_topics": [
+      "deep-commands",
+      "relocation",
+      "asset-move",
+      "reference-update",
+      "cross-runtime",
+      "skill-graph",
+      "naming-convention",
+      "wave",
+      "bulk-sed"
+    ],
+    "importance_tier": "important",
+    "status": "active",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Complete the deep-* command asset relocation: move 6 workflow YAMLs to co-located commands/deep/assets/, migrate 2 Gemini TOMLs + author 1 new, update ~25 live operator-facing references to /deep:* slash syntax, recompile skill-graph, run vitest smoke, and bulk-sed ~5,267 historical spec-doc references. Single executor (cli-opencode + deepseek-v4-pro) across 6 sequential waves.",
+    "created_at": "2026-05-23T00:00:00Z",
+    "last_save_at": "2026-05-23T00:00:00Z",
+    "save_lineage": "scaffold",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ]
+  }
+}
