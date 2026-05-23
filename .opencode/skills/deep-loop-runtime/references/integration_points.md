@@ -176,6 +176,6 @@ node .opencode/skills/deep-loop-runtime/scripts/convergence.cjs \
 | `lib/coverage-graph/*.ts` | Graph storage, query, and signal primitives. |
 | `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Review auto consumer. |
 | `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Research auto consumer. |
-| `.opencode/commands/doctor.md` | Doctor route boundary. |
+| `.opencode/commands/doctor/speckit.md` | Doctor route boundary. |
 | `.opencode/skills/system-spec-kit/mcp_server/vitest.config.ts` | Runtime test discovery. |
 
