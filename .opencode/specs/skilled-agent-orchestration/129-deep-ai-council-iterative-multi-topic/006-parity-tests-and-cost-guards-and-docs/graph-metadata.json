@@ -1,0 +1,18 @@
+{
+  "spec_id": "006",
+  "folder_slug": "parity-tests-and-cost-guards-and-docs",
+  "parent_chain": ["skilled-agent-orchestration", "129-deep-ai-council-iterative-multi-topic"],
+  "manual": {
+    "depends_on": ["skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/005-command-and-skill-wiring"],
+    "related_to": ["skilled-agent-orchestration/130-deep-skills-unique-value-differentiation"]
+  },
+  "derived": {
+    "status": "draft",
+    "importance_tier": "important",
+    "is_phase_parent": false,
+    "completion_pct": 0,
+    "parent_id": "129-deep-ai-council-iterative-multi-topic",
+    "last_active_at": "2026-05-23T09:30:00Z"
+  },
+  "lastUpdated": "2026-05-23T09:30:00Z"
+}

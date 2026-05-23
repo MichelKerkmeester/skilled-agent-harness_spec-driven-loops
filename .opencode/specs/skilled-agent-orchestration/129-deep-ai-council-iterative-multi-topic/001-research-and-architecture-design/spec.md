@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Deep AI Council Research + Architecture Design"
-description: "Research-driven architecture design for deep-ai-council: schemas, convergence semantics, deep-loop-runtime reuse boundary, cost-guard defaults, migration path. Output: architecture ADRs guiding phases 002-006."
+description: "Completed architecture research for deep-ai-council iterative multi-topic mode: runtime boundary, 3-level state hierarchy, verdict-delta convergence, cost guards, registry parity."
 trigger_phrases:
   - "deep ai council architecture"
   - "council architecture research"
@@ -10,26 +10,27 @@ contextType: "research"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/001-research-and-architecture-design"
-    last_updated_at: "2026-05-23T06:00:00Z"
-    last_updated_by: "main-agent"
-    recent_action: "Scaffold 001 research-and-architecture-design phase child"
-    next_safe_action: "Run /spec_kit:deep-research or sk-ai-council deliberation on this folder"
+    last_updated_at: "2026-05-23T09:30:00Z"
+    last_updated_by: "codex"
+    recent_action: "129/001 architecture research complete, 5 ADRs authored, 002-006 scaffolded"
+    next_safe_action: "dispatch F1 -- 129/002 runtime primitive extraction"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-ai-council/SKILL.md"
+      - ".opencode/skills/deep-ai-council/SKILL.md"
       - ".opencode/skills/deep-loop-runtime/SKILL.md"
-      - ".opencode/commands/spec_kit/deep-research.md"
-      - ".opencode/commands/spec_kit/deep-review.md"
+      - ".opencode/skills/deep-ai-council/scripts/lib/persist-artifacts.js"
+      - ".opencode/specs/skilled-agent-orchestration/130-deep-skills-unique-value-differentiation/research/research.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-2026-05-23"
+      fingerprint: "sha256:1290010000000000000000000000000000000000000000000000000000000002"
+      session_id: "wave-5-e1-2026-05-23"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Extend deep-loop-runtime in place OR ship council-runtime peer skill that depends on it?"
-      - "Findings registry schema — share with deep-review's directly or specialize?"
-      - "Cost-guard defaults: max_rounds_per_topic, max_topics_per_session, saturation threshold."
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Runtime boundary: extend deep-loop-runtime; no council-runtime peer."
+      - "State hierarchy: session -> topic -> round."
+      - "Convergence: adjudicator-verdict stability deltas."
+      - "Cost guards: 3 rounds/topic, 5 topics/session, threshold 0.2."
 ---
 
 # Feature Specification: Deep AI Council Research + Architecture Design
@@ -41,11 +42,11 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-Design the deep-ai-council architecture via 10-iter deep-research + AI Council deliberation. Output: ADRs for runtime-reuse boundary, schema, convergence semantics, cost guards, migration path. Feeds phases 002-006 of packet 129.
+Phase 001 is complete. It researched the current `deep-ai-council` single-round surface, compared it with deep-review/deep-research runtime patterns, selected a hybrid runtime boundary, and produced ADR-001 through ADR-005 for phases 002-006.
 
-**Key Decisions**: extract council-runtime peer vs extend deep-loop-runtime; share findings registry vs specialize; per-topic vs per-session convergence.
+**Key Decisions**: Extend `deep-loop-runtime`; use session -> topic -> round state; converge by adjudicator-verdict stability; default to 3 rounds/topic, 5 topics/session, 0.2 threshold; use `council-findings-registry.json`.
 
-**Critical Dependencies**: packet 124 HYBRID verdict (re-deliberation trigger met); deep-loop-runtime primitives stable.
+**Critical Dependencies**: phases 002-006 consume this phase's ADRs.
 
 ---
 
@@ -56,14 +57,14 @@ Design the deep-ai-council architecture via 10-iter deep-research + AI Council d
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-05-23 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` (129) |
 | **Parent Packet** | 129-deep-ai-council-iterative-multi-topic |
-| **Predecessor** | n/a (first phase) |
-| **Successor** | 002-extract-or-extend-runtime-primitives |
-| **Handoff Criteria** | ≥ 4 ADRs recorded; phase 002 entry criteria specified (which primitives extracted, which extended) |
+| **Predecessor** | n/a |
+| **Successor** | `../002-runtime-primitive-extraction/` |
+| **Handoff Criteria** | ADR-001..ADR-005 complete; phases 002-006 scaffolded; strict validation green |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -72,10 +73,12 @@ Design the deep-ai-council architecture via 10-iter deep-research + AI Council d
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The deep-ai-council architecture is undefined: do we extract a new `council-runtime` peer (analogous to `deep-loop-runtime`), or extend deep-loop-runtime in place? How does the findings registry schema relate to deep-review's? What does "convergence" mean for opinion-shaped artifacts (council reports) rather than evidence-shaped artifacts (review findings)? Cost-guard defaults are unset. Phases 002-006 cannot start without these decisions.
+
+`deep-ai-council` had a current single-session, flat round artifact model. Packet 129 needs a researched architecture for iterative multi-topic council mode before implementation packets can safely modify runtime primitives, command YAML, skill docs, and runtime mirrors.
 
 ### Purpose
-Run a deep-research audit + optional AI Council deliberation to produce architecture ADRs covering: runtime boundary, registry schema, convergence semantics, cost guards, migration path from single-round to deep mode. Each ADR has concrete file-path scope + parity-test contract.
+
+Record the architecture decisions for deep council mode: runtime reuse boundary, session/topic/round schema, adjudicator-verdict stability convergence, cost guard defaults, and findings registry parity with deep-review/deep-research.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -84,25 +87,29 @@ Run a deep-research audit + optional AI Council deliberation to produce architec
 ## 3. SCOPE
 
 ### In Scope
-- Research deep-loop-runtime + sk-ai-council current contracts; identify reuse vs extend boundary.
-- Design schemas: `council-config.json`, `topic-config.json`, `round-state.jsonl`, `findings-registry.json`, `session-state.jsonl`.
-- Convergence semantics: per-topic stability scoring (Round-N→N+1 verdict-delta), session-level saturation across topics.
-- Cost-guard defaults: `max_rounds_per_topic`, `max_topics_per_session`, `saturation_threshold`, `seat_dispatch_timeout`.
-- Migration path: how operators on single-round sk-ai-council move to deep mode (mode suffix `:deep`, default still single-round).
-- Output: 4-6 ADRs in `decision-record.md`.
+
+- Research current `deep-ai-council`, `deep-loop-runtime`, `deep-review`, and `deep-research` contracts.
+- Produce `research/iter-001.md` and `research/research.md`.
+- Author ADR-001 through ADR-005.
+- Scaffold phases 002-006.
+- Update 001 continuity to complete.
 
 ### Out of Scope
-- Implementing runtime primitives (phase 002).
-- Writing orchestration code (phase 003).
-- Writing command/skill wiring (phase 005).
 
-### Files to Change
+- Runtime implementation in `deep-ai-council` or `deep-loop-runtime`.
+- Command YAML creation.
+- Runtime mirror edits.
+- Packet 115 or 130 modifications.
+
+### Files Changed
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `research/` | Create | deep-research iteration output |
-| `decision-record.md` | Create | 4-6 architecture ADRs |
-| `implementation-summary.md` | Create | completion record |
+| `research/iter-001.md` | Create | Evidence-backed architecture findings. |
+| `research/research.md` | Create | 10-section synthesis. |
+| `decision-record.md` | Replace | ADR-001..ADR-005. |
+| `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md` | Update | Completed phase docs and continuity. |
+| `../002-*` through `../006-*` | Create | Downstream phase scaffolds. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -110,20 +117,21 @@ Run a deep-research audit + optional AI Council deliberation to produce architec
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
+### P0 - Blockers
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Runtime-boundary ADR | `decision-record.md` records "extract council-runtime" OR "extend deep-loop-runtime" with rationale + file-list of touched modules |
-| REQ-002 | Schema ADRs | `decision-record.md` records ≥ 1 ADR with JSON schema sketches for session/topic/round/findings registry |
-| REQ-003 | Convergence-semantics ADR | `decision-record.md` records per-topic + session-level convergence rules with threshold defaults |
+| REQ-001 | Runtime-boundary ADR | ADR-001 recommends extend `deep-loop-runtime` and rejects peer `council-runtime`. |
+| REQ-002 | Schema ADR | ADR-002 defines session -> topic -> round JSON and artifact hierarchy. |
+| REQ-003 | Convergence ADR | ADR-003 defines verdict-delta formula and termination conditions. |
 
 ### P1 - Required
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-004 | Cost-guard defaults ADR | `decision-record.md` records `max_rounds_per_topic`, `max_topics_per_session`, `saturation_threshold` defaults |
-| REQ-005 | Migration-path ADR | `decision-record.md` records single-round → deep-mode operator migration story |
+| REQ-004 | Cost-guard ADR | ADR-004 records defaults and tunability. |
+| REQ-005 | Registry parity ADR | ADR-005 records fingerprint/content-hash contract. |
+| REQ-006 | Downstream scaffolds | 002-006 contain required spec docs and metadata. |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -131,9 +139,11 @@ Run a deep-research audit + optional AI Council deliberation to produce architec
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: ≥ 4 ADRs in `decision-record.md`, each citing file:line evidence from sk-ai-council or deep-loop-runtime.
-- **SC-002**: Phase 002 entry criteria explicit: file list, primitives to consume, test contracts to satisfy.
-- **SC-003**: Strict validate exit 0.
+- **SC-001**: `research/iter-001.md` has at least 10 file:line-cited findings.
+- **SC-002**: `research/research.md` has all 10 requested synthesis sections.
+- **SC-003**: `decision-record.md` contains ADR-001..ADR-005.
+- **SC-004**: Phase 002-006 scaffolds exist and strict-validate.
+- **SC-005**: No stale pre-rename skill references remain in packet 129.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -143,80 +153,102 @@ Run a deep-research audit + optional AI Council deliberation to produce architec
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Sibling packet 130 may produce conflicting recommendations | Med | Defer differentiation-shape ADR to phase 005 if 130 still mid-run; capture as open question here |
-| Risk | Architecture over-engineered (4-6 schemas + 2 runtimes) | Med | "Smallest viable runtime extension" framing; mark anything ambitious as "follow-on packet" not in 129 scope |
-| Risk | Convergence semantics under-specified for opinion-shaped artifacts | High | Borrow deep-review's "novelty rate" framing; adapt by treating verdict-deltas as the novel signal instead of new findings |
+| Dependency | `deep-loop-runtime` accepts third consumer | Medium | ADR-001 narrows scope to infrastructure primitives. |
+| Risk | Threshold semantics leak across siblings | High | ADR-003 and ADR-004 keep council defaults distinct. |
+| Risk | Runtime mirrors still use `ai-council` agent identity | Medium | Phase 005 owns mirror/alias decision. |
+| Risk | Registry naming overlap confuses operators | Medium | ADR-005 uses `council-findings-registry.json`. |
 <!-- /ANCHOR:risks -->
 
 ---
 
+<!-- ANCHOR:nfr -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
-### Performance
-- **NFR-P01**: deep-research iters complete in ≤ 25 min each (cli-devin SWE-1.6 typical).
+### Traceability
 
-### Reliability
-- **NFR-R01**: ADRs cite file:line evidence; no hallucinated module names.
+- **NFR-T01**: ADRs cite file:line evidence.
+- **NFR-T02**: Downstream phase scopes reference ADR-001..ADR-005.
+
+### Scope Control
+
+- **NFR-S01**: No source code outside packet 129 is modified in this phase.
+- **NFR-S02**: Packet 130 remains read-only context.
+<!-- /ANCHOR:nfr -->
 
 ---
 
+<!-- ANCHOR:edge-cases -->
 ## 8. EDGE CASES
 
-### Data Boundaries
-- Single-topic session with 1 round → deep mode degrades to current single-round mode (no breakage).
-- Topic 1 finds zero findings → still emits empty registry; doesn't block topic 2.
-
-### Error Scenarios
-- Adjudicator can't score Round-N stability (e.g. seats wildly diverge) → fall through to convergence by max-rounds.
-- Seat dispatch timeout → adjudicator notes incomplete round in convergence calc.
+- Single topic, single round should degrade to current council behavior.
+- Topic with no findings still writes an empty registry and allows later topics.
+- Max rounds reached with unresolved disagreement emits `convergence:false`.
+- Four runtime mirrors may retain `ai-council` as an alias only if phase 005 documents the alias explicitly.
+<!-- /ANCHOR:edge-cases -->
 
 ---
 
-## 9. COMPLEXITY ASSESSMENT
+<!-- ANCHOR:questions -->
+## 9. OPEN QUESTIONS
+
+None for phase 001. Phase 005 must decide agent mirror rename vs alias strategy.
+<!-- /ANCHOR:questions -->
+
+---
+
+## 10. COMPLEXITY ASSESSMENT
 
 | Dimension | Score | Triggers |
 |-----------|-------|----------|
-| Scope | 18/25 | Multi-runtime, multi-schema |
-| Risk | 15/25 | Architecture-level decisions inform 5 downstream phases |
-| Research | 18/20 | deep-research target |
-| Multi-Agent | 8/15 | Single-iter dispatch |
-| Coordination | 8/15 | Parent agent + 1 dispatch executor |
-| **Total** | **67/100** | **Level 3** |
+| Scope | 16/25 | Multi-phase architecture packet |
+| Risk | 14/25 | Runtime boundary and convergence semantics |
+| Research | 18/20 | Evidence-backed ADRs |
+| Multi-Agent | 6/15 | Council architecture only |
+| Coordination | 8/15 | Feeds five downstream phases |
+| **Total** | **62/100** | **Level 3** |
 
 ---
 
-## 10. RISK MATRIX
+## 11. RISK MATRIX
 
 | Risk ID | Description | Impact | Likelihood | Mitigation |
 |---------|-------------|--------|------------|------------|
-| R-001 | Schema gold-plates | M | M | Keep schemas as JSON Schema sketches, not full TS types |
-| R-002 | Picks wrong runtime boundary, requires re-work in phase 002 | H | M | Phase 002 begins with a checkpoint review; can re-open this ADR |
+| R-001 | Runtime boundary bleeds council semantics into review/research | H | M | ADR-001 isolates council domain logic. |
+| R-002 | Convergence thresholds confused across siblings | H | M | ADR-003/004 document distinct semantics. |
+| R-003 | Mirror rename creates alias drift | M | M | Phase 005 owns four-runtime sync. |
 
 ---
 
-## 11. USER STORIES
+## 12. USER STORIES
 
-### US-001: Phase 002 author has clear runtime contract (Priority: P0)
+### US-001: Phase 002 Implementer Has Runtime Boundary
 
-**As a** phase 002 implementer, **I want** a precise list of which primitives to import/extend and which to author fresh, **so that** I can write code without re-debating boundary.
+**As a** phase 002 implementer, **I want** ADR-001 to define what belongs in `deep-loop-runtime`, **so that** I can extend primitives without creating a duplicate runtime package.
 
 **Acceptance Criteria**:
-1. Given the ADRs, When phase 002 starts, Then it has a Files-to-Change table that maps directly to ADR decisions.
+1. Given ADR-001, When 002 starts, Then it can enumerate shared primitives and rejected alternatives.
+
+### US-002: Phase 006 Author Has Parity Contract
+
+**As a** phase 006 implementer, **I want** ADR-005 and packet 130 invariants referenced, **so that** parity tests protect deep-skill boundaries.
+
+**Acceptance Criteria**:
+1. Given ADR-005 and packet 130 section 6, When tests are written, Then routing and registry parity have explicit fixtures.
 
 ---
 
-## 12. OPEN QUESTIONS
+## OPEN QUESTIONS
 
-- Should council-runtime live under `.opencode/skills/council-runtime/` (new peer) OR `.opencode/skills/deep-loop-runtime/lib/council/` (extension)?
-- Convergence: continuous stability score (e.g. 0.0-1.0) or discrete (verdict same/changed)?
-- Findings registry: per-session OR per-spec-folder lifetime?
+- Phase 005 must decide whether runtime agent files are renamed to `deep-ai-council` or retain `ai-council` as a documented alias.
 
 ---
 
+<!-- ANCHOR:related-docs -->
 ## RELATED DOCUMENTS
 
-- **Parent**: `../spec.md`
-- **Implementation Plan**: `plan.md`
-- **Tasks**: `tasks.md`
-- **Checklist**: `checklist.md`
+- **Research Iteration**: `research/iter-001.md`
+- **Research Synthesis**: `research/research.md`
 - **Decision Record**: `decision-record.md`
+- **Implementation Summary**: `implementation-summary.md`
+- **Parent Packet**: `../spec.md`
+<!-- /ANCHOR:related-docs -->

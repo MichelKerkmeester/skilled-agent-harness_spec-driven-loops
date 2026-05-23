@@ -1,0 +1,17 @@
+{
+  "specFolder": "skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/005-command-and-skill-wiring",
+  "description": "Phase 005: add /spec_kit:deep-council auto/confirm command wiring, skill docs, and four-runtime mirror synchronization.",
+  "keywords": ["deep-council-command", "workflow-yaml", "runtime-mirrors", "adr-004"],
+  "lastUpdated": "2026-05-23T09:30:00Z",
+  "specId": "005",
+  "folderSlug": "command-and-skill-wiring",
+  "parentChain": ["skilled-agent-orchestration", "129-deep-ai-council-iterative-multi-topic"],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2",
+  "status": "draft",
+  "manual": {
+    "depends_on": ["skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/004-multi-topic-session-and-findings-registry"],
+    "related_to": []
+  }
+}

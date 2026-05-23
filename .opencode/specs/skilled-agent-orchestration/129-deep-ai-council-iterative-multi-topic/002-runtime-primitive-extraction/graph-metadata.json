@@ -1,21 +1,21 @@
 {
-  "spec_id": "001",
-  "folder_slug": "research-and-architecture-design",
+  "spec_id": "002",
+  "folder_slug": "runtime-primitive-extraction",
   "parent_chain": [
     "skilled-agent-orchestration",
     "129-deep-ai-council-iterative-multi-topic"
   ],
   "manual": {
-    "depends_on": [],
-    "related_to": [
-      "skilled-agent-orchestration/130-deep-skills-unique-value-differentiation"
-    ]
+    "depends_on": [
+      "skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/001-research-and-architecture-design"
+    ],
+    "related_to": []
   },
   "derived": {
-    "status": "complete",
+    "status": "draft",
     "importance_tier": "important",
     "is_phase_parent": false,
-    "completion_pct": 100,
+    "completion_pct": 0,
     "parent_id": "129-deep-ai-council-iterative-multi-topic",
     "last_active_at": "2026-05-23T09:30:00Z"
   },

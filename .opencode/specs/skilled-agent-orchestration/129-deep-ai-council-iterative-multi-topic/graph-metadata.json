@@ -6,20 +6,20 @@
   ],
   "manual": {
     "depends_on": [
-      "skilled-agent-orchestration/124-sk-ai-council-shared-runtime-deliberation"
+      "skilled-agent-orchestration/124-deep-ai-council-shared-runtime-deliberation"
     ],
     "related_to": [
       "skilled-agent-orchestration/130-deep-skills-unique-value-differentiation"
     ]
   },
   "derived": {
-    "status": "draft",
+    "status": "in-progress",
     "importance_tier": "important",
     "is_phase_parent": true,
     "last_active_child_id": "001-research-and-architecture-design",
-    "last_active_at": "2026-05-23T06:00:00Z",
-    "child_phase_count": 1,
-    "completed_child_phase_count": 0
+    "last_active_at": "2026-05-23T09:30:00Z",
+    "child_phase_count": 6,
+    "completed_child_phase_count": 1
   },
-  "lastUpdated": "2026-05-23T06:00:00Z"
+  "lastUpdated": "2026-05-23T09:30:00Z"
 }
