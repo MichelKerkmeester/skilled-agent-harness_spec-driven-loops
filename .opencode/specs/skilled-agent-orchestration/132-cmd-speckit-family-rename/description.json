@@ -10,7 +10,7 @@
   ],
   "lastUpdated": "2026-05-23T14:11:35.542Z",
   "specId": "132",
-  "folderSlug": "speckit-rename",
+  "folderSlug": "cmd-speckit-family-rename",
   "parentChain": [
     "..",
     ".opencode",
@@ -21,6 +21,6 @@
   "memoryNameHistory": [
     "23-05-26_15-01__renamed-the-speckit-slash-command-directory-from.md",
     "23-05-26_15-05__renamed-the-speckit-slash-command-directory-from.md",
-    "23-05-26_15-11__renamed-packet-folder-from-132-speckit-rename-to.md"
+    "23-05-26_15-11__renamed-packet-folder-to-cmd-speckit-family.md"
   ]
 }
