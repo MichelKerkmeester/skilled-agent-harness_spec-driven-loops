@@ -1,9 +1,9 @@
+import { describe, expect, it } from 'vitest';
+
 import { existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-
-import { describe, expect, it } from 'vitest';
 
 const require = createRequire(import.meta.url);
 const {
@@ -18,6 +18,9 @@ const {
   registryPath: (packetPath: string) => string;
 };
 
+/**
+ * Creates a temporary directory and runs the callback within it, cleaning up afterwards.
+ */
 async function withTempPacket(run: (packetPath: string) => void | Promise<void>): Promise<void> {
   const tempDir = mkdtempSync(join(tmpdir(), 'council-findings-registry-'));
   try {
@@ -27,6 +30,9 @@ async function withTempPacket(run: (packetPath: string) => void | Promise<void>)
   }
 }
 
+/**
+ * Creates a default finding object for testing with the given overrides.
+ */
 function finding(overrides: Record<string, unknown> = {}): Record<string, unknown> {
   return {
     session_id: 'council-session-test',

@@ -1,9 +1,9 @@
+import { describe, expect, it } from 'vitest';
+
 import { existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-
-import { describe, expect, it } from 'vitest';
 
 const require = createRequire(import.meta.url);
 const { createSessionState, createRoundState } = require('../../../deep-loop-runtime/lib/council/session-state-hierarchy.cjs') as {
@@ -52,6 +52,9 @@ interface DispatchCapture {
   readonly topic_brief: Record<string, unknown>;
 }
 
+/**
+ * Creates a temporary directory and runs the callback within it, cleaning up afterwards.
+ */
 function withTempPacket(run: (packetSpecFolder: string) => Promise<void>): Promise<void> {
   const tempDir = mkdtempSync(join(tmpdir(), 'council-deep-mode-e2e-'));
   return run(tempDir).finally(() => {
@@ -59,6 +62,9 @@ function withTempPacket(run: (packetSpecFolder: string) => Promise<void>): Promi
   });
 }
 
+/**
+ * Creates a session state object for testing with default topics and round configuration.
+ */
 function sessionState(packetSpecFolder: string): Record<string, unknown> {
   return createSessionState({
     sessionId: 'council-session-e2e',
@@ -75,6 +81,9 @@ function sessionState(packetSpecFolder: string): Record<string, unknown> {
   });
 }
 
+/**
+ * Creates a verdict object for testing with the given option, confidence, and overrides.
+ */
 function verdictFor(
   recommendedOption: string,
   confidence: number,
@@ -94,6 +103,9 @@ function verdictFor(
   };
 }
 
+/**
+ * Reads and parses a JSONL file into an array of records.
+ */
 function validJsonlRecords(filePath: string): Array<Record<string, unknown>> {
   const lines = readFileSync(filePath, 'utf8')
     .split(/\r?\n/)
@@ -102,6 +114,9 @@ function validJsonlRecords(filePath: string): Array<Record<string, unknown>> {
   return lines.map((line) => JSON.parse(line) as Record<string, unknown>);
 }
 
+/**
+ * Asserts that the session state JSONL file contains the expected number of topic-completed events.
+ */
 function assertSessionStateJsonl(filePath: string, expectedTopicsCompleted: number): void {
   const records = validJsonlRecords(filePath);
   expect(records).toHaveLength(expectedTopicsCompleted);
@@ -110,6 +125,9 @@ function assertSessionStateJsonl(filePath: string, expectedTopicsCompleted: numb
   expect(records.every((record) => record.type === 'topic_completed')).toBe(true);
 }
 
+/**
+ * Asserts that the findings registry contains final verdicts for both expected topics.
+ */
 function assertRegistryHasBothTopicVerdicts(packetSpecFolder: string): void {
   expect(existsSync(registryPath(packetSpecFolder))).toBe(true);
   const topicVerdicts = loadRegistry(packetSpecFolder)
@@ -120,6 +138,9 @@ function assertRegistryHasBothTopicVerdicts(packetSpecFolder: string): void {
   ]);
 }
 
+/**
+ * Asserts that the orchestration result respects all cost guard limits.
+ */
 function assertCostGuardsRespected(
   result: Awaited<ReturnType<typeof orchestrateSession>>,
   captures: readonly DispatchCapture[],

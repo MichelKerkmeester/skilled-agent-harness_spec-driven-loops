@@ -1,12 +1,8 @@
-// ───────────────────────────────────────────────────────────────────
-// MODULE: Cli Matrix tests
-// ───────────────────────────────────────────────────────────────────
+import { afterEach, describe, expect, it } from 'vitest';
 
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-
-import { afterEach, describe, expect, it } from 'vitest';
 
 import {
   parseExecutorConfig,
@@ -68,12 +64,18 @@ afterEach(() => {
   }
 });
 
+/**
+ * Creates a tracked temporary directory that is cleaned up after each test.
+ */
 function makeTempDir(): string {
   const dir = mkdtempSync(join(tmpdir(), 'cli-matrix-'));
   tempDirs.push(dir);
   return dir;
 }
 
+/**
+ * Parses a JSONL file into an array of record objects.
+ */
 function readJsonlRecords(path: string): Array<Record<string, unknown>> {
   return readFileSync(path, 'utf8')
     .trim()

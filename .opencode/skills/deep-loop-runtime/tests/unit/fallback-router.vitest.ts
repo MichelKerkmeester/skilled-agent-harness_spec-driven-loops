@@ -18,6 +18,9 @@ const optionalProfiles: readonly ModelProfile[] = [
   { id: 'gemini-flash', quota_pool: 'google', fallback_target: null },
 ] as const;
 
+/**
+ * Builds a ModelRegistry with a fallback target set for the given source model.
+ */
 function registryWithFallback(sourceId: string, targetId: string | null): ModelRegistry {
   return {
     models: [...requiredProfiles, ...optionalProfiles].map((profile) =>

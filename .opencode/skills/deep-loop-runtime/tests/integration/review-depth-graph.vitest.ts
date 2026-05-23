@@ -1,8 +1,8 @@
+import { afterEach, describe, expect, it, vi } from 'vitest';
+
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-
-import { afterEach, describe, expect, it, vi } from 'vitest';
 
 type CoverageModules = {
   closeDb: () => void;
@@ -20,6 +20,9 @@ const tempDirs: string[] = [];
 const futureReviewNodeKinds = ['BUG_CLASS', 'INVARIANT', 'PRODUCER', 'CONSUMER', 'TEST'] as const;
 let activeCloseDb: (() => void) | null = null;
 
+/**
+ * Loads coverage-graph modules against a fresh temporary database.
+ */
 async function loadCoverageModules(): Promise<CoverageModules> {
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'review-depth-graph-'));
   tempDirs.push(tempDir);

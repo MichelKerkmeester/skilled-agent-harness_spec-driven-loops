@@ -1,12 +1,15 @@
+import { describe, expect, it } from 'vitest';
+
 import { readFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { describe, expect, it } from 'vitest';
-
 const testDir = dirname(fileURLToPath(import.meta.url));
 const opencodeRoot = resolve(testDir, '../../../..');
 
+/**
+ * Reads a deep-review workflow YAML fixture from the commands directory.
+ */
 function readWorkflow(name: 'auto' | 'confirm'): string {
   return readFileSync(
     resolve(opencodeRoot, `commands/spec_kit/assets/spec_kit_deep-review_${name}.yaml`),

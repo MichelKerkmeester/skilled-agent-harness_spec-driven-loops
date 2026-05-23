@@ -1,9 +1,9 @@
+import { describe, expect, it } from 'vitest';
+
+import { spawn } from 'node:child_process';
 import { existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { spawn } from 'node:child_process';
-
-import { describe, expect, it } from 'vitest';
 
 import {
   acquireLoopLock,
@@ -14,6 +14,9 @@ import {
   type LoopLockData,
 } from '../../lib/deep-loop/loop-lock.js';
 
+/**
+ * Creates a temporary lock file path for loop-lock tests.
+ */
 function withTempLock(run: (lockPath: string) => void): void {
   const tempDir = mkdtempSync(join(tmpdir(), 'loop-lock-'));
   try {
@@ -23,6 +26,9 @@ function withTempLock(run: (lockPath: string) => void): void {
   }
 }
 
+/**
+ * Returns a default LoopLockData payload with optional overrides.
+ */
 function lockData(overrides: Partial<LoopLockData> = {}): LoopLockData {
   const now = new Date().toISOString();
   return {
@@ -36,6 +42,9 @@ function lockData(overrides: Partial<LoopLockData> = {}): LoopLockData {
   };
 }
 
+/**
+ * Finds a known-dead PID to use as a stale lock holder in loop-lock tests.
+ */
 function knownDeadPid(): number {
   for (let pid = 999_999; pid > 900_000; pid -= 1) {
     if (!processAlive(pid)) return pid;
@@ -49,6 +58,9 @@ type ChildLockResult = {
   diskPacketId: string | null;
 };
 
+/**
+ * Spawns a child process that acquires a loop lock after a barrier is released.
+ */
 function runLockChild(lockPath: string, barrierPath: string, packetId: string): Promise<ChildLockResult> {
   const moduleUrl = new URL('../../lib/deep-loop/loop-lock.ts', import.meta.url).href;
   const script = `

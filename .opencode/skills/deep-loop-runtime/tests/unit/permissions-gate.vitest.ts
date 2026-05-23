@@ -1,8 +1,8 @@
+import { describe, expect, it } from 'vitest';
+
 import { mkdirSync, mkdtempSync, realpathSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
-
-import { describe, expect, it } from 'vitest';
 
 import {
   evaluatePreDispatchToolCalls,
@@ -10,6 +10,9 @@ import {
   type PermissionsMatrix,
 } from '../../lib/deep-loop/permissions-gate.js';
 
+/**
+ * Returns a minimal PermissionsMatrix with the given rules.
+ */
 function baseMatrix(rules: PermissionsMatrix['rules']): PermissionsMatrix {
   return {
     version: '1.0',
@@ -18,6 +21,9 @@ function baseMatrix(rules: PermissionsMatrix['rules']): PermissionsMatrix {
   };
 }
 
+/**
+ * Creates a temporary directory that is cleaned up after the test callback.
+ */
 function withTempDir(run: (tempDir: string) => void): void {
   const tempDir = mkdtempSync(path.join(tmpdir(), 'permissions-gate-'));
   try {

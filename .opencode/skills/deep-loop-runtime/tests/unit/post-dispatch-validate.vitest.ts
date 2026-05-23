@@ -1,8 +1,8 @@
+import { describe, expect, it } from 'vitest';
+
 import { mkdtempSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-
-import { describe, expect, it } from 'vitest';
 
 import {
   PostDispatchValidationError,
@@ -17,6 +17,9 @@ type TempPaths = {
   stateLogPath: string;
 };
 
+/**
+ * Creates temporary paths for post-dispatch-validate test fixtures.
+ */
 function withTempPaths(run: (paths: TempPaths) => void): void {
   const tempDir = mkdtempSync(join(tmpdir(), 'post-dispatch-validate-'));
   const iterationFile = join(tempDir, 'iteration-001.md');

@@ -29,7 +29,7 @@ const baseVerdict = {
 };
 
 describe('council adjudicator verdict scoring', () => {
-  it('marks materially stable consecutive verdicts below saturation threshold', () => {
+  it('marks materially stable consecutive verdicts when below saturation threshold', () => {
     const result = scoreVerdictDelta(baseVerdict, { ...baseVerdict, confidence: 0.8 });
 
     expect(result.verdict_delta).toBeCloseTo(0.004);
@@ -37,7 +37,7 @@ describe('council adjudicator verdict scoring', () => {
     expect(result.components.option_changed).toBe(0);
   });
 
-  it('identifies convergence after two stable round deltas', () => {
+  it('identifies convergence when two consecutive round deltas are stable', () => {
     const progression = scoreVerdictProgression([
       baseVerdict,
       { ...baseVerdict, confidence: 0.8 },

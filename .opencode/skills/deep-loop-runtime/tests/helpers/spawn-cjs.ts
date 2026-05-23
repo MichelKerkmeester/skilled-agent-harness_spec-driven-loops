@@ -38,6 +38,9 @@ export type ScriptNamespace = {
   sessionId: string;
 };
 
+/**
+ * Generates a unique namespace for a script run with timestamp and random nonce.
+ */
 export function uniqueNamespace(scriptName: ScriptName, loopType: 'research' | 'review' = 'review'): ScriptNamespace {
   const nonce = `${Date.now()}-${Math.random().toString(16).slice(2)}`;
   return {
@@ -47,6 +50,9 @@ export function uniqueNamespace(scriptName: ScriptName, loopType: 'research' | '
   };
 }
 
+/**
+ * Converts a ScriptNamespace into CLI flag arguments.
+ */
 export function namespaceArgs(namespace: ScriptNamespace): string[] {
   return [
     '--spec-folder',
@@ -58,6 +64,9 @@ export function namespaceArgs(namespace: ScriptNamespace): string[] {
   ];
 }
 
+/**
+ * Runs a CJS script synchronously and returns parsed JSON output.
+ */
 export function runScript(scriptName: ScriptName, args: string[] = [], options: RunScriptOptions = {}): ScriptResult {
   const scriptPath = resolve(runtimeRoot, 'scripts', `${scriptName}.cjs`);
   const result = spawnSync(process.execPath, [scriptPath, ...args], {
@@ -76,6 +85,9 @@ export function runScript(scriptName: ScriptName, args: string[] = [], options: 
   };
 }
 
+/**
+ * Spawns a CJS script as a child process with configurable timeout and returns stdout/stderr.
+ */
 export function spawnCjs(
   scriptPath: string,
   args: string[] = [],
@@ -114,6 +126,9 @@ export function spawnCjs(
   });
 }
 
+/**
+ * Seeds a review dimension node via the upsert script into the given namespace.
+ */
 export function seedReviewNode(namespace: ScriptNamespace, id = 'dimension-1'): ScriptResult {
   return runScript('upsert', [
     ...namespaceArgs(namespace),
@@ -122,6 +137,9 @@ export function seedReviewNode(namespace: ScriptNamespace, id = 'dimension-1'): 
   ]);
 }
 
+/**
+ * Deletes all coverage graph rows for a namespace to clean up after a test.
+ */
 export async function cleanupNamespace(namespace: ScriptNamespace): Promise<void> {
   const db = await import('../../lib/coverage-graph/coverage-graph-db.js');
   const connection = db.getDb();

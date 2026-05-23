@@ -1,11 +1,14 @@
+import { describe, expect, it } from 'vitest';
+
 import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
-import { describe, expect, it } from 'vitest';
-
 import { PromptPackError, renderPromptPack, validatePromptPackTemplate } from '../../lib/deep-loop/prompt-pack';
 
+/**
+ * Creates a temporary template file for prompt-pack tests.
+ */
 function withTempTemplate(content: string, run: (templatePath: string) => void): void {
   const tempDir = mkdtempSync(join(tmpdir(), 'prompt-pack-'));
   const templatePath = join(tempDir, 'template.md.tmpl');

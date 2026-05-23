@@ -1,7 +1,7 @@
+import { afterEach, describe, expect, it } from 'vitest';
+
 import { existsSync, rmSync } from 'node:fs';
 import { resolve } from 'node:path';
-
-import { afterEach, describe, expect, it } from 'vitest';
 
 import {
   cleanupNamespace,
@@ -16,6 +16,9 @@ import {
 const namespaces: ScriptNamespace[] = [];
 const writerLockPath = resolve(runtimeRoot, 'storage', '.deep-loop-graph-writer.lock');
 
+/**
+ * Waits for the writer lock file to appear within the given timeout.
+ */
 async function waitForLockFile(timeoutMs = 1_000): Promise<void> {
   const deadline = Date.now() + timeoutMs;
   while (!existsSync(writerLockPath)) {

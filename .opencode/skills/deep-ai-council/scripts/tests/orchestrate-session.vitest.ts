@@ -1,9 +1,9 @@
+import { describe, expect, it } from 'vitest';
+
 import { mkdtempSync, rmSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-
-import { describe, expect, it } from 'vitest';
 
 const require = createRequire(import.meta.url);
 const { createSessionState, createRoundState } = require('../../../deep-loop-runtime/lib/council/session-state-hierarchy.cjs') as {
@@ -28,6 +28,9 @@ const { loadRegistry } = require('../lib/findings-registry.cjs') as {
   loadRegistry: (packetSpecFolder: string) => Array<Record<string, unknown>>;
 };
 
+/**
+ * Creates a temporary directory and runs the callback within it, cleaning up afterwards.
+ */
 function withTempPacket(run: (packetSpecFolder: string) => Promise<void>): Promise<void> {
   const tempDir = mkdtempSync(join(tmpdir(), 'council-orchestrate-session-'));
   return run(tempDir).finally(() => {
@@ -35,6 +38,9 @@ function withTempPacket(run: (packetSpecFolder: string) => Promise<void>): Promi
   });
 }
 
+/**
+ * Creates a session state object for testing with default topics and round configuration.
+ */
 function sessionState(packetSpecFolder: string): Record<string, unknown> {
   return createSessionState({
     sessionId: 'council-session-test',

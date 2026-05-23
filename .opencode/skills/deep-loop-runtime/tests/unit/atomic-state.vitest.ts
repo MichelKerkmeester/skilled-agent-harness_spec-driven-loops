@@ -1,11 +1,14 @@
+import { describe, expect, it } from 'vitest';
+
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { basename, dirname, join } from 'node:path';
 
-import { describe, expect, it } from 'vitest';
-
 import { writeStateAtomic } from '../../lib/deep-loop/atomic-state.js';
 
+/**
+ * Creates a temporary directory and state path for atomic-state tests.
+ */
 function withTempState(run: (statePath: string, tempDir: string) => void): void {
   const tempDir = mkdtempSync(join(tmpdir(), 'atomic-state-'));
   try {
@@ -15,6 +18,9 @@ function withTempState(run: (statePath: string, tempDir: string) => void): void 
   }
 }
 
+/**
+ * Returns temporary sibling files matching the atomic-state naming convention.
+ */
 function tempSiblings(path: string): string[] {
   const prefix = `${basename(path)}.tmp.`;
   return readdirSync(dirname(path)).filter((entry) => entry.startsWith(prefix));

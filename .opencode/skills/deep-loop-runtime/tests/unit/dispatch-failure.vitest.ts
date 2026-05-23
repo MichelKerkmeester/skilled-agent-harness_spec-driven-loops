@@ -1,12 +1,8 @@
-// ───────────────────────────────────────────────────────────────────
-// MODULE: Dispatch Failure tests
-// ───────────────────────────────────────────────────────────────────
+import { describe, expect, it } from 'vitest';
 
 import { mkdtempSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-
-import { describe, expect, it } from 'vitest';
 
 import { emitDispatchFailure } from '../../lib/deep-loop/executor-audit.js';
 import type { ExecutorConfig } from '../../lib/deep-loop/executor-config.js';
@@ -18,6 +14,9 @@ type TempPaths = {
   stateLogPath: string;
 };
 
+/**
+ * Creates temporary paths for dispatch-failure test fixtures.
+ */
 function withTempPaths(run: (paths: TempPaths) => void): void {
   const tempDir = mkdtempSync(join(tmpdir(), 'dispatch-failure-'));
   const iterationFile = join(tempDir, 'iteration-001.md');

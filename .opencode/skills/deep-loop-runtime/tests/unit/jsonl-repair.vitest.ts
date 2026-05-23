@@ -1,12 +1,15 @@
+import { describe, expect, it } from 'vitest';
+
 import { spawnSync } from 'node:child_process';
 import { appendFileSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
-import { describe, expect, it } from 'vitest';
-
 import { appendJsonlRecord, repairJsonlTail } from '../../lib/deep-loop/jsonl-repair.js';
 
+/**
+ * Creates a temporary JSONL state file for jsonl-repair tests.
+ */
 function withTempJsonl(run: (statePath: string, tempDir: string) => void): void {
   const tempDir = mkdtempSync(join(tmpdir(), 'jsonl-repair-'));
   try {

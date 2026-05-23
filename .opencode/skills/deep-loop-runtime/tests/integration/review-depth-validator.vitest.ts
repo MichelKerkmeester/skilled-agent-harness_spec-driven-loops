@@ -1,8 +1,8 @@
+import { describe, expect, it } from 'vitest';
+
 import { mkdtempSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-
-import { describe, expect, it } from 'vitest';
 
 import {
   PostDispatchValidationError,
@@ -17,6 +17,9 @@ type TempPaths = {
   deltaFilePath: string;
 };
 
+/**
+ * Creates a temporary directory with standard file paths, runs the callback, then cleans up.
+ */
 function withTempPaths(run: (paths: TempPaths) => void): void {
   const tempDir = mkdtempSync(join(tmpdir(), 'review-depth-validator-'));
   const iterationFile = join(tempDir, 'iteration-003.md');
@@ -30,6 +33,9 @@ function withTempPaths(run: (paths: TempPaths) => void): void {
   }
 }
 
+/**
+ * Creates a default review-depth iteration record with optional overrides.
+ */
 function reviewDepthRecord(overrides: Record<string, unknown> = {}): Record<string, unknown> {
   return {
     type: 'iteration',
@@ -98,6 +104,9 @@ function reviewDepthRecord(overrides: Record<string, unknown> = {}): Record<stri
   };
 }
 
+/**
+ * Writes iteration fixture files (iteration markdown, state log, delta JSONL) to the temp directory.
+ */
 function writeIterationFixture(
   paths: TempPaths,
   stateRecord: Record<string, unknown>,
@@ -111,6 +120,9 @@ function writeIterationFixture(
   return previousStateLogSize;
 }
 
+/**
+ * Asserts that strict post-dispatch validation fails with the given reason.
+ */
 function expectStrictValidationFailure(
   stateRecord: Record<string, unknown>,
   reason: string,

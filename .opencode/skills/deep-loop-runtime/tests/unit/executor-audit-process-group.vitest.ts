@@ -1,14 +1,17 @@
+import { describe, expect, it } from 'vitest';
+
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-
-import { describe, expect, it } from 'vitest';
 
 import { runAuditedExecutorCommandAsync } from '../../lib/deep-loop/executor-audit.js';
 import type { ExecutorConfig } from '../../lib/deep-loop/executor-config.js';
 
 const posixIt = process.platform === 'win32' ? it.skip : it;
 
+/**
+ * Returns a default cli-codex ExecutorConfig for use in tests.
+ */
 function cliCodexExecutor(): ExecutorConfig {
   return {
     kind: 'cli-codex',
@@ -20,6 +23,9 @@ function cliCodexExecutor(): ExecutorConfig {
   };
 }
 
+/**
+ * Checks whether a process is alive using a zero-signal kill probe.
+ */
 function processIsAlive(pid: number): boolean {
   try {
     process.kill(pid, 0);
@@ -29,6 +35,9 @@ function processIsAlive(pid: number): boolean {
   }
 }
 
+/**
+ * Polls until a process is no longer alive, with a limited number of attempts.
+ */
 async function waitUntilDead(pid: number): Promise<void> {
   for (let attempt = 0; attempt < 20; attempt += 1) {
     if (!processIsAlive(pid)) {

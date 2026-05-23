@@ -1,9 +1,9 @@
-import { mkdtempSync, readFileSync, rmSync, writeFileSync, existsSync } from 'node:fs';
+import { describe, expect, it } from 'vitest';
+
+import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-
-import { describe, expect, it } from 'vitest';
 
 const require = createRequire(import.meta.url);
 const {
@@ -16,6 +16,9 @@ const {
   repairRoundStateJsonl: (path: string) => { repaired: boolean; droppedBytes: number };
 };
 
+/**
+ * Creates a temporary directory with a JSONL file path and cleans up afterward.
+ */
 function withTempJsonl(run: (statePath: string) => void): void {
   const tempDir = mkdtempSync(join(tmpdir(), 'council-round-jsonl-'));
   try {
@@ -25,7 +28,7 @@ function withTempJsonl(run: (statePath: string) => void): void {
   }
 }
 
-describe('council round-state-jsonl', () => {
+describe('council round-state JSONL', () => {
   it('atomically appends records and releases the write lock', () => {
     withTempJsonl((statePath) => {
       expect(appendRoundStateRecord(statePath, { type: 'round_started', topic_id: 'topic-001', round_id: 'round-001' })).toMatchObject({

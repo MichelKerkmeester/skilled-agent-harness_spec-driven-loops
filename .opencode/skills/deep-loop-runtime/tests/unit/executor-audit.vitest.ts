@@ -1,8 +1,8 @@
+import { describe, expect, it } from 'vitest';
+
 import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-
-import { describe, expect, it } from 'vitest';
 
 import {
   appendExecutorAuditToLastRecord,
@@ -19,6 +19,9 @@ import {
 } from '../../lib/deep-loop/executor-audit.js';
 import type { ExecutorConfig } from '../../lib/deep-loop/executor-config.js';
 
+/**
+ * Creates a temporary state log with initial content for executor-audit tests.
+ */
 function withTempStateLog(content: string, run: (stateLogPath: string) => void): void {
   const tempDir = mkdtempSync(join(tmpdir(), 'executor-audit-'));
   const stateLogPath = join(tempDir, 'state.jsonl');
@@ -31,6 +34,9 @@ function withTempStateLog(content: string, run: (stateLogPath: string) => void):
   }
 }
 
+/**
+ * Returns a default cli-codex ExecutorConfig for use in tests.
+ */
 function cliCodexExecutor(): ExecutorConfig {
   return {
     kind: 'cli-codex',
