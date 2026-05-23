@@ -13,6 +13,7 @@ Output: JSON array of skill recommendations with confidence scores
 Options:
     --stdin      Read the single prompt from stdin instead of argv
     --stdin-preferred  Prefer stdin for the single-prompt mode, falling back to argv when stdin is empty
+    --deep-skill-routing-json  Score deep-review/deep-research/deep-ai-council routing from JSON stdin
     --health      Run health check diagnostics
     --validate-only  Run strict skill-graph validation
     --threshold   Confidence threshold used by default dual-threshold filtering (default: 0.8)
@@ -257,6 +258,12 @@ SKILL_ALIAS_GROUPS = {
         "/spec_kit:deep-review",
         "spec_kit:deep-review",
         "deep-review",
+    },
+    "deep-ai-council": {
+        "deep-ai-council",
+        "deep council",
+        "deep-council",
+        "sk-ai-council",
     },
 }
 SKILL_ALIAS_TO_CANONICAL = {
@@ -504,6 +511,7 @@ def recommend_with_native_advisor(
     if recommendations is not None:
         prompt_lower = prompt.lower()
         _apply_deep_research_disambiguation(recommendations, prompt_lower)
+        _apply_deep_skill_routing_layer(recommendations, prompt)
         recommendations.sort(
             key=lambda x: (
                 -float(x.get("confidence", 0.0)),
@@ -2495,6 +2503,256 @@ def _apply_memory_save_file_operation_cap(
             recommendation["confidence"] = min(float(recommendation.get("confidence", 0.0)), 0.49)
 
 
+# Candidate-3 deep-skill routing, per 130 research.md §5-§6:
+#   total_score = (lexical_score * 1.0) + (structural_score * 2.0) + (prior_art_score * 3.0)
+# Fallback to Candidate 2 happens naturally when packet_context is empty: prior_art_score=0.
+# LOW confidence (<0.65) returns a clarifying_question payload. This closes 130 F60,
+# where "iterate findings until convergence" was DANGEROUS because all deep-* loops
+# have different convergence and findings semantics.
+DEEP_ROUTING_SKILLS = ("deep-review", "deep-research", "deep-ai-council")
+DEEP_ROUTING_CONFIDENCE_THRESHOLD = 0.65
+
+DEEP_ROUTING_LEXICAL_PATTERNS = {
+    "deep-review": (
+        (r"\bdeep[- ]review\b", 1.8),
+        (r"\breview loop\b|\biterative review\b|\bmulti-pass review\b", 1.4),
+        (r"\baudit\b|\breview\b", 0.7),
+        (r"\bfindings?\b|\bconvergence\b|\bloop\b|\biterate\b", 0.35),
+    ),
+    "deep-research": (
+        (r"\bdeep[- ]research\b|\bresearch loop\b|\biterative research\b", 1.8),
+        (r"\binvestigat(?:e|ion|ing)\b|\bresearch\b|\bdiscover(?:y|ing)?\b", 1.2),
+        (r"\bnewinforatio\b|\bnegative knowledge\b|\bruled out\b", 1.2),
+        (r"\bconvergence\b|\bloop\b|\biterate\b", 0.25),
+    ),
+    "deep-ai-council": (
+        (r"\bdeep[- ]ai[- ]council\b|\bdeep[- ]council\b|\bsk[- ]ai[- ]council\b|\bai[- ]council\b", 2.0),
+        (r"\bdeliberat(?:e|ion|ing)\b|\bmulti-seat\b|\bcouncil\b", 1.5),
+        (r"\bstrateg(?:y|ies)\b|\boption(?:s)?\b|\bverdict\b|\bdecision\b", 0.7),
+        (r"\bconver(?:ge|ges|gence)\b|\biterate\b", 0.2),
+    ),
+}
+
+DEEP_ROUTING_STRUCTURAL_PATTERNS = {
+    "deep-review": (
+        (r"\bfindings? stabiliz(?:e|es|ed|ing)\b|\bfindingstability\b", 2.0),
+        (r"\b(p0|p1|p2)\b|\bseverity tiers?\b|\badversarial\b|\bdefect(?:s)?\b", 1.4),
+        (r"\bcode audit\b|\bquality audit\b|\brelease readiness\b|\bsecurity audit\b", 1.2),
+        (r"\bcoverage-graph signals?\b", 0.4),
+    ),
+    "deep-research": (
+        (r"\binvestigation\b|\binvestigate whether\b|\bresearch topic\b|\boriginal .* investigation topic\b", 1.8),
+        (r"\bnewinforatio\b|\bnew information\b|\bdiscover new\b|\bdiscovering new\b", 1.6),
+        (r"\bnegative knowledge\b|\bruled[- ]out directions?\b|\bdead ends?\b", 1.3),
+        (r"\bdeep[- ]research packet\b.*\bdrift\b|\bdrift\b.*\binvestigation topic\b", 1.5),
+    ),
+    "deep-ai-council": (
+        (r"\barchitecture decision\b|\bdesign decision\b|\bstrategy comparison\b", 2.0),
+        (r"\bdeliberat(?:e|ion|ing)\b|\bmulti-seat\b|\bopinion synthesis\b", 1.8),
+        (r"\bwhether\b.{0,80}\b(or|vs|versus)\b|\bcoverage-graph signals\b.{0,80}\badjudicator self-scoring\b", 1.5),
+        (r"\bverdict stability\b|\badjudicator[- ]verdict\b|\brecommend the best\b", 1.4),
+    ),
+}
+
+
+def _packet_context_has_prior_art(packet_context: Dict[str, Any]) -> bool:
+    """Return True when routing context contains any usable prior-art signal."""
+    return bool(packet_context)
+
+
+def _flatten_context_values(value: Any) -> List[str]:
+    """Flatten packet-context primitives into lowercase strings for prior-art matching."""
+    if value is None:
+        return []
+    if isinstance(value, str):
+        return [value.lower()]
+    if isinstance(value, (int, float, bool)):
+        return [str(value).lower()]
+    if isinstance(value, dict):
+        values: List[str] = []
+        for key, item in value.items():
+            values.append(str(key).lower())
+            values.extend(_flatten_context_values(item))
+        return values
+    if isinstance(value, (list, tuple, set)):
+        values = []
+        for item in value:
+            values.extend(_flatten_context_values(item))
+        return values
+    return [str(value).lower()]
+
+
+def _score_prior_art(packet_context: Dict[str, Any]) -> Dict[str, float]:
+    """Score existing packet artifacts and operator history for Candidate-3 routing."""
+    scores = {skill: 0.0 for skill in DEEP_ROUTING_SKILLS}
+    flattened = " ".join(_flatten_context_values(packet_context))
+    if not flattened:
+        return scores
+
+    prior_patterns = {
+        "deep-review": (
+            r"deep-review|review-report|deep-review-findings-registry|p0|p1|p2",
+        ),
+        "deep-research": (
+            r"deep-research|research\.md|deep-research-findings-registry|(^|[\s/])findings-registry|newinforatio|research_topic",
+        ),
+        "deep-ai-council": (
+            r"deep-ai-council|deep-council|sk-ai-council|ai-council|council-report|session-report|verdict stability",
+        ),
+    }
+
+    for skill, patterns in prior_patterns.items():
+        for pattern in patterns:
+            if re.search(pattern, flattened):
+                scores[skill] += 1.0
+
+    recent = packet_context.get("recent_recommendations") or packet_context.get("operator_history")
+    for value in _flatten_context_values(recent):
+        for skill in DEEP_ROUTING_SKILLS:
+            aliases = SKILL_ALIAS_GROUPS.get(skill, {skill})
+            if skill in value or any(alias in value for alias in aliases):
+                scores[skill] += 0.75
+
+    return scores
+
+
+def _score_pattern_group(prompt_lower: str, patterns: Dict[str, Any]) -> Dict[str, float]:
+    """Score regex pattern groups against the normalized prompt."""
+    scores = {skill: 0.0 for skill in DEEP_ROUTING_SKILLS}
+    for skill, entries in patterns.items():
+        for pattern, weight in entries:
+            if re.search(pattern, prompt_lower):
+                scores[skill] += weight
+    return scores
+
+
+def _apply_deep_routing_incompatibility_penalties(
+    prompt_lower: str,
+    totals: Dict[str, float],
+) -> None:
+    """Lower plausible-but-wrong siblings when structural intent is explicit."""
+    if re.search(r"\bfindings? stabiliz(?:e|es|ed|ing)\b|\bfindingstability\b", prompt_lower):
+        totals["deep-research"] *= 0.35
+        totals["deep-ai-council"] *= 0.65
+
+    if re.search(r"\binvestigation\b|\binvestigate whether\b|\boriginal .* investigation topic\b", prompt_lower):
+        totals["deep-review"] *= 0.45
+
+    if re.search(r"\barchitecture decision\b|\bdeliberat(?:e|ion|ing)\b|\bwhether\b.{0,80}\b(or|vs|versus)\b", prompt_lower):
+        totals["deep-review"] *= 0.50
+        totals["deep-research"] *= 0.55
+
+    if re.search(r"\bdeep[- ]research packet\b.*\bdrift\b|\bdrift\b.*\binvestigation topic\b", prompt_lower):
+        totals["deep-review"] *= 0.55
+
+
+def _deep_routing_confidence(total_score: float) -> float:
+    """Map weighted Candidate scores into a 0..0.95 advisor confidence."""
+    return round(min(0.95, total_score / (total_score + 2.0)), 2)
+
+
+def score_deep_skill_routing(prompt: str, packet_context: dict) -> Dict[str, float]:
+    """Return Candidate-3 scores for deep-review/deep-research/deep-ai-council.
+
+    Research source: 130 research.md §5 recommends Strategy D with Candidate 3
+    routing; §6 defines the parity invariants guarded by the Vitest suite.
+    """
+    prompt_lower = prompt.lower()
+    context = packet_context if isinstance(packet_context, dict) else {}
+    lexical_scores = _score_pattern_group(prompt_lower, DEEP_ROUTING_LEXICAL_PATTERNS)
+    structural_scores = _score_pattern_group(prompt_lower, DEEP_ROUTING_STRUCTURAL_PATTERNS)
+    prior_art_scores = _score_prior_art(context) if _packet_context_has_prior_art(context) else {
+        skill: 0.0 for skill in DEEP_ROUTING_SKILLS
+    }
+
+    totals: Dict[str, float] = {}
+    for skill in DEEP_ROUTING_SKILLS:
+        totals[skill] = (
+            lexical_scores[skill] * 1.0
+            + structural_scores[skill] * 2.0
+            + prior_art_scores[skill] * 3.0
+        )
+
+    _apply_deep_routing_incompatibility_penalties(prompt_lower, totals)
+    return {skill: _deep_routing_confidence(totals[skill]) for skill in DEEP_ROUTING_SKILLS}
+
+
+def _deep_routing_confidence_band(max_score: float) -> str:
+    """Classify score confidence using the 130 Candidate-3 bands."""
+    if max_score >= 0.75:
+        return "HIGH"
+    if max_score >= 0.50:
+        return "MED"
+    return "LOW"
+
+
+def _deep_routing_clarifying_question(prompt_lower: str, winner: str, runner_up: str) -> str:
+    """Return the targeted F60 clarification for low-confidence deep-* routing."""
+    if "architecture" in prompt_lower or "decision" in prompt_lower or "strategy" in prompt_lower:
+        return "Are you comparing existing strategies (deep-ai-council) or discovering new ones (deep-research)?"
+    if "findings" in prompt_lower or "convergence" in prompt_lower or "stabilize" in prompt_lower:
+        return "Are these findings defects to audit until stable (deep-review), research discoveries to exhaust (deep-research), or council opinions to deliberate (deep-ai-council)?"
+    return f"Should this route to {winner} or {runner_up}, and what output do you expect: review-report.md, research.md, or council-report.md?"
+
+
+def deep_skill_routing_payload(prompt: str, packet_context: dict) -> Dict[str, Any]:
+    """Return full Candidate-3 routing payload with LOW-confidence clarification."""
+    scores = score_deep_skill_routing(prompt, packet_context)
+    ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
+    winner, max_score = ranked[0]
+    runner_up = ranked[1][0] if len(ranked) > 1 else ""
+    payload: Dict[str, Any] = {
+        "scores": scores,
+        "winner": winner,
+        "confidence": max_score,
+        "confidence_band": _deep_routing_confidence_band(max_score),
+        "candidate": "Candidate-3" if _packet_context_has_prior_art(packet_context if isinstance(packet_context, dict) else {}) else "Candidate-2",
+    }
+    if max_score < DEEP_ROUTING_CONFIDENCE_THRESHOLD:
+        payload["clarifying_question"] = _deep_routing_clarifying_question(prompt.lower(), winner, runner_up)
+    return payload
+
+
+def _apply_deep_skill_routing_layer(
+    recommendations: List[Dict[str, Any]],
+    prompt: str,
+    packet_context: Optional[Dict[str, Any]] = None,
+) -> None:
+    """Blend Candidate-3 deep-skill routing into the Python advisor surface."""
+    if not recommendations:
+        return
+
+    prompt_lower = prompt.lower()
+    has_deep_signal = re.search(
+        r"\b(deep[- ]research|deep[- ]review|deep[- ]council|ai[- ]council|convergence|findings? stabiliz|architecture decision|deliberat|investigation)\b",
+        prompt_lower,
+    )
+    if not has_deep_signal:
+        return
+
+    payload = deep_skill_routing_payload(prompt, packet_context or {})
+    score_map = payload["scores"]
+    mapped_scores = {
+        "deep-review": score_map["deep-review"],
+        "deep-research": score_map["deep-research"],
+        "sk-ai-council": score_map["deep-ai-council"],
+    }
+
+    for recommendation in recommendations:
+        skill = recommendation.get("skill")
+        if skill not in mapped_scores:
+            continue
+        routed_confidence = mapped_scores[skill]
+        recommendation["confidence"] = round(max(float(recommendation.get("confidence", 0.0)), routed_confidence), 2)
+        recommendation["uncertainty"] = min(float(recommendation.get("uncertainty", 0.0)), 0.30)
+        reason = str(recommendation.get("reason", ""))
+        note = f" [Candidate-3 deep routing: {payload['winner']} {payload['confidence_band']}]"
+        if note not in reason:
+            recommendation["reason"] = f"{reason}{note}"
+        if "clarifying_question" in payload:
+            recommendation["clarifying_question"] = payload["clarifying_question"]
+
+
 # ───────────────────────────────────────────────────────────────
 # 3. SCORING
 # ───────────────────────────────────────────────────────────────
@@ -3087,6 +3345,7 @@ def analyze_request(
     # deep-review vs code-review before the iteration-loop tiebreaker so the
     # primary-slot selection is stable on audit/review-token prompts.
     _apply_deep_research_disambiguation(recommendations, prompt_lower)
+    _apply_deep_skill_routing_layer(recommendations, prompt)
 
     # Iteration-loop tiebreaker: when the query mentions iterative investigation/review
     # phrases AND command-spec-kit matches alongside a cli-* executor skill, promote
@@ -3383,6 +3642,8 @@ Examples:
                         help='Read the single prompt from stdin instead of process arguments.')
     parser.add_argument('--stdin-preferred', action='store_true',
                         help='Prefer stdin for single-prompt input and fall back to argv when stdin is empty.')
+    parser.add_argument('--deep-skill-routing-json', action='store_true',
+                        help='Read {"prompt": str, "packet_context": object} from stdin and emit Candidate-3 deep routing.')
     parser.add_argument('--health', action='store_true',
                         help='Run health check diagnostics')
     parser.add_argument('--validate-only', action='store_true',
@@ -3418,6 +3679,23 @@ Examples:
 
     if args.force_refresh:
         get_skills(force_refresh=True)
+
+    if args.deep_skill_routing_json:
+        try:
+            payload = json.loads(sys.stdin.read() or "{}")
+        except json.JSONDecodeError as exc:
+            print(json.dumps({"error": f"Invalid --deep-skill-routing-json payload: {exc}"}, indent=2))
+            return 2
+        if not isinstance(payload, dict):
+            print(json.dumps({"error": "--deep-skill-routing-json payload must be an object"}, indent=2))
+            return 2
+        prompt = str(payload.get("prompt", ""))
+        packet_context = payload.get("packet_context", {})
+        if not isinstance(packet_context, dict):
+            print(json.dumps({"error": "packet_context must be an object"}, indent=2))
+            return 2
+        print(json.dumps(deep_skill_routing_payload(prompt, packet_context), indent=2))
+        return 0
 
     if args.health:
         cocoindex_binary = resolve_cocoindex_binary()
