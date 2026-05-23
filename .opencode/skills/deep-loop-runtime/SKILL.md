@@ -1,7 +1,7 @@
 ---
 name: deep-loop-runtime
-version: 1.0.0
-description: "Shared deep-loop runtime infrastructure for deep-review + deep-research: executor config, prompt-pack rendering, post-dispatch validation, atomic state, JSONL repair, loop locking, permissions, Bayesian scoring, fallback routing, coverage-graph schema + query + signals."
+version: 1.2.0
+description: "Shared deep-loop runtime: executor + prompt-pack + validation + atomic state + coverage-graph + Bayesian scoring + fallback routing."
 allowed-tools: [Bash, Read, Glob, Grep]
 ---
 
@@ -139,9 +139,9 @@ The runtime exposes deep-loop primitives to consumer workflows through two paths
 - `coverage-graph-query.ts` — query builders
 - `coverage-graph-signals.ts` — convergence signal extraction
 
-## Council Primitives
+### Council Primitives
 
-Packet 129/001 ADR-001 extends `deep-loop-runtime/lib/` with council-compatible infrastructure primitives while keeping operator-facing and domain workflow semantics in `deep-ai-council`. These primitives are consumed by downstream packet 129 phases 003-006 for per-topic orchestration, multi-topic session state, command wiring, parity tests, and docs.
+Packet 131/001/008 ADR-001 (Runtime Boundary Decision) extends `deep-loop-runtime/lib/` with council-compatible infrastructure primitives while keeping operator-facing and domain workflow semantics in `deep-ai-council`. These primitives are consumed by downstream 131/001 phases 010-013 (per-topic-multi-round, session-findings-registry, command-and-skill-wiring, parity-cost-docs) for per-topic orchestration, multi-topic session state, command wiring, parity tests and docs.
 
 **`lib/council/` (5 modules):**
 - `multi-seat-dispatch.cjs` — runs seat executors in parallel for one council round, preserves seat result order, and returns fulfilled/rejected per-seat outcomes plus round summary counts.
@@ -263,4 +263,5 @@ Shipped layout:
 - 118 phase 004: MCP tool surface removal (ADR-001 documents the deletion rationale)
 - 118 phase 008: v1.0.0 closeout, changelog, and resource-map updates
 - 117 council deliberation: `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/003-deep-loop-runtime/001-core-isolation-deliberation/`
-- changelog: `changelog/v1.0.0.md`
+- changelog: `changelog/v1.0.0.0.md` (initial shipped release)
+- changelog: `changelog/v1.1.0.0.md` (Phase-1-3 release-cleanup pass)

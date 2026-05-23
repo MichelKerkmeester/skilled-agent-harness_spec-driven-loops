@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/001-deep-loop-runtime/001-doc-remediation",
+  "spec_folder": "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/001-deep-loop-runtime/001-doc-remediation",
+  "parent_id": "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/001-deep-loop-runtime",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop-runtime doc remediation",
+      "001-doc-remediation",
+      "phase 5 backlog closure",
+      "council surface expansion",
+      "cross-arc citation drift fix",
+      "deep-loop-runtime doc-remediation plan",
+      "batch a consolidated",
+      "batch b description drift",
+      "batch c council expansion",
+      "batch d test coverage",
+      "deep-loop-runtime doc-remediation tasks",
+      "finding to edit mapping"
+    ],
+    "key_topics": [
+      "deep-loop-runtime",
+      "doc",
+      "remediation",
+      "001-doc-remediation",
+      "phase",
+      "backlog",
+      "closure",
+      "council",
+      "surface",
+      "expansion",
+      "cross-arc",
+      "citation"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "changelog/v1.1.0.0.md",
+      "changelog/v1.2.0.0.md",
+      ".opencode/skills/deep-loop-runtime/SKILL.md",
+      ".opencode/skills/deep-loop-runtime/README.md",
+      ".opencode/skills/deep-loop-runtime/changelog/v1.1.0.0.md",
+      ".opencode/skills/deep-loop-runtime/changelog/v1.2.0.0.md",
+      ".opencode/skills/deep-loop-runtime/graph-metadata.json",
+      ".opencode/skills/deep-loop-runtime/references/integration_points.md",
+      ".opencode/skills/deep-loop-runtime/references/coverage_graph_schema.md",
+      ".opencode/skills/deep-loop-runtime/lib/README.md",
+      ".opencode/skills/deep-loop-runtime/feature_catalog/feature_catalog.md",
+      ".opencode/skills/deep-loop-runtime/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/deep-loop-runtime/tests/unit/coverage-graph-query.vitest.ts",
+      ".opencode/skills/deep-loop-runtime/tests/unit/coverage-graph-signals.vitest.ts",
+      ".opencode/skills/deep-loop-runtime/tests/council/multi-seat-dispatch.vitest.ts",
+      ".opencode/skills/deep-loop-runtime/tests/council/round-state-jsonl.vitest.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "entities": [
+      {
+        "name": "v1.1.0.0.md",
+        "kind": "doc",
+        "path": "changelog/v1.1.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.2.0.0.md",
+        "kind": "doc",
+        "path": "changelog/v1.2.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-runtime/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-runtime/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-runtime/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "integration_points.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-runtime/references/integration_points.md",
+        "source": "derived"
+      },
+      {
+        "name": "coverage_graph_schema.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-runtime/references/coverage_graph_schema.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-runtime/feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-runtime/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-graph-query.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/coverage-graph-query.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-graph-signals.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/coverage-graph-signals.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "multi-seat-dispatch.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/council/multi-seat-dispatch.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "round-state-jsonl.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/council/round-state-jsonl.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Last Updated",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The parent packet's Phase 5 deep-research loop surfaced 36 unique findings (0 P0 / 23 P1 / 13 P2) across 7 transverse patterns. Zero overlap with the 21 Phase-2 audit findings — these are factual content drift the audit-and-validate phases missed. Three of the highest-impact findings were introduced or propagated by the Phase 3 README rewrite itself (`code-surface` fabrication, `129/001 ADR-001` mis-citation echoed into the new changelog, 22-vs-27 vitest count drift).",
+    "created_at": "2026-05-23T22:00:00Z",
+    "last_save_at": "2026-05-23T18:38:12.940Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ]
+  }
+}

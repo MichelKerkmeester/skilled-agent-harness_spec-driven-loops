@@ -1,6 +1,6 @@
 ---
 title: "Fallback router"
-description: "Chooses whether a failed model should fall back to a configured target or fail fast."
+description: "Resolves the fallback route when a model exhausts its quota pool. Returns fallback (to a configured target in a different pool) or fail-fast based on the model registry."
 ---
 
 # Fallback router

@@ -25,13 +25,7 @@
       }
     ],
     "conflicts_with": [],
-    "prerequisite_for": [
-      {
-        "target": "system-spec-kit",
-        "weight": 0.3,
-        "context": "phase 003 launcher integration expects this sidecar to exist"
-      }
-    ]
+    "prerequisite_for": []
   },
   "manual": {
     "depends_on": [],

@@ -1,0 +1,78 @@
+## §A — DRIFT 1a confirmation (changelog/v1.1.0.0.md:63)
+
+**v1.1.0.0.md L63 verbatim**: "- 3.5 Council primitives (5 modules per packet 129/001 ADR-001)"
+
+**Drift verdict**: CONFIRMED (5th site of the "Packet 129/001 ADR-001" pattern; missed by DR-029)
+
+## §B — DRIFT 1b confirmation (SKILL.md:144 phrase B)
+
+**SKILL.md L144 verbatim (full line)**: "Packet 129/001 ADR-001 extends `deep-loop-runtime/lib/` with council-compatible infrastructure primitives while keeping operator-facing and domain workflow semantics in `deep-ai-council`. These primitives are consumed by downstream packet 129 phases 003-006 for per-topic orchestration, multi-topic session state, command wiring, parity tests, and docs."
+
+**Phrase A** (DR-029 cite): "Packet 129/001 ADR-001 extends `deep-loop-runtime/lib/`..."
+
+**Phrase B** (NEW drift): "These primitives are consumed by downstream packet 129 phases 003-006..."
+
+**Phase 003-006 resolution**: `131/001/{010, 011, 012, 013}` — verified on disk (010-iterative-per-topic-multi-round, 011-iterative-session-findings-registry, 012-iterative-command-and-skill-wiring, 013-iterative-parity-cost-docs)
+
+**Drift verdict**: CONFIRMED (2 independent "129" drifts on one line; DR-029 caught only phrase A)
+
+## §C — DR-037 finding emitted (P1, supersedes DR-029)
+
+| # | File:Line | CURRENT | REPLACEMENT |
+|---|-----------|---------|-------------|
+| 1 | SKILL.md:144 (A) | "Packet 129/001 ADR-001 extends `deep-loop-runtime/lib/` with council-compatible infrastructure primitives..." | "Packet 131/001/008 ADR-001 (Runtime Boundary Decision) extends `deep-loop-runtime/lib/` with council-compatible infrastructure primitives..." |
+| 2 | SKILL.md:144 (B) | "These primitives are consumed by downstream packet 129 phases 003-006 for per-topic orchestration, multi-topic session state, command wiring, parity tests, and docs." | "These primitives are consumed by downstream phases `131/001/010-013` (per-topic multi-round, session-findings registry, command and skill wiring, parity/cost/docs) for per-topic orchestration, multi-topic session state, command wiring, parity tests, and docs." |
+| 3 | README.md:198 | "Packet 129/001 ADR-001 extended this skill with council-compatible runtime primitives..." | "Packet 131/001/008 ADR-001 (Runtime Boundary Decision) extended this skill with council-compatible runtime primitives..." |
+| 4 | README.md:247 | "│   └── council/                          # 5 cjs modules (per packet 129/001 ADR-001)" | "│   └── council/                          # 5 cjs modules (per packet 131/001/008 ADR-001)" |
+| 5 | README.md:417 | "Packet 129/001 ADR-001 decided that durability primitives..." | "Packet 131/001/008 ADR-001 (Runtime Boundary Decision) decided that durability primitives..." |
+| 6 | changelog/v1.1.0.0.md:63 | "- 3.5 Council primitives (5 modules per packet 129/001 ADR-001)" | "- 3.5 Council primitives (5 modules per packet 131/001/008 ADR-001)" |
+
+**Severity**: P1 (5 user-facing reader-navigation breaks)
+**Class**: cross-arc-citation-drift-completion
+**Supersedes**: DR-029 (iter 6)
+
+## §D — PASS-confirmation spot-checks (STEP 3)
+
+| Citation | Verbatim | Resolves? | Topic match? | Verdict |
+|----------|----------|-----------|--------------|---------|
+| README.md:459 | "ADR-001: script interface contract and DB lifecycle ownership transfer" | YES | YES (ADR-001 = "Per-Invocation DB Ownership for the 4 Deep-Loop Script Entry Points") | PASS |
+| README.md:460 | "ADR-001: MCP tool surface removal rationale" | YES | YES (ADR-001 = "Complete Removal of Four MCP Tools (No Backward-Compat Aliases)") | PASS |
+| README.md:461 | "117 council ruling (SPLIT, superseded by 118)" | YES | YES (ADR-001 = "SPLIT — Move Pure Runtime Libs to deep-loop-runtime/, Keep MCP Handlers + DB Owner in system-spec-kit") | PASS |
+| SKILL.md:251 | "117 ADR-001: original AI Council SPLIT ruling. Superseded for the 118 arc by user directive." | YES | YES (prose matches 117 ruling content) | PASS |
+| SKILL.md:252 | "118 ADR-001: FULL_ISOLATE_NO_MCP. Moves deep-loop runtime, coverage-graph schema/query/signals, script entry points, storage, and tests into this peer skill while removing the deep-loop MCP tool surface." | YES | YES (prose matches 118 arc content) | PASS |
+| changelog/v1.0.0.0.md:95 | "117 council ruling (superseded): ... ADR-001" | YES | YES (ADR-001 = "SPLIT — Move Pure Runtime Libs...") | PASS |
+| changelog/v1.0.0.0.md:96 | "118/003 ADR-001: script interface contract + DB lifecycle ownership transfer" | YES | YES (matches 004 ADR-001 = "Per-Invocation DB Ownership...") | PASS |
+| changelog/v1.0.0.0.md:97 | "118/004 ADR-001: MCP tool surface removal rationale" | YES | YES (matches 005 ADR-001 = "Complete Removal of Four MCP Tools...") | PASS |
+| references/script_interface_contract.md:21 | "The 118 FULL_ISOLATE_NO_MCP arc removed the four `mcp__mk_spec_memory__deep_loop_graph_*` tools." | YES | YES (descriptive prose, accurate) | PASS |
+
+## §E — Negative knowledge / non-finding verification (STEP 4)
+
+| Check | Verdict |
+|-------|---------|
+| 117 council ruling citations (3 sites) | PASS (all resolve to 001-core-isolation-deliberation/decision-record.md, ADR-001 = "SPLIT — Move Pure Runtime Libs...", topic exact) |
+| 118 ADR-001 citations (6 sites) | PASS (all resolve to 004/005 decision-record.md files, ADR-001 topics match exactly: script interface contract + MCP tool removal) |
+| Arc 118 prose | PASS (descriptive references in README, changelog, references are accurate historical descriptions) |
+| 131-deep-skill-evolution spec folder paths | PASS (all absolute paths under `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/...` resolve on disk) |
+| Third hidden drift? | NO (spot-checks of 9 representative PASS-rated citations all confirmed; no additional drifts discovered beyond the 2 confirmed in STEP 1) |
+
+## §F — Saturation judgment (STEP 5)
+
+- Finding-discovery saturation reached: YES
+- Iter 10 should be synthesis-only: YES
+- Soft-convergence structurally unreachable (1.00 × 9): CONFIRMED
+- Operational early-stop unreachable (dense doc surface): CONFIRMED
+
+## §G — Totals
+
+| Severity | Count |
+|----------|-------|
+| P0 | 0 |
+| P1 | 1 (DR-037 supersedes DR-029) |
+| P2 | 0 |
+| **Total** | **1** |
+
+**newInfoRatio**: 1.00 (1/1 novel; DR-037 captures 2 drift phrases that DR-029 missed)
+
+## §H — Verdict
+
+**Iter 9 verdict**: CROSS-ARC CITATION COMPLETION. DR-029's 4-site enumeration is incomplete; iter 9 closes the gap with 2 additional drifts (changelog/v1.1.0.0.md:63 + SKILL.md:144 phrase B). The 6 broken-citation replacement strings are packaged in §C and ready for the council-omission remediation packet. All other 24 cross-arc citations PASS.

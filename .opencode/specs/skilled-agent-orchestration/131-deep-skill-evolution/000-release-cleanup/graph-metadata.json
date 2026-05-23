@@ -1,12 +1,15 @@
 {
   "derived": {
-    "last_active_child_id": "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/003-deep-review",
-    "last_active_at": "2026-05-23T15:16:25.606Z",
-    "last_save_at": "2026-05-23T15:16:25.606Z"
+    "last_active_child_id": "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/006-gate-model-reconciliation",
+    "last_active_at": "2026-05-23T18:40:00.000Z",
+    "last_save_at": "2026-05-23T18:40:00.000Z"
   },
   "children_ids": [
     "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/001-deep-loop-runtime",
     "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/002-deep-research",
-    "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/003-deep-review"
+    "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/003-deep-review",
+    "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/004-deep-ai-council",
+    "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/005-deep-agent-improvement",
+    "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/006-gate-model-reconciliation"
   ]
 }

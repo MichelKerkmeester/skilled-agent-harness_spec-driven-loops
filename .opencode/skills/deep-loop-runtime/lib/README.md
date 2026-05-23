@@ -28,5 +28,5 @@ Shared domain logic for the three deep-* sibling skills: deep-review, deep-resea
 ## 3. RELATED RESOURCES
 
 - Parent SKILL.md: `.opencode/skills/deep-loop-runtime/SKILL.md`
-- Per-domain READMEs: `lib/council/README.md`, `lib/coverage-graph/README.md`
+- Per-domain READMEs: `lib/council/README.md`, `lib/coverage-graph/README.md`, `lib/deep-loop/README.md`
 - Tests: `.opencode/skills/deep-loop-runtime/tests/`

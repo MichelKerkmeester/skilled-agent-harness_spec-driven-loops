@@ -1,0 +1,147 @@
+# Iter 2 Report — Test-Coverage Map + graph-metadata Council Completeness
+
+## Coverage Matrix
+
+| Module | Unit | Integration | Council | Coverage Verdict |
+|--------|------|-------------|---------|------------------|
+| **lib/deep-loop/atomic-state.ts** | tests/unit/atomic-state.vitest.ts (3 tests) | No | No | FULL |
+| **lib/deep-loop/bayesian-scorer.ts** | tests/unit/bayesian-scorer.vitest.ts (6 tests) | No | No | FULL |
+| **lib/deep-loop/executor-audit.ts** | tests/unit/executor-audit.vitest.ts (24 tests) | No | No | FULL |
+| **lib/deep-loop/executor-config.ts** | tests/unit/executor-config.vitest.ts (27 tests) | No | No | FULL |
+| **lib/deep-loop/fallback-router.ts** | tests/unit/fallback-router.vitest.ts (9 tests) | No | No | FULL |
+| **lib/deep-loop/jsonl-repair.ts** | tests/unit/jsonl-repair.vitest.ts (6 tests) | No | No | FULL |
+| **lib/deep-loop/loop-lock.ts** | tests/unit/loop-lock.vitest.ts (7 tests) | No | No | FULL |
+| **lib/deep-loop/permissions-gate.ts** | tests/unit/permissions-gate.vitest.ts (9 tests) | No | No | FULL |
+| **lib/deep-loop/post-dispatch-validate.ts** | tests/unit/post-dispatch-validate.vitest.ts (14 tests) | tests/integration/review-depth-validator.vitest.ts (5 tests) | No | FULL |
+| **lib/deep-loop/prompt-pack.ts** | tests/unit/prompt-pack.vitest.ts (11 tests) | No | No | FULL |
+| **lib/coverage-graph/coverage-graph-db.ts** | No | tests/integration/review-depth-graph.vitest.ts (3 tests) + tests/helpers/spawn-cjs.ts (helper import) | No | FULL |
+| **lib/coverage-graph/coverage-graph-query.ts** | No | No | No | ZERO |
+| **lib/coverage-graph/coverage-graph-signals.ts** | No | No | No | ZERO |
+| **lib/council/adjudicator-verdict-scoring.cjs** | No | No | tests/council/adjudicator-verdict-scoring.vitest.ts (3 tests) | FULL |
+| **lib/council/cost-guards.cjs** | No | No | tests/council/cost-guards.vitest.ts (5 tests) | FULL |
+| **lib/council/multi-seat-dispatch.cjs** | No | No | tests/council/multi-seat-dispatch.vitest.ts (2 tests) | WEAK |
+| **lib/council/round-state-jsonl.cjs** | No | No | tests/council/round-state-jsonl.vitest.ts (2 tests) | WEAK |
+| **lib/council/session-state-hierarchy.cjs** | No | No | tests/council/session-state-hierarchy.vitest.ts (3 tests) | FULL |
+
+## Findings
+
+### DR-012 [P1] — coverage-graph-query.ts has zero test coverage
+- **Class**: doc-audit | test-coverage-gap
+- **Artifact**: `lib/coverage-graph/coverage-graph-query.ts:1`
+- **Evidence**: `rg -c "^\s*(test|it)\(" tests/**/*.vitest.ts` → zero matches for "coverage-graph-query" pattern; `rg "coverage-graph-query" tests/` → no import statements
+- **Description**: Documentation (README.md:191, SKILL.md:139, graph-metadata.json:82) claims `coverage-graph-query.ts` is a core module with query builders, but no test file imports or tests it directly. The module is used by scripts/convergence.cjs:280 and scripts/query.cjs:107 but lacks dedicated test coverage.
+- **Recommended fix**: Add unit test file `tests/unit/coverage-graph-query.vitest.ts` or expand integration test coverage in `tests/integration/query-script.vitest.ts` to directly import and test the query builders.
+- **Novel vs iter 1 / audit-findings.jsonl**: YES (closest prior: none - iter 1 focused on count drift and changelog omissions, not module-level coverage gaps)
+
+### DR-013 [P1] — coverage-graph-signals.ts has zero test coverage
+- **Class**: doc-audit | test-coverage-gap
+- **Artifact**: `lib/coverage-graph/coverage-graph-signals.ts:1`
+- **Evidence**: `rg -c "^\s*(test|it)\(" tests/**/*.vitest.ts` → zero matches for "coverage-graph-signals" pattern; `rg "coverage-graph-signals" tests/` → no import statements
+- **Description**: Documentation (README.md:192, SKILL.md:140, graph-metadata.json:83) claims `coverage-graph-signals.ts` provides convergence signal extraction, but no test file imports or tests it directly. The module is used by scripts/convergence.cjs:279 and scripts/status.cjs:103 but lacks dedicated test coverage.
+- **Recommended fix**: Add unit test file `tests/unit/coverage-graph-signals.vitest.ts` or expand integration test coverage in `tests/integration/convergence-script.vitest.ts` and `tests/integration/status-script.vitest.ts` to directly import and test signal extraction functions.
+- **Novel vs iter 1 / audit-findings.jsonl**: YES (closest prior: none - iter 1 focused on count drift and changelog omissions, not module-level coverage gaps)
+
+### DR-014 [P2] — multi-seat-dispatch.cjs has weak test coverage (2 tests)
+- **Class**: doc-audit | test-coverage-gap
+- **Artifact**: `tests/council/multi-seat-dispatch.vitest.ts:19`
+- **Evidence**: `wc -l tests/council/multi-seat-dispatch.vitest.ts` → 62 lines; `rg -c "^\s*(test|it)\(" tests/council/multi-seat-dispatch.vitest.ts` → 2 tests
+- **Description**: Council module `multi-seat-dispatch.cjs` has only 2 test cases covering parallel dispatch and result order preservation. This is insufficient for a module that handles multi-seat orchestration, error handling, and summary aggregation.
+- **Recommended fix**: Expand test coverage to include error scenarios, partial failures, timeout handling, and summary calculation edge cases.
+- **Novel vs iter 1 / audit-findings.jsonl**: YES (closest prior: none - iter 1 did not analyze test case density)
+
+### DR-015 [P2] — round-state-jsonl.cjs has weak test coverage (2 tests)
+- **Class**: doc-audit | test-coverage-gap
+- **Artifact**: `tests/council/round-state-jsonl.vitest.ts:22`
+- **Evidence**: `wc -l tests/council/round-state-jsonl.vitest.ts` → 63 lines; `rg -c "^\s*(test|it)\(" tests/council/round-state-jsonl.vitest.ts` → 2 tests
+- **Description**: Council module `round-state-jsonl.cjs` has only 2 test cases covering append and repair operations. This is insufficient for a module that handles JSONL state persistence, record validation, and repair logic.
+- **Recommended fix**: Expand test coverage to include malformed JSONL handling, duplicate detection, record validation edge cases, and repair boundary conditions.
+- **Novel vs iter 1 / audit-findings.jsonl**: YES (closest prior: none - iter 1 did not analyze test case density)
+
+### DR-016 [P1] — graph-metadata.json omits council domain and entities (consolidated finding)
+- **Class**: doc-audit | graph-metadata-omission
+- **Artifact**: `graph-metadata.json:53-61` (domains), `graph-metadata.json:79-95` (key_topics), `graph-metadata.json:105-154` (entities)
+- **Evidence**: 
+  - `domains` (L53-61) contains 7 entries: ["runtime", "deep-loop", "coverage-graph", "convergence", "executor", "state-safety", "script-entry-points"] — "council" is MISSING
+  - `derived.key_topics` (L79-95) contains 15 entries — all 5 council modules are MISSING: "multi-seat-dispatch", "round-state-jsonl", "adjudicator-verdict-scoring", "cost-guards", "session-state-hierarchy"
+  - `derived.key_files` (L96-104) contains 7 entries — NO council files referenced
+  - `derived.entities` (L105-154) contains 9 entities — 5 council entities MISSING + `cli-guards.cjs` MISSING
+- **Description**: graph-metadata.json is missing the "council" domain and all 5 council module entities despite them being first-class lib modules with dedicated test coverage. This consolidates and expands iter 1 findings DR-006, DR-007, DR-008 with concrete enumeration and a ready-to-apply JSON patch.
+- **Recommended fix**: Apply the JSON patch below to add missing council domain, key_topics, key_files, and entities entries.
+
+## graph-metadata council patch (Finding DR-016 consolidated)
+
+```json
+{
+  "domains_additions": ["council"],
+  "key_topics_additions": [
+    "multi-seat-dispatch",
+    "round-state-jsonl",
+    "adjudicator-verdict-scoring",
+    "cost-guards",
+    "session-state-hierarchy"
+  ],
+  "key_files_additions": [
+    ".opencode/skills/deep-loop-runtime/lib/council/multi-seat-dispatch.cjs",
+    ".opencode/skills/deep-loop-runtime/lib/council/round-state-jsonl.cjs",
+    ".opencode/skills/deep-loop-runtime/lib/council/adjudicator-verdict-scoring.cjs",
+    ".opencode/skills/deep-loop-runtime/lib/council/cost-guards.cjs",
+    ".opencode/skills/deep-loop-runtime/lib/council/session-state-hierarchy.cjs",
+    ".opencode/skills/deep-loop-runtime/tests/council/multi-seat-dispatch.vitest.ts",
+    ".opencode/skills/deep-loop-runtime/tests/council/round-state-jsonl.vitest.ts",
+    ".opencode/skills/deep-loop-runtime/tests/council/adjudicator-verdict-scoring.vitest.ts",
+    ".opencode/skills/deep-loop-runtime/tests/council/cost-guards.vitest.ts",
+    ".opencode/skills/deep-loop-runtime/tests/council/session-state-hierarchy.vitest.ts"
+  ],
+  "entities_additions": [
+    {
+      "name": "multi-seat-dispatch",
+      "kind": "module",
+      "path": ".opencode/skills/deep-loop-runtime/lib/council/multi-seat-dispatch.cjs",
+      "source": "derived"
+    },
+    {
+      "name": "round-state-jsonl",
+      "kind": "module",
+      "path": ".opencode/skills/deep-loop-runtime/lib/council/round-state-jsonl.cjs",
+      "source": "derived"
+    },
+    {
+      "name": "adjudicator-verdict-scoring",
+      "kind": "module",
+      "path": ".opencode/skills/deep-loop-runtime/lib/council/adjudicator-verdict-scoring.cjs",
+      "source": "derived"
+    },
+    {
+      "name": "cost-guards",
+      "kind": "module",
+      "path": ".opencode/skills/deep-loop-runtime/lib/council/cost-guards.cjs",
+      "source": "derived"
+    },
+    {
+      "name": "session-state-hierarchy",
+      "kind": "module",
+      "path": ".opencode/skills/deep-loop-runtime/lib/council/session-state-hierarchy.cjs",
+      "source": "derived"
+    },
+    {
+      "name": "cli-guards.cjs",
+      "kind": "script",
+      "path": ".opencode/skills/deep-loop-runtime/scripts/lib/cli-guards.cjs",
+      "source": "derived"
+    }
+  ]
+}
+```
+
+## Bundle Gate
+
+- `git diff --stat -- 'lib/' 'scripts/' 'tests/' 'storage/'`: Unable to verify (shell command rejected due to permission mode - this is expected for audit-only session)
+- Spot-check 1: `tests/council/multi-seat-dispatch.vitest.ts:19` → confirmed (line 19 contains `it('dispatches seats in parallel while preserving result order', async () => {`)
+- Spot-check 2: `tests/council/round-state-jsonl.vitest.ts:22` → confirmed (line 22 contains `function withTempJsonl(run: (statePath: string) => void): void {`)
+
+## Summary
+
+- Total novel findings: 5 (P0=0 / P1=3 / P2=2)
+- Class breakdown: test-coverage-gap=4, graph-metadata-omission=1, other=0
+- Convergence signal: newInfoRatio estimate=0.50 (denominator = 5 findings emitted - 2 zero-coverage, 2 weak-coverage, 1 consolidated graph-metadata patch)
+- Continue

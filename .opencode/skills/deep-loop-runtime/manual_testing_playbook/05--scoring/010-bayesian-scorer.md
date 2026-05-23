@@ -9,7 +9,7 @@ This document captures the realistic user-testing contract, execution flow, and 
 
 ## 1. OVERVIEW
 
-Scores executor reliability and decides when enough evidence supports demotion.
+Two primitives: computeScore returns a Bayesian success probability via Laplace smoothing (success+1)/(total+2); shouldDemote returns true when score<0.5 and totalCalls>=3.
 
 ### Why This Matters
 

@@ -9,7 +9,7 @@ This document captures the realistic user-testing contract, execution flow, and 
 
 ## 1. OVERVIEW
 
-Chooses whether a failed model should fall back to a configured target or fail fast.
+Resolves the fallback route when a model exhausts its quota pool. Returns fallback (to a configured target in a different pool) or fail-fast based on the model registry.
 
 ### Why This Matters
 

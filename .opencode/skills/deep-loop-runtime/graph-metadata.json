@@ -16,12 +16,12 @@
     "enhances": [
       {
         "target": "deep-review",
-        "weight": 0.9,
+        "weight": 0.7,
         "context": "provides shared runtime for review loops"
       },
       {
         "target": "deep-research",
-        "weight": 0.9,
+        "weight": 0.7,
         "context": "provides shared runtime for research loops"
       }
     ],
@@ -47,6 +47,7 @@
     "related_to": [
       "deep-review",
       "deep-research",
+      "deep-ai-council",
       "system-code-graph"
     ]
   },
@@ -57,7 +58,8 @@
     "convergence",
     "executor",
     "state-safety",
-    "script-entry-points"
+    "script-entry-points",
+    "council"
   ],
   "intent_signals": [
     "deep-loop runtime",
@@ -91,16 +93,29 @@
       "loop-lock",
       "permissions-gate",
       "bayesian-scorer",
-      "fallback-router"
+      "fallback-router",
+      "multi-seat-dispatch",
+      "round-state-jsonl",
+      "adjudicator-verdict-scoring",
+      "cost-guards",
+      "session-state-hierarchy"
     ],
     "key_files": [
       ".opencode/skills/deep-loop-runtime/SKILL.md",
       ".opencode/skills/deep-loop-runtime/README.md",
       ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
       ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts",
+      ".opencode/skills/deep-loop-runtime/lib/council/multi-seat-dispatch.cjs",
+      ".opencode/skills/deep-loop-runtime/lib/council/round-state-jsonl.cjs",
+      ".opencode/skills/deep-loop-runtime/lib/council/adjudicator-verdict-scoring.cjs",
+      ".opencode/skills/deep-loop-runtime/lib/council/cost-guards.cjs",
+      ".opencode/skills/deep-loop-runtime/lib/council/session-state-hierarchy.cjs",
       ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+      ".opencode/skills/deep-loop-runtime/scripts/lib/cli-guards.cjs",
       ".opencode/skills/deep-loop-runtime/storage/deep-loop-graph.sqlite",
-      ".opencode/skills/deep-loop-runtime/tests/unit/executor-config.vitest.ts"
+      ".opencode/skills/deep-loop-runtime/tests/unit/executor-config.vitest.ts",
+      ".opencode/skills/deep-loop-runtime/tests/council/multi-seat-dispatch.vitest.ts",
+      ".opencode/skills/deep-loop-runtime/tests/council/round-state-jsonl.vitest.ts"
     ],
     "entities": [
       {
@@ -150,9 +165,51 @@
         "kind": "script",
         "path": ".opencode/skills/deep-loop-runtime/scripts/status.cjs",
         "source": "derived"
+      },
+      {
+        "name": "multi-seat-dispatch",
+        "kind": "script",
+        "path": ".opencode/skills/deep-loop-runtime/lib/council/multi-seat-dispatch.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "round-state-jsonl",
+        "kind": "script",
+        "path": ".opencode/skills/deep-loop-runtime/lib/council/round-state-jsonl.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "adjudicator-verdict-scoring",
+        "kind": "script",
+        "path": ".opencode/skills/deep-loop-runtime/lib/council/adjudicator-verdict-scoring.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "cost-guards",
+        "kind": "script",
+        "path": ".opencode/skills/deep-loop-runtime/lib/council/cost-guards.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-state-hierarchy",
+        "kind": "script",
+        "path": ".opencode/skills/deep-loop-runtime/lib/council/session-state-hierarchy.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-ai-council",
+        "kind": "skill",
+        "path": ".opencode/skills/deep-ai-council/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-guards.cjs",
+        "kind": "script",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/lib/cli-guards.cjs",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Shared runtime infrastructure for deep-review and deep-research moved into a peer skill in the 118 FULL_ISOLATE_NO_MCP arc. It matters because executor configuration, audit provenance, prompt rendering, post-dispatch validation, state safety, Bayesian scoring, fallback routing, coverage-graph storage/query/signals, script entry points, SQLite storage, and runtime tests now have one discoverable owner outside the system-spec-kit MCP server.",
+    "causal_summary": "Shared runtime infrastructure for deep-review, deep-research and deep-ai-council moved into a peer skill in the 118 FULL_ISOLATE_NO_MCP arc. Executor configuration, audit provenance, prompt rendering, post-dispatch validation, state safety, Bayesian scoring, fallback routing, coverage-graph storage/query/signals, script entry points, SQLite storage and runtime tests now have one discoverable owner outside the system-spec-kit MCP server. lib/council/ adds 5 cjs modules for multi-seat dispatch, round-state JSONL, adjudicator verdict scoring, cost guards and session-state hierarchy per packet 131/001/008 ADR-001 (Runtime Boundary Decision).",
     "source_docs": [
       "SKILL.md",
       "README.md",
@@ -161,10 +218,12 @@
       "references/script_interface_contract.md",
       "references/coverage_graph_schema.md",
       "references/state_format.md",
-      "references/integration_points.md"
+      "references/integration_points.md",
+      "changelog/v1.0.0.0.md",
+      "changelog/v1.1.0.0.md"
     ],
     "created_at": "2026-05-22T00:00:00Z",
-    "last_updated_at": "2026-05-22T00:00:00Z"
+    "last_updated_at": "2026-05-23T22:30:00Z"
   }
 }
 

@@ -1,0 +1,91 @@
+## §A — Cross-arc citation drift (STEP 1)
+
+| Site | File:Line | Citation text | Resolves? | Recommended fix |
+|------|-----------|---------------|-----------|------------------|
+| 1 | SKILL.md:144 | "Packet 129/001 ADR-001 extends deep-loop-runtime/lib/ with council-compatible infrastructure primitives..." | NO | replace with `131-deep-skill-evolution/001-ai-council/008-iterative-research-and-architecture/decision-record.md ADR-001` |
+| 2 | README.md:198 | "Packet 129/001 ADR-001 extended this skill with council-compatible runtime primitives." | NO | replace with `131-deep-skill-evolution/001-ai-council/008-iterative-research-and-architecture/decision-record.md ADR-001` |
+| 3 | README.md:247 | "council/ (5 cjs modules (per packet 129/001 ADR-001))" | NO | replace with `council/ (5 cjs modules per 131/001/008 ADR-001)` |
+| 4 | README.md:417 | "Packet 129/001 ADR-001 decided that durability primitives..." | NO | replace with `131-deep-skill-evolution/001-ai-council/008-iterative-research-and-architecture/decision-record.md ADR-001` |
+
+**Verdict**: DRIFT
+**Finding emitted**: DR-029 (P1, cross-arc-citation-drift)
+
+## §B — graph-metadata.json field completeness (STEP 2)
+
+Per-field verdict:
+- `source_docs` changelog inclusion: DRIFT — changelog files (v1.0.0.0.md, v1.1.0.0.md) contain critical evolution history and are referenced in both SKILL.md and README.md. Their exclusion from `source_docs` is a memory-MCP discoverability defect.
+- `causal_summary` council surface: DRIFT — causal_summary describes the arc-118 consolidation but does not mention the council surface added in 129/001 (5 cjs modules). This is semantic under-representation of current scope, not covered by DR-016's domains gap consolidation.
+- `key_files` representative-sample: MATCH — `key_files` is intentionally narrow (7 paths: 2 docs + 2 lib/deep-loop + 1 lib/coverage-graph + 1 script + 1 storage + 1 test). It samples the core infrastructure surface, not every module. The council modules (5 cjs) and cli-guards.cjs are discoverable via `entities` once DR-016 is applied. Expanding `key_files` would duplicate the `entities` array's purpose.
+
+**Findings emitted**: DR-030 (P2, changelog-discoverability-defect), DR-031 (P2, causal-summary-council-omission)
+
+## §C — manual.related_to currency (STEP 3)
+
+| Listed skill | Current? | Justification |
+|--------------|----------|---------------|
+| deep-review | YES | Active skill at `.opencode/skills/deep-review/SKILL.md`, consumes deep-loop-runtime |
+| deep-research | YES | Active skill at `.opencode/skills/deep-research/SKILL.md`, consumes deep-loop-runtime |
+| system-code-graph | YES | Active skill at `.opencode/skills/system-code-graph/SKILL.md`, peer infrastructure skill |
+
+**Missing**: deep-ai-council — Active skill at `.opencode/skills/deep-ai-council/SKILL.md` (version 2.0.0.0). It directly consumes deep-loop-runtime council primitives via 5 require() statements in test files (session-state-hierarchy.cjs, round-state-jsonl.cjs, cost-guards.cjs). This is a graph-discoverability defect — deep-ai-council should be in `manual.related_to` for accurate dependency graph representation.
+
+**Finding emitted**: DR-033 (P1, graph-discoverability-defect)
+
+## §D — Totals
+
+| Severity | Count |
+|----------|-------|
+| P0 | 0 |
+| P1 | 2 (DR-029, DR-033) |
+| P2 | 2 (DR-030, DR-031) |
+| **Total** | **4** |
+
+**newInfoRatio**: 1.00 — all findings are genuinely novel (DR-029, DR-030, DR-031, DR-033) and not covered by DR-001..DR-028.
+
+## §E — Recommended JSON patch
+
+```json
+{
+  "graph-metadata.json": {
+    "manual.related_to": {
+      "add": ["deep-ai-council"],
+      "justification": "deep-ai-council directly consumes deep-loop-runtime council primitives (lib/council/*) via require() statements in test files"
+    },
+    "derived.source_docs": {
+      "add": ["changelog/v1.0.0.0.md", "changelog/v1.1.0.0.md"],
+      "justification": "changelog files contain critical evolution history and are referenced in SKILL.md and README.md; exclusion is memory-MCP discoverability defect"
+    },
+    "derived.causal_summary": {
+      "replace": "Shared runtime infrastructure for deep-review and deep-research moved into a peer skill in the 118 FULL_ISOLATE_NO_MCP arc. It matters because executor configuration, audit provenance, prompt rendering, post-dispatch validation, state safety, Bayesian scoring, fallback routing, coverage-graph storage/query/signals, script entry points, SQLite storage, runtime tests, and council primitives (multi-seat dispatch, round-state JSONL, adjudicator scoring, cost guards, session-state hierarchy) now have one discoverable owner outside the system-spec-kit MCP server.",
+      "justification": "causal_summary missed the council surface added in 129/001; semantic under-representation of current scope"
+    }
+  },
+  "prose_replacements": {
+    "SKILL.md:144": {
+      "old": "Packet 129/001 ADR-001 extends deep-loop-runtime/lib/ with council-compatible infrastructure primitives",
+      "new": "131-deep-skill-evolution/001-ai-council/008-iterative-research-and-architecture/decision-record.md ADR-001 extends deep-loop-runtime/lib/ with council-compatible infrastructure primitives"
+    },
+    "README.md:198": {
+      "old": "Packet 129/001 ADR-001 extended this skill with council-compatible runtime primitives",
+      "new": "131-deep-skill-evolution/001-ai-council/008-iterative-research-and-architecture/decision-record.md ADR-001 extended this skill with council-compatible runtime primitives"
+    },
+    "README.md:247": {
+      "old": "council/ (5 cjs modules (per packet 129/001 ADR-001))",
+      "new": "council/ (5 cjs modules per 131/001/008 ADR-001)"
+    },
+    "README.md:417": {
+      "old": "Packet 129/001 ADR-001 decided that durability primitives",
+      "new": "131-deep-skill-evolution/001-ai-council/008-iterative-research-and-architecture/decision-record.md ADR-001 decided that durability primitives"
+    }
+  }
+}
+```
+
+## §F — Verdict
+
+**PARTIAL** — 4 of 7 graph-metadata.json field groups verified with drift findings:
+- PASS: `manual.depends_on`, `derived.trigger_phrases`, `derived.key_files`
+- DRIFT: `derived.source_docs` (DR-030), `derived.causal_summary` (DR-031), `manual.related_to` (DR-033)
+- EXTERNAL-DRIFT: prose citations (DR-029, SKILL.md + README.md)
+
+The graph-metadata.json file requires updates to `manual.related_to`, `derived.source_docs`, and `derived.causal_summary` for semantic freshness. Additionally, 4 prose citations across SKILL.md and README.md need correction from the legacy "129/001" packet ID to the current "131/001/008" path.

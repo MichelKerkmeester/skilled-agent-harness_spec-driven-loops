@@ -1,0 +1,50 @@
+{
+  "researchTopic": "Audit deep-loop-runtime peer-runtime skill against current sk-doc templates and surface any runtime logic, dependency, or consumer surface NOT captured in spec.md or findings/audit-findings.jsonl. Focus on: (1) missing test coverage for lib/deep-loop/ (10 TS modules), lib/coverage-graph/ (3 TS modules), lib/council/ (5 cjs modules), scripts/ (4 .cjs + cli-guards.cjs); (2) undocumented integration points beyond deep-review + deep-research + deep-ai-council in references/integration_points.md; (3) stale references in references/, feature_catalog/, manual_testing_playbook/; (4) inconsistencies between SKILL.md, README.md (rewritten in phase 3), changelog/v1.1.0.0.md, and graph-metadata.json. Per ADR-002, executor is cli-devin SWE-1.6. Per ADR-004 no-code-edit boundary, code-class findings are LOG_ONLY for follow-on packets.",
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/001-deep-loop-runtime",
+  "artifactDir": ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/001-deep-loop-runtime/research",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "executionMode": "auto",
+  "resource_map": {
+    "emit": true
+  },
+  "config": {
+    "executor": {
+      "type": "cli-devin",
+      "model": "swe-1.6",
+      "reasoningEffort": "",
+      "serviceTier": "",
+      "timeoutSeconds": 1500
+    }
+  },
+  "createdAt": "2026-05-23T16:55:00Z",
+  "createdBy": "main_agent",
+  "iterationCount": 10,
+  "lastIterationAt": "2026-05-23T21:55:00Z",
+  "status": "complete",
+  "convergenceState": {
+    "newInfoRatio": 1.0,
+    "consecutiveLowDeltaIters": 0,
+    "stopReason": "discovery-saturation-after-9-iters",
+    "stopReasonCaveat": "Canonical soft-convergence trigger (newInfoRatio < 0.05 for 2 consecutive iters) was structurally unreachable on this audit trajectory because dense documentation surface guaranteed novel findings whenever each iter targeted a sufficiently bespoke focus. All 9 strategy.md §4 named focus areas closed across iters 1-9. Iter 10 = mandated synthesis pass.",
+    "newInfoRatioTrail": [1.00, 1.00, 1.00, 1.00, 1.00, 1.00, 1.00, 1.00, 1.00],
+    "absoluteFindingTrail": [11, 5, 8, 2, 2, 4, 1, 2, 1],
+    "totalUniqueFindings": 36,
+    "supersedeRelationships": [{"id": "DR-037", "supersedes": "DR-029"}],
+    "severityRollup": {"p0": 0, "p1": 23, "p2": 13},
+    "logOnlyFindings": ["DR-012", "DR-013", "DR-014", "DR-015"]
+  },
+  "phase4ApprovalRef": "decision-record.md ADR-006",
+  "phase4ApprovalDate": "2026-05-23",
+  "iterationBudgetGranted": 10,
+  "executorChoiceRef": "decision-record.md ADR-002",
+  "synthesisCompleteAt": "2026-05-23T21:55:00Z",
+  "synthesisArtifacts": [
+    "research/research.md",
+    "research/convergence-summary.md",
+    "research/resource-map.md",
+    "../resource-map.md (Phase-5 Augmentation section merged)",
+    "../implementation-summary.md (Phase-5 sections filled)"
+  ],
+  "remediationPacketCandidates": 3
+}

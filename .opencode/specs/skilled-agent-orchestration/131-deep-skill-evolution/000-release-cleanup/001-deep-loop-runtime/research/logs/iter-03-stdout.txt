@@ -1,0 +1,135 @@
+# Iter 3 stdout (orchestrator-direct, no devin dispatch)
+
+## Dispatch decision
+Iter 3 focus = integration-point completeness sweep via `rg -F` over deterministic locations.
+Per ADR-002 + iter 1 precedent (pre-supplied 18-module enumeration was orchestrator-side),
+the orchestrator-direct path is appropriate here because every required `rg -F` call
+returns a complete and citable result. Cli-devin would re-run the exact same greps with
+zero novel discovery. Wall-clock saved: ~90s. Exit code: N/A (no subprocess).
+
+## Sweep output (verbatim from orchestrator)
+
+### A. Hidden-consumer search by location
+
+```
+rg -F "deep-loop-runtime" .opencode/commands/deep/assets/ -l
+  -> deep_ask-ai-council_auto.yaml (HIDDEN — not named in integration_points.md)
+  -> deep_ask-ai-council_confirm.yaml (HIDDEN — not named)
+  -> deep_start-research-loop_auto.yaml (NAMED §3)
+  -> deep_start-research-loop_confirm.yaml (NAMED §3)
+  -> deep_start-review-loop_auto.yaml (NAMED §2)
+  -> deep_start-review-loop_confirm.yaml (NAMED §2)
+
+rg -F "deep-loop-runtime" .opencode/commands/doctor/ -l
+  -> _routes.yaml (HIDDEN — route manifest, not in §4)
+  -> speckit.md (NAMED §9 SOURCE ANCHORS)
+  -> update.md (HIDDEN — not in §4)
+  -> assets/doctor_deep-loop.yaml (HIDDEN — not in §4 or §9)
+  -> assets/doctor_update.yaml (HIDDEN — not in §4 or §9)
+
+rg -F "deep-loop-runtime" .opencode/agents/ -l
+  -> (empty — no agent definitions reference deep-loop-runtime directly)
+
+rg -F "deep-loop-runtime/lib" .opencode/skills/deep-ai-council/ -l
+  -> scripts/orchestrate-session.cjs (HIDDEN — runtime production import)
+  -> scripts/orchestrate-topic.cjs (HIDDEN — runtime production import)
+  -> scripts/tests/integration-deep-mode-e2e.vitest.ts (HIDDEN — vitest import)
+  -> scripts/tests/orchestrate-session.vitest.ts (HIDDEN — vitest import)
+  -> scripts/tests/orchestrate-topic.vitest.ts (HIDDEN — vitest import)
+  -> scripts/tests/README.md (HIDDEN — tests README)
+
+rg -F "deep-loop-runtime" .opencode/skills/system-spec-kit/mcp_server/ -l
+  -> handlers/coverage-graph/README.md (HIDDEN — handler-layer doc)
+  -> lib/deep-loop/README.md (HIDDEN — legacy migration README)
+
+rg -F "deep-loop-runtime" .opencode/skills/system-code-graph/ -l
+  -> manual_testing_playbook/05--coverage-graph/009-deep-loop-graph-convergence-yaml-fire.md (HIDDEN — playbook scenario)
+  -> manual_testing_playbook/05--coverage-graph/010-deep-loop-graph-upsert-conditional.md (HIDDEN — playbook scenario)
+  -> manual_testing_playbook/manual_testing_playbook.md (HIDDEN — playbook index)
+  -> feature_catalog/feature_catalog.md (NAMED §5)
+  -> feature_catalog/05--coverage-graph/01-deep-loop-graph-query.md (NAMED §5)
+  -> feature_catalog/05--coverage-graph/02-deep-loop-graph-status.md (NAMED §5)
+  -> feature_catalog/05--coverage-graph/03-deep-loop-graph-upsert.md (NAMED §5)
+  -> feature_catalog/05--coverage-graph/04-deep-loop-graph-convergence.md (NAMED §5)
+
+rg -F "deep-loop-runtime" .opencode/skills/deep-agent-improvement/ -l
+  -> scripts/lib/README.md:26 (HIDDEN — peer reference in error-wrapper doc)
+```
+
+### B. Call-shape verification per hidden consumer
+
+```
+HC-1: deep_ask-ai-council_{auto,confirm}.yaml:46-48
+  session_state: .opencode/skills/deep-loop-runtime/lib/council/session-state-hierarchy.cjs
+  round_state:   .opencode/skills/deep-loop-runtime/lib/council/round-state-jsonl.cjs
+  cost_guards:   .opencode/skills/deep-loop-runtime/lib/council/cost-guards.cjs
+
+HC-2a: orchestrate-session.cjs:14-16
+  require('../../deep-loop-runtime/lib/council/round-state-jsonl.cjs')
+  require('../../deep-loop-runtime/lib/council/cost-guards.cjs')
+  require('../../deep-loop-runtime/lib/council/session-state-hierarchy.cjs')
+
+HC-2b: orchestrate-topic.cjs:14-18
+  require('../../deep-loop-runtime/lib/council/multi-seat-dispatch.cjs')
+  require('../../deep-loop-runtime/lib/council/round-state-jsonl.cjs')
+  require('../../deep-loop-runtime/lib/council/adjudicator-verdict-scoring.cjs')
+  require('../../deep-loop-runtime/lib/council/cost-guards.cjs')
+  require('../../deep-loop-runtime/lib/council/session-state-hierarchy.cjs')
+  -> Confirms ALL 5 lib/council/*.cjs modules are runtime-coupled to deep-ai-council.
+
+HC-3: _routes.yaml:88-104
+  target: deep-loop
+  yaml: doctor_deep-loop.yaml
+  mutating: mutates
+  gate3_location: .opencode/skills/deep-loop-runtime/storage/deep-loop-graph.sqlite
+  script_invocations: 4 (status/query/upsert/convergence)
+  trigger_phrases: 4
+
+HC-4: doctor/update.md:28, :220, :272
+  L28:  NO NEW MCP TOOLS rule -- deep-loop operations route through .cjs scripts
+  L220: route table row with status/upsert/convergence call shapes
+  L272: backup file pattern .pre-doctor-update.*.bak
+
+HC-7: system-spec-kit/mcp_server/lib/deep-loop/README.md:25-68
+  Legacy migration README. Lines :46-49 lists current runtime location. :66-68 names
+  loop-lock.ts, jsonl-repair.ts, atomic-state.ts as deep-loop-runtime-owned.
+
+HC-8: system-spec-kit/mcp_server/tests/deep-loop/review-depth-reducer.vitest.ts:9
+  require('../../../../deep-review/scripts/reduce-state.cjs')
+  Confirms cross-package test: physically lives in mcp_server, exercises deep-review.
+```
+
+### C. SC-007 boundary check
+```
+git diff --stat -- .opencode/skills/deep-loop-runtime/lib/ \
+                   .opencode/skills/deep-loop-runtime/scripts/ \
+                   .opencode/skills/deep-loop-runtime/tests/ \
+                   .opencode/skills/deep-loop-runtime/storage/
+  -> EMPTY (no edits to forbidden surfaces, SC-007 holds)
+```
+
+### D. Findings emitted
+
+| # | ID | Severity | Class | Artifact:Line | Drift |
+|---|----|----------|-------|---------------|-------|
+| 1 | DR-017 | P1 | integration-point-omission | `references/integration_points.md` (missing section) | NO §AI-Council section — `deep_ask-ai-council_{auto,confirm}.yaml` load 3 `lib/council/*.cjs` modules at :46-48; this entire consumer is unmentioned |
+| 2 | DR-018 | P1 | integration-point-omission | `references/integration_points.md:25-28` (§1 OVERVIEW gap) | OVERVIEW lists `lib/deep-loop/` + `lib/coverage-graph/` as integration surfaces but OMITS `lib/council/` — 5 cjs modules confirmed runtime-coupled via `deep-ai-council/scripts/orchestrate-{session,topic}.cjs` |
+| 3 | DR-019 | P1 | integration-point-omission | `references/integration_points.md:62-76` (§4 DOCTOR CONSUMER) | §4 documents abstract behaviors but never names the actual route manifest `.opencode/commands/doctor/_routes.yaml:88-104` with `gate3_location` + 4 `script_invocations` + 4 `trigger_phrases` |
+| 4 | DR-020 | P1 | integration-point-omission | `references/integration_points.md:62-76` (§4 DOCTOR CONSUMER) | §4 omits `.opencode/commands/doctor/update.md:28,:220,:272` which references deep-loop scripts including backup pattern `.pre-doctor-update.*.bak` |
+| 5 | DR-021 | P1 | integration-point-omission | `references/integration_points.md:79-89` (§5 SYSTEM-CODE-GRAPH CONSUMER) | §5 lists 4 feature_catalog refs but OMITS `manual_testing_playbook/05--coverage-graph/009-deep-loop-graph-convergence-yaml-fire.md` + `010-deep-loop-graph-upsert-conditional.md` (playbook scenarios documenting yaml-fire test pattern) |
+| 6 | DR-022 | P1 | integration-point-omission | `references/integration_points.md:93-101` (§6 SYSTEM-SPEC-KIT TEST DISCOVERY) | §6 lists vitest.config.ts glob but OMITS `mcp_server/lib/deep-loop/README.md` (legacy migration README at :25-68 pointing operators to current runtime) and `mcp_server/handlers/coverage-graph/README.md` (handler-layer reference) |
+| 7 | DR-023 | P1 | integration-point-omission | `references/integration_points.md:93-101` (§6 SYSTEM-SPEC-KIT TEST DISCOVERY) | §6 mentions cross-pkg vitest discovery but doesn't call out the surprising fact that `mcp_server/tests/deep-loop/review-depth-reducer.vitest.ts:9` imports `../../../../deep-review/scripts/reduce-state.cjs` — physically in mcp_server, exercises deep-review code, discovered via deep-loop-runtime glob |
+| 8 | DR-024 | P1 | integration-point-omission | `references/integration_points.md:79-89` (§5 SYSTEM-CODE-GRAPH CONSUMER) | §5 also omits `.opencode/commands/doctor/assets/doctor_deep-loop.yaml` + `doctor_update.yaml` (the actual doctor route YAMLs referenced by _routes.yaml) and `.opencode/skills/deep-agent-improvement/scripts/lib/README.md:26` (peer reference describing typed-errors pattern mirrored from deep-loop-runtime cli-guards) |
+
+Severity rollup: 0 P0 / 8 P1 / 0 P2.
+Novel: 8/8 (zero re-reports of DR-001..DR-016 or AF-0001..AF-0080).
+NewInfoRatio: 1.00.
+
+### E. Recommended patch shape (for follow-on packet, LOG_ONLY)
+Add 4 new sections to `references/integration_points.md`:
+1. New §3a or §7 "AI-Council Consumer" — covers HC-1, HC-2 (YAML + runtime imports + 5 lib/council/*.cjs modules).
+2. Extend §1 OVERVIEW bullets — add `lib/council/` to integration surfaces.
+3. Extend §4 DOCTOR CONSUMER — add route-manifest subsection covering `_routes.yaml:88-104`, `update.md` references, and the two `assets/doctor_*.yaml` files.
+4. Extend §5 SYSTEM-CODE-GRAPH CONSUMER — add playbook scenarios 009 + 010.
+5. Extend §6 SYSTEM-SPEC-KIT TEST DISCOVERY — add `mcp_server/lib/deep-loop/README.md`, `mcp_server/handlers/coverage-graph/README.md`, and a NOTE about review-depth-reducer.vitest.ts's cross-pkg shape.
+6. Add §9 SOURCE ANCHORS rows for: `_routes.yaml`, `update.md`, `doctor_deep-loop.yaml`, `doctor_update.yaml`, 2x playbook scenarios, ai-council YAML pair, ai-council orchestrate scripts.

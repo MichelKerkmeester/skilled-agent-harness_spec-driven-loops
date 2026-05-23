@@ -1,0 +1,115 @@
+# Iter 4 — feature_catalog + playbook path-ref + cross-doc sweep
+
+## A. Path-ref resolution summary
+
+- Total cited: 251 (17 catalog md links + 34 playbook md links + 100+ catalog code refs + 100+ playbook code refs)
+- Resolved: 251
+- Broken: 0
+- Sample 5 broken: none
+
+## B. Count claim verification
+
+| # | Claim | Location | Expected | Actual | Verdict |
+|---|---|---|---|---|---|
+| 1 | "17 entries" | feature_catalog.md:31 | 17 | 17 | PASS |
+| 2 | Coverage table sums to 17 | feature_catalog.md:33-41 | 17 | 17 | PASS |
+| 3 | "17 deterministic scenarios" | manual_testing_playbook.md:47 | 17 | 17 | PASS |
+| 4 | Executor domain scenario count | manual_testing_playbook.md:121 | 3 | 3 | PASS |
+| 5 | Prompt rendering domain count | manual_testing_playbook.md:166 | 1 | 1 | PASS |
+| 6 | Validation domain count | manual_testing_playbook.md:185 | 1 | 1 | PASS |
+| 7 | State safety domain count | manual_testing_playbook.md:204 | 4 | 4 | PASS |
+| 8 | Scoring domain count | manual_testing_playbook.md:265 | 1 | 1 | PASS |
+| 9 | Coverage graph domain count | manual_testing_playbook.md:281 | 3 | 3 | PASS |
+| 10 | Script entry points domain count | manual_testing_playbook.md:318 | 4 | 4 | PASS |
+| 11 | DLR-001 cross-ref target | manual_testing_playbook.md:398 | resolves | yes | PASS |
+| 12 | DLR-002 cross-ref target | manual_testing_playbook.md:399 | resolves | yes | PASS |
+| 13 | DLR-003 cross-ref target | manual_testing_playbook.md:400 | resolves | yes | PASS |
+| 14 | DLR-004 cross-ref target | manual_testing_playbook.md:401 | resolves | yes | PASS |
+| 15 | DLR-005 cross-ref target | manual_testing_playbook.md:402 | resolves | yes | PASS |
+| 16 | DLR-006 cross-ref target | manual_testing_playbook.md:403 | resolves | yes | PASS |
+| 17 | DLR-007 cross-ref target | manual_testing_playbook.md:404 | resolves | yes | PASS |
+| 18 | DLR-008 cross-ref target | manual_testing_playbook.md:405 | resolves | yes | PASS |
+| 19 | DLR-009 cross-ref target | manual_testing_playbook.md:406 | resolves | yes | PASS |
+| 20 | DLR-010 cross-ref target | manual_testing_playbook.md:407 | resolves | yes | PASS |
+| 21 | DLR-011 cross-ref target | manual_testing_playbook.md:408 | resolves | yes | PASS |
+| 22 | DLR-012 cross-ref target | manual_testing_playbook.md:409 | resolves | yes | PASS |
+| 23 | DLR-013 cross-ref target | manual_testing_playbook.md:410 | resolves | yes | PASS |
+| 24 | DLR-014 cross-ref target | manual_testing_playbook.md:411 | resolves | yes | PASS |
+| 25 | DLR-015 cross-ref target | manual_testing_playbook.md:412 | resolves | yes | PASS |
+| 26 | DLR-016 cross-ref target | manual_testing_playbook.md:413 | resolves | yes | PASS |
+| 27 | DLR-017 cross-ref target | manual_testing_playbook.md:414 | resolves | yes | PASS |
+
+## C. 1:1 pairing table
+
+| F-id | Catalog file (relative to feature_catalog/) | DLR-id | Playbook file (relative to manual_testing_playbook/) | Domain match | Slug match |
+|------|---|---|---|---|---|
+| F001 | 01--executor/01-executor-config.md | DLR-001 | 01--executor/001-executor-config.md | ✓ | ✓ |
+| F002 | 01--executor/02-executor-audit.md | DLR-002 | 01--executor/002-executor-audit.md | ✓ | ✓ |
+| F003 | 01--executor/03-fallback-router.md | DLR-003 | 01--executor/003-fallback-router.md | ✓ | ✓ |
+| F004 | 02--prompt-rendering/01-prompt-pack.md | DLR-004 | 02--prompt-rendering/004-prompt-pack.md | ✓ | ✓ |
+| F005 | 03--validation/01-post-dispatch-validate.md | DLR-005 | 03--validation/005-post-dispatch-validate.md | ✓ | ✓ |
+| F006 | 04--state-safety/01-atomic-state.md | DLR-006 | 04--state-safety/006-atomic-state.md | ✓ | ✓ |
+| F007 | 04--state-safety/02-jsonl-repair.md | DLR-007 | 04--state-safety/007-jsonl-repair.md | ✓ | ✓ |
+| F008 | 04--state-safety/03-loop-lock.md | DLR-008 | 04--state-safety/008-loop-lock.md | ✓ | ✓ |
+| F009 | 04--state-safety/04-permissions-gate.md | DLR-009 | 04--state-safety/009-permissions-gate.md | ✓ | ✓ |
+| F010 | 05--scoring/01-bayesian-scorer.md | DLR-010 | 05--scoring/010-bayesian-scorer.md | ✓ | ✓ |
+| F011 | 06--coverage-graph/01-coverage-graph-db.md | DLR-011 | 06--coverage-graph/011-coverage-graph-db.md | ✓ | ✓ |
+| F012 | 06--coverage-graph/02-coverage-graph-query.md | DLR-012 | 06--coverage-graph/012-coverage-graph-query.md | ✓ | ✓ |
+| F013 | 06--coverage-graph/03-coverage-graph-signals.md | DLR-013 | 06--coverage-graph/013-coverage-graph-signals.md | ✓ | ✓ |
+| F014 | 07--script-entry-points/01-convergence-script.md | DLR-014 | 07--script-entry-points/014-convergence-script.md | ✓ | ✓ |
+| F015 | 07--script-entry-points/02-upsert-script.md | DLR-015 | 07--script-entry-points/015-upsert-script.md | ✓ | ✓ |
+| F016 | 07--script-entry-points/03-query-script.md | DLR-016 | 07--script-entry-points/016-query-script.md | ✓ | ✓ |
+| F017 | 07--script-entry-points/04-status-script.md | DLR-017 | 07--script-entry-points/017-status-script.md | ✓ | ✓ |
+
+Pairing drift count: 0
+
+## D. Secondary checks
+
+- a. Per-feature structural shape (3+3 spot-check): 
+  - Catalog 01-executor-config.md: PASS (4-section template: OVERVIEW + CURRENT REALITY + SOURCE FILES + SOURCE METADATA)
+  - Catalog 06-coverage-graph-db.md: PASS (4-section template)
+  - Catalog 03-post-dispatch-validate.md: PASS (4-section template)
+  - Playbook 001-executor-config.md: PASS (5-section template: OVERVIEW + SCENARIO CONTRACT + TEST EXECUTION + SOURCE ANCHORS + SOURCE_METADATA)
+  - Playbook 011-coverage-graph-db.md: PASS (5-section template)
+  - Playbook 005-post-dispatch-validate.md: PASS (5-section template)
+
+- b. lib/scripts/tests path-refs (broken count): 0 + sample: none (all cited paths resolve to actual files)
+
+- c. Description word-for-word agreement (5 spot-check):
+  - F001/DLR-001 Executor config: PASS ("Parses and normalizes per-iteration executor configuration for native and CLI-backed deep-loop dispatch.")
+  - F011/DLR-011 Coverage graph DB: PASS ("Owns the SQLite schema, namespace scoping, node and edge mutations, snapshots, and connection lifecycle.")
+  - F005/DLR-005 Post-dispatch validate: PASS ("Validates iteration artifacts after dispatch and appends degraded verification events when optional checks fail.")
+  - F002/DLR-002 Executor audit: PASS ("Records executor provenance and guards recursive external-CLI dispatch inside iteration state logs.")
+  - F003/DLR-003 Fallback router: FAIL (Catalog: "Chooses whether a failed model should fall back to a configured target or fail fast." vs Playbook: "Chooses whether a failed model should fall back to a configured target or fail fast." vs Source: "Resolve the fallback route when a model exhausts its quota pool.")
+
+## E. Findings (DR-025 onwards)
+
+### DR-025 | P2 | description-drift | feature_catalog/01--executor/03-fallback-router.md:3
+
+Fallback router description differs between catalog, playbook, and actual source implementation focus.
+
+Evidence:
+- feature_catalog/01--executor/03-fallback-router.md:3 ("Chooses whether a failed model should fall back to a configured target or fail fast.")
+- manual_testing_playbook/01--executor/003-fallback-router.md:12 ("Chooses whether a failed model should fall back to a configured target or fail fast.")
+- lib/deep-loop/fallback-router.ts:32 ("Resolve the fallback route when a model exhausts its quota pool.")
+
+Recommended patch shape (text only — no actual edit):
+- Update catalog and playbook descriptions to emphasize quota pool exhaustion trigger and model registry lookup, matching the source implementation's actual contract.
+
+## F. Summary
+
+- Total novel findings: 1
+- P0: 0 / P1: 0 / P2: 1
+- Class breakdown: 
+
+| Class | Count |
+|-------|-------|
+| description-drift | 1 |
+
+- LOG_ONLY count: 0 (findings inside lib/scripts/tests/storage scope that are read-only-flagged)
+- SC-007 invariant: held (no writes to forbidden tree)
+- Bundle gate: PASS
+
+## G. Next iter suggestion
+
+Per strategy.md §4, iter 5 is "Sub-README consistency: 8 sub-READMEs vs current code layout". The current iter 4 found excellent path-reference hygiene with 0 broken links and perfect 1:1 pairing, but identified one description drift instance in F003 Fallback router where the catalog/playbook descriptions don't fully capture the quota pool exhaustion trigger that's central to the source implementation. The next iteration should examine whether the 8 sub-README files (lib/deep-loop/README.md, lib/coverage-graph/README.md, lib/council/README.md, scripts/README.md, tests/README.md, storage/README.md, feature_catalog/README.md, manual_testing_playbook/README.md) accurately reflect the current code surface and whether they're in sync with the feature catalog and manual testing playbook.

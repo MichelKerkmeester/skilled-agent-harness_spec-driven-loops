@@ -1,0 +1,74 @@
+## §A — ADR classification (STEP 1)
+
+**Classification**: B
+
+**Cited evidence** (verbatim from decision-record.md ADR-001):
+- L60-75 (Decision): "Extend `deep-loop-runtime/lib/` with narrowly scoped council-compatible infrastructure adapters, and keep domain semantics in `deep-ai-council`."
+- L88 (Negative consequence): "`deep-loop-runtime` must broaden from 'deep-review + deep-research' to 'deep-* loop consumers' in docs and tests."
+
+**Verdict**: The ADR explicitly mandates that deep-loop-runtime documentation must broaden from "deep-review + deep-research" to "deep-* loop consumers". There is no carve-out excluding catalog/playbook from this requirement. The catalog and playbook currently reflect the pre-ADR scope (7 domains, 17 entries/scenarios) and omit the council surface entirely, despite SKILL.md §3.5 and README.md §3.5 explicitly documenting council primitives as in-scope. This is a documentation gap from phase-002 implementation, not an architectural deviation.
+
+**Finding emitted**: DR-034 (P1, documentation-drift-council-omission-in-catalog-playbook)
+
+## §B — DR-034 enumeration
+
+| # | Missing surface | Path | Notes |
+|---|----------------|------|-------|
+| 1 | Catalog domain folder | `feature_catalog/08--council/` | New folder |
+| 2 | Catalog entry 1 | `feature_catalog/08--council/01-multi-seat-dispatch.md` | New file |
+| 3 | Catalog entry 2 | `feature_catalog/08--council/02-round-state-jsonl.md` | New file |
+| 4 | Catalog entry 3 | `feature_catalog/08--council/03-adjudicator-verdict-scoring.md` | New file |
+| 5 | Catalog entry 4 | `feature_catalog/08--council/04-cost-guards.md` | New file |
+| 6 | Catalog entry 5 | `feature_catalog/08--council/05-session-state-hierarchy.md` | New file |
+| 7 | Playbook domain folder | `manual_testing_playbook/08--council/` | New folder |
+| 8 | Playbook scenario 1 | `manual_testing_playbook/08--council/018-multi-seat-dispatch.md` | New file |
+| 9 | Playbook scenario 2 | `manual_testing_playbook/08--council/019-round-state-jsonl.md` | New file |
+| 10 | Playbook scenario 3 | `manual_testing_playbook/08--council/020-adjudicator-verdict-scoring.md` | New file |
+| 11 | Playbook scenario 4 | `manual_testing_playbook/08--council/021-cost-guards.md` | New file |
+| 12 | Playbook scenario 5 | `manual_testing_playbook/08--council/022-session-state-hierarchy.md` | New file |
+| 13 | catalog.md TOC | `feature_catalog.md:18-25` | Add "9. COUNCIL" entry |
+| 14 | catalog.md coverage table | `feature_catalog.md:33-41` | Add `08--council` row |
+| 15 | catalog.md scope statement | `feature_catalog.md:31` | Append "council" to consumer list |
+| 16 | catalog.md count claim | `feature_catalog.md:31` | "17 entries" → "22 entries" |
+| 17 | playbook.md TOC | `manual_testing_playbook.md:27-41` | Add §13 COUNCIL before existing §13 |
+| 18 | playbook.md scope claim | `manual_testing_playbook.md:47` | "17 deterministic scenarios across 7 categories" → "22 across 8" |
+| 19 | playbook.md cross-ref index | `manual_testing_playbook.md` §14 cross-reference index | Add 5 new rows |
+
+## §C — DR-029 replacement-string package (STEP 2)
+
+| # | File:Line | CURRENT (verbatim) | REPLACEMENT | Rationale |
+|---|-----------|--------------------|-------------|-----------|
+| 1 | SKILL.md:144 | "Packet 129/001 ADR-001 extends `deep-loop-runtime/lib/` with council-compatible infrastructure primitives while keeping operator-facing and domain workflow semantics in `deep-ai-council`." | "Packet 131/001/008 ADR-001 (Runtime Boundary Decision) extends `deep-loop-runtime/lib/` with council-compatible infrastructure primitives while keeping operator-facing and domain workflow semantics in `deep-ai-council`." | Short form preserves prose readability |
+| 2 | README.md:198 | "Packet 129/001 ADR-001 extended this skill with council-compatible runtime primitives. Operator-facing semantics live in `deep-ai-council`. This skill owns the durability primitives only." | "Packet 131/001/008 ADR-001 (Runtime Boundary Decision) extended this skill with council-compatible runtime primitives. Operator-facing semantics live in `deep-ai-council`. This skill owns the durability primitives only." | Same |
+| 3 | README.md:247 | "│   └── council/                          # 5 cjs modules (per packet 129/001 ADR-001)" | "│   └── council/                          # 5 cjs modules (per packet 131/001/008 ADR-001)" | File-tree comment, keep short |
+| 4 | README.md:417 | "Packet 129/001 ADR-001 decided that durability primitives (multi-seat dispatch, round-state JSONL, adjudicator scoring, cost guards, session-state hierarchy) belong with the other deep-loop durability primitives." | "Packet 131/001/008 ADR-001 (Runtime Boundary Decision) decided that durability primitives (multi-seat dispatch, round-state JSONL, adjudicator scoring, cost guards, session-state hierarchy) belong with the other deep-loop durability primitives." | Same |
+
+**Full canonical path** (for the eventual remediation packet's commit message or for any new "see-also" link):
+`.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council/008-iterative-research-and-architecture/decision-record.md#adr-001`
+
+## §D — Negative knowledge / non-finding verification (STEP 3)
+
+| Prior finding | Surface | Iter-7 surface | Overlap? |
+|---------------|---------|----------------|----------|
+| DR-016 | graph-metadata.json (domains/key_topics/entities) | feature_catalog.md + manual_testing_playbook.md (content) | NO |
+| DR-017 | integration_points.md (AI-Council section) | catalog/playbook (council domain) | NO |
+| DR-018 | integration_points.md §1 (lib/council/ omitted) | catalog/playbook scope statement | NO |
+| DR-031 | graph-metadata.json causal_summary | catalog/playbook overview docs | NO |
+| DR-033 | graph-metadata.json manual.related_to | catalog/playbook cross-reference | NO |
+
+**Verdict**: DR-034 is NOVEL at the catalog/playbook content surface.
+
+## §E — Totals
+
+| Severity | Count |
+|----------|-------|
+| P0 | 0 |
+| P1 | 1 (DR-034) |
+| P2 | 0 |
+| **Total** | **1** |
+
+**newInfoRatio**: 1.00 (DR-034 is novel)
+
+## §F — Verdict
+
+GAP

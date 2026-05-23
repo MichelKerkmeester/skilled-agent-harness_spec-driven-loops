@@ -1,0 +1,97 @@
+# Iter 5 — Sub-README consistency + description-drift class-of-bug sweep
+
+## A. Sub-README → ls reconciliation (8 files)
+
+### lib/README.md
+- Claimed: 3 lib/ subdirs (council, coverage-graph, deep-loop) in table at lines 22-26
+- Actual ls: council, coverage-graph, deep-loop, README.md
+- Verdict: DRIFT: Line 31 claims "Per-domain READMEs: lib/council/README.md, lib/coverage-graph/README.md" but omits lib/deep-loop/README.md despite it being one of the 3 domains listed in the table above
+
+### lib/council/README.md
+- Claimed: 5 .cjs files (multi-seat-dispatch.cjs, round-state-jsonl.cjs, adjudicator-verdict-scoring.cjs, cost-guards.cjs, session-state-hierarchy.cjs) at lines 23-29
+- Actual ls: adjudicator-verdict-scoring.cjs, cost-guards.cjs, multi-seat-dispatch.cjs, round-state-jsonl.cjs, session-state-hierarchy.cjs, README.md
+- Verdict: MATCH
+
+### lib/coverage-graph/README.md
+- Claimed: 3 .ts files (coverage-graph-db.ts, coverage-graph-query.ts, coverage-graph-signals.ts) at lines 23-27
+- Actual ls: coverage-graph-db.ts, coverage-graph-query.ts, coverage-graph-signals.ts, README.md
+- Verdict: MATCH
+
+### lib/deep-loop/README.md
+- Claimed: 10 .ts files in "Helper Surfaces" table at lines 17-28 (loop-lock.ts, jsonl-repair.ts, atomic-state.ts, executor-config.ts, executor-audit.ts, post-dispatch-validate.ts, prompt-pack.ts, permissions-gate.ts, bayesian-scorer.ts, fallback-router.ts)
+- Actual ls: atomic-state.ts, bayesian-scorer.ts, executor-audit.ts, executor-config.ts, fallback-router.ts, jsonl-repair.ts, loop-lock.ts, permissions-gate.ts, post-dispatch-validate.ts, prompt-pack.ts, README.md
+- Verdict: MATCH
+
+### scripts/README.md
+- Claimed: 4 .cjs files (convergence.cjs, query.cjs, status.cjs, upsert.cjs) at lines 24-30, plus scripts/lib/cli-guards.cjs at lines 32-34
+- Actual ls: convergence.cjs, lib, query.cjs, status.cjs, upsert.cjs, README.md; scripts/lib/ contains cli-guards.cjs
+- Verdict: MATCH
+
+### tests/README.md
+- Claimed: 5 sub-dirs (council, helpers, integration, lifecycle, unit) at lines 24-31
+- Actual ls: council, helpers, integration, lifecycle, unit, README.md
+- Verdict: MATCH
+
+### tests/helpers/README.md
+- Claimed: 1 file (spawn-cjs.ts) at lines 22-24
+- Actual ls: README.md, spawn-cjs.ts
+- Verdict: MATCH
+
+### storage/README.md
+- Claimed: 1 file (deep-loop-graph.sqlite) at lines 23-25
+- Actual ls: deep-loop-graph.sqlite, README.md
+- Verdict: MATCH
+
+## B. Description-drift secondary sweep (3 spot-checks)
+
+| # | Catalog file:line | Source file:line | Verdict |
+|---|---|---|---|
+| A | feature_catalog/02--prompt-rendering/01-prompt-pack.md:3 | lib/deep-loop/prompt-pack.ts:1 | MATCH |
+| B | feature_catalog/03--validation/01-post-dispatch-validate.md:3 | lib/deep-loop/post-dispatch-validate.ts:1 | DRIFT: catalog emphasizes "iteration artifacts after dispatch and appends degraded verification events when optional checks fail" while source MODULE comment is generic "Deep-Loop Post-Dispatch Validator" - catalog over-specializes on verification event appending vs broader validation scope |
+| C | feature_catalog/06--coverage-graph/01-coverage-graph-db.md:3 | lib/coverage-graph/coverage-graph-db.ts:1 | MATCH |
+
+## C. Findings (DR-027 onwards)
+
+### DR-027 | P1 | documentation drift | lib/README.md:31
+lib/README.md omits lib/deep-loop/README.md from the "Per-domain READMEs" list despite listing deep-loop/ as one of the 3 domains in the table above.
+
+Evidence:
+- lib/README.md:22-26 lists 3 domains including deep-loop/
+- lib/README.md:31 claims "Per-domain READMEs: lib/council/README.md, lib/coverage-graph/README.md" (only 2 of 3)
+- Actual ls shows lib/deep-loop/README.md exists
+
+Recommended patch shape (text only — no actual edit):
+- Add lib/deep-loop/README.md to the Per-domain READMEs list at line 31 to include all 3 domains.
+
+### DR-028 | P2 | description drift | feature_catalog/03--validation/01-post-dispatch-validate.md:3
+Catalog description over-specializes on "appends degraded verification events when optional checks fail" while the source module has broader scope including iteration markdown validation, JSONL validation, delta validation, and multiple verification stages.
+
+Evidence:
+- feature_catalog/03--validation/01-post-dispatch-validate.md:3 describes "Validates iteration artifacts after dispatch and appends degraded verification events when optional checks fail"
+- lib/deep-loop/post-dispatch-validate.ts:1 has generic MODULE comment "Deep-Loop Post-Dispatch Validator"
+- lib/deep-loop/post-dispatch-validate.ts exports 4 functions: validateIterationOutputs, validateOrThrow, runOptionalVerificationPass, computeVerificationConfidence
+
+Recommended patch shape (text only — no actual edit):
+- Broaden catalog description to reflect full validation scope: "Validates iteration artifacts after dispatch including markdown, JSONL, and delta validation with optional verification passes and confidence scoring."
+
+## D. Summary
+
+- Total novel findings: 2
+- P0: 0 / P1: 1 / P2: 1
+- Class breakdown: 
+  | Class | Count |
+  |-------|-------|
+  | documentation drift | 1 |
+  | description drift | 1 |
+- LOG_ONLY count: 0
+- SC-007 invariant: held
+- Bundle gate: PASS
+
+## E. Class-of-bug verdict
+
+Description-drift prevalence: 1/3 (combined with iter-4's 2/4 = 3/7 sampled of 17 ≈ 43%)
+Recommendation: high prevalence (≥6 of 17 ≈ 35%+) — recommend full-17 remediation packet
+
+## F. Next iter suggestion
+
+Iter 6 per strategy.md §4 will focus on "graph-metadata.json freshness: every key_files entry resolves, every related_to is current." Given iter-2 DR-016 already consolidated council coverage gap in graph-metadata, iter 6 will likely find a narrow surface focused on verifying key_files paths still resolve after the deep-loop-runtime migration and ensuring related_to references remain current across the 3 domains.

@@ -1,6 +1,6 @@
 ---
 title: "Bayesian scorer"
-description: "Scores executor reliability and decides when enough evidence supports demotion."
+description: "Two primitives: computeScore returns a Bayesian success probability via Laplace smoothing (success+1)/(total+2); shouldDemote returns true when score<0.5 and totalCalls>=3."
 ---
 
 # Bayesian scorer

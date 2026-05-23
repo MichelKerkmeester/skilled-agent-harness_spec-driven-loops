@@ -37,14 +37,15 @@ Canonical package artifacts:
 - [10. SCORING](#10--scoring)
 - [11. COVERAGE GRAPH](#11--coverage-graph)
 - [12. SCRIPT ENTRY POINTS](#12--script-entry-points)
-- [13. AUTOMATED TEST CROSS-REFERENCE](#13--automated-test-cross-reference)
-- [14. FEATURE CATALOG CROSS-REFERENCE INDEX](#14--feature-catalog-cross-reference-index)
+- [13. COUNCIL](#13--council)
+- [14. AUTOMATED TEST CROSS-REFERENCE](#14--automated-test-cross-reference)
+- [15. FEATURE CATALOG CROSS-REFERENCE INDEX](#15--feature-catalog-cross-reference-index)
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 17 deterministic scenarios across 7 categories validating the current `deep-loop-runtime` skill surface. Each scenario maps to one feature catalog entry and one dedicated scenario file with objective, prompt, execution steps, source anchors, and verdict criteria.
+This playbook provides 22 deterministic scenarios across 8 categories validating the current `deep-loop-runtime` skill surface. Each scenario maps to one feature catalog entry and one dedicated scenario file with objective, prompt, execution steps, source anchors, and verdict criteria.
 
 ### REALISTIC TEST MODEL
 
@@ -379,7 +380,58 @@ Expected signals: JSON-only stdout, exit code 0 for valid input, exit code 3 for
 
 ---
 
-## 13. AUTOMATED TEST CROSS-REFERENCE
+## 13. COUNCIL
+
+Per packet 131/001/008 ADR-001 (Runtime Boundary Decision), `lib/council/` provides 5 durability primitives consumed by `deep-ai-council`. These scenarios validate the council surface.
+
+### DLR-018 | Multi-seat dispatch
+
+#### Description
+
+Runs seat executors in parallel for one council round; preserves seat result order; returns fulfilled or rejected per-seat outcomes plus round summary counts.
+
+#### Test Execution
+> **Feature File:** [DLR-018](08--council/018-multi-seat-dispatch.md)
+
+### DLR-019 | Round-state JSONL
+
+#### Description
+
+Appends per-round JSONL records with a lock-file single-writer guard; repairs corrupt trailing JSONL before append; fsyncs writes; exposes round-state readers for resume.
+
+#### Test Execution
+> **Feature File:** [DLR-019](08--council/019-round-state-jsonl.md)
+
+### DLR-020 | Adjudicator verdict scoring
+
+#### Description
+
+Scores Round-N to Round-N+1 adjudicator verdict deltas using ADR-003 weights for option change, confidence delta, material-risk Jaccard delta, axis flip rate, and blocking-disagreement delta.
+
+#### Test Execution
+> **Feature File:** [DLR-020](08--council/020-adjudicator-verdict-scoring.md)
+
+### DLR-021 | Cost guards
+
+#### Description
+
+Normalizes and enforces ADR-004 defaults for max_rounds_per_topic, max_topics_per_session, saturation_threshold, and seats_per_round; computes upper-bound seat-output budgets.
+
+#### Test Execution
+> **Feature File:** [DLR-021](08--council/021-cost-guards.md)
+
+### DLR-022 | Session state hierarchy
+
+#### Description
+
+Creates and validates the ADR-002 session->topic->round state shape, including stable topic-NNN-slug and round-NNN ids.
+
+#### Test Execution
+> **Feature File:** [DLR-022](08--council/022-session-state-hierarchy.md)
+
+---
+
+## 14. AUTOMATED TEST CROSS-REFERENCE
 
 | Surface | Tests | Purpose |
 |---|---|---|
@@ -388,10 +440,11 @@ Expected signals: JSON-only stdout, exit code 0 for valid input, exit code 3 for
 | State safety | `tests/unit/atomic-state.vitest.ts`, `tests/unit/jsonl-repair.vitest.ts`, `tests/unit/loop-lock.vitest.ts`, `tests/unit/permissions-gate.vitest.ts` | Atomic writes, repair, locking, and permissions. |
 | Coverage graph scripts | `tests/integration/{convergence,query,status,upsert}-script.vitest.ts`, `tests/lifecycle/db-open-close.vitest.ts` | Direct script behavior and DB lifecycle. |
 | Review-depth integration | `tests/integration/review-depth-*.vitest.ts` | Review graph, convergence, and validator fixtures. |
+| Council | `tests/council/{multi-seat-dispatch,round-state-jsonl,adjudicator-verdict-scoring,cost-guards,session-state-hierarchy}.vitest.ts` | Council durability primitives: parallel dispatch, JSONL append + repair, verdict-delta scoring, cost guards, state-hierarchy validation. |
 
 ---
 
-## 14. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 15. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 | Scenario | Feature Catalog Entry | Scenario File |
 |---|---|---|
@@ -412,4 +465,9 @@ Expected signals: JSON-only stdout, exit code 0 for valid input, exit code 3 for
 | DLR-015 | [F015 upsert.cjs](../feature_catalog/07--script-entry-points/02-upsert-script.md) | [07--script-entry-points/015-upsert-script.md](07--script-entry-points/015-upsert-script.md) |
 | DLR-016 | [F016 query.cjs](../feature_catalog/07--script-entry-points/03-query-script.md) | [07--script-entry-points/016-query-script.md](07--script-entry-points/016-query-script.md) |
 | DLR-017 | [F017 status.cjs](../feature_catalog/07--script-entry-points/04-status-script.md) | [07--script-entry-points/017-status-script.md](07--script-entry-points/017-status-script.md) |
+| DLR-018 | [F018 Multi-seat dispatch](../feature_catalog/08--council/01-multi-seat-dispatch.md) | [08--council/018-multi-seat-dispatch.md](08--council/018-multi-seat-dispatch.md) |
+| DLR-019 | [F019 Round-state JSONL](../feature_catalog/08--council/02-round-state-jsonl.md) | [08--council/019-round-state-jsonl.md](08--council/019-round-state-jsonl.md) |
+| DLR-020 | [F020 Adjudicator verdict scoring](../feature_catalog/08--council/03-adjudicator-verdict-scoring.md) | [08--council/020-adjudicator-verdict-scoring.md](08--council/020-adjudicator-verdict-scoring.md) |
+| DLR-021 | [F021 Cost guards](../feature_catalog/08--council/04-cost-guards.md) | [08--council/021-cost-guards.md](08--council/021-cost-guards.md) |
+| DLR-022 | [F022 Session state hierarchy](../feature_catalog/08--council/05-session-state-hierarchy.md) | [08--council/022-session-state-hierarchy.md](08--council/022-session-state-hierarchy.md) |
 

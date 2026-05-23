@@ -1,0 +1,63 @@
+## §A — DRIFT A confirmation (STEP 1)
+
+**README.md L194 verbatim**: "The deep-review loop adds review nodes (dimension, file, finding, evidence, remediation, code-surface)."
+
+**Source `coverage-graph-db.ts:132-143` verbatim review kinds**: `['DIMENSION', 'FILE', 'FINDING', 'EVIDENCE', 'REMEDIATION', 'BUG_CLASS', 'INVARIANT', 'PRODUCER', 'CONSUMER', 'TEST']`
+
+**Drift verdict**: CONFIRMED (5 omissions: BUG_CLASS, INVARIANT, PRODUCER, CONSUMER, TEST; 1 fabrication: code-surface)
+
+**Finding emitted**: DR-035 (P1, documentation-drift-readme-node-kind-list-incorrect)
+
+## §B — DRIFT B confirmation (STEP 2)
+
+**references/coverage_graph_schema.md L36 verbatim**: "Deep-review dimension, file, finding, evidence, remediation, and code-surface graph."
+
+**Same file §3 table (L52-65)** correctness check: 10 kinds present? YES (DIMENSION, FILE, FINDING, EVIDENCE, REMEDIATION, BUG_CLASS, INVARIANT, PRODUCER, CONSUMER, TEST)
+
+**Internal contradiction verdict**: CONFIRMED (prose-only drift; authoritative table correct)
+
+**Finding emitted**: DR-036 (P2, documentation-drift-schema-doc-prose-vs-authoritative-table)
+
+## §C — Three-way field-group sweep (STEP 3)
+
+| Field group | Source ref | storage README | schema reference | top README | Verdict |
+|-------------|-----------|----------------|------------------|-----------|---------|
+| Schema version | L96 (=2) | n/a | L23 | L190, L227 | PASS |
+| Research node kinds | L131 | n/a | L46-49 | L194 | PASS |
+| Review node kinds | L132-143 | n/a | §3 L52-65 PASS; L36 prose FAIL | L194 FAIL | **FAIL** |
+| Research relations | L147 | n/a | L70-78 | n/a | PASS |
+| Review relations | L148 | n/a | L80-89 | n/a | PASS |
+| Tables (4) | L153-203 | n/a | §5 | n/a | PASS |
+| Indexes (10) | L205-214 | n/a | §6 | n/a | PASS |
+| Lifecycle invariant | L219-308 | L27-31 (terse OK) | §7 explicit | L212, L227 explicit | PASS |
+| Session-scoping | namespace PK | n/a | L113 PK | L229 | PASS |
+
+## §D — Negative knowledge / non-finding verification (STEP 4)
+
+| Check | Verdict |
+|-------|---------|
+| storage/README.md makes no factual schema claim | PASS (no drift possible — orientation only) |
+| Reference §5 column types match source | PASS (coverage_nodes: spec_folder, loop_type, session_id, id, kind, name, content_hash, iteration, metadata, created_at, updated_at matches source L155-167 verbatim) |
+| Reference §6 index list matches source 10 indexes | PASS (all 10 indexes from source L205-214 appear in reference table L156-169) |
+| README L227 schema version | PASS (matches source SCHEMA_VERSION = 2) |
+
+## §E — Documentation accuracy verdict
+
+- **storage/README.md (36 LOC)**: ACCURATE (no claims to drift; bare orientation by design per AF-0050).
+- **references/coverage_graph_schema.md (193 LOC)**: AUTHORITATIVE TABLES ACCURATE, PROSE DESCRIPTION DRIFTED (L36). Sub-finding DR-036 is P2.
+- **README.md §3.4 + §3.7 (relevant 50 LOC)**: §3.4 L194 review-node-kind enumeration MATERIALLY INCORRECT (5 omissions + 1 fabrication). Sub-finding DR-035 is P1. §3.7 storage-section claims are accurate.
+
+## §F — Totals
+
+| Severity | Count |
+|----------|-------|
+| P0 | 0 |
+| P1 | 1 (DR-035) |
+| P2 | 1 (DR-036) |
+| **Total** | **2** |
+
+**newInfoRatio**: 1.00 (both findings novel; no prior DR targets schema-doc node-kind list).
+
+## §G — Verdict
+
+**Iter 8 verdict**: DOCUMENTATION DRIFT — README + reference doc both propagate fabricated "code-surface" kind. Source code is correct; documentation needs surgical patch (drop or fix L194 in README, fix L36 in reference). Remediation surface = 2 lines.

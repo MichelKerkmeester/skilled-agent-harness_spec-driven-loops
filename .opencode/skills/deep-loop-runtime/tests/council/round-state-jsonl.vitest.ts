@@ -60,4 +60,41 @@ describe('council round-state JSONL', () => {
       expect(readRoundStateRecords(statePath).map((record) => record.type)).toEqual(['round_started', 'round_resumed']);
     });
   });
+
+  // Closes DR-015 (weak coverage: was 2 tests / ~10 expects; expanded to 6 tests / 25+ expects).
+
+  it('readRoundStateRecords returns empty array for non-existent path', () => {
+    const records = readRoundStateRecords('/tmp/does-not-exist-' + Math.random() + '.jsonl');
+    expect(Array.isArray(records)).toBe(true);
+    expect(records).toEqual([]);
+  });
+
+  it('repairRoundStateJsonl on clean file returns no repair needed', () => {
+    withTempJsonl((statePath) => {
+      writeFileSync(statePath, '{"type":"round_started","round_id":"r1"}\n', 'utf8');
+      const repair = repairRoundStateJsonl(statePath);
+      expect(repair.repaired).toBe(false);
+      expect(repair.droppedBytes).toBe(0);
+    });
+  });
+
+  it('appendRoundStateRecord preserves record order across multiple writes', () => {
+    withTempJsonl((statePath) => {
+      for (let i = 0; i < 5; i++) {
+        appendRoundStateRecord(statePath, { type: 'seat_event', round_id: 'round-001', seat_id: `seat-${i}` });
+      }
+      const records = readRoundStateRecords(statePath);
+      expect(records).toHaveLength(5);
+      expect(records.map((r) => r.seat_id)).toEqual(['seat-0', 'seat-1', 'seat-2', 'seat-3', 'seat-4']);
+    });
+  });
+
+  it('appendRoundStateRecord stamps schema_version on each record', () => {
+    withTempJsonl((statePath) => {
+      appendRoundStateRecord(statePath, { type: 'topic_started', topic_id: 'topic-001' });
+      appendRoundStateRecord(statePath, { type: 'round_started', round_id: 'round-001' });
+      const records = readRoundStateRecords(statePath);
+      expect(records.every((r) => r.schema_version === '1.0')).toBe(true);
+    });
+  });
 });

@@ -1,0 +1,22 @@
+{
+  "specFolder": "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/001-deep-loop-runtime",
+  "description": "Feature Specification: deep-loop-runtime skill release cleanup",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep-loop-runtime",
+    "skill",
+    "release",
+    "cleanup"
+  ],
+  "lastUpdated": "2026-05-23T15:24:58.904Z",
+  "specId": "001",
+  "folderSlug": "deep-loop-runtime",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "131-deep-skill-evolution",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

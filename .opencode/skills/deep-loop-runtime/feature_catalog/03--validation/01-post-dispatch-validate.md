@@ -1,6 +1,6 @@
 ---
 title: "Post-dispatch validate"
-description: "Validates iteration artifacts after dispatch and appends degraded verification events when optional checks fail."
+description: "Validates iteration artifacts after dispatch: checks iteration file existence, state-log growth, required JSONL fields, optional code-verification pass (compile/execute/test/lint), and appends degraded verification events when optional checks fail."
 ---
 
 # Post-dispatch validate

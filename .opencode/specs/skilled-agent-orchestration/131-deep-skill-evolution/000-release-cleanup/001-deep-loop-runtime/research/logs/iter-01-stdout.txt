@@ -1,0 +1,161 @@
+# Iter 1 — Cross-doc consistency sweep findings
+
+## Summary
+- Total findings: 10 (P0=0 / P1=6 / P2=4)
+- Novel (not in audit-findings.jsonl): 10
+- Re-reported (already in audit-findings.jsonl): 0
+- newInfoRatio estimate: 1.00
+- Wall-clock: 15 minutes
+
+## Findings
+
+### Finding 1 [P1, novel, class: cross-doc-drift]
+
+**Artifact**: `.opencode/skills/deep-loop-runtime/README.md:3`
+**Description**: README frontmatter description claims "22 vitest files" but actual count is 27.
+**Evidence**:
+- `README.md:3` "runtime-owned SQLite storage and 22 vitest files"
+- `README.md:82` "🧪 Runtime tests | 22 vitest files covering unit, integration, lifecycle, council"
+- Actual count: 27 vitest files (14 unit + 7 integration + 1 lifecycle + 5 council)
+**Recommended fix**: Update README.md description and table row to "27 vitest files".
+**LOG_ONLY**: no
+
+### Finding 2 [P2, novel, class: cross-doc-drift]
+
+**Artifact**: `.opencode/skills/deep-loop-runtime/SKILL.md:81`
+**Description**: SKILL.md claims "21+ vitest files" which is also incorrect (actual is 27).
+**Evidence**:
+- `SKILL.md:81` "tests/{unit,integration,lifecycle}/  # 21+ vitest files split by responsibility"
+- Actual count: 27 vitest files
+**Recommended fix**: Update SKILL.md to "27 vitest files".
+**LOG_ONLY**: no
+
+### Finding 3 [P1, novel, class: cross-doc-drift]
+
+**Artifact**: `.opencode/skills/deep-loop-runtime/README.md:242`
+**Description**: README §4 STRUCTURE tree lists only `changelog/v1.0.0.0.md` but does not list the new `v1.1.0.0.md` despite this being the current release.
+**Evidence**:
+- `README.md:242` "│   └── v1.0.0.0.md                       # Initial shipped release"
+- Changelog directory contains both `v1.0.0.0.md` and `v1.1.0.0.md`
+**Recommended fix**: Add `│   └── v1.1.0.0.md                       # Release-cleanup pass` to the tree.
+**LOG_ONLY**: no
+
+### Finding 4 [P1, novel, class: cross-doc-drift]
+
+**Artifact**: `.opencode/skills/deep-loop-runtime/README.md:438`
+**Description**: README §9 RELATED DOCUMENTS links only `changelog/v1.0.0.0.md` but not the current `v1.1.0.0.md`.
+**Evidence**:
+- `README.md:438` "[`changelog/v1.0.0.0.md`](changelog/v1.0.0.0.md) | Initial shipped release notes (arc 118 consolidation)"
+- No link to v1.1.0.0.md in the table
+**Recommended fix**: Add row for v1.1.0.0.md or replace v1.0.0.0.md with v1.1.0.0.md as the current release.
+**LOG_ONLY**: no
+
+### Finding 5 [P2, novel, class: cross-doc-drift]
+
+**Artifact**: `.opencode/skills/deep-loop-runtime/graph-metadata.json:167`
+**Description**: graph-metadata.json `last_updated_at` is 2026-05-22 but README and v1.1.0.0.md are dated 2026-05-23, indicating stale metadata.
+**Evidence**:
+- `graph-metadata.json:167` `"last_updated_at": "2026-05-22T00:00:00Z"`
+- `README.md` frontmatter and content reference 2026-05-23 changes
+- `changelog/v1.1.0.0.md:3` `"date": "2026-05-23"`
+**Recommended fix**: Update graph-metadata.json `last_updated_at` to 2026-05-23.
+**LOG_ONLY**: no
+
+### Finding 6 [P1, novel, class: cross-doc-drift]
+
+**Artifact**: `.opencode/skills/deep-loop-runtime/graph-metadata.json:79-95`
+**Description**: graph-metadata.json `derived.key_topics` array does not include the 5 council modules (multi-seat-dispatch, round-state-jsonl, adjudicator-verdict-scoring, cost-guards, session-state-hierarchy) despite council being an in-scope domain per SKILL.md §3.4 and README §3.5.
+**Evidence**:
+- `graph-metadata.json:79-95` lists 14 key_topics, none are council-related
+- `SKILL.md:146-151` documents 5 council modules
+- `README.md:196-208` documents council primitives as domain 3.5
+**Recommended fix**: Add the 5 council module names to `derived.key_topics` array.
+**LOG_ONLY**: no
+
+### Finding 7 [P2, novel, class: cross-doc-drift]
+
+**Artifact**: `.opencode/skills/deep-loop-runtime/graph-metadata.json:105-154`
+**Description**: graph-metadata.json `derived.entities` has no council entities and no `cli-guards.cjs` script entity.
+**Evidence**:
+- `graph-metadata.json:105-154` lists 8 entities (skill, config, 2 consumer skills, 4 scripts)
+- Missing: 5 council module entities, cli-guards.cjs script entity
+- `scripts/lib/cli-guards.cjs` exists at the documented path
+**Recommended fix**: Add council module entities and cli-guards.cjs to `derived.entities`.
+**LOG_ONLY**: no
+
+### Finding 8 [P2, novel, class: cross-doc-drift]
+
+**Artifact**: `.opencode/skills/deep-loop-runtime/graph-metadata.json:53-61`
+**Description**: graph-metadata.json `domains` array does not include "council" despite SKILL.md and README treating it as a domain.
+**Evidence**:
+- `graph-metadata.json:53-61` lists 7 domains: runtime, deep-loop, coverage-graph, convergence, executor, state-safety, script-entry-points
+- Missing: "council"
+- `README.md:196` has section "### 3.5 COUNCIL PRIMITIVES"
+**Recommended fix**: Add "council" to the `domains` array.
+**LOG_ONLY**: no
+
+### Finding 9 [P1, novel, class: cross-doc-drift]
+
+**Artifact**: `.opencode/skills/deep-loop-runtime/README.md:259,440`
+**Description**: README self-inconsistency: §4 STRUCTURE L259 says "18 operator-facing manual-test scenarios" but §9 RELATED DOCUMENTS L440 says "(17 entries)".
+**Evidence**:
+- `README.md:259` "├── manual_testing_playbook/              # 18 operator-facing manual-test scenarios"
+- `README.md:440` "[`manual_testing_playbook/manual_testing_playbook.md`](manual_testing_playbook/manual_testing_playbook.md) | Operator-facing manual-test scenarios (17 entries)"
+- Actual count: 18 .md files (17 scenarios + 1 index)
+**Recommended fix**: Change L440 to "(18 entries)" to match L259 and actual count.
+**LOG_ONLY**: no
+
+### Finding 10 [P2, novel, class: cross-doc-drift]
+
+**Artifact**: `.opencode/skills/deep-loop-runtime/SKILL.md:253`
+**Description**: SKILL.md §7 INTEGRATION POINTS uses singular "workflow YAML call" when referring to multiple consumer skills; should be plural for grammar.
+**Evidence**:
+- `SKILL.md:253` "- **Deep-review and deep-research workflow YAML** call this runtime through script entry points after phase 005's cutover."
+- Context refers to both deep-review and deep-research workflows (plural)
+**Recommended fix**: Change to "Deep-review and deep-research workflow YAMLs call this runtime".
+**LOG_ONLY**: no
+
+### Finding 11 [P2, novel, class: cross-doc-drift]
+
+**Artifact**: `.opencode/skills/deep-loop-runtime/SKILL.md:266`
+**Description**: SKILL.md §8 REFERENCES cites only `changelog/v1.0.0.0.md` but the current release is v1.1.0.0; should reference the latest changelog.
+**Evidence**:
+- `SKILL.md:266` "- changelog: `changelog/v1.0.0.0.md`"
+- Current version is 1.1.0 per SKILL.md frontmatter L3
+- v1.1.0.0.md exists and documents the current release
+**Recommended fix**: Add reference to `changelog/v1.1.0.0.md` or replace with latest changelog reference.
+**LOG_ONLY**: no
+
+## Hypothesis disposition
+
+| # | Hypothesis | Status | Evidence |
+|---|-----------|--------|----------|
+| 1 | README claims 22 vitest files | CONFIRMED | L3+L82 claim 22, actual count 27 (Finding 1) |
+| 2 | SKILL.md says 21+ vitest files | CONFIRMED | L81 claims 21+, actual count 27 (Finding 2) |
+| 3 | README §4 STRUCTURE missing v1.1.0.0.md | CONFIRMED | L242 only lists v1.0.0.0.md (Finding 3) |
+| 4 | README §9 missing v1.1.0.0.md link | CONFIRMED | L438 only links v1.0.0.0.md (Finding 4) |
+| 5 | graph-metadata.json timestamp stale | CONFIRMED | L167 shows 2026-05-22, docs are 2026-05-23 (Finding 5) |
+| 6 | graph-metadata.json key_topics missing council | CONFIRMED | L79-95 has no council modules (Finding 6) |
+| 7 | graph-metadata.json entities missing council/cli-guards | CONFIRMED | L105-154 missing council entities (Finding 7) |
+| 8 | graph-metadata.json domains missing council | CONFIRMED | L53-61 has no "council" domain (Finding 8) |
+| 9 | README self-inconsistency on playbook count | CONFIRMED | L259 says 18, L440 says 17 (Finding 9) |
+| 10 | changelog v1.1.0.0.md section indices wrong | REFUTED | L63 correctly lists "3.5 Council primitives" |
+| 11 | SKILL.md grammar singular "workflow YAML call" | CONFIRMED | L253 uses singular for plural context (Finding 10) |
+| 12 | SKILL.md references outdated changelog | CONFIRMED | L266 only cites v1.0.0.0.md (Finding 11) |
+
+## Recommendation for iter 2
+
+Per strategy.md §4: "Test-coverage map: which lib/**/*.ts modules lack a paired vitest file in tests/unit/". 
+
+**Alternative recommendation based on findings**: The graph-metadata.json council omissions (Findings 6, 7, 8) suggest a systematic gap in council domain indexing. Iter 2 should focus on:
+1. Completing council domain coverage in graph-metadata.json (key_topics, entities, domains)
+2. Verifying that all lib/council/ modules have corresponding entries in graph-metadata.json
+3. Cross-checking graph-metadata.json against the actual lib/ structure for any other missing modules
+
+This addresses the P1 council discoverability gap surfaced in this iteration and ensures the metadata is a complete reflection of the codebase.
+
+## Self-critique
+
+- What I might have missed: Did not verify all path references in README §9 beyond the consumer skill links (deep-review, deep-research, deep-ai-council all resolve correctly). Did not check whether spec folder paths in SKILL.md §8 REFERENCES resolve (131 phase parent path verified, but leaf phase paths not checked).
+- Confidence in counts: High - vitest count (27) verified via glob, manual_testing_playbook count (18) verified via glob, feature_catalog count (17 entries + 1 index = 18 files) verified via glob.
+- Confidence in path resolutions: High - all cross-skill links verified via find_file_by_name, spec folder parent path verified, council modules exist at documented paths.

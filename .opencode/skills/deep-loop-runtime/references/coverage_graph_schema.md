@@ -33,7 +33,7 @@ Database file: `deep-loop-graph.sqlite`.
 | Loop type | Meaning |
 |---|---|
 | `research` | Deep-research question, finding, claim, and source graph. |
-| `review` | Deep-review dimension, file, finding, evidence, remediation, and code-surface graph. |
+| `review` | Deep-review graph over DIMENSION, FILE, FINDING, EVIDENCE, REMEDIATION, BUG_CLASS, INVARIANT, PRODUCER, CONSUMER and TEST node kinds (see §3 authoritative table). |
 
 ---
 

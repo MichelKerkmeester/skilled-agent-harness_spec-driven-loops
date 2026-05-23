@@ -23,12 +23,13 @@ This document combines the current feature inventory for the `deep-loop-runtime`
 - [6. SCORING](#6--scoring)
 - [7. COVERAGE GRAPH](#7--coverage-graph)
 - [8. SCRIPT ENTRY POINTS](#8--script-entry-points)
+- [9. COUNCIL](#9--council)
 
 ---
 
 ## 1. OVERVIEW
 
-Use this catalog as the canonical inventory for the live `deep-loop-runtime` feature surface. The 17 entries below cover runtime libraries and direct `.cjs` scripts consumed by deep-review, deep-research, `/doctor`, and adjacent validation docs.
+Use this catalog as the canonical inventory for the live `deep-loop-runtime` feature surface. The 22 entries below cover runtime libraries and direct `.cjs` scripts consumed by deep-* loop consumers (deep-review, deep-research, deep-ai-council, `/doctor`, and adjacent validation docs) per packet 131/001/008 ADR-001 Runtime Boundary Decision.
 
 | Category | Coverage | Primary Surfaces |
 |---|---:|---|
@@ -39,6 +40,7 @@ Use this catalog as the canonical inventory for the live `deep-loop-runtime` fea
 | [05--scoring](05--scoring/) | 1 features | `lib/deep-loop/bayesian-scorer.ts` |
 | [06--coverage-graph](06--coverage-graph/) | 3 features | `lib/coverage-graph/coverage-graph-db.ts`, `lib/coverage-graph/coverage-graph-query.ts`, `lib/coverage-graph/coverage-graph-signals.ts` |
 | [07--script-entry-points](07--script-entry-points/) | 4 features | `scripts/convergence.cjs`, `scripts/upsert.cjs`, `scripts/query.cjs`, `scripts/status.cjs` |
+| [08--council](08--council/) | 5 features | `lib/council/multi-seat-dispatch.cjs`, `lib/council/round-state-jsonl.cjs`, `lib/council/adjudicator-verdict-scoring.cjs`, `lib/council/cost-guards.cjs`, `lib/council/session-state-hierarchy.cjs` |
 
 ---
 
@@ -351,6 +353,70 @@ Direct replacement for `deep_loop_graph_status`; reports counts, schema, DB size
 #### Source Files
 
 See [`07--script-entry-points/04-status-script.md`](07--script-entry-points/04-status-script.md) for full implementation and validation file listings.
+
+---
+
+## 9. COUNCIL
+
+These entries cover the 5 council durability primitives that downstream `deep-ai-council` consumes, per packet 131/001/008 ADR-001 (Runtime Boundary Decision). The council surface mirrors the deep-loop durability contract in a council-scoped CJS surface.
+
+### Multi-seat dispatch
+
+#### Description
+
+Runs seat executors in parallel for one council round; preserves seat result order; returns fulfilled or rejected per-seat outcomes plus round summary counts.
+
+#### Source Files
+
+See [`08--council/01-multi-seat-dispatch.md`](08--council/01-multi-seat-dispatch.md) for full implementation and validation file listings.
+
+---
+
+### Round-state JSONL
+
+#### Description
+
+Appends per-round JSONL records with a lock-file single-writer guard; repairs corrupt trailing JSONL before append; fsyncs writes; exposes round-state readers for resume.
+
+#### Source Files
+
+See [`08--council/02-round-state-jsonl.md`](08--council/02-round-state-jsonl.md) for full implementation and validation file listings.
+
+---
+
+### Adjudicator verdict scoring
+
+#### Description
+
+Scores Round-N to Round-N+1 adjudicator verdict deltas using ADR-003 weights for option change, confidence delta, material-risk Jaccard delta, axis flip rate, and blocking-disagreement delta.
+
+#### Source Files
+
+See [`08--council/03-adjudicator-verdict-scoring.md`](08--council/03-adjudicator-verdict-scoring.md) for full implementation and validation file listings.
+
+---
+
+### Cost guards
+
+#### Description
+
+Normalizes and enforces ADR-004 defaults for max_rounds_per_topic, max_topics_per_session, saturation_threshold, and seats_per_round; computes upper-bound seat-output budgets.
+
+#### Source Files
+
+See [`08--council/04-cost-guards.md`](08--council/04-cost-guards.md) for full implementation and validation file listings.
+
+---
+
+### Session state hierarchy
+
+#### Description
+
+Creates and validates the ADR-002 session->topic->round state shape, including stable topic-NNN-slug and round-NNN ids.
+
+#### Source Files
+
+See [`08--council/05-session-state-hierarchy.md`](08--council/05-session-state-hierarchy.md) for full implementation and validation file listings.
 
 ---
 

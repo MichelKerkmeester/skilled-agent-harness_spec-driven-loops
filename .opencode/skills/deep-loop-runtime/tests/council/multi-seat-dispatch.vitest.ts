@@ -59,4 +59,70 @@ describe('council multi-seat dispatch', () => {
     expect(result.results[1].error?.message).toBe('seat executor failed');
     expect(result.summary).toMatchObject({ total: 2, succeeded: 1, failed: 1, all_failed: false });
   });
+
+  // Closes DR-014 (weak coverage: was 2 tests / ~8 expects; expanded to 6 tests / 25+ expects).
+
+  it('marks all_failed=true when every seat throws', async () => {
+    const result = await dispatchCouncilSeats({
+      roundId: 'round-003',
+      seats: [{ id: 'seat-a' }, { id: 'seat-b' }, { id: 'seat-c' }],
+      async dispatchSeat() {
+        throw new Error('all seats fail');
+      },
+    });
+
+    expect(result.results.every((entry) => entry.status === 'rejected')).toBe(true);
+    expect(result.results.every((entry) => entry.error?.message === 'all seats fail')).toBe(true);
+    expect(result.summary).toMatchObject({ total: 3, succeeded: 0, failed: 3, all_failed: true });
+  });
+
+  it('handles single-seat round correctly', async () => {
+    const result = await dispatchCouncilSeats({
+      roundId: 'round-004',
+      seats: [{ id: 'solo-seat' }],
+      async dispatchSeat(seat) {
+        return { seat_id: seat.id, lens: 'solo' };
+      },
+    });
+
+    expect(result.round_id).toBe('round-004');
+    expect(result.results).toHaveLength(1);
+    expect(result.results[0].status).toBe('fulfilled');
+    expect(result.results[0].seat_id).toBe('solo-seat');
+    expect(result.summary).toMatchObject({ total: 1, succeeded: 1, failed: 0, all_failed: false });
+  });
+
+  it('preserves seat order even when later seats complete before earlier ones', async () => {
+    const result = await dispatchCouncilSeats({
+      roundId: 'round-005',
+      seats: [{ id: 'slow-seat' }, { id: 'fast-seat' }],
+      async dispatchSeat(seat) {
+        if (seat.id === 'slow-seat') {
+          await new Promise((resolve) => setTimeout(resolve, 20));
+        }
+        return { seat_id: seat.id };
+      },
+    });
+
+    expect(result.results.map((entry) => entry.seat_id)).toEqual(['slow-seat', 'fast-seat']);
+    expect(result.results.every((entry) => entry.status === 'fulfilled')).toBe(true);
+  });
+
+  it('passes seat lens through to dispatchSeat context', async () => {
+    const observedLenses: Array<string | undefined> = [];
+    const result = await dispatchCouncilSeats({
+      roundId: 'round-006',
+      seats: [
+        { id: 'seat-x', lens: 'engineer' },
+        { id: 'seat-y', lens: 'auditor' },
+      ],
+      async dispatchSeat(seat) {
+        observedLenses.push(seat.lens);
+        return { seat_id: seat.id };
+      },
+    });
+
+    expect(observedLenses).toEqual(['engineer', 'auditor']);
+    expect(result.summary.succeeded).toBe(2);
+  });
 });

@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/001-deep-loop-runtime",
+  "spec_folder": "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/001-deep-loop-runtime",
+  "parent_id": "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup",
+  "children_ids": [
+    "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/001-deep-loop-runtime/001-doc-remediation"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop-runtime release cleanup",
+      "001-deep-loop-runtime",
+      "deep-loop runtime audit",
+      "alignment validation gate",
+      "sk-doc conformance",
+      "deep-loop runtime readme rewrite",
+      "deep-loop-runtime release cleanup plan",
+      "phase 1 spec creation",
+      "phase 2 skill audit",
+      "phase 3 readme rewrite",
+      "phase 4 alignment validation gate",
+      "phase 5 deep research and merge"
+    ],
+    "key_topics": [
+      "deep-loop-runtime",
+      "release",
+      "cleanup",
+      "001-deep-loop-runtime",
+      "deep-loop",
+      "runtime",
+      "audit",
+      "alignment",
+      "validation",
+      "gate",
+      "sk-doc",
+      "conformance"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "resource-map.md",
+      "research/research.md",
+      "research/convergence-summary.md",
+      "research/resource-map.md",
+      "findings/audit-findings.jsonl",
+      ".opencode/skills/cli-devin/SKILL.md",
+      ".opencode/skills/system-spec-kit/README.md",
+      "changelog/v1.1.0.0.md",
+      ".opencode/skills/deep-loop-runtime/README.md",
+      ".opencode/skills/deep-loop-runtime/SKILL.md",
+      ".opencode/skills/deep-loop-runtime/changelog/v1.1.0.0.md",
+      "schemas/audit-finding.schema.json",
+      "decision-record.md",
+      ".opencode/skills/sk-doc/references/global/hvr_rules.md",
+      "feature_catalog/feature_catalog.md",
+      "plan.md",
+      "scripts/spec/validate.sh",
+      "validation/validation-report.jsonl",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "convergence-summary.md",
+        "kind": "doc",
+        "path": "research/convergence-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit-findings.jsonl",
+        "kind": "file",
+        "path": "findings/audit-findings.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-devin/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.1.0.0.md",
+        "kind": "doc",
+        "path": "changelog/v1.1.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit-finding.schema.json",
+        "kind": "config",
+        "path": "schemas/audit-finding.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "hvr_rules.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/references/global/hvr_rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": "feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": "scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validation-report.jsonl",
+        "kind": "file",
+        "path": "validation/validation-report.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Smart Router",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Last Updated",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `deep-loop-runtime` skill (v1.0.0) is the shared peer-runtime layer extracted by arc 118 (FULL_ISOLATE_NO_MCP) from `deep-review` + `deep-research`. It owns 15,645 LOC across 79 files: executor config + audit, prompt-pack rendering, post-dispatch validation, atomic state, JSONL repair, loop locking, permissions gate, Bayesian scoring, fallback routing, coverage-graph (schema + query + signals), council session-state hierarchy, four script entry points, SQLite storage, and 22 vitest files. The documentation surface has never been audited end-to-end against the current sk-doc templates, and the README (174 LOC, TOC + quick-start dominant) is undersized relative to what the skill actually owns. Before the broader `131-deep-skill-evolution` arc begins, this sub-phase brings the documentation surface to 100% sk-doc conformance, rewrites the README in current marketing-leaning HVR voice, and seeds a deep-research loop on top of a validated baseline.",
+    "created_at": "2026-05-23T14:30:00.000Z",
+    "last_save_at": "2026-05-23T18:38:12.935Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "resource-map.md"
+    ]
+  }
+}
