@@ -10,15 +10,19 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/006-parity-tests-and-cost-guards-and-docs"
     last_updated_at: "2026-05-23T09:30:00Z"
     last_updated_by: "codex"
-    recent_action: "Scaffold 006-parity-tests-and-cost-guards-and-docs for Wave 6 dispatch"
-    next_safe_action: "dispatch Wave 6 phase 006"
+    recent_action: "Closed parity e2e changelog"
+    next_safe_action: "129 arc complete"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-parity-deep-council.vitest.ts"
+      - ".opencode/skills/deep-ai-council/scripts/tests/integration-deep-mode-e2e.vitest.ts"
+      - ".opencode/skills/deep-ai-council/changelog/v4.0.0.0.md"
+      - ".opencode/skills/deep-ai-council/SKILL.md"
     session_dedup:
       fingerprint: "sha256:1290450000000000000000000000000000000000000000000000000000000005"
       session_id: "wave-5-e1-2026-05-23"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -32,39 +36,142 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Pending |
-| **completion_pct** | 0 |
-| **Started** | Pending |
-| **Completed** | Pending |
-| **Executor** | Pending |
+| **Status** | Complete |
+| **completion_pct** | 100 |
+| **Started** | 2026-05-23 |
+| **Completed** | 2026-05-23 |
+| **Executor** | codex |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Pending Wave 6 implementation for `006-parity-tests-and-cost-guards-and-docs`.
+Wave 6 F5 closed the packet 129 arc with council-specific routing parity, deep-mode e2e coverage, and release documentation.
+
+- Added `routing-parity-deep-council.vitest.ts` with five council-only Candidate-3 invariants covering deliberation, multi-seat strategy comparison, multi-topic cost guards, cross-topic priors, and verdict stability.
+- Added `integration-deep-mode-e2e.vitest.ts` that drives `orchestrateSession` through the real `orchestrateTopic` using canned `dispatchSeat` verdicts.
+- Covered three e2e paths: happy path, max-round cap, and session saturation.
+- Added `changelog/v4.0.0.0.md` documenting the full F1-F5 arc and bumped `deep-ai-council` frontmatter to `version: 4.0.0.0`.
+- Updated phase docs, checklist evidence, and parent continuity metadata for 129 closure.
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Pending. The implementer should cite commands, tests, and changed files.
+The parity test mirrors packet 130's deep-skill routing shape, but narrows the assertions to council structural signals. Current `skill_advisor.py` already clears the requested thresholds, so no routing-rule patch was needed.
+
+The e2e test uses the shipped session/topic orchestration scripts rather than a mocked topic runner. It asserts:
+
+- both configured topics complete
+- every topic has at least one round
+- the deep-ai-council findings registry exists and contains both topic verdicts
+- topic 2 receives cross-topic priors from topic 1
+- topic/round/seat cost guards are respected
+- `session-state.jsonl` is valid parseable append-only JSONL
 <!-- /ANCHOR:how-delivered -->
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-Pending. Start from 129/001 ADR references.
+- ADR-003: e2e verdict stability is driven through adjudicator verdicts and saturation threshold behavior.
+- ADR-004: e2e assertions pin `max_rounds_per_topic=3`, `max_topics_per_session=2`, `saturation_threshold=0.2`, and `seats_per_round=3`.
+- ADR-005: e2e assertions read the reducer-owned registry and verify cross-topic prior transport by fingerprint.
+- Packet 130 parity: council prompts must stay distinct from deep-review/deep-research threshold semantics.
 <!-- /ANCHOR:decisions -->
 
 <!-- ANCHOR:verification -->
 ## Verification
 
-Pending. Run `validate.sh --strict` and stack-appropriate tests.
+Executed targeted tests during implementation:
+
+```bash
+cd .opencode/skills/system-skill-advisor/mcp_server
+node_modules/.bin/vitest run --no-coverage tests/routing-parity-deep-council.vitest.ts --reporter=verbose
+```
+
+Result: 5 tests passed.
+
+```bash
+cd .opencode/skills/system-spec-kit/mcp_server
+node_modules/.bin/vitest run --no-coverage --config /tmp/council-vitest-config.mjs \
+  scripts/tests/integration-deep-mode-e2e.vitest.ts \
+  --root /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-ai-council \
+  --reporter=verbose
+```
+
+Result: 3 tests passed. The temporary config only widens Vitest's include glob for the `deep-ai-council` folder; no repository config was modified.
+
+Aggregate suite evidence:
+
+```bash
+cd .opencode/skills/system-spec-kit/mcp_server
+node_modules/.bin/vitest run --no-coverage --config /tmp/council-vitest-config.mjs \
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/mcp_server/tests/routing-parity-deep-council.vitest.ts \
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-ai-council/scripts/tests/integration-deep-mode-e2e.vitest.ts \
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-runtime/tests/council/ \
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-ai-council/scripts/tests/ \
+  --root /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills
+```
+
+Result: 10 files passed, 33 tests passed. This includes the F5 5/5 council parity tests and 3/3 e2e tests; overlapping explicit file and folder filters are de-duplicated by Vitest.
+
+Spec validation evidence:
+
+```bash
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
+  .opencode/specs/skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/006-parity-tests-and-cost-guards-and-docs \
+  --strict
+```
+
+Result: passed with errors=0 warnings=0.
+
+```bash
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
+  .opencode/specs/skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic \
+  --strict --recursive
+```
+
+Result: parent passed with errors=0 warnings=0.
+
+Manual recursive child validation:
+
+```bash
+for dir in .opencode/specs/skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/[0-9][0-9][0-9]-*/; do
+  bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "${dir%/}" --strict --quiet
+done
+```
+
+Result: all six child phases passed with errors=0 warnings=0.
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-Pending. Document deferrals before claiming completion.
+The user-provided combined Vitest command from `system-spec-kit/mcp_server` does not discover tests outside the current config include set unless a widened config is supplied. The test files themselves pass under their owning surfaces.
+
+No production code changes were needed in F5.
+
+## Commit Handoff
+
+Suggested commit:
+
+`feat(129/006): parity + e2e tests + v4.0.0.0 changelog — 129 ARC COMPLETE`
+
+Explicit paths for `git add`:
+
+```text
+.opencode/skills/system-skill-advisor/mcp_server/tests/routing-parity-deep-council.vitest.ts
+.opencode/skills/deep-ai-council/scripts/tests/integration-deep-mode-e2e.vitest.ts
+.opencode/skills/deep-ai-council/changelog/v4.0.0.0.md
+.opencode/skills/deep-ai-council/SKILL.md
+.opencode/specs/skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/spec.md
+.opencode/specs/skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/graph-metadata.json
+.opencode/specs/skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/006-parity-tests-and-cost-guards-and-docs/spec.md
+.opencode/specs/skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/006-parity-tests-and-cost-guards-and-docs/plan.md
+.opencode/specs/skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/006-parity-tests-and-cost-guards-and-docs/tasks.md
+.opencode/specs/skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/006-parity-tests-and-cost-guards-and-docs/checklist.md
+.opencode/specs/skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/006-parity-tests-and-cost-guards-and-docs/description.json
+.opencode/specs/skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/006-parity-tests-and-cost-guards-and-docs/graph-metadata.json
+.opencode/specs/skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/006-parity-tests-and-cost-guards-and-docs/implementation-summary.md
+```
 <!-- /ANCHOR:limitations -->

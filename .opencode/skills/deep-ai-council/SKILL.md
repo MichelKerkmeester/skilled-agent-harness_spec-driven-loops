@@ -2,7 +2,7 @@
 name: deep-ai-council
 description: "AI Council: multi-seat planning, artifact persistence, convergence checks, packet-local ai-council outputs."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 3.0.0.0
+version: 4.0.0.0
 ---
 
 <!-- Keywords: deep-ai-council, ai council, council deliberation, multi-seat planning, ai-council artifacts, council convergence, planning council, council artifact persistence -->
