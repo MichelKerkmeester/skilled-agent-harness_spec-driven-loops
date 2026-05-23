@@ -478,11 +478,11 @@ Detect the current research phase from dispatch context to load appropriate reso
 ### Architecture: 3-Layer Integration
 
 ```
-User invokes: /spec_kit:deep-research "topic"
+User invokes: /deep:start-research-loop "topic"
                     |
                     v
     ┌─────────────────────────────────┐
-    │  /spec_kit:deep-research command│  Layer 1: Command
+    │  /deep:start-research-loop command│  Layer 1: Command
     │  (YAML workflow + loop config)    │  Manages loop lifecycle
     └──────────────┬──────────────────┘
                    |

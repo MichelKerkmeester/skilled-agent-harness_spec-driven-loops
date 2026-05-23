@@ -38,8 +38,8 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
-      ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
+      ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
+      ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml",
       ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/007-complexity-ledger-led-graph-vocab/spec.md",
       ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/007-complexity-ledger-led-graph-vocab/plan.md",
       ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/007-complexity-ledger-led-graph-vocab/tasks.md",
@@ -55,15 +55,15 @@
     ],
     "entities": [
       {
-        "name": "spec_kit_deep-review_auto.yaml",
+        "name": "deep_start-review-loop_auto.yaml",
         "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
+        "path": ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
         "source": "derived"
       },
       {
-        "name": "spec_kit_deep-review_confirm.yaml",
+        "name": "deep_start-review-loop_confirm.yaml",
         "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
+        "path": ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml",
         "source": "derived"
       },
       {
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The deep-review coverage graph accepted only coarse review node kinds: `DIMENSION`, `FILE`, `FINDING`, `EVIDENCE`, and `REMEDIATION`. Phase B seeded graph fixtures proved that ledger-led search evidence could not be represented as structured graph nodes because `BUG_CLASS`, `INVARIANT`, `PRODUCER`, `CONSUMER`, and `TEST` events were rejected or filtered out.",
     "created_at": "2026-05-22T00:00:00Z",
-    "last_save_at": "2026-05-23T09:53:18.749092Z",
+    "last_save_at": "2026-05-23T11:55:14.263Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

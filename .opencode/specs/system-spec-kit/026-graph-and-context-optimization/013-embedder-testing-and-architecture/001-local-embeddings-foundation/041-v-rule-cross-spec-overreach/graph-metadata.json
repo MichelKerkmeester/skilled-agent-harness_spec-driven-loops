@@ -4,14 +4,10 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/041-v-rule-cross-spec-overreach",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/037-llama-cpp-embedding-worker-deep-dive",
-        "reason": "037 ADR-003 exposed V8 cross-spec overreach during live save validation.",
-        "source": "manual"
-      }
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
@@ -20,30 +16,193 @@
       "040 V-rule cross-spec overreach fix",
       "V8 cross-spec contamination overreach",
       "ADR numeric prefix false positive",
-      "current spec nested path extraction"
+      "current spec nested path extraction",
+      "040 plan",
+      "V8 overreach plan",
+      "040 tasks",
+      "V8 overreach tasks",
+      "040 checklist",
+      "V8 overreach checklist",
+      "040 implementation summary",
+      "V8 overreach implementation summary"
     ],
     "key_topics": [
-      "V8",
-      "validate-memory-quality",
-      "cross-spec-contamination",
-      "ADR",
-      "nested-spec-folder",
-      "scattered-foreign-spec"
+      "040",
+      "v-rule",
+      "cross-spec",
+      "overreach",
+      "fix",
+      "contamination",
+      "adr",
+      "numeric",
+      "prefix",
+      "false",
+      "positive",
+      "current"
     ],
     "importance_tier": "critical",
     "status": "partial",
     "key_files": [
-      "spec.md",
+      ".opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/scripts/tests/validate-memory-quality-v8-overreach.vitest.ts",
       "plan.md",
-      "tasks.md",
+      "scripts/lib/validate-memory-quality.ts",
+      "spec.md",
       "checklist.md",
-      "implementation-summary.md"
+      "scripts/tests/validate-memory-quality-v8-overreach.vitest.ts",
+      "tasks.md"
     ],
-    "entities": [],
-    "causal_summary": "040 fixes V8 overreach caused by numeric metric labels, ADR number conflation, nested path truncation, and too-low scattered foreign thresholds for decision-style documents.",
+    "entities": [
+      {
+        "name": "validate-memory-quality.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate-memory-quality-v8-overreach.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/validate-memory-quality-v8-overreach.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Boundary",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Patch",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quality Gates",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern No",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "canonical Level-2",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The memory quality validator rejects ADR-like content with `V-rule hard block: V8 (cross-spec-contamination)`. A direct run against `037-llama-cpp-embedding-worker-deep-dive/decision-record.md` reports scattered foreign IDs such as `768-dimension`, `142-line`, `002-decouple-retention-from-governance`, and `005-stability-instrumentation`.",
     "created_at": "2026-05-14T00:00:00Z",
-    "last_save_at": "2026-05-14T15:37:00Z",
-    "save_lineage": "manual",
+    "last_save_at": "2026-05-23T11:55:15.394Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

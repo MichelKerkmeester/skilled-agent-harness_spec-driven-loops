@@ -11,28 +11,206 @@
   },
   "derived": {
     "trigger_phrases": [
-      "bench harness and fixture audit",
-      "bench harness and fixture audit graph metadata"
+      "016/004/013 bench harness hardening",
+      "phase 2 path extraction regex fix",
+      "code retrieval fixture audit",
+      "probe 10 fixture truth",
+      "bench measurement quality",
+      "016/004/013 plan",
+      "bench harness hardening plan",
+      "fixture audit plan",
+      "016/004/013 tasks",
+      "bench harness hardening tasks",
+      "016/004/013 checklist",
+      "bench harness verification"
     ],
     "key_topics": [
+      "016",
+      "004",
+      "013",
       "bench",
       "harness",
-      "fixture",
-      "audit"
+      "hardening",
+      "phase",
+      "path",
+      "extraction",
+      "regex",
+      "fix",
+      "code"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "spec.md",
+      ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
+      "scratch/test_path_extraction.py",
+      "evidence/fixture-audit-summary.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/run-phase2-smoke.sh",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off/evidence/run-extended-bake-off-with-hybrid-rerank.sh",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/README.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/decision-record.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/code-retrieval-fixture-audited.json",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/code-retrieval-fixture-corrected.json",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/phase2-comparison-corrected.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/phase2-comparison-baseline-vs-corrected-delta.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit/plan.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit/tasks.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit/implementation-summary.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit/description.json",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit/graph-metadata.json",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit/scratch/test_path_extraction.py"
     ],
-    "entities": [],
-    "causal_summary": "Graph metadata for the current packet.",
+    "entities": [
+      {
+        "name": "generate-context.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "test_path_extraction.py",
+        "kind": "file",
+        "path": "scratch/test_path_extraction.py",
+        "source": "derived"
+      },
+      {
+        "name": "fixture-audit-summary.md",
+        "kind": "doc",
+        "path": "evidence/fixture-audit-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-phase2-smoke.sh",
+        "kind": "script",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/run-phase2-smoke.sh",
+        "source": "derived"
+      },
+      {
+        "name": "run-extended-bake-off-with-hybrid-rerank.sh",
+        "kind": "script",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off/evidence/run-extended-bake-off-with-hybrid-rerank.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "code-retrieval-fixture-audited.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/code-retrieval-fixture-audited.json",
+        "source": "derived"
+      },
+      {
+        "name": "code-retrieval-fixture-corrected.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/code-retrieval-fixture-corrected.json",
+        "source": "derived"
+      },
+      {
+        "name": "phase2-comparison-corrected.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/phase2-comparison-corrected.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase2-comparison-baseline-vs-corrected-delta.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/phase2-comparison-baseline-vs-corrected-delta.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Bench Harness Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Full Fixture Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Existing Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measurement Integrity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fixture Audit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Canonical Python",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Historical Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Phase 2 bench produced a verdict that DeepSeek synthesized into a recommendation, but the deep-dive surfaced TWO measurement-quality defects that undermine the verdict's reliability:",
     "created_at": "2026-05-19T10:32:52.990Z",
-    "last_save_at": "2026-05-19T20:42:43.960Z",
+    "last_save_at": "2026-05-23T11:55:15.510Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

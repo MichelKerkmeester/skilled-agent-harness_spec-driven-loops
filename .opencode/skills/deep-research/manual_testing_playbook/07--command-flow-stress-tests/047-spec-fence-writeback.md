@@ -1,6 +1,6 @@
 ---
 title: "CP-047 -- SPEC_FENCE_WRITEBACK bounded spec mutation **(SANDBOXED)**"
-description: "Validate that /spec_kit:deep-research uses the lock, spec_check_protocol and generated findings fence rather than freeform spec.md mutation."
+description: "Validate that /deep:start-research-loop uses the lock, spec_check_protocol and generated findings fence rather than freeform spec.md mutation."
 ---
 
 # CP-047 -- SPEC_FENCE_WRITEBACK bounded spec mutation **(SANDBOXED)**
@@ -37,7 +37,7 @@ Operators run the exact command sequence for `CP-047` and confirm only grep-chec
 2. Seed an existing spec with host anchors and manual text.
 3. Run Call A as a loose baseline.
 4. Reset the sandbox.
-5. Run Call B through `/spec_kit:deep-research:auto`.
+5. Run Call B through `/deep:start-research-loop:auto`.
 6. Validate generated-fence count, JSONL mutation labels, research artifact, sandbox diff and tripwire.
 
 ### Exact Runnable Command Sequence
@@ -65,7 +65,7 @@ EOF
 git status --porcelain > /tmp/cp-047-pre.txt
 cat > /tmp/cp-047-task.txt <<'EOF'
 Task ID: CP-047-TASK-001.
-In /tmp/cp-047-sandbox/, run /spec_kit:deep-research:auto against /tmp/cp-047-spec.
+In /tmp/cp-047-sandbox/, run /deep:start-research-loop:auto against /tmp/cp-047-spec.
 Preserve manual spec content and write only the deep-research generated fence.
 Acceptance: emit spec_check_result, one spec_mutation or dedupe event, one generated findings fence, research/research.md, and no canonical agent diff.
 Return status, spec_path, generated_fence_count, validation_signal, and notes.
@@ -74,7 +74,7 @@ printf 'As @Task: %s\n' "$(cat /tmp/cp-047-task.txt)" > /tmp/cp-047-prompt-A.txt
 copilot -p "$(cat /tmp/cp-047-prompt-A.txt)" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-047-sandbox --add-dir /tmp/cp-047-spec 2>&1 | tee /tmp/cp-047-A-task.txt; echo "EXIT_A=${PIPESTATUS[0]}" | tee /tmp/cp-047-A-exit.txt
 rm -rf /tmp/cp-047-sandbox && cp -a /tmp/cp-047-sandbox-baseline /tmp/cp-047-sandbox
 cd /tmp/cp-047-sandbox
-copilot -p "/spec_kit:deep-research:auto \"CP-047 bounded spec findings fence\" --spec-folder=/tmp/cp-047-spec --max-iterations=1 --convergence=0.05" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-047-sandbox --add-dir /tmp/cp-047-spec 2>&1 | tee /tmp/cp-047-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-047-B-exit.txt
+copilot -p "/deep:start-research-loop:auto \"CP-047 bounded spec findings fence\" --spec-folder=/tmp/cp-047-spec --max-iterations=1 --convergence=0.05" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-047-sandbox --add-dir /tmp/cp-047-spec 2>&1 | tee /tmp/cp-047-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-047-B-exit.txt
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 diff -u /tmp/cp-047-sandbox-baseline/.opencode/agents/deep-research.md /tmp/cp-047-sandbox/.opencode/agents/deep-research.md > /tmp/cp-047-B-canonical.diff; echo "POST_B_CANONICAL_DIFF=$?" | tee /tmp/cp-047-B-canonical-exit.txt
 find /tmp/cp-047-spec -type f -print0 2>/dev/null | xargs -0 cat > /tmp/cp-047-B-artifacts.txt 2>/dev/null || touch /tmp/cp-047-B-artifacts.txt
@@ -92,9 +92,9 @@ diff /tmp/cp-047-pre.txt /tmp/cp-047-post.txt > /tmp/cp-047-tripwire.diff; echo 
 
 | File | Anchor |
 |---|---|
-| `.opencode/commands/spec_kit/deep-research.md:35-38` | lock and spec_check_protocol note |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:298-360` | pre-init spec classification and validation |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:973-996` | generated findings fence writeback |
+| `.opencode/commands/deep/start-research-loop.md:35-38` | lock and spec_check_protocol note |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:298-360` | pre-init spec classification and validation |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:973-996` | generated findings fence writeback |
 | `.opencode/skills/deep-research/SKILL.md:343-350` | exact generated-fence contract |
 | `.opencode/agents/deep-research.md:51-55` | agent may not repair reducer or control files |
 

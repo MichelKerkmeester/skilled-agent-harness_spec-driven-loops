@@ -190,7 +190,7 @@
     ],
     "causal_summary": "To compare CocoIndex embedder candidates we need a deterministic fixture (query → expected-source pairs grounded in actual repo code). Without this, \"is CodeRankEmbed better?\" has no measurable answer. The mk-spec-memory side has cat-24/409; CocoIndex has no equivalent today.",
     "created_at": "2026-05-18T08:18:02.786Z",
-    "last_save_at": "2026-05-19T20:42:43.945Z",
+    "last_save_at": "2026-05-23T11:55:15.484Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

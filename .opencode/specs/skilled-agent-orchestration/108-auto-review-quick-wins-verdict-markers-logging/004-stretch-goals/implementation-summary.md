@@ -44,7 +44,7 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-No specific target files pre-committed — Phase 4 is à la carte. Operator selects from 11 teachings at Phase 4 kickoff: H-4 anti-repetition (`.opencode/skills/sk-code-review/SKILL.md:336-358`), H-5 3-tier config (`.opencode/plugins/mk-skill-advisor.js`, `mk-code-graph.js`), H-7 marker-based dedup (`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`), H-8 per-iteration verdict (`spec_kit_deep-review_auto.yaml` synthesis), H-9 bounded evidence (deep-review prompt template), M-1..M-6 (various). Fill with selected-subset + diff summary at Phase 4 start.
+No specific target files pre-committed — Phase 4 is à la carte. Operator selects from 11 teachings at Phase 4 kickoff: H-4 anti-repetition (`.opencode/skills/sk-code-review/SKILL.md:336-358`), H-5 3-tier config (`.opencode/plugins/mk-skill-advisor.js`, `mk-code-graph.js`), H-7 marker-based dedup (`.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`), H-8 per-iteration verdict (`deep_start-review-loop_auto.yaml` synthesis), H-9 bounded evidence (deep-review prompt template), M-1..M-6 (various). Fill with selected-subset + diff summary at Phase 4 start.
 <!-- /ANCHOR:what-built -->
 
 ---

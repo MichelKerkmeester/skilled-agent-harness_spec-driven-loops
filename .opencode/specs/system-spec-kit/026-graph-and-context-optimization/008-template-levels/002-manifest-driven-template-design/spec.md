@@ -64,7 +64,7 @@ This packet runs a focused 6-iteration loop on the **greenfield design problem**
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The current template system maintains 86 files (~13K LOC) split across `core/`, `addendum/`, four materialized `level_N/` outputs, `phase_parent/`, cross-cutting templates, plus a build-time composer (`compose.sh`) and an anchor wrapper (`wrap-all-templates.ts`). The Level 1/2/3/3+ taxonomy bundles two independent concerns: which doc files a packet needs AND which sections within those docs apply. The four addon docs (`handover.md`, `debug-delegation.md`, `research.md`, `resource-map.md`, `context-index.md`) are scaffolded as starter templates today, but several are actually written exclusively by automation (e.g. `handover.md` by `/memory:save`, `research.md` by `/spec_kit:deep-research`, `debug-delegation.md` by `@debug` agent). Scaffolding them creates stale empty stubs.
+The current template system maintains 86 files (~13K LOC) split across `core/`, `addendum/`, four materialized `level_N/` outputs, `phase_parent/`, cross-cutting templates, plus a build-time composer (`compose.sh`) and an anchor wrapper (`wrap-all-templates.ts`). The Level 1/2/3/3+ taxonomy bundles two independent concerns: which doc files a packet needs AND which sections within those docs apply. The four addon docs (`handover.md`, `debug-delegation.md`, `research.md`, `resource-map.md`, `context-index.md`) are scaffolded as starter templates today, but several are actually written exclusively by automation (e.g. `handover.md` by `/memory:save`, `research.md` by `/deep:start-research-loop`, `debug-delegation.md` by `@debug` agent). Scaffolding them creates stale empty stubs.
 
 ### Purpose
 Design the simplest greenfield template backend that:
@@ -227,7 +227,7 @@ Existing 868 packets stay valid as git history. Their `<!-- SPECKIT_TEMPLATE_SOU
 
 ### US-002: Author scaffolds an investigation packet without empty addon stubs (Priority: P0)
 
-**As a** packet author, **I want** to scaffold an investigation-kind packet without getting empty `handover.md`, `debug-delegation.md`, `research.md` stubs that I'll never edit, **so that** my packet is clean from day one and `/memory:save` or `@debug` or `/spec_kit:deep-research` create those docs lazily on their first write.
+**As a** packet author, **I want** to scaffold an investigation-kind packet without getting empty `handover.md`, `debug-delegation.md`, `research.md` stubs that I'll never edit, **so that** my packet is clean from day one and `/memory:save` or `@debug` or `/deep:start-research-loop` create those docs lazily on their first write.
 
 **Acceptance Criteria**:
 1. Given I run `create.sh --kind investigation`, When the scaffold completes, Then no addon docs are present until their owning command/agent runs
@@ -279,7 +279,7 @@ Existing 868 packets stay valid as git history. Their `<!-- SPECKIT_TEMPLATE_SOU
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
 - **Decision Record**: See `decision-record.md`
-- **Research Artifacts**: See `research/research.md` (produced by `/spec_kit:deep-research`)
+- **Research Artifacts**: See `research/research.md` (produced by `/deep:start-research-loop`)
 - **Prior framing (REJECTED)**: `../001-template-level-consolidation-research/001-template-level-consolidation-research/research/research.md`
 - **Cross-validation analysis**: `../001-template-level-consolidation-research/001-template-level-consolidation-research/research/cross-validation/copilot-response.md`
 - **Parent Spec**: `../spec.md` (026-graph-and-context-optimization theme)

@@ -80,7 +80,7 @@ Security (2/4, adjudication pass)
 - `post-dispatch-validate.ts:340-342`: returns `{ ok: false, reason: 'iteration_file_missing', details: input.iterationFile }`
 - Error details flow to internal state log (JSONL) for deep-loop workflow orchestration
 - This is post-dispatch validation (internal gate after agent completes work), not user-facing output
-- YAML recipes (e.g., `spec_kit_deep-review_auto.yaml:889-898`) list these as `failure_reasons` for internal classification
+- YAML recipes (e.g., `deep_start-review-loop_auto.yaml:889-898`) list these as `failure_reasons` for internal classification
 - Errors are structured for machine processing in deep-loop reducer, not CLI user output
 
 **Verdict:** DOWNGRADE to P2 — defense-in-depth: path leakage in internal state logs is acceptable. Errors are part of internal workflow orchestration, not exposed to end users. Post-dispatch validation runs after agent completion; paths in logs aid debugging without user exposure.

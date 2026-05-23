@@ -129,8 +129,8 @@ Full-state replacement is centralized in `writeStateAtomic(path, data)`, which w
 
 Files for the parent Claude Code agent to stage explicitly:
 
-- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml
-- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml
 - /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/atomic-state.ts
 - /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-audit.ts
 - /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/jsonl-repair.ts

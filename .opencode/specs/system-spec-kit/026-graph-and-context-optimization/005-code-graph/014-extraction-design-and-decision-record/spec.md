@@ -76,7 +76,7 @@ Eight architectural decisions must be answered by ADR-001 before subsequent chil
 - **Q8 (Risk catalog)**: startup-brief regression risk (6 hooks consume code-graph readiness), gold-query verifier drift, doctor-command path-resolution break, stress-test discovery break, plugin bridge ABI risk, live-index migration data-loss risk. Each risk: detection signal + mitigation + rollback path.
 
 ### Purpose
-Run 10 iterations of deep-research via `/spec_kit:deep-research :auto` (executor: cli-opencode + deepseek-v4-pro, flags `--pure` and `</dev/null` redirect). Output three artifacts: `research/research.md` (workflow-owned narrative synthesis), `resource-map.md` (tabular catalog enumerating every touchpoint with disposition: move / update / stay-and-rewire / never-move), `decision-record.md` (ADR-001 locking the 8 architectural decisions and the implementation phase decomposition). After convergence, update parent phase 014's `spec.md` 'What Needs Done' to reflect the locked decomposition so children 002-006 scaffold + execute without re-litigating the design.
+Run 10 iterations of deep-research via `/deep:start-research-loop :auto` (executor: cli-opencode + deepseek-v4-pro, flags `--pure` and `</dev/null` redirect). Output three artifacts: `research/research.md` (workflow-owned narrative synthesis), `resource-map.md` (tabular catalog enumerating every touchpoint with disposition: move / update / stay-and-rewire / never-move), `decision-record.md` (ADR-001 locking the 8 architectural decisions and the implementation phase decomposition). After convergence, update parent phase 014's `spec.md` 'What Needs Done' to reflect the locked decomposition so children 002-006 scaffold + execute without re-litigating the design.
 <!-- /ANCHOR:problem -->
 
 ---

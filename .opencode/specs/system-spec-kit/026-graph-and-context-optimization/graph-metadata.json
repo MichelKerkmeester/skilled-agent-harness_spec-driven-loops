@@ -17,7 +17,8 @@
     "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator",
     "system-spec-kit/026-graph-and-context-optimization/011-mcp-shared-dependency-startup-fix",
     "system-spec-kit/026-graph-and-context-optimization/012-literal-spec-folder-names",
-    "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture"
+    "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture",
+    "system-spec-kit/026-graph-and-context-optimization/014-mcp-runtime-stress-remediation"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -28,13 +29,28 @@
   },
   "derived": {
     "trigger_phrases": [
-      "graph and context optimization",
-      "graph and context optimization graph metadata"
+      "026 graph and context optimization",
+      "026 phase consolidation",
+      "29 to 9 phase map",
+      "merged phase map",
+      "graph context optimization root packet",
+      "resource map",
+      "026-graph-and-context-optimization resource map",
+      "path catalog 026-graph-and-context-optimization"
     ],
     "key_topics": [
+      "026",
       "graph",
       "context",
-      "optimization"
+      "optimization",
+      "phase",
+      "consolidation",
+      "map",
+      "merged",
+      "root",
+      "packet",
+      "resource",
+      "026-graph-and-context-optimization"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -42,10 +58,95 @@
       "spec.md",
       "resource-map.md"
     ],
-    "entities": [],
-    "causal_summary": "Graph metadata for the current packet.",
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Optimization",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Planning Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Map",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Instructions",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Restructure Note",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "real",
+        "kind": "key_phrase",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE-TO-ARTIFACT MAP",
+        "kind": "key_phrase",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet `026-graph-and-context-optimization` presents a 10-wrapper active navigation surface after two topical consolidation passes plus a post-push topology adjustment. The first pass (2026-04-21) collapsed 29 chronological phase folders into nine thematic wrappers with originals preserved as child packets. The second pass (2026-04-25 12:10) merged the former `006-search-routing-advisor/` into `006-skill-advisor/`, redistributed children of the former `009-hook-package/` across `005-code-graph/`, `006-skill-advisor/`, and the renamed `010-hook-parity/`. A subsequent post-push adjustment (2026-04-25 14:45) renamed `010-hook-parity/` to `007-hook-parity/` and removed the post-hoc `009-memory-causal-graph/` documentation packet (causal-graph infrastructure remains in production code; documentation lives in `010-graph-impact-and-affordance-uplift/005-memory-causal-trust-display/` from a display-layer perspective).",
     "created_at": "2026-04-12T09:02:53.443Z",
-    "last_save_at": "2026-05-19T17:44:04.142Z",
+    "last_save_at": "2026-05-23T11:55:14.713Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

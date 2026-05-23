@@ -68,7 +68,7 @@ Replace `mcp_tool:` blocks targeting `mcp__mk_spec_memory__deep_loop_graph_conve
 - [ ] All 10 call sites rewritten across the 4 files.
 - [ ] `grep -c "mcp__mk_spec_memory__deep_loop_graph\|deep_loop_graph_"` returns 0 per file.
 - [ ] All 4 YAMLs parse via `yaml.safe_load`.
-- [ ] One smoke iteration of `/spec_kit:deep-review` completes without graph-step failure.
+- [ ] One smoke iteration of `/deep:start-review-loop` completes without graph-step failure.
 - [ ] `validate.sh ... --strict` passes for this spec folder.
 - [ ] Checklist items verified with evidence.
 <!-- /ANCHOR:quality-gates -->
@@ -113,17 +113,17 @@ Direct in-place YAML edit per call site. No new files, no helper layer between Y
 
 ### Phase 2: Implementation
 
-- [ ] Rewrite `spec_kit_deep-review_auto.yaml`: 2 convergence sites + 1 upsert site (3 total per scaffold grep, confirm via fresh `grep -c`).
-- [ ] Rewrite `spec_kit_deep-review_confirm.yaml`: 2 convergence sites + 1 upsert site (3 total).
-- [ ] Rewrite `spec_kit_deep-research_auto.yaml`: 1 convergence site + 1 upsert site (2 total).
-- [ ] Rewrite `spec_kit_deep-research_confirm.yaml`: 1 convergence site + 1 upsert site (2 total).
+- [ ] Rewrite `deep_start-review-loop_auto.yaml`: 2 convergence sites + 1 upsert site (3 total per scaffold grep, confirm via fresh `grep -c`).
+- [ ] Rewrite `deep_start-review-loop_confirm.yaml`: 2 convergence sites + 1 upsert site (3 total).
+- [ ] Rewrite `deep_start-research-loop_auto.yaml`: 1 convergence site + 1 upsert site (2 total).
+- [ ] Rewrite `deep_start-research-loop_confirm.yaml`: 1 convergence site + 1 upsert site (2 total).
 - [ ] After each file, run `python3 -c "import yaml; yaml.safe_load(open('<file>'))"` to assert parse cleanliness.
 
 ### Phase 3: Verification
 
 - [ ] Run `grep -c "mcp__mk_spec_memory__deep_loop_graph\|deep_loop_graph_"` across all 4 files; expect 0 each.
 - [ ] Run `python3 -c "import yaml; yaml.safe_load(open(...))"` on all 4 files.
-- [ ] Smoke-run one iteration of `/spec_kit:deep-review` against a throwaway sandbox spec; assert `graph_convergence` and `graph_upsert` steps complete without raising "unknown tool" or "undefined variable" errors.
+- [ ] Smoke-run one iteration of `/deep:start-review-loop` against a throwaway sandbox spec; assert `graph_convergence` and `graph_upsert` steps complete without raising "unknown tool" or "undefined variable" errors.
 - [ ] Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/003-deep-loop-runtime/006-yaml-workflow-update --strict`.
 - [ ] Fill `implementation-summary.md` with actual diff stats + smoke-run evidence.
 - [ ] Tick every checklist item with evidence.
@@ -138,7 +138,7 @@ Direct in-place YAML edit per call site. No new files, no helper layer between Y
 |-----------|-------|-------|
 | Static | YAML parse cleanliness post-edit | `python3 -c "import yaml; yaml.safe_load(open(...))"` |
 | Static | Grep assertion: zero MCP-tool refs remain | `grep -c "mcp__mk_spec_memory__deep_loop_graph"` |
-| Smoke | One deep-review iteration end-to-end | `/spec_kit:deep-review` against sandbox spec |
+| Smoke | One deep-review iteration end-to-end | `/deep:start-review-loop` against sandbox spec |
 | Strict validate | Spec folder doc compliance | `validate.sh ... --strict` |
 <!-- /ANCHOR:testing -->
 

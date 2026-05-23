@@ -181,7 +181,7 @@ _memory:
 <!-- ANCHOR:arch-verify -->
 ## L3+: ARCHITECTURE VERIFICATION
 
-- [ ] CHK-100 [P0] Loop dispatched via `/spec_kit:deep-research:auto` (not hand-rolled bash loops, not direct `@deep-research` Task dispatch)
+- [ ] CHK-100 [P0] Loop dispatched via `/deep:start-research-loop:auto` (not hand-rolled bash loops, not direct `@deep-research` Task dispatch)
 - [ ] CHK-101 [P0] State packet at `research/` (flat-first per deep-research SKILL.md §2)
 - [ ] CHK-102 [P0] Executor pinned in `research/deep-research-config.json` (cli-devin SWE-1.6 per ADR-001)
 - [ ] CHK-103 [P1] Strategy.md derived from spec.md §4 RQs verbatim

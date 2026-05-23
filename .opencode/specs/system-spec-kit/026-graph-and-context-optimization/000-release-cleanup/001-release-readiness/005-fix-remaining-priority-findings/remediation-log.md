@@ -32,7 +32,7 @@ contextType: "implementation"
 | 045/006-P1-2 | Applied conservative default: hidden planner inputs documented internal-only | `handlers/save/types.ts`, `decision-record.md` |
 | 045/006-P1-3 | Applied: scan and ingest start accept governance metadata and run shared validation | `tool-input-schemas.ts`, `memory-index.ts`, `memory-ingest.ts`, `scope-governance.ts` |
 | 045/006-P1-4 | Applied: context server validates known tool args before metrics, priming, auto-surface, and dispatch | `context-server.ts` |
-| 045/007-P1-1 | Applied partial: review YAML failure reason lists now include validator reasons; audited wrapper port remains larger than safe scope | `spec_kit_deep-review_auto.yaml`, `spec_kit_deep-review_confirm.yaml` |
+| 045/007-P1-1 | Applied partial: review YAML failure reason lists now include validator reasons; audited wrapper port remains larger than safe scope | `deep_start-review-loop_auto.yaml`, `deep_start-review-loop_confirm.yaml` |
 | 045/007-P1-2 | Applied: prompt-pack examples and validator require full review JSONL schema and array-valued `filesReviewed` | `prompt_pack_iteration.md.tmpl`, `post-dispatch-validate.ts`, review YAML |
 | 045/008-P1-1 | Applied: JSON validation results include `details` and `remediation` fields | `validate.sh` |
 | 045/009-P1-1 | Applied: evergreen packet-history wording removed from ENV reference and architecture docs | `ENV_REFERENCE.md`, `ARCHITECTURE.md` |

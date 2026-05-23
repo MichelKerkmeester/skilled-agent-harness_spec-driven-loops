@@ -29,8 +29,8 @@ The emitter is enabled by default through `config.resource_map.emit = true`. Ope
 |---|---|---|
 | `.opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs` | Shared script | Normalizes review evidence and renders the ten-category resource map. |
 | `.opencode/skills/deep-review/scripts/reduce-state.cjs` | Reducer | Adds the `--emit-resource-map` path and honors `config.resource_map.emit`. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Workflow | Triggers emission during synthesis after the final adjudication pass. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Workflow | Mirrors the same synthesis-time emission path in confirm mode. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Workflow | Triggers emission during synthesis after the final adjudication pass. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Workflow | Mirrors the same synthesis-time emission path in confirm mode. |
 | `.opencode/skills/deep-review/references/convergence.md` | Reference | Documents the convergence-to-synthesis emission step and operator opt-out. |
 
 ### Validation And Tests
@@ -47,4 +47,4 @@ The emitter is enabled by default through `config.resource_map.emit = true`. Ope
 - Group: Loop lifecycle
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `01--loop-lifecycle/06-resource-map-emission.md`
-- Primary sources: `.opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs`, `.opencode/skills/deep-review/scripts/reduce-state.cjs`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+- Primary sources: `.opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs`, `.opencode/skills/deep-review/scripts/reduce-state.cjs`, `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`, `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`

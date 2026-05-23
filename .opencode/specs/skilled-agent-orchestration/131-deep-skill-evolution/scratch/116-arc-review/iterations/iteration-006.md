@@ -7,7 +7,7 @@ Deep-review iteration 6/10. Round 2 of security analysis focusing on second-orde
 ## Files Reviewed
 
 - `.opencode/skills/deep-review/scripts/reduce-state.cjs:60-67,1085-1090,1507-1511`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:188`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:188`
 - `.opencode/specs/skilled-agent-orchestration/116-deep-review-complexity/review/deep-review-config.json:27`
 - `.opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/058-validator-warn-rollout.md`
 - `.opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/060-reducer-search-debt.md`

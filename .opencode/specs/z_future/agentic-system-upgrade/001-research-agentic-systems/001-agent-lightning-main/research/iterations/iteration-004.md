@@ -17,8 +17,8 @@ I read Agent Lightning's generic adapter contract, the triplet adapter's traject
 - `TraceTree.to_trajectory()` shows the conversion work is non-trivial: it identifies matching LLM calls, filters by agent subtree, deduplicates calls, attaches rewards, and only then emits ordered triplets. [SOURCE: external/agentlightning/adapter/triplet.py:398-476] [SOURCE: external/agentlightning/adapter/triplet.py:702-758]
 - Agent Lightning also ships alternate adapters such as `TraceToMessages`, reinforcing that the downstream payload is intentionally swappable rather than hardwired to one trace consumer. [SOURCE: external/docs/how-to/train-first-agent.md:188-212]
 - Public's deep-research contract externalizes state to JSONL and explicitly says the workflow reducer refreshes strategy, registry, and dashboard from the iteration artifact and state record. The loop owns synchronized outputs, but the contract does not name a typed normalization boundary between raw artifacts and reducer outputs. [SOURCE: .opencode/agents/deep-research.md:50-60] [SOURCE: .opencode/agents/deep-research.md:159-165] [SOURCE: .opencode/agents/deep-research.md:212-213]
-- The command-level workflow likewise treats registry and dashboard as reducer-owned packet surfaces driven from the same packet state files. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:79-89] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:194-197]
-- Public's deep-review loop mirrors the same pattern: iteration artifacts feed a dashboard and registry, but no typed adapter surface is called out between the iteration record and the synchronized review outputs. [SOURCE: .opencode/commands/spec_kit/deep-review.md:164-169] [SOURCE: .opencode/agents/deep-review.md:49-57] [SOURCE: .opencode/agents/deep-review.md:231-235]
+- The command-level workflow likewise treats registry and dashboard as reducer-owned packet surfaces driven from the same packet state files. [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:79-89] [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:194-197]
+- Public's deep-review loop mirrors the same pattern: iteration artifacts feed a dashboard and registry, but no typed adapter surface is called out between the iteration record and the synchronized review outputs. [SOURCE: .opencode/commands/deep/start-review-loop.md:164-169] [SOURCE: .opencode/agents/deep-review.md:49-57] [SOURCE: .opencode/agents/deep-review.md:231-235]
 
 ## Analysis
 Agent Lightning's adapter seam matters because it prevents downstream consumers from becoming coupled to the exact trace representation. Public already has a reducer concept, but it is described operationally rather than as a stable data-transformation interface. That is acceptable while the packet surfaces are simple, but it becomes brittle once more consumers appear, such as richer dashboards, evaluators, lineage analyzers, or packet-to-packet comparison tools.
@@ -31,7 +31,7 @@ confidence: high
 finding: Agent Lightning's adapter pattern reveals a real architectural gap in Public's deep loop design. Public has reducer-owned outputs, but it does not yet advertise a stable normalization boundary between raw iteration artifacts and downstream machine-owned surfaces. Adding that seam would make dashboards, registries, and future evaluators safer to evolve without overfitting them to today's markdown and JSONL layout.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+- **Target file or module:** `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
 - **Change type:** new module
 - **Blast radius:** medium
 - **Prerequisites:** define a normalized research-iteration payload and decide whether deep-review shares the same reducer interface or a sibling one

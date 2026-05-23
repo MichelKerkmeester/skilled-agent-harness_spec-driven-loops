@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/019-readme-resource-map",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/019-readme-resource-map",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/019-readme-resource-map",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/019-readme-resource-map",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -48,16 +48,11 @@
       "shared/README.md",
       "shared/embeddings/README.md",
       "shared/embeddings/providers/README.md",
-      "barter/.opencode/skills/system-spec-kit/README.md",
-      "barter/.opencode/skills/mcp-coco-index/README.md",
-      "barter/.opencode/install_guides/README.md",
-      "barter/.opencode/skills/system-spec-kit/shared/README.md",
-      "barter/.opencode/skills/system-spec-kit/shared/embeddings/README.md",
-      "barter/.opencode/skills/system-spec-kit/shared/embeddings/providers/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/shared/mcp_server/database/README.md"
     ],
     "entities": [
       {
@@ -207,7 +202,7 @@
     ],
     "causal_summary": "The 014 setup-A line (packets 001 through 018) made 13 concrete changes to the embedding stack across both MCP servers. The runtime configs and the BEFORE_VS_AFTER doc were updated, but the user-facing READMEs were not. DeepSeek v4 pro scanned all 522 READMEs in the repo and flagged 7 as MAJOR stale, all 7 of them describing the embedding provider story at a high level.",
     "created_at": "2026-05-13T15:30:00Z",
-    "last_save_at": "2026-05-13T14:49:27.783Z",
+    "last_save_at": "2026-05-23T11:55:15.356Z",
     "save_lineage": "same_pass",
     "last_accessed_at": "2026-05-13T15:30:00Z",
     "source_docs": [

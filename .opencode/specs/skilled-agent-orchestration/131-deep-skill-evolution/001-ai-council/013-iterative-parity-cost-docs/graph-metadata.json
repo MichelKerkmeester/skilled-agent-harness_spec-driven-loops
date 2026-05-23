@@ -4,44 +4,198 @@
   "spec_folder": "skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council/013-iterative-parity-cost-docs",
   "parent_id": "skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council",
   "children_ids": [],
-  "migrated": false,
-  "migration_source": "schema-normalize-2026-05-23",
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council/012-iterative-command-and-skill-wiring"
-    ],
-    "related_to": [
-      "skilled-agent-orchestration/131-deep-skill-evolution/006-deep-skills-differentiation/001-unique-value-differentiation"
-    ],
-    "supersedes": []
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
   },
   "derived": {
-    "status": "complete",
-    "importance_tier": "important",
-    "is_phase_parent": false,
-    "completion_pct": 100,
-    "last_active_at": "2026-05-23T10:21:00Z",
-    "last_save_at": "2026-05-23T10:11:30.452986Z",
     "trigger_phrases": [
-      "013 iterative parity cost docs"
+      "129 006 parity tests, cost guards, and docs"
     ],
     "key_topics": [
-      "013",
-      "iterative",
+      "129",
+      "006",
       "parity",
+      "tests",
       "cost",
-      "docs"
+      "guards",
+      "docs",
+      "add",
+      "guard",
+      "documentation",
+      "changelog",
+      "final"
     ],
+    "importance_tier": "important",
+    "status": "complete",
     "key_files": [
-      "spec.md"
+      "changelog/v2.0.0.0.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "entities": [],
-    "causal_summary": "",
+    "entities": [
+      {
+        "name": "v2.0.0.0.md",
+        "kind": "doc",
+        "path": "changelog/v2.0.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parity Tests",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cost Guards",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Implement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement Parity Tests",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Parity Tests",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Add parity tests, cost guard tests, documentation, changelog, and final validation.",
     "created_at": "2026-05-23T10:21:00Z",
-    "save_lineage": "post-nest-normalize",
+    "last_save_at": "2026-05-23T11:55:14.250Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ]
   }
 }

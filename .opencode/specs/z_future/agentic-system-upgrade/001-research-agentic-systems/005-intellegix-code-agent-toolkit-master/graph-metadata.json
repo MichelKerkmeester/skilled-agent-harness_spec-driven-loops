@@ -47,8 +47,8 @@
       "spec.md",
       "plan.md",
       "implementation-summary.md",
-      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
-      ".opencode/commands/spec_kit/deep-research.md",
+      ".opencode/commands/deep/assets/deep_start-research-loop_auto.yaml",
+      ".opencode/commands/deep/start-research-loop.md",
       ".opencode/skills/sk-deep-research/references/loop_protocol.md",
       ".opencode/skills/sk-deep-research/references/state_format.md",
       ".opencode/skills/sk-deep-research/assets/deep_research_config.json",
@@ -100,15 +100,15 @@
         "source": "derived"
       },
       {
-        "name": "spec_kit_deep-research_auto.yaml",
+        "name": "deep_start-research-loop_auto.yaml",
         "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+        "path": ".opencode/commands/deep/assets/deep_start-research-loop_auto.yaml",
         "source": "derived"
       },
       {
         "name": "deep-research.md",
         "kind": "doc",
-        "path": ".opencode/commands/spec_kit/deep-research.md",
+        "path": ".opencode/commands/deep/start-research-loop.md",
         "source": "derived"
       },
       {

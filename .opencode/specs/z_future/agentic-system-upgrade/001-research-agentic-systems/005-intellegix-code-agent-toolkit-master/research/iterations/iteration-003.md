@@ -30,7 +30,7 @@ confidence: high
 finding: `system-spec-kit` should add optional operational controls for cooldown, retry backoff, and single-step model fallback to its deep-research runtime configuration. Those controls should remain runtime-capability-aware and optional so they do not complicate simple local runs.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skills/sk-deep-research/assets/deep_research_config.json`, `.opencode/skills/sk-deep-research/references/loop_protocol.md`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+- **Target file or module:** `.opencode/skills/sk-deep-research/assets/deep_research_config.json`, `.opencode/skills/sk-deep-research/references/loop_protocol.md`, `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
 - **Change type:** added option
 - **Blast radius:** medium
 - **Prerequisites:** capability matrix needs explicit support flags for timeout backoff and model fallback

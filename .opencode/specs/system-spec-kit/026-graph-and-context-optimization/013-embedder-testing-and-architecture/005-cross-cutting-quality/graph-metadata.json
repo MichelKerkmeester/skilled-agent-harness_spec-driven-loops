@@ -39,7 +39,7 @@
       "phase"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "planned",
     "key_files": [
       "spec.md"
     ],
@@ -47,6 +47,12 @@
       {
         "name": "spec.md",
         "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-devin SWE",
+        "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
@@ -79,24 +85,15 @@
         "kind": "quoted",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "-",
-        "kind": "quoted",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This phase parent groups the cross-cutting quality + verification + docs work that spans multiple 016 stacks (001 foundation + 002 mk-spec-memory + 003 skill-advisor + 004 cocoindex). Each child sweeps across the per-stack work to ensure alignment + correctness.",
     "created_at": "2026-05-18T08:06:49.047Z",
-    "last_save_at": "2026-05-22T07:42:14.893Z",
+    "last_save_at": "2026-05-23T11:55:15.548Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
-    ],
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/005-cross-cutting-quality/008-spec-memory-vitest-stabilization",
-    "last_active_at": "2026-05-22T07:42:14.893Z",
-    "last_indexed_at": "2026-05-21T13:50:00Z"
+    ]
   }
 }

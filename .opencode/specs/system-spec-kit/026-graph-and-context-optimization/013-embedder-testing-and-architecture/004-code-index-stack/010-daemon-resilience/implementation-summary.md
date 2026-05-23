@@ -102,7 +102,7 @@ A 6-step checklist documents how to clean up after a hard crash or signal kill: 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Phase 1 ran 5 iterations of `/spec_kit:deep-research:auto` against the original 2-bug spec. The research traced 5 interacting bugs from the 2 surface bugs, produced 21 findings across 17 sections, and corrected the spec.
+Phase 1 ran 5 iterations of `/deep:start-research-loop:auto` against the original 2-bug spec. The research traced 5 interacting bugs from the 2 surface bugs, produced 21 findings across 17 sections, and corrected the spec.
 
 Phase 2 was a single cli-codex dispatch (gpt-5.5, high reasoning, fast service tier) that landed Patches 1-7 plus 14 tests in commit `1bbe80986`. The unit suite (9 tests) passed cleanly under the local venv. The 5 E2E tests were marked as known-hang follow-up at the time, but they were actually passing. The local venv was broken because the parallel-session `skill/`-to-`skills/` reorg invalidated the editable install pointer.
 

@@ -28,7 +28,7 @@ _memory:
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-Pre-flight verifies scope is fully committed + cli-devin SWE 1.6 reachable. Dispatch /spec_kit:deep-review with explicit scope manifest + iterations=20. Bundle gate validates each iteration output. Convergence detection short-circuits if no new findings for 3 consecutive iterations. Synthesize review-report.md + memory note.
+Pre-flight verifies scope is fully committed + cli-devin SWE 1.6 reachable. Dispatch /deep:start-review-loop with explicit scope manifest + iterations=20. Bundle gate validates each iteration output. Convergence detection short-circuits if no new findings for 3 consecutive iterations. Synthesize review-report.md + memory note.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
@@ -49,7 +49,7 @@ Pre-flight verifies scope is fully committed + cli-devin SWE 1.6 reachable. Disp
 ```
 Pre-flight checks
     ↓
-/spec_kit:deep-review dispatch (cli-devin SWE 1.6, iter=20)
+/deep:start-review-loop dispatch (cli-devin SWE 1.6, iter=20)
     ↓ (per iteration)
     ├─ Bundle output → 3-check gate
     ├─ Findings recorded → JSONL state
@@ -81,7 +81,7 @@ Optional: remediation packet scaffolds for P0/P1
   - Output format = `evidence/review-report.md`
 
 ### Phase 3: Dispatch (40-90 min wall time, runs in background)
-- Invoke /spec_kit:deep-review with the prompt
+- Invoke /deep:start-review-loop with the prompt
 - Monitor via task notification on completion
 
 ### Phase 4: Synthesize + commit (15 min)
@@ -103,7 +103,7 @@ Optional: remediation packet scaffolds for P0/P1
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-- /spec_kit:deep-review skill
+- /deep:start-review-loop skill
 - cli-devin executor + SWE 1.6 model
 - All 016-019 code committed on origin/main
 - Memory notes: feedback_cli_devin_bundle_verification, feedback_bundle_gate_smoke_run

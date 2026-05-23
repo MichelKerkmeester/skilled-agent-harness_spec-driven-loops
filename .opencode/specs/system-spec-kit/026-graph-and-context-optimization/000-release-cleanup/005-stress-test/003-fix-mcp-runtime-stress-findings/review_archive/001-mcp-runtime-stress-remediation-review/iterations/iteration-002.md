@@ -7,8 +7,8 @@ Security. Focus: cli-copilot Gate 3 target-authority binding, prompt-file author
 ## Files Reviewed
 
 - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+- `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
 - `.opencode/skills/system-spec-kit/mcp_server/tests/executor-config-copilot-target-authority.vitest.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/cli-matrix.vitest.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts`
@@ -51,9 +51,9 @@ None new in this iteration. The two active P2 advisories from iteration 1 remain
 
 | Check | Result | Evidence |
 |-------|--------|----------|
-| S1.1 authority insertion point binds to workflow-approved spec folder | PASS | `spec_kit_deep-review_auto.yaml:678-686` and `spec_kit_deep-research_auto.yaml:615-623` set `specFolderRaw = '{spec_folder}'` and pass it as `targetAuthority`. `executor-config.ts:275-284` revalidates and stores only the validated folder as approved authority. |
+| S1.1 authority insertion point binds to workflow-approved spec folder | PASS | `deep_start-review-loop_auto.yaml:678-686` and `deep_start-research-loop_auto.yaml:615-623` set `specFolderRaw = '{spec_folder}'` and pass it as `targetAuthority`. `executor-config.ts:275-284` revalidates and stores only the validated folder as approved authority. |
 | S1.2 missing/malformed write authority enforces plan-only | PASS | `executor-config.ts:238-258` rejects empty/template/sentinel/control-character values; `executor-config.ts:275-298` coerces invalid approved authority to missing write intent; `executor-config.ts:338-340` strips `--allow-all-tools`. Tests assert Gate-3 replacement and flag stripping at `executor-config-copilot-target-authority.vitest.ts:119-162` and malformed safe-fail at `:269-347`. |
-| S1.3 TARGET AUTHORITY preamble reaches inline and large-prompt paths | PASS | Inline path prefixes `promptBody` at `executor-config.ts:292-294`. Large prompt path writes `promptFileBody` at `executor-config.ts:318-321`; both auto YAML call sites write it to `promptPath` before dispatch at `spec_kit_deep-review_auto.yaml:704-713` and `spec_kit_deep-research_auto.yaml:641-654`. |
+| S1.3 TARGET AUTHORITY preamble reaches inline and large-prompt paths | PASS | Inline path prefixes `promptBody` at `executor-config.ts:292-294`. Large prompt path writes `promptFileBody` at `executor-config.ts:318-321`; both auto YAML call sites write it to `promptPath` before dispatch at `deep_start-review-loop_auto.yaml:704-713` and `deep_start-research-loop_auto.yaml:641-654`. |
 | S1.4 recovered/bootstrap context cannot override approved folder | PASS | The preamble states recovered context cannot override authority at `executor-config.ts:161-166`; tests put a competing folder later in the prompt and assert approved authority appears first at `executor-config-copilot-target-authority.vitest.ts:165-196`. |
 | S1.5 helper test coverage covers required cases | PASS | Happy path: `executor-config-copilot-target-authority.vitest.ts:37-88`; missing-folder safe-fail: `:119-162`; recovered-context mention attack: `:165-196`; large-prompt wrapper: `:206-267`; I1 replay safe-fail: `:349-444`. |
 | S1.6 bare `@promptPath` Copilot read semantics | PARTIAL | Tests model the contract and file write ordering (`cli-matrix.vitest.ts:335-406`), and the YAML notes the dependency. Local `copilot --help` could not run because the CLI failed before help with `SecItemCopyMatching failed -50`, so no live CLI semantic probe was possible in this iteration. |
@@ -76,7 +76,7 @@ Coverage gate remains active because `resource-map.md` exists. This iteration di
 
 Claim: `buildCopilotPromptArg` prevents recovered/bootstrap context from overriding the workflow-approved spec folder and safe-fails missing/malformed write authority to Gate 3.
 
-Adjudication: Supported. The workflow auto-loop call sites pass only `{spec_folder}` into `targetAuthority` (`spec_kit_deep-review_auto.yaml:685-701`, `spec_kit_deep-research_auto.yaml:622-638`). The helper revalidates that value before any prompt composition (`executor-config.ts:275-284`), prefixes approved prompts with a target-authority block (`executor-config.ts:292-294`), replaces missing write-intent prompts with a Gate-3 question (`executor-config.ts:295-298`), and strips `--allow-all-tools` when plan-only is enforced (`executor-config.ts:338-340`). Large prompts write the authority-prefixed file body before dispatch (`executor-config.ts:318-321`; YAML write-before-dispatch at `spec_kit_deep-review_auto.yaml:704-713` and `spec_kit_deep-research_auto.yaml:641-654`). The required helper tests are present and passed in this iteration.
+Adjudication: Supported. The workflow auto-loop call sites pass only `{spec_folder}` into `targetAuthority` (`deep_start-review-loop_auto.yaml:685-701`, `deep_start-research-loop_auto.yaml:622-638`). The helper revalidates that value before any prompt composition (`executor-config.ts:275-284`), prefixes approved prompts with a target-authority block (`executor-config.ts:292-294`), replaces missing write-intent prompts with a Gate-3 question (`executor-config.ts:295-298`), and strips `--allow-all-tools` when plan-only is enforced (`executor-config.ts:338-340`). Large prompts write the authority-prefixed file body before dispatch (`executor-config.ts:318-321`; YAML write-before-dispatch at `deep_start-review-loop_auto.yaml:704-713` and `deep_start-research-loop_auto.yaml:641-654`). The required helper tests are present and passed in this iteration.
 
 Residual evidence limit: the actual `copilot` binary could not be probed locally because it failed with `SecItemCopyMatching failed -50` before help output. Existing tests cover the contract shape and wrapper file content, but not a live authenticated Copilot dispatch.
 

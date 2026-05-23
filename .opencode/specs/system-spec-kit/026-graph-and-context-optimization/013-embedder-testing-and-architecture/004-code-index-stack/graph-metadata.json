@@ -56,7 +56,7 @@
       "stack"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "planned",
     "key_files": [
       "spec.md",
       "decision-record.md"
@@ -81,31 +81,31 @@
         "source": "derived"
       },
       {
+        "name": "Earlier Jina",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Apple Silicon",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "PyTorch MPS",
+        "name": "hybrid",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "sidecar",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "Ollama",
-        "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "LiteLLM",
-        "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "MPS",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -147,17 +147,14 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "CocoIndex (semantic code search) currently uses `sbert/google/embeddinggemma-300m` \u2014 a general-text embedder, not code-tuned. Code Graph's `mk-code-index` reaches CocoIndex through a bridge in `lib/`, so swapping CocoIndex's embedder also affects Code Graph's semantic queries.",
+    "causal_summary": "CocoIndex (semantic code search) currently uses `sbert/google/embeddinggemma-300m` — a general-text embedder, not code-tuned. Code Graph's `mk-code-index` reaches CocoIndex through a bridge in `lib/`, so swapping CocoIndex's embedder also affects Code Graph's semantic queries.",
     "created_at": "2026-05-18T16:14:38.272Z",
-    "last_save_at": "2026-05-19T20:42:43.938Z",
+    "last_save_at": "2026-05-23T11:55:15.480Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "decision-record.md"
-    ],
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots",
-    "last_active_at": "2026-05-22T05:55:00Z",
-    "last_indexed_at": "2026-05-22T05:55:00Z"
+    ]
   }
 }

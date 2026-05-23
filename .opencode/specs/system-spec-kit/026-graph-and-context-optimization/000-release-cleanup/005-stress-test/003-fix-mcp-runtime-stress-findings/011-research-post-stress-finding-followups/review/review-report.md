@@ -37,7 +37,7 @@ A 10-iteration cli-codex (gpt-5.5 high fast) audit of the 012-015 integrated imp
 
 | Field | Value |
 |-------|-------|
-| Workflow | `/spec_kit:deep-review:auto` |
+| Workflow | `/deep:start-review-loop:auto` |
 | Executor | cli-codex (gpt-5.5, reasoning_effort=high, service_tier=fast, timeout=900s/iter) |
 | Iterations | 10/10 (maxIterationsReached, NOT premature; convergence held from iter-7) |
 | Convergence threshold | 0.05 (default) |
@@ -136,7 +136,7 @@ A 10-iteration cli-codex (gpt-5.5 high fast) audit of the 012-015 integrated imp
 
 Performed in iter-10 on candidate P0 escalations:
 
-- **Authority bypass check**: deep-review YAML writes `built.promptFileBody` BEFORE `spawnSync('copilot', built.argv, ...)` at `spec_kit_deep-review_auto.yaml:704-713`; helper sets `promptFileBody` and uses bare `@${promptPath}` for approved large prompts at `executor-config.ts:304-321`. **No demonstrated P0 authority leak.** F-004 is a P2 test-shape issue, not a P0 dispatch bypass.
+- **Authority bypass check**: deep-review YAML writes `built.promptFileBody` BEFORE `spawnSync('copilot', built.argv, ...)` at `deep_start-review-loop_auto.yaml:704-713`; helper sets `promptFileBody` and uses bare `@${promptPath}` for approved large prompts at `executor-config.ts:304-321`. **No demonstrated P0 authority leak.** F-004 is a P2 test-shape issue, not a P0 dispatch bypass.
 - **Degraded-readiness check**: F-001 and F-003 mislead operators and callers, but evidence does NOT show data corruption, privilege escalation, destructive mutation, or unconditional dispatch bypass. **P1 ceiling, not P0.**
 - **Freshness check**: re-read current source in iter-10. Packet A has not landed; active issue still open; no new higher-severity behavior surfaced.
 

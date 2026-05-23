@@ -45,7 +45,6 @@
       ".gemini/settings.json",
       ".claude/mcp.json",
       ".opencode/bin/mk-code-index-launcher.cjs",
-      "_sandbox/24--local-llm-query-intelligence/evidence/run-mcp-direct.mjs",
       ".opencode/skills/system-spec-kit/mcp_server/tests/shared-daemon-runner-helpers.vitest.ts",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/HANDOVER-2026-05-14-evening.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/046-shared-daemon-suite-runner/spec.md",
@@ -80,12 +79,6 @@
         "name": "mk-code-index-launcher.cjs",
         "kind": "file",
         "path": ".opencode/bin/mk-code-index-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "run-mcp-direct.mjs",
-        "kind": "file",
-        "path": "_sandbox/24--local-llm-query-intelligence/evidence/run-mcp-direct.mjs",
         "source": "derived"
       },
       {
@@ -201,11 +194,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Data Flow Runtime",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Runtime MCP configs still carried the legacy `system_code_graph` server key in three active client mirrors after the code-graph server was renamed to `mk-code-index`. This packet aligns those mirrors, confirms `.claude/mcp.json` was already correct, and closes the bounded P1/P2 findings from the two cited deep-review reports.",
     "created_at": "2026-05-14T19:23:26Z",
-    "last_save_at": "2026-05-15T06:25:16.000Z",
+    "last_save_at": "2026-05-23T11:55:15.409Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

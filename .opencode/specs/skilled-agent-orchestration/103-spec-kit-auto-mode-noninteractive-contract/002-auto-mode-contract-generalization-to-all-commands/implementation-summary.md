@@ -16,7 +16,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md"
-      - ".opencode/commands/spec_kit/deep-review.md"
+      - ".opencode/commands/deep/start-review-loop.md"
       - "../001-deep-review-three-tier-setup/"
       - "evidence/"
     session_dedup:
@@ -33,7 +33,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
-Lifted the three-tier `:auto` setup-resolution contract from `/spec_kit:deep-review` (Phase 1) into a shared reference doc and migrated 11 remaining commands across `/spec_kit/`, `/create/`, and `/improve/` to cite it. Full live setup-phase verification across all 13 commands (deep-review + 12 migrated): **13/13 PASS** with corrected per-command PRE-BOUND fixtures. The contract eliminates the legacy consolidated-Q-block stdin hang under `:auto` non-interactive dispatches and provides a uniform pattern for future commands.
+Lifted the three-tier `:auto` setup-resolution contract from `/deep:start-review-loop` (Phase 1) into a shared reference doc and migrated 11 remaining commands across `/spec_kit/`, `/create/`, and `/improve/` to cite it. Full live setup-phase verification across all 13 commands (deep-review + 12 migrated): **13/13 PASS** with corrected per-command PRE-BOUND fixtures. The contract eliminates the legacy consolidated-Q-block stdin hang under `:auto` non-interactive dispatches and provides a uniform pattern for future commands.
 
 ---
 
@@ -59,7 +59,7 @@ Lifted the three-tier `:auto` setup-resolution contract from `/spec_kit:deep-rev
 - Precedent followed: `intake-contract.md` (cited by `/spec_kit:complete` + `/spec_kit:plan`)
 
 ### Reference-example refactor (Stage B)
-- `/spec_kit:deep-review.md` §0 — replaced ~100 LOC of inline three-tier sections with a 14-line citation + brief command-specific summary. Schema and Default Resolution Table retained as command-specific. `:confirm` consolidated-Q-block path UNTOUCHED. Net ~95 LOC saved.
+- `/deep:start-review-loop.md` §0 — replaced ~100 LOC of inline three-tier sections with a 14-line citation + brief command-specific summary. Schema and Default Resolution Table retained as command-specific. `:confirm` consolidated-Q-block path UNTOUCHED. Net ~95 LOC saved.
 
 ### 11-command migration (Stage C)
 Three sequential cli-codex `gpt-5.5 high fast` group dispatches:
@@ -94,8 +94,8 @@ Per-command edits:
 
 | # | Command | CLI | Wall | Verdict | Evidence |
 |---|---------|-----|------|---------|----------|
-| 1 | `/spec_kit:deep-review:auto` | codex `gpt-5.5/medium/fast` | v1: 24s | **PASS** | `live-spec_kit-deep-review.txt` |
-| 2 | `/spec_kit:deep-research:auto` | codex `gpt-5.5/medium/fast` | v2: 37s | **PASS** | `live-spec_kit-deep-research-v2.txt` |
+| 1 | `/deep:start-review-loop:auto` | codex `gpt-5.5/medium/fast` | v1: 24s | **PASS** | `live-spec_kit-deep-review.txt` |
+| 2 | `/deep:start-research-loop:auto` | codex `gpt-5.5/medium/fast` | v2: 37s | **PASS** | `live-spec_kit-deep-research-v2.txt` |
 | 3 | `/spec_kit:resume:auto` | codex `gpt-5.5/medium/fast` | v2: 37s | **PASS** | `live-spec_kit-resume-v2.txt` |
 | 4 | `/spec_kit:implement:auto` | codex `gpt-5.5/medium/fast` | v2: 48s | **PASS** | `live-spec_kit-implement-v2.txt` |
 | 5 | `/spec_kit:complete:auto` | codex `gpt-5.5/medium/fast` | v2: 38s | **PASS** | `live-spec_kit-complete-v2.txt` |
@@ -188,7 +188,7 @@ Per-command edits:
 Each live dispatch halted before loading the paired YAML workflow. The migration's blast radius is §0 markdown; YAML workflows are unchanged. Running each command's full YAML loop in verification would add hours without changing what's verified. Setup-phase verification is faithful to migration scope.
 
 ### Per-command Default Resolution Tables not cross-validated against paired YAMLs
-The shared contract doc and per-command tables ensure §0 resolution lands a `<command>-config.json` with the right keys. But each command's paired `*_auto.yaml` assumes a specific config shape that the resolution must produce. Spot-checked: deep-review.md → `spec_kit_deep-review_auto.yaml` consumer accepts the resolved shape (proved by 001's earlier live deep-review). Full cross-validation across all 12 paired YAMLs is deferred — would trigger on the first real-world `:auto` dispatch that does load YAML.
+The shared contract doc and per-command tables ensure §0 resolution lands a `<command>-config.json` with the right keys. But each command's paired `*_auto.yaml` assumes a specific config shape that the resolution must produce. Spot-checked: deep-review.md → `deep_start-review-loop_auto.yaml` consumer accepts the resolved shape (proved by 001's earlier live deep-review). Full cross-validation across all 12 paired YAMLs is deferred — would trigger on the first real-world `:auto` dispatch that does load YAML.
 
 ### F-Stage-D-v1 (generic-fixture mismatches surfaced field-naming drift)
 v1's 9 FAILs and 3 PARTIALs surfaced an interesting (but out-of-scope) finding: per-command setup field naming is NOT uniform across commands. Some use `target_path`, others `agent_path`; some use `max_iterations`, others `maxIterations`. The shared contract doesn't enforce a global naming convention — each command publishes its own schema. This is acceptable for the migration but might warrant a future packet `system-spec-kit/NNN-auto-mode-schema-normalization` that audits and aligns naming conventions across all 12 schemas.

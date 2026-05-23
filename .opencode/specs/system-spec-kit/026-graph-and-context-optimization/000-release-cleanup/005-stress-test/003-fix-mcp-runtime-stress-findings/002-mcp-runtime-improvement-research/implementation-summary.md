@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-04-27T08:25:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Scaffolded packet pre-research"
-    next_safe_action: "Dispatch /spec_kit:deep-research:auto"
+    next_safe_action: "Dispatch /deep:start-research-loop:auto"
     blockers: []
     key_files:
       - "spec.md"
@@ -53,7 +53,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 --
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-A canonical autonomous deep-research packet authored to investigate eight MCP runtime defect clusters surfaced by sibling packets 005 (memory search runtime bugs catalog) and 006 (cross-AI search intelligence stress-test). The skill-owned `/spec_kit:deep-research:auto` workflow runs up to 10 iterations dispatching cli-codex with gpt-5.5 high fast for per-iteration investigation, producing a synthesized research markdown that feeds downstream remediation packets.
+A canonical autonomous deep-research packet authored to investigate eight MCP runtime defect clusters surfaced by sibling packets 005 (memory search runtime bugs catalog) and 006 (cross-AI search intelligence stress-test). The skill-owned `/deep:start-research-loop:auto` workflow runs up to 10 iterations dispatching cli-codex with gpt-5.5 high fast for per-iteration investigation, producing a synthesized research markdown that feeds downstream remediation packets.
 
 ### Headline Design Choices
 
@@ -77,7 +77,7 @@ The packet authoring (Phase 1 of this packet) was delivered by the resumed auton
 4. Generated graph-metadata.json via backfill-graph-metadata.js scoped to this folder
 5. Validated strict
 6. Committed + pushed
-7. Handed off to /spec_kit:deep-research:auto skill for Phase 2 (10-iter loop)
+7. Handed off to /deep:start-research-loop:auto skill for Phase 2 (10-iter loop)
 
 The deep-research execution itself (Phase 2 of this packet) is delivered by the skill workflow with cli-codex per-iteration. Outputs land under research/.
 <!-- /ANCHOR:how-delivered -->
@@ -89,7 +89,7 @@ The deep-research execution itself (Phase 2 of this packet) is delivered by the 
 
 - **10 iterations not 20** — user override at orchestrator launch reduced from skill default of 20
 - **cli-codex executor with gpt-5.5 high fast** — user override; reasoning_effort=high, service_tier=fast, sandbox=workspace-write
-- **Skill-owned state per CLAUDE.md Gate 4** — orchestrator must NOT manage iteration state outside research/ folder; the canonical /spec_kit:deep-research:auto workflow is non-negotiable
+- **Skill-owned state per CLAUDE.md Gate 4** — orchestrator must NOT manage iteration state outside research/ folder; the canonical /deep:start-research-loop:auto workflow is non-negotiable
 - **Read-only investigation packet** — no production code changes here; remediation lands in subsequent packets 008+
 - **Eight investigation clusters Q1-Q8** — chosen to cover all 005 P0/P1 defect signals plus the 006 model hallucination class
 - **Convergence allowed before iter 10** — but skill must surface convergence proof; orchestrator reviews before accepting close

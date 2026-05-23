@@ -48,7 +48,7 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Workflow** | `/spec_kit:deep-research:auto` (LEAF iter agent, fresh context per pass) |
+| **Workflow** | `/deep:start-research-loop:auto` (LEAF iter agent, fresh context per pass) |
 | **Executor** | `cli-devin --model swe-1.6` (full 20-iter dogfood, free tier — ADR-001) |
 | **Agent-config recipe** | `cli-devin/assets/agent-config-deep-research-iter.json` |
 | **Prompt-quality contract** | cli-devin v1.0.6.3 ALWAYS #8/#12/#14 (sk-prompt + RCAF default + medium pre-plan + standard bundle-gate + 5-thought sequential_thinking) |
@@ -106,7 +106,7 @@ Autonomous iterative research loop (deep-research workflow) with externalized st
 
 ### Smart Routing
 
-`/spec_kit:deep-research:auto` is the entry point. The skill's YAML workflow owns dispatch. Native `@deep-research` is the default LEAF; cli-devin SWE-1.6 routing is configured via `--executor cli-devin --model swe-1.6` flags or `deep_research_config.json` overrides (ADR-001 commits us to the latter).
+`/deep:start-research-loop:auto` is the entry point. The skill's YAML workflow owns dispatch. Native `@deep-research` is the default LEAF; cli-devin SWE-1.6 routing is configured via `--executor cli-devin --model swe-1.6` flags or `deep_research_config.json` overrides (ADR-001 commits us to the latter).
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -209,7 +209,7 @@ Autonomous iterative research loop (deep-research workflow) with externalized st
 | Dependency | Type | Risk if Blocked | Mitigation |
 |------------|------|-----------------|------------|
 | cli-devin SWE-1.6 free-tier availability | External | Loop cost changes if pulled mid-run | Loop is resumable on DeepSeek-v4-pro |
-| `/spec_kit:deep-research:auto` YAML workflow | Internal | Loop won't dispatch | Workflow is stable since 1.6.2.0 |
+| `/deep:start-research-loop:auto` YAML workflow | Internal | Loop won't dispatch | Workflow is stable since 1.6.2.0 |
 | `cli-devin/assets/agent-config-deep-research-iter.json` recipe | Internal | Iter dispatch malformed | Recipe is locked v1.0.6.3 |
 | Sequential-thinking MCP (`mcp__sequential_thinking__*`) | Internal | Iters can't apply 5-thought mandate | User-scope registration verified per cli-devin v1.0.6.3 ALWAYS #14 |
 | `external/smallcode-master/` corpus | Read-only | n/a — already vendored | MIT-licensed, verbatim |

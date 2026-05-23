@@ -47,7 +47,7 @@ Lean path ledger for the deep-research loop. All paths are absolute or repo-rela
 
 ## Commands
 
-(none invoked — this loop dispatched only `@deep-research` per iteration via `/spec_kit:deep-research`)
+(none invoked — this loop dispatched only `@deep-research` per iteration via `/deep:start-research-loop`)
 
 ---
 

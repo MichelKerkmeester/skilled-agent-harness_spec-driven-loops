@@ -46,7 +46,7 @@ Validate progressive synthesis updates research/research.md during the loop whil
 ### Commands
 1. `bash: rg -n 'progressiveSynthesis|workflow-owned|research/research.md' .opencode/skills/deep-research/README.md .opencode/skills/deep-research/references/state_format.md .opencode/skills/deep-research/SKILL.md`
 2. `bash: rg -n 'progressiveSynthesis|Update Research|research/research.md' .codex/agents/deep-research.toml`
-3. `bash: rg -n 'phase_synthesis|research_output|synthesis_complete' .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+3. `bash: rg -n 'phase_synthesis|research_output|synthesis_complete' .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml .opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`
 ### Expected
 The docs describe `research/research.md` as workflow-owned, `progressiveSynthesis` defaults to true, and the final synthesis phase still runs.
 ### Evidence
@@ -74,8 +74,8 @@ Use the runtime agent’s Step 7 and the README configuration table to resolve t
 | `.opencode/skills/deep-research/references/state_format.md` | Canonical ownership wording; use `ANCHOR:overview` and `ANCHOR:config-file` |
 | `.opencode/skills/deep-research/SKILL.md` | Rule-level ownership statement; use `ANCHOR:rules` |
 | `.codex/agents/deep-research.toml` | Runtime progressive update rules; inspect `Step 7: Update Research` |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Synthesis and save workflow |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Synthesis and save workflow |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Synthesis and save workflow |
+| `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Synthesis and save workflow |
 
 ---
 

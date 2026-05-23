@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The sk-code manual testing playbook already follows the sk-doc playbook package contract, but it stops at routing and advisor scenarios. It does not yet cover motion.dev runtime integration, animation regression evidence, cross-browser animation behavior, or Core Web Vitals/performance checks for animation-heavy Webflow work.",
     "created_at": "2026-05-05T07:30:00Z",
-    "last_save_at": "2026-05-19T13:51:38.660Z",
+    "last_save_at": "2026-05-23T11:55:14.558Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

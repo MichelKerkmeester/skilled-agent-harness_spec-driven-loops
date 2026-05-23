@@ -271,7 +271,7 @@ These nine questions form the iteration backbone. Each iteration must touch at l
 | Risk | Researcher may scope-creep into modifying code during research. | High. Violates "research-only" gate. | `out of scope` includes explicit "no source modifications." Tasks.md has a hard gate before any code change. |
 | Risk | Adoption matrix may bias toward ADOPT (recency / shiny-feature bias). | Medium. Produces noisy sub-packet pipeline. | REQ-002 forces 4-bucket classification (ADOPT / ADAPT / DEFER / SKIP). REQ-009 forces explicit non-adoption list. Researcher must produce at least one DEFER and one SKIP verdict. |
 | Risk | Convergence detection misfires (early stop or no stop). | Medium. Run produces shallow findings or burns full 180min. | Convergence guard: minimum 5 iterations before convergence, novelty floor 0.15, delta-meaning check on. Stuck threshold 3. |
-| Dependency | `deep-research` skill + `/spec_kit:deep-research` workflow command | Internal | Already shipped. No version pin. |
+| Dependency | `deep-research` skill + `/deep:start-research-loop` workflow command | Internal | Already shipped. No version pin. |
 | Dependency | cli-opencode skill + opencode CLI binary | Internal | Already shipped. Memory note covers provider fallback. |
 | Dependency | `external/` folder pre-populated with XCE public materials | External (one-time download) | Already present (commit ac9a... per gitkeep timestamp). No fetch needed at runtime. |
 <!-- /ANCHOR:risks -->

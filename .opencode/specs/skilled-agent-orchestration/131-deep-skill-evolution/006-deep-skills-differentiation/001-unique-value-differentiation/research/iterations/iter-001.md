@@ -11,9 +11,9 @@ target_dimension: contract-surface
 
 ## Sources Read
 
-1. `.opencode/commands/spec_kit/deep-review.md` — command entrypoint with setup phase, execution modes, and output format
-2. `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` — autonomous mode workflow with state paths and loop phases
-3. `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` — interactive mode workflow with approval gates
+1. `.opencode/commands/deep/start-review-loop.md` — command entrypoint with setup phase, execution modes, and output format
+2. `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` — autonomous mode workflow with state paths and loop phases
+3. `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` — interactive mode workflow with approval gates
 4. `.opencode/agents/deep-review.md` — LEAF iteration agent with single-iteration contract and tool permissions
 5. `.opencode/skills/deep-loop-runtime/SKILL.md` — shared runtime infrastructure for executor config, prompt-pack, validation, and coverage graph
 6. `.opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts` — coverage graph schema with ReviewNodeKind and ReviewRelation types
@@ -26,27 +26,27 @@ target_dimension: contract-surface
 ### F1 — Input shape requires 7 mandatory setup fields
 **Fingerprint:** `contract-surface:deep-review:input-shape-7-fields`
 **Severity:** info
-**Evidence:** The unified setup phase in deep-review.md requires resolution of 7 fields before loading the YAML workflow: `review_target`, `review_target_type`, `review_dimensions`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`. The Default Resolution Table at lines 98-112 documents which fields resolve via flags, markers, auto-detection, or defaults. [SOURCE: .opencode/commands/spec_kit/deep-review.md:15-22, 98-112]
+**Evidence:** The unified setup phase in deep-review.md requires resolution of 7 fields before loading the YAML workflow: `review_target`, `review_target_type`, `review_dimensions`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`. The Default Resolution Table at lines 98-112 documents which fields resolve via flags, markers, auto-detection, or defaults. [SOURCE: .opencode/commands/deep/start-review-loop.md:15-22, 98-112]
 
 ### F2 — Input shape supports PRE-BOUND SETUP ANSWERS for non-interactive :auto dispatch
 **Fingerprint:** `contract-surface:deep-review:pre-bound-answers-schema`
 **Severity:** info
-**Evidence:** The PRE-BOUND SETUP ANSWERS schema at lines 66-95 defines a YAML marker block format for non-interactive :auto dispatch. The marker includes fields for review_target, review_target_type, review_dimensions, spec_folder, execution_mode, maxIterations, convergenceThreshold, executor, executor_model, executor_reasoning, executor_service_tier, executor_timeout, and resource_map_emit. Marker fields take precedence over $ARGUMENTS flags. [SOURCE: .opencode/commands/spec_kit/deep-review.md:66-95]
+**Evidence:** The PRE-BOUND SETUP ANSWERS schema at lines 66-95 defines a YAML marker block format for non-interactive :auto dispatch. The marker includes fields for review_target, review_target_type, review_dimensions, spec_folder, execution_mode, maxIterations, convergenceThreshold, executor, executor_model, executor_reasoning, executor_service_tier, executor_timeout, and resource_map_emit. Marker fields take precedence over $ARGUMENTS flags. [SOURCE: .opencode/commands/deep/start-review-loop.md:66-95]
 
 ### F3 — Input shape supports 5 review target types
 **Fingerprint:** `contract-surface:deep-review:target-types-5`
 **Severity:** info
-**Evidence:** The Default Resolution Table at line 101 and the Consolidated Setup Prompt at lines 174-179 document 5 valid review_target_type values: spec-folder, skill, agent, track, and files. Each type has a distinct scope discovery algorithm in the YAML workflow step_scope_discovery. [SOURCE: .opencode/commands/spec_kit/deep-review.md:101, 174-179; .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:227-253]
+**Evidence:** The Default Resolution Table at line 101 and the Consolidated Setup Prompt at lines 174-179 document 5 valid review_target_type values: spec-folder, skill, agent, track, and files. Each type has a distinct scope discovery algorithm in the YAML workflow step_scope_discovery. [SOURCE: .opencode/commands/deep/start-review-loop.md:101, 174-179; .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:227-253]
 
 ### F4 — Input shape supports 6 executor kinds with optional model/reasoning/service-tier configuration
 **Fingerprint:** `contract-surface:deep-review:executor-kinds-6`
 **Severity:** info
-**Evidence:** The Consolidated Setup Prompt at lines 197-204 and the Default Resolution Table at lines 107-111 document 6 executor kinds: native, cli-codex, cli-gemini, cli-claude-code, cli-opencode, and cli-devin. Optional configuration includes executor_model, executor_reasoning, executor_service_tier, and executor_timeout. The executor config is stored under config.executor.* in deep-review-config.json. [SOURCE: .opencode/commands/spec_kit/deep-review.md:107-111, 197-204]
+**Evidence:** The Consolidated Setup Prompt at lines 197-204 and the Default Resolution Table at lines 107-111 document 6 executor kinds: native, cli-codex, cli-gemini, cli-claude-code, cli-opencode, and cli-devin. Optional configuration includes executor_model, executor_reasoning, executor_service_tier, and executor_timeout. The executor config is stored under config.executor.* in deep-review-config.json. [SOURCE: .opencode/commands/deep/start-review-loop.md:107-111, 197-204]
 
 ### F5 — Output artifacts include 9 canonical files under resolved artifact_dir
 **Fingerprint:** `contract-surface:deep-review:output-artifacts-9-files`
 **Severity:** info
-**Evidence:** The state_paths section in both YAML workflows defines 9 canonical output files: deep-review-config.json, deep-review-state.jsonl, deep-review-findings-registry.json, deep-review-strategy.md, deep-review-dashboard.md, .deep-review-pause sentinel, prompts/ directory, iterations/iteration-{NNN}.md files, and deltas/iter-{NNN}.jsonl files. The workflow also emits review-report.md and resource-map.md at synthesis. Root specs use {spec_folder}/review/ while child phases use {spec_folder}/review/{packet}-pt-{NN}/. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:82-108, 115-123]
+**Evidence:** The state_paths section in both YAML workflows defines 9 canonical output files: deep-review-config.json, deep-review-state.jsonl, deep-review-findings-registry.json, deep-review-strategy.md, deep-review-dashboard.md, .deep-review-pause sentinel, prompts/ directory, iterations/iteration-{NNN}.md files, and deltas/iter-{NNN}.jsonl files. The workflow also emits review-report.md and resource-map.md at synthesis. Root specs use {spec_folder}/review/ while child phases use {spec_folder}/review/{packet}-pt-{NN}/. [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:82-108, 115-123]
 
 ### F6 — Output artifacts include per-iteration markdown with 8 required sections
 **Fingerprint:** `contract-surface:deep-review:iteration-artifact-8-sections`
@@ -56,17 +56,17 @@ target_dimension: contract-surface
 ### F7 — Output artifacts include review-report.md with 9 sections
 **Fingerprint:** `contract-surface:deep-review:review-report-9-sections`
 **Severity:** info
-**Evidence:** The ground truth review report shows 9 sections: 1. Summary, 2. Scope, 3. Methodology, 4. Findings (with P1/P2 subsections), 5. Recommendations, 6. Coverage, 7. Traceability, 8. Integration, 9. Release-readiness. The command entrypoint at line 267 mentions review-report.md as a synthesis output. [SOURCE: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/review/review-report.md:1-100; .opencode/commands/spec_kit/deep-review.md:267]
+**Evidence:** The ground truth review report shows 9 sections: 1. Summary, 2. Scope, 3. Methodology, 4. Findings (with P1/P2 subsections), 5. Recommendations, 6. Coverage, 7. Traceability, 8. Integration, 9. Release-readiness. The command entrypoint at line 267 mentions review-report.md as a synthesis output. [SOURCE: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/review/review-report.md:1-100; .opencode/commands/deep/start-review-loop.md:267]
 
 ### F8 — State files include 3 core persistence artifacts plus JSONL append log
 **Fingerprint:** `contract-surface:deep-review:state-files-3-core-plus-jsonl`
 **Severity:** info
-**Evidence:** The step_classify_session in both YAML workflows inspects 3 core state artifacts: deep-review-config.json, deep-review-state.jsonl, and deep-review-strategy.md. The findings registry is also checked. Session classification depends on whether these artifacts exist and agree on mode/target. The JSONL state log receives append-only iteration records and event records (migration, resumed, restarted). [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:190-226; .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:179-222]
+**Evidence:** The step_classify_session in both YAML workflows inspects 3 core state artifacts: deep-review-config.json, deep-review-state.jsonl, and deep-review-strategy.md. The findings registry is also checked. Session classification depends on whether these artifacts exist and agree on mode/target. The JSONL state log receives append-only iteration records and event records (migration, resumed, restarted). [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:190-226; .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:179-222]
 
 ### F9 — State file ownership is split between main loop and LEAF agent
 **Fingerprint:** `contract-surface:deep-review:state-ownership-split`
 **Severity:** info
-**Evidence:** The main loop (YAML workflow) owns deep-review-config.json, deep-review-strategy.md, deep-review-dashboard.md, and deep-review-findings-registry.json. The LEAF agent (@deep-review) owns iteration-{NNN}.md and appends to deep-review-state.jsonl. The agent's Step 9 at line 210 requires appending exactly ONE type:"iteration" line per execution. The agent cannot modify config, registry, or strategy except for the strategy edit in Step 8. [SOURCE: .opencode/agents/deep-review.md:189-211; .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:82-108]
+**Evidence:** The main loop (YAML workflow) owns deep-review-config.json, deep-review-strategy.md, deep-review-dashboard.md, and deep-review-findings-registry.json. The LEAF agent (@deep-review) owns iteration-{NNN}.md and appends to deep-review-state.jsonl. The agent's Step 9 at line 210 requires appending exactly ONE type:"iteration" line per execution. The agent cannot modify config, registry, or strategy except for the strategy edit in Step 8. [SOURCE: .opencode/agents/deep-review.md:189-211; .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:82-108]
 
 ### F10 — Convergence semantics use Bayesian scoring via coverage-graph signals
 **Fingerprint:** `contract-surface:deep-review:convergence-bayesian-signals`
@@ -86,12 +86,12 @@ target_dimension: contract-surface
 ### F13 — Command-mode suffixes are :auto and :confirm with three-tier resolution contract
 **Fingerprint:** `contract-surface:deep-review:command-modes-auto-confirm`
 **Severity:** info
-**Evidence:** The command entrypoint at lines 38 and 52-64 documents :auto and :confirm suffixes. :auto follows a three-tier resolution contract: Tier 1 resolves confidently from flags/markers/defaults, Tier 2 asks targeted questions for 1-2 ambiguous fields, Tier 3 fails fast with named-missing-inputs error. :confirm uses a consolidated setup prompt with multi-gate approvals after setup. [SOURCE: .opencode/commands/spec_kit/deep-review.md:38, 52-64]
+**Evidence:** The command entrypoint at lines 38 and 52-64 documents :auto and :confirm suffixes. :auto follows a three-tier resolution contract: Tier 1 resolves confidently from flags/markers/defaults, Tier 2 asks targeted questions for 1-2 ambiguous fields, Tier 3 fails fast with named-missing-inputs error. :confirm uses a consolidated setup prompt with multi-gate approvals after setup. [SOURCE: .opencode/commands/deep/start-review-loop.md:38, 52-64]
 
 ### F14 — Command-mode :auto supports non-interactive dispatch via PRE-BOUND SETUP ANSWERS
 **Fingerprint:** `contract-surface:deep-review:auto-non-interactive`
 **Severity:** info
-**Evidence:** The PRE-BOUND SETUP ANSWERS schema at lines 66-95 is specifically for :auto non-interactive dispatch. The marker block allows binding all 7 required fields in the prompt body, avoiding interactive questions. The three-tier resolution contract at lines 56-58 applies only to :auto mode. [SOURCE: .opencode/commands/spec_kit/deep-review.md:52-64, 66-95]
+**Evidence:** The PRE-BOUND SETUP ANSWERS schema at lines 66-95 is specifically for :auto non-interactive dispatch. The marker block allows binding all 7 required fields in the prompt body, avoiding interactive questions. The three-tier resolution contract at lines 56-58 applies only to :auto mode. [SOURCE: .opencode/commands/deep/start-review-loop.md:52-64, 66-95]
 
 ### F15 — Convergence-distinctive value is adversarial P0 adjudication with coverage-graph signals
 **Fingerprint:** `contract-surface:deep-review:unique-adversarial-p0`
@@ -101,7 +101,7 @@ target_dimension: contract-surface
 ### F16 — Tier 1/2/3 resolution contract applies only to :auto mode
 **Fingerprint:** `contract-surface:deep-review:tier-contract-auto-only`
 **Severity:** info
-**Evidence:** The three-tier resolution contract at lines 56-64 is explicitly under the `:auto` Setup Resolution section. Tier 1 resolves confidently, Tier 2 asks targeted questions, Tier 3 fails fast. :confirm mode uses the Consolidated Setup Prompt instead with multi-gate approvals. The Default Resolution Table at lines 98-112 documents which fields are Tier-2 candidates (review_target_type and spec_folder). [SOURCE: .opencode/commands/spec_kit/deep-review.md:52-64, 98-112]
+**Evidence:** The three-tier resolution contract at lines 56-64 is explicitly under the `:auto` Setup Resolution section. Tier 1 resolves confidently, Tier 2 asks targeted questions, Tier 3 fails fast. :confirm mode uses the Consolidated Setup Prompt instead with multi-gate approvals. The Default Resolution Table at lines 98-112 documents which fields are Tier-2 candidates (review_target_type and spec_folder). [SOURCE: .opencode/commands/deep/start-review-loop.md:52-64, 98-112]
 
 ## Open Questions for Sibling Skill Iters
 

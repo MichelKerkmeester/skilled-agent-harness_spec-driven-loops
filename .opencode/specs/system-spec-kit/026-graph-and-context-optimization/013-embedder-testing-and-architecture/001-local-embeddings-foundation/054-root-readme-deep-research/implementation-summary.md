@@ -71,7 +71,7 @@ _memory:
 4. **Rewrite**: sonnet @markdown via Task tool applies verified delta with HVR scoring
 5. **Verify + commit**: HVR validate + strict-validate + sonnet @markdown + @review double-check
 
-Bypassed `/spec_kit:deep-research` command because cli-devin is not natively wired as an executor option.
+Bypassed `/deep:start-research-loop` command because cli-devin is not natively wired as an executor option.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -81,7 +81,7 @@ Bypassed `/spec_kit:deep-research` command because cli-devin is not natively wir
 
 | Decision | Why |
 |----------|-----|
-| Custom orchestration over extending /spec_kit:deep-research | Adding cli-devin to the command's executor enum is a large contract change; one-off bypass fits a single audit run |
+| Custom orchestration over extending /deep:start-research-loop | Adding cli-devin to the command's executor enum is a large contract change; one-off bypass fits a single audit run |
 | Sonnet @markdown sole writer (user choice) | Strongest HVR rigor; sk-doc loaded on every invocation |
 | 7 thematic tracks x ~3 iter each (user choice) | Balances coverage breadth with depth-per-track; avoids 1:1 RQ-to-iter rigidity |
 | Fixed 20-iter sweep, no early stop | User asked for 20; convergence-gate bundle requires 3 gates not 1, so safer to run full 20 |

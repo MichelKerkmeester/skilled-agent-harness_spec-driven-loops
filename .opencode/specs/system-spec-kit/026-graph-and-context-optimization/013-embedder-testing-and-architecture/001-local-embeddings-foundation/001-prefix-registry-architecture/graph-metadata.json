@@ -1,26 +1,218 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/001-prefix-registry-architecture",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/001-prefix-registry-architecture",
-  "parent_id": null,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/001-prefix-registry-architecture",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/001-prefix-registry-architecture",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
+  "derived": {
+    "trigger_phrases": [
+      "prefix registry",
+      "hf-local prefix",
+      "task prefix",
+      "embedding model prefix",
+      "getPrefixFor",
+      "PREFIX_REGISTRY",
+      "COCOINDEX_QUERY_PROMPT_NAME",
+      "embedding model swap",
+      "014/001",
+      "local-embeddings-setup-a 001",
+      "implementation",
+      "plan"
+    ],
+    "key_topics": [
+      "prefix",
+      "registry",
+      "hf-local",
+      "task",
+      "embedding",
+      "model",
+      "getprefixfor",
+      "swap",
+      "014",
+      "001",
+      "local-embeddings-setup-a",
+      "implementation"
+    ],
     "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 1: prefix-registry-architecture",
+    "status": "complete",
+    "key_files": [
+      "shared/embeddings.ts",
+      "shared/index.ts",
+      "mcp_server/lib/providers/embeddings.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+      "decision-record.md",
+      "scratch/test-prefix-registry.mjs",
+      "scratch/test-cocoindex-prompts.py",
+      "shared/dist/embeddings/providers/hf-local.js",
+      "spec.md",
+      "plan.md",
+      "shared/embeddings/providers/hf-local.ts",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "embeddings.ts",
+        "kind": "code",
+        "path": "shared/embeddings.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": "shared/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "test-prefix-registry.mjs",
+        "kind": "file",
+        "path": "scratch/test-prefix-registry.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "test-cocoindex-prompts.py",
+        "kind": "file",
+        "path": "scratch/test-cocoindex-prompts.py",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local.js",
+        "kind": "code",
+        "path": "shared/dist/embeddings/providers/hf-local.js",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Prefix Registry Architecture",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This is **Phase 1** of `014-local-embeddings-setup-a`. It is the load-bearing architectural change that makes the rest of the packet's model swaps (sub-phases 002–008) work without silent recall loss.",
     "created_at": "2026-05-12T16:27:47Z",
-    "last_save_at": "2026-05-12T16:27:47Z",
+    "last_save_at": "2026-05-23T11:55:15.326Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ]
   }
 }

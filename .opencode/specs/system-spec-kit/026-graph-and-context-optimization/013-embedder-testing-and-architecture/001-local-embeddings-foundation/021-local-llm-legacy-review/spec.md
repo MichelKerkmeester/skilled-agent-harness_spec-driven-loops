@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Local-LLM legacy and outdated-docs/config-drift review (post-014)"
-description: "Review packet owning a 20-iter /spec_kit:deep-review:auto run that hunts residue from the local-LLM and embedding-default migration shipped in 014-local-embeddings-setup-a (code + docs + JSON/configs + assets), then surfaces a remediation plan."
+description: "Review packet owning a 20-iter /deep:start-review-loop:auto run that hunts residue from the local-LLM and embedding-default migration shipped in 014-local-embeddings-setup-a (code + docs + JSON/configs + assets), then surfaces a remediation plan."
 trigger_phrases:
   - "local-llm legacy review"
   - "post-014 legacy hunt"
@@ -16,7 +16,7 @@ _memory:
     last_updated_at: "2026-05-13T13:07:09Z"
     last_updated_by: "main-agent"
     recent_action: "Scaffolded L2 review packet for post-014 legacy hunt"
-    next_safe_action: "Dispatch /spec_kit:deep-review:auto with cli-codex gpt-5.5 high fast, 20 iters, convergence 0.05"
+    next_safe_action: "Dispatch /deep:start-review-loop:auto with cli-codex gpt-5.5 high fast, 20 iters, convergence 0.05"
     blockers: []
     key_files:
       - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/spec.md"
@@ -88,7 +88,7 @@ Produce an authoritative findings list (P0/P1/P2) of code/doc/config residue tha
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `021-local-llm-legacy-review/review/iterations/iteration-NNN.md` | Create (per iter) | Per-iteration findings, owned by `/spec_kit:deep-review:auto` |
+| `021-local-llm-legacy-review/review/iterations/iteration-NNN.md` | Create (per iter) | Per-iteration findings, owned by `/deep:start-review-loop:auto` |
 | `021-local-llm-legacy-review/review/deep-review-state.jsonl` | Append | State log |
 | `021-local-llm-legacy-review/review/review-report.md` | Create | Final verdict + finding tables |
 | `021-local-llm-legacy-review/implementation-summary.md` | Update | Post-run summary + verdict + next-step rec |
@@ -103,7 +103,7 @@ Produce an authoritative findings list (P0/P1/P2) of code/doc/config residue tha
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Run 20 iterations (or convergence) of `/spec_kit:deep-review:auto` | `deep-review-state.jsonl` contains complete iteration records up to convergence or 20-cap |
+| REQ-001 | Run 20 iterations (or convergence) of `/deep:start-review-loop:auto` | `deep-review-state.jsonl` contains complete iteration records up to convergence or 20-cap |
 | REQ-002 | Produce `review-report.md` with verdict + P0/P1/P2 finding tables | File exists, non-empty, verdict ∈ {PASS, CONDITIONAL, FAIL} |
 | REQ-003 | Executor must be cli-codex gpt-5.5 reasoning=high service_tier=fast | All iteration log entries record `executor.kind=cli-codex`, `executor.model=gpt-5.5`, `executor.serviceTier=fast` |
 | REQ-004 | Read-only against repo (no rm/sed -i/mv outside `review/` artifacts) | `git status --porcelain` outside `021-local-llm-legacy-review/` unchanged vs baseline `5e7095d3336510b5756ba5cac383a8e08d1d79db` |

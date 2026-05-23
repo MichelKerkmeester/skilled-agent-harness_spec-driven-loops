@@ -18,8 +18,8 @@
     "skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council/012-iterative-command-and-skill-wiring",
     "skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council/013-iterative-parity-cost-docs"
   ],
-  "migrated": false,
-  "migration_source": "thematic-nesting-from-flat-131",
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -35,19 +35,22 @@
     "key_topics": [
       "ai-council",
       "rename",
-      "shared-runtime",
+      "arc",
+      "sk-ai-council",
       "iterative",
-      "multi-topic"
+      "multi-topic",
+      "shared",
+      "runtime",
+      "cluster",
+      "groups",
+      "sub-phases",
+      "share"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "planned",
     "key_files": [
       "spec.md",
-      "001-rename-preflight-and-plan/spec.md",
-      "002-rename-sk-skill/spec.md",
-      "003-rename-agent-4-runtime/spec.md",
-      "004-rename-sibling-edges-typescript/spec.md",
-      "005-rename-root-docs-hooks-index/spec.md"
+      ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/spec.md"
     ],
     "entities": [
       {
@@ -57,16 +60,46 @@
         "source": "derived"
       },
       {
-        "name": "ai-council",
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Last Updated",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Cover all sk-ai-council co-evolution work: the rename refactor (deep-ai-council \u2192 sk-ai-council), the shared-runtime deliberation, and the iterative multi-topic upgrade.",
+    "causal_summary": "This cluster groups 13 sub-phases that share a single thematic focus. Before restructuring, these existed as flat siblings at the root of `131-deep-skill-evolution/`. Nesting them under this thematic phase parent reduces root-level fan-out and makes the cluster's internal arc easier to follow.",
     "created_at": "2026-05-23T09:52:56.265976Z",
-    "last_save_at": "2026-05-23T09:52:56.265976Z",
-    "save_lineage": "nesting-restructure",
+    "last_save_at": "2026-05-23T11:55:14.227Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"

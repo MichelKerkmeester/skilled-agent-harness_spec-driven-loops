@@ -49,14 +49,14 @@ The review-loop graph accepts and persists `BUG_CLASS`, `INVARIANT`, `PRODUCER`,
 
 - A node kind is rejected with `unsupported_kind`: confirm the test runs against `loopType: 'review'` and that `coverage-graph-db.ts` `VALID_KINDS['review']` includes all five new entries.
 - A node kind disappears after upsert: inspect persistence (graph DB query) rather than only the upsert response.
-- The YAML event filter drops the event upstream: inspect `spec_kit_deep-review_auto.yaml` event-filter normalization block.
+- The YAML event filter drops the event upstream: inspect `deep_start-review-loop_auto.yaml` event-filter normalization block.
 
 ## 4. SOURCE REFERENCES
 
 - Allow-list: `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts` (`VALID_KINDS['review']` constant).
 - Upsert handler: `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts` (dynamic kind validation via `VALID_KINDS[loopType]`).
-- YAML event filter: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` (event-normalization block).
-- Confirm mirror: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`.
+- YAML event filter: `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` (event-normalization block).
+- Confirm mirror: `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`.
 - Fixture: `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-graph.vitest.ts`.
 - Phase spec: `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/007-complexity-ledger-led-graph-vocab/spec.md`.
 

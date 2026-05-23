@@ -6,7 +6,7 @@ Iteration: 002
 
 Executor metadata: `{"kind":"cli-claude-code","model":"claude-opus-4-7","reasoningEffort":"high","serviceTier":null}`
 
-Focus: audit `/spec_kit:deep-research` state, advisory locks, reducer writes, post-dispatch validation, executor-audit behavior, failure recovery, and cleanup responsibilities. Look for paths where a failed dispatch can leave state inconsistent or launch the next iteration incorrectly.
+Focus: audit `/deep:start-research-loop` state, advisory locks, reducer writes, post-dispatch validation, executor-audit behavior, failure recovery, and cleanup responsibilities. Look for paths where a failed dispatch can leave state inconsistent or launch the next iteration incorrectly.
 
 Write:
 

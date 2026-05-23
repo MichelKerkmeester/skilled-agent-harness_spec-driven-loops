@@ -30,6 +30,6 @@ File: README.md:778-786 [markdown, docs]
 - Semantic coverage graph with 7 relation types, question coverage tracking, sourceDiversity and evidenceDepth guards
 - Progressive synthesis, negative knowledge preservation, quality guards (source diversity, focus alignment, weak-source checks)
 - Fail-closed corruption handling, graph convergence fallback scoring, terminal stop metadata parsing
-- Lifecycle modes: `new`, `resume`, `restart`. Dispatched by `/spec_kit:deep-research` command
+- Lifecycle modes: `new`, `resume`, `restart`. Dispatched by `/deep:start-research-loop` command
 
 **deep-review**

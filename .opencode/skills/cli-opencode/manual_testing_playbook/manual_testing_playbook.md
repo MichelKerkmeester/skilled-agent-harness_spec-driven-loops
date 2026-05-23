@@ -470,7 +470,7 @@ Verify `--agent deep-research` executes a single research iteration against exte
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor (or `/spec_kit:deep-research` simulator) running a single research iteration, dispatch `opencode run --agent deep-research --variant high --format json --dir <repo-root>` with state externalized at `/tmp/co-032-state.jsonl` and a prompt asking for at least 2 findings or open hypotheses. Verify the dispatch exits 0, the JSON event stream contains a session.completed event referencing findings or hypotheses, and that no Task or sub-agent tool.call events appear. Return a verdict naming the iteration findings count and confirming LEAF compliance.
+Prompt summary: As an external-AI conductor (or `/deep:start-research-loop` simulator) running a single research iteration, dispatch `opencode run --agent deep-research --variant high --format json --dir <repo-root>` with state externalized at `/tmp/co-032-state.jsonl` and a prompt asking for at least 2 findings or open hypotheses. Verify the dispatch exits 0, the JSON event stream contains a session.completed event referencing findings or hypotheses, and that no Task or sub-agent tool.call events appear. Return a verdict naming the iteration findings count and confirming LEAF compliance.
 
 Expected signals: Exit 0. JSON parseable. >= 2 findings or hypotheses. Zero Task tool.call events. Zero nested `opencode run` invocations. Dispatch line includes `--agent deep-research`.
 
@@ -486,7 +486,7 @@ Verify `--agent deep-review` executes a single review iteration that surfaces at
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor (or `/spec_kit:deep-review` simulator) running a single audit iteration, dispatch `opencode run --agent deep-review --variant high --format json --dir <repo-root>` against `@./.opencode/skills/cli-opencode/SKILL.md` with state externalized at `/tmp/co-033-state.jsonl`. Verify the dispatch exits 0, the JSON event stream contains a session.completed event with severity-tagged findings, and that no Task or sub-agent tool.call events appear. Return a verdict naming the highest-severity finding and confirming LEAF compliance.
+Prompt summary: As an external-AI conductor (or `/deep:start-review-loop` simulator) running a single audit iteration, dispatch `opencode run --agent deep-review --variant high --format json --dir <repo-root>` against `@./.opencode/skills/cli-opencode/SKILL.md` with state externalized at `/tmp/co-033-state.jsonl`. Verify the dispatch exits 0, the JSON event stream contains a session.completed event with severity-tagged findings, and that no Task or sub-agent tool.call events appear. Return a verdict naming the highest-severity finding and confirming LEAF compliance.
 
 Expected signals: Exit 0. JSON parseable. >= 1 severity tag (P0, P1, or P2). >= 1 file or line citation. Zero Task tool.call events. Zero nested `opencode run` invocations. Dispatch line includes `--agent deep-review`.
 

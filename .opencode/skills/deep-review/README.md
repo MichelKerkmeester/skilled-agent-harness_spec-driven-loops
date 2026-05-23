@@ -62,13 +62,13 @@ Invoke via the dedicated command. Append `:auto` for unattended runs or `:confir
 
 ```bash
 # Autonomous review of a skill package
-/spec_kit:deep-review:auto "skill sk-my-skill"
+/deep:start-review-loop:auto "skill sk-my-skill"
 
 # Interactive review of a spec folder with approval at each step
-/spec_kit:deep-review:confirm "specs/03--commands-and-skills/030-deep-review/"
+/deep:start-review-loop:confirm "specs/03--commands-and-skills/030-deep-review/"
 
 # Autonomous review of all spec folders in a track
-/spec_kit:deep-review:auto "track 03--commands-and-skills"
+/deep:start-review-loop:auto "track 03--commands-and-skills"
 ```
 
 After the loop completes, confirm the verdict in the review report:
@@ -298,7 +298,7 @@ Create a file at `{spec_folder}/review/.deep-review-pause` during a running revi
 Run a full autonomous audit of a skill package across all four dimensions with a release readiness verdict.
 
 ```bash
-/spec_kit:deep-review:auto "skill deep-review"
+/deep:start-review-loop:auto "skill deep-review"
 ```
 
 Expected progression:
@@ -315,7 +315,7 @@ Expected progression:
 Run an interactive audit of a spec folder with approval gates between iterations. Useful when findings should be reviewed before the loop continues.
 
 ```bash
-/spec_kit:deep-review:confirm "specs/03--commands-and-skills/030-deep-review/"
+/deep:start-review-loop:confirm "specs/03--commands-and-skills/030-deep-review/"
 ```
 
 Expected progression:
@@ -331,7 +331,7 @@ Expected progression:
 Run an autonomous audit across all spec folders in a named track. The loop discovers child spec folders and reviews each one, producing a `review-report.md` per folder.
 
 ```bash
-/spec_kit:deep-review:auto "track 03--commands-and-skills"
+/deep:start-review-loop:auto "track 03--commands-and-skills"
 ```
 
 Expected progression:
@@ -421,7 +421,7 @@ A: Raise `--max-iterations` above the number of completed iterations and re-invo
 
 | Command                 | Purpose                                                            |
 | ----------------------- | ------------------------------------------------------------------ |
-| `/spec_kit:deep-review` | Primary invocation point for review-only mode                      |
+| `/deep:start-review-loop` | Primary invocation point for review-only mode                      |
 | `/spec_kit:plan`        | Next step when review verdict is FAIL or CONDITIONAL; if the remediation packet still needs intake, planning can run the shared intake contract from [`../system-spec-kit/references/intake-contract.md`](../system-spec-kit/references/intake-contract.md) first |
 | `/memory:save`          | Manual context preservation (deep review auto-saves on completion) |
 
@@ -436,8 +436,8 @@ A: Raise `--max-iterations` above the number of completed iterations and re-invo
 
 | File                                | Purpose                                              |
 | ----------------------------------- | ---------------------------------------------------- |
-| `spec_kit_deep-review_auto.yaml`    | Autonomous review mode workflow                      |
-| `spec_kit_deep-review_confirm.yaml` | Interactive review mode workflow with approval gates |
+| `deep_start-review-loop_auto.yaml`    | Autonomous review mode workflow                      |
+| `deep_start-review-loop_confirm.yaml` | Interactive review mode workflow with approval gates |
 
 ### Canonical Reference Table
 

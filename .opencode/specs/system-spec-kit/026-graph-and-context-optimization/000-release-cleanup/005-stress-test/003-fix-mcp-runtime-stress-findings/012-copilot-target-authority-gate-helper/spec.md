@@ -71,13 +71,13 @@ _memory:
 
 The v1.0.2 stress-test rerun cell `runs/I1/cli-copilot-1` scored 2/8: cli-copilot mutated `009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/graph-metadata.json` without operator authorization. The Gate 3 HARD BLOCK was bypassed because copilot autonomously selected a spec folder it found in session-bootstrap context. The pathology is that `--allow-all-tools` plus a prompt that mentions plausible folder names equals "permission to mutate any of those folders" from the model's perspective.
 
-The deep-research loop in `../011-research-post-stress-finding-followups/research/research.md` §3 traced this to a **target-authority failure**, not a model-prompting failure. cli-copilot's deep-loop dispatch path (`spec_kit_deep-research_auto.yaml:601-625` and `spec_kit_deep-review_auto.yaml:669-683`) passes the rendered prompt directly to `copilot -p ... --allow-all-tools --no-ask-user` with no separation between "approved write target" (workflow-resolved spec folder) and "recovered context" (memory hits, bootstrap-context spec folders, graph `last_active_child_id`). The model has no schema to distinguish them.
+The deep-research loop in `../011-research-post-stress-finding-followups/research/research.md` §3 traced this to a **target-authority failure**, not a model-prompting failure. cli-copilot's deep-loop dispatch path (`deep_start-research-loop_auto.yaml:601-625` and `deep_start-review-loop_auto.yaml:669-683`) passes the rendered prompt directly to `copilot -p ... --allow-all-tools --no-ask-user` with no separation between "approved write target" (workflow-resolved spec folder) and "recovered context" (memory hits, bootstrap-context spec folders, graph `last_active_child_id`). The model has no schema to distinguish them.
 
 The `004-memory-save-rewrite` planner-first contract enforces planner-first when its handler is invoked directly. The bypass is upstream: by the time the handler runs, copilot has already chosen a target.
 
 ### Purpose
 
-Add a typed `buildCopilotPromptArg` helper next to `resolveCopilotPromptArg` in `mcp_server/lib/deep-loop/executor-config.ts`. The helper wraps every cli-copilot dispatch with a typed `targetAuthority` token. Wire both `spec_kit_deep-research_auto.yaml` and `spec_kit_deep-review_auto.yaml` to use it. Recovered context can suggest likely folders but cannot approve writes; only the workflow-resolved spec folder can.
+Add a typed `buildCopilotPromptArg` helper next to `resolveCopilotPromptArg` in `mcp_server/lib/deep-loop/executor-config.ts`. The helper wraps every cli-copilot dispatch with a typed `targetAuthority` token. Wire both `deep_start-research-loop_auto.yaml` and `deep_start-review-loop_auto.yaml` to use it. Recovered context can suggest likely folders but cannot approve writes; only the workflow-resolved spec folder can.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -93,12 +93,12 @@ Add a typed `buildCopilotPromptArg` helper next to `resolveCopilotPromptArg` in 
   1. `kind:"approved"` → prompt body is prepended with a TARGET AUTHORITY preamble naming the spec folder; argv keeps `--allow-all-tools --no-ask-user`.
   2. `kind:"missing"` + `writeIntent:false` → prompt body and argv unchanged (read-only operations don't need authority).
   3. `kind:"missing"` + `writeIntent:true` → prompt body REPLACED with a Gate-3 clarifying question; argv DROPS `--allow-all-tools`; `enforcedPlanOnly:true`.
-- Wire-in at two YAML call sites: `spec_kit_deep-research_auto.yaml:601-625` and `spec_kit_deep-review_auto.yaml:669-683`. Both route cli-copilot dispatches through the helper, resolving `targetAuthority` from the workflow's `{spec_folder}` template.
+- Wire-in at two YAML call sites: `deep_start-research-loop_auto.yaml:601-625` and `deep_start-review-loop_auto.yaml:669-683`. Both route cli-copilot dispatches through the helper, resolving `targetAuthority` from the workflow's `{spec_folder}` template.
 - New vitest at `mcp_server/tests/executor-config-copilot-target-authority.vitest.ts` covering all 3 branches + override resistance + large-prompt fallback.
 
 ### Out of Scope
 
-- The `_confirm.yaml` variants (`spec_kit_deep-research_confirm.yaml`, `spec_kit_deep-review_confirm.yaml`) — these have human-in-the-loop confirmation at every dispatch and are not the autonomous path that drove the v1.0.2 failure. Tracked as a follow-up packet if the operator wants symmetry.
+- The `_confirm.yaml` variants (`deep_start-research-loop_confirm.yaml`, `deep_start-review-loop_confirm.yaml`) — these have human-in-the-loop confirmation at every dispatch and are not the autonomous path that drove the v1.0.2 failure. Tracked as a follow-up packet if the operator wants symmetry.
 - The memory-save handler (`mcp_server/handlers/memory-save.ts`) — packet 026/003/004 already enforces planner-first there. This packet is the upstream enforcement; defense-in-depth at the handler layer remains intact.
 - `resolveCopilotPromptArg` itself — sibling helper retained for backwards compat callers; not modified.
 - The 003-009 remediation packets, the 010 stress-test packet, the 011 deep-research packet — frozen.
@@ -109,8 +109,8 @@ Add a typed `buildCopilotPromptArg` helper next to `resolveCopilotPromptArg` in 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts` | Modify | Append `buildCopilotPromptArg` + helpers (~+150 LOC; existing functions untouched) |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | Replace `if_cli_copilot.command` (~lines 596-642) to route through `buildCopilotPromptArg` |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | Replace `if_cli_copilot.command` (~lines 667-690) to route through `buildCopilotPromptArg` (also unifies on Node-based dispatch matching deep-research) |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Modify | Replace `if_cli_copilot.command` (~lines 596-642) to route through `buildCopilotPromptArg` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Modify | Replace `if_cli_copilot.command` (~lines 667-690) to route through `buildCopilotPromptArg` (also unifies on Node-based dispatch matching deep-research) |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/executor-config-copilot-target-authority.vitest.ts` | Create | 13 tests across 6 describe blocks |
 <!-- /ANCHOR:scope -->
 
@@ -128,7 +128,7 @@ Add a typed `buildCopilotPromptArg` helper next to `resolveCopilotPromptArg` in 
 | **REQ-003** | Missing authority + `writeIntent:false` returns the prompt unchanged with original argv (preserve prior read-only behavior). | Vitest assertion: `result.promptBody === prompt`, argv contains `--allow-all-tools`, `enforcedPlanOnly === false`. |
 | **REQ-004** | Missing authority + `writeIntent:true` replaces the prompt with a Gate-3 question and strips `--allow-all-tools`. | Vitest assertion: `result.argv` does NOT contain `--allow-all-tools`; `result.promptBody` contains `TARGET AUTHORITY MISSING — GATE 3 REQUIRED` and `Do NOT pick a folder yourself.`; `enforcedPlanOnly === true`. |
 | **REQ-005** | Recovered context (folder names embedded in the prompt body) CANNOT override an approved `specFolder`. | Vitest assertion: when `recoveredContextPrompt` mentions a competing folder + an `approved` authority is set with `APPROVED_FOLDER`, the preamble's `Approved spec folder: <APPROVED_FOLDER>` index in `result.promptBody` is BEFORE the competing folder mention; the explicit "cannot override" line is present. |
-| **REQ-006** | Both `_auto.yaml` call sites route cli-copilot dispatches through `buildCopilotPromptArg`. | `grep -n "buildCopilotPromptArg" .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` and `... spec_kit_deep-review_auto.yaml` each return ≥1 hit; `grep -n "resolveCopilotPromptArg" .../spec_kit_deep-research_auto.yaml` returns 0 (replaced) or only in the import where unused. |
+| **REQ-006** | Both `_auto.yaml` call sites route cli-copilot dispatches through `buildCopilotPromptArg`. | `grep -n "buildCopilotPromptArg" .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` and `... deep_start-review-loop_auto.yaml` each return ≥1 hit; `grep -n "resolveCopilotPromptArg" .../deep_start-research-loop_auto.yaml` returns 0 (replaced) or only in the import where unused. |
 | **REQ-007** | The dispatch-time YAML resolves `targetAuthority` from the workflow's `{spec_folder}` template (kind:"approved" when present; kind:"missing", writeIntent:true when absent). | YAML inline source contains `targetAuthority = specFolder ? { kind: 'approved', specFolder } : { kind: 'missing', writeIntent: true }` or equivalent ternary. |
 
 ### P1 - Required (complete OR user-approved deferral)

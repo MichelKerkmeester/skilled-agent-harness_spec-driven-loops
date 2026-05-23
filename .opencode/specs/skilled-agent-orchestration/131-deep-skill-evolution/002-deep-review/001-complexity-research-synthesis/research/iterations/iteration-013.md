@@ -40,11 +40,11 @@ That is too lossy for null-search evidence. A clean-path proof is not necessaril
 
 ### F013-004: The report compiler has no first-class Search Ledger destination
 
-The synthesis step currently instructs the workflow to create a 9-section review report centered on executive verdict, planning packet, active finding registry, remediation workstreams, seeds, traceability, deferred items, and appendix. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1166]
+The synthesis step currently instructs the workflow to create a 9-section review report centered on executive verdict, planning packet, active finding registry, remediation workstreams, seeds, traceability, deferred items, and appendix. [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1166]
 
-The Planning Packet is built from reducer-owned state plus `findingDetails`, while the Active Finding Registry lists active findings and their finding metadata. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1177] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1183]
+The Planning Packet is built from reducer-owned state plus `findingDetails`, while the Active Finding Registry lists active findings and their finding metadata. [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1177] [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1183]
 
-Ruled-out claims only appear in the Audit Appendix instructions, and there is no Search Ledger, Search Coverage, Search Debt, or Clean Path Proof section. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1205] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1208]
+Ruled-out claims only appear in the Audit Appendix instructions, and there is no Search Ledger, Search Coverage, Search Debt, or Clean Path Proof section. [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1205] [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1208]
 
 If the report contract is not updated with reducer-backed search fields, the final synthesis can preserve active findings while demoting null-search proof to prose or omitting it entirely.
 
@@ -85,7 +85,7 @@ For the ledger rollout, validation should not stop at "row exists". It should al
 
 - Ruled out using only `Ruled Out` / `Confirmed-Clean` markdown prose as the persistence path. It collapses clean proof and dead-end semantics and does not preserve row-level evidence refs. [SOURCE: .opencode/skills/deep-review/scripts/reduce-state.cjs:936]
 - Ruled out relying only on graphEvents for ledger persistence. The current prompt marks `graphEvents` optional, and graphless runs need equivalent text/JSON fallback proof. [SOURCE: .opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl:69]
-- Ruled out a report-only fix. The report compiler depends on reducer-owned state plus `findingDetails`, so report instructions alone would still lack stable search aggregates. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1180]
+- Ruled out a report-only fix. The report compiler depends on reducer-owned state plus `findingDetails`, so report instructions alone would still lack stable search aggregates. [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1180]
 
 ## Dead Ends
 
@@ -97,7 +97,7 @@ For the ledger rollout, validation should not stop at "row exists". It should al
 - `.opencode/specs/skilled-agent-orchestration/116-deep-review-complexity/research/research.md`
 - `.opencode/skills/deep-review/scripts/reduce-state.cjs`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
 - `.opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl`
 - `.opencode/skills/deep-review/references/state_format.md`
 

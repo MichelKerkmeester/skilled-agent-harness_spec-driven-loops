@@ -26,7 +26,7 @@ contextType: "review"
 | Total findings (raw) | 34 P0 + 54 P1 + 56 P2 = 144 |
 | Total findings (after loop-manager adjudication) | **3 confirmed P0** + ~40 P1 + ~60 P2 |
 | Convergence | Mixed signal — iter 14 clean, iter 18 = 0 P0, iter 20 = 1 false-positive P0; the late P0s were all observability/maintainability category, not new defects |
-| Created by | main_agent + /spec_kit:deep-review:auto loop |
+| Created by | main_agent + /deep:start-review-loop:auto loop |
 | Created at | 2026-05-17T22:00:00Z |
 
 ---

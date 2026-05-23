@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Execute 998's 4 PROCEED Wave 2 operations: graph-metadata sync (000 7→59, 008 13→26), 000-release-cleanup 6-sub-phase recatalog, 006-skill-advisor 5-sub-phase internal structure, SHALLOW+MEDIUM reclassification archive, parent-doc derived fields. Per-operation immediate commit, per-wave HEAD baseline.",
     "created_at": "2026-05-16T09:00:00Z",
-    "last_save_at": "2026-05-23T09:22:40.186Z",
+    "last_save_at": "2026-05-23T11:55:14.151Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

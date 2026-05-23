@@ -1,6 +1,6 @@
 ---
 title: "Re-Review Report: 010-doctor-update-orchestrator (post-003-remediation) — PASS"
-description: "Post-remediation re-review of /spec_kit:deep-review:auto on 013 phase parent — 10 iterations, cli-opencode + deepseek/deepseek-v4-pro variant=high, generation 2; verdict moved CONDITIONAL → PASS (hasAdvisories=true); zero P1 regressions confirmed."
+description: "Post-remediation re-review of /deep:start-review-loop:auto on 013 phase parent — 10 iterations, cli-opencode + deepseek/deepseek-v4-pro variant=high, generation 2; verdict moved CONDITIONAL → PASS (hasAdvisories=true); zero P1 regressions confirmed."
 trigger_phrases:
   - "013 re-review report"
   - "013 PASS verdict"
@@ -175,7 +175,7 @@ This re-review was a second deliberate test of the RM-8 four-layer mitigation ag
 
 ## 8. PROVENANCE
 
-- **Command**: `/spec_kit:deep-review:auto` (hardened iteration prompt, commit `ab9f25ae5`)
+- **Command**: `/deep:start-review-loop:auto` (hardened iteration prompt, commit `ab9f25ae5`)
 - **Executor**: `cli-opencode` v1.14.48 with `--model deepseek/deepseek-v4-pro --variant high --agent general --format json --dangerously-skip-permissions --pure`
 - **Worktree**: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/013-doctor-rereview` (detached HEAD `37ea931ce`)
 - **Recovery baselines on main**: `edf617470` (WIP), `ab9f25ae5` (RM-8 hardening), `77713142b` (cli-opencode docs), `8d794afad` (original review packet), `495fdd282` (003 remediation), `37ea931ce` (re-review baseline WIP snapshot)

@@ -23,7 +23,7 @@ Followed exhausted approaches from `deep-review-strategy.md`. Maintained LEAF sc
 ### Files Reviewed
 1. `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts` (lines 1-567)
 2. `.opencode/skills/deep-review/scripts/reduce-state.cjs` (lines 1-570)
-3. `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` (lines 1-305)
+3. `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` (lines 1-305)
 4. `.opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/058-validator-warn-rollout.md`
 5. `.opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/060-reducer-search-debt.md`
 6. `.opencode/specs/skilled-agent-orchestration/116-deep-review-complexity/spec.md`
@@ -43,7 +43,7 @@ Followed exhausted approaches from `deep-review-strategy.md`. Maintained LEAF sc
 - **Naming consistency**: Naming is consistent between v1 and v2 fields. The reducer handles both legacy and v2 schemas with clear normalization functions.
 - **Copy-pasted blocks**: No obvious copy-paste patterns detected. The code follows a clear structure with separate sections for imports, constants, helpers, parsers, and core logic.
 
-#### spec_kit_deep-review_auto.yaml
+#### deep_start-review-loop_auto.yaml
 - **TODO/FIXME debt**: No TODO or FIXME comments found.
 - **Orphaned step names**: No orphaned step names detected. All steps are referenced in the workflow and have clear descriptions.
 - **Unused outputs**: No unused outputs detected. All step outputs are consumed by subsequent steps or used for configuration.

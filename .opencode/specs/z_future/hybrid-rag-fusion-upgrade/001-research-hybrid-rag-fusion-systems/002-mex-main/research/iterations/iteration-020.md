@@ -386,8 +386,8 @@ Full details: `.opencode/skills/sk-git/`
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
 | **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → `create.sh --phase` → Populate → Plan first child  |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
-| **Deep research**         | `/spec_kit:deep-research` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
-| **Deep review**           | `/spec_kit:deep-review` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
+| **Deep research**         | `/deep:start-research-loop` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
+| **Deep review**           | `/deep:start-review-loop` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
 | **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                            |
 | **Constitutional memory** | `/memory:learn` → Constitutional memory manager: create, list, edit, remove, budget                                               |
 | **Shared memory**         | `/memory:manage shared` → Shared-memory lifecycle: create spaces, manage memberships, inspect rollout                                    |
@@ -6375,11 +6375,11 @@ Detect the current research phase from dispatch context to load appropriate reso
 ### Architecture: 3-Layer Integration
 
 ```
-User invokes: /spec_kit:deep-research "topic"
+User invokes: /deep:start-research-loop "topic"
                     |
                     v
     ┌─────────────────────────────────┐
-    │  /spec_kit:deep-research command│  Layer 1: Command
+    │  /deep:start-research-loop command│  Layer 1: Command
     │  (YAML workflow + loop config)    │  Manages loop lifecycle
     └──────────────┬──────────────────┘
                    |

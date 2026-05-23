@@ -177,7 +177,7 @@ Execute the 4-phase implementation plan from packet 002, with explicit gates bet
 
 ### Cross-cutting templates (handover, debug-delegation, research, resource-map, context-index)
 - Already in scope: their `.md.tmpl` source files move from `templates/*.md` to `templates/manifest/*.md.tmpl`
-- Lifecycle ownership preserved: handover via `/memory:save`, debug-delegation via `@debug`, research via `/spec_kit:deep-research`, resource-map mixed, context-index author
+- Lifecycle ownership preserved: handover via `/memory:save`, debug-delegation via `@debug`, research via `/deep:start-research-loop`, resource-map mixed, context-index author
 
 ### Phase-parent
 - `kind=phase-parent` in manifest produces lean trio (spec.md + description.json + graph-metadata.json)

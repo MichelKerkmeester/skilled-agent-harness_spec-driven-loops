@@ -24,8 +24,8 @@ contextType: "research"
 - Turn documented gates into runtime-owned policy and approval checkpoints, with project policy stored once and enforced during execution. [SOURCE: external/README.md:186-239] [SOURCE: external/README.md:319-376] [SOURCE: AGENTS.md:159-229]
 - Split lightweight session continuity from curated durable memory so operational capture is cheap and indexed memory remains deliberate. [SOURCE: external/packages/sdk/src/session/parse.ts:13-21] [SOURCE: external/packages/sdk/src/session/write.ts:14-58] [SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:75-124]
 - Replace level-first operator classification with workflow profiles and starter-packet scaffolding that attach artifacts to actual workflow intent. [SOURCE: external/library/methodologies/spec-kit/spec-kit-orchestrator.js:114-170] [SOURCE: .opencode/skills/system-spec-kit/references/templates/level_specifications.md:48-73]
-- Normalize multi-runtime resolution through a runtime manifest and reduce mirror drift across agent/runtime surfaces. [SOURCE: external/plugins/babysitter-opencode/plugin.json:2-14] [SOURCE: AGENTS.md:277-288] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:66-74]
-- Collapse deep research and deep review onto one iteration engine before adding more lifecycle features. [SOURCE: external/library/methodologies/state-machine-orchestration.js:159-235] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:212-380] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:294-390]
+- Normalize multi-runtime resolution through a runtime manifest and reduce mirror drift across agent/runtime surfaces. [SOURCE: external/plugins/babysitter-opencode/plugin.json:2-14] [SOURCE: AGENTS.md:277-288] [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:66-74]
+- Collapse deep research and deep review onto one iteration engine before adding more lifecycle features. [SOURCE: external/library/methodologies/state-machine-orchestration.js:159-235] [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:212-380] [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:294-390]
 - Merge public lifecycle, continuity, and skill surfaces so operators navigate fewer top-level concepts. [SOURCE: AGENTS.md:138-155] [SOURCE: .opencode/commands/spec_kit/resume.md:29-41] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/docs/user-guide/reference/slash-commands.md:11-31]
 - Keep the deep-loop evidence layer, but generate more operator guidance from runtime-owned policy instead of hand-maintained instruction sprawl. [SOURCE: .opencode/agents/deep-research.md:50-60] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/CLAUDE.md:237-242]
 
@@ -66,9 +66,9 @@ Babysitter
 
 ### Finding F-001 — Add A Checksummed Event Journal For Research Workflows
 - Origin iteration: `iteration-001.md`
-- system-spec-kit target: `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`, new helper under `.opencode/skills/system-spec-kit/scripts/core/`
+- system-spec-kit target: `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`, `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`, new helper under `.opencode/skills/system-spec-kit/scripts/core/`
 - Priority: should-have
-- Description: Babysitter persists ordered, checksummed journal events and validates replay order. `system-spec-kit` should add a comparable append-only event journal for deep research and deep review so failures and resumes are auditable beyond today's narrative JSONL. [SOURCE: external/packages/sdk/src/storage/journal.ts:27-49] [SOURCE: external/packages/sdk/src/runtime/replay/effectIndex.ts:107-147] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:157-180]
+- Description: Babysitter persists ordered, checksummed journal events and validates replay order. `system-spec-kit` should add a comparable append-only event journal for deep research and deep review so failures and resumes are auditable beyond today's narrative JSONL. [SOURCE: external/packages/sdk/src/storage/journal.ts:27-49] [SOURCE: external/packages/sdk/src/runtime/replay/effectIndex.ts:107-147] [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:157-180]
 
 ### Finding F-002 — Pair Cached Summaries With Journal-Head State
 - Origin iteration: `iteration-002.md`
@@ -78,21 +78,21 @@ Babysitter
 
 ### Finding F-003 — Turn Constitutional Gates Into Runtime Gates
 - Origin iteration: `iteration-003.md`
-- system-spec-kit target: `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`, `.opencode/skills/system-spec-kit/constitutional/gate-enforcement.md`
+- system-spec-kit target: `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`, `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`, `.opencode/skills/system-spec-kit/constitutional/gate-enforcement.md`
 - Priority: must-have
 - Description: Babysitter's runtime is authoritative and refuses to continue until allowed next actions exist. `system-spec-kit` should move its highest-risk gate rules from documentation-first guidance toward machine-enforced runtime state. [SOURCE: external/README.md:319-376] [SOURCE: external/packages/sdk/src/runtime/orchestrateIteration.ts:106-114] [SOURCE: .opencode/skills/system-spec-kit/constitutional/gate-enforcement.md:51-69]
 
 ### Finding F-004 — Preserve Approval Semantics In Auto Mode
 - Origin iteration: `iteration-004.md`
-- system-spec-kit target: `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+- system-spec-kit target: `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`, `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`
 - Priority: should-have
-- Description: Babysitter auto-passes breakpoints in non-interactive mode but still records that policy decision. `system-spec-kit` should preserve equivalent audit semantics so auto mode means "approved under policy" rather than "no approval existed." [SOURCE: external/packages/sdk/src/runtime/intrinsics/breakpoint.ts:43-55] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:9-15] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:204-227]
+- Description: Babysitter auto-passes breakpoints in non-interactive mode but still records that policy decision. `system-spec-kit` should preserve equivalent audit semantics so auto mode means "approved under policy" rather than "no approval existed." [SOURCE: external/packages/sdk/src/runtime/intrinsics/breakpoint.ts:43-55] [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:9-15] [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:204-227]
 
 ### Finding F-005 — Add Pending-Action Queues To Research/Review Workflows
 - Origin iteration: `iteration-005.md`
-- system-spec-kit target: `.opencode/agents/deep-research.md`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+- system-spec-kit target: `.opencode/agents/deep-research.md`, `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`, `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`
 - Priority: should-have
-- Description: Babysitter models unresolved work as structured `nextActions`. `system-spec-kit` should add a pending-action registry so blocked or partially parallel research runs become easier to resume safely. [SOURCE: external/packages/sdk/src/runtime/intrinsics/parallel.ts:19-38] [SOURCE: external/packages/sdk/src/tasks/batching.ts:31-47] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:250-293]
+- Description: Babysitter models unresolved work as structured `nextActions`. `system-spec-kit` should add a pending-action registry so blocked or partially parallel research runs become easier to resume safely. [SOURCE: external/packages/sdk/src/runtime/intrinsics/parallel.ts:19-38] [SOURCE: external/packages/sdk/src/tasks/batching.ts:31-47] [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:250-293]
 
 ### Finding F-006 — Pilot Executable Methodology Packs
 - Origin iteration: `iteration-006.md`
@@ -102,9 +102,9 @@ Babysitter
 
 ### Finding F-007 — Normalize Multi-Harness Resolution Through A Manifest
 - Origin iteration: `iteration-007.md`
-- system-spec-kit target: `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`, new runtime-manifest helper
+- system-spec-kit target: `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`, `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`, new runtime-manifest helper
 - Priority: must-have
-- Description: Babysitter's plugin manifests and harness registry define a cleaner multi-runtime contract than `system-spec-kit`'s current mix of directory rules and hardcoded paths. This matters immediately because current deep-research workflows hardcode a Claude agent path while repo-level routing says the active runtime directory must vary by harness. [SOURCE: external/plugins/babysitter-opencode/plugin.json:2-10] [SOURCE: external/packages/sdk/src/harness/discovery.ts:49-126] [SOURCE: AGENTS.md:277-288] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:66-74]
+- Description: Babysitter's plugin manifests and harness registry define a cleaner multi-runtime contract than `system-spec-kit`'s current mix of directory rules and hardcoded paths. This matters immediately because current deep-research workflows hardcode a Claude agent path while repo-level routing says the active runtime directory must vary by harness. [SOURCE: external/plugins/babysitter-opencode/plugin.json:2-10] [SOURCE: external/packages/sdk/src/harness/discovery.ts:49-126] [SOURCE: AGENTS.md:277-288] [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:66-74]
 
 ### Finding F-008 — Prototype A Headless Internal Runner
 - Origin iteration: `iteration-009.md`
@@ -140,9 +140,9 @@ Babysitter
 
 ### Finding F-013 — Replace Parallel Loop Stacks With One Iteration Engine
 - Origin iteration: `iteration-014.md`
-- system-spec-kit target: `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`, `.opencode/skills/system-spec-kit/scripts/tests/`
+- system-spec-kit target: `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`, `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`, `.opencode/skills/system-spec-kit/scripts/tests/`
 - Priority: should-have
-- Description: Deep research and deep review currently duplicate lifecycle machinery, mirrors, reducers, and parity-test burden. Babysitter's runtime suggests `system-spec-kit` should refactor those flows onto one generic iteration engine with mode-specific schemas, reducers, and report templates layered on top. [SOURCE: external/library/methodologies/state-machine-orchestration.js:159-235] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:212-380] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:294-390]
+- Description: Deep research and deep review currently duplicate lifecycle machinery, mirrors, reducers, and parity-test burden. Babysitter's runtime suggests `system-spec-kit` should refactor those flows onto one generic iteration engine with mode-specific schemas, reducers, and report templates layered on top. [SOURCE: external/library/methodologies/state-machine-orchestration.js:159-235] [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:212-380] [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:294-390]
 
 ### Finding F-014 — Shrink Universal Validation Into Workflow-Owned Checks
 - Origin iteration: `iteration-015.md`
@@ -170,9 +170,9 @@ Babysitter
 
 ### Finding F-018 — Add A Lightweight Timing Guard To Long Loops
 - Origin iteration: `iteration-019.md`
-- system-spec-kit target: `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`, `.opencode/skills/sk-deep-research/`
+- system-spec-kit target: `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`, `.opencode/skills/sk-deep-research/`
 - Priority: nice-to-have
-- Description: Babysitter's session-state helpers include fast-loop detection. `system-spec-kit` should consider a small iteration-cadence safeguard for unattended loops so shallow accidental spins do not consume the entire budget unnoticed. [SOURCE: external/packages/sdk/src/session/write.ts:153-189] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:157-169] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:250-277]
+- Description: Babysitter's session-state helpers include fast-loop detection. `system-spec-kit` should consider a small iteration-cadence safeguard for unattended loops so shallow accidental spins do not consume the entire budget unnoticed. [SOURCE: external/packages/sdk/src/session/write.ts:153-189] [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:157-169] [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:250-277]
 
 ### Phase 3 Findings
 

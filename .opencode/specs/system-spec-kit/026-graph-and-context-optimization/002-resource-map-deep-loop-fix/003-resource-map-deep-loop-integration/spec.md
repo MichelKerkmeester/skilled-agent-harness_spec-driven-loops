@@ -70,7 +70,7 @@ Autonomous deep-loop runs produce rich evidence across 5–15 iterations, but th
 
 ### Purpose
 
-Auto-emit a filled `resource-map.md` at convergence for every `/spec_kit:deep-research` and `/spec_kit:deep-review` run. Reuse evidence already present in per-iteration delta JSON (no extra scan, no extra tokens). Add dimension-specific signals (findings counts for review, citation counts for research) that turn the flat path catalog into a coverage map.
+Auto-emit a filled `resource-map.md` at convergence for every `/deep:start-research-loop` and `/deep:start-review-loop` run. Reuse evidence already present in per-iteration delta JSON (no extra scan, no extra tokens). Add dimension-specific signals (findings counts for review, citation counts for research) that turn the flat path catalog into a coverage map.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -85,9 +85,9 @@ Auto-emit a filled `resource-map.md` at convergence for every `/spec_kit:deep-re
 - Dimension-specific column additions on the review shape: extra `Findings (P0/P1/P2)` column. On the research shape: extra `Citations (N iterations)` column.
 - Integration call from `sk-deep-review/scripts/reduce-state.cjs` at convergence, writing to the resolved local-owner `{artifact_dir}/resource-map.md`.
 - Integration call from `sk-deep-research/scripts/reduce-state.cjs` at convergence, writing to the resolved local-owner `{artifact_dir}/resource-map.md`.
-- YAML workflow updates: `spec_kit_deep-research_auto.yaml`, `spec_kit_deep-research_confirm.yaml`, `spec_kit_deep-review_auto.yaml`, `spec_kit_deep-review_confirm.yaml` — all four gain a post-convergence step that triggers emission, guarded by `config.resource_map.emit: true` (default on).
+- YAML workflow updates: `deep_start-research-loop_auto.yaml`, `deep_start-research-loop_confirm.yaml`, `deep_start-review-loop_auto.yaml`, `deep_start-review-loop_confirm.yaml` — all four gain a post-convergence step that triggers emission, guarded by `config.resource_map.emit: true` (default on).
 - SKILL.md updates for both skills documenting the new output surface.
-- `.opencode/commands/spec_kit/deep-research.md` + `deep-review.md` — brief mentions of the convergence-time resource-map output.
+- `.opencode/commands/deep/start-research-loop.md` + `deep-review.md` — brief mentions of the convergence-time resource-map output.
 - References updates: `sk-deep-research/references/convergence.md`, `sk-deep-review/references/convergence.md` — note the new emission step.
 - Feature catalog entries: `sk-deep-research/feature_catalog/` and `sk-deep-review/feature_catalog/` — one entry each.
 - Manual testing playbook entries: `sk-deep-research/manual_testing_playbook/` and `sk-deep-review/manual_testing_playbook/` — one entry each.
@@ -110,14 +110,14 @@ Auto-emit a filled `resource-map.md` at convergence for every `/spec_kit:deep-re
 | `.opencode/skills/system-spec-kit/scripts/resource-map/README.md` | Create | Short doc covering the extractor's input/output contract. |
 | `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` | Modify | Call the extractor at convergence; write to the resolved local-owner `{artifact_dir}/resource-map.md`. |
 | `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | Modify | Call the extractor at convergence; write to the resolved local-owner `{artifact_dir}/resource-map.md`. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | Add convergence-emission step; add `resource_map.emit` config flag (default true). |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modify | Same. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | Same. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modify | Same. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Modify | Add convergence-emission step; add `resource_map.emit` config flag (default true). |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Modify | Same. |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Modify | Same. |
+| `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Modify | Same. |
 | `.opencode/skills/sk-deep-review/SKILL.md` | Modify | Document the new output surface + opt-out flag. |
 | `.opencode/skills/sk-deep-research/SKILL.md` | Modify | Same. |
-| `.opencode/commands/spec_kit/deep-review.md` | Modify | Brief mention of the output. |
-| `.opencode/commands/spec_kit/deep-research.md` | Modify | Brief mention of the output. |
+| `.opencode/commands/deep/start-review-loop.md` | Modify | Brief mention of the output. |
+| `.opencode/commands/deep/start-research-loop.md` | Modify | Brief mention of the output. |
 | `.opencode/skills/sk-deep-review/references/convergence.md` | Modify | Note the new emission step in the convergence sequence. |
 | `.opencode/skills/sk-deep-research/references/convergence.md` | Modify | Same. |
 | `.opencode/skills/sk-deep-review/feature_catalog/**/resource-map-emission.md` | Create | Feature catalog entry. |
@@ -138,8 +138,8 @@ Auto-emit a filled `resource-map.md` at convergence for every `/spec_kit:deep-re
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Shared evidence extractor exists and handles both review and research delta shapes. | `extract-from-evidence.cjs` exports a function `emitResourceMap({ shape, deltas, packet, scope }) -> string`; vitest covers both shapes with snapshot assertions. |
-| REQ-002 | Convergence in `sk-deep-review` emits `resource-map.md` beside the actual review packet outputs. | After `/spec_kit:deep-review :auto` converges on a test packet, the resolved local-owner `{artifact_dir}/resource-map.md` exists beside `review-report.md` with at least one category populated and a `Findings (P0/P1/P2)` column. |
-| REQ-003 | Convergence in `sk-deep-research` emits `resource-map.md` beside the actual research packet outputs. | After `/spec_kit:deep-research :auto` converges on a test packet, the resolved local-owner `{artifact_dir}/resource-map.md` exists beside `research.md` with at least one category populated and a `Citations` column. |
+| REQ-002 | Convergence in `sk-deep-review` emits `resource-map.md` beside the actual review packet outputs. | After `/deep:start-review-loop :auto` converges on a test packet, the resolved local-owner `{artifact_dir}/resource-map.md` exists beside `review-report.md` with at least one category populated and a `Findings (P0/P1/P2)` column. |
+| REQ-003 | Convergence in `sk-deep-research` emits `resource-map.md` beside the actual research packet outputs. | After `/deep:start-research-loop :auto` converges on a test packet, the resolved local-owner `{artifact_dir}/resource-map.md` exists beside `research.md` with at least one category populated and a `Citations` column. |
 | REQ-004 | Opt-out works. | Setting `config.resource_map.emit: false` in the YAML config or passing `--no-resource-map` skips emission cleanly. |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -167,7 +167,7 @@ Auto-emit a filled `resource-map.md` at convergence for every `/spec_kit:deep-re
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: Operators running `/spec_kit:deep-review :auto` or `/spec_kit:deep-research :auto` get a `resource-map.md` alongside the narrative output in the same resolved local-owner packet with zero additional configuration.
+- **SC-001**: Operators running `/deep:start-review-loop :auto` or `/deep:start-research-loop :auto` get a `resource-map.md` alongside the narrative output in the same resolved local-owner packet with zero additional configuration.
 - **SC-002**: The emitted map reuses evidence captured during the loop; no new scan cost is added and no external calls are triggered at convergence.
 - **SC-003**: The review and research map shapes share the ten-category skeleton but carry dimension-specific columns, so a reviewer can read both without relearning the format.
 - **SC-004**: Opt-out (`--no-resource-map` / `emit: false`) works cleanly with no partial writes.
@@ -206,7 +206,7 @@ Auto-emit a filled `resource-map.md` at convergence for every `/spec_kit:deep-re
 - **NFR-S01**: Extractor is pure string/JSON; no network, no shell-outs.
 
 ### Reliability
-- **NFR-R01**: Emission is idempotent — re-running `/spec_kit:deep-review` on the same converged state produces byte-identical `resource-map.md` (modulo timestamp).
+- **NFR-R01**: Emission is idempotent — re-running `/deep:start-review-loop` on the same converged state produces byte-identical `resource-map.md` (modulo timestamp).
 - **NFR-R02**: If a delta file is malformed, the run continues and logs a `degraded` marker rather than failing convergence.
 <!-- /ANCHOR:nfr -->
 

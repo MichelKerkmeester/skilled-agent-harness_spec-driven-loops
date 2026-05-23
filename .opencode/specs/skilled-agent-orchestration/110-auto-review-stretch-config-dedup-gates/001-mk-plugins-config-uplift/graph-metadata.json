@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Our OpenCode plugins (`mk-skill-advisor.js` + `mk-code-graph.js`) use env-only or hardcoded config. Operators can't override behavior at runtime without editing source (which requires a rebuild). Upstream auto-review demonstrates a 3-tier resolution (`~/.config/opencode/plugin/<name>.json` > env vars > hardcoded defaults) that lets operators tune debug flags, thresholds, and target paths without source edits.",
     "created_at": "2026-05-16T11:00:00Z",
-    "last_save_at": "2026-05-23T09:22:40.191Z",
+    "last_save_at": "2026-05-23T11:55:14.154Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

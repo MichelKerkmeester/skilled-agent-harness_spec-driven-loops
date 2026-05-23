@@ -6,7 +6,7 @@ Scope: Read-back and mental setup-phase dispatch traces only. The full deep-revi
 
 Dispatch input:
 
-`/spec_kit:deep-review:auto "specs/skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure" --max-iterations=5`
+`/deep:start-review-loop:auto "specs/skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure" --max-iterations=5`
 
 Step-by-step trace:
 
@@ -22,7 +22,7 @@ Step-by-step trace:
    - `resource_map_emit = true`
 6. The target path is a spec path ending in `102-sk-doc-skill-readme-and-structure`, so `review_target_type = spec-folder`.
 7. Because the target itself is a spec folder, `spec_folder` resolves to the same path.
-8. All required values are bound, so Tier 1 persists setup values to `{spec_folder}/review/deep-review-config.json`, sets `STATUS: PASSED`, loads `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`, and emits no Q0..Q-Exec setup question.
+8. All required values are bound, so Tier 1 persists setup values to `{spec_folder}/review/deep-review-config.json`, sets `STATUS: PASSED`, loads `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`, and emits no Q0..Q-Exec setup question.
 
 Verdict:
 
@@ -32,7 +32,7 @@ EXPECTED OUTCOME REACHED: yes
 
 Dispatch input:
 
-`/spec_kit:deep-review:auto "some-ambiguous-target"`
+`/deep:start-review-loop:auto "some-ambiguous-target"`
 
 Step-by-step trace:
 
@@ -59,7 +59,7 @@ EXPECTED OUTCOME REACHED: yes
 
 Dispatch input:
 
-`/spec_kit:deep-review:auto ""`
+`/deep:start-review-loop:auto ""`
 
 Step-by-step trace:
 
@@ -71,7 +71,7 @@ Step-by-step trace:
 6. Tier 3 emits the named-missing-inputs error and exits non-zero without loading YAML:
 
 ```
-[ERROR] /spec_kit:deep-review:auto — required inputs unresolved under autonomous mode:
+[ERROR] /deep:start-review-loop:auto — required inputs unresolved under autonomous mode:
   - review_target: no target supplied in $ARGUMENTS or PRE-BOUND SETUP ANSWERS
 Resolution: provide via $ARGUMENTS flags, PRE-BOUND SETUP ANSWERS: block, or switch to :confirm mode for interactive setup.
 ```
@@ -84,7 +84,7 @@ EXPECTED OUTCOME REACHED: yes
 
 Dispatch input:
 
-`/spec_kit:deep-review:confirm "specs/.../X"`
+`/deep:start-review-loop:confirm "specs/.../X"`
 
 Step-by-step trace:
 

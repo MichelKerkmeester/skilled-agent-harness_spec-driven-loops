@@ -54,8 +54,8 @@ Fixed five stale references found by the Area A scan:
 
 - `mcp-code-mode`: changed `DEFAULT_RESOURCE` from a nonexistent quick-reference resource to existing `.opencode/skills/mcp-code-mode/references/workflows.md`; rationale: dedicated quick-reference file is not present and workflows is the operational first-touch reference.
 - `sk-improve-agent`: removed a nonexistent second-target evaluation resource from `TARGET_ONBOARDING`; rationale: no renamed replacement exists in the skill package, while `.opencode/skills/sk-improve-agent/references/target_onboarding.md` covers the live onboarding path.
-- `sk-deep-research`: changed the auto workflow prose from skill-local `assets/spec_kit_deep-research_auto.yaml` to `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`; rationale: workflow YAML lives under command assets.
-- `sk-deep-review`: changed the auto workflow prose from skill-local `assets/spec_kit_deep-review_auto.yaml` to `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`; rationale: workflow YAML lives under command assets.
+- `sk-deep-research`: changed the auto workflow prose from skill-local `assets/deep_start-research-loop_auto.yaml` to `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`; rationale: workflow YAML lives under command assets.
+- `sk-deep-review`: changed the auto workflow prose from skill-local `assets/deep_start-review-loop_auto.yaml` to `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`; rationale: workflow YAML lives under command assets.
 - `sk-doc`: changed the feature catalog template reference to `.opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md`; rationale: template was moved under the documentation asset family.
 
 ### Area B: ON_DEMAND Keyword Tuning

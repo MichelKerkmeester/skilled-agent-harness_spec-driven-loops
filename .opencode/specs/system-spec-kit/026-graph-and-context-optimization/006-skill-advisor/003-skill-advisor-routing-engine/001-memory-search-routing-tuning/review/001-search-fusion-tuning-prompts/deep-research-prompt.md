@@ -5,7 +5,7 @@ Use this prompt to launch the research via the sk-deep-research workflow.
 ## Invocation
 
 ```
-/spec_kit:deep-research:auto "Search fusion weight optimization and reranking threshold calibration for system-spec-kit MCP server" --max-iterations=15 --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-memory-search-routing-tuning/001-search-fusion-tuning
+/deep:start-research-loop:auto "Search fusion weight optimization and reranking threshold calibration for system-spec-kit MCP server" --max-iterations=15 --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-memory-search-routing-tuning/001-search-fusion-tuning
 ```
 
 ## Research Charter (current packet)

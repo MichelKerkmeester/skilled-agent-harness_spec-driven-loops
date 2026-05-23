@@ -1,6 +1,6 @@
 ---
 title: "Plan: System Deep Research — Bugs and Improvements (20 iterations)"
-description: "Run 20 sk-deep-research iterations via /spec_kit:deep-research:auto with cli-codex gpt-5.5 high; one angle per iteration across 4 categories."
+description: "Run 20 sk-deep-research iterations via /deep:start-research-loop:auto with cli-codex gpt-5.5 high; one angle per iteration across 4 categories."
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
 trigger_phrases:
   - "003-system-bug-improvement-research plan"
@@ -33,7 +33,7 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Workflow** | `/spec_kit:deep-research:auto` (canonical command surface) |
+| **Workflow** | `/deep:start-research-loop:auto` (canonical command surface) |
 | **Executor** | `cli-codex` `gpt-5.5` reasoning=`high` service-tier=null |
 | **Iterations** | 20 (one per research angle) |
 | **Convergence** | 0.01 (low to allow full 20-iter sweep) |
@@ -202,7 +202,7 @@ Phase 1 (Setup, done) → Phase 2 (Init) → Phase 3 (Loop x20) → Phase 4 (Syn
 
 ### Rollback Procedure
 1. Delete `research/` artifact dir
-2. Re-run from `/spec_kit:deep-research:auto`
+2. Re-run from `/deep:start-research-loop:auto`
 3. State is fully externalized, restart is clean
 
 ### Data Reversal

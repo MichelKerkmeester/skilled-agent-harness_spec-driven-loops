@@ -4,15 +4,12 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/003-ensure-sidecar-from-launchers",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/002-system-rerank-sidecar-skill"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/001-flag-routing-fix-for-cross-encoder",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/012-daemon-bridge-socket-for-skill-advisor-and-code-index"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -21,30 +18,199 @@
       "spawn detached rerank",
       "mk-spec-memory launcher rerank",
       "cocoindex launcher rerank attach",
-      "003 ensure sidecar"
+      "003 ensure sidecar",
+      "003 plan ensure sidecar",
+      "003 tasks ensure sidecar",
+      "003 implementation summary"
     ],
     "key_topics": [
-      "launcher-integration",
-      "port-bind",
-      "detached-spawn",
-      "self-electing-primary",
-      "graceful-degradation"
+      "ensure",
+      "rerank",
+      "sidecar",
+      "launcher",
+      "self-electing",
+      "primary",
+      "port",
+      "spawn",
+      "detached",
+      "mk-spec-memory",
+      "cocoindex",
+      "attach"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/bin/lib/ensure-rerank-sidecar.cjs",
+      ".opencode/skills/system-rerank-sidecar/scripts/start.sh",
+      ".opencode/skills/system-rerank-sidecar/scripts/ensure_rerank_sidecar.py",
+      ".opencode/bin/mk-spec-memory-launcher.cjs",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py",
+      ".claude/mcp.json",
+      ".gemini/settings.json",
+      ".opencode/bin/lib/ensure-rerank-sidecar.vitest.ts",
+      ".codex/config.toml",
+      ".opencode/bin/mk-code-index-launcher.cjs",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      ".opencode/bin/lib/ensure-rerank-sidecar.cjs",
-      ".opencode/bin/mk-spec-memory-launcher.cjs",
-      ".opencode/bin/mk-code-index-launcher.cjs",
-      ".opencode/skills/system-rerank-sidecar/scripts/ensure_rerank_sidecar.py",
-      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py"
+      {
+        "name": "ensure-rerank-sidecar.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/ensure-rerank-sidecar.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "start.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-rerank-sidecar/scripts/start.sh",
+        "source": "derived"
+      },
+      {
+        "name": "ensure_rerank_sidecar.py",
+        "kind": "file",
+        "path": ".opencode/skills/system-rerank-sidecar/scripts/ensure_rerank_sidecar.py",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-memory-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "cli.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".gemini/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "ensure-rerank-sidecar.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/bin/lib/ensure-rerank-sidecar.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-index-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-code-index-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Arc",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "javascript",
+        "kind": "technology",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "OS-level",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      }
     ],
-    "last_indexed_at": "2026-05-20T00:00:00Z"
+    "causal_summary": "Phase 003 of the 008 rerank-sidecar arc. Plumb the running sidecar into both MCP launcher startup paths with self-electing-primary semantics.",
+    "created_at": "2026-05-23T11:55:15.607Z",
+    "last_save_at": "2026-05-23T11:55:15.607Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ]
   }
 }

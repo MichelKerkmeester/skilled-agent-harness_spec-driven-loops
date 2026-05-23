@@ -73,14 +73,14 @@ All seats use `cli-codex gpt-5.5 -c service_tier=fast` (ONE CLI). Reasoning-effo
 
 ### Call sites in workflow YAML (the "consumer surfaces" arguing for relocation)
 
-From `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`:
+From `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`:
 - Line ~118: `resolveArtifactRoot()` (shared utility)
 - Line ~418, ~461: `mcp__mk_spec_memory__deep_loop_graph_convergence` (MCP tool — handler in spec-kit)
 - Line ~656, ~672, ~692: executor-config / prompt-pack / executor-audit module loads
 - Line ~898: post-dispatch-validate output schema check
 - Line ~1015: `mcp__mk_spec_memory__deep_loop_graph_upsert` (MCP tool)
 
-From `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`: mirror pattern at lines ~413, ~543, ~554, ~572, ~589, ~590, ~635, ~636, ~681, ~869.
+From `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`: mirror pattern at lines ~413, ~543, ~554, ~572, ~589, ~590, ~635, ~636, ~681, ~869.
 
 ## Constraints (binding on all seats)
 

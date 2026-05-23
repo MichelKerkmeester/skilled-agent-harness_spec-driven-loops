@@ -4,15 +4,12 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/012-adapter-resident-memory-benchmark",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/008-sidecar-local-model-and-adapter-lifecycle"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/011-system-code-graph-suite-triage",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/013-owner-lease-heartbeat-staleness-detection"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -21,22 +18,181 @@
       "adapter rss benchmark"
     ],
     "key_topics": [
-      "memory-leak",
-      "follow-on",
       "adapter-resident-memory-benchmark",
-      "rss-benchmark"
+      "009",
+      "phase",
+      "012",
+      "adapter",
+      "rss",
+      "benchmark",
+      "memory-leak",
+      "remediation",
+      "arc",
+      "source",
+      "decision"
     ],
     "importance_tier": "important",
-    "status": "completed",
+    "status": "complete",
     "key_files": [
-      "spec.md",
+      ".opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-22-adapter-rss/bench_successful_search_rss.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-22-adapter-rss/bench_sidecar_5xx_fallback_rss.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-22-adapter-rss/methodology.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/008-sidecar-local-model-and-adapter-lifecycle/implementation-summary.md",
+      ".opencode/skills/system-spec-kit/scripts/ops/process-memory-harness.ts",
+      "implementation-summary.md",
+      "spec.md"
     ],
-    "causal_summary": "Measure adapter RSS slope on successful-search and sidecar 5xx fallback paths to decide severity.",
+    "entities": [
+      {
+        "name": "bench_successful_search_rss.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-22-adapter-rss/bench_successful_search_rss.py",
+        "source": "derived"
+      },
+      {
+        "name": "bench_sidecar_5xx_fallback_rss.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-22-adapter-rss/bench_sidecar_5xx_fallback_rss.py",
+        "source": "derived"
+      },
+      {
+        "name": "methodology.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-22-adapter-rss/methodology.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "process-memory-harness.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/ops/process-memory-harness.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Adapter Resident",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Memory Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Benchmark Layout Create",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measurement Contract Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "concrete",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This is phase 012 of the memory-leak remediation arc. Source decision lives in `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/008-sidecar-local-model-and-adapter-lifecycle/implementation-summary.md` (the 5xx fallback RSS gate + P2-default decision in the Decisions anchor).",
     "created_at": "2026-05-22T18:30:00Z",
-    "last_save_at": "2026-05-22T16:03:59Z",
+    "last_save_at": "2026-05-23T11:55:15.659Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -44,7 +200,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ],
-    "last_active_at": "2026-05-22T16:19:13Z"
+    ]
   }
 }

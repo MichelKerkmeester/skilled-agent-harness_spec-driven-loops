@@ -44,9 +44,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate final synthesis, memory save, LEAF-only runtime behavior, and non-live guardrail documentation.
 ### Commands
-1. `bash: rg -n 'generate-context.js|synthesis_complete|research/research.md|memory' .opencode/commands/spec_kit/deep-research.md .opencode/skills/deep-research/SKILL.md .opencode/skills/deep-research/README.md`
+1. `bash: rg -n 'generate-context.js|synthesis_complete|research/research.md|memory' .opencode/commands/deep/start-research-loop.md .opencode/skills/deep-research/SKILL.md .opencode/skills/deep-research/README.md`
 2. `bash: rg -n 'LEAF-only|Task tool|NEVER create sub-tasks|reference-only|Wave orchestration|Checkpoint Commit|Direct Mode Fallback|Segment Model' .codex/agents/deep-research.toml .opencode/skills/deep-research/references/loop_protocol.md .opencode/skills/deep-research/references/state_format.md`
-3. `bash: rg -n 'phase_synthesis|phase_save|generate-context.js|synthesis_complete|wave|segment|direct_mode' .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml .opencode/skills/deep-research/references/quick_reference.md`
+3. `bash: rg -n 'phase_synthesis|phase_save|generate-context.js|synthesis_complete|wave|segment|direct_mode' .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml .opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml .opencode/skills/deep-research/references/quick_reference.md`
 ### Expected
 Synthesis produces canonical `research/research.md`, memory save calls `generate-context.js`, the Codex runtime agent forbids nested delegation, and wave orchestration, checkpoint commits, segment transitions, and alternate CLI dispatch remain reference-only.
 ### Evidence
@@ -70,14 +70,14 @@ Privilege the Codex runtime agent and skill rules for LEAF-only behavior, and th
 
 | File | Role |
 |---|---|
-| `.opencode/commands/spec_kit/deep-research.md` | Synthesis and memory integration contract; use `## 5. OUTPUT FORMATS`, `## 6. MEMORY INTEGRATION`, and `## 10. ERROR HANDLING` |
+| `.opencode/commands/deep/start-research-loop.md` | Synthesis and memory integration contract; use `## 5. OUTPUT FORMATS`, `## 6. MEMORY INTEGRATION`, and `## 10. ERROR HANDLING` |
 | `.opencode/skills/deep-research/SKILL.md` | Supported save path and reference-only features; use `ANCHOR:rules` |
 | `.opencode/skills/deep-research/README.md` | User-facing reference-only notes and FAQ; use `ANCHOR:overview`, `ANCHOR:faq`, and `ANCHOR:related-documents` |
 | `.codex/agents/deep-research.toml` | Canonical runtime guardrails; inspect `## 0. ILLEGAL NESTING (HARD BLOCK)` and `SPEC FOLDER PERMISSION` |
 | `.opencode/skills/deep-research/references/loop_protocol.md` | Reference-only wave, checkpoint, and direct-mode sections; use `ANCHOR:phase-iteration-loop` and `ANCHOR:wave-orchestration-protocol` |
 | `.opencode/skills/deep-research/references/state_format.md` | Reference-only segment model and active events; use `ANCHOR:state-log` |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Final synthesis/save steps and workflow events |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Final synthesis/save steps and workflow events |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Final synthesis/save steps and workflow events |
+| `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Final synthesis/save steps and workflow events |
 | `.opencode/skills/deep-research/references/quick_reference.md` | Reference-only notes; use `Reference-Only Notes` under `ANCHOR:state-files` |
 
 ---

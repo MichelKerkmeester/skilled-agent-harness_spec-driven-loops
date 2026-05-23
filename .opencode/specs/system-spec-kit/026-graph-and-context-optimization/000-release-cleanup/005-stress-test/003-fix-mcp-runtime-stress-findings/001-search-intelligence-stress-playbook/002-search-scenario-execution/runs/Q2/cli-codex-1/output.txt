@@ -88,20 +88,20 @@ exec
 ./.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml
 ./.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml
 ./.opencode/commands/spec_kit/assets/spec_kit_resume_confirm.yaml
-./.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml
-./.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml
+./.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml
+./.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml
 ./.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml
 ./.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml
-./.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
+./.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml
 ./.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml
 ./.opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml
 ./.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml
-./.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+./.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml
 ./.opencode/commands/spec_kit/README.txt
 ./.opencode/commands/spec_kit/plan.md
-./.opencode/commands/spec_kit/deep-research.md
+./.opencode/commands/deep/start-research-loop.md
 ./.opencode/commands/spec_kit/resume.md
-./.opencode/commands/spec_kit/deep-review.md
+./.opencode/commands/deep/start-review-loop.md
 ./.opencode/commands/spec_kit/implement.md
 ./.opencode/commands/spec_kit/complete.md
 ./.opencode/skills/cli-claude-code/README.md
@@ -9333,7 +9333,7 @@ exec
 exec
 /bin/zsh -lc "rg -n \"search system|memory_search|memory_context|memory_match_triggers|CocoIndex|cocoindex|search_index|vector|embedding|query expansion|rerank|BM25|semantic search\" . --glob '"'!node_modules/**'"' --glob '"'!**/.git/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 228ms:
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-memory-search-routing-tuning/review/001-search-fusion-tuning-prompts/deep-research-prompt.md:8:/spec_kit:deep-research:auto "Search fusion weight optimization and reranking threshold calibration for system-spec-kit MCP server" --max-iterations=15 --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-memory-search-routing-tuning/001-search-fusion-tuning
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-memory-search-routing-tuning/review/001-search-fusion-tuning-prompts/deep-research-prompt.md:8:/deep:start-research-loop:auto "Search fusion weight optimization and reranking threshold calibration for system-spec-kit MCP server" --max-iterations=15 --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-memory-search-routing-tuning/001-search-fusion-tuning
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-memory-search-routing-tuning/review/001-search-fusion-tuning-prompts/deep-research-prompt.md:13:**Topic:** Investigate whether the hardcoded thresholds, weights, and decay constants in the spec-kit search pipeline (cross-encoder reranking, stage2 fusion, vector-index decay) are optimal for spec-doc retrieval.
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-memory-search-routing-tuning/review/001-search-fusion-tuning-prompts/deep-research-prompt.md:21:- `.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts` - reranking models, thresholds, cache, circuit breaker
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-memory-search-routing-tuning/review/001-search-fusion-tuning-prompts/deep-research-prompt.md:23:- `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts` - embedding dim, FSRS decay, search weights config
@@ -14243,7 +14243,7 @@ exec
    567	
    568	**Server:** `@spec-kit/mcp-server` v1.7.2 - `context-server.ts` with 51 MCP tools across 7 layers. The tool surface is defined in `mcp_server/tool-schemas.ts`.
    569	
-   570	**Memory Commands:** 4 memory slash commands (`/memory:save`, `/memory:manage`, `/memory:learn`, `/memory:search`) cover the spec-doc record command surface, while `/spec_kit:resume` owns session recovery through the broader memory/session recovery stack. The `spec_kit` surface now uses `/spec_kit:plan --intake-only` as the standalone intake workflow; `/spec_kit:plan` and `/spec_kit:complete` execute the shared intake contract (`.opencode/skills/system-spec-kit/references/intake-contract.md`) inline when the Step 0 local `folder_state` shows repair or creation is needed, and downstream callers should consume the contract's canonical `start_state` rather than reusing the local classifier name. `/spec_kit:deep-research` follows `../sk-deep-research/references/spec_check_protocol.md` for bounded `spec.md` anchoring. The `/memory:search` command covers all analysis and retrieval workflows. See `.opencode/commands/memory/`, `.opencode/commands/spec_kit/plan.md`, `.opencode/commands/spec_kit/complete.md`, `.opencode/skills/system-spec-kit/references/intake-contract.md`, and `.opencode/commands/spec_kit/resume.md` for command documentation.
+   570	**Memory Commands:** 4 memory slash commands (`/memory:save`, `/memory:manage`, `/memory:learn`, `/memory:search`) cover the spec-doc record command surface, while `/spec_kit:resume` owns session recovery through the broader memory/session recovery stack. The `spec_kit` surface now uses `/spec_kit:plan --intake-only` as the standalone intake workflow; `/spec_kit:plan` and `/spec_kit:complete` execute the shared intake contract (`.opencode/skills/system-spec-kit/references/intake-contract.md`) inline when the Step 0 local `folder_state` shows repair or creation is needed, and downstream callers should consume the contract's canonical `start_state` rather than reusing the local classifier name. `/deep:start-research-loop` follows `../sk-deep-research/references/spec_check_protocol.md` for bounded `spec.md` anchoring. The `/memory:search` command covers all analysis and retrieval workflows. See `.opencode/commands/memory/`, `.opencode/commands/spec_kit/plan.md`, `.opencode/commands/spec_kit/complete.md`, `.opencode/skills/system-spec-kit/references/intake-contract.md`, and `.opencode/commands/spec_kit/resume.md` for command documentation.
    571	
    572	**MCP Tools (18 most-used of 47 total - see [memory_system.md](./references/memory/memory_system.md) for full reference):**
    573	

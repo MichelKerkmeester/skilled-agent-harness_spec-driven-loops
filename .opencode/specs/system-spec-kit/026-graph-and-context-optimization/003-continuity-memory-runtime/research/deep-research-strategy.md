@@ -43,7 +43,7 @@ Forensic audit of the 002-continuity-memory-runtime packet — the parent and it
 <!-- ANCHOR:non-goals -->
 ## 4. NON-GOALS
 - Refactoring, new features, or prescriptive design beyond flagging defects and drift points.
-- Evaluating code review artifacts under `review/` (that belongs to `/spec_kit:deep-review`).
+- Evaluating code review artifacts under `review/` (that belongs to `/deep:start-review-loop`).
 - Rewriting spec-kit memory DB schemas or changing retrieval ranking.
 - Opinions on whether the flattened parent layout is correct; that decision is locked by REQ-001/REQ-002.
 - Modifying runtime behavior during the audit. Read-only investigation; any proposed fix is a finding, not a landed change.

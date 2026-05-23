@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-04-25T20:55:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Phase A diagnostic-only command shipped"
-    next_safe_action: "Run /spec_kit:deep-research:auto to unblock Phase B"
+    next_safe_action: "Run /deep:start-research-loop:auto to unblock Phase B"
     blockers: []
     key_files:
       - "spec.md"

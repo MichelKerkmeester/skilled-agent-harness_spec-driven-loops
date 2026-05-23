@@ -45,7 +45,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This entry is a **scaffold-stage placeholder**. Authoring of the packet's documents (spec, plan, tasks, checklist, description, graph-metadata) is complete; the actual `/spec_kit:deep-research:auto` loop is downstream work (Phase 2: T101-T113).
+This entry is a **scaffold-stage placeholder**. Authoring of the packet's documents (spec, plan, tasks, checklist, description, graph-metadata) is complete; the actual `/deep:start-research-loop:auto` loop is downstream work (Phase 2: T101-T113).
 
 When the loop converges, this section will list:
 - The number of iterations run, convergence stop reason, and per-iteration `newInfoRatio` distribution
@@ -63,7 +63,7 @@ Per-follow-up remediation packets are downstream of this packet and not authored
 
 The scaffold pass authored six packet files at this folder root (spec.md, plan.md, tasks.md, checklist.md, description.json, graph-metadata.json) plus this implementation-summary.md placeholder. Parent-side metadata updates landed in `../spec.md` (PHASE DOCUMENTATION MAP row 11), `../description.json` (`migration.child_phase_folders`), `../graph-metadata.json` (`derived.children_ids` + `last_active_child_id`), `../resource-map.md` (Specs row + counts), and `../HANDOVER-deferred.md` (§3 items 4-7 reference this packet for research convergence).
 
-The deep-research loop will reuse the canonical `/spec_kit:deep-research:auto` workflow per Gate 4 — never substituting Task tool or @deep-research direct dispatch. Executor: cli-codex with `gpt-5.5` model, `high` reasoning effort, `fast` service tier (per memory rule `feedback_codex_cli_fast_mode`, `service_tier=fast` MUST be explicit). Iteration cap: 10 hard. Topic prompt verbatim text lives in `plan.md` §4 TOPIC PROMPT.
+The deep-research loop will reuse the canonical `/deep:start-research-loop:auto` workflow per Gate 4 — never substituting Task tool or @deep-research direct dispatch. Executor: cli-codex with `gpt-5.5` model, `high` reasoning effort, `fast` service tier (per memory rule `feedback_codex_cli_fast_mode`, `service_tier=fast` MUST be explicit). Iteration cap: 10 hard. Topic prompt verbatim text lives in `plan.md` §4 TOPIC PROMPT.
 <!-- /ANCHOR:how-delivered -->
 
 ---

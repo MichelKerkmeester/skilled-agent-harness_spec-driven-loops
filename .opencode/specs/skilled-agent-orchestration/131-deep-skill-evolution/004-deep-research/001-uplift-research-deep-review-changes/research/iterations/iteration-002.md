@@ -19,11 +19,11 @@ This iteration classified all 47 changes from iter-1 for deep-research applicabi
 | C-001 | RUNTIME-RELOCATION | ALREADY-DONE | - | - | .opencode/skills/deep-loop-runtime/ | deep-loop-runtime/ exists; deep-research v1.12.0.0 changelog confirms dependency rebind |
 | C-002 | COLLATERAL | SKIP | - | - | - | 118 arc planning structure is deep-review-specific |
 | C-003 | RUNTIME-RELOCATION | ALREADY-DONE | - | - | .opencode/skills/deep-loop-runtime/lib/ | deep-research v1.12.0.0 changelog: "Any deep-research-adjacent code that previously imported from system-spec-kit/mcp_server/lib/deep-loop/* now imports from deep-loop-runtime/lib/{deep-loop,coverage-graph}/*" |
-| C-004 | SCRIPT-SHIM | ALREADY-DONE | - | - | .opencode/skills/deep-loop-runtime/scripts/ | deep-research YAMLs call deep-loop-runtime/scripts/*.cjs per grep output (lines 412, 863 in spec_kit_deep-research_auto.yaml) |
+| C-004 | SCRIPT-SHIM | ALREADY-DONE | - | - | .opencode/skills/deep-loop-runtime/scripts/ | deep-research YAMLs call deep-loop-runtime/scripts/*.cjs per grep output (lines 412, 863 in deep_start-research-loop_auto.yaml) |
 | C-005 | RUNTIME-RELOCATION | ALREADY-DONE | - | - | .opencode/skills/deep-loop-runtime/storage/ | deep-research v1.12.0.0 changelog: "SQLite database moved with the schema-owner code and now lives at .opencode/skills/deep-loop-runtime/storage/" |
 | C-006 | MCP-REMOVAL | ALREADY-DONE | - | - | - | deep-research never used mcp_server/handlers/coverage-graph/*; v1.12.0.0 changelog confirms script cutover |
 | C-007 | MCP-REMOVAL | ALREADY-DONE | - | - | - | deep-research never used deep_loop_graph_* MCP tools; v1.12.0.0 changelog confirms script cutover |
-| C-008 | WORKFLOW-YAML | ADAPT | P1 | S | .opencode/commands/spec_kit/assets/spec_kit_deep-research_*.yaml | Already done per v1.12.0.0, but should verify that all 4 scripts (convergence, upsert, query, status) are invoked correctly |
+| C-008 | WORKFLOW-YAML | ADAPT | P1 | S | .opencode/commands/deep/assets/deep_start-research-loop_*.yaml | Already done per v1.12.0.0, but should verify that all 4 scripts (convergence, upsert, query, status) are invoked correctly |
 | C-009 | COLLATERAL | ALREADY-DONE | - | - | .opencode/commands/doctor/_routes.yaml, .opencode/commands/doctor/update.md | doctor/_routes.yaml lines 88-99 include deep-loop target with script invocations; doctor/update.md lines 28, 130, 220, 254, 272, 336, 359, 374 reference deep-loop |
 | C-010 | COLLATERAL | ALREADY-DONE | - | - | .opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/009-deep-loop-graph-convergence-yaml-fire.md | File exists; system-code-graph feature_catalog.md line 38 notes deep_loop_graph_* tools removed in arc 118 and replaced by scripts |
 | C-011 | COLLATERAL | ALREADY-DONE | - | - | .opencode/skills/system-code-graph/feature_catalog/feature_catalog.md | Feature catalog entries for deep_loop_graph_* retained as historical reference per line 38 |
@@ -109,7 +109,7 @@ This iteration classified all 47 changes from iter-1 for deep-research applicabi
 ### ADAPT (P1)
 
 **C-008: Workflow YAML cutover (ADAPT for verification)**
-- Target: `.opencode/commands/spec_kit/assets/spec_kit_deep-research_*.yaml`
+- Target: `.opencode/commands/deep/assets/deep_start-research-loop_*.yaml`
 - Effort: S (verification only)
 - Evidence: Already done per v1.12.0.0, but should verify that all 4 scripts (convergence, upsert, query, status) are invoked correctly
 - Recommendation: Verify that query.cjs and status.cjs are available for manual deep-research debugging (not auto-invoked but should be documented)

@@ -69,7 +69,7 @@ Adopt the upstream auto-review pattern: end every review output with exactly one
 
 ### In Scope
 - Edit `sk-code-review` SKILL.md Phase 4 output contract (lines 302-329) to add exact-string status line in **PLAIN TEXT** (no Markdown bold): `Review status: APPROVED` (or `REQUESTED_CHANGES` or `COMMENTED`). Council §10.4 directive — plain text simpler to parse than `**Review status**: ...` bold form.
-- Edit `deep-review` YAML synthesis step (`spec_kit_deep-review_auto.yaml` + `spec_kit_deep-review_confirm.yaml`) to emit `Review verdict: PASS` (or `CONDITIONAL` or `FAIL`) in plain text as the final line of `iteration-NNN.md`
+- Edit `deep-review` YAML synthesis step (`deep_start-review-loop_auto.yaml` + `deep_start-review-loop_confirm.yaml`) to emit `Review verdict: PASS` (or `CONDITIONAL` or `FAIL`) in plain text as the final line of `iteration-NNN.md`
 - Map verdict logic for deep-review: PASS if no P0/P1 findings, CONDITIONAL if P1 present, FAIL if P0 present
 - Add a brief example output block to each skill's SKILL.md showing the new plain-text final-line shape
 
@@ -87,8 +87,8 @@ Adopt the upstream auto-review pattern: end every review output with exactly one
 | File | Change Type | Description |
 |------|-------------|-------------|
 | `.opencode/skills/sk-code-review/SKILL.md` | Modify | Add exact-string status line at Phase 4 output contract |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | Add verdict-derivation step + emit final line |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modify | Same as auto |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Modify | Add verdict-derivation step + emit final line |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Modify | Same as auto |
 | `.opencode/skills/deep-review/SKILL.md` | Modify | Document final-line contract in §Output |
 <!-- /ANCHOR:scope -->
 
@@ -149,8 +149,8 @@ Adopt the upstream auto-review pattern: end every review output with exactly one
 |---|------|-------|
 | 1 | Edit `sk-code-review` SKILL.md §Phase 4 output (add exact-string line + example) | Main agent |
 | 2 | Edit `deep-review` SKILL.md §Output (document verdict-line contract) | Main agent |
-| 3 | Edit `spec_kit_deep-review_auto.yaml` synthesis step (add verdict derivation + emit final line) | Main agent |
-| 4 | Edit `spec_kit_deep-review_confirm.yaml` (mirror auto) | Main agent |
+| 3 | Edit `deep_start-review-loop_auto.yaml` synthesis step (add verdict derivation + emit final line) | Main agent |
+| 4 | Edit `deep_start-review-loop_confirm.yaml` (mirror auto) | Main agent |
 | 5 | Smoke-test verdict line with 3 synthetic findings sets | Main agent |
 | 6 | Strict validate this packet + phase parent | Main agent |
 | 7 | Commit + push | Main agent |

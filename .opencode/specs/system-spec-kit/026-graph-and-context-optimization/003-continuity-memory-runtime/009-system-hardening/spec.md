@@ -43,7 +43,7 @@ Packet `019-system-hardening` is the research-first umbrella for the post-026-co
 
 **Key Decisions**: Research-first ordering — no implementation child is created until `001-initial-research` produces actionable findings. Each finding cluster becomes a sibling child (`019/002-*`, `019/003-*`, ...) with its own spec + plan + remediation scope. The umbrella packet owns sequencing and cross-cluster coordination only; cluster-local behavior stays in each child.
 
-**Critical Dependencies**: Source of truth is `../scratch/deep-review-research-suggestions.md` (this repository). The 026 root spec/plan/tasks/checklist/implementation-summary/decision-record (`../spec.md` through `../implementation-summary.md`) must be refreshed to reference 019 as a sibling phase. All six Tier 1 items are dispatched through `/spec_kit:deep-research :confirm` or `/spec_kit:deep-review :confirm` — the skill-owned workflow is mandatory per Gate 4 HARD-block.
+**Critical Dependencies**: Source of truth is `../scratch/deep-review-research-suggestions.md` (this repository). The 026 root spec/plan/tasks/checklist/implementation-summary/decision-record (`../spec.md` through `../implementation-summary.md`) must be refreshed to reference 019 as a sibling phase. All six Tier 1 items are dispatched through `/deep:start-research-loop :confirm` or `/deep:start-review-loop :confirm` — the skill-owned workflow is mandatory per Gate 4 HARD-block.
 
 ---
 
@@ -101,7 +101,7 @@ Coordinate all six Tier 1 investigation items through one research wave (`001-in
 
 ### In Scope
 
-- Dispatch the six Tier 1 research/review iterations listed in `../scratch/deep-review-research-suggestions.md` §3 (DR-1, RR-1, RR-2) and §6 (SSK-RR-1, SSK-DR-1, SSK-RR-2) through the canonical `/spec_kit:deep-research :confirm` and `/spec_kit:deep-review :confirm` commands.
+- Dispatch the six Tier 1 research/review iterations listed in `../scratch/deep-review-research-suggestions.md` §3 (DR-1, RR-1, RR-2) and §6 (SSK-RR-1, SSK-DR-1, SSK-RR-2) through the canonical `/deep:start-research-loop :confirm` and `/deep:start-review-loop :confirm` commands.
 - Consolidate findings into a single convergence report at `implementation-summary.md §Sub-phase summaries` §Findings Registry.
 - Plan follow-on implementation children (`019/002-*`, `019/003-*`, ...) only after research converges. Each implementation child owns one remediation cluster.
 - Maintain packet-local strict validation across the umbrella packet and its children.
@@ -173,7 +173,7 @@ Coordinate all six Tier 1 investigation items through one research wave (`001-in
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-004 | Each Tier 1 iteration must use the canonical skill-owned command surface per Gate 4. | Dispatch blocks in `plan.md §Sub-phases` use `/spec_kit:deep-research :confirm` or `/spec_kit:deep-review :confirm`. No direct `@deep-research` or `@deep-review` agent invocation for iteration loops. |
+| REQ-004 | Each Tier 1 iteration must use the canonical skill-owned command surface per Gate 4. | Dispatch blocks in `plan.md §Sub-phases` use `/deep:start-research-loop :confirm` or `/deep:start-review-loop :confirm`. No direct `@deep-research` or `@deep-review` agent invocation for iteration loops. |
 | REQ-005 | Findings must be consolidated into a single registry for the umbrella packet to coordinate follow-on work. | `001-initial-research/implementation-summary.md §Findings Registry` lists all converged findings with severity, source iteration, and proposed remediation cluster. |
 | REQ-006 | Future implementation children must cite originating findings. | Each `019/00N-*/spec.md` includes a `| **Originating Research** | ../001-initial-research/implementation-summary.md#finding-<id> |` row. |
 | REQ-007 | The umbrella packet must remain coordination-only; implementation content belongs in child packets. | `spec.md §3 Out of Scope` explicitly excludes implementation work from the umbrella; `decision-record.md ADR-001` enforces this structurally. |
@@ -190,7 +190,7 @@ Coordinate all six Tier 1 investigation items through one research wave (`001-in
 
 **Given** one research iteration finds zero issues, **when** the registry is written, **then** that item is recorded as `NO-ACTION-REQUIRED` with evidence rather than silently dropped.
 
-**Given** a user dispatches iteration work, **when** they check Gate 4 compliance, **then** every dispatch goes through `/spec_kit:deep-research :confirm` or `/spec_kit:deep-review :confirm` — never directly through the corresponding agent.
+**Given** a user dispatches iteration work, **when** they check Gate 4 compliance, **then** every dispatch goes through `/deep:start-research-loop :confirm` or `/deep:start-review-loop :confirm` — never directly through the corresponding agent.
 
 **Given** a Tier 2 or Tier 3 candidate from the scratch doc becomes relevant mid-wave, **when** it is promoted into the research scope, **then** the promotion is recorded explicitly in `implementation-summary.md §Sub-phase summaries` rather than silently adopted.
 
@@ -215,7 +215,7 @@ Coordinate all six Tier 1 investigation items through one research wave (`001-in
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | `../scratch/deep-review-research-suggestions.md` source doc | High | Keep the scratch doc as the canonical reference; update 001 research spec if scratch evolves |
-| Dependency | Canonical `/spec_kit:deep-research` and `/spec_kit:deep-review` commands | High | Gate 4 mandates these; no workaround |
+| Dependency | Canonical `/deep:start-research-loop` and `/deep:start-review-loop` commands | High | Gate 4 mandates these; no workaround |
 | Risk | Research never converges across one or more items | Medium | Cap iterations per item (default 10-15, see child spec); if no convergence, defer explicitly |
 | Risk | Research surfaces too many clusters to remediate | Medium | Prioritize remediation children by severity × leverage; Tier 3 items from scratch doc remain valid triage templates |
 | Risk | Scratch doc Tier 1 selection drifts during research | Low | The scratch doc is authoritative at research-start time; later revisions must be explicitly reconciled with the findings registry |

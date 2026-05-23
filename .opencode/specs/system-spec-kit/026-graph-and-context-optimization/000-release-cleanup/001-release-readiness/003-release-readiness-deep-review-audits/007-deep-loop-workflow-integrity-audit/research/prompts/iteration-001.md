@@ -14,8 +14,8 @@ READ-ONLY deep-review audit. Output: `review-report.md` with severity-classified
 - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-audit.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/prompt-pack.ts`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_{auto,confirm}.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_{auto,confirm}.yaml`
+- `.opencode/commands/deep/assets/deep_start-research-loop_{auto,confirm}.yaml`
+- `.opencode/commands/deep/assets/deep_start-review-loop_{auto,confirm}.yaml`
 - `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`
 - `.opencode/skills/sk-deep-research/references/{loop_protocol,convergence,state_format,spec_check_protocol}.md`
 

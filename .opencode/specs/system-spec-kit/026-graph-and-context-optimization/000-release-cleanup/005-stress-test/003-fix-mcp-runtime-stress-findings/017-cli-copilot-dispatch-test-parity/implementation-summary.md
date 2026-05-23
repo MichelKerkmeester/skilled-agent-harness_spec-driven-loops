@@ -66,7 +66,7 @@ Five test cases cover the full contract:
 2. **`kind:"approved"` + large prompt** — `argv[1]` is the bare `@PROMPT_PATH` reference (NOT the legacy `Read the instructions in @path` wrapper); `promptFileBody` is defined and ordered preamble → divider → original body.
 3. **`kind:"missing"+writeIntent:false`** — argv prompt slot equals the raw prompt; no preamble; no `promptFileBody`; `--allow-all-tools` retained; argv length unchanged.
 4. **`kind:"missing"+writeIntent:true`** — argv prompt slot becomes the Gate-3 question; `--allow-all-tools` stripped; `enforcedPlanOnly === true`; argv length shrinks by 1; original write-intent prompt absent from rendered body.
-5. **YAML auto-loop sites write `built.promptFileBody` before invoking copilot** — for both `spec_kit_deep-research_auto.yaml` and `spec_kit_deep-review_auto.yaml`: `if (built.promptFileBody !== undefined)` and `writeFileSync(promptPath, built.promptFileBody, ...)` are present, AND a copilot dispatch (`spawnSync('copilot'` for deep-review or `command: 'copilot'` for deep-research) appears at a later byte offset.
+5. **YAML auto-loop sites write `built.promptFileBody` before invoking copilot** — for both `deep_start-research-loop_auto.yaml` and `deep_start-review-loop_auto.yaml`: `if (built.promptFileBody !== undefined)` and `writeFileSync(promptPath, built.promptFileBody, ...)` are present, AND a copilot dispatch (`spawnSync('copilot'` for deep-review or `command: 'copilot'` for deep-research) appears at a later byte offset.
 
 ### Smoke test rewrite
 
@@ -97,7 +97,7 @@ This is anti-regression dead code. If a future test adds a `cli-copilot` case to
 | `.opencode/specs/.../017-cli-copilot-dispatch-test-parity/{spec,plan,tasks,checklist,implementation-summary}.md` | Created | Standard Level 1 packet docs |
 | `.opencode/specs/.../017-cli-copilot-dispatch-test-parity/{description,graph-metadata}.json` | Created | Required spec metadata |
 
-Production code is byte-stable: `executor-config.ts`, `spec_kit_deep-research_auto.yaml`, and `spec_kit_deep-review_auto.yaml` are NOT in the diff.
+Production code is byte-stable: `executor-config.ts`, `deep_start-research-loop_auto.yaml`, and `deep_start-review-loop_auto.yaml` are NOT in the diff.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -107,7 +107,7 @@ Production code is byte-stable: `executor-config.ts`, `spec_kit_deep-research_au
 
 The rewrite landed in a single test-file edit. Pre-rewrite baseline was 11/11 cli-matrix tests passing; post-rewrite is 13/13 (3 cli-copilot dispatch tests dropped, 5 new ones added; smoke test rewritten in place).
 
-The static-grep ordering test required one design fix during implementation. The initial regex anchored on `runAuditedExecutorCommand\s*\(\s*\{[\s\S]*?command:\s*'copilot'` matched the FIRST `runAuditedExecutorCommand` call frame in `spec_kit_deep-research_auto.yaml` (line 568, the `if_native` block), not the cli-copilot one (line 651). The non-greedy match still resolved to the right `command: 'copilot'` literal, but the match's start byte-offset was earlier than the writeFileSync. Fix: anchor on the literal `command: 'copilot'` line (which only appears inside the cli-copilot block) for deep-research, and `spawnSync('copilot'` for deep-review.
+The static-grep ordering test required one design fix during implementation. The initial regex anchored on `runAuditedExecutorCommand\s*\(\s*\{[\s\S]*?command:\s*'copilot'` matched the FIRST `runAuditedExecutorCommand` call frame in `deep_start-research-loop_auto.yaml` (line 568, the `if_native` block), not the cli-copilot one (line 651). The non-greedy match still resolved to the right `command: 'copilot'` literal, but the match's start byte-offset was earlier than the writeFileSync. Fix: anchor on the literal `command: 'copilot'` line (which only appears inside the cli-copilot block) for deep-research, and `spawnSync('copilot'` for deep-review.
 <!-- /ANCHOR:how-delivered -->
 
 ---

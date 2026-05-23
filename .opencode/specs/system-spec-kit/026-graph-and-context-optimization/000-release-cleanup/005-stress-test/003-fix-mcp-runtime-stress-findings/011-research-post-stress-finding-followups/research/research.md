@@ -54,7 +54,7 @@ Ten cli-codex (gpt-5.5 high fast) iterations converted four v1.0.2 stress-test f
 
 | Field | Value |
 |-------|-------|
-| Workflow | `/spec_kit:deep-research:auto` |
+| Workflow | `/deep:start-research-loop:auto` |
 | Executor | cli-codex (gpt-5.5, reasoning_effort=high, service_tier=fast, timeout=900s/iter) |
 | Iterations | 10/10 (max-iterations hit, NOT premature convergence) |
 | Convergence threshold | 0.05 (default) |
@@ -73,8 +73,8 @@ Ten cli-codex (gpt-5.5 high fast) iterations converted four v1.0.2 stress-test f
 - **`010 findings.md` Recommendation #1** (lines 113–116): copilot mutated `004-legacy-phase-parent-migration/graph-metadata.json` without operator authorization on I1; v1.0.2 score 2/8 vs v1.0.1 1/8 (marginal +1; pathology persists).
 - **`004-memory-save-rewrite/spec.md` lines 56–60**: contract states `/memory:save` is planner-first by default and stops short of mutation; full-auto is opt-in via `SPECKIT_SAVE_PLANNER_MODE=full-auto`.
 - **`mcp_server/lib/deep-loop/executor-config.ts:66–70`**: `resolveCopilotPromptArg()` chooses raw-prompt vs `@PROMPT_PATH` wrapper modes; has no authority-token concept.
-- **`spec_kit_deep-research_auto.yaml:601–625`**: deep-research's Copilot dispatch path passes the rendered prompt directly to `copilot -p ... --allow-all-tools --no-ask-user`.
-- **`spec_kit_deep-review_auto.yaml:669–683`**: deep-review has the same dispatch shape — second call site for the same fix.
+- **`deep_start-research-loop_auto.yaml:601–625`**: deep-research's Copilot dispatch path passes the rendered prompt directly to `copilot -p ... --allow-all-tools --no-ask-user`.
+- **`deep_start-review-loop_auto.yaml:669–683`**: deep-review has the same dispatch shape — second call site for the same fix.
 - **`mcp_server/hooks/copilot/userPromptSubmit.ts`** (iteration-002 finding): the copilot session-prime hook cannot mutate the just-submitted prompt; it returns an empty JSON object. Therefore Gate 3 enforcement MUST ride in the wrapper that constructs the prompt, not in a hook.
 
 ### 3.2 Root-cause hypothesis
@@ -96,7 +96,7 @@ The memory-save handler (`004-memory-save-rewrite`) already enforces planner-fir
                      | { kind: "missing", writeIntent: boolean }
    })
    ```
-   Wires into both `spec_kit_deep-research_auto.yaml:601-625` and `spec_kit_deep-review_auto.yaml:669-683`. When `targetAuthority.kind === "missing"` AND `writeIntent === true`, the wrapper forces a Gate-3 question prompt (no `--allow-all-tools`, plan-only). When `targetAuthority.kind === "approved"`, the prompt body includes the exact approved spec folder as the only valid write target.
+   Wires into both `deep_start-research-loop_auto.yaml:601-625` and `deep_start-review-loop_auto.yaml:669-683`. When `targetAuthority.kind === "missing"` AND `writeIntent === true`, the wrapper forces a Gate-3 question prompt (no `--allow-all-tools`, plan-only). When `targetAuthority.kind === "approved"`, the prompt body includes the exact approved spec folder as the only valid write target.
 
    - **Trade-off**: small patch (~80-120 LOC across 1 helper + 2 YAML call-sites). Covers both raw-prompt and `@PROMPT_PATH` wrapper modes. Bind to non-interactive dispatch. Doesn't touch the memory-save handler.
 

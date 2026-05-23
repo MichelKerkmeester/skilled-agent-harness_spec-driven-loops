@@ -65,6 +65,6 @@ contextType: "research"
 |---|---|---|---|---|
 | F-001 | 010 | must-have | `.opencode/agents/deep-research.md` | Add a claim-verification ledger so major external claims are marked `verified`, `contradicted`, or `unresolved`. |
 | F-002 | 004 | should-have | `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts` | Add deferred reconsolidation cadence on top of save-time reconsolidation. |
-| F-003 | 005 | should-have | `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Add an explicit one-pass publication critique instead of relying on hidden reflection. |
+| F-003 | 005 | should-have | `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Add an explicit one-pass publication critique instead of relying on hidden reflection. |
 | F-004 | 003 | should-have | `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts` | Generate a runtime-agnostic continuity synopsis for stronger non-hook recovery. |
 | F-005 | 007 | should-have | `.opencode/agents/orchestrate.md` | Compress role-transition rules into a compact trigger matrix. |

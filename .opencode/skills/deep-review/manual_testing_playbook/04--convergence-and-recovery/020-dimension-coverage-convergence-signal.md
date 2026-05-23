@@ -45,7 +45,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate the deep-review dimension coverage convergence signal and its stabilization requirement.
 ### Commands
 1. `bash: rg -n 'dimension.coverage|Dimension Coverage|0\.45|minStabilization|stabilization|all.*dimension|4.*dimension' .opencode/skills/deep-research/references/convergence.md`
-2. `bash: rg -n 'dimension_coverage|0\.45|minStabilization|stabilization|all_dimensions|dimension.*covered' .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+2. `bash: rg -n 'dimension_coverage|0\.45|minStabilization|stabilization|all_dimensions|dimension.*covered' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
 3. `bash: rg -n 'Dimension Coverage|0\.45|minStabilization|stabilization|Covered|D1|D2|D3|D4|Correctness|Security|Traceability|Maintainability' .opencode/skills/deep-review/references/quick_reference.md .opencode/skills/deep-review/SKILL.md .opencode/skills/deep-review/assets/deep_review_strategy.md`
 ### Expected
 Weight 0.45, all 4 dimensions required, `minStabilizationPasses=1`, signal contributes 0 until conditions are met, strategy.md "Covered" list tracks dimension coverage.
@@ -71,8 +71,8 @@ Privilege the convergence reference for the signal formula and use the strategy 
 | File | Role |
 |---|---|
 | `.opencode/skills/deep-research/references/convergence.md` | Canonical convergence math; dimension coverage signal definition and minStabilizationPasses |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Workflow algorithm; inspect dimension coverage check in `step_check_convergence` |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Workflow algorithm; inspect dimension coverage check in `step_check_convergence` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Workflow algorithm; inspect dimension coverage check in `step_check_convergence` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Workflow algorithm; inspect dimension coverage check in `step_check_convergence` |
 | `.opencode/skills/deep-review/references/quick_reference.md` | Convergence signal table; use `ANCHOR:convergence` and `ANCHOR:review-dimensions` |
 | `.opencode/skills/deep-review/SKILL.md` | Review dimensions and convergence rules; use `ANCHOR:how-it-works` and `ANCHOR:rules` |
 | `.opencode/skills/deep-review/assets/deep_review_strategy.md` | Strategy template showing dimension tracking in "Covered" list |

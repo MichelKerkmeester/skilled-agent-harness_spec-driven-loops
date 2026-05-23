@@ -20,8 +20,8 @@
 | --- | --- | --- | --- |
 | `.opencode/commands/spec_kit/README.txt` | UNTOUCHED | No matching hits. |  |
 | `.opencode/commands/spec_kit/implement.md` | CITED | Covered by plan’s command-doc scan, but no direct hits. |  |
-| `.opencode/commands/spec_kit/deep-research.md` | MODIFY | AI-facing `kind`/`manifest` leaks. | 68,74,81,139: replace `config.executor.kind` with `config.executor.type`; 336: `Optimizer manifest` → `Optimizer configuration` |
-| `.opencode/commands/spec_kit/deep-review.md` | MODIFY | Same leaks as deep-research. | 66,72,79,151: `config.executor.kind` → `config.executor.type`; 386: `Optimizer manifest` → `Optimizer configuration` |
+| `.opencode/commands/deep/start-research-loop.md` | MODIFY | AI-facing `kind`/`manifest` leaks. | 68,74,81,139: replace `config.executor.kind` with `config.executor.type`; 336: `Optimizer manifest` → `Optimizer configuration` |
+| `.opencode/commands/deep/start-review-loop.md` | MODIFY | Same leaks as deep-research. | 66,72,79,151: `config.executor.kind` → `config.executor.type`; 386: `Optimizer manifest` → `Optimizer configuration` |
 | `.opencode/commands/spec_kit/resume.md` | MODIFY | AI-facing `child manifest` leak. | 66: `child manifest` → `child list` |
 | `.opencode/commands/spec_kit/plan.md` | MODIFY | Deleted `templates/phase_parent` path and level-folder taxonomy. | 433: replace whole lean-parent paragraph with resolver-based “phase parent uses Level-facing phase-parent template contract.” |
 | `.opencode/commands/spec_kit/complete.md` | MODIFY | Deleted `templates/phase_parent` path. | 248: replace ``templates/phase_parent/spec.md`` with “phase-parent Level template contract.” |
@@ -33,7 +33,7 @@
 | `assets/spec_kit_implement_confirm.yaml` | MODIFY | Same deleted path matrix. | 111-128,357,359,515 |
 | `assets/spec_kit_complete_auto.yaml` | MODIFY | Deleted addendum, level/root template paths. | 82,85-86,167-195,605,607,650,652,742,744,746,795,797,979 |
 | `assets/spec_kit_complete_confirm.yaml` | MODIFY | Same deleted path matrix. | 70,73-74,176-204,631,633,687,689,775,777,826,828,1029 |
-| `assets/spec_kit_deep-research_auto.yaml` | MODIFY | AI-facing `kind` executor keys. | 555,561,577,625,638,641,700,745,786,790: rename to executor `type`/approved state wording. |
-| `assets/spec_kit_deep-research_confirm.yaml` | MODIFY | Same `kind` leaks. | 566,572,661,665 |
-| `assets/spec_kit_deep-review_auto.yaml` | MODIFY | `kind` and `Capability` leaks. | 647,653,688,691,793,797,869-870: rename schema wording; 1200: `Playbook vs Capability` → `Playbook vs Support` |
-| `assets/spec_kit_deep-review_confirm.yaml` | MODIFY | Same leaks. | 663,669,770,774,842-843,1209 |
+| `assets/deep_start-research-loop_auto.yaml` | MODIFY | AI-facing `kind` executor keys. | 555,561,577,625,638,641,700,745,786,790: rename to executor `type`/approved state wording. |
+| `assets/deep_start-research-loop_confirm.yaml` | MODIFY | Same `kind` leaks. | 566,572,661,665 |
+| `assets/deep_start-review-loop_auto.yaml` | MODIFY | `kind` and `Capability` leaks. | 647,653,688,691,793,797,869-870: rename schema wording; 1200: `Playbook vs Capability` → `Playbook vs Support` |
+| `assets/deep_start-review-loop_confirm.yaml` | MODIFY | Same leaks. | 663,669,770,774,842-843,1209 |

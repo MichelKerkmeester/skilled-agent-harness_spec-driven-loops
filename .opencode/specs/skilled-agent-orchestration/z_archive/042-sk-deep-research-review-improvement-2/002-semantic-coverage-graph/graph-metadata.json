@@ -45,13 +45,6 @@
       ".opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs",
       ".opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs",
       ".opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
       ".opencode/agents/deep-research.md",
       ".opencode/agents/deep-review.md",
@@ -60,7 +53,13 @@
       ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts",
       "lib/storage/causal-edges.ts",
       "lib/graph/graph-signals.ts",
-      "lib/graph/contradiction-detection.ts"
+      "lib/graph/contradiction-detection.ts",
+      "spec.md",
+      "plan.md",
+      "decision-record.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -85,48 +84,6 @@
         "name": "coverage-graph-convergence.cjs",
         "kind": "file",
         "path": ".opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "coverage-graph-db.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts",
-        "source": "derived"
-      },
-      {
-        "name": "coverage-graph-query.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts",
-        "source": "derived"
-      },
-      {
-        "name": "coverage-graph-signals.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts",
-        "source": "derived"
-      },
-      {
-        "name": "upsert.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts",
-        "source": "derived"
-      },
-      {
-        "name": "query.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts",
-        "source": "derived"
-      },
-      {
-        "name": "status.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts",
-        "source": "derived"
-      },
-      {
-        "name": "convergence.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts",
         "source": "derived"
       },
       {
@@ -184,6 +141,42 @@
         "source": "derived"
       },
       {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specifi",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,11 +199,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 002 turns semantic convergence from an abstract idea into a concrete implementation plan. The coverage graph is the fourth graph system in the existing Spec Kit Memory stack, following the causal graph, the code structural graph, and the graph-signal layer already present under `.opencode/skills/system-spec-kit/mcp_server/`.",
     "created_at": "2026-04-12T09:02:50.193Z",
-    "last_save_at": "2026-05-19T13:51:38.536Z",
+    "last_save_at": "2026-05-23T11:55:14.446Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

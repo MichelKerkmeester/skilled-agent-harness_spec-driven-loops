@@ -20,7 +20,7 @@ I compared how the external loop captures and reuses session IDs with how `syste
 - `[SOURCE: external/automated-loop/tests/test_ndjson_parser.py:135-149]` Tests verify the parser extracts the session ID from stream JSON and threads it into result objects.
 - `[SOURCE: .opencode/skills/sk-deep-research/assets/deep_research_config.json:14-27]` `system-spec-kit` tracks lineage session IDs, parent linkage, and generation counts, but not a runtime transport session handle for the live model/tool session.
 - `[SOURCE: .opencode/skills/sk-deep-research/references/state_format.md:55-81]` The config spec defines lineage state in detail, but its continuity model is lineage-centric rather than runtime-session-centric.
-- `[SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:128-175]` Session classification in the YAML checks config, JSONL, and strategy agreement, then resumes based on artifact consistency rather than any preserved model-session handle.
+- `[SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:128-175]` Session classification in the YAML checks config, JSONL, and strategy agreement, then resumes based on artifact consistency rather than any preserved model-session handle.
 
 ## Analysis
 `system-spec-kit` already thinks carefully about lineage: restart, fork, resume, and completed-continue are all explicit. What it lacks is the external repo's narrower but valuable concept of "the exact runtime session that can continue this thread without re-priming." Those are different layers. The external model is stronger for practical continuity across long loops because it allows the engine to reuse a validated session handle, not just infer continuity from files. For Codex/Copilot/Claude runtimes this will not always be available, but the external pattern still suggests a capability-aware seam: record transport session IDs when a runtime exposes them, and fall back cleanly when it does not.
@@ -31,7 +31,7 @@ confidence: high
 finding: `system-spec-kit` should not replace lineage state with runtime session state, but it would benefit from adding an optional transport-session field and event model. That would let compatible runtimes resume more efficiently while preserving today's artifact-based resume path as the universal fallback.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skills/sk-deep-research/references/state_format.md`, `.opencode/skills/sk-deep-research/assets/deep_research_config.json`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+- **Target file or module:** `.opencode/skills/sk-deep-research/references/state_format.md`, `.opencode/skills/sk-deep-research/assets/deep_research_config.json`, `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
 - **Change type:** added option
 - **Blast radius:** medium
 - **Prerequisites:** runtime-capability matrix must distinguish "supports resumable transport session" from "artifact-only resume"

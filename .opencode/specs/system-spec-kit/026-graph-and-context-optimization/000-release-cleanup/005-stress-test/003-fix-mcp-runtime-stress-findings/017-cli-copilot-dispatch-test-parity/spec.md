@@ -72,7 +72,7 @@ The 011 deep-review report (`../011-research-post-stress-finding-followups/revie
 
 > `mcp_server/tests/deep-loop/cli-matrix.vitest.ts:17-20` claims to mirror YAML, but its cli-copilot branch (lines 40-56) still builds `-p "$(cat ...)"` / `resolveCopilotPromptArg()` strings instead of the `built.argv` + `promptFileBody` flow that 012 introduced.
 
-The test passes today because `resolveCopilotPromptArg` is still exported (sibling helper kept for backward compat). But the YAML auto-loop dispatch path no longer goes through it — both `spec_kit_deep-research_auto.yaml` and `spec_kit_deep-review_auto.yaml` route cli-copilot dispatches through `buildCopilotPromptArg`, write `built.promptFileBody` to disk when set, then invoke copilot with `built.argv`. A future refactor that breaks the helper's `argv`/`promptFileBody` contract would not fail this test, leaving the dispatch contract unguarded.
+The test passes today because `resolveCopilotPromptArg` is still exported (sibling helper kept for backward compat). But the YAML auto-loop dispatch path no longer goes through it — both `deep_start-research-loop_auto.yaml` and `deep_start-review-loop_auto.yaml` route cli-copilot dispatches through `buildCopilotPromptArg`, write `built.promptFileBody` to disk when set, then invoke copilot with `built.argv`. A future refactor that breaks the helper's `argv`/`promptFileBody` contract would not fail this test, leaving the dispatch contract unguarded.
 
 The deep-review's §7 Packet B PASS gate is explicit: "cli-matrix test models `built.argv`, `promptFileBody`, and `@PROMPT_PATH` behavior, not the legacy command string."
 
@@ -108,7 +108,7 @@ Test-only change. Production code in `executor-config.ts` and the two YAML files
 ### Out of Scope
 
 - Modifying `executor-config.ts` (production code — `buildCopilotPromptArg` is byte-stable).
-- Modifying `spec_kit_deep-research_auto.yaml` or `spec_kit_deep-review_auto.yaml` (production wire-ins — byte-stable).
+- Modifying `deep_start-research-loop_auto.yaml` or `deep_start-review-loop_auto.yaml` (production wire-ins — byte-stable).
 - The other deep-review findings: F-001/F-003 (P1, owned by Packet A → 016), F-005/F-007 (P2 docs, owned by Packet C → 018).
 - Sibling packets 016 and 018 — they have their own packet folders and PASS gates.
 - Frozen packets 003-015 under 011 phase parent.
@@ -148,7 +148,7 @@ Test-only change. Production code in `executor-config.ts` and the two YAML files
 |----|-------------|---------------------|
 | **REQ-011** | The smoke test (`exercises the large-prompt ... with a real subprocess`) models the approved-authority dispatch path (the actual happy path the YAML drives), with `promptFileBody` written to disk before the subprocess invocation. | The subprocess reads `promptPath` and confirms it opens with `## TARGET AUTHORITY` followed by `Approved spec folder: <APPROVED_FOLDER>` followed by the original prompt body. |
 | **REQ-012** | `buildDispatchCommand`'s `cli-copilot` branch fails loud rather than silently producing the legacy command string (anti-regression). | Calling `buildDispatchCommand(parseExecutorConfig({ kind: 'cli-copilot', ... }), promptPath)` throws an `Error` whose message points at `buildCopilotPromptArg`. _Tests don't directly cover this — it is dead code that throws if any future test forgets to use the new helper._ |
-| **REQ-013** | Production code at `executor-config.ts`, `spec_kit_deep-research_auto.yaml`, `spec_kit_deep-review_auto.yaml` is byte-stable. | `git diff --stat` shows the test file and packet docs only; production paths untouched. |
+| **REQ-013** | Production code at `executor-config.ts`, `deep_start-research-loop_auto.yaml`, `deep_start-review-loop_auto.yaml` is byte-stable. | `git diff --stat` shows the test file and packet docs only; production paths untouched. |
 <!-- /ANCHOR:requirements -->
 
 ---

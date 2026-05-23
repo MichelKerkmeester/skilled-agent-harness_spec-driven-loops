@@ -327,6 +327,6 @@ Handlers side-audit:
 |-----------|---------|
 | Ready to plan Phase 017 | `/spec_kit:plan phase-017-fix-deep-review-p1-findings-for-package-extraction` |
 | Save continuity for this research session | `/memory:save 026-graph-and-context-optimization/016-foundational-runtime/001-initial-research` |
-| Drill deeper on a specific finding before planning | `/spec_kit:deep-research [focused-topic]` (e.g. `h-56-4-copilot-observability`) |
+| Drill deeper on a specific finding before planning | `/deep:start-research-loop [focused-topic]` (e.g. `h-56-4-copilot-observability`) |
 | Start Copilot-primary autonomous Phase 017 execution | REQUIRES T-W1-HOK-01 + T-W1-HOK-02 landed first (else H-56-4 observability gap activates during iteration) |
-| Run deep-review ×7 on Wave A output | `/spec_kit:deep-review :auto` (per `feedback_phase_017_autonomous.md` gate protocol) |
+| Run deep-review ×7 on Wave A output | `/deep:start-review-loop :auto` (per `feedback_phase_017_autonomous.md` gate protocol) |

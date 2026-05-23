@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Non-`sk-code` skills currently include frontend stack names, library names, repo-specific paths, and internal surface tag examples. Those references make the public template look tailored to one codebase when only `sk-code` should carry stack-specific customization.",
     "created_at": "2026-05-05T19:14:28Z",
-    "last_save_at": "2026-05-19T13:51:38.703Z",
+    "last_save_at": "2026-05-23T11:55:14.590Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

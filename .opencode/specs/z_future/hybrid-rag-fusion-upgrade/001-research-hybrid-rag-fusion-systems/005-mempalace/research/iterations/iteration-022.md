@@ -455,11 +455,11 @@ Detect the current research phase from dispatch context to load appropriate reso
 ### Architecture: 3-Layer Integration
 
 ```
-User invokes: /spec_kit:deep-research "topic"
+User invokes: /deep:start-research-loop "topic"
                     |
                     v
     ┌─────────────────────────────────┐
-    │  /spec_kit:deep-research command│  Layer 1: Command
+    │  /deep:start-research-loop command│  Layer 1: Command
     │  (YAML workflow + loop config)    │  Manages loop lifecycle
     └──────────────┬──────────────────┘
                    |
@@ -597,7 +597,7 @@ exec
 1110:- symptom: docs report stale test/playbook counts after fixes; cause: checklist/plan/summary not updated with latest command outputs; fix: update packet docs and evidence logs in the same pass as code/test changes [Task 1][Task 6][Task 7]
 1181:- For `023-esm-module-compliance`, keep `research/research.md` immutable as canonical evidence and sync `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and `implementation-summary.md` to the same strategy language (shared + mcp_server ESM, scripts CommonJS interop, dual-build fallback-only) [Task 5]
 1193:applies_to: cwd=/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public; reuse_rule=reuse for deep-review/release-readiness runs in this repo, but keep unresolved checks explicitly pending until rerun evidence exists
-1203:- /spec_kit:deep-research --review, 20 iterations, evidenceGap, handler-memory-triggers.vitest.ts, FEATURE_CATALOG.md
+1203:- /deep:start-research-loop --review, 20 iterations, evidenceGap, handler-memory-triggers.vitest.ts, FEATURE_CATALOG.md
 1234:- `evidenceGap` must propagate to recovery payload/status classification so empty results remain `partial` [Task 1]
 1239:- symptom: empty-result tests fail after confidence changes; cause: missing `evidenceGap` propagation; fix: plumb signal end-to-end and test it [Task 1]
 1281:scope: evidence-backed changelog refreshes, rename-only README conversion, and manual changelog fallback when command gating blocks automation

@@ -43,8 +43,8 @@ function readWorkspaceFile(relativePath: string): string {
   ];
 
   const commandAssets = [
-    '.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml',
-    '.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml',
+    '.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml',
+    '.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml',
   ];
 
   it('keeps primary deep-review docs aligned on canonical artifacts and lifecycle terms', () => {

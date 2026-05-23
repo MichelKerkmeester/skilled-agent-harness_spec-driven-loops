@@ -98,7 +98,7 @@ _memory:
 - [ ] T-V04 `git status -- .opencode/specs/.../010-doctor-update-orchestrator/` shows only intentional review-related changes; no rogue writes outside Batch A-D scope
 - [ ] T-V05 Commit on main with conventional commit message
 - [ ] T-V06 Save memory entry for 003 completion
-- [ ] T-V07 (optional, operator-decision) Re-run `/spec_kit:deep-review:auto` on 013 to confirm PASS verdict
+- [ ] T-V07 (optional, operator-decision) Re-run `/deep:start-review-loop:auto` on 013 to confirm PASS verdict
 
 ---
 

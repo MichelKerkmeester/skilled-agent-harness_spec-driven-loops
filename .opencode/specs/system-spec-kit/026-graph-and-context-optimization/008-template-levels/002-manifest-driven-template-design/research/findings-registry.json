@@ -244,7 +244,7 @@
     },
     {
       "id": "finding-4-19-deep-research-starts-with-investigation-research-research-md-remains-workflow-ow",
-      "text": "Deep research starts with `investigation`; `research/research.md` remains workflow-owned and is created by `/spec_kit:deep-research`, not by ordinary scaffolding.",
+      "text": "Deep research starts with `investigation`; `research/research.md` remains workflow-owned and is created by `/deep:start-research-loop`, not by ordinary scaffolding.",
       "addedAtIteration": 4,
       "sources": []
     },

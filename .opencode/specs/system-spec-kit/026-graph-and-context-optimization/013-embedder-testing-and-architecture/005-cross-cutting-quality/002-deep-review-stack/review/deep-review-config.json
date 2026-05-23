@@ -38,5 +38,5 @@
     ]
   },
   "createdAt": "2026-05-17T20:55:00Z",
-  "createdBy": "main_agent + /spec_kit:deep-review:auto"
+  "createdBy": "main_agent + /deep:start-review-loop:auto"
 }

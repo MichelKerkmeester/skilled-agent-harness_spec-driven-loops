@@ -114,5 +114,5 @@ The audit read the target validator code, the 010 phase-parent packet, the 037/0
 
 1. **No target fixes applied.** The audit is read-only by request, so remediation remains a follow-up.
 2. **Full-tree strict validation not run.** Representative samples and adversarial probes were enough to reproduce the release blockers without spending a full-tree validation cycle.
-3. **Deep-review command surface unavailable.** The environment exposed the skill instructions, not the `/spec_kit:deep-review:auto` command executor, so this packet is a single audit and synthesis pass.
+3. **Deep-review command surface unavailable.** The environment exposed the skill instructions, not the `/deep:start-review-loop:auto` command executor, so this packet is a single audit and synthesis pass.
 <!-- /ANCHOR:limitations -->

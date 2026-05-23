@@ -73,13 +73,13 @@ This map lists file paths that appeared in the iteration findings, grouped by su
 
 - `.opencode/commands/doctor/assets/doctor_code-graph_apply.yaml`:95-97 — C4 / iter 014 / `F-014-C4-04`
 - `.opencode/commands/doctor/assets/doctor_code-graph_auto.yaml`:100-104 — C4 / iter 014 / `F-014-C4-04`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`:179-182,235-249,851-853 — B5 / iter 010 / `F-010-B5-01`, `F-010-B5-02`, `F-010-B5-04`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`:152-155 — B5 / iter 010 / `F-010-B5-01`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`:301-322,812-814 — B5 / iter 010 / `F-010-B5-03`, `F-010-B5-04`
+- `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`:179-182,235-249,851-853 — B5 / iter 010 / `F-010-B5-01`, `F-010-B5-02`, `F-010-B5-04`
+- `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`:152-155 — B5 / iter 010 / `F-010-B5-01`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`:301-322,812-814 — B5 / iter 010 / `F-010-B5-03`, `F-010-B5-04`
 - `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`:56-61 — D4 / iter 019 / `F-019-D4-02`
 - `.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml`:59-64 — D4 / iter 019 / `F-019-D4-03`
-- `.opencode/commands/spec_kit/deep-research.md`:73 — B5 / iter 010 / `F-010-B5-04`
-- `.opencode/commands/spec_kit/deep-review.md`:71 — B5 / iter 010 / `F-010-B5-04`
+- `.opencode/commands/deep/start-research-loop.md`:73 — B5 / iter 010 / `F-010-B5-04`
+- `.opencode/commands/deep/start-review-loop.md`:71 — B5 / iter 010 / `F-010-B5-04`
 
 ## `scripts/`
 

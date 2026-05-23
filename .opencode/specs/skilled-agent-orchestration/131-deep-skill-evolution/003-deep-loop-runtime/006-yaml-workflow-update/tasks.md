@@ -67,30 +67,30 @@ _memory:
 
 > **Effort estimate**: ~45-60 minutes total across 4 files.
 
-### File 1: spec_kit_deep-review_auto.yaml
+### File 1: deep_start-review-loop_auto.yaml
 
-- [ ] T005 Rewrite `step_graph_convergence` call site (~L430): replace `mcp_tool: mcp__mk_spec_memory__deep_loop_graph_convergence` block with `bash: 'node .opencode/skills/deep-loop-runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "review" --session-id "{session_id}"'`; preserve `outputs:`, `append_jsonl:`, and `note:` (update note to reflect bash invocation) (`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`) [12m]
-- [ ] T006 Rewrite `step_graph_upsert` call site (~L1015): replace MCP block with `bash: 'node .opencode/skills/deep-loop-runtime/scripts/upsert.cjs --spec-folder "{spec_folder}" --loop-type "review" --session-id "{session_id}" --nodes "{graph_nodes_json}" --edges "{graph_edges_json}"'`; preserve `outputs:`, `skip_conditions:` (`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`) [10m]
+- [ ] T005 Rewrite `step_graph_convergence` call site (~L430): replace `mcp_tool: mcp__mk_spec_memory__deep_loop_graph_convergence` block with `bash: 'node .opencode/skills/deep-loop-runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "review" --session-id "{session_id}"'`; preserve `outputs:`, `append_jsonl:`, and `note:` (update note to reflect bash invocation) (`.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`) [12m]
+- [ ] T006 Rewrite `step_graph_upsert` call site (~L1015): replace MCP block with `bash: 'node .opencode/skills/deep-loop-runtime/scripts/upsert.cjs --spec-folder "{spec_folder}" --loop-type "review" --session-id "{session_id}" --nodes "{graph_nodes_json}" --edges "{graph_edges_json}"'`; preserve `outputs:`, `skip_conditions:` (`.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`) [10m]
 - [ ] T007 If `grep -c` still > 0 for this file, locate and rewrite the trailing status-check reference (helper or audit step) [5m]
-- [ ] T008 `python3 -c "import yaml; yaml.safe_load(open('.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml'))"` exits 0 [2m]
+- [ ] T008 `python3 -c "import yaml; yaml.safe_load(open('.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml'))"` exits 0 [2m]
 
-### File 2: spec_kit_deep-review_confirm.yaml
+### File 2: deep_start-review-loop_confirm.yaml
 
-- [ ] T009 [P] Mirror T005 at `step_graph_convergence` (~L438) (`.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`) [10m]
-- [ ] T010 [P] Mirror T006 at `step_graph_upsert` (~L937) (`.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`) [10m]
+- [ ] T009 [P] Mirror T005 at `step_graph_convergence` (~L438) (`.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`) [10m]
+- [ ] T010 [P] Mirror T006 at `step_graph_upsert` (~L937) (`.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`) [10m]
 - [ ] T011 If `grep -c` still > 0, rewrite trailing helper/audit reference [5m]
 - [ ] T012 YAML parse smoke test on the file [2m]
 
-### File 3: spec_kit_deep-research_auto.yaml
+### File 3: deep_start-research-loop_auto.yaml
 
-- [ ] T013 [P] Rewrite `step_graph_convergence` (~L413): replace `mcp_tool:` block with bash invocation of `convergence.cjs --spec-folder "{spec_folder}" --loop-type "research" --session-id "{config.lineage.sessionId}"`; preserve `outputs:` (including `graph_decision_json`, `graph_trace_json`, `graph_convergence_score`) and `append_to_jsonl:` (`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`) [12m]
-- [ ] T014 [P] Rewrite `step_graph_upsert` (~L869): replace `mcp_tool:` inside `if_graph_events_present:` block with bash invocation of `upsert.cjs ...`; preserve `if_graph_events_present:` / `if_graph_events_missing:` guards (`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`) [10m]
+- [ ] T013 [P] Rewrite `step_graph_convergence` (~L413): replace `mcp_tool:` block with bash invocation of `convergence.cjs --spec-folder "{spec_folder}" --loop-type "research" --session-id "{config.lineage.sessionId}"`; preserve `outputs:` (including `graph_decision_json`, `graph_trace_json`, `graph_convergence_score`) and `append_to_jsonl:` (`.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`) [12m]
+- [ ] T014 [P] Rewrite `step_graph_upsert` (~L869): replace `mcp_tool:` inside `if_graph_events_present:` block with bash invocation of `upsert.cjs ...`; preserve `if_graph_events_present:` / `if_graph_events_missing:` guards (`.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`) [10m]
 - [ ] T015 YAML parse smoke test on the file [2m]
 
-### File 4: spec_kit_deep-research_confirm.yaml
+### File 4: deep_start-research-loop_confirm.yaml
 
-- [ ] T016 [P] Mirror T013 at `step_graph_convergence` (~L402) (`.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`) [10m]
-- [ ] T017 [P] Mirror T014 at `step_graph_upsert` (~L723) (`.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`) [10m]
+- [ ] T016 [P] Mirror T013 at `step_graph_convergence` (~L402) (`.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`) [10m]
+- [ ] T017 [P] Mirror T014 at `step_graph_upsert` (~L723) (`.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`) [10m]
 - [ ] T018 YAML parse smoke test on the file [2m]
 <!-- /ANCHOR:phase-2 -->
 
@@ -103,7 +103,7 @@ _memory:
 
 - [ ] T019 Run `grep -c "mcp__mk_spec_memory__deep_loop_graph\|deep_loop_graph_"` across all 4 YAMLs; assert 0 per file; paste output into `implementation-summary.md` [5m]
 - [ ] T020 Run `python3 -c "import yaml; yaml.safe_load(open(...))"` on all 4 YAMLs; assert exit 0 each [5m]
-- [ ] T021 Smoke-run one iteration of `/spec_kit:deep-review` against a sandbox spec folder; confirm `step_graph_convergence` and `step_graph_upsert` complete without "unknown tool" or "undefined variable" errors; paste relevant JSONL event into `implementation-summary.md` [15m]
+- [ ] T021 Smoke-run one iteration of `/deep:start-review-loop` against a sandbox spec folder; confirm `step_graph_convergence` and `step_graph_upsert` complete without "unknown tool" or "undefined variable" errors; paste relevant JSONL event into `implementation-summary.md` [15m]
 - [ ] T022 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/003-deep-loop-runtime/006-yaml-workflow-update --strict`; assert exit 0 [3m]
 - [ ] T023 Tick every checklist item in `checklist.md` with evidence (grep output, parse exit codes, smoke run snippet, validate.sh output) [2m]
 - [ ] T024 Update `implementation-summary.md` Metadata + What Was Built + Verification sections with actual numbers [included in T023]

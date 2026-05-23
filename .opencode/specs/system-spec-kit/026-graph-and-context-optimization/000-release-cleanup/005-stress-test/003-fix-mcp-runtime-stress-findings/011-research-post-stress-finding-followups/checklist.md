@@ -30,7 +30,7 @@ _memory:
 
 ## P0 — Hard Blocking Gates
 
-- [ ] **CHK-P0-001** [P0] **C-P0-001** Loop invoked via `/spec_kit:deep-research:auto` (canonical command surface). Direct Task tool dispatch forbidden. **Evidence**: workflow log header in `research/deep-research-state.jsonl`.
+- [ ] **CHK-P0-001** [P0] **C-P0-001** Loop invoked via `/deep:start-research-loop:auto` (canonical command surface). Direct Task tool dispatch forbidden. **Evidence**: workflow log header in `research/deep-research-state.jsonl`.
 - [ ] **CHK-P0-002** [P0] **C-P0-002** Executor config records `kind="cli-codex"`, `model="gpt-5.5"`, `reasoningEffort="high"`, `serviceTier="fast"`. **Evidence**: `research/deep-research-config.json` `executor` block.
 - [ ] **CHK-P0-003** [P0] **C-P0-003** Loop completes with stop reason ∈ {`converged`, `maxIterationsReached`}; NOT `error` or `blockedStop`. **Evidence**: final record in `research/deep-research-state.jsonl`.
 - [ ] **CHK-P0-004** [P0] **C-P0-004** `research/research.md` exists and is non-empty. **Evidence**: file size > 0; renders as valid markdown.

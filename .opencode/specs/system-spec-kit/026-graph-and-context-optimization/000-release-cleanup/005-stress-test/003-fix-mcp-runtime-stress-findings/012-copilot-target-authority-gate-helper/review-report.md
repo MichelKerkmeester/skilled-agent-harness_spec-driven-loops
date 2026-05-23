@@ -37,8 +37,8 @@ The core helper (`buildCopilotPromptArg`, `buildTargetAuthorityPreamble`, `build
 ### P1 — Unresolved or malformed `{spec_folder}` becomes "approved" authority
 
 - **Files:**
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:619-623`
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:682-686`
+  - `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:619-623`
+  - `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:682-686`
 - **What's wrong:** The current guard only rejects empty/`null`. A literal `{spec_folder}` placeholder, whitespace, `undefined`, or other malformed injected values are truthy and become `{ kind: 'approved', specFolder }`, preserving `--allow-all-tools`.
 - **Why it matters:** The packet's safe-fail claim (`spec.md` SC-002) says missing authority must force Gate 3. A template-resolution failure can silently bypass that and produce an "approved" dispatch with write capability against a malformed folder identifier.
 - **Recommended fix:** Normalize and validate the rendered folder before approval — trim, reject `{...}` placeholders / `null` / `undefined` / control chars, and enforce the expected spec-folder path pattern (e.g. `^\.opencode/specs/.*[0-9]{3}-[a-z0-9-]+/?$`). Add tests for the unresolved placeholder and malformed-folder cases.
@@ -47,8 +47,8 @@ The core helper (`buildCopilotPromptArg`, `buildTargetAuthorityPreamble`, `build
 
 - **Files:**
   - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:213-227`
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:604-605`
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:675-676`
+  - `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:604-605`
+  - `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:675-676`
 - **What's wrong:** The helper documents that the referenced `@PROMPT_PATH` prompt file contains the unmodified prompt body, and only the inline arg carries the `## TARGET AUTHORITY` preamble.
 - **Why it matters:** research.md §3.5 (line ~95) requires the approved folder to be regex-matchable inside prompts/iteration-NNN.md. If Copilot loads / prioritizes the `@path` file, recovered or bootstrap folder mentions inside that file can still dominate the agent's anchoring decision — exactly the failure mode the packet aims to fix.
 - **Recommended fix:** For approved large prompts, write the authority-prefixed body to the prompt file (preamble + original body), or expose a separate `promptFileBody` from the helper so callers can persist the prefixed version before dispatch. Add a test on the file contents (not only the inline wrapper string).
@@ -79,8 +79,8 @@ The core helper (`buildCopilotPromptArg`, `buildTargetAuthorityPreamble`, `build
 
 - **Files:**
   - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:152-157`
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:619`
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:682`
+  - `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:619`
+  - `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:682`
 - **What's wrong:** `specFolder` is interpolated directly into JavaScript string literals (in the YAML inline Node scripts) and into the prompt preamble template. Quotes, newlines, or control characters in the folder string could break the inline Node script or inject prompt instructions.
 - **Why it matters:** Existing spec-folder naming conventions probably prevent this in normal use, but the helper itself does not enforce that invariant. Defense-in-depth matters because the failure mode is silent corruption of agent authority.
 - **Recommended fix:** Validate `specFolder` in `buildTargetAuthorityPreamble` (or before constructing `targetAuthority`); reject newlines, control chars, quotes, and characters outside the expected `[a-zA-Z0-9._/-]` set. Pair with the P1 placeholder-rejection fix into a single shared validator.

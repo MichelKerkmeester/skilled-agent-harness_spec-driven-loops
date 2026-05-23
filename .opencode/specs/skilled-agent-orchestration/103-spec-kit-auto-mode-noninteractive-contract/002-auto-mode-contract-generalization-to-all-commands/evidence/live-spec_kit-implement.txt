@@ -346,7 +346,7 @@ Status: ✅ This requirement applies immediately once file edits are requested.
 
 ### Distributed Governance Rule
 
-Any agent writing authored spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, `decision-record.md`, `handover.md`, `review-report.md`, `debug-delegation.md`, `resource-map.md` (optional)) MUST use contract-backed templates through `create.sh` or the inline renderer. This is a workflow-required gate, not a runtime hook: run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` after authored spec-doc writes and before completion claims, then route continuity updates through /memory:save. Deep-research workflow-owned packet markdown (`research/iterations/*.md`, `research/deep-research-*.md`, and progressive `research/research.md` loop updates) is exempt from that generic per-write rule; `/spec_kit:deep-research` must instead run targeted strict validation after every `spec.md` mutation it performs. @deep-research retains exclusive write access for `research/research.md`; @debug retains exclusive write access for `debug-delegation.md`.
+Any agent writing authored spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, `decision-record.md`, `handover.md`, `review-report.md`, `debug-delegation.md`, `resource-map.md` (optional)) MUST use contract-backed templates through `create.sh` or the inline renderer. This is a workflow-required gate, not a runtime hook: run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` after authored spec-doc writes and before completion claims, then route continuity updates through /memory:save. Deep-research workflow-owned packet markdown (`research/iterations/*.md`, `research/deep-research-*.md`, and progressive `research/research.md` loop updates) is exempt from that generic per-write rule; `/deep:start-research-loop` must instead run targeted strict validation after every `spec.md` mutation it performs. @deep-research retains exclusive write access for `research/research.md`; @debug retains exclusive write access for `debug-delegation.md`.
 
 - `handover.md` stays in the canonical recovery ladder and is maintained through `/memory:save` handover_state routing using the handover template for initial creation.
 - `review-report.md` remains owned by `@deep-review` when deep review workflows synthesize findings.
@@ -410,7 +410,7 @@ CLI exit codes:
 | CONDITIONAL | If intent signals match   | Intent-mapped references     |
 | ON_DEMAND   | Only on explicit request   | Deep-dive quality standards  |
 
-`references/workflows/quick_reference.md` is the primary first-touch command surface. Keep the compact `spec_kit` and `memory` command map there, including `/spec_kit:plan --intake-only` as the standalone intake entry, `/spec_kit:plan` and `/spec_kit:complete` smart delegation notes, and the pointer from `/spec_kit:deep-research` to `../deep-research/references/spec_check_protocol.md`, and use this file only to point readers to it rather than duplicating the full matrix.
+`references/workflows/quick_reference.md` is the primary first-touch command surface. Keep the compact `spec_kit` and `memory` command map there, including `/spec_kit:plan --intake-only` as the standalone intake entry, `/spec_kit:plan` and `/spec_kit:complete` smart delegation notes, and the pointer from `/deep:start-research-loop` to `../deep-research/references/spec_check_protocol.md`, and use this file only to point readers to it rather than duplicating the full matrix.
 
 ### Smart Router Pseudocode
 
@@ -752,7 +752,7 @@ exec
    170	
    171	Commands that have adopted this contract:
    172	
-   173	- `/spec_kit:deep-review` (prototype) — see `.../103/001-deep-review-three-tier-setup/`
+   173	- `/deep:start-review-loop` (prototype) — see `.../103/001-deep-review-three-tier-setup/`
    174	- (to be appended as `.../103/002-...` rolls out)
    175	
    176	---
@@ -818,7 +818,7 @@ exec
  succeeded in 0ms:
 ---
 title: "Feature Specification: auto-mode-contract generalization to all commands"
-description: "Lift the three-tier :auto contract from /spec_kit:deep-review (Phase 1) into a shared reference and migrate 11 remaining /spec_kit/, /create/, /improve/ commands to cite it; full live :auto dispatch verification per command."
+description: "Lift the three-tier :auto contract from /deep:start-review-loop (Phase 1) into a shared reference and migrate 11 remaining /spec_kit/, /create/, /improve/ commands to cite it; full live :auto dispatch verification per command."
 trigger_phrases:
   - "auto mode contract generalization"
   - "spec-kit :auto rollout"
@@ -870,7 +870,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Phase 1 introduced the three-tier `:auto` contract for `/spec_kit:deep-review`. The same architecture and same stdin-hang gap affect 11 other commands across `/spec_kit/`, `/create/`, and `/improve/`. Inlining the three-tier flow into every command duplicates ~300 LOC and risks drift; lifting it into a shared reference doc preserves a single source of truth and keeps each command lean.
+Phase 1 introduced the three-tier `:auto` contract for `/deep:start-review-loop`. The same architecture and same stdin-hang gap affect 11 other commands across `/spec_kit/`, `/create/`, and `/improve/`. Inlining the three-tier flow into every command duplicates ~300 LOC and risks drift; lifting it into a shared reference doc preserves a single source of truth and keeps each command lean.
 
 ### Purpose
 Author the shared `auto_mode_contract.md` reference, refactor Phase-1's deep-review to cite it, migrate 11 remaining commands to the same pattern, and verify each one via a live non-interactive `:auto` dispatch.
@@ -883,7 +883,7 @@ Author the shared `auto_mode_contract.md` reference, refactor Phase-1's deep-rev
 
 ### In Scope
 - Author `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md` (Level 2 sk-doc reference; §1-8 — three-tier flow, PRE-BOUND ANSWERS grammar, default-resolution-table format, Tier-3 error template, `:confirm` invariance, verification protocol, adoption checklist, out-of-scope).
-- Refactor `/spec_kit:deep-review` §0 to cite the shared contract (replacing the inline three-tier sections from 001).
+- Refactor `/deep:start-review-loop` §0 to cite the shared contract (replacing the inline three-tier sections from 001).
 - Migrate 11 commands' §0 to cite the shared contract + provide their own per-field default table + PRE-BOUND ANSWERS field list:
   - `/spec_kit:` — deep-research, complete, implement, plan, resume (5)
   - `/create:` — sk-skill, agent, changelog, feature-catalog, testing-playbook, folder_readme (6)
@@ -903,7 +903,7 @@ Author the shared `auto_mode_contract.md` reference, refactor Phase-1's deep-rev
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md` | Create | Shared three-tier `:auto` contract reference |
-| `.opencode/commands/spec_kit/deep-review.md` | Modify | Refactor §0 to cite shared contract |
+| `.opencode/commands/deep/start-review-loop.md` | Modify | Refactor §0 to cite shared contract |
 | `.opencode/commands/spec_kit/{deep-research,complete,implement,plan,resume}.md` | Modify | Migrate §0 to shared contract pattern |
 | `.opencode/commands/create/{sk-skill,agent,changelog,feature-catalog,testing-playbook,folder_readme}.md` | Modify | Same |
 | `.opencode/commands/improve/agent.md` | Modify | Same |
@@ -983,18 +983,18 @@ EXIT_STATUS: complete
 exec
 /bin/zsh -lc 'rg -n "dispatch_mode.*native|native" .opencode/commands/spec_kit/implement.md .opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md .opencode/commands/spec_kit/*.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/commands/spec_kit/deep-review.md:77:  executor: native  # one of: native | cli-codex | cli-gemini | cli-claude-code
-.opencode/commands/spec_kit/deep-review.md:105:| `executor` | N | flag `--executor`, marker `executor`, config file, or default | `native` | N |
-.opencode/commands/spec_kit/deep-review.md:135:   |-- --executor=<type> -> config.executor.type (`native` | `cli-codex`)
-.opencode/commands/spec_kit/deep-review.md:141:   +-- Defaults: maxIterations=7, convergenceThreshold=0.10, config.executor.type=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`
-.opencode/commands/spec_kit/deep-review.md:167:   - If Q-Exec is omitted and no executor is otherwise resolved, default to `native`
-.opencode/commands/spec_kit/deep-review.md:219:   - executor config = [CLI flags, compact reply, config file, or default `native`; map compact reply fields to `config.executor.type/model/reasoningEffort/serviceTier`, and accept an optional volunteered convergence value before executor fields]
-.opencode/commands/spec_kit/deep-research.md:77:  executor: native  # native | cli-codex | cli-gemini | cli-claude-code
-.opencode/commands/spec_kit/deep-research.md:96:| `executor` | N | flag `--executor`, marker `executor`, config file, or default | `native` | N |
-.opencode/commands/spec_kit/deep-research.md:122:   |-- --executor=<type> -> config.executor.type (`native` | `cli-codex`)
-.opencode/commands/spec_kit/deep-research.md:128:   +-- Defaults: maxIterations=10, convergenceThreshold=0.05, config.executor.type=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`
-.opencode/commands/spec_kit/deep-research.md:154:   - If Q-Exec is omitted and no executor is otherwise resolved, default to `native`
-.opencode/commands/spec_kit/deep-research.md:192:   - executor config = [CLI flags, compact reply, config file, or default `native`; map compact reply fields to `config.executor.type/model/reasoningEffort/serviceTier`, and accept an optional volunteered convergence value before executor fields]
+.opencode/commands/deep/start-review-loop.md:77:  executor: native  # one of: native | cli-codex | cli-gemini | cli-claude-code
+.opencode/commands/deep/start-review-loop.md:105:| `executor` | N | flag `--executor`, marker `executor`, config file, or default | `native` | N |
+.opencode/commands/deep/start-review-loop.md:135:   |-- --executor=<type> -> config.executor.type (`native` | `cli-codex`)
+.opencode/commands/deep/start-review-loop.md:141:   +-- Defaults: maxIterations=7, convergenceThreshold=0.10, config.executor.type=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`
+.opencode/commands/deep/start-review-loop.md:167:   - If Q-Exec is omitted and no executor is otherwise resolved, default to `native`
+.opencode/commands/deep/start-review-loop.md:219:   - executor config = [CLI flags, compact reply, config file, or default `native`; map compact reply fields to `config.executor.type/model/reasoningEffort/serviceTier`, and accept an optional volunteered convergence value before executor fields]
+.opencode/commands/deep/start-research-loop.md:77:  executor: native  # native | cli-codex | cli-gemini | cli-claude-code
+.opencode/commands/deep/start-research-loop.md:96:| `executor` | N | flag `--executor`, marker `executor`, config file, or default | `native` | N |
+.opencode/commands/deep/start-research-loop.md:122:   |-- --executor=<type> -> config.executor.type (`native` | `cli-codex`)
+.opencode/commands/deep/start-research-loop.md:128:   +-- Defaults: maxIterations=10, convergenceThreshold=0.05, config.executor.type=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`
+.opencode/commands/deep/start-research-loop.md:154:   - If Q-Exec is omitted and no executor is otherwise resolved, default to `native`
+.opencode/commands/deep/start-research-loop.md:192:   - executor config = [CLI flags, compact reply, config file, or default `native`; map compact reply fields to `config.executor.type/model/reasoningEffort/serviceTier`, and accept an optional volunteered convergence value before executor fields]
 .opencode/commands/spec_kit/plan.md:445:| 2 | Beyond Local Max?  | >=2 alternatives with trade-offs           |
 .opencode/commands/spec_kit/complete.md:529:| 2 | Beyond Local Max? | Explored alternatives? | >=2 alternatives with trade-offs |
 

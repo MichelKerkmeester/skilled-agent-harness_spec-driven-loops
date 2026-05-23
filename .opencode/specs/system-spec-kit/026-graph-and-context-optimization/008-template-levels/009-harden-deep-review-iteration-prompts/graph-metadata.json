@@ -2,25 +2,207 @@
   "schema_version": 1,
   "packet_id": "system-spec-kit/026-graph-and-context-optimization/008-template-levels/009-harden-deep-review-iteration-prompts",
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-template-levels/009-harden-deep-review-iteration-prompts",
-  "parent_id": null,
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/008-template-levels",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 1: rm-8-prompt-hardening",
+  "derived": {
+    "trigger_phrases": [
+      "rm-8",
+      "deep-review scope violation",
+      "prompt hardening",
+      "destructive scope violation",
+      "deepseek deleted files",
+      "deep-review safety",
+      "rm-8 plan",
+      "prompt hardening plan",
+      "deep-review prompt template edit",
+      "rm-8 tasks",
+      "prompt hardening tasks",
+      "implementation"
+    ],
+    "key_topics": [
+      "rm-8",
+      "deep-review",
+      "scope",
+      "violation",
+      "prompt",
+      "hardening",
+      "destructive",
+      "deepseek",
+      "deleted",
+      "files",
+      "safety",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "prompt_pack_iteration.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Insert",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Template",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow No",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-opencode",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "smoke",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This is **Phase 9** of the 008-template-levels parent, addressing the operational risk recorded as **RM-8** in `../cross-phase-review-synthesis.md`. The destructive event documented at §5 (≈11:00–11:55 UTC, 2026-05-04) occurred when `opencode + deepseek-v4-pro` under `/deep:start-review-loop:auto` deleted 44 files across phases 007 and 008. Spec docs (spec.md/plan.md/tasks.md/checklist.md/decision-record.md/implementation-summary.md/description.json/graph-metadata.json) AND review/ subtrees were removed despite the dispatch prompt stating the target is read-only.",
     "created_at": "2026-05-11T05:45:03Z",
-    "last_save_at": "2026-05-11T05:45:03Z",
+    "last_save_at": "2026-05-23T11:55:15.298Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ]
   }
 }

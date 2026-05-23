@@ -12,13 +12,13 @@ Three surgical edits across three files to bring the deep-research and deep-revi
 
 | File | Lines changed | Mutation class |
 |---|---|---|
-| `.opencode/commands/spec_kit/deep-research.md` | 3 surgical edits (lines 79, 124, 173-177→173-179) | mutates |
-| `.opencode/commands/spec_kit/deep-review.md` | 3 surgical edits (lines 79, 137, 198-202→198-204) | mutates |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | 1 block insertion (25 new lines, 741→742..766) | mutates |
+| `.opencode/commands/deep/start-research-loop.md` | 3 surgical edits (lines 79, 124, 173-177→173-179) | mutates |
+| `.opencode/commands/deep/start-review-loop.md` | 3 surgical edits (lines 79, 137, 198-202→198-204) | mutates |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | 1 block insertion (25 new lines, 741→742..766) | mutates |
 
 Total: 3 files. Net additions: 6 new lines across the two `.md` files, 25 new YAML lines.
 
-## Edit 1: `.opencode/commands/spec_kit/deep-research.md`
+## Edit 1: `.opencode/commands/deep/start-research-loop.md`
 
 ### 1a. PRE-BOUND SETUP ANSWERS schema enum (line 79)
 
@@ -56,7 +56,7 @@ New rows added:
 
 Stylistic note: option list uses em dashes for parity with existing A-D entries. Constraint allowance: structured-format edits, not new prose.
 
-## Edit 2: `.opencode/commands/spec_kit/deep-review.md`
+## Edit 2: `.opencode/commands/deep/start-review-loop.md`
 
 Same three-edit pattern as Edit 1, mirroring deep-research's executor surfaces:
 
@@ -88,11 +88,11 @@ New:
 
 Added E (cli-opencode) and F (cli-devin) rows, identical content to Edit 1c.
 
-## Edit 3: `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+## Edit 3: `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
 
 ### YAML port summary
 
-Ported the `if_cli_devin:` block from `spec_kit_deep-review_auto.yaml:806-829` into `spec_kit_deep-research_auto.yaml` at the exact structural position that mirrors the deep-review YAML: immediately after `if_cli_opencode:` (deep-research line 717-741) and immediately before `post_dispatch_validate:`. New `if_cli_devin:` block now occupies lines 742-765.
+Ported the `if_cli_devin:` block from `deep_start-review-loop_auto.yaml:806-829` into `deep_start-research-loop_auto.yaml` at the exact structural position that mirrors the deep-review YAML: immediately after `if_cli_opencode:` (deep-research line 717-741) and immediately before `post_dispatch_validate:`. New `if_cli_devin:` block now occupies lines 742-765.
 
 Branch ordering after the edit (deep-research_auto.yaml):
 ```
@@ -141,9 +141,9 @@ Single intentional deviation from the deep-review source: the `render_hint.resol
 
 | File | Tool | Exit | Result |
 |---|---|---|---|
-| `.opencode/commands/spec_kit/deep-research.md` | `validate_document.py` | 0 | VALID. 1 pre-existing non-blocking warning: `non_sequential_numbering` at §0. Not introduced by this edit. |
-| `.opencode/commands/spec_kit/deep-review.md` | `validate_document.py` | 0 | VALID. Same pre-existing warning. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `python3 -c "import yaml; yaml.safe_load(...)"` | 0 | YAML_PARSE_OK. 14 top-level keys. |
+| `.opencode/commands/deep/start-research-loop.md` | `validate_document.py` | 0 | VALID. 1 pre-existing non-blocking warning: `non_sequential_numbering` at §0. Not introduced by this edit. |
+| `.opencode/commands/deep/start-review-loop.md` | `validate_document.py` | 0 | VALID. Same pre-existing warning. |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | `python3 -c "import yaml; yaml.safe_load(...)"` | 0 | YAML_PARSE_OK. 14 top-level keys. |
 
 ## Cross-check
 

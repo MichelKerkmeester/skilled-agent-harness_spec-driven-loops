@@ -22,14 +22,7 @@
       "opencode skill skills rename",
       "opencode agent agents rename",
       "opencode command commands rename",
-      "skill discovery fix",
-      "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/001-rename-opencode-dirs",
-      "skilled-agent-orchestration",
-      "z_archive",
-      "096-rename-opencode-dirs-to-plural",
-      "001-rename-opencode-dirs",
-      "096",
-      "rename"
+      "skill discovery fix"
     ],
     "key_topics": [
       "096",
@@ -45,7 +38,7 @@
       "discovery",
       "fix"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "planned",
     "key_files": [
       "resource-map.md",
@@ -175,7 +168,7 @@
     ],
     "causal_summary": "Per opencode official docs (`https://opencode.ai/docs/skills`, `/agents`, `/commands`), opencode's project-level discovery looks for **`.opencode/skills/`**, **`.opencode/agents/`**, **`.opencode/commands/`** (all plural). This repo uses singular for all three, so opencode's built-in discovery silently fails on every dispatch. This packet aligns the repo with opencode convention.",
     "created_at": "2026-05-18T07:49:27.231Z",
-    "last_save_at": "2026-05-19T13:51:38.775Z",
+    "last_save_at": "2026-05-23T11:55:14.675Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

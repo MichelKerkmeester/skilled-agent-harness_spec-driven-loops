@@ -2,43 +2,215 @@
   "schema_version": 1,
   "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/019-lineage-and-metadata-repair-runner",
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/019-lineage-and-metadata-repair-runner",
-  "parent_id": null,
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
+  "derived": {
     "trigger_phrases": [
       "lineage metadata repair runner",
-      "graph metadata v1 repair",
-      "importance_tier high migration",
+      "repair graph metadata",
       "E_LINEAGE repair",
-      "memory_index_scan metadata failures"
+      "importance_tier high migration",
+      "v0 graph metadata upgrade",
+      "lineage metadata repair plan",
+      "graph metadata migration plan",
+      "memory lineage logical key repair",
+      "lineage metadata repair tasks",
+      "repair graph metadata tasks",
+      "memory index scan repair tasks",
+      "lineage metadata repair checklist"
     ],
     "key_topics": [
       "lineage",
       "metadata",
       "repair",
-      "graph-metadata",
-      "importance-tier",
-      "memory-index-scan"
+      "runner",
+      "graph",
+      "high",
+      "migration",
+      "upgrade",
+      "plan",
+      "memory",
+      "logical",
+      "key"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/scripts/repair-graph-metadata.mjs",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      ".opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/004-deep-ai-council-playbook-graph-coverage/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/003-skill-advisor-render-103-alignment/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/109-subphase-recatalog-and-archive/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/110-auto-review-stretch-config-dedup-gates/001-mk-plugins-config-uplift/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/110-auto-review-stretch-config-dedup-gates/002-sk-code-review-uplift/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/111-base-files-renumbering-name-cleanup/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite/001-prerequisites-and-baseline/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite/002-commit-standards-definition/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite/003-sk-git-skill-update/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite/004-cli-devin-rewrite-prompts/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite/005-retroactive-rewrite-execution/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/048-cli-testing-playbooks/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/049-mcp-testing-playbooks/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/051-cli-opencode-providers/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/053-cli-skill-removal-mcp-clickup/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/054-sk-code-merger/graph-metadata.json"
     ],
-    "entities": [],
-    "causal_summary": "Migration runner normalized stale graph metadata, repaired scan-proven lineage identity drift, and reduced memory_index_scan failures from 503 to 3 residual description metadata failures.",
+    "entities": [
+      {
+        "name": "repair-graph-metadata.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/repair-graph-metadata.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/004-deep-ai-council-playbook-graph-coverage/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Metadata Repair Runner",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Direct",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "backups",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This is **Phase 19** of the spec memory stack. It handles the metadata cleanup class left after the sufficiency-gate investigation: stale lineage identities, stale graph metadata schemas, invalid importance tiers, and graph metadata that fails V8 because archived relationship fields still point at foreign packets.",
     "created_at": "2026-05-19T19:41:49Z",
-    "last_save_at": "2026-05-19T20:08:00Z",
+    "last_save_at": "2026-05-23T11:55:15.457Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

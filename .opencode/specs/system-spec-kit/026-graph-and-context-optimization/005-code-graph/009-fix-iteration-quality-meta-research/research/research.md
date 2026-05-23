@@ -1353,8 +1353,8 @@ STOP is not legal until the review report contains a closed-gate replay table th
 
 Live enforcement should mirror the reference in:
 
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:474-480`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:482-488`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:474-480`
+- `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:482-488`
 
 Add `g) fixCompletenessReplayGate` to the legal-stop decision tree and include it in `blockedBy` plus `gateResults` in the `blocked_stop` JSONL append.
 
@@ -1369,12 +1369,12 @@ Expected cycle compression: should catch v2-style wrong abstractions before a PA
 ```bash
 rg -n "Security-Sensitive Fix Overrides|requiredClosedFindingReplay|fixCompletenessReplay" \
   .opencode/skills/sk-deep-review/references/convergence.md \
-  .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml \
-  .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+  .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml \
+  .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml
 
 rg -n "blocked_stop.*fixCompletenessReplay|fix_completeness_replay_gate|fixCompletenessReplayGate" \
-  .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml \
-  .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+  .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml \
+  .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml
 ```
 
 ### R7 - Put finding class and affected surfaces into the deep-review Planning Packet
@@ -1383,8 +1383,8 @@ rg -n "blocked_stop.*fixCompletenessReplay|fix_completeness_replay_gate|fixCompl
 
 Modify deep-review synthesis instructions:
 
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1035-1038`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:1057-1060`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1035-1038`
+- `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:1057-1060`
 
 The Planning Packet currently must include `triggered`, `verdict`, `hasAdvisories`, `activeFindings`, `remediationWorkstreams`, `specSeed`, and `planSeed`. Extend it:
 
@@ -1394,8 +1394,8 @@ The packet MUST include: `triggered`, `verdict`, `hasAdvisories`, `activeFinding
 
 Also update Active Finding Registry instructions:
 
-- Auto: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1040-1043`
-- Confirm: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:1062-1065`
+- Auto: `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1040-1043`
+- Confirm: `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:1062-1065`
 
 Add `findingClass`, `scopeProofNeeded`, and `affectedSurfaceHints` to each active finding.
 
@@ -1409,8 +1409,8 @@ Expected cycle compression: prevents "review found it, plan forgot it" drift. Th
 
 ```bash
 rg -n "findingClasses|affectedSurfacesSeed|fixCompletenessRequired|scopeProofNeeded|affectedSurfaceHints" \
-  .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml \
-  .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+  .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml \
+  .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml
 ```
 
 ### R8 - Add an instance-only opt-out so the checklist does not become ceremony
@@ -1580,7 +1580,7 @@ Adopt R1 through R8 from iteration-005 as the implementation set.
 - `.opencode/skills/sk-code-review/references/review_core.md`: extend the shared finding schema.
 - `.opencode/skills/sk-code-review/references/fix-completeness-checklist.md`: new reusable checklist.
 - `.opencode/skills/sk-deep-review/references/convergence.md`: document security-sensitive closed-gate replay.
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` and `_confirm.yaml`: add the live `fixCompletenessReplayGate` and Planning Packet fields.
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` and `_confirm.yaml`: add the live `fixCompletenessReplayGate` and Planning Packet fields.
 
 **How to roll back**:
 
@@ -1604,8 +1604,8 @@ rg -n "findingClass|affectedSurfacesSeed|fixCompletenessRequired|fixCompleteness
   .opencode/skills/sk-deep-review/references/convergence.md \
   .opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml \
   .opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml \
-  .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml \
-  .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml \
+  .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml \
+  .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml \
   .opencode/skills/system-spec-kit/templates/manifest
 
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
@@ -1616,7 +1616,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
 ## Open questions remaining
 
 1. Should the legacy/nonexistent `.opencode/skills/system-spec-kit/scripts/templates/level_*/` path be recreated as compatibility stubs, or should the implementation explicitly document that canonical content belongs in `.opencode/skills/system-spec-kit/templates/manifest/*.md.tmpl`?
-2. Should `fixCompletenessReplayGate` be doc-only in `sk-deep-review/references/convergence.md` first, or immediately wired into both `spec_kit_deep-review_{auto,confirm}.yaml`? My recommendation is immediate YAML enforcement because the reference already says the YAML workflow is authoritative for live stop behavior.
+2. Should `fixCompletenessReplayGate` be doc-only in `sk-deep-review/references/convergence.md` first, or immediately wired into both `deep_start-review-loop_{auto,confirm}.yaml`? My recommendation is immediate YAML enforcement because the reference already says the YAML workflow is authoritative for live stop behavior.
 3. Should P2-only security/path findings trigger the full checklist? My recommendation is yes for security/path/public-response classes, no for ordinary docs/resource-map P2 unless a consumer/matrix axis exists.
 
 

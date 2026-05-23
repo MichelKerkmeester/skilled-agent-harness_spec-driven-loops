@@ -4,53 +4,205 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/009-spec-memory-runtime-retention-cleanup",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/002-telemetry-and-process-verification-harness",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/004-deep-loop-locks-state-and-recovery"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/020-cli-process-memory-leak-deep-research",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "spec-memory-runtime-retention-cleanup",
-      "memory leak phase 9"
+      "memory leak 9"
     ],
     "key_topics": [
-      "memory-leak",
-      "process-cleanup",
-      "spec-memory-runtime-retention-cleanup"
+      "spec-memory-runtime-retention-cleanup",
+      "memory",
+      "leak",
+      "phase",
+      "remediation",
+      "arc",
+      "scoped",
+      "source",
+      "evidence",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "013-embedder-testing-and-architecture"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "implementation-summary.md",
-      "description.json"
+      ".opencode/skills/system-spec-kit/mcp_server/lib/memory/bounded-cache.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/memory/audit-rotation.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/runtime/timer-registry.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/runtime/shutdown-hooks.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/runtime/memory-runtime-guard.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-worker.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/cache/tool-cache.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/code-graph-boundary.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/enrichment/retry-budget.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/errors/core.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/decision-audit.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/graph-lifecycle.ts"
     ],
     "entities": [
       {
-        "name": ".opencode/skills/system-spec-kit/mcp_server/",
-        "kind": "directory",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/",
-        "source": "manual"
+        "name": "bounded-cache.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/memory/bounded-cache.ts",
+        "source": "derived"
       },
       {
-        "name": ".opencode/skills/system-spec-kit/scripts/",
-        "kind": "directory",
-        "path": ".opencode/skills/system-spec-kit/scripts/",
-        "source": "manual"
+        "name": "audit-rotation.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/memory/audit-rotation.ts",
+        "source": "derived"
+      },
+      {
+        "name": "timer-registry.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/runtime/timer-registry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "shutdown-hooks.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/runtime/shutdown-hooks.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-runtime-guard.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/runtime/memory-runtime-guard.ts",
+        "source": "derived"
+      },
+      {
+        "name": "sidecar-client.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts",
+        "source": "derived"
+      },
+      {
+        "name": "sidecar-worker.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-worker.ts",
+        "source": "derived"
+      },
+      {
+        "name": "retry-manager.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-cache.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/cache/tool-cache.ts",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph-boundary.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/code-graph-boundary.ts",
+        "source": "derived"
+      },
+      {
+        "name": "retry-budget.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/enrichment/retry-budget.ts",
+        "source": "derived"
+      },
+      {
+        "name": "core.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/errors/core.ts",
+        "source": "derived"
+      },
+      {
+        "name": "shadow-evaluation-runtime.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts",
+        "source": "derived"
+      },
+      {
+        "name": "job-queue.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts",
+        "source": "derived"
+      },
+      {
+        "name": "content-router.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts",
+        "source": "derived"
+      },
+      {
+        "name": "bm25-index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "decision-audit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/decision-audit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-lifecycle.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/graph-lifecycle.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Memory Runtime Retention Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Bound Spec Kit Memory runtime leases, timers, caches, sessions, queues, retries, audits, and embedder sidecar cleanup.",
+    "causal_summary": "This is phase 9 of the memory leak remediation arc. It is scoped from source evidence in `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/020-cli-process-memory-leak-deep-research` and `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit`.",
     "created_at": "2026-05-22T10:20:00Z",
-    "last_save_at": "2026-05-22T10:20:00Z",
+    "last_save_at": "2026-05-23T11:55:15.653Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

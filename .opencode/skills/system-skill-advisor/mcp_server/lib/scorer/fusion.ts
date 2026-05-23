@@ -251,7 +251,7 @@ function isPlainFileSavePrompt(promptLower: string): boolean {
 function primaryIntentBonus(promptLower: string, recommendation: AdvisorScoredRecommendation): number {
   const R = SCORING_CALIBRATION.routing;
   if (/\bsemantic (code )?search\b/.test(promptLower)) {
-    const activeDeepResearch = /\/spec_kit:deep-research|\b(resume|continue|run|launch|start|iteration|convergence)\b.*\bdeep[- ]research\b/.test(promptLower);
+    const activeDeepResearch = /\/deep:start-research-loop|\b(resume|continue|run|launch|start|iteration|convergence)\b.*\bdeep[- ]research\b/.test(promptLower);
     if (recommendation.skill === 'mcp-coco-index') return R.semanticSearchCocoIndexBonus;
     if (!activeDeepResearch && recommendation.skill === 'sk-deep-research') return R.semanticSearchDeepResearchPenalty;
   }
@@ -275,8 +275,8 @@ function primaryIntentBonus(promptLower: string, recommendation: AdvisorScoredRe
     if (recommendation.skill === 'system-spec-kit') return R.corpusStudySpecKitBonus;
     if (recommendation.skill === 'sk-prompt' || recommendation.skill === 'mcp-chrome-devtools' || recommendation.skill === 'sk-doc') return R.corpusStudyOtherSkillsPenalty;
   }
-  if (promptLower.includes('/spec_kit:deep-research') && recommendation.skill === 'sk-deep-research') return R.slashCommandDeepResearchBonus;
-  if (promptLower.includes('/spec_kit:deep-review') && recommendation.skill === 'sk-deep-review') return R.slashCommandDeepReviewBonus;
+  if (promptLower.includes('/deep:start-research-loop') && recommendation.skill === 'sk-deep-research') return R.slashCommandDeepResearchBonus;
+  if (promptLower.includes('/deep:start-review-loop') && recommendation.skill === 'sk-deep-review') return R.slashCommandDeepReviewBonus;
   if (/\b(save context|save memory)\b/.test(promptLower)) {
     if (recommendation.skill === 'memory:save') return 0.55;
     if (recommendation.skill === 'system-spec-kit') return -0.25;

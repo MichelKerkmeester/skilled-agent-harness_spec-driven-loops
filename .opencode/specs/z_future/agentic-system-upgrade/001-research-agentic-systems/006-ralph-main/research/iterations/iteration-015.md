@@ -37,7 +37,7 @@ finding: `system-spec-kit` should SIMPLIFY its operator UX by presenting one rec
 - **Why the external approach might be better:** It lowers onboarding and reduces the chance that the user is forced to think about management surfaces before they have even resumed the actual task. [SOURCE: external/README.md:122-130]
 - **Why system-spec-kit's approach might still be correct:** The repo genuinely needs powerful recovery, analysis, and lifecycle management surfaces that Ralph does not attempt to provide. [SOURCE: .opencode/commands/memory/search.md:75-100] [SOURCE: .opencode/commands/memory/manage.md:48-61]
 - **Verdict:** SIMPLIFY
-- **If REFACTOR/PIVOT/SIMPLIFY — concrete proposal:** Reframe docs and command help around a small "default path" map: `/spec_kit:resume`, `/spec_kit:plan`, `/spec_kit:implement`, `/spec_kit:deep-research`, `/spec_kit:deep-review`, with memory commands presented as advanced or maintenance-only unless a workflow explicitly needs them.
+- **If REFACTOR/PIVOT/SIMPLIFY — concrete proposal:** Reframe docs and command help around a small "default path" map: `/spec_kit:resume`, `/spec_kit:plan`, `/spec_kit:implement`, `/deep:start-research-loop`, `/deep:start-review-loop`, with memory commands presented as advanced or maintenance-only unless a workflow explicitly needs them.
 - **Blast radius of the change:** medium
 - **Migration path:** Update quick-reference and command intros first, then trim duplicated branching text from individual command docs.
 

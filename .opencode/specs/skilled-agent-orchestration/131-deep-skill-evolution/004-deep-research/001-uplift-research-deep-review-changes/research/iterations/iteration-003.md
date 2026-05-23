@@ -45,7 +45,7 @@ Sample-checked 3 APPLY verdicts (C-020, C-021, C-022) and 3 ADAPT verdicts (C-00
 
 **C-022 (APPLY P1 - references/ creation):** CONFIRMED needs uplift. `.opencode/skills/deep-research/references/` does not exist (find_file_by_name returned no results). deep-loop-runtime has 4 reference files per v1.0.0 changelog line 50. Priority P1 correct.
 
-**C-008 (ADAPT P1 - Workflow YAML cutover verification):** CONFIRMED needs verification. `spec_kit_deep-research_auto.yaml` lines 412, 863 call deep-loop-runtime/scripts/convergence.cjs and upsert.cjs. Should verify query.cjs and status.cjs availability for manual debugging. Priority P1 correct.
+**C-008 (ADAPT P1 - Workflow YAML cutover verification):** CONFIRMED needs verification. `deep_start-research-loop_auto.yaml` lines 412, 863 call deep-loop-runtime/scripts/convergence.cjs and upsert.cjs. Should verify query.cjs and status.cjs availability for manual debugging. Priority P1 correct.
 
 **C-036 (ADAPT P1 - state_format.md field name fixes):** CONFIRMED needs uplift. deep-research/references/ does not exist yet (blocked by C-022). When created via C-022, should adopt runtime schema fixes from deep-loop-runtime/references/state_format.md. Priority P1 correct.
 

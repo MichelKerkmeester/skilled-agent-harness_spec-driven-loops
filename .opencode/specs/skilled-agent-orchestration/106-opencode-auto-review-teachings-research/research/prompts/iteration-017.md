@@ -129,8 +129,8 @@ Write to `research/iterations/iteration-017.md`:
 ### Skill Overviews
 | Skill | Lines | Activation | Iter cap | Cross-AI mechanism | Severity vocab |
 |-------|-------|-----------|----------|-------------------|----------------|
-| deep-research | <N> | user via /spec_kit:deep-research | <N> | <description> | <vocab> |
-| deep-review | <N> | user via /spec_kit:deep-review | <N> | <description> | P0/P1/P2 |
+| deep-research | <N> | user via /deep:start-research-loop | <N> | <description> | <vocab> |
+| deep-review | <N> | user via /deep:start-review-loop | <N> | <description> | P0/P1/P2 |
 | deep-agent-improvement | <N> | user via /improve:agent | <N> | <description> | <vocab> |
 
 ### Gap Matrix (17 mechanisms × 3 skills)

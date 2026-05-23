@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-04-24T17:15:00+02:00"
     last_updated_by: "codex"
     recent_action: "Completed T001-T037 execution tracking"
-    next_safe_action: "Run /spec_kit:deep-review:auto for audit"
+    next_safe_action: "Run /deep:start-review-loop:auto for audit"
     blockers: []
     completion_pct: 100
     open_questions: []
@@ -61,10 +61,10 @@ template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 - [x] T012 [P] Write vitest fixtures + snapshots in `scripts/tests/resource-map-extractor.vitest.ts`.
 - [x] T013 Wire `sk-deep-review/scripts/reduce-state.cjs` convergence branch to call the extractor.
 - [x] T014 Wire `sk-deep-research/scripts/reduce-state.cjs` convergence branch to call the extractor.
-- [x] T015 [P] Update `spec_kit_deep-review_auto.yaml` with `resource_map.emit` config + emission step.
-- [x] T016 [P] Update `spec_kit_deep-review_confirm.yaml` — same.
-- [x] T017 [P] Update `spec_kit_deep-research_auto.yaml` — same.
-- [x] T018 [P] Update `spec_kit_deep-research_confirm.yaml` — same.
+- [x] T015 [P] Update `deep_start-review-loop_auto.yaml` with `resource_map.emit` config + emission step.
+- [x] T016 [P] Update `deep_start-review-loop_confirm.yaml` — same.
+- [x] T017 [P] Update `deep_start-research-loop_auto.yaml` — same.
+- [x] T018 [P] Update `deep_start-research-loop_confirm.yaml` — same.
 - [x] T019 Update `sk-deep-review/SKILL.md` to document the new output surface and opt-out.
 - [x] T020 Update `sk-deep-research/SKILL.md` — same.
 - [x] T021 Update `command/spec_kit/deep-review.md` with a brief mention.
@@ -84,8 +84,8 @@ template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 
 - [x] T030 Run `npx vitest run tests/resource-map-extractor.vitest.ts` — exit 0.
 - [x] T031 Run `cd mcp_server && npm run typecheck` — exit 0.
-- [x] T032 Manual dispatch `/spec_kit:deep-review :auto` on a small fixture packet; confirm map output.
-- [x] T033 Manual dispatch `/spec_kit:deep-research :auto` on a small fixture packet; confirm map output.
+- [x] T032 Manual dispatch `/deep:start-review-loop :auto` on a small fixture packet; confirm map output.
+- [x] T033 Manual dispatch `/deep:start-research-loop :auto` on a small fixture packet; confirm map output.
 - [x] T034 Test opt-out: `--no-resource-map` skips emission cleanly.
 - [ ] T035 Run `validate.sh --strict` on this packet — exit 0. DEFERRED: blocked by pre-existing packet-doc integrity drift in spec.md/plan.md + missing citation in research/research.md, unrelated to this packet's implementation scope. See implementation-summary.md Verification row for details.
 - [x] T036 `grep -rn "resource-map"` across updated surfaces — coverage check.

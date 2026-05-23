@@ -71,7 +71,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 
 ### Continuation Charter (iters 8-12, Q10 — User Request)
 
-- [x] T201 User request: "5 more iterations of /spec_kit:deep-research with gpt-5.4 high agents in fast mode through cli-codex"; emit `continuation_requested` event with `newMaxIterations=12`
+- [x] T201 User request: "5 more iterations of /deep:start-research-loop with gpt-5.4 high agents in fast mode through cli-codex"; emit `continuation_requested` event with `newMaxIterations=12`
 - [x] T202 Iteration 8: Q10 synthesis matrix — cli-codex gpt-5.4 high → 9 findings, newInfoRatio 0.38 (closes Q10 with explicit simplification bonus)
 - [x] T203 Iteration 9: Q10 sequencing + prerequisites — cli-codex gpt-5.4 high → 6 findings, newInfoRatio 0.27 (maps matrix onto Public packet dependencies)
 - [x] T204 Iteration 10: smallest safe v1 per adopt-now lane — cli-codex gpt-5.4 high → 8 findings, newInfoRatio 0.24 (stress-tests sequence against implementation slices)

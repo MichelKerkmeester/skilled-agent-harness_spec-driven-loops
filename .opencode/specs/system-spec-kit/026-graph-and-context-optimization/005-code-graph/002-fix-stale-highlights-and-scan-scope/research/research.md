@@ -67,7 +67,7 @@ After confirming packet 012's dist build was current (`z_future` present in `dis
 
 ## 3. Methodology
 
-5 iterations of `/spec_kit:deep-research:auto` via cli-codex (gpt-5.4, reasoning=high, service_tier=fast). Each iteration ran with fresh context, externalized state via JSONL, and a structured prompt referencing prior findings inline.
+5 iterations of `/deep:start-research-loop:auto` via cli-codex (gpt-5.4, reasoning=high, service_tier=fast). Each iteration ran with fresh context, externalized state via JSONL, and a structured prompt referencing prior findings inline.
 
 | Iter | Focus | newInfoRatio | Status | Key output |
 |---|---|---|---|---|
@@ -479,7 +479,7 @@ describe('capturesToNodes dedupe (Bug #2 regression)', () => {
 | Condition | Suggested command |
 |---|---|
 | Implement the recommended fix | `/spec_kit:plan` then `/spec_kit:implement` against nested packet `012/002-incremental-fullscan-recovery` |
-| Want a code review of this research | `/spec_kit:deep-review` against the 012 packet |
+| Want a code review of this research | `/deep:start-review-loop` against the 012 packet |
 | Refresh memory index | `/memory:save` |
 
 ---

@@ -1,11 +1,11 @@
 # Deep Research Strategy -- 016 Foundational Runtime Deep Review
 
 > **Charter:** `016-foundational-runtime/001-initial-research/scratch/deep-research-batch-prompt.md` (5-domain batch-prompt, 50-iteration budget)
-> **Dispatcher:** cli-copilot gpt-5.4 high (manual wave dispatch, NOT `/spec_kit:deep-research` skill loop)
+> **Dispatcher:** cli-copilot gpt-5.4 high (manual wave dispatch, NOT `/deep:start-research-loop` skill loop)
 > **Worker:** `gh copilot --model gpt-5.4` via batch-prompt invocations
 > **Mode:** MANUAL_WAVE_DISPATCH (3 concurrent workers per wave, 16 waves + final wave of 2)
 > **Target:** 50 iterations (hard cap); convergence threshold 0.08 new-info-ratio
-> **Backfill note:** This strategy document was authored after the 50-iteration run completed, to bring the research folder into conformance with the standard `/spec_kit:deep-research` skill artifact shape. The run itself was manual and did not use the skill's state-reducer pipeline.
+> **Backfill note:** This strategy document was authored after the 50-iteration run completed, to bring the research folder into conformance with the standard `/deep:start-research-loop` skill artifact shape. The run itself was manual and did not use the skill's state-reducer pipeline.
 
 ---
 
@@ -91,7 +91,7 @@ Each iteration: for one race, determine theoretical vs practically-triggerable; 
 | Nominal iterations | 31-40 |
 | Actual iterations | 41-50 (D4 spilled into D5 nominal range because D4 yielded the densest novel findings) |
 | Focus | Prose/string contracts lacking mechanical validation: Gate 3 classifiers, skill-advisor command bridges, YAML `when:` predicates, `conflicts_with` edges, `--validate-only` cycle detectors, manual-playbook runner `Function(...)` eval |
-| Primary files | `AGENTS.md`, `spec_kit_plan_auto.yaml`, `spec_kit_plan_confirm.yaml`, `spec_kit_complete_auto.yaml`, `spec_kit_deep-research_auto.yaml`, `skill_advisor.py`, `skill_advisor_runtime.py`, `skill_graph_compiler.py`, `manual-playbook-runner.ts` |
+| Primary files | `AGENTS.md`, `spec_kit_plan_auto.yaml`, `spec_kit_plan_confirm.yaml`, `spec_kit_complete_auto.yaml`, `deep_start-research-loop_auto.yaml`, `skill_advisor.py`, `skill_advisor_runtime.py`, `skill_graph_compiler.py`, `manual-playbook-runner.ts` |
 
 Each iteration: identify one drift-prone string contract, assess failure-mode likelihood and impact, evaluate feasibility of a mechanical replacement.
 
@@ -108,7 +108,7 @@ Each iteration: identify one drift-prone string contract, assess failure-mode li
 
 ## Dispatch pattern
 
-Because iterations ran through `cli-copilot` rather than `/spec_kit:deep-research`, the natural unit of parallelism was a **wave of 3 concurrent copilot CLI invocations** (matching the user's account-level Copilot API concurrency cap).
+Because iterations ran through `cli-copilot` rather than `/deep:start-research-loop`, the natural unit of parallelism was a **wave of 3 concurrent copilot CLI invocations** (matching the user's account-level Copilot API concurrency cap).
 
 | Wave | Iterations | Concurrency | Worker notes |
 | ---- | ---------- | ----------- | ------------ |

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: deep-review :auto non-interactive setup bypass"
-description: "Add non-interactive setup-resolution branch to /spec_kit:deep-review entrypoint so :auto truly doesn't hang on stdin."
+description: "Add non-interactive setup-resolution branch to /deep:start-review-loop entrypoint so :auto truly doesn't hang on stdin."
 trigger_phrases:
   - "deep-review setup hang"
   - "F-Stage-E-001"
@@ -43,7 +43,7 @@ _memory:
 | **Testing** | Live dispatch via codex exec + opencode run; existing strict-validate |
 
 ### Overview
-Audit `.opencode/commands/spec_kit/deep-review.md` §0 UNIFIED SETUP PHASE. Implement a three-tier setup-resolution contract under `:auto`:
+Audit `.opencode/commands/deep/start-review-loop.md` §0 UNIFIED SETUP PHASE. Implement a three-tier setup-resolution contract under `:auto`:
 - **Tier 1 (resolve)**: when every required input resolves from `$ARGUMENTS`, `PRE-BOUND SETUP ANSWERS:` block, or documented defaults → skip the question block, load YAML.
 - **Tier 2 (targeted ask)**: when 1-2 fields are genuinely ambiguous AND no sensible default exists → emit ONE narrow question naming only the ambiguous field. Wait briefly; fall through to Tier 3 on stdin EOF.
 - **Tier 3 (fail fast)**: when truly unresolvable → exit non-zero with a clear named-missing-inputs error.
@@ -57,7 +57,7 @@ Verification scenarios cover all three tiers.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Existing deep-review setup flow audited (`.opencode/commands/spec_kit/deep-review.md` + YAML asset).
+- [ ] Existing deep-review setup flow audited (`.opencode/commands/deep/start-review-loop.md` + YAML asset).
 - [ ] Pre-binding marker schema decided (field names + types match existing Q0..Q-Exec).
 - [ ] Test target spec folder selected (a small Level 1 or Level 2 packet that can take a 3-iter deep-review fast).
 
@@ -82,7 +82,7 @@ Three-tier setup resolution under `:auto`, with `:confirm` keeping its existing 
 - **`:auto` Tier 3 (fail fast)**: truly unresolvable → exit non-zero with a named-missing-inputs error.
 
 ### Key Components
-- **`.opencode/commands/spec_kit/deep-review.md` §0**: tier selector; documents the pre-binding marker schema + per-field default-resolution rules.
+- **`.opencode/commands/deep/start-review-loop.md` §0**: tier selector; documents the pre-binding marker schema + per-field default-resolution rules.
 - **Pre-binding marker block** (`PRE-BOUND SETUP ANSWERS:`): structured block in the dispatched prompt the setup phase parses for setup field values.
 - **Per-field default-resolution rules**: for each setup field (target, mode, dims, maxIter, convergence, executor), document whether it has a sensible default, an inferable value, or requires a user choice.
 - **Ambiguity detector**: logic that flags a field as Tier-2-eligible only when (a) no flag, (b) no marker, (c) no default, but (d) the field is genuinely required.
@@ -106,8 +106,8 @@ Three-tier setup resolution under `:auto`, with `:confirm` keeping its existing 
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Audit `.opencode/commands/spec_kit/deep-review.md` §0 — identify all required inputs and their default-resolution paths.
-- [ ] Audit `assets/spec_kit_deep-review_auto.yaml` setup steps — note which fields it reads from `deep-review-config.json`.
+- [ ] Audit `.opencode/commands/deep/start-review-loop.md` §0 — identify all required inputs and their default-resolution paths.
+- [ ] Audit `assets/deep_start-review-loop_auto.yaml` setup steps — note which fields it reads from `deep-review-config.json`.
 - [ ] Decide pre-binding marker schema (block name + field syntax + ordering).
 
 ### Phase 2: Core Implementation
@@ -144,8 +144,8 @@ Three-tier setup resolution under `:auto`, with `:confirm` keeping its existing 
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `.opencode/commands/spec_kit/deep-review.md` | Internal | Green | Cannot edit setup phase. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Internal | Green | May need consumer-side adjustment. |
+| `.opencode/commands/deep/start-review-loop.md` | Internal | Green | Cannot edit setup phase. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Internal | Green | May need consumer-side adjustment. |
 | cli-codex + cli-opencode binaries | External | Green | Verification scenario needs both. |
 | Test target spec folder (a small Level 1 or 2 packet for fast iteration) | Internal | Green | Pick one; revert any changes after testing. |
 <!-- /ANCHOR:dependencies -->
@@ -156,7 +156,7 @@ Three-tier setup resolution under `:auto`, with `:confirm` keeping its existing 
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: Existing `:confirm` flow regresses, or `:auto` no longer loads YAML after the change.
-- **Procedure**: `git restore .opencode/commands/spec_kit/deep-review.md` + (if touched) `git restore assets/spec_kit_deep-review_auto.yaml`. Verification scenario remains for retry.
+- **Procedure**: `git restore .opencode/commands/deep/start-review-loop.md` + (if touched) `git restore assets/deep_start-review-loop_auto.yaml`. Verification scenario remains for retry.
 - **State preserved**: 028 spec folder, audit notes in scratch/, any partial scenario edits.
 <!-- /ANCHOR:rollback -->
 

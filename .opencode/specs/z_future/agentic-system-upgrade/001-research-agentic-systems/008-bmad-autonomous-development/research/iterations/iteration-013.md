@@ -12,7 +12,7 @@ Read BAD's setup asset, module metadata, and merge scripts, then compared that a
 ## Evidence
 - BAD setup writes shared config plus user config, prefixes harness-specific settings when multiple runtimes coexist, and stores module defaults as data in `module.yaml`. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/skills/bad/assets/module-setup.md:10-14] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/skills/bad/assets/module-setup.md:68-93] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/skills/bad/assets/module.yaml:5-38]
 - BAD's merge helpers apply anti-zombie replacement and scoped legacy migration only for the active module, which keeps configuration ownership localized. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/skills/bad/scripts/merge-config.py:6-16] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/skills/bad/scripts/merge-config.py:230-275] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/skills/bad/scripts/merge-help-csv.py:9-18] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/skills/bad/scripts/merge-help-csv.py:176-212]
-- Local `deep-research` still hard-codes core execution settings such as `model: opus`, tool budget, and state paths inside the workflow asset itself. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:66-89]
+- Local `deep-research` still hard-codes core execution settings such as `model: opus`, tool budget, and state paths inside the workflow asset itself. [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:66-89]
 - The local runtime/config surface is otherwise heavily env-var driven, including dozens of `SPECKIT_*` retrieval, graph, memory, and observability flags. [SOURCE: .opencode/skills/system-spec-kit/references/config/environment_variables.md:21-39] [SOURCE: .opencode/skills/system-spec-kit/references/config/environment_variables.md:164-219] [SOURCE: .opencode/skills/system-spec-kit/references/config/environment_variables.md:223-308]
 
 ## Analysis
@@ -35,7 +35,7 @@ confidence: high
 finding: BAD points to a missing middle layer in `system-spec-kit`: workflow-profile configuration. Local env vars are too low-level and per-command YAML is too duplicated. A shared harness-aware workflow profile would reduce drift without collapsing the existing runtime controls.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+- **Target file or module:** `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
 - **Change type:** architectural shift
 - **Blast radius:** large
 - **Prerequisites:** define ownership boundaries between workflow profiles and environment-variable flags

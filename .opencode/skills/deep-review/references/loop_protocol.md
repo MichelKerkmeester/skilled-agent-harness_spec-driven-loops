@@ -42,8 +42,8 @@ Each agent dispatch gets a fresh context window. State continuity comes from fil
 | Resource | Path | Purpose |
 |----------|------|---------|
 | Review contract | `assets/review_mode_contract.yaml` | Dimensions, verdicts, gates, protocols |
-| Auto workflow | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Unattended review loop |
-| Confirm workflow | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Step-by-step review with approval gates |
+| Auto workflow | `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Unattended review loop |
+| Confirm workflow | `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Step-by-step review with approval gates |
 | Agent | `@deep-review` (LEAF) | Single iteration executor; no sub-agents, no WebFetch |
 | Memory save | `generate-context.js` | Context preservation script |
 
@@ -647,7 +647,7 @@ On the next invocation:
 
 ### Confirm Mode Approval Gates
 
-In confirm mode (`spec_kit_deep-review_confirm.yaml`), the workflow adds explicit approval gates instead of relying on the pause sentinel:
+In confirm mode (`deep_start-review-loop_confirm.yaml`), the workflow adds explicit approval gates instead of relying on the pause sentinel:
 
 | Gate Location | Behavior |
 |---------------|----------|
@@ -805,8 +805,8 @@ Protocol documents from `deep-research` are cross-referenced, not duplicated:
 
 | Mode | Path |
 |------|------|
-| Auto (unattended) | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` |
-| Confirm (step-by-step) | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` |
+| Auto (unattended) | `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` |
+| Confirm (step-by-step) | `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` |
 
 ### Agent
 

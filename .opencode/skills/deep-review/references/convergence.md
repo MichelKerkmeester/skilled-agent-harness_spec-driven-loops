@@ -70,7 +70,7 @@ Every terminal stop and every blocked-stop vote MUST emit the shared stop contra
 
 #### blocked_stop Event (canonical, persisted)
 
-`step_emit_blocked_stop` in both `spec_kit_deep-review_{auto,confirm}.yaml` appends the following record to `deep-review-state.jsonl` whenever the legal-stop decision tree vetoes STOP. The gate names and their shapes are load-bearing — the reducer reads them verbatim:
+`step_emit_blocked_stop` in both `deep_start-review-loop_{auto,confirm}.yaml` appends the following record to `deep-review-state.jsonl` whenever the legal-stop decision tree vetoes STOP. The gate names and their shapes are load-bearing — the reducer reads them verbatim:
 
 ```json
 {
@@ -176,7 +176,7 @@ The recovery entry uses `stopReason=stuckRecovery` while the loop is in recovery
 
 ## 4. COMPOSITE CONVERGENCE
 
-Three independent signals each cast a stop/continue vote. Stop when the weighted stop-score meets or exceeds the consensus threshold. The signal set below matches the authoritative 3-signal vote in `spec_kit_deep-review_{auto,confirm}.yaml` `step_check_convergence` and the quick-reference convergence table — the 3rd signal is **dimension coverage**, not a standalone novelty ratio.
+Three independent signals each cast a stop/continue vote. Stop when the weighted stop-score meets or exceeds the consensus threshold. The signal set below matches the authoritative 3-signal vote in `deep_start-review-loop_{auto,confirm}.yaml` `step_check_convergence` and the quick-reference convergence table — the 3rd signal is **dimension coverage**, not a standalone novelty ratio.
 
 | Signal | Weight | Min Iterations | Measures |
 |--------|--------|---------------|----------|

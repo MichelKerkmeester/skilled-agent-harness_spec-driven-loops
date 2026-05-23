@@ -57,12 +57,12 @@ _memory:
 
 ### Problem Statement
 Two efficiency gaps in deep-review's multi-dimensional iteration model:
-1. **H-7 finding duplication**: When `/spec_kit:deep-review` runs across multiple dimensions (security, correctness, performance, etc.), the same finding (e.g. `auth.ts:42 missing input validation`) can be re-emitted by multiple dimensions. The reviewer doesn't realize the finding is already in state from a prior dimension.
+1. **H-7 finding duplication**: When `/deep:start-review-loop` runs across multiple dimensions (security, correctness, performance, etc.), the same finding (e.g. `auth.ts:42 missing input validation`) can be re-emitted by multiple dimensions. The reviewer doesn't realize the finding is already in state from a prior dimension.
 2. **H-9 evidence bloat**: For very large packets (>10MB total code under review), the prompt's evidence interpolation can blow past context windows. Truncating naively loses critical signal.
 
 ### Purpose (REVISED per council §10.4-5)
 
-- **H-7 (KEPT, extends existing dedup)**: deep-review synthesis at `spec_kit_deep-review_auto.yaml:1115-1124` ALREADY deduplicates by `file:line + normalized_title` — H-7 must EXTEND this contract, not invent a parallel sha256 path. Add a content-hash column to the existing dedup state so cross-dimension matches (same finding emitted by 2 dimensions) collapse to one entry with `dimensions: [security, correctness]` rather than 2 separate entries. Authoritative dedup happens in synthesis/reducer state, not in prompt hints to the reviewer.
+- **H-7 (KEPT, extends existing dedup)**: deep-review synthesis at `deep_start-review-loop_auto.yaml:1115-1124` ALREADY deduplicates by `file:line + normalized_title` — H-7 must EXTEND this contract, not invent a parallel sha256 path. Add a content-hash column to the existing dedup state so cross-dimension matches (same finding emitted by 2 dimensions) collapse to one entry with `dimensions: [security, correctness]` rather than 2 separate entries. Authoritative dedup happens in synthesis/reducer state, not in prompt hints to the reviewer.
 - **H-9 (DEFERRED per council §10.5)**: Current deep-review prompt packs use **state/metadata pointers** at `prompt_pack_iteration.md.tmpl:7-17`, not embedded file contents. The "bound the interpolation around candidate file:line" wording assumed an interpolation point that doesn't exist in the current architecture. Council §10.5: defer until a real evidence interpolation path is identified. Track as a follow-on in packet 111 if pursued.
 <!-- /ANCHOR:problem -->
 
@@ -74,7 +74,7 @@ Two efficiency gaps in deep-review's multi-dimensional iteration model:
 ### In Scope (REVISED per council §10.4 + §10.5)
 
 **H-7 finding-signature dedup — EXTEND existing synthesis dedup**:
-- The synthesis YAML at `spec_kit_deep-review_auto.yaml:1115-1124` (and confirm mirror) ALREADY deduplicates by `file:line + normalized_title`. H-7 extends this contract:
+- The synthesis YAML at `deep_start-review-loop_auto.yaml:1115-1124` (and confirm mirror) ALREADY deduplicates by `file:line + normalized_title`. H-7 extends this contract:
   - Add a `content_hash` field to each finding record in `deep-review-state.jsonl`: `sha256(file_path + line_range + finding_type + normalized_description_80chars)`
   - Synthesis step uses `content_hash` as the dedup primary key, with `file:line + normalized_title` as fallback for legacy records lacking the hash field
   - When the same content_hash appears across iterations from different dimensions, collapse to ONE entry with `dimensions: [<list>]` rather than emitting multiple records
@@ -97,8 +97,8 @@ Two efficiency gaps in deep-review's multi-dimensional iteration model:
 |------|-------------|-------------|
 | `.opencode/skills/deep-review/SKILL.md` | Modify | Document signature scheme + dedup contract + bounded-evidence threshold |
 | `.opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl` | Modify | Add `## Previously-Emitted Findings` block; add `MODE: bounded-evidence` prefix when applicable |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | Add pre-dispatch finding-signature aggregation step + bounded-evidence threshold check |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modify | Mirror of auto |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Modify | Add pre-dispatch finding-signature aggregation step + bounded-evidence threshold check |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Modify | Mirror of auto |
 <!-- /ANCHOR:scope -->
 
 ---

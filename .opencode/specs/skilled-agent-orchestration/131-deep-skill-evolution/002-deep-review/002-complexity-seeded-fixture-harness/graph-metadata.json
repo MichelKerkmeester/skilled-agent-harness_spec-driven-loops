@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Phase 001 found that `deep-review` can validate active findings while still failing to prove enough pre-finding candidate search. Without seeded failing fixtures first, later phases could add `searchLedger` fields, graph nodes, or reducer keys without proving that shallow no-finding review records are rejected.",
     "created_at": "2026-05-22T00:00:00Z",
-    "last_save_at": "2026-05-23T09:53:18.749092Z",
+    "last_save_at": "2026-05-23T11:55:14.254Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

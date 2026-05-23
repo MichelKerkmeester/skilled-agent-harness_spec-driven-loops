@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The system-code-graph skill READMEs were inconsistent after extraction and the packet 010 MCP rename. The root README still read like a code-folder README, the database README was blank, several code-section READMEs omitted current apply-mode or `mk-code-index` details, and some validation or related-resource links pointed at stale paths.",
     "created_at": "2026-05-14T17:43:07Z",
-    "last_save_at": "2026-05-19T13:51:39.090Z",
+    "last_save_at": "2026-05-23T11:55:15.083Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

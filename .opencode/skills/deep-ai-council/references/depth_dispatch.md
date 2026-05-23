@@ -17,9 +17,9 @@ Depth controls whether a council may launch seats in parallel or must deliberate
 
 ## Deep Mode (Iterative Multi-Topic)
 
-Deep mode is the iterative, multi-topic council workflow exposed through `/spec_kit:deep-council`. It is additive to the existing single-round council behavior: regular `ai-council` runs still produce one planning report and packet-local `ai-council/**` artifacts, while deep mode owns a session loop with topic-by-topic rounds, adjudicator-verdict stability checks, and a session-wide findings registry.
+Deep mode is the iterative, multi-topic council workflow exposed through `/deep:ask-ai-council`. It is additive to the existing single-round council behavior: regular `ai-council` runs still produce one planning report and packet-local `ai-council/**` artifacts, while deep mode owns a session loop with topic-by-topic rounds, adjudicator-verdict stability checks, and a session-wide findings registry.
 
-Use `/spec_kit:deep-council:auto` for non-interactive bounded runs when setup answers are pre-bound, and `/spec_kit:deep-council:confirm` when the operator should approve setup, loop, synthesis, and save gates. The command Markdown owns setup resolution and then loads `.opencode/commands/spec_kit/assets/spec_kit_deep-council_auto.yaml` or `.opencode/commands/spec_kit/assets/spec_kit_deep-council_confirm.yaml` for execution.
+Use `/deep:ask-ai-council:auto` for non-interactive bounded runs when setup answers are pre-bound, and `/deep:ask-ai-council:confirm` when the operator should approve setup, loop, synthesis, and save gates. The command Markdown owns setup resolution and then loads `.opencode/commands/deep/assets/deep_ask-ai-council_auto.yaml` or `.opencode/commands/deep/assets/deep_ask-ai-council_confirm.yaml` for execution.
 
 Deep mode uses the packet 129 three-level state hierarchy:
 

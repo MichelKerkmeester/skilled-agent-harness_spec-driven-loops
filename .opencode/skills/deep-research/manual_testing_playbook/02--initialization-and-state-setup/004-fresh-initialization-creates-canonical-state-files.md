@@ -45,7 +45,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate fresh deep-research initialization creates canonical config, JSONL state, and strategy files from live templates.
 ### Commands
 1. `bash: sed -n '1,220p' .opencode/skills/deep-research/references/loop_protocol.md`
-2. `bash: rg -n 'step_create_directories|step_create_config|step_create_state_log|step_create_strategy' .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+2. `bash: rg -n 'step_create_directories|step_create_config|step_create_state_log|step_create_strategy' .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml .opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`
 3. `bash: sed -n '1,220p' .opencode/skills/deep-research/assets/deep_research_config.json && sed -n '1,220p' .opencode/skills/deep-research/assets/deep_research_strategy.md`
 ### Expected
 The scratch directory is created, config and strategy come from the shipped assets, and the JSONL begins with a config record.
@@ -71,8 +71,8 @@ Check both YAML variants, verify the JSONL init step writes a config record, and
 | File | Role |
 |---|---|
 | `.opencode/skills/deep-research/references/loop_protocol.md` | Initialization lifecycle; use `ANCHOR:phase-initialization` |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Autonomous init steps; inspect `phase_init` |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Interactive init steps; inspect `phase_init` |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Autonomous init steps; inspect `phase_init` |
+| `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Interactive init steps; inspect `phase_init` |
 | `.opencode/skills/deep-research/assets/deep_research_config.json` | Config template |
 | `.opencode/skills/deep-research/assets/deep_research_strategy.md` | Strategy template |
 

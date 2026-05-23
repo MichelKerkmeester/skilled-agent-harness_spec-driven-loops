@@ -16,7 +16,7 @@ _memory:
     last_updated_at: "2026-05-01T05:50:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Spec authored with 20 research angles"
-    next_safe_action: "Invoke /spec_kit:deep-research:auto"
+    next_safe_action: "Invoke /deep:start-research-loop:auto"
     blockers: []
     completion_pct: 5
     open_questions: []
@@ -39,7 +39,7 @@ _memory:
 | **Created** | 2026-05-01 |
 | **Branch** | `main` (skip-branch) |
 | **Parent** | `005-review-remediation` |
-| **Mode** | Deep research (`/spec_kit:deep-research:auto`) |
+| **Mode** | Deep research (`/deep:start-research-loop:auto`) |
 | **Iterations** | 20 |
 | **Executor** | `cli-codex` `gpt-5.5` reasoning=`high` service-tier=null (normal speed) |
 | **Convergence** | 0.85 (allow earlier) |
@@ -56,7 +56,7 @@ After packets 042-045 closed the documented stress-coverage backlog and known dr
 
 ### Purpose
 
-Run a 20-iteration autonomous deep-research loop using the canonical `/spec_kit:deep-research:auto` workflow with `cli-codex` `gpt-5.5` at `high` reasoning. Each iteration investigates one of 20 pre-defined angles (5 per category × 4 categories). Findings must cite `file:line` evidence and classify each item as P0/P1/P2/none. The output is a triage report that feeds remediation packets (047+).
+Run a 20-iteration autonomous deep-research loop using the canonical `/deep:start-research-loop:auto` workflow with `cli-codex` `gpt-5.5` at `high` reasoning. Each iteration investigates one of 20 pre-defined angles (5 per category × 4 categories). Findings must cite `file:line` evidence and classify each item as P0/P1/P2/none. The output is a triage report that feeds remediation packets (047+).
 
 Categories:
 - **A. Production code bugs** (5 angles) — race conditions, leaks, silent errors, validation gaps
@@ -141,7 +141,7 @@ Categories:
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: 20-iteration deep research workflow completes via `/spec_kit:deep-research:auto`
+- **SC-001**: 20-iteration deep research workflow completes via `/deep:start-research-loop:auto`
 - **SC-002**: At least 30 findings, with P0/P1 prioritization and remediation paths
 - **SC-003**: `research/research.md` synthesizes findings into a remediation seed for follow-on packets
 - **SC-004**: `validate.sh --strict` exits 0 for the packet
@@ -236,7 +236,7 @@ Categories:
 
 - **Given** the workflow logs
 - **When** I inspect dispatch
-- **Then** dispatch went through `/spec_kit:deep-research:auto` (not a manual codex loop or Task-tool invocation of @deep-research)
+- **Then** dispatch went through `/deep:start-research-loop:auto` (not a manual codex loop or Task-tool invocation of @deep-research)
 
 ### AS-005: Strict validator passes
 

@@ -22,8 +22,8 @@ _memory:
       - ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/007-complexity-ledger-led-graph-vocab/checklist.md"
       - ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/007-complexity-ledger-led-graph-vocab/implementation-summary.md"
       - ".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml"
+      - ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml"
+      - ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml"
       - ".opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-graph.vitest.ts"
     session_dedup:
       fingerprint: "sha256:1160077400000000000000000000000000000000000000000000000000000000"
@@ -67,8 +67,8 @@ The deep-review auto and confirm workflow filters now preserve those node kinds 
 | File | Action | Purpose |
 |------|--------|---------|
 | `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts` | Modified | Added new review node kinds to `ReviewNodeKind` and `VALID_KINDS.review`. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modified | Preserves the five new node kinds during graph event normalization. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modified | Mirrors auto workflow graph event normalization. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Modified | Preserves the five new node kinds during graph event normalization. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Modified | Mirrors auto workflow graph event normalization. |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-graph.vitest.ts` | Modified | Converts pre-G failure assertion to post-G success and un-skips Phase G tests. |
 | `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/007-complexity-ledger-led-graph-vocab/spec.md` | Modified | Level 2 specification. |
 | `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/007-complexity-ledger-led-graph-vocab/plan.md` | Modified | Level 2 implementation plan. |
@@ -193,7 +193,7 @@ Files (explicit paths for `git add`):
 .opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/007-complexity-ledger-led-graph-vocab/graph-metadata.json
 .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts
 .opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts
-.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
-.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml
+.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml
 .opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-graph.vitest.ts
 ```

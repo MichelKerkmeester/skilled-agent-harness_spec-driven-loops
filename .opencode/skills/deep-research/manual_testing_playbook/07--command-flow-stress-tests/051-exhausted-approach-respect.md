@@ -37,7 +37,7 @@ Operators run the exact command sequence for `CP-051` and grade only file and gr
 2. Seed a complete research packet with config, state and strategy.
 3. Run Call A as the generic baseline.
 4. Reset the sandbox.
-5. Run Call B through `/spec_kit:deep-research:auto`.
+5. Run Call B through `/deep:start-research-loop:auto`.
 6. Validate resume, exhausted-approach and containment signals.
 
 ### Exact Runnable Command Sequence
@@ -82,7 +82,7 @@ EOF
 git status --porcelain > /tmp/cp-051-pre.txt
 cat > /tmp/cp-051-task.txt <<'EOF'
 Task ID: CP-051-TASK-001.
-In /tmp/cp-051-sandbox/, resume /spec_kit:deep-research:auto against pre-existing /tmp/cp-051-spec research state.
+In /tmp/cp-051-sandbox/, resume /deep:start-research-loop:auto against pre-existing /tmp/cp-051-spec research state.
 Stay strictly inside /tmp/cp-051-sandbox/ and /tmp/cp-051-spec/.
 Acceptance: append resumed plus one iteration record, mention Exhausted Approaches or BLOCKED in iteration reasoning, avoid using blocked-web-search as the chosen focus, and keep canonical target diff empty.
 Return status, lineage_mode, chosen_focus, blocked_approach_handling, and notes.
@@ -91,7 +91,7 @@ printf 'As @Task: %s\n' "$(cat /tmp/cp-051-task.txt)" > /tmp/cp-051-prompt-A.txt
 copilot -p "$(cat /tmp/cp-051-prompt-A.txt)" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-051-sandbox --add-dir /tmp/cp-051-spec 2>&1 | tee /tmp/cp-051-A-task.txt; echo "EXIT_A=${PIPESTATUS[0]}" | tee /tmp/cp-051-A-exit.txt
 rm -rf /tmp/cp-051-sandbox && cp -a /tmp/cp-051-sandbox-baseline /tmp/cp-051-sandbox
 cd /tmp/cp-051-sandbox
-copilot -p "/spec_kit:deep-research:auto \"CP-051 exhausted approach respect\" --spec-folder=/tmp/cp-051-spec --max-iterations=2 --convergence=0.05" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-051-sandbox --add-dir /tmp/cp-051-spec 2>&1 | tee /tmp/cp-051-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-051-B-exit.txt
+copilot -p "/deep:start-research-loop:auto \"CP-051 exhausted approach respect\" --spec-folder=/tmp/cp-051-spec --max-iterations=2 --convergence=0.05" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-051-sandbox --add-dir /tmp/cp-051-spec 2>&1 | tee /tmp/cp-051-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-051-B-exit.txt
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 diff -u /tmp/cp-051-sandbox-baseline/.opencode/agents/deep-research.md /tmp/cp-051-sandbox/.opencode/agents/deep-research.md > /tmp/cp-051-B-canonical.diff; echo "POST_B_CANONICAL_DIFF=$?" | tee /tmp/cp-051-B-canonical-exit.txt
 find /tmp/cp-051-spec -type f -print0 2>/dev/null | xargs -0 cat > /tmp/cp-051-B-artifacts.txt 2>/dev/null || touch /tmp/cp-051-B-artifacts.txt
@@ -109,8 +109,8 @@ diff /tmp/cp-051-pre.txt /tmp/cp-051-post.txt > /tmp/cp-051-tripwire.diff; echo 
 
 | File | Anchor |
 |---|---|
-| `.opencode/commands/spec_kit/deep-research.md:307-317` | command differences include externalized state and negative knowledge |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:197-217` | resume classification and event |
+| `.opencode/commands/deep/start-research-loop.md:307-317` | command differences include externalized state and negative knowledge |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:197-217` | resume classification and event |
 | `.opencode/agents/deep-research.md:77-97` | read state and hard-block missing state |
 | `.opencode/agents/deep-research.md:113-130` | focus selection and exhausted approach handling |
 | `.opencode/agents/deep-research.md:399-428` | always and never rules for state discipline |

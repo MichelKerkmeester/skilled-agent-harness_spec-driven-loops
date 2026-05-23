@@ -113,8 +113,8 @@ Central allow-list with mirrored workflow filter.
 - [x] Confirm upsert handler validation remains dynamic.
 
 ### Phase 3: Workflow Projection
-- [x] Extend `spec_kit_deep-review_auto.yaml` graph event node-kind filter.
-- [x] Mirror the same extension in `spec_kit_deep-review_confirm.yaml`.
+- [x] Extend `deep_start-review-loop_auto.yaml` graph event node-kind filter.
+- [x] Mirror the same extension in `deep_start-review-loop_confirm.yaml`.
 - [x] Keep edge relation filtering unchanged.
 
 ### Phase 4: Fixture Activation

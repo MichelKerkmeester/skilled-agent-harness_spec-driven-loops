@@ -53,13 +53,13 @@ contextType: "research"
 
 ### Finding F-001 — Add A Final Completion Gate And Rich Stop Reasons
 - Origin iteration: `iteration-001.md`
-- system-spec-kit target: `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`, `.opencode/commands/spec_kit/deep-research.md`, `.opencode/skills/sk-deep-research/references/loop_protocol.md`
+- system-spec-kit target: `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`, `.opencode/commands/deep/start-research-loop.md`, `.opencode/skills/sk-deep-research/references/loop_protocol.md`
 - Priority: must-have
 - Description: Keep convergence-based research, but add a stronger packet-level completion gate and richer terminal reasons instead of relying on "done" claims and thin stop semantics.
 
 ### Finding F-002 — Add Optional Runtime Session Continuity Beside Lineage
 - Origin iteration: `iteration-002.md`
-- system-spec-kit target: `.opencode/skills/sk-deep-research/references/state_format.md`, `.opencode/skills/sk-deep-research/assets/deep_research_config.json`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+- system-spec-kit target: `.opencode/skills/sk-deep-research/references/state_format.md`, `.opencode/skills/sk-deep-research/assets/deep_research_config.json`, `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
 - Priority: should-have
 - Description: Add a resumable runtime-session seam without replacing the existing artifact-based lineage model.
 
@@ -83,7 +83,7 @@ contextType: "research"
 
 ### Finding F-006 — Offer An Optional Council-Style Synthesis Profile
 - Origin iteration: `iteration-007.md`
-- system-spec-kit target: `.opencode/commands/spec_kit/deep-research.md`, `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md`, `.opencode/skills/system-spec-kit/templates/research.md`
+- system-spec-kit target: `.opencode/commands/deep/start-research-loop.md`, `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md`, `.opencode/skills/system-spec-kit/templates/research.md`
 - Priority: nice-to-have
 - Description: Import the external repo's agreement/disagreement synthesis shape as an optional advanced research mode, not as the default path.
 
@@ -110,6 +110,6 @@ contextType: "research"
 
 ### Finding F-010 — Separate Loop Completion From Memory Export
 - Origin iteration: `iteration-012.md`
-- system-spec-kit target: `.opencode/commands/spec_kit/deep-research.md`, `.opencode/commands/spec_kit/deep-review.md`, `.opencode/skills/system-spec-kit/references/memory/save_workflow.md`
+- system-spec-kit target: `.opencode/commands/deep/start-research-loop.md`, `.opencode/commands/deep/start-review-loop.md`, `.opencode/skills/system-spec-kit/references/memory/save_workflow.md`
 - Priority: should-have
 - Refactor verdict: REFACTOR

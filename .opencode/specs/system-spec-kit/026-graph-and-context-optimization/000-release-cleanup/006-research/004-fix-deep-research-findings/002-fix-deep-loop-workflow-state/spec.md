@@ -1,7 +1,7 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
 title: "Feature Specification: 002 Deep-Loop Workflow State-Machine Remediation [template:level_2/spec.md]"
-description: "Resolve five findings F-010-B5-01..04 and F-019-D4-01 across spec_kit_deep-research_auto.yaml, spec_kit_deep-review_auto.yaml, and generate-context.ts. Closes lock-leak on terminal paths, malformed fallback iteration records in both deep-loop YAMLs, missing --no-resource-map flag plumbing, and stale phase-parent metadata after child saves."
+description: "Resolve five findings F-010-B5-01..04 and F-019-D4-01 across deep_start-research-loop_auto.yaml, deep_start-review-loop_auto.yaml, and generate-context.ts. Closes lock-leak on terminal paths, malformed fallback iteration records in both deep-loop YAMLs, missing --no-resource-map flag plumbing, and stale phase-parent metadata after child saves."
 trigger_phrases:
   - "F-010-B5"
   - "F-019-D4"
@@ -21,8 +21,8 @@ _memory:
     next_safe_action: "Apply five surgical fixes then validate strict and run stress"
     blockers: []
     key_files:
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml"
+      - ".opencode/commands/deep/assets/deep_start-research-loop_auto.yaml"
+      - ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml"
       - ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -90,8 +90,8 @@ Land five surgical fixes so the deep-loop state machine is internally consistent
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | F-010-B5-01: lock cleanup on halt/cancel; F-010-B5-02: canonical fallback iteration record; F-010-B5-04: thread `resource_map.emit` from `--no-resource-map` flag through config |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | F-010-B5-03: canonical fallback iteration record; F-010-B5-04: same `--no-resource-map` plumbing |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Modify | F-010-B5-01: lock cleanup on halt/cancel; F-010-B5-02: canonical fallback iteration record; F-010-B5-04: thread `resource_map.emit` from `--no-resource-map` flag through config |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Modify | F-010-B5-03: canonical fallback iteration record; F-010-B5-04: same `--no-resource-map` plumbing |
 | `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts` | Modify | F-019-D4-01: when bubbling a child save up to the parent, refresh `parent_id`-side `children_ids` and `last_save_at` so derived metadata stays current |
 | `.opencode/skills/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts` | Modify | Add a test that verifies parent `children_ids` is updated when a child saves |
 <!-- /ANCHOR:scope -->
@@ -103,8 +103,8 @@ Land five surgical fixes so the deep-loop state machine is internally consistent
 
 ### Functional
 - FR-1 (F-010-B5-01): `step_acquire_lock` carries explicit cleanup language for halt and cancel paths so the lock file is released regardless of terminal classification outcome. The minimal fix adds an `on_halt` / `on_cancel` cleanup directive that releases the lock before the workflow halts.
-- FR-2 (F-010-B5-02): `on_missing_outputs.append_jsonl` in `spec_kit_deep-research_auto.yaml` emits an iteration record with the canonical fields documented in `state_format.md` §Iteration Records — at minimum `type, run, mode, status, focus, findingsCount, newInfoRatio, sessionId, generation, durationMs, timestamp`.
-- FR-3 (F-010-B5-03): `on_missing_outputs.append_jsonl` in `spec_kit_deep-review_auto.yaml` emits an iteration record that adds the missing `sessionId, generation, durationMs` fields. The existing record already has `mode, dimensions, filesReviewed, findingsSummary, findingsNew, traceabilityChecks` — keep them.
+- FR-2 (F-010-B5-02): `on_missing_outputs.append_jsonl` in `deep_start-research-loop_auto.yaml` emits an iteration record with the canonical fields documented in `state_format.md` §Iteration Records — at minimum `type, run, mode, status, focus, findingsCount, newInfoRatio, sessionId, generation, durationMs, timestamp`.
+- FR-3 (F-010-B5-03): `on_missing_outputs.append_jsonl` in `deep_start-review-loop_auto.yaml` emits an iteration record that adds the missing `sessionId, generation, durationMs` fields. The existing record already has `mode, dimensions, filesReviewed, findingsSummary, findingsNew, traceabilityChecks` — keep them.
 - FR-4 (F-010-B5-04): `step_create_config` in both YAMLs populates `resource_map.emit` from the `--no-resource-map` flag (default true; false when the flag is present). The `step_create_state_log` config record uses the same parsed value so the JSONL state log agrees with config.
 - FR-5 (F-019-D4-01): `updatePhaseParentPointersAfterSave` (and/or its `updatePhaseParentPointer` helper) refreshes the parent's `derived.last_save_at` and ensures the saved child's packet id appears in the parent's `children_ids` list (idempotent — no duplicate inserts).
 
@@ -173,9 +173,9 @@ Dependencies:
 
 | Finding | File | Effort (minutes) |
 |---------|------|-----------------:|
-| F-010-B5-01 | spec_kit_deep-research_auto.yaml (lock cleanup) | 15 |
-| F-010-B5-02 | spec_kit_deep-research_auto.yaml (fallback record) | 10 |
-| F-010-B5-03 | spec_kit_deep-review_auto.yaml (fallback record) | 10 |
+| F-010-B5-01 | deep_start-research-loop_auto.yaml (lock cleanup) | 15 |
+| F-010-B5-02 | deep_start-research-loop_auto.yaml (fallback record) | 10 |
+| F-010-B5-03 | deep_start-review-loop_auto.yaml (fallback record) | 10 |
 | F-010-B5-04 | both YAMLs (resource-map flag plumbing) | 15 |
 | F-019-D4-01 | generate-context.ts + test | 20 |
 | **Total** | | **~70** |

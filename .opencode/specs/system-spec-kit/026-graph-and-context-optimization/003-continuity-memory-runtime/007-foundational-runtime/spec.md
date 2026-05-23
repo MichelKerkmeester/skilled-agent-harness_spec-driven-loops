@@ -161,7 +161,7 @@ Summary of requirements:
 
 ### 4.2 Non-Functional
 
-- **NF-1**: Zero new P0 findings introduced by remediation commits (verified by `/spec_kit:deep-review :auto` ×7 per `feedback_phase_018_autonomous` (user memory)).
+- **NF-1**: Zero new P0 findings introduced by remediation commits (verified by `/deep:start-review-loop :auto` ×7 per `feedback_phase_018_autonomous` (user memory)).
 - **NF-2**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict` on the 017 spec folder exits 0 with 0 warnings after implementation completes.
 - **NF-3**: Wave A + Wave B atomic-ship constraints respected (no transient inconsistency windows in `description.json` vs `graph-metadata.json` or in `code-graph/*` handler vocabulary).
 - **NF-4**: All 170/179 completed CHK evidence markers in the 016 `checklist.md` rewrapped to canonical `]` closer BEFORE T-EVD-01 lint activates in `--strict` mode.
@@ -332,7 +332,7 @@ Cleared during segment-2 research (refuted / ruled-out — see segment-2-synthes
 - Runtime-behavior gap analysis: are there behaviors not covered by the 152-finding registry at all?
 - R55-P2-002/003/004 non-blocker maintainability parking-lot (Wave D deferral acceptable)
 
-If any question becomes blocking during implementation, escalate via `/spec_kit:deep-research [focused-topic]`.
+If any question becomes blocking during implementation, escalate via `/deep:start-research-loop [focused-topic]`.
 <!-- /ANCHOR:questions -->
 
 ---
@@ -375,7 +375,7 @@ Each child folder is self-contained. Run `/spec_kit:implement` targeting a speci
 - [ ] Populate `plan.md` with full 4-wave execution plan (already scaffolded in §6)
 - [ ] Populate `tasks.md` with all 27 tasks including acceptance criteria and evidence-file citations
 - [ ] Populate `checklist.md` with P0/P1/P2 verification items (canonical `]` closers only)
-- [ ] Run `/spec_kit:deep-review :auto` ×7 gate per `feedback_phase_018_autonomous` (user memory) after each wave code-complete
+- [ ] Run `/deep:start-review-loop :auto` ×7 gate per `feedback_phase_018_autonomous` (user memory) after each wave code-complete
 - [ ] Refresh `description.json.lastUpdated` + `graph-metadata.json.derived.*` via T-CNS-01 + T-W1-CNS-04 (ironically blocked on its own fix — initial save uses manual backfill)
 <!-- /ANCHOR:next-steps -->
 

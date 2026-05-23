@@ -2,7 +2,7 @@
 
 ## Dispatcher
 
-- Command: `/spec_kit:deep-review:auto /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/005-skill-reference-asset-doc-alignment --max-iterations=5`
+- Command: `/deep:start-review-loop:auto /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/005-skill-reference-asset-doc-alignment --max-iterations=5`
 - Iteration: 003 of 005
 - Focus dimension: `template-rendering-correctness`
 - Canonical review dimension: `correctness`

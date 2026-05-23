@@ -25,7 +25,7 @@ This causes `iteration-10.md` to sort before `iteration-2.md` (since "10" < "2" 
 **Evidence**: reduce-state.cjs:874 uses `.sort()` without comparator for iteration-\d+\.md files.
 
 ### DR-007: Missing resource_map detection step in confirm YAML (P2)
-**File**: `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+**File**: `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`
 **Severity**: P2 - functional gap
 
 The confirm YAML is missing the `step_detect_resource_map` step that exists in auto YAML (lines 156-165 in auto). Confirm mode jumps from `step_create_directories` to `step_resolve_canonical_names`, skipping resource map detection. Additionally, confirm YAML hardcodes `resource_map.emit: true` at line 213, ignoring the `--no-resource-map` flag that auto YAML honors via the `{resource_map_emit}` binding.
@@ -64,8 +64,8 @@ SKILL.md allowed-tools lists `memory_context` and `memory_search` as MCP tools. 
 - `.opencode/skills/deep-research/SKILL.md` (v1.12.0.0)
 - `.opencode/skills/deep-research/changelog/v1.12.0.0.md`
 - `.opencode/skills/deep-research/README.md`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+- `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
+- `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`
 - `.opencode/skills/deep-research/assets/prompt_pack_iteration.md.tmpl`
 - `.opencode/skills/deep-research/assets/deep_research_config.json`
 - `.opencode/skills/deep-research/scripts/tests/fixtures/interrupted-session/`

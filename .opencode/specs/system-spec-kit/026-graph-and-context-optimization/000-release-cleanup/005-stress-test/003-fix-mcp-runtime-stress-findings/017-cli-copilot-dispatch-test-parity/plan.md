@@ -44,7 +44,7 @@ _memory:
 
 Rewrite the cli-copilot portion of `mcp_server/tests/deep-loop/cli-matrix.vitest.ts` so the test exercises `buildCopilotPromptArg` directly across all 3 `targetAuthority` branches plus the YAML write-then-dispatch ordering. Drop the legacy `resolveCopilotPromptArg` / `-p "$(cat ...)"` assertions — they no longer reflect what the YAML auto-loop dispatch actually does. Update the smoke test to model the approved-authority happy path with `promptFileBody` written to disk before subprocess invocation.
 
-Production code stays byte-stable: `executor-config.ts`, `spec_kit_deep-research_auto.yaml`, and `spec_kit_deep-review_auto.yaml` are not touched. The packet only modifies the test file plus authoring of the standard Level 1 packet docs.
+Production code stays byte-stable: `executor-config.ts`, `deep_start-research-loop_auto.yaml`, and `deep_start-review-loop_auto.yaml` are not touched. The packet only modifies the test file plus authoring of the standard Level 1 packet docs.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -147,7 +147,7 @@ buildCopilotPromptArg input
 - [x] Run cli-matrix vitest: 13/13 pass
 - [x] Run full deep-loop test suite: 73/73 pass
 - [x] Run executor-config-copilot-target-authority vitest: 29/29 pass
-- [x] Confirm production code byte-stable: `executor-config.ts`, `spec_kit_deep-research_auto.yaml`, `spec_kit_deep-review_auto.yaml`
+- [x] Confirm production code byte-stable: `executor-config.ts`, `deep_start-research-loop_auto.yaml`, `deep_start-review-loop_auto.yaml`
 - [x] Author packet docs (spec, plan, tasks, checklist, implementation-summary, description.json, graph-metadata.json)
 - [x] Run `validate.sh --strict` on packet folder
 <!-- /ANCHOR:phases -->

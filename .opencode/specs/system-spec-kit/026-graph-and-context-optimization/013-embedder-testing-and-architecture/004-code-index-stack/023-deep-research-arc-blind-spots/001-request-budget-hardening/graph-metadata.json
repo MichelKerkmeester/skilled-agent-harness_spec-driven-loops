@@ -1,65 +1,207 @@
 {
   "schema_version": 1,
-  "packet_id": "023-deep-research-arc-blind-spots/001-request-budget-hardening",
-  "spec_folder": "023-deep-research-arc-blind-spots/001-request-budget-hardening",
-  "parent_id": "004-code-index-stack",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/001-request-budget-hardening",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/001-request-budget-hardening",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "020-deep-review-p1-p2-remediation"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "005-A",
-      "015-A",
-      "015-C",
-      "020-C",
-      "023-deep-research-arc-blind-spots/002-retrieval-observability"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "023E request budget hardening",
-      "mcp-coco-index SearchBudget",
+      "mcp-coco-index search budget",
       "SearchBudgetExceeded",
-      "fetch_k clamp"
+      "023E request budget plan",
+      "SearchBudget plan",
+      "023E request budget tasks",
+      "SearchBudget tasks",
+      "023E request budget checklist",
+      "SearchBudget verification",
+      "023E request budget implementation summary",
+      "SearchBudgetExceeded implementation",
+      "mcp-coco-index request budget hardening"
     ],
     "key_topics": [
-      "request budget",
-      "offset cap",
-      "limit cap",
-      "fetch_k clamp",
-      "path fullscan refusal",
-      "language fanout clamp",
-      "CLI MCP validation parity"
+      "023e",
+      "request",
+      "budget",
+      "hardening",
+      "mcp-coco-index",
+      "search",
+      "searchbudgetexceeded",
+      "plan",
+      "searchbudget",
+      "tasks",
+      "checklist",
+      "verification"
     ],
     "importance_tier": "important",
-    "status": "completed",
+    "status": "complete",
     "key_files": [
-      "spec.md",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/server.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_search_budget.py",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/search_budget.py",
-      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_search_budget.py"
+      "spec.md"
     ],
     "entities": [
-      "SearchBudget",
-      "SearchBudgetedRequest",
-      "SearchBudgetExceeded",
-      "validate_search_budget",
-      "COCOINDEX_SEARCH_MAX_OFFSET",
-      "COCOINDEX_SEARCH_MAX_LIMIT",
-      "COCOINDEX_SEARCH_MAX_FETCH_K",
-      "COCOINDEX_SEARCH_MAX_LANGUAGES",
-      "COCOINDEX_SEARCH_PATH_FULLSCAN_ALLOWED",
-      "COCOINDEX_SEARCH_TIMEOUT_SEC"
+      {
+        "name": "server.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/server.py",
+        "source": "derived"
+      },
+      {
+        "name": "cli.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_search_budget.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_search_budget.py",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Request Budget Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Paths",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Central",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Budget Model",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Regression Tests",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Commands",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
     ],
-    "causal_summary": "Unbounded offset/limit-derived fetch_k, global wildcard path fullscans, and per-language KNN fanout allowed pathological search requests. This packet centralizes validation and clamps bounded fanout before expensive retrieval work begins.",
+    "causal_summary": "Add central request-budget validation before expensive retrieval work begins so pathological requests fail fast or clamp bounded fanout. The hardening closes FINDING-005-A, FINDING-015-A, FINDING-015-C, and FINDING-020-C without touching observability counters or unrelated retrieval components.",
     "created_at": "2026-05-19T20:10:29Z",
-    "last_save_at": "2026-05-19T20:10:29Z",
-    "save_lineage": "manual_packet_update",
+    "last_save_at": "2026-05-23T11:55:15.533Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

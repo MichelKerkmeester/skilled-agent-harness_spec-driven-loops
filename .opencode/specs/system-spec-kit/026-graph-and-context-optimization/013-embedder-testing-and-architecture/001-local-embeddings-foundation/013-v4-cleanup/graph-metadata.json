@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/013-v4-cleanup",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/013-v4-cleanup",
-  "parent_id": "014",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/013-v4-cleanup",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/013-v4-cleanup",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "012"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
@@ -15,34 +15,188 @@
     "trigger_phrases": [
       "013 v4 cleanup",
       "v4 deep-review cleanup",
-      "memory health dtype"
+      "memory health dtype",
+      "013 v4 cleanup plan",
+      "013 v4 cleanup tasks",
+      "014/013 v4 cleanup done",
+      "memory health dtype shipped"
     ],
     "key_topics": [
-      "voyage-guard-final-site",
-      "memory-health-dtype",
-      "doc-currency",
-      "mutable-default-fix",
-      "factory-dtype-option",
-      "codex-config-currency"
+      "013",
+      "cleanup",
+      "deep-review",
+      "memory",
+      "health",
+      "dtype",
+      "plan",
+      "tasks",
+      "014",
+      "done",
+      "shipped",
+      "close"
     ],
     "importance_tier": "important",
     "status": "complete",
-    "last_active_child_id": null,
     "key_files": [
+      ".codex/config.toml",
+      "scratch/codex-config-patch.md",
+      "shared/embeddings/factory.ts",
+      "shared/types.ts",
+      "mcp_server/handlers/memory-crud-health.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      "warnIfVoyageWouldShadowLocal",
-      "HfLocalProvider",
-      "memory_health",
-      "SearchResult"
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "codex-config-patch.md",
+        "kind": "doc",
+        "path": "scratch/codex-config-patch.md",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": "shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": "shared/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-crud-health.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-crud-health.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Execute",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Surgical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
     ],
-    "causal_summary": "v4 cleanup closes remaining Setup A review findings by moving Voyage shadow warnings ahead of startup provider resolution, exposing dtype through memory_health, making hf-local dtype programmatic, fixing a mutable msgspec default, and aligning docs with 42aa114e3.",
+    "causal_summary": "Close the v4 cleanup layer without expanding scope: make provider startup warnings fire before auto-resolution, expose dtype in `memory_health`, let programmatic hf-local callers pass dtype, fix the mutable default, and align 012/parent docs with the shipped 42aa114e3 state.",
     "created_at": "2026-05-13T09:45:00Z",
-    "last_save_at": "2026-05-13T09:45:00Z",
+    "last_save_at": "2026-05-23T11:55:15.346Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T09:45:00Z",
     "source_docs": [

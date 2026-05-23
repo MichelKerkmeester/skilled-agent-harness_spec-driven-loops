@@ -68,7 +68,7 @@ Answer the remaining uncertainty for 017 swarm mailbox artifacts study with boun
 |-----------|-------------|-------------|
 | `.opencode/agents/orchestrate.md` | Investigate | Potential touchpoint for the bounded study |
 | `.opencode/skills/system-spec-kit/assets/parallel_dispatch_config.md` | Investigate | Potential touchpoint for the bounded study |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Investigate | Potential touchpoint for the bounded study |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Investigate | Potential touchpoint for the bounded study |
 <!-- /ANCHOR:scope -->
 
 ---

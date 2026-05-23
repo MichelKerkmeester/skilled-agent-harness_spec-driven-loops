@@ -122,7 +122,7 @@ Drive system-skill-advisor to docs-quality parity with the sk-doc baseline: mark
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 001 | `001-documentation-quality-audit-research/` | 20-iter `/spec_kit:deep-research:auto` via cli-devin SWE 1.6. Surfaces all drift, broken refs, content gaps, HVR violations, alignment misses. Produces ranked findings ledger that gates 002-005. | In Progress |
+| 001 | `001-documentation-quality-audit-research/` | 20-iter `/deep:start-research-loop:auto` via cli-devin SWE 1.6. Surfaces all drift, broken refs, content gaps, HVR violations, alignment misses. Produces ranked findings ledger that gates 002-005. | In Progress |
 | 002 | `002-fix-documentation-bugs/` | Audit-confirmed P0 bug fixes (ADR-001 path, hook reference link, build command path, 9 nested README audit-packet rows). | Pending (gated by 001 synthesis) |
 | 003 | `003-readme-problem-first-rewrite/` | Full README.md rewrite: marketing-style, HVR-compliant, ~2000 words, 9 numbered sections, peer-anchored on system-code-graph/README.md. | Pending |
 | 004 | `004-sk-doc-type-validation-alignment/` | Per-file 1:1 sk-doc template alignment across SKILL.md, ARCHITECTURE.md, INSTALL_GUIDE.md, references/*, feature_catalog/*, manual_testing_playbook/*. | Pending |

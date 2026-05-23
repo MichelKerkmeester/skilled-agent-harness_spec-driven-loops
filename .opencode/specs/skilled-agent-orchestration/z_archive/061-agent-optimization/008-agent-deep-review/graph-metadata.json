@@ -14,17 +14,7 @@
   "derived": {
     "trigger_phrases": [
       "008-agent-deep-review",
-      "deep-review optimization",
-      "skilled-agent-orchestration/z_archive/061-agent-optimization/008-agent-deep-review",
-      "skilled-agent-orchestration",
-      "z_archive",
-      "061-agent-optimization",
-      "deep-review",
-      "agent",
-      "optimization",
-      "sub-phase",
-      "under",
-      "applying"
+      "deep-review optimization"
     ],
     "key_topics": [
       "008-agent-deep-review",
@@ -40,7 +30,7 @@
       "discipline",
       "convergence"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "complete",
     "key_files": [
       ".opencode/agents/deep-review.md",
@@ -200,7 +190,7 @@
     ],
     "causal_summary": "Improvement focus: **LEAF autonomous review loop; P0/P1/P2 severity discipline; convergence detection**. LEAF dispatched ONLY by /spec_kit:deep-review. Same command-orchestrator architecture as @improve-agent.",
     "created_at": "2026-05-18T07:49:27.108Z",
-    "last_save_at": "2026-05-19T13:51:38.617Z",
+    "last_save_at": "2026-05-23T11:55:14.517Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

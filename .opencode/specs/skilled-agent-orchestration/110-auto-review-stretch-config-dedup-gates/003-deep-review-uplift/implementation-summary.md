@@ -16,8 +16,8 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/deep-review/SKILL.md"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml"
+      - ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml"
+      - ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml"
     session_dedup:
       fingerprint: "sha256:c99cb4c72278a2b9978644c12d0ae3f5432e81584c34b5036b88d7cfd49eaaa6"
       session_id: "2026-05-16-110-003-dr-uplift-summary"
@@ -58,7 +58,7 @@ _memory:
   - **§9.3 Emission Requirement**: every `findingDetails[]` entry must include `content_hash`
 - Added **§10 H-9 DEFERRED**: explicit deferral to packet 111+ with rationale
 
-### spec_kit_deep-review_auto.yaml
+### deep_start-review-loop_auto.yaml
 - Updated `step_build_finding_registry` algorithm (6 steps, was 5):
   1. Extract findings from JSONL delta files (was "iteration files")
   2. **NEW**: Compute content_hash for each finding with formula
@@ -68,7 +68,7 @@ _memory:
   6. Count active findings
 - Content hash formula: `sha256(file_path + "\u001f" + line_range + "\u001f" + finding_type + "\u001f" + normalized_description_80chars)`
 
-### spec_kit_deep-review_confirm.yaml
+### deep_start-review-loop_confirm.yaml
 - Identical updates to the auto variant
 
 ### H-7 Finding Dedup Details

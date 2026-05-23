@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Loop iterations 2-10 of /spec_kit:deep-research:auto for 011-research-post-stress-finding-followups.
+# Loop iterations 2-10 of /deep:start-research-loop:auto for 011-research-post-stress-finding-followups.
 # Autonomous: dispatches each codex exec, waits for completion, appends state events.
 # Run from repo root.
 

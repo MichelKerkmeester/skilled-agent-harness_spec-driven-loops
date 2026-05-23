@@ -42,8 +42,8 @@ function readWorkspaceFile(relativePath: string): string {
   ];
 
   const commandAssets = [
-    '.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml',
-    '.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml',
+    '.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml',
+    '.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml',
   ];
 
   it('keeps primary docs aligned on canonical artifacts and the machine-readable capability source', () => {

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Loop iterations 2-10 of /spec_kit:deep-review:auto for 012-015 integrated review.
+# Loop iterations 2-10 of /deep:start-review-loop:auto for 012-015 integrated review.
 # Same shape as 011/research/run-iterations.sh; review/ paths instead of research/.
 
 set -uo pipefail
@@ -73,7 +73,7 @@ $(echo -e "${PRIOR_ITERS}")
 - ${PWD}/.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts
 - ${PWD}/.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts
 - ${PWD}/.opencode/skills/system-spec-kit/mcp_server/tests/{executor-config-copilot-target-authority,code-graph-degraded-sweep,code-graph-status-readiness-snapshot,code-graph-context-cocoindex-telemetry-passthrough}.vitest.ts
-- ${PWD}/.opencode/commands/spec_kit/assets/spec_kit_deep-{research,review}_auto.yaml
+- ${PWD}/.opencode/commands/deep/assets/deep_{start-research-loop,review}_auto.yaml
 - 28 catalog/playbook files at \`${PWD}/.opencode/skills/system-spec-kit/{feature_catalog,manual_testing_playbook}/\` (recently committed in b227544ca)
 
 ## Iteration ${N} focus

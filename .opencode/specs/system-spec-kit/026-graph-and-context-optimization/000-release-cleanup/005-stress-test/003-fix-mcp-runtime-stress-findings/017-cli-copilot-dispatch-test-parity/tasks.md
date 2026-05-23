@@ -55,7 +55,7 @@ _memory:
   - **Files**: `mcp_server/lib/deep-loop/executor-config.ts:101-348`, `mcp_server/tests/executor-config-copilot-target-authority.vitest.ts`
   - **Acceptance**: `BuildCopilotPromptArgResult` shape (`argv`, `promptBody`, `promptFileBody?`, `enforcedPlanOnly`) confirmed; sibling test patterns adopted (e.g. `expect(built.argv[0]).toBe('-p')`).
 - [x] **T004** [P] Read both `_auto.yaml` files to confirm the actual write-then-dispatch ordering and the literal anchors the static-grep test will key on.
-  - **Files**: `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` (lines ~595-660), `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` (lines ~669-720)
+  - **Files**: `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` (lines ~595-660), `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` (lines ~669-720)
   - **Acceptance**: Both files contain `if (built.promptFileBody !== undefined)` + `writeFileSync(promptPath, built.promptFileBody, 'utf8')` BEFORE `spawnSync('copilot'` (deep-review) or `command: 'copilot'` (deep-research). Confirmed by grep + manual inspection.
 <!-- /ANCHOR:phase-1 -->
 
@@ -83,7 +83,7 @@ _memory:
 - [x] **T106** Update smoke test (`exercises the large-prompt ... with a real subprocess and artifact writes`) to model approved-authority + large-prompt + `writeFileSync(promptPath, built.promptFileBody)` happy path.
   - **Subprocess change**: regex shifts from `/@(.+) and follow them exactly/` to `/^@(.+)$/`; subprocess additionally asserts the on-disk file contains `## TARGET AUTHORITY` and `Approved spec folder: <APPROVED_FOLDER>`.
   - **Acceptance**: Smoke test passes; outer test reads `iterationPath` and confirms preamble + folder + original body all present in the file the subprocess wrote back.
-- [x] **T107** Confirm production code byte-stable: `executor-config.ts`, `spec_kit_deep-research_auto.yaml`, `spec_kit_deep-review_auto.yaml` not modified.
+- [x] **T107** Confirm production code byte-stable: `executor-config.ts`, `deep_start-research-loop_auto.yaml`, `deep_start-review-loop_auto.yaml` not modified.
   - **Acceptance**: `git diff --stat` shows only `cli-matrix.vitest.ts` and packet docs; no production files in the diff.
 <!-- /ANCHOR:phase-2 -->
 

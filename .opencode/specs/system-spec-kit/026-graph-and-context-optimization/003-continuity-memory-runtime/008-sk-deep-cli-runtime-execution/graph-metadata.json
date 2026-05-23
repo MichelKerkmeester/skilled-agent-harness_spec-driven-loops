@@ -13,14 +13,31 @@
   },
   "derived": {
     "trigger_phrases": [
-      "sk deep cli runtime execution",
-      "sk deep cli runtime execution graph metadata"
+      "cli runtime executors",
+      "cli executor selection",
+      "cli-codex deep research",
+      "cli-copilot executor",
+      "cli-gemini executor",
+      "cli-claude-code executor",
+      "executor kind config",
+      "cli runtime executors plan",
+      "cli executor plan",
+      "cli runtime executors tasks",
+      "cli runtime executors summary"
     ],
     "key_topics": [
-      "deep",
       "cli",
       "runtime",
-      "execution"
+      "executors",
+      "executor",
+      "selection",
+      "cli-codex",
+      "deep",
+      "research",
+      "cli-copilot",
+      "cli-gemini",
+      "cli-claude-code",
+      "kind"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -30,10 +47,155 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "entities": [],
-    "causal_summary": "Graph metadata for the current packet.",
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Executors",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Iterative Skills",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "fail-fast",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Artifacts",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. ARC OVERVIEW",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. CROSS-CUTTING INVARIANTS",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. CROSS-REFERENCES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Child Task Ledgers",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Downstream",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "description:",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger_phrases:   -",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "importance_tier:",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Shipped",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Metrics",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Downstream Remediation",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Merged packet covering the CLI executor arc: 001-executor-feature (ex-018, native + cli-codex) plus 002-runtime-matrix (ex-019 + cli-gemini + cli-claude-code). Shared executor-config.ts, dispatch YAML branching, per-kind flag validation.",
     "created_at": "2026-04-18T14:39:22.815Z",
-    "last_save_at": "2026-05-19T13:51:39.026Z",
+    "last_save_at": "2026-05-23T11:55:15.007Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

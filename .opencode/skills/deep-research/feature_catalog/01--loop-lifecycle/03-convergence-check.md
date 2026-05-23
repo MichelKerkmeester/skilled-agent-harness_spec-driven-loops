@@ -29,8 +29,8 @@ That legal-stop bundle is workflow-visible, not only prose guidance. The YAML wo
 |---|---|---|
 | `.opencode/skills/deep-research/references/convergence.md` | Reference | Defines the hard stops, weighted signals, legal-stop bundle, and stop labels. |
 | `.opencode/skills/deep-research/references/loop_protocol.md` | Reference | Defines the loop ordering, guard step, and blocked-stop persistence contract. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Workflow | Runs convergence evaluation, graph convergence calls, and blocked-stop emission in autonomous mode. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Workflow | Mirrors the same convergence and blocked-stop flow with confirm-mode approvals. |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Workflow | Runs convergence evaluation, graph convergence calls, and blocked-stop emission in autonomous mode. |
+| `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Workflow | Mirrors the same convergence and blocked-stop flow with confirm-mode approvals. |
 
 ### Validation And Tests
 

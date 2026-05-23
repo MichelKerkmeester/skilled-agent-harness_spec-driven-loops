@@ -1,6 +1,6 @@
 ---
 title: "Review Report: 010-doctor-update-orchestrator (phase parent + 001 + 002)"
-description: "Canonical synthesis of /spec_kit:deep-review:auto on the 013 phase parent — 10 iterations, cli-opencode + deepseek/deepseek-v4-pro (variant=high), adjudicated CONDITIONAL verdict, 0 P0 / 30 P1 / 30 P2."
+description: "Canonical synthesis of /deep:start-review-loop:auto on the 013 phase parent — 10 iterations, cli-opencode + deepseek/deepseek-v4-pro (variant=high), adjudicated CONDITIONAL verdict, 0 P0 / 30 P1 / 30 P2."
 trigger_phrases:
   - "013 deep review"
   - "013 doctor review report"
@@ -224,8 +224,8 @@ All four configured dimensions reviewed. Convergence score 1.0. Coverage age ≥
 
 ## 7. PROVENANCE & METHODOLOGY
 
-- **Command**: `/spec_kit:deep-review:auto` (hardened post-RM-8 prompt template commit `ab9f25ae5`)
-- **Workflow YAML**: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+- **Command**: `/deep:start-review-loop:auto` (hardened post-RM-8 prompt template commit `ab9f25ae5`)
+- **Workflow YAML**: `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
 - **Iteration prompt template**: `.opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl` (hardened)
 - **Executor**: `cli-opencode` v1.14.48 with `--model deepseek/deepseek-v4-pro --variant high --agent general --format json --dangerously-skip-permissions --pure`
 - **Dispatch isolation**: git worktree at `/Users/michelkerkmeester/MEGA/Development/Code_Environment/013-doctor-review` (detached HEAD `ab9f25ae52`)

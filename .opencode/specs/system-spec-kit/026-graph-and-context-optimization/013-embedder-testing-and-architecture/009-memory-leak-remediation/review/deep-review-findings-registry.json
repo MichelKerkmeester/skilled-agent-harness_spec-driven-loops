@@ -174,8 +174,8 @@
       "fingerprint": "traceability:cli-dispatch:deep-review-branches-bypass-supervisor",
       "files": [
         ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/003-cli-dispatch-containment-and-recursion-guards/spec.md:119",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:704",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:704",
+        ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:704",
+        ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:704",
         ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-audit.ts:444"
       ],
       "status": "active"
@@ -617,11 +617,11 @@
       "fingerprint": "maintainability:deep-review-executor-config:type-kind-schema-drift",
       "files": [
         ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:21",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:656",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:697",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:937",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:657",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:863",
+        ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:656",
+        ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:697",
+        ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:937",
+        ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:657",
+        ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:863",
         ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/review/deep-review-config.json:14"
       ],
       "status": "active"

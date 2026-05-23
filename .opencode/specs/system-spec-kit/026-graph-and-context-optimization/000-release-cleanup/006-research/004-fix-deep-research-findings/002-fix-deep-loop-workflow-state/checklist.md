@@ -92,9 +92,9 @@ This packet remediates four YAML workflow findings plus one TS bookkeeping bug. 
 
 | ID | File | Evidence |
 |----|------|----------|
-| F-010-B5-01 (P1) | spec_kit_deep-research_auto.yaml:179-186 | Lock cleanup directive present on halt/cancel paths with `<!-- F-010-B5-01 -->` marker |
-| F-010-B5-02 (P1) | spec_kit_deep-research_auto.yaml:851-855 | Fallback iteration record carries canonical fields with `<!-- F-010-B5-02 -->` marker |
-| F-010-B5-03 (P1) | spec_kit_deep-review_auto.yaml:812-816 | Fallback iteration record carries canonical fields with `<!-- F-010-B5-03 -->` marker |
+| F-010-B5-01 (P1) | deep_start-research-loop_auto.yaml:179-186 | Lock cleanup directive present on halt/cancel paths with `<!-- F-010-B5-01 -->` marker |
+| F-010-B5-02 (P1) | deep_start-research-loop_auto.yaml:851-855 | Fallback iteration record carries canonical fields with `<!-- F-010-B5-02 -->` marker |
+| F-010-B5-03 (P1) | deep_start-review-loop_auto.yaml:812-816 | Fallback iteration record carries canonical fields with `<!-- F-010-B5-03 -->` marker |
 | F-010-B5-04 (P2) | both YAMLs (config + state_log) | `resource_map.emit` now templated from parsed `--no-resource-map` flag with `<!-- F-010-B5-04 -->` markers |
 | F-019-D4-01 (P1) | generate-context.ts:404-447 | Parent children_ids and last_save_at refreshed on child save with `// F-019-D4-01` marker; new vitest case verifies behavior |
 

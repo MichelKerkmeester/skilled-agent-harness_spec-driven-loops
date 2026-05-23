@@ -120,11 +120,11 @@ STOP candidate — all 4 dimensions covered. No active P0/P1 findings; loop mana
 | `011-post-stress-finding-remediation-research/research/research.md` | D1 | 1 | 1 P2 | partial |
 | `resource-map.md` | D1 | 1 | 1 P2 | partial |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts` | D1 | 1 | 0 | partial |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | D1 | 1 | 0 | partial |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | D1 | 1 | 0 | partial |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | D1 | 1 | 0 | partial |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | D1 | 1 | 0 | partial |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts` | D1,D2 | 2 | 0 | pass |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | D1,D2 | 2 | 0 | pass |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | D1,D2 | 2 | 0 | pass |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | D1,D2 | 2 | 0 | pass |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | D1,D2 | 2 | 0 | pass |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/executor-config-copilot-target-authority.vitest.ts` | D2 | 2 | 0 | pass |
 | `.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts` | D2 | 2 | 0 | partial |
 | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts` | D2 | 2 | 0 | pass |

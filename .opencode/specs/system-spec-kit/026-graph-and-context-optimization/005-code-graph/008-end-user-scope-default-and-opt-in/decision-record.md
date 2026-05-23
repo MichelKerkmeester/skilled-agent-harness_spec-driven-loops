@@ -46,7 +46,7 @@ _memory:
 |-------|-------|
 | **Status** | Accepted (post-research) |
 | **Date** | 2026-05-02 |
-| **Deciders** | `/spec_kit:deep-research:auto` 5-iteration loop |
+| **Deciders** | `/deep:start-research-loop:auto` 5-iteration loop |
 | **Confidence** | 0.94 |
 | **Synthesis source** | `research/research.md` |
 

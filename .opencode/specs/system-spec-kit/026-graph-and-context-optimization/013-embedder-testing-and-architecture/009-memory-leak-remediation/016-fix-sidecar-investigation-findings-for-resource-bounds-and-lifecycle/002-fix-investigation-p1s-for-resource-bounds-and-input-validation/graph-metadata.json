@@ -16,7 +16,7 @@
       "arc 010 resource bounds plan",
       "arc 010 resource bounds tasks",
       "arc 010 resource bounds checklist",
-      "arc 010 resource bounds implementation summary"
+      "arc 010 p1 implementation summary"
     ],
     "key_topics": [
       "arc",
@@ -33,19 +33,48 @@
       "plan"
     ],
     "importance_tier": "critical",
-    "status": "not_started",
+    "status": "complete",
     "key_files": [
-      "spec.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts",
+      ".opencode/bin/lib/ensure-rerank-sidecar.cjs",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/sidecar-hardening.vitest.ts",
+      ".opencode/bin/lib/ensure-rerank-sidecar.vitest.ts",
+      ".opencode/vitest.config.bin.ts",
       "checklist.md",
       "implementation-summary.md",
+      "spec.md",
       "plan.md",
       "tasks.md"
     ],
     "entities": [
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "name": "sidecar-client.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ensure-rerank-sidecar.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/ensure-rerank-sidecar.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sidecar-hardening.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/sidecar-hardening.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ensure-rerank-sidecar.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/bin/lib/ensure-rerank-sidecar.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.bin.ts",
+        "kind": "code",
+        "path": ".opencode/vitest.config.bin.ts",
         "source": "derived"
       },
       {
@@ -58,6 +87,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -155,41 +190,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Quality Gates",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Finding Ledger",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "description:",
-        "kind": "quoted",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "trigger_phrases:   -",
-        "kind": "quoted",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The registry's P1 resource-bound keyword selection contains F48, F85, F86, and F87. These findings leave local HTTP and IPC paths with predictable or unbounded behavior after the P0 fixes are complete.",
     "created_at": "2026-05-23T03:50:22.751Z",
-    "last_save_at": "2026-05-23T03:50:22.751Z",
+    "last_save_at": "2026-05-23T11:55:15.672Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

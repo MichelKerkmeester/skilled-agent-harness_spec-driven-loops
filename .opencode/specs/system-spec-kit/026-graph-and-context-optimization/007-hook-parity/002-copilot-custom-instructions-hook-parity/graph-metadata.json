@@ -4,12 +4,11 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/002-copilot-custom-instructions-hook-parity",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-hook-parity",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
-    "supersedes": [
-      "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/006-copilot-wrapper-schema-fix",
-      "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/007-copilot-writer-wiring"
-    ],
+    "supersedes": [],
     "related_to": []
   },
   "derived": {
@@ -42,52 +41,28 @@
       "004"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
-      "hooks/copilot/custom-instructions.ts",
-      "hooks/copilot/user-prompt-submit.ts",
-      "hooks/copilot/session-prime.ts",
-      "hooks/copilot/README.md",
+      ".github/hooks/scripts/user-prompt-submitted.sh",
       ".github/hooks/superset-notify.json",
       "tests/copilot-user-prompt-submit-hook.vitest.ts",
       "tests/copilot-hook-wiring.vitest.ts",
-      "tests/claude-user-prompt-submit-hook.vitest.ts",
       ".claude/settings.local.json",
-      "dist/hooks/copilot/user-prompt-submit.js",
       ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts",
       "hooks/claude/user-prompt-submit.ts",
       "implementation-summary.md",
-      ".opencode/skills/cli-copilot/SKILL.md",
       "decision-record.md",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/copilot-user-prompt-submit-hook.vitest.ts",
-      "checklist.md",
+      ".github/hooks/scripts/session-start.sh",
       "spec.md",
-      "tasks.md",
-      "plan.md"
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
     ],
     "entities": [
       {
-        "name": "custom-instructions.ts",
-        "kind": "code",
-        "path": "hooks/copilot/custom-instructions.ts",
-        "source": "derived"
-      },
-      {
-        "name": "user-prompt-submit.ts",
-        "kind": "code",
-        "path": "hooks/copilot/user-prompt-submit.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-prime.ts",
-        "kind": "code",
-        "path": "hooks/copilot/session-prime.ts",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "hooks/copilot/README.md",
+        "name": "user-prompt-submitted.sh",
+        "kind": "script",
+        "path": ".github/hooks/scripts/user-prompt-submitted.sh",
         "source": "derived"
       },
       {
@@ -109,21 +84,15 @@
         "source": "derived"
       },
       {
-        "name": "claude-user-prompt-submit-hook.vitest.ts",
-        "kind": "test",
-        "path": "tests/claude-user-prompt-submit-hook.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "settings.local.json",
         "kind": "config",
         "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
-        "name": "user-prompt-submit.js",
+        "name": "user-prompt-submit.ts",
         "kind": "code",
-        "path": "dist/hooks/copilot/user-prompt-submit.js",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts",
         "source": "derived"
       },
       {
@@ -133,21 +102,15 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-copilot/SKILL.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "session-start.sh",
+        "kind": "script",
+        "path": ".github/hooks/scripts/session-start.sh",
         "source": "derived"
       },
       {
@@ -157,31 +120,25 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
         "source": "derived"
       },
       {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Claude Code",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implemented Copilot",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Monitor Copilot",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -205,7 +162,43 @@
         "source": "derived"
       },
       {
-        "name": "Begin Phase",
+        "name": "Under Copilot",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Existing Claude",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -213,8 +206,8 @@
     ],
     "causal_summary": "Spec 020 (`skill-advisor-hook-surface`) wired the Spec Kit Memory MCP to inject two payloads via Claude Code's native hook system: `SessionStart:startup` delivers code-graph freshness and structural highlights, and `UserPromptSubmit` delivers the skill-advisor brief (format: `Advisor: <skill> <conf>/<uncert> <status>`). Both hooks work correctly in Claude Code.",
     "created_at": "2026-04-22T06:13:42.052Z",
-    "last_save_at": "2026-04-26T09:17:15.807Z",
-    "save_lineage": "same_pass",
+    "last_save_at": "2026-05-23T11:55:15.238Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

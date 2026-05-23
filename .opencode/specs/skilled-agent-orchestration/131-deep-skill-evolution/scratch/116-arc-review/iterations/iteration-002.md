@@ -6,7 +6,7 @@ Security
 ## Files Reviewed
 - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts:1-700` — v2 enforcement validator, input validation, env var parsing
 - `.opencode/skills/deep-review/scripts/reduce-state.cjs:1-1657` — JSONL parsing, registry serialization, dashboard rendering
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1-1377` — YAML workflow interpolation patterns
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1-1377` — YAML workflow interpolation patterns
 - `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:1-751` — graph node upsert, label handling
 - `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts:1-191` — graph upsert validation, kind allowlist
 - `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-graph.vitest.ts:1-92` — graph vocabulary test fixtures

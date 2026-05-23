@@ -25,7 +25,7 @@ directives:
   - DELETE old memories, do not archive — phase 018 makes them irrelevant
   - NO observation windows (D0 2-week, canonical 7-day, F 180-day all dead)
   - Run all gates autonomously without confirmation
-  - After all 6 gates code-complete: dispatch /spec_kit:deep-review × 7 iterations per gate, fix every finding
+  - After all 6 gates code-complete: dispatch /deep:start-review-loop × 7 iterations per gate, fix every finding
   - Mark every spec.md/plan.md/tasks.md/checklist.md/decision-record.md/implementation-summary.md across all 6 gate packets `status: complete` + verified at end
   - Commit + push to 026 after every gate close
 last_updated: 2026-04-12T00:30:00Z

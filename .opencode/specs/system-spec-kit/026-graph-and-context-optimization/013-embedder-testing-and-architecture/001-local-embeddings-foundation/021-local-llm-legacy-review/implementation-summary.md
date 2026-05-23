@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Local-LLM legacy and outdated-docs/config-drift review (post-014)"
-description: "10-iter /spec_kit:deep-review:auto run via cli-codex gpt-5.5 reasoning=high service_tier=fast surfaced 2 P0 + 83 P1 + 31 P2 findings (deduped). Verdict FAIL; hasAdvisories=true. The P0s are real bugs in shared/embeddings/factory.ts that contradict 014's documented ship state ('llama-cpp explicit opt-in'). Remediation packet 016 recommended."
+description: "10-iter /deep:start-review-loop:auto run via cli-codex gpt-5.5 reasoning=high service_tier=fast surfaced 2 P0 + 83 P1 + 31 P2 findings (deduped). Verdict FAIL; hasAdvisories=true. The P0s are real bugs in shared/embeddings/factory.ts that contradict 014's documented ship state ('llama-cpp explicit opt-in'). Remediation packet 016 recommended."
 trigger_phrases:
   - "015 implementation summary"
   - "local-llm legacy review summary"
@@ -39,7 +39,7 @@ _memory:
 
 ## 1. WHAT CHANGED
 
-A new Level-2 review packet (`021-local-llm-legacy-review/`) was scaffolded under `026-graph-and-context-optimization/` and a **10-iteration `/spec_kit:deep-review:auto` run** was executed against the full repo via cli-codex (gpt-5.5, reasoning=high, service_tier=fast, 900s/iter timeout). The run reduced from the originally planned 20 iters to 10 per user request mid-run (iters 1-2 preserved across the restart via a skip-existing guard). Output: `review/review-report.md` (188 lines, full 10-section structure) + `review/resource-map.md` + per-iter findings at `review/iterations/iteration-00{1..10}.md` + state log `review/deep-review-state.jsonl`. Zero git commits, zero mutations outside the packet — HEAD is still `5e7095d3336510b5756ba5cac383a8e08d1d79db` (recovery anchor).
+A new Level-2 review packet (`021-local-llm-legacy-review/`) was scaffolded under `026-graph-and-context-optimization/` and a **10-iteration `/deep:start-review-loop:auto` run** was executed against the full repo via cli-codex (gpt-5.5, reasoning=high, service_tier=fast, 900s/iter timeout). The run reduced from the originally planned 20 iters to 10 per user request mid-run (iters 1-2 preserved across the restart via a skip-existing guard). Output: `review/review-report.md` (188 lines, full 10-section structure) + `review/resource-map.md` + per-iter findings at `review/iterations/iteration-00{1..10}.md` + state log `review/deep-review-state.jsonl`. Zero git commits, zero mutations outside the packet — HEAD is still `5e7095d3336510b5756ba5cac383a8e08d1d79db` (recovery anchor).
 
 ---
 
@@ -134,7 +134,7 @@ Batchable remediation groups per `review-report.md` §10:
 5. **Memory MCP docs/fixtures** — ENV_REFERENCE/install_guides/feature_catalog/manual_testing_playbook: Voyage/Nomic/OpenAI/384d/generic-sqlite/ONNX residue.
 6. **Generated assets** — regenerate feature catalogs and playbooks after source docs corrected.
 
-Recommended dispatch pattern (013/003 precedent): cli-codex gpt-5.5 high fast in batches of ~7 findings per dispatch, ~28 min walltime per batch, zero out-of-scope writes. Re-review with `/spec_kit:deep-review:auto` confirmatory pass after remediation to confirm FAIL → PASS transition.
+Recommended dispatch pattern (013/003 precedent): cli-codex gpt-5.5 high fast in batches of ~7 findings per dispatch, ~28 min walltime per batch, zero out-of-scope writes. Re-review with `/deep:start-review-loop:auto` confirmatory pass after remediation to confirm FAIL → PASS transition.
 
 ---
 

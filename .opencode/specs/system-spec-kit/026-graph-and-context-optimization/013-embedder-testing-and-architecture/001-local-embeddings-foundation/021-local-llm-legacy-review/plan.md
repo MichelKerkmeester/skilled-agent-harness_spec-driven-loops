@@ -1,6 +1,6 @@
 ---
 title: "Plan: Local-LLM legacy and outdated-docs/config-drift review (post-014)"
-description: "Execution plan for a 20-iteration /spec_kit:deep-review:auto run scoped to local-LLM/embedding-default residue. Executor: cli-codex gpt-5.5 reasoning=high service_tier=fast. Convergence 0.05."
+description: "Execution plan for a 20-iteration /deep:start-review-loop:auto run scoped to local-LLM/embedding-default residue. Executor: cli-codex gpt-5.5 reasoning=high service_tier=fast. Convergence 0.05."
 trigger_phrases:
   - "local-llm legacy review plan"
   - "015 review plan"
@@ -17,7 +17,7 @@ contextType: "review"
 
 ## 1. APPROACH
 
-A single autonomous `/spec_kit:deep-review:auto` run is dispatched against this packet, with cli-codex (gpt-5.5, reasoning=high, service_tier=fast) as the per-iteration executor. The skill's built-in state machine handles iteration looping, convergence detection, and the read-only prompt-pack constraints; this plan documents the dispatch contract and the post-run verification.
+A single autonomous `/deep:start-review-loop:auto` run is dispatched against this packet, with cli-codex (gpt-5.5, reasoning=high, service_tier=fast) as the per-iteration executor. The skill's built-in state machine handles iteration looping, convergence detection, and the read-only prompt-pack constraints; this plan documents the dispatch contract and the post-run verification.
 
 The pre-flight scan (Phase 1 of session planning) identified ~147 active-file residue surface concentrated in:
 - `shared/embeddings/{factory,voyage,openai,hf-local}.ts` and surrounding tests
@@ -35,7 +35,7 @@ Convergence tightened to `0.05` (vs default 0.10) to prevent premature stop on t
 ### Slash command
 
 ```text
-/spec_kit:deep-review:auto "Hunt residue from the local-LLM/embedding-default migration (packet 014-local-embeddings-setup-a + 18 sub-phases). Treat post-014 defaults as canonical: EmbeddingGemma-300m hf-local q8 (Memory), google/embeddinggemma-300m sentence-transformers (CocoIndex), llama-cpp opt-in. Flag any code/doc/config claiming a different default. Scope surfaces (read-only): (1) code .ts/.py/.cjs under shared/, .opencode/skills/, scripts/, mcp_server/, cocoindex_code/; (2) markdown .md/SKILL.md/README/INSTALL_GUIDE under .opencode/skills/**, .opencode/install_guides/, root; (3) JSON/configs description.json, graph-metadata.json, package.json, .utcp_config.json, .claude/mcp.json, .mcp.json, opencode.json, _routes.yaml, .codex/config.toml, .gemini/settings.json, pyproject.toml, requirements*.txt; (4) assets/config_templates.md, prompt packs, fixtures; (5) .opencode/skills/**/references/**. Known stale anchors to validate as P1 on iter-1: ENV_REFERENCE.md voyage-4 precedence claim; embedding_resilience.md 1024-dim cache key; mcp-coco-index INSTALL_GUIDE voyage-code-3 primary; install_guides/README.md text-embedding-3-small default. Discriminate true residue (auto-flag) vs intentional historical context (014/* migration narrative, factory fallback chain, doctor provider detection — note but DO NOT flag as residue)." --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/021-local-llm-legacy-review --max-iterations=20 --convergence=0.05 --executor=cli-codex --model=gpt-5.5 --reasoning-effort=high --service-tier=fast --executor-timeout=900
+/deep:start-review-loop:auto "Hunt residue from the local-LLM/embedding-default migration (packet 014-local-embeddings-setup-a + 18 sub-phases). Treat post-014 defaults as canonical: EmbeddingGemma-300m hf-local q8 (Memory), google/embeddinggemma-300m sentence-transformers (CocoIndex), llama-cpp opt-in. Flag any code/doc/config claiming a different default. Scope surfaces (read-only): (1) code .ts/.py/.cjs under shared/, .opencode/skills/, scripts/, mcp_server/, cocoindex_code/; (2) markdown .md/SKILL.md/README/INSTALL_GUIDE under .opencode/skills/**, .opencode/install_guides/, root; (3) JSON/configs description.json, graph-metadata.json, package.json, .utcp_config.json, .claude/mcp.json, .mcp.json, opencode.json, _routes.yaml, .codex/config.toml, .gemini/settings.json, pyproject.toml, requirements*.txt; (4) assets/config_templates.md, prompt packs, fixtures; (5) .opencode/skills/**/references/**. Known stale anchors to validate as P1 on iter-1: ENV_REFERENCE.md voyage-4 precedence claim; embedding_resilience.md 1024-dim cache key; mcp-coco-index INSTALL_GUIDE voyage-code-3 primary; install_guides/README.md text-embedding-3-small default. Discriminate true residue (auto-flag) vs intentional historical context (014/* migration narrative, factory fallback chain, doctor provider detection — note but DO NOT flag as residue)." --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/021-local-llm-legacy-review --max-iterations=20 --convergence=0.05 --executor=cli-codex --model=gpt-5.5 --reasoning-effort=high --service-tier=fast --executor-timeout=900
 ```
 
 ### PRE-BOUND SETUP ANSWERS (inline body)
@@ -83,7 +83,7 @@ PRE-BOUND SETUP ANSWERS:
 | 1 | Main agent | Capture recovery anchor SHA | shell scrollback record |
 | 2 | Main agent | Scaffold packet 015 (L2) | this packet's files |
 | 3 | Main agent | Fill packet content (spec/plan/tasks/checklist) | scoped review-packet content |
-| 4 | `/spec_kit:deep-review:auto` skill | Setup resolution + state-machine init | `review/deep-review-state.jsonl` header |
+| 4 | `/deep:start-review-loop:auto` skill | Setup resolution + state-machine init | `review/deep-review-state.jsonl` header |
 | 5 | cli-codex (×20 iters) | Execute iteration prompts; emit findings | `review/iterations/iteration-NNN.md` + JSONL records |
 | 6 | Skill | Convergence detection + synthesis | `review/review-report.md` |
 | 7 | Main agent | Verify report; hand-validate ≥3 P1 findings | verification annotations |

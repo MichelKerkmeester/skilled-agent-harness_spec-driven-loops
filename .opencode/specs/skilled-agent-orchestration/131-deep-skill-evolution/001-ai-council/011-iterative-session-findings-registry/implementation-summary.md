@@ -48,7 +48,7 @@ Changed runtime surface:
 - `.opencode/skills/deep-ai-council/scripts/lib/findings-registry.cjs` creates `ai-council/deep-ai-council-findings-registry.json`, canonicalizes `fingerprint` / `content_hash`, uses a lock file plus atomic rename, and exports `appendFinding`, `loadRegistry`, and `getCrossTopicPriors`.
 - `.opencode/skills/deep-ai-council/scripts/orchestrate-session.cjs` appends one finding per completed topic, appends one session synthesis finding on close, and injects compact prior findings into topic briefs after the first topic.
 - `.opencode/skills/deep-ai-council/scripts/tests/findings-registry.vitest.ts` covers append, load, most-recent priors, and concurrent appends.
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-council_auto.yaml` and `spec_kit_deep-council_confirm.yaml` scaffold autonomous and interactive workflows for F4, without activating a command.
+- `.opencode/commands/deep/assets/deep_ask-ai-council_auto.yaml` and `deep_ask-ai-council_confirm.yaml` scaffold autonomous and interactive workflows for F4, without activating a command.
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
@@ -59,7 +59,7 @@ Implementation followed ADR-002 and ADR-005 from 129/001, with one phase-local f
 Verification commands run:
 - `node --check .opencode/skills/deep-ai-council/scripts/lib/findings-registry.cjs`
 - `node --check .opencode/skills/deep-ai-council/scripts/orchestrate-session.cjs`
-- YAML parse loop for `.opencode/commands/spec_kit/assets/spec_kit_deep-council_*.yaml`
+- YAML parse loop for `.opencode/commands/deep/assets/deep_ask-ai-council_*.yaml`
 - Targeted Vitest with scoped temporary config: `findings-registry.vitest.ts` passed 4/4 and `orchestrate-session.vitest.ts` passed 3/3.
 - `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/deep-ai-council/scripts` passed.
 - `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council/011-iterative-session-findings-registry --strict` passed with 0 errors and 0 warnings.
@@ -89,7 +89,7 @@ Note: the exact prompt-provided Vitest command under `.opencode/skills/system-sp
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-F4 still owns command activation and skill/command surface wiring. This phase intentionally did not create or edit `.opencode/commands/spec_kit/deep-council.md`.
+F4 still owns command activation and skill/command surface wiring. This phase intentionally did not create or edit `.opencode/commands/deep/ask-ai-council.md`.
 
 ## Commit Handoff
 
@@ -100,8 +100,8 @@ Explicit paths for `git add`:
 - `.opencode/skills/deep-ai-council/scripts/orchestrate-session.cjs`
 - `.opencode/skills/deep-ai-council/scripts/tests/findings-registry.vitest.ts`
 - `.opencode/skills/deep-ai-council/scripts/tests/orchestrate-session.vitest.ts`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-council_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-council_confirm.yaml`
+- `.opencode/commands/deep/assets/deep_ask-ai-council_auto.yaml`
+- `.opencode/commands/deep/assets/deep_ask-ai-council_confirm.yaml`
 - `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council/011-iterative-session-findings-registry/spec.md`
 - `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council/011-iterative-session-findings-registry/plan.md`
 - `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council/011-iterative-session-findings-registry/tasks.md`

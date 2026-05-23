@@ -83,8 +83,8 @@ Claim: `buildCopilotPromptArg` is internally guarded, but its large-prompt branc
 
 Evidence:
 - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:304-328` switches large approved prompts to `@${promptPath}` and returns `promptFileBody`.
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:704-717` writes `promptFileBody` before spawning `copilot`.
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:723-729` explicitly notes the reliance on Copilot honoring `@path`.
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:704-717` writes `promptFileBody` before spawning `copilot`.
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:723-729` explicitly notes the reliance on Copilot honoring `@path`.
 - `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/cli-matrix.vitest.ts:381-452` uses a Node subprocess to emulate the receiver reading `@path`.
 
 This is advisory because the helper's safety properties are well covered: approved authority preamble, missing-authority Gate 3 enforcement, and `--allow-all-tools` stripping all have direct tests.
@@ -163,8 +163,8 @@ Reviewed code and tests:
 - `.opencode/plugins/spec-kit-skill-advisor.js`
 - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/subprocess.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
+- `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
 - `copilot-user-prompt-submit-hook.vitest.ts`, `spec-kit-skill-advisor-plugin.vitest.ts`, `deep-loop/cli-matrix.vitest.ts`
 
 Targeted observations:

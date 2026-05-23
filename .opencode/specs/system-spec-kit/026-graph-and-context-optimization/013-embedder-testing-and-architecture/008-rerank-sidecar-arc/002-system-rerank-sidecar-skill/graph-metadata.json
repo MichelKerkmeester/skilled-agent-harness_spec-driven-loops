@@ -4,10 +4,10 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/002-system-rerank-sidecar-skill",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/001-flag-routing-fix-for-cross-encoder"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
@@ -17,32 +17,200 @@
       "qwen sidecar python",
       "fastapi rerank sidecar",
       "sentence-transformers cross-encoder skill",
-      "002 sidecar skill"
+      "002 sidecar skill",
+      "002 plan sidecar skill",
+      "002 tasks sidecar skill",
+      "002 implementation summary"
     ],
     "key_topics": [
-      "sidecar",
-      "fastapi",
+      "system-rerank-sidecar",
+      "skill",
       "qwen",
+      "sidecar",
+      "python",
+      "fastapi",
+      "rerank",
       "sentence-transformers",
       "cross-encoder",
-      "http-service"
+      "002",
+      "plan",
+      "tasks"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-rerank-sidecar/SKILL.md",
+      ".opencode/skills/system-rerank-sidecar/scripts/rerank_sidecar.py",
+      ".opencode/skills/system-rerank-sidecar/scripts/start.sh",
+      ".opencode/skills/system-rerank-sidecar/pyproject.toml",
+      ".opencode/skills/system-rerank-sidecar/.env.example",
+      ".opencode/skills/system-rerank-sidecar/README.md",
+      ".opencode/skills/system-rerank-sidecar/scripts/install.sh",
+      ".opencode/skills/system-rerank-sidecar/tests/test_rerank_sidecar.py",
+      ".opencode/skills/system-rerank-sidecar/graph-metadata.json",
       "spec.md",
       "plan.md",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/rerankers/reranker.py",
+      ".opencode/skills/mcp-coco-index/scripts/install.sh",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      ".opencode/skills/system-rerank-sidecar/SKILL.md",
-      ".opencode/skills/system-rerank-sidecar/scripts/rerank_sidecar.py",
-      ".opencode/skills/system-rerank-sidecar/scripts/install.sh",
-      ".opencode/skills/system-rerank-sidecar/scripts/start.sh",
-      ".opencode/skills/system-rerank-sidecar/pyproject.toml",
-      ".opencode/skills/system-rerank-sidecar/.env.example"
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-rerank-sidecar/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "rerank_sidecar.py",
+        "kind": "file",
+        "path": ".opencode/skills/system-rerank-sidecar/scripts/rerank_sidecar.py",
+        "source": "derived"
+      },
+      {
+        "name": "start.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-rerank-sidecar/scripts/start.sh",
+        "source": "derived"
+      },
+      {
+        "name": "pyproject.toml",
+        "kind": "file",
+        "path": ".opencode/skills/system-rerank-sidecar/pyproject.toml",
+        "source": "derived"
+      },
+      {
+        "name": ".env.example",
+        "kind": "file",
+        "path": ".opencode/skills/system-rerank-sidecar/.env.example",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-rerank-sidecar/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "install.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-rerank-sidecar/scripts/install.sh",
+        "source": "derived"
+      },
+      {
+        "name": "test_rerank_sidecar.py",
+        "kind": "file",
+        "path": ".opencode/skills/system-rerank-sidecar/tests/test_rerank_sidecar.py",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-rerank-sidecar/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "reranker.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/rerankers/reranker.py",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Arc",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Create",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "exact",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      }
     ],
-    "last_indexed_at": "2026-05-20T00:00:00Z"
+    "causal_summary": "Phase 002 of the 008 rerank-sidecar arc. Build the shared HTTP cross-encoder service that lives in its own skill, with neither MCP owning it.",
+    "created_at": "2026-05-23T11:55:15.604Z",
+    "last_save_at": "2026-05-23T11:55:15.604Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ]
   }
 }

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: 001-documentation-quality-audit-research"
-description: "Execute 20-iter /spec_kit:deep-research:auto via cli-devin SWE 1.6 over the skill-advisor doc surface. Per-iter dispatch follows the 4-block contract; final synthesis ships research.md."
+description: "Execute 20-iter /deep:start-research-loop:auto via cli-devin SWE 1.6 over the skill-advisor doc surface. Per-iter dispatch follows the 4-block contract; final synthesis ships research.md."
 trigger_phrases:
   - "001 audit research plan"
   - "20-iter deep-research plan skill-advisor"
@@ -38,12 +38,12 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Markdown audit + JSONL state |
-| **Framework** | `/spec_kit:deep-research:auto` workflow + cli-devin SWE 1.6 |
+| **Framework** | `/deep:start-research-loop:auto` workflow + cli-devin SWE 1.6 |
 | **Storage** | `research/` subdir (state.jsonl, iterations/, deltas/, research.md) |
 | **Testing** | P0 verification gates (grep-verify, smoke-run, JSONL strict-validate) |
 
 ### Overview
-Single-command dispatch of `/spec_kit:deep-research:auto` with `--max-iterations=20 --convergence=0.0 --executor=cli-devin --model swe-1.6`. The workflow handles per-iter prompt rendering, dispatch, JSONL state-log appends, and final synthesis. Manual P0 gates run after loop completes.
+Single-command dispatch of `/deep:start-research-loop:auto` with `--max-iterations=20 --convergence=0.0 --executor=cli-devin --model swe-1.6`. The workflow handles per-iter prompt rendering, dispatch, JSONL state-log appends, and final synthesis. Manual P0 gates run after loop completes.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -71,7 +71,7 @@ Single-command dispatch of `/spec_kit:deep-research:auto` with `--max-iterations
 Externalized iter loop via workflow YAML. Per-iter dispatch is one `devin` subprocess invocation reading a generated prompt file and writing to `iteration-NN.md`. Synthesis switches recipes to allow scoped Write of `research.md`.
 
 ### Key Components
-- **Workflow YAML**: `.opencode/skills/system-spec-kit/workflows/spec_kit_deep-research_auto.yaml` (drives the loop)
+- **Workflow YAML**: `.opencode/skills/system-spec-kit/workflows/deep_start-research-loop_auto.yaml` (drives the loop)
 - **Iter recipe**: `.opencode/skills/cli-devin/assets/agent-config-deep-research-iter.json` (read-only scope)
 - **Synthesis recipe**: `.opencode/skills/cli-devin/assets/agent-config-synthesis.json` (scoped Write)
 - **Iter prompt template**: `.opencode/skills/cli-devin/assets/deep-loop-iter-template.md` (4-block contract)
@@ -117,7 +117,7 @@ Iter angles:
 | 19 | Bug hunt: TODO/FIXME/XXX/HACK in code; broken graph-metadata refs; freshness-contract absence |
 | 20 | Synthesis prep: impact-rank findings 1-100, group by sub-phase 002-005 mapping |
 
-- [ ] Invoke `/spec_kit:deep-research:auto "<topic>" --max-iterations=20 --convergence=0.0 --spec-folder=<this-folder> --executor=cli-devin --model swe-1.6`
+- [ ] Invoke `/deep:start-research-loop:auto "<topic>" --max-iterations=20 --convergence=0.0 --spec-folder=<this-folder> --executor=cli-devin --model swe-1.6`
 
 ### Phase 3: Verification
 - [ ] P0 grep-verify: every iter's file:line citations match actual file content
@@ -149,7 +149,7 @@ Iter angles:
 |------------|------|--------|-------------------|
 | cli-devin CLI | External | Green | Cannot dispatch; fallback to native executor |
 | SWE 1.6 model | External | Green | Cannot use specified model |
-| /spec_kit:deep-research skill | Internal | Green | Cannot run workflow |
+| /deep:start-research-loop skill | Internal | Green | Cannot run workflow |
 <!-- /ANCHOR:dependencies -->
 
 ---

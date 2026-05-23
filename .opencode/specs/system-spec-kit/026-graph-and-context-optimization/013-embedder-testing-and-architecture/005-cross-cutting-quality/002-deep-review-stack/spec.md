@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-05-17T20:35:00Z"
     last_updated_by: "main_agent"
     recent_action: "Scaffolded deep-review packet"
-    next_safe_action: "Dispatch /spec_kit:deep-review with iterations=20 + cli-devin SWE 1.6"
+    next_safe_action: "Dispatch /deep:start-review-loop with iterations=20 + cli-devin SWE 1.6"
     blockers: []
     key_files:
       - "plan.md"
@@ -82,7 +82,7 @@ CocoIndex (Python):
 
 | # | Requirement |
 |---|---|
-| R1 | Run /spec_kit:deep-review with iterations=20 |
+| R1 | Run /deep:start-review-loop with iterations=20 |
 | R2 | Executor = cli-devin, model = swe-1.6 |
 | R3 | Per-iteration output passes 3-check bundle gate (imports grep + exports grep + validation_commands smoke-run) per memory note feedback_bundle_gate_smoke_run |
 | R4 | Findings classified P0 / P1 / P2 with file:line citations + concrete repro steps |
@@ -112,7 +112,7 @@ Risks:
 - **Daemon contention**: if CocoIndex reindex still running, review tools that read code may hit slowness. Mitigation: deep-review reads source files directly, not via daemon, so this is decoupled.
 
 Dependencies:
-- /spec_kit:deep-review skill (already installed)
+- /deep:start-review-loop skill (already installed)
 - cli-devin executor (already installed)
 - SWE 1.6 model availability (verify via cli-devin --list-models)
 - The code under review must all be committed (no WIP — verified via git status before dispatch)

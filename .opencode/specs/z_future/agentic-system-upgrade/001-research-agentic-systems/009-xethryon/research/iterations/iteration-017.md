@@ -16,7 +16,7 @@ I compared Xethryon's reflection and memory-hook behavior to Spec Kit's deep-res
 - Xethryon's memory hook also runs in the background after the main turn and can trigger extraction and AutoDream without creating a reducer-owned state surface. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/session/prompt.ts:1643-1659] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/xethryon/memory/memoryHook.ts:148-171]
 - Xethryon also defines a hidden `reflection` agent internally, reinforcing that some quality behavior lives as runtime internals rather than explicit workflow artifacts. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/agent/agent.ts:286-300]
 - Spec Kit's deep-research contract explicitly says the loop is externalized, reducer-owned, and iteration-driven, with JSONL state, dashboards, and a progressive research output. [SOURCE: .opencode/agents/deep-research.md:24-29] [SOURCE: .opencode/agents/deep-research.md:50-60] [SOURCE: .opencode/agents/deep-research.md:159-213]
-- The command workflow encodes that same design principle at the workflow level: "Never hold findings in memory; write everything to files." [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:20-23] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:79-89]
+- The command workflow encodes that same design principle at the workflow level: "Never hold findings in memory; write everything to files." [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:20-23] [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:79-89]
 
 ## Analysis
 This is the clearest architectural "keep" signal from Phase 2. Xethryon's hidden loops optimize for interaction smoothness, but they weaken inspectability and post-hoc reasoning. Spec Kit is building a different kind of system: one where the loop itself is part of the deliverable. For that class of problem, externalized state is not incidental overhead. It is the architecture. The only worthwhile import is bounded critique as an explicit artifact, which Phase 1 already identified.
@@ -38,7 +38,7 @@ finding: Spec Kit's file-mediated loop design is better than Xethryon's hidden r
 - **Migration path:** codify the principle in loop docs rather than changing runtime behavior.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+- **Target file or module:** `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
 - **Change type:** modified existing
 - **Blast radius:** medium
 - **Prerequisites:** add an explicit design note that future loop features must emit reducer-visible artifacts

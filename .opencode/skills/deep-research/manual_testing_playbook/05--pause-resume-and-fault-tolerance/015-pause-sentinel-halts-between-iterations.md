@@ -45,7 +45,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate pause sentinels halt research and review loops between iterations without entering synthesis.
 ### Commands
 1. `bash: rg -n '.deep-research-pause|paused|Delete .*\\.deep-research-pause|review/.deep-research-pause' .opencode/skills/deep-research/references/loop_protocol.md .opencode/skills/deep-research/README.md`
-2. `bash: rg -n 'step_check_pause_sentinel|paused|halt: true|review/.deep-research-pause|research/.deep-research-pause' .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_confirm.yaml`
+2. `bash: rg -n 'step_check_pause_sentinel|paused|halt: true|review/.deep-research-pause|research/.deep-research-pause' .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml .opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml .opencode/commands/deep/assets/deep_start-research-loop_review_auto.yaml .opencode/commands/deep/assets/deep_start-research-loop_review_confirm.yaml`
 3. `bash: rg -n 'pause|sentinel|review/.deep-research-pause' .opencode/skills/deep-research/references/quick_reference.md .opencode/skills/deep-research/SKILL.md`
 ### Expected
 The sentinel is checked before dispatch, a paused event is logged, and the loop halts rather than flowing into synthesis in both research and review mode.
@@ -71,8 +71,8 @@ Use the loop protocol pause subsection as the canonical flow and verify both res
 | File | Role |
 |---|---|
 | `.opencode/skills/deep-research/references/loop_protocol.md` | Pause sentinel contract; use `ANCHOR:phase-iteration-loop` |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Pause check step; inspect `step_check_pause_sentinel` |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Pause check step; inspect `step_check_pause_sentinel` |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Pause check step; inspect `step_check_pause_sentinel` |
+| `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Pause check step; inspect `step_check_pause_sentinel` |
 | `.opencode/skills/deep-research/README.md` | User-facing pause FAQ; use `ANCHOR:faq` |
 | `.opencode/skills/deep-research/SKILL.md` | Rule-level context; use `ANCHOR:rules` |
 

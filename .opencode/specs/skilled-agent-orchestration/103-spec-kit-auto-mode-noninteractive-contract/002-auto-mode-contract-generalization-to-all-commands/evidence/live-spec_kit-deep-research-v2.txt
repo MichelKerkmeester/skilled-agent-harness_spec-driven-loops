@@ -1,6 +1,6 @@
-=== Live setup-phase test v2 (corrected fixtures): /spec_kit:deep-research:auto ===
+=== Live setup-phase test v2 (corrected fixtures): /deep:start-research-loop:auto ===
 Started: 2026-05-11T14:50:19+0200
-Command: .opencode/commands/spec_kit/deep-research.md
+Command: .opencode/commands/deep/start-research-loop.md
 Fixture: extracted from command's own §0 PRE-BOUND schema
 
 PRE-BOUND used:
@@ -29,7 +29,7 @@ reasoning summaries: none
 session id: 019e1716-a543-7cb3-96c5-3470f085d883
 --------
 user
-You are testing the setup-phase contract of the migrated command /spec_kit:deep-research.
+You are testing the setup-phase contract of the migrated command /deep:start-research-loop.
 
 # RUNTIME RULES
 - Inline Codex execution. Do NOT call SpawnAgent / collab / Task / sub-agent.
@@ -39,9 +39,9 @@ You are testing the setup-phase contract of the migrated command /spec_kit:deep-
 
 # YOUR TASK
 
-1. Read .opencode/commands/spec_kit/deep-research.md section zero (UNIFIED SETUP PHASE).
+1. Read .opencode/commands/deep/start-research-loop.md section zero (UNIFIED SETUP PHASE).
 2. Verify it cites .opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md.
-3. SIMULATE a dispatch of /spec_kit:deep-research:auto with the following PRE-BOUND SETUP ANSWERS block in the prompt body (these field names + example values come VERBATIM from this command's own §0 schema — they are guaranteed to match the command's expected keys):
+3. SIMULATE a dispatch of /deep:start-research-loop:auto with the following PRE-BOUND SETUP ANSWERS block in the prompt body (these field names + example values come VERBATIM from this command's own §0 schema — they are guaranteed to match the command's expected keys):
 
 ```
 PRE-BOUND SETUP ANSWERS:
@@ -89,7 +89,7 @@ I’ll treat this as a read-only contract check and use the system-spec-kit guid
 exec
 /bin/zsh -lc "sed -n '1,180p' .opencode/skills/system-spec-kit/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/commands/spec_kit/deep-research.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/commands/deep/start-research-loop.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: system-spec-kit
@@ -151,7 +151,7 @@ Status: ✅ This requirement applies immediately once file edits are requested.
 
 ### Distributed Governance Rule
 
-Any agent writing authored spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, `decision-record.md`, `handover.md`, `review-report.md`, `debug-delegation.md`, `resource-map.md` (optional)) MUST use contract-backed templates through `create.sh` or the inline renderer. This is a workflow-required gate, not a runtime hook: run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` after authored spec-doc writes and before completion claims, then route continuity updates through /memory:save. Deep-research workflow-owned packet markdown (`research/iterations/*.md`, `research/deep-research-*.md`, and progressive `research/research.md` loop updates) is exempt from that generic per-write rule; `/spec_kit:deep-research` must instead run targeted strict validation after every `spec.md` mutation it performs. @deep-research retains exclusive write access for `research/research.md`; @debug retains exclusive write access for `debug-delegation.md`.
+Any agent writing authored spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, `decision-record.md`, `handover.md`, `review-report.md`, `debug-delegation.md`, `resource-map.md` (optional)) MUST use contract-backed templates through `create.sh` or the inline renderer. This is a workflow-required gate, not a runtime hook: run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` after authored spec-doc writes and before completion claims, then route continuity updates through /memory:save. Deep-research workflow-owned packet markdown (`research/iterations/*.md`, `research/deep-research-*.md`, and progressive `research/research.md` loop updates) is exempt from that generic per-write rule; `/deep:start-research-loop` must instead run targeted strict validation after every `spec.md` mutation it performs. @deep-research retains exclusive write access for `research/research.md`; @debug retains exclusive write access for `debug-delegation.md`.
 
 - `handover.md` stays in the canonical recovery ladder and is maintained through `/memory:save` handover_state routing using the handover template for initial creation.
 - `review-report.md` remains owned by `@deep-review` when deep review workflows synthesize findings.
@@ -215,7 +215,7 @@ CLI exit codes:
 | CONDITIONAL | If intent signals match   | Intent-mapped references     |
 | ON_DEMAND   | Only on explicit request   | Deep-dive quality standards  |
 
-`references/workflows/quick_reference.md` is the primary first-touch command surface. Keep the compact `spec_kit` and `memory` command map there, including `/spec_kit:plan --intake-only` as the standalone intake entry, `/spec_kit:plan` and `/spec_kit:complete` smart delegation notes, and the pointer from `/spec_kit:deep-research` to `../deep-research/references/spec_check_protocol.md`, and use this file only to point readers to it rather than duplicating the full matrix.
+`references/workflows/quick_reference.md` is the primary first-touch command surface. Keep the compact `spec_kit` and `memory` command map there, including `/spec_kit:plan --intake-only` as the standalone intake entry, `/spec_kit:plan` and `/spec_kit:complete` smart delegation notes, and the pointer from `/deep:start-research-loop` to `../deep-research/references/spec_check_protocol.md`, and use this file only to point readers to it rather than duplicating the full matrix.
 
 ### Smart Router Pseudocode
 
@@ -291,8 +291,8 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch, memory_conte
 >    - `maxIterations`
 >    - `convergenceThreshold`
 > 2. Load the corresponding YAML file from `assets/` only after all setup values are resolved:
->    - Auto: `spec_kit_deep-research_auto.yaml`
->    - Confirm: `spec_kit_deep-research_confirm.yaml`
+>    - Auto: `deep_start-research-loop_auto.yaml`
+>    - Confirm: `deep_start-research-loop_confirm.yaml`
 > 3. Execute the YAML workflow step by step using those resolved values
 >
 > All content below is reference context for the YAML workflow. Do not treat reference sections as direct instructions to execute.
@@ -305,7 +305,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch, memory_conte
 - **YAML START CONDITION**: do not load YAML until ALL required inputs are bound:
   - `research_topic`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`
 
-> **Canonical mode syntax:** use attached command suffixes (`/spec_kit:deep-research:auto`, `/spec_kit:deep-research:confirm`) and keep AGENTS, skills, and quick references synchronized to this entrypoint.
+> **Canonical mode syntax:** use attached command suffixes (`/deep:start-research-loop:auto`, `/deep:start-research-loop:confirm`) and keep AGENTS, skills, and quick references synchronized to this entrypoint.
 
 > **Note:** Late-INIT `spec.md` detection and bounded `spec.md` mutations follow
 > `.opencode/skills/deep-research/references/spec_check_protocol.md`.
@@ -330,11 +330,11 @@ Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_
 
 Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 
-1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{artifact_dir}/deep-research-config.json` (shape: `researchTopic`, `specFolder`, `maxIterations`, `convergenceThreshold`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`. End §0.
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{artifact_dir}/deep-research-config.json` (shape: `researchTopic`, `specFolder`, `maxIterations`, `convergenceThreshold`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`. End §0.
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed. Missing `research_topic` is absence, not ambiguity — go to Tier 3.
 
-3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/spec_kit:deep-research:auto` as the command name. Exit non-zero. Do not load YAML.
+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/deep:start-research-loop:auto` as the command name. Exit non-zero. Do not load YAML.
 
 `:confirm` path stays unchanged — see the consolidated setup prompt section below.
 
@@ -485,7 +485,7 @@ NEVER split questions into multiple prompts
 
 Conduct autonomous iterative deep research with convergence detection. Each iteration dispatches a fresh LEAF agent (`@deep-research`) that reads externalized state, performs focused investigation, and writes findings to files.
 
-For code review and quality auditing, see `/spec_kit:deep-review`.
+For code review and quality auditing, see `/deep:start-review-loop`.
 
 ```yaml
 role: Deep Research Loop Manager
@@ -495,7 +495,7 @@ operating_mode:
   workflow: iterative_loop
 
 exec
-/bin/zsh -lc "nl -ba .opencode/commands/spec_kit/deep-research.md | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/commands/deep/start-research-loop.md | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	---
      2	description: Autonomous deep-research loop: iterative investigation with convergence detection. Modes :auto, :confirm.
@@ -515,8 +515,8 @@ exec
     16	>    - `maxIterations`
     17	>    - `convergenceThreshold`
     18	> 2. Load the corresponding YAML file from `assets/` only after all setup values are resolved:
-    19	>    - Auto: `spec_kit_deep-research_auto.yaml`
-    20	>    - Confirm: `spec_kit_deep-research_confirm.yaml`
+    19	>    - Auto: `deep_start-research-loop_auto.yaml`
+    20	>    - Confirm: `deep_start-research-loop_confirm.yaml`
     21	> 3. Execute the YAML workflow step by step using those resolved values
     22	>
     23	> All content below is reference context for the YAML workflow. Do not treat reference sections as direct instructions to execute.
@@ -529,7 +529,7 @@ exec
     30	- **YAML START CONDITION**: do not load YAML until ALL required inputs are bound:
     31	  - `research_topic`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`
     32	
-    33	> **Canonical mode syntax:** use attached command suffixes (`/spec_kit:deep-research:auto`, `/spec_kit:deep-research:confirm`) and keep AGENTS, skills, and quick references synchronized to this entrypoint.
+    33	> **Canonical mode syntax:** use attached command suffixes (`/deep:start-research-loop:auto`, `/deep:start-research-loop:confirm`) and keep AGENTS, skills, and quick references synchronized to this entrypoint.
     34	
     35	> **Note:** Late-INIT `spec.md` detection and bounded `spec.md` mutations follow
     36	> `.opencode/skills/deep-research/references/spec_check_protocol.md`.
@@ -554,11 +554,11 @@ exec
     55	
     56	Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
     57	
-    58	1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{artifact_dir}/deep-research-config.json` (shape: `researchTopic`, `specFolder`, `maxIterations`, `convergenceThreshold`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`. End §0.
+    58	1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{artifact_dir}/deep-research-config.json` (shape: `researchTopic`, `specFolder`, `maxIterations`, `convergenceThreshold`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`. End §0.
     59	
     60	2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed. Missing `research_topic` is absence, not ambiguity — go to Tier 3.
     61	
-    62	3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/spec_kit:deep-research:auto` as the command name. Exit non-zero. Do not load YAML.
+    62	3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/deep:start-research-loop:auto` as the command name. Exit non-zero. Do not load YAML.
     63	
     64	`:confirm` path stays unchanged — see the consolidated setup prompt section below.
     65	
@@ -709,7 +709,7 @@ exec
    210	
    211	Conduct autonomous iterative deep research with convergence detection. Each iteration dispatches a fresh LEAF agent (`@deep-research`) that reads externalized state, performs focused investigation, and writes findings to files.
    212	
-   213	For code review and quality auditing, see `/spec_kit:deep-review`.
+   213	For code review and quality auditing, see `/deep:start-review-loop`.
    214	
    215	```yaml
    216	role: Deep Research Loop Manager
@@ -895,7 +895,7 @@ exec
    170	
    171	Commands that have adopted this contract:
    172	
-   173	- `/spec_kit:deep-review` (prototype) — see `.../103/001-deep-review-three-tier-setup/`
+   173	- `/deep:start-review-loop` (prototype) — see `.../103/001-deep-review-three-tier-setup/`
    174	- (to be appended as `.../103/002-...` rolls out)
    175	
    176	---
@@ -905,7 +905,7 @@ exec
    180	- Commands without paired YAML workflows (`/improve:prompt`, `agent_router`, etc.) — they have no setup-phase surface where the contract applies.
 
 exec
-/bin/zsh -lc "sed -n '220,320p' .opencode/commands/spec_kit/deep-research.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '220,320p' .opencode/commands/deep/start-research-loop.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
   workflow: iterative_loop
   compliance: MANDATORY
@@ -941,9 +941,9 @@ Run an iterative loop for deep research: Initialize state under `{artifact_dir}`
 
 | Mode | Invocation | Behavior |
 |------|-----------|----------|
-| `:auto` | `/spec_kit:deep-research:auto "topic"` | All iterations without approval |
-| `:confirm` | `/spec_kit:deep-research:confirm "topic"` | Multi-gate review at setup, iteration, and synthesis |
-| (default) | `/spec_kit:deep-research "topic"` | Ask user to choose mode during setup |
+| `:auto` | `/deep:start-research-loop:auto "topic"` | All iterations without approval |
+| `:confirm` | `/deep:start-research-loop:confirm "topic"` | Multi-gate review at setup, iteration, and synthesis |
+| (default) | `/deep:start-research-loop "topic"` | Ask user to choose mode during setup |
 
 ---
 
@@ -951,8 +951,8 @@ Run an iterative loop for deep research: Initialize state under `{artifact_dir}`
 
 After setup phase passes, load and execute the appropriate YAML prompt based on execution_mode:
 
-- **AUTONOMOUS**: `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-- **INTERACTIVE**: `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+- **AUTONOMOUS**: `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
+- **INTERACTIVE**: `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`
 
 The YAML contains the full loop workflow: initialization, iteration dispatch, convergence detection, synthesis, and memory save.
 

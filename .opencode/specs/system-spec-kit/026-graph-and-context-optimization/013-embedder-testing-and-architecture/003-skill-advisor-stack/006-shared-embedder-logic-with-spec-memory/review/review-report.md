@@ -109,7 +109,7 @@ Skill-advisor's `setActiveEmbedder()` is 3-arg; mk-spec-memory's is 4-arg with `
 
 4. **P2 cleanup batch (optional, ~10 LOC).** Drop the `pointerNeedsResolution` export from `__embedderSchemaTestables` (P2-4), append one sentence to the `index.ts` barrel preamble naming `ensureActiveEmbedder` (P2-3), annotate the README signature note (P2-5). Skip P2-1 and P2-2 — both are intentional design choices.
 
-5. **Re-run.** After the remediation commit, dispatch a 2-iter confirm-review (`/spec_kit:deep-review :auto --max-iterations=2`) to verify the P1s are closed and no regression introduced.
+5. **Re-run.** After the remediation commit, dispatch a 2-iter confirm-review (`/deep:start-review-loop :auto --max-iterations=2`) to verify the P1s are closed and no regression introduced.
 
 ---
 

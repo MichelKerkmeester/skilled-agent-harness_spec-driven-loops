@@ -15,12 +15,12 @@ _memory:
     last_updated_at: "2026-05-23T06:00:00Z"
     last_updated_by: "main-agent"
     recent_action: "Scaffold Level 3 deep-research target packet"
-    next_safe_action: "Dispatch /spec_kit:deep-research iter-001 (cli-devin SWE-1.6) on this folder"
+    next_safe_action: "Dispatch /deep:start-research-loop iter-001 (cli-devin SWE-1.6) on this folder"
     blockers: []
     key_files:
       - ".opencode/skills/sk-ai-council/SKILL.md"
-      - ".opencode/commands/spec_kit/deep-research.md"
-      - ".opencode/commands/spec_kit/deep-review.md"
+      - ".opencode/commands/deep/start-research-loop.md"
+      - ".opencode/commands/deep/start-review-loop.md"
       - ".opencode/skills/deep-loop-runtime/SKILL.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -43,7 +43,7 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-Three "deep" skills now exist or are proposed: `/spec_kit:deep-review`, `/spec_kit:deep-research`, and (after packet 129) `/spec_kit:deep-council`. They share the deep-loop-runtime substrate (iteration loop, JSONL state, saturation-based convergence, findings accumulation) but ostensibly target different intents. This packet runs a structured 10-iteration deep-research audit to determine whether each skill has a defensible single-best-fit use case, whether overlap helps or hurts operators, and whether routing/naming sharpens or muddies the boundary.
+Three "deep" skills now exist or are proposed: `/deep:start-review-loop`, `/deep:start-research-loop`, and (after packet 129) `/deep:ask-ai-council`. They share the deep-loop-runtime substrate (iteration loop, JSONL state, saturation-based convergence, findings accumulation) but ostensibly target different intents. This packet runs a structured 10-iteration deep-research audit to determine whether each skill has a defensible single-best-fit use case, whether overlap helps or hurts operators, and whether routing/naming sharpens or muddies the boundary.
 
 **Key Decisions**: differentiation strategy (keep distinct / merge / unify-with-mode), routing rules between the three, naming hygiene.
 

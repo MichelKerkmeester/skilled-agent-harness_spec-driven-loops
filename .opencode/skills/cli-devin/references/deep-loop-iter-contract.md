@@ -1,11 +1,11 @@
 ---
 title: "Devin CLI — Deep-Loop Iter Contract"
-description: "Per-iter contract for cli-devin when dispatched as the executor for /spec_kit:deep-research and /spec_kit:deep-review. Codifies model selection, permission mode, agent-config recipe selection, and prompt body shape so SWE-1.6 iter workers produce high-signal output across long iter sweeps."
+description: "Per-iter contract for cli-devin when dispatched as the executor for /deep:start-research-loop and /deep:start-review-loop. Codifies model selection, permission mode, agent-config recipe selection, and prompt body shape so SWE-1.6 iter workers produce high-signal output across long iter sweeps."
 ---
 
 # Devin CLI — Deep-Loop Iter Contract
 
-How cli-devin behaves when the calling AI dispatches it as the executor for `/spec_kit:deep-research` and `/spec_kit:deep-review`. The contract narrows the general SWE-1.6 Prompt-Quality Contract (SKILL.md §4 ALWAYS #12) to the iter-loop surface and enforces the narrowing at Devin's strict parser via `--agent-config`.
+How cli-devin behaves when the calling AI dispatches it as the executor for `/deep:start-research-loop` and `/deep:start-review-loop`. The contract narrows the general SWE-1.6 Prompt-Quality Contract (SKILL.md §4 ALWAYS #12) to the iter-loop surface and enforces the narrowing at Devin's strict parser via `--agent-config`.
 
 ---
 
@@ -15,7 +15,7 @@ The deep-loop iter contract has three moving parts:
 
 - **Three pinned recipes** in `assets/` (research-iter / review-iter / synthesis) — each is a `--agent-config` JSON that locks the tool allowlist and scoped permission entries at Devin's strict parser.
 - **A four-block prompt body** (framework tag, pre-planning, scoped RQ or review angle, output contract) that ships in `--prompt-file`.
-- **Dispatch wording** in the `if_cli_devin:` branches of `spec_kit_deep-research_auto.yaml` and `spec_kit_deep-review_auto.yaml` that pairs the recipe with the prompt file.
+- **Dispatch wording** in the `if_cli_devin:` branches of `deep_start-research-loop_auto.yaml` and `deep_start-review-loop_auto.yaml` that pairs the recipe with the prompt file.
 
 When all three parts are present, an iter worker cannot drift outside its profile even under adversarial prompts. The remainder of this document covers when the contract activates, how to choose between recipes, the exact wording each recipe pins, and the prompt body shape that pairs with each.
 
@@ -25,7 +25,7 @@ When all three parts are present, an iter worker cannot drift outside its profil
 
 The deep-loop iter contract activates when ALL of the following are true:
 
-1. The dispatch is initiated by `/spec_kit:deep-research` or `/spec_kit:deep-review` (the command surface, not a hand-rolled custom orchestration).
+1. The dispatch is initiated by `/deep:start-research-loop` or `/deep:start-review-loop` (the command surface, not a hand-rolled custom orchestration).
 2. The command's `executor:` field resolves to `cli-devin` (per the validator at `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:7`).
 3. The dispatch carries a per-iter prompt file (one of: research iter, review iter, synthesis pass).
 
@@ -41,8 +41,8 @@ Three pinned recipes ship in `assets/`:
 
 | Recipe | File | Use For |
 |--------|------|---------|
-| **Research iter** | `assets/agent-config-deep-research-iter.json` | Per-iter dispatches under `/spec_kit:deep-research`; iter loops that read evidence and emit `iteration-NNN.md` |
-| **Review iter** | `assets/agent-config-deep-review-iter.json` | Per-iter dispatches under `/spec_kit:deep-review`; iter loops that audit a packet and emit P0 / P1 / P2 findings |
+| **Research iter** | `assets/agent-config-deep-research-iter.json` | Per-iter dispatches under `/deep:start-research-loop`; iter loops that read evidence and emit `iteration-NNN.md` |
+| **Review iter** | `assets/agent-config-deep-review-iter.json` | Per-iter dispatches under `/deep:start-review-loop`; iter loops that audit a packet and emit P0 / P1 / P2 findings |
 | **Synthesis** | `assets/agent-config-synthesis.json` | Final consolidation pass that reads N iter files and emits `research.md` + `delta-verified.md` / `review-report.md`; the only recipe with scoped write capability |
 
 Each recipe pins `system_instructions` (array), `allowed_tools` (tool name list), and `permissions.allow` / `permissions.deny` (scope expressions like `Read(/path/**)` and `Exec(<cmd>)`). Devin's strict parser rejects unknown fields, so the recipes also serve as schema documentation.
@@ -217,7 +217,7 @@ devin -p \
   > "$LOG" 2>&1 </dev/null
 ```
 
-The dispatcher (one of `spec_kit_deep-research_auto.yaml` or `spec_kit_deep-review_auto.yaml` `if_cli_devin` branch) is the canonical source for the exact invocation shape. This reference doc documents the contract — the YAML carries the dispatch wording.
+The dispatcher (one of `deep_start-research-loop_auto.yaml` or `deep_start-review-loop_auto.yaml` `if_cli_devin` branch) is the canonical source for the exact invocation shape. This reference doc documents the contract — the YAML carries the dispatch wording.
 
 ---
 
@@ -255,7 +255,7 @@ Current version: `v1.0.3.0` (packet 059, 2026-05-15).
 - [assets/agent-config-deep-review-iter.json](../assets/agent-config-deep-review-iter.json)
 - [assets/agent-config-synthesis.json](../assets/agent-config-synthesis.json)
 - [assets/deep-loop-iter-template.md](../assets/deep-loop-iter-template.md) — per-iter prompt template that pairs with the recipes
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` (`if_cli_devin:` branch) — dispatch wording for research
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` (`if_cli_devin:` branch) — dispatch wording for review
+- `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` (`if_cli_devin:` branch) — dispatch wording for research
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` (`if_cli_devin:` branch) — dispatch wording for review
 - `.opencode/agents/deep-research.md` (SWE-1.6 Iter Contract subsection) — agent-side awareness
 - `.opencode/agents/deep-review.md` (SWE-1.6 Iter Contract subsection) — agent-side awareness

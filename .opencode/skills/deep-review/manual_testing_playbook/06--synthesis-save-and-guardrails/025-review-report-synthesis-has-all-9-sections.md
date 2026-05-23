@@ -45,8 +45,8 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate deep-review report synthesis and confirm review-report.md contains all 9 required sections.
 ### Commands
 1. `bash: rg -n 'Executive Summary|Planning Trigger|Active Finding Registry|Remediation Workstreams|Spec Seed|Plan Seed|Traceability Status|Deferred Items|Audit Appendix|review-report' .opencode/skills/deep-review/references/quick_reference.md`
-2. `bash: rg -n 'review-report|synthesis|9.*section|Executive Summary|Planning Trigger|Active Finding|Remediation|Spec Seed|Plan Seed|Traceability|Deferred|Audit Appendix' .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
-3. `bash: rg -n 'review-report|synthesis|9.*section|report.*section|Executive Summary|verdict|hasAdvisories' .opencode/skills/deep-review/SKILL.md .opencode/skills/deep-review/README.md .opencode/commands/spec_kit/deep-review.md`
+2. `bash: rg -n 'review-report|synthesis|9.*section|Executive Summary|Planning Trigger|Active Finding|Remediation|Spec Seed|Plan Seed|Traceability|Deferred|Audit Appendix' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
+3. `bash: rg -n 'review-report|synthesis|9.*section|report.*section|Executive Summary|verdict|hasAdvisories' .opencode/skills/deep-review/SKILL.md .opencode/skills/deep-review/README.md .opencode/commands/deep/start-review-loop.md`
 ### Expected
 All 9 section headers present, Executive Summary contains verdict and P0/P1/P2 counts, Active Finding Registry has deduplicated findings, Audit Appendix includes convergence data.
 ### Evidence
@@ -71,9 +71,9 @@ Privilege the quick reference section table as the canonical list and verify the
 | File | Role |
 |---|---|
 | `.opencode/skills/deep-review/references/quick_reference.md` | Canonical 9-section table; use `ANCHOR:review-report-sections` |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Synthesis step producing review-report.md |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Synthesis step producing review-report.md |
-| `.opencode/commands/spec_kit/deep-review.md` | Command entrypoint; output format documentation |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Synthesis step producing review-report.md |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Synthesis step producing review-report.md |
+| `.opencode/commands/deep/start-review-loop.md` | Command entrypoint; output format documentation |
 | `.opencode/skills/deep-review/SKILL.md` | Review report structure and verdict rules; use `ANCHOR:how-it-works` |
 | `.opencode/skills/deep-review/README.md` | Feature summary for review report synthesis |
 

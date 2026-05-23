@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/002-retrieval-observability",
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/002-retrieval-observability",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -11,71 +11,198 @@
   },
   "derived": {
     "trigger_phrases": [
-      "023C retrieval observability",
+      "retrieval observability",
       "cocoindex diagnostics",
       "index fingerprint",
-      "retrieval-stage counters",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/002-retrieval-observability",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "013-embedder-testing-and-architecture",
-      "004-code-index-stack",
-      "023-deep-research-arc-blind-spots/002-retrieval-observability",
-      "feature",
-      "specification"
+      "diagnostic counters",
+      "fingerprint status",
+      "retrieval observability tasks",
+      "diagnostic counters tasks",
+      "retrieval observability checklist",
+      "023C verification",
+      "023C complete",
+      "retrieval diagnostics complete",
+      "index fingerprint complete"
     ],
     "key_topics": [
       "retrieval",
       "observability",
+      "cocoindex",
       "diagnostics",
+      "index",
       "fingerprint",
-      "mcp-coco-index",
-      "reranker",
+      "diagnostic",
+      "counters",
       "status",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "013-embedder-testing-and-architecture",
-      "004-code-index-stack",
-      "023-deep-research-arc-blind-spots/002-retrieval-observability"
+      "tasks",
+      "checklist",
+      "023c"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/server.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_observability.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_fingerprint.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_coverage_tooling.py",
+      ".cocoindex_code/index_meta.json",
       "spec.md",
       "plan.md",
-      "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "tasks.md"
     ],
     "entities": [
       {
-        "name": "RetrievalDiagnostics",
-        "kind": "python_class",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/observability.py",
-        "source": "manual"
+        "name": "daemon.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py",
+        "source": "derived"
       },
       {
-        "name": "IndexFingerprint",
-        "kind": "python_class",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/observability.py",
-        "source": "manual"
+        "name": "server.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/server.py",
+        "source": "derived"
       },
       {
-        "name": "SearchResponse.diagnostics",
-        "kind": "protocol_field",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/protocol.py",
-        "source": "manual"
+        "name": "cli.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py",
+        "source": "derived"
       },
       {
-        "name": "ProjectStatusResponse.fingerprint",
-        "kind": "protocol_field",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/protocol.py",
-        "source": "manual"
+        "name": "test_observability.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_observability.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_fingerprint.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_fingerprint.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_coverage_tooling.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_coverage_tooling.py",
+        "source": "derived"
+      },
+      {
+        "name": "index_meta.json",
+        "kind": "config",
+        "path": ".cocoindex_code/index_meta.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Retrieval Observability",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Expose",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Adds per-query retrieval counters and index/runtime fingerprints so CocoIndex retrieval quality and configuration drift are visible before calibration work.",
+    "causal_summary": "Expose additive per-query diagnostics and index/runtime fingerprints so retrieval behavior can be audited before 023B calibration and later request-budget work.",
     "created_at": "2026-05-19T00:00:00.000Z",
-    "last_save_at": "2026-05-19T00:00:00.000Z",
+    "last_save_at": "2026-05-23T11:55:15.534Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

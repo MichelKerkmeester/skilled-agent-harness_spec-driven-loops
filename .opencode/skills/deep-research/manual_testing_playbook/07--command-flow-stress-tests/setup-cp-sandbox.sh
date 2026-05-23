@@ -58,9 +58,9 @@ copy_file() {
   cp "$source" "$target"
 }
 
-require_path "${REPO_ROOT}/.opencode/commands/spec_kit/deep-research.md"
-require_path "${REPO_ROOT}/.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml"
-require_path "${REPO_ROOT}/.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml"
+require_path "${REPO_ROOT}/.opencode/commands/deep/start-research-loop.md"
+require_path "${REPO_ROOT}/.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml"
+require_path "${REPO_ROOT}/.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml"
 require_path "${REPO_ROOT}/.opencode/skills/deep-research"
 require_path "${REPO_ROOT}/.opencode/skills/system-spec-kit"
 require_path "${REPO_ROOT}/.opencode/agents/deep-research.md"

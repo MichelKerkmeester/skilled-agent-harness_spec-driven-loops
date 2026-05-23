@@ -11,46 +11,200 @@
   },
   "derived": {
     "trigger_phrases": [
-      "auto embedder selection",
+      "016/002/007 auto embedder selection",
       "llama-cpp purge",
-      "smart embedder precedence",
-      "voyage openai ollama hf-local",
+      "smart embedder precedence chain",
+      "auto-select bootstrap",
+      "voyage openai ollama hf-local fallback",
+      "embeddinggemma removal",
       "016/002/007 plan",
       "auto embedder selection plan",
       "016/002/007 tasks",
       "016/002/007 summary",
       "auto embedder selection handoff",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/007-auto-embedder-selection-and-llama-cpp-purge",
-      "system-spec-kit",
-      "026-graph-and-context-optimization"
+      "016/002/007 handover"
     ],
     "key_topics": [
+      "016",
+      "002",
       "007",
-      "auto-selection",
-      "llama-cpp-purge",
-      "precedence-chain",
-      "voyage",
-      "openai",
-      "ollama",
-      "hf-local",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "013-embedder-testing-and-architecture",
-      "002-spec-memory-stack"
+      "auto",
+      "embedder",
+      "selection",
+      "llama-cpp",
+      "purge",
+      "smart",
+      "precedence",
+      "chain",
+      "auto-select"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      "shared/embeddings/auto-select.ts",
+      "mcp_server/tests/embedder-auto-selection.vitest.ts",
+      "mcp_server/lib/embedders/schema.ts",
+      "shared/embeddings/factory.ts",
+      "mcp_server/lib/embedders/registry.ts",
+      "references/memory/embedder_architecture.md",
+      ".opencode/skills/system-spec-kit/references/memory/embedder_architecture.md",
+      "scratch/llama-cpp-surface-inventory.md",
       "spec.md",
       "plan.md",
-      "tasks.md",
       "implementation-summary.md",
+      "tasks.md",
       "handover.md"
     ],
-    "entities": [],
-    "causal_summary": "Replace the hardcoded embeddinggemma-300m default with a smart precedence-chain auto-selection at bootstrap. Probe environment in order — Voyage API key → OpenAI API key → Ollama daemon+jina-v3 → hf-local — and persist the choice to vec_metadata. Purge all llama-cpp / embeddinggemma in-process loader code (Metal GGUF, node-llama-cpp deps, the 750 MB legacy DB), replacing the legacy fallback path. Ollama becomes the always-available local fallback when cloud APIs aren",
+    "entities": [
+      {
+        "name": "auto-select.ts",
+        "kind": "code",
+        "path": "shared/embeddings/auto-select.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedder-auto-selection.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/embedder-auto-selection.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "schema.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": "shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "registry.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/registry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedder_architecture.md",
+        "kind": "doc",
+        "path": "references/memory/embedder_architecture.md",
+        "source": "derived"
+      },
+      {
+        "name": "llama-cpp-surface-inventory.md",
+        "kind": "doc",
+        "path": "scratch/llama-cpp-surface-inventory.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Embedder Selection",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Commit Handoff",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stop Ollama",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Should Voyage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "sentence-transformers",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Emit Commit Handoff",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "filesystem",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "embeddinggemma",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "grep",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After `016/002/006` wired OllamaAdapter into the shared/embeddings factory, two issues remain visible in production:",
     "created_at": "2026-05-19T19:25:52.542Z",
-    "last_save_at": "2026-05-19T19:44:28.899Z",
+    "last_save_at": "2026-05-23T11:55:15.432Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

@@ -196,7 +196,7 @@ Grouped by theme. See iteration-NN.md files for full evidence per finding. Numbe
 ```
 /spec_kit:plan remediation       # plan the P1 closure packet
 /spec_kit:implement              # execute
-/spec_kit:deep-review (re-review) # verify after remediation
+/deep:start-review-loop (re-review) # verify after remediation
 ```
 
 ## 9. Methodology Notes

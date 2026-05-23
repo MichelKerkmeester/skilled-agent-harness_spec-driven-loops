@@ -1685,7 +1685,7 @@ This packet closed the documented gap in the sk-doc manual testing playbook: zer
 2. **Stage B**: ran `create.sh --phase --phase-parent ... --phases 1` (with `--skip-branch`); manually replaced scaffold-template content; merged the duplicate Phase Documentation Map into the original section; refreshed parent graph-metadata `children_ids` + `derived.status` + `last_active_child_id` manually (per memory hint)
 3. **Stage C**: authored scenarios mirroring `04--cross-cli-dispatch/001-short-prompt-baseline.md` shape but with `execution_mode: dispatch_real` frontmatter and a real CLI Setup block (replacing the `DO NOT execute` routing-trace wrapper); fixed the preamble third-CLI gap; added Categories row + Scenario Index + Preconditions note
 4. **Stage D**: dispatched each CLI sequentially (memory hint: parallelism unreliable); appended verdict footer to each transcript after grading
-5. **Stage E**: dispatched `/spec_kit:deep-review:auto` via cli-opencode + DeepSeek v4 Pro direct API. First attempt hung on setup-phase gate (Q1_type / Q-Exec / phase-parent scope). Killed and re-dispatched with all setup answers pre-bound in the prompt — successful, workflow loaded YAML, ran 5 iterations, converged early via weighted-stop-score detector
+5. **Stage E**: dispatched `/deep:start-review-loop:auto` via cli-opencode + DeepSeek v4 Pro direct API. First attempt hung on setup-phase gate (Q1_type / Q-Exec / phase-parent scope). Killed and re-dispatched with all setup answers pre-bound in the prompt — successful, workflow loaded YAML, ran 5 iterations, converged early via weighted-stop-score detector
 
 ### Cross-CLI Execution Results
 
@@ -1709,7 +1709,7 @@ Pass rate: **2/3** (66.7%). The single FAIL surfaced a real cli-codex dispatch g
 4. **Output to `/tmp/` only** — NFR-S02: never install stub skill under `.opencode/skills/`. Prompt explicitly forbids installation.
 5. **Phase-parent review target** — single 10-iter run (user choice; matched "all work done in 102" wording).
 6. **DeepSeek DIRECT API, not opencode-go gateway** — model id `deepseek/deepseek-v4-pro` per user wording "through deepseek api".
-7. **Setup answers pre-bound for Stage E re-dispatch** — `/spec_kit:deep-review:auto` setup phase has a mandatory question block that hangs on stdin EOF in `--pure` non-interactive mode. Worked around by embedding all answers in the dispatch prompt; should be filed as F-Stage-E-001 ergonomics gap.
+7. **Setup answers pre-bound for Stage E re-dispatch** — `/deep:start-review-loop:auto` setup phase has a mandatory question block that hangs on stdin EOF in `--pure` non-interactive mode. Worked around by embedding all answers in the dispatch prompt; should be filed as F-Stage-E-001 ergonomics gap.
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -1742,7 +1742,7 @@ The SD-019 FAIL surfaced a real cli-codex `@markdown` dispatch gap. The `.codex/
 ### Deep-review verdict: CONDITIONAL (7 P1 findings)
 Most P1s are metadata-sync items (Phase 2 Draft vs Complete, 004 spec Draft vs shipped, 003→004 handoff doesn't note SD-019 gap, child phase "N of 3" → "N of 4"). These are quick fixes (~15 min). The structural P1 is the F-001 remediation question above. Full list in `../review/deep-review-dashboard.md` §Findings.
 
-### F-Stage-E-001 (new): `/spec_kit:deep-review:auto` setup-phase stdin hang
+### F-Stage-E-001 (new): `/deep:start-review-loop:auto` setup-phase stdin hang
 First dispatch hung 3 minutes on the setup-phase question and exited cleanly on stdin EOF. The `:auto` suffix is supposed to be non-interactive, but the markdown-entry setup gate still asks. Workaround: pre-bind all setup answers in the dispatch prompt. Worth filing as a separate deep-review-skill packet to make `:auto` truly non-interactive.
 
 ### Format-vs-grading mismatch (F-003 confirmed by review)

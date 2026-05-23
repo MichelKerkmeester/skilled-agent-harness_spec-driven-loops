@@ -49,7 +49,7 @@ The user reported that focused deep-research bug-finding sometimes surfaces more
 
 ### Constraints
 
-- The research run must use `/spec_kit:deep-research` workflow semantics rather than a hand-rolled loop.
+- The research run must use `/deep:start-research-loop` workflow semantics rather than a hand-rolled loop.
 - The executor route must use `cli-codex`, `gpt-5.5`, `high` reasoning, and `fast` service tier.
 - The packet must remain evidence-only until findings are synthesized.
 <!-- /ANCHOR:adr-001-context -->

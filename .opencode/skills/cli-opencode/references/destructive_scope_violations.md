@@ -1,6 +1,6 @@
 ---
 title: Destructive Scope Violations under cli-opencode Deep-Loop Dispatch (RM-8)
-description: Root cause + prevention for destructive filesystem writes when cli-opencode dispatches a long-running model (e.g. deepseek-v4-pro under /spec_kit:deep-review:auto) and the model hallucinates a cleanup action.
+description: Root cause + prevention for destructive filesystem writes when cli-opencode dispatches a long-running model (e.g. deepseek-v4-pro under /deep:start-review-loop:auto) and the model hallucinates a cleanup action.
 ---
 
 # Destructive Scope Violations under cli-opencode Deep-Loop Dispatch (RM-8)
@@ -13,7 +13,7 @@ This document records the **2026-05-04 destructive scope violation incident**, t
 
 Source-of-truth: local destructive-scope violation policy.
 
-- **What ran**: `/spec_kit:deep-review:auto` against the 008-template-levels phase parent across phases 007 and 008.
+- **What ran**: `/deep:start-review-loop:auto` against the 008-template-levels phase parent across phases 007 and 008.
 - **Executor**: cli-opencode (`opencode run`) with `--model opencode-go/deepseek-v4-pro --variant high --dangerously-skip-permissions --pure --dir <repo-root>`.
 - **Damage**: **44 files deleted** across phases 007 and 008. Spec docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `description.json`, `graph-metadata.json`) **and** the `review/` packet subtrees were physically removed.
 - **Recovery**: `git restore` from commit `7beb80769` (a pre-dispatch "bundled session sync") — single command. **No findings lost**, but ≈30 minutes of recovery time and trust damage.
@@ -28,7 +28,7 @@ Two contributing layers, both required to enable the failure:
 
 ### Layer A — unrestricted filesystem write capability
 
-The YAML dispatch wrapper (`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` step `if_cli_opencode`) hands the executor:
+The YAML dispatch wrapper (`.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` step `if_cli_opencode`) hands the executor:
 
 ```bash
 opencode run \
@@ -59,7 +59,7 @@ That line **is not enforced anywhere**. The harness reads it as documentation; O
 
 ## 3. PREVENTION — APPLY BEFORE EVERY DEEP-LOOP DISPATCH
 
-The default risk surface for cli-opencode is **any non-interactive `opencode run` invocation that uses `--dangerously-skip-permissions` against a populated worktree**, especially long-running deep-loop dispatches like `/spec_kit:deep-research:auto` and `/spec_kit:deep-review:auto`. Apply all four layers before dispatch:
+The default risk surface for cli-opencode is **any non-interactive `opencode run` invocation that uses `--dangerously-skip-permissions` against a populated worktree**, especially long-running deep-loop dispatches like `/deep:start-research-loop:auto` and `/deep:start-review-loop:auto`. Apply all four layers before dispatch:
 
 ### Layer 1 (REQUIRED) — RM-8 prompt hardening, already shipped
 
@@ -115,7 +115,7 @@ The commit hash is the recovery baseline. Surface it to the operator before disp
 
 ### Layer 4 (FALLBACK) — model selection
 
-The 2026-05-04 incident was specifically observed with `opencode-go/deepseek-v4-pro` under `/spec_kit:deep-review:auto`. Until a runtime scope guard ships (see §4), the cross-phase synthesis recommendation stands: **for multi-phase deep-review work, prefer `cli-copilot` with `gpt-5.5 --reasoning-effort high`** when available, and fall back to deepseek only with Layers 1+2+3 all in place. Memory feedback `feedback_copilot_concurrency_override.md` caps Copilot at 3 parallel dispatches; sequence the work accordingly.
+The 2026-05-04 incident was specifically observed with `opencode-go/deepseek-v4-pro` under `/deep:start-review-loop:auto`. Until a runtime scope guard ships (see §4), the cross-phase synthesis recommendation stands: **for multi-phase deep-review work, prefer `cli-copilot` with `gpt-5.5 --reasoning-effort high`** when available, and fall back to deepseek only with Layers 1+2+3 all in place. Memory feedback `feedback_copilot_concurrency_override.md` caps Copilot at 3 parallel dispatches; sequence the work accordingly.
 
 ---
 
@@ -145,5 +145,5 @@ This requires changes to the YAML wrapper (pre/post hooks) and is a separate pac
 - **Incident source**: local destructive-scope violation policy
 - **RM-8 hardening context**: local destructive-scope violation policy
 - **Hardened prompt template**: `.opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl` §CONSTRAINTS
-- **YAML dispatch surface**: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` step `if_cli_opencode`
+- **YAML dispatch surface**: `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` step `if_cli_opencode`
 - **Memory feedback**: `feedback_opencode_run_requires_dev_null_stdin.md`, `feedback_opencode_provider_fallback.md`, `feedback_cli_executor_only_when_requested.md`

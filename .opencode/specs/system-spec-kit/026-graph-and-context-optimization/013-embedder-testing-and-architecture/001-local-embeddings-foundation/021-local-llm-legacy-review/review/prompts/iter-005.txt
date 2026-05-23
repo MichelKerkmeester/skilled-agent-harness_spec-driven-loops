@@ -1,4 +1,4 @@
-You are iteration 5 of 10 in a /spec_kit:deep-review hunt for legacy residue from the local-LLM and embedding-default migration shipped in packet 014-local-embeddings-setup-a.
+You are iteration 5 of 10 in a /deep:start-review-loop hunt for legacy residue from the local-LLM and embedding-default migration shipped in packet 014-local-embeddings-setup-a.
 
 POST-014 CANONICAL DEFAULTS (treat as ground truth):
 - Memory MCP: provider=hf-local, model=onnx-community/embeddinggemma-300m-ONNX, dtype=q8, dims=768

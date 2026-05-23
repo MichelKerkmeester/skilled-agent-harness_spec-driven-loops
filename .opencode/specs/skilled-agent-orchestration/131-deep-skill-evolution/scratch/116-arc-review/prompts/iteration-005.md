@@ -24,7 +24,7 @@ Prior Findings: P0=1 P1=1 P2=2
 1. **Read state** (1 tool call). `deep-review-strategy.md` — note "exhausted approaches" section so you do NOT retry those directions.
 2. **Focus on under-covered correctness areas**:
    - **Reducer aggregation under multi-iter v2 records** (1 tool call). Read `reduce-state.cjs` aggregation paths around 900-1100. Verify `candidateCoverage` accumulates correctly when iter 1 covers some classes and iter 2+ covers others. Does the union behave as set-union or as last-write-wins?
-   - **YAML legal-stop decision tree** (1 tool call). Read `spec_kit_deep-review_auto.yaml:418-510` (step_check_convergence). Verify `candidateCoverageGate` interacts correctly with the existing `claim_adjudication_gate` and dimension coverage. Are there gate-order bugs?
+   - **YAML legal-stop decision tree** (1 tool call). Read `deep_start-review-loop_auto.yaml:418-510` (step_check_convergence). Verify `candidateCoverageGate` interacts correctly with the existing `claim_adjudication_gate` and dimension coverage. Are there gate-order bugs?
    - **Graph upsert validation** (1 tool call). Read `coverage-graph-db.ts:23,137` AND `upsert.ts:53-60`. Verify the 5 new node kinds (BUG_CLASS/INVARIANT/PRODUCER/CONSUMER/TEST) actually validate correctly when emitted with edge relations from the existing allow-list.
    - **Phase B fixture coverage** (1 tool call). Read 1-2 of the `review-depth-*.vitest.ts` files. Verify the v2-strict assertions actually exercise the new validator branches (not just check `it.todo` markers).
 3. **Look for off-by-one or boundary bugs in v2 enforcement**:

@@ -4,32 +4,202 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/006-skill-readme-refinement-survey",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/005-cross-skill-documentation-decoupling",
-      "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "006 skill readme refinement",
       "cli-devin 17-skill audit",
-      "zero section 1 tables remediation"
+      "zero section 1 tables remediation",
+      "006 plan",
+      "006 tasks",
+      "006 implementation summary"
     ],
-    "key_topics": ["006", "skill-readme-refinement", "cli-devin", "audit-and-remediate", "zero-tables-section-1"],
+    "key_topics": [
+      "006",
+      "skill",
+      "readme",
+      "refinement",
+      "cli-devin",
+      "17-skill",
+      "audit",
+      "zero",
+      "section",
+      "tables",
+      "remediation",
+      "plan"
+    ],
     "importance_tier": "important",
     "status": "complete",
-    "key_files": ["spec.md", "plan.md", "tasks.md", "implementation-summary.md", "research/audit-report.json", "research/audit-report.md"],
-    "entities": [],
-    "causal_summary": "cli-devin SWE 1.6 audited 17 non-system skill READMEs for em dashes, section 1 tables, banned words/phrases, cross-skill coupling, frontmatter drift; then autonomously remediated all 17 across 4 parallel waves plus a 3-skill cleanup wave. All 17 READMEs end at em=0 and zero tables in section 1.",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/prompts/render_remediation.sh",
+      "research/prompts/audit.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "render_remediation.sh",
+        "kind": "script",
+        "path": "research/prompts/render_remediation.sh",
+        "source": "derived"
+      },
+      {
+        "name": "audit.md",
+        "kind": "doc",
+        "path": "research/prompts/audit.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Full Phases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Refinement Survey",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Apply",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Audit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Audit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 005 (`a1a1ca9d3`) refined the 3 system-* skill READMEs. The 17 OTHER skill READMEs (cli-*, deep-*, mcp-*, sk-*) carried the same kinds of drift: tables in §1 OVERVIEW that fragment the reader's first impression, em dashes scattered through the body, and (potentially) banned words or banned phrases. A spot-check before the audit showed 15 of 17 READMEs had ≥19 table rows in §1 and 9 had em dashes (cli-devin alone with 29).",
     "created_at": "2026-05-16T13:25:00Z",
-    "last_save_at": "2026-05-16T13:25:00Z",
-    "save_lineage": "main_agent",
+    "last_save_at": "2026-05-23T11:55:15.234Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md", "plan.md", "tasks.md", "implementation-summary.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ]
   }
 }

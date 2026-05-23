@@ -23,8 +23,7 @@
       "005 post-program cleanup checklist",
       "026 cleanup verification",
       "005 post-program cleanup summary",
-      "026 cleanup implementation summary",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/001-post-program-doc-and-state-cleanup"
+      "026 cleanup implementation summary"
     ],
     "key_topics": [
       "005",
@@ -40,7 +39,7 @@
       "tasks",
       "task"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "complete",
     "key_files": [
       "spec.md",
@@ -198,7 +197,7 @@
     ],
     "causal_summary": "The 026 deep-review remediation program landed most runtime and documentation fixes, but left post-program status and validator surfaces stale. Completed remediation packets still present as `planned`, parent maps omit the remediation child, and the source packets 005/011 are not strict-validator green.",
     "created_at": "2026-04-28T19:26:58Z",
-    "last_save_at": "2026-05-19T13:51:38.894Z",
+    "last_save_at": "2026-05-23T11:55:14.824Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -335,7 +335,7 @@ exec
 345:## Task 7: Close `024-compact-code-graph/031-normalized-analytics-reader` with strict completion and memory-index cleanup, outcome success
 353:- 031-normalized-analytics-reader, spec status Complete, validate.sh --strict, check-completion.sh, checklist P0/P1 totals, description.json timestamp, memory_delete, memory_index_scan, lineage mismatch
 363:- 026-graph-and-context-optimization, 024-compact-code-graph, 026/005-009, 024/032-034, AI Execution Protocol, SECTION_COUNTS, PHASE_LINKS, SPEC_DOC_INTEGRITY, validate.sh --strict, --no-recursive, implement the plan
-368:- when the user asked "Run /spec_kit:deep-research ... get tot 20 total iterations so add 7 more," treat it as resume of the active lineage, not a fork [Task 2]
+368:- when the user asked "Run /deep:start-research-loop ... get tot 20 total iterations so add 7 more," treat it as resume of the active lineage, not a fork [Task 2]
 371:- after strict validation surfaced low-quality resume artifacts, the user said “do manually rewrite or adjust memories if you deemed quality low” -> manually repair latest `memory/*.md` snapshots when stale “Continue implementation” / `IN_PROGRESS` cues no longer match packet reality [Task 5]
 375:- when the user asked to “analyze research... suggest spec phases” and then “Implement the plan,” map recommendations into concrete follow-on Level-3 phase folders in the existing train and finish with validator-clean status before runtime work [Task 8]
 384:- Graphify closeout guidance is additive rather than replacement: enrich existing payload confidence/provenance and layered runtime hints (`session-prime`, `compact-inject`, `response-hints`), keep low-level invalidation as already covered by Public indexing, and defer clustering metadata to a later phase [Task 4]
@@ -568,11 +568,11 @@ Detect the current research phase from dispatch context to load appropriate reso
 ### Architecture: 3-Layer Integration
 
 ```
-User invokes: /spec_kit:deep-research "topic"
+User invokes: /deep:start-research-loop "topic"
                     |
                     v
     ┌─────────────────────────────────┐
-    │  /spec_kit:deep-research command│  Layer 1: Command
+    │  /deep:start-research-loop command│  Layer 1: Command
     │  (YAML workflow + loop config)    │  Manages loop lifecycle
     └──────────────┬──────────────────┘
                    |
@@ -718,8 +718,8 @@ Full details: `.opencode/skills/sk-git/`
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
 | **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → `create.sh --phase` → Populate → Plan first child  |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
-| **Deep research**         | `/spec_kit:deep-research` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
-| **Deep review**           | `/spec_kit:deep-review` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
+| **Deep research**         | `/deep:start-research-loop` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
+| **Deep review**           | `/deep:start-review-loop` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
 | **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                            |
 | **Constitutional memory** | `/memory:learn` → Constitutional memory manager: create, list, edit, remove, budget                                               |
 | **Shared memory**         | `/memory:manage shared` → Shared-memory lifecycle: create spaces, manage memberships, inspect rollout                                    |

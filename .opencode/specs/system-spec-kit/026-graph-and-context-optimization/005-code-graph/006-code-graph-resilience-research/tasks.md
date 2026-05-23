@@ -52,7 +52,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Run `/spec_kit:deep-research:auto` against this packet with --max-iterations=7 --convergence=0.10 --executor=cli-codex --model=gpt-5.4 --reasoning-effort=high (or equivalent cli-copilot config) (verified)
+- [x] T001 Run `/deep:start-research-loop:auto` against this packet with --max-iterations=7 --convergence=0.10 --executor=cli-codex --model=gpt-5.4 --reasoning-effort=high (or equivalent cli-copilot config) (verified)
 - [x] T002 Verify research/ scaffolding created (config.json, strategy.md, state.jsonl, prompts/, iterations/, deltas/) (verified)
 - [x] T003 Confirm iteration plan from plan.md is encoded in research/deep-review-strategy.md (verified)
 <!-- /ANCHOR:phase-1 -->

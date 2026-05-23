@@ -138,7 +138,7 @@ ec82436e6 feat(016/008/011/005): opt-in-only closure — arc 011 terminus  ← o
 
 | Condition | Suggested Command |
 |---|---|
-| Re-run deep-review to verify PASS | `/spec_kit:deep-review:auto` on this packet — should converge fast with no P0/P1 findings |
+| Re-run deep-review to verify PASS | `/deep:start-review-loop:auto` on this packet — should converge fast with no P0/P1 findings |
 | Persist findings to packet continuity | `/memory:save` on the 011 arc — captures the 10-iter run + 4-agent fix + semantic-split lesson |
 | Future: re-enable rerank by default if/when retrieval improves | Flip `SPECKIT_CROSS_ENCODER=true` env var + verify cleanly via new vitests |
 | Investigate swap saturation root cause (out-of-scope here) | Operator-side: reboot, profile system over 24h, identify what's filling swap |

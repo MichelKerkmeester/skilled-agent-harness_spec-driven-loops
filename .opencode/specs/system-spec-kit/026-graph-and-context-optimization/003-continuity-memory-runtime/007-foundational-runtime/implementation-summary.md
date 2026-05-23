@@ -16,7 +16,7 @@ _memory:
     last_updated_at: "2026-04-17T18:00:00Z"
     last_updated_by: "claude-opus-4.7"
     recent_action: "Phase 017 implementation complete: 25 commits landed on main across 4 waves (A=5, B=10, C=4, D=3) + 3 support commits. All 27 tasks closed. Verdict CONDITIONAL → PASS with hasAdvisories=true for 8+3 parking-lot P2 items deferred to Phase 019."
-    next_safe_action: "Draft v3.4.0.2 release + optional /spec_kit:deep-review :auto on Phase 017 scope for final ship gate (if desired beyond smoke-test validation already performed). Phase 018 autonomous Copilot iteration unblocked."
+    next_safe_action: "Draft v3.4.0.2 release + optional /deep:start-review-loop :auto on Phase 017 scope for final ship gate (if desired beyond smoke-test validation already performed). Phase 018 autonomous Copilot iteration unblocked."
     blockers: []
     completion_pct: 100
     key_files:
@@ -160,7 +160,7 @@ Wave A2 (parallel, 2 agents): T-SCP-01 normalizer collapse, EVIDENCE audit brack
 
 Atomic-ship verification for T-CNS-01 + T-W1-CNS-04: merged-PR agent checked `git show HEAD | grep -c 'workflow.ts'` = 1 commit touching both lines 1259 AND 1333.
 
-**Wave A Smoke Gate**: `tsc --noEmit` clean + 49/49 Wave A test files + `workflow-memory-tracking.vitest.ts` regression suite + `graph-metadata-refresh.vitest.ts` — all green. No regressions detected. Full `/spec_kit:deep-review :auto` ×7 deferred to optional final ship gate.
+**Wave A Smoke Gate**: `tsc --noEmit` clean + 49/49 Wave A test files + `workflow-memory-tracking.vitest.ts` regression suite + `graph-metadata-refresh.vitest.ts` — all green. No regressions detected. Full `/deep:start-review-loop :auto` ×7 deferred to optional final ship gate.
 
 **Wave B — Cluster Consumers (4 parallel lanes, ~30h effective wall-clock)**
 

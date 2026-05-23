@@ -134,8 +134,8 @@ Changes:
 ### Bucket C — YAML dispatcher branches (Agent 3)
 
 Files:
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+- `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
 - (optional) `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/999-spec-026-restructure-research/scripts/run-loop.sh` — packet-local but forward-compatible
 
 Changes per YAML:

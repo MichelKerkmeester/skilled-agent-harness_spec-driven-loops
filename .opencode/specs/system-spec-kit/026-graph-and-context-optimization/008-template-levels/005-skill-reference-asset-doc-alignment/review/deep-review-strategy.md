@@ -4,7 +4,7 @@
 
 ### Purpose
 
-Run `/spec_kit:deep-review:auto /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/005-skill-reference-asset-doc-alignment --max-iterations=5` against the pinned phase child, with review focus on implementation-code alignment rather than docs-only cross-references.
+Run `/deep:start-review-loop:auto /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/005-skill-reference-asset-doc-alignment --max-iterations=5` against the pinned phase child, with review focus on implementation-code alignment rather than docs-only cross-references.
 
 ### Command Setup Bindings
 
@@ -236,10 +236,10 @@ Review target: `.opencode/specs/system-spec-kit/026-graph-and-context-optimizati
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: `checklist_evidence`: partial/complete for this dimension. The code-correctness pass rechecked the implementation surfaces underlying the phase's verification claims.
 
-### `command_yaml`: complete. Checked `/spec_kit:deep-review` command entrypoint and auto YAML for canonical agent path, prompt-pack rendering, executor dispatch, and output validation requirements. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: `command_yaml`: complete. Checked `/spec_kit:deep-review` command entrypoint and auto YAML for canonical agent path, prompt-pack rendering, executor dispatch, and output validation requirements.
+### `command_yaml`: complete. Checked `/deep:start-review-loop` command entrypoint and auto YAML for canonical agent path, prompt-pack rendering, executor dispatch, and output validation requirements. -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: `command_yaml`: complete. Checked `/deep:start-review-loop` command entrypoint and auto YAML for canonical agent path, prompt-pack rendering, executor dispatch, and output validation requirements.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `command_yaml`: complete. Checked `/spec_kit:deep-review` command entrypoint and auto YAML for canonical agent path, prompt-pack rendering, executor dispatch, and output validation requirements.
+- Do NOT retry: `command_yaml`: complete. Checked `/deep:start-review-loop` command entrypoint and auto YAML for canonical agent path, prompt-pack rendering, executor dispatch, and output validation requirements.
 
 ### `feature_catalog_code`: notApplicable. No feature catalog surfaces were in this iteration's declared focus. -- BLOCKED (iteration 3, 1 attempts)
 - What was tried: `feature_catalog_code`: notApplicable. No feature catalog surfaces were in this iteration's declared focus.

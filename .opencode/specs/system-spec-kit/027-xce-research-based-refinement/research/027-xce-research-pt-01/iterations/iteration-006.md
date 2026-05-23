@@ -93,8 +93,8 @@ Evidence lines:
 | 3 | `cli-gemini` | External AI dispatch (code, analysis, research) | `dispatch Gemini CLI` |
 | 4 | `cli-opencode` | External OpenCode parallel session, cross-AI handback | `dispatch OpenCode CLI` |
 | 5 | `deep-agent-improvement` | Agent quality improvement (5-dim scoring) | `evaluate with 5-dim scoring` |
-| 6 | `deep-research` | Autonomous iterative investigation | `run /spec_kit:deep-research:auto` |
-| 7 | `deep-review` | Autonomous iterative code review | `run /spec_kit:deep-review:auto` |
+| 6 | `deep-research` | Autonomous iterative investigation | `run /deep:start-research-loop:auto` |
+| 7 | `deep-review` | Autonomous iterative code review | `run /deep:start-review-loop:auto` |
 | 8 | `mcp-chrome-devtools` | Browser devtools (route CLI or MCP) | `route to bdg CLI or Code Mode` |
 | 9 | `mcp-coco-index` | Semantic code search by meaning | `search with ccc/cocoindex BEFORE grep` |
 | 10 | `mcp-code-mode` | External MCP tool calls via TypeScript | `execute via call_tool_chain` |
@@ -124,8 +124,8 @@ const FIRST_ACTION_HINT: Readonly<Record<string, string>> = {
   'cli-gemini':            'dispatch Gemini CLI',
   'cli-opencode':          'dispatch OpenCode CLI',
   'deep-agent-improvement': 'evaluate with 5-dim scoring',
-  'deep-research':         'run /spec_kit:deep-research:auto',
-  'deep-review':           'run /spec_kit:deep-review:auto',
+  'deep-research':         'run /deep:start-research-loop:auto',
+  'deep-review':           'run /deep:start-review-loop:auto',
   'mcp-chrome-devtools':   'route to bdg CLI or Code Mode MCP',
   'mcp-coco-index':        'semantic search BEFORE grep/file-reading',
   'mcp-code-mode':         'execute via call_tool_chain',

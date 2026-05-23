@@ -107,10 +107,10 @@ Validation note: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh
 - `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w10-degraded-readiness-integration.vitest.ts`
 - `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs:1-180`
 - `.opencode/skills/system-spec-kit/scripts/tests/review-research-paths.vitest.ts:1-177`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
+- `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
+- `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
+- `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`
 - `.opencode/skills/system-spec-kit/mcp_server/core/README.md:34-45`
 - `.opencode/skills/system-spec-kit/references/structure/folder_structure.md:190-222`
 

@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Phase D of 114 roadmap. Ship three shared-intelligence patterns scoped to the user's actual small-model ecosystem (SWE-1.6, DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, optional Haiku + Gemini Flash): (1) unified `model-profiles.json` registry at `sk-prompt/assets/` covering the 4 in-scope models + 2 optional; (2) bayesian per-tool scoring in cli-devin agent-config recipes (Laplace-smoothed, demote tools >50% failure); (3) Quota-aware fallback engine that handles SWE-1.6 free-tier exhaustion + Cognition Pro pool exhaustion (DeepSeek/Kimi/Qwen share one pool) — NOT a small→frontier escalator since the user doesn't run frontier models. Effort: ~20 hours (down from ~26 hr; bloat removed by dropping GLM/gpt-5.5/Opus/Sonnet from scope).",
     "created_at": "2026-05-18T12:40:53.971Z",
-    "last_save_at": "2026-05-23T09:22:40.265Z",
+    "last_save_at": "2026-05-23T11:55:14.217Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

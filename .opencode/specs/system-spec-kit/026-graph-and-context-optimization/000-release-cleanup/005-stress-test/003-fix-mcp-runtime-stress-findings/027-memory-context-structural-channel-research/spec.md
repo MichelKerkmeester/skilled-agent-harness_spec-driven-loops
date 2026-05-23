@@ -36,7 +36,7 @@ _memory:
 | **Created** | 2026-04-29 |
 | **Branch** | `main` |
 | **Parent** | `003-fix-mcp-runtime-stress-findings` |
-| **Mode** | Deep research (`/spec_kit:deep-research:auto` pattern) |
+| **Mode** | Deep research (`/deep:start-research-loop:auto` pattern) |
 | **Iterations** | 5 (max); convergence allowed earlier |
 | **Executor** | cli-codex `gpt-5.5` reasoning=`xhigh` service-tier=default (normal) |
 <!-- /ANCHOR:metadata -->

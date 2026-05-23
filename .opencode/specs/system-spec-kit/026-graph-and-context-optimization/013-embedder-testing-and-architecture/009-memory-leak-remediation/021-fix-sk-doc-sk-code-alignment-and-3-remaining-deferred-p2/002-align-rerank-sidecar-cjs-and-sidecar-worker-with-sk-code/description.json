@@ -1,0 +1,28 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/002-align-rerank-sidecar-cjs-and-sidecar-worker-with-sk-code",
+  "description": "Spec: Rerank Sidecar CJS and Sidecar Worker sk-code Alignment",
+  "keywords": [
+    "spec",
+    "rerank",
+    "sidecar",
+    "cjs",
+    "worker",
+    "sk-code",
+    "alignment"
+  ],
+  "lastUpdated": "2026-05-23T11:55:36.523Z",
+  "specId": "002",
+  "folderSlug": "align-rerank-sidecar-cjs-and-sidecar-worker-with-sk-code",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "009-memory-leak-remediation",
+    "021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

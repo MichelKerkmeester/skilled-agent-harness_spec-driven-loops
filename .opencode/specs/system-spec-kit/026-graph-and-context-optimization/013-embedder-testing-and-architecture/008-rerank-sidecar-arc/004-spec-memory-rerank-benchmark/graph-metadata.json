@@ -4,10 +4,10 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/004-spec-memory-rerank-benchmark",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/003-ensure-sidecar-from-launchers"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
@@ -18,29 +18,205 @@
       "paraphrase recall fixture",
       "cat-24/409 benchmark",
       "memory_search rerank ab",
-      "004 rerank benchmark"
+      "004 rerank benchmark",
+      "004 plan rerank benchmark",
+      "004 tasks rerank benchmark",
+      "004 implementation summary"
     ],
     "key_topics": [
+      "spec-memory",
+      "rerank",
       "benchmark",
-      "ab-test",
+      "qwen",
+      "positional",
+      "fallback",
       "paraphrase",
-      "mrr",
-      "hit-rate",
-      "qwen-reranker"
+      "recall",
+      "fixture",
+      "cat-24",
+      "409",
+      "004"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      "dist/context-server.js",
+      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/SOURCE.md",
+      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/benchmark_report.md",
+      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/results.csv",
+      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/per-probe.jsonl",
+      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/per-probe-arm-a.jsonl",
+      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/per-probe-arm-b.jsonl",
+      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/rerank-ab-fixture.json",
+      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run-ab.sh",
+      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run_arm.sh",
+      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run_arm.py",
+      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/aggregate.py",
+      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/generate_report.py",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/004-spec-memory-rerank-benchmark/tasks.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/004-spec-memory-rerank-benchmark/implementation-summary.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/004-spec-memory-rerank-benchmark/spec.md",
+      "spec.md",
+      "plan.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/409-fixture.json",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "context-server.js",
+        "kind": "code",
+        "path": "dist/context-server.js",
+        "source": "derived"
+      },
+      {
+        "name": "SOURCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/SOURCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "benchmark_report.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/benchmark_report.md",
+        "source": "derived"
+      },
+      {
+        "name": "results.csv",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/results.csv",
+        "source": "derived"
+      },
+      {
+        "name": "per-probe.jsonl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/per-probe.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "per-probe-arm-a.jsonl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/per-probe-arm-a.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "per-probe-arm-b.jsonl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/per-probe-arm-b.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "rerank-ab-fixture.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/rerank-ab-fixture.json",
+        "source": "derived"
+      },
+      {
+        "name": "run-ab.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run-ab.sh",
+        "source": "derived"
+      },
+      {
+        "name": "run_arm.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run_arm.sh",
+        "source": "derived"
+      },
+      {
+        "name": "run_arm.py",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run_arm.py",
+        "source": "derived"
+      },
+      {
+        "name": "aggregate.py",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/aggregate.py",
+        "source": "derived"
+      },
+      {
+        "name": "generate_report.py",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/generate_report.py",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/004-spec-memory-rerank-benchmark/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/004-spec-memory-rerank-benchmark/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/004-spec-memory-rerank-benchmark/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "409-fixture.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/409-fixture.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Arc",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Cocoindex",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Adopting Qwen",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mean Reciprocal Rank",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 004 of the 008 rerank-sidecar arc. Quantify the actual quality lift of Qwen reranking on spec-memory's own corpus before promoting to default. Closes the \"cargo-culting cocoindex's +1/73\" risk surfaced in the gpt-5.5 xhigh critique.",
+    "created_at": "2026-05-23T11:55:15.610Z",
+    "last_save_at": "2026-05-23T11:55:15.610Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ],
-    "entities": [
-      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/",
-      ".opencode/skills/sk-doc/references/benchmarks/FORMAT.md"
-    ],
-    "last_indexed_at": "2026-05-20T00:00:00Z"
+    ]
   }
 }

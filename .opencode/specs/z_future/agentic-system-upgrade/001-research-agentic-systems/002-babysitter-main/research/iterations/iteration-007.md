@@ -16,10 +16,10 @@ I compared Babysitter's plugin manifest and harness discovery contracts with `sy
 - The Codex plugin maps concrete hook entrypoints for `SessionStart`, `UserPromptSubmit`, and `Stop` through a single `hooks.json` file. [SOURCE: external/plugins/babysitter-codex/hooks.json:2-35]
 - Babysitter's harness registry centralizes known harness names, capabilities, and config roots, including `claude-code`, `codex`, `cursor`, `gemini-cli`, `opencode`, `pi`, and `internal`. [SOURCE: external/packages/sdk/src/harness/discovery.ts:49-126]
 - `system-spec-kit`'s top-level routing rules say runtime directories must switch between `.opencode/agents/`, `.claude/agents/`, `.codex/agents/`, and `.gemini/agents/` depending on runtime. [SOURCE: AGENTS.md:277-288]
-- The current deep-research YAML claims to be runtime-agnostic but still hardcodes `agent_file: ".claude/agents/deep-research.md"` in both auto and confirm workflows. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:66-74] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:66-74]
+- The current deep-research YAML claims to be runtime-agnostic but still hardcodes `agent_file: ".claude/agents/deep-research.md"` in both auto and confirm workflows. [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:66-74] [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:66-74]
 
 ## Analysis
-This is a concrete inconsistency in `system-spec-kit`: the architectural rule says runtime directory selection should vary by harness, but the deep-research workflow still embeds a Claude-specific agent path. Babysitter avoids that class of drift by separating plugin manifests and harness discovery from the orchestration logic. [SOURCE: AGENTS.md:277-288] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:66-74] [SOURCE: external/packages/sdk/src/harness/discovery.ts:49-126]
+This is a concrete inconsistency in `system-spec-kit`: the architectural rule says runtime directory selection should vary by harness, but the deep-research workflow still embeds a Claude-specific agent path. Babysitter avoids that class of drift by separating plugin manifests and harness discovery from the orchestration logic. [SOURCE: AGENTS.md:277-288] [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:66-74] [SOURCE: external/packages/sdk/src/harness/discovery.ts:49-126]
 
 The strongest transferable pattern is not Babysitter's whole plugin system. It is the normalized manifest boundary: one place to resolve harness-specific roots, capabilities, and hook entrypoints so command workflows stop hardcoding per-runtime paths. [SOURCE: external/plugins/babysitter-opencode/plugin.json:2-10] [SOURCE: external/plugins/babysitter-codex/hooks.json:2-35]
 
@@ -29,14 +29,14 @@ confidence: high
 finding: `system-spec-kit` should add a runtime manifest/resolver layer and route deep-research, deep-review, and similar workflows through it. This is a direct fix for a currently visible path-hardcoding problem and a prerequisite for any cleaner multi-runtime workflow packaging.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`, and a new runtime-manifest helper under `.opencode/skills/system-spec-kit/`
+- **Target file or module:** `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`, `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`, and a new runtime-manifest helper under `.opencode/skills/system-spec-kit/`
 - **Change type:** modified existing
 - **Blast radius:** medium
 - **Prerequisites:** define a canonical manifest format for runtime agent roots, hook roots, and runtime capabilities
 - **Priority:** must-have
 
 ## Counter-evidence sought
-I looked for an existing manifest-driven resolver that the deep-research YAML already uses and found only directory conventions in `AGENTS.md`, plus the hardcoded Claude path in both YAML files. [SOURCE: AGENTS.md:277-288] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:66-74] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:66-74]
+I looked for an existing manifest-driven resolver that the deep-research YAML already uses and found only directory conventions in `AGENTS.md`, plus the hardcoded Claude path in both YAML files. [SOURCE: AGENTS.md:277-288] [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:66-74] [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:66-74]
 
 ## Follow-up questions for next iteration
 - Should `system-spec-kit` also adopt Babysitter's marketplace installer model, or is the manifest boundary enough?

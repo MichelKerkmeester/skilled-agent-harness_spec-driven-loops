@@ -122,7 +122,7 @@ surface injection (1 line: "Skill: <name> (conf=<n>, unc=<n>, freshness=<state>)
 
 ### Phase 1: Research (001-initial-research)
 - [ ] Scaffold 001-initial-research Level 2 sub-packet
-- [ ] Dispatch `/spec_kit:deep-research :auto` on hook architecture + context budget + runtime parity
+- [ ] Dispatch `/deep:start-research-loop :auto` on hook architecture + context budget + runtime parity
 - [ ] Converge with ranked proposals per cluster
 
 ### Phase 2: Implementation Children (002-009) — finalized post-convergence
@@ -164,7 +164,7 @@ Each child carries its own `plan.md` dispatch details. 005 is a **hard gate**: r
 ### 4.1 Dispatch Command (for 020/001 research)
 
 ```
-/spec_kit:deep-research :auto "Skill-advisor hook surface architecture research. Investigate: (a) per-runtime hook trigger-point availability (Claude UserPromptSubmit, Codex equivalent, Copilot equivalent, Gemini equivalent); (b) empirical latency + cache-TTL curve using the 019/004 200-prompt corpus; (c) freshness signal semantics analogous to code-graph getGraphFreshness; (d) context-budget tradeoffs for brief-length (40/60/80/120 tokens) vs routing-quality retention; (e) failure mode + fail-open contract for subprocess errors. Recommend implementation cluster decomposition with child spec folders under 020/." --executor=cli-codex --model=gpt-5.4 --reasoning-effort=high --service-tier=fast --executor-timeout=1800
+/deep:start-research-loop :auto "Skill-advisor hook surface architecture research. Investigate: (a) per-runtime hook trigger-point availability (Claude UserPromptSubmit, Codex equivalent, Copilot equivalent, Gemini equivalent); (b) empirical latency + cache-TTL curve using the 019/004 200-prompt corpus; (c) freshness signal semantics analogous to code-graph getGraphFreshness; (d) context-budget tradeoffs for brief-length (40/60/80/120 tokens) vs routing-quality retention; (e) failure mode + fail-open contract for subprocess errors. Recommend implementation cluster decomposition with child spec folders under 020/." --executor=cli-codex --model=gpt-5.4 --reasoning-effort=high --service-tier=fast --executor-timeout=1800
 ```
 
 ---

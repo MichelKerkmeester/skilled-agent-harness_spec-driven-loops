@@ -20,24 +20,202 @@
   },
   "derived": {
     "trigger_phrases": [
-      "sk improve prompt rename",
-      "sk improve prompt rename graph metadata"
+      "082 sk-improve-prompt rename",
+      "sk-improve-prompt to sk-prompt",
+      "rename sk-improve-prompt",
+      "skill rename sk-prompt",
+      "drop improve from skill name",
+      "082 resource map",
+      "sk-improve-prompt rename resource map",
+      "082 file ledger"
     ],
     "key_topics": [
+      "082",
+      "sk-improve-prompt",
+      "rename",
+      "sk-prompt",
+      "skill",
+      "drop",
       "improve",
-      "prompt",
-      "rename"
+      "name",
+      "resource",
+      "map",
+      "file",
+      "ledger"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "spec.md",
-      "resource-map.md"
+      "resource-map.md",
+      ".opencode/commands/improve/prompt.md",
+      ".claude/CLAUDE.md",
+      ".opencode/commands/improve/README.txt",
+      ".opencode/skills/cli-claude-code/assets/prompt_quality_card.md",
+      ".opencode/skills/cli-claude-code/SKILL.md",
+      ".opencode/skills/cli-claude-code/manual_testing_playbook/07--prompt-templates/002-clear-quality-card-5-check.md",
+      ".opencode/skills/cli-codex/assets/prompt_quality_card.md",
+      ".opencode/skills/cli-codex/SKILL.md",
+      ".opencode/skills/cli-gemini/assets/prompt_quality_card.md",
+      ".opencode/skills/cli-gemini/SKILL.md",
+      ".opencode/skills/cli-gemini/manual_testing_playbook/07--prompt-templates/002-clear-quality-card-application.md",
+      ".opencode/skills/cli-opencode/assets/prompt_quality_card.md",
+      ".opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/002-clear-quality-card.md",
+      ".opencode/skills/deep-agent-improvement/SKILL.md",
+      ".opencode/skills/deep-agent-improvement/changelog/v1.1.0.0.md",
+      ".opencode/skills/deep-agent-improvement/graph-metadata.json",
+      ".opencode/skills/sk-code/assets/opencode/checklists/mcp_server_authoring.md",
+      ".opencode/skills/sk-code/manual_testing_playbook/04--skill-advisor-integration/001-advisor-probe-battery.md",
+      ".gemini/commands/improve/README.txt"
     ],
-    "entities": [],
-    "causal_summary": "Graph metadata for the current packet.",
+    "entities": [
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt.md",
+        "kind": "doc",
+        "path": ".opencode/commands/improve/prompt.md",
+        "source": "derived"
+      },
+      {
+        "name": "CLAUDE.md",
+        "kind": "doc",
+        "path": ".claude/CLAUDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/commands/improve/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_quality_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-claude-code/assets/prompt_quality_card.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-claude-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "002-clear-quality-card-5-check.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-claude-code/manual_testing_playbook/07--prompt-templates/002-clear-quality-card-5-check.md",
+        "source": "derived"
+      },
+      {
+        "name": "002-clear-quality-card-application.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-gemini/manual_testing_playbook/07--prompt-templates/002-clear-quality-card-application.md",
+        "source": "derived"
+      },
+      {
+        "name": "002-clear-quality-card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/002-clear-quality-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.1.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-agent-improvement/changelog/v1.1.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-agent-improvement/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "mcp_server_authoring.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/assets/opencode/checklists/mcp_server_authoring.md",
+        "source": "derived"
+      },
+      {
+        "name": "001-advisor-probe-battery.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/manual_testing_playbook/04--skill-advisor-integration/001-advisor-probe-battery.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Map",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Python",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "refs",
+        "kind": "key_phrase",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "historical",
+        "kind": "key_phrase",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "folder",
+        "kind": "key_phrase",
+        "path": "resource-map.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The skill currently named `sk-improve-prompt` carries a redundant `-improve-` segment that duplicates intent already encoded by its dispatcher command (`/improve:prompt`) and agent (`@improve-prompt`). Sibling skills that surface a single capability use single-word names (`sk-code`, `sk-doc`, `sk-git`). Renaming to `sk-prompt` aligns with that convention while preserving the `sk-` family marker.",
     "created_at": "2026-05-06T10:22:39Z",
-    "last_save_at": "2026-05-19T13:51:38.741Z",
+    "last_save_at": "2026-05-23T11:55:14.625Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

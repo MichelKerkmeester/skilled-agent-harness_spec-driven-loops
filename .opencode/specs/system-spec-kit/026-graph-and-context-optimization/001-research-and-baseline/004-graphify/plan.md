@@ -75,7 +75,7 @@ Externalized-state deep-research loop with leaf-agent dispatch per iteration. Fr
 
 ### Key Components
 
-- **Loop manager** (`/spec_kit:deep-research:auto`): runs phase_init -> phase_loop -> phase_synthesis -> phase_save
+- **Loop manager** (`/deep:start-research-loop:auto`): runs phase_init -> phase_loop -> phase_synthesis -> phase_save
 - **Leaf agent** (`@deep-research` via cli-codex or claude-opus-direct): executes one iteration, writes findings to file, exits
 - **Reducer** (`reduce-state.cjs`): refreshes registry, dashboard, machine-owned strategy sections after each iteration
 - **State files**: `deep-research-config.json` (immutable after init), `deep-research-state.jsonl` (append-only), `research/deep-research-strategy.md` (mutable), `findings-registry.json` (auto-generated), `research/deep-research-dashboard.md` (auto-generated)

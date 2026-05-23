@@ -103,7 +103,7 @@ No deep-loop iter run this packet — the 056+058 retrospective IS the research.
 ### Phase 2: Command updates
 - [ ] Add `cli-devin` to executor enum in `deep-research.md` (lines 79, 124, 137) + sister places
 - [ ] Same for `deep-review.md`
-- [ ] Update YAML dispatch switch (assets/spec_kit_deep-research_auto.yaml + spec_kit_deep-review_auto.yaml if exists) to handle cli-devin shape: `devin -p --prompt-file ... --model swe-1.6 --permission-mode auto </dev/null`
+- [ ] Update YAML dispatch switch (assets/deep_start-research-loop_auto.yaml + deep_start-review-loop_auto.yaml if exists) to handle cli-devin shape: `devin -p --prompt-file ... --model swe-1.6 --permission-mode auto </dev/null`
 - [ ] Per-file sk-doc validate
 
 ### Phase 3: Agent updates

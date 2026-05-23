@@ -230,7 +230,7 @@ This is the **highest-impact gap** — packet 012 is the v1.0.2 P0 catastrophic-
 
 **Existing files needing update:**
 
-(a) `.opencode/skills/cli-copilot/manual_testing_playbook/01--cli-invocation/002-allow-all-tools-sandboxed-write.md` (CP-002): currently passes `--allow-all-tools` directly without `targetAuthority`. Add a note in §2 SCENARIO CONTRACT: *"For deep-loop dispatch (`/spec_kit:deep-research:auto`, `/spec_kit:deep-review:auto`), `--allow-all-tools` MUST be paired with a `kind:'approved'` `targetAuthority` token via `buildCopilotPromptArg`. CP-002 covers direct CLI use only; deep-loop dispatch is covered by CP-022 - CP-025."*
+(a) `.opencode/skills/cli-copilot/manual_testing_playbook/01--cli-invocation/002-allow-all-tools-sandboxed-write.md` (CP-002): currently passes `--allow-all-tools` directly without `targetAuthority`. Add a note in §2 SCENARIO CONTRACT: *"For deep-loop dispatch (`/deep:start-research-loop:auto`, `/deep:start-review-loop:auto`), `--allow-all-tools` MUST be paired with a `kind:'approved'` `targetAuthority` token via `buildCopilotPromptArg`. CP-002 covers direct CLI use only; deep-loop dispatch is covered by CP-022 - CP-025."*
 
 **New CP-NNN entries needed (recommended 022-025) under cli-copilot playbook:**
 
@@ -258,7 +258,7 @@ Both should add a dispatch-helper coverage entry under `03--iteration-execution-
 
 Each asserts:
 1. `_auto.yaml` `if_cli_copilot.command` block routes through `buildCopilotPromptArg`.
-2. `grep -n "buildCopilotPromptArg" .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` ≥ 1 hit.
+2. `grep -n "buildCopilotPromptArg" .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` ≥ 1 hit.
 3. YAML inline source contains `targetAuthority = specFolder ? { kind: 'approved', specFolder } : { kind: 'missing', writeIntent: true }`.
 4. End-to-end run: when `{spec_folder}` substitutes a real folder, dispatch produces approved preamble; when null, dispatch produces Gate-3 plan-only.
 

@@ -34,7 +34,7 @@ Sample at least:
 - `.opencode/skills/deep-research/assets/` (templates, configs)
 - `.opencode/skills/deep-research/scripts/reduce-state.cjs` (research's state reducer)
 - `.opencode/skills/deep-research/references/` (research's protocol docs)
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+- `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
 
 **Step 2: Sample deep-research run artifacts**
 

@@ -41,8 +41,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
-      ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
       ".opencode/agents/deep-review.md",
       ".claude/agents/deep-review.md",
       ".gemini/agents/deep-review.md",
@@ -55,18 +53,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "spec_kit_deep-review_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "spec_kit_deep-review_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
-        "source": "derived"
-      },
       {
         "name": "deep-review.md",
         "kind": "doc",
@@ -198,11 +184,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Research",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Make Phase 2 the durable review-mode contract by aligning docs, assets, workflow YAML, runtime mirrors, manual testing playbook surfaces, and packet closeout evidence around one canonical deep-review packet model.",
     "created_at": "2026-04-12T09:02:50.184Z",
-    "last_save_at": "2026-05-19T13:51:38.487Z",
+    "last_save_at": "2026-05-23T11:55:14.415Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

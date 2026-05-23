@@ -18,7 +18,7 @@ _memory:
     last_updated_at: "2026-04-27T08:25:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Scaffolded 007 packet for 10-iter deep research"
-    next_safe_action: "Dispatch /spec_kit:deep-research:auto with cli-codex gpt-5.5 high fast executor"
+    next_safe_action: "Dispatch /deep:start-research-loop:auto with cli-codex gpt-5.5 high fast executor"
     blockers: []
     key_files:
       - "spec.md"
@@ -75,7 +75,7 @@ Run a 10-iteration deep research loop with cli-codex (gpt-5.5, high reasoning, f
 
 ### In Scope
 - Investigate eight defect clusters drawn from 005 and 006 findings (see Requirements Q1-Q8 below).
-- Run 10 deep-research iterations via the canonical `/spec_kit:deep-research:auto` skill workflow.
+- Run 10 deep-research iterations via the canonical `/deep:start-research-loop:auto` skill workflow.
 - Each iteration dispatches its investigation via cli-codex with gpt-5.5, reasoning effort high, service_tier fast, sandbox workspace-write.
 - Produce a synthesized research markdown documenting root causes, remediation strategies, verification probes, and recommended packet decomposition for downstream implementation.
 - Cross-reference 005 REQ IDs (REQ-001..017 plus REQ-018/019 candidates) and 006 findings (v1.0.0 + v1.0.1 rubric) wherever a finding maps to a known defect.

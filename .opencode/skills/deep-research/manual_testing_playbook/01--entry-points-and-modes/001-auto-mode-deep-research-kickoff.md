@@ -15,7 +15,7 @@ This scenario validates auto mode deep-research kickoff for `DR-001`. The object
 
 ### WHY THIS MATTERS
 
-Operators need one coherent story for `/spec_kit:deep-research:auto` so they can launch unattended research with the right artifact and lifecycle expectations.
+Operators need one coherent story for `/deep:start-research-loop:auto` so they can launch unattended research with the right artifact and lifecycle expectations.
 
 ---
 
@@ -44,9 +44,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-research auto mode across docs, command entrypoint, YAML workflow, and expected artifacts.
 ### Commands
-1. `bash: rg -n '/spec_kit:deep-research:auto|research/research.md|research/iterations' .opencode/skills/deep-research/README.md .opencode/skills/deep-research/references/quick_reference.md`
-2. `bash: sed -n '1,220p' .opencode/commands/spec_kit/deep-research.md`
-3. `bash: sed -n '1,260p' .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+1. `bash: rg -n '/deep:start-research-loop:auto|research/research.md|research/iterations' .opencode/skills/deep-research/README.md .opencode/skills/deep-research/references/quick_reference.md`
+2. `bash: sed -n '1,220p' .opencode/commands/deep/start-research-loop.md`
+3. `bash: sed -n '1,260p' .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
 ### Expected
 The same autonomous command appears across sources, autonomous mode is approval-free, and the workflow points to config, JSONL, strategy, iteration files, and `research/research.md`.
 ### Evidence
@@ -72,8 +72,8 @@ Start with the README examples, confirm the Markdown command maps `:auto` to the
 |---|---|
 | `.opencode/skills/deep-research/README.md` | User-facing examples; use `ANCHOR:quick-start` and `ANCHOR:configuration` |
 | `.opencode/skills/deep-research/references/quick_reference.md` | Cheat-sheet command contract; use `ANCHOR:commands` and `ANCHOR:state-files` |
-| `.opencode/commands/spec_kit/deep-research.md` | Markdown setup and mode routing; use `SINGLE CONSOLIDATED SETUP PROMPT` and `## 3. WORKFLOW OVERVIEW` |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Autonomous workflow contract; inspect `state_paths`, `phase_init`, and `phase_loop` |
+| `.opencode/commands/deep/start-research-loop.md` | Markdown setup and mode routing; use `SINGLE CONSOLIDATED SETUP PROMPT` and `## 3. WORKFLOW OVERVIEW` |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Autonomous workflow contract; inspect `state_paths`, `phase_init`, and `phase_loop` |
 
 ---
 

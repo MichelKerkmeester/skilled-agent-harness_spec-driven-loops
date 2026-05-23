@@ -65,10 +65,10 @@ This phase restored the local-owner contract in three passes. The shared resolve
 | `.opencode/skills/system-spec-kit/scripts/migrate-deep-loop-legacy-owner-map.cjs` (NEW) | Explicit owner-map migration for legacy metadata shapes. |
 | `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | Modified: uses resolver-provided `artifactDir` only. |
 | `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` | Modified: uses resolver-provided `artifactDir` only. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modified: resolved packet path in prompts and state. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modified: same pattern. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modified: resolved packet path in prompts and state. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modified: same pattern. |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Modified: resolved packet path in prompts and state. |
+| `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Modified: same pattern. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Modified: resolved packet path in prompts and state. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Modified: same pattern. |
 | `.opencode/skills/sk-deep-research/**` | Modified: docs, references, dashboards rebased to local-owner contract. |
 | `.opencode/skills/sk-deep-review/**` | Modified: docs, references, dashboards, review contract assets rebased. |
 | `.opencode/skills/system-spec-kit/scripts/tests/*.vitest.ts` | Modified/created: resolver coverage + contract parity. |

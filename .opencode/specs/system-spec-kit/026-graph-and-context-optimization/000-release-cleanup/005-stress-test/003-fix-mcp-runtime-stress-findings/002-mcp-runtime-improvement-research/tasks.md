@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-04-27T08:25:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Decomposed deep-research work units"
-    next_safe_action: "Validate then dispatch /spec_kit:deep-research:auto"
+    next_safe_action: "Validate then dispatch /deep:start-research-loop:auto"
     blockers: []
     key_files:
       - "spec.md"
@@ -61,7 +61,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 
 Deep Research Loop (skill-owned):
 
-- [ ] T010 Dispatch `/spec_kit:deep-research:auto` pointing at this packet
+- [ ] T010 Dispatch `/deep:start-research-loop:auto` pointing at this packet
 - [ ] T011 Configure 10-iteration cap
 - [ ] T012 Configure cli-codex executor (gpt-5.5, reasoning_effort=high, service_tier=fast, sandbox=workspace-write)
 - [ ] T013 Skill creates research/ folder and state JSONL
@@ -115,7 +115,7 @@ Synthesis & Handover:
 
 - Sibling 005-memory-search-runtime-bugs: defect catalog (REQ-001..017 + REQ-018/019 candidates)
 - Sibling 001-search-intelligence-stress-playbook: cross-AI stress-test (v1.0.0 + v1.0.1 findings, model hallucination class)
-- Skill /spec_kit:deep-research:auto: workflow owner
+- Skill /deep:start-research-loop:auto: workflow owner
 - CLAUDE.md Gate 4: skill-owned workflow enforcement
 - Memory feedback_codex_cli_fast_mode.md: cli-codex fast-mode invocation pattern
 <!-- /ANCHOR:cross-refs -->

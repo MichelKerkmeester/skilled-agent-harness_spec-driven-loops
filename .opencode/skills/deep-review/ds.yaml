@@ -94,7 +94,7 @@ phases:
   prerequisites: [ phase 4 passed, human approval received ]
   steps:
   - step: 5a
-    name: run 10 iterations of /spec_kit:deep-research
+    name: run 10 iterations of /deep:start-research-loop
     toolchain: CLI-DEVIN with SWE 1.6 per skill workflows
     input: phase 1 spec.md + audit findings from phase 2
     define_before_running:

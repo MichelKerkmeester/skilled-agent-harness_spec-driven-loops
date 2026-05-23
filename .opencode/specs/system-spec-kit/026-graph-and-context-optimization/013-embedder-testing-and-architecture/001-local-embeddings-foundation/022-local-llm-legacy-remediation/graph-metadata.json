@@ -4,86 +4,223 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/022-local-llm-legacy-remediation",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/021-local-llm-legacy-review"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/017-llama-cpp-default-flip"
-    ],
-    "followup_packet": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups"
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
-      "022 remediation complete",
-      "022 substrate repair shipped",
-      "post-014 ephemeral governance trigger",
-      "E081 classified codes shipped",
-      "022 scope shift remediation to substrate",
-      "ai-council embedding-worker-diagnostic"
+      "local-llm legacy remediation",
+      "022 remediation",
+      "post-021 fixes",
+      "014/017 narrative correction",
+      "022 remediation plan",
+      "local-llm legacy remediation plan",
+      "022 tasks",
+      "local-llm legacy remediation tasks",
+      "022 checklist",
+      "022 substrate repair complete",
+      "post-014 ephemeral governance trigger root cause",
+      "E081 classified codes shipped"
     ],
     "key_topics": [
-      "substrate-repair",
-      "retry-throughput-env-overridable",
-      "E081-classified-codes",
-      "ephemeral-governance-trigger",
-      "scenario-docs-cleanup",
-      "adr-002-proposed",
-      "ai-council-h1-h2-h4"
+      "local-llm",
+      "legacy",
+      "remediation",
+      "022",
+      "post-021",
+      "fixes",
+      "014",
+      "017",
+      "narrative",
+      "correction",
+      "plan",
+      "tasks"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/401-paraphrase-recall.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/411-causal-graph-link-quality.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/412-causal-coverage-under-bulk-save.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/413-drift-detection-quality.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/414-cross-ai-memory-handoff.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/415-concurrent-multi-ai-safety.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/022-local-llm-legacy-remediation/ai-council/embedding-worker-diagnostic/seat-statements.md",
+      ".codex/config.toml",
+      ".claude/mcp.json",
+      ".gemini/settings.json",
       "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "ai-council/embedding-worker-diagnostic/post-execution-followup.md",
-      "ai-council/embedding-worker-diagnostic/adr-002-decouple-retention-from-governance.md"
+      ".opencode/install_guides/README.md",
+      ".opencode/skills/system-spec-kit/shared/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      ".opencode/skills/system-spec-kit/references/memory/embedding_resilience.md",
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/05-5-embedding-and-api.md"
     ],
     "entities": [
-      "EmbeddingGemma-300m",
-      "unsloth/embeddinggemma-300m-GGUF",
-      "onnx-community/embeddinggemma-300m-ONNX",
-      "google/embeddinggemma-300m",
-      "factory.ts",
-      "retry-manager.ts",
-      "response-builder.ts",
-      "scope-governance.ts",
-      "recovery-hints.ts",
-      "SPECKIT_RETRY_INTERVAL_MS",
-      "SPECKIT_RETRY_BATCH_SIZE",
-      "E081",
-      "E085",
-      "E086",
-      "E087",
-      "E088",
-      "E089",
-      "retentionPolicy ephemeral",
-      "requiresGovernedIngest",
-      "ADR-002",
-      "cli-codex",
-      "gpt-5.5"
+      {
+        "name": "retry-manager.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts",
+        "source": "derived"
+      },
+      {
+        "name": "recovery-hints.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts",
+        "source": "derived"
+      },
+      {
+        "name": "response-builder.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts",
+        "source": "derived"
+      },
+      {
+        "name": "401-paraphrase-recall.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/401-paraphrase-recall.md",
+        "source": "derived"
+      },
+      {
+        "name": "411-causal-graph-link-quality.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/411-causal-graph-link-quality.md",
+        "source": "derived"
+      },
+      {
+        "name": "412-causal-coverage-under-bulk-save.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/412-causal-coverage-under-bulk-save.md",
+        "source": "derived"
+      },
+      {
+        "name": "413-drift-detection-quality.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/413-drift-detection-quality.md",
+        "source": "derived"
+      },
+      {
+        "name": "414-cross-ai-memory-handoff.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/414-cross-ai-memory-handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "415-concurrent-multi-ai-safety.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/415-concurrent-multi-ai-safety.md",
+        "source": "derived"
+      },
+      {
+        "name": "seat-statements.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/022-local-llm-legacy-remediation/ai-council/embedding-worker-diagnostic/seat-statements.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".gemini/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/install_guides/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "embedding_resilience.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/memory/embedding_resilience.md",
+        "source": "derived"
+      },
+      {
+        "name": "05-5-embedding-and-api.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/05-5-embedding-and-api.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Is Voyage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Sibling",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Bring",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Representative File Paths",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
     ],
-    "causal_summary": "Level-2 substrate-repair packet (scope shifted from the original 5-batch model-name-purge plan when the playbook validation revealed every memory_save returned generic E081). Through an AI council pass (cli-codex gpt-5.5 high fast playing 3 seats inline) and a hands-on repair sequence: killed 14 stale Memory MCP processes + the 24h-stuck CocoIndex daemon (commit n/a), shipped env-overridable retry-throughput config (b3363483c), shipped E081 → E085-E089 classified error codes (7fbed77c8), removed retentionPolicy:'ephemeral' from 24-- scenario examples (4e5ee2dda), proposed ADR-002 for decoupling retention from governance (0eabd6d14). Root cause of the chronic E081 was H4 (governance silent reject from retentionPolicy:'ephemeral' triggering requiresGovernedIngest without the audit chain), NOT the H1/H2 the council originally diagnosed. Post-shipment: memory_search hybrid works, memory_save reaches quality-gate (not E081), 190 of 214 historical failed embeddings recovered, CocoIndex daemon reachable. Five follow-ups (ADR-002 implementation, scenario re-run, build fix, embedding cleanup, RSS monitoring) tracked in sibling packet 032-substrate-repair-followups.",
+    "causal_summary": "Sibling packet 021 produced a 10-iter `/deep:start-review-loop:auto` finding tray with verdict FAIL; hasAdvisories=true (P0=2 P1=83 P2=31). The user clarified after the run that the 2 P0s and ~25 of the P1s actually describe **intended behavior** that 014's narrative misrepresented, not real bugs. The remaining ~90 findings ARE legitimate residue: stale model identifiers, stale dimension references, hardcoded legacy sqlite paths, rejected-ONNX cleanup, and generated assets that haven't been regenerated since the actual ship state landed.",
     "created_at": "2026-05-13T14:30:00Z",
-    "last_save_at": "2026-05-14T11:00:00Z",
-    "save_lineage": "main-agent",
+    "last_save_at": "2026-05-23T11:55:15.362Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T11:00:00Z",
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md",
-      "ai-council/embedding-worker-diagnostic/seat-statements.md",
-      "ai-council/embedding-worker-diagnostic/cross-critique.md",
-      "ai-council/embedding-worker-diagnostic/convergence.md",
-      "ai-council/embedding-worker-diagnostic/decision-record.md",
-      "ai-council/embedding-worker-diagnostic/post-execution-followup.md",
-      "ai-council/embedding-worker-diagnostic/adr-002-decouple-retention-from-governance.md"
+      "implementation-summary.md"
     ]
   }
 }

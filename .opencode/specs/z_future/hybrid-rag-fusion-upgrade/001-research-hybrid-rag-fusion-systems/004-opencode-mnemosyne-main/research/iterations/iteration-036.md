@@ -573,11 +573,11 @@ Detect the current research phase from dispatch context to load appropriate reso
 ### Architecture: 3-Layer Integration
 
 ```
-User invokes: /spec_kit:deep-research "topic"
+User invokes: /deep:start-research-loop "topic"
                     |
                     v
     ┌─────────────────────────────────┐
-    │  /spec_kit:deep-research command│  Layer 1: Command
+    │  /deep:start-research-loop command│  Layer 1: Command
     │  (YAML workflow + loop config)    │  Manages loop lifecycle
     └──────────────┬──────────────────┘
                    |
@@ -2563,8 +2563,8 @@ exec
    120	- `/spec_kit:complete` - run the full spec-to-implementation lifecycle
    121	- `/spec_kit:debug` - delegate a persistent issue to debug workflow
    122	- `/spec_kit:handover` - write continuation context for the next session
-   123	- `/spec_kit:deep-research` - run iterative research before planning
-   124	- `/spec_kit:deep-review` - run iterative review and finding synthesis
+   123	- `/deep:start-research-loop` - run iterative research before planning
+   124	- `/deep:start-review-loop` - run iterative review and finding synthesis
    125	
    126	**Memory commands**
    127	- `/memory:save` - preserve the current session context into spec memory

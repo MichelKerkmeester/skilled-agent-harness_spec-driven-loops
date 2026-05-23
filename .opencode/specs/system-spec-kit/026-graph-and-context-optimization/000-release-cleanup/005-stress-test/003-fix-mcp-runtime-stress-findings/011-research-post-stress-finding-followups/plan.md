@@ -1,7 +1,7 @@
 ---
 title: "Implementation Plan: Post-Stress Follow-Up Research deep-research loop"
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
-description: "10-iteration /spec_kit:deep-research:auto loop with cli-codex (gpt-5.5 high fast) refining 4 v1.0.2 follow-ups + 1 light architectural touch."
+description: "10-iteration /deep:start-research-loop:auto loop with cli-codex (gpt-5.5 high fast) refining 4 v1.0.2 follow-ups + 1 light architectural touch."
 trigger_phrases:
   - "post-stress follow-up plan"
   - "v1.0.2 follow-up research plan"
@@ -28,9 +28,9 @@ _memory:
 <!-- ANCHOR:summary -->
 ## Summary
 
-A single 10-iteration `/spec_kit:deep-research:auto` loop with cli-codex (gpt-5.5, high reasoning, fast service tier) refines actionable fix proposals for four v1.0.2 stress-test follow-ups (P0 cli-copilot Gate 3 bypass, P1 graph fast-fail testability, P2 file-watcher debounce, opportunity CocoIndex telemetry leverage) plus a light architectural touch on intelligence-system seams. Deliverable: `research/research.md` synthesis. Per-follow-up remediation packets are downstream user-authored work.
+A single 10-iteration `/deep:start-research-loop:auto` loop with cli-codex (gpt-5.5, high reasoning, fast service tier) refines actionable fix proposals for four v1.0.2 stress-test follow-ups (P0 cli-copilot Gate 3 bypass, P1 graph fast-fail testability, P2 file-watcher debounce, opportunity CocoIndex telemetry leverage) plus a light architectural touch on intelligence-system seams. Deliverable: `research/research.md` synthesis. Per-follow-up remediation packets are downstream user-authored work.
 
-**Technical context**: stack is `/spec_kit:deep-research:auto` workflow + cli-codex executor; model gpt-5.5 with `reasoning_effort=high`, `service_tier=fast`; iteration cap 10 (hard); state root is `research/` subdirectory under this packet; source of evidence is `../010-stress-test-close-loop-measurement-rerun/findings.md` Recommendations §1-5 + per-cell scores; workflow YAML at `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`; convergence math is rolling-avg + MAD-noise + question-entropy weighted stop-score (default threshold 0.60).
+**Technical context**: stack is `/deep:start-research-loop:auto` workflow + cli-codex executor; model gpt-5.5 with `reasoning_effort=high`, `service_tier=fast`; iteration cap 10 (hard); state root is `research/` subdirectory under this packet; source of evidence is `../010-stress-test-close-loop-measurement-rerun/findings.md` Recommendations §1-5 + per-cell scores; workflow YAML at `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`; convergence math is rolling-avg + MAD-noise + question-entropy weighted stop-score (default threshold 0.60).
 
 
 ### Technical Context
@@ -56,7 +56,7 @@ Per `checklist.md`:
 ## Architecture
 
 ```
-                          /spec_kit:deep-research:auto
+                          /deep:start-research-loop:auto
                                     │
            ┌────────────────────────┴───────────────────────┐
            │                                                 │
@@ -115,7 +115,7 @@ The 4 follow-ups are threaded through a single state machine; convergence alloca
 ### Phase 2 — Topic composition + invocation
 
 - T101: Compose unified topic prompt (verbatim from §Testing below)
-- T102: Invoke `/spec_kit:deep-research:auto` with the configured CLI flags
+- T102: Invoke `/deep:start-research-loop:auto` with the configured CLI flags
 - T103: Confirm `deep-research-config.json` lands with `executor.kind="cli-codex"`, `model="gpt-5.5"`, `reasoningEffort="high"`, `serviceTier="fast"`
 
 ### Phase 3 — Iteration loop (autonomous, ~25-50 min wall-clock)
@@ -193,6 +193,6 @@ If the loop produces unsatisfactory output:
 
 If the loop fails mid-iteration:
 1. State is durable on disk (`state.jsonl` + `iterations/`).
-2. Resume via `/spec_kit:deep-research:auto` re-invocation; the workflow detects existing state and continues from the next iteration.
+2. Resume via `/deep:start-research-loop:auto` re-invocation; the workflow detects existing state and continues from the next iteration.
 3. Pause sentinel `.deep-research-pause` halts the loop without losing state.
 <!-- /ANCHOR:rollback -->

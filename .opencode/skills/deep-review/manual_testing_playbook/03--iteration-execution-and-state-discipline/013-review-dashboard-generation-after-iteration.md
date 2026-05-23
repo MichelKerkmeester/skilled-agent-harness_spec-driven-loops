@@ -44,9 +44,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-review dashboard generation after each iteration from JSONL and strategy state.
 ### Commands
-1. `bash: rg -n 'step_generate_dashboard|dashboard' .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+1. `bash: rg -n 'step_generate_dashboard|dashboard' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
 2. `bash: sed -n '1,220p' .opencode/skills/deep-review/assets/deep_review_dashboard.md`
-3. `bash: rg -n 'dashboard|deep-review-dashboard' .opencode/skills/deep-review/references/quick_reference.md .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+3. `bash: rg -n 'dashboard|deep-review-dashboard' .opencode/skills/deep-review/references/quick_reference.md .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
 ### Expected
 The step_generate_dashboard runs after validation; it reads JSONL and strategy; it writes deep-review-dashboard.md; the output includes Findings Summary, Progress Table, Coverage, and Next Focus sections.
 ### Evidence
@@ -70,8 +70,8 @@ Compare the dashboard template in assets/ with the YAML step_generate_dashboard 
 
 | File | Role |
 |---|---|
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Dashboard generation step; inspect `step_generate_dashboard` |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Dashboard generation step; inspect `step_generate_dashboard` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Dashboard generation step; inspect `step_generate_dashboard` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Dashboard generation step; inspect `step_generate_dashboard` |
 | `.opencode/skills/deep-review/assets/deep_review_dashboard.md` | Dashboard template |
 | `.opencode/skills/deep-review/references/quick_reference.md` | State files table; use `ANCHOR:state-files` |
 

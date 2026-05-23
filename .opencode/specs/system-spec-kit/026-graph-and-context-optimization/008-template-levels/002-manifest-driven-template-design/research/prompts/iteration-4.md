@@ -32,7 +32,7 @@ Three sub-tasks:
    | `arch-change` | implementation | [qa-verification, architecture-decisions] | + decision-record.md | command-owned addons (handover, debug-delegation, research) — created lazily by their owners |
    | `governed-change` | implementation | [qa-verification, architecture-decisions, governance-expansion] | + governance sections inside spec.md and decision-record.md (NOT new files — section-only trait) | same lazy addons |
    | `phase-parent` | phase-parent | [] | spec.md (lean), description.json, graph-metadata.json | EVERYTHING ELSE (children carry the heavy docs) |
-   | `investigation` | investigation | [] | spec.md, plan.md, tasks.md, impl-summary.md, description.json, graph-metadata.json | research.md is workflow-owned → created by /spec_kit:deep-research |
+   | `investigation` | investigation | [] | spec.md, plan.md, tasks.md, impl-summary.md, description.json, graph-metadata.json | research.md is workflow-owned → created by /deep:start-research-loop |
 
    Verify the matrix coverage: every current Level 1/2/3/3+/phase-parent behavior is reproducible.
 

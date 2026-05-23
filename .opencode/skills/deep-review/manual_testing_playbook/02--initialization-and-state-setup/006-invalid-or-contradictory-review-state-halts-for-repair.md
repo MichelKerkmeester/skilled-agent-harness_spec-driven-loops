@@ -44,9 +44,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate invalid deep-review state handling and report whether partial or contradictory state halts with a repair message.
 ### Commands
-1. `bash: rg -n 'invalid.state|on_invalid|halt|repair|contradictory|partial' .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-2. `bash: rg -n 'invalid.state|on_invalid|halt|repair' .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
-3. `bash: rg -n 'on_conflict|on_canonical_present|contradictory' .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+1. `bash: rg -n 'invalid.state|on_invalid|halt|repair|contradictory|partial' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
+2. `bash: rg -n 'invalid.state|on_invalid|halt|repair' .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
+3. `bash: rg -n 'on_conflict|on_canonical_present|contradictory' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
 ### Expected
 The classify step has an explicit "invalid-state" classification for partial or contradictory combinations; it halts with a descriptive message; the migration step halts on canonical/legacy conflicts.
 ### Evidence
@@ -70,8 +70,8 @@ Enumerate all possible partial-state combinations (config only, JSONL only, stra
 
 | File | Role |
 |---|---|
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Session classification and migration; inspect `step_classify_session` and `step_migrate_legacy_review_state` |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Session classification; inspect `step_classify_session` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Session classification and migration; inspect `step_classify_session` and `step_migrate_legacy_review_state` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Session classification; inspect `step_classify_session` |
 | `.opencode/skills/deep-review/SKILL.md` | Phase detection guidance; use `ANCHOR:smart-routing` |
 
 ---

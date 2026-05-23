@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The release-readiness program needs a truth check for the post-032 code graph readiness contract. The system should be honest that there is no structural real-time watcher, should selectively self-heal stale tracked files on read paths, should block with required action when full repair is needed, and should keep status/verify/detect_changes behavior observable and non-surprising.",
     "created_at": "2026-04-29T20:00:00.000Z",
-    "last_save_at": "2026-05-19T13:51:38.822Z",
+    "last_save_at": "2026-05-23T11:55:14.727Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -47,7 +47,7 @@ Before starting Wave A, verify prerequisites:
 - [ ] Plan.md §6 Rollback Strategy understood by implementer [EVIDENCE: pending]
 - [ ] Tasks.md effort budget confirmed realistic (6 working days critical path) [EVIDENCE: pending]
 - [ ] Atomic-ship groups identified in plan.md §1.9 Dependencies [EVIDENCE: pending]
-- [ ] `/spec_kit:deep-review :auto` ×7 gate protocol acknowledged (per feedback_phase_018_autonomous.md) [EVIDENCE: pending]
+- [ ] `/deep:start-review-loop :auto` ×7 gate protocol acknowledged (per feedback_phase_018_autonomous.md) [EVIDENCE: pending]
 - [ ] Operator-constraint feedback files reviewed [EVIDENCE: pending]
 - [ ] Pre-sweep backup strategy for T-CNS-03 documented [EVIDENCE: pending]
 <!-- /ANCHOR:pre-impl -->
@@ -82,7 +82,7 @@ Test-coverage verification across all waves:
 - [ ] T-SAN-01/03 vitest: 5+ unicode cases [EVIDENCE: pending]
 - [ ] T-PIN-RET-01 vitest: 3rd retry, 4th skipped [EVIDENCE: pending]
 - [ ] T-SCP-01 vitest: semantic-equivalence matrix (5 input types × 5 sites) [EVIDENCE: pending]
-- [ ] Cumulative regression: `/spec_kit:deep-review :auto` ×7 ZERO new P0/P1 per wave [EVIDENCE: pending]
+- [ ] Cumulative regression: `/deep:start-review-loop :auto` ×7 ZERO new P0/P1 per wave [EVIDENCE: pending]
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:security -->
@@ -178,7 +178,7 @@ Final summary verification (end of Phase 017):
 - [x] All rewrapped markers verified via diff review [EVIDENCE: 7d85861a0 commit diff — 210 closer-only rewrites across 3 files (checklist.md +170, plan.md +30, tasks.md +10); parser safety check refuses to rewrite any char that is not `)` at closerOffset]
 
 ### CHK-A-08 — Wave A gate passed
-- [ ] `/spec_kit:deep-review :auto` ×7 on Wave A scope emits 0 new P0, 0 new P1 [EVIDENCE: pending]
+- [ ] `/deep:start-review-loop :auto` ×7 on Wave A scope emits 0 new P0, 0 new P1 [EVIDENCE: pending]
 - [ ] `validate.sh --strict` exits 0 with 0 warnings on 017 spec folder [EVIDENCE: pending]
 
 ---
@@ -247,7 +247,7 @@ Final summary verification (end of Phase 017):
 - [ ] Vitest: 3rd attempted, 4th skipped with log [EVIDENCE: pending]
 
 ### CHK-B-GATE — Wave B gate passed
-- [ ] `/spec_kit:deep-review :auto` ×7 on Wave B scope emits 0 new P0, 0 new P1 [EVIDENCE: pending]
+- [ ] `/deep:start-review-loop :auto` ×7 on Wave B scope emits 0 new P0, 0 new P1 [EVIDENCE: pending]
 - [ ] T-W1-CGC-03 atomic-ship verified [EVIDENCE: pending]
 
 ---
@@ -280,7 +280,7 @@ Final summary verification (end of Phase 017):
 - [ ] Vitest accept/reject cases pass [EVIDENCE: pending]
 
 ### CHK-C-GATE — Wave C gate passed
-- [ ] `/spec_kit:deep-review :auto` ×7 on Wave C scope emits 0 new P0, 0 new P1 [EVIDENCE: pending]
+- [ ] `/deep:start-review-loop :auto` ×7 on Wave C scope emits 0 new P0, 0 new P1 [EVIDENCE: pending]
 - [ ] 16-folder sweep verified end-to-end [EVIDENCE: pending]
 
 ---
@@ -343,7 +343,7 @@ Final summary verification (end of Phase 017):
 - [ ] All CHK-C-* items verified [EVIDENCE: pending]
 
 ### CHK-SHIP-02 — Regression guard
-- [ ] `/spec_kit:deep-review :auto` ×7 on full Phase 017 scope emits ZERO new P0 [EVIDENCE: pending]
+- [ ] `/deep:start-review-loop :auto` ×7 on full Phase 017 scope emits ZERO new P0 [EVIDENCE: pending]
 - [ ] Emits ZERO new P1 [EVIDENCE: pending]
 - [ ] Emits ≤3 new P2 (allows minor maintainability regressions) [EVIDENCE: pending]
 

@@ -62,5 +62,5 @@
     "commitMsgVsCodeDelta": "commit msg claims 'tx wrap' for P0-A but diff shows only binding correction — no BEGIN/COMMIT statements added; this gap is the seed observation for iter 2"
   },
   "createdAt": "2026-05-17T22:30:00Z",
-  "createdBy": "main_agent (Claude Opus 4.7 1M) + /spec_kit:deep-review:auto loop-manager"
+  "createdBy": "main_agent (Claude Opus 4.7 1M) + /deep:start-review-loop:auto loop-manager"
 }

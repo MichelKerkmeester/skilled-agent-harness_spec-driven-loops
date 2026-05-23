@@ -11,11 +11,11 @@
 Iteration 002's diagnosis still holds: this is an authority-propagation gap, not primarily a memory-save handler bug. The new evidence identifies the exact high-leverage insertion point for deep-loop cli-copilot dispatch, and it also shows why prompt-level authority needs to be explicit.
 
 Evidence:
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:596` branches into `if_cli_copilot`.
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:604` reads the rendered iteration prompt path, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:605` reads the prompt body, and `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:606` passes both through `resolveCopilotPromptArg`.
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:618` dispatches the `copilot` binary; `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:620` passes the prompt through positional `-p`.
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:624` and `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:625` run Copilot with `--allow-all-tools` and `--no-ask-user`, so an unapproved mutating prompt has no interactive recovery path.
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:639` says Copilot has no stdin support; `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:641` and `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:642` confirm large prompts are wrapped through an `@PROMPT_PATH` instruction.
+- `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:596` branches into `if_cli_copilot`.
+- `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:604` reads the rendered iteration prompt path, `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:605` reads the prompt body, and `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:606` passes both through `resolveCopilotPromptArg`.
+- `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:618` dispatches the `copilot` binary; `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:620` passes the prompt through positional `-p`.
+- `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:624` and `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:625` run Copilot with `--allow-all-tools` and `--no-ask-user`, so an unapproved mutating prompt has no interactive recovery path.
+- `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:639` says Copilot has no stdin support; `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:641` and `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:642` confirm large prompts are wrapped through an `@PROMPT_PATH` instruction.
 - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:66` defines `resolveCopilotPromptArg`; `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:67` returns the raw prompt below 16KB, while `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:69` returns a wrapper string for large prompts.
 
 Recommended refinement:
@@ -79,7 +79,7 @@ The other seam remains Q-P0's **target authority vs recovered context**: prompt 
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/011-post-stress-finding-remediation-research/research/iterations/iteration-001.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/011-post-stress-finding-remediation-research/research/iterations/iteration-002.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/011-post-stress-finding-remediation-research/research/deep-research-strategy.md`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+- `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/ops/file-watcher.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts`

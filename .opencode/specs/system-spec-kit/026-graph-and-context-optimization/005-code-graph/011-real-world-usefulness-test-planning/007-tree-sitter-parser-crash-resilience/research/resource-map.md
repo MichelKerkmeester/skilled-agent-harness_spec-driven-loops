@@ -48,7 +48,7 @@ Lean ledger of every artifact touched, created, or referenced across the 7-itera
 
 ## Commands
 
-- `/spec_kit:deep-research`: the workflow that drove this 7-iteration loop
+- `/deep:start-research-loop`: the workflow that drove this 7-iteration loop
 - `/spec_kit:plan`: recommended next command (refines plan.md + tasks.md per research.md §10)
 - `/spec_kit:implement`: Phase-2 execution after plan refinement
 - `/memory:save`: final continuity update post-synthesis

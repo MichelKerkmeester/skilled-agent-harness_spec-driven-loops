@@ -92,7 +92,7 @@ Fully sequential: ~17-26h
 ## 4. EXIT CRITERIA
 
 - All R-007-* tasks marked complete with evidence pointers
-- Re-run /spec_kit:deep-review:auto (3 iterations is enough for a remediation verify pass): P0=0, P1≤2, P2 documented
+- Re-run /deep:start-review-loop:auto (3 iterations is enough for a remediation verify pass): P0=0, P1≤2, P2 documented
 - Phase 010 closeout summary updated to reflect post-remediation state
 - Push all changes to main with conventional-commit messages
 

@@ -39,7 +39,7 @@ _memory:
 | **Parent** | `003-fix-mcp-runtime-stress-findings` |
 | **Predecessor** | `019-search-query-rag-optimization-research` (Phase C, converged) |
 | **Implementation reviewed** | `005-review-remediation/{002-search-query-rag-optimization, 004-search-rag-measurement-implementation}` |
-| **Mode** | Deep research (`/spec_kit:deep-research:auto` pattern) |
+| **Mode** | Deep research (`/deep:start-research-loop:auto` pattern) |
 | **Iterations** | 10 (max); convergence allowed earlier |
 | **Executor** | cli-codex `gpt-5.5` reasoning=`xhigh` service-tier=default (normal) |
 <!-- /ANCHOR:metadata -->

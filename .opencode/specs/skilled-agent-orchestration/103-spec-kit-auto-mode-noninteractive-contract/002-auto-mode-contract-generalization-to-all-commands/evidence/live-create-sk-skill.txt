@@ -732,7 +732,7 @@ exec
    170	
    171	Commands that have adopted this contract:
    172	
-   173	- `/spec_kit:deep-review` (prototype) — see `.../103/001-deep-review-three-tier-setup/`
+   173	- `/deep:start-review-loop` (prototype) — see `.../103/001-deep-review-three-tier-setup/`
    174	- (to be appended as `.../103/002-...` rolls out)
    175	
    176	---

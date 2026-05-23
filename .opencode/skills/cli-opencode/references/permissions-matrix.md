@@ -188,7 +188,7 @@ The incident doc records:
 
 - Date: 2026-05-04.
 - Executor: `opencode-go/deepseek-v4-pro`.
-- Mode: `/spec_kit:deep-review:auto`.
+- Mode: `/deep:start-review-loop:auto`.
 - Flag: `--dangerously-skip-permissions`.
 - Damage: 44 files deleted across phases 007 and 008.
 - File classes: spec docs and `review/` packet subtrees.

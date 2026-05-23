@@ -237,7 +237,7 @@ VALIDATE_SH:
   013: PASS | FAIL
 PRIOR_PACKETS_REGRESSED: yes | no   (5 clean packets — 005/006/007/008/010 — must stay clean)
 BLOCKERS: <list or "none">
-NEXT_REVIEW_RECOMMENDATION: re-run /spec_kit:deep-review on 026 with maxIterations=10 convergenceThreshold=0.05 to verify the fixes hold
+NEXT_REVIEW_RECOMMENDATION: re-run /deep:start-review-loop on 026 with maxIterations=10 convergenceThreshold=0.05 to verify the fixes hold
 === END_FIX_026_FINDINGS_RESULT ===
 ```
 

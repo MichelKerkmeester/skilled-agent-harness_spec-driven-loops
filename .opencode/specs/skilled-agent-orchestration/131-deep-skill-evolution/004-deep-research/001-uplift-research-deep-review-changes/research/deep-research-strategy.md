@@ -63,4 +63,4 @@ Per-iter with explicit SIGKILL between (memory rule on Mac memory pressure)
 - `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/review/review-report.md`
 - `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/003-deep-loop-runtime/009-verification-changelog-closeout/implementation-summary.md`
 - `.opencode/skills/deep-loop-runtime/SKILL.md` (v1.0.0)
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_{auto,confirm}.yaml`
+- `.opencode/commands/deep/assets/deep_start-research-loop_{auto,confirm}.yaml`

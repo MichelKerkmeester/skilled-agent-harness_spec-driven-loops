@@ -4,6 +4,8 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/001-flag-routing-fix-for-cross-encoder",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -15,29 +17,198 @@
       "reranker_local shim shadow",
       "stage3-rerank flag gate",
       "cross-encoder http local provider",
-      "001 flag routing fix"
+      "001 flag routing fix",
+      "001 plan flag routing",
+      "001 tasks flag routing",
+      "001 implementation summary"
     ],
     "key_topics": [
-      "flag-routing",
+      "routing",
+      "shim",
+      "shadow",
       "stage3-rerank",
+      "flag",
+      "gate",
       "cross-encoder",
-      "precedence",
-      "search-flags"
+      "http",
+      "local",
+      "provider",
+      "001",
+      "fix"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      "tasks.md",
+      "lib/search/cross-encoder.ts",
+      "lib/search/local-reranker.ts",
+      "tests/stage3-rerank-regression.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/local-reranker.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      "tests/search-flags.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "cross-encoder.ts",
+        "kind": "code",
+        "path": "lib/search/cross-encoder.ts",
+        "source": "derived"
+      },
+      {
+        "name": "local-reranker.ts",
+        "kind": "code",
+        "path": "lib/search/local-reranker.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stage3-rerank-regression.vitest.ts",
+        "kind": "test",
+        "path": "tests/stage3-rerank-regression.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stage3-rerank.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.vitest.ts",
+        "kind": "test",
+        "path": "tests/search-flags.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Arc",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Establish",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "typescript",
+        "kind": "technology",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "trace",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "both",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Full Vitest",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 001 of the 008 rerank-sidecar arc. Surgical fix to the Stage 3 reranker dispatch logic so a real HTTP cross-encoder (the sidecar shipped in phase 002) is reachable through the existing pipeline.",
+    "created_at": "2026-05-23T11:55:15.601Z",
+    "last_save_at": "2026-05-23T11:55:15.601Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ],
-    "entities": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/local-reranker.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts"
-    ],
-    "last_indexed_at": "2026-05-20T00:00:00Z"
+    ]
   }
 }

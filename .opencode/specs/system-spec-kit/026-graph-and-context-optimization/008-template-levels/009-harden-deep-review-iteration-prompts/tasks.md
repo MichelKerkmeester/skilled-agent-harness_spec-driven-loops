@@ -70,7 +70,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Smoke-test: dispatch `/spec_kit:deep-review:auto` on `010-doctor-update-orchestrator` phase parent inside isolated worktree using cli-opencode + deepseek/deepseek-v4-pro (this is the run that motivated this packet — verification is in-band)
+- [ ] T008 Smoke-test: dispatch `/deep:start-review-loop:auto` on `010-doctor-update-orchestrator` phase parent inside isolated worktree using cli-opencode + deepseek/deepseek-v4-pro (this is the run that motivated this packet — verification is in-band)
 - [ ] T009 Post-dispatch: `git status -- 010-doctor-update-orchestrator/` shows no surprise writes outside `010-doctor-update-orchestrator/review/`
 - [ ] T010 Update implementation-summary.md with smoke result
 <!-- /ANCHOR:phase-3 -->

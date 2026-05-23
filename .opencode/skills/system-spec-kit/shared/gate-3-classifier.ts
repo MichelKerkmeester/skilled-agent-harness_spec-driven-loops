@@ -108,9 +108,9 @@ export const MEMORY_SAVE_TRIGGERS: readonly TriggerEntry[] = Object.freeze([
  */
 export const RESUME_TRIGGERS: readonly TriggerEntry[] = Object.freeze([
   { pattern: '/spec_kit:resume',    kind: 'phrase', category: 'resume' },
-  { pattern: '/spec_kit:deep-research', kind: 'phrase', category: 'resume' },
+  { pattern: '/deep:start-research-loop', kind: 'phrase', category: 'resume' },
   { pattern: 'spec_kit:deep-research',  kind: 'phrase', category: 'resume' },
-  { pattern: '/spec_kit:deep-review',   kind: 'phrase', category: 'resume' },
+  { pattern: '/deep:start-review-loop',   kind: 'phrase', category: 'resume' },
   { pattern: 'spec_kit:deep-review',    kind: 'phrase', category: 'resume' },
   { pattern: 'resume the packet',        kind: 'phrase', category: 'resume' },
   { pattern: 'resume the phase folder',  kind: 'phrase', category: 'resume' },

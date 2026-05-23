@@ -43,14 +43,20 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off/evidence/run-extended-bake-off-with-hybrid-rerank.sh",
       ".opencode/skills/mcp-coco-index/INSTALL_GUIDE.md",
       "implementation-summary.md",
-      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/reranker.py",
       "spec.md",
       "plan.md",
       "tasks.md"
     ],
     "entities": [
+      {
+        "name": "run-extended-bake-off-with-hybrid-rerank.sh",
+        "kind": "script",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off/evidence/run-extended-bake-off-with-hybrid-rerank.sh",
+        "source": "derived"
+      },
       {
         "name": "INSTALL_GUIDE.md",
         "kind": "doc",
@@ -61,12 +67,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "reranker.py",
-        "kind": "file",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/reranker.py",
         "source": "derived"
       },
       {
@@ -188,11 +188,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "5. COMPLETION CRITERIA",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The production MCP path uses `.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc`, which is correctly editable-installed from the live local source. The bake-off harness used PATH `ccc`, so prior hybrid plus rerank benchmark runs may have measured the stale pipx stack instead of the production-truthful local venv stack.",
     "created_at": "2026-05-18T19:05:18.860Z",
-    "last_save_at": "2026-05-18T19:05:18.852Z",
+    "last_save_at": "2026-05-23T11:55:15.561Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

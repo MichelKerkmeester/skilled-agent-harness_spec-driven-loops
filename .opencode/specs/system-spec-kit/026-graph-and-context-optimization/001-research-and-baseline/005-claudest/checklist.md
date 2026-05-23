@@ -191,7 +191,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->"
 | Approver | Role | Status | Date |
 |----------|------|--------|------|
 | Orchestrator | Research Lead | [x] Approved | 2026-04-08 |
-| User | Product Owner | [x] Approved (via continuation directive "5 more iterations of /spec_kit:deep-research with gpt-5.4 high agents in fast mode through cli-codex") | 2026-04-08 |
+| User | Product Owner | [x] Approved (via continuation directive "5 more iterations of /deep:start-research-loop with gpt-5.4 high agents in fast mode through cli-codex") | 2026-04-08 |
 | Validator | QA Lead | [x] Approved (validate.sh --strict pass) | 2026-04-08 |
 
 ---

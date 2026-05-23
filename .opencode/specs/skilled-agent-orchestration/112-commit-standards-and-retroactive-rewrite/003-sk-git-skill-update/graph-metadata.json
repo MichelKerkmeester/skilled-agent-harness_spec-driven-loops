@@ -194,7 +194,7 @@
     ],
     "causal_summary": "This is **Phase 3** of the 112 packet. Phase 002 produces `commit-standards.md`, `derivation-heuristics.md`, and 7 Accepted ADRs. This phase is the mechanical step that takes those outputs and applies them to the `sk-git` skill content.",
     "created_at": "2026-05-16T09:42:34Z",
-    "last_save_at": "2026-05-23T09:22:40.211Z",
+    "last_save_at": "2026-05-23T11:55:14.166Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

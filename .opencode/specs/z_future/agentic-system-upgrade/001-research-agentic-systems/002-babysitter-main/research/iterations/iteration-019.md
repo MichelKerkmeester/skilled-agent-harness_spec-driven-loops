@@ -14,12 +14,12 @@ I reviewed Babysitter's session-state timing helpers and compared them with the 
 ## Evidence
 - Babysitter stores per-session iteration timing metadata and exposes `updateIterationTimes()` plus `isIterationTooFast()` to detect suspiciously fast repeated iterations. [SOURCE: external/packages/sdk/src/session/write.ts:153-189]
 - Its default session state also includes iteration counters and timestamps as first-class continuity fields. [SOURCE: external/packages/sdk/src/session/parse.ts:13-21] [SOURCE: external/packages/sdk/src/session/parse.ts:97-105]
-- `system-spec-kit` deep research tracks `maxIterations`, `stuckThreshold`, `maxDurationMinutes`, and `stuck_count`, but its stop logic is driven by information ratios and question coverage, not by observed timing anomalies. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:157-169] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:250-277] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:371-380]
+- `system-spec-kit` deep research tracks `maxIterations`, `stuckThreshold`, `maxDurationMinutes`, and `stuck_count`, but its stop logic is driven by information ratios and question coverage, not by observed timing anomalies. [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:157-169] [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:250-277] [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:371-380]
 
 ## Analysis
-This is a smaller signal than the architectural findings, but it is still valuable. Babysitter recognizes a concrete failure mode: a loop can technically "progress" while actually spinning too fast to be meaningful. `system-spec-kit`'s convergence logic is sophisticated, yet it does not currently appear to look at wall-clock iteration cadence. [SOURCE: external/packages/sdk/src/session/write.ts:178-189] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:250-277]
+This is a smaller signal than the architectural findings, but it is still valuable. Babysitter recognizes a concrete failure mode: a loop can technically "progress" while actually spinning too fast to be meaningful. `system-spec-kit`'s convergence logic is sophisticated, yet it does not currently appear to look at wall-clock iteration cadence. [SOURCE: external/packages/sdk/src/session/write.ts:178-189] [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:250-277]
 
-Adding a lightweight timing guard would not replace convergence detection. It would complement it, especially for unattended or partially broken loops where repeated shallow iterations could otherwise consume the full iteration budget before someone notices. [SOURCE: external/packages/sdk/src/session/parse.ts:13-21] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:157-169]
+Adding a lightweight timing guard would not replace convergence detection. It would complement it, especially for unattended or partially broken loops where repeated shallow iterations could otherwise consume the full iteration budget before someone notices. [SOURCE: external/packages/sdk/src/session/parse.ts:13-21] [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:157-169]
 
 ## Conclusion
 confidence: medium
@@ -27,14 +27,14 @@ confidence: medium
 finding: `system-spec-kit` should add a simple iteration-cadence safeguard to long-running autonomous workflows. Babysitter's session timing utilities show that this protection can be lightweight and operationally useful without becoming another heavy subsystem.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`, `.opencode/skills/sk-deep-research/`
+- **Target file or module:** `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`, `.opencode/skills/sk-deep-research/`
 - **Change type:** added option
 - **Blast radius:** small
 - **Prerequisites:** decide the threshold semantics and whether the guard halts, warns, or forces recovery mode
 - **Priority:** nice-to-have
 
 ## Counter-evidence sought
-I looked for an existing time-based runaway detector in the deep-research command and found duration limits plus convergence/stuck logic, but not a guard based on recent iteration cadence. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:157-169] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:250-277]
+I looked for an existing time-based runaway detector in the deep-research command and found duration limits plus convergence/stuck logic, but not a guard based on recent iteration cadence. [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:157-169] [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:250-277]
 
 ## Follow-up questions for next iteration
 - Would importing Babysitter's compression stack solve a primary Spec Kit bottleneck, or just add another subsystem?

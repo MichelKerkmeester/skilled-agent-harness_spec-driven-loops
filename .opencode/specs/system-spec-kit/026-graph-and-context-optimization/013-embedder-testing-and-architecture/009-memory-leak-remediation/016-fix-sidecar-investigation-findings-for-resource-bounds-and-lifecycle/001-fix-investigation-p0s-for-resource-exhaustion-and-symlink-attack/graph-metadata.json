@@ -19,6 +19,7 @@
       "arc 010 p0 tasks",
       "F12 F13 F47 tasks",
       "arc 010 p0 checklist",
+      "arc 010 p0 decisions",
       "arc 010 p0 implementation summary"
     ],
     "key_topics": [
@@ -36,25 +37,74 @@
       "attack"
     ],
     "importance_tier": "critical",
-    "status": "not_started",
+    "status": "complete",
     "key_files": [
-      "spec.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts",
+      ".opencode/bin/lib/ensure-rerank-sidecar.cjs",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-worker.ts",
+      "decision-record.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/sidecar-hardening.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/sidecar-worker.vitest.ts",
+      ".opencode/bin/lib/ensure-rerank-sidecar.vitest.ts",
       "implementation-summary.md",
+      "spec.md",
       "plan.md",
       "checklist.md",
       "tasks.md"
     ],
     "entities": [
       {
-        "name": "spec.md",
+        "name": "sidecar-client.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ensure-rerank-sidecar.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/ensure-rerank-sidecar.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sidecar-worker.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-worker.ts",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "sidecar-hardening.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/sidecar-hardening.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "sidecar-worker.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/sidecar-worker.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ensure-rerank-sidecar.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/bin/lib/ensure-rerank-sidecar.vitest.ts",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -146,53 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "commit",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Quality Gates",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Finding Ledger",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "description:",
-        "kind": "quoted",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "trigger_phrases:   -",
-        "kind": "quoted",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Arc 010/001 found three P0 security issues where sidecar IPC and ledger writes can consume unbounded resources or use predictable filesystem names. The affected findings are F12, F13, and F47.",
     "created_at": "2026-05-23T03:50:22.749Z",
-    "last_save_at": "2026-05-23T03:50:22.749Z",
+    "last_save_at": "2026-05-23T11:55:15.671Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +208,7 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
+      "decision-record.md",
       "implementation-summary.md"
     ]
   }

@@ -17,7 +17,7 @@ Dimension: maintainability (sustainability lens)
 
 1. **Read state** (1 tool call). Strategy + state.jsonl.
 2. **Sustainability concerns** (3 tool calls):
-   - **Documentation drift indicators** (1 call). Grep for "TODO", "FIXME", "XXX", "HACK" across the changed surfaces (`.opencode/skills/deep-review/`, `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_*.yaml`). Note any newly-added markers from the 116 arc that aren't tracked in a follow-on packet.
+   - **Documentation drift indicators** (1 call). Grep for "TODO", "FIXME", "XXX", "HACK" across the changed surfaces (`.opencode/skills/deep-review/`, `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/`, `.opencode/commands/deep/assets/deep_start-review-loop_*.yaml`). Note any newly-added markers from the 116 arc that aren't tracked in a follow-on packet.
    - **Future maintainer ergonomics** (1 call). Read `deep-review/references/state_format.md` v2 section. Does it have a "When to upgrade legacy records" runbook? A migration path for v1 → v2 records that already exist? Or is upgrade left to operators to figure out?
    - **Test coverage debt** (1 call). The 5 `it.todo` markers in the Phase B fixtures — does any of them have an issue or follow-on packet reference? Or is the debt orphaned?
 3. **Naming + invariant durability** (1 call). Read the new playbook scenarios (`08--review-depth-v2-rollout/`). Do they cite specific symbol names that, if renamed, would break the scenario? Are renames foreseeable?

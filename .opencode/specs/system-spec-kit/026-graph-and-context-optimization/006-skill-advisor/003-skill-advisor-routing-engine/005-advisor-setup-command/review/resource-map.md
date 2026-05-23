@@ -44,7 +44,7 @@ contextType: "review"
 ### Parity references (read for cross-checking)
 - `.opencode/commands/spec_kit/resume.md`
 - `.opencode/commands/spec_kit/plan.md`
-- `.opencode/commands/spec_kit/deep-review.md`
+- `.opencode/commands/deep/start-review-loop.md`
 - `.opencode/skills/sk-doc/assets/agents/command_template.md`
 - `.opencode/skills/sk-doc/references/global/hvr_rules.md`
 - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts`
@@ -150,7 +150,7 @@ python3 -c "import yaml; yaml.safe_load(open('.opencode/commands/spec_kit/assets
 | Field | Value |
 |---|---|
 | Trigger | User instruction: "Let cli-copilot gpt 5.5 high run 7 deep review iterations on work done" |
-| Command | `/spec_kit:deep-review:auto <packet> --max-iterations=7 --convergence=0.10 --executor=cli-copilot --model=gpt-5.5 --reasoning-effort=high` |
+| Command | `/deep:start-review-loop:auto <packet> --max-iterations=7 --convergence=0.10 --executor=cli-copilot --model=gpt-5.5 --reasoning-effort=high` |
 | Started | 2026-04-25T16:54:40Z |
 | Completed | 2026-04-25T17:17:19Z |
 | Duration | 22m39s |

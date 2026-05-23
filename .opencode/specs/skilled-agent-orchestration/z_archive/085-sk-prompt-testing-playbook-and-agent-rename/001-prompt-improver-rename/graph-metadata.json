@@ -55,7 +55,6 @@
       ".claude/agents/README.txt",
       ".codex/agents/README.txt",
       ".gemini/agents/README.txt",
-      ".opencode/specs/descriptions.json",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -108,12 +107,6 @@
         "name": "v2.4.0.0.md",
         "kind": "doc",
         "path": ".opencode/changelog/agent-orchestration/v2.4.0.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "descriptions.json",
-        "kind": "config",
-        "path": ".opencode/specs/descriptions.json",
         "source": "derived"
       },
       {
@@ -205,11 +198,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `@improve-prompt` agent name is verb-object phrasing — an outlier in the noun-form agent family (`@code`, `@review`, `@debug`, `@context`, `@deep-research`, `@deep-review`). This creates inconsistency in naming and makes the agent harder to reason about as an entity (an agent IS a thing, not an action). Renaming to `@prompt-improver` aligns with convention and matches the doer-of-action pattern (improver = noun for agent-that-improves).",
     "created_at": "2026-05-06T13:19:25Z",
-    "last_save_at": "2026-05-19T13:51:38.754Z",
+    "last_save_at": "2026-05-23T11:55:14.655Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

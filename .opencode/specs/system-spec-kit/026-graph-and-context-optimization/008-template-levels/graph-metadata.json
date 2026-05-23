@@ -9,7 +9,10 @@
     "system-spec-kit/026-graph-and-context-optimization/008-template-levels/003-manifest-template-implementation-plan",
     "system-spec-kit/026-graph-and-context-optimization/008-template-levels/004-fix-template-deferred-followups",
     "system-spec-kit/026-graph-and-context-optimization/008-template-levels/005-skill-reference-asset-doc-alignment",
-    "system-spec-kit/026-graph-and-context-optimization/008-template-levels/006-command-markdown-yaml-workflow-alignment"
+    "system-spec-kit/026-graph-and-context-optimization/008-template-levels/006-command-markdown-yaml-workflow-alignment",
+    "system-spec-kit/026-graph-and-context-optimization/008-template-levels/007-sweep-fleet-marker-validation",
+    "system-spec-kit/026-graph-and-context-optimization/008-template-levels/008-archive-fleet-marker-validation-scaffold",
+    "system-spec-kit/026-graph-and-context-optimization/008-template-levels/009-harden-deep-review-iteration-prompts"
   ],
   "manual": {
     "depends_on": [],
@@ -18,23 +21,84 @@
   },
   "derived": {
     "trigger_phrases": [
-      "010 template levels",
+      "008 template levels",
       "template levels phase parent",
       "template system rework",
       "spec-kit template phases"
     ],
-    "key_topics": ["template-system rework", "phase-parent", "manifest-driven design", "workflow invariance"],
-    "importance_tier": "important",
-    "status": "in-progress",
-    "key_files": ["spec.md", "description.json", "graph-metadata.json"],
-    "entities": [],
-    "causal_summary": "Phase parent for the spec-kit template-system rework. 001 = consolidation investigation (PARTIAL recommendation, REJECTED). 002 = greenfield redesign (C+F hybrid manifest-driven, ACCEPTED, 5 ADRs). 003 = greenfield implementation. 004 = validation orchestrator and deferred followups. 005 = skill references and assets alignment. 006 = command Markdown and YAML workflow alignment.",
+    "key_topics": [
+      "008",
+      "template",
+      "levels",
+      "phase",
+      "parent",
+      "system",
+      "rework",
+      "spec-kit",
+      "phases",
+      "today",
+      "maintains",
+      "files"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "002-manifest-driven-template-design/research/research.md",
+      "003-manifest-template-implementation-plan/resource-map.md",
+      "002-manifest-driven-template-design/decision-record.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Template Levels",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Greenfield Redesign",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The spec-kit template system today maintains 86 files (~13K LOC) split across `core/`, `addendum/{level2-verify, level3-arch, level3-plus-govern, phase}/`, four materialized `level_N/` outputs, `phase_parent/`, plus a build-time composer (`compose.sh`) and an anchor wrapper (`wrap-all-templates.ts`). The Level 1/2/3/3+ taxonomy bundles two independent concerns (which doc files a packet needs AND which sections within those docs apply), causes drift between the scaffolder and the validators (both encode the level→files matrix independently), and produces stale empty addon stubs (`handover.md`, `debug-delegation.md`, `research.md`) in fresh packets even though those docs are written exclusively by automation.",
     "created_at": "2026-05-01T16:30:00Z",
-    "last_save_at": "2026-05-01T16:30:00Z",
+    "last_save_at": "2026-05-23T11:55:15.248Z",
     "save_lineage": "graph_only",
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/008-template-levels/006-command-markdown-yaml-workflow-alignment",
-    "last_active_at": "2026-05-02T06:59:51Z",
     "last_accessed_at": null,
-    "source_docs": ["spec.md"]
+    "source_docs": [
+      "spec.md"
+    ]
   }
 }

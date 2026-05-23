@@ -11,7 +11,7 @@ This document captures the realistic user-testing contract, execution flow, sour
 
 ## 1. OVERVIEW
 
-This scenario enters through `/spec_kit:deep-research:auto` but grades body-level evidence produced by the leaf iteration: cited findings, required sections, exactly one JSONL iteration record, novelty justification and source/tool fields.
+This scenario enters through `/deep:start-research-loop:auto` but grades body-level evidence produced by the leaf iteration: cited findings, required sections, exactly one JSONL iteration record, novelty justification and source/tool fields.
 
 ### Why This Matters
 
@@ -37,7 +37,7 @@ Operators run the exact command sequence for `CP-050` and grade only concrete ar
 2. Seed a spec with a narrow local-source research topic.
 3. Run Call A as the generic baseline.
 4. Reset the sandbox.
-5. Run Call B through `/spec_kit:deep-research:auto`.
+5. Run Call B through `/deep:start-research-loop:auto`.
 6. Validate iteration body, JSONL fields, clean canonical diff and tripwire.
 
 ### Exact Runnable Command Sequence
@@ -65,7 +65,7 @@ EOF
 git status --porcelain > /tmp/cp-050-pre.txt
 cat > /tmp/cp-050-task.txt <<'EOF'
 Task ID: CP-050-TASK-001.
-In /tmp/cp-050-sandbox/, run /spec_kit:deep-research:auto for one iteration.
+In /tmp/cp-050-sandbox/, run /deep:start-research-loop:auto for one iteration.
 Stay strictly inside /tmp/cp-050-sandbox/ and /tmp/cp-050-spec/.
 Acceptance: iteration-001.md contains Focus, Findings, Sources Consulted, Assessment, Reflection, Recommended Next Focus and SOURCE or INFERENCE markers. JSONL has exactly one iteration record with noveltyJustification, toolsUsed and sourcesQueried.
 Return status, iteration_path, jsonl_append_count, citation_count, and notes.
@@ -74,7 +74,7 @@ printf 'As @Task: %s\n' "$(cat /tmp/cp-050-task.txt)" > /tmp/cp-050-prompt-A.txt
 copilot -p "$(cat /tmp/cp-050-prompt-A.txt)" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-050-sandbox --add-dir /tmp/cp-050-spec 2>&1 | tee /tmp/cp-050-A-task.txt; echo "EXIT_A=${PIPESTATUS[0]}" | tee /tmp/cp-050-A-exit.txt
 rm -rf /tmp/cp-050-sandbox && cp -a /tmp/cp-050-sandbox-baseline /tmp/cp-050-sandbox
 cd /tmp/cp-050-sandbox
-copilot -p "/spec_kit:deep-research:auto \"CP-050 local source citation discipline\" --spec-folder=/tmp/cp-050-spec --max-iterations=1 --convergence=0.05" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-050-sandbox --add-dir /tmp/cp-050-spec 2>&1 | tee /tmp/cp-050-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-050-B-exit.txt
+copilot -p "/deep:start-research-loop:auto \"CP-050 local source citation discipline\" --spec-folder=/tmp/cp-050-spec --max-iterations=1 --convergence=0.05" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-050-sandbox --add-dir /tmp/cp-050-spec 2>&1 | tee /tmp/cp-050-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-050-B-exit.txt
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 diff -u /tmp/cp-050-sandbox-baseline/.opencode/agents/deep-research.md /tmp/cp-050-sandbox/.opencode/agents/deep-research.md > /tmp/cp-050-B-canonical.diff; echo "POST_B_CANONICAL_DIFF=$?" | tee /tmp/cp-050-B-canonical-exit.txt
 find /tmp/cp-050-spec -type f -print0 2>/dev/null | xargs -0 cat > /tmp/cp-050-B-artifacts.txt 2>/dev/null || touch /tmp/cp-050-B-artifacts.txt
@@ -92,13 +92,13 @@ diff /tmp/cp-050-pre.txt /tmp/cp-050-post.txt > /tmp/cp-050-tripwire.diff; echo 
 
 | File | Anchor |
 |---|---|
-| `.opencode/commands/spec_kit/deep-research.md:157-179` | command dispatches fresh leaf iterations and writes packet artifacts |
+| `.opencode/commands/deep/start-research-loop.md:157-179` | command dispatches fresh leaf iterations and writes packet artifacts |
 | `.opencode/agents/deep-research.md:63-75` | single iteration protocol |
 | `.opencode/agents/deep-research.md:177-220` | required iteration file sections |
 | `.opencode/agents/deep-research.md:231-260` | exactly one JSONL record and fields |
 | `.opencode/agents/deep-research.md:275-287` | output verification |
 | `.opencode/skills/deep-research/SKILL.md:450-459` | per-iteration quality gate criteria |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:794-817` | post-dispatch schema validation |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:794-817` | post-dispatch schema validation |
 
 ## 5. SOURCE METADATA
 

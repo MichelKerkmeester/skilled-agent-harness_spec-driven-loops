@@ -38,7 +38,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 
 ### Overview
 
-This plan coordinates the post-026-consolidation hardening wave. The six Tier 1 candidates from `../scratch/deep-review-research-suggestions.md` (DR-1, RR-1, RR-2, SSK-RR-1, SSK-DR-1, SSK-RR-2) are dispatched through `001-initial-research` using the canonical `/spec_kit:deep-research :confirm` and `/spec_kit:deep-review :confirm` commands. After research converges, the findings registry drives the creation of implementation children (`019/002-*`, `019/003-*`, ...).
+This plan coordinates the post-026-consolidation hardening wave. The six Tier 1 candidates from `../scratch/deep-review-research-suggestions.md` (DR-1, RR-1, RR-2, SSK-RR-1, SSK-DR-1, SSK-RR-2) are dispatched through `001-initial-research` using the canonical `/deep:start-research-loop :confirm` and `/deep:start-review-loop :confirm` commands. After research converges, the findings registry drives the creation of implementation children (`019/002-*`, `019/003-*`, ...).
 
 The umbrella packet itself does not run iterations directly; it coordinates dispatch order, tracks convergence, and enforces the research-first rule that gates implementation children behind research completion.
 <!-- /ANCHOR:summary -->
@@ -71,7 +71,7 @@ The umbrella packet itself does not run iterations directly; it coordinates disp
 ### Pre-Task Checklist
 
 - Re-read `../scratch/deep-review-research-suggestions.md` before dispatching any iteration.
-- Confirm Gate 4 compliance: every iteration uses `/spec_kit:deep-research :confirm` or `/spec_kit:deep-review :confirm`, never a direct agent invocation.
+- Confirm Gate 4 compliance: every iteration uses `/deep:start-research-loop :confirm` or `/deep:start-review-loop :confirm`, never a direct agent invocation.
 - Record the scratch-doc revision hash in the 001 research spec so later changes can be reconciled.
 
 ### Execution Rules
@@ -174,8 +174,8 @@ Coordination-only umbrella packet with a single research child and reserved impl
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | `../scratch/deep-review-research-suggestions.md` | Internal | Green | Without the scratch doc, the Tier 1 candidate set is undefined |
-| `/spec_kit:deep-research :confirm` command | Internal | Green | Gate 4 mandates canonical dispatch; no workaround |
-| `/spec_kit:deep-review :confirm` command | Internal | Green | Gate 4 mandates canonical dispatch; no workaround |
+| `/deep:start-research-loop :confirm` command | Internal | Green | Gate 4 mandates canonical dispatch; no workaround |
+| `/deep:start-review-loop :confirm` command | Internal | Green | Gate 4 mandates canonical dispatch; no workaround |
 | 018-cli-executor-remediation shipped state | Internal | Green (PASS verdict) | R1-R11 shipped; Tier 1 candidates are grounded in current main |
 | Spec validator | Internal | Green | Required for quality-gate proofs |
 <!-- /ANCHOR:dependencies -->

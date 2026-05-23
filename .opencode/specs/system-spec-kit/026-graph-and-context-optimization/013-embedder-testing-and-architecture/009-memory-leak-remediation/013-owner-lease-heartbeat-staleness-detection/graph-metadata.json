@@ -4,15 +4,12 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/013-owner-lease-heartbeat-staleness-detection",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/007-code-graph-launcher-and-db-lifecycle"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/011-system-code-graph-suite-triage",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/012-adapter-resident-memory-benchmark"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -21,22 +18,182 @@
       "phase 007 owner-lease gap"
     ],
     "key_topics": [
-      "memory-leak",
-      "follow-on",
       "owner-lease-heartbeat-staleness-detection",
-      "heartbeat-staleness"
+      "009",
+      "phase",
+      "013",
+      "007",
+      "owner-lease",
+      "gap",
+      "memory-leak",
+      "remediation",
+      "arc",
+      "discovered",
+      "closure"
     ],
     "importance_tier": "critical",
-    "status": "completed",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-code-graph/mcp_server/lib/owner-lease.ts",
+      ".opencode/skills/system-code-graph/mcp_server/index.ts",
+      ".opencode/bin/mk-code-index-launcher.cjs",
+      "implementation-summary.md",
+      ".opencode/skills/system-code-graph/mcp_server/tests/lib/owner-lease.vitest.ts",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/007-code-graph-launcher-and-db-lifecycle/implementation-summary.md",
+      ".opencode/skills/system-code-graph/mcp_server/tests/launcher-lease.vitest.ts",
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "tasks.md"
     ],
-    "causal_summary": "Add heartbeat-staleness as an owner-lease reclaim condition so orphan launchers stop blocking MCP reconnect.",
+    "entities": [
+      {
+        "name": "owner-lease.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/owner-lease.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-index-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-code-index-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "owner-lease.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/lib/owner-lease.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-lease.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/launcher-lease.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Lease Heartbeat",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Staleness Detection",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Owner Classification Extension",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reclaim Path",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Vitest",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This is phase 013 of the memory-leak remediation arc. Gap discovered during arc 009 closure (commit `8b84612f12`) when mk_code_index MCP reconnect failed with `-32000`. Investigation:",
     "created_at": "2026-05-22T18:30:00Z",
-    "last_save_at": "2026-05-22T18:30:00Z",
+    "last_save_at": "2026-05-23T11:55:15.661Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -44,7 +201,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ],
-    "last_active_at": "2026-05-22T16:19:13Z"
+    ]
   }
 }

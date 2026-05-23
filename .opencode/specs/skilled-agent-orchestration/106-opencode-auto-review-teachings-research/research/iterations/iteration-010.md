@@ -140,7 +140,7 @@ The boundary + min-evidence gate is **not directly adoptable** for our current r
 
 1. **Different review targets**: Our skills review PR diffs and spec folders (static code artifacts), not live session message streams. The "last relevant user message" concept only makes sense in a session context where messages arrive sequentially over time.
 
-2. **Different activation model**: Upstream auto-review is event-driven (triggers on `session.idle` after each turn). Our skills are command-driven (`@review`, `/spec_kit:deep-review`) and review the entire target at once.
+2. **Different activation model**: Upstream auto-review is event-driven (triggers on `session.idle` after each turn). Our skills are command-driven (`@review`, `/deep:start-review-loop`) and review the entire target at once.
 
 3. **Potential use case**: An **inline reviewer** that runs DURING a session (like the upstream plugin) would benefit from this pattern. For example:
    - A Claude/Codex session hook that reviews the last turn before the user sees the response

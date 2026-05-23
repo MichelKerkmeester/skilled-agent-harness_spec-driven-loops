@@ -45,7 +45,7 @@ contextType: "resource-map"
 | DR009-SEC-015 | P1 | Process inventory emits raw owner tokens in command lines | `.opencode/skills/system-spec-kit/scripts/ops/process-memory-harness.ts:143` | 002 | Process inventory command redaction in process-memory-harness.ts and process-sweep.ts |
 | DR009-SEC-016 | P1 | Rerank reusable-sidecar ownership token is predictable | `.opencode/skills/system-rerank-sidecar/scripts/ensure_rerank_sidecar.py:86` | 008 | Rerank sidecar owner-token generation and ledger reuse in ensure_rerank_sidecar.py |
 | DR009-SEC-017 | P2 | IPC bridge unlinks any existing daemon-ipc.sock path | `.opencode/skills/system-code-graph/mcp_server/lib/ipc/socket-server.ts:58` | 011 | Code Graph IPC socket cleanup in ipc/socket-server.ts |
-| DR009-TRC-001 | P1 | CLI dispatch branches bypass the supervised executor contract | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/003-cli-dispatch-containment-and-recursion-guards/spec.md:119` | 003 | Deep-review CLI dispatch branches in spec_kit_deep-review_auto.yaml and confirm.yaml |
+| DR009-TRC-001 | P1 | CLI dispatch branches bypass the supervised executor contract | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/003-cli-dispatch-containment-and-recursion-guards/spec.md:119` | 003 | Deep-review CLI dispatch branches in deep_start-review-loop_auto.yaml and confirm.yaml |
 | DR009-TRC-002 | P1 | Concurrent lock coverage is only sequential single-process coverage | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/004-deep-loop-locks-state-and-recovery/spec.md:126` | 004 | Deep-loop lock concurrency fixture and phase 004 completion criteria |
 | DR009-TRC-003 | P1 | Queued CocoIndex index work has no remove-project fixture | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/006-cocoindex-remove-cancel-and-index-lifecycle/spec.md:118` | 006 | CocoIndex remove-project queued-work lifecycle coverage |
 | DR009-TRC-004 | P1 | Runtime retention stress coverage uses synthetic maps only | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/009-spec-memory-runtime-retention-cleanup/spec.md:133` | 009 | Spec Memory integrated save/search/index retention workload coverage |
@@ -104,7 +104,7 @@ contextType: "resource-map"
 | Deep-loop external executor environment in executor-audit.ts#buildExecutorDispatchEnv | DR009-SEC-012 | 003 |
 | Deep-loop lock acquisition protocol in loop-lock.ts#acquireLoopLock | DR009-COR-001 | 004 |
 | Deep-loop lock concurrency fixture and phase 004 completion criteria | DR009-TRC-002 | 004 |
-| Deep-review CLI dispatch branches in spec_kit_deep-review_auto.yaml and confirm.yaml | DR009-TRC-001 | 003 |
+| Deep-review CLI dispatch branches in deep_start-review-loop_auto.yaml and confirm.yaml | DR009-TRC-001 | 003 |
 | Deep-review executor config schema and YAML executor field contract | DR009-MNT-009 | 003 |
 | Embedder sidecar parent-death polling harness | DR009-TRC-009 | 009 |
 | Embedder sidecar termination in sidecar-client.ts killWorker and timeout cleanup | DR009-COR-008 | 009 |

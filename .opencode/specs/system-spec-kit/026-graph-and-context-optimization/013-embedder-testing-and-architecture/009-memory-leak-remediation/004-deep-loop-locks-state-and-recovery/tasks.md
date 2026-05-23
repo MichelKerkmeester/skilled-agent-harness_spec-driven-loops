@@ -67,7 +67,7 @@ _memory:
 - [x] T005 Add `jsonl-repair.ts` with `repairJsonlTail(path)` and `appendJsonlRecord(path, record)`, preserving valid records and stripping only corrupt trailing bytes. (`.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/jsonl-repair.ts`)
 - [x] T006 Add `atomic-state.ts` with `writeStateAtomic(path, data)` using temp write, fsync, rename, and temp cleanup on failure. (`.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/atomic-state.ts`)
 - [x] T007 Wire existing TypeScript JSONL writers/readers to the shared helpers: append paths in `executor-audit.ts`, append path and pre-read repair in `post-dispatch-validate.ts`; keep existing exports intact. (`.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-audit.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`)
-- [x] T008 Search state/audit producers for `executor` metadata written as `type:` instead of `kind:` and normalize in-scope TypeScript/YAML state writers or document that no in-scope rewrite remains. (`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`, `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/`)
+- [x] T008 Search state/audit producers for `executor` metadata written as `type:` instead of `kind:` and normalize in-scope TypeScript/YAML state writers or document that no in-scope rewrite remains. (`.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`, `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`, `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/`)
 <!-- /ANCHOR:phase-2 -->
 
 ---

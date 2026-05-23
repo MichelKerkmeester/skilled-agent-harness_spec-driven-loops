@@ -40,7 +40,7 @@
     "key_files": [
       ".opencode/agents/orchestrate.md",
       ".opencode/skills/system-spec-kit/assets/parallel_dispatch_config.md",
-      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+      ".opencode/commands/deep/assets/deep_start-research-loop_auto.yaml",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -60,9 +60,9 @@
         "source": "derived"
       },
       {
-        "name": "spec_kit_deep-research_auto.yaml",
+        "name": "deep_start-research-loop_auto.yaml",
         "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+        "path": ".opencode/commands/deep/assets/deep_start-research-loop_auto.yaml",
         "source": "derived"
       },
       {

@@ -84,7 +84,7 @@ _memory:
 
 - [ ] CHK-020 [P0] All 4 YAMLs parse cleanly under pyyaml
   - **Evidence**: `python3 -c "import yaml; yaml.safe_load(open('<file>'))"` exits 0 for each file (paste exit codes)
-- [ ] CHK-021 [P0] One smoke iteration of `/spec_kit:deep-review` completes without graph-step failures
+- [ ] CHK-021 [P0] One smoke iteration of `/deep:start-review-loop` completes without graph-step failures
   - **Evidence**: Sandbox spec used; iteration JSONL shows `graph_convergence` and `graph_upsert` events emitted with valid `decision`, `signals`, `blockers` fields
 - [ ] CHK-022 [P1] No new "undefined variable" or "unknown tool" errors surface in the smoke run
   - **Evidence**: Iteration stderr/stdout captured; no occurrences of `Cannot find tool` or `Variable not bound`

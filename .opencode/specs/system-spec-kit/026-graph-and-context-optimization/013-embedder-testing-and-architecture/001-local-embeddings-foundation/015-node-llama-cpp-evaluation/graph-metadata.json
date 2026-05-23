@@ -1,17 +1,15 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/015-node-llama-cpp-evaluation",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/015-node-llama-cpp-evaluation",
-  "parent_id": "014",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/015-node-llama-cpp-evaluation",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/015-node-llama-cpp-evaluation",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "014"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/014-onnx-cross-platform-backend"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -19,39 +17,197 @@
       "llama-cpp memory embeddings",
       "node-llama-cpp embeddinggemma",
       "Memory MCP GGUF provider",
-      "llama-cpp default flip"
+      "llama-cpp default flip",
+      "015 llama cpp plan",
+      "node llama cpp provider plan",
+      "015 llama cpp tasks",
+      "015 llama cpp checklist",
+      "015 llama cpp summary",
+      "llama cpp benchmark result",
+      "node llama cpp evaluation done"
     ],
     "key_topics": [
+      "015",
+      "node",
+      "llama",
+      "cpp",
+      "evaluation",
+      "llama-cpp",
+      "memory",
+      "embeddings",
       "node-llama-cpp",
-      "GGUF",
-      "EmbeddingGemma-300m",
-      "hf-local",
-      "provider parity",
-      "local embedding latency",
-      "default no-flip"
+      "embeddinggemma",
+      "mcp",
+      "gguf"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
+      "scratch/bench-llama-cpp-vs-hf-local.ts",
+      "scratch/bench-results.json",
+      "scratch/model-info.json",
+      "scratch/parity-results.txt",
+      "shared/embeddings/factory.ts",
+      "mcp_server/README.md",
+      "scratch/smoke-results.txt",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "scratch/bench-results.json",
-      "scratch/parity-results.txt"
+      "checklist.md"
     ],
     "entities": [
-      "LlamaCppProvider",
-      "HfLocalProvider",
-      "node-llama-cpp",
-      "unsloth/embeddinggemma-300m-GGUF",
-      "onnx-community/embeddinggemma-300m-ONNX",
-      "EMBEDDINGS_PROVIDER"
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "bench-llama-cpp-vs-hf-local.ts",
+        "kind": "code",
+        "path": "scratch/bench-llama-cpp-vs-hf-local.ts",
+        "source": "derived"
+      },
+      {
+        "name": "bench-results.json",
+        "kind": "config",
+        "path": "scratch/bench-results.json",
+        "source": "derived"
+      },
+      {
+        "name": "model-info.json",
+        "kind": "config",
+        "path": "scratch/model-info.json",
+        "source": "derived"
+      },
+      {
+        "name": "parity-results.txt",
+        "kind": "file",
+        "path": "scratch/parity-results.txt",
+        "source": "derived"
+      },
+      {
+        "name": "smoke-results.txt",
+        "kind": "file",
+        "path": "scratch/smoke-results.txt",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Embedding Surface",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Keep",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
     ],
-    "causal_summary": "015 evaluated an opt-in node-llama-cpp GGUF provider for Memory MCP. llama-cpp was much faster than hf-local on this host (p50 6.454292ms vs 39.538333ms) and used less query RSS (1209.125MB vs 1798.313MB), but the default Q8_0 GGUF failed parity against hf-local (mean cosine 0.9677582325103543, min 0.9515004519950576). Default flip recommendation: no.",
+    "causal_summary": "The Memory MCP local embedding path currently defaults to `hf-local`, which uses `@huggingface/transformers` with the ONNX EmbeddingGemma export and q8 dtype. A prior cocoindex ONNX packet was rejected after measurement, but Memory MCP is a Node/TypeScript surface and already has `node-llama-cpp` installed as an optional dependency. The open question is whether a Node-native llama-cpp provider can improve local Gemma performance without corrupting vector-index compatibility.",
     "created_at": "2026-05-13T09:52:09Z",
-    "last_save_at": "2026-05-13T09:56:14Z",
+    "last_save_at": "2026-05-23T11:55:15.349Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T09:56:14Z",
     "source_docs": [
       "spec.md",

@@ -213,7 +213,7 @@ export function validateIterationQuality(input: IterationQualityValidateInput): 
 }
 ```
 
-**Integration point in dispatcher:** Call `validateIterationQuality` after `validateOrThrow` succeeds in the deep-loop dispatcher (`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` executor logic). If quality validation fails, emit a `dispatch_failure` event to the state log with the quality validation result details, then retry or escalate per the hard-fail policy.
+**Integration point in dispatcher:** Call `validateIterationQuality` after `validateOrThrow` succeeds in the deep-loop dispatcher (`.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` executor logic). If quality validation fails, emit a `dispatch_failure` event to the state log with the quality validation result details, then retry or escalate per the hard-fail policy.
 
 **Rationale:** Sibling validator separation keeps concerns clear — `validateIterationOutputs` handles structural correctness (file existence, JSONL shape), while `validateIterationQuality` handles content quality (citations, actionability, anti-hallucination). This mirrors smallcode's separation between verifier (pipeline execution) and hard_fail (gatekeeper logic).
 

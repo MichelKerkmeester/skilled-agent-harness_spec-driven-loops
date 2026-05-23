@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Add hard `responsePolicy` and `citationPolicy` fields to `memory_search` responses so weak retrieval becomes a BINDING claim-authority refusal contract, not advisory text. When `requestQuality.label != \"good\"` AND `recovery.status` indicates degraded, the response carries `responsePolicy.noCanonicalPathClaims:true` and a `safeResponse` string that the model MUST emit instead of inventing details. Also extend `RecoveryAction` vocabulary to include `ask_disambiguation`, `refuse_without_evidence`, and `broaden_or_ask`.",
     "created_at": "2026-04-27T07:48:04.973Z",
-    "last_save_at": "2026-05-19T13:51:38.927Z",
+    "last_save_at": "2026-05-23T11:55:14.863Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

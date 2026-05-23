@@ -5799,7 +5799,7 @@ exec
 - symptom: packet docs drift from deep-research conclusions; cause: spec/plan/tasks/checklist/summary edited piecemeal; fix: run a single truth-sync pass across all packet docs with explicit references to `research/research.md` [Task 5]
 
 # Task Group: Deep-Research Review Workflow and Release Readiness Controls
-scope: `/spec_kit:deep-research --review` execution contract, review-folder semantics, and release-readiness criteria mapping
+scope: `/deep:start-research-loop --review` execution contract, review-folder semantics, and release-readiness criteria mapping
 
 exec
 /bin/zsh -lc "sed -n '2008,2028p' /Users/michelkerkmeester/.codex/memories/MEMORY.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public

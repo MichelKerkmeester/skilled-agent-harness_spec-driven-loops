@@ -25,7 +25,7 @@ _memory:
 
 > **Packet:** `026-graph-and-context-optimization/016-foundational-runtime/001-initial-research`
 > **Execution span:** 2026-04-16T16:12:22Z -- 2026-04-16T19:17:00Z (50 iterations + FINAL synthesis)
-> **Dispatcher:** cli-copilot gpt-5.4 high (manual wave dispatch, not `/spec_kit:deep-research` skill loop)
+> **Dispatcher:** cli-copilot gpt-5.4 high (manual wave dispatch, not `/deep:start-research-loop` skill loop)
 > **Scope:** 19 candidate files across packets 002, 003, 005, 008, 010, 014 (foundational runtime, under-audited by Phase 015)
 > **Findings:** 137 raw / ~63 distinct / 4 P0 composites / ~33 P1 distinct / ~30 P2 distinct
 > **Authoritative companion:** `FINAL-synthesis-and-review.md` (1042 lines)
@@ -78,7 +78,7 @@ Meanwhile, the runtime is operating with reduced fidelity across at least 37 sur
 - Graph-metadata corruption laundered into `qualityScore: 1` and then boosted +0.12 in stage-1 retrieval ranking.
 - Two concurrent governed saves forking the memory-graph lineage by both superseding the same predecessor.
 - Routine `--finalize` cleanups deleting fresh session state under live load.
-- Skill routing collapsing `/spec_kit:deep-research` to the generic `command-spec-kit` bridge, breaking the subcommand-to-skill-specific path.
+- Skill routing collapsing `/deep:start-research-loop` to the generic `command-spec-kit` bridge, breaking the subcommand-to-skill-specific path.
 - Gate 3 false positives triggering spec-folder setup on read-only review prompts, plus false negatives letting `save context` and `resume deep research` proceed without Gate 3.
 
 Phase 016 is therefore, in one sentence, a **dishonest-runtime audit**. The runtime is not broken; it is honest about its own state in a narrow sense (it tells you what it did) while being dishonest in a broader sense (it does not tell you which work was skipped, which input was invalid, which read happened on a stale snapshot, which output is based on a downgraded source, which routing target was collapsed to a generic fallback, or which cleanup removed live data).
@@ -273,11 +273,11 @@ One methodological caveat: **Domain 5 (Test Coverage Gaps) was never run as a de
 | R43-001 | `skill_advisor.py:105-116`, `skill_advisor_runtime.py:111-141` | P1 | `signals` map populated but no consumer at scoring |
 | R45-003 | `skill_graph_compiler.py:559-568,630-663` | P1 | Topology warning state non-durable; `health_check()` returns `ok` |
 | R45-004 | `manual-playbook-runner.ts:245-271,1203-1217` | P1 | `parseScenarioDefinition()` nulls filtered before coverage count |
-| R46-001 | `skill_advisor.py:980-1021,1404-1410,1647,1741-1768` | P1 | `/spec_kit:deep-research` routes to `command-spec-kit` 0.95, not `sk-deep-research` 0.70 |
+| R46-001 | `skill_advisor.py:980-1021,1404-1410,1647,1741-1768` | P1 | `/deep:start-research-loop` routes to `command-spec-kit` 0.95, not `sk-deep-research` 0.70 |
 | R46-002 | `skill_graph_compiler.py:272-319,501-568,630-663` | P1 | `validate_edge_symmetry()` never inspects `conflicts_with` edges |
 | R46-003 | `manual-playbook-runner.ts:181-194,427-445,930-943,1112-1117` | P1 | `substitutePlaceholders()` injects `runtimeState.lastJobId` into `Function(...)` string |
 | R49-003 | `skill_graph_compiler.py:437-472,623-663` | P1 | Only two-node reciprocal cycles detected; `a -> b -> c -> a` passes |
-| R50-001 | `AGENTS.md:182-186`; `spec_kit_deep-research_auto.yaml:159-167,521-526` | P1 | Gate 3 false-negative for deep-research `resume` write path |
+| R50-001 | `AGENTS.md:182-186`; `deep_start-research-loop_auto.yaml:159-167,521-526` | P1 | Gate 3 false-negative for deep-research `resume` write path |
 
 **Counter-examples.**
 
@@ -306,7 +306,7 @@ One methodological caveat: **Domain 5 (Test Coverage Gaps) was never run as a de
 | `hook-state.vitest.ts:4-224` | No `cleanStaleStates` invocation | TOCTOU stat-then-unlink regression | D1 (P0-D) |
 | `reconsolidation.vitest.ts:790-855` | Single-writer conflict | Two-concurrent-conflict race | S1 |
 | `reconsolidation-bridge.vitest.ts:255-330` | Static mock candidates | Governed-scope mutation during filter | S1 |
-| `test_skill_advisor.py:73-186` | No intent_signals assertion | `/spec_kit:deep-research` -> `sk-deep-research`; intent_signals boost | S4 |
+| `test_skill_advisor.py:73-186` | No intent_signals assertion | `/deep:start-research-loop` -> `sk-deep-research`; intent_signals boost | S4 |
 | `transcript-planner-export.vitest.ts:146-217` | Response summaries only | YAML `when:` predicate evaluation | S7 |
 | `assistive-reconsolidation.vitest.ts:17-234` | Helper thresholds | Competing candidate insert between recommendation and commit | S1 |
 | `skill-graph-schema.vitest.ts:1-156` | Dispatcher routing | Compiler invariants: symmetry, weight-band, orphans, cycle length >2 | S4 |
@@ -321,7 +321,7 @@ One methodological caveat: **Domain 5 (Test Coverage Gaps) was never run as a de
 - HookState schema-version mismatch rejection (R29-001, P0-A)
 - `Function(...)` with injected adversarial `lastJobId` (R46-003, watch-p2)
 - Ranking-stability assertion: `sk-deep-research` vs `sk-code-review` margin >= 0.10 for audit-vocabulary prompts (R45-002, S4)
-- `/spec_kit:deep-research` routes to `sk-deep-research`, not `command-spec-kit` (R46-001, S4)
+- `/deep:start-research-loop` routes to `sk-deep-research`, not `command-spec-kit` (R46-001, S4)
 - Unilateral `conflicts_with` does NOT penalize non-declaring skill (R46-002, S4)
 - `health_check()` returns `status: "degraded"` when topology warnings present (R45-003, S4)
 - Scenario count before vs after null-filter equals (R45-004, S6)
@@ -596,7 +596,7 @@ The interaction: **a routine `--finalize` cleanup + one concurrent stop hook + o
 
 ### 4.5 Watch priorities
 
-**Watch-priority-1: Domain 4 routing misdirection chain.** Constituent findings: R46-001 + R43-001/R44-001 + R42-002 + R41-003 + R46-002. The chain currently has one confirmed concrete step (R46-001: `/spec_kit:deep-research` -> `command-spec-kit` 0.95) but whether that mis-route completes into file-modifying behavior depends on whether `command-spec-kit` enforces Gate 3 independently of skill routing. Upgrade trigger: if Phase 017 reveals that `command-spec-kit` proceeds into spec-folder creation when invoked via bridge with `/spec_kit:deep-research` intent, upgrade to P0-candidate-E. Fix at A0 + A2 (subcommand bridge + `intent_signals` wiring); ~3-day change.
+**Watch-priority-1: Domain 4 routing misdirection chain.** Constituent findings: R46-001 + R43-001/R44-001 + R42-002 + R41-003 + R46-002. The chain currently has one confirmed concrete step (R46-001: `/deep:start-research-loop` -> `command-spec-kit` 0.95) but whether that mis-route completes into file-modifying behavior depends on whether `command-spec-kit` enforces Gate 3 independently of skill routing. Upgrade trigger: if Phase 017 reveals that `command-spec-kit` proceeds into spec-folder creation when invoked via bridge with `/deep:start-research-loop` intent, upgrade to P0-candidate-E. Fix at A0 + A2 (subcommand bridge + `intent_signals` wiring); ~3-day change.
 
 **Watch-priority-2: Playbook runner `Function(...)` trust-boundary expansion.** Constituent findings: R41-004 + R45-004 + R46-003 + R50-002. The playbook runner operates in development/CI rather than production. However, the trust boundary has expanded from "repository-owned markdown" to "repository markdown + live tool-return values" (R46-003). If CI environment is ever expanded to include external handler payloads, severity escalates. Upgrade trigger: any change that allows externally-influenced tool outputs to reach the playbook runner's `runtimeState.lastJobId`. Fix is Chain C (typed step executor); ~1 week.
 
@@ -897,7 +897,7 @@ Surface-level coverage. The following files were touched but not deeply audited:
 - `mcp_server/handlers/memory-save.ts:2159-2171,2250-2304` -- R34-002 hypothesized timeline between reconsolidation planning and `writeTransaction` acquisition; not measured under real load.
 - `mcp_server/hooks/claude/shared.ts:109-123` -- R10-002 identified prompt-injection risk via `]` or newline in `producer` string; exploitability not confirmed.
 - `mcp_server/hooks/claude/compact-inject.ts:393-407,416-422` -- R31-001 flagged concurrent producer risk; precise interleaving with Claude session-stop + Gemini session-stop not characterized.
-- `command/spec_kit/assets/spec_kit_complete_auto.yaml` / `spec_kit_implement_auto.yaml` / `spec_kit_deep-review_auto.yaml` -- sampled at iteration 48/50 but not systematically audited for the same `when:`/`folder_state` vulnerabilities.
+- `command/spec_kit/assets/spec_kit_complete_auto.yaml` / `spec_kit_implement_auto.yaml` / `deep_start-review-loop_auto.yaml` -- sampled at iteration 48/50 but not systematically audited for the same `when:`/`folder_state` vulnerabilities.
 - `scripts/memory/generate-context.js` trigger-word surface for memory category / triggers / scope -- proposed but not investigated.
 - Handover-state routing rules (`handover_state` enum) -- proposed but not investigated.
 - `opencode.json` + `.utcp_config.json` MCP naming contracts -- proposed but not investigated.
@@ -1080,7 +1080,7 @@ This section provides a file-by-file walk through the 10 most-cited surfaces, in
 2. **R43-001 -- `intent_signals` discarded at scoring** (`skill_advisor_runtime.py:111-141, 165-203`; `skill_advisor.py:105-116, 140-152, 180-187, 1669-1694`; `mcp-coco-index/graph-metadata.json:31-50`). Live skill router does not consume per-skill `intent_signals` / `derived.trigger_phrases`. `signals` map populated but has no consumer in `analyze_request()`. Live repro on 2026-04-16: `skill_advisor.py "natural language code retrieval" --threshold 0.8` returned top-1 `sk-code-opencode` with `_graph_boost_count: 0`.
 3. **R44-001 -- Consolidates R43-001 + keyword comments discarded** (`skill_advisor_runtime.py:111-152`; `skill_advisor.py:165-190, 1669-1725`). `intent_signals` silently discarded at scoring boundary; SKILL.md `<!-- Keywords: ... -->` comment blocks stripped before routing by `parse_frontmatter_fast()`.
 4. **R45-002 -- Ranking stability not asserted** (`skill_advisor.py:568-577, 771-813, 1669-1694`; `test_skill_advisor.py:73-186`). Deep-research prompts containing `audit`/`review` tokens score within 0.02 of `sk-code-review`; no ranking-stability test.
-5. **R46-001 -- `COMMAND_BRIDGES` prefix collapse** (`skill_advisor.py:980-1021, 1404-1410, 1647, 1741-1768`; `test_skill_advisor.py:73-186`). `COMMAND_BRIDGES` registers only `/spec_kit` and `spec_kit:` prefix markers. `detect_explicit_command_intent()` stops at first containment match. All `/spec_kit:*` subcommands collapse to `command-spec-kit` at `kind_priority=2`. Live consequence: `/spec_kit:deep-research` -> `command-spec-kit` 0.95, `sk-deep-research` 0.70.
+5. **R46-001 -- `COMMAND_BRIDGES` prefix collapse** (`skill_advisor.py:980-1021, 1404-1410, 1647, 1741-1768`; `test_skill_advisor.py:73-186`). `COMMAND_BRIDGES` registers only `/spec_kit` and `spec_kit:` prefix markers. `detect_explicit_command_intent()` stops at first containment match. All `/spec_kit:*` subcommands collapse to `command-spec-kit` at `kind_priority=2`. Live consequence: `/deep:start-research-loop` -> `command-spec-kit` 0.95, `sk-deep-research` 0.70.
 
 **Downstream consumers.** Gate 2 skill routing, all `/spec_kit:*` command dispatch, `analyze_request()` result consumers, routing playbooks.
 
@@ -1177,7 +1177,7 @@ Phase 017 should treat this research as a map, not a patchset. The map shows whe
 
 ## Appendix C -- Metadata back-fill notes
 
-This research run was dispatched manually via `cli-copilot` rather than through the `/spec_kit:deep-research` skill loop. The standard skill artifacts (`config`, `state.jsonl`, `strategy`, `dashboard`, `research.md`, `findings-registry.json`) were reconstructed after the 50-iteration run completed. Reconstruction used:
+This research run was dispatched manually via `cli-copilot` rather than through the `/deep:start-research-loop` skill loop. The standard skill artifacts (`config`, `state.jsonl`, `strategy`, `dashboard`, `research.md`, `findings-registry.json`) were reconstructed after the 50-iteration run completed. Reconstruction used:
 
 - Iteration file mtimes (authoritative for event ordering).
 - Iteration file frontmatter (File / Lines / Severity / Description / Evidence / Downstream Impact) for registry finding extraction.
@@ -1185,4 +1185,4 @@ This research run was dispatched manually via `cli-copilot` rather than through 
 - Interim synthesis files for per-checkpoint distinct-issue counts and cumulative trajectories.
 - Spec/plan/tasks/checklist docs for the 19 candidate files and 5-domain research design.
 
-The back-filled artifacts are evidence-grounded (every claim traces to a primary source) but were not live-dispatched. Future consumers should treat them as post-hoc reconstructions, not as the original live-tracked state that a `/spec_kit:deep-research` skill invocation would produce.
+The back-filled artifacts are evidence-grounded (every claim traces to a primary source) but were not live-dispatched. Future consumers should treat them as post-hoc reconstructions, not as the original live-tracked state that a `/deep:start-research-loop` skill invocation would produce.

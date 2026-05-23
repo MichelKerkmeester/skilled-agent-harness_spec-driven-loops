@@ -2,7 +2,7 @@
 
 ## Dispatcher
 
-- Command: `/spec_kit:deep-review:auto`
+- Command: `/deep:start-review-loop:auto`
 - Target: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/005-skill-reference-asset-doc-alignment`
 - Review packet root: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/005-skill-reference-asset-doc-alignment/review`
 - Iteration: 2 of 5

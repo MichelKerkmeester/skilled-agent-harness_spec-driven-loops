@@ -4,50 +4,215 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/015-deep-research-drift-and-simplification",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "deep-research sidecar drift simplification",
       "system-spec-kit mcp sidecar research",
-      "arc 010 phase 001"
+      "arc 010 phase 001",
+      "sidecar deep research plan",
+      "drift simplification research strategy",
+      "sidecar research tasks",
+      "arc 010 iteration ledger",
+      "sidecar research checklist",
+      "arc 010 validation checklist",
+      "sidecar research implementation summary",
+      "arc 010 phase 001 summary",
+      "sidecar investigation report"
     ],
     "key_topics": [
       "deep-research",
-      "drift",
-      "dead-code",
-      "security",
-      "over-engineering",
-      "simplification",
-      "refinement",
       "sidecar",
-      "mcp"
+      "drift",
+      "simplification",
+      "system-spec-kit",
+      "mcp",
+      "research",
+      "arc",
+      "010",
+      "phase",
+      "001",
+      "deep"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
+      "research/research.md",
+      "research/deep-research-config.json",
+      "research/deep-research-state.jsonl",
+      "research/findings-registry.json",
+      "research/iterations/iteration-001.md",
+      "implementation-summary.md",
+      "mcp_server/lib/embedders/sidecar-client.ts",
+      "mcp_server/lib/embedders/sidecar-worker.ts",
+      ".opencode/bin/lib/ensure-rerank-sidecar.cjs",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md",
-      "research/deep-research-config.json",
-      "research/deep-research-state.jsonl",
-      "research/deep-research-strategy.md",
-      "research/deep-research-dashboard.md",
-      "research/findings-registry.json"
+      "research/iterations/iteration-002.md",
+      "research/iterations/iteration-003.md",
+      "research/iterations/iteration-004.md",
+      "research/iterations/iteration-005.md",
+      "research/iterations/iteration-006.md",
+      "research/iterations/iteration-007.md",
+      "research/iterations/iteration-008.md"
     ],
-    "causal_summary": "Research-only child phase for a 20-iteration investigation of system-spec-kit MCP sidecar drift, dead code, security, over-engineering, simplification, and refinement opportunities.",
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "sidecar-client.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/sidecar-client.ts",
+        "source": "derived"
+      },
+      {
+        "name": "sidecar-worker.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/sidecar-worker.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ensure-rerank-sidecar.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/ensure-rerank-sidecar.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-002.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-002.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-003.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-003.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-004.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-004.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-005.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-005.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-006.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-006.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-007.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-007.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-008.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-008.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Investigation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dead Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The system-spec-kit MCP sidecar surface has grown quickly across TypeScript client/worker code, a Node ensure helper, and supporting embedder lifecycle logic. Recent churn raises the risk that dead paths, duplicated abstractions, stale assumptions, local-service security gaps, and unnecessary complexity are hiding in code that now sits on a critical retrieval path.",
     "created_at": "2026-05-22T21:00:18Z",
-    "last_save_at": "2026-05-22T21:00:18Z",
+    "last_save_at": "2026-05-23T11:55:15.667Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -56,7 +221,7 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "research/deep-research-strategy.md"
+      "research/research.md"
     ]
   }
 }

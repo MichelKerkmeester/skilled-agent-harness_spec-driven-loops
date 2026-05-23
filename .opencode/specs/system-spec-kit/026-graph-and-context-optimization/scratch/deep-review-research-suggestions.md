@@ -1,6 +1,6 @@
 # Further Deep-Review / Deep-Research Suggestions
 
-> Working analysis doc. §1-5 cover the 026 packet after the 2026-04-18 consolidation. §6 covers system-spec-kit as a whole (templates, validator, gates, skill-advisor, canonical-save pipeline). Each target has rationale, scope, and a ready-to-dispatch `/spec_kit:deep-review` or `/spec_kit:deep-research` block.
+> Working analysis doc. §1-5 cover the 026 packet after the 2026-04-18 consolidation. §6 covers system-spec-kit as a whole (templates, validator, gates, skill-advisor, canonical-save pipeline). Each target has rationale, scope, and a ready-to-dispatch `/deep:start-review-loop` or `/deep:start-research-loop` block.
 
 ---
 
@@ -46,7 +46,7 @@ No pass has covered: `017/002-runtime-matrix`, post-ship `018`, or the consolida
 
 **Dispatch block:**
 ```
-/spec_kit:deep-review :confirm
+/deep:start-review-loop :confirm
 
 Scope: 015-deep-review-and-remediation delta-review. Re-audit all 243 findings
 in 015/review/review-report.md against current main (post-016/017/018 ship).
@@ -80,7 +80,7 @@ profile for audit parity).
 
 **Dispatch block:**
 ```
-/spec_kit:deep-research :confirm
+/deep:start-research-loop :confirm
 
 Scope: Q4 NFKC robustness. Research the attack and failure surface for the
 NFKC normalization boundary added in 016 T-SAN-01/02/03. Treat sanitizer
@@ -116,7 +116,7 @@ Executor: cli-codex gpt-5.4 high fast.
 
 **Dispatch block:**
 ```
-/spec_kit:deep-research :confirm
+/deep:start-research-loop :confirm
 
 Scope: description.json rich-content preservation under canonical-save regen.
 The H-56-1 fix in 016/002-infrastructure-primitives restored metadata writes,
@@ -157,7 +157,7 @@ Executor: cli-codex gpt-5.4 high fast.
 
 **Dispatch block:**
 ```
-/spec_kit:deep-review :confirm
+/deep:start-review-loop :confirm
 
 Scope: 017-sk-deep-cli-runtime-execution/002-runtime-matrix. Sibling sub-phase
 001-executor-feature got a 30-iter deep-research dogfood; 002 shipped three
@@ -189,7 +189,7 @@ Executor: cli-codex gpt-5.4 high fast.
 
 **Dispatch block:**
 ```
-/spec_kit:deep-review :confirm
+/deep:start-review-loop :confirm
 
 Scope: 018-cli-executor-remediation post-ship adversarial review. Waves A-F
 shipped R1-R11 with 116/116 scoped tests green; this pass targets failure
@@ -266,7 +266,7 @@ Executor: cli-codex gpt-5.4 high fast.
 4. **DR-3** after DR-2 — adversarial audit of the downstream remediation.
 5. Tier 3 items are backlog; revisit after Tier 1+2 lands.
 
-Each Tier 1 candidate above ships with a copy-paste-ready `/spec_kit:deep-review` or `/spec_kit:deep-research :confirm` dispatch block. Pick one, confirm executor profile (default: `cli-codex gpt-5.4 high fast` for audit parity with the original passes), and dispatch.
+Each Tier 1 candidate above ships with a copy-paste-ready `/deep:start-review-loop` or `/deep:start-research-loop :confirm` dispatch block. Pick one, confirm executor profile (default: `cli-codex gpt-5.4 high fast` for audit parity with the original passes), and dispatch.
 
 ---
 
@@ -294,7 +294,7 @@ Three signal classes argue for a skill-wide pass:
 
 **Dispatch block:**
 ```
-/spec_kit:deep-research :confirm
+/deep:start-research-loop :confirm
 
 Scope: Accuracy research for Gate 3 classifier and skill-advisor routing.
 Both classifiers gate every non-trivial task. Gate 3 is HARD-block.
@@ -332,7 +332,7 @@ Executor: cli-codex gpt-5.4 high fast.
 
 **Dispatch block:**
 ```
-/spec_kit:deep-review :confirm
+/deep:start-review-loop :confirm
 
 Scope: Template v2.2 + validator ruleset joint audit. The templates under
 .opencode/skills/system-spec-kit/templates/level_{1,2,3}/ and the validator
@@ -370,7 +370,7 @@ Executor: cli-codex gpt-5.4 high fast.
 
 **Dispatch block:**
 ```
-/spec_kit:deep-research :confirm
+/deep:start-research-loop :confirm
 
 Scope: Canonical-save pipeline invariant research. The /memory:save pipeline
 writes frontmatter, description.json, graph-metadata.json, and the memory
@@ -400,7 +400,7 @@ Executor: cli-codex gpt-5.4 high fast.
 
 #### SSK-DR-2 — Skill ↔ Command ↔ Agent boundary audit [DEEP-REVIEW]
 
-**Why**: Gate 4 (HARD block) says iterative research/review loops MUST use skill-owned commands (`/spec_kit:deep-research`, `/spec_kit:deep-review`), not agents directly. But the CLAUDE.md skill ecosystem lists skills, commands, and agents overlapping at several boundaries (e.g., `sk-deep-research` skill, `@deep-research` agent, `/spec_kit:deep-research` command — three names, one concept). Review target: enumerate every skill/command/agent and their invocation surface; find overlap, duplication, or contract drift.
+**Why**: Gate 4 (HARD block) says iterative research/review loops MUST use skill-owned commands (`/deep:start-research-loop`, `/deep:start-review-loop`), not agents directly. But the CLAUDE.md skill ecosystem lists skills, commands, and agents overlapping at several boundaries (e.g., `sk-deep-research` skill, `@deep-research` agent, `/deep:start-research-loop` command — three names, one concept). Review target: enumerate every skill/command/agent and their invocation surface; find overlap, duplication, or contract drift.
 
 **Scope** (7-10 iterations): every `.opencode/skills/*/SKILL.md`, every `.opencode/commands/*/`, every `.opencode/agents/*` (plus `.claude/agents/`, `.codex/agents/`, `.gemini/agents/` if populated). Map callers/callees. Report P0 for broken Gate 4 enforcement, P1 for redundancy, P2 for naming clarity.
 

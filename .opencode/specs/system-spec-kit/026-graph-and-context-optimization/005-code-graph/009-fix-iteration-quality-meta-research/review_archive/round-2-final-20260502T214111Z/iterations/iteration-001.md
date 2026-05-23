@@ -12,8 +12,8 @@
 - `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:570-576`
 - `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:198-228`
 - `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:619-625`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1047-1055`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:1069-1077`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1047-1055`
+- `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:1069-1077`
 - `.opencode/agents/deep-review.md:152-184`
 - `.opencode/skills/sk-deep-review/references/state_format.md:188-221`
 - `.opencode/skills/sk-deep-review/references/state_format.md:448-452`

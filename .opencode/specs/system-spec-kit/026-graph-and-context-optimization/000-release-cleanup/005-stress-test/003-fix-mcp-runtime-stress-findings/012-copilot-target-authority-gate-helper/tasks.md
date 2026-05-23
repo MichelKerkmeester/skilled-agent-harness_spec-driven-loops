@@ -46,7 +46,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] **T001** Read research.md §3 in full and verify file:line targets exist on disk.
-  - **Files**: `../011-research-post-stress-finding-followups/research/research.md`, `mcp_server/lib/deep-loop/executor-config.ts:66-70`, `spec_kit_deep-research_auto.yaml:601-625`, `spec_kit_deep-review_auto.yaml:669-683`, runs/I1/cli-copilot-1/score.md
+  - **Files**: `../011-research-post-stress-finding-followups/research/research.md`, `mcp_server/lib/deep-loop/executor-config.ts:66-70`, `deep_start-research-loop_auto.yaml:601-625`, `deep_start-review-loop_auto.yaml:669-683`, runs/I1/cli-copilot-1/score.md
   - **Acceptance**: All cited paths resolve; line numbers match the recommended insertion points.
 - [x] **T002** [P] Read existing `resolveCopilotPromptArg` and the YAML cli-copilot dispatch shapes; understand prior 16KB threshold + `@PROMPT_PATH` wrapper behavior.
   - **Acceptance**: Behavior matrix documented in plan.md §3 reflects the prior contract.
@@ -62,12 +62,12 @@ _memory:
 - [x] **T101** Append `CopilotTargetAuthority` type + `buildCopilotPromptArg` + `buildTargetAuthorityPreamble` + `buildMissingAuthorityGate3Prompt` to `executor-config.ts`. Existing `resolveCopilotPromptArg` body is byte-stable.
   - **File**: `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts`
   - **Acceptance**: `grep -n "export function buildCopilotPromptArg" mcp_server/lib/deep-loop/executor-config.ts` returns 1 hit.
-- [x] **T102** Replace `if_cli_copilot.command` in `spec_kit_deep-research_auto.yaml` with the helper-routed Node script. Resolves `targetAuthority` from `{spec_folder}` template; falls back to Gate-3 enforcement when absent. Adds 2 explanatory `notes` entries.
-  - **File**: `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-  - **Acceptance**: `grep -n "buildCopilotPromptArg" spec_kit_deep-research_auto.yaml` returns ≥2 hits (import + call).
-- [x] **T103** Replace `if_cli_copilot.command` in `spec_kit_deep-review_auto.yaml` with the helper-routed Node script. Unifies on Node-based dispatch (away from prior bash/`wc -c` shape). Adds 2 explanatory `notes` entries.
-  - **File**: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-  - **Acceptance**: `grep -n "buildCopilotPromptArg" spec_kit_deep-review_auto.yaml` returns ≥2 hits.
+- [x] **T102** Replace `if_cli_copilot.command` in `deep_start-research-loop_auto.yaml` with the helper-routed Node script. Resolves `targetAuthority` from `{spec_folder}` template; falls back to Gate-3 enforcement when absent. Adds 2 explanatory `notes` entries.
+  - **File**: `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
+  - **Acceptance**: `grep -n "buildCopilotPromptArg" deep_start-research-loop_auto.yaml` returns ≥2 hits (import + call).
+- [x] **T103** Replace `if_cli_copilot.command` in `deep_start-review-loop_auto.yaml` with the helper-routed Node script. Unifies on Node-based dispatch (away from prior bash/`wc -c` shape). Adds 2 explanatory `notes` entries.
+  - **File**: `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
+  - **Acceptance**: `grep -n "buildCopilotPromptArg" deep_start-review-loop_auto.yaml` returns ≥2 hits.
 - [x] **T104** Author vitest at `mcp_server/tests/executor-config-copilot-target-authority.vitest.ts` covering 3 behavior-matrix branches + override resistance + large-prompt fallback + exported helpers. 13 cases across 6 describe blocks.
   - **File**: `.opencode/skills/system-spec-kit/mcp_server/tests/executor-config-copilot-target-authority.vitest.ts`
   - **Acceptance**: File compiles (vitest discovery picks it up via `mcp_server/tests/**/*.vitest.ts`).

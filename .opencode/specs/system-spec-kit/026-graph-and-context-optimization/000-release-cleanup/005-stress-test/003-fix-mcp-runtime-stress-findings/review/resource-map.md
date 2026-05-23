@@ -37,10 +37,10 @@
 
 - `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs:1-180` - flat-first resolver.
 - `.opencode/skills/system-spec-kit/scripts/tests/review-research-paths.vitest.ts:1-177` - flat/reuse/branch test matrix.
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` - synthesis staging step.
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` - synthesis staging step.
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` - synthesis staging step.
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` - synthesis staging step.
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` - synthesis staging step.
+- `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` - synthesis staging step.
+- `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` - synthesis staging step.
+- `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` - synthesis staging step.
 - `.opencode/skills/system-spec-kit/mcp_server/core/README.md:34-45` - stale embedding-readiness doc sentence.
 - `.opencode/skills/system-spec-kit/references/structure/folder_structure.md:190-222` - stale pt-01-first example and corrected flat-first prose.
 

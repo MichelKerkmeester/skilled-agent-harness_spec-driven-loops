@@ -44,7 +44,7 @@ Close the 20-iteration loop. Produce the phased rollout plan, the risk register,
 - [ ] Schema migration: add `is_archived` column, relax `UNIQUE` constraint, add `source_anchor`/`target_anchor` columns to `causal_edges`
 - [ ] Archive flip: `UPDATE memory_index SET is_archived=1 WHERE source_path LIKE '%/memory/%.md'`
 - [ ] Search ranking update: archived weight × 0.3 + fallback path
-- [ ] Launch 20-iteration implementation design research (via `/spec_kit:deep-research:auto`) — **this very research we're running**
+- [ ] Launch 20-iteration implementation design research (via `/deep:start-research-loop:auto`) — **this very research we're running**
 - [ ] Launch 5-iteration impact analysis research (in parallel)
 - [ ] Dashboard metric: expose `archived_hit_rate`
 

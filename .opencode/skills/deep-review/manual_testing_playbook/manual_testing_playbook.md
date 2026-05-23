@@ -60,9 +60,9 @@ This playbook provides 32 deterministic scenarios across 6 categories validating
 ## 2. GLOBAL PRECONDITIONS
 
 - `deep-review` skill exists at `.opencode/skills/deep-review/`.
-- `/spec_kit:deep-review` command exists at `.opencode/commands/spec_kit/deep-review.md`.
+- `/deep:start-review-loop` command exists at `.opencode/commands/deep/start-review-loop.md`.
 - `@deep-review` agent definition exists at `.opencode/agents/deep-review.md` plus runtime variants.
-- Review YAML workflows exist at `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` and `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`.
+- Review YAML workflows exist at `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` and `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`.
 - `review_mode_contract.yaml` exists at `.opencode/skills/deep-review/assets/`.
 
 ---
@@ -163,7 +163,7 @@ Expected signals: The same autonomous command appears across sources, autonomous
 ### DRV-002 | Confirm mode checkpointed review
 
 #### Description
-Verify that `/spec_kit:deep-review:confirm` pauses at each phase for user approval before proceeding.
+Verify that `/deep:start-review-loop:confirm` pauses at each phase for user approval before proceeding.
 
 #### Scenario Contract
 Prompt: `Validate the confirm-mode deep-review entrypoint and report whether approval gates appear at every phase transition.`
@@ -606,9 +606,9 @@ No dedicated automated test suite currently exists for `deep-review`. This playb
 
 - `SKILL.md`: `.opencode/skills/deep-review/SKILL.md`
 - `README.md`: `.opencode/skills/deep-review/README.md`
-- `Command`: `.opencode/commands/spec_kit/deep-review.md`
-- `Auto YAML`: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-- `Confirm YAML`: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+- `Command`: `.opencode/commands/deep/start-review-loop.md`
+- `Auto YAML`: `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
+- `Confirm YAML`: `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
 - `Agent (OpenCode)`: `.opencode/agents/deep-review.md`
 - `Agent (Claude)`: `.claude/agents/deep-review.md`
 - `Review Contract`: `.opencode/skills/deep-review/assets/review_mode_contract.yaml`

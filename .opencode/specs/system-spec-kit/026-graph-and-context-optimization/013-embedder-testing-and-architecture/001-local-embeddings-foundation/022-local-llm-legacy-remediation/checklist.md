@@ -69,7 +69,7 @@ contextType: "remediation"
 ## CONFIRMATORY RE-REVIEW GATES
 
 - [ ] `023-post-remediation-re-review/` packet scaffolded as sibling of 022
-- [ ] `/spec_kit:deep-review:auto` dispatched with same scope as 021
+- [ ] `/deep:start-review-loop:auto` dispatched with same scope as 021
 - [ ] `023/review/review-report.md` exists with verdict line
 - [ ] Verdict ∈ {PASS, PASS-with-advisories}
 - [ ] If verdict CONDITIONAL or FAIL: scope follow-on sub-phase 024 for net-new findings

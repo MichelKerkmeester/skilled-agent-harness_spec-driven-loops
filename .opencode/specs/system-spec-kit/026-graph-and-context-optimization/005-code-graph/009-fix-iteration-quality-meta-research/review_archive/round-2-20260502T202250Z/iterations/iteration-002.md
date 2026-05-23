@@ -5,10 +5,10 @@
 - `.opencode/skills/sk-code-review/references/fix-completeness-checklist.md:12-85`
 - `.opencode/skills/sk-code-review/references/review_core.md:83-87`
 - `.opencode/agents/deep-review.md:149-185`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:785`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1037-1055`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:762`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:1059-1077`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:785`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1037-1055`
+- `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:762`
+- `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:1059-1077`
 - `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:215-225`
 - `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:568-574`
 - `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:221-224`

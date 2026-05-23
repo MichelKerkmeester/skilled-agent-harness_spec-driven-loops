@@ -1,6 +1,6 @@
 # Codex Group 1 Dispatch Evidence
 
-## /spec_kit:deep-research
+## /deep:start-research-loop
 - Fields migrated count: 11
 - Tier-2 candidates identified: spec_folder
 - Concerns: `spec_folder` is treated as a targeted-ask candidate only when the research topic is present but folder choice is ambiguous; missing `research_topic` goes straight to Tier 3.

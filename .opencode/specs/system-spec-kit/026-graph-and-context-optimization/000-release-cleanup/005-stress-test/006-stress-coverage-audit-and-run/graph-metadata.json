@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The `code_graph` and `skill_advisor` subsystems each maintain a feature catalog (17 + 37 = 54 features), but the stress-test directory currently holds only **3 directly-tagged code-graph tests** and **2 directly-tagged skill-advisor tests**. We don't have a written, auditable answer to: which catalog features have stress coverage, which require it, and which have a real gap. Release readiness work cannot proceed past 005-review-remediation without that answer.",
     "created_at": "2026-04-30T18:03:19Z",
-    "last_save_at": "2026-05-19T13:51:38.966Z",
+    "last_save_at": "2026-05-23T11:55:14.914Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

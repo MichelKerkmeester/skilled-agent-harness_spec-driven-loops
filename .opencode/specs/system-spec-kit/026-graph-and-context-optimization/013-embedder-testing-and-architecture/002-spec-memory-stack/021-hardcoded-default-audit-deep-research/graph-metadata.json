@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/021-hardcoded-default-audit-deep-research",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/021-hardcoded-default-audit-deep-research",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hardcoded-default audit deep-research",
+      "drift sweep across subsystems",
+      "follow-on to 020 embedder default drift fix",
+      "10-iter audit cli-opencode deepseek",
+      "016/002/021 audit"
+    ],
+    "key_topics": [
+      "hardcoded-default",
+      "audit",
+      "deep-research",
+      "drift",
+      "sweep",
+      "across",
+      "subsystems",
+      "follow-on",
+      "020",
+      "embedder",
+      "default",
+      "fix"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/commands/deep/assets/deep_start-research-loop_auto.yaml",
+      ".opencode/skills/deep-research/scripts/reduce-state.cjs",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "deep_start-research-loop_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_start-research-loop_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-research/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Default Audit Deep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Next Focus",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-opencode",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "this",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "stale",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "valid",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 020 found a class of bug: ADR-013/014 migrated the canonical spec-memory embedder to nomic-embed-text-v1.5, but 5 inline defaults in TypeScript code stayed pointing at pre-ADR models (4 × BAAI + 1 × jina). When the resolution chain's primary steps (env var → DB → cascade probe) didn't resolve, the runtime fell through to those stale strings and crashed. Triggered the 2026-05-23 production incident.",
+    "created_at": "2026-05-23T11:55:15.467Z",
+    "last_save_at": "2026-05-23T11:55:15.467Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ]
+  }
+}

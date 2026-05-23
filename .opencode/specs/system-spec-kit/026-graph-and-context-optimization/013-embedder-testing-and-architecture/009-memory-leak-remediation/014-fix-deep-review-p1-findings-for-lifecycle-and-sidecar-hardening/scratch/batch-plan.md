@@ -186,11 +186,11 @@ Implement phase 014 batch B3 only. Close the sidecar/executor security findings 
 - `.opencode/skills/system-code-graph/mcp_server/handlers/query.ts:1387`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/memory/audit-rotation.ts:32`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:21`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:656`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:697`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:937`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:657`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:863`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:656`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:697`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:937`
+- `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:657`
+- `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:863`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/review/deep-review-config.json:14`
 
 **Suggested cli-codex prompt skeleton**:
@@ -215,8 +215,8 @@ Implement phase 014 batch B4 only. Close audit/data-integrity findings DR009-COR
 
 **Files to change from registry**:
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/003-cli-dispatch-containment-and-recursion-guards/spec.md:119`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:704`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:704`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:704`
+- `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:704`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-audit.ts:444`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/004-deep-loop-locks-state-and-recovery/spec.md:126`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/004-deep-loop-locks-state-and-recovery/tasks.md:98`
@@ -484,8 +484,8 @@ Changed/new files:
 - `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/lib/memory/audit-rotation.vitest.ts`
 - `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/handlers/query.ts`
 - `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/tests/code-graph-query-handler.vitest.ts`
-- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
 - `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-22-adapter-rss/bench_successful_search_rss.py`
 - `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-22-adapter-rss/bench_sidecar_5xx_fallback_rss.py`
 - `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening/checklist.md`
@@ -522,8 +522,8 @@ Closed/deferred findings:
 - DR009-TRC-011 closed: phase 010 records the memory scan gap honestly and cites B5 runtime-retention replay as substitute closure evidence.
 
 Changed paths:
-- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
 - `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-runtime/tests/unit/loop-lock.vitest.ts`
 - `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py`
 - `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/lifecycle/daemon_task_registry.py`

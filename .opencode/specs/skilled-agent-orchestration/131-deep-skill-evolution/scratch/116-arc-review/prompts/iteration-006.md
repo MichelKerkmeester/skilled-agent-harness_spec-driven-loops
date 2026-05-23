@@ -24,7 +24,7 @@ Dimension: security (round 2 — second-order risks)
 1. **Read state** (1 tool call). Strategy + state.jsonl for prior findings AND exhausted approaches.
 2. **Second-order security surfaces** (3 tool calls):
    - **Reducer registry output** (1 call). Read `reduce-state.cjs` dashboard rendering paths. Does dashboard markdown escape user-controlled fields like finding `title`, `evidenceRefs`, `bugClass`? Can a malicious iteration write inject markdown that breaks the report?
-   - **Workflow YAML interpolation** (1 call). Read `spec_kit_deep-review_auto.yaml` for any `{searchLedger}`, `{candidateCoverage}`, `{findingDetails}` interpolations that might end up in shell commands.
+   - **Workflow YAML interpolation** (1 call). Read `deep_start-review-loop_auto.yaml` for any `{searchLedger}`, `{candidateCoverage}`, `{findingDetails}` interpolations that might end up in shell commands.
    - **Path handling in iteration writer** (1 call). Verify iteration narrative paths (`iterations/iteration-NNN.md`) and delta paths (`deltas/iter-NNN.jsonl`) are computed safely — no symlink-following, no path traversal via `iteration` field.
 3. **Permission/sandbox concerns** (1 call). The recent dispatch shape used `--permission-mode dangerous` which auto-approves all tools. Is there documentation in the playbook scenarios warning operators about dangerous mode? Or do scenarios silently encourage it?
 4. **Write iteration narrative** (1 tool call) to `iterations/iteration-006.md`. Final line: `Review verdict: PASS|CONDITIONAL|FAIL`.

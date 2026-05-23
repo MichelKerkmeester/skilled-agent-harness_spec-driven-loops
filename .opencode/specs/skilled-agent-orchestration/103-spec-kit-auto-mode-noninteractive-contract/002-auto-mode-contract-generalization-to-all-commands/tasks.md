@@ -48,7 +48,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Shared `auto_mode_contract.md` authored (Stage B).
-- [x] T002 `/spec_kit:deep-review.md` §0 refactored to cite shared contract (Stage B).
+- [x] T002 `/deep:start-review-loop.md` §0 refactored to cite shared contract (Stage B).
 - [x] T003 Confirm 001's dry-run traces still conceptually pass after refactor (read-back).
 <!-- /ANCHOR:phase-1 -->
 
@@ -68,8 +68,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T020 Live `:auto` dispatch — `/spec_kit:deep-review` (re-verify post-refactor).
-- [x] T021 Live `:auto` dispatch — `/spec_kit:deep-research`.
+- [x] T020 Live `:auto` dispatch — `/deep:start-review-loop` (re-verify post-refactor).
+- [x] T021 Live `:auto` dispatch — `/deep:start-research-loop`.
 - [x] T022 Live `:auto` dispatch — `/spec_kit:resume`.
 - [x] T023 Live `:auto` dispatch — `/spec_kit:implement`.
 - [x] T024 Live `:auto` dispatch — `/spec_kit:complete`.

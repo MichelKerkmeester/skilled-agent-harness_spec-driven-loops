@@ -1,6 +1,6 @@
 ---
 title: "Resource Map: 013 deep-review packet"
-description: "Path ledger for the artifacts produced by /spec_kit:deep-review:auto on 010-doctor-update-orchestrator (10 iterations, cli-opencode + deepseek/deepseek-v4-pro)."
+description: "Path ledger for the artifacts produced by /deep:start-review-loop:auto on 010-doctor-update-orchestrator (10 iterations, cli-opencode + deepseek/deepseek-v4-pro)."
 trigger_phrases:
   - "013 review resource map"
   - "deep-review packet 013"
@@ -9,7 +9,7 @@ contextType: "implementation"
 ---
 # Resource Map — 013 Deep-Review Packet
 
-Path ledger for the artifacts produced by `/spec_kit:deep-review:auto` on the 013 phase parent. Paths are relative to repo root.
+Path ledger for the artifacts produced by `/deep:start-review-loop:auto` on the 013 phase parent. Paths are relative to repo root.
 
 ## Review Packet Root
 

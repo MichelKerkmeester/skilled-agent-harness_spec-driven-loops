@@ -1,6 +1,6 @@
 ---
 title: Deep Review Strategy - 008 z-archive marker validation sweep
-description: Runtime strategy for /spec_kit:deep-review:auto implementation-code audit.
+description: Runtime strategy for /deep:start-review-loop:auto implementation-code audit.
 ---
 
 # Deep Review Strategy - 008 z-archive marker validation sweep
@@ -9,7 +9,7 @@ description: Runtime strategy for /spec_kit:deep-review:auto implementation-code
 
 ### Purpose
 
-Run the official /spec_kit:deep-review:auto workflow against the approved 008 phase child with review focus pinned to implementation code, not only spec cross-references.
+Run the official /deep:start-review-loop:auto workflow against the approved 008 phase child with review focus pinned to implementation code, not only spec cross-references.
 
 ## 2. TOPIC
 
@@ -71,7 +71,7 @@ Stop on maxIterations=5 unless convergence fires earlier under the YAML workflow
 
 ## 13. KNOWN CONTEXT
 
-- Setup command invoked as: /spec_kit:deep-review:auto /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/008-archive-marker-validation-unused-scaffold --max-iterations=5
+- Setup command invoked as: /deep:start-review-loop:auto /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/008-archive-marker-validation-unused-scaffold --max-iterations=5
 - resource-map.md not present; skipping resource-map coverage gate.
 - implementation-summary.md is a scaffold template; implementation scope was derived from the phase name, 010 parent context, 003 resource map, and adjacent 007 marker-sweep review surface.
 - Primary implementation surface: scaffold marker production/consumption, validation scripts, template manifest/resolver/renderer, archive/index-scope policies, tests, and command/agent mirrors listed in config.reviewScopeFiles.
@@ -140,9 +140,9 @@ Stop on maxIterations=5 unless convergence fires earlier under the YAML workflow
 | .opencode/skills/system-spec-kit/scripts/tests/level-contract-resolver.vitest.ts | - | - | - | pending |
 | .opencode/skills/system-spec-kit/scripts/tests/inline-gate-renderer.vitest.ts | - | - | - | pending |
 | .opencode/skills/system-spec-kit/mcp_server/tests/index-scope.vitest.ts | - | - | - | pending |
-| .opencode/commands/spec_kit/deep-review.md | - | - | - | pending |
-| .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml | - | - | - | pending |
-| .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml | - | - | - | pending |
+| .opencode/commands/deep/start-review-loop.md | - | - | - | pending |
+| .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml | - | - | - | pending |
+| .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml | - | - | - | pending |
 | .opencode/commands/memory/manage.md | - | - | - | pending |
 | .opencode/agents/deep-review.md | - | - | - | pending |
 | .claude/agents/deep-review.md | - | - | - | pending |

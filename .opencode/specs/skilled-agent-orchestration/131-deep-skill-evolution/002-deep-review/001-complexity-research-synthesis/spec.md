@@ -20,8 +20,8 @@ _memory:
     key_files:
       - ".opencode/skills/deep-review/"
       - ".opencode/skills/deep-research/"
-      - ".opencode/commands/spec_kit/deep-review.md"
-      - ".opencode/commands/spec_kit/deep-research.md"
+      - ".opencode/commands/deep/start-review-loop.md"
+      - ".opencode/commands/deep/start-research-loop.md"
     session_dedup:
       fingerprint: "sha256:1161161161161161161161161161161161161161161161161161161161161161"
       session_id: "116-deep-review-complexity-auto-research"
@@ -47,7 +47,7 @@ Focused deep-research passes sometimes find more concrete bugs than the dedicate
 
 **Key Decisions**: run an evidence-only 15-iteration deep-research loop; defer implementation until findings are synthesized and ranked.
 
-**Critical Dependencies**: `/spec_kit:deep-research:auto`, `cli-codex`, `gpt-5.5`, and local access to the deep-review and deep-research command/skill surfaces.
+**Critical Dependencies**: `/deep:start-research-loop:auto`, `cli-codex`, `gpt-5.5`, and local access to the deep-review and deep-research command/skill surfaces.
 
 ---
 <!-- ANCHOR:metadata -->
@@ -133,7 +133,7 @@ Use 15 autonomous research iterations to identify why deep-review underperforms 
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Run the investigation through `/spec_kit:deep-research:auto` semantics, not an ad hoc research loop. | Research artifacts include config, state JSONL, iteration markdown, deltas, and synthesis under this packet's `research/` directory. |
+| REQ-001 | Run the investigation through `/deep:start-research-loop:auto` semantics, not an ad hoc research loop. | Research artifacts include config, state JSONL, iteration markdown, deltas, and synthesis under this packet's `research/` directory. |
 | REQ-002 | Use `cli-codex` with `gpt-5.5`, `high` or continuation-requested `xhigh` reasoning, and `fast` service tier for each iteration. | Deep-research config and iteration audit metadata record the requested executor settings. |
 | REQ-003 | Keep the run evidence-only. | No deep-review implementation files are modified during the research loop. |
 

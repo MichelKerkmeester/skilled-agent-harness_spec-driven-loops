@@ -59,7 +59,6 @@
       ".opencode/skills/system-skill-advisor/references/validation-baselines.md",
       ".opencode/skills/system-skill-advisor/references/daemon-lease-contract.md",
       ".opencode/skills/system-skill-advisor/references/skill-graph-drift.md",
-      ".opencode/skills/system-skill-advisor/references/hooks/skill-advisor-hook.md",
       ".devin/hooks.v1.json",
       "resource-map.md",
       ".opencode/skills/system-code-graph/README.md",
@@ -67,7 +66,8 @@
       ".opencode/skills/system-skill-advisor/mcp_server/README.md",
       ".opencode/skills/system-skill-advisor/mcp_server/handlers/README.md",
       ".opencode/skills/system-skill-advisor/mcp_server/tools/README.md",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/README.md"
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/README.md",
+      ".opencode/skills/system-skill-advisor/hooks/claude/README.md"
     ],
     "entities": [
       {
@@ -134,12 +134,6 @@
         "name": "skill-graph-drift.md",
         "kind": "doc",
         "path": ".opencode/skills/system-skill-advisor/references/skill-graph-drift.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill-advisor-hook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-skill-advisor/references/hooks/skill-advisor-hook.md",
         "source": "derived"
       },
       {
@@ -213,18 +207,22 @@
         "kind": "proper_noun",
         "path": "resource-map.md",
         "source": "derived"
+      },
+      {
+        "name": "any",
+        "kind": "key_phrase",
+        "path": "resource-map.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Drive system-skill-advisor to docs-quality parity with the sk-doc baseline: marketing-grade README, full 1:1 template alignment across all doc surfaces, audit-confirmed bug fixes shipped, content gaps closed with new reference docs, and HVR compliance verified across every authored surface.",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-05-16T12:23:58.704Z",
+    "last_save_at": "2026-05-23T11:55:15.204Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "resource-map.md"
-    ],
-    "last_active_child_id": null,
-    "last_active_at": "2026-05-16T12:23:58.704Z"
+    ]
   }
 }

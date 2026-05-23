@@ -1,66 +1,208 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/014-onnx-cross-platform-backend",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/014-onnx-cross-platform-backend",
-  "parent_id": "014",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/014-onnx-cross-platform-backend",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/014-onnx-cross-platform-backend",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "013"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/027-cocoindex-rewrites/001-cocoindex-complete-fork"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "014 onnx cross-platform backend",
       "onnxruntime cocoindex backend",
       "coreml execution provider",
-      "neural engine cocoindex",
       "directml cocoindex",
-      "cross-platform embedding backend"
+      "cross-platform embedding backend",
+      "014 onnx backend plan",
+      "onnxruntime provider selection",
+      "014 onnx backend tasks",
+      "014 onnx backend checklist",
+      "014 onnx rejection",
+      "onnx backend rejected",
+      "cocoindex onnx adr"
     ],
     "key_topics": [
+      "014",
+      "onnx",
+      "cross-platform",
+      "backend",
       "onnxruntime",
-      "execution-provider-selection",
-      "coreml-ep",
-      "directml-ep",
-      "cuda-ep",
-      "openvino-ep",
-      "cpu-ep-fallback",
-      "embedding-backend-gate",
-      "parity-gate",
-      "ep-change-detection",
-      "backend-state-file"
+      "cocoindex",
+      "coreml",
+      "execution",
+      "provider",
+      "directml",
+      "embedding",
+      "plan"
     ],
     "importance_tier": "important",
-    "status": "rejected",
-    "last_active_child_id": null,
+    "status": "complete",
     "key_files": [
+      "decision-record.md",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/pyproject.toml",
+      ".opencode/skills/mcp-coco-index/SKILL.md",
+      "scratch/parity-results.txt",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "decision-record.md"
+      "checklist.md"
     ],
     "entities": [
-      "OnnxEmbedder",
-      "_select_providers",
-      "backend_state.py",
-      "CoreMLExecutionProvider",
-      "DmlExecutionProvider",
-      "CUDAExecutionProvider",
-      "OpenVINOExecutionProvider",
-      "CPUExecutionProvider",
-      "COCOINDEX_CODE_BACKEND",
-      "onnx-community/embeddinggemma-300m-ONNX"
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "daemon.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py",
+        "source": "derived"
+      },
+      {
+        "name": "pyproject.toml",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/pyproject.toml",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-coco-index/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "parity-results.txt",
+        "kind": "file",
+        "path": "scratch/parity-results.txt",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Cocoindex",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Metal Performance Shaders",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Neural Engine",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
     ],
-    "causal_summary": "REJECTED 2026-05-13 after six-hypothesis perf investigation (H1-H6). Opt-in ONNX Runtime backend shipped initially but measured 3.5x slower than sbert/PyTorch+MPS at parity-preserving settings on Apple Silicon. H1 found CoreML EP only claims 23% of Gemma ops; Neural Engine barely active. H3 found static-pad128 unlocks fast inference (40.9ms p50) but breaks parity (mean cosine 0.869). Production code reverted; packet retained as decision record. See decision-record.md.",
+    "causal_summary": "Cocoindex currently encodes embeddings via sentence-transformers on PyTorch. On macOS that routes through Metal Performance Shaders, which targets the GPU and cannot reach Apple's Neural Engine. On Windows without CUDA, PyTorch is CPU-only, leaving AMD and Intel GPUs idle. Both gaps can increase fan ramp, indexing time, and query latency relative to the host silicon.",
     "created_at": "2026-05-13T09:55:00Z",
-    "last_save_at": "2026-05-13T11:15:00Z",
+    "last_save_at": "2026-05-23T11:55:15.347Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T11:15:00Z",
     "source_docs": [
@@ -68,8 +210,8 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ]
   }
 }

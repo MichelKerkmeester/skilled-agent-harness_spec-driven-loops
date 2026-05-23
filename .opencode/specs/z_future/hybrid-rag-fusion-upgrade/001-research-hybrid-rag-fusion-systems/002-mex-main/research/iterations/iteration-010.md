@@ -300,7 +300,7 @@ exec
 798:- symptom: memory save quality gate rejects closeout payload; cause: weak primary evidence + noisy trigger phrases; fix: include explicit files/observations/toolCalls/decisions and clean trigger phrases before rerunning quality validation [Task 1]
 847:- `code_graph_query` read paths call readiness checks with `allowInlineFullScan: false`; small stale deltas trigger bounded inline `selective_reindex`, while broader stale/empty conditions should route to explicit `code_graph_scan` [Task 3]
 851:- symptom: `session_health` remains `not_primed`; cause: no session id reached `recordToolCall()` for Codex flows; fix: derive tracking id via `resolveSessionTrackingId` with `CODEX_THREAD_ID` fallback [Task 2]
-1203:- /spec_kit:deep-research --review, 20 iterations, evidenceGap, handler-memory-triggers.vitest.ts, FEATURE_CATALOG.md
+1203:- /deep:start-research-loop --review, 20 iterations, evidenceGap, handler-memory-triggers.vitest.ts, FEATURE_CATALOG.md
 1457:## Task 2: Restore/verify Phase 016 runtime/docs (dedup, projectPhase, trigger filter, retry health, contextType)
 1503:- Phase 016 regression checks should include trigger filter export coverage, retry-health snapshot behavior, contextType passthrough, and pre-save dedup docs/tests [Task 2]
 1577:scope: governed retrieval scope propagation, shared-space authorization contracts, memory health auto-repair safety, hybrid runtime audits, and handler-level envelope/graph-signal guards

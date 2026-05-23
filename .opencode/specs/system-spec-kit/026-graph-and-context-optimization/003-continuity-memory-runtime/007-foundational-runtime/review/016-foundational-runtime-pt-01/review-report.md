@@ -358,7 +358,7 @@ Generate changelog entry flagging v3.4.0.2 as "known P1 residuals; see review-re
 
 If concerned about undiscovered infrastructure gaps similar to Cluster B:
 ```
-/spec_kit:deep-review :auto
+/deep:start-review-loop :auto
 ```
 
 Target: `generate-context.js` + `scripts/dist/memory/*.js` + `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` as a focused maintainability-and-infrastructure review. Scope: detect other "manual-dispatch bypass" surfaces, other "no auto-refresh" gaps, and other "canonical-save incomplete" patterns.

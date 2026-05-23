@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Surfaced by deep-review iter-5 (`DR-006`); confirmed by iter-7 + iter-8.",
     "created_at": "2026-05-23T05:45:00Z",
-    "last_save_at": "2026-05-23T09:53:18.749092Z",
+    "last_save_at": "2026-05-23T11:55:14.291Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

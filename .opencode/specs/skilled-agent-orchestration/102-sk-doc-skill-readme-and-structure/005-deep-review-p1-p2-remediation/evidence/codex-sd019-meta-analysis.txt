@@ -1364,7 +1364,7 @@ The cli-codex `@markdown` dispatch gap under `codex exec` non-interactive mode i
 
 **Re-evaluation trigger**: a future codex release that fixes `codex exec` agent resolution for runtime-registered agents (`[agents.markdown]` in `.codex/config.toml`) could re-enable SD-019 by flipping the frontmatter flag and re-running the scenario.
 
-### F-Stage-E-001 — `/spec_kit:deep-review:auto` setup-phase stdin hang
+### F-Stage-E-001 — `/deep:start-review-loop:auto` setup-phase stdin hang
 Surfaced during Stage E of 004 (not in the dashboard, but documented in 004/implementation-summary). The `:auto` suffix is supposed to be non-interactive, but the markdown-entry setup gate still asks confirmation questions. Worked around by pre-binding all setup answers in the dispatch prompt. Not addressed by 005; worth filing as a separate deep-review-skill packet.
 
 ### F-002 + F-003 — accepted advisories (no edits required)
@@ -1662,9 +1662,9 @@ export const MEMORY_SAVE_TRIGGERS: readonly TriggerEntry[] = Object.freeze([
  */
 export const RESUME_TRIGGERS: readonly TriggerEntry[] = Object.freeze([
   { pattern: '/spec_kit:resume',    kind: 'phrase', category: 'resume' },
-  { pattern: '/spec_kit:deep-research', kind: 'phrase', category: 'resume' },
+  { pattern: '/deep:start-research-loop', kind: 'phrase', category: 'resume' },
   { pattern: 'spec_kit:deep-research',  kind: 'phrase', category: 'resume' },
-  { pattern: '/spec_kit:deep-review',   kind: 'phrase', category: 'resume' },
+  { pattern: '/deep:start-review-loop',   kind: 'phrase', category: 'resume' },
   { pattern: 'spec_kit:deep-review',    kind: 'phrase', category: 'resume' },
   { pattern: 'resume the packet',        kind: 'phrase', category: 'resume' },
   { pattern: 'resume the phase folder',  kind: 'phrase', category: 'resume' },

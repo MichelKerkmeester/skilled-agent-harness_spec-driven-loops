@@ -1,6 +1,6 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/016-foundational-runtime/003-cluster-consumers",
-  "description": "Phase 017 Wave B child packet: 9 tasks / 30h across 3 parallel lanes consuming Wave A primitives. Lane B1 (Cluster B consumers, 12h, 4 tasks): T-CNS-02 research folder backfill, T-W1-CNS-05 continuity freshness validator, T-CGC-02 context.ts explicit error branch, T-RBD-03 design-intent comments. Lane B2 (Cluster D + Cluster E, 16h, 2 tasks): T-W1-CGC-03 5-sibling code-graph readiness propagation (atomic-ship or stub rollout), T-W1-HOK-01 Copilot compact-cache + session-prime (depends Wave A T-W1-HOK-02). Lane B3 (Cluster A + C + Standalone P1, 12h, 3 tasks): T-SCP-02 normalizer lint rule, T-SAN-01 + T-SAN-02 + T-SAN-03 NFKC unicode normalization + tests, T-PIN-RET-01 retry-exhaustion counter. Resolves FC-3 (research iteration folders metadata), FC-4 (6 code-graph handlers readiness vocabulary), FC-5 (Copilot compact-cache wiring), FC-6 (NFKC Gate 3 hardening), FC-8 (partial_causal_link_unresolved retry-exhaustion). Wave B gate: /spec_kit:deep-review :auto ×7 + validate.sh --strict on 017 folder.",
+  "description": "Phase 017 Wave B child packet: 9 tasks / 30h across 3 parallel lanes consuming Wave A primitives. Lane B1 (Cluster B consumers, 12h, 4 tasks): T-CNS-02 research folder backfill, T-W1-CNS-05 continuity freshness validator, T-CGC-02 context.ts explicit error branch, T-RBD-03 design-intent comments. Lane B2 (Cluster D + Cluster E, 16h, 2 tasks): T-W1-CGC-03 5-sibling code-graph readiness propagation (atomic-ship or stub rollout), T-W1-HOK-01 Copilot compact-cache + session-prime (depends Wave A T-W1-HOK-02). Lane B3 (Cluster A + C + Standalone P1, 12h, 3 tasks): T-SCP-02 normalizer lint rule, T-SAN-01 + T-SAN-02 + T-SAN-03 NFKC unicode normalization + tests, T-PIN-RET-01 retry-exhaustion counter. Resolves FC-3 (research iteration folders metadata), FC-4 (6 code-graph handlers readiness vocabulary), FC-5 (Copilot compact-cache wiring), FC-6 (NFKC Gate 3 hardening), FC-8 (partial_causal_link_unresolved retry-exhaustion). Wave B gate: /deep:start-review-loop :auto ×7 + validate.sh --strict on 017 folder.",
   "keywords": [
     "phase-017-wave-b",
     "cluster-consumers-wave-b",
@@ -65,7 +65,7 @@
     "parallelLanes": 3
   },
   "qualityGate": {
-    "requirement": "/spec_kit:deep-review :auto ×7 on Wave B scope emits ZERO new P0, ZERO new P1",
+    "requirement": "/deep:start-review-loop :auto ×7 on Wave B scope emits ZERO new P0, ZERO new P1",
     "validator": "bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict on 017 folder exits 0 with 0 warnings"
   },
   "memorySequence": 0,

@@ -1,6 +1,6 @@
 ---
 title: "Tasks: deep-review :auto non-interactive setup bypass"
-description: "Task list for fixing /spec_kit:deep-review:auto setup-phase stdin hang."
+description: "Task list for fixing /deep:start-review-loop:auto setup-phase stdin hang."
 trigger_phrases:
   - "deep-review setup hang"
   - "F-Stage-E-001"
@@ -48,8 +48,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Read `.opencode/commands/spec_kit/deep-review.md` §0 UNIFIED SETUP PHASE; map every Q0..Q-Exec input to its source (flag, default, ask). Evidence: ordered read completed before edits.
-- [x] T002 Read `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` setup steps; note which fields it reads from `deep-review-config.json`. Evidence: YAML setup inputs and config creation were read; no YAML edit needed.
+- [x] T001 Read `.opencode/commands/deep/start-review-loop.md` §0 UNIFIED SETUP PHASE; map every Q0..Q-Exec input to its source (flag, default, ask). Evidence: ordered read completed before edits.
+- [x] T002 Read `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` setup steps; note which fields it reads from `deep-review-config.json`. Evidence: YAML setup inputs and config creation were read; no YAML edit needed.
 - [x] T003 Decide pre-binding marker block name and field syntax. Evidence: documented `PRE-BOUND SETUP ANSWERS:` YAML-style key/value block.
 - [x] T004 Pick a small test target spec folder for verification dispatches (Level 1 or 2; cheap to deep-review). Evidence: runtime override replaced live dispatch with required dry-run traces using the provided hypothetical targets.
 <!-- /ANCHOR:phase-1 -->
@@ -71,9 +71,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-Runtime override for this execution: do not run the full `/spec_kit:deep-review:auto` YAML loop. Verification is dry-run setup-phase resolution only.
+Runtime override for this execution: do not run the full `/deep:start-review-loop:auto` YAML loop. Verification is dry-run setup-phase resolution only.
 
-- [x] V1 Read-back check of `.opencode/commands/spec_kit/deep-review.md` §0. Evidence: confirmed three-tier branch, marker schema, default table, Tier 3 error, and unchanged `:confirm` path.
+- [x] V1 Read-back check of `.opencode/commands/deep/start-review-loop.md` §0. Evidence: confirmed three-tier branch, marker schema, default table, Tier 3 error, and unchanged `:confirm` path.
 - [x] V2 Mental dispatch traces. Evidence: `evidence/dry-run-verification.txt` contains Trace A, Trace B, Trace C, and Trace D with verdicts.
 - [x] V3 Populate `implementation-summary.md`. Evidence: summary now includes metadata, build notes, delivery approach, key decisions, verification, and limitations.
 - [x] V4 Update `tasks.md` for T010-T014 and V1-V3. Evidence: this file marks those items complete with evidence.
@@ -81,7 +81,7 @@ Runtime override for this execution: do not run the full `/spec_kit:deep-review:
 - [x] T020 Author verification scenario (file + non-interactive Setup block). Evidence: dry-run scenario written to `evidence/dry-run-verification.txt`.
 - [x] T021 Dispatch verification scenario via `codex exec` — must load YAML + run iteration loop without setup question. Evidence: not run by runtime instruction; replaced by V2 Trace A dry-run setup verification.
 - [x] T022 Dispatch verification scenario via `opencode run --pure` — same. Evidence: not run by runtime instruction; replaced by V2 Trace A dry-run setup verification.
-- [x] T023 Dispatch `/spec_kit:deep-review:auto ""` (empty args) via `codex exec </dev/null` — must exit non-zero within 10s with named-missing-inputs error. Evidence: not run by runtime instruction; replaced by V2 Trace C dry-run fail-fast verification.
+- [x] T023 Dispatch `/deep:start-review-loop:auto ""` (empty args) via `codex exec </dev/null` — must exit non-zero within 10s with named-missing-inputs error. Evidence: not run by runtime instruction; replaced by V2 Trace C dry-run fail-fast verification.
 - [x] T024 Manual `:confirm` dispatch — must still emit the question block (regression check). Evidence: not run by runtime instruction; replaced by V2 Trace D read-back verification.
 - [x] T025 Run `validate.sh --strict` against this folder; exit 0. Evidence: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup --strict` passed with Errors: 0, Warnings: 0.
 - [x] T026 Populate `implementation-summary.md` with audit notes, design decisions, dispatch evidence pointers. Evidence: completed in `implementation-summary.md`.

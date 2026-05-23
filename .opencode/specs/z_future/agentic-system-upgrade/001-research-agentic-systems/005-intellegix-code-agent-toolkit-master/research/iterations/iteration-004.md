@@ -31,7 +31,7 @@ confidence: high
 finding: `system-spec-kit` should add an optional session-health layer that can rotate or refresh runtime context before the stuck counter escalates. This would make long autonomous runs more resilient without weakening the existing novelty-based convergence model.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skills/sk-deep-research/references/convergence.md`, `.opencode/skills/sk-deep-research/references/loop_protocol.md`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+- **Target file or module:** `.opencode/skills/sk-deep-research/references/convergence.md`, `.opencode/skills/sk-deep-research/references/loop_protocol.md`, `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
 - **Change type:** architectural shift
 - **Blast radius:** medium
 - **Prerequisites:** define runtime-neutral session-health signals and capability-gated runtime adapters

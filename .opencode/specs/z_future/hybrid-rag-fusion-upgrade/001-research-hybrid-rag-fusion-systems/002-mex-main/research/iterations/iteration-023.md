@@ -458,11 +458,11 @@ Detect the current research phase from dispatch context to load appropriate reso
 ### Architecture: 3-Layer Integration
 
 ```
-User invokes: /spec_kit:deep-research "topic"
+User invokes: /deep:start-research-loop "topic"
                     |
                     v
     ┌─────────────────────────────────┐
-    │  /spec_kit:deep-research command│  Layer 1: Command
+    │  /deep:start-research-loop command│  Layer 1: Command
     │  (YAML workflow + loop config)    │  Manages loop lifecycle
     └──────────────┬──────────────────┘
                    |
@@ -583,7 +583,7 @@ Save --> generate-context.js --> verify memory artifact
 
 ### EXPERIMENTAL / REFERENCE-ONLY FEATURES
 
-These concepts remain documented for future design work, but they are not part of the live executable contract for `/spec_kit:deep-research`:
+These concepts remain documented for future design work, but they are not part of the live executable contract for `/deep:start-research-loop`:
 1. **Wave orchestration** -- parallel question fan-out, pruning, and breakthrough logic
 2. **Checkpoint commits** -- per-iteration git commits
 3. **Wave orchestration on the same lineage** -- parallel fan-out remains reference-only
@@ -688,7 +688,7 @@ After research:
 
 | Command | Relationship |
 |---------|-------------|
-| `/spec_kit:deep-research` | Primary invocation point |
+| `/deep:start-research-loop` | Primary invocation point |
 | `/spec_kit:plan` | Next step after deep research completes |
 | `/memory:save` | Manual memory save (deep research auto-saves) |
 
@@ -701,7 +701,7 @@ After research:
 ### Worked Examples
 
 **Deep Research on Unknown Topic**:
-1. `/spec_kit:deep-research:auto "WebSocket reconnection strategies across browsers"`
+1. `/deep:start-research-loop:auto "WebSocket reconnection strategies across browsers"`
 2. Init creates config, strategy with 5 key questions
 3. Iterations 1-3: Broad survey, official docs, codebase patterns
 4. Iterations 4-6: Deep dive into specific strategies, edge cases
@@ -710,7 +710,7 @@ After research:
 7. Memory saved via generate-context.js
 
 **Narrow Research with Early Convergence**:
-1. `/spec_kit:deep-research:auto "What CSS properties trigger GPU compositing?"`
+1. `/deep:start-research-loop:auto "What CSS properties trigger GPU compositing?"`
 2. Init creates config with 2 key questions
 3. Iteration 1: Finds definitive answer from official specs
 4. All questions answered after iteration 1
@@ -745,7 +745,7 @@ After research:
 
 | Command | Purpose |
 |---------|---------|
-| `/spec_kit:deep-research` | Full loop workflow |
+| `/deep:start-research-loop` | Full loop workflow |
 | `/memory:save` | Manual context preservation |
 
 **For one-page cheat sheet**: See [quick_reference.md](./references/quick_reference.md)

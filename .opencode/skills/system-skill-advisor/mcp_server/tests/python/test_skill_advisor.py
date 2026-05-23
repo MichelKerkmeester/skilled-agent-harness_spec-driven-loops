@@ -707,7 +707,7 @@ description: Fixture helper for routing tests
     except Exception as exc:
         fail_test("T243-SA-015: conflict penalty only applies on mutual declaration", str(exc))
 
-    # T243-SA-016: T-TEST-NEW-09 / R46-001 — `/spec_kit:deep-research` must route
+    # T243-SA-016: T-TEST-NEW-09 / R46-001 — `/deep:start-research-loop` must route
     # to `deep-research`, NOT collapse to the generic `command-spec-kit`. The
     # owning-skill signal was lost for slash subcommands before T-SAP-03 /
     # skill_advisor.py line 1312 fix; this regression pins the subcommand map.
@@ -716,9 +716,9 @@ description: Fixture helper for routing tests
         # Multi-prompt check: the slash command alone AND typical phrasing that
         # includes the slash marker. Both must prefer deep-research.
         for prompt in [
-            "/spec_kit:deep-research",
-            "run /spec_kit:deep-research on packet 016",
-            "kick off /spec_kit:deep-research :auto for the foundational runtime",
+            "/deep:start-research-loop",
+            "run /deep:start-research-loop on packet 016",
+            "kick off /deep:start-research-loop :auto for the foundational runtime",
         ]:
             recs = advisor.analyze_prompt(
                 prompt=prompt,
@@ -742,15 +742,15 @@ description: Fixture helper for routing tests
                 if dr_conf + 1e-9 < cmd_conf:
                     failures.append(f"{prompt!r}: deep-research={dr_conf:.2f} < command-spec-kit={cmd_conf:.2f}")
         if not failures:
-            ok("T243-SA-016: /spec_kit:deep-research routes to deep-research (not command-spec-kit)")
+            ok("T243-SA-016: /deep:start-research-loop routes to deep-research (not command-spec-kit)")
         else:
             fail_test(
-                "T243-SA-016: /spec_kit:deep-research routes to deep-research (not command-spec-kit)",
+                "T243-SA-016: /deep:start-research-loop routes to deep-research (not command-spec-kit)",
                 "; ".join(failures),
             )
     except Exception as exc:
         fail_test(
-            "T243-SA-016: /spec_kit:deep-research routes to deep-research (not command-spec-kit)",
+            "T243-SA-016: /deep:start-research-loop routes to deep-research (not command-spec-kit)",
             str(exc),
         )
 
@@ -760,8 +760,8 @@ description: Fixture helper for routing tests
         expected_routes = [
             ("run /memory:save for this packet", "memory:save"),
             ("run /spec_kit:resume for the 019 hardening packet", "system-spec-kit"),
-            ("run /spec_kit:deep-research :auto on this packet", "deep-research"),
-            ("run /spec_kit:deep-review :auto on this packet", "deep-review"),
+            ("run /deep:start-research-loop :auto on this packet", "deep-research"),
+            ("run /deep:start-review-loop :auto on this packet", "deep-review"),
         ]
         for prompt, expected_skill in expected_routes:
             recs = advisor.analyze_prompt(
@@ -794,7 +794,7 @@ description: Fixture helper for routing tests
             ("add tests for command-memory-save normalization guard", "command-memory-save", True),
             ("modify command-spec-kit-deep-review mapping", "command-spec-kit-deep-review", True),
             ("run /memory:save for this packet", "command-memory-save", False),
-            ("run /spec_kit:deep-review :auto", "command-spec-kit-deep-review", False),
+            ("run /deep:start-review-loop :auto", "command-spec-kit-deep-review", False),
         ]
         failures = []
         for prompt, command_name, expected in guard_cases:

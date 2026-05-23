@@ -49,7 +49,7 @@ Validate single-weak-source guards override STOP when an answer depends on one t
 3. `bash: sed -n '183,195p' .opencode/skills/deep-research/references/state_format.md`
 4. `bash: rg -n 'guard_violation\|single_weak_source' .opencode/skills/deep-research/references/state_format.md`
 5. `bash: sed -n '97,107p' .opencode/skills/deep-research/references/loop_protocol.md`
-6. `bash: sed -n '236,243p' .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+6. `bash: sed -n '236,243p' .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
 ### Expected
 guard_violation event logged with guard="single_weak_source", STOP decision overridden to CONTINUE, violated question targeted for stronger sourcing in next iteration.
 ### Evidence
@@ -76,7 +76,7 @@ Privilege convergence.md §2.4 for the canonical guard definition and state_form
 | `.opencode/skills/deep-research/references/convergence.md` | Canonical quality guard definitions; use §2.4 Quality Guard Protocol |
 | `.opencode/skills/deep-research/references/state_format.md` | JSONL event schema; use guard_violation event definition and sourceStrength field classification |
 | `.opencode/skills/deep-research/references/loop_protocol.md` | Loop orchestration; use Step 2c: Quality Guard Check |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Workflow algorithm; inspect `step_check_convergence` guard override logic |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Workflow algorithm; inspect `step_check_convergence` guard override logic |
 
 ---
 

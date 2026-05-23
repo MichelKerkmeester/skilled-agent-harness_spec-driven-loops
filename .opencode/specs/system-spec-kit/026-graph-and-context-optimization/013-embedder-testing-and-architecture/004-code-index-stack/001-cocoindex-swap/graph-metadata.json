@@ -36,7 +36,6 @@
     "status": "complete",
     "key_files": [
       "evidence/swap-runbook.md",
-      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -47,12 +46,6 @@
         "name": "swap-runbook.md",
         "kind": "doc",
         "path": "evidence/swap-runbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "config.py",
-        "kind": "file",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
         "source": "derived"
       },
       {
@@ -186,11 +179,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Known Limitations Pending",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "CocoIndex's `_DEFAULT_MODEL = \"sbert/google/embeddinggemma-300m\"` is a general-text embedder. Code search benefits from code-tuned embedders; gemma may be leaving recall on the table. CocoIndex's device auto-detection only covers CUDA — Mac users get CPU inference even when Metal is available.",
     "created_at": "2026-05-18T08:18:02.783Z",
-    "last_save_at": "2026-05-19T20:42:43.942Z",
+    "last_save_at": "2026-05-23T11:55:15.483Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

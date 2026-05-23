@@ -70,8 +70,8 @@ B6 implemented final cleanup for DR009-COR-011, DR009-TRC-008, DR009-TRC-012, DR
 | `tasks.md` | Created | Numbered batch task ledger | Scaffold |
 | `checklist.md` | Created | Finding closure ledger | Scaffold |
 | `scratch/batch-plan.md` | Created | Parent dispatch input | Scaffold |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modified | Route cited Codex dispatch through audited async supervisor | B5 |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modified | Route cited Codex dispatch through audited async supervisor | B5 |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Modified | Route cited Codex dispatch through audited async supervisor | B5 |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Modified | Route cited Codex dispatch through audited async supervisor | B5 |
 | `.opencode/skills/deep-loop-runtime/tests/unit/loop-lock.vitest.ts` | Modified | Cross-process lock race fixture | B5 |
 | `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/lifecycle/daemon_task_registry.py` | Modified | Project-scoped queued task cancellation | B5 |
 | `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py` | Modified | Cancel queued project work before close | B5 |

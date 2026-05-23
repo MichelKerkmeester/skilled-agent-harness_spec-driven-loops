@@ -58,7 +58,7 @@ This playbook provides 34 deterministic scenarios across 6 categories validating
 ## 2. GLOBAL PRECONDITIONS
 
 - `deep-research` skill exists at `.opencode/skills/deep-research/`.
-- `/spec_kit:deep-research` command exists at `.opencode/commands/spec_kit/deep-research.md`.
+- `/deep:start-research-loop` command exists at `.opencode/commands/deep/start-research-loop.md`.
 - `@deep-research` agent definition exists at `.opencode/agents/deep-research.md` plus runtime variants.
 - Deep-research YAML workflows and reducer/runtime assets are available in the repository.
 
@@ -108,7 +108,7 @@ This category covers 3 scenario summaries while the linked feature files remain 
 Verify that autonomous mode is exposed consistently across the README, quick reference, command entrypoint, and auto YAML workflow.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the autonomous entrypoint for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify /spec_kit:deep-research:auto is documented consistently across the README, quick reference, command entrypoint, and autonomous YAML workflow. Return a concise user-facing pass/fail verdict with the expected artifact summary.
+Prompt summary: As a manual-testing orchestrator, validate the autonomous entrypoint for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify /deep:start-research-loop:auto is documented consistently across the README, quick reference, command entrypoint, and autonomous YAML workflow. Return a concise user-facing pass/fail verdict with the expected artifact summary.
 
 Expected signals: The same autonomous command appears across sources, autonomous mode is approval-free, and the workflow points to config, JSONL, strategy, iteration files, and `research/research.md`.
 
@@ -121,7 +121,7 @@ Expected signals: The same autonomous command appears across sources, autonomous
 Verify that confirm mode adds approval checkpoints without changing the core loop phases or artifact contract.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the confirm-mode contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify /spec_kit:deep-research:confirm is documented as interactive, approval-gated, and still uses the same core loop and output artifacts as auto mode. Return a concise operator-facing verdict.
+Prompt summary: As a manual-testing orchestrator, validate the confirm-mode contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify /deep:start-research-loop:confirm is documented as interactive, approval-gated, and still uses the same core loop and output artifacts as auto mode. Return a concise operator-facing verdict.
 
 Expected signals: Confirm mode is interactive, approval-gated, and still routes through initialization, loop, synthesis, and save rather than a separate workflow.
 

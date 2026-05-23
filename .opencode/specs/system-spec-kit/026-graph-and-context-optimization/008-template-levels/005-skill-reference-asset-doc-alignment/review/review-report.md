@@ -63,7 +63,7 @@ None.
 ### P1 Findings
 
 1. **P1-001: Iteration prompt pack points executor contexts at a non-existent review doctrine path**  
-   - **Evidence:** `.opencode/skills/sk-deep-review/assets/prompt_pack_iteration.md.tmpl:18` instructs executors to load `.agents/skills/sk-code-review/references/review_core.md`, while `.opencode/agents/deep-review.md:273` uses the existing `.opencode/skills/sk-code-review/references/review_core.md` path. The auto YAML renders and dispatches this prompt pack through native and CLI executor paths at `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:638-680`.
+   - **Evidence:** `.opencode/skills/sk-deep-review/assets/prompt_pack_iteration.md.tmpl:18` instructs executors to load `.agents/skills/sk-code-review/references/review_core.md`, while `.opencode/agents/deep-review.md:273` uses the existing `.opencode/skills/sk-code-review/references/review_core.md` path. The auto YAML renders and dispatches this prompt pack through native and CLI executor paths at `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:638-680`.
    - **Impact:** Non-native executor severity classification can diverge or fail to load the required doctrine.
    - **Recommendation:** Replace the prompt-pack path with `.opencode/skills/sk-code-review/references/review_core.md` or render a runtime-resolved existing path.
    - **Finding class:** cross-consumer
@@ -84,7 +84,7 @@ None.
    - **Recommendation:** Generate or verify validation reference summaries from `validator-registry.json`.
 
 4. **P2-004: Runtime mirrors re-label packaged mirror paths as canonical while YAML declares `.opencode/agents/deep-review.md` canonical**  
-   - **Evidence:** `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:71-72` names `.opencode/agents/deep-review.md` canonical; mirror Path Convention lines point to `.claude/agents/*.md`, `.gemini/agents/*.md`, and `.codex/agents/*.toml` at `.claude/agents/deep-review.md:27`, `.gemini/agents/deep-review.md:27`, and `.codex/agents/deep-review.toml:20`.
+   - **Evidence:** `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:71-72` names `.opencode/agents/deep-review.md` canonical; mirror Path Convention lines point to `.claude/agents/*.md`, `.gemini/agents/*.md`, and `.codex/agents/*.toml` at `.claude/agents/deep-review.md:27`, `.gemini/agents/deep-review.md:27`, and `.codex/agents/deep-review.toml:20`.
    - **Recommendation:** Reword mirror Path Convention lines to say they are packaged mirrors while `.opencode/agents/deep-review.md` remains the canonical reference path.
 
 ## Active Finding Registry

@@ -79,8 +79,8 @@
     ".opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh",
     ".opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts",
     ".opencode/skills/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts",
-    ".opencode/commands/spec_kit/deep-review.md",
-    ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml"
+    ".opencode/commands/deep/start-review-loop.md",
+    ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml"
   ],
   "severityThreshold": "P2",
   "crossReference": {

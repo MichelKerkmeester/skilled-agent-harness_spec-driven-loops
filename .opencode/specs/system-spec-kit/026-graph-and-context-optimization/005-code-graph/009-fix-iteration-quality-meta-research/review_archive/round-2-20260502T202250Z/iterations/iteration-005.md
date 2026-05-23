@@ -6,8 +6,8 @@
 - `.opencode/skills/sk-code-review/references/review_core.md`
 - `.opencode/agents/deep-review.md`
 - `.opencode/skills/sk-deep-review/references/state_format.md`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
+- `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
 - `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml`
 - `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml`
 - `.opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl`
@@ -15,7 +15,7 @@
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/009-fix-iteration-quality-meta-research/{spec.md,plan.md,tasks.md,implementation-summary.md,description.json,graph-metadata.json}`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/009-fix-iteration-quality-meta-research/review/{deep-review-config.json,deep-review-state.jsonl,prompts/iteration-001.md..iteration-005.md}`
 
-R5 fix-completeness protocol was applied as `cross-consumer` plus `matrix/evidence`: the same-class producer inventory covers sk-code-review finding schema, the deep-review LEAF output contract, deep-review state schema, R7 review-report Planning Packet synthesis, R3 plan import/render prompts, and post-dispatch validation. The cross-consumer flow for a sample active finding is closed: `findingClass`/`scopeProof` are required by sk-code-review [SOURCE: .opencode/skills/sk-code-review/references/review_core.md:82-88], produced by the deep-review agent [SOURCE: .opencode/agents/deep-review.md:152-184], carried by state `findingDetails` [SOURCE: .opencode/skills/sk-deep-review/references/state_format.md:195-219], synthesized into the R7 Planning Packet [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1047-1055], and imported into the R3 FIX ADDENDUM body [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:215-229]. `scopeProofNeeded` has no live matches across the reviewed active surfaces.
+R5 fix-completeness protocol was applied as `cross-consumer` plus `matrix/evidence`: the same-class producer inventory covers sk-code-review finding schema, the deep-review LEAF output contract, deep-review state schema, R7 review-report Planning Packet synthesis, R3 plan import/render prompts, and post-dispatch validation. The cross-consumer flow for a sample active finding is closed: `findingClass`/`scopeProof` are required by sk-code-review [SOURCE: .opencode/skills/sk-code-review/references/review_core.md:82-88], produced by the deep-review agent [SOURCE: .opencode/agents/deep-review.md:152-184], carried by state `findingDetails` [SOURCE: .opencode/skills/sk-deep-review/references/state_format.md:195-219], synthesized into the R7 Planning Packet [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1047-1055], and imported into the R3 FIX ADDENDUM body [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:215-229]. `scopeProofNeeded` has no live matches across the reviewed active surfaces.
 
 ## Findings by Severity
 

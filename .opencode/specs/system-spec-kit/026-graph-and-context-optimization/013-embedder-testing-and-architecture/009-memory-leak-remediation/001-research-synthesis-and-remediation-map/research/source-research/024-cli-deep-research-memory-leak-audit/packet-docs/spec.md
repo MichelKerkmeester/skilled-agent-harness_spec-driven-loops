@@ -54,7 +54,7 @@ This packet prepares a broad, evidence-driven memory-leak and process-lifecycle 
 
 **Key Decisions**: split the initial ten research iterations into two sequential executor lanes, then extend with five additional Codex recommendation-validation iterations; treat Apple Silicon swap and wired-memory pressure as first-class failure signals, not just orphan process RSS.
 
-**Critical Dependencies**: `/spec_kit:deep-research` must own state and dispatch; CLI executions must follow the cli-skill single-dispatch and kill-between-iterations rules.
+**Critical Dependencies**: `/deep:start-research-loop` must own state and dispatch; CLI executions must follow the cli-skill single-dispatch and kill-between-iterations rules.
 
 ---
 <!-- ANCHOR:metadata -->
@@ -90,7 +90,7 @@ Run a wide deep-research pass that identifies concrete memory leaks, process lif
 ## 3. SCOPE
 
 ### In Scope
-- Fifteen `/spec_kit:deep-research` iterations against `.opencode/skills/mcp-coco-index/` and `.opencode/skills/system-code-graph/`.
+- Fifteen `/deep:start-research-loop` iterations against `.opencode/skills/mcp-coco-index/` and `.opencode/skills/system-code-graph/`.
 - Lane A: five iterations using `cli-claude-code` with Opus 4.7 / Opus extended-thinking profile.
 - Lane B: ten iterations using `cli-codex` with `gpt-5.5`, `model_reasoning_effort="xhigh"`, and `service_tier="fast"`.
 - Process lifecycle audit for CLI skills, deep-research, deep-review, AI council, native agent dispatch, and nested CLI handoffs.
@@ -100,7 +100,7 @@ Run a wide deep-research pass that identifies concrete memory leaks, process lif
 
 ### Out of Scope
 - Implementing fixes found by the research. Implementation requires follow-up remediation packets.
-- Running ad hoc shell loops, direct Task-tool deep-research dispatch, or custom CLI loops outside `/spec_kit:deep-research`.
+- Running ad hoc shell loops, direct Task-tool deep-research dispatch, or custom CLI loops outside `/deep:start-research-loop`.
 - Parallel CLI execution unless the operator explicitly approves it after seeing the memory preflight.
 - Replacing the current deep-research state machine or bypassing `deep-research-state.jsonl`, `iterations/`, `deltas/`, `logs/`, and reducer-owned state.
 - Re-running heavy indexes or model downloads without an explicit research-iteration reason and memory preflight.
@@ -115,7 +115,7 @@ Run a wide deep-research pass that identifies concrete memory leaks, process lif
 | `.opencode/skills/cli-claude-code/` | Analyze | Claude Code dispatch guardrails, kill-between-iterations rules, and process cleanup references used by lane A. |
 | `.opencode/skills/cli-codex/` | Analyze | Codex dispatch guardrails, stdin/process cleanup rules, and Apple Silicon memory safeguards used by lane B. |
 | `.opencode/skills/deep-research/` | Analyze | Loop state machine, executor routing, per-iteration isolation, convergence, and cleanup responsibilities. |
-| `.opencode/commands/spec_kit/deep-research.md` | Analyze | Command setup contract, executor flags, PRE-BOUND SETUP ANSWERS, and workflow handoff. |
+| `.opencode/commands/deep/start-research-loop.md` | Analyze | Command setup contract, executor flags, PRE-BOUND SETUP ANSWERS, and workflow handoff. |
 | `research/` under this packet | Create | Deep-research state, iteration files, synthesis, dashboard, and resource map once the loop runs. |
 <!-- /ANCHOR:scope -->
 
@@ -128,7 +128,7 @@ Run a wide deep-research pass that identifies concrete memory leaks, process lif
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Execute the audit through `/spec_kit:deep-research` only. | Research artifacts show command-owned state files and no custom CLI loop dispatcher. |
+| REQ-001 | Execute the audit through `/deep:start-research-loop` only. | Research artifacts show command-owned state files and no custom CLI loop dispatcher. |
 | REQ-002 | Use the corrected two-lane executor split and continuation schedule. | Five iterations cite `cli-claude-code` Opus 4.7 / Opus profile; ten iterations cite `cli-codex` `gpt-5.5` xhigh fast. |
 | REQ-003 | Enforce one CLI dispatch at a time. | Each iteration record includes pre-dispatch memory state, post-dispatch cleanup, and no overlapping cli-* process groups unless explicitly approved. |
 | REQ-004 | Treat system memory pressure as blocking evidence. | Research captures `sysctl vm.swapusage` and `vm_stat` before the first lane and between iterations; halt criteria are documented. |
@@ -178,7 +178,7 @@ Run a wide deep-research pass that identifies concrete memory leaks, process lif
 | Risk | Long-running local models | Rerankers or embedding backends may retain memory after the CLI process exits. | Track sidecar processes separately from parent CLI RSS. |
 | Dependency | `claude` CLI auth and model availability | Lane A cannot run without available Claude Code auth and Opus model access. | Preflight CLI availability and auth before lane A; record blocker if unavailable. |
 | Dependency | `codex` CLI auth and fast tier | Lane B cannot run without available Codex auth and `gpt-5.5` access. | Preflight CLI availability and auth before lane B; record blocker if unavailable. |
-| Dependency | Deep-research executor support | Executor flags must be accepted by `/spec_kit:deep-research`. | Use PRE-BOUND SETUP ANSWERS or explicit command flags from the command contract. |
+| Dependency | Deep-research executor support | Executor flags must be accepted by `/deep:start-research-loop`. | Use PRE-BOUND SETUP ANSWERS or explicit command flags from the command contract. |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -302,7 +302,7 @@ Run a wide deep-research pass that identifies concrete memory leaks, process lif
 
 ### Command Discipline
 
-- Preferred mode: `/spec_kit:deep-research:auto` with PRE-BOUND SETUP ANSWERS for each lane.
+- Preferred mode: `/deep:start-research-loop:auto` with PRE-BOUND SETUP ANSWERS for each lane.
 - State owner: the deep-research YAML workflow and reducer, not ad hoc scripts.
 - Mandatory artifacts per iteration: `iterations/iteration-NNN.md` plus JSONL delta with `type`, `iteration`, `newInfoRatio`, `status`, and `focus`.
 - No nested CLI loops: executors can inspect code and produce findings, but must not spawn their own deep-research, deep-review, council, or sibling CLI loops.

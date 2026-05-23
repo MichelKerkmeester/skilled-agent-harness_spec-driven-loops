@@ -107,7 +107,7 @@ Defaults:
 | `saturation_threshold` | 0.2 | Council-specific stability delta, already documented in the renamed skill. |
 | `seats_per_round` | 3 | Existing seat diversity maximum and default. |
 
-The upper bound at defaults is 45 seat outputs, but stable verdict deltas should stop earlier. `/spec_kit:deep-council :auto` must surface this upper bound before dispatch.
+The upper bound at defaults is 45 seat outputs, but stable verdict deltas should stop earlier. `/deep:ask-ai-council :auto` must surface this upper bound before dispatch.
 
 Evidence: `.opencode/skills/deep-ai-council/references/seat_diversity_patterns.md:18`, `.opencode/skills/deep-ai-council/references/seat_diversity_patterns.md:166`, `.opencode/skills/deep-ai-council/scripts/lib/persist-artifacts.js:30`, `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/006-deep-skills-differentiation/001-unique-value-differentiation/research/research.md:83`.
 
@@ -161,7 +161,7 @@ Evidence: `.opencode/skills/deep-review/SKILL.md:512`, `.opencode/skills/deep-re
 
 ## 7. Workflow YAML / Command Surface Design
 
-Add `/spec_kit:deep-council` with `:auto` and `:confirm`.
+Add `/deep:ask-ai-council` with `:auto` and `:confirm`.
 
 Setup fields:
 
@@ -210,11 +210,11 @@ Downstream packets 002-006 should expect at least these files:
 | `.opencode/skills/deep-ai-council/references/folder_layout.md` | 003-004 | Document session/topic/round layout. |
 | `.opencode/skills/deep-ai-council/references/state_format.md` | 003-004 | Add session/topic/round event schemas. |
 | `.opencode/skills/deep-ai-council/references/convergence_signals.md` | 003 | Add verdict-delta formula. |
-| `.opencode/skills/deep-ai-council/references/command_wiring.md` | 005 | Add `/spec_kit:deep-council` wiring. |
+| `.opencode/skills/deep-ai-council/references/command_wiring.md` | 005 | Add `/deep:ask-ai-council` wiring. |
 | `.opencode/skills/deep-ai-council/SKILL.md` | 005-006 | Document deep mode, defaults, and invariants. |
-| `.opencode/commands/spec_kit/deep-council.md` | 005 | New command entrypoint. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-council_auto.yaml` | 005 | Auto workflow. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-council_confirm.yaml` | 005 | Confirm workflow. |
+| `.opencode/commands/deep/ask-ai-council.md` | 005 | New command entrypoint. |
+| `.opencode/commands/deep/assets/deep_ask-ai-council_auto.yaml` | 005 | Auto workflow. |
+| `.opencode/commands/deep/assets/deep_ask-ai-council_confirm.yaml` | 005 | Confirm workflow. |
 | `.opencode/agents/ai-council.md` | 005 | Mirror/alias update. |
 | `.claude/agents/ai-council.md` | 005 | Mirror update. |
 | `.codex/agents/ai-council.toml` | 005 | Mirror update. |
@@ -234,7 +234,7 @@ Implement topic-local round loop, seat dispatch contracts, verdict-delta scoring
 Implement session loop, topic management, `council-findings-registry.json`, cross-topic priors, and session report.
 
 005 Command and skill wiring:
-Add `/spec_kit:deep-council :auto|:confirm`, workflow YAML, skill docs, command docs, and four runtime mirror sync.
+Add `/deep:ask-ai-council :auto|:confirm`, workflow YAML, skill docs, command docs, and four runtime mirror sync.
 
 006 Parity tests, cost guards, and docs:
 Add advisor parity tests from packet 130 invariants, cost guard tests, migration docs, changelog, and strict validation.

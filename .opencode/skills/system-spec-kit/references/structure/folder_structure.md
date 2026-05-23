@@ -211,7 +211,7 @@ Deep-research and deep-review artifacts (iterations, deltas, prompts, state logs
 
 **Forbidden:** creating or continuing child-phase research/review packets under an ancestor/root spec's `research/` or `review/` folder.
 
-**See also:** `deep-research/references/loop_protocol.md`, `deep-review/references/loop_protocol.md`, and the `step_resolve_artifact_root` block in `command/spec_kit/assets/spec_kit_deep-research_auto.yaml`.
+**See also:** `deep-research/references/loop_protocol.md`, `deep-review/references/loop_protocol.md`, and the `step_resolve_artifact_root` block in `command/deep/assets/deep_start-research-loop_auto.yaml`.
 
 ---
 

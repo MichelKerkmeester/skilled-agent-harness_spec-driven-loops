@@ -64,7 +64,7 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] Workflow used canonical surface (/spec_kit:deep-research:auto) — evidence: dispatch logs cite the slash command
+- [ ] CHK-020 [P0] Workflow used canonical surface (/deep:start-research-loop:auto) — evidence: dispatch logs cite the slash command
 - [ ] CHK-021 [P0] Executor was cli-codex gpt-5.5 high — evidence: `deep-research-config.json` records executor block
 - [ ] CHK-022 [P0] State files exist (state-log, deltas) — evidence: `ls research/deep-research-state.jsonl deltas/`
 - [ ] CHK-023 [P1] 30+ findings surfaced overall — evidence: count in research.md

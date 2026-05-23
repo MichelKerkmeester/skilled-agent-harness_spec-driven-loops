@@ -33,7 +33,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Reading TypeScript/Bun source in `external/`; producing Markdown + JSONL artifacts |
-| **Framework** | sk-deep-research loop (`/spec_kit:deep-research:auto`) |
+| **Framework** | sk-deep-research loop (`/deep:start-research-loop:auto`) |
 | **Storage** | Phase folder file system: `research/`, `memory/`, top-level Spec Kit docs |
 | **Testing** | validate.sh --strict before research, checklist.md verification at the end |
 

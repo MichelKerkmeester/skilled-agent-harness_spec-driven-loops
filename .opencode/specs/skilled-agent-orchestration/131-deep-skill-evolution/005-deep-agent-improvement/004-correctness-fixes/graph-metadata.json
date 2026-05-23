@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Packet 124 closes eight confirmed `deep-agent-improvement` findings from packet 123: five P0 operator-trust defects and three P1 path/scoring defects. The work repairs typed profile-generation failures, makes unscored scoring dimensions explicit instead of silently perfect, aligns stop-reason documentation to the shipped journal enum, updates version/changelog truth, corrects command/manifest paths, and adds a guarded runtime-mirror sync flag for the promotion path.",
     "created_at": "2026-05-23T05:48:51.754Z",
-    "last_save_at": "2026-05-23T09:53:18.749092Z",
+    "last_save_at": "2026-05-23T11:55:14.297Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -4,11 +4,10 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/043-cocoindex-refresh-split",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/035-cocoindex-mcp-reliability",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/042-cocoindex-ipc-observability"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
@@ -17,35 +16,201 @@
       "042 cocoindex refresh split",
       "cocoindex refresh_index default false",
       "cocoindex_refresh_index",
-      "mcp search refresh split"
+      "mcp search refresh split",
+      "042 plan",
+      "cocoindex refresh split plan",
+      "042 tasks",
+      "cocoindex refresh split tasks",
+      "042 checklist",
+      "refresh split verification",
+      "ADR-004",
+      "cocoindex refresh split decision"
     ],
     "key_topics": [
+      "042",
       "cocoindex",
+      "refresh",
+      "split",
+      "default",
+      "false",
       "mcp",
-      "refresh_index",
-      "explicit refresh",
-      "search latency"
+      "search",
+      "plan",
+      "tasks",
+      "checklist",
+      "verification"
     ],
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
-      "spec.md",
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_refresh_split.py",
+      ".opencode/skills/mcp-coco-index/references/tool_reference.md",
+      ".opencode/skills/mcp-coco-index/SKILL.md",
+      ".opencode/skills/mcp-coco-index/README.md",
+      ".opencode/skills/mcp-coco-index/references/search_patterns.md",
+      ".opencode/skills/mcp-coco-index/references/cross_cli_playbook.md",
+      ".opencode/skills/mcp-coco-index/feature_catalog/feature_catalog.md",
+      ".opencode/skills/mcp-coco-index/feature_catalog/02--mcp-server/01-search-tool-contract.md",
+      ".opencode/skills/mcp-coco-index/feature_catalog/02--mcp-server/02-refresh-index-default.md",
+      ".opencode/skills/mcp-coco-index/scripts/common.sh",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/server.py",
+      "decision-record.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "spec.md"
     ],
     "entities": [
-      "CocoIndex MCP",
-      "FastMCP",
-      "DaemonClient",
-      "cocoindex_refresh_index"
+      {
+        "name": "test_refresh_split.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_refresh_split.py",
+        "source": "derived"
+      },
+      {
+        "name": "tool_reference.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-coco-index/references/tool_reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-coco-index/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-coco-index/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "search_patterns.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-coco-index/references/search_patterns.md",
+        "source": "derived"
+      },
+      {
+        "name": "cross_cli_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-coco-index/references/cross_cli_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-coco-index/feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "01-search-tool-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-coco-index/feature_catalog/02--mcp-server/01-search-tool-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "02-refresh-index-default.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-coco-index/feature_catalog/02--mcp-server/02-refresh-index-default.md",
+        "source": "derived"
+      },
+      {
+        "name": "common.sh",
+        "kind": "script",
+        "path": ".opencode/skills/mcp-coco-index/scripts/common.sh",
+        "source": "derived"
+      },
+      {
+        "name": "server.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/server.py",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Search Split",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Level Note",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
     ],
-    "causal_summary": "Packets 035 and 041 showed refresh work inside MCP search can dominate request scope; packet 042 defaults MCP search refresh off and exposes explicit refresh.",
+    "causal_summary": "MCP `search` now defaults `refresh_index=false`, so a normal semantic query no longer spends the same request budget on index refresh work. A new `cocoindex_refresh_index` MCP tool gives callers an explicit way to refresh before a search batch, while `search(refresh_index=true)` remains supported for backward compatibility.",
     "created_at": "2026-05-14T16:12:41Z",
-    "last_save_at": "2026-05-14T16:45:00Z",
-    "save_lineage": "manual_packet_update",
+    "last_save_at": "2026-05-23T11:55:15.397Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

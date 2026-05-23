@@ -66,7 +66,7 @@ Whole-repo read-only survey of the code-graph surface (source + consumers + tool
 2. Grep whole repo for code-graph consumers: `code_graph_*`, `ccc_*`, `detect_changes`, `getGraphFreshness`, `getGraphReadinessSnapshot`, `classifyQueryIntent`, `buildContext`, `runtime-detection`, `code-graph-db`.
 3. Inventory tool registrations in `mcp_server/tool-schemas.ts` + `context-server.ts`.
 4. Author `research/deep-research-config.json` (10-iter cap, cli-opencode + deepseek-v4-pro executor, `--pure` flag, convergence criteria from deep-research SKILL).
-5. Dispatch `/spec_kit:deep-research :auto` from inside this packet.
+5. Dispatch `/deep:start-research-loop :auto` from inside this packet.
 6. Post-convergence: synthesize `resource-map.md` (peer to `research/research.md`) and `decision-record.md` (ADR-001 with 8 decisions + alternatives table).
 7. Update parent 014 `spec.md` "What Needs Done" with locked sequence.
 8. Strict-validate.

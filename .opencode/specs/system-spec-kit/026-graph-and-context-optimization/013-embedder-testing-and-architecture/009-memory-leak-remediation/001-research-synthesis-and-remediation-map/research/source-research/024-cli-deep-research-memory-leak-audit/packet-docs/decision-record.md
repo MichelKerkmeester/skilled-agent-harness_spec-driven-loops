@@ -55,7 +55,7 @@ The operator initially wanted ten deep-research iterations and corrected the exe
 
 ### Constraints
 
-- `/spec_kit:deep-research` owns state and dispatch; custom shell loops are forbidden.
+- `/deep:start-research-loop` owns state and dispatch; custom shell loops are forbidden.
 - CLI skills require single-dispatch discipline by default.
 - The machine is an Apple Silicon laptop with 64 GB RAM, where swap and wired-memory pressure can outlive user-process cleanup.
 <!-- /ANCHOR:adr-001-context -->
@@ -67,7 +67,7 @@ The operator initially wanted ten deep-research iterations and corrected the exe
 
 **We chose**: Run lane A with `cli-claude-code` Opus 4.7 / Opus profile for five iterations, then run lane B with `cli-codex` `gpt-5.5` xhigh fast for ten iterations, including five continuation validation passes.
 
-**How it works**: Each lane runs through `/spec_kit:deep-research:auto` with pre-bound setup answers. The workflow runs one iteration at a time, validates required artifacts, kills and verifies executor/helper processes, captures memory telemetry, and only then starts the next iteration or lane.
+**How it works**: Each lane runs through `/deep:start-research-loop:auto` with pre-bound setup answers. The workflow runs one iteration at a time, validates required artifacts, kills and verifies executor/helper processes, captures memory telemetry, and only then starts the next iteration or lane.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -129,7 +129,7 @@ The operator initially wanted ten deep-research iterations and corrected the exe
 ### Implementation
 
 **What changes**:
-- Research execution plan uses two sequential lanes under `/spec_kit:deep-research`.
+- Research execution plan uses two sequential lanes under `/deep:start-research-loop`.
 - Tasks and checklist require memory/process cleanup evidence between iterations.
 
 **How to roll back**: Stop the active deep-research run, preserve existing artifacts, kill the active executor process group and known helper processes, and resume only after memory telemetry is safe.

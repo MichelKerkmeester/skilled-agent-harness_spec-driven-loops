@@ -45,7 +45,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate stuck recovery widens focus, uses deferred ideas, and continues before final synthesis.
 ### Commands
 1. `bash: rg -n 'stuckThreshold|STUCK_RECOVERY|least-explored|recovery' .opencode/skills/deep-research/references/convergence.md .opencode/skills/deep-research/references/loop_protocol.md`
-2. `bash: rg -n 'stuck_count|least_explored|RECOVERY: Widen scope|research-ideas' .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+2. `bash: rg -n 'stuck_count|least_explored|RECOVERY: Widen scope|research-ideas' .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml .opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`
 3. `bash: rg -n 'RECOVERY MODE|research-ideas|Exhausted Approaches' .codex/agents/deep-research.toml`
 ### Expected
 Stuck threshold is enforced, recovery resets the counter, the next focus widens scope, and the ideas backlog can be consulted during recovery.
@@ -72,8 +72,8 @@ Check the convergence reference and loop protocol together because one defines t
 |---|---|
 | `.opencode/skills/deep-research/references/convergence.md` | Stuck recovery protocol; use `ANCHOR:stuck-recovery-protocol` |
 | `.opencode/skills/deep-research/references/loop_protocol.md` | Ideas backlog and stuck recovery; use `ANCHOR:phase-iteration-loop` |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Recovery logic; inspect `step_handle_convergence` |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Recovery logic; inspect `step_handle_convergence` |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Recovery logic; inspect `step_handle_convergence` |
+| `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Recovery logic; inspect `step_handle_convergence` |
 | `.codex/agents/deep-research.toml` | Runtime recovery behavior; inspect `Recovery Mode` |
 
 ---

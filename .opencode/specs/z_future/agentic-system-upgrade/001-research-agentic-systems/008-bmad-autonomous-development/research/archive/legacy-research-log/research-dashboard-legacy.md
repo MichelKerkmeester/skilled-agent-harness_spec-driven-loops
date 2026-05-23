@@ -7,14 +7,14 @@
 | 1 | 003 | Ready-queue scheduling and epic ordering | high | nice-to-have | `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml` |
 | 1 | 004 | Per-story worktrees versus `sk-git` | high | rejected | `.opencode/skills/sk-git/SKILL.md` |
 | 1 | 005 | Four-step pipeline stage contracts | high | must-have | `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml` |
-| 1 | 006 | `MODEL_STANDARD` / `MODEL_QUALITY` split | high | must-have | `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` |
+| 1 | 006 | `MODEL_STANDARD` / `MODEL_QUALITY` split | high | must-have | `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` |
 | 1 | 007 | PR / CI / repair loop after push | high | should-have | `.opencode/skills/sk-git/references/finish_workflows.md` |
 | 1 | 008 | Sequential auto-merge policy | high | rejected | `.opencode/skills/sk-git/references/finish_workflows.md` |
 | 1 | 009 | Config-path parity and contract tests | high | should-have | `.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts` |
 | 1 | 010 | Unverified guard / hook claims | high | rejected | `.opencode/skills/system-spec-kit/constitutional/gate-enforcement.md` |
 | 2 | 011 | Single-setup automation UX | high | should-have | `.opencode/commands/spec_kit/README.txt` |
-| 2 | 012 | Timer-aware pause and recovery | high | should-have | `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` |
-| 2 | 013 | Harness-aware config centralization | high | must-have | `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` |
+| 2 | 012 | Timer-aware pause and recovery | high | should-have | `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` |
+| 2 | 013 | Harness-aware config centralization | high | must-have | `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` |
 | 2 | 014 | Spec lifecycle levels versus thin planning assumptions | high | rejected | `.opencode/skills/system-spec-kit/references/templates/level_specifications.md` |
 | 2 | 015 | Memory architecture versus packet-local state | high | rejected | `.opencode/skills/system-spec-kit/references/memory/memory_system.md` |
 | 2 | 016 | Agent topology and domain coordinators | high | should-have | `.opencode/agents/orchestrate.md` |

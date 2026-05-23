@@ -39,7 +39,7 @@ _memory:
 | **Branch** | `main` |
 | **Parent** | `026-graph-and-context-optimization` |
 | **Continuation Of** | `001-automation-self-management-research` (sessionId 2026-04-29T13:15:00.000Z) |
-| **Mode** | Deep research (`/spec_kit:deep-research:auto`) |
+| **Mode** | Deep research (`/deep:start-research-loop:auto`) |
 | **Iterations** | 5 (max); convergence threshold 0.10 |
 | **Executor** | cli-codex `gpt-5.5` reasoning=`xhigh` service-tier=`fast` |
 <!-- /ANCHOR:metadata -->
@@ -94,7 +94,7 @@ Run a 5-iteration supplemental loop that:
 - Deep-loop graph:
   - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/coverage-graph.ts`
   - `.opencode/skills/system-spec-kit/mcp_server/handlers/deep-loop-graph-*.ts`
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-{research,review}_{auto,confirm}.yaml`
+  - `.opencode/commands/deep/assets/deep_{start-research-loop,review}_{auto,confirm}.yaml`
 - CCC + eval + ablation:
   - `.opencode/skills/system-spec-kit/mcp_server/handlers/ccc-{reindex,feedback,status}.ts`
   - `.opencode/skills/system-spec-kit/mcp_server/handlers/eval-{run-ablation,reporting-dashboard}.ts`

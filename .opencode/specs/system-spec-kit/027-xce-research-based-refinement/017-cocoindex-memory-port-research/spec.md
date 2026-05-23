@@ -20,7 +20,7 @@ _memory:
     last_updated_at: "2026-05-13T07:30:00Z"
     last_updated_by: "claude-opus-4-7-plan-mode"
     recent_action: "Scaffolded packet, restored parent metadata, authored research scope"
-    next_safe_action: "Dispatch /spec_kit:deep-research:auto with cli-codex gpt-5.5 high fast"
+    next_safe_action: "Dispatch /deep:start-research-loop:auto with cli-codex gpt-5.5 high fast"
     blockers: []
     key_files:
       - "spec.md"
@@ -76,7 +76,7 @@ This is **Phase 13** of the 027 XCE Research-Based Refinement packet. Prior phas
 **Dependencies**:
 - `external/cocoindex-main/` already cloned under parent 027.
 - `.opencode/skills/system-spec-kit/mcp_server/` is the target system.
-- `/spec_kit:deep-research` skill workflow + `@deep-research` agent.
+- `/deep:start-research-loop` skill workflow + `@deep-research` agent.
 - Executor: `cli-codex` with `model=gpt-5.5`, `reasoning=high`, `service-tier=fast`.
 
 **Deliverables**:
@@ -138,7 +138,7 @@ Produce a research synthesis that (a) identifies concrete, ranked port opportuni
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `research/research.md` | Create | Final synthesis (17 sections per `/spec_kit:deep-research` contract) |
+| `research/research.md` | Create | Final synthesis (17 sections per `/deep:start-research-loop` contract) |
 | `research/iterations/iteration-NNN.md` | Create | Per-iteration findings (workflow-exempt) |
 | `research/deep-research-state.jsonl` | Create | Externalized iteration state |
 | `research/deep-research-dashboard.md` | Create | Progress dashboard (auto-generated) |
@@ -195,7 +195,7 @@ Produce a research synthesis that (a) identifies concrete, ranked port opportuni
 | Risk | cocoindex-main is large (Rust + Python + 20+ examples) — iteration may drift | Medium | Each iteration must be axis-scoped; the deep-research skill enforces this internally via strategy.md. |
 | Risk | Track 2 (namespace) converges faster than Track 1 (port) | Low | Convergence detection is per-axis evidence; Track 2 stops shifting once decisions are made. Acceptable. |
 | Risk | Parent metadata regeneration overwrote parts of 027 description.json | Resolved | Manually restored per memory `feedback_generate_context_regenerates_parent_metadata`. Validated at scaffold time. |
-| Dependency | `/spec_kit:deep-research` skill must be present | High if broken | Verified at `.opencode/commands/spec_kit/deep-research.md`. |
+| Dependency | `/deep:start-research-loop` skill must be present | High if broken | Verified at `.opencode/commands/deep/start-research-loop.md`. |
 | Dependency | cli-codex must accept `service_tier=fast` | High if broken | Verified pattern in memory; passes `-c service_tier="fast"` via skill config. |
 <!-- /ANCHOR:risks -->
 

@@ -15,7 +15,7 @@ _memory:
     last_updated_at: "2026-04-25T20:30:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Created spec.md"
-    next_safe_action: "Run /spec_kit:deep-research:auto"
+    next_safe_action: "Run /deep:start-research-loop:auto"
     blockers: []
     key_files:
       - "spec.md"
@@ -171,7 +171,7 @@ These outputs feed back into the 006 doctor command as Phase B's verification su
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-These questions drive the deep-research iterations. Each iteration of `/spec_kit:deep-research:auto` should claim one or more questions.
+These questions drive the deep-research iterations. Each iteration of `/deep:start-research-loop:auto` should claim one or more questions.
 
 1. **Staleness signals**: Beyond mtime, what other signals indicate index staleness? (file content hash? schema version? last-scan-of-this-file timestamp per row?)
 2. **Threshold derivation**: How do existing tools (Sourcegraph, ctags, etc.) define "stale"? Is there a defensible threshold here?

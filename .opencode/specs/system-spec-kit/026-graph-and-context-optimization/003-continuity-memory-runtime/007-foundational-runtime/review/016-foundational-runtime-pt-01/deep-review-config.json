@@ -36,7 +36,7 @@
     ".opencode/skills/system-spec-kit/scripts/tests/manual-playbook-runner.ts",
     ".opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml",
     ".opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml",
-    ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+    ".opencode/commands/deep/assets/deep_start-research-loop_auto.yaml",
     ".opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml"
   ],
   "regression_tests": [

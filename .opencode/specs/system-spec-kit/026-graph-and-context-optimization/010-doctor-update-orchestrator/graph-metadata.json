@@ -6,7 +6,7 @@
   "children_ids": [
     "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-implement-initial-doctor-command-set",
     "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-fix-deep-review-findings-for-doctor-update-orchestrator",
-    "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/003-skill-advisor-routing-engine-consolidation",
+    "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/003-consolidate-doctor-router-implementations",
     "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/004-cutover-doctor-router-from-legacy-files"
   ],
   "migrated": true,
@@ -21,17 +21,15 @@
       "010-doctor-update-orchestrator",
       "doctor command surface",
       "/doctor:update",
-      "/doctor:memory",
-      "/doctor:causal-graph",
-      "/doctor:deep-loop",
-      "/doctor:cocoindex",
+      "/doctor memory",
+      "/doctor causal-graph",
+      "/doctor deep-loop",
+      "/doctor cocoindex",
       "doctor update orchestrator",
       "spec-kit version migration",
       "001-implement-initial-doctor-command-set",
       "002-sandbox-testing-playbook",
-      "001-implement-initial-doctor-command-set handover",
-      "003-skill-advisor-routing-engine-consolidation",
-      "004-cutover-doctor-router-from-legacy-files"
+      "002-fix-deep-review-findings-for-doctor-update-orchestrator"
     ],
     "key_topics": [
       "010-doctor-update-orchestrator",
@@ -48,36 +46,40 @@
       "version"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
       "spec.md",
+      ".opencode/commands/doctor.md",
       "handover.md",
       "resource-map.md",
       ".opencode/commands/doctor/assets/doctor_update.yaml",
       ".opencode/commands/doctor/update.md",
-      ".opencode/skills/system-spec-kit/mcp_server/database/migration-manifest.json",
       "001-implement-initial-doctor-command-set/implementation-summary.md",
       "001-implement-initial-doctor-command-set/description.json",
+      "001-implement-initial-doctor-command-set/handover.md",
       "001-implement-initial-doctor-command-set/ai-council/council-report.md",
-      "002-sandbox-testing-playbook/handover.md",
       ".opencode/skills/system-spec-kit/package-lock.json",
       "mcp_server/package.json",
       "dist/context-server.js",
-      ".opencode/bin/spec-kit-memory-launcher.cjs",
       ".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js",
       ".opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh",
-      ".opencode/commands/doctor/memory.md",
-      ".opencode/commands/doctor/causal-graph.md",
-      ".opencode/commands/doctor/deep-loop.md",
-      ".opencode/commands/doctor/cocoindex.md",
-      "003-skill-advisor-routing-engine-consolidation/spec.md",
-      "004-cutover-doctor-router-from-legacy-files/spec.md"
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/sk-doc/SKILL.md",
+      ".opencode/skills/system-spec-kit/templates/manifest/resource-map.md.tmpl",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/014-workspace-scanning-and-indexing-memory-index-scan.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor.md",
         "source": "derived"
       },
       {
@@ -102,12 +104,6 @@
         "name": "update.md",
         "kind": "doc",
         "path": ".opencode/commands/doctor/update.md",
-        "source": "derived"
-      },
-      {
-        "name": "migration-manifest.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/database/migration-manifest.json",
         "source": "derived"
       },
       {
@@ -141,39 +137,33 @@
         "source": "derived"
       },
       {
-        "name": "spec-kit-memory-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/spec-kit-memory-launcher.cjs",
-        "source": "derived"
-      },
-      {
         "name": "doctor-runtime-bootstrap.sh",
         "kind": "script",
         "path": ".opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh",
         "source": "derived"
       },
       {
-        "name": "memory.md",
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/commands/doctor/memory.md",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {
-        "name": "causal-graph.md",
-        "kind": "doc",
-        "path": ".opencode/commands/doctor/causal-graph.md",
+        "name": "resource-map.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/manifest/resource-map.md.tmpl",
         "source": "derived"
       },
       {
-        "name": "deep-loop.md",
+        "name": "manual_testing_playbook.md",
         "kind": "doc",
-        "path": ".opencode/commands/doctor/deep-loop.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
         "source": "derived"
       },
       {
-        "name": "cocoindex.md",
+        "name": "014-workspace-scanning-and-indexing-memory-index-scan.md",
         "kind": "doc",
-        "path": ".opencode/commands/doctor/cocoindex.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/014-workspace-scanning-and-indexing-memory-index-scan.md",
         "source": "derived"
       },
       {
@@ -189,13 +179,13 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Parent Spec",
+        "name": "Superseded By",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -217,19 +207,23 @@
         "kind": "proper_noun",
         "path": "handover.md",
         "source": "derived"
+      },
+      {
+        "name": "Handover Summary",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A user at spec-kit `v3.3.0.0` (or any version older than current `v3.4.1.0`) needs a one-shot path to bring every database/index/graph in the spec-kit ecosystem into alignment with their current codebase and skill set. The 026 release shipped doctor commands for code-graph, skill-advisor, skill-budget, and MCP infra, but **four subsystems with on-disk databases have no `/doctor:*` coverage**: memory continuity-index, causal-edges, deep-loop coverage graphs, and CocoIndex. There is also no unified entry point that chains rebuilds in dependency-safe order with snapshot + rollback. Authoring the new commands is one half of the gap; authoring a reproducible Docker sandbox + manual testing playbook so users can verify the commands against canonical preconditions is the other half.",
     "created_at": "2026-05-10T06:24:00.129Z",
-    "last_save_at": "2026-05-12T04:55:46Z",
-    "save_lineage": "same_pass",
+    "last_save_at": "2026-05-23T11:55:15.307Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "handover.md",
       "resource-map.md"
-    ],
-    "last_active_child_id": "004-cutover-doctor-router-from-legacy-files",
-    "last_active_at": "2026-05-12T04:55:46Z"
+    ]
   }
 }

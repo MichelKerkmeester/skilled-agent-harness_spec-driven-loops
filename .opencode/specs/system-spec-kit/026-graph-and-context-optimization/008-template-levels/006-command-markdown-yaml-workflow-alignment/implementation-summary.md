@@ -19,14 +19,14 @@ _memory:
       - ".opencode/commands/spec_kit/plan.md"
       - ".opencode/commands/spec_kit/implement.md"
       - ".opencode/commands/spec_kit/resume.md"
-      - ".opencode/commands/spec_kit/deep-research.md"
+      - ".opencode/commands/deep/start-research-loop.md"
       - ".opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml"
       - ".opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml"
       - ".opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml"
       - ".opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml"
       - ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml"
       - ".opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml"
+      - ".opencode/commands/deep/assets/deep_start-research-loop_auto.yaml"
       - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/006-command-markdown-yaml-workflow-alignment/review/review-report.md"
     session_dedup:
       fingerprint: "sha256:0060060060060060060060060060060060060060060060060060060060060005"
@@ -89,17 +89,17 @@ Seven YAML assets changed. The complete and plan auto/confirm workflows no longe
 | File | Audit Outcome |
 |------|---------------|
 | `.opencode/commands/spec_kit/complete.md` | Modified: exit taxonomy, `SPECKIT_POST_VALIDATE`, path hardening, system-error failure mode. |
-| `.opencode/commands/spec_kit/deep-research.md` | Modified: validation orchestrator performance note. |
-| `.opencode/commands/spec_kit/deep-review.md` | Audited clean; no edits needed. |
+| `.opencode/commands/deep/start-research-loop.md` | Modified: validation orchestrator performance note. |
+| `.opencode/commands/deep/start-review-loop.md` | Audited clean; no edits needed. |
 | `.opencode/commands/spec_kit/implement.md` | Modified: strict completion validation taxonomy. |
 | `.opencode/commands/spec_kit/plan.md` | Modified: phase creation syntax and path hardening. |
 | `.opencode/commands/spec_kit/resume.md` | Modified: parallel continuity-save advisory lock note. |
 | `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml` | Modified: deleted phase addendum filenames replaced with Level template contract wording. |
 | `.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml` | Modified: deleted phase addendum filenames replaced with Level template contract wording. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modified: validation orchestrator notes added to targeted strict validation steps. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Audited clean; parsed successfully. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Audited clean; parsed successfully. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Audited clean; parsed successfully. |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Modified: validation orchestrator notes added to targeted strict validation steps. |
+| `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Audited clean; parsed successfully. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Audited clean; parsed successfully. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Audited clean; parsed successfully. |
 | `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml` | Modified: pre-completion validation outcomes aligned to current taxonomy. |
 | `.opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml` | Modified: pre-completion validation outcomes aligned to current taxonomy. |
 | `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml` | Modified: deleted phase addendum filenames replaced with Level template contract wording. |

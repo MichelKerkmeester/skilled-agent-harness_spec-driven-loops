@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/007-fixture-calibration",
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/007-fixture-calibration",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,53 +14,203 @@
       "023B",
       "fixture calibration",
       "expanded retrieval fixture",
-      "residual miss taxonomy",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/007-fixture-calibration",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "013-embedder-testing-and-architecture",
-      "004-code-index-stack",
-      "023-deep-research-arc-blind-spots/007-fixture-calibration",
-      "feature",
-      "specification"
+      "023B plan",
+      "fixture calibration plan",
+      "023B tasks",
+      "023B checklist",
+      "023B ADR",
+      "fixture calibration decisions",
+      "023B complete",
+      "fixture calibration complete",
+      "023B research"
     ],
     "key_topics": [
-      "mcp-coco-index",
-      "retrieval calibration",
-      "RRF sweep",
-      "rerank top-k",
-      "residual miss taxonomy",
-      "ROBUST verdict gates",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "013-embedder-testing-and-architecture",
-      "004-code-index-stack",
-      "023-deep-research-arc-blind-spots/007-fixture-calibration",
-      "feature"
+      "023b",
+      "fixture",
+      "calibration",
+      "expanded",
+      "retrieval",
+      "plan",
+      "tasks",
+      "checklist",
+      "adr",
+      "decisions",
+      "complete",
+      "research"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_calibration_perturbation.py",
+      "evidence/robust-verdict-gates.md",
+      "evidence/calibration-recommendation.md",
+      "evidence/runs/lane-sample-smoke-run-1.json",
       "spec.md",
       "plan.md",
-      "tasks.md",
       "checklist.md",
       "implementation-summary.md",
       "decision-record.md",
+      "tasks.md",
       "research.md"
     ],
-    "entities": [],
-    "causal_summary": "023B expands the retrieval fixture and adds repeated-run calibration harnesses so future default changes can be measured rather than inferred from the regression floor.",
+    "entities": [
+      {
+        "name": "test_calibration_perturbation.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_calibration_perturbation.py",
+        "source": "derived"
+      },
+      {
+        "name": "robust-verdict-gates.md",
+        "kind": "doc",
+        "path": "evidence/robust-verdict-gates.md",
+        "source": "derived"
+      },
+      {
+        "name": "calibration-recommendation.md",
+        "kind": "doc",
+        "path": "evidence/calibration-recommendation.md",
+        "source": "derived"
+      },
+      {
+        "name": "lane-sample-smoke-run-1.json",
+        "kind": "config",
+        "path": "evidence/runs/lane-sample-smoke-run-1.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fixture Calibration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Provide",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Primary Risk",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The corrected fixture proved regression behavior, but it did not measure production retrieval coverage. It also had only one run, binary top-5 scoring, no residual miss taxonomy, and insufficient evidence for RRF, boost, top-K, and fusion choices.",
     "created_at": "2026-05-19T00:00:00Z",
-    "last_save_at": "2026-05-19T00:00:00Z",
+    "last_save_at": "2026-05-23T11:55:15.544Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md",
       "decision-record.md",
+      "implementation-summary.md",
       "research.md"
     ]
   }

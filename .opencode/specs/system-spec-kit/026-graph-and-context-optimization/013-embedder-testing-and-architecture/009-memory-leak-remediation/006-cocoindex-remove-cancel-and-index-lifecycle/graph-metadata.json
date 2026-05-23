@@ -4,47 +4,195 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/006-cocoindex-remove-cancel-and-index-lifecycle",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/002-telemetry-and-process-verification-harness",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/005-expected-daemon-classifier-and-process-sweep"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/020-cli-process-memory-leak-deep-research",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "cocoindex-remove-cancel-and-index-lifecycle",
-      "memory leak phase 6"
+      "memory leak 6"
     ],
     "key_topics": [
-      "memory-leak",
-      "process-cleanup",
-      "cocoindex-remove-cancel-and-index-lifecycle"
+      "cocoindex-remove-cancel-and-index-lifecycle",
+      "memory",
+      "leak",
+      "phase",
+      "remediation",
+      "arc",
+      "scoped",
+      "source",
+      "evidence",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "013-embedder-testing-and-architecture"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "spec.md",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/core/protocol.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/core/client.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/server.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "description.json"
+      ".opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts",
+      "spec.md"
     ],
     "entities": [
       {
-        "name": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/",
-        "kind": "directory",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/",
-        "source": "manual"
+        "name": "daemon.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py",
+        "source": "derived"
+      },
+      {
+        "name": "protocol.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/core/protocol.py",
+        "source": "derived"
+      },
+      {
+        "name": "client.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/core/client.py",
+        "source": "derived"
+      },
+      {
+        "name": "server.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/server.py",
+        "source": "derived"
+      },
+      {
+        "name": "cli.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "process-sweep.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Index Lifecycle",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Cooperative",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Wiring",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Fix CocoIndex remove-project safety, per-index cancel identity, and daemon/MCP background indexing ownership.",
+    "causal_summary": "This is phase 6 of the memory leak remediation arc. It is scoped from source evidence in `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/020-cli-process-memory-leak-deep-research` and `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit`.",
     "created_at": "2026-05-22T10:20:00Z",
-    "last_save_at": "2026-05-22T10:20:00Z",
+    "last_save_at": "2026-05-23T11:55:15.648Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

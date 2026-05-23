@@ -107,7 +107,7 @@ Land six surgical doc edits so each CLI skill states one consistent dispatch con
 - FR-3: cli-codex prompt_templates.md single-file and multi-file templates include explicit `--model gpt-5.5` and either `--reasoning-effort high` or note that `service_tier="fast"` MUST be opt-in (project memory rule).
 - FR-4: cli-claude-code prompt_templates.md single-file and multi-file templates include `--model claude-sonnet-4-6`.
 - FR-5: cli-gemini prompt_templates.md write templates split into safe (`--approval-mode interactive`) vs explicitly-approved (`--yolo` only after the caller has confirmed sandbox/path safety).
-- FR-6: cli-opencode references/agent_delegation.md deep-research/deep-review section states that direct `opencode run --agent deep-research` is forbidden; routing must be through `/spec_kit:deep-research` parent command.
+- FR-6: cli-opencode references/agent_delegation.md deep-research/deep-review section states that direct `opencode run --agent deep-research` is forbidden; routing must be through `/deep:start-research-loop` parent command.
 
 ### Non-Functional
 - NFR-1: `validate.sh --strict` exit 0 for this packet.

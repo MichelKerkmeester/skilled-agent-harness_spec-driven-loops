@@ -16,40 +16,192 @@
       "cli-devin SWE 1.6 review run",
       "020 plan",
       "020 tasks",
-      "020 summary",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/005-cross-cutting-quality/002-deep-review-stack",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "013-embedder-testing-and-architecture",
-      "005-cross-cutting-quality",
-      "002-deep-review-stack"
+      "020 summary"
     ],
     "key_topics": [
       "020",
-      "deep-review",
-      "cli-devin",
-      "swe-1.6",
+      "deep",
+      "review",
+      "016-019",
+      "stack",
       "embedder",
-      "rescue-layer",
+      "rescue",
       "registry",
-      "adversarial-review",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "013-embedder-testing-and-architecture",
-      "005-cross-cutting-quality"
+      "cli-devin",
+      "swe",
+      "run",
+      "plan"
     ],
-    "importance_tier": "important",
-    "status": "planned",
+    "importance_tier": "normal",
+    "status": "complete",
     "key_files": [
+      "review/review-report.md",
+      "review-002-remediation/review-report.md",
+      "review/deep-review-state.jsonl",
+      "review/iterations/iteration-001.md",
+      "review/iterations/iteration-020.md",
+      "review/resource-map.md",
+      "review-002-remediation/deep-review-state.jsonl",
+      "mcp_server/lib/search/rerank/retrieval-rescue.ts",
+      "mcp_server/lib/search/pipeline/stage2-fusion.ts",
+      "mcp_server/handlers/embedder-list.ts",
+      "mcp_server/tests/dist-freshness.vitest.ts",
+      "review/deep-review-config.json",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
-    "entities": [],
-    "causal_summary": "20-iteration spec_kit:deep-review run covering all code work in packets 016-019 plus dist-freshness vitest. Executor cli-devin SWE 1.6 with 3-check bundle gate. Synthesize P0/P1/P2 findings into review-report.md.",
+    "entities": [
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-state.jsonl",
+        "kind": "file",
+        "path": "review/deep-review-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "review/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-020.md",
+        "kind": "doc",
+        "path": "review/iterations/iteration-020.md",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-rescue.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/rerank/retrieval-rescue.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stage2-fusion.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/pipeline/stage2-fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedder-list.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/embedder-list.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dist-freshness.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/dist-freshness.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-config.json",
+        "kind": "config",
+        "path": "review/deep-review-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-devin SWE",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "iterations",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "file",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "cited",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "annotation",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "daemon",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "task",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tightened",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 016-019 stack landed a lot of new code in a short window: pluggable embedder architecture (016), retrieval-rescue layer (016/004), dist-freshness vitest (post-016), CocoIndex jina-code swap + MPS auto-detect + registered_embedders + INSTALL_GUIDE updates (018 + 019). All have unit-level coverage and have been smoke-tested, but no adversarial deep-review has been run across the whole stack.",
     "created_at": "2026-05-18T16:14:38.218Z",
-    "last_save_at": "2026-05-19T19:44:28.899Z",
+    "last_save_at": "2026-05-23T11:55:15.553Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

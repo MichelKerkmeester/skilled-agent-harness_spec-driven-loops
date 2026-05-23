@@ -58,8 +58,8 @@ _memory:
 
 - [ ] T004 Edit `sk-code-review/SKILL.md` Phase 4 output (add exact-string status line + example)
 - [ ] T005 Edit `deep-review/SKILL.md` §Output (document verdict-line contract)
-- [ ] T006 Edit `spec_kit_deep-review_auto.yaml` synthesis step (add verdict derivation + final line)
-- [ ] T007 Edit `spec_kit_deep-review_confirm.yaml` (mirror auto)
+- [ ] T006 Edit `deep_start-review-loop_auto.yaml` synthesis step (add verdict derivation + final line)
+- [ ] T007 Edit `deep_start-review-loop_confirm.yaml` (mirror auto)
 <!-- /ANCHOR:phase-2 -->
 
 ---

@@ -13,7 +13,7 @@ Compared Public's command docs and YAML loading pattern with Relay's single work
 
 ## Evidence
 - Public says each `spec_kit` command loads a YAML workflow from `assets/` and executes it step by step. [SOURCE: .opencode/commands/spec_kit/README.txt:43-45]
-- The command group currently lists separate YAML assets per command/mode, including `spec_kit_complete_*`, `spec_kit_debug_*`, `spec_kit_deep-research_*`, `spec_kit_deep-review_*`, `spec_kit_implement_*`, `spec_kit_plan_*`, `spec_kit_resume_*`, and `spec_kit_handover_full.yaml`. [SOURCE: .opencode/commands/spec_kit/README.txt:83-111]
+- The command group currently lists separate YAML assets per command/mode, including `spec_kit_complete_*`, `spec_kit_debug_*`, `deep_start-research-loop_*`, `deep_start-review-loop_*`, `spec_kit_implement_*`, `spec_kit_plan_*`, `spec_kit_resume_*`, and `spec_kit_handover_full.yaml`. [SOURCE: .opencode/commands/spec_kit/README.txt:83-111]
 - `plan`, `implement`, and `complete` each tell the runner to load a different YAML prompt after setup passes. [SOURCE: .opencode/commands/spec_kit/plan.md:204-211] [SOURCE: .opencode/commands/spec_kit/implement.md:209-216] [SOURCE: .opencode/commands/spec_kit/complete.md:331-337]
 - Relay uses one workflow runner that can execute YAML, TypeScript, or Python workflows from the same entrypoint. [SOURCE: external/packages/sdk/src/workflows/README.md:1-27]
 - Relay also exposes a zero-config `runWorkflow()` helper plus one fluent `workflow()` builder rather than separate per-command shells. [SOURCE: external/packages/sdk/src/workflows/README.md:539-551] [SOURCE: external/packages/sdk/src/workflows/builder.ts:134-239]

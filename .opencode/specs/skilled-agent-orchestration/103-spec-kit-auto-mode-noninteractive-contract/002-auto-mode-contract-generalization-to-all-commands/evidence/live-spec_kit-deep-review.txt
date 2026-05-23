@@ -1,6 +1,6 @@
-=== Live setup-phase test: /spec_kit:deep-review:auto ===
+=== Live setup-phase test: /deep:start-review-loop:auto ===
 Started: 2026-05-11T14:25:09+0200
-Command: .opencode/commands/spec_kit/deep-review.md
+Command: .opencode/commands/deep/start-review-loop.md
 
 Reading additional input from stdin...
 OpenAI Codex v0.130.0
@@ -15,7 +15,7 @@ reasoning summaries: none
 session id: 019e16ff-98d0-7631-9d2e-9524ff7a9d42
 --------
 user
-You are testing the setup-phase contract of the migrated command /spec_kit:deep-review.
+You are testing the setup-phase contract of the migrated command /deep:start-review-loop.
 
 # RUNTIME RULES
 - Inline Codex execution. Do NOT call SpawnAgent / collab / Task / sub-agent.
@@ -25,9 +25,9 @@ You are testing the setup-phase contract of the migrated command /spec_kit:deep-
 
 # YOUR TASK
 
-1. Read .opencode/commands/spec_kit/deep-review.md section zero (UNIFIED SETUP PHASE or equivalent).
+1. Read .opencode/commands/deep/start-review-loop.md section zero (UNIFIED SETUP PHASE or equivalent).
 2. Verify this command's section zero cites .opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md (the shared three-tier auto contract).
-3. SIMULATE a dispatch of /spec_kit:deep-review:auto with the following PRE-BOUND SETUP ANSWERS in the prompt body:
+3. SIMULATE a dispatch of /deep:start-review-loop:auto with the following PRE-BOUND SETUP ANSWERS in the prompt body:
 
 ```
 PRE-BOUND SETUP ANSWERS:
@@ -67,7 +67,7 @@ hook: UserPromptSubmit Completed
 codex
 I’ll keep this read-only and inline. I’m going straight at the command markdown, then I’ll simulate only the setup resolution path the prompt describes.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/commands/spec_kit/deep-review.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/commands/deep/start-review-loop.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 description: Autonomous deep-review loop: iterative code audit with convergence detection. Modes :auto, :confirm.
@@ -90,8 +90,8 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory
 >    - `maxIterations`
 >    - `convergenceThreshold`
 > 2. Load the corresponding YAML file from `assets/` only after all setup values are resolved:
->    - Auto: `spec_kit_deep-review_auto.yaml`
->    - Confirm: `spec_kit_deep-review_confirm.yaml`
+>    - Auto: `deep_start-review-loop_auto.yaml`
+>    - Confirm: `deep_start-review-loop_confirm.yaml`
 > 3. Execute the YAML workflow step by step using those resolved values
 >
 > All content below is reference context for the YAML workflow. Do not treat reference sections as direct instructions to execute.
@@ -104,7 +104,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory
 - **YAML START CONDITION**: do not load YAML until ALL required inputs are bound:
   - `review_target`, `review_target_type`, `review_dimensions`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`
 
-> **Canonical mode syntax:** use attached command suffixes (`/spec_kit:deep-review:auto`, `/spec_kit:deep-review:confirm`) and keep AGENTS, skills, and quick references synchronized to this entrypoint.
+> **Canonical mode syntax:** use attached command suffixes (`/deep:start-review-loop:auto`, `/deep:start-review-loop:confirm`) and keep AGENTS, skills, and quick references synchronized to this entrypoint.
 
 # SINGLE CONSOLIDATED SETUP PROMPT
 
@@ -124,11 +124,11 @@ Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_
 
 Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 
-1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/review/deep-review-config.json` (shape: `reviewTarget`, `reviewTargetType`, `reviewDimensions`, `specFolder`, `maxIterations`, `convergenceThreshold`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`. End §0.
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/review/deep-review-config.json` (shape: `reviewTarget`, `reviewTargetType`, `reviewDimensions`, `specFolder`, `maxIterations`, `convergenceThreshold`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`. End §0.
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `review_target_type`, `spec_folder`. **Ordering rule**: if `review_target_type` is ambiguous, ask only for `review_target_type` first — the answer may make `spec_folder` self-evident on the next Tier 1 pass. Missing `review_target` is absence, not ambiguity — go to Tier 3.
 
-3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/spec_kit:deep-review:auto` as the command name. Exit non-zero. Do not load YAML.
+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/deep:start-review-loop:auto` as the command name. Exit non-zero. Do not load YAML.
 
 `:confirm` path stays unchanged — see the Consolidated Setup Prompt section below.
 
@@ -291,16 +291,16 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
 
 exec
-/bin/zsh -lc 'rg -n "UNIFIED SETUP PHASE|auto_mode_contract|Tier|PRE-BOUND|SETUP" .opencode/commands/spec_kit/deep-review.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "UNIFIED SETUP PHASE|auto_mode_contract|Tier|PRE-BOUND|SETUP" .opencode/commands/deep/start-review-loop.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 3:argument-hint: "<target> [:auto|:confirm] [--max-iterations=N] [--convergence=N] [--spec-folder=PATH] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
 32:- **MARKDOWN OWNS SETUP**: resolve setup inputs here first, then hand off to YAML
 38:# SINGLE CONSOLIDATED SETUP PROMPT
 44:## 0. UNIFIED SETUP PHASE
 52:Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md`.
-56:1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/review/deep-review-config.json` (shape: `reviewTarget`, `reviewTargetType`, `reviewDimensions`, `specFolder`, `maxIterations`, `convergenceThreshold`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`. End §0.
+56:1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/review/deep-review-config.json` (shape: `reviewTarget`, `reviewTargetType`, `reviewDimensions`, `specFolder`, `maxIterations`, `convergenceThreshold`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`. End §0.
 58:2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `review_target_type`, `spec_folder`. **Ordering rule**: if `review_target_type` is ambiguous, ask only for `review_target_type` first — the answer may make `spec_folder` self-evident on the next Tier 1 pass. Missing `review_target` is absence, not ambiguity — go to Tier 3.
-60:3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/spec_kit:deep-review:auto` as the command name. Exit non-zero. Do not load YAML.
+60:3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/deep:start-review-loop:auto` as the command name. Exit non-zero. Do not load YAML.
 64:### PRE-BOUND SETUP ANSWERS Schema (for `:auto` non-interactive dispatch)
 69:PRE-BOUND SETUP ANSWERS:
 90:- Malformed lines, including missing `:`, emit a parse error naming the offending line. Known fields parsed before the error may still be used, and unresolved fields continue to Tier 2 or Tier 3.
@@ -317,7 +317,7 @@ exec
 1
 
 exec
-/bin/zsh -lc "nl -ba .opencode/commands/spec_kit/deep-review.md | sed -n '44,112p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/commands/deep/start-review-loop.md | sed -n '44,112p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
     44	## 0. UNIFIED SETUP PHASE
     45	
@@ -331,11 +331,11 @@ exec
     53	
     54	Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
     55	
-    56	1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/review/deep-review-config.json` (shape: `reviewTarget`, `reviewTargetType`, `reviewDimensions`, `specFolder`, `maxIterations`, `convergenceThreshold`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`. End §0.
+    56	1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/review/deep-review-config.json` (shape: `reviewTarget`, `reviewTargetType`, `reviewDimensions`, `specFolder`, `maxIterations`, `convergenceThreshold`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`. End §0.
     57	
     58	2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `review_target_type`, `spec_folder`. **Ordering rule**: if `review_target_type` is ambiguous, ask only for `review_target_type` first — the answer may make `spec_folder` self-evident on the next Tier 1 pass. Missing `review_target` is absence, not ambiguity — go to Tier 3.
     59	
-    60	3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/spec_kit:deep-review:auto` as the command name. Exit non-zero. Do not load YAML.
+    60	3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/deep:start-review-loop:auto` as the command name. Exit non-zero. Do not load YAML.
     61	
     62	`:confirm` path stays unchanged — see the Consolidated Setup Prompt section below.
     63	

@@ -58,13 +58,13 @@ Upstream auto-review combines three loop-prevention mechanisms: (1) text-based m
 - Largest gap: No loop-prevention markers or dedup for research sub-topic tracking
 - Highest-impact adoption: Diagnostic logging with async-IIFE pattern (low cost, helps debug research failures)
 - Estimated effort: 2-4 hours (add debug logger to YAML workflow, enable via env var)
-- Implementation notes: Add async-IIFE debug logger to spec_kit_deep-research_auto.yaml and spec_kit_deep-research_confirm.yaml, enable via DEEP_RESEARCH_DEBUG=1 env var, write to research/debug.log with ISO timestamps and structured JSON entries covering iteration dispatch, convergence checks, and reducer state updates
+- Implementation notes: Add async-IIFE debug logger to deep_start-research-loop_auto.yaml and deep_start-research-loop_confirm.yaml, enable via DEEP_RESEARCH_DEBUG=1 env var, write to research/debug.log with ISO timestamps and structured JSON entries covering iteration dispatch, convergence checks, and reducer state updates
 
 **deep-review**: 
 - Largest gap: No per-iteration PASS/FAIL/UNKNOWN verdict or final-line exact-string contract
 - Highest-impact adoption: Final-line exact-string contract + per-iter verdict (enables CI gate integration, removes ambiguity)
 - Estimated effort: 4-6 hours (add exact-string contract to output template, modify YAML to emit per-iter verdict)
-- Implementation notes: Add "Review verdict: [PASS/CONDITIONAL/FAIL]" as the final line of iteration-NNN.md output, modify spec_kit_deep-review_auto.yaml and spec_kit_deep-review_confirm.yaml synthesis step to parse this exact string for CI gate integration, ensure verdict aligns with P0/P1/P2 findings (PASS if no P0/P1, CONDITIONAL if P1 present, FAIL if P0 present)
+- Implementation notes: Add "Review verdict: [PASS/CONDITIONAL/FAIL]" as the final line of iteration-NNN.md output, modify deep_start-review-loop_auto.yaml and deep_start-review-loop_confirm.yaml synthesis step to parse this exact string for CI gate integration, ensure verdict aligns with P0/P1/P2 findings (PASS if no P0/P1, CONDITIONAL if P1 present, FAIL if P0 present)
 
 **deep-agent-improvement**: 
 - Largest gap: No marker-based dedup for mutation type tracking across iterations
@@ -75,7 +75,7 @@ Upstream auto-review combines three loop-prevention mechanisms: (1) text-based m
 ### Detailed Gap Analysis by Category
 
 **Activation & Scope (3 mechanisms, all n/a)**
-- Event-driven activation: n/a for all three skills (skill-vs-plugin mismatch). The upstream plugin's session.idle event handler (auto-review.ts:139-151) is a runtime hook that only applies to OpenCode SDK plugins. All three deep-* skills are manually invoked via commands (/spec_kit:deep-research, /spec_kit:deep-review, /improve:agent).
+- Event-driven activation: n/a for all three skills (skill-vs-plugin mismatch). The upstream plugin's session.idle event handler (auto-review.ts:139-151) is a runtime hook that only applies to OpenCode SDK plugins. All three deep-* skills are manually invoked via commands (/deep:start-research-loop, /deep:start-review-loop, /improve:agent).
 - Cross-model selection: n/a for all three skills. The upstream inferReviewModels function (iter-008) with rank function is specific to plugins that choose reviewer models dynamically. All three deep-* skills use executor config with CLI flag precedence but do not perform cross-model selection.
 - Cross-AI family bias: n/a for all three skills. The upstream rank function prioritizing differentFamily cohort (iter-008) is irrelevant to skills that don't select models. All three deep-* skills are model-agnostic and rely on the executor to choose the model.
 

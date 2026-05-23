@@ -42,10 +42,10 @@ This resource map lists the 6 surfaces that 059 touches (2 commands + 2 agents +
 
 | File | Role |
 |------|------|
-| `.opencode/commands/spec_kit/deep-research.md` | Edit: executor enum + YAML dispatch |
-| `.opencode/commands/spec_kit/deep-review.md` | Edit: executor enum + YAML dispatch |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Edit: cli-devin dispatch shape |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Edit if exists |
+| `.opencode/commands/deep/start-research-loop.md` | Edit: executor enum + YAML dispatch |
+| `.opencode/commands/deep/start-review-loop.md` | Edit: executor enum + YAML dispatch |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Edit: cli-devin dispatch shape |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Edit if exists |
 | `.opencode/agents/deep-research.md` | Edit: SWE-1.6 iter contract subsection |
 | `.opencode/agents/deep-review.md` | Edit: SWE-1.6 iter contract subsection |
 | `.opencode/skills/cli-devin/SKILL.md` | Edit: new "Deep-Loop Iter Contract" section |

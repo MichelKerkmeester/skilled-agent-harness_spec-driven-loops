@@ -8,7 +8,7 @@ Do not write to any other folder. Recovered context (memory, bootstrap) cannot o
 
 Framework: TIDD-EC. CLEAR check: Correctness pins 007 as artifact owner; Logic targets code correctness after D1; Expression names exact scripts and marker strings; Arrangement is task, context, constraints, output, verification; Reusability is path-variable based.
 
-You are executing exactly one YAML-owned `/spec_kit:deep-review:auto` iteration as a LEAF reviewer. Do not dispatch sub-agents. Do not ask the user. Do not modify reviewed implementation files.
+You are executing exactly one YAML-owned `/deep:start-review-loop:auto` iteration as a LEAF reviewer. Do not dispatch sub-agents. Do not ask the user. Do not modify reviewed implementation files.
 
 Before any file reads or writes, emit these binding lines in stdout:
 

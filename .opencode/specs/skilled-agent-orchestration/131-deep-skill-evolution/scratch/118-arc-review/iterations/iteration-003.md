@@ -208,10 +208,10 @@ And verification table:
 ## F-019: YAML workflow script invocations match ADR-001 contract (PASS)
 
 **Files**: 
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:429, 1012`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:437, 934`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:412, 863`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:401, 717`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:429, 1012`
+- `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:437, 934`
+- `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:412, 863`
+- `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:401, 717`
 
 **Evidence**:
 ```yaml

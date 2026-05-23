@@ -41,7 +41,7 @@ From iter 2:
 - Addon lifecycle table populated. Key facts (synthesize from your reading):
   - `handover.md` — command-owned-lazy (writer: `/memory:save` content-router routes `handover_state` chunks)
   - `debug-delegation.md` — agent-exclusive (writer: `@debug` agent only via `scaffold-debug-delegation.sh`)
-  - `research.md` — workflow-owned-packet (writer: `/spec_kit:deep-research` workflow; lives in `research/` subdir)
+  - `research.md` — workflow-owned-packet (writer: `/deep:start-research-loop` workflow; lives in `research/` subdir)
   - `resource-map.md` — author-scaffolded OR workflow-emitted (multi-source)
   - `context-index.md` — author-scaffolded (rare, ad-hoc migration bridge)
 - Level 3+ governance "level" has NO unique file requirement (it's section-level, not file-level) — important nuance flagged by iter 2

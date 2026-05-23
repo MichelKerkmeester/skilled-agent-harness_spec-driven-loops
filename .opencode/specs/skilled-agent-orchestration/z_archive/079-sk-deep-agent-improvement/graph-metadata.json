@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The skill folder `.opencode/skills/sk-improve-agent/` is named with the legacy `sk-` prefix that has been deprecated for autonomous-loop skills. Sister skills `sk-deep-review` and `sk-deep-research` were renamed to `deep-review` / `deep-research` in packet 070-sk-deep-rename (2026-05-01/02), establishing the convention that skills carrying autonomous iteration/evaluation loops adopt a `deep-*` semantic prefix. `sk-improve-agent` is the third skill in this family — it runs an evaluator-first improvement loop with packet-local candidates, deterministic scoring, and promotion gates — but its name is still inconsistent with the modern convention. The mismatch causes two practical problems: (a) skill-advisor trigger phrases and graph relationships are awkwardly bifurcated between `sk-` and non-`sk-` family signals, and (b) discoverability suffers because users searching for \"deep agent improvement\" do not naturally find a skill called `sk-improve-agent`.",
     "created_at": "2026-05-06T07:55:50.002Z",
-    "last_save_at": "2026-05-19T13:51:38.730Z",
+    "last_save_at": "2026-05-23T11:55:14.612Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

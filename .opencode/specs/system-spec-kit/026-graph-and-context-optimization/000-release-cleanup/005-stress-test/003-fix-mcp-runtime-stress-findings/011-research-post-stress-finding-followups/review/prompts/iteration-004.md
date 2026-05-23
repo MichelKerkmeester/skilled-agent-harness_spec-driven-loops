@@ -37,7 +37,7 @@ You are iteration 4 of 10 in a deep-review loop auditing 012-015 + 28 catalog/pl
 - /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts
 - /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts
 - /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/{executor-config-copilot-target-authority,code-graph-degraded-sweep,code-graph-status-readiness-snapshot,code-graph-context-cocoindex-telemetry-passthrough}.vitest.ts
-- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/spec_kit/assets/spec_kit_deep-{research,review}_auto.yaml
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/deep/assets/deep_{start-research-loop,review}_auto.yaml
 - 28 catalog/playbook files at `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/{feature_catalog,manual_testing_playbook}/` (recently committed in b227544ca)
 
 ## Iteration 4 focus

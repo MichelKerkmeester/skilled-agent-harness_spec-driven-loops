@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/002-ollama-backend-and-multi-dim-schema",
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/002-ollama-backend-and-multi-dim-schema",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -35,6 +35,14 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "lib/embedders/adapters/ollama.ts",
+      "lib/embedders/schema.ts",
+      "lib/embedders/registry.ts",
+      "lib/embedders/index.ts",
+      "tests/embedder-ollama.vitest.ts",
+      "tests/embedder-schema.vitest.ts",
+      "mcp_server/lib/embedders/adapters/ollama.ts",
+      "mcp_server/lib/embedders/schema.ts",
       "mcp_server/lib/search/vector-index-schema.ts",
       "spec.md",
       "plan.md",
@@ -42,6 +50,42 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "ollama.ts",
+        "kind": "code",
+        "path": "lib/embedders/adapters/ollama.ts",
+        "source": "derived"
+      },
+      {
+        "name": "schema.ts",
+        "kind": "code",
+        "path": "lib/embedders/schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "registry.ts",
+        "kind": "code",
+        "path": "lib/embedders/registry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": "lib/embedders/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedder-ollama.vitest.ts",
+        "kind": "test",
+        "path": "tests/embedder-ollama.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedder-schema.vitest.ts",
+        "kind": "test",
+        "path": "tests/embedder-schema.vitest.ts",
+        "source": "derived"
+      },
       {
         "name": "vector-index-schema.ts",
         "kind": "code",
@@ -79,14 +123,14 @@
         "source": "derived"
       },
       {
-        "name": "In Scope",
+        "name": "Implemented Ollama",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "cli-codex",
-        "kind": "key_phrase",
+        "name": "In Scope",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
@@ -115,7 +159,7 @@
         "source": "derived"
       },
       {
-        "name": "settings",
+        "name": "existing",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
@@ -133,8 +177,8 @@
         "source": "derived"
       },
       {
-        "name": "existing",
-        "kind": "key_phrase",
+        "name": "1. SUMMARY",
+        "kind": "heading",
         "path": "plan.md",
         "source": "derived"
       },
@@ -145,45 +189,15 @@
         "source": "derived"
       },
       {
-        "name": "1. NOTATION",
+        "name": "1. TASK NOTATION",
         "kind": "heading",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "2. PHASE 1: SETUP",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "3. PHASE 2: IMPLEMENTATION",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "live",
-        "kind": "key_phrase",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "2. WHAT WAS BUILT",
-        "kind": "heading",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "3. HOW IT WAS DELIVERED",
-        "kind": "heading",
-        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Implement the two pieces that make swapping actually work:",
     "created_at": "2026-05-17T06:35:17.505Z",
-    "last_save_at": "2026-05-17T06:35:17.505Z",
+    "last_save_at": "2026-05-23T11:55:15.422Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

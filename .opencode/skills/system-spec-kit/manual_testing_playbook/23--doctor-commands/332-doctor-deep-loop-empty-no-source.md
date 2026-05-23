@@ -22,7 +22,7 @@ The command must stay read-only and refuse remediation. An empty graph without s
 - Preconditions: `deep-loop-graph.sqlite` is empty or missing in a disposable workspace, and no spec packet under the sandbox contains `research/iterations/*.md` or `review/iterations/*.md`.
 - Expected execution process: Confirm graph emptiness, confirm no iteration files, run `/doctor deep-loop --scope=both`, and capture the diagnostic report.
 - Expected signals: read-only diagnostic flow loads `doctor_deep-loop.yaml`; `empty_graph=true`; `iteration_folder_count=0`; `lazy_init.available=false`; status is `DEGRADED`, `EMPTY`, or equivalent attention state with no `deep_loop_graph_upsert` call.
-- Desired user-visible outcome: A concise diagnostic verdict saying no iteration source was detected and recommending `/spec_kit:deep-research` or `/spec_kit:deep-review` first.
+- Desired user-visible outcome: A concise diagnostic verdict saying no iteration source was detected and recommending `/deep:start-research-loop` or `/deep:start-review-loop` first.
 - Pass/fail: PASS if the command reports the empty graph and missing source clearly while performing no graph mutation.
 - Classification: Manual scenario; valid verdicts are `PASS`, `FAIL`, `SKIP`, or `UNAUTOMATABLE`.
 
@@ -49,7 +49,7 @@ Check deep-loop graph status. There's no recent research iteration data.
 
 ### Expected
 
-The command resolves read-only diagnostic flow, loads `doctor_deep-loop.yaml`, inventories zero research/review iteration sources, and emits an empty-graph diagnostic. The report should include the user-facing message `no iteration source detected` or equivalent wording and recommend running `/spec_kit:deep-research` or `/spec_kit:deep-review` before apply remediation.
+The command resolves read-only diagnostic flow, loads `doctor_deep-loop.yaml`, inventories zero research/review iteration sources, and emits an empty-graph diagnostic. The report should include the user-facing message `no iteration source detected` or equivalent wording and recommend running `/deep:start-research-loop` or `/deep:start-review-loop` before apply remediation.
 
 No graph rows are inserted, no snapshot is taken, and no iteration markdown files are created.
 

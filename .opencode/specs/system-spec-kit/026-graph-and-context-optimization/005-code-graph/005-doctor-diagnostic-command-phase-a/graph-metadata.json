@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Code graph operations have no doctor surface. When the index goes stale or bloats with `node_modules/`, `dist/`, generated artifacts, etc., users have to manually inspect `code_graph_status`, edit scanner config blind, run `code_graph_scan`, and spot-check queries. There is no command that walks them through diagnosis-first remediation with the same safety guarantees `/doctor:skill-advisor` provides (canonical-path validator, per-run rollback, dry-run preview, build-status branching).",
     "created_at": "2026-04-25T20:30:00Z",
-    "last_save_at": "2026-05-19T13:51:39.057Z",
+    "last_save_at": "2026-05-23T11:55:15.045Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

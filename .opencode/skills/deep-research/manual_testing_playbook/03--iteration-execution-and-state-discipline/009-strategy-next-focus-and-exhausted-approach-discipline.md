@@ -46,7 +46,7 @@ Validate deep-research iterations follow Next Focus and avoid exhausted or block
 ### Commands
 1. `bash: rg -n 'Next Focus|Exhausted Approaches|What Worked|What Failed' .opencode/skills/deep-research/references/state_format.md .opencode/skills/deep-research/references/loop_protocol.md`
 2. `bash: rg -n 'Exhausted Approaches|MANDATORY PRE-CHECK|RECOVERY' .codex/agents/deep-research.toml`
-3. `bash: rg -n 'least_explored|next_focus|remaining_questions_list' .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+3. `bash: rg -n 'least_explored|next_focus|remaining_questions_list' .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml .opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`
 ### Expected
 Next Focus is read explicitly, exhausted approaches are treated as do-not-retry, and recovery mode consults deferred ideas instead of repeating blocked tactics.
 ### Evidence
@@ -73,8 +73,8 @@ If wording differs between docs, privilege the runtime pre-check plus the state-
 | `.opencode/skills/deep-research/references/state_format.md` | Strategy file requirements; use `ANCHOR:strategy-file` |
 | `.opencode/skills/deep-research/references/loop_protocol.md` | Ideas backlog and recovery focus; use `ANCHOR:phase-iteration-loop` |
 | `.codex/agents/deep-research.toml` | Exhausted-approach discipline and focus selection; inspect `Step 2: Determine Focus` |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Loop focus extraction |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Loop focus extraction |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Loop focus extraction |
+| `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Loop focus extraction |
 
 ---
 

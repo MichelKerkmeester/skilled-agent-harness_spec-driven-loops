@@ -12,9 +12,9 @@ Iteration 003's proposed helper should not live only in the deep-research YAML b
 
 Evidence:
 - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:66` exports the current `resolveCopilotPromptArg` helper, and `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:67` through `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:69` show it only chooses raw prompt vs `@PROMPT_PATH` wrapper. It has no target-authority or plan-only guard.
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:601` imports `runAuditedExecutorCommand`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:602` imports `resolveCopilotPromptArg`, and `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:606` passes the resulting prompt directly to Copilot.
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:618` through `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:625` dispatch `copilot -p <prompt> --allow-all-tools --no-ask-user`, so a missing authority marker becomes a non-interactive mutating run.
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:667` through `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:683` duplicates the same raw/large prompt Copilot branch in shell, also with `--allow-all-tools` and `--no-ask-user`.
+- `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:601` imports `runAuditedExecutorCommand`, `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:602` imports `resolveCopilotPromptArg`, and `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:606` passes the resulting prompt directly to Copilot.
+- `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:618` through `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:625` dispatch `copilot -p <prompt> --allow-all-tools --no-ask-user`, so a missing authority marker becomes a non-interactive mutating run.
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:667` through `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:683` duplicates the same raw/large prompt Copilot branch in shell, also with `--allow-all-tools` and `--no-ask-user`.
 - `.opencode/skills/cli-copilot/SKILL.md:269` through `.opencode/skills/cli-copilot/SKILL.md:274` already documents the invariant: pass the Gate-3 spec folder when pre-approved, otherwise ask before delegating because the delegated agent cannot answer Gate 3 interactively.
 - `.opencode/skills/cli-copilot/references/integration_patterns.md:97` through `.opencode/skills/cli-copilot/references/integration_patterns.md:110` recommends plan-then-execute and explicitly includes `DO NOT modify any files yet` in the planning prompt.
 
@@ -23,7 +23,7 @@ Recommended approach:
 2. Make `targetAuthority` explicit and closed: `{ kind: "approved", specFolder }` or `{ kind: "missing", writeIntent: true }`. Do not infer it from startup, resume, last-active, memory search, or prompt text.
 3. For `approved`, prepend `Spec folder: <path> (operator-approved target authority for this task).`
 4. For `missing + writeIntent`, prepend a plan-only block: `Do not edit files or call mutating tools. Return the Gate 3 folder-selection question/options only.`
-5. Use the helper in both `spec_kit_deep-research_auto.yaml` and `spec_kit_deep-review_auto.yaml`. Deep-review is not the observed failing cell, but it shares the same autonomous Copilot execution shape.
+5. Use the helper in both `deep_start-research-loop_auto.yaml` and `deep_start-review-loop_auto.yaml`. Deep-review is not the observed failing cell, but it shares the same autonomous Copilot execution shape.
 6. Leave the generic `cli-copilot` skill as documentation/template follow-up rather than the first executable dependency. Its rule is correct, but the concrete bypass lives in command-owned dispatch.
 
 Falsifiable tests:
@@ -85,8 +85,8 @@ Two seams now look worth keeping for synthesis:
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/011-post-stress-finding-remediation-research/research/iterations/iteration-002.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/011-post-stress-finding-remediation-research/research/iterations/iteration-003.md`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+- `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
 - `.opencode/skills/cli-copilot/SKILL.md`
 - `.opencode/skills/cli-copilot/references/integration_patterns.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/004-cocoindex-overfetch-dedup-rerank/spec.md`

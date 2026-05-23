@@ -55,7 +55,7 @@
       "decision-record.md",
       "spec.md",
       ".opencode/agents/deep-review.md",
-      ".opencode/commands/spec_kit/deep-review.md",
+      ".opencode/commands/deep/start-review-loop.md",
       "research/deep-research-config.json",
       "implementation-summary.md",
       "research/iterations/iteration-015.md",
@@ -130,6 +130,12 @@
         "source": "derived"
       },
       {
+        "name": "start-review-loop.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/start-review-loop.md",
+        "source": "derived"
+      },
+      {
         "name": "deep-research-config.json",
         "kind": "config",
         "path": "research/deep-research-config.json",
@@ -200,17 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Deep Review Complexity Research",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Focused deep-research passes sometimes find more concrete bugs than the dedicated deep-review workflow. This suggests deep-review may over-index on broad review ceremony, convergence, or summary-level checks instead of forcing adversarial, class-of-bug exploration.",
     "created_at": "2026-05-22T05:50:19Z",
-    "last_save_at": "2026-05-23T09:53:18.749092Z",
+    "last_save_at": "2026-05-23T11:55:14.252Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

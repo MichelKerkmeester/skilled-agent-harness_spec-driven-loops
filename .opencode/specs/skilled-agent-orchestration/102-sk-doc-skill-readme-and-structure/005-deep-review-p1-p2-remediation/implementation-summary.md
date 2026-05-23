@@ -193,7 +193,7 @@ A single cli-codex `gpt-5.5 / high / fast` dispatch closed all 16 findings from 
 
 **Real typed-agent dispatch via codex `SpawnAgent` remains upstream-blocked in codex v0.130.0.** A future codex release that maps `.codex/config.toml` user-defined agents into the `codex_core::tools::router` SpawnAgent allowlist would let us flip SD-019 back to `dispatch_real` and exercise true typed-agent dispatch under `codex exec`.
 
-### F-Stage-E-001 — `/spec_kit:deep-review:auto` setup-phase stdin hang
+### F-Stage-E-001 — `/deep:start-review-loop:auto` setup-phase stdin hang
 Surfaced during Stage E of 004 (not in the dashboard, but documented in 004/implementation-summary). The `:auto` suffix is supposed to be non-interactive, but the markdown-entry setup gate still asks confirmation questions. Worked around by pre-binding all setup answers in the dispatch prompt. Not addressed by 005; worth filing as a separate deep-review-skill packet.
 
 ### F-002 + F-003 — accepted advisories (no edits required)

@@ -25,7 +25,7 @@ Operators run the exact command sequence and confirm the expected signals withou
 - Layer partition: command-flow.
 - Real user request: `Run one correctness iteration over a small file target and prove the durable iteration contract exists.`
 - Prompt: `Run the three-artifact iteration scenario and prove deep-review writes iteration markdown, state JSONL, and delta JSONL.`
-- Expected execution process: sandbox setup, one `/spec_kit:deep-review:auto` invocation, artifact aggregation, diff and tripwire checks.
+- Expected execution process: sandbox setup, one `/deep:start-review-loop:auto` invocation, artifact aggregation, diff and tripwire checks.
 - Expected signals: `iterations/iteration-001.md`, `deep-review-state.jsonl`, `deltas/iter-001.jsonl`, `"type":"iteration"`, `newFindingsRatio`, `findingsSummary`, and post-dispatch validation language or absence of schema-mismatch failure.
 - Desired outcome: PASS verdict showing command-flow dispatch externalized state for reducer consumption.
 - Pass/fail: PASS if all field counts are `1+`; FAIL if the run only explains what it would do or writes `iteration_delta` instead of `iteration`.
@@ -50,7 +50,7 @@ cp -a /tmp/cp-053-sandbox /tmp/cp-053-sandbox-baseline
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 git status --porcelain -- /tmp/cp-053-sandbox /tmp/cp-053-spec > /tmp/cp-053-pre.txt
 cd /tmp/cp-053-sandbox
-copilot -p "/spec_kit:deep-review:auto \"targets/review-target.js\" --spec-folder=/tmp/cp-053-spec --max-iterations=1 --convergence=0.10 --no-resource-map. Use target type files and dimensions correctness. Produce durable artifacts; do not ask setup questions." --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-053-sandbox --add-dir /tmp/cp-053-spec 2>&1 | tee /tmp/cp-053-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-053-B-exit.txt
+copilot -p "/deep:start-review-loop:auto \"targets/review-target.js\" --spec-folder=/tmp/cp-053-spec --max-iterations=1 --convergence=0.10 --no-resource-map. Use target type files and dimensions correctness. Produce durable artifacts; do not ask setup questions." --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-053-sandbox --add-dir /tmp/cp-053-spec 2>&1 | tee /tmp/cp-053-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-053-B-exit.txt
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 find /tmp/cp-053-spec -type f \( -name '*.json' -o -name '*.jsonl' -o -name '*.md' \) -print0 2>/dev/null | xargs -0 cat > /tmp/cp-053-B-artifacts.txt 2>/dev/null || touch /tmp/cp-053-B-artifacts.txt
 find /tmp/cp-053-spec -type f > /tmp/cp-053-B-files.txt 2>/dev/null || touch /tmp/cp-053-B-files.txt
@@ -81,7 +81,7 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 
 | File | Lines | Role |
 |---|---:|---|
-| `.opencode/commands/spec_kit/deep-review.md` | 199-207, 361-365 | Workflow outputs and read-only agent model |
+| `.opencode/commands/deep/start-review-loop.md` | 199-207, 361-365 | Workflow outputs and read-only agent model |
 | `.opencode/skills/deep-review/SKILL.md` | 90-105, 496-514 | Executor invariants and quality gates |
 | `.opencode/agents/deep-review.md` | 80-98, 177-195 | Single-iteration sequence and output verification |
 

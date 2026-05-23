@@ -40,12 +40,13 @@
       "drop",
       "role"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "complete",
     "key_files": [
       ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_snippet_template.md",
       ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md",
       ".opencode/commands/create/testing-playbook.md",
+      ".opencode/specs/skilled-agent-orchestration/graph-metadata.json",
       "decision-record.md",
       "plan.md",
       "tasks.md",
@@ -70,6 +71,12 @@
         "name": "testing-playbook.md",
         "kind": "doc",
         "path": ".opencode/commands/create/testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/skilled-agent-orchestration/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -195,7 +202,7 @@
     ],
     "causal_summary": "Every per-feature file across 16 `manual_testing_playbook/` packages (~498 files total) currently pins an \"Exact Prompt\" that opens with `As a {ROLE}, {ACTION} against {TARGET}. Verify {EXPECTED_OUTCOME}. Return {OUTPUT_FORMAT}.` (RCAF). Real humans almost never phrase requests that way in normal conversation. The formulaic wrapper makes the playbook scenarios feel synthetic and reduces their value as regression coverage for how AIs actually handle real-world requests.",
     "created_at": "2026-05-18T07:49:27.228Z",
-    "last_save_at": "2026-05-19T13:51:38.771Z",
+    "last_save_at": "2026-05-23T11:55:14.671Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

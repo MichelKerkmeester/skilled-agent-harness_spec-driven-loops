@@ -21,7 +21,7 @@ triggerPhrases:
 
 ## Rule
 
-**Run `/spec_kit:deep-review` with cli-devin SWE-1.6 after EVERY substantive implementation phase OR whenever the main agent is uncertain about correctness of shipped code.**
+**Run `/deep:start-review-loop` with cli-devin SWE-1.6 after EVERY substantive implementation phase OR whenever the main agent is uncertain about correctness of shipped code.**
 
 ## What counts as "substantive implementation"
 
@@ -119,5 +119,5 @@ The 020 deep-review surfaced 3 confirmed P0 in code that had passed all unit tes
 
 - `cli-dispatch-skill-preload.md` — preload cli-devin SKILL.md first
 - `.opencode/skills/cli-devin/references/deep-loop-iter-contract.md` — iter recipe binding
-- `.opencode/commands/spec_kit/deep-review.md` — workflow surface
+- `.opencode/commands/deep/start-review-loop.md` — workflow surface
 - AGENTS.md OPERATIONAL MANDATES — adjacent rule

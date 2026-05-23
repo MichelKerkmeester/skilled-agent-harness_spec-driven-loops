@@ -11,6 +11,8 @@
     "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/005-cross-skill-documentation-decoupling",
     "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/006-skill-readme-refinement-survey"
   ],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -19,33 +21,79 @@
   "derived": {
     "trigger_phrases": [
       "006-skill-advisor/005-skill-advisor-documentation",
-      "skill-advisor-docs"
+      "skill-advisor-docs",
+      "code-folder-readmes"
     ],
     "key_topics": [
+      "006-skill-advisor",
+      "005-skill-advisor-documentation",
       "skill-advisor-docs",
       "code-folder-readmes",
-      "sk-doc-alignment",
-      "doc-drift",
-      "config-drift",
-      "toc-anchors",
-      "readme-standards"
+      "coordinate",
+      "documentation",
+      "quality",
+      "alignment",
+      "work",
+      "across",
+      "skill-advisor",
+      "system"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "planned",
     "key_files": [
       "spec.md"
     ],
-    "entities": [],
-    "causal_summary": "This sub-phase coordinates documentation quality work across the skill-advisor system. The 001-documentation-code-alignment child establishes the baseline alignment between skill-advisor docs and phase 020 code, while 002-code-folder-readme-coverage and 003-fix-documentation-config-drift address specific gaps in code-folder READMEs and drift issues in documentation and configuration.",
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Documentation Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Drift Fixes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Docs",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-doc",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Coordinate documentation quality and alignment work across the skill-advisor system. This sub-phase binds together three children that establish baseline docs/code alignment (004), expand code-folder README coverage with sk-doc standards (024), and resolve drift issues in documentation and configuration files (025). Together they ensure skill-advisor documentation remains consistent with code structure and current configuration.",
     "created_at": "2026-05-16T09:00:00Z",
-    "last_save_at": "2026-05-16T11:30:00Z",
-    "save_lineage": "cli-devin-swe-1.6-w3f",
+    "last_save_at": "2026-05-23T11:55:15.197Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md",
-      "README.md"
-    ],
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/003-fix-documentation-config-drift",
-    "last_active_at": "2026-05-16T09:12:00.401Z"
+      "spec.md"
+    ]
   }
 }

@@ -4,14 +4,12 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/033-system-code-graph-import-path-cleanup",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/039-token-aware-chunking"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -19,53 +17,200 @@
       "mcp_server orphan shared dist",
       "system-spec-kit shared duplicate emit",
       "tsconfig rootDir shared cleanup",
-      "dist system-spec-kit shared stale"
+      "033 import path cleanup plan",
+      "mcp_server tsconfig shared plan",
+      "orphan shared dist cleanup plan",
+      "033 import path cleanup tasks",
+      "mcp_server orphan shared tasks",
+      "system-code-graph dist cleanup tasks",
+      "033 import path cleanup checklist",
+      "mcp_server orphan shared verification"
     ],
     "key_topics": [
       "033",
-      "system-code-graph",
-      "mcp_server",
-      "tsconfig",
-      "rootDir",
+      "system",
+      "code",
+      "graph",
+      "import",
+      "path",
+      "cleanup",
+      "orphan",
       "shared",
       "dist",
-      "finalize-dist"
+      "system-spec-kit",
+      "duplicate"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "dist/context-server.js",
+      "mcp_server/tsconfig.json",
       ".opencode/skills/system-spec-kit/mcp_server/tsconfig.json",
       ".opencode/skills/system-spec-kit/mcp_server/package.json",
+      "scripts/finalize-dist.mjs",
       ".opencode/skills/system-spec-kit/mcp_server/scripts/finalize-dist.mjs",
+      ".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js",
+      ".opencode/skills/system-spec-kit/shared/package.json",
       "spec.md",
+      "shared/package.json",
+      "mcp_server/package.json",
+      "mcp_server/scripts/finalize-dist.mjs",
+      ".opencode/skills/system-spec-kit/tsconfig.json",
+      ".opencode/skills/system-spec-kit/shared/tsconfig.json",
       "plan.md",
+      "implementation-summary.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "checklist.md"
     ],
     "entities": [
       {
-        "name": "mcp_server/tsconfig.json",
+        "name": "context-server.js",
+        "kind": "code",
+        "path": "dist/context-server.js",
+        "source": "derived"
+      },
+      {
+        "name": "tsconfig.json",
         "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tsconfig.json",
-        "source": "manual"
+        "path": "mcp_server/tsconfig.json",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/package.json",
+        "source": "derived"
       },
       {
         "name": "finalize-dist.mjs",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/finalize-dist.mjs",
-        "source": "manual"
+        "kind": "file",
+        "path": "scripts/finalize-dist.mjs",
+        "source": "derived"
       },
       {
-        "name": "@spec-kit/shared",
-        "kind": "package",
-        "path": ".opencode/skills/system-spec-kit/shared/package.json",
-        "source": "manual"
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Code Graph Import Path Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Composite",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffold Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "mcp_server resolved @spec-kit/shared imports to source through a tsconfig paths alias while compiling with rootDir ../.., so sibling bundle output could point at dist/system-spec-kit/shared. The cleanup makes shared resolve through the workspace package exports and finalizes the clean dist layout without regenerating the orphan shared tree.",
+    "causal_summary": "The `mcp_server` build emitted stale shared-package files under `.opencode/skills/system-spec-kit/mcp_server/dist/system-spec-kit/shared/`. Those files duplicated the real `@spec-kit/shared` workspace package output and could drift from `.opencode/skills/system-spec-kit/shared/dist/`, as seen when the orphan `llama-cpp.js` retained old token-budget behavior after source changes landed elsewhere.",
     "created_at": "2026-05-14T15:33:29Z",
-    "last_save_at": "2026-05-14T15:39:08Z",
+    "last_save_at": "2026-05-23T11:55:15.382Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

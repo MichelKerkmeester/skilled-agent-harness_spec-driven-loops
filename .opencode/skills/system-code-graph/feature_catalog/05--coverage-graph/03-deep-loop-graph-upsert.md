@@ -39,8 +39,8 @@ No `graphEvents` means no upsert. The workflow skip is intentional and should no
 | File | Layer | Role |
 |---|---|---|
 | `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts:65-86` | Handler | validates namespace and rejects empty batches |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:817-836` | Implementation | conditionally calls upsert for research graph events |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:841-863` | Implementation | conditionally calls upsert for review graph events |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:817-836` | Implementation | conditionally calls upsert for research graph events |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:841-863` | Implementation | conditionally calls upsert for review graph events |
 | `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:614-658` | Schema | defines the public schema |
 
 ### Validation And Tests

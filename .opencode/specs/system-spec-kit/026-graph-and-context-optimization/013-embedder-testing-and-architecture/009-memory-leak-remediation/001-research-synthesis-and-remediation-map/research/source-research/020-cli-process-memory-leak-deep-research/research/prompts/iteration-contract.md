@@ -1,6 +1,6 @@
 # Deep Research Iteration Contract
 
-You are executing exactly one `/spec_kit:deep-research` iteration for the packet below.
+You are executing exactly one `/deep:start-research-loop` iteration for the packet below.
 
 Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/020-cli-process-memory-leak-deep-research`
 

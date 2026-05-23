@@ -23,7 +23,7 @@ contextType: "review"
 | T-003 | Fill spec.md/plan.md/tasks.md/checklist.md with review-packet content | DONE | main-agent | This commit |
 | T-004 | Refresh description.json + graph-metadata.json with packet identity | TODO | main-agent | Trio fields populated |
 | T-005 | Strict-validate the packet pre-dispatch (exit 0 or warnings only) | TODO | main-agent | `validate.sh --strict` output |
-| T-006 | Dispatch `/spec_kit:deep-review:auto` with the full flag set | TODO | main-agent | State JSONL header written |
+| T-006 | Dispatch `/deep:start-review-loop:auto` with the full flag set | TODO | main-agent | State JSONL header written |
 | T-007 | Monitor iteration progress (no per-iter approval under `:auto`) | TODO | main-agent | JSONL iteration count grows |
 | T-008 | Iterations 1–20 execute via cli-codex (gpt-5.5 high fast) | TODO | deep-review skill | Per-iter `iteration-NNN.md` + JSONL row |
 | T-009 | Convergence detection triggers or 20-cap reached | TODO | deep-review skill | `stop_reason` field in JSONL |

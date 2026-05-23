@@ -44,7 +44,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->"
 
 ### Constraints
 
-- Gate 4 HARD-block requires iterative investigation at scale to run through the canonical `/spec_kit:deep-research` and `/spec_kit:deep-review` command surfaces.
+- Gate 4 HARD-block requires iterative investigation at scale to run through the canonical `/deep:start-research-loop` and `/deep:start-review-loop` command surfaces.
 - Umbrella packet must enforce ordering without relying on manual user gatekeeping.
 - Research effort (~8-11 days) is acceptable; speculative implementation rework would cost more.
 <!-- /ANCHOR:adr-001-context -->

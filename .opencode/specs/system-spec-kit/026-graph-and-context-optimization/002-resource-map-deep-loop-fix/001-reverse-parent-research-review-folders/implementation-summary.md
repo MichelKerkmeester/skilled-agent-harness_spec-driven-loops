@@ -77,8 +77,8 @@ The deep-research and deep-review READMEs, SKILL docs, references, dashboards, r
 | `.opencode/skills/system-spec-kit/scripts/migrate-deep-loop-legacy-owner-map.cjs` | Created | Manually maps residual root packet directories to their correct owning phases when legacy metadata shapes defeat heuristic discovery. |
 | `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | Modified | Binds deep-research writes to the resolver-provided `artifactDir`. |
 | `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` | Modified | Binds deep-review writes to the resolver-provided `artifactDir`. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modified | Keeps prompts and packet artifacts inside the resolved research packet root. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modified | Keeps prompts and packet artifacts inside the resolved review packet root. |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Modified | Keeps prompts and packet artifacts inside the resolved research packet root. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Modified | Keeps prompts and packet artifacts inside the resolved review packet root. |
 | `.opencode/skills/sk-deep-research/**` | Modified | Rebased docs, references, and dashboards onto the restored child-local contract. |
 | `.opencode/skills/sk-deep-review/**` | Modified | Rebased docs, references, dashboards, and review contract assets onto the restored child-local contract. |
 | `.opencode/skills/system-spec-kit/scripts/tests/*.vitest.ts` | Modified/Created | Added resolver coverage and updated contract parity expectations. |

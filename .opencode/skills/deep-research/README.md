@@ -34,7 +34,7 @@ trigger_phrases:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-`deep-research` is research-only. It runs repeated investigation cycles through `/spec_kit:deep-research`, dispatching a fresh `@deep-research` agent for each iteration while keeping continuity in packet files instead of live conversation memory.
+`deep-research` is research-only. It runs repeated investigation cycles through `/deep:start-research-loop`, dispatching a fresh `@deep-research` agent for each iteration while keeping continuity in packet files instead of live conversation memory.
 
 The packet is now lineage-aware. Every run carries `sessionId`, `parentSessionId`, `lineageMode`, `generation`, and `continuedFromRun`, so the workflow can distinguish an active resume from a restart. `fork` and `completed-continue` are reserved for a future release and are not runtime-supported today. See `references/loop_protocol.md §Lifecycle Branches` for the canonical one-session contract.
 
@@ -55,9 +55,9 @@ For iterative code review, use `deep-review`.
 ## 2. QUICK START
 
 ```bash
-/spec_kit:deep-research:auto "WebSocket reconnection strategies across browsers"
-/spec_kit:deep-research:confirm "Distributed cache invalidation patterns"
-/spec_kit:deep-research:auto "API backpressure patterns" --max-iterations 6 --convergence 0.03
+/deep:start-research-loop:auto "WebSocket reconnection strategies across browsers"
+/deep:start-research-loop:confirm "Distributed cache invalidation patterns"
+/deep:start-research-loop:auto "API backpressure patterns" --max-iterations 6 --convergence 0.03
 ```
 
 What the workflow creates under the resolved `{artifact_dir}`:
@@ -218,11 +218,11 @@ A: Both were described in earlier drafts but never shipped as runtime branches. 
 **Q: Can non-hook runtimes use the same workflow safely?**
 A: Yes. Packet files are the authority. Hooks only improve startup ergonomics.
 
-**Q: What can `/spec_kit:deep-research` change in `spec.md`?**
+**Q: What can `/deep:start-research-loop` change in `spec.md`?**
 A: Only the bounded mutations in `references/spec_check_protocol.md`. seed markers or pre-init context during INIT, plus one machine-owned `BEGIN GENERATED` / `END GENERATED` findings block during SYNTHESIS.
 
 **Q: Where should review work go now?**
-A: Use `deep-review` and `/spec_kit:deep-review`.
+A: Use `deep-review` and `/deep:start-review-loop`.
 <!-- /ANCHOR:faq -->
 
 ---

@@ -97,7 +97,7 @@ THREE artifacts:
 
 ## RESEARCH GUIDANCE FOR ITERATION 2
 
-1. **Addon writer search**: `grep -rln "handover.md\|debug-delegation.md\|research.md\|resource-map.md\|context-index.md" .opencode/{skill,command,agent}/` — find every place that writes/edits these. Distinguish `handover.md` (author-edited starter? OR /memory:save written?) from `research.md` (workflow-owned by /spec_kit:deep-research).
+1. **Addon writer search**: `grep -rln "handover.md\|debug-delegation.md\|research.md\|resource-map.md\|context-index.md" .opencode/{skill,command,agent}/` — find every place that writes/edits these. Distinguish `handover.md` (author-edited starter? OR /memory:save written?) from `research.md` (workflow-owned by /deep:start-research-loop).
 
 2. **Validator survey**: read each validator file, document level constants. The crucial question: is "Level N requires file X" hardcoded as a switch/case, OR does it consult a manifest? If switch/case, refactor cost = N × validator-file-count. If already manifest-driven for some, identify which.
 

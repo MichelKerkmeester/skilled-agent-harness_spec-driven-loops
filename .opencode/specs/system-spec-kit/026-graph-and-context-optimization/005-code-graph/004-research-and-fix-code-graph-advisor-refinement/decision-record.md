@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-04-24T00:00:00Z"
     last_updated_by: "scaffold-pass"
     recent_action: "Created decision-record.md with ADR-001"
-    next_safe_action: "Run /spec_kit:deep-research:auto for 20 iterations"
+    next_safe_action: "Run /deep:start-research-loop:auto for 20 iterations"
     blockers: []
     key_files: ["decision-record.md"]
     session_dedup:
@@ -34,7 +34,7 @@ _memory:
 ---
 
 <!-- ANCHOR:adr-001 -->
-## ADR-001: Use `/spec_kit:deep-research:auto` for All 20 Iterations
+## ADR-001: Use `/deep:start-research-loop:auto` for All 20 Iterations
 
 ### Metadata
 
@@ -49,7 +49,7 @@ _memory:
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-This research initiative requires 20 investigation iterations across two complex systems. We needed to choose between running iterations manually (ad hoc file reads and notes), managing state in a custom script, or using the skill-owned `/spec_kit:deep-research:auto` workflow. The choice affects auditability, convergence detection, context isolation between iterations, and alignment with the Gate 4 policy that governs iterative investigation loops of this scale.
+This research initiative requires 20 investigation iterations across two complex systems. We needed to choose between running iterations manually (ad hoc file reads and notes), managing state in a custom script, or using the skill-owned `/deep:start-research-loop:auto` workflow. The choice affects auditability, convergence detection, context isolation between iterations, and alignment with the Gate 4 policy that governs iterative investigation loops of this scale.
 
 ### Constraints
 
@@ -63,9 +63,9 @@ This research initiative requires 20 investigation iterations across two complex
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-**We chose**: Use `/spec_kit:deep-research:auto` as the canonical entry point for all 20 iterations, with the `research/` subfolder created and managed by the skill's state machine.
+**We chose**: Use `/deep:start-research-loop:auto` as the canonical entry point for all 20 iterations, with the `research/` subfolder created and managed by the skill's state machine.
 
-**How it works**: The user invokes `/spec_kit:deep-research:auto` targeting this spec folder. The skill's state machine manages `deep-research-state.jsonl`, dispatches `@deep-research` leaf agents one iteration at a time (each with fresh context), tracks delta findings in `findings-registry.json`, and detects convergence. The research strategy is read from the deep-research-strategy file which the skill auto-creates on first invocation, seeded by the research questions in this packet's `spec.md`.
+**How it works**: The user invokes `/deep:start-research-loop:auto` targeting this spec folder. The skill's state machine manages `deep-research-state.jsonl`, dispatches `@deep-research` leaf agents one iteration at a time (each with fresh context), tracks delta findings in `findings-registry.json`, and detects convergence. The research strategy is read from the deep-research-strategy file which the skill auto-creates on first invocation, seeded by the research questions in this packet's `spec.md`.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -75,7 +75,7 @@ This research initiative requires 20 investigation iterations across two complex
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **`/spec_kit:deep-research:auto`** | Skill-owned state, convergence detection, Gate 4 compliant, per-iteration fresh context, auditable JSONL trail | Requires skill invocation; no inline ad hoc pivots | 9/10 |
+| **`/deep:start-research-loop:auto`** | Skill-owned state, convergence detection, Gate 4 compliant, per-iteration fresh context, auditable JSONL trail | Requires skill invocation; no inline ad hoc pivots | 9/10 |
 | Manual ad hoc iterations | Maximum flexibility, no overhead | No convergence detection, no state machine, context contamination across iters, not Gate 4 compliant | 3/10 |
 | Custom script with `/tmp` state | Some automation | Gate 4 explicitly forbids manually managing iteration state outside skill's `research/` folder | 1/10 |
 
@@ -126,7 +126,7 @@ This research initiative requires 20 investigation iterations across two complex
 ### Implementation
 
 **What changes**:
-- User invokes `/spec_kit:deep-research:auto` after this spec folder is validated
+- User invokes `/deep:start-research-loop:auto` after this spec folder is validated
 - The skill auto-creates `research/` with deep-research-strategy.md, deep-research-state.jsonl, findings-registry.json, and per-iteration markdown files
 
 **How to roll back**: If the loop produces unhelpful output after the first few iterations, stop the loop, review research/iterations/ from the earliest iteration through the latest, and either refine the research questions in `spec.md` and restart, or switch to a manual synthesis pass using the iteration files already produced.

@@ -17,8 +17,8 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml"
+      - ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml"
+      - ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml"
       - ".opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-graph.vitest.ts"
     session_dedup:
       fingerprint: "sha256:1160077000000000000000000000000000000000000000000000000000000000"
@@ -94,8 +94,8 @@ Extend the review graph vocabulary so stable `searchLedger` evidence can be proj
 | `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/007-complexity-ledger-led-graph-vocab/checklist.md` | Create | Level 2 verification checklist. |
 | `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/007-complexity-ledger-led-graph-vocab/implementation-summary.md` | Modify | Final evidence and commit handoff. |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts` | Modify | Review node-kind type and `VALID_KINDS.review`. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | Accept new graph node kinds in the auto workflow event filter. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modify | Mirror auto workflow event filter. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Modify | Accept new graph node kinds in the auto workflow event filter. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Modify | Mirror auto workflow event filter. |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-graph.vitest.ts` | Modify | Enable Phase G fixture tests and assert post-G success. |
 <!-- /ANCHOR:scope -->
 

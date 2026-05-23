@@ -4,34 +4,12 @@
   "spec_folder": "skilled-agent-orchestration/131-deep-skill-evolution/007-deep-commands-relocation",
   "parent_id": "skilled-agent-orchestration/131-deep-skill-evolution",
   "children_ids": [],
-  "migrated": false,
-  "migration_source": null,
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      {
-        "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution/006-deep-skills-differentiation",
-        "reason": "predecessor phase; 006 audited deep-* skill boundaries that 007 relocates"
-      }
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      {
-        "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council",
-        "reason": "ai-council command MD + agents affected by relocation"
-      },
-      {
-        "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review",
-        "reason": "deep-review command MD + agents affected by relocation"
-      },
-      {
-        "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution/003-deep-loop-runtime",
-        "reason": "deep-loop runtime manages executor config used by deep-* dispatch"
-      },
-      {
-        "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution/004-deep-research",
-        "reason": "deep-research command MD + agents affected by relocation"
-      }
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -40,28 +18,39 @@
       "deep:research assets",
       "deep:ai-council assets",
       "spec_kit deep-* migration",
-      "131/007"
+      "131/007",
+      "131/007 plan",
+      "deep commands relocation plan",
+      "wave 1 asset move",
+      "wave 2 reference update",
+      "131/007 tasks",
+      "deep commands relocation tasks"
     ],
     "key_topics": [
-      "deep-commands",
+      "deep",
+      "commands",
       "relocation",
-      "asset-move",
-      "reference-update",
-      "cross-runtime",
-      "skill-graph",
-      "naming-convention",
-      "wave",
-      "bulk-sed"
+      "review",
+      "assets",
+      "research",
+      "ai-council",
+      "migration",
+      "131",
+      "007",
+      "plan",
+      "wave"
     ],
     "importance_tier": "important",
-    "status": "active",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "changelog/v1.0.0.0.md",
+      ".opencode/install_guides/SET-UP - AGENTS.md"
     ],
     "entities": [
       {
@@ -99,12 +88,120 @@
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "v1.0.0.0.md",
+        "kind": "doc",
+        "path": "changelog/v1.0.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "SET-UP - AGENTS.md",
+        "kind": "doc",
+        "path": ".opencode/install_guides/SET-UP - AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Commands Relocation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffolded Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decision",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Commands Moved",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clock Target",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Docs",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Updates",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Asset Moves",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Complete the deep-* command asset relocation: move 6 workflow YAMLs to co-located commands/deep/assets/, migrate 2 Gemini TOMLs + author 1 new, update ~25 live operator-facing references to /deep:* slash syntax, recompile skill-graph, run vitest smoke, and bulk-sed ~5,267 historical spec-doc references. Single executor (cli-opencode + deepseek-v4-pro) across 6 sequential waves.",
+    "causal_summary": "The 3 deep-* slash-command MD files (`deep:review`, `deep:research`, `deep:ai-council`) already relocated to `.opencode/commands/deep/` and are live skill names in the registry. However, 6 workflow asset YAMLs, 2 Gemini TOML wrappers, and ~25 live operator-facing references still use the old `/spec_kit:deep-*` slash syntax or `spec_kit/assets/spec_kit_deep-*` asset paths. Additionally, ~5,267 historical spec-doc references need updating.",
     "created_at": "2026-05-23T00:00:00Z",
-    "last_save_at": "2026-05-23T00:00:00Z",
-    "save_lineage": "scaffold",
+    "last_save_at": "2026-05-23T11:55:14.312Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

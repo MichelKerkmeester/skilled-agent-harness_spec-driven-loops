@@ -76,7 +76,7 @@ session.idle fires for sessionID X
 **Critical gap**: None of our skills have runtime recursion detection. The LEAF-only contract exists only in agent definitions—if a deep-research iteration accidentally dispatched another deep-research via a shell command or CLI wrapper, nothing would stop it at runtime. The upstream plugin's 3-layer combinator provides defense-in-depth that we lack.
 
 ### Proposed Generalization
-A marker-based + session-tagged + dedup-keyed combinator could apply to `/spec_kit:deep-research` and `/spec_kit:deep-review` by adding runtime guards to the YAML workflow dispatcher. Concretely:
+A marker-based + session-tagged + dedup-keyed combinator could apply to `/deep:start-research-loop` and `/deep:start-review-loop` by adding runtime guards to the YAML workflow dispatcher. Concretely:
 
 1. **Marker layer**: Add a `RESEARCH_LOOP_MARKER` constant (e.g., "DEEP-RESEARCH-ITERATION") and inject it into each iteration's output file header. The dispatcher would scan the last iteration output for this marker before dispatching another—if found, skip with a "nested loop detected" error.
 
@@ -84,7 +84,7 @@ A marker-based + session-tagged + dedup-keyed combinator could apply to `/spec_k
 
 3. **Dedup-map layer**: Use the existing `iteration` field in the state JSONL as a dedup key—the dispatcher already increments this. Add a signature field combining `normalized_topic + iteration_count + phase` to prevent duplicate dispatches with the same parameters.
 
-Implementation would require modifying `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` to add these checks at the dispatch gate, and updating the agent definitions to emit the marker in their output headers. The existing state file format already supports the metadata needed for layers 2 and 3.
+Implementation would require modifying `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` to add these checks at the dispatch gate, and updating the agent definitions to emit the marker in their output headers. The existing state file format already supports the metadata needed for layers 2 and 3.
 
 ## Convergence Signal
 `newInfoRatio: 0.40` — Moderate: most content is aggregation from prior iters (marker strings, function signatures, flowchart). New information is the gap analysis showing our skills lack runtime recursion prevention, plus the concrete generalization proposal with implementation paths.

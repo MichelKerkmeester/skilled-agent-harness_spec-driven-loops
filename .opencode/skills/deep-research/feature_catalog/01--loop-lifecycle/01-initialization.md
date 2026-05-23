@@ -27,9 +27,9 @@ Lineage handling is narrower than some older drafts. The runtime supports `new`,
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/commands/spec_kit/deep-research.md` | Command | Defines the init phase inputs, packet outputs, and setup contract before the YAML workflow loads. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Workflow | Creates canonical state files and applies the autonomous initialization path. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Workflow | Mirrors the init path with confirm-mode charter review and state checks. |
+| `.opencode/commands/deep/start-research-loop.md` | Command | Defines the init phase inputs, packet outputs, and setup contract before the YAML workflow loads. |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Workflow | Creates canonical state files and applies the autonomous initialization path. |
+| `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Workflow | Mirrors the init path with confirm-mode charter review and state checks. |
 | `.opencode/skills/deep-research/references/loop_protocol.md` | Reference | Documents session classification, canonical names, and the resumed or restarted lifecycle event contract. |
 | `.opencode/skills/deep-research/assets/deep_research_config.json` | Asset | Supplies the default config shape written during initialization. |
 | `.opencode/skills/deep-research/assets/deep_research_strategy.md` | Asset | Supplies the initial strategy structure and anchor layout. |

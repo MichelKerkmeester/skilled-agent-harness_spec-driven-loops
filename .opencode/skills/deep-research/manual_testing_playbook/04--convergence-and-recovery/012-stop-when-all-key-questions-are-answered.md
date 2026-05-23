@@ -45,7 +45,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate deep research stops once all tracked key questions are answered.
 ### Commands
 1. `bash: rg -n 'all questions answered|countUnanswered|coverage' .opencode/skills/deep-research/references/convergence.md .opencode/skills/deep-research/README.md`
-2. `bash: rg -n 'remaining_questions == 0|all_questions_answered|answered_count|total_questions' .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+2. `bash: rg -n 'remaining_questions == 0|all_questions_answered|answered_count|total_questions' .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml .opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`
 3. `bash: rg -n 'Questions:|coverage|all questions answered' .opencode/skills/deep-research/references/quick_reference.md`
 ### Expected
 Question completion is a named hard stop and is reflected in the convergence and usage docs.
@@ -71,8 +71,8 @@ Check the convergence pseudocode first, then verify the loop extracts `answered_
 | File | Role |
 |---|---|
 | `.opencode/skills/deep-research/references/convergence.md` | Question-coverage hard stop; use `ANCHOR:shouldcontinue-algorithm` and `ANCHOR:signal-definitions` |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Remaining-question stop check; inspect `step_read_state` and `step_check_convergence` |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Remaining-question stop check; inspect `step_read_state` and `step_check_convergence` |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Remaining-question stop check; inspect `step_read_state` and `step_check_convergence` |
+| `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Remaining-question stop check; inspect `step_read_state` and `step_check_convergence` |
 | `.opencode/skills/deep-research/README.md` | Question-coverage framing; use `ANCHOR:usage-examples` |
 | `.opencode/skills/deep-research/references/quick_reference.md` | Coverage visualization; use `ANCHOR:progress-visualization` |
 

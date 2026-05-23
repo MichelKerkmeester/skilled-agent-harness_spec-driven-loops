@@ -136,7 +136,7 @@ Required inventories:
 ### Phase 2: Core Implementation
 
 - [x] Iteration 001, Claude Opus route: inventory process-spawn entrypoints and background execution patterns.
-- [x] Iteration 002, Claude Opus route: audit `/spec_kit:deep-research` state, locks, reducer writes, and failed-dispatch cleanup.
+- [x] Iteration 002, Claude Opus route: audit `/deep:start-research-loop` state, locks, reducer writes, and failed-dispatch cleanup.
 - [x] Iteration 003, Claude Opus route: audit deep-review, AI council, and multi-agent workflow process behavior.
 - [x] Iteration 004, Claude Opus route: audit cli-X self-invocation guards, nested routing, and cross-CLI loop risks.
 - [x] Iteration 005, Claude Opus route: audit Apple Silicon swap, wired memory, sidecar, and daemon classification logic.
@@ -161,7 +161,7 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Artifact validation | Iteration markdown, JSONL, strategy, synthesis, and resource map if generated. | `/spec_kit:deep-research` post-dispatch validation and manual file inspection. |
+| Artifact validation | Iteration markdown, JSONL, strategy, synthesis, and resource map if generated. | `/deep:start-research-loop` post-dispatch validation and manual file inspection. |
 | Process cleanup | Dispatcher and child processes after every iteration. | `ps`, `pgrep`, process ancestry, skill-specific `pkill` cleanup patterns. |
 | Memory pressure | Apple Silicon swap, free pages, wired pressure, and RSS. | `sysctl vm.swapusage`, `vm_stat`, `ps -o pid,ppid,rss,command`. |
 | Static source audit | Dispatchers, locks, sidecars, child-process helpers, signal handlers. | CocoIndex, Grep, direct reads, and source citations. |
@@ -177,7 +177,7 @@ Required inventories:
 |------------|------|--------|-------------------|
 | `cli-claude-code` | Internal skill and external CLI | Unknown until preflight | Claude iterations blocked; ask operator before substituting executor. |
 | `cli-codex` | Internal skill and external CLI | Unknown until preflight | Codex iterations blocked; ask operator before substituting executor. |
-| `/spec_kit:deep-research` | Internal command workflow | Available by skill contract | Research state machine cannot run if command assets are broken. |
+| `/deep:start-research-loop` | Internal command workflow | Available by skill contract | Research state machine cannot run if command assets are broken. |
 | Apple Silicon telemetry commands | Local OS | Expected available | Memory-pressure gates lose evidence if unavailable. |
 | Provider credentials | Environment or OAuth | Unknown until preflight | CLI dispatch must fail closed instead of silently changing route. |
 <!-- /ANCHOR:dependencies -->

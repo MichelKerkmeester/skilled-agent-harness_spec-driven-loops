@@ -97,10 +97,10 @@ Rewrite the 10 call sites across the 4 workflow YAMLs to consume the new bash sh
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | 3 call sites: graph_convergence (~L430), graph_upsert (~L1015), + any helper status-check references. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modify | 3 call sites: graph_convergence (~L438), graph_upsert (~L937), + helper references. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | 2 call sites: graph_convergence (~L413), graph_upsert (~L869). |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modify | 2 call sites: graph_convergence (~L402), graph_upsert (~L723). |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Modify | 3 call sites: graph_convergence (~L430), graph_upsert (~L1015), + any helper status-check references. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Modify | 3 call sites: graph_convergence (~L438), graph_upsert (~L937), + helper references. |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Modify | 2 call sites: graph_convergence (~L413), graph_upsert (~L869). |
+| `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Modify | 2 call sites: graph_convergence (~L402), graph_upsert (~L723). |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -125,7 +125,7 @@ Rewrite the 10 call sites across the 4 workflow YAMLs to consume the new bash sh
 |----|-------------|---------------------|
 | REQ-007 | `note:` field where present is preserved or updated truthfully | If updated, prose reflects bash invocation; if preserved, still accurate |
 | REQ-008 | Skip/conditional guards (`skip_conditions`, `if_graph_events_present`, `if_graph_events_missing`) are preserved | Diff shows zero structural change to guard semantics |
-| REQ-009 | The 4 files are functionally equivalent under a smoke deep-loop run | One iteration of `/spec_kit:deep-review` on a sandbox spec completes without graph-step failures |
+| REQ-009 | The 4 files are functionally equivalent under a smoke deep-loop run | One iteration of `/deep:start-review-loop` on a sandbox spec completes without graph-step failures |
 <!-- /ANCHOR:requirements -->
 
 ---

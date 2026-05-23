@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: auto-mode-contract generalization to all commands"
-description: "Lift the three-tier :auto contract from /spec_kit:deep-review (Phase 1) into a shared reference and migrate 11 remaining /spec_kit/, /create/, /improve/ commands to cite it; full live :auto dispatch verification per command."
+description: "Lift the three-tier :auto contract from /deep:start-review-loop (Phase 1) into a shared reference and migrate 11 remaining /spec_kit/, /create/, /improve/ commands to cite it; full live :auto dispatch verification per command."
 trigger_phrases:
   - "auto mode contract generalization"
   - "spec-kit :auto rollout"
@@ -52,7 +52,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Phase 1 introduced the three-tier `:auto` contract for `/spec_kit:deep-review`. The same architecture and same stdin-hang gap affect 11 other commands across `/spec_kit/`, `/create/`, and `/improve/`. Inlining the three-tier flow into every command duplicates ~300 LOC and risks drift; lifting it into a shared reference doc preserves a single source of truth and keeps each command lean.
+Phase 1 introduced the three-tier `:auto` contract for `/deep:start-review-loop`. The same architecture and same stdin-hang gap affect 11 other commands across `/spec_kit/`, `/create/`, and `/improve/`. Inlining the three-tier flow into every command duplicates ~300 LOC and risks drift; lifting it into a shared reference doc preserves a single source of truth and keeps each command lean.
 
 ### Purpose
 Author the shared `auto_mode_contract.md` reference, refactor Phase-1's deep-review to cite it, migrate 11 remaining commands to the same pattern, and verify each one via a live non-interactive `:auto` dispatch.
@@ -65,7 +65,7 @@ Author the shared `auto_mode_contract.md` reference, refactor Phase-1's deep-rev
 
 ### In Scope
 - Author `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md` (Level 2 sk-doc reference; §1-8 — three-tier flow, PRE-BOUND ANSWERS grammar, default-resolution-table format, Tier-3 error template, `:confirm` invariance, verification protocol, adoption checklist, out-of-scope).
-- Refactor `/spec_kit:deep-review` §0 to cite the shared contract (replacing the inline three-tier sections from 001).
+- Refactor `/deep:start-review-loop` §0 to cite the shared contract (replacing the inline three-tier sections from 001).
 - Migrate 11 commands' §0 to cite the shared contract + provide their own per-field default table + PRE-BOUND ANSWERS field list:
   - `/spec_kit:` — deep-research, complete, implement, plan, resume (5)
   - `/create:` — sk-skill, agent, changelog, feature-catalog, testing-playbook, folder_readme (6)
@@ -85,7 +85,7 @@ Author the shared `auto_mode_contract.md` reference, refactor Phase-1's deep-rev
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md` | Create | Shared three-tier `:auto` contract reference |
-| `.opencode/commands/spec_kit/deep-review.md` | Modify | Refactor §0 to cite shared contract |
+| `.opencode/commands/deep/start-review-loop.md` | Modify | Refactor §0 to cite shared contract |
 | `.opencode/commands/spec_kit/{deep-research,complete,implement,plan,resume}.md` | Modify | Migrate §0 to shared contract pattern |
 | `.opencode/commands/create/{sk-skill,agent,changelog,feature-catalog,testing-playbook,folder_readme}.md` | Modify | Same |
 | `.opencode/commands/improve/agent.md` | Modify | Same |

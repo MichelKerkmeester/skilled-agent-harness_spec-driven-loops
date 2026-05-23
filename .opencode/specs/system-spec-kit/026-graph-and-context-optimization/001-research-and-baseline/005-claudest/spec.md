@@ -260,7 +260,7 @@ Produce an evidence-grounded `adopt now` / `prototype later` / `reject` matrix f
 - **Then** the iteration file produces a 9-track adopt/prototype/reject matrix with each track grounded in prior-iteration findings and applies the explicit simplification bonus for closing the last open question
 
 **Scenario 5 (REQ-011 — Continuation charter dispatch)**
-- **Given** the user requests "5 more iterations of /spec_kit:deep-research with gpt-5.4 high agents in fast mode through cli-codex"
+- **Given** the user requests "5 more iterations of /deep:start-research-loop with gpt-5.4 high agents in fast mode through cli-codex"
 - **When** the orchestrator dispatches iters 8-12
 - **Then** all 5 iterations dispatch via cli-codex with `--full-auto --sandbox workspace-write` and produce iteration files with line-cited findings
 

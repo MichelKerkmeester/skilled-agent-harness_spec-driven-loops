@@ -13,28 +13,206 @@
   },
   "derived": {
     "trigger_phrases": [
-      "mirror dedup canonical preference",
-      "mirror dedup canonical preference graph metadata"
+      "016/004/014 mirror dedup",
+      "canonical mirror preference",
+      "cocoindex mirror collapse",
+      "rerank window mirror pollution",
+      "COCOINDEX_CANONICAL_MIRROR",
+      "016/004/014 plan",
+      "mirror dedup plan",
+      "canonical mirror preference plan",
+      "016/004/014 tasks",
+      "mirror dedup tasks",
+      "canonical mirror tasks",
+      "016/004/014 checklist"
     ],
     "key_topics": [
+      "016",
+      "004",
+      "014",
       "mirror",
       "dedup",
       "canonical",
-      "preference"
+      "preference",
+      "cocoindex",
+      "collapse",
+      "rerank",
+      "window",
+      "pollution"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_path_utils.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_dedup_mirrors.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_config.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/README.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/decision-record.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "evidence/phase2-comparison-014-dedup.md",
+      "evidence/phase2-comparison-013-vs-014-delta.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/014-mirror-dedup-canonical-preference/spec.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/014-mirror-dedup-canonical-preference/plan.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/014-mirror-dedup-canonical-preference/tasks.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/014-mirror-dedup-canonical-preference/checklist.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/014-mirror-dedup-canonical-preference/implementation-summary.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/014-mirror-dedup-canonical-preference/description.json",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/014-mirror-dedup-canonical-preference/graph-metadata.json",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/014-mirror-dedup-canonical-preference/evidence/phase2-comparison-014-dedup.md"
     ],
-    "entities": [],
-    "causal_summary": "Graph metadata for the current packet.",
+    "entities": [
+      {
+        "name": "test_path_utils.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_path_utils.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_dedup_mirrors.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_dedup_mirrors.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_config.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_config.py",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/014-mirror-dedup-canonical-preference/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/014-mirror-dedup-canonical-preference/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/014-mirror-dedup-canonical-preference/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/014-mirror-dedup-canonical-preference/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/014-mirror-dedup-canonical-preference/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase2-comparison-014-dedup.md",
+        "kind": "doc",
+        "path": "evidence/phase2-comparison-014-dedup.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase2-comparison-013-vs-014-delta.md",
+        "kind": "doc",
+        "path": "evidence/phase2-comparison-013-vs-014-delta.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/014-mirror-dedup-canonical-preference/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/014-mirror-dedup-canonical-preference/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Mirror Dedup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Canonical Preference",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "COCOINDEX_CANONICAL_MIRROR",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "same",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "all",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Config And Helpers",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Query Integration",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bench Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Docs And Validation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Pass",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "CocoIndex indexes every project file under 4 runtime mirror prefixes — `.opencode/`, `.codex/`, `.gemini/`, `.claude/`. These mirrors are byproducts of multi-runtime support (Claude Code, OpenCode, Codex, Gemini all see the same `.opencode/skills/<X>` content through their own prefix). They share:",
     "created_at": "2026-05-19T13:10:00.000Z",
-    "last_save_at": "2026-05-19T20:42:43.962Z",
+    "last_save_at": "2026-05-23T11:55:15.516Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

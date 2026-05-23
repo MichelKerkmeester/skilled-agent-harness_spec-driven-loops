@@ -17,20 +17,21 @@
     "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/011-system-code-graph-suite-triage",
     "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/012-adapter-resident-memory-benchmark",
     "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/013-owner-lease-heartbeat-staleness-detection",
-    "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening"
+    "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening",
+    "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/015-deep-research-drift-and-simplification",
+    "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle",
+    "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode",
+    "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/018-rerank-sidecar-accumulation-investigation-and-reaper-design",
+    "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper",
+    "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes",
+    "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2"
   ],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/020-cli-process-memory-leak-deep-research",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -40,61 +41,75 @@
       "sidecar daemon memory cleanup"
     ],
     "key_topics": [
-      "memory-leak",
-      "process-cleanup",
-      "sidecar-lifecycle",
-      "daemon-lifecycle",
-      "host-memory-telemetry",
-      "cocoindex",
-      "code-graph",
-      "spec-memory"
+      "memory",
+      "leak",
+      "remediation",
+      "arc",
+      "009",
+      "process",
+      "lifecycle",
+      "cleanup",
+      "sidecar",
+      "daemon",
+      "coordinate",
+      "process-lifecycle"
     ],
     "importance_tier": "critical",
-    "status": "completed",
+    "status": "planned",
     "key_files": [
-      "spec.md",
-      "description.json",
-      "graph-metadata.json",
-      "001-research-synthesis-and-remediation-map/research/source-research/020-cli-process-memory-leak-deep-research/research/research.md",
-      "001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit/research/research.md"
+      "spec.md"
     ],
     "entities": [
       {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Memory Leak Remediation Arc",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Spec Kit Memory",
-        "kind": "skill",
-        "path": ".opencode/skills/system-spec-kit/",
-        "source": "manual"
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       },
       {
-        "name": "mcp-coco-index",
-        "kind": "skill",
-        "path": ".opencode/skills/mcp-coco-index/",
-        "source": "manual"
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       },
       {
-        "name": "system-code-graph",
-        "kind": "skill",
-        "path": ".opencode/skills/system-code-graph/",
-        "source": "manual"
+        "name": "Apple Silicon",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       },
       {
-        "name": "system-rerank-sidecar",
-        "kind": "skill",
-        "path": ".opencode/skills/system-rerank-sidecar/",
-        "source": "manual"
+        "name": "Research Synthesis",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Dedicated remediation arc for memory and process lifecycle findings from the broad Spec Kit Memory audit and the code-index memory audit. Original research artifacts from packets 020 and 024 are archived under phase 001 research/source-research/.",
+    "causal_summary": "Coordinate memory and process-lifecycle remediation across the 016 embedder architecture umbrella. The arc covers CLI dispatch containment, deep-loop state safety, expected-daemon classification, host-memory telemetry, CocoIndex indexing lifecycle, Code Graph launcher ownership, rerank sidecar/model cleanup, and Spec Kit Memory runtime retention.",
     "created_at": "2026-05-22T10:20:00Z",
-    "last_save_at": "2026-05-22T16:19:13Z",
+    "last_save_at": "2026-05-23T11:55:15.639Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening",
-    "last_active_at": "2026-05-22T21:00:18Z",
     "source_docs": [
-      "spec.md",
-      "001-research-synthesis-and-remediation-map/research/source-research/020-cli-process-memory-leak-deep-research/research/research.md",
-      "001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit/research/research.md"
+      "spec.md"
     ]
   }
 }

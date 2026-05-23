@@ -9,23 +9,89 @@
     "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-skill-advisor-production-hardening/003-advisor-standards-alignment",
     "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-skill-advisor-production-hardening/004-devin-advisor-hook-integration"
   ],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": ["006-skill-advisor/004-skill-advisor-production-hardening", "hardening"],
-    "key_topics": ["skill-advisor", "plugin-hardening", "standards-alignment", "deferred-remediation", "telemetry", "cli-devin", "userpromptsubmit-hook", "post-extraction-audit"],
+    "trigger_phrases": [
+      "006-skill-advisor/004-skill-advisor-production-hardening",
+      "hardening",
+      "skill-advisor safety"
+    ],
+    "key_topics": [
+      "006-skill-advisor",
+      "004-skill-advisor-production-hardening",
+      "hardening",
+      "skill-advisor",
+      "safety",
+      "strengthen",
+      "system",
+      "deferred",
+      "remediation",
+      "telemetry",
+      "measurement",
+      "plugin"
+    ],
     "importance_tier": "normal",
-    "status": "in_progress",
-    "key_files": ["spec.md"],
-    "entities": [],
-    "causal_summary": "Strengthen the skill-advisor system through deferred remediation, telemetry measurement, plugin hardening, and standards alignment. The phase coordinates 001-deferred-remediation-telemetry-run for remediation tasks and telemetry, 002-advisor-plugin-hardening for plugin hardening, 003-advisor-standards-alignment for standards compliance, and 004-devin-advisor-hook-integration for CLI Devin integration via userpromptsubmit hooks and post-extraction audits.",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Plugin Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deferred Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Telemetry Measurement Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Plugin Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Standards Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Strengthen the skill-advisor system through deferred remediation, telemetry measurement, plugin hardening, and standards alignment. This phase parent coordinates four child packets that collectively improve skill-advisor safety, reliability, and integration with CLI Devin through userpromptsubmit hooks and post-extraction audits.",
     "created_at": "2026-05-16T09:00:00Z",
-    "last_save_at": "2026-05-16T11:30:00Z",
-    "save_lineage": "cli-devin-swe-1.6-w3f",
+    "last_save_at": "2026-05-23T11:55:15.188Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md", "README.md"]
+    "source_docs": [
+      "spec.md"
+    ]
   }
 }

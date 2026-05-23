@@ -10,7 +10,7 @@ severity: low
 
 ## What happened
 
-During the 10-iteration `/spec_kit:deep-review:auto` re-review on `010-doctor-update-orchestrator` (post-003-remediation verification, session `2026-05-11T09-15-00Z-rm8-013-deepseek-rereview`), the dispatch worktree at `/Users/michelkerkmeester/MEGA/Development/Code_Environment/013-doctor-rereview` was substantially destroyed between iter-9 completion (~10:08 UTC) and iter-10 completion (~10:28 UTC).
+During the 10-iteration `/deep:start-review-loop:auto` re-review on `010-doctor-update-orchestrator` (post-003-remediation verification, session `2026-05-11T09-15-00Z-rm8-013-deepseek-rereview`), the dispatch worktree at `/Users/michelkerkmeester/MEGA/Development/Code_Environment/013-doctor-rereview` was substantially destroyed between iter-9 completion (~10:08 UTC) and iter-10 completion (~10:28 UTC).
 
 **Surviving artifacts (preserved in this `review/` directory):**
 - `deep-review-state.jsonl` — all 11 records present (config + restart event + 10 iteration records + 1 final adversarial_self_check event)

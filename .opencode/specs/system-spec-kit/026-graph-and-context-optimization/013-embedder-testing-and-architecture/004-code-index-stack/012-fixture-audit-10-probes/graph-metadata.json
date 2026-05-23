@@ -54,12 +54,12 @@
       "plan.md",
       ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/registry.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-set.ts",
-      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/adapters/ollama.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
-      ".opencode/skills/system-code-graph/mcp_server/lib/ccc-readiness-probe.ts"
+      ".opencode/skills/system-code-graph/mcp_server/lib/ccc-readiness-probe.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/rerank/retrieval-rescue.ts"
     ],
     "entities": [
       {
@@ -129,12 +129,6 @@
         "source": "derived"
       },
       {
-        "name": "config.py",
-        "kind": "file",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py",
-        "source": "derived"
-      },
-      {
         "name": "validate.sh",
         "kind": "script",
         "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
@@ -162,6 +156,12 @@
         "name": "ccc-readiness-probe.ts",
         "kind": "code",
         "path": ".opencode/skills/system-code-graph/mcp_server/lib/ccc-readiness-probe.ts",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-rescue.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/rerank/retrieval-rescue.ts",
         "source": "derived"
       },
       {
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The 18-pair code-retrieval fixture at `../002-baseline-fixture/evidence/code-retrieval-fixture.json` was authored without a peer review of \"is the `expected_source_path` for each query actually the BEST answer?\". The May 18 evening instrumented bench surfaced a specific case worth scrutinizing:",
     "created_at": "2026-05-18T19:21:19.321Z",
-    "last_save_at": "2026-05-19T20:42:43.958Z",
+    "last_save_at": "2026-05-23T11:55:15.506Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

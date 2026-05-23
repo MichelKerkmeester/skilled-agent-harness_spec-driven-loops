@@ -125,7 +125,7 @@ The train shipped in the order the parent packet planned. Foundation fixes lande
 
 **Deep-Review Remediation Cycle (2026-04-08)**
 
-A 7-iteration `/spec_kit:deep-review` ran against this packet on 2026-04-08, delegating every iteration to `cli-codex exec` with `gpt-5.4` reasoning=high service_tier=fast and a read-only sandbox. The consolidated remediation evidence now lives in this section plus the child phase packets that captured the landed fixes.
+A 7-iteration `/deep:start-review-loop` ran against this packet on 2026-04-08, delegating every iteration to `cli-codex exec` with `gpt-5.4` reasoning=high service_tier=fast and a read-only sandbox. The consolidated remediation evidence now lives in this section plus the child phase packets that captured the landed fixes.
 
 **Review verdict:** `FAIL` — 0 P0, 13 P1, 9 P2 (22 total active findings, no blockers).
 

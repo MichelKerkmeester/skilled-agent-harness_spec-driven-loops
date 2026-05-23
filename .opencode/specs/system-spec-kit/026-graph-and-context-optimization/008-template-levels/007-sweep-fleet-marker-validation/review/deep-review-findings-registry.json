@@ -91,7 +91,7 @@
       "findingId": "F005",
       "severity": "P1",
       "title": "cli-copilot deep-review authority guard is not applied consistently across auto and confirm workflows",
-      "file": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
+      "file": ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
       "line": 703,
       "description": "Auto mode passes `targetAuthority` with `type` while `buildCopilotPromptArg` branches on `kind`, and confirm mode bypasses the helper entirely for so the target-authority preamble can be omitted while `--allow-all-tools` remains enabled.",
       "dimension": "cross-runtime-mirror-consistency",

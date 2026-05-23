@@ -121,7 +121,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | `020-catalog-playbook-alignment-audit/` | Catalog/playbook alignment audit for local embeddings default set | Complete |
 | `021-local-llm-legacy-review/` | Local-LLM legacy and outdated-docs/config-drift review (post-014) | In Progress |
 | `022-local-llm-legacy-remediation/` | Local-LLM legacy remediation (post-021 review) | Draft |
-| `023-post-remediation-re-review/` | Post-remediation confirmatory re-review: 10-iter /spec_kit:deep-review:auto against the same scope as 021 to confirm FAIL -> PASS transition after 022's 5-batch remediation lands. Same executor: cli-codex gpt-5.5 reasoning=high service_tier=fast. | [Draft/In Progress/Review/Complete] |
+| `023-post-remediation-re-review/` | Post-remediation confirmatory re-review: 10-iter /deep:start-review-loop:auto against the same scope as 021 to confirm FAIL -> PASS transition after 022's 5-batch remediation lands. Same executor: cli-codex gpt-5.5 reasoning=high service_tier=fast. | [Draft/In Progress/Review/Complete] |
 | `024-post-remediation-v2-re-review/` | 024-post-remediation-v2-re-review | Unknown |
 | `025-llm-model-runtime-inventory/` | LLM and embedding-model runtime inventory per subsystem | Complete |
 | `026-post-batch-11-re-review/` | 026-post-batch-11-re-review | Unknown |

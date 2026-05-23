@@ -31,7 +31,7 @@ _memory:
 
 ## 1. APPROACH
 
-10-iter deep-research dispatch via `/spec_kit:deep-research`, executor `cli-devin` (model `swe-1.6`, permission-mode `dangerous`). One iteration at a time per memory `feedback_deep_loop_iter_one_at_a_time.md` — main agent kills zombies between iters.
+10-iter deep-research dispatch via `/deep:start-research-loop`, executor `cli-devin` (model `swe-1.6`, permission-mode `dangerous`). One iteration at a time per memory `feedback_deep_loop_iter_one_at_a_time.md` — main agent kills zombies between iters.
 
 Each iter explores a dimension from §3 below, accumulates findings into `research/findings-registry.json`, and emits delta to `research/iterations/iter-NNN.md`. Saturation check after iter-005; convergence threshold 0.2 novelty rate. On convergence OR iter-010 reached, synthesize `research/research.md` and emit `decision-record.md` with routing rule + parity invariants.
 
@@ -39,7 +39,7 @@ Each iter explores a dimension from §3 below, accumulates findings into `resear
 
 | Step | Action | Output |
 |------|--------|--------|
-| 1 | `/spec_kit:deep-research:auto` initialize on this folder | `research/` packet structure populated |
+| 1 | `/deep:start-research-loop:auto` initialize on this folder | `research/` packet structure populated |
 | 2 | iter-001 — characterize deep-review contract (input/output/state/convergence) | `research/iterations/iter-001.md` |
 | 3 | iter-002 — characterize deep-research contract | `research/iterations/iter-002.md` |
 | 4 | iter-003 — characterize deep-ai-council (assumed-upgraded) contract per packet 129/001 | `research/iterations/iter-003.md` |

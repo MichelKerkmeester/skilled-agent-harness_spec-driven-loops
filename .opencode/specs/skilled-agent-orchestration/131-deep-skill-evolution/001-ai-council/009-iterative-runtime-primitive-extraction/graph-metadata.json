@@ -4,42 +4,198 @@
   "spec_folder": "skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council/009-iterative-runtime-primitive-extraction",
   "parent_id": "skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council",
   "children_ids": [],
-  "migrated": false,
-  "migration_source": "schema-normalize-2026-05-23",
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council/008-iterative-research-and-architecture"
-    ],
-    "related_to": [],
-    "supersedes": []
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
   },
   "derived": {
-    "status": "complete",
-    "importance_tier": "important",
-    "is_phase_parent": false,
-    "completion_pct": 100,
-    "last_active_at": "2026-05-23T07:45:27Z",
-    "last_save_at": "2026-05-23T10:11:30.452986Z",
     "trigger_phrases": [
-      "009 iterative runtime primitive extraction"
+      "129 002 runtime primitive extraction"
     ],
     "key_topics": [
-      "009",
-      "iterative",
+      "129",
+      "002",
       "runtime",
       "primitive",
-      "extraction"
+      "extraction",
+      "extract",
+      "council-compatible",
+      "shared",
+      "primitives",
+      "deep-loop-runtime",
+      "without",
+      "creating"
     ],
+    "importance_tier": "important",
+    "status": "complete",
     "key_files": [
-      "spec.md"
+      ".opencode/skills/deep-loop-runtime/SKILL.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "entities": [],
-    "causal_summary": "",
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-runtime/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Primitive Extraction",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Extract",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Implement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implemented Runtime Primitive Extraction",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Prior",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Runtime Primitive Extraction",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Extract council-compatible shared primitives from deep-loop-runtime without creating a peer council-runtime package.",
     "created_at": "2026-05-23T07:45:27Z",
-    "save_lineage": "post-nest-normalize",
+    "last_save_at": "2026-05-23T11:55:14.243Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ]
   }
 }

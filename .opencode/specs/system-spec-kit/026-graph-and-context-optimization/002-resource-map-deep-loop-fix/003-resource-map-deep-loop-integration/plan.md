@@ -37,7 +37,7 @@ template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify
 | **Language/Stack** | CommonJS Node (shared extractor) + TypeScript (vitest) + YAML (workflows) + Markdown (docs) |
 | **Framework** | system-spec-kit skill system + sk-deep-review + sk-deep-research |
 | **Storage** | Filesystem only — reads iteration deltas, writes resource-map.md |
-| **Testing** | Vitest snapshot coverage for the extractor; manual run of `/spec_kit:deep-research :auto` and `/spec_kit:deep-review :auto` on a test packet for end-to-end verification |
+| **Testing** | Vitest snapshot coverage for the extractor; manual run of `/deep:start-research-loop :auto` and `/deep:start-review-loop :auto` on a test packet for end-to-end verification |
 
 ### Overview
 
@@ -58,8 +58,8 @@ Build a shared evidence extractor under `.opencode/skills/system-spec-kit/script
 ### Definition of Done
 
 - [ ] Vitest snapshot coverage for extractor (both shapes) is green.
-- [ ] Manual `/spec_kit:deep-review :auto` on a fixture packet emits a non-empty `resource-map.md` with correct findings counts.
-- [ ] Manual `/spec_kit:deep-research :auto` on a fixture packet emits a non-empty `resource-map.md` with correct citation counts.
+- [ ] Manual `/deep:start-review-loop :auto` on a fixture packet emits a non-empty `resource-map.md` with correct findings counts.
+- [ ] Manual `/deep:start-research-loop :auto` on a fixture packet emits a non-empty `resource-map.md` with correct citation counts.
 - [ ] `--no-resource-map` flag cleanly skips emission.
 - [ ] `validate.sh --strict` on this packet exits 0.
 - [ ] mcp_server typecheck + focused vitest stay green.
@@ -125,9 +125,9 @@ iteration 01..NN deltas (JSON) ──► reduce-state.cjs (per-iter JSONL append
 ### Phase 3: Verification
 - [ ] Run the vitest: `npx vitest run tests/resource-map-extractor.vitest.ts` → exit 0.
 - [ ] Run `cd mcp_server && npm run typecheck` → exit 0 (sanity).
-- [ ] Manual dispatch of `/spec_kit:deep-review :auto` on a tiny fixture packet; confirm map output shape.
-- [ ] Manual dispatch of `/spec_kit:deep-research :auto` on a tiny fixture packet; confirm map output shape.
-- [ ] Test opt-out: `/spec_kit:deep-review :auto --no-resource-map` produces no map file.
+- [ ] Manual dispatch of `/deep:start-review-loop :auto` on a tiny fixture packet; confirm map output shape.
+- [ ] Manual dispatch of `/deep:start-research-loop :auto` on a tiny fixture packet; confirm map output shape.
+- [ ] Test opt-out: `/deep:start-review-loop :auto --no-resource-map` produces no map file.
 - [ ] `bash validate.sh --strict` on this packet → exit 0.
 - [ ] Grep every updated surface for `resource-map.md` — coverage check.
 <!-- /ANCHOR:phases -->
@@ -163,7 +163,7 @@ iteration 01..NN deltas (JSON) ──► reduce-state.cjs (per-iter JSONL append
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: extractor produces malformed maps; YAML changes break existing loops; opt-out flag fails.
-- **Procedure**: `git restore scripts/resource-map/ sk-deep-review/ sk-deep-research/ command/spec_kit/assets/spec_kit_deep-research_*.yaml command/spec_kit/assets/spec_kit_deep-review_*.yaml command/spec_kit/deep-research.md command/spec_kit/deep-review.md`. Remove phase 013 packet folder.
+- **Procedure**: `git restore scripts/resource-map/ sk-deep-review/ sk-deep-research/ command/spec_kit/assets/deep_start-research-loop_*.yaml command/spec_kit/assets/deep_start-review-loop_*.yaml command/spec_kit/deep-research.md command/spec_kit/deep-review.md`. Remove phase 013 packet folder.
 - **No data migration**, no schema change, no DB impact.
 <!-- /ANCHOR:rollback -->
 

@@ -77,7 +77,7 @@ Use `memory.md` as the structural template. Adjust:
 - `## MUTATION BOUNDARIES`: add-only; never delete edges. Phase 3 first activity validates.
 - `## WORKFLOW PHASES`: 6 phases (discovery, analysis, snapshot, apply, post-verify, rollback) — same shape as `memory.md` but customized.
 - `## OUTPUT CONTRACT`: stats table, drift signals, action taken, recommendation, next steps.
-- `## RELATED COMMANDS`: `/doctor:update`, `/doctor:memory` (host DB), `/spec_kit:deep-research`, `/spec_kit:deep-review`.
+- `## RELATED COMMANDS`: `/doctor:update`, `/doctor:memory` (host DB), `/deep:start-research-loop`, `/deep:start-review-loop`.
 
 ### `doctor_causal-graph_auto.yaml`
 

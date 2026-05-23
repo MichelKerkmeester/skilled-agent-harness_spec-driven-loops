@@ -94,7 +94,7 @@ _memory:
 
 > Deep-research loop (user-triggered, out of scope for main agent).
 
-- [ ] T030 [L] User invokes `/spec_kit:deep-research:auto 001-research-smallcode --max-iterations=20`
+- [ ] T030 [L] User invokes `/deep:start-research-loop:auto 001-research-smallcode --max-iterations=20`
 - [ ] T031 [L] YAML workflow runs iters 1..20 (or until convergence) dispatching cli-devin SWE-1.6 per iter
 - [ ] T032 [L] Synthesis pass writes research/research.md with per-RQ deltas
 <!-- /ANCHOR:phase-3 -->

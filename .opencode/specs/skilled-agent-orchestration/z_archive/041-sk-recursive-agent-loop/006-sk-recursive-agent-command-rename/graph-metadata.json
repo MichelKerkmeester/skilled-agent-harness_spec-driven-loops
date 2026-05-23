@@ -40,7 +40,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/specs/descriptions.json",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -48,12 +47,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "descriptions.json",
-        "kind": "config",
-        "path": ".opencode/specs/descriptions.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -191,11 +184,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After phase `005`, the runtime mutator, skill package, and wrapper content all aligned on `agent-improver`, but the command entrypoint itself still carried the older `agent-improvement-loop` name. That left the repo with one last naming mismatch across the command markdown file, command asset filenames, wrapper filenames, README examples, runtime agent tables, and packet-history references.",
     "created_at": "2026-04-12T09:02:50.188Z",
-    "last_save_at": "2026-05-19T13:51:38.521Z",
+    "last_save_at": "2026-05-23T11:55:14.431Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

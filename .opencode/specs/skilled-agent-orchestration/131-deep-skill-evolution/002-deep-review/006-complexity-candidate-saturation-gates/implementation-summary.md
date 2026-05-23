@@ -15,8 +15,8 @@ _memory:
     next_safe_action: "Run final validation and use commit handoff."
     blockers: []
     key_files:
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml"
+      - ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml"
+      - ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml"
       - "checklist.md"
       - "decision-record.md"
 ---
@@ -57,8 +57,8 @@ The graph convergence handler remains unchanged: empty graphs still return `CONT
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modified | Added candidate and graphless legal-stop gates plus blocked-stop payload fields. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modified | Mirrored auto workflow gate semantics. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Modified | Added candidate and graphless legal-stop gates plus blocked-stop payload fields. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Modified | Mirrored auto workflow gate semantics. |
 | `spec.md` | Replaced scaffold | Level 3 feature specification for Phase F. |
 | `plan.md` | Replaced scaffold | Level 3 implementation plan and architecture/data-flow notes. |
 | `tasks.md` | Replaced scaffold | Level 3 task tracking with dependencies and verification tasks. |
@@ -208,6 +208,6 @@ Files (explicit paths for `git add`):
 
 ```text
 .opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/006-complexity-candidate-saturation-gates/[8 files]
-.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
-.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml
+.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml
 ```

@@ -250,7 +250,7 @@ Nothing actionable. The migration was conservative and lossless. Your causal lin
 
 ## 6. Subsystem 4: Deep Loop Graph
 
-The Deep Loop Graph is the planned backing store for `/spec_kit:deep-research` and `/spec_kit:deep-review` iteration tracking. The MCP tools `deep_loop_graph_query`, `deep_loop_graph_status`, `deep_loop_graph_convergence` and `deep_loop_graph_upsert` are wired against it in code.
+The Deep Loop Graph is the planned backing store for `/deep:start-research-loop` and `/deep:start-review-loop` iteration tracking. The MCP tools `deep_loop_graph_query`, `deep_loop_graph_status`, `deep_loop_graph_convergence` and `deep_loop_graph_upsert` are wired against it in code.
 
 ### 6.1 Before
 
@@ -266,7 +266,7 @@ Schema is code-defined but unmaterialized. Expected tables when one day it does 
 
 ### 6.3 What this means for you
 
-The `deep_loop_graph_*` MCP tools work on a fresh clone. They return empty results because no rows exist yet. Running `/spec_kit:deep-research` does not auto-populate this DB. It populates packet-local markdown.
+The `deep_loop_graph_*` MCP tools work on a fresh clone. They return empty results because no rows exist yet. Running `/deep:start-research-loop` does not auto-populate this DB. It populates packet-local markdown.
 
 If a future packet wants a global cross-iteration view, that will be the trigger to actually persist this graph. Until then, treat it as a planned-but-empty surface.
 

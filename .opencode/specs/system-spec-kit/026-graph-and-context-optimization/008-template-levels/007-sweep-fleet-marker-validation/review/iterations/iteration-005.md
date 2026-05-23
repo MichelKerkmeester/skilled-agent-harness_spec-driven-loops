@@ -19,9 +19,9 @@ BINDING: specFolder=/Users/michelkerkmeester/MEGA/Development/Code_Environment/P
 ## Files Reviewed
 
 - `.opencode/skills/sk-code-review/references/review_core.md`
-- `.opencode/commands/spec_kit/deep-review.md`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+- `.opencode/commands/deep/start-review-loop.md`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
+- `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
 - `.opencode/agents/deep-review.md`
 - `.claude/agents/deep-review.md`
 - `.codex/agents/deep-review.toml`
@@ -39,10 +39,10 @@ None.
 
 ### P1 Findings
 
-1. **cli-copilot deep-review authority guard is not applied consistently across auto and confirm workflows** -- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:703` -- Auto mode constructs `targetAuthority = { type: 'approved', specFolder: specFolderRaw }` [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:702-704], but `buildCopilotPromptArg` expects a discriminated union keyed by `kind` [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:101-103]. The helper only enters its approved branch when `input.targetAuthority.kind === 'approved'` [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:275-286], then only prepends the target-authority preamble when `targetAuthority.kind === 'approved'` [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:292-301]. With the YAML's `type` shape, neither the approved branch nor the missing-authority `writeIntent` branch fires, so the original prompt is passed through and `--allow-all-tools` remains enabled [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:316-340]. Confirm mode is weaker still: its cli-copilot branch invokes `copilot -p "$(cat "$PROMPT_PATH")" --allow-all-tools --no-ask-user` directly without `buildCopilotPromptArg` or a target-authority preamble [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:700-716]. This is a P1 because the 007 review explicitly depends on preventing recovered or historical context from redirecting writes away from the approved `007-marker-validation-unused-scaffold/review` packet.
+1. **cli-copilot deep-review authority guard is not applied consistently across auto and confirm workflows** -- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:703` -- Auto mode constructs `targetAuthority = { type: 'approved', specFolder: specFolderRaw }` [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:702-704], but `buildCopilotPromptArg` expects a discriminated union keyed by `kind` [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:101-103]. The helper only enters its approved branch when `input.targetAuthority.kind === 'approved'` [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:275-286], then only prepends the target-authority preamble when `targetAuthority.kind === 'approved'` [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:292-301]. With the YAML's `type` shape, neither the approved branch nor the missing-authority `writeIntent` branch fires, so the original prompt is passed through and `--allow-all-tools` remains enabled [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:316-340]. Confirm mode is weaker still: its cli-copilot branch invokes `copilot -p "$(cat "$PROMPT_PATH")" --allow-all-tools --no-ask-user` directly without `buildCopilotPromptArg` or a target-authority preamble [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:700-716]. This is a P1 because the 007 review explicitly depends on preventing recovered or historical context from redirecting writes away from the approved `007-marker-validation-unused-scaffold/review` packet.
    - Finding class: cross-consumer
    - Scope proof: Compared the command entrypoint, auto and confirm YAML executor branches, helper union type, helper branch logic, generated prompt pack, and runtime agent mirrors. The runtime mirrors consistently enforce a local review-packet write boundary, so the defect is isolated to cli-copilot YAML-to-helper wiring and confirm-mode parity rather than agent mirror text.
-   - Affected surface hints: ["spec_kit_deep-review_auto.yaml", "spec_kit_deep-review_confirm.yaml", "buildCopilotPromptArg", "cli-copilot executor", "target authority"]
+   - Affected surface hints: ["deep_start-review-loop_auto.yaml", "deep_start-review-loop_confirm.yaml", "buildCopilotPromptArg", "cli-copilot executor", "target authority"]
    - Recommendation: Change the auto YAML object to `{ kind: 'approved', specFolder: specFolderRaw }`, add a missing-authority `{ kind: 'missing', writeIntent: true }` fallback when the resolved spec folder is absent, and route the confirm cli-copilot branch through the same helper before allowing `--allow-all-tools`.
 
 ```json
@@ -50,11 +50,11 @@ None.
   "findingId": "F005",
   "claim": "The cli-copilot deep-review workflows can omit the target-authority guard because auto mode passes the wrong discriminator to buildCopilotPromptArg and confirm mode bypasses the helper entirely.",
   "evidenceRefs": [
-    ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:702-704",
+    ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:702-704",
     ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:101-103",
     ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:275-301",
     ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:316-340",
-    ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:700-716"
+    ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:700-716"
   ],
   "counterevidenceSought": "Checked the helper implementation, auto YAML notes, confirm YAML branch, canonical agent contract, runtime mirrors, prompt-pack template, and prior cross-runtime review findings. The helper exists and mirrors enforce read/write boundaries, but the auto call shape and confirm branch do not deliver that helper's authority preamble to cli-copilot.",
   "alternativeExplanation": "A transpiler or runtime wrapper could theoretically normalize `type` to `kind`, but no inspected YAML, helper, or executor wrapper performs that normalization, and the helper branches directly on `.kind`.",
@@ -80,12 +80,12 @@ None new.
 
 ## Integration Evidence
 
-- `/spec_kit:deep-review` setup recognizes `cli-copilot` as an executor option and documents it as `copilot -p "PROMPT" --model X --allow-all-tools --no-ask-user` [SOURCE: .opencode/commands/spec_kit/deep-review.md:127-132].
-- Auto YAML renders `.opencode/skills/sk-deep-review/assets/prompt_pack_iteration.md.tmpl` into `{state_paths.prompt_dir}/iteration-{current_iteration}.md` [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:638-657].
-- Auto YAML imports `buildCopilotPromptArg` and comments that workflow-resolved spec folder is the only legal write authority [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:690-701].
-- Auto YAML passes `targetAuthority = { type: 'approved', specFolder: specFolderRaw }`, which does not match the helper's `kind` union [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:702-704] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:101-103].
+- `/deep:start-review-loop` setup recognizes `cli-copilot` as an executor option and documents it as `copilot -p "PROMPT" --model X --allow-all-tools --no-ask-user` [SOURCE: .opencode/commands/deep/start-review-loop.md:127-132].
+- Auto YAML renders `.opencode/skills/sk-deep-review/assets/prompt_pack_iteration.md.tmpl` into `{state_paths.prompt_dir}/iteration-{current_iteration}.md` [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:638-657].
+- Auto YAML imports `buildCopilotPromptArg` and comments that workflow-resolved spec folder is the only legal write authority [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:690-701].
+- Auto YAML passes `targetAuthority = { type: 'approved', specFolder: specFolderRaw }`, which does not match the helper's `kind` union [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:702-704] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:101-103].
 - The helper only prepends `## TARGET AUTHORITY` or strips `--allow-all-tools` when `.kind` and `.writeIntent` match the expected shapes [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:292-340].
-- Confirm YAML's cli-copilot branch never calls the helper and dispatches both small and large prompts with `--allow-all-tools` [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:700-716].
+- Confirm YAML's cli-copilot branch never calls the helper and dispatches both small and large prompts with `--allow-all-tools` [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:700-716].
 - Runtime mirrors did not introduce a separate artifact-redirection issue; all inspected mirrors keep the same packet-boundary and read-only target constraints [SOURCE: .opencode/agents/deep-review.md:33-34] [SOURCE: .claude/agents/deep-review.md:33-34] [SOURCE: .codex/agents/deep-review.toml:26-27] [SOURCE: .gemini/agents/deep-review.md:33-34].
 
 ## Edge Cases

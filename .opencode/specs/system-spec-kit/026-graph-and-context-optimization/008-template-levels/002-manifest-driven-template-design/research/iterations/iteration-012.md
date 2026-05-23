@@ -585,4 +585,4 @@ If the team wants the narrower wording requested in the prompt, drop `manifest|m
 
 ## Next Focus
 
-Iteration 13 should re-dry-run the iteration-8 scenarios with explicit AI conversation transcripts: user says X, AI responds Y, AI invokes Z. Verify every word the AI emits stays level-only, especially around Gate 3, `/spec_kit:plan`, `/spec_kit:deep-research`, phase-parent creation, validator failure remediation, and JSON/stdout handoff parsing.
+Iteration 13 should re-dry-run the iteration-8 scenarios with explicit AI conversation transcripts: user says X, AI responds Y, AI invokes Z. Verify every word the AI emits stays level-only, especially around Gate 3, `/spec_kit:plan`, `/deep:start-research-loop`, phase-parent creation, validator failure remediation, and JSON/stdout handoff parsing.

@@ -95,7 +95,7 @@ All findings reference this SHA.
 - Layer 2: reviewSessionIDs.has(sessionID) → skip (child session)
 - Layer 3: reviewedMessageBySession.get(parentSessionID) === currentSignature → skip
 
-**Reusability summary**: HIGH reusability for our review skills. Our skills lack runtime recursion detection — the LEAF-only contract exists only in agent definitions. A marker-based + session-tagged + dedup-keyed combinator could apply to /spec_kit:deep-research and /spec_kit:deep-review by adding runtime guards to YAML workflow dispatchers. Implementation would require modifying spec_kit_deep-research_auto.yaml and spec_kit_deep-review_auto.yaml to add marker scanning logic at the dispatch gate, and updating agent definitions to emit markers in output headers. The existing state file format already supports the metadata needed for layers 2 and 3.
+**Reusability summary**: HIGH reusability for our review skills. Our skills lack runtime recursion detection — the LEAF-only contract exists only in agent definitions. A marker-based + session-tagged + dedup-keyed combinator could apply to /deep:start-research-loop and /deep:start-review-loop by adding runtime guards to YAML workflow dispatchers. Implementation would require modifying deep_start-research-loop_auto.yaml and deep_start-review-loop_auto.yaml to add marker scanning logic at the dispatch gate, and updating agent definitions to emit markers in output headers. The existing state file format already supports the metadata needed for layers 2 and 3.
 
 ---
 
@@ -322,7 +322,7 @@ All findings reference this SHA.
 
 **Implementation path**:
 - sk-code-review: Edit SKILL.md Phase 4 output contract (lines 302-329), replace free-form "Overall assessment" section with exact-string matchable status line: "**Review status**: [APPROVED \| REQUESTED_CHANGES \| COMMENTED]". This change should be made in both the main SKILL.md template and any reference templates in the references/ subdirectory.
-- deep-review: Modify spec_kit_deep-review_auto.yaml and spec_kit_deep-review_confirm.yaml synthesis step to add "Review verdict: [PASS/CONDITIONAL/FAIL]" as the final line of iteration-NNN.md output. Ensure verdict aligns with P0/P1/P2 findings (PASS if no P0/P1, CONDITIONAL if P1 present, FAIL if P0 present). The synthesis step should parse the findings JSONL and emit the exact string based on the highest severity finding.
+- deep-review: Modify deep_start-review-loop_auto.yaml and deep_start-review-loop_confirm.yaml synthesis step to add "Review verdict: [PASS/CONDITIONAL/FAIL]" as the final line of iteration-NNN.md output. Ensure verdict aligns with P0/P1/P2 findings (PASS if no P0/P1, CONDITIONAL if P1 present, FAIL if P0 present). The synthesis step should parse the findings JSONL and emit the exact string based on the highest severity finding.
 
 **Estimated effort**: 2-3 hours total (1 hour for sk-code-review template edit + testing, 1-2 hours for deep-review YAML modification + alignment logic + testing)
 
@@ -340,7 +340,7 @@ All findings reference this SHA.
 - sk-code-review: Add "CODE-REVIEW\n\n" header to all review prompt templates in references/ subdirectory (references/code_quality_checklist.md, references/security_checklist.md, and any other reference templates). The header should be the first line of the prompt, followed by a blank line.
 - deep-review: Add "DEEP-REVIEW\n\n" header to prompt_pack_iteration.md.tmpl (SKILL.md:83). This template is rendered for each iteration, so the marker will appear in every iteration output.
 - deep-research: Add "DEEP-RESEARCH\n\n" header to prompt_pack_iteration.md.tmpl (SKILL.md:88). Same rationale as deep-review.
-- Update YAML workflow dispatchers (spec_kit_deep-review_auto.yaml, spec_kit_deep-research_auto.yaml, and any other dispatch workflows) to scan the last iteration output for these markers before dispatching another iteration. If a marker is detected, the dispatcher should skip with a "nested loop detected" error message.
+- Update YAML workflow dispatchers (deep_start-review-loop_auto.yaml, deep_start-research-loop_auto.yaml, and any other dispatch workflows) to scan the last iteration output for these markers before dispatching another iteration. If a marker is detected, the dispatcher should skip with a "nested loop detected" error message.
 
 **Estimated effort**: 1-2 hours total (30 minutes per skill to add header to templates + 30 minutes to update YAML dispatchers with marker scanning logic + testing)
 

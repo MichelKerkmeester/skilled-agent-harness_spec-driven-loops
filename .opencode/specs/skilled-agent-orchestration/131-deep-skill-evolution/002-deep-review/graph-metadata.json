@@ -13,8 +13,8 @@
     "skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/007-complexity-ledger-led-graph-vocab",
     "skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration"
   ],
-  "migrated": false,
-  "migration_source": "thematic-nesting-from-flat-131",
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -30,20 +30,22 @@
     "key_topics": [
       "deep-review",
       "complexity",
+      "arc",
       "schema",
-      "validator",
+      "search",
       "ledger",
-      "saturation"
+      "candidate",
+      "saturation",
+      "cluster",
+      "groups",
+      "sub-phases",
+      "share"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
       "spec.md",
-      "001-complexity-research-synthesis/spec.md",
-      "002-complexity-seeded-fixture-harness/spec.md",
-      "003-complexity-schema-prompt-contract/spec.md",
-      "004-complexity-validator-v2-enforcement/spec.md",
-      "005-complexity-search-ledger-persistence/spec.md"
+      ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/spec.md"
     ],
     "entities": [
       {
@@ -53,16 +55,46 @@
         "source": "derived"
       },
       {
-        "name": "deep-review",
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Last Updated",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Take deep-review search-depth hardening from research synthesis through staged rollout (schema + validator + ledger + saturation + calibration).",
+    "causal_summary": "This cluster groups 8 sub-phases that share a single thematic focus. Before restructuring, these existed as flat siblings at the root of `131-deep-skill-evolution/`. Nesting them under this thematic phase parent reduces root-level fan-out and makes the cluster's internal arc easier to follow.",
     "created_at": "2026-05-23T09:52:56.265976Z",
-    "last_save_at": "2026-05-23T09:52:56.265976Z",
-    "save_lineage": "nesting-restructure",
+    "last_save_at": "2026-05-23T11:55:14.251Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"

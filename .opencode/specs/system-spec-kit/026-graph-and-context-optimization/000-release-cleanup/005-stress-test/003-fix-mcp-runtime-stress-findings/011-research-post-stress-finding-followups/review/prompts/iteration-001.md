@@ -26,7 +26,7 @@ You are iteration 1/10 of a deep-review loop auditing the integrated 012-015 imp
 
 3. **Implementation files for cross-packet flow tracing**:
    - `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts` — `buildCopilotPromptArg`, `validateSpecFolder`, `buildTargetAuthorityPreamble`, `buildMissingAuthorityGate3Prompt` (Q-FLOW)
-   - `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` — call site (Q-FLOW)
+   - `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` — call site (Q-FLOW)
    - `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts` — `getGraphReadinessSnapshot` (Q-CROSS w/ 013)
    - `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts` — readiness.action surface
    - `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts` — seed telemetry passthrough (Q-CROSS w/ 012)

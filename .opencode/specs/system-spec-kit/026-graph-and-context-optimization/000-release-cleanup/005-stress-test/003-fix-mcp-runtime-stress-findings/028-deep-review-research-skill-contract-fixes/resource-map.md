@@ -51,10 +51,10 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Updated | OK | Added `step_stage_artifact_dir` after `step_update_config_status` in synthesis phase |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Updated | OK | Same step added |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Updated | OK | Same step added |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Updated | OK | Same step added |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Updated | OK | Added `step_stage_artifact_dir` after `step_update_config_status` in synthesis phase |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Updated | OK | Same step added |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Updated | OK | Same step added |
+| `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Updated | OK | Same step added |
 
 ---
 

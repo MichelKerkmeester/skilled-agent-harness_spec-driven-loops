@@ -142,7 +142,7 @@ Additional decisions recorded after research convergence will be appended here.
 
 **Wave A:** Advisor command-surface normalization in `skill_advisor.py` — `command-memory-save`, `command-spec-kit-resume`, `command-spec-kit-deep-research`, `command-spec-kit-deep-review` normalize to owning skills. Guard logic preserves quoted command references.
 
-**Wave B:** Gate 3 routing in `gate-3-classifier.ts` extended with deep-loop write markers including `/spec_kit:deep-research`, `/spec_kit:deep-review`, `:auto` paired with `spec_kit`, natural-language deep-loop markers, `autoresearch`, `convergence`.
+**Wave B:** Gate 3 routing in `gate-3-classifier.ts` extended with deep-loop write markers including `/deep:start-research-loop`, `/deep:start-review-loop`, `:auto` paired with `spec_kit`, natural-language deep-loop markers, `autoresearch`, `convergence`.
 
 **Wave C:** Broader resume/context markers + narrow mixed-tail write exception + negation/prompt-only/read-only deep-loop guards added (FF reduced from 22 to 1).
 

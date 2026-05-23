@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The benchmark format mechanics for MCP skill-local benchmark folders were split across two separate files in sk-doc (`references/benchmarks/FORMAT.md` and `references/benchmarks_format.md`) and mirrored to sibling MCP skills via relative symlinks. This created three problems: readers had to consult two files to get the full picture; the symlink topology added maintenance overhead and path-resolution fragility; and the FORMAT.md and benchmarks_format.md naming did not follow the `*_creation.md` pattern used by sk-doc's other creation references (feature_catalog_creation.md, manual_testing_playbook_creation.md, agent_creation.md).",
     "created_at": "2026-05-19T07:48:10Z",
-    "last_save_at": "2026-05-19T12:49:55.502Z",
+    "last_save_at": "2026-05-23T11:55:15.562Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

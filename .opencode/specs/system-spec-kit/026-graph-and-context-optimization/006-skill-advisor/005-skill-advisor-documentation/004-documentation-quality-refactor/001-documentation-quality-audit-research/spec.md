@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: 001-documentation-quality-audit-research (skill-advisor docs audit via 20-iter cli-devin SWE 1.6 deep-research)"
-description: "Exhaustive audit of system-skill-advisor docs via 20 iterations of /spec_kit:deep-research:auto dispatched through cli-devin SWE 1.6. Surfaces all drift, broken refs, content gaps, HVR violations, alignment misses, and produces a ranked findings ledger that gates phases 002-005."
+description: "Exhaustive audit of system-skill-advisor docs via 20 iterations of /deep:start-research-loop:auto dispatched through cli-devin SWE 1.6. Surfaces all drift, broken refs, content gaps, HVR violations, alignment misses, and produces a ranked findings ledger that gates phases 002-005."
 trigger_phrases:
   - "skill-advisor docs audit"
   - "20-iter deep-research skill-advisor"
@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-05-16T00:00:00Z"
     last_updated_by: "claude-opus-4-7-1m"
     recent_action: "Scaffolded child 001"
-    next_safe_action: "Invoke /spec_kit:deep-research:auto with 20 iters"
+    next_safe_action: "Invoke /deep:start-research-loop:auto with 20 iters"
     blockers: []
     key_files: []
     session_dedup:
@@ -53,7 +53,7 @@ _memory:
 The system-skill-advisor docs need a coordinated audit before any rewrite/alignment work begins. A single-pass scan misses cross-cutting drift; 20 targeted iterations across all 6 doc surfaces (SKILL.md, README.md, ARCHITECTURE.md, INSTALL_GUIDE.md, references/*, feature_catalog/*, manual_testing_playbook/*) plus cross-cutting concerns (HVR compliance, cross-link integrity, source↔doc drift, hook-reference resolution) will produce a complete findings ledger.
 
 ### Purpose
-Run `/spec_kit:deep-research:auto` for 20 iterations via cli-devin SWE 1.6 to produce `research/research.md` — the authoritative findings ledger that gates phases 002-005.
+Run `/deep:start-research-loop:auto` for 20 iterations via cli-devin SWE 1.6 to produce `research/research.md` — the authoritative findings ledger that gates phases 002-005.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -125,7 +125,7 @@ Run `/spec_kit:deep-research:auto` for 20 iterations via cli-devin SWE 1.6 to pr
 | Risk | cli-devin background dispatch hangs without `</dev/null` | High | Workflow YAML enforces; verify in logs |
 | Risk | SWE-1.6 bundle hallucination | High | P0 gates (grep-verify + smoke-run) before trusting any iter |
 | Risk | Early convergence despite `--convergence=0.0` | Medium | Inspect stopReason in state.jsonl; resume if not `maxIterationsReached` |
-| Dependency | `/spec_kit:deep-research` skill availability | Green | Verified loaded |
+| Dependency | `/deep:start-research-loop` skill availability | Green | Verified loaded |
 | Dependency | cli-devin CLI installed + SWE 1.6 model accessible | Green | Verified in plan phase |
 <!-- /ANCHOR:risks -->
 

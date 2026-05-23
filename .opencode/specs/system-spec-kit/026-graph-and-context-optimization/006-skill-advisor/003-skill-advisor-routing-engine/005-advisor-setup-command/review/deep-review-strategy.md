@@ -48,7 +48,7 @@ Audit the implementation of the new `/spec_kit:skill-advisor` slash command, its
 - The implementation files listed above
 - The strict spec-folder validator: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <folder> --strict`
 - sk-doc's `extract_structure.py` for command markdown DQI baseline (already 94/100 Excellent)
-- Existing `/spec_kit:resume`, `/spec_kit:plan`, `/spec_kit:deep-review` command markdown for cross-command convention parity
+- Existing `/spec_kit:resume`, `/spec_kit:plan`, `/deep:start-review-loop` command markdown for cross-command convention parity
 - The skill-advisor source files referenced by the new command's mutation boundaries: `lib/scorer/lanes/{explicit,lexical}.ts`, `lib/scorer/weights-config.ts`, per-skill `graph-metadata.json`
 - sk-doc command_template.md (assets/agents/command_template.md) for Mode-Based template compliance
 

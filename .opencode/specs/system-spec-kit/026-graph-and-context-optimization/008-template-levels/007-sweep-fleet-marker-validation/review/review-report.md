@@ -43,7 +43,7 @@ All five configured dimensions completed: implementation-spec alignment, code co
     "T002 Refresh 007 description.json and graph-metadata.json so parent linkage and 010 phase-parent children agree.",
     "T003 Strip HTML comments or specifically ignore SCAFFOLD_* marker blocks before SECTION_COUNTS and AI_PROTOCOLS semantic checks.",
     "T004 Port SECTION_COUNTS and AI_PROTOCOLS into the Node orchestrator or run the shell semantic validators after the Node path, then add negative SCAFFOLD_* comment fixtures.",
-    "T005 Change spec_kit_deep-review_auto.yaml to pass `{ kind: 'approved', specFolder }` to buildCopilotPromptArg and route confirm cli-copilot through the same helper."
+    "T005 Change deep_start-review-loop_auto.yaml to pass `{ kind: 'approved', specFolder }` to buildCopilotPromptArg and route confirm cli-copilot through the same helper."
   ],
   "findingClasses": {
     "cross-consumer": 3,
@@ -100,11 +100,11 @@ None.
    - **Affected surfaces:** validate.sh, Node validation orchestrator, validator-registry.json, semantic shell validators, strict validation tests
 
 5. **P1-005: cli-copilot deep-review authority guard is not applied consistently across auto and confirm workflows**
-   - **Evidence:** `spec_kit_deep-review_auto.yaml:702-704` passes `targetAuthority = { type: 'approved', specFolder: specFolderRaw }`, while `executor-config.ts:101-103` and `:275-301` expect and branch on `kind`; `executor-config.ts:316-340` only strips `--allow-all-tools` when the missing-authority branch is reached. Confirm mode bypasses the helper entirely at `spec_kit_deep-review_confirm.yaml:700-716`.
+   - **Evidence:** `deep_start-review-loop_auto.yaml:702-704` passes `targetAuthority = { type: 'approved', specFolder: specFolderRaw }`, while `executor-config.ts:101-103` and `:275-301` expect and branch on `kind`; `executor-config.ts:316-340` only strips `--allow-all-tools` when the missing-authority branch is reached. Confirm mode bypasses the helper entirely at `deep_start-review-loop_confirm.yaml:700-716`.
    - **Impact:** cli-copilot deep-review dispatch can run without the `## TARGET AUTHORITY` preamble even though recovered or historical context must not redirect writes away from the approved 007 packet.
    - **Recommendation:** Pass `{ kind: 'approved', specFolder }` from auto YAML, add a missing-authority fallback, and route confirm cli-copilot through `buildCopilotPromptArg` before enabling `--allow-all-tools`.
    - **Finding class:** cross-consumer
-   - **Affected surfaces:** spec_kit_deep-review_auto.yaml, spec_kit_deep-review_confirm.yaml, buildCopilotPromptArg executor, target authority
+   - **Affected surfaces:** deep_start-review-loop_auto.yaml, deep_start-review-loop_confirm.yaml, buildCopilotPromptArg executor, target authority
 
 ### P2 Findings
 
@@ -118,7 +118,7 @@ None.
 | P1-002 | P1 | implementation-spec-alignment | `007/graph-metadata.json:5` | active |
 | P1-003 | P1 | code-correctness | `check-section-counts.sh:61` | active |
 | P1-004 | P1 | validator-coverage | `validate.sh:1019` | active |
-| P1-005 | P1 | cross-runtime-mirror-consistency | `spec_kit_deep-review_auto.yaml:703` | active |
+| P1-005 | P1 | cross-runtime-mirror-consistency | `deep_start-review-loop_auto.yaml:703` | active |
 
 ## Remediation Workstreams
 

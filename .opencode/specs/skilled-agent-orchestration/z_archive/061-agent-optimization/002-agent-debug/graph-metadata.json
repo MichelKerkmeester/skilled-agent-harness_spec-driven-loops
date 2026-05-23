@@ -14,17 +14,7 @@
   "derived": {
     "trigger_phrases": [
       "002-agent-debug",
-      "debug optimization",
-      "skilled-agent-orchestration/z_archive/061-agent-optimization/002-agent-debug",
-      "skilled-agent-orchestration",
-      "z_archive",
-      "061-agent-optimization",
-      "debug",
-      "agent",
-      "optimization",
-      "sub-phase",
-      "under",
-      "applying"
+      "debug optimization"
     ],
     "key_topics": [
       "002-agent-debug",
@@ -40,7 +30,7 @@
       "debug-delegation",
       "write"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "complete",
     "key_files": [
       "improvement/candidates/iter-1-candidate-001.md",
@@ -201,7 +191,7 @@
     ],
     "causal_summary": "Improvement focus: **5-phase root-cause discipline; user-invoked-only constraint; debug-delegation.md write boundary**. USER-INVOKED ONLY — never auto-dispatched (per memory rule). Retains exclusive write access for debug-delegation.md.",
     "created_at": "2026-05-18T07:49:27.102Z",
-    "last_save_at": "2026-05-19T13:51:38.611Z",
+    "last_save_at": "2026-05-23T11:55:14.511Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

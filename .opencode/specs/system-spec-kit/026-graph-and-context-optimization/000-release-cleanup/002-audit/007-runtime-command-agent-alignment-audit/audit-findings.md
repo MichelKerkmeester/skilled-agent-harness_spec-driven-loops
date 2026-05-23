@@ -36,7 +36,7 @@ Canonical sources used:
 | F-008 | P2 | MISSING | `.opencode/agents/orchestrate.md`, `.claude/agents/orchestrate.md`, `.gemini/agents/orchestrate.md` | Orchestrators lacked the runtime agent directory resolution rule | Fixed |
 | F-009 | P2 | MISSING | `.opencode/agents/write.md`, `.claude/agents/write.md`, `.gemini/agents/write.md` | Write agents did not explicitly cite the evergreen-doc rule | Fixed |
 | F-010 | P2 | DRIFT | `.opencode/agents/improve-agent.md`, runtime mirrors, `.opencode/commands/improve/agent.md` | Narrative contained stale phase-number labels | Fixed |
-| F-011 | P2 | DRIFT | `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Deep workflow assets cited packet-history labels in comments | Fixed |
+| F-011 | P2 | DRIFT | `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`, `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`, `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Deep workflow assets cited packet-history labels in comments | Fixed |
 
 ## Per-File Classification
 
@@ -55,9 +55,9 @@ Canonical sources used:
 | `.opencode/commands/doctor/mcp_debug.md` | DRIFT -> FIXED | F-001 |
 | `.opencode/commands/spec_kit/complete.md` | PASS | None |
 | `.opencode/commands/spec_kit/implement.md` | PASS | None |
-| `.opencode/commands/spec_kit/deep-review.md` | PASS | YAML assets fixed under F-011 |
+| `.opencode/commands/deep/start-review-loop.md` | PASS | YAML assets fixed under F-011 |
 | `.opencode/commands/spec_kit/resume.md` | PASS | None |
-| `.opencode/commands/spec_kit/deep-research.md` | PASS | YAML asset fixed under F-011 |
+| `.opencode/commands/deep/start-research-loop.md` | PASS | YAML asset fixed under F-011 |
 | `.opencode/commands/spec_kit/plan.md` | PASS | None |
 | `.opencode/commands/improve/agent.md` | DRIFT -> FIXED | F-010 |
 | `.opencode/commands/improve/prompt.md` | PASS | None |

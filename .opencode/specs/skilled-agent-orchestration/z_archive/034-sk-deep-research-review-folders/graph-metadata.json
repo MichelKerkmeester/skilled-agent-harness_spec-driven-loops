@@ -41,9 +41,6 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
-      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
-      ".opencode/commands/spec_kit/deep-research.md",
       ".opencode/agents/deep-review.md",
       ".claude/agents/deep-review.md",
       ".codex/agents/deep-review.toml",
@@ -56,24 +53,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "spec_kit_deep-research_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "spec_kit_deep-research_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research.md",
-        "kind": "doc",
-        "path": ".opencode/commands/spec_kit/deep-research.md",
-        "source": "derived"
-      },
       {
         "name": "deep-review.md",
         "kind": "doc",
@@ -199,11 +178,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Update Claude",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This packet plans a dedicated `review/` subfolder inside the target spec so all review-mode outputs live together: config, JSONL state, strategy, dashboard, iteration artifacts, pause sentinel, and final report. The implementation also needs a legacy migration path because existing review sessions already persist their state under `scratch/`.",
     "created_at": "2026-04-12T09:02:50.178Z",
-    "last_save_at": "2026-05-19T13:51:38.473Z",
+    "last_save_at": "2026-05-23T11:55:14.393Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

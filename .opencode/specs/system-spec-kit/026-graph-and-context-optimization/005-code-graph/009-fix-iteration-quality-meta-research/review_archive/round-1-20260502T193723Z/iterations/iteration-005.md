@@ -19,8 +19,8 @@
 - `.opencode/commands/spec_kit/plan.md:120-151`
 - `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:520-568`
 - `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:570-617`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1036-1082`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:1058-1085`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1036-1082`
+- `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:1058-1085`
 - `.opencode/agents/deep-review.md:145-184`
 - `.opencode/skills/sk-deep-review/references/state_format.md:170-204`
 
@@ -32,7 +32,7 @@ None.
 
 ### P1
 
-1. **Planning Packet fix-completeness fields remain report-only before `/spec_kit:plan`.** R5 classification: `cross-consumer`. A sample R4 finding can now carry `findingClass` and `scopeProof` in the code-review schema (`sk-code-review/SKILL.md:288-320`; `review_core.md:76-99`). R7's synthesis contract requires a Planning Packet containing `findingClasses`, `affectedSurfacesSeed`, and `fixCompletenessRequired`, and its active registry asks for `findingClass`, `scopeProofNeeded`, and `affectedSurfaceHints` (`spec_kit_deep-review_auto.yaml:1047-1055`; `spec_kit_deep-review_confirm.yaml:1069-1077`). R3's planner, however, only says to "Generate Affected Surfaces table for fix_bug/remediation packets" and score affected-surface coverage (`spec_kit_plan_auto.yaml:554-568`; `spec_kit_plan_confirm.yaml:603-617`); it does not name or consume `affectedSurfacesSeed`, `findingClasses`, `fixCompletenessRequired`, `scopeProof`, or `scopeProofNeeded`. End-to-end result: the review report can emit the new fields, but the follow-on planner has no explicit import/mapping step that guarantees those fields populate the FIX ADDENDUM table.
+1. **Planning Packet fix-completeness fields remain report-only before `/spec_kit:plan`.** R5 classification: `cross-consumer`. A sample R4 finding can now carry `findingClass` and `scopeProof` in the code-review schema (`sk-code-review/SKILL.md:288-320`; `review_core.md:76-99`). R7's synthesis contract requires a Planning Packet containing `findingClasses`, `affectedSurfacesSeed`, and `fixCompletenessRequired`, and its active registry asks for `findingClass`, `scopeProofNeeded`, and `affectedSurfaceHints` (`deep_start-review-loop_auto.yaml:1047-1055`; `deep_start-review-loop_confirm.yaml:1069-1077`). R3's planner, however, only says to "Generate Affected Surfaces table for fix_bug/remediation packets" and score affected-surface coverage (`spec_kit_plan_auto.yaml:554-568`; `spec_kit_plan_confirm.yaml:603-617`); it does not name or consume `affectedSurfacesSeed`, `findingClasses`, `fixCompletenessRequired`, `scopeProof`, or `scopeProofNeeded`. End-to-end result: the review report can emit the new fields, but the follow-on planner has no explicit import/mapping step that guarantees those fields populate the FIX ADDENDUM table.
 
    Scope proof: same-class producer inventory with `rg -n 'affectedSurfacesSeed' .opencode` found only the deep-review synthesis contract and prior review/research artifacts, not a planner consumer; `rg -n 'findingClasses' .opencode` and `rg -n 'fixCompletenessRequired' .opencode` showed the same pattern. Cross-consumer inventory with `rg -n 'scopeProofNeeded|scopeProof|findingClass|affectedSurfaceHints' .opencode/commands/spec_kit` found the deep-review synthesis contract but no `/spec_kit:plan` consumer. Matrix check: R1's FIX ADDENDUM is present in all four plan template levels and R2's CHK-FIX gates are present in L2/L3/L3+, so the gap is not missing template rows; it is the R7-to-R3 handoff.
 

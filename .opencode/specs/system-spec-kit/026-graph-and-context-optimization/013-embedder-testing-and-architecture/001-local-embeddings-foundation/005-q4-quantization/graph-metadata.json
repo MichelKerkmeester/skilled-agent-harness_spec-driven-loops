@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/005-q4-quantization",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/005-q4-quantization",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/005-q4-quantization",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/005-q4-quantization",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/004-vec-store-rebuild"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
@@ -15,36 +15,192 @@
     "trigger_phrases": [
       "005 q4 quantization",
       "HF_EMBEDDINGS_DTYPE env var",
-      "EmbeddingGemma q4 variant load",
-      "quantized embedding model"
+      "EmbeddingGemma q4 variant",
+      "quantized embedding load",
+      "005 plan q4 quantization",
+      "HF_EMBEDDINGS_DTYPE plumbing",
+      "EmbeddingGemma quantized variant load",
+      "005 tasks q4 quantization",
+      "HF_EMBEDDINGS_DTYPE plumb tasks",
+      "014/005 q4 done",
+      "HF_EMBEDDINGS_DTYPE plumbed",
+      "EmbeddingGemma q4 variant working"
     ],
     "key_topics": [
-      "HfLocalProvider dtype",
-      "transformers.js pipeline dtype",
-      "model_q4.onnx",
-      "ALLOWED_HF_DTYPES allowlist",
-      "resolveDtype helper",
-      "quantization recall benchmark deferred"
+      "005",
+      "quantization",
+      "env",
+      "var",
+      "embeddinggemma",
+      "variant",
+      "quantized",
+      "embedding",
+      "load",
+      "plan",
+      "plumbing",
+      "tasks"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
-      "spec.md",
+      ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts",
+      "scratch/fp32-vs-q4-similarity.mjs",
+      "shared/dist/embeddings/providers/hf-local.js",
       "plan.md",
+      "shared/embeddings/providers/hf-local.ts",
+      "spec.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      "HfLocalProvider",
-      "HfLocalDtype",
-      "ALLOWED_HF_DTYPES",
-      "resolveDtype",
-      "model_q4.onnx",
-      "@huggingface/transformers.pipeline"
+      {
+        "name": "hf-local.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fp32-vs-q4-similarity.mjs",
+        "kind": "file",
+        "path": "scratch/fp32-vs-q4-similarity.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local.js",
+        "kind": "code",
+        "path": "shared/dist/embeddings/providers/hf-local.js",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Standalone Node",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Configuration",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Apple Silicon",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
     ],
-    "causal_summary": "Plumbed HF_EMBEDDINGS_DTYPE through HfLocalProvider. Default fp32 (backward compatible); HF_EMBEDDINGS_DTYPE=q4 loads model_q4.onnx successfully. Standalone vec dims confirmed 768 on both paths. Recall benchmark deferred (no ground-truth queries).",
+    "causal_summary": "HfLocalProvider hardcodes `dtype: 'fp32'` in the `@huggingface/transformers` `pipeline()` call. This forces the largest model variant (~620MB RAM for EmbeddingGemma-300m). The HF cache from 002 contains all dtype variants of the model — `model.onnx` (fp32, default), `model_fp16.onnx`, `model_q4.onnx`, `model_q4f16.onnx`, `model_quantized.onnx` — but the code path never reaches them. RAM and cold-load time are both higher than they need to be.",
     "created_at": "2026-05-12T16:27:49Z",
-    "last_save_at": "2026-05-12T21:40:00Z",
+    "last_save_at": "2026-05-23T11:55:15.333Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-12T21:40:00Z",
     "source_docs": [

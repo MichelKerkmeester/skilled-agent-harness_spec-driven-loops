@@ -13,7 +13,7 @@ contextType: "review"
 
 # Cross-Phase Deep-Review Synthesis — 008-template-levels
 
-> Aggregate of `/spec_kit:deep-review:auto` runs (5 iterations per phase, IMPLEMENTATION-focused) across all 8 phase children of `026-graph-and-context-optimization/008-template-levels`. Run on 2026-05-04. Companion to `before-after-template-system.md` (what the refactor did) and `memory-implications.md` (what indexers see) — this doc covers **what the deep-review found about the work itself**.
+> Aggregate of `/deep:start-review-loop:auto` runs (5 iterations per phase, IMPLEMENTATION-focused) across all 8 phase children of `026-graph-and-context-optimization/008-template-levels`. Run on 2026-05-04. Companion to `before-after-template-system.md` (what the refactor did) and `memory-implications.md` (what indexers see) — this doc covers **what the deep-review found about the work itself**.
 
 ---
 
@@ -77,7 +77,7 @@ Multiple Level-3 templates have gate gaps and ANCHOR errors:
 
 ### 3.4 Cross-runtime mirror inconsistency (003 + 005 + 008)
 
-- Path Convention drift: `.opencode/agents/deep-review.md` is canonical per the YAML workflow (`spec_kit_deep-review_auto.yaml:71-72`), but `.claude/agents/deep-review.md`, `.gemini/agents/deep-review.md`, `.codex/agents/deep-review.toml` all label themselves as canonical Path Convention reference paths.
+- Path Convention drift: `.opencode/agents/deep-review.md` is canonical per the YAML workflow (`deep_start-review-loop_auto.yaml:71-72`), but `.claude/agents/deep-review.md`, `.gemini/agents/deep-review.md`, `.codex/agents/deep-review.toml` all label themselves as canonical Path Convention reference paths.
 - 003 found `@create` agent missed in the cross-runtime agent vocabulary cleanup (`.opencode/agents/create.md:141` still uses `## 2. CAPABILITY SCAN` while siblings use `ROUTING SCAN`); the resource map also omits `create.md` from the agent cleanup list.
 - 005 found the deep-review iteration prompt pack at `prompt_pack_iteration.md.tmpl:18` points to `.agents/skills/sk-code-review/references/review_core.md` (non-existent) while `.opencode/agents/deep-review.md:273` uses the correct `.opencode/skills/sk-code-review/references/review_core.md`. CLI and native executor severity classification will diverge.
 - 008's continuity frontmatter ships scaffold defaults — all sibling Level-3 scaffold packets share the all-zero fingerprint, breaking dedup.
@@ -121,7 +121,7 @@ These are not findings about the code under review — they are facts about how 
 **Lessons for next campaign:**
 1. Copilot's per-account Premium-Request quota caps cumulative dispatches at ~7 over 3h. For 8-phase work, plan around the quota OR pre-warm a non-Copilot executor.
 2. Codex with `--sandbox workspace-write` cannot run `opencode` as a subprocess (SQLite WAL on `~/.local/share/opencode/`). Codex needs `XDG_DATA_HOME` redirect, OR shouldn't be the wrapper for opencode invocations.
-3. **Treat opencode + deepseek-v4-pro under `/spec_kit:deep-review:auto` as a destructive risk** until the scope-violation root cause is identified. The dispatch prompt explicitly forbade writes outside `__ABS_PATH__/review/`; deepseek deleted the entire `__ABS_PATH__` for two phases. Until investigated, prefer copilot/gpt-5.5 for any deep-review of multi-phase work, and commit work-in-progress between batches so recovery is single-command.
+3. **Treat opencode + deepseek-v4-pro under `/deep:start-review-loop:auto` as a destructive risk** until the scope-violation root cause is identified. The dispatch prompt explicitly forbade writes outside `__ABS_PATH__/review/`; deepseek deleted the entire `__ABS_PATH__` for two phases. Until investigated, prefer copilot/gpt-5.5 for any deep-review of multi-phase work, and commit work-in-progress between batches so recovery is single-command.
 4. Native Opus single-pass review is a viable fallback for individual phase backfill when CLI executors are unavailable. It does not produce the YAML-loop artifacts (`iterations/`, `deep-review-state.jsonl`, deltas) but does produce a content-complete `review-report.md`.
 
 ---
@@ -139,7 +139,7 @@ Suggested next-step packets (each ~Level 1-2; not yet scoped or scaffolded):
 | RM-5 | Tighten workflow-invariance test (remove broad public-root allowlist; add default-public-surface sentinel; add `create.sh` phase-parent rendered-output golden test) | 3.5 | 003 DR-002, DR-003 |
 | RM-6 | Fix `copy_templates_batch` exit-code masking bug + add JSON-injection guard in `create_graph_metadata_file` | (cross-cutting safety) | 001 P1-002-001/002, 004 F008 |
 | RM-7 | Decide fate of 006/007/008 scaffold-only packets — populate, formally close, or remove from 010 phase manifest | scope-honesty | 006 F001-F004, 007 F001-F004, 008 P1-001/002 |
-| RM-8 | Investigate root cause of opencode + deepseek-v4-pro destructive scope violation under `/spec_kit:deep-review:auto` | (operational) | (no phase finding; from §5) |
+| RM-8 | Investigate root cause of opencode + deepseek-v4-pro destructive scope violation under `/deep:start-review-loop:auto` | (operational) | (no phase finding; from §5) |
 
 Recommended ordering: **RM-2 + RM-3** first (template+validator correctness, unblocks all subsequent renders), **RM-1 + RM-4** next (architectural alignment), **RM-5 + RM-6** as cleanup, **RM-7 + RM-8** as decisions.
 
@@ -147,7 +147,7 @@ Recommended ordering: **RM-2 + RM-3** first (template+validator correctness, unb
 
 ## 7. Provenance & Methodology
 
-- **Skill / command**: `/spec_kit:deep-review:auto` (`.opencode/skills/sk-deep-review/`, `.opencode/commands/spec_kit/deep-review.md`).
+- **Skill / command**: `/deep:start-review-loop:auto` (`.opencode/skills/sk-deep-review/`, `.opencode/commands/deep/start-review-loop.md`).
 - **Iterations**: 5 per phase per skill contract (except 008: 1 native single-pass).
 - **Review dimensions** (per dispatch prompt, biased toward implementation): `implementation-spec-alignment, code-correctness, template-rendering-correctness, validator-coverage, cross-runtime-mirror-consistency`.
 - **Executors used**: cli-copilot (gpt-5.5, `--reasoning-effort high`) for 005/003/006/007; opencode-direct (gpt-go/deepseek-v4-pro) for 001/002/004; native Opus 4.7 single-pass for 008.
@@ -171,7 +171,7 @@ User directive: "Work on all recommended fixes" — applied autonomously after t
 | **RM-3** | ⏭️ Deferred | (depends on RM-2) | Cross-validation logic between template ANCHORs and `spec-kit-docs.json` sectionGates can't land usefully until the ANCHOR structure under RM-2 is settled. Shell↔Node `detectLevel` sync and `SECTIONS_PRESENT` rename are independent and can be picked up separately. |
 | **RM-5** | ⏭️ Deferred | (analysis only) | Deep-review's "remove the broad public-root allowlist" claim is over-aggressive: `.opencode/agents/context.md:75` legitimately uses "Capability" as ordinary English in `### Denied Capability Guard`. Removing the allowlist would cause false-positive failures on legitimate text. Real fix needs file-and-line-pair allowlist OR a regex that distinguishes "private taxonomy reference" from "ordinary English noun" — a test-design problem, not a 1-hour fix. |
 | **RM-7** | ⏭️ Decision needed | (decision, no code) | 006/007/008 scaffold-only packets — recommendation: formally close 008 (no scope authored 3 days after creation, status=planned), populate 006 + 007 with their actual scope (per their own deep-review reports' F001-F004), or remove from 010's phase manifest. Operator-level decision, not implementation. |
-| **RM-8** | ⏭️ Investigation needed | (investigation, no code) | Root cause of opencode + deepseek-v4-pro destructive scope violation under `/spec_kit:deep-review:auto`. Today's session deleted 44 files across 007+008 mid-run. Until investigated, **opencode + deepseek-v4-pro should be considered a destructive risk for the deep-review workflow**. Recommend pinning to copilot/gpt-5.5 with `--reasoning-effort high` until RM-8 lands a fix (or formal scope guardrails inside the YAML workflow). |
+| **RM-8** | ⏭️ Investigation needed | (investigation, no code) | Root cause of opencode + deepseek-v4-pro destructive scope violation under `/deep:start-review-loop:auto`. Today's session deleted 44 files across 007+008 mid-run. Until investigated, **opencode + deepseek-v4-pro should be considered a destructive risk for the deep-review workflow**. Recommend pinning to copilot/gpt-5.5 with `--reasoning-effort high` until RM-8 lands a fix (or formal scope guardrails inside the YAML workflow). |
 
 **Net result of this remediation pass:**
 - 4 of 8 RMs landed (RM-4a, RM-4b, RM-6a, RM-6b) — all low-risk verified-real fixes applied with bash-syntax + adversarial-input verification

@@ -136,7 +136,7 @@ Create a first-class, reusable `resource-map.md` template discoverable across al
 
 - **SC-001**: Child-phase and sub-phase deep loops write only to local-owner packet folders.
 - **SC-002**: Operators can copy `resource-map.md` into any packet and fill path rows grouped by category.
-- **SC-003**: Autonomous `/spec_kit:deep-review :auto` and `/spec_kit:deep-research :auto` runs produce a `resource-map.md` with zero extra configuration.
+- **SC-003**: Autonomous `/deep:start-review-loop :auto` and `/deep:start-research-loop :auto` runs produce a `resource-map.md` with zero extra configuration.
 - **SC-004**: `validate.sh --strict` on all three sub-phases exits 0.
 <!-- /ANCHOR:success-criteria -->
 
@@ -222,7 +222,7 @@ Create a first-class, reusable `resource-map.md` template discoverable across al
 
 ### US-002: Deep-loop runs land beside the right spec (Priority: P0)
 
-**As a** operator running `/spec_kit:deep-review` on a child phase, **I want** all artifacts to land in the child phase's own `review/` folder, **so that** history stays beside the owning spec and not an ancestor root.
+**As a** operator running `/deep:start-review-loop` on a child phase, **I want** all artifacts to land in the child phase's own `review/` folder, **so that** history stays beside the owning spec and not an ancestor root.
 
 **Acceptance Criteria**:
 1. Given a deep-review run targeting a child phase, When convergence completes, Then `review-report.md` and `resource-map.md` exist inside the child phase's local packet folder.

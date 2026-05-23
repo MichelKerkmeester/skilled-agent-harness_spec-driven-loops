@@ -22,9 +22,7 @@
       "skill reindex checklist",
       "065/001 implementation summary",
       "065/001/001 resource map",
-      "skill reindex resource map",
-      "skilled-agent-orchestration/z_archive/065-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/001-skill-reindex",
-      "skilled-agent-orchestration"
+      "skill reindex resource map"
     ],
     "key_topics": [
       "065",
@@ -40,7 +38,7 @@
       "checklist",
       "implementation"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/graph-metadata.json",
@@ -200,7 +198,7 @@
     ],
     "causal_summary": "After packets 057-064 (agent template overhaul, sk-doc updates, @create agent, RELATED RESOURCES cleanup, skill router refactors), the skill advisor memory system holds stale embeddings + scoring tables. Recommendation confidence + token boosts may be miscalibrated. Sub-phase 002 cannot meaningfully stress-test routing efficiency until the index reflects current SKILL.md content + graph-metadata.json state.",
     "created_at": "2026-05-18T07:49:27.128Z",
-    "last_save_at": "2026-05-19T13:51:38.629Z",
+    "last_save_at": "2026-05-23T11:55:14.529Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

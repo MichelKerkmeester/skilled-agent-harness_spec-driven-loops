@@ -31,8 +31,8 @@ Verify deep-loop command YAML contains live convergence calls before stop voting
 
 ### Commands
 
-1. Read `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:402-418`.
-2. Read `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:422-436`.
+1. Read `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:402-418`.
+2. Read `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:422-436`.
 3. Optionally run a minimal deep-loop fixture and capture graph_convergence JSONL event.
 
 ### Expected Output / Verification

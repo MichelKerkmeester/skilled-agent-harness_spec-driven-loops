@@ -57,7 +57,7 @@ _memory:
 - [x] T002 Read Level 2 examples (`.opencode/skills/system-spec-kit/templates/examples/level_2/`) [5m]
 - [x] T003 [P] Inspect coverage graph DB allow-list (`coverage-graph-db.ts`) [3m]
 - [x] T004 [P] Inspect upsert handler validation (`handlers/coverage-graph/upsert.ts`) [3m]
-- [x] T005 [P] Inspect auto and confirm workflow graph filters (`spec_kit_deep-review_*.yaml`) [2m]
+- [x] T005 [P] Inspect auto and confirm workflow graph filters (`deep_start-review-loop_*.yaml`) [2m]
 - [x] T006 [P] Inspect Phase B graph fixture (`review-depth-graph.vitest.ts`) [2m]
 <!-- /ANCHOR:phase-1 -->
 
@@ -77,8 +77,8 @@ _memory:
 - [x] T017 Confirm handler validation reads the shared allow-list (`upsert.ts`) [2m]
 
 ### Workflow Event Filters
-- [x] T020 Extend auto workflow node-kind event filter (`spec_kit_deep-review_auto.yaml`) [4m]
-- [x] T021 Mirror confirm workflow node-kind event filter (`spec_kit_deep-review_confirm.yaml`) [4m]
+- [x] T020 Extend auto workflow node-kind event filter (`deep_start-review-loop_auto.yaml`) [4m]
+- [x] T021 Mirror confirm workflow node-kind event filter (`deep_start-review-loop_confirm.yaml`) [4m]
 - [x] T022 Confirm relation filters stay unchanged in both workflows [2m]
 
 ### Fixture Tests

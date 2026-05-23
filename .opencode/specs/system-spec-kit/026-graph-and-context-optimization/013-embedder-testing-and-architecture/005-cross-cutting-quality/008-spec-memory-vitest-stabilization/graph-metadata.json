@@ -37,10 +37,14 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts",
-      "tests/launcher-lease.vitest.ts",
-      "tests/runtime-routing.vitest.ts",
+      "lib/errors/recovery-hints.ts",
+      "scripts/tests/workflow-invariance.vitest.ts",
+      "tests/skill-graph-corruption-recovery.vitest.ts",
+      "scripts/tests/graph-upgrades-regression-floor.vitest.ts.test.ts",
+      "tests/shared-daemon-runner-helpers.vitest.ts",
       "tests/stage1-expansion.vitest.ts",
+      "tests/runtime-routing.vitest.ts",
+      "tests/launcher-lease.vitest.ts",
       "lib/search/search-flags.ts",
       "spec.md",
       "plan.md",
@@ -49,21 +53,51 @@
     ],
     "entities": [
       {
-        "name": "stage1-expansion.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts",
+        "name": "recovery-hints.ts",
+        "kind": "code",
+        "path": "lib/errors/recovery-hints.ts",
         "source": "derived"
       },
       {
-        "name": "launcher-lease.vitest.ts",
+        "name": "workflow-invariance.vitest.ts",
         "kind": "test",
-        "path": "tests/launcher-lease.vitest.ts",
+        "path": "scripts/tests/workflow-invariance.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph-corruption-recovery.vitest.ts",
+        "kind": "test",
+        "path": "tests/skill-graph-corruption-recovery.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-upgrades-regression-floor.vitest.ts.test.ts",
+        "kind": "test",
+        "path": "scripts/tests/graph-upgrades-regression-floor.vitest.ts.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "shared-daemon-runner-helpers.vitest.ts",
+        "kind": "test",
+        "path": "tests/shared-daemon-runner-helpers.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stage1-expansion.vitest.ts",
+        "kind": "test",
+        "path": "tests/stage1-expansion.vitest.ts",
         "source": "derived"
       },
       {
         "name": "runtime-routing.vitest.ts",
         "kind": "test",
         "path": "tests/runtime-routing.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-lease.vitest.ts",
+        "kind": "test",
+        "path": "tests/launcher-lease.vitest.ts",
         "source": "derived"
       },
       {
@@ -161,41 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Cluster",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria All",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Codex Dispatch",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 016 deep-research dispatch (iters 1-9) flagged the vitest suite as red. A targeted Explore run produced this inventory:",
     "created_at": "2026-05-22T07:42:13.848Z",
-    "last_save_at": "2026-05-22T07:42:13.841Z",
+    "last_save_at": "2026-05-23T11:55:15.565Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -37,7 +37,7 @@ Phase 017 closes 27 remediation tasks across 4 waves. Wave A (infrastructure pri
 
 After each wave's code-complete, the following gates MUST pass before proceeding:
 
-1. **`/spec_kit:deep-review :auto` ×7** on the wave's scope emits ZERO new P0, ZERO new P1
+1. **`/deep:start-review-loop :auto` ×7** on the wave's scope emits ZERO new P0, ZERO new P1
 2. **`validate.sh --strict` on 017 folder** exits 0 with 0 warnings
 3. **Atomic-ship groups verified** — no mid-rollout inconsistency windows observed
 4. **Vitest suite** passes for all modified modules
@@ -90,7 +90,7 @@ Maps directly to waves A/B/C/D detailed below. Each wave is a discrete phase wit
 - `evidence-marker-lint.vitest.ts` new
 
 ### Integration / regression tests
-- `/spec_kit:deep-review :auto` ×7 per wave gate
+- `/deep:start-review-loop :auto` ×7 per wave gate
 - 16-folder sweep verification (T-CNS-03)
 - Copilot compact-cycle end-to-end test
 
@@ -130,7 +130,7 @@ See §6 in `spec.md` for the file-collision groups and atomic-ship constraints.
 
 27 remediation tasks organized in 4 waves with explicit file-collision grouping, atomic-ship constraints, and rollback procedures. Wave A (20h) is the critical-path infrastructure spine that unblocks Wave B. Wave B (30h) runs 3 parallel lanes after Wave A merges. Wave C (15h) performs tree-wide sweeps + lint activation. Wave D (40h) carries deferrable P2 maintainability. Total: ~105h / ~60h critical-path / 6 working days.
 
-**Execution mode**: Per `feedback_phase_018_autonomous` (user memory), each wave runs under cli-codex primary + cli-copilot fallback (3 concurrent max). After each wave's code-complete, dispatch `/spec_kit:deep-review :auto` ×7 before proceeding to the next wave.
+**Execution mode**: Per `feedback_phase_018_autonomous` (user memory), each wave runs under cli-codex primary + cli-copilot fallback (3 concurrent max). After each wave's code-complete, dispatch `/deep:start-review-loop :auto` ×7 before proceeding to the next wave.
 <!-- /ANCHOR:overview -->
 
 ---
@@ -205,7 +205,7 @@ Blocks everything downstream. No parallelism within this wave (all tasks touch f
 
 ### Wave A gate
 
-After Wave A code-complete: `/spec_kit:deep-review :auto` ×7 with focus on `workflow.ts`, `readiness-contract.ts`, `shared-provenance.ts`, `scope-governance.ts`. No regressions in pre-existing behavior.
+After Wave A code-complete: `/deep:start-review-loop :auto` ×7 with focus on `workflow.ts`, `readiness-contract.ts`, `shared-provenance.ts`, `scope-governance.ts`. No regressions in pre-existing behavior.
 <!-- /ANCHOR:wave-a -->
 
 ---
@@ -332,7 +332,7 @@ Depends on Wave A merged. Runs 3 parallel lanes.
 
 ### Wave B gate
 
-After Wave B code-complete: `/spec_kit:deep-review :auto` ×7 across 3 lanes. No regressions. T-W1-CGC-03 atomic-ship constraint verified.
+After Wave B code-complete: `/deep:start-review-loop :auto` ×7 across 3 lanes. No regressions. T-W1-CGC-03 atomic-ship constraint verified.
 <!-- /ANCHOR:wave-b -->
 
 ---
@@ -393,7 +393,7 @@ Depends on Wave A + B merged.
 
 ### Wave C gate
 
-After Wave C code-complete: `/spec_kit:deep-review :auto` ×7 with focus on 16-folder sweep outcomes + evidence-marker lint strict mode.
+After Wave C code-complete: `/deep:start-review-loop :auto` ×7 with focus on 16-folder sweep outcomes + evidence-marker lint strict mode.
 <!-- /ANCHOR:wave-c -->
 
 ---
@@ -459,7 +459,7 @@ Non-urgent. Can land in parallel with later phases.
 
 ### Wave D gate
 
-After Wave D code-complete (any subset): `/spec_kit:deep-review :auto` ×3 (lighter gate for maintainability-only wave).
+After Wave D code-complete (any subset): `/deep:start-review-loop :auto` ×3 (lighter gate for maintainability-only wave).
 <!-- /ANCHOR:wave-d -->
 
 ---
@@ -493,7 +493,7 @@ Each task lands as a separate commit (or atomic-ship group) to enable `git rever
 
 | Risk | Likelihood | Impact | Mitigation |
 |------|------------|--------|-------------|
-| Wave A introduces regression in canonical save | Low | High | Vitest coverage on all 3 workflow.ts changes; gate is `/spec_kit:deep-review :auto` ×7 |
+| Wave A introduces regression in canonical save | Low | High | Vitest coverage on all 3 workflow.ts changes; gate is `/deep:start-review-loop :auto` ×7 |
 | T-CGC-01 + T-W1-CGC-03 split mid-rollout creates consumer breakage | Medium | Medium | Atomic-ship constraint OR `trustState: 'unavailable'` stub strategy |
 | Copilot runtime breaks on T-W1-HOK-01 deploy | Low | Medium | Parallel Claude + Gemini coverage via `hooks/shared-provenance.ts` |
 | T-SRS-BND-01 blocks legitimate session-resume flows | Low | High | Staged rollout with permissive-mode flag; verify on canary session before full enable |
@@ -510,7 +510,7 @@ Each task lands as a separate commit (or atomic-ship group) to enable `git rever
 After all 4 waves complete:
 
 - [ ] `validate.sh --strict` on all 16 sibling 026 folders exits 0 with 0 warnings
-- [ ] `/spec_kit:deep-review :auto` ×7 on Wave A/B/C/D scope emits ZERO new P0, ZERO new P1
+- [ ] `/deep:start-review-loop :auto` ×7 on Wave A/B/C/D scope emits ZERO new P0, ZERO new P1
 - [ ] All 10 original review P1s marked RESOLVED with evidence citations in checklist.md
 - [ ] All 9 new segment-2 P1s marked RESOLVED
 - [ ] `jq '.lastUpdated' description.json` across 16 sibling folders returns timestamps within 10m of `jq '.derived.last_save_at' graph-metadata.json`

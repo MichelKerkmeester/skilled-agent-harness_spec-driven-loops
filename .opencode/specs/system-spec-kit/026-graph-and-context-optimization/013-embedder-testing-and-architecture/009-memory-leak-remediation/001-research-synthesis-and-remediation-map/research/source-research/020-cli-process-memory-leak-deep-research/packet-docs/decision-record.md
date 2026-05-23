@@ -56,7 +56,7 @@ Prior sessions created memory pressure by using CLI skills to orchestrate agents
 
 ### Constraints
 
-- The user requested 10 `/spec_kit:deep-research` iterations against `.opencode/skills/system-spec-kit`.
+- The user requested 10 `/deep:start-research-loop` iterations against `.opencode/skills/system-spec-kit`.
 - The user requested five `cli-claude-code` Opus 4.7 iterations and five `cli-codex` GPT-5.5 xhigh fast iterations.
 - cli-X self-invocation guards must still apply when the active runtime matches the delegated CLI provider.
 - The research run must not reproduce the process-spam failure mode by dispatching multiple CLIs concurrently.
@@ -132,7 +132,7 @@ Prior sessions created memory pressure by using CLI skills to orchestrate agents
 
 **What changes**:
 - This packet creates the research contract, not production code changes.
-- The future research run must use workflow-owned `/spec_kit:deep-research` state files and executor audit metadata.
+- The future research run must use workflow-owned `/deep:start-research-loop` state files and executor audit metadata.
 - The future synthesis must create remediation packets instead of patching code directly inside the research loop.
 
 **How to roll back**: Preserve the completed `research/` artifacts. If a follow-up packet is not accepted, archive this packet as evidence-only and do not implement the remediation backlog.

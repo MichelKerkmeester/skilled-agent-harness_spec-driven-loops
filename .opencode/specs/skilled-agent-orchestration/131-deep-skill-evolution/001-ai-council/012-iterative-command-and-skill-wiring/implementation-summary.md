@@ -43,7 +43,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-- Added `.opencode/commands/spec_kit/deep-council.md` as the `/spec_kit:deep-council` entrypoint.
+- Added `.opencode/commands/deep/ask-ai-council.md` as the `/deep:ask-ai-council` entrypoint.
 - Added deep-mode documentation to `.opencode/skills/deep-ai-council/SKILL.md`.
 - Added deep-mode availability notes to `.opencode/agents/ai-council.md`, `.claude/agents/ai-council.md`, and `.gemini/agents/ai-council.md`.
 - Verified the F3 YAML assets are present and YAML-valid.
@@ -56,8 +56,8 @@ The `.codex/agents/ai-council.toml` mirror remains unchanged because the sandbox
 
 The command mirrors the setup ownership and YAML handoff pattern from `deep-review.md` and `deep-research.md`. It keeps Markdown responsible for setup resolution, then loads:
 
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-council_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-council_confirm.yaml`
+- `.opencode/commands/deep/assets/deep_ask-ai-council_auto.yaml`
+- `.opencode/commands/deep/assets/deep_ask-ai-council_confirm.yaml`
 
 Agent and skill updates are additive so current single-round council behavior remains intact.
 <!-- /ANCHOR:how-delivered -->
@@ -74,9 +74,9 @@ Agent and skill updates are additive so current single-round council behavior re
 <!-- ANCHOR:verification -->
 ## Verification
 
-- `python3 -c "import re, yaml; ... yaml.safe_load(...)"` on `.opencode/commands/spec_kit/deep-council.md` frontmatter: PASS.
-- YAML validation for `.opencode/commands/spec_kit/assets/spec_kit_deep-council_auto.yaml`: PASS.
-- YAML validation for `.opencode/commands/spec_kit/assets/spec_kit_deep-council_confirm.yaml`: PASS.
+- `python3 -c "import re, yaml; ... yaml.safe_load(...)"` on `.opencode/commands/deep/ask-ai-council.md` frontmatter: PASS.
+- YAML validation for `.opencode/commands/deep/assets/deep_ask-ai-council_auto.yaml`: PASS.
+- YAML validation for `.opencode/commands/deep/assets/deep_ask-ai-council_confirm.yaml`: PASS.
 - `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council/012-iterative-command-and-skill-wiring --strict`: PASS, 0 errors, 0 warnings.
 - Runtime mirror grep: PASS for `.opencode`, `.claude`, and `.gemini`; blocked for `.codex` because the file could not be edited.
 <!-- /ANCHOR:verification -->
@@ -90,12 +90,12 @@ Agent and skill updates are additive so current single-round council behavior re
 
 Suggested commit:
 
-`feat(129/005): /spec_kit:deep-council command + skill deep-mode + 4-runtime agent mirror`
+`feat(129/005): /deep:ask-ai-council command + skill deep-mode + 4-runtime agent mirror`
 
 Explicit paths for `git add` after the `.codex` mirror is updated:
 
 ```bash
-git add .opencode/commands/spec_kit/deep-council.md
+git add .opencode/commands/deep/ask-ai-council.md
 git add .opencode/skills/deep-ai-council/SKILL.md
 git add .opencode/agents/ai-council.md
 git add .claude/agents/ai-council.md

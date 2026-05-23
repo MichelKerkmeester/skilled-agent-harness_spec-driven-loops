@@ -48,8 +48,8 @@ Implemented the validator half of the bundled Phase D+E dispatch. The post-dispa
 | File | Action | Purpose |
 |------|--------|---------|
 | `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts` | Modified | Added warning envelope, v2 validation helpers, rollout flag, and state/delta identity check. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modified | Added v2 failure reasons and warning-surface recipe. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modified | Mirrored auto workflow advisory handling. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Modified | Added v2 failure reasons and warning-surface recipe. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Modified | Mirrored auto workflow advisory handling. |
 | `.opencode/specs/.../004-validator-v2-enforcement/checklist.md` | Created | Level 3 verification checklist. |
 | `.opencode/specs/.../004-validator-v2-enforcement/decision-record.md` | Created | ADR-001 rollout decision. |
 <!-- /ANCHOR:what-built -->

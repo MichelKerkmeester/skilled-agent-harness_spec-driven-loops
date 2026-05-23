@@ -212,7 +212,7 @@
     ],
     "causal_summary": "The code-graph system has been delivered and partially remediated across 026 phases 003 (code-graph-package) and 009 (hook-package). Recent cross-phase synthesis (`026/research/cross-phase-synthesis.md`) flagged code-graph and runtime-hook concerns among its top P0 items (CF-002, CF-009, CF-010, CF-014). Those specific findings are now closed in `007/006-integrity-parity-closure/`. The open question: **beyond those findings, where else can the code-graph system and its hook wiring improve?**",
     "created_at": "2026-04-24T01:10:00Z",
-    "last_save_at": "2026-05-19T13:51:39.051Z",
+    "last_save_at": "2026-05-23T11:55:15.038Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -9,7 +9,7 @@ Audited `.opencode/specs/system-spec-kit/` folder depth, numeric naming conventi
 - Enumerated `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation`, confirming 30 direct numeric child folders under a child parent.
 - Read `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs` for `findAncestorSpecFolder()`, `resolveArtifactRoot()`, and `allocateShortSubfolder()`.
 - Read `.opencode/skills/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts` and `.opencode/skills/system-spec-kit/scripts/lib/shell-common.sh` for the TypeScript and shell phase-parent rules.
-- Read `.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`, and `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml` for workflow path assumptions.
+- Read `.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml`, `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`, and `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml` for workflow path assumptions.
 - Read `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts`, `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts`, and the live `005-review-remediation/graph-metadata.json`.
 
 ## Findings

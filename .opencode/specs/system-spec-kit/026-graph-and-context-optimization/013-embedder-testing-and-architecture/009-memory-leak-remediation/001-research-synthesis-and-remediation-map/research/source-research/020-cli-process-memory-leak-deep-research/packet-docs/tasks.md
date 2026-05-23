@@ -60,7 +60,7 @@ _memory:
 - [x] T004 Verify Claude CLI auth and exact Opus 4.7 model flag before dispatch. Evidence: preflight returned `CLAUDE_PREFLIGHT_OK`; iterations 001-005 used `claude-opus-4-7`.
 - [x] T005 Verify Codex CLI auth and `gpt-5.5` xhigh fast route before dispatch. Evidence: preflight returned `CODEX_PREFLIGHT_OK`; iterations 006-010 used `gpt-5.5` xhigh fast.
 - [x] T006 Capture preflight `sysctl vm.swapusage`, `vm_stat`, and process inventory. Evidence: preflight captured saturated swap and user approved continuing.
-- [x] T007 Initialize or resume local `/spec_kit:deep-research` state under this packet's `research/` directory. Evidence: `research/deep-research-state.jsonl` contains config plus 10 iteration records.
+- [x] T007 Initialize or resume local `/deep:start-research-loop` state under this packet's `research/` directory. Evidence: `research/deep-research-state.jsonl` contains config plus 10 iteration records.
 <!-- /ANCHOR:phase-1 -->
 
 ---

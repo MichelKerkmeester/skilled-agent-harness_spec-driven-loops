@@ -16,44 +16,199 @@
       "013/009/011",
       "mcp server full extraction",
       "skill graph lifecycle advisor",
-      "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/011-mcp-server-package-extraction",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "006-skill-advisor",
-      "001-skill-graph",
-      "006-system-skill-advisor-package-extraction",
-      "011-mcp-server-package-extraction",
-      "feature",
-      "specification"
+      "skill graph lib move",
+      "013/009/011 plan",
+      "advisor lifecycle transfer",
+      "skill graph clean cut",
+      "013/009/011 tasks",
+      "skill graph lifecycle tasks",
+      "013/009/011 checklist",
+      "skill graph extraction verification",
+      "013/009/011 ADR"
     ],
     "key_topics": [
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "006-skill-advisor",
-      "001-skill-graph",
-      "006-system-skill-advisor-package-extraction",
-      "011-mcp-server-package-extraction",
-      "feature",
-      "specification",
-      "full",
+      "013",
+      "009",
+      "011",
       "mcp",
+      "server",
+      "full",
       "extraction",
-      "skill"
+      "skill",
+      "graph",
+      "lifecycle",
+      "advisor",
+      "lib"
     ],
     "importance_tier": "critical",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
-      "spec.md",
+      "lib/utils/skill-label-sanitizer.ts",
+      "decision-record.md",
+      "hooks/claude/user-prompt-submit.ts",
+      "hooks/codex/user-prompt-submit.ts",
+      "hooks/codex/prompt-wrapper.ts",
+      "hooks/gemini/user-prompt-submit.ts",
+      "stress_test/search-quality/harness.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      "implementation-summary.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md",
-      "implementation-summary.md"
+      "research/multi-ai-council-deliberation.md",
+      "spec.md"
     ],
-    "entities": [],
-    "causal_summary": "Move skill graph DB/query code and startup lifecycle out of spec_kit_memory into the standalone system_skill_advisor MCP server.",
+    "entities": [
+      {
+        "name": "skill-label-sanitizer.ts",
+        "kind": "code",
+        "path": "lib/utils/skill-label-sanitizer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": "hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-wrapper.ts",
+        "kind": "code",
+        "path": "hooks/codex/prompt-wrapper.ts",
+        "source": "derived"
+      },
+      {
+        "name": "harness.ts",
+        "kind": "code",
+        "path": "stress_test/search-quality/harness.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "multi-ai-council-deliberation.md",
+        "kind": "doc",
+        "path": "research/multi-ai-council-deliberation.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Standalone",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This packet completes D2a of the council-recommended clean cut: the skill graph DB/query library and startup lifecycle move from `spec_kit_memory` into `system_skill_advisor`. The public tool ids stay unchanged, but the writer lifecycle now has one owner.",
     "created_at": "2026-05-18T08:53:19.871Z",
-    "last_save_at": "2026-05-19T19:44:28.899Z",
+    "last_save_at": "2026-05-23T11:55:15.129Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

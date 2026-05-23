@@ -38,7 +38,7 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Markdown + YAML frontmatter; cli-devin SWE 1.6; sonnet @markdown via Task tool |
-| **Framework** | Standard deep-research artifact shape (iterations + state.jsonl + research.md synthesis), but custom orchestration since /spec_kit:deep-research doesn't natively support cli-devin |
+| **Framework** | Standard deep-research artifact shape (iterations + state.jsonl + research.md synthesis), but custom orchestration since /deep:start-research-loop doesn't natively support cli-devin |
 | **Storage** | n/a (docs only) |
 | **Testing** | sk-doc validate with HVR scoring; strict-validate on packet |
 

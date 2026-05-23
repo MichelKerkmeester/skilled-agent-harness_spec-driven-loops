@@ -382,7 +382,7 @@ Would the permissions-matrix.schema.json (with example entries above) have preve
 **Architecture:**
 
 ```
-YAML dispatch wrapper (spec_kit_deep-review_auto.yaml)
+YAML dispatch wrapper (deep_start-review-loop_auto.yaml)
   ↓
 Render prompt with scope tokens ({repo-root}, {packet-root}, {state-paths})
   ↓

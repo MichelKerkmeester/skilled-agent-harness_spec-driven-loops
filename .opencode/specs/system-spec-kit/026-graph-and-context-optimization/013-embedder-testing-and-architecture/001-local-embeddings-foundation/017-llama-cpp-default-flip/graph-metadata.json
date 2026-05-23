@@ -1,59 +1,215 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/017-llama-cpp-default-flip",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/017-llama-cpp-default-flip",
-  "parent_id": "014",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/017-llama-cpp-default-flip",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/017-llama-cpp-default-flip",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "015",
-      "016"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/015-node-llama-cpp-evaluation",
-      "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/016-llama-cpp-retrieval-quality-probe"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "017 llama cpp default flip",
       "Memory MCP llama-cpp migration",
       "hf-local fallback",
-      "llama-cpp 1k retrieval probe"
+      "llama-cpp 1k retrieval probe",
+      "017 default flip plan",
+      "017 llama cpp tasks",
+      "017 llama cpp checklist",
+      "017 llama cpp implementation summary"
     ],
     "key_topics": [
+      "017",
+      "llama",
+      "cpp",
+      "default",
+      "flip",
+      "memory",
+      "mcp",
       "llama-cpp",
+      "migration",
       "hf-local",
-      "Memory MCP",
-      "embedding migration",
-      "retrieval quality",
-      "auto cascade"
+      "fallback",
+      "retrieval"
     ],
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
+      "scratch/migration-run-results.json",
+      "scratch/probe-1k-results.json",
+      "scratch/bench-final-results.json",
+      "scratch/end-to-end-smoke.md",
+      "scratch/probe-1k-results.md",
+      "scratch/migration-runbook.md",
+      "scratch/rollback.md",
+      "shared/embeddings/factory.ts",
+      "scratch/pre-flight-notes.md",
+      "scratch/migration-targets.md",
+      ".codex/config.toml",
+      ".claude/mcp.json",
+      ".gemini/settings.json",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md",
-      "scratch/migration-run-results.json",
-      "scratch/probe-1k-results.json",
-      "scratch/bench-final-results.json",
-      "scratch/end-to-end-smoke.md"
+      "implementation-summary.md"
     ],
     "entities": [
-      "LlamaCppProvider",
-      "HfLocalProvider",
-      "EMBEDDINGS_PROVIDER",
-      "node-llama-cpp",
-      "sqlite-vec",
-      "EmbeddingProfile"
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "migration-run-results.json",
+        "kind": "config",
+        "path": "scratch/migration-run-results.json",
+        "source": "derived"
+      },
+      {
+        "name": "probe-1k-results.json",
+        "kind": "config",
+        "path": "scratch/probe-1k-results.json",
+        "source": "derived"
+      },
+      {
+        "name": "bench-final-results.json",
+        "kind": "config",
+        "path": "scratch/bench-final-results.json",
+        "source": "derived"
+      },
+      {
+        "name": "end-to-end-smoke.md",
+        "kind": "doc",
+        "path": "scratch/end-to-end-smoke.md",
+        "source": "derived"
+      },
+      {
+        "name": "probe-1k-results.md",
+        "kind": "doc",
+        "path": "scratch/probe-1k-results.md",
+        "source": "derived"
+      },
+      {
+        "name": "migration-runbook.md",
+        "kind": "doc",
+        "path": "scratch/migration-runbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "rollback.md",
+        "kind": "doc",
+        "path": "scratch/rollback.md",
+        "source": "derived"
+      },
+      {
+        "name": "pre-flight-notes.md",
+        "kind": "doc",
+        "path": "scratch/pre-flight-notes.md",
+        "source": "derived"
+      },
+      {
+        "name": "migration-targets.md",
+        "kind": "doc",
+        "path": "scratch/migration-targets.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".gemini/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completed Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packets",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Perform",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
     ],
-    "causal_summary": "017 completed the live llama-cpp migration and validation close-out: 2488 rows migrated with zero mismatches, llama-cpp benchmark p50 was 6.027083ms vs hf-local 35.956375ms, and the 1k retrieval probe returned MILD_DIVERGENCE with Spearman 0.816125. The operator accepted that trade-off, so auto mode selects llama-cpp when the GGUF runtime is installed and falls back to hf-local otherwise.",
+    "causal_summary": "Packets 015 and 016 showed that `llama-cpp` is much faster than the current `hf-local` Memory MCP embedding backend and that the smaller 200-row retrieval probe was rank-equivalent. The remaining decision was whether to flip the automatic local default, migrate the live hf-local store, and cascade runtime config notes across Codex, Claude, Gemini, and OpenCode.",
     "created_at": "2026-05-13T11:10:00Z",
-    "last_save_at": "2026-05-13T11:10:00Z",
+    "last_save_at": "2026-05-23T11:55:15.353Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T11:10:00Z",
     "source_docs": [
       "spec.md",

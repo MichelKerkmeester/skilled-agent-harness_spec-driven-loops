@@ -255,7 +255,7 @@ Produce an evidence-grounded Adopt/Adapt/Reject decision matrix for Codesight pa
 - **Then** the iteration file documents the depth-cap off-by-one bug at the exact line where it occurs
 
 **Scenario 5 (REQ-011 — First continuation charter dispatch)**
-- **Given** the user requests "5 more iterations of /spec_kit:deep-research with gpt-5.4 high agents in fast mode through cli-codex"
+- **Given** the user requests "5 more iterations of /deep:start-research-loop with gpt-5.4 high agents in fast mode through cli-codex"
 - **When** the orchestrator selects 5 unexplored modules
 - **Then** all 5 iterations dispatch in parallel as background processes via cli-codex with `--sandbox read-only` and produce iteration files with line-cited findings
 

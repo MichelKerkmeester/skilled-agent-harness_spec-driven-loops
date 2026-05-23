@@ -12,14 +12,14 @@ const RAW_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> = Object.fre
   'memory:save': ['command-memory-save', '/memory:save', 'memory:save'],
   'deep-research': [
     'command-spec-kit-deep-research',
-    '/spec_kit:deep-research',
+    '/deep:start-research-loop',
     'spec_kit:deep-research',
     'deep-research',
     'sk-deep-research',
   ],
   'deep-review': [
     'command-spec-kit-deep-review',
-    '/spec_kit:deep-review',
+    '/deep:start-review-loop',
     'spec_kit:deep-review',
     'deep-review',
     'sk-deep-review',

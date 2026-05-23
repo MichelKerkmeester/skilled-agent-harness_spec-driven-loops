@@ -27,10 +27,10 @@ The save rules also reject manual writes under `memory/`. The command entrypoint
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/commands/spec_kit/deep-research.md` | Command | Defines the save phase and memory integration notes for the command entrypoint. |
+| `.opencode/commands/deep/start-research-loop.md` | Command | Defines the save phase and memory integration notes for the command entrypoint. |
 | `.opencode/skills/deep-research/references/loop_protocol.md` | Reference | Defines the save phase and its verification step. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Workflow | Runs `generate-context.js` in autonomous mode and marks manual memory authoring as invalid. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Workflow | Runs the same save flow with confirm-mode review gates. |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Workflow | Runs `generate-context.js` in autonomous mode and marks manual memory authoring as invalid. |
+| `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Workflow | Runs the same save flow with confirm-mode review gates. |
 
 ### Validation And Tests
 

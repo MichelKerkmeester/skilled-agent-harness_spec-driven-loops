@@ -48,8 +48,8 @@ Implemented the reducer/report half of the bundled Phase D+E dispatch. Reducer r
 | File | Action | Purpose |
 |------|--------|---------|
 | `.opencode/skills/deep-review/scripts/reduce-state.cjs` | Modified | Added search-ledger aggregation and dashboard rendering. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modified | Added Search Ledger report section and validator advisory notes. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modified | Mirrored auto workflow Search Ledger/advisory behavior. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Modified | Added Search Ledger report section and validator advisory notes. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Modified | Mirrored auto workflow Search Ledger/advisory behavior. |
 | `.opencode/specs/.../005-search-ledger-persistence-and-reporting/checklist.md` | Created | Level 3 verification checklist. |
 | `.opencode/specs/.../005-search-ledger-persistence-and-reporting/decision-record.md` | Created | ADR-001 registry shape decision. |
 <!-- /ANCHOR:what-built -->
@@ -146,6 +146,6 @@ Files (explicit paths for `git add`):
 .opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/005-complexity-search-ledger-persistence/[7 files]
 .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts
 .opencode/skills/deep-review/scripts/reduce-state.cjs
-.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
-.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml
+.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml
 ```

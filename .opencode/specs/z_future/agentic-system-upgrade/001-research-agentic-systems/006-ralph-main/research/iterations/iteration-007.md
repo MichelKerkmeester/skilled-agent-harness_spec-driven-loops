@@ -14,7 +14,7 @@ Read Ralph's archive logic in `external/ralph.sh`, the archive guidance in `exte
 - Ralph stores the current branch in `.last-branch` so future launches can detect feature changes. [SOURCE: external/ralph.sh:67-73]
 - The Ralph skill documents the same behavior as a pre-save checklist: if a new `branchName` replaces an old one, archive the old PRD and progress first. [SOURCE: external/skills/ralph/SKILL.md:233-257]
 - The README describes archive folders as a built-in behavior when a new feature starts. [SOURCE: external/README.md:231-234]
-- `system-spec-kit`'s deep-research workflow already has a richer model: canonical archive paths, session classification, resume vs restart vs fork, completed-session handling, and explicit lineage metadata. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:77-89] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:128-176]
+- `system-spec-kit`'s deep-research workflow already has a richer model: canonical archive paths, session classification, resume vs restart vs fork, completed-session handling, and explicit lineage metadata. [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:77-89] [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:128-176]
 - The phase model also treats parent/child folders and per-phase memory as first-class lifecycle concerns, which is broader than branch-based isolation. [SOURCE: .opencode/skills/system-spec-kit/references/structure/phase_definitions.md:147-173]
 
 ## Analysis
@@ -26,14 +26,14 @@ confidence: high
 finding: `system-spec-kit` should reject literal adoption of Ralph's `.last-branch` archive model for deep-research-style workflows. The existing lineage and archive packet model is more expressive and already matches the repo's spec-folder architecture better than branch-name rotation would.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+- **Target file or module:** `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
 - **Change type:** rejected
 - **Blast radius:** large
 - **Prerequisites:** none
 - **Priority:** rejected
 
 ## Counter-evidence sought
-I looked for missing restart/isolation concepts in the current deep-research workflow and found that archive roots, restart/fork handling, and completed-session continuation are already built in. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:128-176]
+I looked for missing restart/isolation concepts in the current deep-research workflow and found that archive roots, restart/fork handling, and completed-session continuation are already built in. [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:128-176]
 
 ## Follow-up questions for next iteration
 - Even if branch-based rotation is rejected, how should reusable learnings be promoted between runs?

@@ -45,8 +45,8 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate deep-review parameter handling for --max-iterations and --convergence across quick reference, command entrypoint, and YAML workflows.
 ### Commands
 1. `bash: rg -n 'max.iterations|convergence.*0\.10|convergence_threshold|maxIterations' .opencode/skills/deep-review/references/quick_reference.md`
-2. `bash: rg -n 'max.iterations|convergence|argument-hint' .opencode/commands/spec_kit/deep-review.md`
-3. `bash: rg -n 'max_iterations|convergence_threshold|maxIterations|convergenceThreshold' .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+2. `bash: rg -n 'max.iterations|convergence|argument-hint' .opencode/commands/deep/start-review-loop.md`
+3. `bash: rg -n 'max_iterations|convergence_threshold|maxIterations|convergenceThreshold' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
 ### Expected
 Default values of 7 and 0.10 appear consistently across all sources; the YAML writes these into `deep-review-config.json` during init.
 ### Evidence
@@ -71,9 +71,9 @@ Cross-reference the quick reference parameter table with the YAML `step_create_c
 | File | Role |
 |---|---|
 | `.opencode/skills/deep-review/references/quick_reference.md` | Parameter defaults table; use `ANCHOR:commands` |
-| `.opencode/commands/spec_kit/deep-review.md` | Command argument-hint and setup phase |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Auto workflow user_inputs and config creation; inspect `user_inputs` and `step_create_config` |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Confirm workflow user_inputs; inspect `user_inputs` |
+| `.opencode/commands/deep/start-review-loop.md` | Command argument-hint and setup phase |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Auto workflow user_inputs and config creation; inspect `user_inputs` and `step_create_config` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Confirm workflow user_inputs; inspect `user_inputs` |
 | `.opencode/skills/deep-review/SKILL.md` | Skill-level parameter documentation; use `ANCHOR:how-it-works` |
 
 ---

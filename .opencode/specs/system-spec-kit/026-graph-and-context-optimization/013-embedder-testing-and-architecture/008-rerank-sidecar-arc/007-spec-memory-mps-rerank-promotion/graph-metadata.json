@@ -4,48 +4,203 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/007-spec-memory-mps-rerank-promotion",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/004-spec-memory-rerank-benchmark",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/005-promote-qwen-as-default"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/006-cocoindex-dedup-from-shared-sidecar"
-    ],
-    "superseded_by": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/005-opt-in-only-closure"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
-      "spec-memory mps rerank",
+      "007 mps rerank",
+      "spec-memory rerank mps",
       "qwen mps sidecar bench",
       "speckit_cross_encoder mps promotion",
-      "007 mps rerank"
+      "007 mps plan",
+      "007 mps tasks",
+      "007 mps implementation summary"
     ],
     "key_topics": [
+      "007",
       "mps",
-      "apple-silicon",
-      "rerank-default-flip",
-      "promote-or-hold",
-      "rerank-gate-timeout"
+      "rerank",
+      "spec-memory",
+      "qwen",
+      "sidecar",
+      "bench",
+      "promotion",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary"
     ],
     "importance_tier": "important",
-    "status": "superseded",
+    "status": "complete",
     "key_files": [
+      "mcp_server/lib/search/search-flags.ts",
+      "spec.md",
+      "implementation-summary.md",
+      "plan.md",
+      "mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run_arm.py",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/search-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "run_arm.py",
+        "kind": "file",
+        "path": "mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run_arm.py",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Apple Silicon",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Arc",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Other Apple Silicon",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Arm",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Closeout If",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "If Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "op-fallback",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "MPS",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Phases",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "bounded",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "sidecar",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Spec-memory's `SPECKIT_CROSS_ENCODER=true` path stays default-off because Qwen3-Reranker-0.6B on Apple Silicon CPU is too slow under the MCP rerank-gate timeout:",
+    "created_at": "2026-05-23T11:55:15.619Z",
+    "last_save_at": "2026-05-23T11:55:15.619Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ],
-    "entities": [
-      ".opencode/skills/system-rerank-sidecar/scripts/rerank_sidecar.py",
-      ".opencode/skills/system-rerank-sidecar/scripts/start.sh",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run_arm.py"
-    ],
-    "last_indexed_at": "2026-05-21T00:00:00Z"
+    ]
   }
 }

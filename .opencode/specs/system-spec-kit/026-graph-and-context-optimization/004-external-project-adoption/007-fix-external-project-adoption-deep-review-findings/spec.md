@@ -161,7 +161,7 @@ See `tasks.md` for per-task file targets. Summary by theme:
 - [ ] `tsc --noEmit` clean across mcp_server
 - [ ] `vitest run` all phase-010 test files pass (no `.skip` left except documented-deferred)
 - [ ] `bash validate.sh --strict` per sub-phase: pass OR explicit cosmetic-warning exception
-- [ ] Final `/spec_kit:deep-review:auto` over 010 phase root: P0=0, P1≤2 (allowing minor residuals), P2 documented
+- [ ] Final `/deep:start-review-loop:auto` over 010 phase root: P0=0, P1≤2 (allowing minor residuals), P2 documented
 
 ---
 

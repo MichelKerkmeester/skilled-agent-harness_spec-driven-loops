@@ -5,7 +5,7 @@ description: Canonical contract for late-INIT spec.md detection, bounded mutatio
 
 # Spec Check Protocol
 
-Canonical contract for how `/spec_kit:deep-research` inspects and mutates `spec.md` without turning that work into an unbounded side effect.
+Canonical contract for how `/deep:start-research-loop` inspects and mutates `spec.md` without turning that work into an unbounded side effect.
 
 ---
 

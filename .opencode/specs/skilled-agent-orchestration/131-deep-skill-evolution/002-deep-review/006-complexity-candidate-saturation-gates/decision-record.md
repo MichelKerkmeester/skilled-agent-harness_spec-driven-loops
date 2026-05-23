@@ -16,8 +16,8 @@ _memory:
     blockers: []
     key_files:
       - "spec.md"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml"
+      - ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml"
+      - ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml"
 ---
 
 # Decision Record: 116/006 - Candidate Saturation and Graphless Gates
@@ -133,8 +133,8 @@ Phase E made search state durable in the reducer registry: `candidateCoverage`, 
 
 **Affected Systems**:
 
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
+- `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
 - Phase 006 Level 3 spec packet
 
 **Rollback**: Revert the YAML gate additions and this spec folder's Phase F documentation changes. No data migration is required.

@@ -93,7 +93,7 @@ Investigation aborted because cli-codex dispatch failed after 3 attempts (rate l
 
 | ID | Priority | File:Line | Description | Recommendation |
 |----|----------|-----------|-------------|----------------|
-| F-${NNN}-${AID}-blocked | none | n/a | Iteration blocked, no findings produced | Re-run via /spec_kit:deep-research:auto with executor recovery |
+| F-${NNN}-${AID}-blocked | none | n/a | Iteration blocked, no findings produced | Re-run via /deep:start-research-loop:auto with executor recovery |
 
 ## Questions Answered
 - None (iteration blocked).

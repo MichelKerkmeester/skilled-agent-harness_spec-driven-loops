@@ -100,7 +100,7 @@ Attack chain:
 
 Compound result: The two signals that tell the memory search layer "this folder exists + last action was X" are BOTH absent or stale for research folders. A caller asking `memory_search({ query: 'deep-research iterations' })` will either miss the research folder entirely (no description.json indexed) OR find it with continuity pointing to a stale/non-existent iteration. Cross-referencing with CLAUDE.md mandatory-metadata rule ("Spec folders without these files are invisible to memory search and graph traversal") confirms the design intent is violated.
 
-This is a CONFIRMED compound risk because it instantiates trivially: any `/spec_kit:deep-research` session creates iteration files under `research/016-.../iterations/` — those paths have no `description.json`. So the deep-research loop itself produces artifacts that are invisible to the memory layer that `/spec_kit:resume` and `memory_context` rely on. Segment-2's own workflow is a standing instance of the attack.
+This is a CONFIRMED compound risk because it instantiates trivially: any `/deep:start-research-loop` session creates iteration files under `research/016-.../iterations/` — those paths have no `description.json`. So the deep-research loop itself produces artifacts that are invisible to the memory layer that `/spec_kit:resume` and `memory_context` rely on. Segment-2's own workflow is a standing instance of the attack.
 
 Verdict: **CONFIRMED** as compound P1-broader (not upgrade to P0). Blast-radius enlargement: not one folder, but every research-iteration folder produced by the skill-owned deep-research/review workflow. Confidence 0.85.
 
@@ -131,7 +131,7 @@ Components: R52-P1-002 + R3-P1-001 + R1-P1-002
 ### R56-P1-NEW-003 | Research-iteration folders invisible to memory layer | compound-hypothesis
 
 Components: R3-P1-002 + R51-P1-003 + R4-P1-002
-**Confirmed attack chain**: `/spec_kit:deep-research` creates `research/NNN-.../iterations/iteration-NNN.md` → no description.json generator runs on the nested folder → memory_search / code_graph_query cannot index or discover → `/spec_kit:resume` may also miss the research state.
+**Confirmed attack chain**: `/deep:start-research-loop` creates `research/NNN-.../iterations/iteration-NNN.md` → no description.json generator runs on the nested folder → memory_search / code_graph_query cannot index or discover → `/spec_kit:resume` may also miss the research state.
 **Prerequisites**: Any deep-research or deep-review session producing nested iteration artifacts. Session 016 itself (this iteration) is a standing instance.
 **Evidence**: CLAUDE.md mandatory-metadata rule explicitly warns "Spec folders without these files are invisible to memory search and graph traversal." R51-P1-003: zero programmatic `_memory.continuity` writers. R4-P1-002: no auto-repair.
 **Severity**: P1-broader. Every skill-owned research/review loop produces unindexed artifacts.

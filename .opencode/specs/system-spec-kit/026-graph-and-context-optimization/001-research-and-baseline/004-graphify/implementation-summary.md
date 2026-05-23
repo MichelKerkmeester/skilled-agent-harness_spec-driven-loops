@@ -76,7 +76,7 @@ K28 gives you the full 12-extractor matrix (16 file extensions, Swift detected b
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The audit began as a `/spec_kit:deep-research:auto` run against `external/graphify/` and then reopened in `completed-continue` mode to reach 20 total iterations. Wave 1 covered the external repository in 10 runs. Wave 2 added 10 Public-internal translation runs that mapped the external findings onto existing payload contracts, runtime hints, incremental indexing, multimodal scope, clustering fit, verification, metrics, and rollout sequencing.
+The audit began as a `/deep:start-research-loop:auto` run against `external/graphify/` and then reopened in `completed-continue` mode to reach 20 total iterations. Wave 1 covered the external repository in 10 runs. Wave 2 added 10 Public-internal translation runs that mapped the external findings onto existing payload contracts, runtime hints, incremental indexing, multimodal scope, clustering fit, verification, metrics, and rollout sequencing.
 
 The reducer (`reduce-state.cjs`) ran after every iteration or wave close to refresh the registry, dashboard, and machine-owned strategy sections without the leaf agents needing to write those files directly. composite_converged fired at iter 7 with coverage 91.7%, and the user explicitly overrode the stop with three forced cli-codex iterations (8 to 10). After wave 1 completed, the user then requested 10 more iterations, so the packet was reopened in generation 2 and section 13.B was added for Public-internal translation findings. This kept lineage auditable: section 13 holds the original baseline, section 13.A holds the wave-1 extension, and section 13.B holds the completed-continue rollout mapping.
 

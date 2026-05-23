@@ -4,43 +4,205 @@
   "spec_folder": "skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council/012-iterative-command-and-skill-wiring",
   "parent_id": "skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council",
   "children_ids": [],
-  "migrated": false,
-  "migration_source": "schema-normalize-2026-05-23",
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council/011-iterative-session-findings-registry"
-    ],
-    "related_to": [],
-    "supersedes": []
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
   },
   "derived": {
-    "status": "draft",
-    "importance_tier": "important",
-    "is_phase_parent": false,
-    "completion_pct": 0,
-    "last_active_at": "2026-05-23T09:30:00Z",
-    "last_save_at": "2026-05-23T10:11:30.452986Z",
     "trigger_phrases": [
-      "012 iterative command and skill wiring"
+      "129 005 command and skill wiring"
     ],
     "key_topics": [
-      "012",
-      "iterative",
+      "129",
+      "005",
       "command",
-      "and",
       "skill",
-      "wiring"
+      "wiring",
+      "add",
+      "deep",
+      "ask-ai-council",
+      "auto",
+      "confirm",
+      "workflow",
+      "docs"
     ],
+    "importance_tier": "important",
+    "status": "in_progress",
     "key_files": [
-      "spec.md"
+      ".opencode/commands/deep/ask-ai-council.md",
+      ".opencode/skills/deep-ai-council/SKILL.md",
+      ".opencode/agents/ai-council.md",
+      ".claude/agents/ai-council.md",
+      ".gemini/agents/ai-council.md",
+      ".codex/agents/ai-council.toml",
+      ".opencode/commands/deep/assets/deep_ask-ai-council_auto.yaml",
+      ".opencode/commands/deep/assets/deep_ask-ai-council_confirm.yaml",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "entities": [],
-    "causal_summary": "",
+    "entities": [
+      {
+        "name": "ask-ai-council.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/ask-ai-council.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-ai-council/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council.md",
+        "kind": "doc",
+        "path": ".opencode/agents/ai-council.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council.toml",
+        "kind": "file",
+        "path": ".codex/agents/ai-council.toml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_ask-ai-council_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_ask-ai-council_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_ask-ai-council_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_ask-ai-council_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Wiring",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Implement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement Command",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Prior",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Add /deep:ask-ai-council auto/confirm workflow, skill docs, and four-runtime mirror sync.",
     "created_at": "2026-05-23T09:30:00Z",
-    "save_lineage": "post-nest-normalize",
+    "last_save_at": "2026-05-23T11:55:14.248Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ]
   }
 }

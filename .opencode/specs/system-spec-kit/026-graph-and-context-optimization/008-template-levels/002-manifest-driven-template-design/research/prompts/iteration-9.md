@@ -50,7 +50,7 @@ Four sub-tasks:
 ## CARRY-OVER FACTS (the synthesis substrate)
 
 From iter 1: irreducible runtime core = spec.md + description.json + graph-metadata.json. Memory parsers indexed by description_metadata + graph_metadata. Resume ladder priority: impl-summary → spec → plan → tasks → checklist → decision-record → research → handover → resource-map.
-From iter 2: addon lifecycle classifications — handover (command-owned-lazy via /memory:save), debug-delegation (agent-exclusive via @debug + scaffold-debug-delegation.sh), research (workflow-owned-packet via /spec_kit:deep-research, in research/ subdir), resource-map (mixed author/workflow), context-index (author-scaffolded rare). Level 3+ governance is section-level only, not file-level.
+From iter 2: addon lifecycle classifications — handover (command-owned-lazy via /memory:save), debug-delegation (agent-exclusive via @debug + scaffold-debug-delegation.sh), research (workflow-owned-packet via /deep:start-research-loop, in research/ subdir), resource-map (mixed author/workflow), context-index (author-scaffolded rare). Level 3+ governance is section-level only, not file-level.
 From iter 3: WINNER C+F hybrid 35/35-relative, 15 source files. Eliminated F (16/35), B (24/35), D (26/35), G (31/35).
 From iter 4: manifest schema example with kinds + capabilities + presets + per-doc-template ownership; 6 sample scaffolds verified covering simple/validated/arch/governed/phase-parent/investigation; golden test design with 5 preset snapshots.
 From iter 5: refactor pseudo-code; INLINE GATES chosen (Q10); 12-row risk register; deletion list of current templates folders.

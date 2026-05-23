@@ -79,7 +79,7 @@ _memory:
 | `001-research-smallcode/decision-record.md` | Authored | ADR-001..005 |
 | `001-research-smallcode/implementation-summary.md` | Authored (this file) | Placeholder; filled post-synthesis |
 | `001-research-smallcode/description.json` + `graph-metadata.json` | Generated | Via generate-context.js |
-| `001-research-smallcode/research/**` | Pending | Populated by `/spec_kit:deep-research:auto` at user trigger |
+| `001-research-smallcode/research/**` | Pending | Populated by `/deep:start-research-loop:auto` at user trigger |
 
 ### Post-synthesis (TBD)
 
@@ -105,7 +105,7 @@ _memory:
 ### Post-synthesis process (TBD)
 
 - Phase 0 preflight: dispatch cli-devin SWE-1.6 against smallcode-master, capture context-card.md
-- User triggers `/spec_kit:deep-research:auto 001-research-smallcode --max-iterations=20`
+- User triggers `/deep:start-research-loop:auto 001-research-smallcode --max-iterations=20`
 - YAML workflow runs iters 1..20 (or until convergence), each cli-devin SWE-1.6 dispatch
 - Synthesis pass writes research.md per-RQ structure
 - Hand-off to follow-on packets (002+)
@@ -203,5 +203,5 @@ The sections below are filled post-synthesis. Until then they remain empty.
 ### Recovery hints (always-valid)
 
 - Resume mid-loop: `/spec_kit:resume skilled-agent-orchestration/114-small-ai-model-optimization/001-smallcode-deep-research`
-- Restart fresh: `/spec_kit:deep-research:auto 001-research-smallcode --restart` (archives existing research/ tree)
+- Restart fresh: `/deep:start-research-loop:auto 001-research-smallcode --restart` (archives existing research/ tree)
 - Diagnose stuck: `jq -r 'select(.type=="stuck_recovery")' research/deep-research-state.jsonl`

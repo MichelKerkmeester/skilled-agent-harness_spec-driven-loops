@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-04-24T17:15:00+02:00"
     last_updated_by: "codex"
     recent_action: "Completed T001-T037 checklist evidence pass"
-    next_safe_action: "Run /spec_kit:deep-review:auto for audit"
+    next_safe_action: "Run /deep:start-review-loop:auto for audit"
     blockers: []
     completion_pct: 100
     open_questions: []
@@ -65,8 +65,8 @@ template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->"
 ## Testing
 
 - [x] CHK-020 [P0] Vitest snapshot coverage for review and research shapes both pass [EVIDENCE: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run --config vitest.config.ts --root . scripts/tests/resource-map-extractor.vitest.ts` exited `0` with `Test Files 1 passed` and `Tests 2 passed`; coverage lives in `.opencode/skills/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts:32`]
-- [x] CHK-021 [P0] Manual `/spec_kit:deep-review :auto` on fixture packet emits a valid map [EVIDENCE: per the packet's no-full-loop constraint, the equivalent review-shape dry run returned `true / true / true` for READMEs heading, Skills heading, and final findings note]
-- [x] CHK-022 [P0] Manual `/spec_kit:deep-research :auto` on fixture packet emits a valid map [EVIDENCE: per the packet's no-full-loop constraint, the equivalent research-shape dry run returned `true / true / true` for Commands heading, Skills heading, and `Citations=3; Iterations=3`]
+- [x] CHK-021 [P0] Manual `/deep:start-review-loop :auto` on fixture packet emits a valid map [EVIDENCE: per the packet's no-full-loop constraint, the equivalent review-shape dry run returned `true / true / true` for READMEs heading, Skills heading, and final findings note]
+- [x] CHK-022 [P0] Manual `/deep:start-research-loop :auto` on fixture packet emits a valid map [EVIDENCE: per the packet's no-full-loop constraint, the equivalent research-shape dry run returned `true / true / true` for Commands heading, Skills heading, and `Citations=3; Iterations=3`]
 - [x] CHK-023 [P1] `--no-resource-map` opt-out produces no map file and exits cleanly [EVIDENCE: opt-out reducer exercise returned `{\"resourceMapSkipped\":true,\"resourceMapSkipReason\":\"config.resource_map.emit=false\",\"resourceMapExists\":false}`]
 - [x] CHK-024 [P1] Zero-iteration and max-iteration edge cases behave per spec [EVIDENCE: edge-case dry run returned `{\"zeroTotal\":\"0\",\"zeroHasCategoryHeadings\":false,\"maxCitationNote\":true}`]
 - [x] CHK-025 [P1] Malformed delta scenario produces a `degraded: true` map, not a crash [EVIDENCE: malformed-row extractor dry run returned `{\"degraded\":true,\"degradedRows\":true}` and `.opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs:132` emits the degraded summary line]
@@ -88,7 +88,7 @@ template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->"
 ## Documentation
 
 - [x] CHK-040 [P1] Both SKILL.md files document the new output and opt-out [EVIDENCE: `.opencode/skills/sk-deep-review/SKILL.md:250` and `:510`, plus `.opencode/skills/sk-deep-research/SKILL.md:241` and `:455`]
-- [x] CHK-041 [P1] Both command MD files mention the convergence-time emission [EVIDENCE: `.opencode/commands/spec_kit/deep-review.md:188` and `:205`, plus `.opencode/commands/spec_kit/deep-research.md:177` and `:194`]
+- [x] CHK-041 [P1] Both command MD files mention the convergence-time emission [EVIDENCE: `.opencode/commands/deep/start-review-loop.md:188` and `:205`, plus `.opencode/commands/deep/start-research-loop.md:177` and `:194`]
 - [x] CHK-042 [P1] Both convergence.md references note the new step [EVIDENCE: `.opencode/skills/sk-deep-review/references/convergence.md:30` and `.opencode/skills/sk-deep-research/references/convergence.md:19`]
 - [x] CHK-043 [P1] Feature catalog entries exist for both skills [EVIDENCE: `.opencode/skills/sk-deep-review/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md:10` and `.opencode/skills/sk-deep-research/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md:10`]
 - [x] CHK-044 [P1] Manual testing playbook entries exist for both skills [EVIDENCE: `.opencode/skills/sk-deep-review/manual_testing_playbook/06--synthesis-save-and-guardrails/029-resource-map-emission.md:14` and `.opencode/skills/sk-deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/027-resource-map-emission.md:14`]

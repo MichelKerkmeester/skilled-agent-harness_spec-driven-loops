@@ -48,9 +48,6 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/commands/spec_kit/deep-research.md",
-      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
-      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
       ".claude/agents/deep-research.md",
       ".codex/agents/deep-research.toml",
       ".opencode/agents/deep-research.md",
@@ -102,19 +99,7 @@
       {
         "name": "deep-research.md",
         "kind": "doc",
-        "path": ".opencode/commands/spec_kit/deep-research.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec_kit_deep-research_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "spec_kit_deep-research_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
+        "path": ".claude/agents/deep-research.md",
         "source": "derived"
       },
       {
@@ -200,11 +185,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-deep-research system (v1) is functional but has 18 documented improvement proposals (from spec 023) that need rigorous validation, prioritization refinement, and implementation-ready specifications before they can be executed. The proposals were derived from a 14-iteration research cycle but need a second-pass deep investigation that:",
     "created_at": "2026-04-12T09:02:50.173Z",
-    "last_save_at": "2026-05-19T13:51:38.457Z",
+    "last_save_at": "2026-05-23T11:55:14.362Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

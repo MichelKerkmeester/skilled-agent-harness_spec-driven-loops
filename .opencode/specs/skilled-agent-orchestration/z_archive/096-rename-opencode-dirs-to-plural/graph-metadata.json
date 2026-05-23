@@ -28,13 +28,7 @@
       "post-rename review remediation",
       "skilled-agent-orchestration release cycle",
       "096 resource map",
-      "rename and review cycle resources",
-      "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural",
-      "skilled-agent-orchestration",
-      "z_archive",
-      "096-rename-opencode-dirs-to-plural",
-      "feature",
-      "specification"
+      "rename and review cycle resources"
     ],
     "key_topics": [
       "096",
@@ -50,16 +44,15 @@
       "release",
       "resource"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "planned",
     "key_files": [
       "spec.md",
       "resource-map.md",
-      "mcp_server/lib/deep-loop/executor-config.ts",
       "mcp_server/hooks/claude/session-stop.ts",
       "shared/review-research-paths.cjs",
       "scripts/spec/check-smart-router.sh",
-      "mcp_server/tests/deep-loop/executor-config.vitest.ts"
+      "001-rename-opencode-dirs/resource-map.md"
     ],
     "entities": [
       {
@@ -72,12 +65,6 @@
         "name": "resource-map.md",
         "kind": "doc",
         "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "executor-config.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/deep-loop/executor-config.ts",
         "source": "derived"
       },
       {
@@ -96,12 +83,6 @@
         "name": "check-smart-router.sh",
         "kind": "script",
         "path": "scripts/spec/check-smart-router.sh",
-        "source": "derived"
-      },
-      {
-        "name": "executor-config.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/deep-loop/executor-config.vitest.ts",
         "source": "derived"
       },
       {
@@ -179,7 +160,7 @@
     ],
     "causal_summary": "Track the complete opencode plural-directory rename cycle and the cascading post-rename quality work it triggered. What started as a 1-commit bulk rename grew into 8 phases of progressively deeper review and remediation:",
     "created_at": "2026-05-18T07:49:27.230Z",
-    "last_save_at": "2026-05-19T13:51:38.774Z",
+    "last_save_at": "2026-05-23T11:55:14.674Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

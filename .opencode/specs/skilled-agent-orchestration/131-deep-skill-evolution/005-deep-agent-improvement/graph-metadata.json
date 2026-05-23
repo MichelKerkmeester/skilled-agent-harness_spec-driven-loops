@@ -13,8 +13,8 @@
     "skilled-agent-orchestration/131-deep-skill-evolution/005-deep-agent-improvement/007-cross-runtime-promotion",
     "skilled-agent-orchestration/131-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication"
   ],
-  "migrated": false,
-  "migration_source": "thematic-nesting-from-flat-131",
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -33,17 +33,19 @@
       "correctness",
       "evaluator",
       "cross-runtime",
-      "mixed-executor"
+      "cluster",
+      "groups",
+      "sub-phases",
+      "share",
+      "single",
+      "thematic",
+      "focus"
     ],
     "importance_tier": "important",
-    "status": "active",
+    "status": "planned",
     "key_files": [
       "spec.md",
-      "001-research-recent-updates/spec.md",
-      "002-applicability-analysis/spec.md",
-      "003-recommendations/spec.md",
-      "004-correctness-fixes/spec.md",
-      "005-doc-version-reconciliation/spec.md"
+      ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/spec.md"
     ],
     "entities": [
       {
@@ -53,16 +55,46 @@
         "source": "derived"
       },
       {
-        "name": "deep-agent-improvement",
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Agent Improvement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Last Updated",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Co-evolve deep-agent-improvement with deep-review/deep-research arcs: uplift research + 5 dimensional improvements (correctness / doc-version / evaluator / cross-runtime / mixed-executor).",
+    "causal_summary": "This cluster groups 8 sub-phases that share a single thematic focus. Before restructuring, these existed as flat siblings at the root of `131-deep-skill-evolution/`. Nesting them under this thematic phase parent reduces root-level fan-out and makes the cluster's internal arc easier to follow.",
     "created_at": "2026-05-23T09:52:56.265976Z",
-    "last_save_at": "2026-05-23T09:52:56.265976Z",
-    "save_lineage": "nesting-restructure",
+    "last_save_at": "2026-05-23T11:55:14.296Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"

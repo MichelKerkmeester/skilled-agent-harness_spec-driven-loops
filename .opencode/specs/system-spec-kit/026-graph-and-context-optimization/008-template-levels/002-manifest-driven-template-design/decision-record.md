@@ -42,7 +42,7 @@ _memory:
 |-------|-------|
 | **Status** | Accepted |
 | **Date** | 2026-05-01 |
-| **Deciders** | michelkerkmeester (final), `/spec_kit:deep-research:auto` 9-iter loop (converged at 0.06 < 0.10) gpt-5.5 cross-validation |
+| **Deciders** | michelkerkmeester (final), `/deep:start-research-loop:auto` 9-iter loop (converged at 0.06 < 0.10) gpt-5.5 cross-validation |
 | **Synthesis source** | `research/research.md` (40.9 KB, 17 sections) |
 
 ---
@@ -50,7 +50,7 @@ _memory:
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-The current spec-kit template system encodes documentation shape as Level 1/2/3/3+ + phase-parent. That looks simple at the command surface but the implementation spreads level meaning across template folders, shell validators, TypeScript validation, README documentation, generated metadata, and phase-parent special cases. 86 source files / ~13K LOC. The level scalar conflates two independent concerns: (a) which doc files a packet needs, (b) which sections within those docs apply. Addon docs (handover.md, debug-delegation.md, research.md, resource-map.md, context-index.md) are scaffolded as starter templates today, but several are written exclusively by automation (handover by /memory:save, research by /spec_kit:deep-research, debug-delegation by @debug agent). Scaffolding them creates stale empty stubs.
+The current spec-kit template system encodes documentation shape as Level 1/2/3/3+ + phase-parent. That looks simple at the command surface but the implementation spreads level meaning across template folders, shell validators, TypeScript validation, README documentation, generated metadata, and phase-parent special cases. 86 source files / ~13K LOC. The level scalar conflates two independent concerns: (a) which doc files a packet needs, (b) which sections within those docs apply. Addon docs (handover.md, debug-delegation.md, research.md, resource-map.md, context-index.md) are scaffolded as starter templates today, but several are written exclusively by automation (handover by /memory:save, research by /deep:start-research-loop, debug-delegation by @debug agent). Scaffolding them creates stale empty stubs.
 
 ### Constraints
 
@@ -70,7 +70,7 @@ The current spec-kit template system encodes documentation shape as Level 1/2/3/
 
 **How it works**: 
 - **Three orthogonal axes** replace the level scalar: `kind` (mutually exclusive: implementation/investigation/documentation/phase-parent) + `capabilities` (additive: qa-verification/architecture-decisions/governance-expansion/...) + `presets` (UX shorthand: simple-change/validated-change/arch-change/governed-change/phase-parent/investigation).
-- **Lifecycle ownership per addon doc**: each doc declares `owner` (author/command/agent/workflow), `creationTrigger` (scaffold/`/memory:save`/`@debug`/`/spec_kit:deep-research`), `absenceBehavior` (hard-error/warn/silent-skip).
+- **Lifecycle ownership per addon doc**: each doc declares `owner` (author/command/agent/workflow), `creationTrigger` (scaffold/`/memory:save`/`@debug`/`/deep:start-research-loop`), `absenceBehavior` (hard-error/warn/silent-skip).
 - **Inline section gates** (`<!-- IF capability:architecture-decisions -->...<!-- /IF -->`) preserve whole-document markdown authoring while letting validators compare post-gate active sections. Formal EBNF grammar in research.md §7.
 - **Single manifest** (`templates/manifest/spec-kit-docs.json`, ~80-150 lines) drives scaffolder (`create.sh` + `template-utils.sh::scaffold_from_manifest`) AND validator (`check-files.sh`, `check-sections.sh`, `check-template-headers.sh`, `check-section-counts.sh`) AND TS validation (`mcp_server/lib/templates/manifest-loader.ts`). Drift becomes structurally impossible.
 <!-- /ANCHOR:adr-001-decision -->

@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: deep-review :auto non-interactive setup bypass"
-description: "Verification checklist for /spec_kit:deep-review:auto stdin-hang fix."
+description: "Verification checklist for /deep:start-review-loop:auto stdin-hang fix."
 trigger_phrases:
   - "deep-review setup hang"
   - "F-Stage-E-001"
@@ -15,7 +15,7 @@ _memory:
     next_safe_action: "Reviewer can inspect evidence/dry-run-verification.txt"
     blockers: []
     key_files:
-      - ".opencode/commands/spec_kit/deep-review.md"
+      - ".opencode/commands/deep/start-review-loop.md"
       - ".opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup/evidence/dry-run-verification.txt"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -60,7 +60,7 @@ _memory:
 ## Code Quality
 
 - [x] CHK-010 [P0] No invalid markdown / broken anchor in deep-review.md after edit. Evidence: §0 was read back after the patch; heading structure and fenced blocks render as valid Markdown.
-- [x] CHK-011 [P0] No YAML parse errors in spec_kit_deep-review_auto.yaml if touched. Evidence: YAML asset was read but not modified.
+- [x] CHK-011 [P0] No YAML parse errors in deep_start-review-loop_auto.yaml if touched. Evidence: YAML asset was read but not modified.
 - [x] CHK-012 [P1] Pre-binding marker block has unambiguous syntax, no collision with existing convention. Evidence: `PRE-BOUND SETUP ANSWERS:` documented as a single YAML-style key/value block with unknown-field and malformed-line behavior.
 - [x] CHK-013 [P1] Fail-fast error message clearly names every missing input. Evidence: Tier 3 documents the exact named-missing-inputs format; Trace C records `review_target` missing.
 <!-- /ANCHOR:code-quality -->
@@ -83,7 +83,7 @@ _memory:
 
 - [x] CHK-FIX-001 [P0] Finding classified: `cross-consumer` - fix lives in command markdown, consumed by YAML workflow. Evidence: `deep-review.md` owns setup; auto YAML consumes resolved placeholders after setup.
 - [x] CHK-FIX-002 [P0] Same-class producer inventory: deep-review.md is the only producer of setup-resolution for this command. Evidence: §0 of `deep-review.md` is the documented setup entrypoint before YAML load.
-- [x] CHK-FIX-003 [P0] Consumer inventory: YAML workflow + `deep-review-config.json` shape verified consistent across both branches. Evidence: `spec_kit_deep-review_auto.yaml` setup inputs and `step_create_config` were read; no consumer-side change required.
+- [x] CHK-FIX-003 [P0] Consumer inventory: YAML workflow + `deep-review-config.json` shape verified consistent across both branches. Evidence: `deep_start-review-loop_auto.yaml` setup inputs and `step_create_config` were read; no consumer-side change required.
 - [x] CHK-FIX-004 [P0] Not applicable (no security/parser/redaction changes). Evidence: change is command contract documentation and setup routing; no secrets, redaction, or runtime parser code was edited.
 - [x] CHK-FIX-005 [P1] Matrix axes: (mode x inputs-resolved-state) = 4 cells (auto+resolved, auto+missing, confirm+resolved, confirm+missing); all tested. Evidence: dry-run traces cover auto+resolved (Trace A), auto+ambiguous (Trace B), auto+missing (Trace C), and confirm path (Trace D); confirm+missing remains in the unchanged consolidated prompt path.
 - [x] CHK-FIX-006 [P1] Hostile env variant: stdin closed (`</dev/null`) explicitly tested. Evidence: live stdin-closed execution was prohibited; Trace C verifies the non-interactive EOF outcome by contract and records the fail-fast result.

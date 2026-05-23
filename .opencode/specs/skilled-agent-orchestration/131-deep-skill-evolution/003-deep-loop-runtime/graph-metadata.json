@@ -14,8 +14,8 @@
     "skilled-agent-orchestration/131-deep-skill-evolution/003-deep-loop-runtime/008-test-migration",
     "skilled-agent-orchestration/131-deep-skill-evolution/003-deep-loop-runtime/009-verification-changelog-closeout"
   ],
-  "migrated": false,
-  "migration_source": "thematic-nesting-from-flat-131",
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -31,19 +31,21 @@
       "deep-loop",
       "runtime",
       "isolation",
-      "skill-scaffold",
-      "mcp-tool-surface",
-      "test-migration"
+      "deep-loop-runtime",
+      "skill",
+      "full",
+      "no-mcp",
+      "cluster",
+      "groups",
+      "sub-phases",
+      "share",
+      "single"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
       "spec.md",
-      "001-core-isolation-deliberation/spec.md",
-      "002-skill-scaffold/spec.md",
-      "003-lib-runtime-migration/spec.md",
-      "004-script-shim-db-relocation/spec.md",
-      "005-mcp-tool-surface-removal/spec.md"
+      ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/spec.md"
     ],
     "entities": [
       {
@@ -53,16 +55,46 @@
         "source": "derived"
       },
       {
-        "name": "deep-loop-runtime",
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Loop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Last Updated",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Isolate the deep-loop runtime from system-spec-kit into its own peer skill (.opencode/skills/deep-loop-runtime) \u2014 deliberation + 8-phase full isolation.",
+    "causal_summary": "This cluster groups 9 sub-phases that share a single thematic focus. Before restructuring, these existed as flat siblings at the root of `131-deep-skill-evolution/`. Nesting them under this thematic phase parent reduces root-level fan-out and makes the cluster's internal arc easier to follow.",
     "created_at": "2026-05-23T09:52:56.265976Z",
-    "last_save_at": "2026-05-23T09:52:56.265976Z",
-    "save_lineage": "nesting-restructure",
+    "last_save_at": "2026-05-23T11:55:14.267Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"

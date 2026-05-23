@@ -13,28 +13,197 @@
   },
   "derived": {
     "trigger_phrases": [
-      "query expansion identifier bridging",
-      "query expansion identifier bridging graph metadata"
+      "016/004/016 query expansion",
+      "identifier bridging cocoindex",
+      "camelCase snake_case query expansion",
+      "code-domain synonyms",
+      "COCOINDEX_QUERY_EXPANSION",
+      "016 query expansion plan",
+      "identifier bridging plan",
+      "016 query expansion tasks",
+      "identifier bridging tasks",
+      "016 query expansion checklist",
+      "identifier bridging checklist",
+      "016 query expansion summary"
     ],
     "key_topics": [
+      "016",
+      "004",
       "query",
       "expansion",
       "identifier",
-      "bridging"
+      "bridging",
+      "cocoindex",
+      "camelcase",
+      "code-domain",
+      "synonyms",
+      "plan",
+      "tasks"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "spec.md",
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_query_expansion.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_config.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_fts_index.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/README.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "evidence/phase2-comparison-016-query-expansion.md",
+      "spec.md",
+      "evidence/phase2-comparison-015-vs-016-delta.md"
     ],
-    "entities": [],
-    "causal_summary": "Graph metadata for the current packet.",
+    "entities": [
+      {
+        "name": "test_query_expansion.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_query_expansion.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_config.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_config.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_fts_index.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_fts_index.py",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase2-comparison-016-query-expansion.md",
+        "kind": "doc",
+        "path": "evidence/phase2-comparison-016-query-expansion.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase2-comparison-015-vs-016-delta.md",
+        "kind": "doc",
+        "path": "evidence/phase2-comparison-015-vs-016-delta.md",
+        "source": "derived"
+      },
+      {
+        "name": "Query Expansion",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Identifier Bridging",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "camelCase",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "default",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "better",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tests",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Query Expansion Identifier Bridging",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Pure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "User queries are natural language (\"filesystem walker\", \"memory save\", \"rerank adapter\"). Code corpora store identifiers in conventions:",
     "created_at": "2026-05-19T16:20:00.000Z",
-    "last_save_at": "2026-05-19T20:42:43.966Z",
+    "last_save_at": "2026-05-23T11:55:15.523Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

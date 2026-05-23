@@ -27,10 +27,10 @@
 - `.opencode/skills/sk-code-review/references/review_core.md:75-88`
 - `.opencode/skills/sk-deep-review/references/convergence.md:31-53`
 - `.opencode/skills/sk-deep-review/references/convergence.md:381-425`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:478-558`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1047-1054`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:486-566`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:1069-1076`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:478-558`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1047-1054`
+- `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:486-566`
+- `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:1069-1076`
 - `.opencode/agents/deep-review.md:146-179`
 - `.opencode/agents/deep-review.md:204-224`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts:55-57`

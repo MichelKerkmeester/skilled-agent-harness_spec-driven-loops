@@ -2,7 +2,7 @@
 
 ## Dispatcher
 
-- Command: `/spec_kit:deep-review:auto`
+- Command: `/deep:start-review-loop:auto`
 - Target: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/005-skill-reference-asset-doc-alignment`
 - Spec folder: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/005-skill-reference-asset-doc-alignment`
 - Iteration: 004 of 5
@@ -120,4 +120,4 @@ None.
 - Reason: Validator coverage has one advisory P2 and no active P0/P1; the final configured dimension is cross-runtime mirror consistency.
 - Rotation status: advance
 - Blocked/productive carry-forward: Carry P2-001, P2-002, and P2-003 as advisory precision/coverage issues only. Do not retry validator docs-vs-registry coverage unless new evidence changes runtime behavior.
-- Required evidence: direct file:line reads from `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`, `.opencode/commands/spec_kit/deep-review.md`, `.opencode/agents/*.md` canonical surfaces, and runtime mirrors only where explicitly in scope.
+- Required evidence: direct file:line reads from `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`, `.opencode/commands/deep/start-review-loop.md`, `.opencode/agents/*.md` canonical surfaces, and runtime mirrors only where explicitly in scope.

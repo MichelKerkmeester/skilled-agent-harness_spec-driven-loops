@@ -30,8 +30,8 @@ The log is append-only by contract. The agent may add one iteration line, the wo
 | `.opencode/skills/deep-research/references/state_format.md` | Reference | Defines the JSONL schema for config, iteration, and event lines. |
 | `.opencode/skills/deep-research/references/convergence.md` | Reference | Defines how convergence readers parse JSONL safely and interpret stuck, insight, and thought statuses. |
 | `.opencode/agents/deep-research.md` | Agent | Defines the one-line iteration append contract and required JSONL fields. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Workflow | Appends workflow-owned events such as `graph_convergence` and `blocked_stop`. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Workflow | Mirrors the same event-writing path in confirm mode. |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Workflow | Appends workflow-owned events such as `graph_convergence` and `blocked_stop`. |
+| `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Workflow | Mirrors the same event-writing path in confirm mode. |
 
 ### Validation And Tests
 

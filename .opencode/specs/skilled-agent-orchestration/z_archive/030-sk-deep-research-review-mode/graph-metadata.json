@@ -50,7 +50,6 @@
       "handover.md",
       "plan.md",
       "tasks.md",
-      ".opencode/commands/spec_kit/deep-research.md",
       ".opencode/commands/spec_kit/plan.md",
       ".opencode/agents/deep-review.md",
       ".opencode/agents/review.md",
@@ -109,12 +108,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research.md",
-        "kind": "doc",
-        "path": ".opencode/commands/spec_kit/deep-research.md",
         "source": "derived"
       },
       {
@@ -200,11 +193,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Currently, reviewing spec folders, code changes, skills, and their cross-references for release readiness is a manual, single-pass process. There is no iterative, convergence-driven review flow that systematically checks all dimensions such as correctness, security, patterns, spec alignment, completeness, and cross-reference integrity across a review target.",
     "created_at": "2026-04-12T09:02:50.177Z",
-    "last_save_at": "2026-05-19T13:51:38.467Z",
+    "last_save_at": "2026-05-23T11:55:14.381Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

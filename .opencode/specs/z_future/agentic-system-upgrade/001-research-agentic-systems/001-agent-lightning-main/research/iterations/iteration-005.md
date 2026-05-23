@@ -17,8 +17,8 @@ I examined the Trainer and Algorithm contracts, focusing on how components are r
 - Trainer initialization resolves tracer, adapter, algorithm, strategy, store, runner, proxy, and hooks as separate concerns rather than baking those dependencies into one monolithic runtime. [SOURCE: external/agentlightning/trainer/trainer.py:205-243] [SOURCE: external/agentlightning/trainer/trainer.py:280-317]
 - The Algorithm contract is deliberately lightweight: it receives trainer, store, adapter, and optional proxy references, then runs its own logic against those injected collaborators. [SOURCE: external/agentlightning/algorithm/base.py:25-33] [SOURCE: external/agentlightning/algorithm/base.py:86-118] [SOURCE: external/agentlightning/algorithm/base.py:135-149]
 - Even the fast `Trainer.dev()` path keeps the same store, runners, hooks, and tracer plumbing; it swaps in a lightweight algorithm rather than creating a completely separate debug path. [SOURCE: external/docs/tutorials/debug.md:243-245] [SOURCE: external/docs/tutorials/debug.md:272-280]
-- Public's deep-research command does not expose that sort of pluggability. It hardwires a single workflow that chooses between two YAML assets, then runs a fixed iteration/init/synthesis/save loop. [SOURCE: .opencode/commands/spec_kit/deep-research.md:147-173]
-- The autonomous YAML asset is similarly fixed: it names one agent, one tool set, one set of state files, and one workflow structure rather than a component registry or interchangeable loop backend. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:64-89] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:94-127]
+- Public's deep-research command does not expose that sort of pluggability. It hardwires a single workflow that chooses between two YAML assets, then runs a fixed iteration/init/synthesis/save loop. [SOURCE: .opencode/commands/deep/start-research-loop.md:147-173]
+- The autonomous YAML asset is similarly fixed: it names one agent, one tool set, one set of state files, and one workflow structure rather than a component registry or interchangeable loop backend. [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:64-89] [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:94-127]
 
 ## Analysis
 Agent Lightning's Trainer earns its flexibility because it has to orchestrate multiple runtime bundles and multiple learning algorithms. Public is solving a much narrower problem: packet-local iterative research and review. That makes a full Trainer-style component lattice excessive right now. Still, there is one transferable idea: if Public introduces more than one reducer, evaluator, or loop backend in the future, those concerns should be swappable through a small registry rather than forked into separate command assets with duplicated workflow logic.
@@ -31,7 +31,7 @@ confidence: medium
 finding: Agent Lightning's Trainer pluggability is a valuable architectural reference, but it is mostly future-facing for Public. The current deep-loop workflows are still simple enough that a full component registry would add abstraction before it pays off. The main actionable takeaway is to avoid cloning whole workflows if loop backends multiply later; introduce a small registry at that moment instead.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+- **Target file or module:** `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
 - **Change type:** architectural shift
 - **Blast radius:** large
 - **Prerequisites:** real demand for multiple loop backends, reducers, or evaluator drivers; agreement on a minimal registry contract

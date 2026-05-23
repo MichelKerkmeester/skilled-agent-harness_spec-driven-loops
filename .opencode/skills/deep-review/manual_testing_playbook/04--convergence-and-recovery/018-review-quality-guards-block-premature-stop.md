@@ -45,7 +45,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate deep-review quality guards for evidence, scope, and coverage before any STOP decision.
 ### Commands
 1. `bash: rg -n 'quality.guard|binary.gate|evidence.*gate|scope.*gate|coverage.*gate|QUALITY_GUARD|gate.*pass' .opencode/skills/deep-research/references/convergence.md`
-2. `bash: rg -n 'quality_guard|binary_gate|evidence_gate|scope_gate|coverage_gate|guard.*check|gate.*pass' .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+2. `bash: rg -n 'quality_guard|binary_gate|evidence_gate|scope_gate|coverage_gate|guard.*check|gate.*pass' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
 3. `bash: rg -n 'Quality Guard|Evidence|Scope|Coverage|binary gate|gate.*pass|inference.only' .opencode/skills/deep-review/references/quick_reference.md .opencode/skills/deep-review/SKILL.md .opencode/skills/deep-review/README.md`
 ### Expected
 Three named binary gates (evidence, scope, coverage), each must return true, enforcement happens after convergence check but before STOP, and gates are review-specific.
@@ -71,8 +71,8 @@ Privilege the convergence reference for gate definitions and the YAML workflow f
 | File | Role |
 |---|---|
 | `.opencode/skills/deep-research/references/convergence.md` | Canonical quality guard definitions; use Section 10.4 for review-specific gates |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Workflow algorithm; inspect quality guard enforcement in convergence step |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Workflow algorithm; inspect quality guard enforcement in convergence step |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Workflow algorithm; inspect quality guard enforcement in convergence step |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Workflow algorithm; inspect quality guard enforcement in convergence step |
 | `.opencode/skills/deep-review/references/quick_reference.md` | Quality guard summary; use `ANCHOR:quality-guards` |
 | `.opencode/skills/deep-review/SKILL.md` | Quality guard rules; use `ANCHOR:rules` Rule 12 |
 | `.opencode/skills/deep-review/README.md` | Feature summary for quality guards |

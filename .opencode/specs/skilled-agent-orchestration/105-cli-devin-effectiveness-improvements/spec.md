@@ -25,8 +25,8 @@ _memory:
       - ".opencode/skills/cli-devin/references/deep-loop-iter-contract.md"
       - ".opencode/skills/cli-devin/references/agent-config-recipes.md"
       - ".opencode/skills/cli-devin/assets/deep-loop-iter-template.md"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml"
+      - ".opencode/commands/deep/assets/deep_start-research-loop_auto.yaml"
+      - ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml"
     session_dedup:
       fingerprint: "sha256:adef9e86e2a4be45dd3d41f04e2c530337b33b010ea99aa256a97472ec9f2528"
       session_id: "105-spec-scaffolded"
@@ -103,7 +103,7 @@ Ship cli-devin v1.0.4.0 with 8 concrete improvements that lift SWE-1.6 output qu
 
 **Bucket C — YAML dispatchers + per-iter timeout (Agent 3, opus):**
 
-- I-007 Update `if_cli_devin:` branches in `spec_kit_deep-research_auto.yaml` AND `spec_kit_deep-review_auto.yaml`: add per-iter `gtimeout 900` wrapper, detect "A tool was rejected" stderr pattern and skip that iter, log dispatch quality (degraded if boilerplate detected)
+- I-007 Update `if_cli_devin:` branches in `deep_start-research-loop_auto.yaml` AND `deep_start-review-loop_auto.yaml`: add per-iter `gtimeout 900` wrapper, detect "A tool was rejected" stderr pattern and skip that iter, log dispatch quality (degraded if boilerplate detected)
 - I-008 Update the iter-prompt rendering helper (if any exists separately from the recipes) to strip boilerplate preamble from devin stdout before writing to iter file (`sed -n '/^# Iter/,$p'` pattern)
 
 ### Out of Scope

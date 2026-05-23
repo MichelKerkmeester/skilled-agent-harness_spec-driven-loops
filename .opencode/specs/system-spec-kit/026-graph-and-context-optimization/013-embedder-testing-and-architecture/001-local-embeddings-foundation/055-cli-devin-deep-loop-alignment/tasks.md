@@ -58,8 +58,8 @@ _memory:
 ## PHASE 2: IMPLEMENTATION
 
 ### Commands
-- [ ] T006 Update `/spec_kit:deep-research` executor enum (lines 79, 124, 137) + YAML dispatch
-- [ ] T007 Update `/spec_kit:deep-review` executor enum + YAML dispatch
+- [ ] T006 Update `/deep:start-research-loop` executor enum (lines 79, 124, 137) + YAML dispatch
+- [ ] T007 Update `/deep:start-review-loop` executor enum + YAML dispatch
 
 ### Agents
 - [ ] T008 Add SWE-1.6 iter contract subsection to `@deep-research`

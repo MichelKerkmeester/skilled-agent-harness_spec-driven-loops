@@ -238,7 +238,7 @@ done
 log "synthesis: building synth prompt"
 SYNTH_PROMPT_FILE="$PROMPT_DIR/synth.txt"
 cat > "$SYNTH_PROMPT_FILE" <<SYNTH_EOF
-You are the synthesizer for a /spec_kit:deep-review run that just completed 20 iterations of local-LLM legacy hunting.
+You are the synthesizer for a /deep:start-review-loop run that just completed 20 iterations of local-LLM legacy hunting.
 
 Read all iteration files at $ITER_DIR/iteration-*.md. Deduplicate findings (same file:line collapsed). Produce TWO files:
 

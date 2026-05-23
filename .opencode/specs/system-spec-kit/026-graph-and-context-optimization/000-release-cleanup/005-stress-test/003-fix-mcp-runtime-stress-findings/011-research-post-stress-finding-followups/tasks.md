@@ -94,9 +94,9 @@ _memory:
 - [ ] **T101** Compose unified topic prompt (see `plan.md` §4 for canonical text).
   - **Acceptance**: Topic prompt contains all 4 numbered follow-ups + light arch touch + source-of-evidence paths.
 
-- [ ] **T102** Invoke `/spec_kit:deep-research:auto` with the configured CLI flags:
+- [ ] **T102** Invoke `/deep:start-research-loop:auto` with the configured CLI flags:
   ```
-  /spec_kit:deep-research:auto "<topic>" \
+  /deep:start-research-loop:auto "<topic>" \
     --max-iterations=10 \
     --convergence=0.05 \
     --executor=cli-codex --model=gpt-5.5 --reasoning-effort=high --service-tier=fast \
@@ -160,5 +160,5 @@ This packet is complete when:
 - Source of evidence: `../010-stress-test-close-loop-measurement-rerun/findings.md` Recommendations §1-5
 - Sibling remediation packets: `../003-memory-context-truncation-telemetry-contract/`, `../004-cocoindex-overfetch-dedup-rerank/`, `../005-code-graph-fail-fast-routing/`, `../006-causal-graph-relation-window-metrics/`, `../007-intent-classifier-stability-telemetry/`, `../008-mcp-daemon-rebuild-protocol/`, `../009-memory-search-citation-response-policy/`
 - Predecessor v1.0.1 baseline: `../001-search-intelligence-stress-playbook/002-search-scenario-execution/findings.md`
-- Workflow: `.opencode/skills/sk-deep-research/SKILL.md`, `.opencode/commands/spec_kit/deep-research.md`
+- Workflow: `.opencode/skills/sk-deep-research/SKILL.md`, `.opencode/commands/deep/start-research-loop.md`
 <!-- /ANCHOR:cross-refs -->

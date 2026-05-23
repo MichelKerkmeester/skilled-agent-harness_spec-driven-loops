@@ -122,5 +122,5 @@ The remediation campaign deliberately used `cli-codex gpt-5.5 high fast` instead
 ## Next steps (operator decision)
 
 - **Commit + memory save** (this packet): the implementation work is complete. Strict-validate failures on this packet's own scaffolding are pre-existing (the 003 spec/plan/tasks/checklist authored at packet creation didn't perfectly match Level 2 template anchor names). Those are cosmetic and tracked as follow-on.
-- **Optional re-review**: dispatch `/spec_kit:deep-review:auto` on 013 to confirm verdict moves CONDITIONAL → PASS.
+- **Optional re-review**: dispatch `/deep:start-review-loop:auto` on 013 to confirm verdict moves CONDITIONAL → PASS.
 - **Follow-on packet (optional)**: address the 2 deferred P2 findings + the 003 packet's own template-compliance issues. Small effort.

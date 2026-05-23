@@ -7504,7 +7504,7 @@ exec
    365	## User preferences
    366	
    367	- when the user asked to "create a similar prompt for ...005-mempalace ... dont ask for a spec folder," place `phase-research-prompt.md` in the phase root and skip new spec-folder scaffolding [Task 1]
-   368	- when the user asked "Run /spec_kit:deep-research ... get tot 20 total iterations so add 7 more," treat it as resume of the active lineage, not a fork [Task 2]
+   368	- when the user asked "Run /deep:start-research-loop ... get tot 20 total iterations so add 7 more," treat it as resume of the active lineage, not a fork [Task 2]
    369	- when asked to fold the extension into active v2 synthesis "without changing the overall verdict or top-10 ordering," integrate new evidence/counts without re-ranking master recommendations [Task 2]
    370	- when folding closeouts into the root, the user insisted to "leave v1 files untouched" and only update active `research-v2` artifacts [Task 4]
    371	- after strict validation surfaced low-quality resume artifacts, the user said “do manually rewrite or adjust memories if you deemed quality low” -> manually repair latest `memory/*.md` snapshots when stale “Continue implementation” / `IN_PROGRESS` cues no longer match packet reality [Task 5]

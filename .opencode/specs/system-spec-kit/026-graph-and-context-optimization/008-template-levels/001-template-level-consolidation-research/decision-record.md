@@ -46,7 +46,7 @@ _memory:
 |-------|-------|
 | **Status** | Accepted |
 | **Date** | 2026-05-01 |
-| **Deciders** | michelkerkmeester (final), `/spec_kit:deep-research:auto` loop (10 iterations, converged at newInfoRatio 0.04) |
+| **Deciders** | michelkerkmeester (final), `/deep:start-research-loop:auto` loop (10 iterations, converged at newInfoRatio 0.04) |
 | **Synthesis source** | `research/research.md` (29.7K, 17 sections) |
 
 ---

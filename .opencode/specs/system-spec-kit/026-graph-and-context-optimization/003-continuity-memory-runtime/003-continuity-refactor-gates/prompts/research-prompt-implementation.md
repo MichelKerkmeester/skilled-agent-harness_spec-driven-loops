@@ -2,7 +2,7 @@
 
 > **Subject**: HOW to implement Option C (Wiki-Style Spec Kit Updates + thin continuity layer) for the Spec Kit memory refactor, with UX and usefulness at the forefront.
 >
-> **Target runtime**: `cli-codex gpt-5.4 high fast` — either as a single-shot delegation piped via stdin, or as input to `/spec_kit:deep-research:auto`. This prompt follows the `sk-deep-research v1.5.0` strategy template format.
+> **Target runtime**: `cli-codex gpt-5.4 high fast` — either as a single-shot delegation piped via stdin, or as input to `/deep:start-research-loop:auto`. This prompt follows the `sk-deep-research v1.5.0` strategy template format.
 >
 > **⚠ Critical constraint (unmissable, stated throughout)**: The new architecture MUST preserve every advanced memory database search feature listed in Section 6. Features are retargeted onto the new substrate (spec doc anchors + thin continuity layer), never deleted. Any iteration proposal that removes or degrades a feature without a retarget plan is invalid and must be revised.
 >
@@ -12,7 +12,7 @@
 
 ## How to run this prompt
 
-> **⚠ MANDATORY**: This prompt **MUST** be driven by `/spec_kit:deep-research:auto` (or `:confirm`). It is **not** designed to run as a single-shot Codex brief, and a single-shot run would bypass the entire sk-deep-research loop driver — producing an incomplete, unauditable research packet.
+> **⚠ MANDATORY**: This prompt **MUST** be driven by `/deep:start-research-loop:auto` (or `:confirm`). It is **not** designed to run as a single-shot Codex brief, and a single-shot run would bypass the entire sk-deep-research loop driver — producing an incomplete, unauditable research packet.
 >
 > The sk-deep-research loop is what creates the required state files:
 > - `research/deep-research-config.json` (loop config)
@@ -26,12 +26,12 @@
 
 **Invocation — autonomous mode (recommended):**
 ```bash
-/spec_kit:deep-research:auto "Wiki-Style Spec Kit Updates memory refactor — HOW to implement with UX and usefulness at the forefront. Follow the research prompt at .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates/prompts/research-prompt-implementation.md" --spec-folder .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates --max-iterations 20 --convergence 0.05
+/deep:start-research-loop:auto "Wiki-Style Spec Kit Updates memory refactor — HOW to implement with UX and usefulness at the forefront. Follow the research prompt at .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates/prompts/research-prompt-implementation.md" --spec-folder .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates --max-iterations 20 --convergence 0.05
 ```
 
 **Invocation — confirm mode (pause at each iteration for approval):**
 ```bash
-/spec_kit:deep-research:confirm "Wiki-Style Spec Kit Updates memory refactor — HOW to implement with UX and usefulness at the forefront. Follow the research prompt at .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates/prompts/research-prompt-implementation.md" --spec-folder .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates --max-iterations 20 --convergence 0.05
+/deep:start-research-loop:confirm "Wiki-Style Spec Kit Updates memory refactor — HOW to implement with UX and usefulness at the forefront. Follow the research prompt at .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates/prompts/research-prompt-implementation.md" --spec-folder .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates --max-iterations 20 --convergence 0.05
 ```
 
 The loop driver reads this prompt file as the seed for the strategy template, then dispatches `@deep-research` once per iteration with fresh context. Each iteration writes `iterations/iteration-NNN.md`, the reducer updates `deep-research-strategy.md` and `findings-registry.json`, and the workflow accumulates findings into `research/research.md` via progressive synthesis.
@@ -335,7 +335,7 @@ Concrete reads/commands the loop must execute in iteration 1 before any design w
 | Field | Value |
 |---|---|
 | **Topic** | Wiki-Style Spec Kit Updates — HOW to implement, UX-first |
-| **Target runtime** | `/spec_kit:deep-research:auto` or `:confirm` — driven by the sk-deep-research loop engine (NOT single-shot Codex) |
+| **Target runtime** | `/deep:start-research-loop:auto` or `:confirm` — driven by the sk-deep-research loop engine (NOT single-shot Codex) |
 | **Spec folder** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates/` |
 | **Predecessor phases** | 005 (memory deep-quality), 017 (memory refactor — Option C selected) |
 | **Parent packet** | `026-graph-and-context-optimization` |

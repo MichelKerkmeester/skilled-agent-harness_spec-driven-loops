@@ -45,8 +45,8 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate deep-review finding deduplication and confirm the active registry preserves unique P0/P1/P2 findings.
 ### Commands
 1. `bash: rg -n 'dedup|deduplic|finalSeverity|adjudic|Active Finding Registry|unique.*finding|merge.*finding|duplicate' .opencode/skills/deep-review/SKILL.md .opencode/skills/deep-review/README.md`
-2. `bash: rg -n 'dedup|deduplic|finalSeverity|adjudic|active_finding|merge|duplicate|unique' .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
-3. `bash: rg -n 'Active Finding Registry|Dedup|finalSeverity|finding.*registry|finding.*evidence|unique.*finding' .opencode/skills/deep-review/references/quick_reference.md .opencode/commands/spec_kit/deep-review.md .opencode/skills/deep-review/assets/deep_review_strategy.md`
+2. `bash: rg -n 'dedup|deduplic|finalSeverity|adjudic|active_finding|merge|duplicate|unique' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
+3. `bash: rg -n 'Active Finding Registry|Dedup|finalSeverity|finding.*registry|finding.*evidence|unique.*finding' .opencode/skills/deep-review/references/quick_reference.md .opencode/commands/deep/start-review-loop.md .opencode/skills/deep-review/assets/deep_review_strategy.md`
 ### Expected
 Findings compared across iterations, `finalSeverity` is highest severity encountered, Active Finding Registry has unique entries, P0 never downgraded, evidence included.
 ### Evidence
@@ -72,9 +72,9 @@ Privilege the SKILL.md rules for deduplication logic and the quick reference for
 |---|---|
 | `.opencode/skills/deep-review/SKILL.md` | Deduplication rules, severity classification, and synthesis contract; use `ANCHOR:how-it-works` and `ANCHOR:rules` |
 | `.opencode/skills/deep-review/README.md` | Feature summary for finding deduplication and registry |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Synthesis step with deduplication logic |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Synthesis step with deduplication logic |
-| `.opencode/commands/spec_kit/deep-review.md` | Command entrypoint; output format and synthesis documentation |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Synthesis step with deduplication logic |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Synthesis step with deduplication logic |
+| `.opencode/commands/deep/start-review-loop.md` | Command entrypoint; output format and synthesis documentation |
 | `.opencode/skills/deep-review/references/quick_reference.md` | Active Finding Registry section definition; use `ANCHOR:review-report-sections` |
 | `.opencode/skills/deep-review/assets/deep_review_strategy.md` | Strategy template with findings tracking |
 

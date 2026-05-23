@@ -79,8 +79,8 @@ Implement the phase slice defined by ADR-002 and ADR-005, leaving unrelated pack
 | `.opencode/skills/deep-ai-council/scripts/lib/findings-registry.cjs` | Create | Session-wide registry writer for topic verdict and synthesis findings. |
 | `.opencode/skills/deep-ai-council/scripts/orchestrate-session.cjs` | Modify | Append findings and inject cross-topic priors after topic 1. |
 | `.opencode/skills/deep-ai-council/scripts/tests/findings-registry.vitest.ts` | Create | Registry writer, load, priors, and concurrent append coverage. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-council_auto.yaml` | Create | Autonomous workflow scaffold for F4 command wiring. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-council_confirm.yaml` | Create | Interactive workflow scaffold for F4 command wiring. |
+| `.opencode/commands/deep/assets/deep_ask-ai-council_auto.yaml` | Create | Autonomous workflow scaffold for F4 command wiring. |
+| `.opencode/commands/deep/assets/deep_ask-ai-council_confirm.yaml` | Create | Interactive workflow scaffold for F4 command wiring. |
 | `004-multi-topic-session-and-findings-registry/*` | Modify | Phase docs, checklist, continuity, and commit handoff. |
 <!-- /ANCHOR:scope -->
 

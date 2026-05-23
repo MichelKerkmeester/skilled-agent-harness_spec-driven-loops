@@ -44,7 +44,7 @@ You MAY read any file. You may NOT touch paired YAML assets (`assets/spec_kit_*_
 
 1. **Shared contract** — `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md` — your template authority. §1 three-tier flow, §2 PRE-BOUND ANSWERS grammar, §3 Default Resolution Table format, §4 Tier-3 error template, §5 `:confirm` invariance, §6 verification protocol, §7 adoption checklist, §8 OOS.
 
-2. **Reference example (what the post-migration shape looks like)** — `.opencode/commands/spec_kit/deep-review.md` §0 lines 44-130. This is the canonical example: brief citation + Tier-1/2/3 summary + PRE-BOUND ANSWERS Schema + Default Resolution Table + UNTOUCHED `:confirm` consolidated Q-block below.
+2. **Reference example (what the post-migration shape looks like)** — `.opencode/commands/deep/start-review-loop.md` §0 lines 44-130. This is the canonical example: brief citation + Tier-1/2/3 summary + PRE-BOUND ANSWERS Schema + Default Resolution Table + UNTOUCHED `:confirm` consolidated Q-block below.
 
 3. **Phase 2 spec** — `.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/spec.md` — §3 SCOPE, §4 REQUIREMENTS, §5 SUCCESS CRITERIA.
 
@@ -231,7 +231,7 @@ Status: ✅ This requirement applies immediately once file edits are requested.
 
 ### Distributed Governance Rule
 
-Any agent writing authored spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, `decision-record.md`, `handover.md`, `review-report.md`, `debug-delegation.md`, `resource-map.md` (optional)) MUST use contract-backed templates through `create.sh` or the inline renderer. This is a workflow-required gate, not a runtime hook: run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` after authored spec-doc writes and before completion claims, then route continuity updates through /memory:save. Deep-research workflow-owned packet markdown (`research/iterations/*.md`, `research/deep-research-*.md`, and progressive `research/research.md` loop updates) is exempt from that generic per-write rule; `/spec_kit:deep-research` must instead run targeted strict validation after every `spec.md` mutation it performs. @deep-research retains exclusive write access for `research/research.md`; @debug retains exclusive write access for `debug-delegation.md`.
+Any agent writing authored spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, `decision-record.md`, `handover.md`, `review-report.md`, `debug-delegation.md`, `resource-map.md` (optional)) MUST use contract-backed templates through `create.sh` or the inline renderer. This is a workflow-required gate, not a runtime hook: run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` after authored spec-doc writes and before completion claims, then route continuity updates through /memory:save. Deep-research workflow-owned packet markdown (`research/iterations/*.md`, `research/deep-research-*.md`, and progressive `research/research.md` loop updates) is exempt from that generic per-write rule; `/deep:start-research-loop` must instead run targeted strict validation after every `spec.md` mutation it performs. @deep-research retains exclusive write access for `research/research.md`; @debug retains exclusive write access for `debug-delegation.md`.
 
 - `handover.md` stays in the canonical recovery ladder and is maintained through `/memory:save` handover_state routing using the handover template for initial creation.
 - `review-report.md` remains owned by `@deep-review` when deep review workflows synthesize findings.
@@ -295,7 +295,7 @@ CLI exit codes:
 | CONDITIONAL | If intent signals match   | Intent-mapped references     |
 | ON_DEMAND   | Only on explicit request   | Deep-dive quality standards  |
 
-`references/workflows/quick_reference.md` is the primary first-touch command surface. Keep the compact `spec_kit` and `memory` command map there, including `/spec_kit:plan --intake-only` as the standalone intake entry, `/spec_kit:plan` and `/spec_kit:complete` smart delegation notes, and the pointer from `/spec_kit:deep-research` to `../deep-research/references/spec_check_protocol.md`, and use this file only to point readers to it rather than duplicating the full matrix.
+`references/workflows/quick_reference.md` is the primary first-touch command surface. Keep the compact `spec_kit` and `memory` command map there, including `/spec_kit:plan --intake-only` as the standalone intake entry, `/spec_kit:plan` and `/spec_kit:complete` smart delegation notes, and the pointer from `/deep:start-research-loop` to `../deep-research/references/spec_check_protocol.md`, and use this file only to point readers to it rather than duplicating the full matrix.
 
 ### Smart Router Pseudocode
 
@@ -565,7 +565,7 @@ For each command adopting this contract, the §0 of the command markdown:
 
 Commands that have adopted this contract:
 
-- `/spec_kit:deep-review` (prototype) — see `.../103/001-deep-review-three-tier-setup/`
+- `/deep:start-review-loop` (prototype) — see `.../103/001-deep-review-three-tier-setup/`
 - (to be appended as `.../103/002-...` rolls out)
 
 ---
@@ -584,7 +584,7 @@ exec
  succeeded in 0ms:
 ---
 title: "Feature Specification: auto-mode-contract generalization to all commands"
-description: "Lift the three-tier :auto contract from /spec_kit:deep-review (Phase 1) into a shared reference and migrate 11 remaining /spec_kit/, /create/, /improve/ commands to cite it; full live :auto dispatch verification per command."
+description: "Lift the three-tier :auto contract from /deep:start-review-loop (Phase 1) into a shared reference and migrate 11 remaining /spec_kit/, /create/, /improve/ commands to cite it; full live :auto dispatch verification per command."
 trigger_phrases:
   - "auto mode contract generalization"
   - "spec-kit :auto rollout"
@@ -636,7 +636,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Phase 1 introduced the three-tier `:auto` contract for `/spec_kit:deep-review`. The same architecture and same stdin-hang gap affect 11 other commands across `/spec_kit/`, `/create/`, and `/improve/`. Inlining the three-tier flow into every command duplicates ~300 LOC and risks drift; lifting it into a shared reference doc preserves a single source of truth and keeps each command lean.
+Phase 1 introduced the three-tier `:auto` contract for `/deep:start-review-loop`. The same architecture and same stdin-hang gap affect 11 other commands across `/spec_kit/`, `/create/`, and `/improve/`. Inlining the three-tier flow into every command duplicates ~300 LOC and risks drift; lifting it into a shared reference doc preserves a single source of truth and keeps each command lean.
 
 ### Purpose
 Author the shared `auto_mode_contract.md` reference, refactor Phase-1's deep-review to cite it, migrate 11 remaining commands to the same pattern, and verify each one via a live non-interactive `:auto` dispatch.
@@ -649,7 +649,7 @@ Author the shared `auto_mode_contract.md` reference, refactor Phase-1's deep-rev
 
 ### In Scope
 - Author `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md` (Level 2 sk-doc reference; §1-8 — three-tier flow, PRE-BOUND ANSWERS grammar, default-resolution-table format, Tier-3 error template, `:confirm` invariance, verification protocol, adoption checklist, out-of-scope).
-- Refactor `/spec_kit:deep-review` §0 to cite the shared contract (replacing the inline three-tier sections from 001).
+- Refactor `/deep:start-review-loop` §0 to cite the shared contract (replacing the inline three-tier sections from 001).
 - Migrate 11 commands' §0 to cite the shared contract + provide their own per-field default table + PRE-BOUND ANSWERS field list:
   - `/spec_kit:` — deep-research, complete, implement, plan, resume (5)
   - `/create:` — sk-skill, agent, changelog, feature-catalog, testing-playbook, folder_readme (6)
@@ -669,7 +669,7 @@ Author the shared `auto_mode_contract.md` reference, refactor Phase-1's deep-rev
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md` | Create | Shared three-tier `:auto` contract reference |
-| `.opencode/commands/spec_kit/deep-review.md` | Modify | Refactor §0 to cite shared contract |
+| `.opencode/commands/deep/start-review-loop.md` | Modify | Refactor §0 to cite shared contract |
 | `.opencode/commands/spec_kit/{deep-research,complete,implement,plan,resume}.md` | Modify | Migrate §0 to shared contract pattern |
 | `.opencode/commands/create/{sk-skill,agent,changelog,feature-catalog,testing-playbook,folder_readme}.md` | Modify | Same |
 | `.opencode/commands/improve/agent.md` | Modify | Same |
@@ -784,7 +784,7 @@ Author the shared `auto_mode_contract.md` reference, refactor Phase-1's deep-rev
 <!-- /ANCHOR:questions -->
 
 exec
-/bin/zsh -lc "nl -ba .opencode/commands/spec_kit/deep-review.md | sed -n '44,150p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/commands/deep/start-review-loop.md | sed -n '44,150p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
     44	## 0. UNIFIED SETUP PHASE
     45	
@@ -798,11 +798,11 @@ exec
     53	
     54	Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
     55	
-    56	1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/review/deep-review-config.json` (shape: `reviewTarget`, `reviewTargetType`, `reviewDimensions`, `specFolder`, `maxIterations`, `convergenceThreshold`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`. End §0.
+    56	1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/review/deep-review-config.json` (shape: `reviewTarget`, `reviewTargetType`, `reviewDimensions`, `specFolder`, `maxIterations`, `convergenceThreshold`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`. End §0.
     57	
     58	2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `review_target_type`, `spec_folder`. **Ordering rule**: if `review_target_type` is ambiguous, ask only for `review_target_type` first — the answer may make `spec_folder` self-evident on the next Tier 1 pass. Missing `review_target` is absence, not ambiguity — go to Tier 3.
     59	
-    60	3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/spec_kit:deep-review:auto` as the command name. Exit non-zero. Do not load YAML.
+    60	3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/deep:start-review-loop:auto` as the command name. Exit non-zero. Do not load YAML.
     61	
     62	`:confirm` path stays unchanged — see the Consolidated Setup Prompt section below.
     63	
@@ -1211,7 +1211,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Shared `auto_mode_contract.md` authored (Stage B).
-- [x] T002 `/spec_kit:deep-review.md` §0 refactored to cite shared contract (Stage B).
+- [x] T002 `/deep:start-review-loop.md` §0 refactored to cite shared contract (Stage B).
 - [ ] T003 Confirm 001's dry-run traces still conceptually pass after refactor (read-back).
 <!-- /ANCHOR:phase-1 -->
 
@@ -1231,8 +1231,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T020 Live `:auto` dispatch — `/spec_kit:deep-review` (re-verify post-refactor).
-- [ ] T021 Live `:auto` dispatch — `/spec_kit:deep-research`.
+- [ ] T020 Live `:auto` dispatch — `/deep:start-review-loop` (re-verify post-refactor).
+- [ ] T021 Live `:auto` dispatch — `/deep:start-research-loop`.
 - [ ] T022 Live `:auto` dispatch — `/spec_kit:resume`.
 - [ ] T023 Live `:auto` dispatch — `/spec_kit:implement`.
 - [ ] T024 Live `:auto` dispatch — `/spec_kit:complete`.
@@ -1279,10 +1279,10 @@ exec
  succeeded in 0ms:
 spec_kit_complete_auto.yaml
 spec_kit_complete_confirm.yaml
-spec_kit_deep-research_auto.yaml
-spec_kit_deep-research_confirm.yaml
-spec_kit_deep-review_auto.yaml
-spec_kit_deep-review_confirm.yaml
+deep_start-research-loop_auto.yaml
+deep_start-research-loop_confirm.yaml
+deep_start-review-loop_auto.yaml
+deep_start-review-loop_confirm.yaml
 spec_kit_implement_auto.yaml
 spec_kit_implement_confirm.yaml
 spec_kit_plan_auto.yaml
@@ -1330,10 +1330,10 @@ exec
 .opencode/commands/improve/assets/improve_deep-agent-improvement_confirm.yaml
 .opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml
 .opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml
-.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
-.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml
+.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml
+.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml
 .opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml
 .opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml
 .opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml
@@ -1432,14 +1432,14 @@ exec
 .opencode/skills/deep-agent-improvement/feature_catalog/feature_catalog.md:177:The `/improve:agent` command collects setup inputs, selects `:auto` or `:confirm` execution, and points the operator at the matching YAML workflow. The actual loop dispatch lives in the YAML assets, which rescan integration, dispatch `@deep-agent-improvement`, emit journal events, and call score and reducer helpers, while the command markdown explicitly says not to dispatch agents from the command file itself.
 .opencode/commands/memory/search.md:868:> **Note:** The dedicated `spec_kit_memory_memory_context()` tool provides unified intent-aware retrieval server-side. It accepts `input`, `mode`, `intent`, `specFolder`, governed retrieval params (`tenantId`, `userId`, `agentId`), `limit`, `sessionId`, `enableDedup`, `includeContent`, `includeTrace`, `tokenUsage`, and `anchors`. `spec_kit_memory_memory_quick_search()` also supports governed retrieval via `tenantId`, `userId`, and `agentId`. This is the recommended unified approach. The manual orchestration below is for advanced use cases requiring fine-grained control.
 .opencode/skills/deep-agent-improvement/feature_catalog/01--evaluation-loop/01-initialization.md:18:Initialization is driven from the `/improve:agent` command plus the `improve_deep-agent-improvement_{auto,confirm}.yaml` workflow assets. Both workflows gate the run to a fresh `new` session boundary, create `{spec_folder}/improvement/` plus `candidates/` and `benchmark-runs/`, scan the target integration surface, optionally generate a dynamic profile, copy the config, charter, strategy, and manifest templates, and append baseline state before the first loop iteration.
-.opencode/skills/cli-opencode/SKILL.md:257:2. **Command-owned loop executors** (`deep-research`, `deep-review`, `deep-agent-improvement`, `prompt-improver`) — dispatched ONLY by their parent commands (`/spec_kit:deep-research`, `/spec_kit:deep-review`, `/improve:agent`, `/improve:prompt`). Never dispatch these directly via `--agent <slug>` and never route them through `orchestrate`. The parent command owns iteration state, convergence detection, and continuity.
+.opencode/skills/cli-opencode/SKILL.md:257:2. **Command-owned loop executors** (`deep-research`, `deep-review`, `deep-agent-improvement`, `prompt-improver`) — dispatched ONLY by their parent commands (`/deep:start-research-loop`, `/deep:start-review-loop`, `/improve:agent`, `/improve:prompt`). Never dispatch these directly via `--agent <slug>` and never route them through `orchestrate`. The parent command owns iteration state, convergence detection, and continuity.
 .opencode/skills/cli-opencode/references/agent_delegation.md:121:| `deep-agent-improvement` | Proposal-only mutator for bounded agent improvement | Agent evaluation via `/improve:agent` command loop |
 .opencode/skills/cli-opencode/references/agent_delegation.md:213:| Agent improvement | `deep-agent-improvement` | **Command-only.** Dispatch via `/improve:agent`. Direct `opencode run --agent deep-agent-improvement` is forbidden; the parent command owns evaluation, candidates, and promotion. <!-- F-007-B2-02 --> |
-.opencode/skills/deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/010-strategy-next-focus-and-dimension-rotation.md:73:| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Loop dimension extraction and dispatch; inspect `step_read_state` and `step_dispatch_review_agent` |
-.opencode/skills/deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/009-review-iteration-writes-findings-jsonl-and-strategy-update.md:73:| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Dispatch and validation; inspect `step_dispatch_review_agent` and `step_validate_iteration` |
-.opencode/skills/deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/009-review-iteration-writes-findings-jsonl-and-strategy-update.md:74:| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Dispatch and validation; inspect `step_dispatch_review_agent` and `step_validate_iteration` |
-.opencode/skills/deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/014-severity-classification-in-jsonl.md:74:| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Dispatch constraints, severity_weights, and P0 override; inspect `step_dispatch_review_agent`, `severity_weights`, and `on_missing_outputs` |
-.opencode/skills/deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/014-severity-classification-in-jsonl.md:75:| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Dispatch constraints; inspect `step_dispatch_review_agent` |
+.opencode/skills/deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/010-strategy-next-focus-and-dimension-rotation.md:73:| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Loop dimension extraction and dispatch; inspect `step_read_state` and `step_dispatch_review_agent` |
+.opencode/skills/deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/009-review-iteration-writes-findings-jsonl-and-strategy-update.md:73:| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Dispatch and validation; inspect `step_dispatch_review_agent` and `step_validate_iteration` |
+.opencode/skills/deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/009-review-iteration-writes-findings-jsonl-and-strategy-update.md:74:| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Dispatch and validation; inspect `step_dispatch_review_agent` and `step_validate_iteration` |
+.opencode/skills/deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/014-severity-classification-in-jsonl.md:74:| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Dispatch constraints, severity_weights, and P0 override; inspect `step_dispatch_review_agent`, `severity_weights`, and `on_missing_outputs` |
+.opencode/skills/deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/014-severity-classification-in-jsonl.md:75:| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Dispatch constraints; inspect `step_dispatch_review_agent` |
 .opencode/skills/cli-opencode/CHANGELOG-2026-05-08-tool-name-regex-fix.md:54:  `skills_system_spec_kit_mcp_server_node_modules_@github_copilot_sdk_node_modules_@github_copilot_builtin_skills_customize_cloud_agent`
 .opencode/skills/cli-opencode/CHANGELOG-2026-05-08-tool-name-regex-fix.md:241:| 10:27 | DEBUG log enumeration: 31 registered tools. Tools[24]–[27] include `skills_system_spec_kit_mcp_server_node_modules_@github_copilot_sdk_node_modules_@github_copilot_builtin_skills_customize_cloud_agent` — `@` char fails regex. |
 .opencode/skills/sk-doc/references/agent_creation.md:21:- `.opencode/commands/create/assets/create_agent_auto.yaml`
@@ -1448,7 +1448,7 @@ exec
 .opencode/skills/sk-doc/changelog/v1.1.3.0.md:34:| `.opencode/commands/create/assets/create_agent_confirm.yaml` | Modified | Mentioned in the original changelog. |
 .opencode/skills/system-spec-kit/changelog/v3.4.1.0.md:318:- `@improve-agent` → **`@deep-agent-improvement`**, completes the family alignment with the underlying `deep-agent-improvement` skill and the `/improve:agent` command. 8 file renames + 54 active references.
 .opencode/skills/system-spec-kit/changelog/v3.3.0.0.md:93:Editing main agent files directly during evaluation is dangerous -- a bad change could break the agent. The `@agent-improver` subagent writes candidates to a packet-local runtime area, never touching main targets. The `/improve:agent` command orchestrates the full loop: scan, profile, candidate, score, benchmark, reduce, stop-check. Promotion requires passing all evidence gates plus explicit operator approval.
-.opencode/skills/deep-research/feature_catalog/01--loop-lifecycle/02-iteration-dispatch.md:31:| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Workflow | Dispatches the LEAF agent, checks the pause sentinel, and runs the reducer after each iteration. |
+.opencode/skills/deep-research/feature_catalog/01--loop-lifecycle/02-iteration-dispatch.md:31:| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Workflow | Dispatches the LEAF agent, checks the pause sentinel, and runs the reducer after each iteration. |
 
 exec
 /bin/zsh -lc "sed -n '1,120p' .opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -1615,7 +1615,7 @@ STATUS=OK ITERATIONS=3 BEST_SCORE=97 REASON="converged"
 | --- | --- |
 | `/spec_kit:complete` | Full spec-driven development workflow |
 | `/improve:prompt` | Improve AI prompts with DEPTH + CLEAR scoring |
-| `/spec_kit:deep-review` | Iterative code review with convergence detection |
+| `/deep:start-review-loop` | Iterative code review with convergence detection |
 
 ---
 
@@ -2889,7 +2889,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Shared `auto_mode_contract.md` authored (Stage B).
-- [x] T002 `/spec_kit:deep-review.md` §0 refactored to cite shared contract (Stage B).
+- [x] T002 `/deep:start-review-loop.md` §0 refactored to cite shared contract (Stage B).
 - [ ] T003 Confirm 001's dry-run traces still conceptually pass after refactor (read-back).
 <!-- /ANCHOR:phase-1 -->
 
@@ -2909,8 +2909,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T020 Live `:auto` dispatch — `/spec_kit:deep-review` (re-verify post-refactor).
-- [ ] T021 Live `:auto` dispatch — `/spec_kit:deep-research`.
+- [ ] T020 Live `:auto` dispatch — `/deep:start-review-loop` (re-verify post-refactor).
+- [ ] T021 Live `:auto` dispatch — `/deep:start-research-loop`.
 - [ ] T022 Live `:auto` dispatch — `/spec_kit:resume`.
 - [ ] T023 Live `:auto` dispatch — `/spec_kit:implement`.
 - [ ] T024 Live `:auto` dispatch — `/spec_kit:complete`.

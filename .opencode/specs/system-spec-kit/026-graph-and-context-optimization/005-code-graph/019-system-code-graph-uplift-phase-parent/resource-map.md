@@ -94,7 +94,7 @@ Authored at scaffold time so the deep-research dispatch has a clean ledger. Pair
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Cited | OK | Workflow YAML that owns the 20-iter loop autonomously |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Cited | OK | Workflow YAML that owns the 20-iter loop autonomously |
 <!-- /ANCHOR:commands -->
 
 ---

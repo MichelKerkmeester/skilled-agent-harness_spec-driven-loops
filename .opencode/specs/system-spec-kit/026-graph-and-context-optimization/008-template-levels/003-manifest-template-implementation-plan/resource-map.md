@@ -65,7 +65,7 @@ _memory:
 | `.opencode/skills/system-spec-kit/templates/manifest/context-index.md.tmpl` | Created | PLANNED | 1 | Optional author addon (rare migration bridge) |
 | `.opencode/skills/system-spec-kit/templates/manifest/handover.md.tmpl` | Created | PLANNED | 1 | Lazy template — used by `/memory:save` content-router on first write |
 | `.opencode/skills/system-spec-kit/templates/manifest/debug-delegation.md.tmpl` | Created | PLANNED | 1 | Lazy template — used by `@debug` agent + `scaffold-debug-delegation.sh` |
-| `.opencode/skills/system-spec-kit/templates/manifest/research.md.tmpl` | Created | PLANNED | 1 | Lazy template — used by `/spec_kit:deep-research` (lives in `research/` subdir at scaffold time) |
+| `.opencode/skills/system-spec-kit/templates/manifest/research.md.tmpl` | Created | PLANNED | 1 | Lazy template — used by `/deep:start-research-loop` (lives in `research/` subdir at scaffold time) |
 
 ### New runtime code (resolver + renderer + shell wrapper)
 
@@ -149,8 +149,8 @@ All AI-facing agent definitions. Most need a single heading rename (`CAPABILITY 
 
 | Path | Specific edits |
 |---|---|
-| `.opencode/commands/spec_kit/deep-research.md` | Lines 68/74/81/139 rename `config.executor.kind` → `config.executor.type`; line 336 `Optimizer manifest` → `Optimizer configuration` |
-| `.opencode/commands/spec_kit/deep-review.md` | Lines 66/72/79/151 same; line 386 `Optimizer manifest` → `Optimizer configuration` |
+| `.opencode/commands/deep/start-research-loop.md` | Lines 68/74/81/139 rename `config.executor.kind` → `config.executor.type`; line 336 `Optimizer manifest` → `Optimizer configuration` |
+| `.opencode/commands/deep/start-review-loop.md` | Lines 66/72/79/151 same; line 386 `Optimizer manifest` → `Optimizer configuration` |
 | `.opencode/commands/spec_kit/resume.md` | Line 66 `child manifest` → `child list` |
 | `.opencode/commands/spec_kit/plan.md` | Line 433 replace lean-parent paragraph with resolver-based phrasing |
 | `.opencode/commands/spec_kit/complete.md` | Line 248 replace `templates/phase_parent/spec.md` with "phase-parent Level template contract" |
@@ -165,8 +165,8 @@ These are the workflow definitions the AI runtime executes step-by-step. Heavy r
 | `assets/spec_kit_plan_auto.yaml` + `_confirm.yaml` | Replace explicit deleted paths with Level contract resolver outputs (12+ lines each) |
 | `assets/spec_kit_implement_auto.yaml` + `_confirm.yaml` | Deleted phase-parent + level/root template path refs |
 | `assets/spec_kit_complete_auto.yaml` + `_confirm.yaml` | Deleted addendum + level + root template paths (15+ lines each) |
-| `assets/spec_kit_deep-research_auto.yaml` + `_confirm.yaml` | Rename executor `kind` → `type` (10+ occurrences each) |
-| `assets/spec_kit_deep-review_auto.yaml` + `_confirm.yaml` | Same `kind` rename + `Playbook vs Capability` → `Playbook vs Support` |
+| `assets/deep_start-research-loop_auto.yaml` + `_confirm.yaml` | Rename executor `kind` → `type` (10+ occurrences each) |
+| `assets/deep_start-review-loop_auto.yaml` + `_confirm.yaml` | Same `kind` rename + `Playbook vs Capability` → `Playbook vs Support` |
 
 ### §2.5d — `system-spec-kit/SKILL.md` + `README.md` (2 MODIFY)
 
@@ -293,7 +293,7 @@ Full per-finding detail with replacement guidance lives in:
 |---|---|---|---|---|
 | `.opencode/skills/system-spec-kit/templates/handover.md` | Deleted | WILL_DELETE | 4 | Content migrated to `templates/manifest/handover.md.tmpl` (lazy command-owned, written by `/memory:save`) |
 | `.opencode/skills/system-spec-kit/templates/debug-delegation.md` | Deleted | WILL_DELETE | 4 | Content migrated to `templates/manifest/debug-delegation.md.tmpl` (lazy agent-owned, written by `@debug`) |
-| `.opencode/skills/system-spec-kit/templates/research.md` | Deleted | WILL_DELETE | 4 | Content migrated to `templates/manifest/research.md.tmpl` (lazy workflow-owned, written by `/spec_kit:deep-research`) |
+| `.opencode/skills/system-spec-kit/templates/research.md` | Deleted | WILL_DELETE | 4 | Content migrated to `templates/manifest/research.md.tmpl` (lazy workflow-owned, written by `/deep:start-research-loop`) |
 | `.opencode/skills/system-spec-kit/templates/resource-map.md` | Deleted | WILL_DELETE | 4 | Content migrated to `templates/manifest/resource-map.md.tmpl` (optional author addon) |
 | `.opencode/skills/system-spec-kit/templates/context-index.md` | Deleted | WILL_DELETE | 4 | Content migrated to `templates/manifest/context-index.md.tmpl` (optional author addon, rare migration bridge) |
 | `.opencode/skills/system-spec-kit/templates/README.md` | Deleted | WILL_DELETE | 4 | Top-level template README. Replaced by a developer-facing README in `templates/manifest/README.md` (NEW, internal docs only — explains the manifest design to maintainers). |

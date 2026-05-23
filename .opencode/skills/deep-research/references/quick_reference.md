@@ -12,7 +12,7 @@ One-page operator cheat sheet covering the autonomous deep research loop: when t
 One-page cheat sheet for the autonomous deep research loop.
 
 Operator contract source of truth for this page:
-- command syntax → `.opencode/commands/spec_kit/deep-research.md`
+- command syntax → `.opencode/commands/deep/start-research-loop.md`
 - convergence math → `references/convergence.md` and the deep-research YAML workflow
 
 ---
@@ -21,9 +21,9 @@ Operator contract source of truth for this page:
 
 | Command | Description |
 |---------|-------------|
-| `/spec_kit:deep-research:auto "topic"` | Run autonomous deep research (no approval gates) |
-| `/spec_kit:deep-research:confirm "topic"` | Run with approval gates at each iteration |
-| `/spec_kit:deep-research "topic"` | Ask which mode to use |
+| `/deep:start-research-loop:auto "topic"` | Run autonomous deep research (no approval gates) |
+| `/deep:start-research-loop:confirm "topic"` | Run with approval gates at each iteration |
+| `/deep:start-research-loop "topic"` | Ask which mode to use |
 
 ### Parameters
 
@@ -40,17 +40,17 @@ Operator contract source of truth for this page:
 
 | Scenario | Use |
 |----------|-----|
-| Deep unknown topic, multi-round needed | `/spec_kit:deep-research` |
+| Deep unknown topic, multi-round needed | `/deep:start-research-loop` |
 | Simple question, 1-2 sources | Direct search with `@context` |
 | Check prior work only | `memory_context()` |
-| Exhaustive critical research | `/spec_kit:deep-research --max-iterations 15 --convergence 0.02` |
+| Exhaustive critical research | `/deep:start-research-loop --max-iterations 15 --convergence 0.02` |
 
 ---
 
 ## 4. ARCHITECTURE
 
 ```text
-/spec_kit:deep-research  -->  YAML workflow  -->  @deep-research agent (LEAF)
+/deep:start-research-loop  -->  YAML workflow  -->  @deep-research agent (LEAF)
     |                    |                      |
     |                    |                      +-- Read state
     |                    |                      +-- Research (3-5 actions)

@@ -98,7 +98,7 @@ Provide the live reference contract for the Phase B fixtures and for Phases D-G.
 
 - Changing `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`.
 - Changing `.opencode/skills/deep-review/scripts/reduce-state.cjs`.
-- Changing `/spec_kit:deep-review` YAML gates.
+- Changing `/deep:start-review-loop` YAML gates.
 - Changing coverage graph DB or handler vocabulary.
 - Editing Phase B review-depth fixture files.
 

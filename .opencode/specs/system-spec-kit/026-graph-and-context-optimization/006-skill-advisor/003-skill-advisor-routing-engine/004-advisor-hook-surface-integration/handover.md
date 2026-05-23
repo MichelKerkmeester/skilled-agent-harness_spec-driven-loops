@@ -42,7 +42,7 @@ _memory:
 ## What Happened This Session
 
 1. **Scaffolded 8 implementation children** (002-009) under `001-skill-advisor-hook-surface/` based on wave-1 + wave-2 research convergence. Plan in /Users/michelkerkmeester/.claude/plans/start-running-all-iterations-bright-seal.md.
-2. **Dispatched wave-3 validation research** via `/spec_kit:deep-research :auto` (cli-copilot gpt-5.4 high, 20-iter budget). Orchestrator script at `/tmp/wave3-orchestrator.sh`.
+2. **Dispatched wave-3 validation research** via `/deep:start-research-loop :auto` (cli-copilot gpt-5.4 high, 20-iter budget). Orchestrator script at `/tmp/wave3-orchestrator.sh`.
 3. **Wave-3 converged early** at iter 13 (rolling avg 0.0367 < 0.05). All 10 validation angles (V1-V10) answered.
 4. **Ran final synthesis** via one more cli-copilot call (orchestrator had synthesis on iter 20; convergence fired earlier). Produced the research-validation.md synthesis (111 lines, 20KB) in the wave-3 artifact folder.
 5. **Two Sonnet sub-agents** ran in parallel to shorten verbose research/review folder names:
@@ -145,8 +145,8 @@ Parent-level docs in this same folder:
 ### Short-name convention (newly-defined backend logic)
 - `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs` — `resolveArtifactRoot()` + `allocateShortSubfolder()` now produce `{phaseSlug}-pt-NN`
 - Skill docs at .opencode/skills/sk-deep-research/SKILL.md and .opencode/skills/sk-deep-review/SKILL.md — format documented
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` + `_confirm.yaml` — format documented
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` + `_confirm.yaml` — format documented
+- `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` + `_confirm.yaml` — format documented
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` + `_confirm.yaml` — format documented
 
 ## Git State
 

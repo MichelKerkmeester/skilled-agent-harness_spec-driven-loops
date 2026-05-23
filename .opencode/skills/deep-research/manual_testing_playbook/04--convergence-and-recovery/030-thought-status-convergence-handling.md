@@ -47,7 +47,7 @@ Validate thought-status iterations are excluded from stuck counting and rolling 
 1. `bash: rg -n 'thought' .opencode/skills/deep-research/references/state_format.md`
 2. `bash: rg -n 'thought\|rolling.average\|stuckCount' .opencode/skills/deep-research/references/convergence.md`
 3. `bash: rg -n 'thought\|insight\|stuck' .opencode/skills/deep-research/SKILL.md`
-4. `bash: rg -n 'stuck_count\|thought' .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+4. `bash: rg -n 'stuck_count\|thought' .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
 ### Expected
 Iteration with status="thought", convergence treats it appropriately (does not count as stuck, does not count toward rolling average).
 ### Evidence
@@ -74,7 +74,7 @@ Privilege state_format.md for the status taxonomy and convergence.md for the alg
 | `.opencode/skills/deep-research/references/state_format.md` | Canonical JSONL schema; thought status definition and its convergence-neutral semantics |
 | `.opencode/skills/deep-research/references/convergence.md` | Convergence math; rolling average and stuckCount computation with thought exclusion |
 | `.opencode/skills/deep-research/SKILL.md` | Skill overview; iteration status taxonomy including thought |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Workflow algorithm; stuck_count update logic in step_update_state |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Workflow algorithm; stuck_count update logic in step_update_state |
 
 ---
 

@@ -38,7 +38,7 @@ This skill is activated when:
 
 Do not invoke this skill when:
 
-- A user requests an interactive command (use `/spec_kit:deep-review` or `/spec_kit:deep-research` instead — those orchestrate this runtime)
+- A user requests an interactive command (use `/deep:start-review-loop` or `/deep:start-research-loop` instead — those orchestrate this runtime)
 - A package outside deep-review / deep-research needs deep-loop semantics (out of supported scope; open a packet to extend ownership)
 - An MCP tool surface is needed (this skill explicitly has none — the 118 ADR-001 removed the deep-loop MCP tools)
 

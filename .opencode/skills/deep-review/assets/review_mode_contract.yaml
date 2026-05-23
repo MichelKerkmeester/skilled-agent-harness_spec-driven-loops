@@ -357,7 +357,7 @@ contract:
 render:
   artifacts:
     - id: workflow-auto
-      path: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
+      path: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml
       ownership: mixed
       format: yaml
       markers:
@@ -371,7 +371,7 @@ render:
         - convergence
         - cross-reference-protocols
     - id: workflow-confirm
-      path: .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+      path: .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml
       ownership: mixed
       format: yaml
       markers:

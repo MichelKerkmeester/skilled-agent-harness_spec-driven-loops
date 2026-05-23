@@ -45,8 +45,8 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate malformed deep-review JSONL handling and report whether bad lines are skipped with safe defaults.
 ### Commands
 1. `bash: rg -n 'malformed|unparseable|skip.*line|parse.*error|JSON.*parse|graceful|default.*ratio|newFindingsRatio.*1\.0' .opencode/skills/deep-review/references/state_format.md .opencode/skills/deep-review/references/convergence.md`
-2. `bash: rg -n 'malformed|parse_error|skip_line|graceful|default|JSON.*parse|error_handling' .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
-3. `bash: rg -n 'malformed|corrupt|graceful|JSONL.*error|parse.*fail|default|error handling|fault tolerance' .opencode/skills/deep-review/SKILL.md .opencode/skills/deep-review/README.md .opencode/commands/spec_kit/deep-review.md`
+2. `bash: rg -n 'malformed|parse_error|skip_line|graceful|default|JSON.*parse|error_handling' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
+3. `bash: rg -n 'malformed|corrupt|graceful|JSONL.*error|parse.*fail|default|error handling|fault tolerance' .opencode/skills/deep-review/SKILL.md .opencode/skills/deep-review/README.md .opencode/commands/deep/start-review-loop.md`
 ### Expected
 Malformed lines skipped, defaults applied (`newFindingsRatio = 1.0`), iteration count from valid lines, skip is observable.
 ### Evidence
@@ -73,9 +73,9 @@ Privilege the state format reference for JSONL schema rules and the convergence 
 | `.opencode/skills/deep-review/references/state_format.md` | JSONL schema and parsing rules; use the state log section |
 | `.opencode/skills/deep-review/references/convergence.md` | Default values on parse failure; graceful degradation rules |
 | `.opencode/skills/deep-review/references/loop_protocol.md` | Error handling in iteration loop; use the iteration loop section |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | JSONL parsing and error handling in state read steps |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | JSONL parsing and error handling in state read steps |
-| `.opencode/commands/spec_kit/deep-review.md` | Error handling documentation; use `## 10. ERROR HANDLING` if present |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | JSONL parsing and error handling in state read steps |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | JSONL parsing and error handling in state read steps |
+| `.opencode/commands/deep/start-review-loop.md` | Error handling documentation; use `## 10. ERROR HANDLING` if present |
 | `.opencode/skills/deep-review/SKILL.md` | Rules for state reading; use `ANCHOR:rules` Rule 1 |
 
 ---

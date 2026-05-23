@@ -356,7 +356,7 @@ Set default cost guards:
 - `saturation_threshold = 0.2`
 - `seats_per_round = 3` by default, with `2` allowed for narrow topics
 
-All are tunable via `/spec_kit:deep-council` setup answers, but `:auto` must surface the computed upper bound before dispatch:
+All are tunable via `/deep:ask-ai-council` setup answers, but `:auto` must surface the computed upper bound before dispatch:
 
 ```text
 max_rounds = max_topics_per_session * max_rounds_per_topic

@@ -47,7 +47,7 @@ Validate the dashboard regenerates after each deep-research iteration with progr
 1. `bash: rg -n 'Step 4a\|Generate Dashboard\|dashboard_generated' .opencode/skills/deep-research/references/loop_protocol.md`
 2. `bash: sed -n '/ANCHOR:dashboard/,/\/ANCHOR:dashboard/p' .opencode/skills/deep-research/references/state_format.md`
 3. `bash: cat .opencode/skills/deep-research/assets/deep_research_dashboard.md`
-4. `bash: rg -n 'step_reduce_state\|step_generate_dashboard\|reduce-state.cjs' .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+4. `bash: rg -n 'step_reduce_state\|step_generate_dashboard\|reduce-state.cjs' .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml .opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`
 5. `bash: rg -n 'renderDashboard\|dashboardPath' .opencode/skills/deep-research/scripts/reduce-state.cjs`
 ### Expected
 `research/deep-research-dashboard.md` exists after iteration evaluation; contains iteration table, question status (X/Y answered), trend (last 3 ratios with direction), dead ends (from ruledOut), next focus (from strategy.md), and active risks; file is overwritten (not appended) each iteration; dashboard generation is reducer-owned and idempotent.
@@ -76,8 +76,8 @@ Privilege the loop protocol Step 4a for the generation contract, the reducer scr
 | `.opencode/skills/deep-research/references/state_format.md` | State format; inspect `ANCHOR:dashboard` for content sections, lifecycle, and file protection rules |
 | `.opencode/skills/deep-research/assets/deep_research_dashboard.md` | Dashboard template; structural reference for all required sections (Status, Progress, Questions, Trend, Dead Ends, Next Focus, Active Risks) |
 | `.opencode/skills/deep-research/scripts/reduce-state.cjs` | Reducer script; `renderDashboard` generates the dashboard content; `reduceResearchState` writes it to disk |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Workflow algorithm; inspect `step_reduce_state` and `step_generate_dashboard` |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Workflow algorithm; inspect `step_reduce_state` and `step_generate_dashboard` |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Workflow algorithm; inspect `step_reduce_state` and `step_generate_dashboard` |
+| `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Workflow algorithm; inspect `step_reduce_state` and `step_generate_dashboard` |
 | `.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts` | Automated verification; proves reducer idempotency and dashboard content correctness |
 
 ---

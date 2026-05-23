@@ -22,7 +22,7 @@
 **Verdict**: PASS - aggregation behaves as set-union, which is the correct semantics
 
 ### 2. YAML Legal-Stop Decision Tree Gate Ordering
-**File**: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:441-517`
+**File**: `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:441-517`
 
 **Analysis**: Examined the step_check_convergence algorithm for gate ordering and interaction between candidateCoverageGate and existing gates.
 

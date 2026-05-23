@@ -16,8 +16,8 @@ _memory:
     next_safe_action: "Validate YAML gate semantics and strict spec docs."
     blockers: []
     key_files:
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml"
+      - ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml"
+      - ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml"
       - "decision-record.md"
 ---
 
@@ -99,8 +99,8 @@ Make absence-of-finding STOP claims auditable. A standard or complex v2 review c
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | Add candidate and graphless legal-stop gates plus blocked-stop payload fields. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modify | Mirror auto workflow legal-stop semantics. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Modify | Add candidate and graphless legal-stop gates plus blocked-stop payload fields. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Modify | Mirror auto workflow legal-stop semantics. |
 | `.opencode/specs/.../006-candidate-saturation-and-graphless-gates/*` | Modify/Create | Populate Level 3 docs, checklist, ADR, summary, and metadata. |
 <!-- /ANCHOR:scope -->
 

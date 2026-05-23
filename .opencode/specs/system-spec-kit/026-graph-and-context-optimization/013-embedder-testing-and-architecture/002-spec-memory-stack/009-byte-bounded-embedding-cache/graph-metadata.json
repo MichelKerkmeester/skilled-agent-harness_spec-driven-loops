@@ -38,7 +38,7 @@
       "wiring",
       "tasks"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The persistent `embedding_cache` table is capped by a global row count and keyed only by content hash, model, and dimensions. That lets historical embedder profiles accumulate without byte limits, and it prevents task-specific query/document embeddings from being cached safely.",
     "created_at": "2026-05-18T21:37:47.685Z",
-    "last_save_at": "2026-05-18T21:38:59.842Z",
+    "last_save_at": "2026-05-23T11:55:15.436Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

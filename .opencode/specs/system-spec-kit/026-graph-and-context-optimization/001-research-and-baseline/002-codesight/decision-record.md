@@ -237,7 +237,7 @@ After successfully running iters 1-3 via cli-codex, iter 4 dispatched at ~10:30Z
 |-------|-------|
 | **Status** | Accepted |
 | **Date** | 2026-04-06 |
-| **Deciders** | User directive ("5 more iterations of /spec_kit:deep-research with gpt-5.4 high agents in fast mode through cli-codex") plus orchestrator |
+| **Deciders** | User directive ("5 more iterations of /deep:start-research-loop with gpt-5.4 high agents in fast mode through cli-codex") plus orchestrator |
 
 ---
 

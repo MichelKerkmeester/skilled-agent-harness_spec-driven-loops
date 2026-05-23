@@ -43,13 +43,11 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/settings.py",
       ".opencode/skills/mcp-coco-index/tests/test_settings.py",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
       ".opencode/skills/mcp-coco-index/mcp_server/tests/test_config.py",
-      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/rerankers_jina_v3.py",
       ".opencode/skills/mcp-coco-index/mcp_server/tests/test_rerankers_jina_v3.py",
       ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py",
       ".opencode/skills/mcp-coco-index/mcp_server/tests/test_daemon.py",
@@ -58,19 +56,14 @@
       ".opencode/skills/mcp-coco-index/README.md",
       ".opencode/skills/mcp-coco-index/SKILL.md",
       ".opencode/skills/mcp-coco-index/INSTALL_GUIDE.md",
-      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py",
       ".opencode/skills/mcp-coco-index/mcp_server/tests/test_dedup_mirrors.py",
       "benchmarks/README.md",
       "decision-record.md",
-      "spec.md"
+      "spec.md",
+      "checklist.md",
+      "evidence/query-expansion-root-cause-analysis.md"
     ],
     "entities": [
-      {
-        "name": "settings.py",
-        "kind": "file",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/settings.py",
-        "source": "derived"
-      },
       {
         "name": "test_settings.py",
         "kind": "file",
@@ -99,12 +92,6 @@
         "name": "test_config.py",
         "kind": "file",
         "path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_config.py",
-        "source": "derived"
-      },
-      {
-        "name": "rerankers_jina_v3.py",
-        "kind": "file",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/rerankers_jina_v3.py",
         "source": "derived"
       },
       {
@@ -156,12 +143,6 @@
         "source": "derived"
       },
       {
-        "name": "query.py",
-        "kind": "file",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py",
-        "source": "derived"
-      },
-      {
         "name": "test_dedup_mirrors.py",
         "kind": "file",
         "path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_dedup_mirrors.py",
@@ -177,6 +158,18 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "query-expansion-root-cause-analysis.md",
+        "kind": "doc",
+        "path": "evidence/query-expansion-root-cause-analysis.md",
         "source": "derived"
       },
       {
@@ -208,11 +201,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 019 deep-review packet found nine P1 defects across the mcp-coco-index stack: stale defaults, docs that contradicted production behavior, unsafe env parsing, misleading success reporting, benchmark evidence hazards, overpowering hybrid boosts, and missing RCA for query-expansion regression. These findings affect fresh installs, operator rollback instructions, reranker stability, benchmark reproducibility, and trust in search quality evidence.",
     "created_at": "2026-05-19T17:59:30Z",
-    "last_save_at": "2026-05-19T20:42:43.971Z",
+    "last_save_at": "2026-05-23T11:55:15.529Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

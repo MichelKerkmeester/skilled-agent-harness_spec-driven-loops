@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Packet 113/007 plans a 70-dispatch cross-model confirmation run for the 113/003 eval-loop findings that were not propagated in packet 113/006. It reuses the existing SWE 1.6 fixtures, prompt variants, scoring pipeline, and extraction logic while routing both target models through cli-opencode.",
     "created_at": "2026-05-17T12:18:35Z",
-    "last_save_at": "2026-05-23T09:22:40.241Z",
+    "last_save_at": "2026-05-23T11:55:14.203Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

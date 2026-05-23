@@ -62,8 +62,8 @@ describe('deep-review reducer and schema contract', () => {
   });
 
   it('wires reducer refresh and machine-owned report guidance into both review workflows', () => {
-    const autoYaml = readWorkspaceFile('.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml');
-    const confirmYaml = readWorkspaceFile('.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml');
+    const autoYaml = readWorkspaceFile('.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml');
+    const confirmYaml = readWorkspaceFile('.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml');
 
     for (const [docPath, content] of [
       ['auto', autoYaml],

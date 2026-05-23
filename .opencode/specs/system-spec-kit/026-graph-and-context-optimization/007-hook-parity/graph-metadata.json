@@ -8,10 +8,7 @@
     "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/002-copilot-custom-instructions-hook-parity",
     "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/003-codex-native-startup-advisor-hooks",
     "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/004-fix-claude-freshness-schema-harness",
-    "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/005-fix-opencode-plugin-loader-bridge",
-    "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/006-copilot-wrapper-schema-fix",
-    "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/007-copilot-writer-wiring",
-    "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/008-docs-impact-remediation"
+    "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/005-fix-opencode-plugin-loader-bridge"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -50,18 +47,12 @@
       "004-fix-claude-freshness-schema-harness"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
-      ".claude/settings.local.json",
-      "spec.md",
-      "plan.md",
       ".codex/config.toml",
       ".codex/settings.json",
+      ".claude/settings.local.json",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/spec.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/implementation-summary.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/006-copilot-wrapper-schema-fix/implementation-summary.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/007-copilot-writer-wiring/implementation-summary.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/008-docs-impact-remediation/implementation-summary.md",
       ".gemini/settings.json",
       ".github/hooks/superset-notify.json",
       ".opencode/skills/system-spec-kit/references/config/hook_system.md",
@@ -69,29 +60,11 @@
       ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts",
       ".opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts",
       ".opencode/skills/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts",
-      ".opencode/plugins/spec-kit-skill-advisor.js"
+      "spec.md",
+      "research/research.md",
+      "resource-map.md"
     ],
     "entities": [
-      {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
       {
         "name": "config.toml",
         "kind": "file",
@@ -105,9 +78,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/implementation-summary.md",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/spec.md",
         "source": "derived"
       },
       {
@@ -141,9 +120,15 @@
         "source": "derived"
       },
       {
-        "name": "spec-kit-skill-advisor.js",
-        "kind": "code",
-        "path": ".opencode/plugins/spec-kit-skill-advisor.js",
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
@@ -183,53 +168,57 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "Deep Research",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Technical Context",
+        "name": "Summary This",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Spec Kit Level",
+        "name": "Scope This",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Overview This",
+        "name": "Key Findings",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Active",
+        "name": "Spec Kit",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Evidence Trail",
         "kind": "proper_noun",
-        "path": "tasks.md",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Map",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Runtime hook coverage drifted across Claude, Codex, Copilot, and the OpenCode plugin loader. Each runtime had its own schema, wrapper wiring, and remediation backlog, and those fixes were scattered across packets that also bundled unrelated advisor and code-graph work.",
     "created_at": "2026-04-21T13:00:00Z",
-    "last_save_at": "2026-04-26T09:17:15.802Z",
+    "last_save_at": "2026-05-23T11:55:15.235Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "plan.md",
-      "tasks.md",
-      "implementation-summary.md",
-      "research/research.md"
+      "research/research.md",
+      "resource-map.md"
     ]
   }
 }

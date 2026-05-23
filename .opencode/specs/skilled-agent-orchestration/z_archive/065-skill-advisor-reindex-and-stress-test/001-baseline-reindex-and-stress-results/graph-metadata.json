@@ -43,10 +43,15 @@
       "checklist",
       "implementation"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "complete",
     "key_files": [
+      "001-skill-reindex/reindex-diff.md",
+      "001-skill-reindex/implementation-summary.md",
+      "002-skill-router-stress-tests/test-report.md",
       ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      "001-skill-reindex/graph-metadata.json",
+      "001-skill-reindex/tasks.md",
       "implementation-summary.md",
       ".claude/settings.local.json",
       "spec.md",
@@ -204,7 +209,7 @@
     ],
     "causal_summary": "This phase preserves the already-completed 065 baseline. It contains the original reindex phase, the original router stress-test phase, the handover, and the campaign roll-up summary.",
     "created_at": "2026-05-18T07:49:27.126Z",
-    "last_save_at": "2026-05-19T13:51:38.627Z",
+    "last_save_at": "2026-05-23T11:55:14.527Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

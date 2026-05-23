@@ -37,7 +37,7 @@ Find at least 2 real defects (not just style/cosmetic).
 
 **Step 3: Adversarial YAML review**
 
-`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` + `_confirm.yaml`:
+`.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` + `_confirm.yaml`:
 - After 118's MCP→script cutover, are all bash invocations correct?
 - Are output bindings still mapped correctly?
 - Any orphaned/dead steps that referenced removed tools?

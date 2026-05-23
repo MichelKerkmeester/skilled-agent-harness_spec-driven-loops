@@ -1,48 +1,201 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/010-cocoindex-code-only-patterns",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/010-cocoindex-code-only-patterns",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/010-cocoindex-code-only-patterns",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/010-cocoindex-code-only-patterns",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/004-vec-store-rebuild",
-      "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/009-cocoindex-ipc-fix"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
   "derived": {
     "trigger_phrases": [
-      "010 cocoindex code-only patterns",
+      "010 cocoindex code-only",
       "remove markdown from cocoindex",
-      "skill mirror dedup"
+      "DEFAULT_INCLUDED_PATTERNS cleanup",
+      "cocoindex skill mirror dedup",
+      "010 plan code-only patterns",
+      "010 tasks code-only patterns",
+      "014/010 code-only done",
+      "cocoindex markdown removed"
     ],
     "key_topics": [
-      "DEFAULT_INCLUDED_PATTERNS",
-      ".cocoindex_code settings.yml",
-      "code-only index",
-      "spec-kit-memory vs cocoindex separation",
-      "4-runtime skill mirror duplication"
+      "010",
+      "cocoindex",
+      "code-only",
+      "remove",
+      "markdown",
+      "cleanup",
+      "skill",
+      "mirror",
+      "dedup",
+      "plan",
+      "patterns",
+      "tasks"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
+      ".cocoindex_code/settings.yml",
+      ".cocoindex_code/target_sqlite.db",
+      ".cocoindex_code/cocoindex.db/mdb/data.mdb",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      "DEFAULT_INCLUDED_PATTERNS",
-      "include_patterns",
-      "target_sqlite.db",
-      "code_chunks_vec",
-      "ccc index"
+      {
+        "name": "settings.yml",
+        "kind": "config",
+        "path": ".cocoindex_code/settings.yml",
+        "source": "derived"
+      },
+      {
+        "name": "target_sqlite.db",
+        "kind": "file",
+        "path": ".cocoindex_code/target_sqlite.db",
+        "source": "derived"
+      },
+      {
+        "name": "data.mdb",
+        "kind": "file",
+        "path": ".cocoindex_code/cocoindex.db/mdb/data.mdb",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cocoindex Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Only Patterns",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Settings",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Cocoindex",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
     ],
-    "causal_summary": "Removed doc-format extensions from cocoindex include patterns. Cocoindex is now code-only; documentation routes to spec-kit-memory. Clean rebuild in flight.",
+    "causal_summary": "Cocoindex's `DEFAULT_INCLUDED_PATTERNS` (and the project-level `.cocoindex_code/settings.yml` mirroring it) include `.md`, `.mdx`, `.txt`, `.rst`. The result on this codebase: 45% of the index is non-code content. Worse, the 4-runtime skill mirror (Public has filesystem-level copies of every skill under `.opencode/skills/`, `.gemini/skills/`, `.claude/skills/`, `.codex/skills/`) means every SKILL.md / reference / playbook gets indexed 4 times. Cocoindex code search returns near-duplicate documentation hits where actual code matches should win.",
     "created_at": "2026-05-13T06:50:00Z",
-    "last_save_at": "2026-05-13T06:55:00Z",
+    "last_save_at": "2026-05-23T11:55:15.341Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T06:55:00Z",
     "source_docs": [

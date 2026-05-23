@@ -1,15 +1,13 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/011-embeddinggemma-unification",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/011-embeddinggemma-unification",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/011-embeddinggemma-unification",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/011-embeddinggemma-unification",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/004-vec-store-rebuild",
-      "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/009-cocoindex-ipc-fix",
-      "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/010-cocoindex-code-only-patterns"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
@@ -17,34 +15,184 @@
     "trigger_phrases": [
       "011 embeddinggemma unification",
       "EmbeddingGemma default both surfaces",
-      "Qwen3 purge"
+      "Qwen3 purge",
+      "google embeddinggemma cocoindex"
     ],
     "key_topics": [
-      "google/embeddinggemma-300m",
-      "bf16",
-      "sentence-transformers",
-      "code-retrieval-prompt",
-      "doc-prompt-asymmetry",
-      "qwen3-purged"
+      "011",
+      "embeddinggemma",
+      "unification",
+      "default",
+      "surfaces",
+      "qwen3",
+      "purge",
+      "google",
+      "cocoindex",
+      "setup",
+      "ended",
+      "split-model"
     ],
     "importance_tier": "important",
-    "status": "completed",
+    "status": "complete",
     "key_files": [
+      ".codex/config.toml",
+      ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+      "scratch/blocker.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      "HfLocalProvider",
-      "EmbeddingSettings",
-      "DEFAULT_PROVIDER_MODELS",
-      "_QUERY_PROMPT_MODELS",
-      "InstructionRetrieval"
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "blocker.md",
+        "kind": "doc",
+        "path": "scratch/blocker.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Earlier Setup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resolve Codex",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Change",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Default",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
     ],
-    "causal_summary": "Unifies Setup A on EmbeddingGemma for both memory and CocoIndex defaults. Query prompt support exists for CocoIndex; document-side prompt remains unprefixed. Main agent resolved the prior .codex/config.toml blocker on 2026-05-13.",
+    "causal_summary": "Setup A ended in a split-model state: Spec Kit Memory used `onnx-community/embeddinggemma-300m-ONNX` while CocoIndex used a heavier code-side model. The code-side model was heavier than needed for the current code-search target and kept older packet docs/config comments pointing future clones at the wrong default.",
     "created_at": "2026-05-13T07:35:00Z",
-    "last_save_at": "2026-05-13T07:35:00Z",
+    "last_save_at": "2026-05-23T11:55:15.342Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T07:35:00Z",
     "source_docs": [

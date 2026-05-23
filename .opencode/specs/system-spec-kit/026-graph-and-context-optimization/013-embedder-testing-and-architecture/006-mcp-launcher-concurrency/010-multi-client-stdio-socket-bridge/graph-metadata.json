@@ -16,13 +16,7 @@
       "010 bridge",
       "010 bridge plan",
       "010 bridge tasks",
-      "010 bridge implementation summary",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/010-multi-client-stdio-socket-bridge",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "013-embedder-testing-and-architecture",
-      "006-mcp-launcher-concurrency",
-      "010-multi-client-stdio-socket-bridge"
+      "010 bridge implementation summary"
     ],
     "key_topics": [
       "multi-client",
@@ -38,7 +32,7 @@
       "secondary",
       "mcp"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "useful",
     "status": "complete",
     "key_files": [
       ".opencode/bin/lib/launcher-ipc-bridge.cjs",
@@ -196,7 +190,7 @@
     ],
     "causal_summary": "Secondary MCP launcher sessions should attach to the already-running daemon instead of reporting a failed MCP connection.",
     "created_at": "2026-05-19T05:54:24.166Z",
-    "last_save_at": "2026-05-19T05:54:24.166Z",
+    "last_save_at": "2026-05-23T11:55:15.583Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -411,8 +411,8 @@ exec
     63	| **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
     64	| **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → `create.sh --phase` → Populate → Plan first child  |
     65	| **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
-    66	| **Deep research**         | `/spec_kit:deep-research` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
-    67	| **Deep review**           | `/spec_kit:deep-review` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
+    66	| **Deep research**         | `/deep:start-research-loop` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
+    67	| **Deep review**           | `/deep:start-review-loop` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
     68	| **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                            |
     69	| **Constitutional memory** | `/memory:learn` → Constitutional memory manager: create, list, edit, remove, budget                                               |
     70	| **Shared memory**         | `/memory:manage shared` → Shared-memory lifecycle: create spaces, manage memberships, inspect rollout                                    |

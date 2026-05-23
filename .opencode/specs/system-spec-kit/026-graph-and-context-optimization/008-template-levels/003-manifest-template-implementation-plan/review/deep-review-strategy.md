@@ -3,10 +3,10 @@
 ## 1. OVERVIEW
 
 ### Purpose
-Run /spec_kit:deep-review:auto for the pinned phase child with review focus on implementation code, not docs-only cross-references.
+Run /deep:start-review-loop:auto for the pinned phase child with review focus on implementation code, not docs-only cross-references.
 
 ### Command Invocation
-`/spec_kit:deep-review:auto /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/003-manifest-template-implementation-plan --max-iterations=5`
+`/deep:start-review-loop:auto /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/003-manifest-template-implementation-plan --max-iterations=5`
 
 ## 2. TOPIC
 Review: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/003-manifest-template-implementation-plan
@@ -97,8 +97,8 @@ Reason: First pass should verify that the implemented files match packet ADRs an
 | `.opencode/commands/spec_kit/` | pending | - | - | pending |
 | `.opencode/commands/spec_kit/assets/` | pending | - | - | pending |
 | `.opencode/commands/spec_kit/complete.md` | pending | - | - | pending |
-| `.opencode/commands/spec_kit/deep-research.md` | pending | - | - | pending |
-| `.opencode/commands/spec_kit/deep-review.md` | pending | - | - | pending |
+| `.opencode/commands/deep/start-research-loop.md` | pending | - | - | pending |
+| `.opencode/commands/deep/start-review-loop.md` | pending | - | - | pending |
 | `.opencode/commands/spec_kit/plan.md` | pending | - | - | pending |
 | `.opencode/commands/spec_kit/resume.md` | pending | - | - | pending |
 | `.opencode/skills/system-spec-kit/SKILL.md` | pending | - | - | pending |

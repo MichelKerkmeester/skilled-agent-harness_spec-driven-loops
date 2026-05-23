@@ -18,46 +18,80 @@
     "trigger_phrases": [
       "016/013 ollama and bge promotion",
       "ollama adapter cocoindex",
-      "bge-code-v1 default promotion",
-      "bge-m3 spec memory benchmark",
-      "indexer surface investigation",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/007-ollama-and-bge-promotion",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "013-embedder-testing-and-architecture",
-      "007-ollama-and-bge-promotion",
-      "016",
-      "013"
+      "superseded BGE promotion arc",
+      "newer text embedders survey",
+      "indexer surface investigation"
     ],
     "key_topics": [
+      "016",
       "013",
-      "ollama-adapter",
-      "bge-code-v1",
-      "bge-m3",
+      "ollama",
+      "bge",
+      "promotion",
+      "adapter",
       "cocoindex",
-      "mk-spec-memory",
-      "embedder-promotion",
-      "indexer-investigation",
-      "litellm",
-      "phase-parent",
-      "system-spec-kit",
-      "026-graph-and-context-optimization"
+      "superseded",
+      "arc",
+      "newer",
+      "text",
+      "embedders"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "planned",
     "key_files": [
       "spec.md"
     ],
-    "entities": [],
-    "causal_summary": "Phase parent. 4 sub-phases: (001) investigate what each retrieval system actually indexes, (002) add Ollama adapter to CocoIndex via LiteLLM, (003) 3-run-confirm + promote bge-code-v1 as the CocoIndex default, (004) survey newer text embedders released after May 2026 \u2014 only bench if a clearly stronger candidate emerges (mk-spec-memory bake-off already shipped jina-embeddings-v3 + rescue per ADR-012). Outcome: clear embedder routing + Ollama support + validated defaults across CocoIndex and mk-spec-memory.",
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Promotion Arc",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Use Nomic",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "No Ollama",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Ollama",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Apple Silicon",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 004-extended-bake-off (just shipped) surfaced three follow-ons that this arc addresses:",
     "created_at": "2026-05-18T16:52:17.347Z",
-    "last_save_at": "2026-05-19T19:44:28.899Z",
+    "last_save_at": "2026-05-23T11:55:15.591Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
-    ],
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/007-ollama-and-bge-promotion/004-newer-text-embedders-survey",
-    "last_active_at": "2026-05-21T11:00:00Z",
-    "last_indexed_at": "2026-05-21T11:00:00Z"
+    ]
   }
 }

@@ -73,7 +73,7 @@ Adopt the upstream auto-review pattern of injecting a unique header marker at th
 - Add `DEEP-REVIEW\n\n` header at the TOP of `deep-review` `prompt_pack_iteration.md.tmpl` (rendered template, not a reference resource)
 - Add `DEEP-RESEARCH\n\n` header at the TOP of `deep-research` `prompt_pack_iteration.md.tmpl`
 - For `sk-code-review`: marker injection happens at the DISPATCHER prompt-assembly layer (wherever sk-code-review prompts are assembled into the final user-facing prompt), NOT prepended above the YAML frontmatter of reference files like `references/code_quality_checklist.md` (which would corrupt MD parsing). Council §10.5 directive.
-- Update `spec_kit_deep-review_auto.yaml` + `spec_kit_deep-research_auto.yaml` dispatcher to scan first 5 lines of the previous iteration's rendered prompt for marker; skip dispatch + emit "nested loop detected" error if found
+- Update `deep_start-review-loop_auto.yaml` + `deep_start-research-loop_auto.yaml` dispatcher to scan first 5 lines of the previous iteration's rendered prompt for marker; skip dispatch + emit "nested loop detected" error if found
 - Use first-line-of-rendered-prompt anchor match (`^MARKER` regex), not contains-check, to avoid false positives
 
 **H-4 — Anti-repetition rule (promoted from Phase 4 to MVP)**:
@@ -92,8 +92,8 @@ Adopt the upstream auto-review pattern of injecting a unique header marker at th
 | `.opencode/skills/sk-code-review/references/*.md` (review templates) | Modify | Add `CODE-REVIEW\n\n` as first 2 lines |
 | `.opencode/skills/deep-review/SKILL.md` (or template file) | Modify | Add `DEEP-REVIEW\n\n` header |
 | `.opencode/skills/deep-research/SKILL.md` (or template file) | Modify | Add `DEEP-RESEARCH\n\n` header |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | Add dispatcher marker-scan step |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | Add dispatcher marker-scan step |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Modify | Add dispatcher marker-scan step |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Modify | Add dispatcher marker-scan step |
 <!-- /ANCHOR:scope -->
 
 ---

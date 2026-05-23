@@ -427,11 +427,11 @@ Detect the current research phase from dispatch context to load appropriate reso
 ### Architecture: 3-Layer Integration
 
 ```
-User invokes: /spec_kit:deep-research "topic"
+User invokes: /deep:start-research-loop "topic"
                     |
                     v
     ┌─────────────────────────────────┐
-    │  /spec_kit:deep-research command│  Layer 1: Command
+    │  /deep:start-research-loop command│  Layer 1: Command
     │  (YAML workflow + loop config)    │  Manages loop lifecycle
     └──────────────┬──────────────────┘
                    |
@@ -530,7 +530,7 @@ exec
 798:- symptom: memory save quality gate rejects closeout payload; cause: weak primary evidence + noisy trigger phrases; fix: include explicit files/observations/toolCalls/decisions and clean trigger phrases before rerunning quality validation [Task 1]
 847:- `code_graph_query` read paths call readiness checks with `allowInlineFullScan: false`; small stale deltas trigger bounded inline `selective_reindex`, while broader stale/empty conditions should route to explicit `code_graph_scan` [Task 3]
 851:- symptom: `session_health` remains `not_primed`; cause: no session id reached `recordToolCall()` for Codex flows; fix: derive tracking id via `resolveSessionTrackingId` with `CODEX_THREAD_ID` fallback [Task 2]
-1203:- /spec_kit:deep-research --review, 20 iterations, evidenceGap, handler-memory-triggers.vitest.ts, FEATURE_CATALOG.md
+1203:- /deep:start-research-loop --review, 20 iterations, evidenceGap, handler-memory-triggers.vitest.ts, FEATURE_CATALOG.md
 1457:## Task 2: Restore/verify Phase 016 runtime/docs (dedup, projectPhase, trigger filter, retry health, contextType)
 1503:- Phase 016 regression checks should include trigger filter export coverage, retry-health snapshot behavior, contextType passthrough, and pre-save dedup docs/tests [Task 2]
 1577:scope: governed retrieval scope propagation, shared-space authorization contracts, memory health auto-repair safety, hybrid runtime audits, and handler-level envelope/graph-signal guards
@@ -10413,7 +10413,7 @@ exec
    365	## User preferences
    366	
    367	- when the user asked to "create a similar prompt for ...005-mempalace ... dont ask for a spec folder," place `phase-research-prompt.md` in the phase root and skip new spec-folder scaffolding [Task 1]
-   368	- when the user asked "Run /spec_kit:deep-research ... get tot 20 total iterations so add 7 more," treat it as resume of the active lineage, not a fork [Task 2]
+   368	- when the user asked "Run /deep:start-research-loop ... get tot 20 total iterations so add 7 more," treat it as resume of the active lineage, not a fork [Task 2]
    369	- when asked to fold the extension into active v2 synthesis "without changing the overall verdict or top-10 ordering," integrate new evidence/counts without re-ranking master recommendations [Task 2]
    370	- when folding closeouts into the root, the user insisted to "leave v1 files untouched" and only update active `research-v2` artifacts [Task 4]
 

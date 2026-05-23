@@ -86,7 +86,7 @@ Create six operator-facing manual scenarios that prove the v2 review-depth contr
 - Changing `.opencode/skills/deep-review/assets/deep_review_config.json` or any other iteration default.
 - Modifying Phase B fixture files under `tests/deep-loop/review-depth-*`.
 - Modifying `.opencode/skills/deep-review/scripts/`, `.opencode/skills/deep-review/references/`, or `.opencode/skills/deep-review/assets/`.
-- Modifying any `spec_kit_deep-review_*.yaml`.
+- Modifying any `deep_start-review-loop_*.yaml`.
 - Adding new playbook directory structure beyond the requested root files.
 
 ### Files to Change

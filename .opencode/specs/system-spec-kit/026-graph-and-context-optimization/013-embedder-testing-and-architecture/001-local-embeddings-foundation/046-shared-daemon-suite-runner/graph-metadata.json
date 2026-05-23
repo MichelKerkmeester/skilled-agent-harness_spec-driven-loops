@@ -4,55 +4,207 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/046-shared-daemon-suite-runner",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/044-suite-revalidation"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/002-rerun-24-scenarios-suite",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/042-cocoindex-ipc-observability"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "045 shared daemon suite runner",
       "run mcp direct",
       "single daemon scenario runner",
-      "24-- shared daemon validation"
+      "24-- shared daemon validation",
+      "045 implementation plan",
+      "shared daemon runner plan",
+      "run mcp direct plan",
+      "045 tasks",
+      "shared daemon runner tasks",
+      "045 checklist",
+      "shared daemon runner verification",
+      "045 implementation summary"
     ],
     "key_topics": [
-      "shared daemon",
-      "mcp client",
-      "scenario runner",
-      "memory_search latency",
-      "cocoindex wired"
+      "045",
+      "shared",
+      "daemon",
+      "suite",
+      "runner",
+      "run",
+      "mcp",
+      "direct",
+      "single",
+      "scenario",
+      "validation",
+      "implementation"
     ],
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/package.json",
+      ".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/shared-daemon-runner-helpers.vitest.ts",
+      "mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs",
+      "dist/context-server.js",
+      "mcp_server/tests/shared-daemon-runner-helpers.vitest.ts",
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
-      "_sandbox/24--local-llm-query-intelligence/evidence/run-mcp-direct.mjs",
-      "_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-shared-daemon.summary.tsv",
-      "_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-shared-daemon.cocoindex.stderr.log",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/shared-daemon-runner-helpers.vitest.ts"
+      "tasks.md",
+      "checklist.md"
     ],
     "entities": [
-      "StdioClientTransport",
-      "spec-kit-memory-launcher.cjs",
-      "memory_search",
-      "cocoindex_code.search",
-      "scenarios 403, 404, 407, and 410",
-      "run-mcp-direct.mjs"
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js",
+        "source": "derived"
+      },
+      {
+        "name": "shared-daemon-runner-helpers.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/shared-daemon-runner-helpers.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "run-substrate-stress-harness.mjs",
+        "kind": "file",
+        "path": "mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shared Daemon Suite Runner",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Evidence Dir",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Existing Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffold Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Node",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
     ],
-    "causal_summary": "Packet 045 creates a direct MCP client runner that starts shared Spec Kit Memory and CocoIndex MCP clients, avoiding 043's per-child daemon contention. Scenarios 403, 404, 407, and 410 now PASS through shared daemon routing.",
+    "causal_summary": "Packet 043 proved that one `codex exec` child per scenario is the wrong architecture for this suite. Each child starts its own MCP daemon stack, which can contend with the main session's local llama-cpp Metal context before scenario logic runs.",
     "created_at": "2026-05-14T17:20:00Z",
-    "last_save_at": "2026-05-14T17:53:33Z",
-    "save_lineage": "manual_packet_update",
+    "last_save_at": "2026-05-23T11:55:15.402Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

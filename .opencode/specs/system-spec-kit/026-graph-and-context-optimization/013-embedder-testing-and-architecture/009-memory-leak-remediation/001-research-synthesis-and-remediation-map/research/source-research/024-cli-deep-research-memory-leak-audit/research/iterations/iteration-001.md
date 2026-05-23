@@ -126,7 +126,7 @@ for each. File paths are repo-relative.
   / F-003 leaks alive for the whole multi-day session.
 - Candidate remediation packet: not necessarily a code fix — could be a
   documentation tightening, or a `--reset-daemon-between-iterations` flag in
-  `/spec_kit:deep-research`. Severity P1 because the behavior is by design but
+  `/deep:start-research-loop`. Severity P1 because the behavior is by design but
   combines with P0 leaks above.
 
 ### F-005 [P1] — Daemon shutdown grace omits background indexing tasks

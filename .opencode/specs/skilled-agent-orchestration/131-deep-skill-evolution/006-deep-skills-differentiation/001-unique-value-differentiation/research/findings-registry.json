@@ -8,7 +8,7 @@
       "severity": "info",
       "title": "Input shape requires 7 mandatory setup fields",
       "evidence": "The unified setup phase in deep-review.md requires resolution of 7 fields before loading the YAML workflow: review_target, review_target_type, review_dimensions, spec_folder, execution_mode, maxIterations, convergenceThreshold. The Default Resolution Table at lines 98-112 documents which fields resolve via flags, markers, auto-detection, or defaults.",
-      "source": ".opencode/commands/spec_kit/deep-review.md:15-22, 98-112"
+      "source": ".opencode/commands/deep/start-review-loop.md:15-22, 98-112"
     },
     {
       "id": "F2",
@@ -17,7 +17,7 @@
       "severity": "info",
       "title": "Input shape supports PRE-BOUND SETUP ANSWERS for non-interactive :auto dispatch",
       "evidence": "The PRE-BOUND SETUP ANSWERS schema at lines 66-95 defines a YAML marker block format for non-interactive :auto dispatch. The marker includes fields for review_target, review_target_type, review_dimensions, spec_folder, execution_mode, maxIterations, convergenceThreshold, executor, executor_model, executor_reasoning, executor_service_tier, executor_timeout, and resource_map_emit. Marker fields take precedence over $ARGUMENTS flags.",
-      "source": ".opencode/commands/spec_kit/deep-review.md:66-95"
+      "source": ".opencode/commands/deep/start-review-loop.md:66-95"
     },
     {
       "id": "F3",
@@ -26,7 +26,7 @@
       "severity": "info",
       "title": "Input shape supports 5 review target types",
       "evidence": "The Default Resolution Table at line 101 and the Consolidated Setup Prompt at lines 174-179 document 5 valid review_target_type values: spec-folder, skill, agent, track, and files. Each type has a distinct scope discovery algorithm in the YAML workflow step_scope_discovery.",
-      "source": ".opencode/commands/spec_kit/deep-review.md:101, 174-179; .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:227-253"
+      "source": ".opencode/commands/deep/start-review-loop.md:101, 174-179; .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:227-253"
     },
     {
       "id": "F4",
@@ -35,7 +35,7 @@
       "severity": "info",
       "title": "Input shape supports 6 executor kinds with optional model/reasoning/service-tier configuration",
       "evidence": "The Consolidated Setup Prompt at lines 197-204 and the Default Resolution Table at lines 107-111 document 6 executor kinds: native, cli-codex, cli-gemini, cli-claude-code, cli-opencode, and cli-devin. Optional configuration includes executor_model, executor_reasoning, executor_service_tier, and executor_timeout. The executor config is stored under config.executor.* in deep-review-config.json.",
-      "source": ".opencode/commands/spec_kit/deep-review.md:107-111, 197-204"
+      "source": ".opencode/commands/deep/start-review-loop.md:107-111, 197-204"
     },
     {
       "id": "F5",
@@ -44,7 +44,7 @@
       "severity": "info",
       "title": "Output artifacts include 9 canonical files under resolved artifact_dir",
       "evidence": "The state_paths section in both YAML workflows defines 9 canonical output files: deep-review-config.json, deep-review-state.jsonl, deep-review-findings-registry.json, deep-review-strategy.md, deep-review-dashboard.md, .deep-review-pause sentinel, prompts/ directory, iterations/iteration-{NNN}.md files, and deltas/iter-{NNN}.jsonl files. The workflow also emits review-report.md and resource-map.md at synthesis. Root specs use {spec_folder}/review/ while child phases use {spec_folder}/review/{packet}-pt-{NN}/.",
-      "source": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:82-108, 115-123"
+      "source": ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:82-108, 115-123"
     },
     {
       "id": "F6",
@@ -62,7 +62,7 @@
       "severity": "info",
       "title": "Output artifacts include review-report.md with 9 sections",
       "evidence": "The ground truth review report shows 9 sections: 1. Summary, 2. Scope, 3. Methodology, 4. Findings (with P1/P2 subsections), 5. Recommendations, 6. Coverage, 7. Traceability, 8. Integration, 9. Release-readiness. The command entrypoint at line 267 mentions review-report.md as a synthesis output.",
-      "source": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/review/review-report.md:1-100; .opencode/commands/spec_kit/deep-review.md:267"
+      "source": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/review/review-report.md:1-100; .opencode/commands/deep/start-review-loop.md:267"
     },
     {
       "id": "F8",
@@ -71,7 +71,7 @@
       "severity": "info",
       "title": "State files include 3 core persistence artifacts plus JSONL append log",
       "evidence": "The step_classify_session in both YAML workflows inspects 3 core state artifacts: deep-review-config.json, deep-review-state.jsonl, and deep-review-strategy.md. The findings registry is also checked. Session classification depends on whether these artifacts exist and agree on mode/target. The JSONL state log receives append-only iteration records and event records (migration, resumed, restarted).",
-      "source": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:190-226; .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:179-222"
+      "source": ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:190-226; .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:179-222"
     },
     {
       "id": "F9",
@@ -80,7 +80,7 @@
       "severity": "info",
       "title": "State file ownership is split between main loop and LEAF agent",
       "evidence": "The main loop (YAML workflow) owns deep-review-config.json, deep-review-strategy.md, deep-review-dashboard.md, and deep-review-findings-registry.json. The LEAF agent (@deep-review) owns iteration-{NNN}.md and appends to deep-review-state.jsonl. The agent's Step 9 at line 210 requires appending exactly ONE type:\"iteration\" line per execution. The agent cannot modify config, registry, or strategy except for the strategy edit in Step 8.",
-      "source": ".opencode/agents/deep-review.md:189-211; .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:82-108"
+      "source": ".opencode/agents/deep-review.md:189-211; .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:82-108"
     },
     {
       "id": "F10",
@@ -116,7 +116,7 @@
       "severity": "info",
       "title": "Command-mode suffixes are :auto and :confirm with three-tier resolution contract",
       "evidence": "The command entrypoint at lines 38 and 52-64 documents :auto and :confirm suffixes. :auto follows a three-tier resolution contract: Tier 1 resolves confidently from flags/markers/defaults, Tier 2 asks targeted questions for 1-2 ambiguous fields, Tier 3 fails fast with named-missing-inputs error. :confirm uses a consolidated setup prompt with multi-gate approvals after setup.",
-      "source": ".opencode/commands/spec_kit/deep-review.md:38, 52-64"
+      "source": ".opencode/commands/deep/start-review-loop.md:38, 52-64"
     },
     {
       "id": "F14",
@@ -125,7 +125,7 @@
       "severity": "info",
       "title": "Command-mode :auto supports non-interactive dispatch via PRE-BOUND SETUP ANSWERS",
       "evidence": "The PRE-BOUND SETUP ANSWERS schema at lines 66-95 is specifically for :auto non-interactive dispatch. The marker block allows binding all 7 required fields in the prompt body, avoiding interactive questions. The three-tier resolution contract at lines 56-58 applies only to :auto mode.",
-      "source": ".opencode/commands/spec_kit/deep-review.md:52-64, 66-95"
+      "source": ".opencode/commands/deep/start-review-loop.md:52-64, 66-95"
     },
     {
       "id": "F15",
@@ -143,7 +143,7 @@
       "severity": "info",
       "title": "Tier 1/2/3 resolution contract applies only to :auto mode",
       "evidence": "The three-tier resolution contract at lines 56-64 is explicitly under the `:auto` Setup Resolution section. Tier 1 resolves confidently, Tier 2 asks targeted questions, Tier 3 fails fast. :confirm mode uses the Consolidated Setup Prompt instead with multi-gate approvals. The Default Resolution Table at lines 98-112 documents which fields are Tier-2 candidates (review_target_type and spec_folder).",
-      "source": ".opencode/commands/spec_kit/deep-review.md:52-64, 98-112"
+      "source": ".opencode/commands/deep/start-review-loop.md:52-64, 98-112"
     },
     {
       "id": "F17",
@@ -152,7 +152,7 @@
       "severity": "info",
       "title": "Input shape requires 5 mandatory setup fields",
       "evidence": "The unified setup phase in deep-research.md requires resolution of 5 fields before loading the YAML workflow: research_topic, spec_folder, execution_mode, maxIterations, convergenceThreshold. This is 2 fewer fields than deep-review (which requires 7). The Default Resolution Table at lines 89-103 documents which fields resolve via flags, markers, auto-detection, or defaults.",
-      "source": ".opencode/commands/spec_kit/deep-research.md:14-20, 89-103"
+      "source": ".opencode/commands/deep/start-research-loop.md:14-20, 89-103"
     },
     {
       "id": "F18",
@@ -161,7 +161,7 @@
       "severity": "info",
       "title": "Input shape supports PRE-BOUND SETUP ANSWERS for non-interactive :auto dispatch",
       "evidence": "The PRE-BOUND SETUP ANSWERS schema at lines 68-85 defines a YAML marker block format for non-interactive :auto dispatch. The marker includes fields for research_topic, spec_folder, execution_mode, maxIterations, convergenceThreshold, executor, executor_model, executor_reasoning, executor_service_tier, executor_timeout, and resource_map_emit. Marker fields take precedence over $ARGUMENTS flags. This matches the deep-review schema structure.",
-      "source": ".opencode/commands/spec_kit/deep-research.md:68-85"
+      "source": ".opencode/commands/deep/start-research-loop.md:68-85"
     },
     {
       "id": "F19",
@@ -170,7 +170,7 @@
       "severity": "info",
       "title": "Input shape does NOT support target types (unlike deep-review's 5 types)",
       "evidence": "Unlike deep-review which supports 5 review_target_type values (spec-folder, skill, agent, track, files), deep-research has no target_type field. The Default Resolution Table at lines 89-103 shows only research_topic, spec_folder, execution_mode, maxIterations, and convergenceThreshold. Deep-research operates on a single research_topic string rather than typed targets.",
-      "source": ".opencode/commands/spec_kit/deep-research.md:89-103"
+      "source": ".opencode/commands/deep/start-research-loop.md:89-103"
     },
     {
       "id": "F20",
@@ -179,7 +179,7 @@
       "severity": "info",
       "title": "Input shape supports 6 executor kinds with optional model/reasoning/service-tier configuration",
       "evidence": "The Default Resolution Table at lines 98-102 and the consolidated setup prompt at lines 173-179 document 6 executor kinds: native, cli-codex, cli-gemini, cli-claude-code, cli-opencode, and cli-devin. Optional configuration includes executor_model, executor_reasoning, executor_service_tier, and executor_timeout. This matches deep-review's executor configuration.",
-      "source": ".opencode/commands/spec_kit/deep-research.md:98-102, 173-179"
+      "source": ".opencode/commands/deep/start-research-loop.md:98-102, 173-179"
     },
     {
       "id": "F21",
@@ -188,7 +188,7 @@
       "severity": "info",
       "title": "Output artifacts include 11 canonical files under resolved artifact_dir",
       "evidence": "The state_paths section in both YAML workflows defines 11 canonical output files: deep-research-config.json, deep-research-state.jsonl, findings-registry.json, deep-research-strategy.md, deep-research-dashboard.md, .deep-research-pause sentinel, .deep-research.lock lock file, prompts/ directory, iterations/iteration-{NNN}.md files, deltas/iter-{NNN}.jsonl files, and research.md. The workflow also emits resource-map.md at synthesis. This is 2 more files than deep-review (which has 9), due to the addition of .deep-research.lock lock file.",
-      "source": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:94-119"
+      "source": ".opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:94-119"
     },
     {
       "id": "F22",
@@ -206,7 +206,7 @@
       "severity": "info",
       "title": "Output artifacts include research.md with 17 sections",
       "evidence": "The ground truth research report shows 17 sections: 1. Executive Summary, 2. Methodology, 3. Findings by Angle, 4. Findings by Surface, 5. Cross-Angle Themes, 6. P0/P1/P2 Summary, 7. Remediation Roadmap, 8. Coverage Analysis, 9. Source Diversity, 10. Convergence Analysis, 11. Executor Performance, 12. Negative Knowledge, 13. Open Questions, 14. Resolved Questions, 15. Key Findings, 16. Ruled Out Directions, 17. Next Steps. The command entrypoint at line 234 mentions research.md as a synthesis output. This is 8 more sections than deep-review's 9-section review-report.md.",
-      "source": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-system-spec-kit-mcp-sidecar-investigation/001-deep-research-drift-and-simplification/research/research.md:1-139; .opencode/commands/spec_kit/deep-research.md:234"
+      "source": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-system-spec-kit-mcp-sidecar-investigation/001-deep-research-drift-and-simplification/research/research.md:1-139; .opencode/commands/deep/start-research-loop.md:234"
     },
     {
       "id": "F24",
@@ -215,7 +215,7 @@
       "severity": "info",
       "title": "State files include 3 core persistence artifacts plus JSONL append log",
       "evidence": "The step_classify_session in both YAML workflows inspects 3 core state artifacts: deep-research-config.json, deep-research-state.jsonl, and deep-research-strategy.md. The findings registry is also checked. Session classification depends on whether these artifacts exist and agree on mode/topic. The JSONL state log receives append-only iteration records and event records (migration, resumed, restarted). This matches deep-review's state file structure.",
-      "source": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:197-236; .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:157-200"
+      "source": ".opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:197-236; .opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:157-200"
     },
     {
       "id": "F25",
@@ -224,7 +224,7 @@
       "severity": "info",
       "title": "State file ownership is split between main loop and LEAF agent",
       "evidence": "The main loop (YAML workflow) owns deep-research-config.json, deep-research-strategy.md, deep-research-dashboard.md, and findings-registry.json. The LEAF agent (@deep-research) owns iteration-{NNN}.md and appends to deep-research-state.jsonl. The agent's Step 8 at line 235 requires appending exactly ONE type:iteration line per execution. The agent cannot modify config, registry, or strategy except for the strategy edit in Step 8. This matches deep-review's ownership split.",
-      "source": ".opencode/agents/deep-research.md:226-232; .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:94-119"
+      "source": ".opencode/agents/deep-research.md:226-232; .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:94-119"
     },
     {
       "id": "F26",
@@ -260,7 +260,7 @@
       "severity": "info",
       "title": "Command-mode suffixes are :auto and :confirm with three-tier resolution contract",
       "evidence": "The command entrypoint at lines 52-66 documents :auto and :confirm suffixes. :auto follows a three-tier resolution contract: Tier 1 resolves confidently from flags/markers/defaults, Tier 2 asks targeted questions for 1-2 ambiguous fields, Tier 3 fails fast with named-missing-inputs error. :confirm uses a consolidated setup prompt with multi-gate approvals after setup. This matches deep-review's command-mode structure.",
-      "source": ".opencode/commands/spec_kit/deep-research.md:52-66"
+      "source": ".opencode/commands/deep/start-research-loop.md:52-66"
     },
     {
       "id": "F30",
@@ -269,7 +269,7 @@
       "severity": "info",
       "title": "Command-mode :auto supports non-interactive dispatch via PRE-BOUND SETUP ANSWERS",
       "evidence": "The PRE-BOUND SETUP ANSWERS schema at lines 68-85 is specifically for :auto non-interactive dispatch. The marker block allows binding all 5 required fields in the prompt body, avoiding interactive questions. The three-tier resolution contract at lines 56-64 applies only to :auto mode. This matches deep-review's non-interactive dispatch capability.",
-      "source": ".opencode/commands/spec_kit/deep-research.md:52-66, 68-85"
+      "source": ".opencode/commands/deep/start-research-loop.md:52-66, 68-85"
     },
     {
       "id": "F31",
@@ -278,7 +278,7 @@
       "severity": "observation",
       "title": "Convergence-distinctive value is negative knowledge and research charter without adversarial checks",
       "evidence": "Deep-research uniquely emphasizes negative knowledge (ruled-out directions) as first-class research output through the Ruled Out and Dead Ends sections in iteration artifacts. It also uses a research charter (non-goals, stop conditions) validated at init. Unlike deep-review's adversarial P0 adjudication with coverage-graph signals, deep-research converges based purely on newInfoRatio without severity tiers or adversarial self-checks.",
-      "source": ".opencode/agents/deep-research.md:181-222, 264-269; .opencode/commands/spec_kit/deep-research.md:371-372"
+      "source": ".opencode/agents/deep-research.md:181-222, 264-269; .opencode/commands/deep/start-research-loop.md:371-372"
     },
     {
       "id": "F32",
@@ -287,7 +287,7 @@
       "severity": "info",
       "title": "Tier 1/2/3 resolution contract applies only to :auto mode",
       "evidence": "The three-tier resolution contract at lines 56-64 is explicitly under the :auto Setup Resolution section. Tier 1 resolves confidently, Tier 2 asks targeted questions, Tier 3 fails fast. :confirm mode uses the Consolidated Setup Prompt instead with multi-gate approvals. The Default Resolution Table at lines 89-103 documents which fields are Tier-2 candidates (spec_folder). This matches deep-review's tier contract.",
-      "source": ".opencode/commands/spec_kit/deep-research.md:56-64, 89-103"
+      "source": ".opencode/commands/deep/start-research-loop.md:56-64, 89-103"
     },
     {
       "id": "F33",
@@ -421,7 +421,7 @@
       "fingerprint": "contract-surface:deep-council:command-modes-auto-confirm-deep",
       "severity": "info",
       "title": "Command-mode suffixes are :auto, :confirm, and :deep (PROPOSED)",
-      "evidence": "Packet 129 spec.md line 82 proposes New /spec_kit:deep-council command (or extended /spec_kit:ai-council :deep mode) wiring with auto/confirm setup parity. Packet 129 spec.md line 91 notes Migration path: how operators on single-round sk-ai-council move to deep mode (mode suffix :deep, default still single-round). This adds a third mode suffix (:deep) not present in deep-review or deep-research (which only have :auto and :confirm).",
+      "evidence": "Packet 129 spec.md line 82 proposes New /deep:ask-ai-council command (or extended /spec_kit:ai-council :deep mode) wiring with auto/confirm setup parity. Packet 129 spec.md line 91 notes Migration path: how operators on single-round sk-ai-council move to deep mode (mode suffix :deep, default still single-round). This adds a third mode suffix (:deep) not present in deep-review or deep-research (which only have :auto and :confirm).",
       "source": ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/spec.md:82, 91"
     },
     {
@@ -503,7 +503,7 @@
       "severity": "dangerous",
       "title": "Convergence-threshold default divergence",
       "evidence": "Deep-review default convergenceThreshold is 0.10. Deep-research default convergenceThreshold is 0.05. Deep-council proposes saturation_threshold default of 0.20. This divergence is DANGEROUS because operators familiar with one skill's default may incorrectly assume the same default applies to other skills. The semantics also differ (weighted P0/P1/P2 ratio for deep-review, newInfoRatio for deep-research, adjudicator-verdict stability for deep-council). An operator requesting run with default convergence could get significantly different iteration counts and stop conditions across skills without realizing it.",
-      "source": ".opencode/commands/spec_kit/deep-review.md:106; .opencode/commands/spec_kit/deep-research.md:97; iter-003 F43"
+      "source": ".opencode/commands/deep/start-review-loop.md:106; .opencode/commands/deep/start-research-loop.md:97; iter-003 F43"
     },
     {
       "id": "F57",
@@ -512,7 +512,7 @@
       "severity": "helpful",
       "title": "Executor-config flag set overlap",
       "evidence": "All three skills accept the same executor configuration flags: --executor, --model, --reasoning-effort, --service-tier, --executor-timeout. All three support the same 6 executor kinds: native, cli-codex, cli-gemini, cli-claude-code, cli-opencode, cli-devin. This overlap is HELPFUL because it provides a consistent executor configuration surface across the deep-* family, reducing operator cognitive load. The overlap is not confusing because the executor contract is shared via deep-loop-runtime's executor-config.ts.",
-      "source": ".opencode/commands/spec_kit/deep-review.md:137-142; .opencode/commands/spec_kit/deep-research.md:124-129; iter-001 F4; iter-002 F20; iter-003 F36"
+      "source": ".opencode/commands/deep/start-review-loop.md:137-142; .opencode/commands/deep/start-research-loop.md:124-129; iter-001 F4; iter-002 F20; iter-003 F36"
     },
     {
       "id": "F58",
@@ -664,7 +664,7 @@
       "fingerprint": "strategy:merge-two-of-three-cost-high-risk-high",
       "severity": "info",
       "title": "Strategy B (merge two-of-three) has high cost (breaking changes, packet renames, runtime refactor) and high risk (loses adversarial-vs-evidence distinction)",
-      "evidence": "Strategy B would merge deep-review + deep-research into unified deep-investigate skill, requiring breaking changes to command surface (/spec_kit:deep-review and /spec_kit:deep-research deprecated), packet renames, and runtime refactor (conditional logic for review vs research mode). Risk is high because merging loses the adversarial-vs-evidence distinction core to deep-review's unique value [iter-001 F15] and risks losing deep-research's negative knowledge emphasis [iter-002 F31].",
+      "evidence": "Strategy B would merge deep-review + deep-research into unified deep-investigate skill, requiring breaking changes to command surface (/deep:start-review-loop and /deep:start-research-loop deprecated), packet renames, and runtime refactor (conditional logic for review vs research mode). Risk is high because merging loses the adversarial-vs-evidence distinction core to deep-review's unique value [iter-001 F15] and risks losing deep-research's negative knowledge emphasis [iter-002 F31].",
       "source": "iter-006"
     },
     {
@@ -673,7 +673,7 @@
       "fingerprint": "strategy:unify-mode-suffix-cost-medium-risk-medium",
       "severity": "info",
       "title": "Strategy C (unify-with-mode-suffix) has medium cost (command entrypoint unification) and medium risk (operator-facing mode suffix migration)",
-      "evidence": "Strategy C unifies command surface to /spec_kit:deep with mode suffixes (:review, :research, :council). Advisor rules simplify to mode recommendation. Cost is medium (rename existing commands to mode suffixes, documentation updates). Risk is medium because mode suffix is operator-facing and requires migration — operators familiar with /spec_kit:deep-review may be confused by /spec_kit:deep :review syntax. However, risk is lower than Strategy B because no runtime changes required.",
+      "evidence": "Strategy C unifies command surface to /spec_kit:deep with mode suffixes (:review, :research, :council). Advisor rules simplify to mode recommendation. Cost is medium (rename existing commands to mode suffixes, documentation updates). Risk is medium because mode suffix is operator-facing and requires migration — operators familiar with /deep:start-review-loop may be confused by /spec_kit:deep :review syntax. However, risk is lower than Strategy B because no runtime changes required.",
       "source": "iter-006"
     },
     {
@@ -879,7 +879,7 @@
       "severity": "DANGEROUS",
       "title": "Convergence-threshold defaults create cost expectation mismatches",
       "evidence": "Iter-004 F56 documented convergence-threshold default divergence: deep-review default is 0.10, deep-research default is 0.05, deep-council proposes saturation_threshold default of 0.20. These defaults mean an operator expecting 'default convergence' will get significantly different iteration counts across skills. A deep-research session with threshold 0.05 may require 20 iterations to converge, while a deep-review session with threshold 0.10 may converge in 10 iterations.",
-      "source": "iter-004 F56; .opencode/commands/spec_kit/deep-review.md:106; .opencode/commands/spec_kit/deep-research.md:97; iter-003 F43"
+      "source": "iter-004 F56; .opencode/commands/deep/start-review-loop.md:106; .opencode/commands/deep/start-research-loop.md:97; iter-003 F43"
     },
     {
       "id": "F79",

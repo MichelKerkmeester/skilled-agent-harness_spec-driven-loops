@@ -205,7 +205,7 @@ Iteration 6 should pivot to **RECOVERY / final sweep**:
    - `executeConflict` duplicate transaction blocks (iter 4 P2 #3) — do both branches actually implement the same checks, or is there a drift already?
    - CP-001 (context.ts readiness fail-open) and CP-003 (entity-linker whole-corpus) — iter 3 confirmed still OPEN; iter 6 should re-examine whether they should upgrade to P0 or P1 given cumulative evidence.
 3. Examine `graph-metadata-integration.vitest.ts:140-151` and confirm the boost/penalty deltas match `stage1-candidate-gen.ts` production values (not just "greater than" / "less than").
-4. Sample the remaining 9 focus files not yet read: response-builder.ts, opencode-transport.ts, checkpoints.ts, memory-search.ts, skill_graph_compiler.py, spec_kit_plan_auto.yaml, spec_kit_complete_auto.yaml, spec_kit_deep-research_auto.yaml, spec_kit_plan_confirm.yaml.
+4. Sample the remaining 9 focus files not yet read: response-builder.ts, opencode-transport.ts, checkpoints.ts, memory-search.ts, skill_graph_compiler.py, spec_kit_plan_auto.yaml, spec_kit_complete_auto.yaml, deep_start-research-loop_auto.yaml, spec_kit_plan_confirm.yaml.
 
 Iteration 7 is the **synthesis pass** producing the final report with consolidated clusters + recommendations.
 

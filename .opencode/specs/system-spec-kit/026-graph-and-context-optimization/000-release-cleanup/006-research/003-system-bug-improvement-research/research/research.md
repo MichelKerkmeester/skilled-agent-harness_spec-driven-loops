@@ -116,10 +116,10 @@ Each iteration was dispatched as an independent cli-codex run using `gpt-5.5` wi
 - `F-009-B4-03`, `.opencode/skills/system-spec-kit/scripts/rules/check-evidence.sh:57`, P2: evidence check does not share priority parsing with priority-tag rule. Reuse one parser or recognize all accepted priority formats.
 - `F-009-B4-04`, `.opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh:73`, P1: template header wrapper ignores middle-of-structure extra headers. Preserve helper `extra_header` results and classify by position.
 - `F-009-B4-05`, `.opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh:91`, P2: checklist guard misses uppercase `[X]`. Match checkbox classes used by the rest of the validator.
-- `F-010-B5-01`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:179-182`, P1: deep-research lock is acquired before classification but not released on halt/cancel paths. Add finally cleanup or acquire after terminal-state classification.
-- `F-010-B5-02`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:851-853`, P1: deep-research fallback record uses `run` and omits required iteration fields. Emit canonical error iteration records or non-counted failure events.
-- `F-010-B5-03`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:812-814`, P1: deep-review has the same malformed fallback record problem. Align fallback schema or use non-iteration failure events.
-- `F-010-B5-04`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:235-249`, P2: `--no-resource-map` is parsed in markdown then overwritten by YAML config creation. Pass the flag into YAML config for research and review modes.
+- `F-010-B5-01`, `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:179-182`, P1: deep-research lock is acquired before classification but not released on halt/cancel paths. Add finally cleanup or acquire after terminal-state classification.
+- `F-010-B5-02`, `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:851-853`, P1: deep-research fallback record uses `run` and omits required iteration fields. Emit canonical error iteration records or non-counted failure events.
+- `F-010-B5-03`, `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:812-814`, P1: deep-review has the same malformed fallback record problem. Align fallback schema or use non-iteration failure events.
+- `F-010-B5-04`, `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:235-249`, P2: `--no-resource-map` is parsed in markdown then overwritten by YAML config creation. Pass the flag into YAML config for research and review modes.
 
 ## §7 Findings — Refinement/Improvement (Category C)
 
@@ -212,9 +212,9 @@ Each iteration was dispatched as an independent cli-codex run using `gpt-5.5` wi
 | F-009-B4-01 | `scripts/rules/check-spec-doc-integrity.sh:63` | Replace fragile Markdown link extraction. |
 | F-009-B4-02 | `scripts/rules/check-evidence.sh:78` | Remove checkbox-as-evidence false negative. |
 | F-009-B4-04 | `scripts/rules/check-template-headers.sh:73` | Fail/warn on extra headers before required structure completes. |
-| F-010-B5-01 | `spec_kit_deep-research_auto.yaml:179-182` | Release lock on all post-acquisition halt/cancel paths. |
-| F-010-B5-02 | `spec_kit_deep-research_auto.yaml:851-853` | Emit schema-valid failure state or non-counted failure events. |
-| F-010-B5-03 | `spec_kit_deep-review_auto.yaml:812-814` | Apply the same schema-valid failure handling to deep-review. |
+| F-010-B5-01 | `deep_start-research-loop_auto.yaml:179-182` | Release lock on all post-acquisition halt/cancel paths. |
+| F-010-B5-02 | `deep_start-research-loop_auto.yaml:851-853` | Emit schema-valid failure state or non-counted failure events. |
+| F-010-B5-03 | `deep_start-review-loop_auto.yaml:812-814` | Apply the same schema-valid failure handling to deep-review. |
 | F-011-C1-02 | `lib/search/rerank-gate.ts:42` | Allow rerank for small ambiguous sets or overfetch first. |
 | F-011-C1-03 | `lib/search/cross-encoder.ts:31` | Enforce provider candidate limits. |
 | F-012-C2-01 | `scorer/lanes/graph-causal.ts:89-90` | Carry graph conflict penalties into fusion. |
@@ -250,7 +250,7 @@ Each iteration was dispatched as an independent cli-codex run using `gpt-5.5` wi
 | F-007-B2-06 | `cli-gemini/assets/prompt_templates.md:45-47` | Gate `--yolo` templates with explicit approval language. |
 | F-009-B4-03 | `scripts/rules/check-evidence.sh:57` | Share priority parsing. |
 | F-009-B4-05 | `scripts/rules/check-template-headers.sh:91` | Match uppercase completed checkboxes. |
-| F-010-B5-04 | `spec_kit_deep-research_auto.yaml:235-249` | Preserve `--no-resource-map` in YAML config. |
+| F-010-B5-04 | `deep_start-research-loop_auto.yaml:235-249` | Preserve `--no-resource-map` in YAML config. |
 | F-011-C1-01 | `stress_test/search-quality/metrics.ts:10` | Add NDCG/MRR harness metrics. |
 | F-011-C1-04 | `lib/search/cocoindex-calibration.ts:47` | Graduate bounded adaptive overfetch. |
 | F-011-C1-05 | `pipeline/stage2-fusion.ts:1270` | Canary learned score blend. |

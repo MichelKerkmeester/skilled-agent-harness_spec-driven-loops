@@ -103,8 +103,8 @@ Document: do our loops have ANY runtime recursion check (vs only contract-based 
 ### Step 5 — Identify generalizable design pattern
 
 Propose: a marker-based + session-tagged + dedup-keyed combination could be applied to ANY long-running auto-loop in our codebase. Could the same three-layer pattern apply to:
-- `/spec_kit:deep-research` (currently relies on iteration cap + state.jsonl)
-- `/spec_kit:deep-review` (same)
+- `/deep:start-research-loop` (currently relies on iteration cap + state.jsonl)
+- `/deep:start-review-loop` (same)
 - `@deep-agent-improvement` (same)
 
 What would need to change in our SKILL.md or agent definitions to encode this defense-in-depth?
@@ -205,7 +205,7 @@ const REVIEW_MARKERS = [
 | sk-code-review | <YES/NO/PARTIAL> | <evidence> | <mechanism or "contract-only"> |
 
 ### Proposed Generalization
-<1-2 paragraphs: could a marker + session-tag + dedup combinator apply to /spec_kit:deep-research and /spec_kit:deep-review? What concrete changes to SKILL.md or the dispatcher script would encode this? Provide pseudocode if helpful.>
+<1-2 paragraphs: could a marker + session-tag + dedup combinator apply to /deep:start-research-loop and /deep:start-review-loop? What concrete changes to SKILL.md or the dispatcher script would encode this? Provide pseudocode if helpful.>
 
 ## Convergence Signal
 `newInfoRatio: <0.0-1.0>` — moderate (0.3-0.5) since most content is aggregation; new info is the combinator drawing + gap analysis.

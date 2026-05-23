@@ -15,9 +15,9 @@ I compared the external retry workflow with `system-spec-kit`'s deep-research an
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/workflow.yaml:26-40] Get It Right defines a loop entry, retry budget, and compact output contract.
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/workflow.yaml:108-134] The external loop computes iteration outputs, strategy fallback, and stop conditions inside one controller.
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/workflow.yaml:183-323] The same controller then dispatches a leaf, branches on strategy, and exposes a final outputs block.
-- [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:94-207] `system-spec-kit` deep research has the same broad phases: initialize state, classify session, create files, and enter a loop.
-- [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:212-380] Deep research then reads state, checks convergence, dispatches a leaf, reduces state, updates tracking, and loops.
-- [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:385-487] It finally synthesizes a report, marks completion, saves memory, and emits a completion message.
+- [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:94-207] `system-spec-kit` deep research has the same broad phases: initialize state, classify session, create files, and enter a loop.
+- [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:212-380] Deep research then reads state, checks convergence, dispatches a leaf, reduces state, updates tracking, and loops.
+- [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:385-487] It finally synthesizes a report, marks completion, saves memory, and emits a completion message.
 - [SOURCE: .opencode/skills/sk-deep-review/SKILL.md:163-243] Deep review uses the same three-layer pattern: command, YAML loop engine, leaf agent, and disk-backed state packet.
 
 ## Analysis
@@ -41,7 +41,7 @@ finding: `system-spec-kit` should extract a generic loop kernel that can back re
 - **Why the external approach might be better:** it highlights how much of loop orchestration is generic and therefore extractable.
 - **Why system-spec-kit's approach might still be correct:** research, review, and implementation loops do have domain-specific constraints and outputs.
 - **Verdict:** REFACTOR
-- **If REFACTOR/PIVOT/SIMPLIFY — concrete proposal:** extract a shared loop kernel with pluggable modules for leaf dispatch, objective gates, branch strategy, reducer/view generation, synthesis, and memory-save policy; keep `/spec_kit:deep-research` and `/spec_kit:deep-review` as branded wrappers over that kernel.
+- **If REFACTOR/PIVOT/SIMPLIFY — concrete proposal:** extract a shared loop kernel with pluggable modules for leaf dispatch, objective gates, branch strategy, reducer/view generation, synthesis, and memory-save policy; keep `/deep:start-research-loop` and `/deep:start-review-loop` as branded wrappers over that kernel.
 - **Blast radius of the change:** architectural
 - **Migration path:** begin by formalizing the common loop contract between deep-research and deep-review, then introduce retry-mode as the first new consumer of the shared kernel rather than as another standalone stack.
 

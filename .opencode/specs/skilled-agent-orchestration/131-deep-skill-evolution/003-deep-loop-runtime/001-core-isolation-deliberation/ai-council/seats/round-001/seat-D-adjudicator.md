@@ -106,10 +106,10 @@ Preserve the public tool names exactly:
 
 Update these workflow YAML references from `system-spec-kit/mcp_server/lib/deep-loop/*` to `deep-loop-runtime/lib/deep-loop/*`:
 
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
+- `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
+- `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
+- `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`
 
 Update graph helper imports from `system-spec-kit/mcp_server/lib/coverage-graph/{coverage-graph-query,coverage-graph-signals}` to `deep-loop-runtime/lib/coverage-graph/{coverage-graph-query,coverage-graph-signals}` where used. Keep direct DB imports server-local unless an explicit adapter is introduced.
 

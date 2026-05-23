@@ -45,7 +45,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate the max-iterations cap stops deep research before softer convergence logic.
 ### Commands
 1. `bash: rg -n 'max iterations|Hard stop|max_iterations_reached' .opencode/skills/deep-research/references/convergence.md .opencode/skills/deep-research/references/loop_protocol.md`
-2. `bash: rg -n 'iteration_count >= max_iterations|max_iterations_reached' .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+2. `bash: rg -n 'iteration_count >= max_iterations|max_iterations_reached' .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml .opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`
 3. `bash: rg -n -- '--max-iterations|Maximum loop iterations' .opencode/skills/deep-research/README.md .opencode/skills/deep-research/references/quick_reference.md`
 ### Expected
 Max iterations is checked first, the stop reason is named explicitly, and the parameter is exposed consistently in the docs.
@@ -72,8 +72,8 @@ Resolve any ambiguity by privileging the convergence pseudocode and YAML algorit
 |---|---|
 | `.opencode/skills/deep-research/references/convergence.md` | Hard-stop ordering; use `ANCHOR:shouldcontinue-algorithm` |
 | `.opencode/skills/deep-research/references/loop_protocol.md` | Loop decision order; use `ANCHOR:phase-iteration-loop` |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Decision algorithm; inspect `step_check_convergence` |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Decision algorithm; inspect `step_check_convergence` |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Decision algorithm; inspect `step_check_convergence` |
+| `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Decision algorithm; inspect `step_check_convergence` |
 | `.opencode/skills/deep-research/README.md` | Parameter table and examples; use `ANCHOR:configuration` and `ANCHOR:usage-examples` |
 | `.opencode/skills/deep-research/references/quick_reference.md` | Parameter defaults; use `ANCHOR:commands` |
 

@@ -85,8 +85,8 @@ Persist search-coverage state in the reducer and surface it in dashboard/report 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/deep-review/scripts/reduce-state.cjs` | Modify | Aggregate and render search ledger state. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | Add Search Ledger report section instructions. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modify | Mirror auto report instructions. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Modify | Add Search Ledger report section instructions. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Modify | Mirror auto report instructions. |
 | `.opencode/specs/.../005-search-ledger-persistence-and-reporting/*` | Modify/Create | Populate Level 3 documentation. |
 <!-- /ANCHOR:scope -->
 

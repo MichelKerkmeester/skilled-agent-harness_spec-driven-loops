@@ -118,8 +118,8 @@ The validator detected 2 issues in the authored spec folder, but neither relates
 
 | Integration Surface | Canonical Path | Reviewed? | Finding |
 |---------------------|---------------|-----------|---------|
-| Dispatcher command | `.opencode/commands/spec_kit/deep-review.md` | N/A (not in scope) | Not reviewed |
-| Auto workflow | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | N/A (not in scope) | Not reviewed |
+| Dispatcher command | `.opencode/commands/deep/start-review-loop.md` | N/A (not in scope) | Not reviewed |
+| Auto workflow | `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | N/A (not in scope) | Not reviewed |
 | Orchestrator agent | `@orchestrate` | N/A (not in scope) | Not reviewed |
 | Single-pass reviewer | `@review` | N/A (not in scope) | Not reviewed |
 | `create.sh` scaffold | `scripts/spec/create.sh` | Yes (indirect) | Uses `loadLevelContract()` which returns sectionGates but never validates them against templates |

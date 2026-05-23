@@ -105,8 +105,8 @@ Restore the local-owner artifact contract everywhere, migrate misplaced child pa
 | `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs` | Modify | Restore local-owner packet resolution for root, child, and sub-phase runs. |
 | `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | Modify | Use resolver-provided `{artifact_dir}` only. |
 | `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` | Modify | Use resolver-provided `{artifact_dir}` only. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_*.yaml` | Modify | Keep prompts, state, and synthesized outputs inside the same resolved local-owner packet. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_*.yaml` | Modify | Keep prompts, state, and synthesized outputs inside the same resolved local-owner packet. |
+| `.opencode/commands/deep/assets/deep_start-research-loop_*.yaml` | Modify | Keep prompts, state, and synthesized outputs inside the same resolved local-owner packet. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_*.yaml` | Modify | Keep prompts, state, and synthesized outputs inside the same resolved local-owner packet. |
 | `.opencode/skills/sk-deep-research/**` | Modify | Update docs and references to the restored child-local packet policy. |
 | `.opencode/skills/sk-deep-review/**` | Modify | Update docs, references, assets, and mirrors to the restored child-local packet policy. |
 | `.opencode/skills/system-spec-kit/scripts/tests/**` | Modify/Create | Add path-resolution coverage and update parity expectations. |

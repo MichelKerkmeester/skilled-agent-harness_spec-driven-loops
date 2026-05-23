@@ -2,25 +2,224 @@
   "schema_version": 1,
   "packet_id": "system-spec-kit/026-graph-and-context-optimization/008-template-levels/006-command-markdown-yaml-workflow-alignment",
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-template-levels/006-command-markdown-yaml-workflow-alignment",
-  "parent_id": null,
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/008-template-levels",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md","checklist.md","decision-record.md"],
-    "entities": [],
-    "causal_summary": "command-md-yaml-alignment",
+  "derived": {
+    "trigger_phrases": [
+      "command md yaml alignment",
+      "spec kit command audit",
+      "workflow yaml audit",
+      "template levels packet 006",
+      "command md yaml plan",
+      "workflow yaml audit plan",
+      "template levels packet 006 plan",
+      "command md yaml tasks",
+      "packet 006 tasks",
+      "command md yaml checklist",
+      "packet 006 verification",
+      "command md yaml decisions"
+    ],
+    "key_topics": [
+      "command",
+      "yaml",
+      "alignment",
+      "spec",
+      "kit",
+      "audit",
+      "workflow",
+      "template",
+      "levels",
+      "packet",
+      "006",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      ".opencode/commands/spec_kit/complete.md",
+      ".opencode/commands/deep/start-research-loop.md",
+      ".opencode/commands/deep/start-review-loop.md",
+      ".opencode/commands/spec_kit/implement.md",
+      ".opencode/commands/spec_kit/plan.md",
+      ".opencode/commands/spec_kit/resume.md",
+      ".opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml",
+      ".opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml",
+      ".opencode/commands/deep/assets/deep_start-research-loop_auto.yaml",
+      ".opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml",
+      ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
+      ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml",
+      ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml",
+      ".opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml",
+      ".opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml",
+      ".opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml",
+      ".opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml",
+      ".opencode/commands/spec_kit/assets/spec_kit_resume_confirm.yaml",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/graph-metadata.json"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "complete.md",
+        "kind": "doc",
+        "path": ".opencode/commands/spec_kit/complete.md",
+        "source": "derived"
+      },
+      {
+        "name": "start-research-loop.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/start-research-loop.md",
+        "source": "derived"
+      },
+      {
+        "name": "start-review-loop.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/start-review-loop.md",
+        "source": "derived"
+      },
+      {
+        "name": "implement.md",
+        "kind": "doc",
+        "path": ".opencode/commands/spec_kit/implement.md",
+        "source": "derived"
+      },
+      {
+        "name": "resume.md",
+        "kind": "doc",
+        "path": ".opencode/commands/spec_kit/resume.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec_kit_complete_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec_kit_complete_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_start-research-loop_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_start-research-loop_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_start-research-loop_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_start-review-loop_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_start-review-loop_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec_kit_implement_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec_kit_implement_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec_kit_plan_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec_kit_plan_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec_kit_resume_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec_kit_resume_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_resume_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Initialized Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This packet audits the AI-facing command surfaces for `/spec_kit` after the template-level refactor. The command Markdown files and YAML workflow assets must describe the current manifest-backed Level contract, current validation semantics, and current hardening behavior without preserving deleted script or folder references.",
     "created_at": "2026-05-02T06:53:47Z",
-    "last_save_at": "2026-05-02T06:53:47Z",
+    "last_save_at": "2026-05-23T11:55:15.293Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md","checklist.md","decision-record.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ]
   }
 }

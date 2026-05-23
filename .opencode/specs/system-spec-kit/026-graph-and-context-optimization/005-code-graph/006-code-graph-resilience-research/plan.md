@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Code Graph Resilience Research [system-spec-kit/026-graph-and-context-optimization/005-code-graph/006-code-graph-resilience-research/plan]"
-description: "Research-loop plan: 7 iterations of /spec_kit:deep-research:auto investigating code-graph staleness, error resilience, exclude-rule confidence, and recovery playbooks. Outputs feed Phase B of the 006 doctor packet."
+description: "Research-loop plan: 7 iterations of /deep:start-research-loop:auto investigating code-graph staleness, error resilience, exclude-rule confidence, and recovery playbooks. Outputs feed Phase B of the 006 doctor packet."
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 trigger_phrases:
   - "code graph resilience research plan"
@@ -41,7 +41,7 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Type** | Research packet (deep-research loop target) |
-| **Loop runner** | `/spec_kit:deep-research:auto` |
+| **Loop runner** | `/deep:start-research-loop:auto` |
 | **Executor (recommended)** | cli-codex gpt-5.4 high (or cli-copilot gpt-5.5 high) |
 | **Iteration budget** | 7 (default for deep-research) |
 | **Convergence threshold** | 0.10 (default) |
@@ -119,7 +119,7 @@ Deep-research loop with externalized JSONL state + iterative agent dispatch (mir
 - [ ] Update parent `005-code-graph/{context-index, spec, tasks}.md` with 006-code-graph-resilience-research entry
 
 ### Phase 2: Run Deep-Research Loop
-- [ ] Invoke `/spec_kit:deep-research:auto` against this packet with the 7-iteration plan above
+- [ ] Invoke `/deep:start-research-loop:auto` against this packet with the 7-iteration plan above
 - [ ] Per iteration: produce research/iterations/iteration-NNN.md (loop file) + delta JSON + state log entry
 - [ ] Monitor convergence; stop early if newFindingsRatio < 0.10
 
@@ -159,7 +159,7 @@ Deep-research loop with externalized JSONL state + iterative agent dispatch (mir
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `/spec_kit:deep-research:auto` workflow | Internal | Green | Cannot run iteration loop |
+| `/deep:start-research-loop:auto` workflow | Internal | Green | Cannot run iteration loop |
 | `code_graph_status`, `code_graph_query`, `detect_changes` MCP tools | Internal | Green | Reduces evidence quality (synthetic only) |
 | Existing code_graph_scan implementation under mcp_server/ | Internal | Green | Read-only investigation target |
 | Existing deep-research iteration logs (010-graph-impact-and-affordance-uplift/008-deep-research-review/) | Internal | Green | Failure-pattern survey corpus |

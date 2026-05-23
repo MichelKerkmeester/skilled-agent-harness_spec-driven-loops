@@ -28,30 +28,19 @@
       "canonical",
       "vector",
       "shard",
-      "active_vec",
-      "migration",
-      "embedding",
-      "cache",
-      "wal",
-      "checkpoint",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "013-embedder-testing-and-architecture"
+      "split",
+      "context-index",
+      "sqlite",
+      "per-profile",
+      "plan",
+      "attach",
+      "legacy",
+      "profile",
+      "migration"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/shared/embeddings/profile.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/db-shard-migration.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/canonical-vector-shard.vitest.ts",
-      ".opencode/skills/system-spec-kit/references/memory/embedder_architecture.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -59,27 +48,154 @@
     ],
     "entities": [
       {
-        "name": "vector-index-store.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
-        "source": "manual"
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
       },
       {
-        "name": "db-shard-migration.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/db-shard-migration.ts",
-        "source": "manual"
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
       },
       {
-        "name": "canonical-vector-shard.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/canonical-vector-shard.vitest.ts",
-        "source": "manual"
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Canonical Vector Shard Split",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Embedding",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Use",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "vector",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "helper",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "canonical",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "rollback",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "standalone-test",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Storage Split Canonical",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Migration The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Split spec-memory storage into a stable canonical metadata DB plus per-profile attached vector/cache shards.",
+    "causal_summary": "Embedding-profile experiments currently create full per-profile `context-index__<slug>.sqlite` stores. That duplicates canonical memory metadata, lineage, FTS, governance, checkpoints, and session state across profile files and can keep old vector/cache pages hot during profile switches.",
     "created_at": "2026-05-19T19:25:52.542Z",
-    "last_save_at": "2026-05-19T19:44:28.899Z",
+    "last_save_at": "2026-05-23T11:55:15.441Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

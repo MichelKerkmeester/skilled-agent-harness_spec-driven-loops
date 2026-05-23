@@ -2,12 +2,12 @@
   "schema_version": 1,
   "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/048-v8-dominates-relaxation",
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/048-v8-dominates-relaxation",
-  "parent_id": null,
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/041-v-rule-cross-spec-overreach"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
@@ -16,26 +16,191 @@
       "047 V8 dominates relaxation",
       "foreign spec ids dominate rendered content",
       "parent handover V8",
-      "direct child spec allowlist"
+      "direct child spec allowlist",
+      "047 plan",
+      "V8 dominates relaxation plan",
+      "047 tasks",
+      "V8 dominates tasks",
+      "047 checklist",
+      "V8 dominates checklist",
+      "047 implementation summary",
+      "V8 dominates implementation summary"
     ],
     "key_topics": [
-      "V8 dominance thresholds",
-      "parent handover validation",
-      "direct child allowlist"
+      "047",
+      "dominates",
+      "relaxation",
+      "foreign",
+      "spec",
+      "ids",
+      "dominate",
+      "rendered",
+      "content",
+      "parent",
+      "handover",
+      "direct"
     ],
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
-      "spec.md",
+      ".opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts",
+      "implementation-summary.md",
       "plan.md",
-      "tasks.md",
+      ".opencode/skills/system-spec-kit/scripts/tests/validate-memory-quality-v8-overreach.vitest.ts",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/handover.md",
+      "spec.md",
       "checklist.md",
-      "implementation-summary.md"
+      "tasks.md"
     ],
-    "entities": [],
-    "causal_summary": "V8 dominance checks now use document-aware thresholds and parent handovers allow direct child packet IDs while preserving unrelated-spec failures.",
+    "entities": [
+      {
+        "name": "validate-memory-quality.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate-memory-quality-v8-overreach.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/validate-memory-quality-v8-overreach.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dominates Relaxation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Keep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Boundary",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Patch",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern No",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "final",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 040 fixed V8 overreach for scattered foreign spec IDs, but V8 still has a separate dominance branch that fails when a single foreign spec ID appears repeatedly. Parent-level handover docs intentionally summarize many child packets, so repeated child packet references are expected rather than contamination.",
     "created_at": "2026-05-14T17:15:00Z",
-    "last_save_at": "2026-05-14T17:16:00Z",
+    "last_save_at": "2026-05-23T11:55:15.405Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

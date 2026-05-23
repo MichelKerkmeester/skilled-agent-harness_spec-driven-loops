@@ -78,7 +78,7 @@ User flagged the inversion and requested an AI Council deliberation before any m
 - `coverage-graph-db.ts` STAYS in `system-spec-kit/mcp_server/lib/coverage-graph/` because it owns the SQLite connection lifecycle.
 - `mcp_server/tools/index.ts`, `tool-schemas.ts`, `schemas/tool-input-schemas.ts` STAY (host contract files).
 - All 4 `mcp__mk_spec_memory__deep_loop_graph_*` tool IDs preserved exactly.
-- Workflow YAML imports (`spec_kit_deep-review_{auto,confirm}.yaml`, `spec_kit_deep-research_{auto,confirm}.yaml`) update to new runtime skill paths.
+- Workflow YAML imports (`deep_start-review-loop_{auto,confirm}.yaml`, `deep_start-research-loop_{auto,confirm}.yaml`) update to new runtime skill paths.
 - Tests split by responsibility: runtime unit tests with `deep-loop-runtime`; MCP registration / handler dispatch / DB lifecycle tests stay with `system-spec-kit`.
 
 **Why SPLIT (not ISOLATE, not KEEP)**:
@@ -150,7 +150,7 @@ The decisive distinction is **MCP-bound vs pure-runtime**, not "deep-specific vs
 1. Create `.opencode/skills/deep-loop-runtime/` with `SKILL.md` declaring shared deep-loop runtime infrastructure scope
 2. Move 10 files from `system-spec-kit/mcp_server/lib/deep-loop/` to `deep-loop-runtime/lib/deep-loop/`
 3. Move 2 files (coverage-graph-query, coverage-graph-signals) from `system-spec-kit/mcp_server/lib/coverage-graph/` to `deep-loop-runtime/lib/coverage-graph/`
-4. Update imports in `spec_kit_deep-{review,research}_{auto,confirm}.yaml` (4 files)
+4. Update imports in `deep_{start-review-loop,research}_{auto,confirm}.yaml` (4 files)
 5. Split tests: runtime unit tests → `deep-loop-runtime/tests/`; MCP registration / handler dispatch / DB lifecycle tests stay in `system-spec-kit/mcp_server/tests/`
 6. Verification gates: MCP tool registration unchanged (`mcp tools list` confirms 4 `deep_loop_graph_*` tools); SQLite lifecycle intact; full vitest passes; workflow YAML paths valid
 

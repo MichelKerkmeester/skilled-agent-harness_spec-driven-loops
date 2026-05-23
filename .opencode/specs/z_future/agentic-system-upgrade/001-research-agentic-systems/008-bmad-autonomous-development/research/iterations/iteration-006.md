@@ -13,8 +13,8 @@ Read BAD's configuration table and per-step model assignments, then compared the
 - BAD assigns `MODEL_STANDARD` to Phase 0, Step 1, Step 2, Step 4, and auto-merge, while reserving `MODEL_QUALITY` specifically for Step 3 code review. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/skills/bad/SKILL.md:51-64]
 - BAD's pipeline instructions explicitly bind Step 1/2/4 to `MODEL_STANDARD` and Step 3 to `MODEL_QUALITY`. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/skills/bad/SKILL.md:105-107]
 - BAD's later steps keep the same split, including review on `MODEL_QUALITY` and merge/cleanup on `MODEL_STANDARD`. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/skills/bad/SKILL.md:255-352]
-- Local deep-research auto config uses a single `opus` model for the agent loop. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:66-75]
-- Local deep-review confirm config also uses a single `opus` model. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:69-78]
+- Local deep-research auto config uses a single `opus` model for the agent loop. [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:66-75]
+- Local deep-review confirm config also uses a single `opus` model. [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:69-78]
 - Local autonomous implementation uses `opus` for single-agent and orchestrator/worker multi-agent modes instead of differentiating routine vs quality-sensitive stages. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:167-186]
 
 ## Analysis
@@ -26,7 +26,7 @@ confidence: high
 finding: BAD's clearest near-term win for `system-spec-kit` is stage-aware model tiering. Long-running autonomous flows should stop paying premium-model cost for every step when only review, synthesis, or contradiction resolution truly require that quality level.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+- **Target file or module:** `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
 - **Change type:** modified existing
 - **Blast radius:** medium
 - **Prerequisites:** define canonical `model_standard` and `model_quality` keys and mirror them across sibling assets

@@ -52,7 +52,7 @@ _memory:
 - [x] T001 Scaffold packet via `create.sh --subfolder ... --topic 'template-greenfield-redesign' --level 3`
 - [x] T002 Author `spec.md` with greenfield framing + 10 research questions + 5 candidate designs
 - [x] T003 [P] Initialize deep-research state files (config, state.jsonl, strategy with anchors, registry)
-- [x] T004 Dispatch `/spec_kit:deep-research:auto` with 9 iterations, cli-codex gpt-5.5 high fast, convergence 0.10
+- [x] T004 Dispatch `/deep:start-research-loop:auto` with 9 iterations, cli-codex gpt-5.5 high fast, convergence 0.10
 <!-- /ANCHOR:phase-1 -->
 
 ---

@@ -18,7 +18,7 @@ This pass stress-tested recommendations R5 and R6 from the synthesis: expand rev
 
 The current review graph node kinds are limited to `DIMENSION`, `FILE`, `FINDING`, `EVIDENCE`, and `REMEDIATION`; `BUG_CLASS`, `INVARIANT`, `PRODUCER`, `CONSUMER`, and `TEST` are not valid kinds. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:23] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:137]
 
-The deep-review workflow also normalizes graph events and explicitly keeps only the current five review kinds, discarding malformed or unknown graph events instead of failing the review iteration. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:981] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:985]
+The deep-review workflow also normalizes graph events and explicitly keeps only the current five review kinds, discarding malformed or unknown graph events instead of failing the review iteration. [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:981] [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:985]
 
 That makes R5 correct but underconstrained. Adding prompt text that asks agents to emit `BUG_CLASS` or `INVARIANT` graph events would not create graph coverage today; those events would be filtered out before upsert. The implementation slice must update the TypeScript graph kinds, workflow transform allow-list, graph-event docs, prompt pack, and tests in one change. Otherwise graph vocabulary expansion becomes invisible ceremony.
 
@@ -34,7 +34,7 @@ None of those signals answers whether required bug classes, invariants, producer
 
 The deep-review convergence reference says that when `graphEvents` are absent, the `graphEvidence` sub-check is omitted and existing sub-checks decide the gate. [SOURCE: .opencode/skills/deep-review/references/convergence.md:677]
 
-The live workflow, however, calls graph convergence before the inline review vote and says final STOP is never legal unless the inline vote says STOP and `graph_decision == "STOP_ALLOWED"`. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:418] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:461] When the graph is empty, the handler returns `CONTINUE`, not an absent/skipped graph decision. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:168] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:171]
+The live workflow, however, calls graph convergence before the inline review vote and says final STOP is never legal unless the inline vote says STOP and `graph_decision == "STOP_ALLOWED"`. [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:418] [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:461] When the graph is empty, the handler returns `CONTINUE`, not an absent/skipped graph decision. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:168] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:171]
 
 This is a migration hazard for R6. If graphless fallback remains valid, the workflow needs an explicit graph mode such as `graphCoverageMode:"graphless_fallback"` that lets a valid text/JSON ledger satisfy candidate coverage. If graph data is required for standard/complex reviews, then empty graph should produce a typed blocker, not a quiet `CONTINUE` that withholds `blocked_stop` detail.
 
@@ -42,7 +42,7 @@ This is a migration hazard for R6. If graphless fallback remains valid, the work
 
 The review blocked-stop contract persists `blockedBy`, named `gateResults`, `graphBlockerDetail`, and a recovery strategy. [SOURCE: .opencode/skills/deep-review/references/convergence.md:71] [SOURCE: .opencode/skills/deep-review/references/convergence.md:103] [SOURCE: .opencode/skills/deep-review/references/convergence.md:107]
 
-The live workflow emits those same gates: `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, and `fixCompletenessReplayGate`. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:477] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:558]
+The live workflow emits those same gates: `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, and `fixCompletenessReplayGate`. [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:477] [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:558]
 
 There is no `candidateCoverageGate`, `searchDebtGate`, `negativeTestGate`, or `graphlessFallbackGate`. That means a future shallow clean review can be blocked for dimensions, P0s, evidence density, hotspots, claim adjudication, or fix replay, but not specifically for "missing invariant coverage" or "unsearched producer/consumer path." R6 should add named candidate-search gates to `gateResults` before relying on graph blocker prose.
 
@@ -102,7 +102,7 @@ The minimum seeded test set should fail the current workflow in four ways: new g
 - `.opencode/specs/skilled-agent-orchestration/116-deep-review-complexity/research/iterations/iteration-013.md`
 - `.opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl`
 - `.opencode/skills/deep-review/references/convergence.md`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts`

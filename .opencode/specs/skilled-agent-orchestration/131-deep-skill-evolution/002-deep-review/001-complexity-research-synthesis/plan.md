@@ -93,8 +93,8 @@ This is a research packet, so actions below are inspection-only until a follow-u
 |---------|--------------|--------|--------------|
 | `.opencode/skills/deep-review/` | Defines review skill behavior and constraints. | Inspect for shallow-review causes. | Iteration citations and synthesis references. |
 | `.opencode/agents/deep-review.md` | Single-iteration review agent contract. | Inspect focus, tool budget, output pressure, and LEAF constraints. | Iteration citations and synthesis references. |
-| `.opencode/commands/spec_kit/deep-review.md` | Entrypoint and setup behavior for review loop. | Inspect setup defaults and command constraints. | Iteration citations and synthesis references. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_*.yaml` | Deep-review state machine and convergence behavior. | Inspect iteration focus, validation, and synthesis gates. | Iteration citations and synthesis references. |
+| `.opencode/commands/deep/start-review-loop.md` | Entrypoint and setup behavior for review loop. | Inspect setup defaults and command constraints. | Iteration citations and synthesis references. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_*.yaml` | Deep-review state machine and convergence behavior. | Inspect iteration focus, validation, and synthesis gates. | Iteration citations and synthesis references. |
 | `.opencode/skills/deep-research/` | Comparative workflow that may find more bugs. | Identify transferable bug-hunt mechanics. | Cross-workflow comparison in synthesis. |
 
 Required inventories:
@@ -147,7 +147,7 @@ Required inventories:
 |------------|------|--------|-------------------|
 | `codex` CLI | External CLI | To preflight before loop | Cannot satisfy requested executor route. |
 | OpenAI auth or Codex OAuth | External auth | To preflight before loop | Codex iterations fail. |
-| `/spec_kit:deep-research` workflow assets | Internal | Available | Loop state and artifacts cannot be produced without them. |
+| `/deep:start-research-loop` workflow assets | Internal | Available | Loop state and artifacts cannot be produced without them. |
 | Deep-review source surfaces | Internal | Available | Research cannot compare actual review behavior. |
 <!-- /ANCHOR:dependencies -->
 

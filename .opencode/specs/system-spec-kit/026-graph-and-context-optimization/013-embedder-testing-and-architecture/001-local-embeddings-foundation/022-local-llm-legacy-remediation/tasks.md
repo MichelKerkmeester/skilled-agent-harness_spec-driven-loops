@@ -47,7 +47,7 @@ contextType: "remediation"
 | T-054 | Commit batch 5 changes | TODO | main-agent | conventional commit hash |
 | **Confirmatory re-review** | | | | |
 | T-061 | Scaffold `023-post-remediation-re-review/` (Level 2) | TODO | main-agent | packet exists |
-| T-062 | Dispatch `/spec_kit:deep-review:auto` against same scope as 021 | TODO | main-agent | 023/review/review-report.md exists |
+| T-062 | Dispatch `/deep:start-review-loop:auto` against same scope as 021 | TODO | main-agent | 023/review/review-report.md exists |
 | T-063 | Verify verdict ∈ {PASS, PASS-with-advisories} | TODO | main-agent | verdict line in report |
 | T-064 | Update 022 implementation-summary with final verdict + close 022 | TODO | main-agent | summary updated, status="complete" |
 

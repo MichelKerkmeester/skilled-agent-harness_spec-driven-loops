@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/003-upstream-rebase-spike",
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/003-upstream-rebase-spike",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -16,45 +16,194 @@
       "rebase spike",
       "indexing_params",
       "query_params",
-      "dimensions knob",
-      "svelte vue",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/003-upstream-rebase-spike",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "013-embedder-testing-and-architecture",
-      "004-code-index-stack"
+      "upstream rebase plan",
+      "cocoindex-code delta",
+      "023F tasks",
+      "upstream delta tasks",
+      "023F checklist",
+      "upstream verification",
+      "023F summary"
     ],
     "key_topics": [
+      "023f",
+      "upstream",
       "cocoindex-code",
-      "upstream drift",
-      "indexing_params",
-      "query_params",
-      "dimensions",
-      "sentence-transformers",
-      "svelte",
-      "vue",
-      "rebase plan",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "013-embedder-testing-and-architecture"
+      "rebase",
+      "spike",
+      "plan",
+      "delta",
+      "tasks",
+      "checklist",
+      "verification",
+      "summary",
+      "local"
     ],
-    "importance_tier": "important",
-    "status": "review",
+    "importance_tier": "high",
+    "status": "complete",
     "key_files": [
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
+      ".opencode/skills/mcp-coco-index/mcp_server/pyproject.toml",
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_settings_patterns.py",
       "research/upstream-sweep.md",
       "research/delta-classification.md",
+      "research/dimensions-knob-removal-impact.md",
       "research/rebase-plan.md",
-      "research/cross-packet-impact.md"
+      "research/cross-packet-impact.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "tasks.md"
     ],
-    "entities": [],
-    "causal_summary": "Research spike comparing the local cocoindex-code soft fork against upstream v0.2.33, applying only scoped Svelte/Vue pattern and sentence-transformers pin wins while routing embedder parameter and SDK migration work to future phases.",
+    "entities": [
+      {
+        "name": "pyproject.toml",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/pyproject.toml",
+        "source": "derived"
+      },
+      {
+        "name": "test_settings_patterns.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_settings_patterns.py",
+        "source": "derived"
+      },
+      {
+        "name": "upstream-sweep.md",
+        "kind": "doc",
+        "path": "research/upstream-sweep.md",
+        "source": "derived"
+      },
+      {
+        "name": "delta-classification.md",
+        "kind": "doc",
+        "path": "research/delta-classification.md",
+        "source": "derived"
+      },
+      {
+        "name": "dimensions-knob-removal-impact.md",
+        "kind": "doc",
+        "path": "research/dimensions-knob-removal-impact.md",
+        "source": "derived"
+      },
+      {
+        "name": "rebase-plan.md",
+        "kind": "doc",
+        "path": "research/rebase-plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "cross-packet-impact.md",
+        "kind": "doc",
+        "path": "research/cross-packet-impact.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rebase Spike",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Whether Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Research",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The local `cocoindex-code` soft fork reports `0.2.3+spec-kit-fork.0.2.0` while upstream `cocoindex-code` has reached `v0.2.33`. The drift includes upstream embedder parameter APIs, a deliberate dimensions-knob removal, Svelte/Vue language coverage, daemon/client refactors, and dependency movement from prerelease CocoIndex SDK builds to stable `1.0.x`.",
     "created_at": "2026-05-19T20:22:26Z",
-    "last_save_at": "2026-05-19T20:22:26Z",
+    "last_save_at": "2026-05-23T11:55:15.536Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

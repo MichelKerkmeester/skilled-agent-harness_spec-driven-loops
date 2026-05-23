@@ -29,7 +29,7 @@ Also extend to the "state rehydration" angle: when the reducer re-reads the JSON
 
 1. **Enumerate JSONL type enum.** Read `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` completely (it's the source-of-truth for what the reducer accepts). Extract the exhaustive list of `type` values it handles (iteration, event, config, spec_mutation, etc.) and which fields are required per type. Then read:
    - `.opencode/skills/sk-deep-research/assets/prompt_pack_iteration.md.tmpl` (what agents are TOLD to emit)
-   - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` lines 440–480 (the `post_dispatch_validate` schema contract) and its `stop_reasons_enum`, `append_to_jsonl` shapes
+   - `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` lines 440–480 (the `post_dispatch_validate` schema contract) and its `stop_reasons_enum`, `append_to_jsonl` shapes
    - `.opencode/skills/sk-deep-research/references/state_format.md` (documented schema)
 
 2. **Compare schemas.** Produce a type×field drift matrix with columns: `type | Required fields (reducer) | Required fields (prompt pack) | Required fields (YAML audit contract) | Required fields (state_format.md) | Drift verdict`.

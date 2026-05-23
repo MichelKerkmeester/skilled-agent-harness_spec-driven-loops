@@ -412,11 +412,11 @@ Detect the current research phase from dispatch context to load appropriate reso
 ### Architecture: 3-Layer Integration
 
 ```
-User invokes: /spec_kit:deep-research "topic"
+User invokes: /deep:start-research-loop "topic"
                     |
                     v
     ┌─────────────────────────────────┐
-    │  /spec_kit:deep-research command│  Layer 1: Command
+    │  /deep:start-research-loop command│  Layer 1: Command
     │  (YAML workflow + loop config)    │  Manages loop lifecycle
     └──────────────┬──────────────────┘
                    |
@@ -6914,7 +6914,7 @@ applies_to: cwd=/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.o
 - symptom: packet docs drift from deep-research conclusions; cause: spec/plan/tasks/checklist/summary edited piecemeal; fix: run a single truth-sync pass across all packet docs with explicit references to `research/research.md` [Task 5]
 
 # Task Group: Deep-Research Review Workflow and Release Readiness Controls
-scope: `/spec_kit:deep-research --review` execution contract, review-folder semantics, and release-readiness criteria mapping
+scope: `/deep:start-research-loop --review` execution contract, review-folder semantics, and release-readiness criteria mapping
 
 exec
 /bin/zsh -lc "cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && nl -ba .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/claims.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public

@@ -44,8 +44,8 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-research setup binding for topic, spec folder, max iterations, convergence, and YAML preflight.
 ### Commands
-1. `bash: sed -n '1,220p' .opencode/commands/spec_kit/deep-research.md`
-2. `bash: rg -n 'step_preflight_contract|required_values_present|spec_folder_is_within|max_iterations|convergence_threshold' .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+1. `bash: sed -n '1,220p' .opencode/commands/deep/start-research-loop.md`
+2. `bash: rg -n 'step_preflight_contract|required_values_present|spec_folder_is_within|max_iterations|convergence_threshold' .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml .opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`
 3. `bash: sed -n '1,180p' .opencode/skills/deep-research/references/state_format.md`
 ### Expected
 The command explicitly names topic, spec folder, execution mode, max iterations, and convergence threshold; YAML preflight verifies them before file writes.
@@ -70,9 +70,9 @@ Compare both YAML files, not just one, and verify the config schema still names 
 
 | File | Role |
 |---|---|
-| `.opencode/commands/spec_kit/deep-research.md` | Setup-binding source of truth; use `SINGLE CONSOLIDATED SETUP PROMPT` and `## 0. UNIFIED SETUP PHASE` |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Autonomous preflight guard; inspect `step_preflight_contract` |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Interactive preflight guard; inspect `step_preflight_contract` |
+| `.opencode/commands/deep/start-research-loop.md` | Setup-binding source of truth; use `SINGLE CONSOLIDATED SETUP PROMPT` and `## 0. UNIFIED SETUP PHASE` |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Autonomous preflight guard; inspect `step_preflight_contract` |
+| `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Interactive preflight guard; inspect `step_preflight_contract` |
 | `.opencode/skills/deep-research/references/state_format.md` | Config schema; use `ANCHOR:config-file` |
 
 ---

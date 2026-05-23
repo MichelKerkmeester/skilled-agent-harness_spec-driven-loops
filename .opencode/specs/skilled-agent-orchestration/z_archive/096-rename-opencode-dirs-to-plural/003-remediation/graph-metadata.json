@@ -25,14 +25,7 @@
       "097 findings remediation",
       "dist rebuild",
       "sk-deep token replace",
-      "rename remediation",
-      "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/003-remediation",
-      "skilled-agent-orchestration",
-      "z_archive",
-      "096-rename-opencode-dirs-to-plural",
-      "003-remediation",
-      "feature",
-      "specification"
+      "rename remediation"
     ],
     "key_topics": [
       "098",
@@ -48,7 +41,7 @@
       "packet",
       "deep-review"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "planned",
     "key_files": [
       "spec.md"
@@ -99,7 +92,7 @@
     ],
     "causal_summary": "Packet 097 (`/spec_kit:deep-review:auto`, 10 iterations, gpt-5.5 high fast) ran an architectural cross-phase review of recently-shipped packets 093-096 and converged with a FAIL verdict driven by **1 P0** plus **12 P1** plus **9 P2** active findings. The single P0 (P0-001) blocks release; the P1 cluster captures dead-reference drift (`sk-deep-*` legacy tokens), 096 self-validation failures, narrative tautologies introduced by bulk sed, hook precedence weaknesses, unchecked checklist evidence, advisor state path drift, and Python support-tool singular-default residue. The P2 cluster captures install guide drift, Barter root README drift, and a dead Copilot guard branch.",
     "created_at": "2026-05-18T07:49:27.237Z",
-    "last_save_at": "2026-05-19T13:51:38.783Z",
+    "last_save_at": "2026-05-23T11:55:14.683Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

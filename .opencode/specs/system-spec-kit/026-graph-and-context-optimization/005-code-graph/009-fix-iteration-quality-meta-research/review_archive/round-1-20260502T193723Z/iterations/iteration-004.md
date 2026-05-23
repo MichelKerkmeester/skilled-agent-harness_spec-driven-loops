@@ -19,8 +19,8 @@
 - `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:554-568`
 - `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:562-598`
 - `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:603-617`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1038-1055`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:1060-1077`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1038-1055`
+- `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:1060-1077`
 - `.opencode/commands/spec_kit/plan.md:320-351`
 
 ## Findings by Severity (P0/P1/P2 — say "None." if empty)

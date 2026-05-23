@@ -9,8 +9,8 @@
 - `.opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs`
 - `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs`
 - `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
+- `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
 
 ## Findings - New
 

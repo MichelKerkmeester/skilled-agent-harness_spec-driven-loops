@@ -27,7 +27,7 @@ _memory:
     completion_pct: 90
     open_questions: []
     answered_questions:
-      - "Use `/spec_kit:deep-research` state workflow, not custom shell loops."
+      - "Use `/deep:start-research-loop` state workflow, not custom shell loops."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Plan: 024 CLI Deep Research Memory Leak Audit
@@ -90,7 +90,7 @@ Command-owned iterative research with sequential external executor lanes and mem
 - **Safety telemetry**: process-tree inventory, `sysctl vm.swapusage`, `vm_stat`, free pages, swap delta, and explicit kill checks.
 
 ### Data Flow
-The operator starts lane A through `/spec_kit:deep-research:auto` with pre-bound setup. The workflow writes state under this packet's `research/` directory, dispatches one iteration at a time, validates required artifacts, and runs cleanup checks. After lane A, the operator verifies or explicitly overrides memory state, then runs lane B with Codex settings and the same research charter. The continuation adds five Codex validation iterations over the recommendation matrix. Final synthesis merges findings and emits remediation recommendations.
+The operator starts lane A through `/deep:start-research-loop:auto` with pre-bound setup. The workflow writes state under this packet's `research/` directory, dispatches one iteration at a time, validates required artifacts, and runs cleanup checks. After lane A, the operator verifies or explicitly overrides memory state, then runs lane B with Codex settings and the same research charter. The continuation adds five Codex validation iterations over the recommendation matrix. Final synthesis merges findings and emits remediation recommendations.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -126,13 +126,13 @@ Required inventories:
 - [x] Record existing `claude`, `codex`, `ccc search`, `gtimeout`, rerank sidecar, CocoIndex daemon, and MCP helper process inventory.
 
 ### Phase 2: Lane A - Claude Code Research
-- [x] Run five `/spec_kit:deep-research:auto` iterations using `cli-claude-code` and Opus 4.7 / Opus profile.
+- [x] Run five `/deep:start-research-loop:auto` iterations using `cli-claude-code` and Opus 4.7 / Opus profile.
 - [x] After every iteration, validate markdown and JSONL outputs exist.
 - [ ] Kill and verify lane A process groups and known child helpers.
 - [x] Capture memory telemetry deltas and halt if thresholds are unsafe; user overrode the halt blocker.
 
 ### Phase 3: Lane B - Codex Research
-- [x] Run ten `/spec_kit:deep-research:auto` iterations using `cli-codex`, `gpt-5.5`, `xhigh`, `fast`.
+- [x] Run ten `/deep:start-research-loop:auto` iterations using `cli-codex`, `gpt-5.5`, `xhigh`, `fast`.
 - [x] After every iteration, validate markdown and JSONL outputs exist.
 - [ ] Kill and verify lane B process groups and known child helpers.
 - [x] Capture memory telemetry deltas and halt if thresholds are unsafe; Codex sandbox limits are documented in iteration 006.
@@ -165,7 +165,7 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `/spec_kit:deep-research` workflow | Internal | Available | Required state machine for the loop. |
+| `/deep:start-research-loop` workflow | Internal | Available | Required state machine for the loop. |
 | `cli-claude-code` skill and Claude Code CLI | Internal/external | Needs preflight | Lane A cannot run if unavailable. |
 | Opus 4.7 / Opus model access | External | Needs preflight | Lane A may need a concrete local model ID mapping. |
 | `cli-codex` skill and Codex CLI | Internal/external | Needs preflight | Lane B cannot run if unavailable. |

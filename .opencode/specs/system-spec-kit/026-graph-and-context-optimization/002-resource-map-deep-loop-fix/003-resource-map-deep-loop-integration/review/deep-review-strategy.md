@@ -257,14 +257,14 @@ None. Proceed to synthesis and remediation planning for the four recorded findin
   3. `.opencode/skills/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts`
   4. `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs`
   5. `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`
-  6. `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-  7. `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
-  8. `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-  9. `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+  6. `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
+  7. `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
+  8. `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
+  9. `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`
   10. `.opencode/skills/sk-deep-review/SKILL.md`
   11. `.opencode/skills/sk-deep-research/SKILL.md`
-  12. `.opencode/commands/spec_kit/deep-review.md`
-  13. `.opencode/commands/spec_kit/deep-research.md`
+  12. `.opencode/commands/deep/start-review-loop.md`
+  13. `.opencode/commands/deep/start-research-loop.md`
   14. `.opencode/skills/sk-deep-review/references/convergence.md`
   15. `.opencode/skills/sk-deep-research/references/convergence.md`
   16. `.opencode/skills/sk-deep-review/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md`
@@ -306,14 +306,14 @@ None. Proceed to synthesis and remediation planning for the four recorded findin
 | `.opencode/skills/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
 | `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
 | `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
 | `.opencode/skills/sk-deep-review/SKILL.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
 | `.opencode/skills/sk-deep-research/SKILL.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/commands/spec_kit/deep-review.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/commands/spec_kit/deep-research.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/commands/deep/start-review-loop.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/commands/deep/start-research-loop.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
 | `.opencode/skills/sk-deep-review/references/convergence.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
 | `.opencode/skills/sk-deep-research/references/convergence.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
 | `.opencode/skills/sk-deep-review/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |

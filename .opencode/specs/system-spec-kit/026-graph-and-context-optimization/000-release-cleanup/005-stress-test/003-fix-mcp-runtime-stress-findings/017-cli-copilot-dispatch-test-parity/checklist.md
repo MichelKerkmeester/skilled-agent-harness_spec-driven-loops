@@ -44,7 +44,7 @@ _memory:
 
 ### YAML ordering invariant
 
-- [x] **REQ-007 — Both `_auto.yaml` files write `built.promptFileBody` BEFORE invoking copilot**: vitest case "YAML auto-loop sites write built.promptFileBody to disk before invoking copilot" passes; for both `spec_kit_deep-research_auto.yaml` and `spec_kit_deep-review_auto.yaml`: the file contains `if (built.promptFileBody !== undefined)` AND `writeFileSync(promptPath, built.promptFileBody` AND a copilot dispatch (`spawnSync('copilot'` or `command: 'copilot'`); the dispatch byte-offset is greater than the writeFileSync byte-offset. [EVIDENCE: see retained verification text in this checklist item.]
+- [x] **REQ-007 — Both `_auto.yaml` files write `built.promptFileBody` BEFORE invoking copilot**: vitest case "YAML auto-loop sites write built.promptFileBody to disk before invoking copilot" passes; for both `deep_start-research-loop_auto.yaml` and `deep_start-review-loop_auto.yaml`: the file contains `if (built.promptFileBody !== undefined)` AND `writeFileSync(promptPath, built.promptFileBody` AND a copilot dispatch (`spawnSync('copilot'` or `command: 'copilot'`); the dispatch byte-offset is greater than the writeFileSync byte-offset. [EVIDENCE: see retained verification text in this checklist item.]
 
 ### Test runs
 
@@ -60,7 +60,7 @@ _memory:
 
 - [x] **REQ-011 — Smoke test models the approved-authority happy path**: vitest "exercises the large-prompt approved-authority dispatch with a real subprocess and artifact writes" passes; subprocess reads `promptPath` and confirms it opens with `## TARGET AUTHORITY` followed by `Approved spec folder: <APPROVED_FOLDER>` followed by the original prompt body; the outer test asserts the on-disk file contents match. [EVIDENCE: see retained verification text in this checklist item.]
 - [x] **REQ-012 — `buildDispatchCommand` cli-copilot branch fails loud**: source review confirms the case throws `new Error('buildDispatchCommand does not model cli-copilot. Use buildCopilotPromptArg + the dedicated describe block in this file.')`. No test exercises this directly — it's anti-regression dead code. [EVIDENCE: see retained verification text in this checklist item.]
-- [x] **REQ-013 — Production code byte-stable**: `git diff --stat` shows ONLY `cli-matrix.vitest.ts` and packet docs; `executor-config.ts`, `spec_kit_deep-research_auto.yaml`, and `spec_kit_deep-review_auto.yaml` are NOT in the diff. [EVIDENCE: see retained verification text in this checklist item.]
+- [x] **REQ-013 — Production code byte-stable**: `git diff --stat` shows ONLY `cli-matrix.vitest.ts` and packet docs; `executor-config.ts`, `deep_start-research-loop_auto.yaml`, and `deep_start-review-loop_auto.yaml` are NOT in the diff. [EVIDENCE: see retained verification text in this checklist item.]
 - [ ] **Operator review of packet docs and test rewrite**: pending. Tracked as T301 in tasks.md.
 <!-- /ANCHOR:p1-gates -->
 

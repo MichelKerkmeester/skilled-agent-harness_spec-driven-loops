@@ -162,7 +162,7 @@ Resolver assigns anchor score from `seed.score` at `seed-resolver.ts:120` and `r
 **Status:** FAIL (reviewer) → **INFORMATIONAL** (orchestrator reclassified)
 **Severity (reviewer):** P1
 **Severity (orchestrator):** N/A — see Orchestrator Adjustments
-**Evidence:** Reviewer ran `git status --short --untracked-files=all` and observed dirty siblings: `command/spec_kit/assets/spec_kit_deep-research_auto.yaml`, `code_graph/handlers/status.ts`, `lib/deep-loop/executor-config.ts`, parent `003-fix-mcp-runtime-stress-findings/{spec.md,description.json,graph-metadata.json}`, untracked sibling packets 012–014, etc.
+**Evidence:** Reviewer ran `git status --short --untracked-files=all` and observed dirty siblings: `command/deep/assets/deep_start-research-loop_auto.yaml`, `code_graph/handlers/status.ts`, `lib/deep-loop/executor-config.ts`, parent `003-fix-mcp-runtime-stress-findings/{spec.md,description.json,graph-metadata.json}`, untracked sibling packets 012–014, etc.
 
 **Finding (reviewer):** Worktree is not isolated to packet 015.
 

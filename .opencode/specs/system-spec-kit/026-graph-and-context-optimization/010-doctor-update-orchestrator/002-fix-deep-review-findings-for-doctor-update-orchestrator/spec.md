@@ -194,7 +194,7 @@ Approximate list (final list confirmed at each batch dispatch):
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-fix-deep-review-findings-for-doctor-update-orchestrator --strict` exits 0.
-- **SC-002**: Re-run of `/spec_kit:deep-review:auto` on `010-doctor-update-orchestrator` (post-remediation, optional) emits a PASS or PASS-with-advisories verdict, with the 30 P1 findings closed.
+- **SC-002**: Re-run of `/deep:start-review-loop:auto` on `010-doctor-update-orchestrator` (post-remediation, optional) emits a PASS or PASS-with-advisories verdict, with the 30 P1 findings closed.
 - **SC-003**: `001-implement-initial-doctor-command-set/checklist.md` and `002-sandbox-testing-playbook/checklist.md` show `[x]` on items with disk evidence; no `[ ]` items where evidence exists.
 - **SC-004**: `find .opencode .claude .codex .gemini -path '*/commands/doctor/*'` shows 5 commands × 4 runtimes = 20 files.
 <!-- /ANCHOR:success-criteria -->

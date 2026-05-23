@@ -1,56 +1,207 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/016-llama-cpp-retrieval-quality-probe",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/016-llama-cpp-retrieval-quality-probe",
-  "parent_id": "014",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/016-llama-cpp-retrieval-quality-probe",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/016-llama-cpp-retrieval-quality-probe",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "015"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/015-node-llama-cpp-evaluation"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "016 llama cpp retrieval quality probe",
       "llama-cpp retrieval overlap",
       "hf-local llama-cpp search quality",
-      "EmbeddingGemma retrieval parity"
+      "EmbeddingGemma retrieval parity",
+      "016 retrieval probe plan",
+      "llama cpp retrieval methodology",
+      "016 retrieval probe tasks",
+      "016 llama cpp retrieval probe done",
+      "llama cpp retrieval equivalent"
     ],
     "key_topics": [
+      "016",
+      "llama",
+      "cpp",
+      "retrieval",
+      "quality",
+      "probe",
       "llama-cpp",
+      "overlap",
       "hf-local",
-      "retrieval-quality",
-      "recall-at-5-overlap",
-      "spearman-rank-correlation",
-      "mrr",
-      "default-flip"
+      "search",
+      "embeddinggemma",
+      "parity"
     ],
     "importance_tier": "important",
     "status": "complete",
-    "last_active_child_id": null,
     "key_files": [
+      "scratch/probe-retrieval-quality.ts",
+      "scratch/probe-corpus.json",
+      "scratch/probe-queries.json",
+      "scratch/probe-embeddings.json",
+      "scratch/probe-results.json",
+      "scratch/probe-results.md",
+      "templates/examples/level_1/spec.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "scratch/probe-results.json",
-      "scratch/probe-results.md"
+      "implementation-summary.md"
     ],
     "entities": [
-      "LlamaCppProvider",
-      "HfLocalProvider",
-      "createEmbeddingsProvider",
-      "onnx-community/embeddinggemma-300m-ONNX",
-      "unsloth/embeddinggemma-300m-GGUF",
-      "context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite"
+      {
+        "name": "probe-retrieval-quality.ts",
+        "kind": "code",
+        "path": "scratch/probe-retrieval-quality.ts",
+        "source": "derived"
+      },
+      {
+        "name": "probe-corpus.json",
+        "kind": "config",
+        "path": "scratch/probe-corpus.json",
+        "source": "derived"
+      },
+      {
+        "name": "probe-queries.json",
+        "kind": "config",
+        "path": "scratch/probe-queries.json",
+        "source": "derived"
+      },
+      {
+        "name": "probe-embeddings.json",
+        "kind": "config",
+        "path": "scratch/probe-embeddings.json",
+        "source": "derived"
+      },
+      {
+        "name": "probe-results.json",
+        "kind": "config",
+        "path": "scratch/probe-results.json",
+        "source": "derived"
+      },
+      {
+        "name": "probe-results.md",
+        "kind": "doc",
+        "path": "scratch/probe-results.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Probe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Source",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Existing Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
     ],
-    "causal_summary": "016 probed retrieval quality after 015's vector parity miss. On 200 sampled Memory MCP documents and 50 Approach A derived queries, llama-cpp matched hf-local rankings well enough for EQUIVALENT verdict: recall@5 overlap mean 0.912, p25 0.8, Spearman top-10 mean 0.865028, MRR relative delta 0. The parity miss appears migration/re-index relevant rather than a retrieval-quality blocker for the default-flip decision.",
+    "causal_summary": "Packet 015 showed `llama-cpp` is much faster than `hf-local`, but vector-to-vector parity failed with mean cosine `0.9677582325103543` against a `0.995` target. That parity test compared corresponding vectors, not retrieval behavior. The open question is whether the cosine miss changes actual search ranking enough to block a future default flip.",
     "created_at": "2026-05-13T10:23:12Z",
-    "last_save_at": "2026-05-13T10:23:12Z",
+    "last_save_at": "2026-05-23T11:55:15.351Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T10:23:12Z",
     "source_docs": [
       "spec.md",

@@ -76,8 +76,8 @@ Target files (under repo root):
 ├── .opencode/skills/cli-devin/references/deep-loop-iter-contract.md          [Bucket B]
 ├── .opencode/skills/cli-devin/references/agent-config-recipes.md             [Bucket B]
 ├── .opencode/skills/cli-devin/assets/deep-loop-iter-template.md              [Bucket B]
-├── .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml       [Bucket C]
-└── .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml         [Bucket C]
+├── .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml       [Bucket C]
+└── .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml         [Bucket C]
 ```
 
 No file overlap between buckets. Parallel-safe.
@@ -110,8 +110,8 @@ Main agent (this turn):
 - sk-doc validate each
 
 #### Bucket C (Agent 3, opus)
-- Update `if_cli_devin:` branch in spec_kit_deep-research_auto.yaml: gtimeout wrapper + tool-rejection detection + boilerplate-strip post-process
-- Update same in spec_kit_deep-review_auto.yaml
+- Update `if_cli_devin:` branch in deep_start-research-loop_auto.yaml: gtimeout wrapper + tool-rejection detection + boilerplate-strip post-process
+- Update same in deep_start-review-loop_auto.yaml
 - Update run-loop.sh dispatcher in packet 999's scripts/ to mirror the YAML changes (forward-compatible — future runs use these patterns)
 - YAML safe_load validate
 
@@ -157,7 +157,7 @@ Per-bucket rollback options:
 
 1. **Bucket A rollback**: `devin mcp remove sequential_thinking` + `git checkout HEAD -- .opencode/skills/cli-devin/assets/agent-config-*.json`
 2. **Bucket B rollback**: `git checkout HEAD -- .opencode/skills/cli-devin/SKILL.md .opencode/skills/cli-devin/references/ .opencode/skills/cli-devin/assets/deep-loop-iter-template.md`
-3. **Bucket C rollback**: `git checkout HEAD -- .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+3. **Bucket C rollback**: `git checkout HEAD -- .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
 
 Full rollback: `git reset --hard <105-baseline-sha>` (captured before agent dispatch).
 

@@ -48,7 +48,7 @@ The review prompt describes the packet as planned but not started. On disk, the 
 
 **Impact:** Starting the loop again as if fresh would duplicate or overwrite a completed run, and a reviewer could assess the wrong lifecycle question.
 
-**Concrete fix:** Decide the lifecycle mode before any further loop action: either mark this as "completed research under scope-readiness audit" or create a new follow-up review packet for readiness/meta-review. Do not run `/spec_kit:deep-research:auto` from this packet as if initialized-but-empty.
+**Concrete fix:** Decide the lifecycle mode before any further loop action: either mark this as "completed research under scope-readiness audit" or create a new follow-up review packet for readiness/meta-review. Do not run `/deep:start-research-loop:auto` from this packet as if initialized-but-empty.
 
 ### P1 -- Packet identity/path metadata still points at `010`, not current `006`
 

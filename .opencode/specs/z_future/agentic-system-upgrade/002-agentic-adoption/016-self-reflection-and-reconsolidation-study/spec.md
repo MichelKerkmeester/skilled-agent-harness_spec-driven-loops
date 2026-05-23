@@ -67,7 +67,7 @@ Answer the remaining uncertainty for 016 self reflection and reconsolidation stu
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts` | Investigate | Potential touchpoint for the bounded study |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Investigate | Potential touchpoint for the bounded study |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Investigate | Potential touchpoint for the bounded study |
 | `.opencode/agents/deep-research.md` | Investigate | Potential touchpoint for the bounded study |
 <!-- /ANCHOR:scope -->
 

@@ -3,13 +3,13 @@
 | Iteration | Phase | Question | Confidence | Priority | Verdict | Adopt Target |
 |-----------|-------|----------|------------|----------|---------|--------------|
 | 001 | 1 | Backend-agnostic tracer seam around existing agent workflows? | medium | should-have | prototype later | `.opencode/agents/orchestrate.md` |
-| 002 | 1 | Attempt and rollout lifecycle model for long-running loops? | high | should-have | prototype later | `.opencode/commands/spec_kit/deep-research.md` |
+| 002 | 1 | Attempt and rollout lifecycle model for long-running loops? | high | should-have | prototype later | `.opencode/commands/deep/start-research-loop.md` |
 | 003 | 1 | Structured reward spans versus scalar validation signals? | high | should-have | prototype later | `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` |
-| 004 | 1 | Adapter boundary between raw artifacts and reducer outputs? | high | should-have | prototype later | `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` |
-| 005 | 1 | Trainer pluggability pattern for loop drivers? | medium | nice-to-have | prototype later | `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` |
+| 004 | 1 | Adapter boundary between raw artifacts and reducer outputs? | high | should-have | prototype later | `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` |
+| 005 | 1 | Trainer pluggability pattern for loop drivers? | medium | nice-to-have | prototype later | `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` |
 | 006 | 1 | Selective agent targeting without drifting into phase 005? | high | should-have | prototype later | `.opencode/agents/orchestrate.md` |
 | 007 | 1 | Merge execution wrappers into Public hook system? | high | rejected | keep separate | `.opencode/skills/system-spec-kit/references/config/hook_system.md` |
-| 008 | 1 | Richer loop metrics and dashboard signals? | high | must-have | adopt now | `.opencode/commands/spec_kit/deep-research.md` |
+| 008 | 1 | Richer loop metrics and dashboard signals? | high | must-have | adopt now | `.opencode/commands/deep/start-research-loop.md` |
 | 009 | 1 | Store-backed immutable template resources? | high | rejected | keep current templates | `.opencode/skills/system-spec-kit/references/templates/template_guide.md` |
 | 010 | 1 | Generic loop-architecture adoption in this phase? | high | rejected | defer to phase 005 | `.opencode/agents/orchestrate.md` |
 | 011 | 2 | Compact CLI plus audience docs versus Public command and tool sprawl? | high | should-have | simplify | operator-facing command/docs surface |

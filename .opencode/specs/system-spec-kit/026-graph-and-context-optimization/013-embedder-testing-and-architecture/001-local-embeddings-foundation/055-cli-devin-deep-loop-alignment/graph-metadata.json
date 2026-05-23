@@ -4,32 +4,218 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/055-cli-devin-deep-loop-alignment",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/058-skill-md-realignment",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/054-root-readme-deep-research"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
   "derived": {
     "trigger_phrases": [
-      "059 cli-devin deep-loop alignment",
+      "059 spec",
+      "cli-devin deep-loop alignment",
       "deep-research executor cli-devin",
-      "deep-review executor cli-devin",
-      "swe 1.6 iter contract",
-      "devin agent-config recipes"
+      "059 plan",
+      "059 tasks",
+      "059 implementation",
+      "059 resource map"
     ],
-    "key_topics": ["059", "cli-devin", "deep-research", "deep-review", "swe-1.6", "agent-config"],
+    "key_topics": [
+      "059",
+      "spec",
+      "cli-devin",
+      "deep-loop",
+      "alignment",
+      "deep-research",
+      "executor",
+      "plan",
+      "tasks",
+      "implementation",
+      "resource",
+      "map"
+    ],
     "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md", "plan.md", "tasks.md", "implementation-summary.md", "resource-map.md"],
-    "entities": [],
-    "causal_summary": "Translates findings from 056 + 058 cli-devin SWE 1.6 deep-loop runs (~40 iter total) into 6-surface updates: command executor enum + 2 agent iter contracts + cli-devin SKILL + 2 references + 3 assets. Enables future deep-research/deep-review packets to use cli-devin as a native executor with proper SWE 1.6 prompt contract honored.",
+    "status": "complete",
+    "key_files": [
+      ".opencode/commands/deep/start-research-loop.md",
+      ".opencode/commands/deep/start-review-loop.md",
+      ".opencode/commands/deep/assets/deep_start-research-loop_auto.yaml",
+      ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
+      ".opencode/agents/deep-research.md",
+      ".opencode/agents/deep-review.md",
+      ".opencode/skills/cli-devin/SKILL.md",
+      ".opencode/skills/cli-devin/references/deep-loop-iter-contract.md",
+      ".opencode/skills/cli-devin/references/agent-config-recipes.md",
+      ".opencode/skills/cli-devin/assets/deep-loop-iter-template.md",
+      ".opencode/skills/cli-devin/assets/agent-config-deep-research-iter.json",
+      ".opencode/skills/cli-devin/assets/agent-config-deep-review-iter.json",
+      ".opencode/skills/cli-devin/assets/agent-config-synthesis.json",
+      "research/gpt-5.5-review.md",
+      "research/gpt-5.5-phase4-review.md",
+      "plan.md",
+      "tasks.md",
+      "resource-map.md",
+      "spec.md",
+      ".opencode/skills/cli-devin/references/cli_reference.md"
+    ],
+    "entities": [
+      {
+        "name": "start-research-loop.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/start-research-loop.md",
+        "source": "derived"
+      },
+      {
+        "name": "start-review-loop.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/start-review-loop.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep_start-research-loop_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_start-research-loop_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_start-review-loop_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-devin/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-loop-iter-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-devin/references/deep-loop-iter-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-config-recipes.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-devin/references/agent-config-recipes.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-loop-iter-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-devin/assets/deep-loop-iter-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-config-deep-research-iter.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-devin/assets/agent-config-deep-research-iter.json",
+        "source": "derived"
+      },
+      {
+        "name": "agent-config-deep-review-iter.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-devin/assets/agent-config-deep-review-iter.json",
+        "source": "derived"
+      },
+      {
+        "name": "agent-config-synthesis.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-devin/assets/agent-config-synthesis.json",
+        "source": "derived"
+      },
+      {
+        "name": "gpt-5.5-review.md",
+        "kind": "doc",
+        "path": "research/gpt-5.5-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "gpt-5.5-phase4-review.md",
+        "kind": "doc",
+        "path": "research/gpt-5.5-phase4-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli_reference.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-devin/references/cli_reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Packets",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packets 056 + 058 dispatched ~40 cli-devin SWE 1.6 iter via custom orchestration because:",
     "created_at": "2026-05-15T19:00:00Z",
-    "last_save_at": "2026-05-15T19:00:00Z",
-    "save_lineage": "main_agent",
+    "last_save_at": "2026-05-23T11:55:15.417Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md", "plan.md", "tasks.md", "implementation-summary.md", "resource-map.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ]
   }
 }

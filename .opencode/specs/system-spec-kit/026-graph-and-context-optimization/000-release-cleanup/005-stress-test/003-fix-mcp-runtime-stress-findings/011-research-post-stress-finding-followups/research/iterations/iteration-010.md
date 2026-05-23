@@ -13,8 +13,8 @@ Answered; see iteration-005 through iteration-007. The final synthesis should ke
 Refined implementation sketch:
 
 1. Add a typed Copilot prompt helper beside `resolveCopilotPromptArg` in `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:66` through `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:70`. Suggested shape: `buildCopilotPromptArg({ promptPath, prompt, targetAuthority })`, where `targetAuthority` is either `{ kind: "approved", specFolder }` or `{ kind: "missing", writeIntent: boolean }`.
-2. Replace the deep-research call site at `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:601` through `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:606`, before the existing `copilot -p ... --allow-all-tools --no-ask-user` dispatch at lines 617 through 625.
-3. Replace the deep-review shell prompt-size branch at `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:669` through `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:683` with the same Node helper path, so review and research loops cannot diverge.
+2. Replace the deep-research call site at `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:601` through `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:606`, before the existing `copilot -p ... --allow-all-tools --no-ask-user` dispatch at lines 617 through 625.
+3. Replace the deep-review shell prompt-size branch at `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:669` through `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:683` with the same Node helper path, so review and research loops cannot diverge.
 4. Source approved authority only from workflow-owned resolved spec-folder state. Recovered memory, prompt body text, bootstrap summaries, and graph `last_active_child_id` stay advisory evidence.
 
 Why this is the right boundary: Recommendation §1 says the failure is Copilot auto-selecting a folder from bootstrap context during `/memory:save` and mutating without operator authorization at `findings.md:113` through `findings.md:116`; the memory-save rewrite says the intended default is planner-first, stopping short of mutation, at `004-memory-save-rewrite/spec.md:56` through `004-memory-save-rewrite/spec.md:60`. Because Copilot is invoked with mutation authority in the deep-loop executor, the command-owned prompt wrapper is the load-bearing seam.
@@ -120,8 +120,8 @@ Recommendation §5, the higher-N variance pass at `findings.md:133` through `fin
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/010-stress-test-close-loop-measurement-rerun/findings.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/004-memory-save-rewrite/spec.md`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+- `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
 - `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts`

@@ -17,8 +17,8 @@ Correctness. Iteration 1 also performed the requested inventory pass and resourc
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/011-post-stress-finding-remediation-research/research/deep-research-state.jsonl`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/011-post-stress-finding-remediation-research/research/deltas/iter-001.jsonl` through `iter-010.jsonl`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+- `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
 - `.opencode/skills/system-spec-kit/mcp_server/tests/executor-config-copilot-target-authority.vitest.ts`
 - Selected implementation summaries for packets 003, 005, and 009.
 - Selected downstream packet docs for 012 and 017.
@@ -121,7 +121,7 @@ Adjudication: Mostly supported, with F-002 wording correction. `research.md:15-2
 
 Claim: The P0 target-authority fix belongs in `executor-config.ts` next to `resolveCopilotPromptArg`, with YAML call sites wrapping cli-copilot dispatch.
 
-Adjudication: Supported. The research synthesis recommends that insertion point at `research.md:72-83`. The implementation now places `buildCopilotPromptArg` in `executor-config.ts:261-348`, normalizes authority before prompt composition at `executor-config.ts:266-287`, binds the preamble before the prompt at `executor-config.ts:292-294`, and rewrites large prompt files with the preamble before `@PROMPT_PATH` dispatch at `executor-config.ts:304-321`. The two auto YAML call sites route through the helper and write `promptFileBody` before dispatch (`spec_kit_deep-research_auto.yaml:622-653`, `spec_kit_deep-review_auto.yaml:685-713`). The test suite includes override-resistance and prompt-slot assertions (`executor-config-copilot-target-authority.vitest.ts:61-76`, `:165-196`, `:206-236`).
+Adjudication: Supported. The research synthesis recommends that insertion point at `research.md:72-83`. The implementation now places `buildCopilotPromptArg` in `executor-config.ts:261-348`, normalizes authority before prompt composition at `executor-config.ts:266-287`, binds the preamble before the prompt at `executor-config.ts:292-294`, and rewrites large prompt files with the preamble before `@PROMPT_PATH` dispatch at `executor-config.ts:304-321`. The two auto YAML call sites route through the helper and write `promptFileBody` before dispatch (`deep_start-research-loop_auto.yaml:622-653`, `deep_start-review-loop_auto.yaml:685-713`). The test suite includes override-resistance and prompt-slot assertions (`executor-config-copilot-target-authority.vitest.ts:61-76`, `:165-196`, `:206-236`).
 
 ## Verdict
 

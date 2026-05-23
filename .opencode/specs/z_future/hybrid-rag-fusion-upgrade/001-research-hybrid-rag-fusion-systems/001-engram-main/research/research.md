@@ -455,8 +455,8 @@ Set `refresh_index=false` after the first search in a session unless the codebas
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
 | **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → Populate → Plan first child                        |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
-| **Deep research**         | `/spec_kit:deep-research` → Init → Loop iterations → Convergence → Synthesize → Memory save                                        |
-| **Deep review**           | `/spec_kit:deep-review` → Scope → Loop iterations → Convergence → review-report.md → Memory save                                   |
+| **Deep research**         | `/deep:start-research-loop` → Init → Loop iterations → Convergence → Synthesize → Memory save                                        |
+| **Deep review**           | `/deep:start-review-loop` → Scope → Loop iterations → Convergence → review-report.md → Memory save                                   |
 | **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                               |
 | **Constitutional memory** | `/memory:learn` → create, list, edit, remove, budget                                                                                |
 | **Shared memory**         | `/memory:manage shared` → create spaces, manage memberships, inspect rollout                                                        |
@@ -799,8 +799,8 @@ Full details: `.opencode/skills/sk-git/`
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
 | **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → `create.sh --phase` → Populate → Plan first child  |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
-| **Deep research**         | `/spec_kit:deep-research` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
-| **Deep review**           | `/spec_kit:deep-review` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
+| **Deep research**         | `/deep:start-research-loop` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
+| **Deep review**           | `/deep:start-review-loop` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
 | **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                            |
 | **Constitutional memory** | `/memory:learn` → Constitutional memory manager: create, list, edit, remove, budget                                               |
 | **Shared memory**         | `/memory:manage shared` → Shared-memory lifecycle: create spaces, manage memberships, inspect rollout                                    |
@@ -4081,7 +4081,7 @@ exec
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/053-script-analysis-testing/scratch/legacy-memory-quarantine/31-12-25_19-46__script-analysis-testing.md:530:| Memory Not Found | Search returns no results | Check `memory_search({ specFolder: "003-memory-and-spec-kit/053-script-analysis-testing" })` |
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/019-final-synthesis-memory-save-and-guardrail-behavior.md:28:- Orchestrator prompt: Validate the finalization and guardrail contract for sk-deep-research. Confirm that synthesis produces canonical research/research.md, memory save uses generate-context.js, the runtime agent remains LEAF-only, and reference-only features such as wave orchestration, checkpoint commits, :restart segments, and alternate CLI dispatch are documented as non-live behavior rather than executable guarantees, then return a concise operator verdict.
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/019-final-synthesis-memory-save-and-guardrail-behavior.md:31:- Expected signals: Synthesis produces canonical `research/research.md`, memory save calls `generate-context.js`, the Codex runtime agent forbids nested delegation, and wave orchestration, checkpoint commits, segment transitions, and alternate CLI dispatch remain reference-only.
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/019-final-synthesis-memory-save-and-guardrail-behavior.md:47:| DR-019 | Final synthesis plus memory save and guardrail behavior | Verify final synthesis, supported memory save, LEAF-only agent behavior, and the boundary between live and reference-only features. | Validate the finalization and guardrail contract for sk-deep-research. Confirm that synthesis produces canonical `research/research.md`, memory save uses `generate-context.js`, the runtime agent remains LEAF-only, and reference-only features such as wave orchestration, checkpoint commits, `:restart` segments, and alternate CLI dispatch are documented as non-live behavior rather than executable guarantees, then return a concise operator verdict. | 1. `bash: rg -n 'generate-context.js|synthesis_complete|research/research.md|memory' .opencode/commands/spec_kit/deep-research.md .opencode/skills/sk-deep-research/SKILL.md .opencode/skills/sk-deep-research/README.md` -> 2. `bash: rg -n 'LEAF-only|Task tool|NEVER create sub-tasks|reference-only|Wave orchestration|Checkpoint Commit|Direct Mode Fallback|Segment Model' .codex/agents/deep-research.toml .opencode/skills/sk-deep-research/references/loop_protocol.md .opencode/skills/sk-deep-research/references/state_format.md` -> 3. `bash: rg -n 'phase_synthesis|phase_save|generate-context.js|synthesis_complete|wave|segment|direct_mode' .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml .opencode/skills/sk-deep-research/references/quick_reference.md` | Synthesis produces canonical `research/research.md`, memory save calls `generate-context.js`, the Codex runtime agent forbids nested delegation, and wave orchestration, checkpoint commits, segment transitions, and alternate CLI dispatch remain reference-only. | Capture the final synthesis/save contract, the runtime LEAF-only prohibition, and the reference-only feature markings in one evidence set. | PASS if finalization and memory save use the supported contract, LEAF-only behavior remains enforced, and reference-only features are clearly documented as non-live; FAIL if any non-live feature is presented as a shipped executable guarantee. | Privilege the Codex runtime agent and skill rules for LEAF-only behavior, and the loop/state references for reference-only boundaries. |
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/019-final-synthesis-memory-save-and-guardrail-behavior.md:47:| DR-019 | Final synthesis plus memory save and guardrail behavior | Verify final synthesis, supported memory save, LEAF-only agent behavior, and the boundary between live and reference-only features. | Validate the finalization and guardrail contract for sk-deep-research. Confirm that synthesis produces canonical `research/research.md`, memory save uses `generate-context.js`, the runtime agent remains LEAF-only, and reference-only features such as wave orchestration, checkpoint commits, `:restart` segments, and alternate CLI dispatch are documented as non-live behavior rather than executable guarantees, then return a concise operator verdict. | 1. `bash: rg -n 'generate-context.js|synthesis_complete|research/research.md|memory' .opencode/commands/deep/start-research-loop.md .opencode/skills/sk-deep-research/SKILL.md .opencode/skills/sk-deep-research/README.md` -> 2. `bash: rg -n 'LEAF-only|Task tool|NEVER create sub-tasks|reference-only|Wave orchestration|Checkpoint Commit|Direct Mode Fallback|Segment Model' .codex/agents/deep-research.toml .opencode/skills/sk-deep-research/references/loop_protocol.md .opencode/skills/sk-deep-research/references/state_format.md` -> 3. `bash: rg -n 'phase_synthesis|phase_save|generate-context.js|synthesis_complete|wave|segment|direct_mode' .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml .opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml .opencode/skills/sk-deep-research/references/quick_reference.md` | Synthesis produces canonical `research/research.md`, memory save calls `generate-context.js`, the Codex runtime agent forbids nested delegation, and wave orchestration, checkpoint commits, segment transitions, and alternate CLI dispatch remain reference-only. | Capture the final synthesis/save contract, the runtime LEAF-only prohibition, and the reference-only feature markings in one evidence set. | PASS if finalization and memory save use the supported contract, LEAF-only behavior remains enforced, and reference-only features are clearly documented as non-live; FAIL if any non-live feature is presented as a shipped executable guarantee. | Privilege the Codex runtime agent and skill rules for LEAF-only behavior, and the loop/state references for reference-only boundaries. |
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/075-post-speckit-template-upgrade-command-allignment/research/research.md:114:- Memory save workflow requires generate-context.js (not Write tool)
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/010-alignment-verification/plan.md:256:mcp__semantic_memory__memory_search()
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/010-alignment-verification/plan.md:258:mcp__semantic_memory__memory_match_triggers()
@@ -5080,7 +5080,7 @@ exec
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/spec-folder/README.md:261:node scripts/dist/memory/generate-context.js --help
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/research/iterations/iteration-008.md:17:- [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:501-518] Internal durable memory creation is an end-of-session action with a hard boundary around `generate-context.js`, which implies a curated preservation step rather than per-attempt chatter.
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/research/research.md:17:- Phase 2 showed the adoption shape is not "bolt retries into `/spec_kit:implement`." The real architecture is a separate retry controller, packet-local working state, outcome-centric attempt gates, and a shared loop kernel that retry, deep-research, and deep-review can all reuse. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/workflow.yaml:108-150] [SOURCE: .opencode/commands/spec_kit/implement.md:151-205] [SOURCE: .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:61-93]
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/research/research.md:44:- **Phase 2:** keep retry-mode separate from the normal implementation lifecycle, keep working state out of durable memory, and extract common loop primitives instead of building another bespoke stack. [SOURCE: .opencode/commands/spec_kit/implement.md:151-205] [SOURCE: .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:61-93] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:212-380]
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/research/research.md:44:- **Phase 2:** keep retry-mode separate from the normal implementation lifecycle, keep working state out of durable memory, and extract common loop primitives instead of building another bespoke stack. [SOURCE: .opencode/commands/spec_kit/implement.md:151-205] [SOURCE: .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:61-93] [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:212-380]
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/017-checkpoint-restore-checkpoint-restore.md:31:| EX-017 | Checkpoint restore (checkpoint_restore) | Maintenance barrier blocks mutation traffic | `Start a checkpoint restore and, while the restore maintenance window is still active, attempt memory_save, memory_index_scan, and memory_bulk_delete. Capture the evidence that each mutation fails fast with E_RESTORE_IN_PROGRESS and return a concise user-facing pass/fail verdict with the main reason.` | `1) Session A: start checkpoint_restore(name,clearExisting:false) and hold it in the active restore window using the restore test harness or barrier hook` -> `2) Session B: memory_save(filePath)` -> `3) Session B: memory_index_scan(specFolder)` -> `4) Session B: memory_bulk_delete(tier:\"temporary\",confirm:true,specFolder)` -> `5) capture the error envelopes from all three mutation calls` | All three mutation calls fail fast with `E_RESTORE_IN_PROGRESS` while restore maintenance is active | Restore-in-progress evidence + three mutation error envelopes | PASS if `memory_save`, `memory_index_scan`, and `memory_bulk_delete` each return `E_RESTORE_IN_PROGRESS` before the restore exits | If any mutation proceeds, inspect `getRestoreBarrierStatus()` wiring in the mutation handlers and confirm the restore is still inside the maintenance window |
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/017-checkpoint-restore-checkpoint-restore.md:32:| EX-017 | Checkpoint restore (checkpoint_restore) | Maintenance barrier clears after restore exit | `Prove the checkpoint restore maintenance barrier clears after restore exit. Trigger a blocked mutation during restore, let the restore complete or fail, then retry the same mutation and capture the evidence that E_RESTORE_IN_PROGRESS no longer appears. Return a concise user-facing pass/fail verdict with the main reason.` | `1) Start checkpoint_restore(name,clearExisting:false) and hold it long enough to observe a blocked mutation` -> `2) Attempt memory_index_scan(specFolder) and capture E_RESTORE_IN_PROGRESS` -> `3) Allow checkpoint_restore to complete successfully or fail` -> `4) Retry memory_index_scan(specFolder) or memory_save(filePath)` -> `5) confirm the retry no longer returns E_RESTORE_IN_PROGRESS` | Mutation is blocked during restore, then unblocked after restore exit even when the restore fails | Before/after mutation responses + restore completion or failure output | PASS if the retry after restore exit no longer returns `E_RESTORE_IN_PROGRESS` | If the barrier remains latched, inspect the `restoreCheckpoint()` `finally` path that releases restore maintenance |
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/026-memory-database-refinement/memory/28-03-26_16-18__fixed-two-root-cause-bugs-in-the-mcp-memory.md:399:| Memory Not Found | Search returns no results | Check `memory_search({ specFolder: "system-spec-kit/022-hybrid-rag-fusion/026-memory-database-refinement" })` |
@@ -5167,7 +5167,7 @@ exec
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/263-session-resume.md:40:| 263b | Session resume tool | Code graph status sub-call returns counts | `Validate 263b code graph status` | Call `session_resume({})` via MCP | codeGraph.status in [ok, empty, error], nodeCount/edgeCount/fileCount are integers >= 0 | session_resume response JSON codeGraph field | PASS if codeGraph field has all required fields with valid types | Check graphDb.getStats() and code-graph-db.ts query |
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/263-session-resume.md:41:| 263c | Session resume tool | CocoIndex availability check | `Validate 263c cocoindex status` | Call `session_resume({})` via MCP | cocoIndex.available is boolean, binaryPath is string | session_resume response JSON cocoIndex field | PASS if cocoIndex fields present with correct types | Check `cocoindex-path.ts` plus the availability probe used by session-resume.ts |
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/263-session-resume.md:42:| 263d | Session resume tool | Structural readiness and recovery hinting | `Validate 263d structural context` | Call `session_resume({})` via MCP in both healthy and degraded graph states | structuralContext.status in [ready, stale, missing]; structuralContext.summary/recommendedAction/sourceSurface present; degraded states mention session_bootstrap in hints | session_resume response JSON structuralContext + hints | PASS if structural contract fields are surfaced and degraded states recommend session_bootstrap; FAIL if required contract fields are missing or recovery hint is wrong | Check buildStructuralBootstrapContract() and degraded hint injection in session-resume.ts |
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/005-intellegix-code-agent-toolkit-master/research/iterations/iteration-012.md:20:- `[SOURCE: .opencode/commands/spec_kit/deep-research.md:196-209]` The command explicitly couples deep research completion to memory retrieval/bootstrap up front and `generate-context.js` at the end.
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/005-intellegix-code-agent-toolkit-master/research/iterations/iteration-012.md:20:- `[SOURCE: .opencode/commands/deep/start-research-loop.md:196-209]` The command explicitly couples deep research completion to memory retrieval/bootstrap up front and `generate-context.js` at the end.
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/005-intellegix-code-agent-toolkit-master/research/iterations/iteration-012.md:24:- `[SOURCE: .opencode/skills/system-spec-kit/references/memory/save_workflow.md:148-152]` The slash-command save path requires the AI to analyze the conversation, produce structured JSON, invoke `generate-context.js`, and then write into `memory/`.
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/018-ux-hooks/checklist.md:87:- [ ] CHK-052 [P2] Findings saved to `memory/` via generate-context.js
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/264-query-intent-routing.md:35:| 264a | Query-intent routing | Structural query routes to code graph | `Validate 264a structural routing` | Call `memory_context({ input: "what functions call handleMemoryContext" })` | Response includes code graph data (symbols, edges), intent classified as 'structural' | memory_context response with code graph results | PASS if code graph results present and classifier shows structural intent | Check STRUCTURAL_KEYWORDS in query-intent-classifier.ts and memory_context integration |
@@ -16099,8 +16099,8 @@ Full details: `.opencode/skills/sk-git/`
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
 | **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → `create.sh --phase` → Populate → Plan first child  |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
-| **Deep research**         | `/spec_kit:deep-research` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
-| **Deep review**           | `/spec_kit:deep-review` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
+| **Deep research**         | `/deep:start-research-loop` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
+| **Deep review**           | `/deep:start-review-loop` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
 | **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                            |
 | **Constitutional memory** | `/memory:learn` → Constitutional memory manager: create, list, edit, remove, budget                                               |
 | **Shared memory**         | `/memory:manage shared` → Shared-memory lifecycle: create spaces, manage memberships, inspect rollout                                    |
@@ -26443,8 +26443,8 @@ Full details: `.opencode/skills/sk-git/`
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
 | **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → `create.sh --phase` → Populate → Plan first child  |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
-| **Deep research**         | `/spec_kit:deep-research` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
-| **Deep review**           | `/spec_kit:deep-review` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
+| **Deep research**         | `/deep:start-research-loop` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
+| **Deep review**           | `/deep:start-review-loop` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
 | **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                            |
 | **Constitutional memory** | `/memory:learn` → Constitutional memory manager: create, list, edit, remove, budget                                               |
 | **Shared memory**         | `/memory:manage shared` → Shared-memory lifecycle: create spaces, manage memberships, inspect rollout                                    |
@@ -26753,8 +26753,8 @@ Set `refresh_index=false` after the first search in a session unless the codebas
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
 | **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → Populate → Plan first child                        |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
-| **Deep research**         | `/spec_kit:deep-research` → Init → Loop iterations → Convergence → Synthesize → Memory save                                        |
-| **Deep review**           | `/spec_kit:deep-review` → Scope → Loop iterations → Convergence → review-report.md → Memory save                                   |
+| **Deep research**         | `/deep:start-research-loop` → Init → Loop iterations → Convergence → Synthesize → Memory save                                        |
+| **Deep review**           | `/deep:start-review-loop` → Scope → Loop iterations → Convergence → review-report.md → Memory save                                   |
 | **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                               |
 | **Constitutional memory** | `/memory:learn` → create, list, edit, remove, budget                                                                                |
 | **Shared memory**         | `/memory:manage shared` → create spaces, manage memberships, inspect rollout                                                        |
@@ -27010,11 +27010,11 @@ Detect the current research phase from dispatch context to load appropriate reso
 ### Architecture: 3-Layer Integration
 
 ```
-User invokes: /spec_kit:deep-research "topic"
+User invokes: /deep:start-research-loop "topic"
                     |
                     v
     ┌─────────────────────────────────┐
-    │  /spec_kit:deep-research command│  Layer 1: Command
+    │  /deep:start-research-loop command│  Layer 1: Command
     │  (YAML workflow + loop config)    │  Manages loop lifecycle
     └──────────────┬──────────────────┘
                    |
@@ -39247,8 +39247,8 @@ Set `refresh_index=false` after the first search in a session unless the codebas
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
 | **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → Populate → Plan first child                        |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
-| **Deep research**         | `/spec_kit:deep-research` → Init → Loop iterations → Convergence → Synthesize → Memory save                                        |
-| **Deep review**           | `/spec_kit:deep-review` → Scope → Loop iterations → Convergence → review-report.md → Memory save                                   |
+| **Deep research**         | `/deep:start-research-loop` → Init → Loop iterations → Convergence → Synthesize → Memory save                                        |
+| **Deep review**           | `/deep:start-review-loop` → Scope → Loop iterations → Convergence → review-report.md → Memory save                                   |
 | **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                               |
 | **Constitutional memory** | `/memory:learn` → create, list, edit, remove, budget                                                                                |
 | **Shared memory**         | `/memory:manage shared` → create spaces, manage memberships, inspect rollout                                                        |
@@ -39450,8 +39450,8 @@ Full details: `.opencode/skills/sk-git/`
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
 | **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → `create.sh --phase` → Populate → Plan first child  |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
-| **Deep research**         | `/spec_kit:deep-research` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
-| **Deep review**           | `/spec_kit:deep-review` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
+| **Deep research**         | `/deep:start-research-loop` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
+| **Deep review**           | `/deep:start-review-loop` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
 | **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                            |
 | **Constitutional memory** | `/memory:learn` → Constitutional memory manager: create, list, edit, remove, budget                                               |
 | **Shared memory**         | `/memory:manage shared` → Shared-memory lifecycle: create spaces, manage memberships, inspect rollout                                    |
@@ -47225,8 +47225,8 @@ Set `refresh_index=false` after the first search in a session unless the codebas
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
 | **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → Populate → Plan first child                        |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
-| **Deep research**         | `/spec_kit:deep-research` → Init → Loop iterations → Convergence → Synthesize → Memory save                                        |
-| **Deep review**           | `/spec_kit:deep-review` → Scope → Loop iterations → Convergence → review-report.md → Memory save                                   |
+| **Deep research**         | `/deep:start-research-loop` → Init → Loop iterations → Convergence → Synthesize → Memory save                                        |
+| **Deep review**           | `/deep:start-review-loop` → Scope → Loop iterations → Convergence → review-report.md → Memory save                                   |
 | **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                               |
 | **Constitutional memory** | `/memory:learn` → create, list, edit, remove, budget                                                                                |
 | **Shared memory**         | `/memory:manage shared` → create spaces, manage memberships, inspect rollout                                                        |
@@ -47383,8 +47383,8 @@ Full details: `.opencode/skills/sk-git/`
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
 | **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → `create.sh --phase` → Populate → Plan first child  |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
-| **Deep research**         | `/spec_kit:deep-research` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
-| **Deep review**           | `/spec_kit:deep-review` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
+| **Deep research**         | `/deep:start-research-loop` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
+| **Deep review**           | `/deep:start-review-loop` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
 | **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                            |
 | **Constitutional memory** | `/memory:learn` → Constitutional memory manager: create, list, edit, remove, budget                                               |
 | **Shared memory**         | `/memory:manage shared` → Shared-memory lifecycle: create spaces, manage memberships, inspect rollout                                    |
@@ -47722,11 +47722,11 @@ Detect the current research phase from dispatch context to load appropriate reso
 ### Architecture: 3-Layer Integration
 
 ```
-User invokes: /spec_kit:deep-research "topic"
+User invokes: /deep:start-research-loop "topic"
                     |
                     v
     ┌─────────────────────────────────┐
-    │  /spec_kit:deep-research command│  Layer 1: Command
+    │  /deep:start-research-loop command│  Layer 1: Command
     │  (YAML workflow + loop config)    │  Manages loop lifecycle
     └──────────────┬──────────────────┘
                    |
@@ -54710,8 +54710,8 @@ Set `refresh_index=false` after the first search in a session unless the codebas
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
 | **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → Populate → Plan first child                        |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
-| **Deep research**         | `/spec_kit:deep-research` → Init → Loop iterations → Convergence → Synthesize → Memory save                                        |
-| **Deep review**           | `/spec_kit:deep-review` → Scope → Loop iterations → Convergence → review-report.md → Memory save                                   |
+| **Deep research**         | `/deep:start-research-loop` → Init → Loop iterations → Convergence → Synthesize → Memory save                                        |
+| **Deep review**           | `/deep:start-review-loop` → Scope → Loop iterations → Convergence → review-report.md → Memory save                                   |
 | **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                               |
 | **Constitutional memory** | `/memory:learn` → create, list, edit, remove, budget                                                                                |
 | **Shared memory**         | `/memory:manage shared` → create spaces, manage memberships, inspect rollout                                                        |
@@ -54849,8 +54849,8 @@ Full details: `.opencode/skills/sk-git/`
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
 | **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → `create.sh --phase` → Populate → Plan first child  |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
-| **Deep research**         | `/spec_kit:deep-research` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
-| **Deep review**           | `/spec_kit:deep-review` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
+| **Deep research**         | `/deep:start-research-loop` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
+| **Deep review**           | `/deep:start-review-loop` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
 | **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                            |
 | **Constitutional memory** | `/memory:learn` → Constitutional memory manager: create, list, edit, remove, budget                                               |
 | **Shared memory**         | `/memory:manage shared` → Shared-memory lifecycle: create spaces, manage memberships, inspect rollout                                    |
@@ -55186,11 +55186,11 @@ Detect the current research phase from dispatch context to load appropriate reso
 ### Architecture: 3-Layer Integration
 
 ```
-User invokes: /spec_kit:deep-research "topic"
+User invokes: /deep:start-research-loop "topic"
                     |
                     v
     ┌─────────────────────────────────┐
-    │  /spec_kit:deep-research command│  Layer 1: Command
+    │  /deep:start-research-loop command│  Layer 1: Command
     │  (YAML workflow + loop config)    │  Manages loop lifecycle
     └──────────────┬──────────────────┘
                    |
@@ -70250,11 +70250,11 @@ Detect the current research phase from dispatch context to load appropriate reso
 ### Architecture: 3-Layer Integration
 
 ```
-User invokes: /spec_kit:deep-research "topic"
+User invokes: /deep:start-research-loop "topic"
                     |
                     v
     ┌─────────────────────────────────┐
-    │  /spec_kit:deep-research command│  Layer 1: Command
+    │  /deep:start-research-loop command│  Layer 1: Command
     │  (YAML workflow + loop config)    │  Manages loop lifecycle
     └──────────────┬──────────────────┘
                    |
@@ -70479,8 +70479,8 @@ Full details: `.opencode/skills/sk-git/`
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
 | **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → `create.sh --phase` → Populate → Plan first child  |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
-| **Deep research**         | `/spec_kit:deep-research` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
-| **Deep review**           | `/spec_kit:deep-review` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
+| **Deep research**         | `/deep:start-research-loop` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
+| **Deep review**           | `/deep:start-review-loop` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
 | **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                            |
 | **Constitutional memory** | `/memory:learn` → Constitutional memory manager: create, list, edit, remove, budget                                               |
 | **Shared memory**         | `/memory:manage shared` → Shared-memory lifecycle: create spaces, manage memberships, inspect rollout                                    |
@@ -78702,8 +78702,8 @@ Full details: `.opencode/skills/sk-git/`
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
 | **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → `create.sh --phase` → Populate → Plan first child  |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
-| **Deep research**         | `/spec_kit:deep-research` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
-| **Deep review**           | `/spec_kit:deep-review` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
+| **Deep research**         | `/deep:start-research-loop` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
+| **Deep review**           | `/deep:start-review-loop` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
 | **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                            |
 | **Constitutional memory** | `/memory:learn` → Constitutional memory manager: create, list, edit, remove, budget                                               |
 | **Shared memory**         | `/memory:manage shared` → Shared-memory lifecycle: create spaces, manage memberships, inspect rollout                                    |
@@ -91257,8 +91257,8 @@ Full details: `.opencode/skills/sk-git/`
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
 | **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → `create.sh --phase` → Populate → Plan first child  |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
-| **Deep research**         | `/spec_kit:deep-research` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
-| **Deep review**           | `/spec_kit:deep-review` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
+| **Deep research**         | `/deep:start-research-loop` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
+| **Deep review**           | `/deep:start-review-loop` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
 | **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                            |
 | **Constitutional memory** | `/memory:learn` → Constitutional memory manager: create, list, edit, remove, budget                                               |
 | **Shared memory**         | `/memory:manage shared` → Shared-memory lifecycle: create spaces, manage memberships, inspect rollout                                    |
@@ -91619,11 +91619,11 @@ Detect the current research phase from dispatch context to load appropriate reso
 ### Architecture: 3-Layer Integration
 
 ```
-User invokes: /spec_kit:deep-research "topic"
+User invokes: /deep:start-research-loop "topic"
                     |
                     v
     ┌─────────────────────────────────┐
-    │  /spec_kit:deep-research command│  Layer 1: Command
+    │  /deep:start-research-loop command│  Layer 1: Command
     │  (YAML workflow + loop config)    │  Manages loop lifecycle
     └──────────────┬──────────────────┘
                    |
@@ -97718,7 +97718,7 @@ exec
 1113:scope: packet identity rewrites, slug/path sweeps, and follow-on phase packet creation in 022-hybrid-rag-fusion remediation work
 1114:applies_to: cwd=/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion; reuse_rule=reuse for this epic’s packet lifecycle work only, and verify current live folder names before edits
 1120:- rollout_summaries/2026-03-27T18-02-31-ZDov-update_020_pre_release_remediation_paths.md (cwd=/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/020-pre-release-remediation, rollout_path=/Users/michelkerkmeester/.codex/sessions/2026/03/27/rollout-2026-03-27T19-02-31-019d3076-47f7-7fd3-8952-dda85e3bdb43.jsonl, updated_at=2026-03-27T18:14:00+00:00, thread_id=019d3076-47f7-7fd3-8952-dda85e3bdb43)
-1203:- /spec_kit:deep-research --review, 20 iterations, evidenceGap, handler-memory-triggers.vitest.ts, FEATURE_CATALOG.md
+1203:- /deep:start-research-loop --review, 20 iterations, evidenceGap, handler-memory-triggers.vitest.ts, FEATURE_CATALOG.md
 1457:## Task 2: Restore/verify Phase 016 runtime/docs (dedup, projectPhase, trigger filter, retry health, contextType)
 1503:- Phase 016 regression checks should include trigger filter export coverage, retry-health snapshot behavior, contextType passthrough, and pre-save dedup docs/tests [Task 2]
 1514:applies_to: cwd=/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion and linked docs; reuse_rule=reuse only within this spec family and re-check live numeric IDs each run
@@ -97798,8 +97798,8 @@ Full details: `.opencode/skills/sk-git/`
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
 | **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → `create.sh --phase` → Populate → Plan first child  |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
-| **Deep research**         | `/spec_kit:deep-research` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
-| **Deep review**           | `/spec_kit:deep-review` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
+| **Deep research**         | `/deep:start-research-loop` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
+| **Deep review**           | `/deep:start-review-loop` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
 | **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                            |
 | **Constitutional memory** | `/memory:learn` → Constitutional memory manager: create, list, edit, remove, budget                                               |
 | **Shared memory**         | `/memory:manage shared` → Shared-memory lifecycle: create spaces, manage memberships, inspect rollout                                    |
@@ -104294,8 +104294,8 @@ Full details: `.opencode/skills/sk-git/`
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
 | **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → `create.sh --phase` → Populate → Plan first child  |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
-| **Deep research**         | `/spec_kit:deep-research` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
-| **Deep review**           | `/spec_kit:deep-review` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
+| **Deep research**         | `/deep:start-research-loop` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
+| **Deep review**           | `/deep:start-review-loop` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
 | **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                            |
 | **Constitutional memory** | `/memory:learn` → Constitutional memory manager: create, list, edit, remove, budget                                               |
 | **Shared memory**         | `/memory:manage shared` → Shared-memory lifecycle: create spaces, manage memberships, inspect rollout                                    |
@@ -104592,11 +104592,11 @@ Detect the current research phase from dispatch context to load appropriate reso
 ### Architecture: 3-Layer Integration
 
 ```
-User invokes: /spec_kit:deep-research "topic"
+User invokes: /deep:start-research-loop "topic"
                     |
                     v
     ┌─────────────────────────────────┐
-    │  /spec_kit:deep-research command│  Layer 1: Command
+    │  /deep:start-research-loop command│  Layer 1: Command
     │  (YAML workflow + loop config)    │  Manages loop lifecycle
     └──────────────┬──────────────────┘
                    |
@@ -113017,8 +113017,8 @@ Full details: `.opencode/skills/sk-git/`
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
 | **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → `create.sh --phase` → Populate → Plan first child  |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
-| **Deep research**         | `/spec_kit:deep-research` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
-| **Deep review**           | `/spec_kit:deep-review` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
+| **Deep research**         | `/deep:start-research-loop` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
+| **Deep review**           | `/deep:start-review-loop` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
 | **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                            |
 | **Constitutional memory** | `/memory:learn` → Constitutional memory manager: create, list, edit, remove, budget                                               |
 | **Shared memory**         | `/memory:manage shared` → Shared-memory lifecycle: create spaces, manage memberships, inspect rollout                                    |
@@ -113360,11 +113360,11 @@ Detect the current research phase from dispatch context to load appropriate reso
 ### Architecture: 3-Layer Integration
 
 ```
-User invokes: /spec_kit:deep-research "topic"
+User invokes: /deep:start-research-loop "topic"
                     |
                     v
     ┌─────────────────────────────────┐
-    │  /spec_kit:deep-research command│  Layer 1: Command
+    │  /deep:start-research-loop command│  Layer 1: Command
     │  (YAML workflow + loop config)    │  Manages loop lifecycle
     └──────────────┬──────────────────┘
                    |
@@ -120376,8 +120376,8 @@ Full details: `.opencode/skills/sk-git/`
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
 | **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → `create.sh --phase` → Populate → Plan first child  |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
-| **Deep research**         | `/spec_kit:deep-research` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
-| **Deep review**           | `/spec_kit:deep-review` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
+| **Deep research**         | `/deep:start-research-loop` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
+| **Deep review**           | `/deep:start-review-loop` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
 | **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                            |
 | **Constitutional memory** | `/memory:learn` → Constitutional memory manager: create, list, edit, remove, budget                                               |
 | **Shared memory**         | `/memory:manage shared` → Shared-memory lifecycle: create spaces, manage memberships, inspect rollout                                    |
@@ -120758,11 +120758,11 @@ Detect the current research phase from dispatch context to load appropriate reso
 ### Architecture: 3-Layer Integration
 
 ```
-User invokes: /spec_kit:deep-research "topic"
+User invokes: /deep:start-research-loop "topic"
                     |
                     v
     ┌─────────────────────────────────┐
-    │  /spec_kit:deep-research command│  Layer 1: Command
+    │  /deep:start-research-loop command│  Layer 1: Command
     │  (YAML workflow + loop config)    │  Manages loop lifecycle
     └──────────────┬──────────────────┘
                    |
@@ -133386,8 +133386,8 @@ Full details: `.opencode/skills/sk-git/`
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
 | **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → `create.sh --phase` → Populate → Plan first child  |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
-| **Deep research**         | `/spec_kit:deep-research` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
-| **Deep review**           | `/spec_kit:deep-review` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
+| **Deep research**         | `/deep:start-research-loop` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
+| **Deep review**           | `/deep:start-review-loop` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
 | **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                            |
 | **Constitutional memory** | `/memory:learn` → Constitutional memory manager: create, list, edit, remove, budget                                               |
 | **Shared memory**         | `/memory:manage shared` → Shared-memory lifecycle: create spaces, manage memberships, inspect rollout                                    |
@@ -141745,8 +141745,8 @@ Full details: `.opencode/skills/sk-git/`
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
 | **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → `create.sh --phase` → Populate → Plan first child  |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
-| **Deep research**         | `/spec_kit:deep-research` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
-| **Deep review**           | `/spec_kit:deep-review` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
+| **Deep research**         | `/deep:start-research-loop` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
+| **Deep review**           | `/deep:start-review-loop` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
 | **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                            |
 | **Constitutional memory** | `/memory:learn` → Constitutional memory manager: create, list, edit, remove, budget                                               |
 | **Shared memory**         | `/memory:manage shared` → Shared-memory lifecycle: create spaces, manage memberships, inspect rollout                                    |
@@ -142045,11 +142045,11 @@ Detect the current research phase from dispatch context to load appropriate reso
 ### Architecture: 3-Layer Integration
 
 ```
-User invokes: /spec_kit:deep-research "topic"
+User invokes: /deep:start-research-loop "topic"
                     |
                     v
     ┌─────────────────────────────────┐
-    │  /spec_kit:deep-research command│  Layer 1: Command
+    │  /deep:start-research-loop command│  Layer 1: Command
     │  (YAML workflow + loop config)    │  Manages loop lifecycle
     └──────────────┬──────────────────┘
                    |
@@ -146077,8 +146077,8 @@ Full details: `.opencode/skills/sk-git/`
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
 | **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → `create.sh --phase` → Populate → Plan first child  |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
-| **Deep research**         | `/spec_kit:deep-research` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
-| **Deep review**           | `/spec_kit:deep-review` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
+| **Deep research**         | `/deep:start-research-loop` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
+| **Deep review**           | `/deep:start-review-loop` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
 | **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                            |
 | **Constitutional memory** | `/memory:learn` → Constitutional memory manager: create, list, edit, remove, budget                                               |
 | **Shared memory**         | `/memory:manage shared` → Shared-memory lifecycle: create spaces, manage memberships, inspect rollout                                    |
@@ -146434,11 +146434,11 @@ Detect the current research phase from dispatch context to load appropriate reso
 ### Architecture: 3-Layer Integration
 
 ```
-User invokes: /spec_kit:deep-research "topic"
+User invokes: /deep:start-research-loop "topic"
                     |
                     v
     ┌─────────────────────────────────┐
-    │  /spec_kit:deep-research command│  Layer 1: Command
+    │  /deep:start-research-loop command│  Layer 1: Command
     │  (YAML workflow + loop config)    │  Manages loop lifecycle
     └──────────────┬──────────────────┘
                    |
@@ -155301,8 +155301,8 @@ Full details: `.opencode/skills/sk-git/`
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
 | **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → `create.sh --phase` → Populate → Plan first child  |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
-| **Deep research**         | `/spec_kit:deep-research` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
-| **Deep review**           | `/spec_kit:deep-review` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
+| **Deep research**         | `/deep:start-research-loop` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
+| **Deep review**           | `/deep:start-review-loop` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
 | **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                            |
 | **Constitutional memory** | `/memory:learn` → Constitutional memory manager: create, list, edit, remove, budget                                               |
 | **Shared memory**         | `/memory:manage shared` → Shared-memory lifecycle: create spaces, manage memberships, inspect rollout                                    |
@@ -155655,11 +155655,11 @@ Detect the current research phase from dispatch context to load appropriate reso
 ### Architecture: 3-Layer Integration
 
 ```
-User invokes: /spec_kit:deep-research "topic"
+User invokes: /deep:start-research-loop "topic"
                     |
                     v
     ┌─────────────────────────────────┐
-    │  /spec_kit:deep-research command│  Layer 1: Command
+    │  /deep:start-research-loop command│  Layer 1: Command
     │  (YAML workflow + loop config)    │  Manages loop lifecycle
     └──────────────┬──────────────────┘
                    |
@@ -163563,8 +163563,8 @@ Set `refresh_index=false` after the first search in a session unless the codebas
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
 | **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → Populate → Plan first child                        |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
-| **Deep research**         | `/spec_kit:deep-research` → Init → Loop iterations → Convergence → Synthesize → Memory save                                        |
-| **Deep review**           | `/spec_kit:deep-review` → Scope → Loop iterations → Convergence → review-report.md → Memory save                                   |
+| **Deep research**         | `/deep:start-research-loop` → Init → Loop iterations → Convergence → Synthesize → Memory save                                        |
+| **Deep review**           | `/deep:start-review-loop` → Scope → Loop iterations → Convergence → review-report.md → Memory save                                   |
 | **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                               |
 | **Constitutional memory** | `/memory:learn` → create, list, edit, remove, budget                                                                                |
 | **Shared memory**         | `/memory:manage shared` → create spaces, manage memberships, inspect rollout                                                        |
@@ -163761,8 +163761,8 @@ Full details: `.opencode/skills/sk-git/`
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
 | **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → `create.sh --phase` → Populate → Plan first child  |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
-| **Deep research**         | `/spec_kit:deep-research` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
-| **Deep review**           | `/spec_kit:deep-review` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
+| **Deep research**         | `/deep:start-research-loop` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
+| **Deep review**           | `/deep:start-review-loop` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
 | **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                            |
 | **Constitutional memory** | `/memory:learn` → Constitutional memory manager: create, list, edit, remove, budget                                               |
 | **Shared memory**         | `/memory:manage shared` → Shared-memory lifecycle: create spaces, manage memberships, inspect rollout                                    |
@@ -164079,11 +164079,11 @@ Detect the current research phase from dispatch context to load appropriate reso
 ### Architecture: 3-Layer Integration
 
 ```
-User invokes: /spec_kit:deep-research "topic"
+User invokes: /deep:start-research-loop "topic"
                     |
                     v
     ┌─────────────────────────────────┐
-    │  /spec_kit:deep-research command│  Layer 1: Command
+    │  /deep:start-research-loop command│  Layer 1: Command
     │  (YAML workflow + loop config)    │  Manages loop lifecycle
     └──────────────┬──────────────────┘
                    |
@@ -170496,8 +170496,8 @@ Full details: `.opencode/skills/sk-git/`
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
 | **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → `create.sh --phase` → Populate → Plan first child  |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
-| **Deep research**         | `/spec_kit:deep-research` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
-| **Deep review**           | `/spec_kit:deep-review` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
+| **Deep research**         | `/deep:start-research-loop` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
+| **Deep review**           | `/deep:start-review-loop` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
 | **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                            |
 | **Constitutional memory** | `/memory:learn` → Constitutional memory manager: create, list, edit, remove, budget                                               |
 | **Shared memory**         | `/memory:manage shared` → Shared-memory lifecycle: create spaces, manage memberships, inspect rollout                                    |
@@ -171121,11 +171121,11 @@ Detect the current research phase from dispatch context to load appropriate reso
 ### Architecture: 3-Layer Integration
 
 ```
-User invokes: /spec_kit:deep-research "topic"
+User invokes: /deep:start-research-loop "topic"
                     |
                     v
     ┌─────────────────────────────────┐
-    │  /spec_kit:deep-research command│  Layer 1: Command
+    │  /deep:start-research-loop command│  Layer 1: Command
     │  (YAML workflow + loop config)    │  Manages loop lifecycle
     └──────────────┬──────────────────┘
                    |

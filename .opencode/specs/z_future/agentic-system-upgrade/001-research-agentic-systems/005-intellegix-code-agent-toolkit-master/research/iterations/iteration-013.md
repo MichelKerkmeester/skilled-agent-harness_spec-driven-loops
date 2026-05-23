@@ -16,7 +16,7 @@ I compared the external loop's config and persisted state models with the local 
 - `[SOURCE: external/automated-loop/config.py:102-110]` Completion-gate behavior is also defined in the same executable configuration model.
 - `[SOURCE: external/automated-loop/config.py:178-250]` Stagnation, validation, verification, and multi-agent controls stay in that same controller-owned config hierarchy.
 - `[SOURCE: external/automated-loop/state_tracker.py:65-77]` Persisted runtime state is also centralized in one typed model.
-- `[SOURCE: .opencode/commands/spec_kit/deep-research.md:166-173]` The local command delegates the actual workflow to YAML assets rather than a single engine surface.
+- `[SOURCE: .opencode/commands/deep/start-research-loop.md:166-173]` The local command delegates the actual workflow to YAML assets rather than a single engine surface.
 - `[SOURCE: .opencode/skills/sk-deep-research/references/loop_protocol.md:15-16]` The loop protocol says the YAML manages lifecycle while the agent and reducer handle other responsibilities.
 - `[SOURCE: .opencode/skills/sk-deep-research/references/loop_protocol.md:46-70]` Initialization rules and charter validation are defined in prose.
 - `[SOURCE: .opencode/skills/sk-deep-research/references/loop_protocol.md:101-123]` Stop decisions and quality-guard behavior are also specified in prose.
@@ -38,7 +38,7 @@ confidence: high
 finding: `system-spec-kit` should build a first-class deep-loop controller that owns lifecycle transitions, stop reasons, state writes, and reducer handoff semantics for both research and review. The current doc-and-YAML distribution is too diffuse for a core runtime contract.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`, `.opencode/skills/sk-deep-research/references/loop_protocol.md`, `.opencode/skills/sk-deep-research/references/state_format.md`, `.opencode/skills/sk-deep-research/references/convergence.md`
+- **Target file or module:** `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`, `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`, `.opencode/skills/sk-deep-research/references/loop_protocol.md`, `.opencode/skills/sk-deep-research/references/state_format.md`, `.opencode/skills/sk-deep-research/references/convergence.md`
 - **Change type:** new module
 - **Blast radius:** architectural
 - **Prerequisites:** define a typed state machine and event schema that can be shared by research and review

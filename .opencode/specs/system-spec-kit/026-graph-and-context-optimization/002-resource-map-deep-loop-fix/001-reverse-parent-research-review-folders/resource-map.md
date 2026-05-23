@@ -55,10 +55,10 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Updated | OK | Prompt and artifact paths now follow resolved `{artifact_dir}` semantics. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Updated | OK | Confirm flow now writes prompts and synthesized outputs beside the resolved local packet. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Updated | OK | Review auto loop now keeps packet writes under resolved `{artifact_dir}`. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Updated | OK | Review confirm flow now keeps prompts and packet outputs under resolved `{artifact_dir}`. |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Updated | OK | Prompt and artifact paths now follow resolved `{artifact_dir}` semantics. |
+| `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Updated | OK | Confirm flow now writes prompts and synthesized outputs beside the resolved local packet. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Updated | OK | Review auto loop now keeps packet writes under resolved `{artifact_dir}`. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Updated | OK | Review confirm flow now keeps prompts and packet outputs under resolved `{artifact_dir}`. |
 
 ## 4. Agents
 

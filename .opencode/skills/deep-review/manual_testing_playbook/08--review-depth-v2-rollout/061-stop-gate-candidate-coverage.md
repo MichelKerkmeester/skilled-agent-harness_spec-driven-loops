@@ -18,7 +18,7 @@ Without the gate, a review can terminate with PASS verdict even though the agent
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm legal-stop decision tree emits `blocked_stop` with `candidateCoverageGate` in `blocked_gates[]` when v2 search debt remains for non-trivial scope.
-- Layer partition: workflow YAML (`spec_kit_deep-review_auto.yaml` step `step_check_convergence`) + reducer state (`searchDebt`, `candidateCoverage`).
+- Layer partition: workflow YAML (`deep_start-review-loop_auto.yaml` step `step_check_convergence`) + reducer state (`searchDebt`, `candidateCoverage`).
 - Real user request: `Run a standard-scope v2 review iteration with one required bug class uncovered and confirm STOP is blocked by candidateCoverageGate.`
 - Expected signals: blocked_stop event with `blocked_gates[]` containing `candidateCoverageGate`; recovery_strategy mentions resolving deferred/blocked obligations; reducer `searchDebt` non-empty.
 - Pass/fail: PASS if `blocked_gates[]` contains `candidateCoverageGate` AND `searchDebt` is non-empty; FAIL if STOP succeeds OR gate is absent from the blocker payload.
@@ -52,8 +52,8 @@ The review cannot legally stop. The blocked_stop output names `candidateCoverage
 
 ## 4. SOURCE REFERENCES
 
-- Workflow YAML: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` (`step_check_convergence` legal-stop decision tree).
-- Confirm mirror: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`.
+- Workflow YAML: `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` (`step_check_convergence` legal-stop decision tree).
+- Confirm mirror: `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`.
 - Reducer: `.opencode/skills/deep-review/scripts/reduce-state.cjs` (registry exposing `candidateCoverage`, `searchDebt`).
 - Fixture: `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-convergence.vitest.ts` (workflow-runner integration TODO).
 - ADR: `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/006-complexity-candidate-saturation-gates/decision-record.md`.

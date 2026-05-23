@@ -5,7 +5,7 @@ Use this prompt to launch the research via the sk-deep-research workflow.
 ## Invocation
 
 ```
-/spec_kit:deep-research:auto "Content routing tier1/tier2/tier3 classification accuracy and threshold optimization" --max-iterations=15 --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-memory-search-routing-tuning/002-content-routing-accuracy
+/deep:start-research-loop:auto "Content routing tier1/tier2/tier3 classification accuracy and threshold optimization" --max-iterations=15 --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-memory-search-routing-tuning/002-content-routing-accuracy
 ```
 
 ## Research Charter (for strategy.md initialization)

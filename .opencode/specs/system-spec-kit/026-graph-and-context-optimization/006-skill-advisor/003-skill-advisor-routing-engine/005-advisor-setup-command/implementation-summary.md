@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-04-25T19:45:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Closed 25 P1 + 5 P2 deep-review findings via 12-step in-place remediation"
-    next_safe_action: "Refresh continuity via generate-context.js, optionally re-review with /spec_kit:deep-review:auto"
+    next_safe_action: "Refresh continuity via generate-context.js, optionally re-review with /deep:start-review-loop:auto"
     blockers: []
     key_files:
       - "spec.md"
@@ -98,7 +98,7 @@ Both YAML files in `.opencode/commands/spec_kit/assets/` describe the same five-
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Authoring happened in two parallel tracks within a single autonomous run. Track 1 created the three new command files (markdown + auto + confirm YAML) using the existing `.opencode/commands/spec_kit/resume.md` and `.opencode/commands/spec_kit/deep-review.md` patterns. Track 2 updated the README index, the parent spec folder docs (parent context-index, spec, and tasks files), wrote the install guide replacement for the broken symlink, and added the mandatory description.json + graph-metadata.json metadata files. Both YAML workflows were syntax-validated with `python3 -m yaml`, the new command was confirmed visible in the runtime skills list (`doctor:skill-advisor` registered), and strict spec-folder validation passed cleanly with 0 errors and 0 warnings after fixing pre-existing `template_source_hint` placement in the frontmatter and reformatting acceptance scenarios to the `**Given**/**When**/**Then**` pattern the validator counts.
+Authoring happened in two parallel tracks within a single autonomous run. Track 1 created the three new command files (markdown + auto + confirm YAML) using the existing `.opencode/commands/spec_kit/resume.md` and `.opencode/commands/deep/start-review-loop.md` patterns. Track 2 updated the README index, the parent spec folder docs (parent context-index, spec, and tasks files), wrote the install guide replacement for the broken symlink, and added the mandatory description.json + graph-metadata.json metadata files. Both YAML workflows were syntax-validated with `python3 -m yaml`, the new command was confirmed visible in the runtime skills list (`doctor:skill-advisor` registered), and strict spec-folder validation passed cleanly with 0 errors and 0 warnings after fixing pre-existing `template_source_hint` placement in the frontmatter and reformatting acceptance scenarios to the `**Given**/**When**/**Then**` pattern the validator counts.
 <!-- /ANCHOR:how-delivered -->
 
 ---

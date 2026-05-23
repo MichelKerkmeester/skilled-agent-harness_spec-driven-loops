@@ -16,40 +16,184 @@
       "skill-advisor jina default",
       "022/002 plan",
       "022/002 tasks",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/003-skill-advisor-stack/002-jina-swap-and-reindex",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "013-embedder-testing-and-architecture",
-      "003-skill-advisor-stack",
-      "002-jina-swap-and-reindex",
-      "022"
+      "010/002 summary",
+      "jina swap partial",
+      "skill-graph architecture gap",
+      "010/004 follow-on"
     ],
     "key_topics": [
       "022",
-      "jina-swap",
-      "reindex",
-      "skill-graph",
-      "skill-advisor",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "013-embedder-testing-and-architecture",
-      "003-skill-advisor-stack",
-      "002-jina-swap-and-reindex",
       "002",
-      "jina-v3"
+      "jina",
+      "swap",
+      "skill-graph",
+      "reindex",
+      "skill-advisor",
+      "default",
+      "plan",
+      "tasks",
+      "010",
+      "summary"
     ],
-    "importance_tier": "important",
-    "status": "planned",
+    "importance_tier": "normal",
+    "status": "complete",
     "key_files": [
+      "evidence/swap-runbook.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
-    "entities": [],
-    "causal_summary": "Flip skill-advisor default from gemma to jina-embeddings-v3 using 022/001 pluggable layer; reindex skill-graph.sqlite; smoke-test semantic-shadow",
+    "entities": [
+      {
+        "name": "swap-runbook.md",
+        "kind": "doc",
+        "path": "evidence/swap-runbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ollama",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. REQUIREMENTS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "expected",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "setActiveEmbedder",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "test",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After 022/001 ships the pluggable layer, skill-graph.sqlite still has gemma-encoded vectors in its (legacy) embedding cache. To activate jina-v3 in production, we need to: set `vec_metadata.active_embedder_name = jina-embeddings-v3`, reindex the skill-graph corpus with the new embedder, smoke-test that semantic-shadow lane returns sane top-K matches.",
     "created_at": "2026-05-18T08:07:25.978Z",
-    "last_save_at": "2026-05-19T19:44:28.899Z",
+    "last_save_at": "2026-05-23T11:55:15.472Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

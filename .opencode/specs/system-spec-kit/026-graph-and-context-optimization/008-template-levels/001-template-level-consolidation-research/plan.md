@@ -15,7 +15,7 @@ _memory:
     last_updated_at: "2026-05-01T07:34:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Plan skeleton; downstream phases populated post-research"
-    next_safe_action: "Wait for /spec_kit:deep-research:auto convergence"
+    next_safe_action: "Wait for /deep:start-research-loop:auto convergence"
     blockers: []
     key_files:
       - "spec.md"

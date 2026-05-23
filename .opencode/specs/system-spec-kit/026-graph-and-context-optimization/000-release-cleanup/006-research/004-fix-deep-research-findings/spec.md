@@ -83,7 +83,7 @@ Land surgical product-code, schema, doc, and test fixes for all 78 remaining fin
 | Sub-phase | Subsystem | Primary file roots |
 |-----------|-----------|--------------------|
 | 001 | code_graph SQLite atomicity, staleness, error fallback | `mcp_server/code_graph/lib/{ensure-ready,code-graph-db,code-graph-context}.ts`, `mcp_server/code_graph/handlers/query.ts` |
-| 002 | YAML state machine + parent metadata | `command/spec_kit/assets/spec_kit_deep-{research,review}_auto.yaml`, `scripts/memory/generate-context.ts` |
+| 002 | YAML state machine + parent metadata | `command/spec_kit/assets/deep_{start-research-loop,review}_auto.yaml`, `scripts/memory/generate-context.ts` |
 | 003 | Advisor scorer + regression fixture | `skill_advisor/lib/scorer/{lanes/graph-causal,projection,fusion,ambiguity}.ts`, `skill_advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl` |
 | 004 | Validator scripts + memory parser + advisor schemas | `scripts/rules/check-{spec-doc-integrity,evidence,template-headers}.sh`, `mcp_server/lib/parsing/memory-parser.ts`, `mcp_server/handlers/causal-links-processor.ts`, `mcp_server/skill_advisor/{schemas/advisor-tool-schemas,handlers/advisor-validate}.ts`, `mcp_server/formatters/search-results.ts`, `mcp_server/lib/storage/checkpoints.ts` |
 | 005 | Watcher unwatch + queue caps + scorer projection fallback | `skill_advisor/lib/daemon/watcher.ts` (selective), `skill_advisor/lib/scorer/projection.ts`, `mcp_server/lib/ops/file-watcher.ts` |

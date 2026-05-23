@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: deep-review :auto non-interactive setup bypass"
-description: "Fix /spec_kit:deep-review:auto so the setup phase truly does not require interactive input — currently the markdown entrypoint asks for spec-folder/dimensions/scope confirmation even under :auto, hanging non-interactive dispatches on stdin EOF."
+description: "Fix /deep:start-review-loop:auto so the setup phase truly does not require interactive input — currently the markdown entrypoint asks for spec-folder/dimensions/scope confirmation even under :auto, hanging non-interactive dispatches on stdin EOF."
 trigger_phrases:
   - "deep-review setup hang"
   - "deep-review :auto non-interactive bypass"
@@ -41,7 +41,7 @@ _memory:
 | **Status** | Draft |
 | **Created** | 2026-05-11 |
 | **Branch** | `main` |
-| **Origin** | F-Stage-E-001 surfaced during 102/004 Stage E dispatch (`/spec_kit:deep-review:auto` against the 102 phase parent via cli-opencode + DeepSeek v4 Pro) — see `.opencode/specs/skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md` §Known Limitations |
+| **Origin** | F-Stage-E-001 surfaced during 102/004 Stage E dispatch (`/deep:start-review-loop:auto` against the 102 phase parent via cli-opencode + DeepSeek v4 Pro) — see `.opencode/specs/skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md` §Known Limitations |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -50,7 +50,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-`/spec_kit:deep-review:auto` advertises itself as autonomous (`:auto` suffix → `execution_mode = AUTONOMOUS`). In practice, the markdown entrypoint at `.opencode/commands/spec_kit/deep-review.md` §0 UNIFIED SETUP PHASE always emits a `STATUS: BLOCKED` consolidated question block (Q0/Q1_type/Q_dims/Q1/Q3/Q-Exec) and waits on stdin before loading the YAML workflow. When dispatched non-interactively via `codex exec </dev/null` or `opencode run --pure ... </dev/null`, the session hits stdin EOF, emits the question, and exits 0 with no work done — silently. The user-side workaround (pre-binding every setup answer in the prompt) works but is brittle, undocumented in the command surface, and easy to forget.
+`/deep:start-review-loop:auto` advertises itself as autonomous (`:auto` suffix → `execution_mode = AUTONOMOUS`). In practice, the markdown entrypoint at `.opencode/commands/deep/start-review-loop.md` §0 UNIFIED SETUP PHASE always emits a `STATUS: BLOCKED` consolidated question block (Q0/Q1_type/Q_dims/Q1/Q3/Q-Exec) and waits on stdin before loading the YAML workflow. When dispatched non-interactively via `codex exec </dev/null` or `opencode run --pure ... </dev/null`, the session hits stdin EOF, emits the question, and exits 0 with no work done — silently. The user-side workaround (pre-binding every setup answer in the prompt) works but is brittle, undocumented in the command surface, and easy to forget.
 
 Concrete incident: 2026-05-11 102/004 Stage E first dispatch hung 3 minutes at the setup gate; second dispatch (with pre-bound answers in the prompt) ran the full 5-iteration deep-review and converged.
 
@@ -72,7 +72,7 @@ Make `:auto` smartly autonomous via a **three-tier setup-resolution contract** (
 ## 3. SCOPE
 
 ### In Scope
-- Audit `.opencode/commands/spec_kit/deep-review.md` §0 UNIFIED SETUP PHASE to identify which inputs are required vs which can be defaulted under `:auto`, and which carry sensible defaults vs which require explicit user choice.
+- Audit `.opencode/commands/deep/start-review-loop.md` §0 UNIFIED SETUP PHASE to identify which inputs are required vs which can be defaulted under `:auto`, and which carry sensible defaults vs which require explicit user choice.
 - Add the three-tier setup-resolution branch under `:auto`:
   - **Tier 1 (resolve)**: when `execution_mode = AUTONOMOUS` AND every required input is present via `$ARGUMENTS` flags, `PRE-BOUND SETUP ANSWERS:` block, OR documented defaults, skip the question block and load YAML.
   - **Tier 2 (targeted ask)**: when 1-2 fields are genuinely ambiguous (e.g. target path matches multiple candidates) AND no sensible default exists, emit ONE narrow question naming only the ambiguous field. Wait briefly; fall through to Tier 3 if no answer.
@@ -83,17 +83,17 @@ Make `:auto` smartly autonomous via a **three-tier setup-resolution contract** (
 - Add a test scenario covering all three tiers: resolvable (Tier 1 pass), ambiguous (Tier 2 targeted ask), unresolvable (Tier 3 fail-fast).
 
 ### Out of Scope
-- The YAML workflow itself (`spec_kit_deep-review_auto.yaml`) — its iteration loop already runs non-interactively once loaded.
+- The YAML workflow itself (`deep_start-review-loop_auto.yaml`) — its iteration loop already runs non-interactively once loaded.
 - The `:confirm` mode — keeps its existing interactive setup behavior.
-- Equivalent gaps in `/spec_kit:deep-research:auto` or `/spec_kit:complete:auto` — those have similar architectures but are separate fix packets.
+- Equivalent gaps in `/deep:start-research-loop:auto` or `/spec_kit:complete:auto` — those have similar architectures but are separate fix packets.
 - Changing the SPAWN-AGENT path in cli-codex (different bug, resolved in 102/005 via inline-contract workaround).
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/commands/spec_kit/deep-review.md` | Modify | Add non-interactive setup branch; document pre-binding marker format; argument-hint update |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Possibly modify | If setup-resolution logic moves into YAML, update step_resolve_setup or equivalent |
+| `.opencode/commands/deep/start-review-loop.md` | Modify | Add non-interactive setup branch; document pre-binding marker format; argument-hint update |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Possibly modify | If setup-resolution logic moves into YAML, update step_resolve_setup or equivalent |
 | `.opencode/skills/sk-doc/manual_testing_playbook/` OR equivalent playbook scenario | Create | New scenario verifying non-interactive dispatch doesn't hang |
 | `028-.../implementation-summary.md` | Modify post-impl | Document the resolved setup-resolution flow |
 <!-- /ANCHOR:scope -->
@@ -107,10 +107,10 @@ Make `:auto` smartly autonomous via a **three-tier setup-resolution contract** (
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Tier 1 (resolve): `:auto` skips the question block when required inputs are resolvable from `$ARGUMENTS`, pre-binding markers, or sensible defaults. | Dispatch `/spec_kit:deep-review:auto "specs/.../X" --max-iterations=5` via `codex exec </dev/null` succeeds end-to-end with no setup-phase question emitted. |
+| REQ-001 | Tier 1 (resolve): `:auto` skips the question block when required inputs are resolvable from `$ARGUMENTS`, pre-binding markers, or sensible defaults. | Dispatch `/deep:start-review-loop:auto "specs/.../X" --max-iterations=5` via `codex exec </dev/null` succeeds end-to-end with no setup-phase question emitted. |
 | REQ-002 | Tier 2 (targeted ask): when 1-2 fields are ambiguous AND no default exists, `:auto` emits ONE narrow question — never the full Q0..Q-Exec block. | Construct an ambiguous-target case (e.g. target string matches two spec folders); dispatch emits a single clarification question naming only the ambiguous field, not the consolidated block. |
-| REQ-003 | Tier 3 (fail fast): `:auto` exits non-zero with a clear named-missing-inputs error when truly unresolvable AND targeted-clarification gets no answer. | Dispatch `/spec_kit:deep-review:auto ""` (empty arguments) via `codex exec </dev/null` exits non-zero within 10 seconds with an explicit missing-inputs error. |
-| REQ-004 | Pre-binding marker schema documented in the command markdown. | Reading `.opencode/commands/spec_kit/deep-review.md` reveals an explicit `PRE-BOUND SETUP ANSWERS:` schema with field names + types + a documented default-resolution rule per field. |
+| REQ-003 | Tier 3 (fail fast): `:auto` exits non-zero with a clear named-missing-inputs error when truly unresolvable AND targeted-clarification gets no answer. | Dispatch `/deep:start-review-loop:auto ""` (empty arguments) via `codex exec </dev/null` exits non-zero within 10 seconds with an explicit missing-inputs error. |
+| REQ-004 | Pre-binding marker schema documented in the command markdown. | Reading `.opencode/commands/deep/start-review-loop.md` reveals an explicit `PRE-BOUND SETUP ANSWERS:` schema with field names + types + a documented default-resolution rule per field. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -143,7 +143,7 @@ Make `:auto` smartly autonomous via a **three-tier setup-resolution contract** (
 | Risk | Existing dispatches that rely on the current behavior (silent stdin hang OR interactive default) break | Workflow regression for active reviews | Keep `:confirm` mode unchanged; only `:auto` mode gains the fail-fast/skip-question branch. |
 | Risk | Pre-binding marker format conflicts with an existing convention | Markdown parser ambiguity | Use an unambiguous block-style marker (`PRE-BOUND SETUP ANSWERS:` followed by indented key=value lines) that doesn't collide with any other command convention. |
 | Risk | YAML workflow setup-step assumes resolved values come from the question block | YAML steps fail if resolved values come from a different path | Audit `step_init` / `step_resolve_setup` and any YAML step that reads setup state; ensure both paths converge to the same `deep-review-config.json` shape. |
-| Dependency | `/spec_kit:deep-review` command markdown is the canonical entrypoint | Setup changes must live in the markdown, not the YAML | Most edits land in the .md; YAML may need a small consumer-side update. |
+| Dependency | `/deep:start-review-loop` command markdown is the canonical entrypoint | Setup changes must live in the markdown, not the YAML | Most edits land in the .md; YAML may need a small consumer-side update. |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -204,5 +204,5 @@ Make `:auto` smartly autonomous via a **three-tier setup-resolution contract** (
 ## 7. OPEN QUESTIONS
 
 - Pre-binding marker spelling: `PRE-BOUND SETUP ANSWERS:` (matches workaround used in 102/004 Stage E) or `SETUP_RESOLVED:` (tighter machine-parseable form) — decide during implementation based on parser readability.
-- Should the non-interactive setup-bypass also apply to `/spec_kit:deep-research:auto`, `/spec_kit:complete:auto`, and `/spec_kit:implement:auto`? Out of scope here but worth tracking as follow-on packets if the bypass pattern works.
+- Should the non-interactive setup-bypass also apply to `/deep:start-research-loop:auto`, `/spec_kit:complete:auto`, and `/spec_kit:implement:auto`? Out of scope here but worth tracking as follow-on packets if the bypass pattern works.
 <!-- /ANCHOR:questions -->

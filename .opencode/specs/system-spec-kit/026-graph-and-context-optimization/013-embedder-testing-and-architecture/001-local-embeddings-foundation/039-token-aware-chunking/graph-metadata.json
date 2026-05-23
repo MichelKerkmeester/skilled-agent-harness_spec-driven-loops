@@ -41,7 +41,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/shared/embeddings/providers/llama-cpp.ts",
       "shared/chunking.ts",
       "spec.md",
       "plan.md",
@@ -49,12 +48,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "llama-cpp.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/shared/embeddings/providers/llama-cpp.ts",
-        "source": "derived"
-      },
       {
         "name": "chunking.ts",
         "kind": "code",
@@ -98,12 +91,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -117,6 +104,12 @@
       },
       {
         "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -192,11 +185,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Use the loaded model's tokenizer and training context size to guarantee llama-cpp never receives oversized embedding input, while preserving the existing cross-provider character cap and local fallback behavior.",
     "created_at": "2026-05-14T14:21:37Z",
-    "last_save_at": "2026-05-14T15:06:22.190317Z",
+    "last_save_at": "2026-05-23T11:55:15.391Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

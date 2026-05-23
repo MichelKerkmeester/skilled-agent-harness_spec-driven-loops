@@ -14,7 +14,7 @@ D3 Traceability. Scope: deferred-item status, v1.0.2 packet evidence, feature ca
 - Implementation summaries for packets `003` through `009`, plus `002-mcp-runtime-improvement-research/research/research.md`
 - Live catalog entries under `.opencode/skills/system-spec-kit/feature_catalog/`
 - Live playbook entries under `.opencode/skills/system-spec-kit/manual_testing_playbook/`, `.opencode/skills/cli-copilot/manual_testing_playbook/`, `.opencode/skills/sk-deep-research/manual_testing_playbook/`, and `.opencode/skills/sk-deep-review/manual_testing_playbook/`
-- Cross-runtime references to `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`, and cli-* score evidence
+- Cross-runtime references to `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts`, `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`, `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`, and cli-* score evidence
 
 ## Findings — P0
 

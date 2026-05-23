@@ -4,79 +4,180 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/010-final-regression-and-operator-runbook",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/003-cli-dispatch-containment-and-recursion-guards",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/004-deep-loop-locks-state-and-recovery",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/005-expected-daemon-classifier-and-process-sweep",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/006-cocoindex-remove-cancel-and-index-lifecycle",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/007-code-graph-launcher-and-db-lifecycle",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/008-sidecar-local-model-and-adapter-lifecycle",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/009-spec-memory-runtime-retention-cleanup"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/020-cli-process-memory-leak-deep-research",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "final-regression-and-operator-runbook",
-      "memory leak phase 10"
+      "memory leak 10"
     ],
     "key_topics": [
-      "memory-leak",
-      "process-cleanup",
-      "final-regression-and-operator-runbook"
+      "final-regression-and-operator-runbook",
+      "memory",
+      "leak",
+      "phase",
+      "remediation",
+      "arc",
+      "scoped",
+      "source",
+      "evidence",
+      "system-spec-kit",
+      "026-graph-and-context-optimization",
+      "013-embedder-testing-and-architecture"
     ],
     "importance_tier": "important",
-    "status": "completed",
+    "status": "complete",
     "key_files": [
-      "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "operator-runbook.md",
-      "description.json"
+      "spec.md",
+      ".opencode/skills/system-spec-kit/scripts/dist/ops/process-memory-harness.js",
+      ".opencode/skills/system-spec-kit/scripts/dist/ops/process-sweep.js"
     ],
     "entities": [
       {
-        "name": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/",
-        "kind": "directory",
-        "path": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/",
-        "source": "manual"
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
       },
       {
-        "name": ".opencode/skills/system-spec-kit/",
-        "kind": "directory",
-        "path": ".opencode/skills/system-spec-kit/",
-        "source": "manual"
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
       },
       {
-        "name": ".opencode/skills/mcp-coco-index/",
-        "kind": "directory",
-        "path": ".opencode/skills/mcp-coco-index/",
-        "source": "manual"
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
       },
       {
-        "name": ".opencode/skills/system-code-graph/",
-        "kind": "directory",
-        "path": ".opencode/skills/system-code-graph/",
-        "source": "manual"
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "process-memory-harness.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/dist/ops/process-memory-harness.js",
+        "source": "derived"
+      },
+      {
+        "name": "process-sweep.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/dist/ops/process-sweep.js",
+        "source": "derived"
+      },
+      {
+        "name": "Final Regression",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Operator Runbook",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Apple Silicon",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Targeted Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Phase",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Prove the memory-leak remediation arc end-to-end and document operator recovery guidance.",
+    "causal_summary": "This is phase 10 of the memory leak remediation arc. It is scoped from source evidence in `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/020-cli-process-memory-leak-deep-research` and `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit`.",
     "created_at": "2026-05-22T10:20:00Z",
-    "last_save_at": "2026-05-22T14:40:33Z",
+    "last_save_at": "2026-05-23T11:55:15.655Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "operator-runbook.md"
+      "implementation-summary.md"
     ]
   }
 }

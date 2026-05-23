@@ -17,8 +17,8 @@ _memory:
     next_safe_action: "Validate strict; commit; push"
     blockers: []
     key_files:
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml"
+      - ".opencode/commands/deep/assets/deep_start-research-loop_auto.yaml"
+      - ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml"
       - ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts"
       - ".opencode/skills/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts"
     session_dedup:
@@ -58,9 +58,9 @@ The deep-loop workflow state machine had four issues across the two `spec_kit_de
 
 | Finding | File | Fix |
 |---------|------|-----|
-| F-010-B5-01 (P1) | `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` (`step_acquire_lock`) | Added explicit halt/cancel cleanup directive: `on_halt` and `on_cancel` release the lock file before any terminal classification step runs. Lock acquisition still happens before classification (the existing protocol contract) but now states the cleanup contract directly so runtimes do not strand the lock on `on_invalid_state.halt: true` or pause-sentinel paths. |
-| F-010-B5-02 (P1) | `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` (`step_evaluate_results.on_missing_outputs`) | Replaced the malformed fallback record with one that carries canonical `state_format.md` §Iteration Records fields: `type, run, mode, status, focus, findingsCount, newInfoRatio, sessionId, generation, durationMs, timestamp`. The reducer now persists the failure event without dropping the iteration. |
-| F-010-B5-03 (P1) | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` (`step_evaluate_results.on_missing_outputs`) | Same canonical-fields fix applied to the review YAML. Adds `sessionId, generation, durationMs` to the existing review-specific record (which already carried `mode, dimensions, filesReviewed, findingsSummary, findingsNew, traceabilityChecks`). |
+| F-010-B5-01 (P1) | `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` (`step_acquire_lock`) | Added explicit halt/cancel cleanup directive: `on_halt` and `on_cancel` release the lock file before any terminal classification step runs. Lock acquisition still happens before classification (the existing protocol contract) but now states the cleanup contract directly so runtimes do not strand the lock on `on_invalid_state.halt: true` or pause-sentinel paths. |
+| F-010-B5-02 (P1) | `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` (`step_evaluate_results.on_missing_outputs`) | Replaced the malformed fallback record with one that carries canonical `state_format.md` §Iteration Records fields: `type, run, mode, status, focus, findingsCount, newInfoRatio, sessionId, generation, durationMs, timestamp`. The reducer now persists the failure event without dropping the iteration. |
+| F-010-B5-03 (P1) | `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` (`step_evaluate_results.on_missing_outputs`) | Same canonical-fields fix applied to the review YAML. Adds `sessionId, generation, durationMs` to the existing review-specific record (which already carried `mode, dimensions, filesReviewed, findingsSummary, findingsNew, traceabilityChecks`). |
 | F-010-B5-04 (P2) | both YAMLs — `step_create_config` and `step_create_state_log` | Replaced hardcoded `resource_map.emit: true` with a templated `{resource_map_emit}` value populated from the markdown command's `--no-resource-map` flag parse. The JSONL state-log config record honors the same parsed value so config and state agree from line 1. |
 | F-019-D4-01 (P1) | `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts` (`updatePhaseParentPointer` + `updatePhaseParentPointersAfterSave`) | When a child save bubbles up, the parent now also gets `children_ids` refreshed (idempotent — no duplicate insert) and `derived.last_save_at` bumped. The new vitest case asserts `parent.children_ids` contains the saved child's packet id. |
 
@@ -68,8 +68,8 @@ The deep-loop workflow state machine had four issues across the two `spec_kit_de
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modified | F-010-B5-01: lock cleanup directive; F-010-B5-02: canonical fallback record; F-010-B5-04: thread `--no-resource-map` through config |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modified | F-010-B5-03: canonical fallback record; F-010-B5-04: same `--no-resource-map` plumbing |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Modified | F-010-B5-01: lock cleanup directive; F-010-B5-02: canonical fallback record; F-010-B5-04: thread `--no-resource-map` through config |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Modified | F-010-B5-03: canonical fallback record; F-010-B5-04: same `--no-resource-map` plumbing |
 | `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts` | Modified | F-019-D4-01: refresh parent children_ids and last_save_at on child save |
 | `.opencode/skills/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts` | Modified | F-019-D4-01: extend test suite with children_ids refresh assertion |
 | Spec docs (this packet) | Created/Modified | spec/plan/tasks/checklist/implementation-summary |

@@ -59,7 +59,7 @@ Concrete source surface estimate: 15 files.
 | `.opencode/skills/system-spec-kit/templates/manifest/context-index.md.tmpl` | Optional author-scaffolded phase-parent migration bridge |
 | `.opencode/skills/system-spec-kit/templates/manifest/handover.md.tmpl` | Command-owned lazy output template for `/memory:save` routing |
 | `.opencode/skills/system-spec-kit/templates/manifest/debug-delegation.md.tmpl` | Command-scaffolded and `@debug`-owned lazy output template |
-| `.opencode/skills/system-spec-kit/templates/manifest/research.md.tmpl` | Workflow-owned packet output template for `/spec_kit:deep-research` and `/spec_kit:deep-review` |
+| `.opencode/skills/system-spec-kit/templates/manifest/research.md.tmpl` | Workflow-owned packet output template for `/deep:start-research-loop` and `/deep:start-review-loop` |
 | `.opencode/skills/system-spec-kit/scripts/templates/scaffold-from-manifest.ts` | Scaffolder that copies authored docs and reserves lazy outputs by lifecycle |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/validation/validate-from-manifest.ts` | Validator adapter that replaces level hardcoding with manifest-derived required docs and section profiles |
 

@@ -39,8 +39,8 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
-      ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
+      ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
+      ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml",
       "plan.md",
       "decision-record.md",
       "implementation-summary.md",
@@ -50,15 +50,15 @@
     ],
     "entities": [
       {
-        "name": "spec_kit_deep-review_auto.yaml",
+        "name": "deep_start-review-loop_auto.yaml",
         "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
+        "path": ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
         "source": "derived"
       },
       {
-        "name": "spec_kit_deep-review_confirm.yaml",
+        "name": "deep_start-review-loop_confirm.yaml",
         "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
+        "path": ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml",
         "source": "derived"
       },
       {
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Phase 004 gives the Phase 003 review-depth v2 contract a migration-safe validator surface. The post-dispatch validator now returns typed advisory warnings, recognizes legacy unversioned records, and validates explicit `reviewDepthSchemaVersion: 2` records for applicability, target selection, search coverage, search ledger evidence, finding links, active-finding depth, and state-log/delta identity.",
     "created_at": "2026-05-22T00:00:00Z",
-    "last_save_at": "2026-05-23T09:53:18.749092Z",
+    "last_save_at": "2026-05-23T11:55:14.258Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

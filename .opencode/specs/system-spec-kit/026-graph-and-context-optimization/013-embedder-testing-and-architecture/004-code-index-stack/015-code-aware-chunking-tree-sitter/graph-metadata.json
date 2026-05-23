@@ -13,30 +13,198 @@
   },
   "derived": {
     "trigger_phrases": [
-      "code aware chunking tree sitter stage b",
-      "code aware chunking tree sitter stage b graph metadata"
+      "016/004/015 tree-sitter chunking",
+      "code-aware chunker stage b",
+      "ast-aware code chunking",
+      "cocoindex code splitter",
+      "RecursiveSplitter replacement",
+      "016/004/015 plan",
+      "code-aware chunking plan",
+      "tree-sitter chunking plan",
+      "016/004/015 tasks",
+      "code-aware chunking tasks",
+      "tree-sitter chunking tasks",
+      "016/004/015 checklist"
     ],
     "key_topics": [
-      "code",
-      "aware",
+      "016",
+      "004",
+      "015",
+      "tree-sitter",
       "chunking",
-      "tree",
-      "sitter",
-      "stage"
+      "code-aware",
+      "chunker",
+      "stage",
+      "ast-aware",
+      "code",
+      "cocoindex",
+      "splitter"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/mcp-coco-index/mcp_server/pyproject.toml",
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_code_aware_chunker.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_config.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/README.md",
+      ".opencode/skills/mcp-coco-index/INSTALL_GUIDE.md",
+      "evidence/phase2-comparison-015-treesitter.md",
       "spec.md",
       "plan.md",
-      "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "evidence/phase2-comparison-014-vs-015-delta.md",
+      "tasks.md"
     ],
-    "entities": [],
-    "causal_summary": "Graph metadata for the current packet.",
+    "entities": [
+      {
+        "name": "pyproject.toml",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/pyproject.toml",
+        "source": "derived"
+      },
+      {
+        "name": "test_code_aware_chunker.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_code_aware_chunker.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_config.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_config.py",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL_GUIDE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-coco-index/INSTALL_GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase2-comparison-015-treesitter.md",
+        "kind": "doc",
+        "path": "evidence/phase2-comparison-015-treesitter.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase2-comparison-014-vs-015-delta.md",
+        "kind": "doc",
+        "path": "evidence/phase2-comparison-014-vs-015-delta.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Include Javadoc",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Edge Case",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "AST-aware",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "full",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "RecursiveSplitter",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "TypeScript",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Aware Tree",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dependencies And Grammar Smoke",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Splitter And Registry",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Indexer Dispatch And Tests",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "And Bench",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Docs And Validation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The current `RecursiveSplitter` (indexer.py:33-39, defaults chunk_size=1500, overlap=200, min=250) produces chunks by line-window, ignoring code structure. For `structural-indexer.ts` (2,234 lines, 67 chunks), the chunk that surfaces at dense rank 1 for the probe \"filesystem walker that emits typed structural symbols and import edges\" is **chunk 44683 = lines 1-9** — the import header — not the `findFiles` function (1391-1465) or the class body (anywhere). The reranker is starved of content.",
     "created_at": "2026-05-19T12:33:28.231Z",
-    "last_save_at": "2026-05-19T20:42:43.964Z",
+    "last_save_at": "2026-05-23T11:55:15.521Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

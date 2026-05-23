@@ -16,7 +16,7 @@ _memory:
     last_updated_at: "2026-04-24T00:00:00Z"
     last_updated_by: "scaffold-pass"
     recent_action: "Initialized Level 3 spec folder for deep-research initiative"
-    next_safe_action: "Run /spec_kit:deep-research:auto for 20 iterations"
+    next_safe_action: "Run /deep:start-research-loop:auto for 20 iterations"
     blockers: []
     key_files:
       - "spec.md"
@@ -46,7 +46,7 @@ _memory:
 
 Both the Code Graph subsystem and the Skill Advisor system have matured independently, but no systematic investigation has been conducted into their combined correctness, performance boundaries, and UX consistency. This research phase uses 20 deep-research iterations to produce actionable, evidence-based recommendations across both systems so that a follow-up implementation phase can make targeted improvements with confidence rather than guesswork.
 
-**Key Decisions**: Use `/spec_kit:deep-research:auto` for all 20 iterations per Gate 4 policy (see ADR-001 in decision-record.md); scope recommendations to the two named systems only.
+**Key Decisions**: Use `/deep:start-research-loop:auto` for all 20 iterations per Gate 4 policy (see ADR-001 in decision-record.md); scope recommendations to the two named systems only.
 
 **Critical Dependencies**: Existing test harness (vitest suites, Python regression suite, bench files) must be readable by the research loop as primary evidence sources.
 
@@ -207,7 +207,7 @@ These are the primary investigation targets for the 20-iteration deep-research l
 
 ### Error Scenarios
 
-- Deep-research skill fails to launch: verify skill is available via `/spec_kit:deep-research:auto` help
+- Deep-research skill fails to launch: verify skill is available via `/deep:start-research-loop:auto` help
 - Iteration state file becomes corrupt: restore from the last clean iteration file and restart from that iteration number
 
 ---
@@ -242,7 +242,7 @@ These are the primary investigation targets for the 20-iteration deep-research l
 **As a** packet owner, **I want** the deep-research loop to run 20 iterations autonomously, **so that** I receive a comprehensive findings synthesis without manual iteration management.
 
 **Acceptance Criteria**:
-1. **Given** this spec folder exists, **When** `/spec_kit:deep-research:auto` is invoked, **Then** the loop runs all 20 iterations and produces a terminal state entry in the state file
+1. **Given** this spec folder exists, **When** `/deep:start-research-loop:auto` is invoked, **Then** the loop runs all 20 iterations and produces a terminal state entry in the state file
 2. **Given** the research loop is running, **When** iteration 6 completes, **Then** Discovery phase output covers both Code Graph and Skill Advisor architecture baselines
 
 ### US-002: Actionable Recommendations (Priority: P0)

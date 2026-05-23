@@ -6,9 +6,9 @@
 - Scope slice: review command doc, research command doc, review workflow state paths
 
 ## Files Reviewed
-- `.opencode/commands/spec_kit/deep-review.md`
-- `.opencode/commands/spec_kit/deep-research.md`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+- `.opencode/commands/deep/start-review-loop.md`
+- `.opencode/commands/deep/start-research-loop.md`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
 
 ## Findings - New
 
@@ -19,12 +19,12 @@
 - None.
 
 ### P2 Findings
-- **F004**: Command docs still describe root-level `review/` and `research/` outputs instead of the resolved `{artifact_dir}` packet path for nested specs — `.opencode/commands/spec_kit/deep-review.md:188` — child-phase packets emit `resource-map.md` and `review-report.md` under `review/{packet}/`, but the command docs still promise root-level locations that only hold for root specs.
+- **F004**: Command docs still describe root-level `review/` and `research/` outputs instead of the resolved `{artifact_dir}` packet path for nested specs — `.opencode/commands/deep/start-review-loop.md:188` — child-phase packets emit `resource-map.md` and `review-report.md` under `review/{packet}/`, but the command docs still promise root-level locations that only hold for root specs.
   - Rationale: operators following the command docs on nested packets will look in the wrong directory for the emitted artifact.
   - Evidence:
-    - `.opencode/commands/spec_kit/deep-review.md:188-195` says the command emits `{spec_folder}/review/resource-map.md` and `{spec_folder}/review/` packet outputs.
-    - `.opencode/commands/spec_kit/deep-research.md:177-184` likewise advertises root-level `research/resource-map.md`.
-    - `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:92-107` defines the canonical output paths as `{artifact_dir}/review-report.md` and `{artifact_dir}/resource-map.md`.
+    - `.opencode/commands/deep/start-review-loop.md:188-195` says the command emits `{spec_folder}/review/resource-map.md` and `{spec_folder}/review/` packet outputs.
+    - `.opencode/commands/deep/start-research-loop.md:177-184` likewise advertises root-level `research/resource-map.md`.
+    - `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:92-107` defines the canonical output paths as `{artifact_dir}/review-report.md` and `{artifact_dir}/resource-map.md`.
   - Recommendation: update both command docs to describe root-spec and nested-packet behavior in terms of `{artifact_dir}` / resolved packet ownership.
 
 ## Findings Closed

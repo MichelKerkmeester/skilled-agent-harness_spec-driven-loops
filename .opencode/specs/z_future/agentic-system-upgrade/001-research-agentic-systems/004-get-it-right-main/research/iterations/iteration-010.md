@@ -15,8 +15,8 @@ I used the external "when to use" guidance and the phase brief's cross-phase bou
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/docs/when-to-use.md:5-34] The external workflow is aimed at brownfield codebases where understanding is the bottleneck and where agents keep making the same category of mistakes.
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/docs/when-to-use.md:35-52] It is explicitly not for greenfield work, simple isolated changes, or speed-first tasks.
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/phase-research-prompt.md:44-61] The phase brief says overlap with phase 001 should be noted only where retry feedback might later feed optimization systems, while keeping this phase focused on retry architecture and feedback transfer.
-- [SOURCE: .opencode/commands/spec_kit/deep-research.md:147-173] Internal command design already supports specialized modes with their own YAML workflows rather than forcing one default path for every task.
-- [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:250-276] The internal deep-research loop already shows how a specialized opt-in controller can enforce its own convergence logic without taking over all workflows.
+- [SOURCE: .opencode/commands/deep/start-research-loop.md:147-173] Internal command design already supports specialized modes with their own YAML workflows rather than forcing one default path for every task.
+- [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:250-276] The internal deep-research loop already shows how a specialized opt-in controller can enforce its own convergence logic without taking over all workflows.
 - [SOURCE: .opencode/skills/system-spec-kit/constitutional/gate-enforcement.md:62-69] Internal constitutional guidance already distinguishes different gate types and reinforces that workflow behavior is intentionally routed rather than globally uniform.
 
 ## Analysis

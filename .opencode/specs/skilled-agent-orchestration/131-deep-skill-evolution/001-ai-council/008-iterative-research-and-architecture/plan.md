@@ -82,7 +82,7 @@ Hybrid deep-loop architecture: shared infrastructure in `deep-loop-runtime`, dom
 - Council orchestration: session -> topic -> round.
 - Convergence: adjudicator-verdict stability deltas.
 - Registry: `council-findings-registry.json`.
-- Command: `/spec_kit:deep-council :auto|:confirm`.
+- Command: `/deep:ask-ai-council :auto|:confirm`.
 
 ### Data Flow
 

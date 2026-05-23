@@ -33,7 +33,7 @@ All paths below relative to this root.
 # SCOPE LIST — THE ONLY FILES YOU MAY EDIT
 
 ```
-.opencode/commands/spec_kit/deep-research.md
+.opencode/commands/deep/start-research-loop.md
 .opencode/commands/spec_kit/complete.md
 .opencode/commands/spec_kit/implement.md
 .opencode/commands/spec_kit/plan.md
@@ -48,7 +48,7 @@ You MAY read any file. You may NOT touch paired YAML assets (`assets/spec_kit_*_
 
 1. **Shared contract** — `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md` — your template authority. §1 three-tier flow, §2 PRE-BOUND ANSWERS grammar, §3 Default Resolution Table format, §4 Tier-3 error template, §5 `:confirm` invariance, §6 verification protocol, §7 adoption checklist, §8 OOS.
 
-2. **Reference example (what the post-migration shape looks like)** — `.opencode/commands/spec_kit/deep-review.md` §0 lines 44-130. This is the canonical example: brief citation + Tier-1/2/3 summary + PRE-BOUND ANSWERS Schema + Default Resolution Table + UNTOUCHED `:confirm` consolidated Q-block below.
+2. **Reference example (what the post-migration shape looks like)** — `.opencode/commands/deep/start-review-loop.md` §0 lines 44-130. This is the canonical example: brief citation + Tier-1/2/3 summary + PRE-BOUND ANSWERS Schema + Default Resolution Table + UNTOUCHED `:confirm` consolidated Q-block below.
 
 3. **Phase 2 spec** — `.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/spec.md` — §3 SCOPE, §4 REQUIREMENTS, §5 SUCCESS CRITERIA.
 
@@ -171,7 +171,7 @@ hook: UserPromptSubmit Completed
 codex
 Using `system-spec-kit` for the scoped spec workflow and markdown command migration. I’ll keep this inline, read the shared contract/example/spec first, then edit only the seven allowed paths.
 exec
-/bin/zsh -lc "sed -n '1,180p' .opencode/commands/spec_kit/deep-review.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,180p' .opencode/commands/deep/start-review-loop.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
 /bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
@@ -200,8 +200,8 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory
 >    - `maxIterations`
 >    - `convergenceThreshold`
 > 2. Load the corresponding YAML file from `assets/` only after all setup values are resolved:
->    - Auto: `spec_kit_deep-review_auto.yaml`
->    - Confirm: `spec_kit_deep-review_confirm.yaml`
+>    - Auto: `deep_start-review-loop_auto.yaml`
+>    - Confirm: `deep_start-review-loop_confirm.yaml`
 > 3. Execute the YAML workflow step by step using those resolved values
 >
 > All content below is reference context for the YAML workflow. Do not treat reference sections as direct instructions to execute.
@@ -214,7 +214,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory
 - **YAML START CONDITION**: do not load YAML until ALL required inputs are bound:
   - `review_target`, `review_target_type`, `review_dimensions`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`
 
-> **Canonical mode syntax:** use attached command suffixes (`/spec_kit:deep-review:auto`, `/spec_kit:deep-review:confirm`) and keep AGENTS, skills, and quick references synchronized to this entrypoint.
+> **Canonical mode syntax:** use attached command suffixes (`/deep:start-review-loop:auto`, `/deep:start-review-loop:confirm`) and keep AGENTS, skills, and quick references synchronized to this entrypoint.
 
 # SINGLE CONSOLIDATED SETUP PROMPT
 
@@ -234,11 +234,11 @@ Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_
 
 Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 
-1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/review/deep-review-config.json` (shape: `reviewTarget`, `reviewTargetType`, `reviewDimensions`, `specFolder`, `maxIterations`, `convergenceThreshold`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`. End §0.
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/review/deep-review-config.json` (shape: `reviewTarget`, `reviewTargetType`, `reviewDimensions`, `specFolder`, `maxIterations`, `convergenceThreshold`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`. End §0.
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `review_target_type`, `spec_folder`. **Ordering rule**: if `review_target_type` is ambiguous, ask only for `review_target_type` first — the answer may make `spec_folder` self-evident on the next Tier 1 pass. Missing `review_target` is absence, not ambiguity — go to Tier 3.
 
-3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/spec_kit:deep-review:auto` as the command name. Exit non-zero. Do not load YAML.
+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/deep:start-review-loop:auto` as the command name. Exit non-zero. Do not load YAML.
 
 `:confirm` path stays unchanged — see the Consolidated Setup Prompt section below.
 
@@ -533,7 +533,7 @@ For each command adopting this contract, the §0 of the command markdown:
 
 Commands that have adopted this contract:
 
-- `/spec_kit:deep-review` (prototype) — see `.../103/001-deep-review-three-tier-setup/`
+- `/deep:start-review-loop` (prototype) — see `.../103/001-deep-review-three-tier-setup/`
 - (to be appended as `.../103/002-...` rolls out)
 
 ---
@@ -606,7 +606,7 @@ Status: ✅ This requirement applies immediately once file edits are requested.
 
 ### Distributed Governance Rule
 
-Any agent writing authored spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, `decision-record.md`, `handover.md`, `review-report.md`, `debug-delegation.md`, `resource-map.md` (optional)) MUST use contract-backed templates through `create.sh` or the inline renderer. This is a workflow-required gate, not a runtime hook: run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` after authored spec-doc writes and before completion claims, then route continuity updates through /memory:save. Deep-research workflow-owned packet markdown (`research/iterations/*.md`, `research/deep-research-*.md`, and progressive `research/research.md` loop updates) is exempt from that generic per-write rule; `/spec_kit:deep-research` must instead run targeted strict validation after every `spec.md` mutation it performs. @deep-research retains exclusive write access for `research/research.md`; @debug retains exclusive write access for `debug-delegation.md`.
+Any agent writing authored spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, `decision-record.md`, `handover.md`, `review-report.md`, `debug-delegation.md`, `resource-map.md` (optional)) MUST use contract-backed templates through `create.sh` or the inline renderer. This is a workflow-required gate, not a runtime hook: run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` after authored spec-doc writes and before completion claims, then route continuity updates through /memory:save. Deep-research workflow-owned packet markdown (`research/iterations/*.md`, `research/deep-research-*.md`, and progressive `research/research.md` loop updates) is exempt from that generic per-write rule; `/deep:start-research-loop` must instead run targeted strict validation after every `spec.md` mutation it performs. @deep-research retains exclusive write access for `research/research.md`; @debug retains exclusive write access for `debug-delegation.md`.
 
 - `handover.md` stays in the canonical recovery ladder and is maintained through `/memory:save` handover_state routing using the handover template for initial creation.
 - `review-report.md` remains owned by `@deep-review` when deep review workflows synthesize findings.
@@ -670,7 +670,7 @@ CLI exit codes:
 | CONDITIONAL | If intent signals match   | Intent-mapped references     |
 | ON_DEMAND   | Only on explicit request   | Deep-dive quality standards  |
 
-`references/workflows/quick_reference.md` is the primary first-touch command surface. Keep the compact `spec_kit` and `memory` command map there, including `/spec_kit:plan --intake-only` as the standalone intake entry, `/spec_kit:plan` and `/spec_kit:complete` smart delegation notes, and the pointer from `/spec_kit:deep-research` to `../deep-research/references/spec_check_protocol.md`, and use this file only to point readers to it rather than duplicating the full matrix.
+`references/workflows/quick_reference.md` is the primary first-touch command surface. Keep the compact `spec_kit` and `memory` command map there, including `/spec_kit:plan --intake-only` as the standalone intake entry, `/spec_kit:plan` and `/spec_kit:complete` smart delegation notes, and the pointer from `/deep:start-research-loop` to `../deep-research/references/spec_check_protocol.md`, and use this file only to point readers to it rather than duplicating the full matrix.
 
 ### Smart Router Pseudocode
 
@@ -770,7 +770,7 @@ COMMAND_BOOSTS = {
  succeeded in 0ms:
 ---
 title: "Feature Specification: auto-mode-contract generalization to all commands"
-description: "Lift the three-tier :auto contract from /spec_kit:deep-review (Phase 1) into a shared reference and migrate 11 remaining /spec_kit/, /create/, /improve/ commands to cite it; full live :auto dispatch verification per command."
+description: "Lift the three-tier :auto contract from /deep:start-review-loop (Phase 1) into a shared reference and migrate 11 remaining /spec_kit/, /create/, /improve/ commands to cite it; full live :auto dispatch verification per command."
 trigger_phrases:
   - "auto mode contract generalization"
   - "spec-kit :auto rollout"
@@ -822,7 +822,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Phase 1 introduced the three-tier `:auto` contract for `/spec_kit:deep-review`. The same architecture and same stdin-hang gap affect 11 other commands across `/spec_kit/`, `/create/`, and `/improve/`. Inlining the three-tier flow into every command duplicates ~300 LOC and risks drift; lifting it into a shared reference doc preserves a single source of truth and keeps each command lean.
+Phase 1 introduced the three-tier `:auto` contract for `/deep:start-review-loop`. The same architecture and same stdin-hang gap affect 11 other commands across `/spec_kit/`, `/create/`, and `/improve/`. Inlining the three-tier flow into every command duplicates ~300 LOC and risks drift; lifting it into a shared reference doc preserves a single source of truth and keeps each command lean.
 
 ### Purpose
 Author the shared `auto_mode_contract.md` reference, refactor Phase-1's deep-review to cite it, migrate 11 remaining commands to the same pattern, and verify each one via a live non-interactive `:auto` dispatch.
@@ -835,7 +835,7 @@ Author the shared `auto_mode_contract.md` reference, refactor Phase-1's deep-rev
 
 ### In Scope
 - Author `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md` (Level 2 sk-doc reference; §1-8 — three-tier flow, PRE-BOUND ANSWERS grammar, default-resolution-table format, Tier-3 error template, `:confirm` invariance, verification protocol, adoption checklist, out-of-scope).
-- Refactor `/spec_kit:deep-review` §0 to cite the shared contract (replacing the inline three-tier sections from 001).
+- Refactor `/deep:start-review-loop` §0 to cite the shared contract (replacing the inline three-tier sections from 001).
 - Migrate 11 commands' §0 to cite the shared contract + provide their own per-field default table + PRE-BOUND ANSWERS field list:
   - `/spec_kit:` — deep-research, complete, implement, plan, resume (5)
   - `/create:` — sk-skill, agent, changelog, feature-catalog, testing-playbook, folder_readme (6)
@@ -855,7 +855,7 @@ Author the shared `auto_mode_contract.md` reference, refactor Phase-1's deep-rev
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md` | Create | Shared three-tier `:auto` contract reference |
-| `.opencode/commands/spec_kit/deep-review.md` | Modify | Refactor §0 to cite shared contract |
+| `.opencode/commands/deep/start-review-loop.md` | Modify | Refactor §0 to cite shared contract |
 | `.opencode/commands/spec_kit/{deep-research,complete,implement,plan,resume}.md` | Modify | Migrate §0 to shared contract pattern |
 | `.opencode/commands/create/{sk-skill,agent,changelog,feature-catalog,testing-playbook,folder_readme}.md` | Modify | Same |
 | `.opencode/commands/improve/agent.md` | Modify | Same |
@@ -972,7 +972,7 @@ Author the shared `auto_mode_contract.md` reference, refactor Phase-1's deep-rev
 codex
 The reference example is already in the target shape, so the main work is per-command field mapping. I’m reading each current setup phase now and will snapshot the `:confirm` Q-blocks before touching anything.
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/commands/spec_kit/deep-research.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/commands/deep/start-research-loop.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 description: Autonomous deep-research loop: iterative investigation with convergence detection. Modes :auto, :confirm.
@@ -992,8 +992,8 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch, memory_conte
 >    - `maxIterations`
 >    - `convergenceThreshold`
 > 2. Load the corresponding YAML file from `assets/` only after all setup values are resolved:
->    - Auto: `spec_kit_deep-research_auto.yaml`
->    - Confirm: `spec_kit_deep-research_confirm.yaml`
+>    - Auto: `deep_start-research-loop_auto.yaml`
+>    - Confirm: `deep_start-research-loop_confirm.yaml`
 > 3. Execute the YAML workflow step by step using those resolved values
 >
 > All content below is reference context for the YAML workflow. Do not treat reference sections as direct instructions to execute.
@@ -1006,7 +1006,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch, memory_conte
 - **YAML START CONDITION**: do not load YAML until ALL required inputs are bound:
   - `research_topic`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`
 
-> **Canonical mode syntax:** use attached command suffixes (`/spec_kit:deep-research:auto`, `/spec_kit:deep-research:confirm`) and keep AGENTS, skills, and quick references synchronized to this entrypoint.
+> **Canonical mode syntax:** use attached command suffixes (`/deep:start-research-loop:auto`, `/deep:start-research-loop:confirm`) and keep AGENTS, skills, and quick references synchronized to this entrypoint.
 
 > **Note:** Late-INIT `spec.md` detection and bounded `spec.md` mutations follow
 > `.opencode/skills/deep-research/references/spec_check_protocol.md`.
@@ -1133,7 +1133,7 @@ NEVER split questions into multiple prompts
 
 Conduct autonomous iterative deep research with convergence detection. Each iteration dispatches a fresh LEAF agent (`@deep-research`) that reads externalized state, performs focused investigation, and writes findings to files.
 
-For code review and quality auditing, see `/spec_kit:deep-review`.
+For code review and quality auditing, see `/deep:start-review-loop`.
 
 ```yaml
 role: Deep Research Loop Manager
@@ -1174,9 +1174,9 @@ Run an iterative loop for deep research: Initialize state under `{artifact_dir}`
 
 | Mode | Invocation | Behavior |
 |------|-----------|----------|
-| `:auto` | `/spec_kit:deep-research:auto "topic"` | All iterations without approval |
-| `:confirm` | `/spec_kit:deep-research:confirm "topic"` | Multi-gate review at setup, iteration, and synthesis |
-| (default) | `/spec_kit:deep-research "topic"` | Ask user to choose mode during setup |
+| `:auto` | `/deep:start-research-loop:auto "topic"` | All iterations without approval |
+| `:confirm` | `/deep:start-research-loop:confirm "topic"` | Multi-gate review at setup, iteration, and synthesis |
+| (default) | `/deep:start-research-loop "topic"` | Ask user to choose mode during setup |
 
 ---
 
@@ -1184,8 +1184,8 @@ Run an iterative loop for deep research: Initialize state under `{artifact_dir}`
 
 After setup phase passes, load and execute the appropriate YAML prompt based on execution_mode:
 
-- **AUTONOMOUS**: `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-- **INTERACTIVE**: `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+- **AUTONOMOUS**: `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
+- **INTERACTIVE**: `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`
 
 The YAML contains the full loop workflow: initialization, iteration dispatch, convergence detection, synthesis, and memory save.
 
@@ -2444,7 +2444,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Shared `auto_mode_contract.md` authored (Stage B).
-- [x] T002 `/spec_kit:deep-review.md` §0 refactored to cite shared contract (Stage B).
+- [x] T002 `/deep:start-review-loop.md` §0 refactored to cite shared contract (Stage B).
 - [ ] T003 Confirm 001's dry-run traces still conceptually pass after refactor (read-back).
 <!-- /ANCHOR:phase-1 -->
 
@@ -2464,8 +2464,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T020 Live `:auto` dispatch — `/spec_kit:deep-review` (re-verify post-refactor).
-- [ ] T021 Live `:auto` dispatch — `/spec_kit:deep-research`.
+- [ ] T020 Live `:auto` dispatch — `/deep:start-review-loop` (re-verify post-refactor).
+- [ ] T021 Live `:auto` dispatch — `/deep:start-research-loop`.
 - [ ] T022 Live `:auto` dispatch — `/spec_kit:resume`.
 - [ ] T023 Live `:auto` dispatch — `/spec_kit:implement`.
 - [ ] T024 Live `:auto` dispatch — `/spec_kit:complete`.
@@ -2516,8 +2516,8 @@ exec
 zsh:1: command not found: :auto
 .opencode/commands/spec_kit/resume.md:3:argument-hint: "[spec-folder-path] [:auto|:confirm] [--phase-folder=<path>]"
 .opencode/commands/spec_kit/resume.md:41:**STATUS: BLOCKED**
-.opencode/commands/spec_kit/deep-research.md:3:argument-hint: "<topic> [:auto|:confirm] [--max-iterations=N] [--convergence=N]"
-.opencode/commands/spec_kit/deep-research.md:50:**STATUS: BLOCKED**
+.opencode/commands/deep/start-research-loop.md:3:argument-hint: "<topic> [:auto|:confirm] [--max-iterations=N] [--convergence=N]"
+.opencode/commands/deep/start-research-loop.md:50:**STATUS: BLOCKED**
 .opencode/commands/spec_kit/plan.md:3:argument-hint: "<feature-description> [:auto|:confirm] [:with-phases] [--intake-only] [--phases N] [--phase-names list] [--phase-folder=<path>] [--spec-folder=PATH] [--level=1|2|3|3+] [--start-state=STATE] [--repair-mode=MODE] [--record-relationships=yes|no] [--depends-on=IDs] [--related-to=IDs] [--supersedes=IDs]"
 .opencode/commands/spec_kit/plan.md:42:**STATUS: BLOCKED**
 .opencode/commands/spec_kit/implement.md:3:argument-hint: "<spec-folder> [:auto|:confirm] [--phase-folder=<path>]"
@@ -2553,144 +2553,144 @@ exec
 .opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:203:# MULTI-AGENT DISPATCH CONFIGURATION
 .opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:205:multi_agent_config:
 .opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:444:    - Setup first (structure, dependencies, config)
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:61:    config: .opencode/skills/deep-research/assets/deep_research_config.json
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:65:# AGENT CONFIGURATION
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:67:agent_config:
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:85:  config: "{artifact_dir}/deep-research-config.json"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:143:          - "{state_paths.packet_dir}/config.json"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:160:          - "{state_paths.config}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:166:          completed-session: "Resume artifacts exist and config.status == 'complete'"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:187:            skip_to: step_create_config
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:191:          note: "fork and completed-continue branches are deferred. The reducer still reads `lineageMode` from config for dashboards and analysis, but only `new`, `resume`, and `restart` are runtime-supported in this release. See deep-research/references/loop_protocol.md `Session Lifecycle` for the canonical one-session model."
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:202:      step_create_config:
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:203:        action: "Create deep-research-config.json from template"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:204:        template: .opencode/skills/deep-research/assets/deep_research_config.json
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:222:        output: "{state_paths.config}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:225:        action: "Initialize JSONL state log with config record"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:226:        content: '{"type":"config","topic":"{research_topic}","maxIterations":{max_iterations},"convergenceThreshold":{convergence_threshold},"resource_map_present":{resource_map_present},"resource_map":{"emit":true},"createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}"}'
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:355:        on_B: { action: "Apply user adjustments to strategy.md and/or config", return_to: gate_init_approval }
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:393:          log_event: '{"type":"event","event":"userPaused","mode":"research","run":{current_iteration},"stopReason":"userPaused","sentinelPath":"{state_paths.pause_sentinel}","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:407:            sessionId: "{config.lineage.sessionId}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:415:        append_to_jsonl: '{"type":"event","event":"graph_convergence","mode":"research","run":{current_iteration},"decision":{graph_decision_json},"signals":{graph_signals_json},"blockers":{graph_blockers_json},"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:422:          3. if stuck_count >= config.stuckThreshold: STUCK_RECOVERY
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:482:          append_to_jsonl: '{"type":"event","event":"blocked_stop","mode":"research","run":{current_iteration},"blockedBy":{blocked_by_json},"gateResults":{"convergence":{"pass":{gate_convergence_pass},"score":{gate_convergence_score}},"keyQuestionCoverage":{"pass":{gate_key_question_coverage_pass},"answered":{answered_count},"total":{total_questions}},"evidenceDensity":{"pass":{gate_evidence_density_pass},"sources":{gate_evidence_density_sources}},"hotspotSaturation":{"pass":{gate_hotspot_saturation_pass}}},"recoveryStrategy":"{recovery_strategy}","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:495:          append_to_jsonl: '{"type":"event","event":"stuckRecovery","mode":"research","run":{current_iteration},"stopReason":"stuckRecovery","fromIteration":{current_iteration},"outcome":"recovered","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:507:          canonical_event: '{"type":"event","event":"userPaused","mode":"research","run":{current_iteration},"stopReason":"userPaused","sentinelPath":"{state_paths.pause_sentinel}","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:510:          canonical_event: '{"type":"event","event":"stuckRecovery","mode":"research","run":{current_iteration},"stopReason":"stuckRecovery","fromIteration":{current_iteration},"outcome":"recovered","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:538:          source: "config.executor"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:539:          loader: ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts#parseExecutorConfig"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:559:              state_paths_config: "{state_paths.config}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:566:          skip_when: "config.executor.type == 'native'"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:570:            executor: "{config.executor}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:572:        branch_on: "config.executor.type"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:582:              --model "{config.executor.model}" \
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:583:              -c model_reasoning_effort="{config.executor.reasoningEffort}" \
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:584:              -c service_tier="{config.executor.serviceTier}" \
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:589:          timeout_seconds: "{config.executor.timeoutSeconds}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:598:                --model "{config.executor.model}" \
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:604:                --model "{config.executor.model}" \
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:609:          timeout_seconds: "{config.executor.timeoutSeconds}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:619:              -m "{config.executor.model}" \
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:624:          timeout_seconds: "{config.executor.timeoutSeconds}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:629:            - "gemini model whitelist enforced at config parse (currently only gemini-3.1-pro-preview)"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:634:              --model "{config.executor.model}" \
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:639:          timeout_seconds: "{config.executor.timeoutSeconds}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:643:              If config.executor.reasoningEffort is set and non-null, expand to: --effort {config.executor.reasoningEffort}
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:652:              --model "{config.executor.model}" \
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:662:          timeout_seconds: "{config.executor.timeoutSeconds}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:666:              If config.executor.reasoningEffort is set and non-null, expand to: --variant {config.executor.reasoningEffort}
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:686:          skip_when: "config.executor.type == 'native'"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:690:            type: "{config.executor.type}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:691:            model: "{config.executor.model}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:692:            reasoningEffort: "{config.executor.reasoningEffort}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:693:            serviceTier: "{config.executor.serviceTier}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:728:              sessionId: "{config.lineage.sessionId}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:811:          - "{state_paths.config}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:858:        action: "Emit {state_paths.resource_map_output} from converged research deltas unless config.resource_map.emit is false"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:861:          - "{state_paths.config}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:865:        guarantee: "Reducer skips cleanly when config.resource_map.emit == false and writes a deterministic resource-map when enabled."
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:921:        on_C: { append_to_jsonl: '{"type":"spec_mutation","event":"spec_synthesis_deferred","reason":"confirm_mode_deferred_writeback","generatedFence":"deep-research/spec-findings","timestamp":"{ISO_8601_NOW}"}', proceed_to: step_update_config_status }
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:924:        action: "Write or replace the bounded generated findings block in spec.md before config completion"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:942:      step_update_config_status:
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:943:        action: "Mark config as complete"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:944:        edit: "{state_paths.config}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:1014:        - State files: config.json, state.jsonl, strategy.md, findings-registry.json, dashboard.md
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:1059:    - modify_config_after_initialization
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:75:    config: .opencode/skills/deep-research/assets/deep_research_config.json
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:79:# AGENT CONFIGURATION
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:81:agent_config:
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:99:  config: "{artifact_dir}/deep-research-config.json"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:157:        action: "Detect resource-map.md before config creation so init can persist the flag and seed Known Context"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:170:          - "{state_paths.packet_dir}/config.json"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:200:          - "{state_paths.config}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:206:          completed-session: "Resume artifacts exist and config.status == 'complete'"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:226:          skip_to: step_create_config
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:227:        note_deferred_branches: "fork and completed-continue are deferred and no longer runtime-supported in this release. The reducer still reads `lineageMode` from config for dashboards and analysis, but only `new`, `resume`, and `restart` are live. See deep-research/references/loop_protocol.md §Lifecycle Branch Contract for the one-session contract."
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:238:      step_create_config:
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:239:        action: "Create deep-research-config.json from template"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:240:        template: .opencode/skills/deep-research/assets/deep_research_config.json
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:261:        output: "{state_paths.config}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:264:        action: "Initialize JSONL state log with config record"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:266:        # Same parsed --no-resource-map flag honored here so config and state_log agree from line 1.
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:267:        content: '{"type":"config","topic":"{research_topic}","maxIterations":{max_iterations},"convergenceThreshold":{convergence_threshold},"resource_map_present":{resource_map_present},"resource_map":{"emit":{resource_map_emit}},"createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}"}'
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:380:          - "{state_paths.config}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:394:          - resource_map_present: "Extract boolean from deep-research-config.json, default false"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:404:          log_event: '{"type":"event","event":"userPaused","mode":"research","run":{current_iteration},"stopReason":"userPaused","sentinelPath":"{state_paths.pause_sentinel}","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:418:            sessionId: "{config.lineage.sessionId}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:426:        append_to_jsonl: '{"type":"event","event":"graph_convergence","mode":"research","run":{current_iteration},"decision":{graph_decision_json},"signals":{graph_signals_json},"blockers":{graph_blockers_json},"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:433:          3. if stuck_count >= config.stuckThreshold: STUCK_RECOVERY
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:493:          append_to_jsonl: '{"type":"event","event":"blocked_stop","mode":"research","run":{current_iteration},"blockedBy":{blocked_by_json},"gateResults":{"convergence":{"pass":{gate_convergence_pass},"score":{gate_convergence_score}},"keyQuestionCoverage":{"pass":{gate_key_question_coverage_pass},"answered":{answered_count},"total":{total_questions}},"evidenceDensity":{"pass":{gate_evidence_density_pass},"sources":{gate_evidence_density_sources}},"hotspotSaturation":{"pass":{gate_hotspot_saturation_pass}}},"recoveryStrategy":"{recovery_strategy}","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:506:          append_to_jsonl: '{"type":"event","event":"stuckRecovery","mode":"research","run":{current_iteration},"stopReason":"stuckRecovery","fromIteration":{current_iteration},"outcome":"recovered","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:518:          canonical_event: '{"type":"event","event":"userPaused","mode":"research","run":{current_iteration},"stopReason":"userPaused","sentinelPath":"{state_paths.pause_sentinel}","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:521:          canonical_event: '{"type":"event","event":"stuckRecovery","mode":"research","run":{current_iteration},"stopReason":"stuckRecovery","fromIteration":{current_iteration},"outcome":"recovered","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:526:          source: "config.executor"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:527:          loader: ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts#parseExecutorConfig"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:548:              state_paths_config: "{state_paths.config}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:555:          skip_when: "config.executor.type == 'native'"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:559:            executor: "{config.executor}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:561:        branch_on: "config.executor.type"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:574:            import { resolveCodexSandboxMode } from './.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts';
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:578:              model: '{config.executor.model}',
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:579:              reasoningEffort: '{config.executor.reasoningEffort}' === 'null' ? null : '{config.executor.reasoningEffort}',
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:580:              serviceTier: '{config.executor.serviceTier}' === 'null' ? null : '{config.executor.serviceTier}',
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:581:              sandboxMode: '{config.executor.sandboxMode}' === 'null' ? null : '{config.executor.sandboxMode}',
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:582:              timeoutSeconds: Number('{config.executor.timeoutSeconds}'),
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:612:          timeout_seconds: "{config.executor.timeoutSeconds}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:620:            import { resolveGeminiSandboxMode } from './.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts';
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:624:              model: '{config.executor.model}',
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:625:              reasoningEffort: '{config.executor.reasoningEffort}' === 'null' ? null : '{config.executor.reasoningEffort}',
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:626:              serviceTier: '{config.executor.serviceTier}' === 'null' ? null : '{config.executor.serviceTier}',
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:627:              sandboxMode: '{config.executor.sandboxMode}' === 'null' ? null : '{config.executor.sandboxMode}',
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:628:              timeoutSeconds: Number('{config.executor.timeoutSeconds}'),
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:653:          timeout_seconds: "{config.executor.timeoutSeconds}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:658:            - "gemini model whitelist enforced at config parse (currently only gemini-3.1-pro-preview)"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:665:            import { resolveClaudePermissionMode } from './.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts';
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:669:              model: '{config.executor.model}',
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:670:              reasoningEffort: '{config.executor.reasoningEffort}' === 'null' ? null : '{config.executor.reasoningEffort}',
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:671:              serviceTier: '{config.executor.serviceTier}' === 'null' ? null : '{config.executor.serviceTier}',
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:672:              sandboxMode: '{config.executor.sandboxMode}' === 'null' ? null : '{config.executor.sandboxMode}',
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:673:              timeoutSeconds: Number('{config.executor.timeoutSeconds}'),
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:702:          timeout_seconds: "{config.executor.timeoutSeconds}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:709:          skip_when: "config.executor.type == 'native'"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:713:            type: "{config.executor.type}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:714:            model: "{config.executor.model}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:715:            reasoningEffort: "{config.executor.reasoningEffort}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:716:            serviceTier: "{config.executor.serviceTier}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:720:              --model "{config.executor.model}" \
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:730:          timeout_seconds: "{config.executor.timeoutSeconds}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:734:              If config.executor.reasoningEffort is set and non-null, expand to: --variant {config.executor.reasoningEffort}
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:799:              sessionId: "{config.lineage.sessionId}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:822:          append_jsonl: '{"type":"iteration","run":{current_iteration},"mode":"research","status":"error","focus":"{next_focus}","findingsCount":0,"newInfoRatio":0.0,"keyQuestions":[],"answeredQuestions":[],"durationMs":0,"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:855:          - "{state_paths.config}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:879:        action: "Emit {state_paths.resource_map_output} from converged research deltas unless config.resource_map.emit is false"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:882:          - "{state_paths.config}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:886:        guarantee: "Reducer skips cleanly when config.resource_map.emit == false and writes a deterministic resource-map when enabled."
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:922:        action: "Write or replace the bounded generated findings block in spec.md before config completion"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:946:      step_update_config_status:
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:947:        action: "Mark config as complete"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:948:        edit: "{state_paths.config}"
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:997:        - State files: config.json, state.jsonl, strategy.md, findings-registry.json, dashboard.md
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:1030:    - modify_config_after_initialization
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:61:    config: .opencode/skills/deep-research/assets/deep_research_config.json
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:65:# AGENT CONFIGURATION
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:67:agent_config:
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:85:  config: "{artifact_dir}/deep-research-config.json"
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:143:          - "{state_paths.packet_dir}/config.json"
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:160:          - "{state_paths.config}"
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:166:          completed-session: "Resume artifacts exist and config.status == 'complete'"
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:187:            skip_to: step_create_config
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:191:          note: "fork and completed-continue branches are deferred. The reducer still reads `lineageMode` from config for dashboards and analysis, but only `new`, `resume`, and `restart` are runtime-supported in this release. See deep-research/references/loop_protocol.md `Session Lifecycle` for the canonical one-session model."
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:202:      step_create_config:
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:203:        action: "Create deep-research-config.json from template"
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:204:        template: .opencode/skills/deep-research/assets/deep_research_config.json
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:222:        output: "{state_paths.config}"
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:225:        action: "Initialize JSONL state log with config record"
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:226:        content: '{"type":"config","topic":"{research_topic}","maxIterations":{max_iterations},"convergenceThreshold":{convergence_threshold},"resource_map_present":{resource_map_present},"resource_map":{"emit":true},"createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}"}'
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:355:        on_B: { action: "Apply user adjustments to strategy.md and/or config", return_to: gate_init_approval }
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:393:          log_event: '{"type":"event","event":"userPaused","mode":"research","run":{current_iteration},"stopReason":"userPaused","sentinelPath":"{state_paths.pause_sentinel}","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:407:            sessionId: "{config.lineage.sessionId}"
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:415:        append_to_jsonl: '{"type":"event","event":"graph_convergence","mode":"research","run":{current_iteration},"decision":{graph_decision_json},"signals":{graph_signals_json},"blockers":{graph_blockers_json},"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:422:          3. if stuck_count >= config.stuckThreshold: STUCK_RECOVERY
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:482:          append_to_jsonl: '{"type":"event","event":"blocked_stop","mode":"research","run":{current_iteration},"blockedBy":{blocked_by_json},"gateResults":{"convergence":{"pass":{gate_convergence_pass},"score":{gate_convergence_score}},"keyQuestionCoverage":{"pass":{gate_key_question_coverage_pass},"answered":{answered_count},"total":{total_questions}},"evidenceDensity":{"pass":{gate_evidence_density_pass},"sources":{gate_evidence_density_sources}},"hotspotSaturation":{"pass":{gate_hotspot_saturation_pass}}},"recoveryStrategy":"{recovery_strategy}","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:495:          append_to_jsonl: '{"type":"event","event":"stuckRecovery","mode":"research","run":{current_iteration},"stopReason":"stuckRecovery","fromIteration":{current_iteration},"outcome":"recovered","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:507:          canonical_event: '{"type":"event","event":"userPaused","mode":"research","run":{current_iteration},"stopReason":"userPaused","sentinelPath":"{state_paths.pause_sentinel}","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:510:          canonical_event: '{"type":"event","event":"stuckRecovery","mode":"research","run":{current_iteration},"stopReason":"stuckRecovery","fromIteration":{current_iteration},"outcome":"recovered","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:538:          source: "config.executor"
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:539:          loader: ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts#parseExecutorConfig"
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:559:              state_paths_config: "{state_paths.config}"
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:566:          skip_when: "config.executor.type == 'native'"
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:570:            executor: "{config.executor}"
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:572:        branch_on: "config.executor.type"
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:582:              --model "{config.executor.model}" \
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:583:              -c model_reasoning_effort="{config.executor.reasoningEffort}" \
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:584:              -c service_tier="{config.executor.serviceTier}" \
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:589:          timeout_seconds: "{config.executor.timeoutSeconds}"
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:598:                --model "{config.executor.model}" \
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:604:                --model "{config.executor.model}" \
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:609:          timeout_seconds: "{config.executor.timeoutSeconds}"
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:619:              -m "{config.executor.model}" \
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:624:          timeout_seconds: "{config.executor.timeoutSeconds}"
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:629:            - "gemini model whitelist enforced at config parse (currently only gemini-3.1-pro-preview)"
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:634:              --model "{config.executor.model}" \
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:639:          timeout_seconds: "{config.executor.timeoutSeconds}"
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:643:              If config.executor.reasoningEffort is set and non-null, expand to: --effort {config.executor.reasoningEffort}
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:652:              --model "{config.executor.model}" \
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:662:          timeout_seconds: "{config.executor.timeoutSeconds}"
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:666:              If config.executor.reasoningEffort is set and non-null, expand to: --variant {config.executor.reasoningEffort}
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:686:          skip_when: "config.executor.type == 'native'"
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:690:            type: "{config.executor.type}"
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:691:            model: "{config.executor.model}"
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:692:            reasoningEffort: "{config.executor.reasoningEffort}"
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:693:            serviceTier: "{config.executor.serviceTier}"
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:728:              sessionId: "{config.lineage.sessionId}"
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:811:          - "{state_paths.config}"
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:858:        action: "Emit {state_paths.resource_map_output} from converged research deltas unless config.resource_map.emit is false"
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:861:          - "{state_paths.config}"
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:865:        guarantee: "Reducer skips cleanly when config.resource_map.emit == false and writes a deterministic resource-map when enabled."
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:921:        on_C: { append_to_jsonl: '{"type":"spec_mutation","event":"spec_synthesis_deferred","reason":"confirm_mode_deferred_writeback","generatedFence":"deep-research/spec-findings","timestamp":"{ISO_8601_NOW}"}', proceed_to: step_update_config_status }
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:924:        action: "Write or replace the bounded generated findings block in spec.md before config completion"
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:942:      step_update_config_status:
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:943:        action: "Mark config as complete"
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:944:        edit: "{state_paths.config}"
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:1014:        - State files: config.json, state.jsonl, strategy.md, findings-registry.json, dashboard.md
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:1059:    - modify_config_after_initialization
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:75:    config: .opencode/skills/deep-research/assets/deep_research_config.json
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:79:# AGENT CONFIGURATION
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:81:agent_config:
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:99:  config: "{artifact_dir}/deep-research-config.json"
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:157:        action: "Detect resource-map.md before config creation so init can persist the flag and seed Known Context"
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:170:          - "{state_paths.packet_dir}/config.json"
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:200:          - "{state_paths.config}"
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:206:          completed-session: "Resume artifacts exist and config.status == 'complete'"
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:226:          skip_to: step_create_config
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:227:        note_deferred_branches: "fork and completed-continue are deferred and no longer runtime-supported in this release. The reducer still reads `lineageMode` from config for dashboards and analysis, but only `new`, `resume`, and `restart` are live. See deep-research/references/loop_protocol.md §Lifecycle Branch Contract for the one-session contract."
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:238:      step_create_config:
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:239:        action: "Create deep-research-config.json from template"
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:240:        template: .opencode/skills/deep-research/assets/deep_research_config.json
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:261:        output: "{state_paths.config}"
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:264:        action: "Initialize JSONL state log with config record"
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:266:        # Same parsed --no-resource-map flag honored here so config and state_log agree from line 1.
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:267:        content: '{"type":"config","topic":"{research_topic}","maxIterations":{max_iterations},"convergenceThreshold":{convergence_threshold},"resource_map_present":{resource_map_present},"resource_map":{"emit":{resource_map_emit}},"createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}"}'
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:380:          - "{state_paths.config}"
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:394:          - resource_map_present: "Extract boolean from deep-research-config.json, default false"
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:404:          log_event: '{"type":"event","event":"userPaused","mode":"research","run":{current_iteration},"stopReason":"userPaused","sentinelPath":"{state_paths.pause_sentinel}","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:418:            sessionId: "{config.lineage.sessionId}"
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:426:        append_to_jsonl: '{"type":"event","event":"graph_convergence","mode":"research","run":{current_iteration},"decision":{graph_decision_json},"signals":{graph_signals_json},"blockers":{graph_blockers_json},"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:433:          3. if stuck_count >= config.stuckThreshold: STUCK_RECOVERY
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:493:          append_to_jsonl: '{"type":"event","event":"blocked_stop","mode":"research","run":{current_iteration},"blockedBy":{blocked_by_json},"gateResults":{"convergence":{"pass":{gate_convergence_pass},"score":{gate_convergence_score}},"keyQuestionCoverage":{"pass":{gate_key_question_coverage_pass},"answered":{answered_count},"total":{total_questions}},"evidenceDensity":{"pass":{gate_evidence_density_pass},"sources":{gate_evidence_density_sources}},"hotspotSaturation":{"pass":{gate_hotspot_saturation_pass}}},"recoveryStrategy":"{recovery_strategy}","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:506:          append_to_jsonl: '{"type":"event","event":"stuckRecovery","mode":"research","run":{current_iteration},"stopReason":"stuckRecovery","fromIteration":{current_iteration},"outcome":"recovered","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:518:          canonical_event: '{"type":"event","event":"userPaused","mode":"research","run":{current_iteration},"stopReason":"userPaused","sentinelPath":"{state_paths.pause_sentinel}","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:521:          canonical_event: '{"type":"event","event":"stuckRecovery","mode":"research","run":{current_iteration},"stopReason":"stuckRecovery","fromIteration":{current_iteration},"outcome":"recovered","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:526:          source: "config.executor"
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:527:          loader: ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts#parseExecutorConfig"
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:548:              state_paths_config: "{state_paths.config}"
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:555:          skip_when: "config.executor.type == 'native'"
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:559:            executor: "{config.executor}"
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:561:        branch_on: "config.executor.type"
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:574:            import { resolveCodexSandboxMode } from './.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts';
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:578:              model: '{config.executor.model}',
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:579:              reasoningEffort: '{config.executor.reasoningEffort}' === 'null' ? null : '{config.executor.reasoningEffort}',
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:580:              serviceTier: '{config.executor.serviceTier}' === 'null' ? null : '{config.executor.serviceTier}',
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:581:              sandboxMode: '{config.executor.sandboxMode}' === 'null' ? null : '{config.executor.sandboxMode}',
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:582:              timeoutSeconds: Number('{config.executor.timeoutSeconds}'),
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:612:          timeout_seconds: "{config.executor.timeoutSeconds}"
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:620:            import { resolveGeminiSandboxMode } from './.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts';
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:624:              model: '{config.executor.model}',
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:625:              reasoningEffort: '{config.executor.reasoningEffort}' === 'null' ? null : '{config.executor.reasoningEffort}',
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:626:              serviceTier: '{config.executor.serviceTier}' === 'null' ? null : '{config.executor.serviceTier}',
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:627:              sandboxMode: '{config.executor.sandboxMode}' === 'null' ? null : '{config.executor.sandboxMode}',
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:628:              timeoutSeconds: Number('{config.executor.timeoutSeconds}'),
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:653:          timeout_seconds: "{config.executor.timeoutSeconds}"
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:658:            - "gemini model whitelist enforced at config parse (currently only gemini-3.1-pro-preview)"
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:665:            import { resolveClaudePermissionMode } from './.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts';
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:669:              model: '{config.executor.model}',
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:670:              reasoningEffort: '{config.executor.reasoningEffort}' === 'null' ? null : '{config.executor.reasoningEffort}',
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:671:              serviceTier: '{config.executor.serviceTier}' === 'null' ? null : '{config.executor.serviceTier}',
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:672:              sandboxMode: '{config.executor.sandboxMode}' === 'null' ? null : '{config.executor.sandboxMode}',
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:673:              timeoutSeconds: Number('{config.executor.timeoutSeconds}'),
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:702:          timeout_seconds: "{config.executor.timeoutSeconds}"
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:709:          skip_when: "config.executor.type == 'native'"
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:713:            type: "{config.executor.type}"
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:714:            model: "{config.executor.model}"
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:715:            reasoningEffort: "{config.executor.reasoningEffort}"
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:716:            serviceTier: "{config.executor.serviceTier}"
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:720:              --model "{config.executor.model}" \
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:730:          timeout_seconds: "{config.executor.timeoutSeconds}"
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:734:              If config.executor.reasoningEffort is set and non-null, expand to: --variant {config.executor.reasoningEffort}
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:799:              sessionId: "{config.lineage.sessionId}"
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:822:          append_jsonl: '{"type":"iteration","run":{current_iteration},"mode":"research","status":"error","focus":"{next_focus}","findingsCount":0,"newInfoRatio":0.0,"keyQuestions":[],"answeredQuestions":[],"durationMs":0,"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:855:          - "{state_paths.config}"
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:879:        action: "Emit {state_paths.resource_map_output} from converged research deltas unless config.resource_map.emit is false"
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:882:          - "{state_paths.config}"
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:886:        guarantee: "Reducer skips cleanly when config.resource_map.emit == false and writes a deterministic resource-map when enabled."
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:922:        action: "Write or replace the bounded generated findings block in spec.md before config completion"
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:946:      step_update_config_status:
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:947:        action: "Mark config as complete"
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:948:        edit: "{state_paths.config}"
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:997:        - State files: config.json, state.jsonl, strategy.md, findings-registry.json, dashboard.md
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:1030:    - modify_config_after_initialization
 .opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml:258:# PARALLEL DISPATCH CONFIGURATION
 .opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml:260:parallel_dispatch_config:
 .opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml:272:# MULTI-AGENT DISPATCH CONFIGURATION
@@ -2725,7 +2725,7 @@ const fs = require('fs');
 const root = '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public';
 const suffix = ' (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)';
 const files = {
-  'deep-research': '.opencode/commands/spec_kit/deep-research.md',
+  'deep-research': '.opencode/commands/deep/start-research-loop.md',
   complete: '.opencode/commands/spec_kit/complete.md',
   implement: '.opencode/commands/spec_kit/implement.md',
   plan: '.opencode/commands/spec_kit/plan.md',
@@ -2754,11 +2754,11 @@ sections['deep-research'] = block([
 '',
 'Under "'`execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:'"',
 '',
-'1. **Tier 1 — Resolve confidently** (contract §1): parse "'`$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{artifact_dir}/deep-research-config.json` (shape: `researchTopic`, `specFolder`, `maxIterations`, `convergenceThreshold`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`. End §0.'"',
+'1. **Tier 1 — Resolve confidently** (contract §1): parse "'`$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{artifact_dir}/deep-research-config.json` (shape: `researchTopic`, `specFolder`, `maxIterations`, `convergenceThreshold`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`. End §0.'"',
 '',
 '2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): "'`spec_folder`. **Ordering rule**: none needed. Missing `research_topic` is absence, not ambiguity — go to Tier 3.'"',
 '',
-'3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with "'`/spec_kit:deep-research:auto` as the command name. Exit non-zero. Do not load YAML.'"',
+'3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with "'`/deep:start-research-loop:auto` as the command name. Exit non-zero. Do not load YAML.'"',
 '',
 '"'`:confirm` path stays unchanged — see the consolidated setup prompt section below.'"',
 '',
@@ -3092,18 +3092,18 @@ exec
 .opencode/commands/spec_kit/plan.md:63:PRE-BOUND SETUP ANSWERS:
 .opencode/commands/spec_kit/plan.md:84:Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default; marker fields take precedence over `$ARGUMENTS` flags; unknown fields warn; malformed lines parse-error).
 .opencode/commands/spec_kit/plan.md:86:### Default Resolution Table
-.opencode/commands/spec_kit/deep-research.md:3:argument-hint: "<topic> [:auto|:confirm] [--max-iterations=N] [--convergence=N] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
-.opencode/commands/spec_kit/deep-research.md:54:Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md`.
-.opencode/commands/spec_kit/deep-research.md:58:1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{artifact_dir}/deep-research-config.json` (shape: `researchTopic`, `specFolder`, `maxIterations`, `convergenceThreshold`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`. End §0.
-.opencode/commands/spec_kit/deep-research.md:60:2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed. Missing `research_topic` is absence, not ambiguity — go to Tier 3.
-.opencode/commands/spec_kit/deep-research.md:66:### PRE-BOUND SETUP ANSWERS Schema (for `:auto` non-interactive dispatch)
-.opencode/commands/spec_kit/deep-research.md:68:The dispatched prompt body may contain one structured marker block. Parse it before applying defaults. Grammar: see `auto_mode_contract.md` §2.
-.opencode/commands/spec_kit/deep-research.md:71:PRE-BOUND SETUP ANSWERS:
-.opencode/commands/spec_kit/deep-research.md:85:Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default; marker fields take precedence over `$ARGUMENTS` flags; unknown fields warn; malformed lines parse-error).
-.opencode/commands/spec_kit/deep-research.md:87:### Default Resolution Table
+.opencode/commands/deep/start-research-loop.md:3:argument-hint: "<topic> [:auto|:confirm] [--max-iterations=N] [--convergence=N] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
+.opencode/commands/deep/start-research-loop.md:54:Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md`.
+.opencode/commands/deep/start-research-loop.md:58:1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{artifact_dir}/deep-research-config.json` (shape: `researchTopic`, `specFolder`, `maxIterations`, `convergenceThreshold`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`. End §0.
+.opencode/commands/deep/start-research-loop.md:60:2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed. Missing `research_topic` is absence, not ambiguity — go to Tier 3.
+.opencode/commands/deep/start-research-loop.md:66:### PRE-BOUND SETUP ANSWERS Schema (for `:auto` non-interactive dispatch)
+.opencode/commands/deep/start-research-loop.md:68:The dispatched prompt body may contain one structured marker block. Parse it before applying defaults. Grammar: see `auto_mode_contract.md` §2.
+.opencode/commands/deep/start-research-loop.md:71:PRE-BOUND SETUP ANSWERS:
+.opencode/commands/deep/start-research-loop.md:85:Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default; marker fields take precedence over `$ARGUMENTS` flags; unknown fields warn; malformed lines parse-error).
+.opencode/commands/deep/start-research-loop.md:87:### Default Resolution Table
 
 exec
-/bin/zsh -lc "git diff -- .opencode/commands/spec_kit/deep-research.md .opencode/commands/spec_kit/complete.md .opencode/commands/spec_kit/implement.md .opencode/commands/spec_kit/plan.md .opencode/commands/spec_kit/resume.md | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "git diff -- .opencode/commands/deep/start-research-loop.md .opencode/commands/spec_kit/complete.md .opencode/commands/spec_kit/implement.md .opencode/commands/spec_kit/plan.md .opencode/commands/spec_kit/resume.md | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 diff --git a/.opencode/commands/spec_kit/complete.md b/.opencode/commands/spec_kit/complete.md
 index 1f9373c1dc..f984189f40 100644
@@ -3196,10 +3196,10 @@ index 1f9373c1dc..f984189f40 100644
  **STATUS: BLOCKED**
  
  ```
-diff --git a/.opencode/commands/spec_kit/deep-research.md b/.opencode/commands/spec_kit/deep-research.md
+diff --git a/.opencode/commands/deep/start-research-loop.md b/.opencode/commands/deep/start-research-loop.md
 index 88f709fa4e..2a54a33edb 100644
---- a/.opencode/commands/spec_kit/deep-research.md
-+++ b/.opencode/commands/spec_kit/deep-research.md
+--- a/.opencode/commands/deep/start-research-loop.md
++++ b/.opencode/commands/deep/start-research-loop.md
 @@ -1,6 +1,6 @@
  ---
  description: Autonomous deep-research loop: iterative investigation with convergence detection. Modes :auto, :confirm.
@@ -3223,11 +3223,11 @@ index 88f709fa4e..2a54a33edb 100644
 +
 +Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 +
-+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{artifact_dir}/deep-research-config.json` (shape: `researchTopic`, `specFolder`, `maxIterations`, `convergenceThreshold`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`. End §0.
++1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{artifact_dir}/deep-research-config.json` (shape: `researchTopic`, `specFolder`, `maxIterations`, `convergenceThreshold`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`. End §0.
 +
 +2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed. Missing `research_topic` is absence, not ambiguity — go to Tier 3.
 +
-+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/spec_kit:deep-research:auto` as the command name. Exit non-zero. Do not load YAML.
++3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/deep:start-research-loop:auto` as the command name. Exit non-zero. Do not load YAML.
 +
 +`:confirm` path stays unchanged — see the consolidated setup prompt section below.
 +
@@ -3408,7 +3408,7 @@ index 0000000000000000000000000000000000000000..3b0e4380f4031f08e12b15887ab0a806
 @@ -0,0 +1,28 @@
 +# Codex Group 1 Dispatch Evidence
 +
-+## /spec_kit:deep-research
++## /deep:start-research-loop
 +- Fields migrated count: 11
 +- Tier-2 candidates identified: spec_folder
 +- Concerns: `spec_folder` is treated as a targeted-ask candidate only when the research topic is present but folder choice is ambiguous; missing `research_topic` goes straight to Tier 3.
@@ -3467,7 +3467,7 @@ index 0000000000000000000000000000000000000000..3b0e4380f4031f08e12b15887ab0a806
 @@ -0,0 +1,28 @@
 +# Codex Group 1 Dispatch Evidence
 +
-+## /spec_kit:deep-research
++## /deep:start-research-loop
 +- Fields migrated count: 11
 +- Tier-2 candidates identified: spec_folder
 +- Concerns: `spec_folder` is treated as a targeted-ask candidate only when the research topic is present but folder choice is ambiguous; missing `research_topic` goes straight to Tier 3.
@@ -3524,7 +3524,7 @@ exec
 /bin/zsh -lc 'git diff --name-only' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 .opencode/commands/spec_kit/complete.md
-.opencode/commands/spec_kit/deep-research.md
+.opencode/commands/deep/start-research-loop.md
 .opencode/commands/spec_kit/implement.md
 .opencode/commands/spec_kit/plan.md
 .opencode/commands/spec_kit/resume.md
@@ -3579,7 +3579,7 @@ index 0000000000000000000000000000000000000000..3b0e4380f4031f08e12b15887ab0a806
 @@ -0,0 +1,28 @@
 +# Codex Group 1 Dispatch Evidence
 +
-+## /spec_kit:deep-research
++## /deep:start-research-loop
 +- Fields migrated count: 11
 +- Tier-2 candidates identified: spec_folder
 +- Concerns: `spec_folder` is treated as a targeted-ask candidate only when the research topic is present but folder choice is ambiguous; missing `research_topic` goes straight to Tier 3.
@@ -3636,7 +3636,7 @@ exec
 /bin/zsh -lc 'git status --short' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
  M .opencode/commands/spec_kit/complete.md
- M .opencode/commands/spec_kit/deep-research.md
+ M .opencode/commands/deep/start-research-loop.md
  M .opencode/commands/spec_kit/implement.md
  M .opencode/commands/spec_kit/plan.md
  M .opencode/commands/spec_kit/resume.md
@@ -3653,7 +3653,7 @@ index 0000000000000000000000000000000000000000..3b0e4380f4031f08e12b15887ab0a806
 @@ -0,0 +1,28 @@
 +# Codex Group 1 Dispatch Evidence
 +
-+## /spec_kit:deep-research
++## /deep:start-research-loop
 +- Fields migrated count: 11
 +- Tier-2 candidates identified: spec_folder
 +- Concerns: `spec_folder` is treated as a targeted-ask candidate only when the research topic is present but folder choice is ambiguous; missing `research_topic` goes straight to Tier 3.
@@ -3735,7 +3735,7 @@ index 0000000000000000000000000000000000000000..3b0e4380f4031f08e12b15887ab0a806
 @@ -0,0 +1,28 @@
 +# Codex Group 1 Dispatch Evidence
 +
-+## /spec_kit:deep-research
++## /deep:start-research-loop
 +- Fields migrated count: 11
 +- Tier-2 candidates identified: spec_folder
 +- Concerns: `spec_folder` is treated as a targeted-ask candidate only when the research topic is present but folder choice is ambiguous; missing `research_topic` goes straight to Tier 3.
@@ -3797,7 +3797,7 @@ exec
  succeeded in 0ms:
 # Codex Group 1 Dispatch Evidence
 
-## /spec_kit:deep-research
+## /deep:start-research-loop
 - Fields migrated count: 11
 - Tier-2 candidates identified: spec_folder
 - Concerns: `spec_folder` is treated as a targeted-ask candidate only when the research topic is present but folder choice is ambiguous; missing `research_topic` goes straight to Tier 3.
@@ -3877,7 +3877,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Shared `auto_mode_contract.md` authored (Stage B).
-- [x] T002 `/spec_kit:deep-review.md` §0 refactored to cite shared contract (Stage B).
+- [x] T002 `/deep:start-review-loop.md` §0 refactored to cite shared contract (Stage B).
 - [ ] T003 Confirm 001's dry-run traces still conceptually pass after refactor (read-back).
 <!-- /ANCHOR:phase-1 -->
 
@@ -3906,7 +3906,7 @@ index 0000000000000000000000000000000000000000..3b0e4380f4031f08e12b15887ab0a806
 @@ -0,0 +1,28 @@
 +# Codex Group 1 Dispatch Evidence
 +
-+## /spec_kit:deep-research
++## /deep:start-research-loop
 +- Fields migrated count: 11
 +- Tier-2 candidates identified: spec_folder
 +- Concerns: `spec_folder` is treated as a targeted-ask candidate only when the research topic is present but folder choice is ambiguous; missing `research_topic` goes straight to Tier 3.
@@ -3961,7 +3961,7 @@ exec
 /bin/zsh -lc 'git status --short --untracked-files=all' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
  M .opencode/commands/spec_kit/complete.md
- M .opencode/commands/spec_kit/deep-research.md
+ M .opencode/commands/deep/start-research-loop.md
  M .opencode/commands/spec_kit/implement.md
  M .opencode/commands/spec_kit/plan.md
  M .opencode/commands/spec_kit/resume.md
@@ -3979,7 +3979,7 @@ index 0000000000000000000000000000000000000000..3b0e4380f4031f08e12b15887ab0a806
 @@ -0,0 +1,28 @@
 +# Codex Group 1 Dispatch Evidence
 +
-+## /spec_kit:deep-research
++## /deep:start-research-loop
 +- Fields migrated count: 11
 +- Tier-2 candidates identified: spec_folder
 +- Concerns: `spec_folder` is treated as a targeted-ask candidate only when the research topic is present but folder choice is ambiguous; missing `research_topic` goes straight to Tier 3.
@@ -4044,7 +4044,7 @@ index 0000000000000000000000000000000000000000..3b0e4380f4031f08e12b15887ab0a806
 @@ -0,0 +1,28 @@
 +# Codex Group 1 Dispatch Evidence
 +
-+## /spec_kit:deep-research
++## /deep:start-research-loop
 +- Fields migrated count: 11
 +- Tier-2 candidates identified: spec_folder
 +- Concerns: `spec_folder` is treated as a targeted-ask candidate only when the research topic is present but folder choice is ambiguous; missing `research_topic` goes straight to Tier 3.
@@ -4096,7 +4096,7 @@ index b3c4d71f116fd6fe21e8b192db56019f72adb9f2..c463f8dee17721abef4433ca88d004ba
  - [ ] T013 Per-command read-back: confirm `:confirm` block untouched in all 11 migrated commands.
 
 exec
-/bin/zsh -lc 'git diff --check -- .opencode/commands/spec_kit/deep-research.md .opencode/commands/spec_kit/complete.md .opencode/commands/spec_kit/implement.md .opencode/commands/spec_kit/plan.md .opencode/commands/spec_kit/resume.md .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/tasks.md .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group1-dispatch.txt' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'git diff --check -- .opencode/commands/deep/start-research-loop.md .opencode/commands/spec_kit/complete.md .opencode/commands/spec_kit/implement.md .opencode/commands/spec_kit/plan.md .opencode/commands/spec_kit/resume.md .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/tasks.md .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group1-dispatch.txt' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 diff --git a/.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group1-dispatch.txt b/.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group1-dispatch.txt
 new file mode 100644
@@ -4106,7 +4106,7 @@ index 0000000000000000000000000000000000000000..3b0e4380f4031f08e12b15887ab0a806
 @@ -0,0 +1,28 @@
 +# Codex Group 1 Dispatch Evidence
 +
-+## /spec_kit:deep-research
++## /deep:start-research-loop
 +- Fields migrated count: 11
 +- Tier-2 candidates identified: spec_folder
 +- Concerns: `spec_folder` is treated as a targeted-ask candidate only when the research topic is present but folder choice is ambiguous; missing `research_topic` goes straight to Tier 3.
@@ -4159,7 +4159,7 @@ index b3c4d71f116fd6fe21e8b192db56019f72adb9f2..c463f8dee17721abef4433ca88d004ba
 
 codex
 **Files Modified**
-- `.opencode/commands/spec_kit/deep-research.md`
+- `.opencode/commands/deep/start-research-loop.md`
 - `.opencode/commands/spec_kit/complete.md`
 - `.opencode/commands/spec_kit/implement.md`
 - `.opencode/commands/spec_kit/plan.md`
@@ -4168,7 +4168,7 @@ codex
 - `.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group1-dispatch.txt`
 
 **Per-Command Status**
-- `/spec_kit:deep-research`: 11 fields migrated | Tier-2 candidates: `spec_folder` | `:confirm` preserved: yes | argument-hint updated: yes
+- `/deep:start-research-loop`: 11 fields migrated | Tier-2 candidates: `spec_folder` | `:confirm` preserved: yes | argument-hint updated: yes
 - `/spec_kit:complete`: 18 fields migrated | Tier-2 candidates: `spec_folder`, `research_intent` | `:confirm` preserved: yes | argument-hint updated: yes
 - `/spec_kit:implement`: 8 fields migrated | Tier-2 candidates: `spec_folder`, `resume_choice` | `:confirm` preserved: yes | argument-hint updated: yes
 - `/spec_kit:plan`: 18 fields migrated | Tier-2 candidates: `spec_folder`, `research_intent` | `:confirm` preserved: yes | argument-hint updated: yes
@@ -4192,7 +4192,7 @@ index 0000000000000000000000000000000000000000..3b0e4380f4031f08e12b15887ab0a806
 @@ -0,0 +1,28 @@
 +# Codex Group 1 Dispatch Evidence
 +
-+## /spec_kit:deep-research
++## /deep:start-research-loop
 +- Fields migrated count: 11
 +- Tier-2 candidates identified: spec_folder
 +- Concerns: `spec_folder` is treated as a targeted-ask candidate only when the research topic is present but folder choice is ambiguous; missing `research_topic` goes straight to Tier 3.
@@ -4248,7 +4248,7 @@ hook: Stop Completed
 tokens used
 123,398
 **Files Modified**
-- `.opencode/commands/spec_kit/deep-research.md`
+- `.opencode/commands/deep/start-research-loop.md`
 - `.opencode/commands/spec_kit/complete.md`
 - `.opencode/commands/spec_kit/implement.md`
 - `.opencode/commands/spec_kit/plan.md`
@@ -4257,7 +4257,7 @@ tokens used
 - `.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group1-dispatch.txt`
 
 **Per-Command Status**
-- `/spec_kit:deep-research`: 11 fields migrated | Tier-2 candidates: `spec_folder` | `:confirm` preserved: yes | argument-hint updated: yes
+- `/deep:start-research-loop`: 11 fields migrated | Tier-2 candidates: `spec_folder` | `:confirm` preserved: yes | argument-hint updated: yes
 - `/spec_kit:complete`: 18 fields migrated | Tier-2 candidates: `spec_folder`, `research_intent` | `:confirm` preserved: yes | argument-hint updated: yes
 - `/spec_kit:implement`: 8 fields migrated | Tier-2 candidates: `spec_folder`, `resume_choice` | `:confirm` preserved: yes | argument-hint updated: yes
 - `/spec_kit:plan`: 18 fields migrated | Tier-2 candidates: `spec_folder`, `research_intent` | `:confirm` preserved: yes | argument-hint updated: yes

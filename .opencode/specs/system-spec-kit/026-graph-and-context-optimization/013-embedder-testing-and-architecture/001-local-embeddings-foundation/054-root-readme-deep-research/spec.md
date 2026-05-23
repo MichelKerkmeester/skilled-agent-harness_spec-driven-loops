@@ -28,7 +28,7 @@ _memory:
     answered_questions:
       - "Writer for rewrite phase? Sonnet @markdown sole writer (user choice)"
       - "Iteration scope? 7 thematic tracks x ~3 iter each (user choice)"
-      - "Why bypass /spec_kit:deep-research? cli-devin is not a native executor in that command"
+      - "Why bypass /deep:start-research-loop? cli-devin is not a native executor in that command"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # 056: Root README deep-research realignment

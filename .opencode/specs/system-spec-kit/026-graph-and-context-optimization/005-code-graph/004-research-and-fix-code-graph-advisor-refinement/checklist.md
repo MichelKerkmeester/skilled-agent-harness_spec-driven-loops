@@ -128,7 +128,7 @@ _memory:
 <!-- ANCHOR:arch-verify -->
 ## L3+: ARCHITECTURE VERIFICATION
 
-- [x] CHK-100 [P0] Architecture decision documented in `decision-record.md` (ADR-001: use `/spec_kit:deep-research:auto`) [EVIDENCE: decision-record.md contains ADR-001 with full context, decision, alternatives, consequences]
+- [x] CHK-100 [P0] Architecture decision documented in `decision-record.md` (ADR-001: use `/deep:start-research-loop:auto`) [EVIDENCE: decision-record.md contains ADR-001 with full context, decision, alternatives, consequences]
 - [x] CHK-101 [P1] ADR-001 has status "Accepted" [EVIDENCE: decision-record.md ADR-001 metadata table shows Status: Accepted]
 - [x] CHK-102 [P1] Alternatives documented with rejection rationale in ADR-001 [EVIDENCE: decision-record.md ADR-001 alternatives table compares three options with scores and rejection reasons]
 <!-- /ANCHOR:arch-verify -->

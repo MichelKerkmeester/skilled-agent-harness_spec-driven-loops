@@ -25,8 +25,8 @@ Cite file:line. P1 for missing updates; P2 for stylistic.
 
 **Step 3: Workflow YAML deep-dive (every call site)**
 Re-read all 4 YAMLs:
-- `spec_kit_deep-review_auto.yaml` + `_confirm.yaml`
-- `spec_kit_deep-research_auto.yaml` + `_confirm.yaml`
+- `deep_start-review-loop_auto.yaml` + `_confirm.yaml`
+- `deep_start-research-loop_auto.yaml` + `_confirm.yaml`
 
 For EACH `bash: 'node .../deep-loop-runtime/scripts/<X>.cjs ...'` invocation:
 - Are CLI args complete + correctly named?

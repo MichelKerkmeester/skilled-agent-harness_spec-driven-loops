@@ -22,7 +22,9 @@
     "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/016-reindex-populates-vec-memories-knn-table",
     "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/017-factory-shard-fallback-for-hf-voyage-openai",
     "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/018-constitutional-quality-gate-exemption",
-    "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/019-lineage-and-metadata-repair-runner"
+    "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/019-lineage-and-metadata-repair-runner",
+    "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/020-embedder-default-drift-fix",
+    "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/021-hardcoded-default-audit-deep-research"
   ],
   "manual": {
     "depends_on": [],
@@ -50,7 +52,7 @@
       "typescript"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "planned",
     "key_files": [
       "spec.md"
     ],
@@ -62,52 +64,49 @@
         "source": "derived"
       },
       {
-        "name": "embedder_set",
-        "kind": "key_phrase",
+        "name": "Embedder Selection",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "embedding_status",
-        "kind": "key_phrase",
+        "name": "Aware Health Telemetry",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "1. OVERVIEW",
-        "kind": "heading",
+        "name": "Bounded Embedding Cache",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "2. PHASE MAP",
-        "kind": "heading",
+        "name": "Embedder Sidecar Execution",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "3. CROSS-REFERENCES",
-        "kind": "heading",
+        "name": "Lazy Startup Gating",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "016/001: mk-spec-memory stack (phase parent)",
-        "kind": "quoted",
+        "name": "Handler Verification Blocked",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "This phase parent groups all mk-spec-memory (TypeScript MCP) embedder + architecture work that was previously spread across the top-level `016/001-004` slots. The grouping mirrors the `004-code-index-stack` pattern \u2014 one umbrella per skill surface so the 016 root stays scannable.",
+    "causal_summary": "This phase parent groups all mk-spec-memory (TypeScript MCP) embedder + architecture work that was previously spread across the top-level `016/001-004` slots. The grouping mirrors the `004-code-index-stack` pattern — one umbrella per skill surface so the 016 root stays scannable.",
     "created_at": "2026-05-18T07:50:58.091Z",
-    "last_save_at": "2026-05-19T19:24:48.032Z",
+    "last_save_at": "2026-05-23T11:55:15.419Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
-    ],
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/019-lineage-and-metadata-repair-runner",
-    "last_active_at": "2026-05-22T05:50:00Z",
-    "last_indexed_at": "2026-05-22T05:50:00Z"
+    ]
   }
 }

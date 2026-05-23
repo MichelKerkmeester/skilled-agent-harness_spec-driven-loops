@@ -47,19 +47,19 @@
     },
     {
       "id": "finding-1-2-deep-review-has-fewer-default-iterations-and-a-looser-convergence-threshold-than",
-      "text": "Deep-review has fewer default iterations and a looser convergence threshold than deep-research. Review defaults to 7 iterations and `0.10` convergence [SOURCE: .opencode/commands/spec_kit/deep-review.md:105], while research defaults to 10 iterations and `0.05` convergence [SOURCE: .opencode/commands/spec_kit/deep-research.md:96]. Hypothesis: review can run out of budget sooner and treat low-new-finding passes as enough earlier, especially when the first pass is inventory and later passes must cover all dimensions.",
+      "text": "Deep-review has fewer default iterations and a looser convergence threshold than deep-research. Review defaults to 7 iterations and `0.10` convergence [SOURCE: .opencode/commands/deep/start-review-loop.md:105], while research defaults to 10 iterations and `0.05` convergence [SOURCE: .opencode/commands/deep/start-research-loop.md:96]. Hypothesis: review can run out of budget sooner and treat low-new-finding passes as enough earlier, especially when the first pass is inventory and later passes must cover all dimensions.",
       "addedAtIteration": 1,
       "sources": []
     },
     {
       "id": "finding-1-1-deep-review-is-organized-around-broad-dimensions-while-deep-research-is-organize",
-      "text": "Deep-review is organized around broad dimensions, while deep-research is organized around question-driven focus. Review initializes a `dimension_queue` as correctness, security, traceability, and maintainability after an inventory pass [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:258]. Research extracts `Next Focus`, remaining key questions, answered counts, and the least-explored unanswered question from strategy state [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:389]. Hypothesis: a bug-focused research iteration can keep asking \"where is the bug class?\" while review rotates through taxonomy buckets that may encourage coverage statements over adversarial pursuit.",
+      "text": "Deep-review is organized around broad dimensions, while deep-research is organized around question-driven focus. Review initializes a `dimension_queue` as correctness, security, traceability, and maintainability after an inventory pass [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:258]. Research extracts `Next Focus`, remaining key questions, answered counts, and the least-explored unanswered question from strategy state [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:389]. Hypothesis: a bug-focused research iteration can keep asking \"where is the bug class?\" while review rotates through taxonomy buckets that may encourage coverage statements over adversarial pursuit.",
       "addedAtIteration": 1,
       "sources": []
     },
     {
       "id": "finding-1-6-review-convergence-is-sophisticated-but-it-measures-dimension-coverage-and-findi",
-      "text": "Review convergence is sophisticated, but it measures dimension coverage and finding ratios rather than explicit bug-class saturation. The review stop logic weights dimension coverage at `0.45` and rolling average at `0.30` [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:463]. It also includes evidence, hotspot, claim-adjudication, and fix-replay legal-stop gates [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:477]. Hypothesis: these gates can block premature STOP, but they do not themselves require a matrix of suspected bug classes, changed invariants, producer/consumer flows, or negative tests before a dimension counts as meaningfully searched.",
+      "text": "Review convergence is sophisticated, but it measures dimension coverage and finding ratios rather than explicit bug-class saturation. The review stop logic weights dimension coverage at `0.45` and rolling average at `0.30` [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:463]. It also includes evidence, hotspot, claim-adjudication, and fix-replay legal-stop gates [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:477]. Hypothesis: these gates can block premature STOP, but they do not themselves require a matrix of suspected bug classes, changed invariants, producer/consumer flows, or negative tests before a dimension counts as meaningfully searched.",
       "addedAtIteration": 1,
       "sources": []
     },
@@ -83,7 +83,7 @@
     },
     {
       "id": "finding-2-5-convergence-has-serious-legal-stop-gates-but-most-gates-are-still-post-discovery",
-      "text": "Convergence has serious legal-stop gates, but most gates are still post-discovery and stop-time checks. The YAML requires claim adjudication before STOP for active P0/P1 findings [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:444], blocks STOP on unresolved P0, weak evidence density, hotspot saturation, and security-fix replay gaps [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:477]. These are valuable guarantees, but they do not force the reviewer to generate candidate findings through invariant sweeps, API producer/consumer tracing, or negative-test searches before declaring a dimension reviewed.",
+      "text": "Convergence has serious legal-stop gates, but most gates are still post-discovery and stop-time checks. The YAML requires claim adjudication before STOP for active P0/P1 findings [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:444], blocks STOP on unresolved P0, weak evidence density, hotspot saturation, and security-fix replay gaps [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:477]. These are valuable guarantees, but they do not force the reviewer to generate candidate findings through invariant sweeps, API producer/consumer tracing, or negative-test searches before declaring a dimension reviewed.",
       "addedAtIteration": 2,
       "sources": []
     },
@@ -119,7 +119,7 @@
     },
     {
       "id": "finding-2-9-the-deepest-documented-producer-consumer-guarantee-appears-only-in-security-sens",
-      "text": "The deepest documented producer/consumer guarantee appears only in security-sensitive fix replay. The convergence reference requires security-sensitive fix reruns to validate producer/consumer/matrix coverage [SOURCE: .opencode/skills/deep-review/references/convergence.md:388], and the YAML mirrors that for `fixCompletenessReplayGate` [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:484]. That is too narrow for bug discovery. Deep-review needs a general pre-stop or per-dimension evidence matrix, not only a remediation replay gate after risky fixes.",
+      "text": "The deepest documented producer/consumer guarantee appears only in security-sensitive fix replay. The convergence reference requires security-sensitive fix reruns to validate producer/consumer/matrix coverage [SOURCE: .opencode/skills/deep-review/references/convergence.md:388], and the YAML mirrors that for `fixCompletenessReplayGate` [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:484]. That is too narrow for bug discovery. Deep-review needs a general pre-stop or per-dimension evidence matrix, not only a remediation replay gate after risky fixes.",
       "addedAtIteration": 2,
       "sources": []
     },
@@ -293,19 +293,19 @@
     },
     {
       "id": "finding-6-6-code-graph-and-semantic-search-are-available-but-not-mandatory-discovery-gates-t",
-      "text": "Code graph and semantic search are available, but not mandatory discovery gates. The command allows `mcp__cocoindex_code__search`, `code_graph_query`, and `code_graph_context` [SOURCE: .opencode/commands/spec_kit/deep-review.md:4], while the auto YAML agent tool list includes CocoIndex but not the code graph tools [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:76]. The agent says to use CocoIndex only when exposed and exact symbols are unknown, and describes code graph tools as support rather than a substitute for file:line evidence [SOURCE: .opencode/agents/deep-review.md:157] [SOURCE: .opencode/agents/deep-review.md:239]. This makes semantic/code-graph search optional, not a required precondition for reviewing unfamiliar or high-risk targets.",
+      "text": "Code graph and semantic search are available, but not mandatory discovery gates. The command allows `mcp__cocoindex_code__search`, `code_graph_query`, and `code_graph_context` [SOURCE: .opencode/commands/deep/start-review-loop.md:4], while the auto YAML agent tool list includes CocoIndex but not the code graph tools [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:76]. The agent says to use CocoIndex only when exposed and exact symbols are unknown, and describes code graph tools as support rather than a substitute for file:line evidence [SOURCE: .opencode/agents/deep-review.md:157] [SOURCE: .opencode/agents/deep-review.md:239]. This makes semantic/code-graph search optional, not a required precondition for reviewing unfamiliar or high-risk targets.",
       "addedAtIteration": 6,
       "sources": []
     },
     {
       "id": "finding-6-8-deep-research-has-a-stronger-focus-selection-loop-even-without-a-dedicated-file-",
-      "text": "Deep-research has a stronger focus-selection loop even without a dedicated file targeter. Its prompt injects focus area, remaining key questions, and last-three summaries [SOURCE: .opencode/skills/deep-research/assets/prompt_pack_iteration.md.tmpl:11]. Its YAML chooses `least_explored` from unanswered questions not covered by the last focus [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:386], and the agent chooses the narrower evidence-answerable focus when tied [SOURCE: .opencode/agents/deep-research.md:122]. That explains why bug-finding research can keep drilling into one defect hypothesis while deep-review rotates over a dimension/file scope combination.",
+      "text": "Deep-research has a stronger focus-selection loop even without a dedicated file targeter. Its prompt injects focus area, remaining key questions, and last-three summaries [SOURCE: .opencode/skills/deep-research/assets/prompt_pack_iteration.md.tmpl:11]. Its YAML chooses `least_explored` from unanswered questions not covered by the last focus [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:386], and the agent chooses the narrower evidence-answerable focus when tied [SOURCE: .opencode/agents/deep-research.md:122]. That explains why bug-finding research can keep drilling into one defect hypothesis while deep-review rotates over a dimension/file scope combination.",
       "addedAtIteration": 6,
       "sources": []
     },
     {
       "id": "finding-6-1-deep-review-scope-discovery-is-broad-and-enumerative-not-hotspot-ranked-for-a-sp",
-      "text": "Deep-review scope discovery is broad and enumerative, not hotspot-ranked. For a spec-folder target it reads packet docs, discovers referenced implementation files and associated tests, then sets scope to all discovered files; skills similarly include SKILL.md, references, assets, scripts, agents, and commands; arbitrary files expand globs and immediate cross-references [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:227] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:235] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:249]. The outputs are `review_scope_files` and `cross_reference_targets`, but there is no ranked target queue, changed-file risk score, dependency centrality, bug-class hotspot list, or mandatory semantic/code-graph expansion step [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:254].",
+      "text": "Deep-review scope discovery is broad and enumerative, not hotspot-ranked. For a spec-folder target it reads packet docs, discovers referenced implementation files and associated tests, then sets scope to all discovered files; skills similarly include SKILL.md, references, assets, scripts, agents, and commands; arbitrary files expand globs and immediate cross-references [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:227] [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:235] [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:249]. The outputs are `review_scope_files` and `cross_reference_targets`, but there is no ranked target queue, changed-file risk score, dependency centrality, bug-class hotspot list, or mandatory semantic/code-graph expansion step [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:254].",
       "addedAtIteration": 6,
       "sources": []
     },
@@ -317,13 +317,13 @@
     },
     {
       "id": "finding-6-5-graph-convergence-is-a-stop-gate-over-emitted-graph-data-not-a-context-loading-o",
-      "text": "Graph convergence is a stop gate over emitted graph data, not a context-loading or hotspot-discovery requirement. The deep-review YAML calls `deep_loop_graph_convergence` before the inline vote [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:418], but the handler returns `CONTINUE` with no blockers when the graph is empty [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:168]. Review graph signals measure dimension coverage, finding stability, P0 resolution, evidence density, and hotspot saturation [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:418] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:480]. Hotspots are only FILE nodes carrying `metadata.hotspot_score`, and saturation means at least two dimensions cover that file [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:499]. If iterations do not emit graph nodes, graph convergence cannot guide target selection.",
+      "text": "Graph convergence is a stop gate over emitted graph data, not a context-loading or hotspot-discovery requirement. The deep-review YAML calls `deep_loop_graph_convergence` before the inline vote [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:418], but the handler returns `CONTINUE` with no blockers when the graph is empty [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:168]. Review graph signals measure dimension coverage, finding stability, P0 resolution, evidence density, and hotspot saturation [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:418] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:480]. Hotspots are only FILE nodes carrying `metadata.hotspot_score`, and saturation means at least two dimensions cover that file [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:499]. If iterations do not emit graph nodes, graph convergence cannot guide target selection.",
       "addedAtIteration": 6,
       "sources": []
     },
     {
       "id": "finding-6-4-resource-map-behavior-is-a-traceability-coverage-gate-not-a-bug-hunting-target-s",
-      "text": "Resource-map behavior is a traceability coverage gate, not a bug-hunting target selector. Deep-review detects `{spec_folder}/resource-map.md`, stores whether it is present, and otherwise records that the coverage gate is skipped [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:145]. When present, the contract requires at least one iteration to read the map and applied reports, cross-check `target_files`, classify touched/untouched/absent paths, and emit `resource-map-coverage` findings [SOURCE: .opencode/skills/deep-review/references/loop_protocol.md:306]. That is useful for \"did implementation paths match the declared inventory?\", but it does not prioritize files for correctness/security review and disappears entirely when the map is absent.",
+      "text": "Resource-map behavior is a traceability coverage gate, not a bug-hunting target selector. Deep-review detects `{spec_folder}/resource-map.md`, stores whether it is present, and otherwise records that the coverage gate is skipped [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:145]. When present, the contract requires at least one iteration to read the map and applied reports, cross-check `target_files`, classify touched/untouched/absent paths, and emit `resource-map-coverage` findings [SOURCE: .opencode/skills/deep-review/references/loop_protocol.md:306]. That is useful for \"did implementation paths match the declared inventory?\", but it does not prioritize files for correctness/security review and disappears entirely when the map is absent.",
       "addedAtIteration": 6,
       "sources": []
     },
@@ -335,7 +335,7 @@
     },
     {
       "id": "finding-6-2-the-review-loop-selects-a-dimension-before-it-selects-a-deep-file-cluster-initia",
-      "text": "The review loop selects a dimension before it selects a deep file cluster. Initialization orders dimensions as correctness, security, traceability, and maintainability, with an optional resource-map traceability pass when a map exists [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:258]. Each loop then extracts `next_dimension` as the next uncovered dimension from the strategy queue [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:386]. That makes the primary search axis a taxonomy bucket. File focus is present only as broad `review_scope_files` and strategy table state, not as a reducer-owned \"next highest-risk file/path/invariant\" queue [SOURCE: .opencode/skills/deep-review/assets/deep_review_strategy.md:134].",
+      "text": "The review loop selects a dimension before it selects a deep file cluster. Initialization orders dimensions as correctness, security, traceability, and maintainability, with an optional resource-map traceability pass when a map exists [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:258]. Each loop then extracts `next_dimension` as the next uncovered dimension from the strategy queue [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:386]. That makes the primary search axis a taxonomy bucket. File focus is present only as broad `review_scope_files` and strategy table state, not as a reducer-owned \"next highest-risk file/path/invariant\" queue [SOURCE: .opencode/skills/deep-review/assets/deep_review_strategy.md:134].",
       "addedAtIteration": 6,
       "sources": []
     },
@@ -347,7 +347,7 @@
     },
     {
       "id": "finding-7-1-deep-review-synthesis-derives-the-headline-verdict-from-active-severity-counts-n",
-      "text": "Deep-review synthesis derives the headline verdict from active severity counts, not from search-depth proof. The YAML maps any active P0 to `FAIL`, any active P1 to `CONDITIONAL`, and otherwise `PASS`, with `hasAdvisories` only when PASS has active P2s [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1088]. The required Executive Summary then asks for verdict, advisory bit, active counts, and scope summary [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1171]. That is appropriate for release routing, but it can make a shallow review look complete when no active P0/P1 was found and no separate search-ledger gate exists.",
+      "text": "Deep-review synthesis derives the headline verdict from active severity counts, not from search-depth proof. The YAML maps any active P0 to `FAIL`, any active P1 to `CONDITIONAL`, and otherwise `PASS`, with `hasAdvisories` only when PASS has active P2s [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1088]. The required Executive Summary then asks for verdict, advisory bit, active counts, and scope summary [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1171]. That is appropriate for release routing, but it can make a shallow review look complete when no active P0/P1 was found and no separate search-ledger gate exists.",
       "addedAtIteration": 7,
       "sources": []
     },
@@ -359,7 +359,7 @@
     },
     {
       "id": "finding-7-3-null-search-evidence-appears-only-as-a-late-underspecified-audit-item-the-synthe",
-      "text": "Null-search evidence appears only as a late, underspecified audit item. The synthesis instructions put \"ruled-out claims\" and \"sources reviewed\" in the Audit Appendix after Deferred Items [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1208], and the loop protocol's section table similarly makes Audit Appendix the final section for coverage, replay validation, and convergence evidence [SOURCE: .opencode/skills/deep-review/references/loop_protocol.md:464]. Because the appendix has no required row schema, minimum counts, or candidate-class coverage fields, a report can satisfy the contract with a terse sentence instead of durable negative evidence.",
+      "text": "Null-search evidence appears only as a late, underspecified audit item. The synthesis instructions put \"ruled-out claims\" and \"sources reviewed\" in the Audit Appendix after Deferred Items [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1208], and the loop protocol's section table similarly makes Audit Appendix the final section for coverage, replay validation, and convergence evidence [SOURCE: .opencode/skills/deep-review/references/loop_protocol.md:464]. Because the appendix has no required row schema, minimum counts, or candidate-class coverage fields, a report can satisfy the contract with a terse sentence instead of durable negative evidence.",
       "addedAtIteration": 7,
       "sources": []
     },
@@ -383,7 +383,7 @@
     },
     {
       "id": "finding-7-2-the-report-contract-preserves-active-findings-much-more-strongly-than-null-searc",
-      "text": "The report contract preserves active findings much more strongly than null searches. The Planning Packet must include active findings, remediation workstreams, finding classes, affected surfaces, and fix-completeness metadata, and missing finding fields must be marked `UNKNOWN` rather than inferred from prose [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1177]. The Active Finding Registry requires ID, severity, title, dimension, file:line, evidence, impact, fix recommendation, disposition, `findingClass`, `scopeProof`, and `affectedSurfaceHints` [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1183]. There is no symmetric required registry for rejected hypotheses, negative searches, missed-class risks, unsearched producers, unsearched consumers, or absent test classes.",
+      "text": "The report contract preserves active findings much more strongly than null searches. The Planning Packet must include active findings, remediation workstreams, finding classes, affected surfaces, and fix-completeness metadata, and missing finding fields must be marked `UNKNOWN` rather than inferred from prose [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1177]. The Active Finding Registry requires ID, severity, title, dimension, file:line, evidence, impact, fix recommendation, disposition, `findingClass`, `scopeProof`, and `affectedSurfaceHints` [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1183]. There is no symmetric required registry for rejected hypotheses, negative searches, missed-class risks, unsearched producers, unsearched consumers, or absent test classes.",
       "addedAtIteration": 7,
       "sources": []
     },
@@ -407,13 +407,13 @@
     },
     {
       "id": "finding-8-3-rank-3-null-search-ledger-persisted-through-reducer-dashboard-and-synthesis-leve",
-      "text": "**Rank 3: null-search ledger persisted through reducer, dashboard, and synthesis.** Leverage: high. Risk: medium. Affected surface: reducer ingestion/rendering, dashboard template/rendered sections, report synthesis YAML, state registry, and deep-review report examples. Verification cost: medium. Evidence: synthesis derives verdict from active severity counts [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1088], reports active counts and scope in the executive summary [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1171], and requires a rich active finding registry [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1183]. Ruled-out claims and sources reviewed are relegated to the Audit Appendix without a row schema [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1208]. The reducer-rendered dashboard surfaces severity, progress, dimension coverage, graph convergence, trend, next focus, and active risks [SOURCE: .opencode/skills/deep-review/scripts/reduce-state.cjs:1119] [SOURCE: .opencode/skills/deep-review/scripts/reduce-state.cjs:1215], but not search debt. Acceptance criteria: reducer owns a `searchDebt` / `ruledOutCandidates` rollup; dashboard shows searched, ruled-out, deferred, blocked, and unsearched candidate classes; review reports include a first-class Search Ledger section before or near the Active Finding Registry, not only in the final appendix.",
+      "text": "**Rank 3: null-search ledger persisted through reducer, dashboard, and synthesis.** Leverage: high. Risk: medium. Affected surface: reducer ingestion/rendering, dashboard template/rendered sections, report synthesis YAML, state registry, and deep-review report examples. Verification cost: medium. Evidence: synthesis derives verdict from active severity counts [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1088], reports active counts and scope in the executive summary [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1171], and requires a rich active finding registry [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1183]. Ruled-out claims and sources reviewed are relegated to the Audit Appendix without a row schema [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1208]. The reducer-rendered dashboard surfaces severity, progress, dimension coverage, graph convergence, trend, next focus, and active risks [SOURCE: .opencode/skills/deep-review/scripts/reduce-state.cjs:1119] [SOURCE: .opencode/skills/deep-review/scripts/reduce-state.cjs:1215], but not search debt. Acceptance criteria: reducer owns a `searchDebt` / `ruledOutCandidates` rollup; dashboard shows searched, ruled-out, deferred, blocked, and unsearched candidate classes; review reports include a first-class Search Ledger section before or near the Active Finding Registry, not only in the final appendix.",
       "addedAtIteration": 8,
       "sources": []
     },
     {
       "id": "finding-8-4-rank-4-focus-narrowing-and-target-selection-ledger-leverage-high-for-broad-or-un",
-      "text": "**Rank 4: focus narrowing and target-selection ledger.** Leverage: high for broad or unfamiliar targets. Risk: low-medium. Affected surface: deep-review YAML setup/iteration focus, prompt pack state injection, agent instructions, strategy format, and tests/playbooks. Verification cost: medium. Evidence: scope discovery enumerates all files for spec, skill, agent, track, or file targets [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:227] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:254], then dimension ordering makes correctness, security, traceability, and maintainability the primary sequence [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:258]. Iteration state extracts `next_dimension` from the strategy queue [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:386], while the agent performs only 3-5 focused actions and writes findings instead of expanding discovery near the tool ceiling [SOURCE: .opencode/agents/deep-review.md:155] [SOURCE: .opencode/agents/deep-review.md:159]. Acceptance criteria: every iteration records `targetSelection` with selected files/flows, selection reason, discovery methods, omitted high-risk files, graph/CocoIndex availability, producer-consumer paths, invariant targets, and negative-test targets; broad scopes require a ranked queue before dimensions can count as covered.",
+      "text": "**Rank 4: focus narrowing and target-selection ledger.** Leverage: high for broad or unfamiliar targets. Risk: low-medium. Affected surface: deep-review YAML setup/iteration focus, prompt pack state injection, agent instructions, strategy format, and tests/playbooks. Verification cost: medium. Evidence: scope discovery enumerates all files for spec, skill, agent, track, or file targets [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:227] [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:254], then dimension ordering makes correctness, security, traceability, and maintainability the primary sequence [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:258]. Iteration state extracts `next_dimension` from the strategy queue [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:386], while the agent performs only 3-5 focused actions and writes findings instead of expanding discovery near the tool ceiling [SOURCE: .opencode/agents/deep-review.md:155] [SOURCE: .opencode/agents/deep-review.md:159]. Acceptance criteria: every iteration records `targetSelection` with selected files/flows, selection reason, discovery methods, omitted high-risk files, graph/CocoIndex availability, producer-consumer paths, invariant targets, and negative-test targets; broad scopes require a ranked queue before dimensions can count as covered.",
       "addedAtIteration": 8,
       "sources": []
     },
@@ -425,19 +425,19 @@
     },
     {
       "id": "finding-8-6-rank-6-convergence-threshold-and-candidate-saturation-gates-leverage-medium-high",
-      "text": "**Rank 6: convergence threshold and candidate-saturation gates.** Leverage: medium-high when paired with candidate rows; low if done alone. Risk: medium because stricter stopping can increase loop cost or block valid low-risk reviews. Affected surface: convergence reference, YAML stop logic, reducer registry, blocked-stop events, and tests. Verification cost: medium-high. Evidence: the highest-weight convergence signal is dimension coverage [SOURCE: .opencode/skills/deep-review/references/convergence.md:211], and the YAML composite vote weights dimension coverage at 0.45 [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:471]. No-finding iterations set `newFindingsRatio = 0.0` [SOURCE: .opencode/skills/deep-review/references/convergence.md:369], which is only meaningful if clean-search proof exists. Acceptance criteria: STOP is illegal for non-trivial targets until required candidate classes have `finding`, `ruled_out`, `deferred`, or `blocked` dispositions with evidence; convergence includes `candidateCoverage` or `searchLedgerCoverage`; blocked-stop events identify missing candidate classes.",
+      "text": "**Rank 6: convergence threshold and candidate-saturation gates.** Leverage: medium-high when paired with candidate rows; low if done alone. Risk: medium because stricter stopping can increase loop cost or block valid low-risk reviews. Affected surface: convergence reference, YAML stop logic, reducer registry, blocked-stop events, and tests. Verification cost: medium-high. Evidence: the highest-weight convergence signal is dimension coverage [SOURCE: .opencode/skills/deep-review/references/convergence.md:211], and the YAML composite vote weights dimension coverage at 0.45 [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:471]. No-finding iterations set `newFindingsRatio = 0.0` [SOURCE: .opencode/skills/deep-review/references/convergence.md:369], which is only meaningful if clean-search proof exists. Acceptance criteria: STOP is illegal for non-trivial targets until required candidate classes have `finding`, `ruled_out`, `deferred`, or `blocked` dispositions with evidence; convergence includes `candidateCoverage` or `searchLedgerCoverage`; blocked-stop events identify missing candidate classes.",
       "addedAtIteration": 8,
       "sources": []
     },
     {
       "id": "finding-8-7-rank-7-synthesis-report-changes-leverage-medium-high-for-operator-trust-and-foll",
-      "text": "**Rank 7: synthesis/report changes.** Leverage: medium-high for operator trust and follow-on planning, but insufficient without earlier state enforcement. Risk: low-medium. Affected surface: synthesis YAML, `review-report.md` contract, planning packet fields, reducer report inputs, examples. Verification cost: medium. Evidence: the current report must include active findings, finding classes, affected surfaces, and fix-completeness metadata [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1177], while the Active Finding Registry is much richer than the Audit Appendix [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1183] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1208]. Acceptance criteria: report verdict includes a search-depth posture such as `searchCoverage: sufficient|partial|blocked`; Search Ledger rows are included in the planning packet or an adjacent machine-readable block; PASS with partial search coverage is either forbidden or explicitly marked advisory/blocked by policy.",
+      "text": "**Rank 7: synthesis/report changes.** Leverage: medium-high for operator trust and follow-on planning, but insufficient without earlier state enforcement. Risk: low-medium. Affected surface: synthesis YAML, `review-report.md` contract, planning packet fields, reducer report inputs, examples. Verification cost: medium. Evidence: the current report must include active findings, finding classes, affected surfaces, and fix-completeness metadata [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1177], while the Active Finding Registry is much richer than the Audit Appendix [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1183] [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1208]. Acceptance criteria: report verdict includes a search-depth posture such as `searchCoverage: sufficient|partial|blocked`; Search Ledger rows are included in the planning packet or an adjacent machine-readable block; PASS with partial search coverage is either forbidden or explicitly marked advisory/blocked by policy.",
       "addedAtIteration": 8,
       "sources": []
     },
     {
       "id": "finding-8-8-rank-8-higher-default-iterations-and-lower-convergence-threshold-leverage-medium",
-      "text": "**Rank 8: higher/default iterations and lower convergence threshold.** Leverage: medium as a budget amplifier, low as a standalone fix. Risk: low-medium due to runtime cost. Affected surface: command defaults, config defaults, docs, and dashboard expectations. Verification cost: low. Evidence: deep-review defaults to 7 iterations and convergence `0.10` [SOURCE: .opencode/commands/spec_kit/deep-review.md:105] [SOURCE: .opencode/commands/spec_kit/deep-review.md:106], while deep-research defaults to 10 iterations and `0.05` [SOURCE: .opencode/commands/spec_kit/deep-research.md:96] [SOURCE: .opencode/commands/spec_kit/deep-research.md:97]. Iteration 001 already identified this as a plausible contributor, but the later evidence shows extra passes would still be shallow if they repeat dimension coverage without candidate-search artifacts [SOURCE: .opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/research/iterations/iteration-001.md:18] [SOURCE: .opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/research/iterations/iteration-007.md:33]. Acceptance criteria: defaults move only after candidate/search-ledger gates exist, or are scoped to high-risk targets; tests confirm increased iterations improve candidate coverage rather than only adding more empty clean passes.",
+      "text": "**Rank 8: higher/default iterations and lower convergence threshold.** Leverage: medium as a budget amplifier, low as a standalone fix. Risk: low-medium due to runtime cost. Affected surface: command defaults, config defaults, docs, and dashboard expectations. Verification cost: low. Evidence: deep-review defaults to 7 iterations and convergence `0.10` [SOURCE: .opencode/commands/deep/start-review-loop.md:105] [SOURCE: .opencode/commands/deep/start-review-loop.md:106], while deep-research defaults to 10 iterations and `0.05` [SOURCE: .opencode/commands/deep/start-research-loop.md:96] [SOURCE: .opencode/commands/deep/start-research-loop.md:97]. Iteration 001 already identified this as a plausible contributor, but the later evidence shows extra passes would still be shallow if they repeat dimension coverage without candidate-search artifacts [SOURCE: .opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/research/iterations/iteration-001.md:18] [SOURCE: .opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/research/iterations/iteration-007.md:33]. Acceptance criteria: defaults move only after candidate/search-ledger gates exist, or are scoped to high-risk targets; tests confirm increased iterations improve candidate coverage rather than only adding more empty clean passes.",
       "addedAtIteration": 8,
       "sources": []
     },
@@ -485,7 +485,7 @@
     },
     {
       "id": "finding-9-8-the-command-flow-stress-test-should-become-the-end-to-end-proof-against-shallow-",
-      "text": "**The command-flow stress test should become the end-to-end proof against shallow review.** CP-053 already runs a sandboxed `/spec_kit:deep-review:auto` invocation and checks durable artifacts, canonical `type:\"iteration\"`, `newFindingsRatio`, `findingsSummary`, no `iteration_delta`, and clean target/project tripwires [SOURCE: .opencode/skills/deep-review/manual_testing_playbook/07--command-flow-stress-tests/053-three-artifact-iteration-contract.md:24] [SOURCE: .opencode/skills/deep-review/manual_testing_playbook/07--command-flow-stress-tests/053-three-artifact-iteration-contract.md:61] [SOURCE: .opencode/skills/deep-review/manual_testing_playbook/07--command-flow-stress-tests/053-three-artifact-iteration-contract.md:76]. The new CP-058 should seed a tiny review target with two intentional bugs: a producer/consumer mismatch and a missing negative-test boundary. Pass criteria: the review emits `targetSelection`, at least one candidate row per seeded bug class, at least one `negativeTestSearched` row, at least one candidate linked to a finding or ruled out with `path:line` evidence, and no final PASS unless `searchCoverage` is `sufficient`. This proves behavior, not just schema.",
+      "text": "**The command-flow stress test should become the end-to-end proof against shallow review.** CP-053 already runs a sandboxed `/deep:start-review-loop:auto` invocation and checks durable artifacts, canonical `type:\"iteration\"`, `newFindingsRatio`, `findingsSummary`, no `iteration_delta`, and clean target/project tripwires [SOURCE: .opencode/skills/deep-review/manual_testing_playbook/07--command-flow-stress-tests/053-three-artifact-iteration-contract.md:24] [SOURCE: .opencode/skills/deep-review/manual_testing_playbook/07--command-flow-stress-tests/053-three-artifact-iteration-contract.md:61] [SOURCE: .opencode/skills/deep-review/manual_testing_playbook/07--command-flow-stress-tests/053-three-artifact-iteration-contract.md:76]. The new CP-058 should seed a tiny review target with two intentional bugs: a producer/consumer mismatch and a missing negative-test boundary. Pass criteria: the review emits `targetSelection`, at least one candidate row per seeded bug class, at least one `negativeTestSearched` row, at least one candidate linked to a finding or ruled out with `path:line` evidence, and no final PASS unless `searchCoverage` is `sufficient`. This proves behavior, not just schema.",
       "addedAtIteration": 9,
       "sources": []
     },
@@ -551,7 +551,7 @@
     },
     {
       "id": "finding-11-3-p1-targetselection-must-prove-narrowing-not-duplicate-scope-discovery-the-workfl",
-      "text": "**P1 - `targetSelection` must prove narrowing, not duplicate scope discovery.** The workflow already resolves a review target into all discovered files or cross-references by target type [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:227], and the strategy template already has a \"Files Under Review\" table populated from scope discovery [SOURCE: .opencode/skills/deep-review/assets/deep_review_strategy.md:134]. The missing proof is per-iteration selection: which subset was selected, why it outranked omitted high-risk targets, and which discovery methods were used. Minimal `targetSelection` should require `selectedTargets[]`, `selectionReason`, `discoveryMethods[]`, `omittedHighRiskTargets[]`, `graphStatus`, `semanticSearchStatus`, and `evidenceRefs`. Without those fields, a review can point at the full scope and still not show why it searched the highest-risk path.",
+      "text": "**P1 - `targetSelection` must prove narrowing, not duplicate scope discovery.** The workflow already resolves a review target into all discovered files or cross-references by target type [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:227], and the strategy template already has a \"Files Under Review\" table populated from scope discovery [SOURCE: .opencode/skills/deep-review/assets/deep_review_strategy.md:134]. The missing proof is per-iteration selection: which subset was selected, why it outranked omitted high-risk targets, and which discovery methods were used. Minimal `targetSelection` should require `selectedTargets[]`, `selectionReason`, `discoveryMethods[]`, `omittedHighRiskTargets[]`, `graphStatus`, `semanticSearchStatus`, and `evidenceRefs`. Without those fields, a review can point at the full scope and still not show why it searched the highest-risk path.",
       "addedAtIteration": 11,
       "sources": [
         "`.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/research/research.md`",
@@ -563,7 +563,7 @@
         "`.opencode/skills/deep-review/assets/review_mode_contract.yaml`",
         "`.opencode/skills/deep-review/assets/deep_review_strategy.md`",
         "`.opencode/skills/deep-review/scripts/reduce-state.cjs`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`",
+        "`.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/post-dispatch-validate.vitest.ts`",
         "`.opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts`",
@@ -584,7 +584,7 @@
         "`.opencode/skills/deep-review/assets/review_mode_contract.yaml`",
         "`.opencode/skills/deep-review/assets/deep_review_strategy.md`",
         "`.opencode/skills/deep-review/scripts/reduce-state.cjs`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`",
+        "`.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/post-dispatch-validate.vitest.ts`",
         "`.opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts`",
@@ -593,7 +593,7 @@
     },
     {
       "id": "finding-11-6-p1-graphless-runs-need-an-explicit-fallback-because-current-graph-behavior-silen",
-      "text": "**P1 - Graphless runs need an explicit fallback, because current graph behavior silently omits the graph gate.** The convergence reference says that when `graphEvents` are absent, the graph evidence sub-check is omitted [SOURCE: .opencode/skills/deep-review/references/convergence.md:677]. The workflow also skips graph upsert when the latest iteration has no `graphEvents` [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:980]. That is acceptable only if `targetSelection.discoveryMethods` and `searchLedger.searchActions` prove equivalent direct coverage through reads, exact searches, resource-map checks, or semantic search. Otherwise \"graph unavailable\" remains a free pass.",
+      "text": "**P1 - Graphless runs need an explicit fallback, because current graph behavior silently omits the graph gate.** The convergence reference says that when `graphEvents` are absent, the graph evidence sub-check is omitted [SOURCE: .opencode/skills/deep-review/references/convergence.md:677]. The workflow also skips graph upsert when the latest iteration has no `graphEvents` [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:980]. That is acceptable only if `targetSelection.discoveryMethods` and `searchLedger.searchActions` prove equivalent direct coverage through reads, exact searches, resource-map checks, or semantic search. Otherwise \"graph unavailable\" remains a free pass.",
       "addedAtIteration": 11,
       "sources": [
         "`.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/research/research.md`",
@@ -605,7 +605,7 @@
         "`.opencode/skills/deep-review/assets/review_mode_contract.yaml`",
         "`.opencode/skills/deep-review/assets/deep_review_strategy.md`",
         "`.opencode/skills/deep-review/scripts/reduce-state.cjs`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`",
+        "`.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/post-dispatch-validate.vitest.ts`",
         "`.opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts`",
@@ -626,7 +626,7 @@
         "`.opencode/skills/deep-review/assets/review_mode_contract.yaml`",
         "`.opencode/skills/deep-review/assets/deep_review_strategy.md`",
         "`.opencode/skills/deep-review/scripts/reduce-state.cjs`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`",
+        "`.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/post-dispatch-validate.vitest.ts`",
         "`.opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts`",
@@ -647,7 +647,7 @@
         "`.opencode/skills/deep-review/assets/review_mode_contract.yaml`",
         "`.opencode/skills/deep-review/assets/deep_review_strategy.md`",
         "`.opencode/skills/deep-review/scripts/reduce-state.cjs`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`",
+        "`.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/post-dispatch-validate.vitest.ts`",
         "`.opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts`",
@@ -656,7 +656,7 @@
     },
     {
       "id": "finding-11-5-p1-trivial-review-and-error-record-exemptions-need-first-class-state-not-prose-t",
-      "text": "**P1 - Trivial-review and error-record exemptions need first-class state, not prose.** The current missing-output fallback appends an `error` iteration with empty arrays and zero counts [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:934]. Existing reducer tests also use legacy iteration records without `findingDetails` even though the current contract requires it [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:119]. If v2 validation blindly requires ledgers, the workflow can fail its own fallback rows and old fixtures. Add `reviewDepthApplicability`: `{ \"scopeClass\": \"trivial|standard|complex\", \"enforcement\": \"none|warn|error\", \"reason\": \"...\", \"evidenceRefs\": [...] }`. Hard enforcement applies to v2 `status:\"complete\"` standard/complex records; `error`, `timeout`, `stuck`, and legacy unversioned records should be warn-only or exempt.",
+      "text": "**P1 - Trivial-review and error-record exemptions need first-class state, not prose.** The current missing-output fallback appends an `error` iteration with empty arrays and zero counts [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:934]. Existing reducer tests also use legacy iteration records without `findingDetails` even though the current contract requires it [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:119]. If v2 validation blindly requires ledgers, the workflow can fail its own fallback rows and old fixtures. Add `reviewDepthApplicability`: `{ \"scopeClass\": \"trivial|standard|complex\", \"enforcement\": \"none|warn|error\", \"reason\": \"...\", \"evidenceRefs\": [...] }`. Hard enforcement applies to v2 `status:\"complete\"` standard/complex records; `error`, `timeout`, `stuck`, and legacy unversioned records should be warn-only or exempt.",
       "addedAtIteration": 11,
       "sources": [
         "`.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/research/research.md`",
@@ -668,7 +668,7 @@
         "`.opencode/skills/deep-review/assets/review_mode_contract.yaml`",
         "`.opencode/skills/deep-review/assets/deep_review_strategy.md`",
         "`.opencode/skills/deep-review/scripts/reduce-state.cjs`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`",
+        "`.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/post-dispatch-validate.vitest.ts`",
         "`.opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts`",
@@ -689,7 +689,7 @@
         "`.opencode/skills/deep-review/assets/review_mode_contract.yaml`",
         "`.opencode/skills/deep-review/assets/deep_review_strategy.md`",
         "`.opencode/skills/deep-review/scripts/reduce-state.cjs`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`",
+        "`.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/post-dispatch-validate.vitest.ts`",
         "`.opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts`",
@@ -710,7 +710,7 @@
         "`.opencode/skills/deep-review/assets/review_mode_contract.yaml`",
         "`.opencode/skills/deep-review/assets/deep_review_strategy.md`",
         "`.opencode/skills/deep-review/scripts/reduce-state.cjs`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`",
+        "`.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/post-dispatch-validate.vitest.ts`",
         "`.opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts`",
@@ -728,7 +728,7 @@
         "`.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/research/prompts/iteration-012.md`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/post-dispatch-validate.vitest.ts`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`",
+        "`.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`",
         "`.opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl`",
         "`.opencode/skills/deep-review/references/state_format.md`",
         "`.opencode/agents/deep-review.md`",
@@ -748,7 +748,7 @@
         "`.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/research/prompts/iteration-012.md`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/post-dispatch-validate.vitest.ts`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`",
+        "`.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`",
         "`.opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl`",
         "`.opencode/skills/deep-review/references/state_format.md`",
         "`.opencode/agents/deep-review.md`",
@@ -759,7 +759,7 @@
     },
     {
       "id": "finding-12-4-p1-searchledger-validation-must-reject-checkbox-rows-not-merely-require-the-fiel",
-      "text": "**P1 - `searchLedger` validation must reject checkbox rows, not merely require the field.** The current review required-field set does not include `reviewDepthSchemaVersion`, `reviewDepthApplicability`, `targetSelection`, `searchLedger`, or `searchCoverage` [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts:112]. The workflow's asserted JSONL fields mirror the old shape [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:881] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:885]. For versioned standard/complex complete records, the validator should fail rows missing `id`, `dimension`, `targetRefs`, `bugClass`, `hypothesis` or `invariant`, `searchActions`, non-empty `evidenceRefs`, supported `disposition`, and `rationale`. It should also fail disposition-specific gaps: `finding` without a matching `linkedFindingId`, `ruled_out` without `ruledOutReason`, `blocked` without `blockedReason`, `deferred` without `deferredReason`, and `not_applicable` without `notApplicableReason`.",
+      "text": "**P1 - `searchLedger` validation must reject checkbox rows, not merely require the field.** The current review required-field set does not include `reviewDepthSchemaVersion`, `reviewDepthApplicability`, `targetSelection`, `searchLedger`, or `searchCoverage` [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts:112]. The workflow's asserted JSONL fields mirror the old shape [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:881] [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:885]. For versioned standard/complex complete records, the validator should fail rows missing `id`, `dimension`, `targetRefs`, `bugClass`, `hypothesis` or `invariant`, `searchActions`, non-empty `evidenceRefs`, supported `disposition`, and `rationale`. It should also fail disposition-specific gaps: `finding` without a matching `linkedFindingId`, `ruled_out` without `ruledOutReason`, `blocked` without `blockedReason`, `deferred` without `deferredReason`, and `not_applicable` without `notApplicableReason`.",
       "addedAtIteration": 12,
       "sources": [
         "`.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/research/research.md`",
@@ -768,7 +768,7 @@
         "`.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/research/prompts/iteration-012.md`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/post-dispatch-validate.vitest.ts`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`",
+        "`.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`",
         "`.opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl`",
         "`.opencode/skills/deep-review/references/state_format.md`",
         "`.opencode/agents/deep-review.md`",
@@ -788,7 +788,7 @@
         "`.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/research/prompts/iteration-012.md`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/post-dispatch-validate.vitest.ts`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`",
+        "`.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`",
         "`.opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl`",
         "`.opencode/skills/deep-review/references/state_format.md`",
         "`.opencode/agents/deep-review.md`",
@@ -799,7 +799,7 @@
     },
     {
       "id": "finding-12-1-p1-warn-only-rollout-cannot-be-represented-cleanly-by-the-current-validator-resu",
-      "text": "**P1 - Warn-only rollout cannot be represented cleanly by the current validator result type.** The validator result is either `{ ok: true }` or `{ ok: false, reason, details }`, with a fixed failure reason union and no warnings payload [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts:60] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts:64]. The workflow's post-dispatch step also models validation as failure reasons that emit `schema_mismatch` conflict events [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:881] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:889]. That means the recommended legacy warn-only policy needs a first-class warning surface, such as `ok: true, warnings: [...]` or typed advisory events. Otherwise implementers will either fail legacy packets too aggressively or silently ignore migration debt.",
+      "text": "**P1 - Warn-only rollout cannot be represented cleanly by the current validator result type.** The validator result is either `{ ok: true }` or `{ ok: false, reason, details }`, with a fixed failure reason union and no warnings payload [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts:60] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts:64]. The workflow's post-dispatch step also models validation as failure reasons that emit `schema_mismatch` conflict events [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:881] [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:889]. That means the recommended legacy warn-only policy needs a first-class warning surface, such as `ok: true, warnings: [...]` or typed advisory events. Otherwise implementers will either fail legacy packets too aggressively or silently ignore migration debt.",
       "addedAtIteration": 12,
       "sources": [
         "`.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/research/research.md`",
@@ -808,7 +808,7 @@
         "`.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/research/prompts/iteration-012.md`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/post-dispatch-validate.vitest.ts`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`",
+        "`.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`",
         "`.opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl`",
         "`.opencode/skills/deep-review/references/state_format.md`",
         "`.opencode/agents/deep-review.md`",
@@ -828,7 +828,7 @@
         "`.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/research/prompts/iteration-012.md`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/post-dispatch-validate.vitest.ts`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`",
+        "`.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`",
         "`.opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl`",
         "`.opencode/skills/deep-review/references/state_format.md`",
         "`.opencode/agents/deep-review.md`",
@@ -839,7 +839,7 @@
     },
     {
       "id": "finding-12-6-p2-graphless-fallback-should-warn-or-pass-based-on-cited-search-evidence-not-on-",
-      "text": "**P2 - Graphless fallback should warn or pass based on cited search evidence, not on graph absence alone.** The convergence reference explicitly omits `graphEvidence` when `graphEvents` are absent [SOURCE: .opencode/skills/deep-review/references/convergence.md:677], and the workflow skips graph upsert when the latest iteration has no `graphEvents` array [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:979] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:994]. That should pass only when `targetSelection.discoveryMethods` and `searchLedger.searchActions` cite direct reads, exact searches, semantic-search status, resource-map checks, or inspected tests. It should warn when graph is unavailable but fallback proof exists, and fail when both graph data and cited fallback searches are absent for a standard/complex clean PASS.",
+      "text": "**P2 - Graphless fallback should warn or pass based on cited search evidence, not on graph absence alone.** The convergence reference explicitly omits `graphEvidence` when `graphEvents` are absent [SOURCE: .opencode/skills/deep-review/references/convergence.md:677], and the workflow skips graph upsert when the latest iteration has no `graphEvents` array [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:979] [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:994]. That should pass only when `targetSelection.discoveryMethods` and `searchLedger.searchActions` cite direct reads, exact searches, semantic-search status, resource-map checks, or inspected tests. It should warn when graph is unavailable but fallback proof exists, and fail when both graph data and cited fallback searches are absent for a standard/complex clean PASS.",
       "addedAtIteration": 12,
       "sources": [
         "`.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/research/research.md`",
@@ -848,7 +848,7 @@
         "`.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/research/prompts/iteration-012.md`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/post-dispatch-validate.vitest.ts`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`",
+        "`.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`",
         "`.opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl`",
         "`.opencode/skills/deep-review/references/state_format.md`",
         "`.opencode/agents/deep-review.md`",
@@ -871,7 +871,7 @@
         "`.opencode/skills/deep-review/references/state_format.md`",
         "`.opencode/skills/deep-review/references/convergence.md`",
         "`.opencode/skills/deep-review/scripts/reduce-state.cjs`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`",
+        "`.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts`",
@@ -893,7 +893,7 @@
         "`.opencode/skills/deep-review/references/state_format.md`",
         "`.opencode/skills/deep-review/references/convergence.md`",
         "`.opencode/skills/deep-review/scripts/reduce-state.cjs`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`",
+        "`.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts`",
@@ -915,7 +915,7 @@
         "`.opencode/skills/deep-review/references/state_format.md`",
         "`.opencode/skills/deep-review/references/convergence.md`",
         "`.opencode/skills/deep-review/scripts/reduce-state.cjs`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`",
+        "`.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts`",
@@ -937,7 +937,7 @@
         "`.opencode/skills/deep-review/references/state_format.md`",
         "`.opencode/skills/deep-review/references/convergence.md`",
         "`.opencode/skills/deep-review/scripts/reduce-state.cjs`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`",
+        "`.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts`",
@@ -959,7 +959,7 @@
         "`.opencode/skills/deep-review/references/state_format.md`",
         "`.opencode/skills/deep-review/references/convergence.md`",
         "`.opencode/skills/deep-review/scripts/reduce-state.cjs`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`",
+        "`.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts`",
@@ -981,7 +981,7 @@
         "`.opencode/skills/deep-review/references/state_format.md`",
         "`.opencode/skills/deep-review/references/convergence.md`",
         "`.opencode/skills/deep-review/scripts/reduce-state.cjs`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`",
+        "`.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts`",
@@ -1003,7 +1003,7 @@
         "`.opencode/skills/deep-review/references/state_format.md`",
         "`.opencode/skills/deep-review/references/convergence.md`",
         "`.opencode/skills/deep-review/scripts/reduce-state.cjs`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`",
+        "`.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts`",
@@ -1025,7 +1025,7 @@
         "`.opencode/skills/deep-review/references/state_format.md`",
         "`.opencode/skills/deep-review/references/convergence.md`",
         "`.opencode/skills/deep-review/scripts/reduce-state.cjs`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`",
+        "`.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts`",
@@ -1047,7 +1047,7 @@
         "`.opencode/skills/deep-review/references/state_format.md`",
         "`.opencode/skills/deep-review/references/convergence.md`",
         "`.opencode/skills/deep-review/scripts/reduce-state.cjs`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`",
+        "`.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts`",
@@ -1069,7 +1069,7 @@
         "`.opencode/skills/deep-review/references/state_format.md`",
         "`.opencode/skills/deep-review/references/convergence.md`",
         "`.opencode/skills/deep-review/scripts/reduce-state.cjs`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`",
+        "`.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts`",
@@ -1091,7 +1091,7 @@
         "`.opencode/skills/deep-review/references/state_format.md`",
         "`.opencode/skills/deep-review/references/convergence.md`",
         "`.opencode/skills/deep-review/scripts/reduce-state.cjs`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`",
+        "`.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts`",
@@ -1113,7 +1113,7 @@
         "`.opencode/skills/deep-review/references/state_format.md`",
         "`.opencode/skills/deep-review/references/convergence.md`",
         "`.opencode/skills/deep-review/scripts/reduce-state.cjs`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`",
+        "`.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`",
         "`.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts`",
@@ -1175,7 +1175,7 @@
     },
     {
       "id": "ruled-out-13-5-ruled-out-a-report-only-fix-the-report-compiler-depends-on-reducer-owned-state-p",
-      "text": "Ruled out a report-only fix. The report compiler depends on reducer-owned state plus `findingDetails`, so report instructions alone would still lack stable search aggregates. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1180]",
+      "text": "Ruled out a report-only fix. The report compiler depends on reducer-owned state plus `findingDetails`, so report instructions alone would still lack stable search aggregates. [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1180]",
       "addedAtIteration": 13
     },
     {

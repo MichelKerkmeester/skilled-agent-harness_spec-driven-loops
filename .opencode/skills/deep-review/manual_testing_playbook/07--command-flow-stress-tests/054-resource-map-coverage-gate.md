@@ -63,7 +63,7 @@ cp -a /tmp/cp-054-sandbox /tmp/cp-054-sandbox-baseline
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 git status --porcelain -- /tmp/cp-054-sandbox /tmp/cp-054-spec > /tmp/cp-054-pre.txt
 cd /tmp/cp-054-sandbox
-copilot -p "/spec_kit:deep-review:auto \"targets/review-target.js\" --spec-folder=/tmp/cp-054-spec --max-iterations=1 --convergence=0.10. Use target type files and dimensions traceability. Treat resource-map.md as first-class coverage input." --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-054-sandbox --add-dir /tmp/cp-054-spec 2>&1 | tee /tmp/cp-054-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-054-B-exit.txt
+copilot -p "/deep:start-review-loop:auto \"targets/review-target.js\" --spec-folder=/tmp/cp-054-spec --max-iterations=1 --convergence=0.10. Use target type files and dimensions traceability. Treat resource-map.md as first-class coverage input." --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-054-sandbox --add-dir /tmp/cp-054-spec 2>&1 | tee /tmp/cp-054-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-054-B-exit.txt
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 find /tmp/cp-054-spec -type f \( -name '*.json' -o -name '*.jsonl' -o -name '*.md' \) -print0 2>/dev/null | xargs -0 cat > /tmp/cp-054-B-artifacts.txt 2>/dev/null || touch /tmp/cp-054-B-artifacts.txt
 find /tmp/cp-054-spec -type f > /tmp/cp-054-B-files.txt 2>/dev/null || touch /tmp/cp-054-B-files.txt
@@ -92,7 +92,7 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 
 | File | Lines | Role |
 |---|---:|---|
-| `.opencode/commands/spec_kit/deep-review.md` | 186-188, 238-245 | Review packet outputs and YAML handoff |
+| `.opencode/commands/deep/start-review-loop.md` | 186-188, 238-245 | Review packet outputs and YAML handoff |
 | `.opencode/skills/deep-review/SKILL.md` | 233-251, 496-503 | Resource-map coverage behavior and report expectations |
 | `.opencode/agents/deep-review.md` | 245-252, 424-435 | Traceability dimension and pre-delivery verification |
 

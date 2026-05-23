@@ -18,7 +18,7 @@ Empty graph CONTINUE has historically meant "no graph data, proceed to inline vo
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm legal-stop decision tree emits `blocked_stop` with `graphlessFallbackGate` in `blocked_gates[]` when `graphCoverageMode: 'graphless_fallback'` is paired with empty `searchLedger` on non-trivial scope.
-- Layer partition: workflow YAML (`spec_kit_deep-review_auto.yaml` step `step_check_convergence`) + iteration record `searchCoverage.graphCoverageMode`.
+- Layer partition: workflow YAML (`deep_start-review-loop_auto.yaml` step `step_check_convergence`) + iteration record `searchCoverage.graphCoverageMode`.
 - Real user request: `Run a standard-scope v2 review iteration with graphCoverageMode set to graphless_fallback and empty searchLedger; confirm STOP is blocked by graphlessFallbackGate.`
 - Expected signals: blocked_stop event with `blocked_gates[]` containing `graphlessFallbackGate`; recovery_strategy mentions adding cited fallback ledger rows (direct_read / exact_grep / semantic_search / producer_consumer_trace / negative_test_inspection methods).
 - Pass/fail: PASS if `blocked_gates[]` contains `graphlessFallbackGate` AND the recovery message names fallback methods; FAIL if STOP succeeds OR the gate is reported as a generic graph error.
@@ -52,8 +52,8 @@ With `graphCoverageMode: 'graphless_fallback'` and empty `searchLedger`, the rev
 
 ## 4. SOURCE REFERENCES
 
-- Workflow YAML: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` (`step_check_convergence` legal-stop decision tree, graphlessFallbackGate branch).
-- Confirm mirror: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`.
+- Workflow YAML: `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` (`step_check_convergence` legal-stop decision tree, graphlessFallbackGate branch).
+- Confirm mirror: `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`.
 - Schema: `.opencode/skills/deep-review/references/state_format.md` (`graphCoverageMode` enum + fallback-method conventions).
 - Fixture: `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-convergence.vitest.ts` (workflow-runner integration TODO).
 - ADR: `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/006-complexity-candidate-saturation-gates/decision-record.md`.

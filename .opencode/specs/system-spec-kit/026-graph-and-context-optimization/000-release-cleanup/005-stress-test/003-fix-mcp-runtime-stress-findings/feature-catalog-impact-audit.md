@@ -131,7 +131,7 @@ Historical sections below are retained for provenance; use this reconciliation b
 - **Recommended new file:** `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/36-copilot-target-authority-helper.md` (or a similar slot under `17--governance/` since this is essentially a write-authority gate). Sections:
   - §1 Overview — wraps every cli-copilot deep-loop dispatch with a typed `targetAuthority` token; closes the v1.0.2 I1 catastrophic-mutation pathology.
   - §2 Current reality — the three-branch behavior matrix (`approved` -> preamble; `missing` + writeIntent -> Gate-3 prompt and strip `--allow-all-tools`; `missing` + !writeIntent -> pass-through), large-prompt override resistance, the new `CopilotTargetAuthority` discriminated union, and `validateSpecFolder`.
-  - §3 Source files — `mcp_server/lib/deep-loop/executor-config.ts`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`, plus the new vitest.
+  - §3 Source files — `mcp_server/lib/deep-loop/executor-config.ts`, `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`, `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`, plus the new vitest.
 - **Source:** `012-copilot-target-authority-gate-helper/spec.md` lines 79–167.
 
 ### 3.9 Packet 013 — graph degraded stress cell + SELECTIVE_REINDEX_THRESHOLD export

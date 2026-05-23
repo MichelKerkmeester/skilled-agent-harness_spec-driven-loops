@@ -259,17 +259,17 @@ describe('Gate 3 classifier — save/resume/continue (T-DOC-03)', () => {
   });
 
   it('triggers Gate 3 for direct spec_kit deep-research command prompts', () => {
-    const r = classifyPrompt('run /spec_kit:deep-research :auto for the routing packet');
+    const r = classifyPrompt('run /deep:start-research-loop :auto for the routing packet');
     expect(r.triggersGate3).toBe(true);
     expect(r.reason).toBe('resume_match');
     expect(r.matched.map((entry) => entry.pattern)).toEqual(expect.arrayContaining([
-      '/spec_kit:deep-research',
+      '/deep:start-research-loop',
       ':auto',
     ]));
   });
 
   it('triggers Gate 3 for direct spec_kit deep-review command prompts', () => {
-    const r = classifyPrompt('/spec_kit:deep-review :auto the current packet for 10 iterations');
+    const r = classifyPrompt('/deep:start-review-loop :auto the current packet for 10 iterations');
     expect(r.triggersGate3).toBe(true);
     expect(r.reason).toBe('resume_match');
   });

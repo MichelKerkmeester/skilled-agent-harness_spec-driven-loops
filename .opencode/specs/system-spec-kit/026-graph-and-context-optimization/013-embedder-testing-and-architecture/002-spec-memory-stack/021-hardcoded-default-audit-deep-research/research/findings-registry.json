@@ -1,0 +1,131 @@
+{
+  "sessionId": "021-hardcoded-default-audit-20260523T113727Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "openQuestions": [
+    {
+      "id": "question-1-which-subsystems-have-similar-env-db-config-hardcoded-resolution-chains-where-th",
+      "text": "Which subsystems have similar \"env → DB/config → hardcoded\" resolution chains where the hardcoded fallback is unreachable in theory but stale in practice?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-are-there-readmes-install-guide-doctor-commands-documenting-outdated-defaults",
+      "text": "Are there READMEs / INSTALL_GUIDE / doctor commands documenting outdated defaults?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-do-agent-definitions-reference-deprecated-model-names-or-paths",
+      "text": "Do agent definitions reference deprecated model names or paths?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-does-the-rerank-sidecar-have-similar-drift-qwen3-reranker-0-6b-is-canonical-per-",
+      "text": "Does the rerank-sidecar have similar drift (Qwen3-Reranker-0.6B is canonical per CocoIndex arc 2026-05-19, but other rerankers may be hardcoded)?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-do-other-cascade-probe-patterns-exist-with-stale-per-tier-defaults",
+      "text": "Do other \"cascade probe\" patterns exist with stale per-tier defaults?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "uncoveredQuestions": [
+    "Which subsystems have similar \"env → DB/config → hardcoded\" resolution chains where the hardcoded fallback is unreachable in theory but stale in practice?",
+    "Are there READMEs / INSTALL_GUIDE / doctor commands documenting outdated defaults?",
+    "Do agent definitions reference deprecated model names or paths?",
+    "Does the rerank-sidecar have similar drift (Qwen3-Reranker-0.6B is canonical per CocoIndex arc 2026-05-19, but other rerankers may be hardcoded)?",
+    "Do other \"cascade probe\" patterns exist with stale per-tier defaults?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-3-cocoindex-embedder-registry-aware-with-default-embedder-name-feeding-default-mod",
+      "text": "**CocoIndex embedder**: Registry-aware with `DEFAULT_EMBEDDER_NAME` feeding `_DEFAULT_MODEL`. Consistent with arc consensus.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-2-code-graph-parser-skip-list-is-db-driven-parser-skip-list-ts-not-hardcoded-edge-",
+      "text": "**Code-graph**: Parser skip-list is DB-driven (`parser-skip-list.ts`), not hardcoded. Edge weights use spread-override. Thresholds are documented and shared between production and tests.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-4-rerank-sidecar-env-first-design-rerank-model-name-with-hardcoded-fallback-consis",
+      "text": "**Rerank-sidecar**: Env-first design (`RERANK_MODEL_NAME`) with hardcoded fallback. Consistent.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-1-skill-advisor-default-active-embedder-is-set-to-auto-sentinel-schema-ts-38-41-ro",
+      "text": "**Skill-advisor**: `DEFAULT_ACTIVE_EMBEDDER` is set to `'auto'` sentinel (schema.ts:38-41), routing to the shared `auto-select.ts` cascade. No hardcoded model names remain.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-config-py-config-from-env-validates-unknown-embedders-against-is-registered-embe",
+      "text": "`config.py::Config.from_env()` validates unknown embedders against `_is_registered_embedder()` and falls back to default",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-config-py-imports-both-and-uses-as-module-level-sentinels-default-model-default-",
+      "text": "`config.py` imports both and uses as module-level sentinels (`_DEFAULT_MODEL`, `_DEFAULT_RERANK_MODEL`)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-registered-embedders-py-default-embedder-name-sbert-nomic-ai-coderankembed-match",
+      "text": "`registered_embedders.py::DEFAULT_EMBEDDER_NAME` = `\"sbert/nomic-ai/CodeRankEmbed\"` → matches May 2026 arc",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-registered-embedders-py-default-reranker-name-qwen-qwen3-reranker-0-6b-matches-2",
+      "text": "`registered_embedders.py::DEFAULT_RERANKER_NAME` = `\"Qwen/Qwen3-Reranker-0.6B\"` → matches 2026-05-20 promotion (supersedes jina-v3)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-6-reranker-py-get-reranker-adapter-dispatches-via-config-values-no-inline-model-st",
+      "text": "`reranker.py::get_reranker_adapter()` dispatches via config values; no inline model string override",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-7-server-py-delegates-all-model-decisions-to-the-daemon-config-layer-no-hardcoded-",
+      "text": "`server.py` delegates all model decisions to the daemon/config layer — no hardcoded model strings in FastAPI handlers",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-5-shared-py-resolve-query-prompt-name-and-resolve-document-prompt-name-resolve-pro",
+      "text": "`shared.py::resolve_query_prompt_name()` and `resolve_document_prompt_name()` resolve prompts from registry, with env override capability",
+      "addedAtIteration": 2,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "metrics": {
+    "iterationsCompleted": 2,
+    "openQuestions": 5,
+    "resolvedQuestions": 0,
+    "keyFindings": 11,
+    "convergenceScore": 0.72,
+    "coverageBySources": {}
+  },
+  "corruptionWarnings": [],
+  "status": "INITIALIZED"
+}

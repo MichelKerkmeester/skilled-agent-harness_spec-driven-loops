@@ -26,7 +26,7 @@ Prior Findings: P0=1 P1=1 P2=2
 2. **Read top changed code surfaces for maintainability concerns** (2-3 tool calls):
    - `post-dispatch-validate.ts` (validator v2 branch): look for dead code, magic numbers without constants, comments that contradict code, unused imports, type definitions out of sync with implementation (already found by iter 1 — verify no other instances).
    - `reduce-state.cjs` (reducer registry): look for TODO/FIXME, copy-pasted blocks, inconsistent naming between v1 and v2 fields, dashboard rendering with shell-injection-style string concat.
-   - `spec_kit_deep-review_auto.yaml` (workflow): look for orphaned step names, unused outputs, inconsistent indentation, prose that contradicts logic.
+   - `deep_start-review-loop_auto.yaml` (workflow): look for orphaned step names, unused outputs, inconsistent indentation, prose that contradicts logic.
 3. **Check new manual_testing_playbook scenarios** (1 tool call). Read 1-2 of `08--review-depth-v2-rollout/*.md`. Look for:
    - Consistent SOURCE_METADATA structure
    - References that point to real files/anchors

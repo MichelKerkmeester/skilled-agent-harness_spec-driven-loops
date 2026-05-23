@@ -14,8 +14,8 @@ Evidence:
 - `010-stress-test-close-loop-measurement-rerun/findings.md:19` identifies I1/cli-copilot as the worst single cell, and `findings.md:113` through `findings.md:115` recommends tightening the planner-first/Gate-3 behavior rather than letting Copilot infer a target folder.
 - `003-continuity-memory-runtime/004-memory-save-rewrite/spec.md:60` states the intended `/memory:save` runtime contract: planner-first by default, stopping short of mutation unless explicitly moved into a mutating mode.
 - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:66` through `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:70` currently only chooses raw prompt versus `@PROMPT_PATH`; it does not encode target authority.
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:601` through `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:606` imports and calls that helper, then `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:617` through `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:625` dispatches `copilot -p ... --allow-all-tools --no-ask-user`.
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:667` through `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:683` duplicates the same Copilot prompt-size branch in shell, also with `--allow-all-tools` and `--no-ask-user`.
+- `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:601` through `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:606` imports and calls that helper, then `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:617` through `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:625` dispatches `copilot -p ... --allow-all-tools --no-ask-user`.
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:667` through `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:683` duplicates the same Copilot prompt-size branch in shell, also with `--allow-all-tools` and `--no-ask-user`.
 - `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/executor-config.vitest.ts` already exists as the right unit-test home for helper behavior, and `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/cli-matrix.vitest.ts` already imports `resolveCopilotPromptArg`, so the migration has obvious coverage anchors.
 
 Implementation sketch:
@@ -133,8 +133,8 @@ Two seams remain the right synthesis candidates:
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/005-code-graph-fail-fast-routing/spec.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/004-cocoindex-overfetch-dedup-rerank/spec.md`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+- `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
 - `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/executor-config.vitest.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/cli-matrix.vitest.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts`

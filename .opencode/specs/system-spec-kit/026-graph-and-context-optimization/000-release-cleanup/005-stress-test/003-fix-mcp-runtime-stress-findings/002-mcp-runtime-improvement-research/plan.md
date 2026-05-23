@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: MCP Runtime Improvement Deep Research [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-fix-mcp-runtime-stress-findings/002-mcp-runtime-improvement-research/plan]"
-description: "10-iteration deep research workflow plan investigating MCP runtime defects from 005 and 006, dispatched via cli-codex gpt-5.5 high fast per iteration, owned by /spec_kit:deep-research:auto."
+description: "10-iteration deep research workflow plan investigating MCP runtime defects from 005 and 006, dispatched via cli-codex gpt-5.5 high fast per iteration, owned by /deep:start-research-loop:auto."
 template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
 trigger_phrases:
   - "007 deep research plan"
@@ -41,7 +41,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Markdown (research outputs), JSONL (skill state) |
-| **Framework** | /spec_kit:deep-research:auto skill workflow |
+| **Framework** | /deep:start-research-loop:auto skill workflow |
 | **Storage** | research/ subfolder owned by skill (iterations, deltas, prompts, logs, state JSONL) |
 | **Testing** | The packet IS investigation; verification probes are recommended downstream |
 | **Executor** | cli-codex (gpt-5.5, reasoning_effort=high, service_tier=fast, sandbox=workspace-write) |
@@ -49,7 +49,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 
 ### Overview
 
-A canonical autonomous deep-research run dispatched via the `/spec_kit:deep-research:auto` skill. The skill owns iteration state, convergence detection, delta tracking, and synthesizes a final research markdown. Per CLAUDE.md Gate 4, the orchestrator must NOT manage iteration state outside the skill's research/ folder.
+A canonical autonomous deep-research run dispatched via the `/deep:start-research-loop:auto` skill. The skill owns iteration state, convergence detection, delta tracking, and synthesizes a final research markdown. Per CLAUDE.md Gate 4, the orchestrator must NOT manage iteration state outside the skill's research/ folder.
 
 The user override for this packet specifies cli-codex with gpt-5.5 (reasoning effort high, service_tier fast, sandbox workspace-write) as the executor for per-iteration investigation work. The skill's default agent dispatch may be retained, but iteration prompts explicitly direct any tool dispatches to use:
 
@@ -118,7 +118,7 @@ The skill may reorder or merge iterations based on convergence detection. The ta
 - Commit + push
 
 ### Phase 2: Deep Research Loop (skill-owned)
-- Dispatch /spec_kit:deep-research:auto pointing at this packet
+- Dispatch /deep:start-research-loop:auto pointing at this packet
 - Skill manages 10 iterations (or fewer if convergence)
 - Per-iteration: cli-codex investigation, delta tracking, state machine updates
 - Orchestrator monitors progress every 30-45 min, does NOT interrupt unless stalled greater than 60 min
@@ -151,7 +151,7 @@ This is a research packet — no code is shipped. Testing is verification of the
 |------------|--------|-------|
 | 005-memory-search-runtime-bugs spec docs | Sibling packet on disk | Source for REQ-001..017 + REQ-018/019 candidates |
 | 001-search-intelligence-stress-playbook findings | Just committed Phase A | Source for v1.0.0 + v1.0.1 averages and model hallucination class |
-| /spec_kit:deep-research:auto skill | .opencode/skills/sk-deep-research/ | Owns iteration state and convergence detection |
+| /deep:start-research-loop:auto skill | .opencode/skills/sk-deep-research/ | Owns iteration state and convergence detection |
 | cli-codex CLI with gpt-5.5 | Installed and authenticated | Per-iteration investigation executor |
 <!-- /ANCHOR:dependencies -->
 

@@ -19,12 +19,32 @@
   },
   "derived": {
     "trigger_phrases": [
+      "006-skill-advisor",
       "skill advisor",
-      "skill advisor graph metadata"
+      "skill advisor system",
+      "skill advisor hook",
+      "search/routing tuning, skill graph and advisor unification, advisor docs and standards, smart-router, hook surface, plugin hardening, and hook improvements",
+      "001-memory-search-routing-tuning",
+      "001-skill-graph-metadata-routing-boosts",
+      "002-advisor-phrase-booster-tuning",
+      "001-documentation-code-alignment",
+      "003-smart-remediation-opencode-plugin",
+      "001-deferred-remediation-telemetry-run",
+      "004-advisor-hook-surface-integration"
     ],
     "key_topics": [
+      "006-skill-advisor",
       "skill",
-      "advisor"
+      "advisor",
+      "system",
+      "hook",
+      "search",
+      "routing",
+      "tuning",
+      "graph",
+      "unification",
+      "docs",
+      "standards"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -32,10 +52,95 @@
       "spec.md",
       "resource-map.md"
     ],
-    "entities": [],
-    "causal_summary": "Graph metadata for the current packet.",
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Skill",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Keep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Map",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Instructions",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "real",
+        "kind": "key_phrase",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. READMEs",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. Documents",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Skill advisor work was scattered across two phase wrappers (`006-skill-advisor/` for search/routing/graph/smart-router, and parts of `007-hook-parity/` for hook surface, daemon unification, plugin hardening, standards alignment, and hook improvements). The split made it hard to see the advisor system as one coherent surface and forced cross-wrapper navigation when reasoning about advisor changes.",
     "created_at": "2026-04-21T13:00:00Z",
-    "last_save_at": "2026-05-19T13:51:39.099Z",
+    "last_save_at": "2026-05-23T11:55:15.095Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

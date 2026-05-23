@@ -44,9 +44,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate confirm mode approval checkpoints without changing deep-research's core loop or artifacts.
 ### Commands
-1. `bash: rg -n ':confirm|approval|interactive' .opencode/commands/spec_kit/deep-research.md .opencode/skills/deep-research/README.md`
-2. `bash: sed -n '1,300p' .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
-3. `bash: rg -n 'gate_init_approval|phase_loop|phase_synthesis|research_output|research/iterations' .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+1. `bash: rg -n ':confirm|approval|interactive' .opencode/commands/deep/start-research-loop.md .opencode/skills/deep-research/README.md`
+2. `bash: sed -n '1,300p' .opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`
+3. `bash: rg -n 'gate_init_approval|phase_loop|phase_synthesis|research_output|research/iterations' .opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`
 ### Expected
 Confirm mode is interactive, approval-gated, and still routes through initialization, loop, synthesis, and save rather than a separate workflow.
 ### Evidence
@@ -70,8 +70,8 @@ Inspect `gate_init_approval` first, then compare `phase_loop` and `state_paths` 
 
 | File | Role |
 |---|---|
-| `.opencode/commands/spec_kit/deep-research.md` | Mode routing and workflow overview; use `## 0. UNIFIED SETUP PHASE` and `## 3. WORKFLOW OVERVIEW` |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Interactive workflow contract; inspect `gate_init_approval`, iteration approval steps, and `state_paths` |
+| `.opencode/commands/deep/start-research-loop.md` | Mode routing and workflow overview; use `## 0. UNIFIED SETUP PHASE` and `## 3. WORKFLOW OVERVIEW` |
+| `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Interactive workflow contract; inspect `gate_init_approval`, iteration approval steps, and `state_paths` |
 | `.opencode/skills/deep-research/README.md` | User-facing execution modes; use `ANCHOR:features` |
 
 ---

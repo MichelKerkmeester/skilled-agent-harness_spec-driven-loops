@@ -71,14 +71,14 @@ The skill docs, command entrypoints, convergence references, feature-catalog ent
 | `.opencode/skills/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts` | Created | Focused Vitest coverage for both evidence shapes. |
 | `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` | Modified | Adds `--emit-resource-map` handling and clean opt-out behavior. |
 | `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | Modified | Adds `--emit-resource-map` handling and clean opt-out behavior. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modified | Adds resource-map config/output state and synthesis emission step. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modified | Adds resource-map config/output state and synthesis emission step. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modified | Adds resource-map config/output state and synthesis emission step. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modified | Adds resource-map config/output state and synthesis emission step. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Modified | Adds resource-map config/output state and synthesis emission step. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Modified | Adds resource-map config/output state and synthesis emission step. |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Modified | Adds resource-map config/output state and synthesis emission step. |
+| `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Modified | Adds resource-map config/output state and synthesis emission step. |
 | `.opencode/skills/sk-deep-review/SKILL.md` | Modified | Documents review-side emitted output and opt-out behavior. |
 | `.opencode/skills/sk-deep-research/SKILL.md` | Modified | Documents research-side emitted output and opt-out behavior. |
-| `.opencode/commands/spec_kit/deep-review.md` | Modified | Mentions emitted artifact and `--no-resource-map`. |
-| `.opencode/commands/spec_kit/deep-research.md` | Modified | Mentions emitted artifact and `--no-resource-map`. |
+| `.opencode/commands/deep/start-review-loop.md` | Modified | Mentions emitted artifact and `--no-resource-map`. |
+| `.opencode/commands/deep/start-research-loop.md` | Modified | Mentions emitted artifact and `--no-resource-map`. |
 | `.opencode/skills/sk-deep-review/references/convergence.md` | Modified | Notes synthesis-time emission for converged review loops. |
 | `.opencode/skills/sk-deep-research/references/convergence.md` | Modified | Notes synthesis-time emission for converged research loops. |
 | `.opencode/skills/sk-deep-review/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md` | Created | Adds the review-side catalog entry for this feature. |

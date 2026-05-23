@@ -4,14 +4,12 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/011-sun-path-and-stale-lease-followups",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/010-multi-client-stdio-socket-bridge"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/007-skill-advisor-zombie-launcher-fix"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -21,34 +19,198 @@
       "mk-skill-advisor handshake failure",
       "mk-code-index handshake failure",
       "speckit_ipc_socket_dir runtime configs",
-      "launcher lease reclaim dead pid"
+      "launcher lease reclaim dead pid",
+      "011 plan",
+      "sun_path socket dir plan",
+      "011 tasks",
+      "011 implementation summary",
+      "sun_path workaround recipe"
     ],
     "key_topics": [
-      "sun_path",
-      "launcher",
-      "lease",
-      "reclaim",
+      "socket",
+      "dir",
+      "followup",
       "macos",
-      "mcp"
+      "daemon-ipc",
+      "sock",
+      "einval",
+      "stale",
+      "mk-skill-advisor",
+      "handshake",
+      "failure",
+      "mk-code-index"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      ".gemini/settings.json",
+      ".codex/config.toml",
+      "plan.md",
+      "references/memory/embedder_architecture.md",
+      "implementation-summary.md",
+      "spec.md",
+      "mcp_server/lib/ipc/socket-server.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      ".opencode/skills/system-spec-kit/references/memory/embedder_architecture.md",
+      ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".gemini/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "embedder_architecture.md",
+        "kind": "doc",
+        "path": "references/memory/embedder_architecture.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "socket-server.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/ipc/socket-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-ipc-bridge.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Arc",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "non-trivial",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "canonical",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "rows",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two post-010 MCP startup failures observed on macOS, plus the workaround applied and the one outstanding robustness gap that should follow.",
+    "created_at": "2026-05-23T11:55:15.585Z",
+    "last_save_at": "2026-05-23T11:55:15.585Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
-    ],
-    "entities": [
-      ".mcp.json",
-      "opencode.json",
-      ".gemini/settings.json",
-      ".codex/config.toml",
-      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-      ".opencode/skills/system-spec-kit/references/memory/embedder_architecture.md",
-      ".opencode/bin/lib/launcher-ipc-bridge.cjs"
-    ],
-    "last_indexed_at": "2026-05-20T00:00:00Z"
+    ]
   }
 }

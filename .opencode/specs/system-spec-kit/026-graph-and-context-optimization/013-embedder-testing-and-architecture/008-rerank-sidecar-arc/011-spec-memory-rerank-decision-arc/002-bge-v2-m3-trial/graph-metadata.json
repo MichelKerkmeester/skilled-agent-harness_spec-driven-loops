@@ -4,45 +4,216 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/002-bge-v2-m3-trial",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/001-off-baseline-audit"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/002-system-rerank-sidecar-skill",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/004-spec-memory-rerank-benchmark"
-    ],
-    "superseded_by": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/005-opt-in-only-closure"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
-      "011/002 bge v2 m3 trial",
-      "bge-reranker-v2-m3 spec-memory",
+      "011/002 bge-reranker-v2-m3 trial",
+      "bge v2 m3 spec-memory rerank",
       "off-the-shelf cross-encoder trial",
-      "sidecar allowlist bge"
+      "011/002 plan",
+      "011/002 tasks",
+      "011/002 summary"
     ],
     "key_topics": [
+      "011",
+      "002",
       "bge-reranker-v2-m3",
+      "trial",
+      "bge",
+      "spec-memory",
+      "rerank",
       "off-the-shelf",
-      "sidecar-allowlist",
-      "apache-2.0",
-      "spec-memory"
+      "cross-encoder",
+      "plan",
+      "tasks",
+      "summary"
     ],
     "importance_tier": "important",
-    "status": "superseded",
+    "status": "complete",
     "key_files": [
+      "dist/handlers/memory-search.js",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/002-bge-v2-m3-trial/evidence/bge-v2-m3-bench-2026-05-21.json",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/002-bge-v2-m3-trial/implementation-summary.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/002-bge-v2-m3-trial/tasks.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/002-bge-v2-m3-trial/graph-metadata.json",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/spec.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/graph-metadata.json",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/003-domain-tuned-finetune/spec.md",
+      ".opencode/skills/system-rerank-sidecar/scripts/rerank_sidecar.py",
+      ".opencode/skills/system-rerank-sidecar/scripts/start.sh",
+      ".opencode/skills/system-rerank-sidecar/.env.local",
+      "lib/search/cross-encoder.ts",
+      "lib/search/search-flags.ts",
+      ".opencode/skills/cli-codex/SKILL.md",
+      "evidence/bge-v2-m3-bench-2026-05-21.json",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      ".opencode/skills/system-rerank-sidecar/",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts"
+      {
+        "name": "memory-search.js",
+        "kind": "code",
+        "path": "dist/handlers/memory-search.js",
+        "source": "derived"
+      },
+      {
+        "name": "cross-encoder.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts",
+        "source": "derived"
+      },
+      {
+        "name": "bge-v2-m3-bench-2026-05-21.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/002-bge-v2-m3-trial/evidence/bge-v2-m3-bench-2026-05-21.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/002-bge-v2-m3-trial/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/002-bge-v2-m3-trial/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/002-bge-v2-m3-trial/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "rerank_sidecar.py",
+        "kind": "file",
+        "path": ".opencode/skills/system-rerank-sidecar/scripts/rerank_sidecar.py",
+        "source": "derived"
+      },
+      {
+        "name": "start.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-rerank-sidecar/scripts/start.sh",
+        "source": "derived"
+      },
+      {
+        "name": ".env.local",
+        "kind": "file",
+        "path": ".opencode/skills/system-rerank-sidecar/.env.local",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": "lib/search/search-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-codex/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Arc",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Arc",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Determine",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Failure Analysis",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Removing Qwen",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Existing Qwen",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "For Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phases",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Benchmark Results",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Commit Handoff",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
     ],
-    "last_indexed_at": "2026-05-21T14:30:00Z"
+    "causal_summary": "Arc 008 tried two off-the-shelf rerankers on spec-memory:",
+    "created_at": "2026-05-23T11:55:15.630Z",
+    "last_save_at": "2026-05-23T11:55:15.630Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ]
   }
 }

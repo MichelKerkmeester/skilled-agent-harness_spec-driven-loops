@@ -1,60 +1,213 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/009-cocoindex-ipc-fix",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/009-cocoindex-ipc-fix",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/009-cocoindex-ipc-fix",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/009-cocoindex-ipc-fix",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/004-vec-store-rebuild"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/006-bge-m3-hybrid-evaluation"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "009 cocoindex IPC fix",
-      "msgspec truncation cocoindex",
-      "Input data was truncated search",
-      "cocoindex daemon stall",
-      "cocoindex Rust Python IPC"
+      "msgspec truncation cocoindex search",
+      "Input data was truncated",
+      "cocoindex daemon stall markdown only",
+      "cocoindex Rust Python IPC bug",
+      "009 plan cocoindex IPC",
+      "msgspec truncation diagnosis plan",
+      "cocoindex daemon stall plan",
+      "009 tasks cocoindex IPC",
+      "T001 T012 cocoindex IPC fix",
+      "014/009 cocoindex IPC fix done",
+      "msgspec truncation resolved"
     ],
     "key_topics": [
-      "msgspec.DecodeError",
-      "SearchResponse serialization",
-      "cocoindex Rust core",
-      "multiprocessing.connection",
-      "768-dim vector IPC",
-      "daemon indexing stall",
-      "include_patterns coverage"
+      "009",
+      "cocoindex",
+      "ipc",
+      "fix",
+      "msgspec",
+      "truncation",
+      "search",
+      "input",
+      "data",
+      "truncated",
+      "daemon",
+      "stall"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py",
+      "scratch/verify-direct.py",
+      "scratch/blocker.md",
+      "scratch/repro-temp-project-after-patch.txt",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md"
     ],
     "entities": [
-      "DaemonClient",
-      "SearchResponse",
-      "SearchRequest",
-      "msgspec",
-      "ccc run-daemon",
-      "target_sqlite.db",
-      "code_chunks_vec"
+      {
+        "name": "daemon.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py",
+        "source": "derived"
+      },
+      {
+        "name": "verify-direct.py",
+        "kind": "file",
+        "path": "scratch/verify-direct.py",
+        "source": "derived"
+      },
+      {
+        "name": "blocker.md",
+        "kind": "doc",
+        "path": "scratch/blocker.md",
+        "source": "derived"
+      },
+      {
+        "name": "repro-temp-project-after-patch.txt",
+        "kind": "file",
+        "path": "scratch/repro-temp-project-after-patch.txt",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rust Python",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Diagnostic",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Patch Rust",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
     ],
-    "causal_summary": "Follow-on packet to 004. Cocoindex's IPC layer between the Rust daemon and the Python client returns truncated binary frames for SearchResponse, blocking all end-to-end semantic search calls under the EmbeddingGemma-300m setup. Direct sqlite-vec queries against the same target_sqlite.db return valid 768-dim KNN results, confirming the data is good. 009 will diagnose the serialization bug, fix the response decode path, and unblock 006 (bge-m3 hybrid evaluation).",
+    "causal_summary": "Under Setup A (EmbeddingGemma-300m / sentence-transformers / 768-dim), the cocoindex daemon writes valid embeddings to `target_sqlite.db` (proven via direct sqlite-vec KNN returning relevant results at distance 0.97-1.03 on packet-local queries), but every search call through cocoindex's own MCP/CLI path returns `msgspec.DecodeError: Input data was truncated`. Separately, daemon indexes only 1335 markdown chunks then idles at 0% CPU despite `include_patterns` covering .py/.ts/.js/.go/.rs/.md.",
     "created_at": "2026-05-12T21:35:00Z",
-    "last_save_at": "2026-05-12T21:35:00Z",
+    "last_save_at": "2026-05-23T11:55:15.339Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ]
   }
 }

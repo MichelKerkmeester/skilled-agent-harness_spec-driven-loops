@@ -96,7 +96,7 @@
     ],
     "causal_summary": "This packet coordinates the spec-kit `:auto` (autonomous) setup-resolution contract: a three-tier flow (resolve confidently → ask one targeted clarification when genuinely ambiguous → fail fast as last resort) that ensures `/command:*:auto` dispatches never hang on stdin under non-interactive runtimes.",
     "created_at": "2026-05-11T12:30:00Z",
-    "last_save_at": "2026-05-23T09:22:40.151Z",
+    "last_save_at": "2026-05-23T11:55:14.134Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,6 +1,6 @@
 ---
 title: "Devin CLI — Agent-Config Recipes"
-description: "Per-recipe wording, allowlist rationale, and copy-paste invocations for the three pinned --agent-config JSONs used by /spec_kit:deep-research and /spec_kit:deep-review cli-devin dispatches. Recipes pin tool allowlist and scoped permission entries at Devin's strict parser so iter workers cannot drift outside their profile."
+description: "Per-recipe wording, allowlist rationale, and copy-paste invocations for the three pinned --agent-config JSONs used by /deep:start-research-loop and /deep:start-review-loop cli-devin dispatches. Recipes pin tool allowlist and scoped permission entries at Devin's strict parser so iter workers cannot drift outside their profile."
 ---
 
 # Devin CLI — Agent-Config Recipes
@@ -55,7 +55,7 @@ Bash commands enter permission scopes as `Exec(<cmd>)`, NOT `Bash(<cmd>)`. The e
 ## 3. RESEARCH-ITER RECIPE
 
 **File**: `assets/agent-config-deep-research-iter.json`
-**Used by**: `/spec_kit:deep-research` per-iter dispatches under `cli-devin` executor
+**Used by**: `/deep:start-research-loop` per-iter dispatches under `cli-devin` executor
 
 ### Wording (system_instructions)
 
@@ -106,7 +106,7 @@ The deny list is defense in depth — even though `Write(*)` is not granted, the
 ## 4. REVIEW-ITER RECIPE
 
 **File**: `assets/agent-config-deep-review-iter.json`
-**Used by**: `/spec_kit:deep-review` per-iter dispatches under `cli-devin` executor
+**Used by**: `/deep:start-review-loop` per-iter dispatches under `cli-devin` executor
 
 ### Wording (system_instructions)
 

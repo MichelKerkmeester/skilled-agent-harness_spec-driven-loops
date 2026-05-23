@@ -17,8 +17,8 @@ _memory:
     key_files:
       - "spec.md"
       - "tasks.md"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml"
+      - ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml"
+      - ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml"
 ---
 
 # Implementation Plan: 116/006 - Candidate Saturation and Graphless Gates
@@ -36,7 +36,7 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Surface** | OpenCode command workflow assets |
-| **Files** | `spec_kit_deep-review_auto.yaml`, `spec_kit_deep-review_confirm.yaml` |
+| **Files** | `deep_start-review-loop_auto.yaml`, `deep_start-review-loop_confirm.yaml` |
 | **Runtime State** | Reducer registry `candidateCoverage`, `searchDebt`, `searchCoverage`, and iteration `searchLedger` |
 | **Tests** | Vitest deep-loop fixtures plus strict spec validation |
 

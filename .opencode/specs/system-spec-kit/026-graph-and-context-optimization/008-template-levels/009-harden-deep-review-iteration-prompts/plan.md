@@ -109,7 +109,7 @@ No change. Prompt rendered → executor stdin (cli-opencode/cli-codex/cli-gemini
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
 | Manual | Token substitution sanity check on rendered prompt | `cat` rendered file from a single iteration |
-| Live smoke | 10-iteration deep-review dispatch on the 013 phase parent | `/spec_kit:deep-review:auto` inside isolated worktree |
+| Live smoke | 10-iteration deep-review dispatch on the 013 phase parent | `/deep:start-review-loop:auto` inside isolated worktree |
 | Recovery | git restore from `edf617470` if anything destructive recurs | `git restore .` |
 <!-- /ANCHOR:testing -->
 

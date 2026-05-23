@@ -87,8 +87,8 @@ Add validator support for the v2 contract while preserving historical packet rea
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts` | Modify | Add warning result type and v2 checks. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | Surface advisory warnings and v2 failure reasons. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modify | Mirror auto workflow validator advisory behavior. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Modify | Surface advisory warnings and v2 failure reasons. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Modify | Mirror auto workflow validator advisory behavior. |
 | `.opencode/specs/.../004-validator-v2-enforcement/*` | Modify/Create | Populate Level 3 documentation. |
 <!-- /ANCHOR:scope -->
 

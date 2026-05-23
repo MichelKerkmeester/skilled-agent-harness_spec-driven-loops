@@ -4,10 +4,10 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/042-cocoindex-ipc-observability",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/035-cocoindex-mcp-reliability"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
@@ -16,36 +16,192 @@
       "041 cocoindex ipc observability",
       "cocoindex ipc debug",
       "COCOINDEX_CODE_MCP_REQUEST_TIMEOUT_MS",
-      "COCOINDEX_CODE_IPC_DEBUG"
+      "COCOINDEX_CODE_IPC_DEBUG",
+      "041 implementation plan",
+      "cocoindex ipc observability plan",
+      "041 tasks",
+      "cocoindex ipc observability tasks",
+      "041 checklist",
+      "cocoindex ipc observability verification",
+      "041 implementation summary",
+      "cocoindex ipc observability summary"
     ],
     "key_topics": [
+      "041",
       "cocoindex",
-      "mcp",
       "ipc",
-      "msgspec",
-      "request timeout",
-      "structured logs"
+      "observability",
+      "debug",
+      "implementation",
+      "plan",
+      "tasks",
+      "checklist",
+      "verification",
+      "summary",
+      "packet"
     ],
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/server.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_observability.py",
       "spec.md",
+      "implementation-summary.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "checklist.md"
     ],
     "entities": [
-      "CocoIndex MCP",
-      "msgspec",
-      "FastMCP",
-      "DaemonClient",
-      "ProjectRegistry"
+      {
+        "name": "server.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/server.py",
+        "source": "derived"
+      },
+      {
+        "name": "daemon.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_observability.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_observability.py",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Modifying Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Small",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffold Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Python",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "reqId",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
     ],
-    "causal_summary": "Packet 035 found timeout/client-disconnect evidence but lacked IPC payload and timing traces; packet 041 adds observability and timeout configuration without changing refresh_index defaults.",
+    "causal_summary": "Packet 035 found strong daemon-log evidence that the MCP host times out before the CocoIndex daemon finishes work, then the daemon later logs that the client disconnected before the response could be sent. The remaining gap was observability: no request correlation, no stage timings, no serialized response byte counts, and no gated msgspec payload metadata when decode fails.",
     "created_at": "2026-05-14T15:52:07Z",
-    "last_save_at": "2026-05-14T16:20:00Z",
-    "save_lineage": "manual_packet_update",
+    "last_save_at": "2026-05-23T11:55:15.395Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Post-remediation confirmatory re-review: 10-iter /spec_kit:deep-review:auto against the same scope as 021 to confirm FAIL -> PASS transition after 022's 5-batch remediation lands. Same executor: cli-codex gpt-5.5 reasoning=high service_tier=fast. [template:level_2/plan.md]"
+title: "Implementation Plan: Post-remediation confirmatory re-review: 10-iter /deep:start-review-loop:auto against the same scope as 021 to confirm FAIL -> PASS transition after 022's 5-batch remediation lands. Same executor: cli-codex gpt-5.5 reasoning=high service_tier=fast. [template:level_2/plan.md]"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation"
@@ -27,7 +27,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Post-remediation confirmatory re-review: 10-iter /spec_kit:deep-review:auto against the same scope as 021 to confirm FAIL -> PASS transition after 022's 5-batch remediation lands. Same executor: cli-codex gpt-5.5 reasoning=high service_tier=fast.
+# Implementation Plan: Post-remediation confirmatory re-review: 10-iter /deep:start-review-loop:auto against the same scope as 021 to confirm FAIL -> PASS transition after 022's 5-batch remediation lands. Same executor: cli-codex gpt-5.5 reasoning=high service_tier=fast.
 
 <!-- SPECKIT_LEVEL: 2 -->
 

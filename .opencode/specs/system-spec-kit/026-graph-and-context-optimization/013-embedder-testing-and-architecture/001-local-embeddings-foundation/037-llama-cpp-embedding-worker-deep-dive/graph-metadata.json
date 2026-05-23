@@ -26,31 +26,192 @@
       "037 llama-cpp embedding worker deep-dive",
       "post-032 embedding worker context size",
       "llama-cpp contextSize 512 bug",
-      "embedding null return GGUF Q8"
+      "embedding null return GGUF Q8",
+      "037 plan",
+      "llama-cpp embedding worker plan",
+      "embedding worker deep-dive plan",
+      "037 tasks",
+      "llama-cpp embedding worker tasks",
+      "037 checklist",
+      "llama-cpp embedding worker checklist",
+      "ADR-003"
     ],
     "key_topics": [
       "037",
       "llama-cpp",
-      "embedding-worker",
-      "context-size",
-      "tokenizer-preflight",
-      "GGUF",
-      "Q8_0",
-      "node-llama-cpp"
+      "embedding",
+      "worker",
+      "deep-dive",
+      "post-032",
+      "context",
+      "size",
+      "contextsize",
+      "512",
+      "bug",
+      "null"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "decision-record.md",
+      "shared/chunking.ts",
+      "mcp_server/lib/providers/retry-manager.ts",
+      "spec.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/governance-ephemeral-decouple.vitest.ts"
     ],
-    "entities": [],
-    "causal_summary": "037 reproduces the chronic embedding-worker null-return failure traced from 032's blocked save-heavy scenarios; falsifies or confirms the contextSize:512 + tokenizer-overflow hypothesis; applies a minimal source-level fix in shared/embeddings/providers/llama-cpp.ts and ships ADR-003.",
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "chunking.ts",
+        "kind": "code",
+        "path": "shared/chunking.ts",
+        "source": "derived"
+      },
+      {
+        "name": "retry-manager.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/providers/retry-manager.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "governance-ephemeral-decouple.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/governance-ephemeral-decouple.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Dispatch Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Embedding Provider",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Reproduce",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quality Gates",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Maps",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Code inspection points to a hardcoded mismatch:",
     "created_at": "2026-05-14T14:09:05Z",
-    "last_save_at": "2026-05-14T14:30:00Z",
+    "last_save_at": "2026-05-23T11:55:15.388Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -58,6 +219,7 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
+      "decision-record.md",
       "implementation-summary.md"
     ]
   }

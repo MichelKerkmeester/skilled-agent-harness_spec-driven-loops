@@ -38,7 +38,7 @@ _memory:
 | **Branch** | `main` |
 | **Parent** | `003-fix-mcp-runtime-stress-findings` |
 | **Predecessor cycles** | `001-search-intelligence-stress-playbook` (v1.0.1), `010-stress-test-close-loop-measurement-rerun` (v1.0.2), `021-stress-test-enterprise-wiring-expansion` (v1.0.3) |
-| **Mode** | Deep research (`/spec_kit:deep-research:auto` pattern) |
+| **Mode** | Deep research (`/deep:start-research-loop:auto` pattern) |
 | **Iterations** | 5 (max); convergence allowed earlier |
 | **Executor** | cli-codex `gpt-5.5` reasoning=`xhigh` service-tier=default (normal) |
 <!-- /ANCHOR:metadata -->

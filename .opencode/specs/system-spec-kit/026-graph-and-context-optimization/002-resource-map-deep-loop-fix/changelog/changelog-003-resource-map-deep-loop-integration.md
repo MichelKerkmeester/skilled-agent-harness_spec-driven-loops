@@ -67,14 +67,14 @@ This phase built a shared evidence extractor under `scripts/resource-map/extract
 | `.opencode/skills/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts` (NEW) | Vitest snapshot coverage for both evidence shapes. |
 | `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` | Modified: `--emit-resource-map` + opt-out. |
 | `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | Modified: `--emit-resource-map` + opt-out. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modified: resource_map config + emission step. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modified: same pattern. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modified: resource_map config + emission step. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modified: same pattern. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Modified: resource_map config + emission step. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Modified: same pattern. |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Modified: resource_map config + emission step. |
+| `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Modified: same pattern. |
 | `.opencode/skills/sk-deep-review/SKILL.md` | Modified: emitted output and opt-out documentation. |
 | `.opencode/skills/sk-deep-research/SKILL.md` | Modified: emitted output and opt-out documentation. |
-| `.opencode/commands/spec_kit/deep-review.md` | Modified: brief mention of resource-map artifact. |
-| `.opencode/commands/spec_kit/deep-research.md` | Modified: brief mention of resource-map artifact. |
+| `.opencode/commands/deep/start-review-loop.md` | Modified: brief mention of resource-map artifact. |
+| `.opencode/commands/deep/start-research-loop.md` | Modified: brief mention of resource-map artifact. |
 | `.opencode/skills/sk-deep-review/references/convergence.md` | Modified: notes synthesis-time emission step. |
 | `.opencode/skills/sk-deep-research/references/convergence.md` | Modified: notes synthesis-time emission step. |
 | `.opencode/skills/sk-deep-review/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md` (NEW) | Review-side catalog entry. |

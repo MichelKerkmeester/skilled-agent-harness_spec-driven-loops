@@ -49,7 +49,6 @@
       ".gemini/agents/deep-research.md",
       ".gemini/agents/deep-review.md",
       ".gemini/agents/orchestrate.md",
-      ".gemini/commands/spec_kit/deep-research.toml",
       ".codex/agents/deep-review.toml",
       ".codex/agents/deep-research.toml",
       ".codex/agents/orchestrate.toml",
@@ -84,15 +83,15 @@
         "source": "derived"
       },
       {
-        "name": "deep-research.toml",
-        "kind": "file",
-        "path": ".gemini/commands/spec_kit/deep-research.toml",
-        "source": "derived"
-      },
-      {
         "name": "deep-review.toml",
         "kind": "file",
         "path": ".codex/agents/deep-review.toml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.toml",
+        "kind": "file",
+        "path": ".codex/agents/deep-research.toml",
         "source": "derived"
       },
       {
@@ -212,7 +211,7 @@
     ],
     "causal_summary": "Phase 001 found runtime mirror files in `.claude`, `.codex`, and `.gemini` that still reference the old deep-loop skill names. These mirrors must match the canonical post-rename skill IDs so runtime-specific agents and commands no longer point readers or dispatch metadata at stale skill names.",
     "created_at": "2026-05-05T16:20:37Z",
-    "last_save_at": "2026-05-19T13:51:38.678Z",
+    "last_save_at": "2026-05-23T11:55:14.573Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T16:20:37Z",
     "source_docs": [

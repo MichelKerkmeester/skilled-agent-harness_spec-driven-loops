@@ -57,9 +57,9 @@ Command-owned deep review of `.opencode/specs/system-spec-kit/026-graph-and-cont
 | `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json` | template-rendering-correctness, validator-coverage | 003 | - | reviewed |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts` | template-rendering-correctness | 003 | - | reviewed |
 | `.opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.*` | template-rendering-correctness | 003 | - | reviewed |
-| `.opencode/commands/spec_kit/deep-review.md` | cross-runtime-mirror-consistency | 005 | F005 context | reviewed |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | cross-runtime-mirror-consistency | 005 | F005 | reviewed |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | cross-runtime-mirror-consistency | 005 | F005 | reviewed |
+| `.opencode/commands/deep/start-review-loop.md` | cross-runtime-mirror-consistency | 005 | F005 context | reviewed |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | cross-runtime-mirror-consistency | 005 | F005 | reviewed |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | cross-runtime-mirror-consistency | 005 | F005 | reviewed |
 | `.opencode/agents/deep-review.md` and runtime mirrors | cross-runtime-mirror-consistency | 005 | - | reviewed |
 | `.opencode/skills/sk-deep-review/assets/prompt_pack_iteration.md.tmpl` | cross-runtime-mirror-consistency | 005 | carry-forward from packet 005 | reviewed |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts` | cross-runtime-mirror-consistency | 005 | F005 context | reviewed |
@@ -96,7 +96,7 @@ Command-owned deep review of `.opencode/specs/system-spec-kit/026-graph-and-cont
 | P1-002 | P1 | implementation-spec-alignment | `007/graph-metadata.json:5`, `007/description.json:10`, `010/graph-metadata.json:6`, `010/spec.md:86` | active |
 | P1-003 | P1 | code-correctness | `check-section-counts.sh:61`, `check-ai-protocols.sh:60`, `create.sh:528` | active |
 | P1-004 | P1 | validator-coverage | `validate.sh:1019`, `orchestrator.ts:355`, `validator-registry.json:123`, `validator-registry.json:187` | active |
-| P1-005 | P1 | cross-runtime-mirror-consistency | `spec_kit_deep-review_auto.yaml:703`, `executor-config.ts:101`, `executor-config.ts:275`, `spec_kit_deep-review_confirm.yaml:700` | active |
+| P1-005 | P1 | cross-runtime-mirror-consistency | `deep_start-review-loop_auto.yaml:703`, `executor-config.ts:101`, `executor-config.ts:275`, `deep_start-review-loop_confirm.yaml:700` | active |
 
 ## What Worked
 

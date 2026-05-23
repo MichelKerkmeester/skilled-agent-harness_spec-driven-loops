@@ -40,7 +40,7 @@ _memory:
 | **Language/Stack** | Markdown + JSON spec docs; bash + Docker compose for security batch; mixed MD/TOML for runtime mirrors |
 | **Framework** | system-spec-kit (templates, validate.sh, generate-context.js) |
 | **Storage** | Git on `main` (no feature branches per memory `feedback_stay_on_main_no_feature_branches.md`) |
-| **Testing** | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ... --strict`; targeted re-grep per cluster; optional /spec_kit:deep-review re-run post-remediation |
+| **Testing** | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ... --strict`; targeted re-grep per cluster; optional /deep:start-review-loop re-run post-remediation |
 | **Executor** | `cli-codex` with `--model gpt-5.5 -c model_reasoning_effort=high -c service_tier=fast` (per memory `feedback_codex_cli_fast_mode.md`) |
 
 ### Overview
@@ -142,7 +142,7 @@ Remediation packet — no new abstractions, no new modules. Pure surgical edits 
 | Strict-validate | This packet + 001 + 002 + parent | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <path> --strict` |
 | Re-grep per cluster | Each P1/P2 symptom string | `rg -in <symptom>` (case-insensitive, multiline) |
 | Cross-runtime mirror | Doctor commands across 4 runtimes | `find .opencode .claude .codex .gemini -path '*/commands/doctor/*'` |
-| Optional re-review | Whole 013 packet | `/spec_kit:deep-review:auto` post-remediation |
+| Optional re-review | Whole 013 packet | `/deep:start-review-loop:auto` post-remediation |
 <!-- /ANCHOR:testing -->
 
 ---

@@ -198,7 +198,7 @@
     ],
     "causal_summary": "After Phase 006 shipped, a live process audit at 2026-05-18T16:47Z still observed three `mk-skill-advisor-launcher` processes while `mk-code-index-launcher` and `mk-spec-memory-launcher` each held at one. The discrepancy exists because skill-advisor checks the daemon SQLite lease before spawn, but the daemon lease is only acquired inside the child server after startup work; loser children can remain alive in degraded mode and keep their parent launchers alive.",
     "created_at": "2026-05-18T16:55:50.377Z",
-    "last_save_at": "2026-05-18T17:02:01.830Z",
+    "last_save_at": "2026-05-23T11:55:15.579Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

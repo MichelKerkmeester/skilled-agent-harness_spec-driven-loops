@@ -11,30 +11,189 @@
   },
   "derived": {
     "trigger_phrases": [
-      "sk doc missing router intents bullet aware matrix",
-      "sk doc missing router intents bullet aware matrix graph metadata"
+      "076",
+      "sk-doc-router-coverage-v3",
+      "extract_metrics_v3",
+      "076 plan",
+      "076 tasks",
+      "076 summary"
     ],
     "key_topics": [
-      "doc",
-      "missing",
-      "router",
-      "intents",
-      "bullet",
-      "aware",
-      "matrix"
+      "076",
+      "sk-doc-router-coverage-v3",
+      "plan",
+      "tasks",
+      "summary",
+      "packet",
+      "071",
+      "stress-matrix",
+      "covered",
+      "scenarios",
+      "exercised",
+      "only"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/004-optimization.md",
+      ".opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/005-install-guide.md",
+      ".opencode/skills/sk-doc/manual_testing_playbook/manual_testing_playbook.md",
+      "scripts/run-matrix-076.sh",
+      "scripts/extract_metrics_v3.py",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
-    "entities": [],
-    "causal_summary": "Graph metadata for the current packet.",
+    "entities": [
+      {
+        "name": "004-optimization.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/004-optimization.md",
+        "source": "derived"
+      },
+      {
+        "name": "005-install-guide.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/005-install-guide.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-matrix-076.sh",
+        "kind": "script",
+        "path": "scripts/run-matrix-076.sh",
+        "source": "derived"
+      },
+      {
+        "name": "extract_metrics_v3.py",
+        "kind": "file",
+        "path": "scripts/extract_metrics_v3.py",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Router Coverage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scenario Authoring",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scenario Index",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Matrix Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Docs",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "markdown-bullet-aware",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 071 stress-matrix covered 15 scenarios but exercised only 9 of sk-doc's 11 router intents. Two intents — OPTIMIZATION (load `references/global/optimization.md` + `assets/documentation/llmstxt_templates.md`) and INSTALL_GUIDE (load `references/specific/install_guide_creation.md` + `assets/documentation/install_guide_template.md`) — were never tested across cli-codex, cli-opencode. Without coverage on these intents, claims like \"cli-codex resource accuracy is ~67%\" rest on partial evidence and may not generalize. Additionally, 072's extractor v2 used flat substring matching that doesn't distinguish between markdown-bullet listings (the canonical \"loaded:\" form) and prose mentions, so cli-copilot's verbose summary paragraphs inflate measured FP counts.",
     "created_at": "2026-05-05T15:34:50Z",
-    "last_save_at": "2026-05-19T13:51:38.720Z",
+    "last_save_at": "2026-05-23T11:55:14.599Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

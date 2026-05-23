@@ -25,7 +25,7 @@ contextType: "review"
 
 ## DISPATCH GATES
 
-- [ ] `/spec_kit:deep-review:auto` dispatched with full flag set
+- [ ] `/deep:start-review-loop:auto` dispatched with full flag set
 - [ ] PRE-BOUND SETUP ANSWERS block included inline in dispatch body
 - [ ] `review_target_type=files` and `review_dimensions=correctness,traceability,maintainability` bound
 - [ ] `executor=cli-codex`, `model=gpt-5.5`, `reasoning=high`, `service_tier=fast` confirmed in first JSONL header

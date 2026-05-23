@@ -205,7 +205,7 @@
     ],
     "causal_summary": "This packet records a four-seat AI Council deliberation on whether `sk-ai-council` should become a shared runtime similar to `deep-loop-runtime`. The ruling is **HYBRID**: do not extract the whole council skill now; extract only reusable state, scoped-write, and convergence primitives if consumer growth or duplicate-runtime pressure appears.",
     "created_at": "2026-05-23T05:04:55Z",
-    "last_save_at": "2026-05-23T09:53:18.749092Z",
+    "last_save_at": "2026-05-23T11:55:14.238Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-23T05:04:55Z",
     "source_docs": [

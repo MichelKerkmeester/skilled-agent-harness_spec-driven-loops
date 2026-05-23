@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/003-smart-remediation-opencode-plugin",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/003-skill-advisor-routing-engine/003-smart-remediation-opencode-plugin",
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/003-skill-advisor-routing-engine/003-smart-remediation-opencode-plugin",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/003-skill-advisor-routing-engine",
   "children_ids": [],
@@ -13,28 +13,204 @@
   },
   "derived": {
     "trigger_phrases": [
-      "smart remediation opencode plugin",
-      "smart remediation opencode plugin graph metadata"
+      "023 smart router remediation",
+      "spec-kit-skill-advisor plugin",
+      "smart router ci check",
+      "023 smart router remediation plan",
+      "spec-kit-skill-advisor plugin plan",
+      "023 smart router tasks",
+      "spec-kit-skill-advisor plugin tasks",
+      "023 smart router checklist",
+      "spec-kit-skill-advisor plugin verification",
+      "023 smart router implementation summary",
+      "spec-kit-skill-advisor plugin shipped"
     ],
     "key_topics": [
+      "023",
       "smart",
+      "router",
       "remediation",
-      "opencode",
-      "plugin"
+      "spec-kit-skill-advisor",
+      "plugin",
+      "check",
+      "plan",
+      "tasks",
+      "checklist",
+      "verification",
+      "implementation"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "spec.md",
-      "plan.md",
+      ".opencode/skills/mcp-code-mode/references/workflows.md",
+      ".opencode/commands/deep/assets/deep_start-research-loop_auto.yaml",
+      ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
       "tasks.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/check-smart-router.sh",
+      ".opencode/skills/system-spec-kit/scripts/observability/smart-router-telemetry.ts",
+      ".opencode/skills/.smart-router-telemetry/compliance.jsonl",
+      "plan.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/mcp-code-mode/SKILL.md",
+      ".opencode/skills/sk-doc/SKILL.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/smart-router-telemetry.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tsconfig.json",
+      "spec.md",
+      ".opencode/skills/cli-codex/SKILL.md",
+      ".opencode/skills/cli-gemini/SKILL.md",
+      ".opencode/skills/cli-claude-code/SKILL.md",
+      "mcp_server/tests/smart-router-telemetry.vitest.ts"
     ],
-    "entities": [],
-    "causal_summary": "Graph metadata for the current packet.",
+    "entities": [
+      {
+        "name": "workflows.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-code-mode/references/workflows.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep_start-research-loop_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_start-research-loop_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_start-review-loop_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-smart-router.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/check-smart-router.sh",
+        "source": "derived"
+      },
+      {
+        "name": "smart-router-telemetry.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/observability/smart-router-telemetry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compliance.jsonl",
+        "kind": "file",
+        "path": ".opencode/skills/.smart-router-telemetry/compliance.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-code-mode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "smart-router-telemetry.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/smart-router-telemetry.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tsconfig.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/scripts/tsconfig.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Router Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Track",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Ready",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Initialized Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Area",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two research packets just shipped with 10+ concrete recommendations:",
     "created_at": "2026-04-19T00:00:00.000Z",
-    "last_save_at": "2026-04-26T09:17:15.784Z",
+    "last_save_at": "2026-05-23T11:55:15.181Z",
     "save_lineage": "same_pass",
     "last_accessed_at": "2026-04-19T00:00:00.000Z",
     "source_docs": [

@@ -29,8 +29,8 @@ Guard failures are visible packet events, not quiet side effects. The workflow e
 |---|---|---|
 | `.opencode/skills/deep-research/references/convergence.md` | Reference | Defines the legal-stop gate bundle and the source-diversity, focus-alignment, and weak-source rules. |
 | `.opencode/skills/deep-research/references/loop_protocol.md` | Reference | Defines when the guards run and how blocked-stop events are persisted. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Workflow | Emits guard and blocked-stop events in autonomous mode. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Workflow | Emits the same guard and blocked-stop events in confirm mode. |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Workflow | Emits guard and blocked-stop events in autonomous mode. |
+| `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Workflow | Emits the same guard and blocked-stop events in confirm mode. |
 | `.opencode/skills/deep-research/scripts/reduce-state.cjs` | Reducer | Surfaces blocked-stop history and recovery hints into strategy and dashboard outputs. |
 
 ### Validation And Tests

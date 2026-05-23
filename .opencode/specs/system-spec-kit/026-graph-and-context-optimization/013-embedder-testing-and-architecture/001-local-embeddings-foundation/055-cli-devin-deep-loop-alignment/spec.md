@@ -16,8 +16,8 @@ _memory:
     next_safe_action: "Phase 2 commands update"
     blockers: []
     key_files:
-      - ".opencode/commands/spec_kit/deep-research.md"
-      - ".opencode/commands/spec_kit/deep-review.md"
+      - ".opencode/commands/deep/start-research-loop.md"
+      - ".opencode/commands/deep/start-review-loop.md"
       - ".opencode/agents/deep-research.md"
       - ".opencode/agents/deep-review.md"
       - ".opencode/skills/cli-devin/SKILL.md"
@@ -29,7 +29,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Does devin CLI support an agents directory? No, but --agent-config FILE flag accepts JSON/YAML; --rules takes Windsurf/Cursor formats; --skills auto-discovers .opencode/skills/. The --agent-config path is the closest equivalent and is the basis for the 2 new agent-config recipe JSONs."
-      - "Does /spec_kit:deep-research currently support cli-devin? No, executor enum lists native | cli-codex | cli-gemini | cli-claude-code. cli-devin must be added in Phase 2."
+      - "Does /deep:start-research-loop currently support cli-devin? No, executor enum lists native | cli-codex | cli-gemini | cli-claude-code. cli-devin must be added in Phase 2."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # 059: cli-devin deep-loop alignment across 6 surfaces
@@ -62,7 +62,7 @@ _memory:
 
 Packets 056 + 058 dispatched ~40 cli-devin SWE 1.6 iter via custom orchestration because:
 
-1. `/spec_kit:deep-research` and `/spec_kit:deep-review` commands list executor enum as `native | cli-codex | cli-gemini | cli-claude-code` — cli-devin is absent.
+1. `/deep:start-research-loop` and `/deep:start-review-loop` commands list executor enum as `native | cli-codex | cli-gemini | cli-claude-code` — cli-devin is absent.
 2. The `@deep-research` + `@deep-review` LEAF agents (used through those commands) have no SWE-1.6-specific iter contract; iter prompts had to be hand-rolled.
 3. cli-devin SKILL.md documents general dispatch patterns but lacks a deep-loop iter contract section explaining how SWE 1.6 behaves under N-iter loops.
 4. Lessons learned (stdout-vs-file-write, fence nesting, numeric-count weakness, line-citation drift, no cross-iter awareness, sk-prompt contract drift) are scattered across 056/057/058 edit-evidence files instead of consolidated reference docs.
@@ -80,7 +80,7 @@ Make cli-devin a first-class deep-loop executor across the codebase. Future pack
 
 ### In Scope
 
-- 2 command updates: `/spec_kit:deep-research` + `/spec_kit:deep-review` executor enum and YAML dispatch switch
+- 2 command updates: `/deep:start-research-loop` + `/deep:start-review-loop` executor enum and YAML dispatch switch
 - 2 agent updates: `@deep-research` + `@deep-review` iter contract section
 - 1 SKILL.md update: `cli-devin` deep-loop iter contract section
 - 2 new references in `cli-devin/references/`: deep-loop-iter-contract.md + agent-config-recipes.md
@@ -98,10 +98,10 @@ Make cli-devin a first-class deep-loop executor across the codebase. Future pack
 
 | Action | File |
 |---|---|
-| Edit | `.opencode/commands/spec_kit/deep-research.md` (executor enum + YAML dispatch) |
-| Edit | `.opencode/commands/spec_kit/deep-review.md` (executor enum + YAML dispatch) |
-| Edit | `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` (cli-devin dispatch shape) |
-| Edit | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` (cli-devin dispatch shape, if such file exists) |
+| Edit | `.opencode/commands/deep/start-research-loop.md` (executor enum + YAML dispatch) |
+| Edit | `.opencode/commands/deep/start-review-loop.md` (executor enum + YAML dispatch) |
+| Edit | `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` (cli-devin dispatch shape) |
+| Edit | `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` (cli-devin dispatch shape, if such file exists) |
 | Edit | `.opencode/agents/deep-research.md` (SWE-1.6 iter contract subsection) |
 | Edit | `.opencode/agents/deep-review.md` (SWE-1.6 iter contract subsection) |
 | Edit | `.opencode/skills/cli-devin/SKILL.md` (deep-loop iter contract section) |
@@ -121,7 +121,7 @@ Make cli-devin a first-class deep-loop executor across the codebase. Future pack
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | cli-devin in executor enum | `grep -E "executor.*cli-devin" .opencode/commands/spec_kit/deep-research.md` returns >= 1 hit |
+| REQ-001 | cli-devin in executor enum | `grep -E "executor.*cli-devin" .opencode/commands/deep/start-research-loop.md` returns >= 1 hit |
 | REQ-002 | cli-devin in deep-review executor enum | Same on deep-review.md |
 | REQ-003 | YAML dispatch supports cli-devin | The YAML executor switch handles `cli-devin` and dispatches `devin -p --prompt-file ... --model swe-1.6 --permission-mode auto </dev/null` |
 | REQ-004 | 2 agents have iter contract section | Both `@deep-research` and `@deep-review` agent .md files contain an SWE-1.6 iter contract subsection citing the 7 lessons |
@@ -144,7 +144,7 @@ Make cli-devin a first-class deep-loop executor across the codebase. Future pack
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: Next deep-research/review packet using cli-devin dispatches through `/spec_kit:deep-research --executor cli-devin` (or deep-review) without custom orchestration.
+- **SC-001**: Next deep-research/review packet using cli-devin dispatches through `/deep:start-research-loop --executor cli-devin` (or deep-review) without custom orchestration.
 - **SC-002**: SWE 1.6 iter prompts can call `--agent-config <recipe>` to lock model + tool surface declaratively.
 - **SC-003**: 7 retrospective lessons (fence drop, count smoke-run, structured RQ for numerics, residual-finder checklist, no cross-iter awareness, sk-prompt template upfront, sequential vs parallel) are persisted as reference docs.
 - **SC-004**: Single primary commit on main closes 059.

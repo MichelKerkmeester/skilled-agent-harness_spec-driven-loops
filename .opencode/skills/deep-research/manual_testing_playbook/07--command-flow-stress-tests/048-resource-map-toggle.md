@@ -11,7 +11,7 @@ This document captures the realistic user-testing contract, execution flow, sour
 
 ## 1. OVERVIEW
 
-This scenario invokes `/spec_kit:deep-research:auto` with `--no-resource-map`. Call B must persist the disabled setting and avoid emitting a convergence-time `resource-map.md` while still producing normal research artifacts.
+This scenario invokes `/deep:start-research-loop:auto` with `--no-resource-map`. Call B must persist the disabled setting and avoid emitting a convergence-time `resource-map.md` while still producing normal research artifacts.
 
 ### Why This Matters
 
@@ -37,7 +37,7 @@ Operators run the exact command sequence for `CP-048` and grade the result throu
 2. Seed `/tmp/cp-048-spec/spec.md`.
 3. Run Call A as the generic baseline.
 4. Reset the sandbox.
-5. Run Call B through `/spec_kit:deep-research:auto ... --no-resource-map`.
+5. Run Call B through `/deep:start-research-loop:auto ... --no-resource-map`.
 6. Count config, state, output, absent-map, diff and tripwire signals.
 
 ### Exact Runnable Command Sequence
@@ -65,7 +65,7 @@ EOF
 git status --porcelain > /tmp/cp-048-pre.txt
 cat > /tmp/cp-048-task.txt <<'EOF'
 Task ID: CP-048-TASK-001.
-In /tmp/cp-048-sandbox/, run /spec_kit:deep-research:auto with --no-resource-map.
+In /tmp/cp-048-sandbox/, run /deep:start-research-loop:auto with --no-resource-map.
 Stay strictly inside /tmp/cp-048-sandbox/ and /tmp/cp-048-spec/.
 Acceptance: config and JSONL both show resource_map.emit false, research.md exists, resource-map.md does not exist, and canonical target diff is empty.
 Return status, emit_flag, research_path, resource_map_path, and notes.
@@ -74,7 +74,7 @@ printf 'As @Task: %s\n' "$(cat /tmp/cp-048-task.txt)" > /tmp/cp-048-prompt-A.txt
 copilot -p "$(cat /tmp/cp-048-prompt-A.txt)" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-048-sandbox --add-dir /tmp/cp-048-spec 2>&1 | tee /tmp/cp-048-A-task.txt; echo "EXIT_A=${PIPESTATUS[0]}" | tee /tmp/cp-048-A-exit.txt
 rm -rf /tmp/cp-048-sandbox && cp -a /tmp/cp-048-sandbox-baseline /tmp/cp-048-sandbox
 cd /tmp/cp-048-sandbox
-copilot -p "/spec_kit:deep-research:auto \"CP-048 resource map suppression\" --spec-folder=/tmp/cp-048-spec --max-iterations=1 --convergence=0.05 --no-resource-map" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-048-sandbox --add-dir /tmp/cp-048-spec 2>&1 | tee /tmp/cp-048-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-048-B-exit.txt
+copilot -p "/deep:start-research-loop:auto \"CP-048 resource map suppression\" --spec-folder=/tmp/cp-048-spec --max-iterations=1 --convergence=0.05 --no-resource-map" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-048-sandbox --add-dir /tmp/cp-048-spec 2>&1 | tee /tmp/cp-048-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-048-B-exit.txt
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 diff -u /tmp/cp-048-sandbox-baseline/.opencode/agents/deep-research.md /tmp/cp-048-sandbox/.opencode/agents/deep-research.md > /tmp/cp-048-B-canonical.diff; echo "POST_B_CANONICAL_DIFF=$?" | tee /tmp/cp-048-B-canonical-exit.txt
 find /tmp/cp-048-spec -type f -print0 2>/dev/null | xargs -0 cat > /tmp/cp-048-B-artifacts.txt 2>/dev/null || touch /tmp/cp-048-B-artifacts.txt
@@ -92,9 +92,9 @@ diff /tmp/cp-048-pre.txt /tmp/cp-048-post.txt > /tmp/cp-048-tripwire.diff; echo 
 
 | File | Anchor |
 |---|---|
-| `.opencode/commands/spec_kit/deep-research.md:73-75` | `--no-resource-map` setup flag |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:238-267` | config and state persist resource-map settings |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:930-938` | reducer emits map unless disabled |
+| `.opencode/commands/deep/start-research-loop.md:73-75` | `--no-resource-map` setup flag |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:238-267` | config and state persist resource-map settings |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:930-938` | reducer emits map unless disabled |
 | `.opencode/skills/deep-research/SKILL.md:443-448` | resource-map is expected unless disabled |
 | `.opencode/agents/deep-research.md:269-274` | progressive research output remains separate |
 

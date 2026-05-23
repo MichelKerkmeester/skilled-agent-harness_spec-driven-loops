@@ -17,7 +17,7 @@
 | 013 | 2 | Does Get It Right's operator surface suggest retry-mode UX should use a few explicit knobs instead of the full setup questionnaire? | high | should-have | SIMPLIFY | `retry command surface` |
 | 014 | 2 | Does the external loop imply that durable memory is the wrong substrate for loop-critical state? | high | must-have | PIVOT | `memory save architecture` |
 | 015 | 2 | Does the external three-role loop imply that execution workflows need a smaller reusable runtime role set? | medium | should-have | REFACTOR | `agent architecture + orchestrator routing` |
-| 016 | 2 | Does system-spec-kit's deep-loop infrastructure make too many observability surfaces mandatory? | high | should-have | SIMPLIFY | `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` |
+| 016 | 2 | Does system-spec-kit's deep-loop infrastructure make too many observability surfaces mandatory? | high | should-have | SIMPLIFY | `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` |
 | 017 | 2 | Should system-spec-kit collapse its broader specialist roster into the external three-role model? | medium | rejected | KEEP | `overall agent architecture` |
 | 018 | 2 | Is system-spec-kit's validation philosophy too document-centric for implementation retries? | high | must-have | REFACTOR | `retry workflow + completion contracts` |
 | 019 | 2 | Does the external repo's minimal documentation posture justify replacing the durable spec-folder lifecycle? | high | rejected | KEEP | `spec lifecycle architecture` |

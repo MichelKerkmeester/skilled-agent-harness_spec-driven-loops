@@ -296,7 +296,7 @@ Docs/traceability:
 - **SC-002:** All 39 P2 findings have a CLOSED or ACCEPTED status in `implementation-summary.md`.
 - **SC-003:** `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing --strict` exits 0.
 - **SC-004:** `npm run build` exits 0; full vitest run regresses 0 tests vs pre-002 baseline; new tests added for REQ-T1-001/002 and REQ-T2-003.
-- **SC-005:** A follow-up `/spec_kit:deep-review:auto` (or single-pass `@review` agent dispatch) reports `Verdict: PASS` with `hasAdvisories=false` (or hasAdvisories=true ONLY for accepted P2s).
+- **SC-005:** A follow-up `/deep:start-review-loop:auto` (or single-pass `@review` agent dispatch) reports `Verdict: PASS` with `hasAdvisories=false` (or hasAdvisories=true ONLY for accepted P2s).
 <!-- /ANCHOR:success-criteria -->
 
 ---

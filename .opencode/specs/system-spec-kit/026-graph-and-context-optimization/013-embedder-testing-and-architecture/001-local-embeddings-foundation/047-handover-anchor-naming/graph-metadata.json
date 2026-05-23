@@ -2,33 +2,216 @@
   "schema_version": 1,
   "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/047-handover-anchor-naming",
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/047-handover-anchor-naming",
-  "parent_id": null,
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
+  "derived": {
     "trigger_phrases": [
       "handover anchor naming",
       "session-notes",
-      "handover_state routing"
+      "session-log",
+      "handover_state routing",
+      "handover anchor plan",
+      "session-notes router plan",
+      "handover anchor tasks",
+      "session-notes tasks",
+      "handover anchor checklist",
+      "session-notes verification",
+      "handover anchor implementation",
+      "session-notes implementation"
     ],
     "key_topics": [
-      "handover_state",
+      "handover",
+      "anchor",
+      "naming",
       "session-notes",
-      "memory_save planner"
+      "session-log",
+      "routing",
+      "plan",
+      "router",
+      "tasks",
+      "checklist",
+      "verification",
+      "implementation"
     ],
     "importance_tier": "important",
     "status": "complete",
-    "key_files": ["spec.md","plan.md","tasks.md","checklist.md","implementation-summary.md"],
-    "entities": [],
-    "causal_summary": "Aligned handover_state routing to the canonical session-notes anchor and verified the planner path reaches status planned with no blockers.",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/templates/manifest/handover.md.tmpl",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/content-router.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/intent-routing.vitest.ts",
+      ".opencode/skills/system-spec-kit/references/memory/save_workflow.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/spec-doc-structure.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "handover.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/manifest/handover.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "content-router.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts",
+        "source": "derived"
+      },
+      {
+        "name": "content-router.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/content-router.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "intent-routing.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/intent-routing.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "save_workflow.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/memory/save_workflow.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-doc-structure.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-doc-structure.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/spec-doc-structure.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handover Anchor Naming Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Surgical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Make `handover_state` routing target the canonical `session-notes` handover anchor and keep router tests, structural merge validation, and memory-save planner behavior aligned with that contract.",
     "created_at": "2026-05-14T16:48:27Z",
-    "last_save_at": "2026-05-14T16:53:14Z",
+    "last_save_at": "2026-05-23T11:55:15.403Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md","checklist.md","implementation-summary.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
   }
 }

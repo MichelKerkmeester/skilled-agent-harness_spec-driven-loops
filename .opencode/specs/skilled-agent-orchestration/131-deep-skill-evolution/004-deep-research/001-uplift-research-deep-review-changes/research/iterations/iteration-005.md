@@ -13,7 +13,7 @@ Adversarial review on deep-research's actual code/docs/YAML/test surfaces. Found
 
 ### P2 (Suggestions)
 
-- [DR-007] Missing resource_map detection step in confirm YAML — `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+- [DR-007] Missing resource_map detection step in confirm YAML — `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`
   Evidence: auto YAML has resource_map.emit detection but confirm YAML doesn't
   Recommended fix: add symmetric step
 

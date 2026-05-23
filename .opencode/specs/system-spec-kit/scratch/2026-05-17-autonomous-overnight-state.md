@@ -26,7 +26,7 @@ User wants ALL outstanding embedder work driven to **100% perfection and verific
 2. **Native Sonnet/Opus Agents for ALL new work** (implementation, refactor, remediation, orchestration). cli-codex/cli-devin/cli-X are EXCEPTIONS, not defaults.
 3. **EXCEPTION 1**: cli-devin SWE-1.6 stays for deep-review iter workers (per explicit prior directive + post-impl-deep-review constitutional rule).
 4. **EXCEPTION 2**: codex `b7nyzacl7` is mid-run — DO NOT kill, let it finish.
-5. **Per-impl deep-review mandate**: after every substantive implementation, dispatch `/spec_kit:deep-review:auto` with 10 iter (sub-phase tier) or 5-7 iter (single-commit tier). Loop manager = native Opus Agent. Iter worker = cli-devin SWE-1.6. Output goes packet-local.
+5. **Per-impl deep-review mandate**: after every substantive implementation, dispatch `/deep:start-review-loop:auto` with 10 iter (sub-phase tier) or 5-7 iter (single-commit tier). Loop manager = native Opus Agent. Iter worker = cli-devin SWE-1.6. Output goes packet-local.
 6. **CONDITIONAL/FAIL verdicts** → dispatch native Opus remediation agent, then re-review. Max 2 cycles before escalating.
 7. **Stay on `main`**. Strict-scope commits per `feedback_git_add_not_scope_strict`. Always `git restore --staged .` before `git add <paths>`.
 8. **Strict-validate** every spec packet before commit: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict`. 0 errors mandatory; warnings OK but document.

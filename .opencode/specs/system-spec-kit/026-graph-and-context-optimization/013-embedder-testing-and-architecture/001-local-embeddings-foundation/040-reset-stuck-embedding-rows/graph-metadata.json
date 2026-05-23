@@ -4,6 +4,8 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/040-reset-stuck-embedding-rows",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -29,36 +31,27 @@
       "stuck",
       "embedding",
       "rows",
+      "generation",
+      "returned",
+      "null",
       "retry-manager",
-      "memory_index",
-      "failure_reason",
-      "pending",
-      "orphan",
-      "llama-cpp",
       "038",
-      "039"
+      "039",
+      "retry"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/database/context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite",
-      ".opencode/skills/system-spec-kit/mcp_server/database/.pre-040-reset-20260514T151344Z.bak",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "tasks.md"
     ],
     "entities": [
       {
-        "name": "context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite",
-        "kind": "database",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/database/context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite",
-        "source": "derived"
-      },
-      {
-        "name": ".pre-040-reset-20260514T151344Z.bak",
-        "kind": "database_backup",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/database/.pre-040-reset-20260514T151344Z.bak",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -80,15 +73,129 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
+        "name": "Reset Stuck Embedding Rows",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Rows",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Reset",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Bounded",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "cleared",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reset Result",
+        "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Reset eligible memory_index rows stuck on the old synthetic null embedding failure so the retry-manager can process them under the 038 error propagation and 039 token-aware truncation fixes, while skipping orphan rows whose files no longer exist.",
+    "causal_summary": "Rows in `memory_index` were stuck with `failure_reason='Embedding generation returned null'` after the old embedding path swallowed provider failures. Packets 038 and 039 fixed the pipeline, but rows with high retry counts and `embedding_status='failed'` or `retry` would not all re-enter processing without a bounded reset.",
     "created_at": "2026-05-14T15:15:00Z",
-    "last_save_at": "2026-05-14T15:15:00Z",
+    "last_save_at": "2026-05-23T11:55:15.393Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

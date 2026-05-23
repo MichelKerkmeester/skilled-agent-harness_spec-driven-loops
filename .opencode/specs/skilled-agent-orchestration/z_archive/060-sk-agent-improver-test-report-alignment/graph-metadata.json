@@ -21,16 +21,7 @@
     "trigger_phrases": [
       "060 root",
       "060 phase parent",
-      "sk-improve-agent test report alignment",
-      "skilled-agent-orchestration/z_archive/060-sk-agent-improver-test-report-alignment",
-      "skilled-agent-orchestration",
-      "z_archive",
-      "060-sk-agent-improver-test-report-alignment",
-      "parent",
-      "060",
-      "sk-improve-agent",
-      "test-report",
-      "alignment"
+      "sk-improve-agent test report alignment"
     ],
     "key_topics": [
       "060",
@@ -46,9 +37,14 @@
       "059",
       "code"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "planned",
     "key_files": [
+      "001-deep-research-recommendations/research/research.md",
+      "002-stress-test-implementation/test-report.md",
+      "003-followup-research/research/research.md",
+      "004-improve-agent-command-flow-stress-tests/test-report.md",
+      "005-improve-agent-executable-wiring/spec.md",
       "spec.md"
     ],
     "entities": [
@@ -103,7 +99,7 @@
     ],
     "causal_summary": "Apply packet 059's @code stress-test methodology (same-task A/B dispatch, sandboxed isolation, grep-only verdict signals, multi-round iterative score progression) to the **sk-improve-agent triad** — the skill, agent, and command that exist to improve other agents.",
     "created_at": "2026-05-02T11:47:00Z",
-    "last_save_at": "2026-05-19T13:51:38.597Z",
+    "last_save_at": "2026-05-23T11:55:14.499Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

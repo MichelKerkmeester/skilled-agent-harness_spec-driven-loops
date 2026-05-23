@@ -53,8 +53,8 @@ _memory:
 - `.opencode/skills/cli-devin/references/deep-loop-iter-contract.md` (sequential_thinking section + prompt invariants)
 - `.opencode/skills/cli-devin/references/agent-config-recipes.md` (schema reference + per-recipe rationale)
 - `.opencode/skills/cli-devin/assets/deep-loop-iter-template.md` (inline JSONL + ref_tag requirement)
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` (`if_cli_devin` `gtimeout 900` + tool-rejection detection)
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` (same)
+- `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` (`if_cli_devin` `gtimeout 900` + tool-rejection detection)
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` (same)
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -91,7 +91,7 @@ _memory:
 | Sequential_thinking tool-trace | dispatch tiny iter; inspect stderr for `mcp__sequential_thinking__sequentialthinking` | TBD |
 | sk-doc validate (SKILL.md) | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/cli-devin/SKILL.md` | TBD |
 | sk-doc validate (references) | same per reference doc | TBD |
-| YAML safe_load (research) | `python3 -c "import yaml; yaml.safe_load(open('.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml'))"` | TBD |
+| YAML safe_load (research) | `python3 -c "import yaml; yaml.safe_load(open('.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml'))"` | TBD |
 | YAML safe_load (review) | same for deep-review_auto.yaml | TBD |
 <!-- /ANCHOR:verification -->
 

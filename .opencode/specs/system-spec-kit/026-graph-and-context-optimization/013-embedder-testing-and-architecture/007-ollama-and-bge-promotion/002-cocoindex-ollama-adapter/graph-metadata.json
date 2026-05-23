@@ -13,44 +13,204 @@
     "trigger_phrases": [
       "016/013/002 ollama adapter",
       "cocoindex ollama support",
-      "litellm ollama",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/007-ollama-and-bge-promotion/002-cocoindex-ollama-adapter",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "013-embedder-testing-and-architecture",
-      "007-ollama-and-bge-promotion",
-      "002-cocoindex-ollama-adapter",
-      "016",
-      "013",
-      "002"
+      "litellm ollama provider",
+      "ollama embedder registry",
+      "cocoindex ollama adapter plan",
+      "ollama embedder registry plan",
+      "litellm ollama routing plan",
+      "cocoindex ollama adapter tasks",
+      "ollama routing task list",
+      "litellm adapter tasks",
+      "cocoindex ollama adapter checklist",
+      "ollama routing verification"
     ],
     "key_topics": [
-      "002",
-      "ollama-adapter",
-      "cocoindex",
-      "litellm",
-      "embedder",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "013-embedder-testing-and-architecture",
-      "007-ollama-and-bge-promotion",
-      "002-cocoindex-ollama-adapter",
       "016",
-      "013"
+      "013",
+      "002",
+      "ollama",
+      "adapter",
+      "cocoindex",
+      "support",
+      "litellm",
+      "provider",
+      "embedder",
+      "registry",
+      "plan"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/embedders/registered_embedders.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_ollama_routing.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_registered_embedders.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_config.py",
+      ".opencode/skills/mcp-coco-index/INSTALL_GUIDE.md",
+      ".opencode/skills/mcp-coco-index/feature_catalog/feature_catalog.md",
+      ".opencode/skills/mcp-coco-index/feature_catalog/03--indexing-pipeline/04-embedding-provider-selection.md",
+      ".opencode/skills/mcp-coco-index/feature_catalog/03--indexing-pipeline/07-ollama-embedding-adapter.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/007-ollama-and-bge-promotion/002-cocoindex-ollama-adapter/plan.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/007-ollama-and-bge-promotion/002-cocoindex-ollama-adapter/tasks.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/007-ollama-and-bge-promotion/002-cocoindex-ollama-adapter/checklist.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/007-ollama-and-bge-promotion/002-cocoindex-ollama-adapter/spec.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/007-ollama-and-bge-promotion/002-cocoindex-ollama-adapter/implementation-summary.md",
+      "lib/embedders/adapters/ollama.ts",
+      "implementation-summary.md",
       "spec.md",
-      "plan.md",
-      "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "plan.md",
+      "tasks.md"
     ],
-    "entities": [],
-    "causal_summary": "Add Ollama provider support to CocoIndex",
+    "entities": [
+      {
+        "name": "registered_embedders.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/embedders/registered_embedders.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_ollama_routing.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_ollama_routing.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_registered_embedders.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_registered_embedders.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_config.py",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_config.py",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL_GUIDE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-coco-index/INSTALL_GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-coco-index/feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "04-embedding-provider-selection.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-coco-index/feature_catalog/03--indexing-pipeline/04-embedding-provider-selection.md",
+        "source": "derived"
+      },
+      {
+        "name": "07-ollama-embedding-adapter.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-coco-index/feature_catalog/03--indexing-pipeline/07-ollama-embedding-adapter.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/007-ollama-and-bge-promotion/002-cocoindex-ollama-adapter/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/007-ollama-and-bge-promotion/002-cocoindex-ollama-adapter/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/007-ollama-and-bge-promotion/002-cocoindex-ollama-adapter/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/007-ollama-and-bge-promotion/002-cocoindex-ollama-adapter/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/007-ollama-and-bge-promotion/002-cocoindex-ollama-adapter/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ollama.ts",
+        "kind": "code",
+        "path": "lib/embedders/adapters/ollama.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Ollama Adapter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Ollama",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Adding Ollama",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "If Ollama",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Missing Ollama",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Registry",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "CocoIndex's embedder registry (`cocoindex_code/registered_embedders.py`) lists only `sbert/...` candidates today. Operators running Ollama already (e.g., for chat workloads) can't reuse that daemon for CocoIndex indexing/search without code work.",
     "created_at": "2026-05-18T17:44:39.189Z",
-    "last_save_at": "2026-05-19T19:44:28.899Z",
+    "last_save_at": "2026-05-23T11:55:15.593Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

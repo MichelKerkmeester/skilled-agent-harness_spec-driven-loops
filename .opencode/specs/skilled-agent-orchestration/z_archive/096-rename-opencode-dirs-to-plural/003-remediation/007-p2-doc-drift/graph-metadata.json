@@ -19,12 +19,7 @@
       "infrastructure quality",
       "098/007-p2-doc-drift checklist",
       "098/007 implementation",
-      "p2 doc drift summary",
-      "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/003-remediation/007-p2-doc-drift",
-      "skilled-agent-orchestration",
-      "z_archive",
-      "096-rename-opencode-dirs-to-plural",
-      "003-remediation"
+      "p2 doc drift summary"
     ],
     "key_topics": [
       "doc",
@@ -40,7 +35,7 @@
       "checklist",
       "implementation"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "complete",
     "key_files": [
       ".opencode/skills/sk-code/references/opencode/shared/hooks.md",
@@ -203,7 +198,7 @@
     ],
     "causal_summary": "Install guides and root docs still cite singular paths or stale inventory; `.opencode/skills/sk-code/` has a dead Copilot target-authority guard branch; two cli-opencode playbooks have nested-backtick prompts that render incorrectly.",
     "created_at": "2026-05-18T07:49:27.245Z",
-    "last_save_at": "2026-05-19T13:51:38.792Z",
+    "last_save_at": "2026-05-23T11:55:14.692Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

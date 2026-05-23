@@ -28,8 +28,8 @@ Before each dispatch, the loop reads `deep-review-state.jsonl`, `deep-review-fin
 | `references/loop_protocol.md` | Protocol | Defines the read-state, state-summary, dispatch, cross-reference execution, evaluation, claim-adjudication, dashboard, and loop-decision steps. |
 | `references/state_format.md` | Schema | Defines the required JSONL fields, iteration file structure, graph-event payloads, and traceability-check schema. |
 | `SKILL.md` | Skill contract | Declares the fresh-context model, leaf-only constraint, iteration rules, and tool-call envelope. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Workflow | Runtime workflow surface for unattended dispatch and evaluation. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Workflow | Runtime workflow surface for checkpointed dispatch with approval gates. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Workflow | Runtime workflow surface for unattended dispatch and evaluation. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Workflow | Runtime workflow surface for checkpointed dispatch with approval gates. |
 | `.opencode/agents/deep-review.md` | Agent | Runtime leaf-agent contract for one review cycle. |
 
 ### Validation And Tests
@@ -48,4 +48,4 @@ Before each dispatch, the loop reads `deep-review-state.jsonl`, `deep-review-fin
 - Group: Loop lifecycle
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `01--loop-lifecycle/02-iteration-dispatch.md`
-- Primary sources: `references/loop_protocol.md`, `references/state_format.md`, `SKILL.md`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+- Primary sources: `references/loop_protocol.md`, `references/state_format.md`, `SKILL.md`, `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`, `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`

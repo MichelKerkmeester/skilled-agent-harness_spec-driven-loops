@@ -32,10 +32,10 @@ For each tool answer:
 
 - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/coverage-graph.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/handlers/deep-loop-graph-*.ts`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+- `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
+- `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`
+- `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/`
 - Any tests or fixtures that exercise these tools
 
@@ -68,7 +68,7 @@ Deep-loop graph automation reality (deep_loop_graph_query/upsert/convergence/sta
 | Tool | Auto-fire trigger (file:line) | Manual entry | Class | Severity if aspirational |
 |------|-------------------------------|--------------|-------|--------------------------|
 | deep_loop_graph_query | ... | ... | manual | n/a |
-| deep_loop_graph_upsert | spec_kit_deep-research_auto.yaml:817-836 step_graph_upsert | ... | half | n/a |
+| deep_loop_graph_upsert | deep_start-research-loop_auto.yaml:817-836 step_graph_upsert | ... | half | n/a |
 | ... | ... | ... | ... | ... |
 
 ## Adversarial check (Hunter→Skeptic→Referee)

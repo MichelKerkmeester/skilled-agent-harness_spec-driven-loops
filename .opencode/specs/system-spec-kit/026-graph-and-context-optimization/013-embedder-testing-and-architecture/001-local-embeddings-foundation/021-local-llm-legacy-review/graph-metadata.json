@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/021-local-llm-legacy-review",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/021-local-llm-legacy-review",
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/021-local-llm-legacy-review",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
@@ -16,41 +16,202 @@
       "embedding default drift",
       "voyage residue",
       "qwen3 residue",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/021-local-llm-legacy-review",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "013-embedder-testing-and-architecture",
-      "001-local-embeddings-foundation",
-      "021-local-llm-legacy-review",
-      "feature"
+      "deep-review 015",
+      "local-llm legacy review plan",
+      "015 review plan",
+      "post-014 review plan",
+      "015 tasks",
+      "local-llm legacy tasks",
+      "015 checklist"
     ],
     "key_topics": [
-      "local-llm-residue",
-      "embedding-default-drift",
-      "outdated-docs",
-      "config-drift",
-      "deep-review",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "013-embedder-testing-and-architecture",
-      "001-local-embeddings-foundation",
-      "021-local-llm-legacy-review",
-      "feature",
-      "specification"
+      "local-llm",
+      "legacy",
+      "review",
+      "post-014",
+      "hunt",
+      "embedding",
+      "default",
+      "drift",
+      "voyage",
+      "residue",
+      "qwen3",
+      "deep-review"
     ],
-    "importance_tier": "important",
+    "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      "review/review-report.md",
+      "review/resource-map.md",
+      "review/deep-review-state.jsonl",
+      ".codex/config.toml",
+      ".claude/mcp.json",
+      ".gemini/settings.json",
+      "references/memory/embedding_resilience.md",
+      "lib/eval/memory-state-baseline.ts",
+      "scripts/memory/cleanup-index-scope-violations.ts",
+      "shared/embeddings/profile.ts",
+      "scripts/setup/install.sh",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      ".opencode/skills/mcp-coco-index/INSTALL_GUIDE.md",
+      ".opencode/install_guides/README.md",
+      ".opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "checklist.md"
     ],
-    "entities": [],
-    "causal_summary": "Level-2 review packet owning a 20-iter /spec_kit:deep-review:auto run scoped to residue from the local-LLM/embedding-default migration shipped in 014-local-embeddings-setup-a. Executor cli-codex gpt-5.5 reasoning=high service_tier=fast. Convergence threshold 0.05 (tighter than default to avoid premature stop on a wide-shallow surface).",
+    "entities": [
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-state.jsonl",
+        "kind": "file",
+        "path": "review/deep-review-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".gemini/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "embedding_resilience.md",
+        "kind": "doc",
+        "path": "references/memory/embedding_resilience.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-state-baseline.ts",
+        "kind": "code",
+        "path": "lib/eval/memory-state-baseline.ts",
+        "source": "derived"
+      },
+      {
+        "name": "cleanup-index-scope-violations.ts",
+        "kind": "code",
+        "path": "scripts/memory/cleanup-index-scope-violations.ts",
+        "source": "derived"
+      },
+      {
+        "name": "profile.ts",
+        "kind": "code",
+        "path": "shared/embeddings/profile.ts",
+        "source": "derived"
+      },
+      {
+        "name": "install.sh",
+        "kind": "script",
+        "path": "scripts/setup/install.sh",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL_GUIDE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-coco-index/INSTALL_GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/install_guides/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_pack_iteration.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 014 shipped a default-LLM and embedding-stack migration (Voyage → EmbeddingGemma-300m hf-local q8 for Memory MCP; google/embeddinggemma-300m sentence-transformers for CocoIndex; llama-cpp demoted to opt-in with auto-migrate; ONNX rejected). Pre-flight scan finds ~147 active-file residue surface across code, docs, JSON/configs, and assets where old defaults are still asserted or referenced (e.g. `ENV_REFERENCE.md` still claims \"prefers voyage-4 then openai then hf-local\"; `mcp-coco-index/INSTALL_GUIDE.md` still names voyage-code-3 primary; multiple READMEs still recommend `text-embedding-3-small`). No one has audited which references are stale vs intentional historical context.",
     "created_at": "2026-05-13T13:07:10Z",
-    "last_save_at": "2026-05-13T13:07:10Z",
+    "last_save_at": "2026-05-23T11:55:15.360Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

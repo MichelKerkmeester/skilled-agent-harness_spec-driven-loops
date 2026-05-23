@@ -1,11 +1,11 @@
 ---
 title: "Devin CLI — Deep-Loop Iter Prompt Template (SWE-1.6)"
-description: "Copy-paste prompt-body skeletons for cli-devin iter dispatches when /spec_kit:deep-research or /spec_kit:deep-review resolves the executor to cli-devin. Three stage-specific skeletons (research iter, review iter, synthesis) paired with the matching --agent-config recipe at .opencode/skills/cli-devin/assets/."
+description: "Copy-paste prompt-body skeletons for cli-devin iter dispatches when /deep:start-research-loop or /deep:start-review-loop resolves the executor to cli-devin. Three stage-specific skeletons (research iter, review iter, synthesis) paired with the matching --agent-config recipe at .opencode/skills/cli-devin/assets/."
 ---
 
 # Deep-Loop Iter Prompt Template (cli-devin, SWE-1.6)
 
-> Copy-paste skeleton for `--prompt-file` payloads when `/spec_kit:deep-research` or `/spec_kit:deep-review` resolves the executor to `cli-devin`. Pair this template with the matching `--agent-config` recipe from `.opencode/skills/cli-devin/assets/`. The recipe locks tools and permissions at parse time; this template carries the prompt-body contract (framework tag, pre-planning block, scoped RQ or review angle, output contract).
+> Copy-paste skeleton for `--prompt-file` payloads when `/deep:start-research-loop` or `/deep:start-review-loop` resolves the executor to `cli-devin`. Pair this template with the matching `--agent-config` recipe from `.opencode/skills/cli-devin/assets/`. The recipe locks tools and permissions at parse time; this template carries the prompt-body contract (framework tag, pre-planning block, scoped RQ or review angle, output contract).
 >
 > For the full contract: [`references/deep-loop-iter-contract.md`](../references/deep-loop-iter-contract.md). For recipe selection: [`references/agent-config-recipes.md`](../references/agent-config-recipes.md).
 
@@ -25,7 +25,7 @@ Three skeletons follow — one per recipe / stage of the deep-loop pipeline. Eac
 
 ## 2. BLOCK ORDERING
 
-Every iter prompt MUST include these four blocks in this exact order. The dispatcher (`spec_kit_deep-research_auto.yaml` or `spec_kit_deep-review_auto.yaml` `if_cli_devin:` branch) is the canonical authority — this template documents the shape.
+Every iter prompt MUST include these four blocks in this exact order. The dispatcher (`deep_start-research-loop_auto.yaml` or `deep_start-review-loop_auto.yaml` `if_cli_devin:` branch) is the canonical authority — this template documents the shape.
 
 1. **Framework tag** (line 1)
 2. **Pre-planning block**

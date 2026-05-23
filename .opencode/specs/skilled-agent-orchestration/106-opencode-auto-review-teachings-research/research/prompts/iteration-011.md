@@ -66,7 +66,7 @@ rg -nC5 'PASS|FAIL|UNKNOWN|findings-first|severity|P0|P1|P2|checklist|final.line
 rg -nC3 'prompt|return.format|final.line|severity' .opencode/skills/deep-review/SKILL.md 2>&1 | head -30
 
 # Check deep-review's iteration prompt template (in spec_kit:deep-review skill)
-ls .opencode/skills/spec_kit:deep-review/ 2>/dev/null
+ls .opencode/skills/deep:start-review-loop/ 2>/dev/null
 ```
 
 Comparison table (per design element):
@@ -93,7 +93,7 @@ Rank the 9 sections by reusability for our codebase. Likely winners:
 
 - Iter outputs 005, 003 (verbatim template + markers)
 - Local: `.opencode/skills/sk-code-review/SKILL.md`, `.opencode/skills/deep-review/SKILL.md`
-- Optional: `.opencode/skills/spec_kit:deep-review/` files
+- Optional: `.opencode/skills/deep:start-review-loop/` files
 - **No writes outside `research/iterations/iteration-011.md` and `research/deep-research-state.jsonl`**
 
 ## VERIFICATION COMMANDS

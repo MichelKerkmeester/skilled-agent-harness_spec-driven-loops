@@ -60,8 +60,8 @@ _memory:
 
 - [x] T001 Read research synthesis recommendations R6/R7 (`001-research-synthesis/research/research.md`) [10m]
 - [x] T002 Read Phase 005 reducer summary (`005-search-ledger-persistence-and-reporting/implementation-summary.md`) [10m]
-- [x] T003 Read auto legal-stop decision tree (`spec_kit_deep-review_auto.yaml`) [10m]
-- [x] T004 Read confirm legal-stop decision tree (`spec_kit_deep-review_confirm.yaml`) [10m]
+- [x] T003 Read auto legal-stop decision tree (`deep_start-review-loop_auto.yaml`) [10m]
+- [x] T004 Read confirm legal-stop decision tree (`deep_start-review-loop_confirm.yaml`) [10m]
 - [x] T005 Read graph-empty convergence handler behavior (`coverage-graph/convergence.ts`) [5m]
 - [x] T006 Read Phase B convergence fixture (`review-depth-convergence.vitest.ts`) [5m]
 <!-- /ANCHOR:phase-1 -->

@@ -68,8 +68,8 @@ _memory:
 - [ ] T014 sk-doc validate each touched file
 
 ### Bucket C — Agent 3 (YAML + dispatchers)
-- [ ] T015 Update `if_cli_devin:` in spec_kit_deep-research_auto.yaml
-- [ ] T016 Update same in spec_kit_deep-review_auto.yaml
+- [ ] T015 Update `if_cli_devin:` in deep_start-research-loop_auto.yaml
+- [ ] T016 Update same in deep_start-review-loop_auto.yaml
 - [ ] T017 YAML safe_load validate both
 - [ ] T018 (optional) Update run-loop.sh dispatcher in 999/scripts/
 <!-- /ANCHOR:phase-2 -->

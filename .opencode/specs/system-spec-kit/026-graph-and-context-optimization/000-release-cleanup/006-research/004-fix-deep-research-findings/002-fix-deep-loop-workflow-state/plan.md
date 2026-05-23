@@ -17,8 +17,8 @@ _memory:
     next_safe_action: "Apply five fixes then validate, stress, commit, push"
     blockers: []
     key_files:
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml"
+      - ".opencode/commands/deep/assets/deep_start-research-loop_auto.yaml"
+      - ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml"
       - ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts"
       - ".opencode/skills/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts"
     session_dedup:
@@ -74,9 +74,9 @@ The YAML files declare ordered workflow steps with templated values populated by
 
 | # | Phase | Action | File | Finding | Status |
 |---|-------|--------|------|---------|--------|
-| 1 | Edit | Add halt/cancel lock cleanup directive | spec_kit_deep-research_auto.yaml | F-010-B5-01 | Pending |
-| 2 | Edit | Canonical fallback iteration record | spec_kit_deep-research_auto.yaml | F-010-B5-02 | Pending |
-| 3 | Edit | Canonical fallback iteration record | spec_kit_deep-review_auto.yaml | F-010-B5-03 | Pending |
+| 1 | Edit | Add halt/cancel lock cleanup directive | deep_start-research-loop_auto.yaml | F-010-B5-01 | Pending |
+| 2 | Edit | Canonical fallback iteration record | deep_start-research-loop_auto.yaml | F-010-B5-02 | Pending |
+| 3 | Edit | Canonical fallback iteration record | deep_start-review-loop_auto.yaml | F-010-B5-03 | Pending |
 | 4 | Edit | Thread `--no-resource-map` flag through config | both YAMLs | F-010-B5-04 | Pending |
 | 5 | Edit | Refresh parent children_ids + last_save_at on child save | generate-context.ts | F-019-D4-01 | Pending |
 | 6 | Test | Extend phase-parent-pointer vitest with children_ids assertion | phase-parent-pointer.vitest.ts | F-019-D4-01 | Pending |

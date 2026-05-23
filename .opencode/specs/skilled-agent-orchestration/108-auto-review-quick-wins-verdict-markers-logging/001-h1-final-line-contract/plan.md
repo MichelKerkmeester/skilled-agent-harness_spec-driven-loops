@@ -98,8 +98,8 @@ deep-review iteration synthesis
 ### Phase B: Edit deep-review SKILL.md + YAML synthesis
 - Read deep-review SKILL.md (find Output section)
 - Document new final-line contract
-- Edit `spec_kit_deep-review_auto.yaml` synthesis step
-- Edit `spec_kit_deep-review_confirm.yaml` (mirror)
+- Edit `deep_start-review-loop_auto.yaml` synthesis step
+- Edit `deep_start-review-loop_confirm.yaml` (mirror)
 
 ### Phase C: Smoke-test verdict mapping
 - Create 3 synthetic findings JSONL files (no findings / P1-only / P0-present)

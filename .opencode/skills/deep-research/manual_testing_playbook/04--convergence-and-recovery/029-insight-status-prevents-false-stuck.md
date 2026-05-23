@@ -47,7 +47,7 @@ Validate insight-status iterations avoid false stuck counting despite low raw no
 1. `bash: rg -n 'insight' .opencode/skills/deep-research/references/state_format.md`
 2. `bash: rg -n 'stuckCount\|stuck_count\|insight' .opencode/skills/deep-research/references/convergence.md`
 3. `bash: rg -n 'insight\|thought\|stuck' .opencode/skills/deep-research/SKILL.md`
-4. `bash: rg -n 'stuck_count.*insight\|insight.*stuck' .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+4. `bash: rg -n 'stuck_count.*insight\|insight.*stuck' .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
 ### Expected
 Iteration with status="insight" and low newInfoRatio, stuck_count NOT incremented.
 ### Evidence
@@ -74,7 +74,7 @@ Privilege state_format.md for the status taxonomy and convergence.md for the stu
 | `.opencode/skills/deep-research/references/state_format.md` | Canonical JSONL schema; insight status definition and its relationship to stuck counting |
 | `.opencode/skills/deep-research/references/convergence.md` | Convergence math; stuckCount computation and which statuses increment it |
 | `.opencode/skills/deep-research/SKILL.md` | Skill overview; iteration status taxonomy including insight |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Workflow algorithm; stuck_count update logic in step_update_state |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Workflow algorithm; stuck_count update logic in step_update_state |
 
 ---
 

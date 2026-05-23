@@ -419,8 +419,8 @@ Set `refresh_index=false` after the first search in a session unless the codebas
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
 | **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → Populate → Plan first child                        |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
-| **Deep research**         | `/spec_kit:deep-research` → Init → Loop iterations → Convergence → Synthesize → Memory save                                        |
-| **Deep review**           | `/spec_kit:deep-review` → Scope → Loop iterations → Convergence → review-report.md → Memory save                                   |
+| **Deep research**         | `/deep:start-research-loop` → Init → Loop iterations → Convergence → Synthesize → Memory save                                        |
+| **Deep review**           | `/deep:start-review-loop` → Scope → Loop iterations → Convergence → review-report.md → Memory save                                   |
 | **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                               |
 | **Constitutional memory** | `/memory:learn` → create, list, edit, remove, budget                                                                                |
 | **Shared memory**         | `/memory:manage shared` → create spaces, manage memberships, inspect rollout                                                        |
@@ -622,8 +622,8 @@ Full details: `.opencode/skills/sk-git/`
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
 | **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → `create.sh --phase` → Populate → Plan first child  |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
-| **Deep research**         | `/spec_kit:deep-research` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
-| **Deep review**           | `/spec_kit:deep-review` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
+| **Deep research**         | `/deep:start-research-loop` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
+| **Deep review**           | `/deep:start-review-loop` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
 | **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                            |
 | **Constitutional memory** | `/memory:learn` → Constitutional memory manager: create, list, edit, remove, budget                                               |
 | **Shared memory**         | `/memory:manage shared` → Shared-memory lifecycle: create spaces, manage memberships, inspect rollout                                    |

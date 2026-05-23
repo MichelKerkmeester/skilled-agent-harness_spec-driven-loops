@@ -4,19 +4,10 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/034-query-expansion-context-size",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/037-llama-cpp-embedding-worker-deep-dive",
-        "reason": "037 established the llama-cpp worker context-size failure mode this consumer-side cap avoids amplifying.",
-        "source": "manual"
-      },
-      {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/039-token-aware-chunking",
-        "reason": "039 added worker-side token-budget truncation; 034 preserves retrieval quality before that downstream fallback is needed.",
-        "source": "manual"
-      }
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
@@ -25,33 +16,192 @@
       "034 query expansion context size",
       "combinedQuery context cap",
       "embedding expansion synonym budget",
-      "llama-cpp query embedding budget"
+      "llama-cpp query embedding budget",
+      "034 query expansion plan",
+      "combinedQuery cap plan",
+      "034 query expansion tasks",
+      "combinedQuery cap tasks",
+      "034 query expansion checklist",
+      "combinedQuery cap checklist",
+      "034 query expansion summary",
+      "combinedQuery cap summary"
     ],
     "key_topics": [
       "034",
-      "query-expansion",
-      "combinedQuery",
-      "embedding-expansion",
-      "context-size",
+      "query",
+      "expansion",
+      "context",
+      "size",
+      "combinedquery",
+      "cap",
+      "embedding",
+      "synonym",
+      "budget",
       "llama-cpp",
-      "retrieval-quality"
+      "plan"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/embedding-expansion-bound.vitest.ts",
+      "tests/stage1-expansion.vitest.ts",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "tasks.md"
     ],
-    "entities": [],
-    "causal_summary": "034 caps query expansion combinedQuery length at the consumer boundary so lower-priority synonym terms are dropped before llama-cpp worker-side token truncation silently discards retrieval signal.",
+    "entities": [
+      {
+        "name": "embedding-expansion.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedding-expansion-bound.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/embedding-expansion-bound.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stage1-expansion.vitest.ts",
+        "kind": "test",
+        "path": "tests/stage1-expansion.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Query Expansion Context Size",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Cap",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Local",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffold Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 039 made the llama-cpp embedding worker resilient by truncating over-budget input through the model tokenizer. The query expansion consumer still builds `combinedQuery` by appending up to eight expansion terms to the original query before calling the embedder. When the combined text crosses the practical context budget, the worker truncates the tail after the fact, which silently drops lower-priority synonym signal and can degrade retrieval quality.",
     "created_at": "2026-05-14T15:40:13Z",
-    "last_save_at": "2026-05-14T15:45:00Z",
-    "save_lineage": "manual_packet",
+    "last_save_at": "2026-05-23T11:55:15.384Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

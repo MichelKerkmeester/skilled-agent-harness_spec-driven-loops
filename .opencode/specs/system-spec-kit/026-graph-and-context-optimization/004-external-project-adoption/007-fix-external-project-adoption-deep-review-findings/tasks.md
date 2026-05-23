@@ -86,7 +86,7 @@ _memory:
 
 | ID | Task | Status |
 |----|------|--------|
-| R-007-X1 | Re-run /spec_kit:deep-review:auto over 006 (3 iters, verify pass): P0=0, P1≤2 | done |
+| R-007-X1 | Re-run /deep:start-review-loop:auto over 006 (3 iters, verify pass): P0=0, P1≤2 | done |
 | R-007-X2 | Update phase-review-summary.md with post-remediation severity counts | done |
 | R-007-X3 | Push all 006/007 changes to main with conventional commits | done |
 

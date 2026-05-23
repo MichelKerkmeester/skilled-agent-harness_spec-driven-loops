@@ -4,28 +4,208 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/002-rerun-24-scenarios-suite",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/001-governance-retention-decouple",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/003-mcp-server-build-fix"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/028-local-llm-feature-test-suite"
-    ]
+    "related_to": []
   },
   "derived": {
-    "trigger_phrases": ["rerun 24 scenarios suite post-032", "post-fix substrate validation", "kimi-k2.6 24-- scenario run"],
-    "key_topics": ["validation", "playbook", "24--", "kimi-k2.6", "scenario-rerun"],
+    "trigger_phrases": [
+      "rerun 24 scenarios suite post-032",
+      "post-fix substrate validation",
+      "kimi-k2.6 24-- scenario run",
+      "post-022 scenario re-run",
+      "rerun 24 scenarios suite plan",
+      "post 032 scenario runner plan",
+      "local llm query intelligence validation plan",
+      "rerun 24 scenarios tasks",
+      "post 032 scenario runner tasks",
+      "rerun 24 scenarios checklist",
+      "post 032 scenario suite verification",
+      "rerun 24 scenarios suite summary"
+    ],
+    "key_topics": [
+      "rerun",
+      "scenarios",
+      "suite",
+      "post-032",
+      "post-fix",
+      "substrate",
+      "validation",
+      "kimi-k2",
+      "scenario",
+      "run",
+      "post-022",
+      "re-run"
+    ],
     "importance_tier": "important",
     "status": "blocked",
-    "key_files": ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md", "_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14b-post-032.md"],
-    "entities": ["24--local-llm-query-intelligence", "kimi-k2.6", "opencode-go", "memory_save", "memory_search", "401-415"],
-    "causal_summary": "Attempted post-032 24-- scenario rerun setup, but preflight blocked before scenario execution: Spec Kit Memory MCP launcher fails with missing zod-to-json-schema, and opencode-go/kimi-k2.6 provider calls fail from the sandbox. Evidence report records 0 PASS / 0 PARTIAL / 0 FAIL / 15 SKIP.",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Repair Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "missing",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "external",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Sequential",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Write Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "concrete",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The post-fix memory substrate needs a real validation signal from the 15 scenario playbook in `manual_testing_playbook/24--local-llm-query-intelligence/`. Earlier runs were dominated by substrate-level save failures rather than meaningful query-quality results, so this packet exists to rerun the suite after governance and build fixes landed.",
     "created_at": "2026-05-14T11:10:00Z",
-    "last_save_at": "2026-05-14T11:55:00Z",
-    "save_lineage": "main-agent",
+    "last_save_at": "2026-05-23T11:55:15.375Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T11:55:00Z",
-    "source_docs": ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
   }
 }

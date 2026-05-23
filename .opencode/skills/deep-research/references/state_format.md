@@ -742,7 +742,7 @@ When `config.mode == "review"`, the state system adapts to track findings, dimen
   "dimensions": ["traceability", "maintainability"],
   "filesReviewed": [
     ".opencode/skills/deep-research/README.md",
-    ".opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml"
+    ".opencode/commands/deep/assets/deep_start-research-loop_review_auto.yaml"
   ],
   "findingsCount": 4,
   "newFindingsRatio": 0.32,

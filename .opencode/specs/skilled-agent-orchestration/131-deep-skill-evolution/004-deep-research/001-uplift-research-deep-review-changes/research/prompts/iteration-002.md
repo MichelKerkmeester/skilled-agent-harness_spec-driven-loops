@@ -29,7 +29,7 @@ For each verdict, cite evidence. **Verify with grep** before classifying — don
 
 Key surfaces to grep:
 - `.opencode/skills/deep-research/` (skill body)
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_*.yaml`
+- `.opencode/commands/deep/assets/deep_start-research-loop_*.yaml`
 - `.opencode/skills/deep-loop-runtime/` (shared runtime — deep-research consumes this per v1.12.0.0 changelog)
 - Recent commits touching deep-research: `git log --oneline -- .opencode/skills/deep-research/`
 

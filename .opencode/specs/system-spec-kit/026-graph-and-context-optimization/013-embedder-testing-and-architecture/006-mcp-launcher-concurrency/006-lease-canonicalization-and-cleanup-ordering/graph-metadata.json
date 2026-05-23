@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The Phase 005 council review found that the launcher arc still had two load-bearing lease gaps: lexical path identity could let symlink aliases bypass single-writer checks, and child signal mirroring could kill the parent before cleanup ran. The same review also found traceability drift in packet docs, REQ anchors, and the skill-advisor lease reference contract.",
     "created_at": "2026-05-18T15:18:04.415Z",
-    "last_save_at": "2026-05-18T15:58:25.915Z",
+    "last_save_at": "2026-05-23T11:55:15.577Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

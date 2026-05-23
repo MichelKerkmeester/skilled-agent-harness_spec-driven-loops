@@ -93,10 +93,10 @@ Investigate why focused deep-research bug-finding can surface more bugs than the
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Ruled out "add the ledger field, then test at the end." That lets schema work merge before behavior proves shallow PASS is impossible.
 
-### Ruled out a report-only fix. The report compiler depends on reducer-owned state plus `findingDetails`, so report instructions alone would still lack stable search aggregates. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1180] -- BLOCKED (iteration 13, 1 attempts)
-- What was tried: Ruled out a report-only fix. The report compiler depends on reducer-owned state plus `findingDetails`, so report instructions alone would still lack stable search aggregates. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1180]
+### Ruled out a report-only fix. The report compiler depends on reducer-owned state plus `findingDetails`, so report instructions alone would still lack stable search aggregates. [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1180] -- BLOCKED (iteration 13, 1 attempts)
+- What was tried: Ruled out a report-only fix. The report compiler depends on reducer-owned state plus `findingDetails`, so report instructions alone would still lack stable search aggregates. [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1180]
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Ruled out a report-only fix. The report compiler depends on reducer-owned state plus `findingDetails`, so report instructions alone would still lack stable search aggregates. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1180]
+- Do NOT retry: Ruled out a report-only fix. The report compiler depends on reducer-owned state plus `findingDetails`, so report instructions alone would still lack stable search aggregates. [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1180]
 
 ### Ruled out graph vocabulary before ledger semantics. Current workflow and MCP validation would drop or reject the candidate node kinds. -- BLOCKED (iteration 15, 1 attempts)
 - What was tried: Ruled out graph vocabulary before ledger semantics. Current workflow and MCP validation would drop or reject the candidate node kinds.
@@ -207,7 +207,7 @@ Investigate why focused deep-research bug-finding can surface more bugs than the
 - **Ruled out: make graph events the only depth proof.** Graph checks are omitted when no graph data exists, and the current graph vocabulary still lacks bug-class and invariant semantics. (iteration 12)
 - Treating delta-file existence as a complete post-dispatch check did not hold. The validator only looks for any iteration record in the delta file, not that it matches the state-log append. (iteration 12)
 - Treating the current validator failure reason list as enough for rollout policy did not hold. It can fail or pass, but it cannot carry migration warnings today. (iteration 12)
-- Ruled out a report-only fix. The report compiler depends on reducer-owned state plus `findingDetails`, so report instructions alone would still lack stable search aggregates. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1180] (iteration 13)
+- Ruled out a report-only fix. The report compiler depends on reducer-owned state plus `findingDetails`, so report instructions alone would still lack stable search aggregates. [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1180] (iteration 13)
 - Ruled out relying only on graphEvents for ledger persistence. The current prompt marks `graphEvents` optional, and graphless runs need equivalent text/JSON fallback proof. [SOURCE: .opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl:69] (iteration 13)
 - Ruled out using only `Ruled Out` / `Confirmed-Clean` markdown prose as the persistence path. It collapses clean proof and dead-end semantics and does not preserve row-level evidence refs. [SOURCE: .opencode/skills/deep-review/scripts/reduce-state.cjs:936] (iteration 13)
 - Searching for an existing `searchLedger` implementation in deep-review source found no current reducer or validator surface for it; the term appears in the research synthesis and planned recommendation set, not as shipped code. (iteration 13)

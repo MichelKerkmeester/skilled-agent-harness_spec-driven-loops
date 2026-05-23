@@ -1,13 +1,13 @@
 ---
 title: "Deep Research Prompt Packs"
-description: "Paste-ready deep research prompt packs for /spec_kit:deep-research. Mirrors the deep-review prompt structure but targets investigation workflows instead of audit workflows. Use when you need iterative convergent research on a technical question with externalized state + P0/P1/P2-analogue severity."
+description: "Paste-ready deep research prompt packs for /deep:start-research-loop. Mirrors the deep-review prompt structure but targets investigation workflows instead of audit workflows. Use when you need iterative convergent research on a technical question with externalized state + P0/P1/P2-analogue severity."
 importance_tier: "normal"
 contextType: "research-prompts"
 ---
 
 # Deep Research Prompt Packs
 
-Paste-ready prompts for kicking off `/spec_kit:deep-research :auto` campaigns on
+Paste-ready prompts for kicking off `/deep:start-research-loop :auto` campaigns on
 common research workflows. Same structural pattern as the manual-test-prompts
 pack — scenario-based with expected signals, fail modes, and a results log.
 
@@ -27,13 +27,13 @@ pack — scenario-based with expected signals, fail modes, and a results log.
 1. Pick the pack closest to your workflow.
 2. Pick a scenario inside that pack.
 3. Fill in the `__PLACEHOLDERS__` (topic, target folder, scope).
-4. Paste into your chosen CLI. All scenarios use `/spec_kit:deep-research :auto`
+4. Paste into your chosen CLI. All scenarios use `/deep:start-research-loop :auto`
    which auto-pilots the loop. Stop reading until the campaign converges.
 5. Collect the `research/research.md` synthesis when complete.
 
 ## Deep-review vs deep-research: structural parity
 
-| Aspect | `/spec_kit:deep-review :auto` | `/spec_kit:deep-research :auto` |
+| Aspect | `/deep:start-review-loop :auto` | `/deep:start-research-loop :auto` |
 |---|---|---|
 | Loop protocol | 4 phases: init, iterate, synthesize, save | 4 phases: init, iterate, synthesize, save |
 | State location | `{spec}/review/` | `{spec}/research/` |
@@ -51,24 +51,24 @@ All scenarios here work with any executor. Append `--executor=<kind>` +
 
 ```
 # Default: native @deep-research agent (Opus)
-/spec_kit:deep-research :auto "topic"
+/deep:start-research-loop :auto "topic"
 
 # cli-codex gpt-5.4 high fast
-/spec_kit:deep-research :auto "topic" --executor=cli-codex --model=gpt-5.4 --reasoning-effort=high --service-tier=fast
+/deep:start-research-loop :auto "topic" --executor=cli-codex --model=gpt-5.4 --reasoning-effort=high --service-tier=fast
 
 # cli-copilot gpt-5.4 high
-/spec_kit:deep-research :auto "topic" --executor=cli-copilot --model=gpt-5.4
+/deep:start-research-loop :auto "topic" --executor=cli-copilot --model=gpt-5.4
 
 # cli-gemini (single supported model)
-/spec_kit:deep-research :auto "topic" --executor=cli-gemini --model=gemini-3.1-pro-preview
+/deep:start-research-loop :auto "topic" --executor=cli-gemini --model=gemini-3.1-pro-preview
 
 # cli-claude-code
-/spec_kit:deep-research :auto "topic" --executor=cli-claude-code --model=claude-opus-4-7
+/deep:start-research-loop :auto "topic" --executor=cli-claude-code --model=claude-opus-4-7
 ```
 
 ## Spec folder contract
 
-`/spec_kit:deep-research` requires a spec folder (Gate 3). Most scenarios below
+`/deep:start-research-loop` requires a spec folder (Gate 3). Most scenarios below
 assume you'll create a fresh spec folder under `specs/NN-track/NNN-<slug>/`
 for the research question. The command handles scaffolding. If you have an
 existing folder (e.g., a feature track), pass `--spec-folder=PATH`.
@@ -81,7 +81,7 @@ block so the same doc accumulates history across campaigns.
 ```markdown
 ## YYYY-MM-DD — Run name / topic
 
-Command: `/spec_kit:deep-research :auto "..." --executor=... --model=...`
+Command: `/deep:start-research-loop :auto "..." --executor=... --model=...`
 Scenario ID: DR-XX-NN
 Iterations until converge: N (threshold=0.10)
 Artifacts: research/research.md + N iteration files + deltas
@@ -99,5 +99,5 @@ Based on:
 - `.opencode/skills/sk-deep-research/references/loop_protocol.md`
 - `.opencode/skills/sk-deep-research/references/convergence.md`
 - `.opencode/skills/sk-deep-research/references/quick_reference.md`
-- `.opencode/commands/spec_kit/deep-research.md` + `assets/spec_kit_deep-research_auto.yaml`
+- `.opencode/commands/deep/start-research-loop.md` + `assets/deep_start-research-loop_auto.yaml`
 - `.opencode/skills/sk-deep-review/` (for parallel structure — review ↔ research symmetry)

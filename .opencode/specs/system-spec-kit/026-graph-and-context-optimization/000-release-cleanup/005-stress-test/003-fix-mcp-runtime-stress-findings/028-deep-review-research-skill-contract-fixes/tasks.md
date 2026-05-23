@@ -51,10 +51,10 @@ _memory:
 
 - [x] T003 Rewrite `resolveArtifactRoot` in `shared/review-research-paths.cjs`
 - [x] T004 Update + extend tests in `scripts/tests/review-research-paths.vitest.ts`
-- [x] T005 [P] Add `step_stage_artifact_dir` to `spec_kit_deep-review_auto.yaml`
-- [x] T006 [P] Add `step_stage_artifact_dir` to `spec_kit_deep-review_confirm.yaml`
-- [x] T007 [P] Add `step_stage_artifact_dir` to `spec_kit_deep-research_auto.yaml`
-- [x] T008 [P] Add `step_stage_artifact_dir` to `spec_kit_deep-research_confirm.yaml`
+- [x] T005 [P] Add `step_stage_artifact_dir` to `deep_start-review-loop_auto.yaml`
+- [x] T006 [P] Add `step_stage_artifact_dir` to `deep_start-review-loop_confirm.yaml`
+- [x] T007 [P] Add `step_stage_artifact_dir` to `deep_start-research-loop_auto.yaml`
+- [x] T008 [P] Add `step_stage_artifact_dir` to `deep_start-research-loop_confirm.yaml`
 - [x] T009 [P] Update sk-deep-review SKILL doc flat-first prose
 - [x] T010 [P] Update sk-deep-research SKILL doc flat-first prose
 - [x] T011 [P] Update sk-deep-review state_format reference

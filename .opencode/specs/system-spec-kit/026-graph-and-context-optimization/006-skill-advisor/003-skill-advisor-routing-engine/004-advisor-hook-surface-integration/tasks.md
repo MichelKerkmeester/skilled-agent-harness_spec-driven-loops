@@ -40,7 +40,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 
 ### Research Dispatch
 
-- [x] T004 Dispatch `/spec_kit:deep-research :auto` on hook architecture (P0) — command in plan.md §4.1 [Evidence: 020/001 wave-1, wave-2 and wave-3 summaries in parent implementation-summary dispatch log.]
+- [x] T004 Dispatch `/deep:start-research-loop :auto` on hook architecture (P0) — command in plan.md §4.1 [Evidence: 020/001 wave-1, wave-2 and wave-3 summaries in parent implementation-summary dispatch log.]
 - [x] T005 Monitor convergence; stop vote + graph-convergence signals both allow STOP (P0) [Evidence: 020/001 wave-3 converged early at 2026-04-19T10:53:06Z.]
 - [x] T006 Synthesize findings → ranked proposals → cluster-to-child mapping (P0) [Evidence: children 002-009 scaffolded and implemented.]
 

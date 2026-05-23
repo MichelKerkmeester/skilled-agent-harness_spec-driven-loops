@@ -17,40 +17,75 @@
     "trigger_phrases": [
       "021 skill docs alignment",
       "skill md audit 016-019",
-      "embedder pluggability narrative",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "013-embedder-testing-and-architecture",
-      "005-cross-cutting-quality",
-      "003-skill-docs-alignment",
-      "021",
-      "skill",
-      "docs"
+      "embedder pluggability narrative"
     ],
     "key_topics": [
       "021",
-      "docs-alignment",
-      "skill-md",
-      "readme",
-      "embedder-narrative",
+      "skill",
+      "docs",
+      "alignment",
+      "audit",
+      "016-019",
+      "embedder",
       "pluggability",
-      "out-of-box",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "013-embedder-testing-and-architecture",
-      "005-cross-cutting-quality",
-      "003-skill-docs-alignment"
+      "narrative",
+      "session",
+      "shipped",
+      "large"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md"
     ],
-    "entities": [],
-    "causal_summary": "Sweep all skill SKILL.md / README / references / assets for stale embedder defaults + claims that drifted across 016-019 work. Refresh root README. Author canonical embedder-pluggability narrative covering mk-spec-memory + CocoIndex out-of-box for new users.",
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "three",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "current",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "file",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. OVERVIEW",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. CHILDREN",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This session shipped large architectural changes (pluggable embedders 016, retrieval rescue 016/004 ADR-009/010/011, Nomic/CodeRankEmbed current default, CocoIndex CodeRankEmbed swap, registered_embedders + INSTALL_GUIDE 019/001+002) but the broader documentation surface — skill MDs, references/, assets/, the root README — wasn't audited for stale references.",
     "created_at": "2026-05-18T16:14:38.214Z",
-    "last_save_at": "2026-05-19T19:44:28.899Z",
+    "last_save_at": "2026-05-23T11:55:15.554Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"

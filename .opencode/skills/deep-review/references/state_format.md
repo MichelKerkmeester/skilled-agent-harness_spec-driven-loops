@@ -864,7 +864,7 @@ Each finding is tracked with a unique identifier enabling deduplication, severit
   "status": "active",
   "dimension": "traceability",
   "title": "Applied target file missing from resource-map inventory",
-  "file": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
+  "file": ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
   "line": 955,
   "firstSeen": 2,
   "lastSeen": 4,

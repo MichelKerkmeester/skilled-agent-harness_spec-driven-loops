@@ -44,8 +44,8 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate the deep-review per-iteration write contract for iteration markdown, JSONL severity counts, and strategy updates.
 ### Commands
-1. `bash: rg -n 'iteration-NNN\|iteration-{NNN}\|iteration_pattern\|Write.*iteration' .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-2. `bash: rg -n 'step_validate_iteration\|iteration_file_written\|jsonl_appended\|strategy_updated\|on_missing_outputs' .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+1. `bash: rg -n 'iteration-NNN\|iteration-{NNN}\|iteration_pattern\|Write.*iteration' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
+2. `bash: rg -n 'step_validate_iteration\|iteration_file_written\|jsonl_appended\|strategy_updated\|on_missing_outputs' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
 3. `bash: rg -n 'iteration-NNN\|JSONL\|strategy\|Write.*findings\|P0.*P1.*P2' .opencode/skills/deep-review/references/quick_reference.md`
 ### Expected
 The dispatch prompt requires writing iteration-NNN.md, appending JSONL, and updating strategy; the post-dispatch validation checks for all three; the quick reference checklist documents the same outputs.
@@ -70,8 +70,8 @@ Inspect the on_missing_outputs fallback to verify that error handling still appe
 
 | File | Role |
 |---|---|
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Dispatch and validation; inspect `step_dispatch_review_agent` and `step_validate_iteration` |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Dispatch and validation; inspect `step_dispatch_review_agent` and `step_validate_iteration` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Dispatch and validation; inspect `step_dispatch_review_agent` and `step_validate_iteration` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Dispatch and validation; inspect `step_dispatch_review_agent` and `step_validate_iteration` |
 | `.opencode/skills/deep-review/references/quick_reference.md` | Iteration checklist; use `ANCHOR:agent-iteration-checklist` |
 | `.codex/agents/deep-review.toml` | Agent write contract; inspect iteration output requirements |
 | `.claude/agents/deep-review.md` | Agent write contract; inspect iteration output requirements |

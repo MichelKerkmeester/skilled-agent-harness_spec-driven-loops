@@ -23,7 +23,7 @@ Every change of these types already shipped to deep-research via the shared `dee
 | C-001, C-003, C-005, C-014..C-016 | RUNTIME-RELOCATION | Shared lib relocated to deep-loop-runtime; deep-research now consumes it |
 | C-004 | SCRIPT-SHIM | 4 .cjs scripts in deep-loop-runtime — bilateral consumer |
 | C-006, C-007 | MCP-REMOVAL | 4 deep_loop_graph_* tools deleted bilaterally; deep-research YAMLs cut over in C-008 |
-| C-008 | WORKFLOW-YAML | spec_kit_deep-research_{auto,confirm}.yaml updated alongside deep-review's |
+| C-008 | WORKFLOW-YAML | deep_start-research-loop_{auto,confirm}.yaml updated alongside deep-review's |
 | C-009, C-010 | COLLATERAL | /doctor + system-code-graph updated bilaterally |
 | C-011..C-013 | TEST-MIGRATION | Tests moved to deep-loop-runtime/tests/; cross-package vitest discovery |
 | C-017..C-022 | CANONICAL-COMPANIONS | deep-research already has feature_catalog/, manual_testing_playbook/, references/, graph-metadata.json |

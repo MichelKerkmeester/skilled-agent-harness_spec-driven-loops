@@ -42,10 +42,10 @@ Cite file:line. P1 for major drift; P2 for stale percentages or unfilled placeho
 
 **Step 3: Workflow YAML cutover deep-check (ACCEPTANCE: each call site traced).**
 For each of:
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
+- `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
+- `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
+- `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`
 
 Check each `bash: 'node .opencode/skills/deep-loop-runtime/scripts/<name>.cjs ...'` invocation:
 - Does it pass valid CLI args (matching what the script accepts)?

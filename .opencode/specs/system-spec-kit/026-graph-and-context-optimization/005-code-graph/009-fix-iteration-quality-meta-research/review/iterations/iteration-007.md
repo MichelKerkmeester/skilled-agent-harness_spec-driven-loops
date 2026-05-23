@@ -4,10 +4,10 @@
 
 - `.claude/skills/sk-code-review/SKILL.md:313-322`
 - `.claude/skills/sk-code-review/references/review_core.md:85-88`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:785`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1037-1055`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:762`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:1059-1077`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:785`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1037-1055`
+- `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:762`
+- `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:1059-1077`
 - `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:215-220`
 - `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:570-576`
 - `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:221-226`

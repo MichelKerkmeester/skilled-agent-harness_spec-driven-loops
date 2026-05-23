@@ -251,7 +251,7 @@ DOC_DONE_MARKED: <n>/<total>
 BLOCKERS: <list or "none">
 PROTOTYPE_LATER_NOTES: <list of features deliberately deferred, per ADR-003>
 
-NEXT_REVIEW_RECOMMENDATION: run /spec_kit:deep-review:auto on 005-code-graph-upgrades with maxIterations=8 convergenceThreshold=0.05 to verify no new findings in the expanded graph surface
+NEXT_REVIEW_RECOMMENDATION: run /deep:start-review-loop:auto on 005-code-graph-upgrades with maxIterations=8 convergenceThreshold=0.05 to verify no new findings in the expanded graph surface
 === END_IMPLEMENT_014_RUNTIME_RESULT ===
 ```
 

@@ -136,7 +136,7 @@ The loop reached max-iterations rather than early convergence because the user e
 
 - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts` (validator)
 - `.opencode/skills/deep-review/scripts/reduce-state.cjs` (reducer)
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` (workflow)
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` (workflow)
 - `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts` (graph allow-list)
 - `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-*.vitest.ts` (Phase B fixtures)
 - `.opencode/skills/deep-review/references/state_format.md` (v2 schema docs)

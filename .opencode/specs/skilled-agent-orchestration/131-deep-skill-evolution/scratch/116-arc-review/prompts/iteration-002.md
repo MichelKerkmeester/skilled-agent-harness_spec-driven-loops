@@ -28,7 +28,7 @@ Prior Findings: P0=1 P1=1 P2=1
    - **Path traversal**: do `evidenceRefs` strings accept `../`? Are they used as filesystem paths anywhere?
    - **JSONL injection**: can a malformed `findingDetails[]` entry crash the reducer or inject markdown into dashboard?
    - **Env var injection**: is `DEEP_REVIEW_V2_ENFORCEMENT` parsed safely (no shell exec on its value)?
-   - **YAML workflow**: does `spec_kit_deep-review_auto.yaml` interpolate any field as shell-safe? Search for `{evidenceRefs}` / `{searchLedger}` interpolations.
+   - **YAML workflow**: does `deep_start-review-loop_auto.yaml` interpolate any field as shell-safe? Search for `{evidenceRefs}` / `{searchLedger}` interpolations.
    - **Graph upsert**: does the new BUG_CLASS/INVARIANT/etc node-kind validation also sanitize `label` content?
 5. **Write iteration narrative** (1 tool call) to `.opencode/specs/skilled-agent-orchestration/116-deep-review-complexity/review/iterations/iteration-002.md`. Same structure as iter 1 (Dimension / Files Reviewed / Findings by Severity / Traceability Checks / Verdict / Next Dimension). Final line: `Review verdict: PASS|CONDITIONAL|FAIL`.
 

@@ -74,7 +74,7 @@ Later topics should read session-wide prior findings by fingerprint, not by re-i
 
 ### F15: Workflow command should mirror deep-review/deep-research `:auto` and `:confirm`
 
-Deep-review and deep-research are command-owned loops with YAML workflow ownership, setup answers, state files, and reducer refresh. Deep-council should get `/spec_kit:deep-council :auto|:confirm` rather than ad hoc shell loops. Evidence: `.opencode/skills/deep-review/SKILL.md:57`, `.opencode/skills/deep-review/SKILL.md:68`, `.opencode/skills/deep-research/SKILL.md:60`, `.opencode/skills/deep-research/SKILL.md:71`.
+Deep-review and deep-research are command-owned loops with YAML workflow ownership, setup answers, state files, and reducer refresh. Deep-council should get `/deep:ask-ai-council :auto|:confirm` rather than ad hoc shell loops. Evidence: `.opencode/skills/deep-review/SKILL.md:57`, `.opencode/skills/deep-review/SKILL.md:68`, `.opencode/skills/deep-research/SKILL.md:60`, `.opencode/skills/deep-research/SKILL.md:71`.
 
 ### F16: Four runtime mirrors need lockstep updates
 
@@ -87,5 +87,5 @@ Proceed with phases 002-006:
 1. 002 extracts/adapts runtime primitives from `deep-loop-runtime`.
 2. 003 implements per-topic multi-round orchestration.
 3. 004 implements multi-topic sessions and `council-findings-registry.json`.
-4. 005 wires `/spec_kit:deep-council` and four runtime mirrors.
+4. 005 wires `/deep:ask-ai-council` and four runtime mirrors.
 5. 006 adds parity tests, cost guard tests, and docs.

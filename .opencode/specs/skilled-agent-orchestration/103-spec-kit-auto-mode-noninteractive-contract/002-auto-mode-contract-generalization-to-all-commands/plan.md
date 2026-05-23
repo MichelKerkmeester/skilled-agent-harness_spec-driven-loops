@@ -52,7 +52,7 @@ Three codex group dispatches handle the 11-command migration (spec_kit/5, create
 
 ### Definition of Ready
 - [ ] Shared `auto_mode_contract.md` exists (created during Stage B).
-- [ ] `/spec_kit:deep-review.md` refactored to cite shared contract (verified Stage B).
+- [ ] `/deep:start-review-loop.md` refactored to cite shared contract (verified Stage B).
 - [ ] cli-codex binary + auth verified.
 
 ### Definition of Done

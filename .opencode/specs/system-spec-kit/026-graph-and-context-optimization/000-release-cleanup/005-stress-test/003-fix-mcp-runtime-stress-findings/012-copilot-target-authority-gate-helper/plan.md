@@ -42,7 +42,7 @@ _memory:
 
 ### Overview
 
-Add a typed `buildCopilotPromptArg` function next to `resolveCopilotPromptArg` in `mcp_server/lib/deep-loop/executor-config.ts`. The helper accepts a `targetAuthority` discriminated union and returns `{ argv, promptBody, enforcedPlanOnly }`. Wire both `spec_kit_deep-research_auto.yaml` and `spec_kit_deep-review_auto.yaml` cli-copilot dispatch blocks to route through the helper, resolving authority from the workflow's `{spec_folder}` template. Add a vitest covering the full behavior matrix and override resistance.
+Add a typed `buildCopilotPromptArg` function next to `resolveCopilotPromptArg` in `mcp_server/lib/deep-loop/executor-config.ts`. The helper accepts a `targetAuthority` discriminated union and returns `{ argv, promptBody, enforcedPlanOnly }`. Wire both `deep_start-research-loop_auto.yaml` and `deep_start-review-loop_auto.yaml` cli-copilot dispatch blocks to route through the helper, resolving authority from the workflow's `{spec_folder}` template. Add a vitest covering the full behavior matrix and override resistance.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -79,8 +79,8 @@ Pure-function helper with a discriminated-union input type. Stateless, determini
 - **`buildCopilotPromptArg(input)`** (function): takes `{ promptPath, prompt, targetAuthority, baseArgv, promptArgIndex?, thresholdBytes? }` and returns `{ argv, promptBody, enforcedPlanOnly }`. The argv has the prompt slot rewritten with the authority-prefixed prompt body; on plan-only enforcement, `--allow-all-tools` is filtered out.
 - **`buildTargetAuthorityPreamble(specFolder)`** (helper): renders the byte-stable preamble used in `kind:"approved"` mode and exported for audit/display use.
 - **`buildMissingAuthorityGate3Prompt()`** (helper): renders the Gate-3 clarifying-question prompt used when authority is missing on a write-intent dispatch.
-- **`spec_kit_deep-research_auto.yaml`** (workflow caller): inline Node script imports the helper, builds `targetAuthority` from `{spec_folder}`, and feeds the resulting argv to `runAuditedExecutorCommand`.
-- **`spec_kit_deep-review_auto.yaml`** (workflow caller): inline Node script imports the helper, builds `targetAuthority` from `{spec_folder}`, and feeds the resulting argv to `spawnSync('copilot', ...)`. Conversion from the prior bash-only dispatch unifies behavior with deep-research.
+- **`deep_start-research-loop_auto.yaml`** (workflow caller): inline Node script imports the helper, builds `targetAuthority` from `{spec_folder}`, and feeds the resulting argv to `runAuditedExecutorCommand`.
+- **`deep_start-review-loop_auto.yaml`** (workflow caller): inline Node script imports the helper, builds `targetAuthority` from `{spec_folder}`, and feeds the resulting argv to `spawnSync('copilot', ...)`. Conversion from the prior bash-only dispatch unifies behavior with deep-research.
 
 ### Data Flow
 
@@ -115,8 +115,8 @@ runAuditedExecutorCommand / spawnSync('copilot', built.argv, ...)
 
 ### Phase 2: Core Implementation
 - [x] Append `CopilotTargetAuthority` type + `buildCopilotPromptArg` + 2 helper builders to `executor-config.ts`
-- [x] Replace `if_cli_copilot.command` in `spec_kit_deep-research_auto.yaml` with the helper-routed Node script
-- [x] Replace `if_cli_copilot.command` in `spec_kit_deep-review_auto.yaml` with the helper-routed Node script (also unifies on Node-based dispatch)
+- [x] Replace `if_cli_copilot.command` in `deep_start-research-loop_auto.yaml` with the helper-routed Node script
+- [x] Replace `if_cli_copilot.command` in `deep_start-review-loop_auto.yaml` with the helper-routed Node script (also unifies on Node-based dispatch)
 - [x] Author vitest at `mcp_server/tests/executor-config-copilot-target-authority.vitest.ts` covering all 3 branches + override resistance + large-prompt fallback
 
 ### Phase 3: Verification
@@ -161,7 +161,7 @@ The vitest covers the falsifiable success criteria from research.md §3.5 and sp
 
 - **Trigger**: post-merge regression in cli-copilot deep-loop dispatch (e.g. all iterations stop with "TARGET AUTHORITY MISSING — GATE 3 REQUIRED" because `{spec_folder}` resolution is broken in the workflow setup phase).
 - **Procedure**:
-  1. Revert the two YAML files (`spec_kit_deep-research_auto.yaml`, `spec_kit_deep-review_auto.yaml`) to the prior bash/`resolveCopilotPromptArg` shape via `git revert <yaml-commit>`.
+  1. Revert the two YAML files (`deep_start-research-loop_auto.yaml`, `deep_start-review-loop_auto.yaml`) to the prior bash/`resolveCopilotPromptArg` shape via `git revert <yaml-commit>`.
   2. Leave `buildCopilotPromptArg` in `executor-config.ts` (additive helper; no callers break by its presence).
   3. Reopen this packet's `_memory.continuity.blockers` with the regression description and root-cause hypothesis.
 - **Test before rollback**: re-run the new vitest with the exact `{spec_folder}` value the workflow renders. If the test fails on `kind:"approved"` with the live folder string, the bug is in the helper; if the test passes but live dispatch fails, the bug is upstream in workflow-state resolution.

@@ -417,7 +417,7 @@ exec
 1113:scope: packet identity rewrites, slug/path sweeps, and follow-on phase packet creation in 022-hybrid-rag-fusion remediation work
 1164:- 023-esm-module-compliance, research/research.md, shared + mcp_server, scripts CommonJS interop, dual-build fallback-only, validate.sh --strict
 1181:- For `023-esm-module-compliance`, keep `research/research.md` immutable as canonical evidence and sync `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and `implementation-summary.md` to the same strategy language (shared + mcp_server ESM, scripts CommonJS interop, dual-build fallback-only) [Task 5]
-1192:scope: `/spec_kit:deep-research --review` execution contract, review-folder semantics, and release-readiness criteria mapping
+1192:scope: `/deep:start-research-loop --review` execution contract, review-folder semantics, and release-readiness criteria mapping
 1215:## Task 3: Establish release-readiness baseline and harden shared-memory/checkpoint scope
 1219:- rollout_summaries/2026-03-25T08-49-42-gmab-release_readiness_007_review_shared_memory_checkpoint.md (cwd=/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public, rollout_path=/Users/michelkerkmeester/.codex/sessions/2026/03/25/rollout-2026-03-25T09-49-42-019d242f-72c3-7431-8662-efd7dc6abbef.jsonl, updated_at=2026-03-25T11:04:58+00:00, thread_id=019d242f-72c3-7431-8662-efd7dc6abbef)
 1223:- release-ready checklist, shared_space_upsert, SPECKIT_SHARED_MEMORY_ADMIN_USER_ID, CHECKPOINT_SCOPE_UNSUPPORTED
@@ -712,11 +712,11 @@ Detect the current research phase from dispatch context to load appropriate reso
 ### Architecture: 3-Layer Integration
 
 ```
-User invokes: /spec_kit:deep-research "topic"
+User invokes: /deep:start-research-loop "topic"
                     |
                     v
     ┌─────────────────────────────────┐
-    │  /spec_kit:deep-research command│  Layer 1: Command
+    │  /deep:start-research-loop command│  Layer 1: Command
     │  (YAML workflow + loop config)    │  Manages loop lifecycle
     └──────────────┬──────────────────┘
                    |

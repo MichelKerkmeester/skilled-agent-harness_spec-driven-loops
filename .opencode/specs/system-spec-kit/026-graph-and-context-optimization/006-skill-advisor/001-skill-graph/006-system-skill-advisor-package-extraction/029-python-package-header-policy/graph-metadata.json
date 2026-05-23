@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/006-system-skill-advisor-package-extraction/029-python-package-header-policy",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/029-python-package-header-policy",
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/029-python-package-header-policy",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction",
   "children_ids": [],
@@ -17,12 +17,7 @@
       "plan",
       "tasks",
       "checklist",
-      "implementation summary",
-      "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/029-python-package-header-policy",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "006-skill-advisor",
-      "001-skill-graph"
+      "implementation summary"
     ],
     "key_topics": [
       "029",
@@ -38,7 +33,7 @@
       "implementation",
       "summary"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "complete",
     "key_files": [
       ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/__init__.py",
@@ -188,11 +183,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 026 recorded unresolved sk-code violations after the README coverage sweep. This packet closes its assigned ledger slice without renaming tools, changing subsystem topology, or touching unrelated dirty files.",
     "created_at": "2026-05-15T11:56:28Z",
-    "last_save_at": "2026-05-15T12:07:34.260Z",
+    "last_save_at": "2026-05-23T11:55:15.157Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

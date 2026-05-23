@@ -4,66 +4,202 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/036-failed-embedding-cleanup-retry",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/037-llama-cpp-embedding-worker-deep-dive",
-        "reason": "037 confirmed the context-size failure mode and restored llama-cpp worker health.",
-        "source": "manual"
-      },
-      {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/038-embedding-error-propagation",
-        "reason": "038 ensures provider failures propagate with useful retry-manager failure reasons.",
-        "source": "manual"
-      },
-      {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/039-token-aware-chunking",
-        "reason": "039 adds token-budget truncation so retried rows do not overflow the llama-cpp context.",
-        "source": "manual"
-      }
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      {
-        "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups",
-        "reason": "032 left historical failed/pending embeddings that this cleanup packet verifies after the worker repair.",
-        "source": "manual"
-      }
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "036 failed embedding cleanup retry",
       "repair failed embeddings",
       "llama-cpp historical failed embeddings",
-      "memory_index embedding_status failed cleanup"
+      "memory_index embedding_status failed cleanup",
+      "036 plan",
+      "failed embedding cleanup plan",
+      "036 tasks",
+      "failed embedding cleanup tasks",
+      "036 checklist",
+      "failed embedding cleanup checklist",
+      "036 implementation summary",
+      "failed embedding cleanup summary"
     ],
     "key_topics": [
       "036",
-      "failed-embedding",
+      "failed",
+      "embedding",
       "cleanup",
       "retry",
+      "repair",
+      "embeddings",
       "llama-cpp",
-      "memory_index",
-      "vec_memories",
-      "sqlite"
+      "historical",
+      "plan",
+      "tasks",
+      "checklist"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/scripts/repair-failed-embeddings.mjs",
-      ".opencode/skills/system-spec-kit/mcp_server/database/context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "checklist.md"
     ],
-    "entities": [],
-    "causal_summary": "036 verifies whether historical failed llama-cpp embedding rows can be repaired after the worker context-size and error-propagation fixes from 037, 038, and 039.",
+    "entities": [
+      {
+        "name": "repair-failed-embeddings.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/repair-failed-embeddings.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Failed Embedding Cleanup Retry",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packets",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Embedding Provider",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Repair Script",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mutation Scope",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packets 037, 038, and 039 restored llama-cpp embedding-worker health and error behavior, but the active llama-cpp SQLite profile still contains historical rows that did not embed successfully before the worker was fixed. The repair target is `.opencode/skills/system-spec-kit/mcp_server/database/context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite`.",
     "created_at": "2026-05-14T00:00:00Z",
-    "last_save_at": "2026-05-14T00:30:00Z",
-    "save_lineage": "manual_packet",
+    "last_save_at": "2026-05-23T11:55:15.387Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

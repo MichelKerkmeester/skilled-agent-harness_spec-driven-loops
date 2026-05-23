@@ -14,8 +14,8 @@ I compared Public's command setup contracts and YAML-backed workflow ownership m
 ## Evidence
 - `plan`, `implement`, and `complete` each begin with "YOUR FIRST ACTION" instructions to load a corresponding YAML workflow file. [SOURCE: .opencode/commands/spec_kit/plan.md:13-17] [SOURCE: .opencode/commands/spec_kit/implement.md:11-14] [SOURCE: .opencode/commands/spec_kit/complete.md:13-17]
 - Each of those commands also imposes its own first-message protocol and consolidated prompt block before normal execution starts. [SOURCE: .opencode/commands/spec_kit/plan.md:31-44] [SOURCE: .opencode/commands/spec_kit/implement.md:29-42] [SOURCE: .opencode/commands/spec_kit/complete.md:32-45]
-- Deep research follows the same pattern: the markdown command is a setup layer whose first action is to load auto or confirm YAML assets. [SOURCE: .opencode/commands/spec_kit/deep-research.md:11-20]
-- The deep-research auto asset owns a sizable state machine with dedicated config, strategy, registry, dashboard, iteration, and synthesis files. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:79-89]
+- Deep research follows the same pattern: the markdown command is a setup layer whose first action is to load auto or confirm YAML assets. [SOURCE: .opencode/commands/deep/start-research-loop.md:11-20]
+- The deep-research auto asset owns a sizable state machine with dedicated config, strategy, registry, dashboard, iteration, and synthesis files. [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:79-89]
 - Agent Lightning's first-agent tutorial presents the operator loop more directly: configure `Trainer`, provide the algorithm and initial prompt, then call `trainer.fit()`. [SOURCE: external/docs/how-to/train-first-agent.md:181-187]
 - The `tinker` example offers either a single integrated `oneclick` run or a clearly separated distributed workflow across three terminals. [SOURCE: external/examples/tinker/hello.py:22-29] [SOURCE: external/examples/tinker/hello.py:154-185]
 

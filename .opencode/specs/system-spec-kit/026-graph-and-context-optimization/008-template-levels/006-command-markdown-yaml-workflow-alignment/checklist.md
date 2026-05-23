@@ -132,7 +132,7 @@ _memory:
 <!-- ANCHOR:perf-verify -->
 ## L3+: PERFORMANCE VERIFICATION
 
-- [x] CHK-110 [P1] Validation performance claims remain factual. Evidence: `deep-research.md` and `spec_kit_deep-research_auto.yaml` cite the packet 004 local harness measurement as about 108ms.
+- [x] CHK-110 [P1] Validation performance claims remain factual. Evidence: `deep-research.md` and `deep_start-research-loop_auto.yaml` cite the packet 004 local harness measurement as about 108ms.
 - [x] CHK-111 [P1] Throughput targets met. Evidence: not applicable; no runtime throughput path modified.
 - [x] CHK-112 [P2] Load testing completed. Evidence: not applicable for documentation and YAML prose updates.
 - [x] CHK-113 [P2] Performance benchmarks documented. Evidence: implementation summary records the validation orchestrator mention and its source rationale.

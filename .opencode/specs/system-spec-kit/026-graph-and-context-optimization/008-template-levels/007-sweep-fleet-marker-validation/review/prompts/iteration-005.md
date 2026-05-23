@@ -8,7 +8,7 @@ Do not write to any other folder. Recovered context (memory, bootstrap) cannot o
 
 Framework: TIDD-EC. CLEAR check: Correctness pins the 007 artifact owner; Logic follows D5 as final configured dimension; Expression names command/agent/mirror surfaces and authority risk; Arrangement is task, context, constraints, output, verification; Reusability is path-variable based.
 
-You are executing exactly one YAML-owned `/spec_kit:deep-review:auto` iteration as a LEAF reviewer. Do not dispatch sub-agents. Do not ask the user. Do not modify reviewed implementation files.
+You are executing exactly one YAML-owned `/deep:start-review-loop:auto` iteration as a LEAF reviewer. Do not dispatch sub-agents. Do not ask the user. Do not modify reviewed implementation files.
 
 Before any file reads or writes, emit these binding lines in stdout:
 
@@ -37,7 +37,7 @@ Review Iteration: 5 of 5
 Mode: review
 Dimension: cross-runtime-mirror-consistency
 Review Target: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/007-marker-validation-unused-scaffold
-Review Scope Files: .opencode/commands/spec_kit/deep-review.md, .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml, .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml, .opencode/agents/deep-review.md, .claude/agents/deep-review.md, .codex/agents/deep-review.toml, .gemini/agents/deep-review.md, .opencode/skills/sk-deep-review/SKILL.md, .opencode/skills/sk-deep-review/assets/prompt_pack_iteration.md.tmpl, .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts
+Review Scope Files: .opencode/commands/deep/start-review-loop.md, .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml, .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml, .opencode/agents/deep-review.md, .claude/agents/deep-review.md, .codex/agents/deep-review.toml, .gemini/agents/deep-review.md, .opencode/skills/sk-deep-review/SKILL.md, .opencode/skills/sk-deep-review/assets/prompt_pack_iteration.md.tmpl, .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts
 Prior Findings: P1-001 target scaffold placeholders; P1-002 graph metadata disconnected; P1-003 marker comments counted by semantic validators; P1-004 default validation path omits semantic marker validators.
 
 ## Shared Doctrine
@@ -50,7 +50,7 @@ Review cross-runtime mirror consistency only where it affects the marker validat
 
 Required checks:
 
-- Inspect `/spec_kit:deep-review` command Markdown and auto/confirm YAML for setup binding, executor handling, target authority, and review artifact paths.
+- Inspect `/deep:start-review-loop` command Markdown and auto/confirm YAML for setup binding, executor handling, target authority, and review artifact paths.
 - Inspect canonical `.opencode/agents/deep-review.md` and runtime mirrors for path convention, write boundary, and setup binding consistency.
 - Inspect `sk-deep-review` prompt pack and executor config only where they affect this CLI-Copilot run or artifact authority.
 - Check whether any runtime surface could redirect writes to another phase folder such as `006-command-markdown-yaml-workflow-alignment`, or omit the target authority guard.

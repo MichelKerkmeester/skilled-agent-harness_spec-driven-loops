@@ -47,7 +47,7 @@ _memory:
 
 ### Problem Statement
 
-Add /spec_kit:deep-council auto/confirm workflow, skill docs, and four-runtime mirror sync.
+Add /deep:ask-ai-council auto/confirm workflow, skill docs, and four-runtime mirror sync.
 
 ### Purpose
 

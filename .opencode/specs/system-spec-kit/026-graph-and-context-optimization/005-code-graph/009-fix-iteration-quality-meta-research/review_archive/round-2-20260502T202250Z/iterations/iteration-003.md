@@ -9,8 +9,8 @@
 - `.opencode/skills/sk-deep-review/references/state_format.md:185-219`
 - `.opencode/skills/sk-deep-review/references/state_format.md:448-452`
 - `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml:312-323`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1047-1055`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:1069-1077`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1047-1055`
+- `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:1069-1077`
 - `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:215-226`
 - `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:568-574`
 - `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:221-224`

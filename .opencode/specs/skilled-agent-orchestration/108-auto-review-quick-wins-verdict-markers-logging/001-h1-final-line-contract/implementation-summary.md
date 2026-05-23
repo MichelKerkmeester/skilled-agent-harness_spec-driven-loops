@@ -18,8 +18,8 @@ _memory:
     key_files:
       - ".opencode/skills/sk-code-review/SKILL.md"
       - ".opencode/skills/deep-review/SKILL.md"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml"
+      - ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml"
+      - ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-05-16-108-001-implement"
@@ -69,13 +69,13 @@ _memory:
 - Mapping rule: PASS (no P0/P1), CONDITIONAL (P1 present, no P0), FAIL (any P0)
 - P2-only findings → PASS (P2 is informational)
 
-### File 3: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1072-1092`
+### File 3: `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1072-1092`
 - Added `step_derive_verdict` in `phase_synthesis` between `step_hydrate_summary_metrics` and `step_read_all_iterations`
 - Algorithm: if p0_count > 0 → FAIL, elif p1_count > 0 → CONDITIONAL, else → PASS
 - Outputs verdict and has_advisories for use by step_compile_review_report
 - H-1 comment block with derivation rules
 
-### File 4: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:1039-1059`
+### File 4: `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:1039-1059`
 - Mirror of auto YAML changes — same `step_derive_verdict` addition
 <!-- /ANCHOR:what-built -->
 

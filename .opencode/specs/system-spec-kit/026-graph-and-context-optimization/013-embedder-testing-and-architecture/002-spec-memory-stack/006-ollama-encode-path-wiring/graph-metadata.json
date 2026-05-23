@@ -52,9 +52,9 @@
       ".opencode/skills/system-spec-kit/references/memory/embedder_architecture.md",
       "spec.md",
       "plan.md",
+      "implementation-summary.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "checklist.md"
     ],
     "entities": [
       {
@@ -112,6 +112,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
@@ -121,12 +127,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -142,26 +142,26 @@
         "source": "derived"
       },
       {
-        "name": "the",
-        "kind": "key_phrase",
+        "name": "Active Ollama",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "1. METADATA",
-        "kind": "heading",
+        "name": "Data Boundaries",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "2. PROBLEM & PURPOSE",
-        "kind": "heading",
+        "name": "Unknown Ollama",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "3. SCOPE",
-        "kind": "heading",
+        "name": "Error Scenarios",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
@@ -178,33 +178,33 @@
         "source": "derived"
       },
       {
-        "name": "rows",
-        "kind": "key_phrase",
+        "name": "Depends On",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "1. SUMMARY",
-        "kind": "heading",
+        "name": "Estimated Effort",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "2. QUALITY GATES",
-        "kind": "heading",
+        "name": "Core Implementation",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "3. ARCHITECTURE",
-        "kind": "heading",
+        "name": "Rollback Procedure",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       }
     ],
     "causal_summary": "That left a production asymmetry. The index path can write Jina v3 vectors into `vec_1024`, while query-time `generateEmbedding()` and `generateQueryEmbedding()` can still instantiate llama-cpp and produce 768-dim EmbeddingGemma vectors. The live machine has `vec_metadata.active_embedder_name='jina-embeddings-v3'`, `active_embedder_dim=1024`, and a populated `vec_1024`, so search must encode queries with the same Ollama-backed model.",
     "created_at": "2026-05-18T19:18:20.873Z",
-    "last_save_at": "2026-05-18T19:18:20.873Z",
+    "last_save_at": "2026-05-23T11:55:15.430Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -13,29 +13,197 @@
   },
   "derived": {
     "trigger_phrases": [
-      "fix cli orchestrator doc drift",
-      "fix cli orchestrator doc drift graph metadata"
+      "F-007-B2",
+      "cli orchestrator drift",
+      "cli-opencode subagent contract",
+      "cli-copilot effort flag",
+      "cli prompt templates",
+      "F-007-B2 plan",
+      "010 cli orchestrator drift plan",
+      "F-007-B2 tasks",
+      "010 cli orchestrator drift tasks",
+      "F-007-B2 checklist",
+      "010 cli orchestrator drift checklist",
+      "010 cli orchestrator drift summary"
     ],
     "key_topics": [
-      "fix",
+      "f-007-b2",
       "cli",
       "orchestrator",
-      "doc",
-      "drift"
+      "drift",
+      "cli-opencode",
+      "subagent",
+      "contract",
+      "cli-copilot",
+      "effort",
+      "flag",
+      "prompt",
+      "templates"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      ".opencode/skills/cli-opencode/SKILL.md",
+      ".opencode/skills/cli-opencode/references/agent_delegation.md",
+      ".opencode/skills/cli-codex/assets/prompt_templates.md",
+      ".opencode/skills/cli-claude-code/assets/prompt_templates.md",
+      ".opencode/skills/cli-gemini/assets/prompt_templates.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      "checklist.md",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "tasks.md"
     ],
-    "entities": [],
-    "causal_summary": "Graph metadata for the current packet.",
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent_delegation.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/references/agent_delegation.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_templates.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-codex/assets/prompt_templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Orchestrator Skill Doc Drift",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Land",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "example",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "smaller",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-only",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "finding IDs",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The CLI orchestrator skills (`cli-opencode`, `cli-codex`, `cli-claude-code`, `cli-gemini`) drifted across five files. cli-opencode contradicts itself on subagent invocation (claims subagents are not directly invokable, then invokes them in references). cli-copilot's effort flag prose is inconsistent with the live CLI. The five prompt-templates files omit required model/effort/tier pins, embed `--yolo` write flags without approval gates, and miss explicit `--model` defaults.",
     "created_at": "2026-05-01T05:18:48Z",
-    "last_save_at": "2026-05-19T13:51:38.993Z",
+    "last_save_at": "2026-05-23T11:55:14.961Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

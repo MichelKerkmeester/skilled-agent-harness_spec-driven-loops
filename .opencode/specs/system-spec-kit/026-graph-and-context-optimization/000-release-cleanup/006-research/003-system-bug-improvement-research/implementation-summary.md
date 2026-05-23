@@ -94,7 +94,7 @@ Twenty cli-codex `gpt-5.5` high-reasoning iterations audited the spec-kit system
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The canonical `/spec_kit:deep-research:auto` workflow was used. After the initial orchestrator agent's batch script (`run_all.sh`) failed on macOS bash 3.2 (`declare -A` not supported), the parent agent took over manual dispatch: each iteration was a separate `codex exec --model gpt-5.5 -c model_reasoning_effort="high" --full-auto` call writing to `research/iterations/iteration-NNN.md` and `research/deltas/iter-NNN.jsonl`. Iterations 003-020 dispatched in batches of 3 in parallel; the JSONL state-log accumulated 20 iteration deltas. Synthesis used a final cli-codex high-reasoning call to produce `research.md` + `resource-map.md`.
+The canonical `/deep:start-research-loop:auto` workflow was used. After the initial orchestrator agent's batch script (`run_all.sh`) failed on macOS bash 3.2 (`declare -A` not supported), the parent agent took over manual dispatch: each iteration was a separate `codex exec --model gpt-5.5 -c model_reasoning_effort="high" --full-auto` call writing to `research/iterations/iteration-NNN.md` and `research/deltas/iter-NNN.jsonl`. Iterations 003-020 dispatched in batches of 3 in parallel; the JSONL state-log accumulated 20 iteration deltas. Synthesis used a final cli-codex high-reasoning call to produce `research.md` + `resource-map.md`.
 
 ### Trajectory
 

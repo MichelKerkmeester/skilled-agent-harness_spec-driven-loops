@@ -257,7 +257,7 @@ For a future re-run: tighten the runner's per-iteration validation (already decl
 | Plan remediation | `/spec_kit:plan` "skill-advisor command remediation - close 25 P1 findings from deep-review" | Bundle the 12-step ordered backlog into a child packet under 006-skill-advisor/ |
 | Implement specific fixes | `/spec_kit:implement <remediation-spec-folder>` | Execute the planned remediation |
 | Spot-fix quick wins (priorities 3, 4, 6, 8, 12) | direct edits | Low-effort items can land without full spec workflow |
-| Re-review after remediation | `/spec_kit:deep-review:auto <packet> --max-iterations=5` | Verify P1 closure with a smaller iteration budget |
+| Re-review after remediation | `/deep:start-review-loop:auto <packet> --max-iterations=5` | Verify P1 closure with a smaller iteration budget |
 | Refresh continuity | `/memory:save` | Index this report so future search picks it up |
 
 **ALWAYS** end with: "What would you like to do next?"

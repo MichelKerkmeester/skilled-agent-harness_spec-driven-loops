@@ -50,7 +50,7 @@ Two contract violations in the deep-review/deep-research skill output:
 
 **Bug 1 — Iteration audit trail not staged for commit**: Commit `6a8095907 feat(026/000/005/005): post-program cleanup loop + validator local-leak fix` shipped only the `review-report` markdown (193 lines) and dropped the entire iteration trail (`iterations/`, `deltas/`, `deep-review-state.jsonl`, `deep-review-strategy` markdown, `deep-review-config.json`, `deep-review-findings-registry.json`). The skill's externalized-state contract was violated.
 
-Root cause: the deep-review YAML at `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1142-1149` declares the `git add` for iteration files in a `reference_only_appendix` block with the explicit note "Checkpoint commits are intentionally excluded from workflow.steps." So the workflow never stages iteration files. Operators who do `git add review-report.md` (the obvious target file) miss everything else.
+Root cause: the deep-review YAML at `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1142-1149` declares the `git add` for iteration files in a `reference_only_appendix` block with the explicit note "Checkpoint commits are intentionally excluded from workflow.steps." So the workflow never stages iteration files. Operators who do `git add review-report.md` (the obvious target file) miss everything else.
 
 **Bug 2 — Always-pt-NN wrapper for child phases on first run**: `resolveArtifactRoot` (`.opencode/skills/system-spec-kit/shared/review-research-paths.cjs:199-224`) always wraps child-phase artifacts in a `{phaseSlug}-pt-NN` subfolder, even on first run. This produces unnecessary nesting like `001-post-program-doc-and-state-cleanup/review/001-post-program-doc-and-state-cleanup-pt-01/` when the parent's `review/` folder is empty. The `pt-NN` convention should only kick in when there's already prior content (re-review scenarios), not on every first run.
 
@@ -76,10 +76,10 @@ Fix both contract violations:
   - Root specs → flat (no change)
 
 - Add `git add {state_paths.artifact_dir}` step in synthesis phase of:
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+  - `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
+  - `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
+  - `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
+  - `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`
   - Place AFTER the synthesis-output write so the staged set includes the synthesis report AND all upstream state.
   - DO NOT auto-commit — operators retain commit authority.
 
@@ -110,10 +110,10 @@ Fix both contract violations:
 |------|--------|---------|
 | `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs` | Edit | Update `resolveArtifactRoot` for flat-first on empty rootDir |
 | `.opencode/skills/system-spec-kit/scripts/tests/review-research-paths.vitest.ts` | Edit | Update existing tests + add flat-first cases |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Edit | Add `git add {artifact_dir}` step at synthesis end |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Edit | Same as auto |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Edit | Same as auto |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Edit | Same as auto |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Edit | Add `git add {artifact_dir}` step at synthesis end |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Edit | Same as auto |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Edit | Same as auto |
+| `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Edit | Same as auto |
 | `.opencode/skills/sk-deep-review/SKILL.md` | Edit | Update flat-first convention doc |
 | `.opencode/skills/sk-deep-research/SKILL.md` | Edit | Same |
 | `.opencode/skills/sk-deep-review/references/state_format.md` | Edit | Same |

@@ -46,7 +46,7 @@
       "tasks",
       "checklist"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "complete",
     "key_files": [
       "resource-map.md",
@@ -54,8 +54,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      ".opencode/commands/spec_kit/deep-review.md"
+      "checklist.md"
     ],
     "entities": [
       {
@@ -92,12 +91,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review.md",
-        "kind": "doc",
-        "path": ".opencode/commands/spec_kit/deep-review.md",
         "source": "derived"
       },
       {
@@ -201,11 +194,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "T-003: [x] Define alias groups",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "CP-103 expected `spec_kit:deep-review`, while the advisor returned `sk-deep-review`. The underlying capability was present, but the campaign could only score it as WARN because accepted aliases are not formalized.",
     "created_at": "2026-05-18T07:49:27.134Z",
-    "last_save_at": "2026-05-19T13:51:38.635Z",
+    "last_save_at": "2026-05-23T11:55:14.534Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

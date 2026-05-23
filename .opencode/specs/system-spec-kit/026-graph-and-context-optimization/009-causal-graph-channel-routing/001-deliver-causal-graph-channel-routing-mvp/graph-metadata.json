@@ -11,52 +11,207 @@
   },
   "derived": {
     "trigger_phrases": [
-      "012/001 initial delivery",
-      "shouldPreserveGraph",
-      "entity-density",
-      "graphChannelInvocationRate",
-      "deep-review 012 CONDITIONAL",
-      "system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/001-deliver-causal-graph-channel-routing-mvp",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
       "009-causal-graph-channel-routing",
-      "001-deliver-causal-graph-channel-routing-mvp",
-      "feature",
-      "specification"
+      "graph channel skipped",
+      "causal graph underutilized",
+      "complexity router graph",
+      "shouldPreserveGraph",
+      "graph channel intent driven",
+      "009-causal-graph-channel-routing plan",
+      "shouldPreserveGraph plan",
+      "entity density routing plan",
+      "009-causal-graph-channel-routing tasks",
+      "009-causal-graph-channel-routing checklist",
+      "009-causal-graph-channel-routing implementation"
     ],
     "key_topics": [
-      "graph channel routing",
-      "intent driven preservation",
-      "entity density cache",
-      "routing telemetry",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
       "009-causal-graph-channel-routing",
-      "001-deliver-causal-graph-channel-routing-mvp",
-      "feature",
-      "specification",
-      "012",
-      "causal"
+      "graph",
+      "channel",
+      "skipped",
+      "causal",
+      "underutilized",
+      "complexity",
+      "router",
+      "shouldpreservegraph",
+      "intent",
+      "driven",
+      "plan"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/entity-density.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/routing-telemetry.ts",
+      "mcp_server/lib/search/query-router.ts",
+      "mcp_server/lib/search/entity-density.ts",
+      "mcp_server/lib/search/routing-telemetry.ts",
+      "mcp_server/handlers/memory-crud-health.ts",
+      "mcp_server/tests/query-router.vitest.ts",
+      "mcp_server/tests/entity-density.vitest.ts",
+      "mcp_server/tests/routing-telemetry-stress.vitest.ts",
+      "scratch/post-change.md",
+      "tests/query-router.vitest.ts",
+      "tests/entity-density.vitest.ts",
+      "scratch/live-smoke-results.md",
+      "scratch/stress-test-results.md",
+      "mcp_server/lib/search/query-classifier.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
+      "scratch/baseline.md",
       "implementation-summary.md",
-      "handover.md",
-      "resource-map.md"
+      "checklist.md",
+      "tests/routing-telemetry-stress.vitest.ts"
     ],
-    "entities": [],
-    "causal_summary": "Activate the graph and degree channels for intent-driven and short-query searches that currently route only through vector+fts+bm25 — 1,328 live causal edges sit unused because the complex-tier threshold (>8 terms) excludes essentially all natural queries.",
+    "entities": [
+      {
+        "name": "query-router.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/query-router.ts",
+        "source": "derived"
+      },
+      {
+        "name": "entity-density.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/entity-density.ts",
+        "source": "derived"
+      },
+      {
+        "name": "routing-telemetry.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/routing-telemetry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-crud-health.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-crud-health.ts",
+        "source": "derived"
+      },
+      {
+        "name": "query-router.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/query-router.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "entity-density.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/entity-density.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "routing-telemetry-stress.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/routing-telemetry-stress.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "post-change.md",
+        "kind": "doc",
+        "path": "scratch/post-change.md",
+        "source": "derived"
+      },
+      {
+        "name": "live-smoke-results.md",
+        "kind": "doc",
+        "path": "scratch/live-smoke-results.md",
+        "source": "derived"
+      },
+      {
+        "name": "stress-test-results.md",
+        "kind": "doc",
+        "path": "scratch/stress-test-results.md",
+        "source": "derived"
+      },
+      {
+        "name": "query-classifier.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/query-classifier.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.md",
+        "kind": "doc",
+        "path": "scratch/baseline.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Causal Graph Channel Routing Utilization",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 12 of the 026 graph-and-context-optimization wrapper. The 010-graph-impact-and-affordance-uplift wrapper added causal-trust display and trust axes; this phase closes the runtime-utilization gap by ensuring the *channel selector* actually activates the graph channel for queries where causal traversal would surface results that vector+fts cannot.",
     "created_at": "2026-05-19T15:28:02.708Z",
-    "last_save_at": "2026-05-19T19:44:28.899Z",
+    "last_save_at": "2026-05-23T11:55:15.300Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

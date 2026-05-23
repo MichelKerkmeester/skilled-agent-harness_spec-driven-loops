@@ -322,7 +322,7 @@ Total cost: ~$2 in inference (DeepSeek API direct, reasoning=high). No fallback 
 | **Quick-win batch** | Edit `resource-map.md` directly to fix P1-002 + P1-003 + P2-015 | ≤10 min, no plan-doc needed |
 | **Ship code polish** | `/spec_kit:plan` for Packet C | bundles 19 P2 findings into one packet |
 | **Refresh memory** | `/memory:save` for this spec folder | persist deep-review continuity |
-| **Re-run review** | `/spec_kit:deep-review:auto` after Tier-1 fixes ship | confirm verdict moves to PASS |
+| **Re-run review** | `/deep:start-review-loop:auto` after Tier-1 fixes ship | confirm verdict moves to PASS |
 
 ---
 

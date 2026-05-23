@@ -38,7 +38,7 @@ _memory:
 | **Created** | 2026-04-29 |
 | **Branch** | `main` |
 | **Parent** | `026-graph-and-context-optimization` |
-| **Mode** | Deep research (`/spec_kit:deep-research:auto` pattern) |
+| **Mode** | Deep research (`/deep:start-research-loop:auto` pattern) |
 | **Iterations** | 7 (max); convergence allowed earlier |
 | **Executor** | cli-codex `gpt-5.5` reasoning=`xhigh` service-tier=null (normal) |
 <!-- /ANCHOR:metadata -->

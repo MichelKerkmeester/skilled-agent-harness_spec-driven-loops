@@ -146,8 +146,8 @@ import { acquireLoopLock, releaseLoopLock } from '../../deep-loop-runtime/lib/de
 
 | Consumer | How it integrates |
 |----------|-------------------|
-| `deep-review` workflow YAML | `bash: node .../scripts/<name>.cjs` invocations in `spec_kit_deep-review_{auto,confirm}.yaml` |
-| `deep-research` workflow YAML | Mirror invocations in `spec_kit_deep-research_{auto,confirm}.yaml` |
+| `deep-review` workflow YAML | `bash: node .../scripts/<name>.cjs` invocations in `deep_start-review-loop_{auto,confirm}.yaml` |
+| `deep-research` workflow YAML | Mirror invocations in `deep_start-research-loop_{auto,confirm}.yaml` |
 | `deep-review/scripts/reduce-state.cjs` | TS imports from `lib/coverage-graph/` |
 | `/doctor` command | Health checks via `scripts/status.cjs` invocation |
 | `system-code-graph` playbook | Scenario 009 references the new script paths |

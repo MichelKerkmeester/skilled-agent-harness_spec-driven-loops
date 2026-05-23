@@ -15,7 +15,7 @@ This scenario validates auto mode deep-review kickoff for `DRV-001`. The objecti
 
 ### WHY THIS MATTERS
 
-Operators need one coherent story for `/spec_kit:deep-review:auto` so they can launch unattended code audits with the right artifact and lifecycle expectations.
+Operators need one coherent story for `/deep:start-review-loop:auto` so they can launch unattended code audits with the right artifact and lifecycle expectations.
 
 ---
 
@@ -44,9 +44,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate the autonomous deep-review entrypoint and report whether docs, command routing, YAML, and expected artifacts agree.
 ### Commands
-1. `bash: rg -n '/spec_kit:deep-review:auto|review/review-report.md|review/iterations' .opencode/skills/deep-review/README.md .opencode/skills/deep-review/references/quick_reference.md`
-2. `bash: sed -n '1,220p' .opencode/commands/spec_kit/deep-review.md`
-3. `bash: sed -n '1,260p' .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+1. `bash: rg -n '/deep:start-review-loop:auto|review/review-report.md|review/iterations' .opencode/skills/deep-review/README.md .opencode/skills/deep-review/references/quick_reference.md`
+2. `bash: sed -n '1,220p' .opencode/commands/deep/start-review-loop.md`
+3. `bash: sed -n '1,260p' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
 ### Expected
 The same autonomous command appears across sources, autonomous mode is approval-free, and the workflow points to config, JSONL, strategy, iteration files, and `review/review-report.md`.
 ### Evidence
@@ -72,8 +72,8 @@ Start with the README examples, confirm the Markdown command maps `:auto` to the
 |---|---|
 | `.opencode/skills/deep-review/README.md` | User-facing examples; use `ANCHOR:quick-start` and `ANCHOR:configuration` |
 | `.opencode/skills/deep-review/references/quick_reference.md` | Cheat-sheet command contract; use `ANCHOR:commands` and `ANCHOR:state-files` |
-| `.opencode/commands/spec_kit/deep-review.md` | Markdown setup and mode routing; use `SINGLE CONSOLIDATED SETUP PROMPT` and `## 0. UNIFIED SETUP PHASE` |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Autonomous workflow contract; inspect `state_paths`, `phase_init`, and `phase_loop` |
+| `.opencode/commands/deep/start-review-loop.md` | Markdown setup and mode routing; use `SINGLE CONSOLIDATED SETUP PROMPT` and `## 0. UNIFIED SETUP PHASE` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Autonomous workflow contract; inspect `state_paths`, `phase_init`, and `phase_loop` |
 
 ---
 

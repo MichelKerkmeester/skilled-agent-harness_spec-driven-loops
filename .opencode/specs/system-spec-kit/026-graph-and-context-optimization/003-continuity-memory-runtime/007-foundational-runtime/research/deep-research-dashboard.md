@@ -2,9 +2,9 @@
 
 **Last updated:** 2026-04-16T19:17:00Z (FINAL synthesis commit) -- metadata back-fill 2026-04-16T20:00:00Z
 **Status:** **COMPLETE** -- 50/50 iterations, Domains 1-4 complete, Domain 5 transversal, FINAL synthesis authored
-**Dispatcher:** cli-copilot gpt-5.4 high (manual wave dispatch, not `/spec_kit:deep-research` skill loop)
+**Dispatcher:** cli-copilot gpt-5.4 high (manual wave dispatch, not `/deep:start-research-loop` skill loop)
 
-> This dashboard was back-filled after the 50-iteration run completed. The original run did not produce a live dashboard because it bypassed the standard `/spec_kit:deep-research` state-reducer pipeline.
+> This dashboard was back-filled after the 50-iteration run completed. The original run did not produce a live dashboard because it bypassed the standard `/deep:start-research-loop` state-reducer pipeline.
 
 ---
 
@@ -134,7 +134,7 @@ Full per-iteration stream: see `deep-research-state.jsonl` and `iterations/itera
 | `research.md` | BACK-FILLED | Canonical research narrative |
 | `findings-registry.json` | BACK-FILLED | Structured finding registry (137 raw entries + dedup clusters) |
 
-**Back-fill rationale:** the 50-iteration run was dispatched manually via `cli-copilot` rather than through the `/spec_kit:deep-research` skill loop, so the standard skill artifacts were not produced live. These were reconstructed from the iteration files' frontmatter + mtimes + FINAL synthesis after the run completed.
+**Back-fill rationale:** the 50-iteration run was dispatched manually via `cli-copilot` rather than through the `/deep:start-research-loop` skill loop, so the standard skill artifacts were not produced live. These were reconstructed from the iteration files' frontmatter + mtimes + FINAL synthesis after the run completed.
 
 ---
 

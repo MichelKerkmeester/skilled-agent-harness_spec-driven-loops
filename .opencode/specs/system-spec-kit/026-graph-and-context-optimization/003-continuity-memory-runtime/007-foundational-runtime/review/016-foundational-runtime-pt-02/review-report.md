@@ -406,7 +406,7 @@ Generate changelog entry flagging v3.4.0.3 as "known P1 residuals; see review-re
 
 If concerned about undiscovered gaps in 8/38 residual focus files:
 ```
-/spec_kit:deep-review :auto
+/deep:start-review-loop :auto
 ```
 
 Target: `handlers/memory-context.ts` (58 KB), `handlers/code-graph/query.ts` (30 KB), `lib/storage/lineage-state.ts` (46 KB), `lib/validation/preflight.ts` (28 KB), `command/spec_kit/assets/spec_kit_complete_confirm.yaml` (67 KB) as a focused maintainability review. Iter 9 extrapolation suggests ~6 findings per uncovered file at P2-dominant severity; no evidence of hidden P0/P1 surface.

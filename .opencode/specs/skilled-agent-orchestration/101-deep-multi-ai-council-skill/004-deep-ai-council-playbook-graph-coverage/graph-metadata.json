@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phase 003 of `101-deep-multi-ai-council-skill` shipped a dedicated council graph (4 MCP tools, 8 node kinds, 10 relation kinds, 5 query modes, 3 convergence buckets) backed by `council-graph.sqlite` and verified by `tests/council-graph.vitest.ts`. The manual testing playbook was not updated to match: the entire shipped surface is exercised by zero operator-driven scenarios; the only mention of `council_graph_*` in the playbook tree is one textual line in DAC-011. The DAC-011 scenario file is also still named `001-graph-support-explicitly-out-of-scope.md` even though its content was rewritten in-place to \"Graph support stays derived and scoped\".",
     "created_at": "2026-05-11T05:27:10Z",
-    "last_save_at": "2026-05-23T09:22:40.103Z",
+    "last_save_at": "2026-05-23T11:55:14.115Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

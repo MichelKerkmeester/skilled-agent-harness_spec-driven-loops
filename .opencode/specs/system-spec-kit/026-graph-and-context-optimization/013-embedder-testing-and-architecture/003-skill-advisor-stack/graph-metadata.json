@@ -19,46 +19,85 @@
     "trigger_phrases": [
       "022 skill advisor embedder parity",
       "skill-advisor jina swap",
-      "skill-advisor pluggable embedder",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/003-skill-advisor-stack",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "013-embedder-testing-and-architecture",
-      "003-skill-advisor-stack",
-      "022",
-      "skill-advisor",
-      "embedder",
-      "parity"
+      "skill-advisor pluggable embedder"
     ],
     "key_topics": [
       "022",
-      "skill-advisor",
+      "skill",
+      "advisor",
       "embedder",
       "parity",
+      "skill-advisor",
       "jina",
+      "swap",
       "pluggable",
-      "auto-detect",
-      "vec-metadata",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "013-embedder-testing-and-architecture",
-      "003-skill-advisor-stack"
+      "020",
+      "deep-review",
+      "legacy-db"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "planned",
     "key_files": [
+      "shared/embeddings/factory.ts",
       "spec.md"
     ],
-    "entities": [],
-    "causal_summary": "Bring skill-advisor up to the 016+019 pattern. Today skill-advisor",
+    "entities": [
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": "shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Writer Cross",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "all",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "jina-v3",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "env",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-memory",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 020 deep-review's legacy-DB audit surfaced a gap: **skill-advisor is the only system in this repo still on gemma**.",
     "created_at": "2026-05-18T16:14:38.284Z",
-    "last_save_at": "2026-05-21T18:08:48.680Z",
+    "last_save_at": "2026-05-23T11:55:15.469Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
-    ],
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/003-skill-advisor-stack/006-shared-embedder-logic-with-spec-memory",
-    "last_active_at": "2026-05-21T18:08:48.680Z",
-    "last_indexed_at": "2026-05-21T11:00:00Z"
+    ]
   }
 }

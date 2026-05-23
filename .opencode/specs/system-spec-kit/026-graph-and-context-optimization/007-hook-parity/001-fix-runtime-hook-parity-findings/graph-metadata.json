@@ -79,9 +79,9 @@
       "tests/session-resume.vitest.ts",
       "tests/opencode-plugin.vitest.ts",
       ".codex/policy.json",
-      ".opencode/plugins/spec-kit-compact-code-graph.js",
       ".opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts",
       ".github/hooks/superset-notify.json",
+      ".github/hooks/scripts/session-start.sh",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -116,15 +116,15 @@
         "source": "derived"
       },
       {
-        "name": "spec-kit-compact-code-graph.js",
-        "kind": "code",
-        "path": ".opencode/plugins/spec-kit-compact-code-graph.js",
-        "source": "derived"
-      },
-      {
         "name": "superset-notify.json",
         "kind": "config",
         "path": ".github/hooks/superset-notify.json",
+        "source": "derived"
+      },
+      {
+        "name": "session-start.sh",
+        "kind": "script",
+        "path": ".github/hooks/scripts/session-start.sh",
         "source": "derived"
       },
       {
@@ -238,7 +238,7 @@
     ],
     "causal_summary": "This phase closes hook parity defects discovered on 2026-04-21 across the OpenCode plugin bridge, Codex advisor hooks, Copilot startup routing, Codex PreToolUse safety, and runtime documentation. The implementation keeps each runtime on its real capability surface: OpenCode injects through the plugin bridge, Codex uses prompt/pre-tool hooks plus `session_bootstrap` for startup recovery, and Copilot starts through the repo-local wrapper.",
     "created_at": "2026-04-21T10:15:00.000Z",
-    "last_save_at": "2026-04-26T09:17:15.805Z",
+    "last_save_at": "2026-05-23T11:55:15.237Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

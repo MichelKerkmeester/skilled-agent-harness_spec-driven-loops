@@ -35,7 +35,7 @@ Phase 016 did not raise any single iteration-level finding to P0. Instead, it as
 - **P0-candidate-C — Graph-metadata laundering + packet-search boost.** Malformed modern `graph-metadata.json` is accepted as legacy, stamped with fresh timestamps, rewritten as canonical JSON, assigned `qualityScore: 1`, and boosted +0.12 in packet search — all while the original corruption signal is erased. Six constituent findings.
 - **P0-candidate-D — TOCTOU cleanup erasing fresh state under live session load.** A routine `--finalize` cleanup sweep overlapping with live writers can delete the newest session state, make the next startup look like a cold start, and double-count tokens on transcript re-parse. Four constituent findings. Triggered by normal maintenance rather than abnormal load.
 
-A fifth candidate — **Domain-4 routing misdirection chain** — is currently **watch-priority-1** (one confirmed step away from P0) after R46-001 identified a concrete routing path from `/spec_kit:deep-research` to the planner bridge at 0.95 confidence.
+A fifth candidate — **Domain-4 routing misdirection chain** — is currently **watch-priority-1** (one confirmed step away from P0) after R46-001 identified a concrete routing path from `/deep:start-research-loop` to the planner bridge at 0.95 confidence.
 
 A sixth candidate — **Stop-hook success-flag durability overstatement** — was considered in the 38-iteration synthesis but has been folded into P0-candidate-A for remediation purposes; both share the same HookState locking + durability-re-verification fix.
 
@@ -77,7 +77,7 @@ Phase 017 should treat the four P0 candidates as **anchor workstreams** (one per
 | `command/spec_kit/assets/spec_kit_plan_auto.yaml` | 6 | 4 | D4 | R41-001, R42-001, R43-002, R44-003, R47-002, R48-002, R49-002 |
 | `command/spec_kit/assets/spec_kit_plan_confirm.yaml` | 4 | 3 | D4 | R42-001, R44-003, R47-002, R48-002 |
 | `command/spec_kit/assets/spec_kit_complete_auto.yaml` | 2 | 1 | D4 | R48-002 |
-| `command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | 1 | 1 | D4 | R50-001 |
+| `command/deep/assets/deep_start-research-loop_auto.yaml` | 1 | 1 | D4 | R50-001 |
 | `skill/skill-advisor/scripts/skill_advisor.py` | 7 | 5 | D4 | R41-003, R42-002, R43-001, R44-001, R46-001, R46-002 |
 | `skill/skill-advisor/scripts/skill_advisor_runtime.py` | 4 | 3 | D4 | R42-002, R43-001, R44-002 |
 | `skill/skill-advisor/scripts/skill_graph_compiler.py` | 5 | 4 | D4 | R41-003, R45-003, R46-002, R49-003 |
@@ -247,7 +247,7 @@ Phase 017 should treat the four P0 candidates as **anchor workstreams** (one per
 | R45-002 | `skill_advisor.py:568-577,771-813,1669-1694`; `test_skill_advisor.py:73-186` | P2 | Deep-research prompts containing `audit`/`review` tokens score within 0.02 of `sk-code-review`; no ranking-stability test | Wording-sensitive routing; ties between review and deep-research |
 | R45-003 | `skill_graph_compiler.py:559-568,630-663`; `skill_advisor.py:1841-1888`; `test_skill_advisor.py:141-165` | P1 | Topology warning state non-durable: ZERO-EDGE WARNINGS emitted then dropped from serialized graph; `health_check()` returns `status: ok` with `skill_graph_loaded: true` after warnings | "Validation passed" + "health ok" both advertise success while graph violates invariants |
 | R45-004 | `manual-playbook-runner.ts:245-271,1203-1217`; `manual_testing_playbook.md:196-230`; `spec.md:131-134` | P1 | `parseScenarioDefinition()` returns null on parse failure; `main()` filters nulls before coverage count; 10/291 active scenario files unparseable on 2026-04-16 | Coverage reports understate active scenario tree |
-| R46-001 | `skill_advisor.py:980-1021,1404-1410,1647,1741-1768`; `test_skill_advisor.py:73-186` | P1 | `COMMAND_BRIDGES` registers only `/spec_kit` and `spec_kit:` prefix markers; `detect_explicit_command_intent()` stops at first containment match; all `/spec_kit:*` subcommands collapse to `command-spec-kit` at `kind_priority=2` | `/spec_kit:deep-research` → `command-spec-kit` 0.95, `sk-deep-research` 0.70 |
+| R46-001 | `skill_advisor.py:980-1021,1404-1410,1647,1741-1768`; `test_skill_advisor.py:73-186` | P1 | `COMMAND_BRIDGES` registers only `/spec_kit` and `spec_kit:` prefix markers; `detect_explicit_command_intent()` stops at first containment match; all `/spec_kit:*` subcommands collapse to `command-spec-kit` at `kind_priority=2` | `/deep:start-research-loop` → `command-spec-kit` 0.95, `sk-deep-research` 0.70 |
 | R46-002 | `skill_graph_compiler.py:272-319,501-568,630-663`; `skill_advisor.py:141-187,321-339`; `test_skill_advisor.py:73-186` | P1 | `validate_edge_symmetry()` never inspects `conflicts_with` edges; unilateral metadata edit silently creates bilateral runtime penalty | Routing behavior changes from unilateral metadata edit with no validation gate |
 | R46-003 | `manual-playbook-runner.ts:181-194,427-445,930-943,1112-1117` | P1 | `parsedStepArgs()` routes brace-prefixed text to `evaluateObjectLiteral()`; `substitutePlaceholders()` injects `runtimeState.lastJobId` from prior handler payloads into `Function(...)` string | Tool output is now part of the evaluated code string; trust boundary wider than repository-owned markdown |
 | R47-001 | `AGENTS.md:182-185`; `002-confirm-mode-checkpointed-review.md:26-32,44-45`; `026-ruled-out-directions-in-synthesis.md:26-32,44-45` | P2 | Concrete shipped scenarios with `phase transition`/`synthesis phase` — both read-only validation prompts reuse Gate 3 trigger `phase` verbatim | Confirms R45-001 false-positive with repo evidence |
@@ -257,7 +257,7 @@ Phase 017 should treat the four P0 candidates as **anchor workstreams** (one per
 | R49-001 | `AGENTS.md:142-144,182-186,201-204` | P2 | (Consolidates with R48-001) Write intent governed by two unsynchronized string classifiers: Gate 3 and `MEMORY SAVE RULE` | Equivalent write requests take different governance paths based on wording |
 | R49-002 | `spec_kit_plan_auto.yaml:354,372,380,391,555` | P2 | (Consolidates with R48-002) Same `when:` key carries both boolean-like predicates and free-form narrative timing prose | Strict interpreters mis-handle prose; permissive ones accept opaque strings |
 | R49-003 | `skill_graph_compiler.py:437-472,623-663` | P1 | `validate_dependency_cycles()` only detects two-node reciprocal cycles; longer `depends_on` loops pass `--validate-only` | Live repro 2026-04-16: `a -> b -> c -> a` returns empty `three_node` array; cyclic graph passes validation |
-| R50-001 | `AGENTS.md:182-186`; `spec_kit_deep-research_auto.yaml:159-167,521-526`; `deep-research-reducer.vitest.ts:53-58,145-146,264-270,286-295` | P1 | Gate 3 hard-block trigger list has false-negative for deep-research `resume` write path; `resume` is a tested write flow producing `iteration-NNN.md` + JSONL appends | Packet writes without matching trigger words; spec-folder setup may be skipped |
+| R50-001 | `AGENTS.md:182-186`; `deep_start-research-loop_auto.yaml:159-167,521-526`; `deep-research-reducer.vitest.ts:53-58,145-146,264-270,286-295` | P1 | Gate 3 hard-block trigger list has false-negative for deep-research `resume` write path; `resume` is a tested write flow producing `iteration-NNN.md` + JSONL appends | Packet writes without matching trigger words; spec-folder setup may be skipped |
 | R50-002 | `097-async-ingestion-job-lifecycle-p0-3.md:35-37`; `144-advisory-ingest-lifecycle-forecast.md:35-36`; `manual-playbook-runner.ts:438-445,544-548,612-616`; `manual_testing_playbook.md:194-199`; `002-full-playbook-execution/spec.md:131-134` | P2 | Live corpus contains two incompatible argument dialects for the same tool family (`memory_ingest_status({jobId})` vs `memory_ingest_status({ jobId:"<job-id>" })`); shorthand form depends on undefined JS scoping | Runner can crash or silently skip lifecycle checks on documentation-quality edits |
 
 ### 2.3 Per-file root-cause analysis — top 10 files
@@ -487,9 +487,9 @@ All four confirmed P0 candidates satisfy criteria 1, 3, 4, and 5. They differ al
 
 **Constituent findings:** R46-001 + R43-001/R44-001 + R42-002 + R41-003 + R46-002.
 
-**Rationale for not-yet-P0.** The chain currently has one confirmed concrete step (R46-001: `/spec_kit:deep-research` → `command-spec-kit` 0.95) but whether that mis-route completes into file-modifying behavior depends on whether `command-spec-kit` enforces Gate 3 independently of skill routing. That question remains open.
+**Rationale for not-yet-P0.** The chain currently has one confirmed concrete step (R46-001: `/deep:start-research-loop` → `command-spec-kit` 0.95) but whether that mis-route completes into file-modifying behavior depends on whether `command-spec-kit` enforces Gate 3 independently of skill routing. That question remains open.
 
-**Recommend upgrade trigger.** If Phase 017 reveals that `command-spec-kit` proceeds into spec-folder creation when invoked via bridge with `/spec_kit:deep-research` intent, upgrade to P0-candidate-E immediately. The fix is at A0 + A2 (subcommand bridge + `intent_signals` wiring) and is a ~3-day change once the ambiguity is resolved.
+**Recommend upgrade trigger.** If Phase 017 reveals that `command-spec-kit` proceeds into spec-folder creation when invoked via bridge with `/deep:start-research-loop` intent, upgrade to P0-candidate-E immediately. The fix is at A0 + A2 (subcommand bridge + `intent_signals` wiring) and is a ~3-day change once the ambiguity is resolved.
 
 ### 3.6 Watch-priority-2: Playbook runner `Function(...)` trust-boundary expansion
 
@@ -747,7 +747,7 @@ The four that remain as P0 share a property the 12 rejected candidates do not: *
 | R46-002 | `skill_graph_compiler.py:272-319,501-568,630-663`; `skill_advisor.py:141-187,321-339` | P1 | Unilateral `conflicts_with` silently promoted to bilateral runtime penalty |
 | R46-003 | `manual-playbook-runner.ts:181-194,427-445,930-943,1112-1117` | P1 | `Function(...)()` runs with live `lastJobId` from tool-return payloads |
 | R49-003 | `skill_graph_compiler.py:437-472,623-663` | P1 | `validate_dependency_cycles()` only detects 2-node cycles; `a → b → c → a` passes |
-| R50-001 | `AGENTS.md:182-186`; `spec_kit_deep-research_auto.yaml:159-167,521-526` | P1 | Gate 3 hard-block trigger list has false-negative for deep-research `resume` write path |
+| R50-001 | `AGENTS.md:182-186`; `deep_start-research-loop_auto.yaml:159-167,521-526` | P1 | Gate 3 hard-block trigger list has false-negative for deep-research `resume` write path |
 
 ---
 
@@ -1013,7 +1013,7 @@ STRUCTURAL REFACTORS
 | `hook-state.vitest.ts:4-224` | No `cleanStaleStates` invocation | TOCTOU stat-then-unlink regression | D1 (P0-D) |
 | `reconsolidation.vitest.ts:790-855` | Single-writer conflict | Two-concurrent-conflict race | S1 |
 | `reconsolidation-bridge.vitest.ts:255-330` | Static mock candidates | Governed-scope mutation during filter | S1 |
-| `test_skill_advisor.py:73-186` | No intent_signals assertion | `/spec_kit:deep-research` → `sk-deep-research`; intent_signals boost verification | S4 |
+| `test_skill_advisor.py:73-186` | No intent_signals assertion | `/deep:start-research-loop` → `sk-deep-research`; intent_signals boost verification | S4 |
 | `transcript-planner-export.vitest.ts:146-217` | Response summaries only | YAML `when:` predicate evaluation | S7 |
 | `assistive-reconsolidation.vitest.ts:17-234` | Helper thresholds | Competing candidate insert between recommendation and commit | S1 |
 | `skill-graph-schema.vitest.ts:1-156` | Dispatcher routing | Compiler invariants: symmetry, weight-band, orphans, cycle length >2 | S4 |
@@ -1112,7 +1112,7 @@ This change alone resolves R31-003 and R35-001; the caller must then handle the 
 - HookState schema-version mismatch rejection (R29-001, P0-A)
 - `Function(...)` with injected adversarial `lastJobId` (R46-003, W2)
 - Ranking-stability assertion: `sk-deep-research` vs `sk-code-review` margin ≥ 0.10 for audit-vocabulary prompts (R45-002, S4)
-- `/spec_kit:deep-research` routes to `sk-deep-research`, not `command-spec-kit` (R46-001, S4)
+- `/deep:start-research-loop` routes to `sk-deep-research`, not `command-spec-kit` (R46-001, S4)
 - Unilateral `conflicts_with` does NOT penalize non-declaring skill (R46-002, S4)
 - `health_check()` returns `status: "degraded"` when topology warnings present (R45-003, S4)
 - Scenario count before vs after null-filter equals (R45-004, S6)
@@ -1240,7 +1240,7 @@ However, Domain 5 was never run as a dedicated pass. The subsidiary Domain-5 evi
 - `mcp_server/handlers/memory-save.ts:2159-2171,2250-2304` — R34-002 hypothesized timeline between reconsolidation planning and `writeTransaction` acquisition; not measured under real load.
 - `mcp_server/hooks/claude/shared.ts:109-123` — R10-002 identified prompt-injection risk via `]` or newline in `producer` string; exploitability not confirmed.
 - `mcp_server/hooks/claude/compact-inject.ts:393-407,416-422` — R31-001 flagged concurrent producer risk; precise interleaving with Claude session-stop + Gemini session-stop not characterized.
-- `command/spec_kit/assets/spec_kit_complete_auto.yaml` / `spec_kit_implement_auto.yaml` / `spec_kit_deep-review_auto.yaml` — sampled at iteration 48/50 but not systematically audited for the same `when:`/`folder_state` vulnerabilities.
+- `command/spec_kit/assets/spec_kit_complete_auto.yaml` / `spec_kit_implement_auto.yaml` / `deep_start-review-loop_auto.yaml` — sampled at iteration 48/50 but not systematically audited for the same `when:`/`folder_state` vulnerabilities.
 - `scripts/memory/generate-context.js` trigger-word surface for memory category / triggers / scope — proposed but not investigated.
 - Handover-state routing rules (`handover_state` enum) — proposed but not investigated.
 - `opencode.json` + `.utcp_config.json` MCP naming contracts — proposed but not investigated.

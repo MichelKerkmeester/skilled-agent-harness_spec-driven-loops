@@ -2,7 +2,7 @@
 
 ## Dispatcher
 
-- Command: `/spec_kit:deep-review:auto /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/005-skill-reference-asset-doc-alignment --max-iterations=5`
+- Command: `/deep:start-review-loop:auto /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/005-skill-reference-asset-doc-alignment --max-iterations=5`
 - Iteration: 005 of 005
 - Mode: review
 - Focus dimension: cross-runtime-mirror-consistency
@@ -25,8 +25,8 @@
 - `.opencode/skills/system-spec-kit/references/templates/template_guide.md`
 - `.opencode/skills/system-spec-kit/assets/template_mapping.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/graph-metadata.json`
-- `.opencode/commands/spec_kit/deep-review.md`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+- `.opencode/commands/deep/start-review-loop.md`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
 - `.opencode/agents/deep-review.md`
 - `.claude/agents/deep-review.md`
 - `.codex/agents/deep-review.toml`
@@ -43,7 +43,7 @@ None.
 
 ### P1 Findings
 
-1. **Iteration prompt pack points executor contexts at a non-existent review doctrine path** -- `.opencode/skills/sk-deep-review/assets/prompt_pack_iteration.md.tmpl:18` -- The executor-agnostic prompt pack instructs iteration executors to load `.agents/skills/sk-code-review/references/review_core.md`, but the canonical native agent contract loads `.opencode/skills/sk-code-review/references/review_core.md` [SOURCE: `.opencode/agents/deep-review.md:273`]. The YAML renders this prompt pack before dispatch [SOURCE: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:638-657`], uses it as native context [SOURCE: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:666-670`], and pipes it to `codex exec` for CLI execution [SOURCE: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:672-680`]. This can make non-native executor severity classification diverge or fail to load the required doctrine, even though the canonical agent has the correct path.
+1. **Iteration prompt pack points executor contexts at a non-existent review doctrine path** -- `.opencode/skills/sk-deep-review/assets/prompt_pack_iteration.md.tmpl:18` -- The executor-agnostic prompt pack instructs iteration executors to load `.agents/skills/sk-code-review/references/review_core.md`, but the canonical native agent contract loads `.opencode/skills/sk-code-review/references/review_core.md` [SOURCE: `.opencode/agents/deep-review.md:273`]. The YAML renders this prompt pack before dispatch [SOURCE: `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:638-657`], uses it as native context [SOURCE: `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:666-670`], and pipes it to `codex exec` for CLI execution [SOURCE: `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:672-680`]. This can make non-native executor severity classification diverge or fail to load the required doctrine, even though the canonical agent has the correct path.
    - Finding class: cross-consumer
    - Scope proof: The prompt pack is the shared rendered context for native and CLI executor paths; direct file discovery found the canonical `.opencode/skills/sk-code-review/references/review_core.md` path and no `.agents/skills/sk-code-review/references/review_core.md` path.
    - Affected surface hints: ["prompt pack", "cli-codex executor", "native rendered context", "severity doctrine", "post-dispatch validation"]
@@ -56,8 +56,8 @@ None.
   "evidenceRefs": [
     ".opencode/skills/sk-deep-review/assets/prompt_pack_iteration.md.tmpl:18",
     ".opencode/agents/deep-review.md:273",
-    ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:638-657",
-    ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:666-680"
+    ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:638-657",
+    ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:666-680"
   ],
   "counterevidenceSought": "Checked whether canonical native agent guidance has the correct path and whether the rendered prompt pack is actually used by dispatch routes. Native agent is correct, but YAML still passes the prompt pack to native and CLI executor paths.",
   "alternativeExplanation": "A dispatcher or executor wrapper could inject an additional corrected doctrine path, but the inspected YAML/prompt surfaces do not show that correction.",
@@ -69,7 +69,7 @@ None.
 
 ### P2 Findings
 
-1. **Runtime mirrors re-label their packaged mirror path as canonical while command/YAML declares `.opencode/agents/deep-review.md` canonical** -- `.claude/agents/deep-review.md:27` -- The canonical OpenCode agent says path references should use `.opencode/agents/*.md` [SOURCE: `.opencode/agents/deep-review.md:27`], and the auto workflow identifies `.opencode/agents/deep-review.md` as the canonical agent file with runtime-specific directories referencing that source [SOURCE: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:71-72`]. The mirrors otherwise say they are downstream packaging surfaces [SOURCE: `.claude/agents/deep-review.md:259-267`; `.gemini/agents/deep-review.md:259-267`; `.codex/agents/deep-review.toml:252-260`], but each mirror's top-level Path Convention points to its own runtime path instead: `.claude/agents/*.md`, `.gemini/agents/*.md`, and `.codex/agents/*.toml` [SOURCE: `.claude/agents/deep-review.md:27`; `.gemini/agents/deep-review.md:27`; `.codex/agents/deep-review.toml:20`]. This is advisory because the operational workflow still names the canonical `.opencode` surface, but mirror-executed agents can cite or reason from a different "canonical" path during traceability review.
+1. **Runtime mirrors re-label their packaged mirror path as canonical while command/YAML declares `.opencode/agents/deep-review.md` canonical** -- `.claude/agents/deep-review.md:27` -- The canonical OpenCode agent says path references should use `.opencode/agents/*.md` [SOURCE: `.opencode/agents/deep-review.md:27`], and the auto workflow identifies `.opencode/agents/deep-review.md` as the canonical agent file with runtime-specific directories referencing that source [SOURCE: `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:71-72`]. The mirrors otherwise say they are downstream packaging surfaces [SOURCE: `.claude/agents/deep-review.md:259-267`; `.gemini/agents/deep-review.md:259-267`; `.codex/agents/deep-review.toml:252-260`], but each mirror's top-level Path Convention points to its own runtime path instead: `.claude/agents/*.md`, `.gemini/agents/*.md`, and `.codex/agents/*.toml` [SOURCE: `.claude/agents/deep-review.md:27`; `.gemini/agents/deep-review.md:27`; `.codex/agents/deep-review.toml:20`]. This is advisory because the operational workflow still names the canonical `.opencode` surface, but mirror-executed agents can cite or reason from a different "canonical" path during traceability review.
    - Finding class: matrix/evidence
    - Scope proof: Direct reads across all four agent definitions show the same contract body and mirror-awareness table, with only the Path Convention line varying by runtime while YAML marks `.opencode/agents/deep-review.md` canonical.
    - Affected surface hints: ["runtime mirrors", "agent_cross_runtime traceability", "canonical path references", "review evidence naming"]
@@ -79,15 +79,15 @@ None.
 
 - `agent_cross_runtime`: complete. Compared canonical `.opencode/agents/deep-review.md` with `.claude/agents/deep-review.md`, `.codex/agents/deep-review.toml`, and `.gemini/agents/deep-review.md`; one P2 mirror wording drift found.
 - `skill_agent`: complete. Checked `sk-deep-review` skill surfaces for executor invariants and runtime path descriptions; one P1 prompt-pack doctrine path defect found through the skill/YAML render surface.
-- `command_yaml`: complete. Checked `/spec_kit:deep-review` command entrypoint and auto YAML for canonical agent path, prompt-pack rendering, executor dispatch, and output validation requirements.
+- `command_yaml`: complete. Checked `/deep:start-review-loop` command entrypoint and auto YAML for canonical agent path, prompt-pack rendering, executor dispatch, and output validation requirements.
 - `review_core`: complete. Loaded `.opencode/skills/sk-code-review/references/review_core.md` before severity classification; P1/P2 severities classified using the shared doctrine.
 
 ## Integration Evidence
 
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:71-72` declares `.opencode/agents/deep-review.md` canonical and runtime directories as references to that source.
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:638-657` renders `.opencode/skills/sk-deep-review/assets/prompt_pack_iteration.md.tmpl` with state-path variables, including delta path.
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:666-680` uses the rendered prompt pack as native context and CLI Codex stdin.
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:781-788` validates iteration markdown, state-log append, and per-iteration delta file.
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:71-72` declares `.opencode/agents/deep-review.md` canonical and runtime directories as references to that source.
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:638-657` renders `.opencode/skills/sk-deep-review/assets/prompt_pack_iteration.md.tmpl` with state-path variables, including delta path.
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:666-680` uses the rendered prompt pack as native context and CLI Codex stdin.
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:781-788` validates iteration markdown, state-log append, and per-iteration delta file.
 - `.opencode/skills/sk-deep-review/SKILL.md:55-60` requires command-owned dispatch and both markdown narrative and JSONL delta.
 - `.opencode/skills/sk-deep-review/assets/prompt_pack_iteration.md.tmpl:18` points to a non-existent `.agents/skills/.../review_core.md` path.
 - `.opencode/agents/deep-review.md:273` uses the existing canonical `.opencode/skills/sk-code-review/references/review_core.md` path.

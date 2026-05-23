@@ -18,7 +18,7 @@ contextType: "remediation"
 
 Five sequential cli-codex dispatches with gpt-5.5 reasoning=high service_tier=fast, each scoped to one batch from sibling packet 021's review findings (post user Q1=A / Q2=yes reclassification). Per-batch prompt-pack enforces RM-8 BANNED OPERATIONS (no `rm`/`mv`/`git rm`/`sed -i` outside the declared file scope; scope violations → in-finding record, not executed). Each batch ends with a grep-based acceptance check before the next batch starts.
 
-Closing: a confirmatory `/spec_kit:deep-review:auto` re-run against the same scope as 021 to confirm the FAIL → PASS transition.
+Closing: a confirmatory `/deep:start-review-loop:auto` re-run against the same scope as 021 to confirm the FAIL → PASS transition.
 
 This follows the `013/003` precedent: cli-codex batched remediation worked there with zero out-of-scope writes across 28-min walltime per batch.
 
@@ -122,7 +122,7 @@ Acceptance: Re-run `vitest` for the touched test files; all PASS. `rg 'all-MiniL
 
 ### Confirmatory re-review
 
-After batches 1-5 land, dispatch `/spec_kit:deep-review:auto` against the same scope as packet 021 used. Target spec folder: a new sibling phase `023-post-remediation-re-review` (Level 2). Expected verdict: PASS or PASS-with-advisories (no P0/P1).
+After batches 1-5 land, dispatch `/deep:start-review-loop:auto` against the same scope as packet 021 used. Target spec folder: a new sibling phase `023-post-remediation-re-review` (Level 2). Expected verdict: PASS or PASS-with-advisories (no P0/P1).
 
 ---
 

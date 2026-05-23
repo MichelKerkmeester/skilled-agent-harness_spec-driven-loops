@@ -44,12 +44,6 @@
       ".opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs",
       ".opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs",
       ".opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs",
-      ".opencode/commands/spec_kit/deep-research.md",
-      ".opencode/commands/spec_kit/deep-review.md",
-      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
-      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
-      ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
-      ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
       ".opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts",
@@ -58,7 +52,8 @@
       "plan.md",
       "decision-record.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -89,42 +84,6 @@
         "name": "wave-convergence.cjs",
         "kind": "file",
         "path": ".opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research.md",
-        "kind": "doc",
-        "path": ".opencode/commands/spec_kit/deep-research.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review.md",
-        "kind": "doc",
-        "path": ".opencode/commands/spec_kit/deep-review.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec_kit_deep-research_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "spec_kit_deep-research_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "spec_kit_deep-review_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "spec_kit_deep-review_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
         "source": "derived"
       },
       {
@@ -182,6 +141,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -204,11 +169,41 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 003 adds orchestrator-managed parallel wave execution so deep research and deep review can handle very large targets without abandoning the LEAF-worker model. It formalizes deterministic segmentation, packet-local coordination, segment-level convergence, and auditable merge behavior on top of the coverage-graph foundation from Phase 002.",
     "created_at": "2026-04-12T09:02:50.193Z",
-    "last_save_at": "2026-05-19T13:51:38.538Z",
+    "last_save_at": "2026-05-23T11:55:14.449Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

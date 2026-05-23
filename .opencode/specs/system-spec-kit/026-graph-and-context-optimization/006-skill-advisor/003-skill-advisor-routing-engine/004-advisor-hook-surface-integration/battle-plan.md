@@ -135,7 +135,7 @@ If any sub-step fails, `/spec_kit:implement :auto` halts with a diagnostic. Inve
 
 After implementation converges, dispatch an **autonomous deep-review pass** (one per child):
 ```
-/spec_kit:deep-review :auto "Review 020/<child-folder> implementation against spec.md requirements; surface P0/P1/P2 findings across security/correctness/maintainability/observability dimensions" \
+/deep:start-review-loop :auto "Review 020/<child-folder> implementation against spec.md requirements; surface P0/P1/P2 findings across security/correctness/maintainability/observability dimensions" \
   --executor=cli-copilot --model=gpt-5.4 --reasoning-effort=high \
   --max-iterations=10 --convergence=0.05 \
   --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-advisor-hook-surface-integration/<child-folder>
@@ -301,7 +301,7 @@ Every row must be **GO** before 005 is signed off. A single NO-GO blocks all dow
 
 **Pass 1** — security + correctness:
 ```
-/spec_kit:deep-review :auto "Review 005 implementation focusing on: (a) renderer purity (no side effects, deterministic output), (b) label sanitization completeness (canonical-fold + single-line + instruction-regex + label-denylist), (c) privacy audit (no raw prompt in any serialized surface), (d) cache-key derivation correctness (HMAC, source signature, runtime, threshold config), (e) 200-prompt corpus parity edge cases (whitespace-only prompts, Unicode edge cases, commands)" \
+/deep:start-review-loop :auto "Review 005 implementation focusing on: (a) renderer purity (no side effects, deterministic output), (b) label sanitization completeness (canonical-fold + single-line + instruction-regex + label-denylist), (c) privacy audit (no raw prompt in any serialized surface), (d) cache-key derivation correctness (HMAC, source signature, runtime, threshold config), (e) 200-prompt corpus parity edge cases (whitespace-only prompts, Unicode edge cases, commands)" \
   --executor=cli-copilot --model=gpt-5.4 --reasoning-effort=high \
   --max-iterations=10 --convergence=0.05 \
   --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-advisor-hook-surface-integration/005-advisor-renderer-and-regression-harness
@@ -309,7 +309,7 @@ Every row must be **GO** before 005 is signed off. A single NO-GO blocks all dow
 
 **Pass 2** — performance + observability:
 ```
-/spec_kit:deep-review :auto "Review 005 implementation focusing on: (a) timing-harness methodology correctness (50 invocations per lane, p50/p95/p99 calculation, warm-up handling), (b) corrected 10u+20r replay pattern (verify 66.7% nominal hit rate, no off-by-one in pattern generation), (c) observability metric emission correctness (label cardinality, closed-enum enforcement, alert threshold configurability via env), (d) JSONL diagnostic schema (no forbidden fields, exact ISO 8601 timestamp), (e) cold/warm/miss lane measurement honesty (these are diagnostic only, not hard-gated — verify harness does not accidentally gate on them)" \
+/deep:start-review-loop :auto "Review 005 implementation focusing on: (a) timing-harness methodology correctness (50 invocations per lane, p50/p95/p99 calculation, warm-up handling), (b) corrected 10u+20r replay pattern (verify 66.7% nominal hit rate, no off-by-one in pattern generation), (c) observability metric emission correctness (label cardinality, closed-enum enforcement, alert threshold configurability via env), (d) JSONL diagnostic schema (no forbidden fields, exact ISO 8601 timestamp), (e) cold/warm/miss lane measurement honesty (these are diagnostic only, not hard-gated — verify harness does not accidentally gate on them)" \
   --executor=cli-gemini --model=gemini-3.1-pro-preview \
   --max-iterations=10 --convergence=0.05 \
   --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-advisor-hook-surface-integration/005-advisor-renderer-and-regression-harness
@@ -632,7 +632,7 @@ Detection of stuck runs:
 
 Template (substitute `<child-folder>` and review focus):
 ```bash
-/spec_kit:deep-review :auto "Review 020/<child-folder> implementation against spec.md requirements; surface P0/P1/P2 findings across security/correctness/maintainability/observability dimensions" --executor=cli-copilot --model=gpt-5.4 --reasoning-effort=high --max-iterations=10 --convergence=0.05 --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-advisor-hook-surface-integration/<child-folder>
+/deep:start-review-loop :auto "Review 020/<child-folder> implementation against spec.md requirements; surface P0/P1/P2 findings across security/correctness/maintainability/observability dimensions" --executor=cli-copilot --model=gpt-5.4 --reasoning-effort=high --max-iterations=10 --convergence=0.05 --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-advisor-hook-surface-integration/<child-folder>
 ```
 
 ### Fallback dispatch (any child)

@@ -196,7 +196,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This packet defines a broad 10-iteration `/spec_kit:deep-research` investigation against `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit` to find memory leaks, orphan process buildup, and unsafe nested CLI orchestration paths. The research is intentionally evidence-only: it must map leak classes, collect process and memory telemetry, and produce a prioritized fix backlog before any implementation changes are made.",
+    "causal_summary": "This packet defines a broad 10-iteration `/deep:start-research-loop` investigation against `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit` to find memory leaks, orphan process buildup, and unsafe nested CLI orchestration paths. The research is intentionally evidence-only: it must map leak classes, collect process and memory telemetry, and produce a prioritized fix backlog before any implementation changes are made.",
     "created_at": "2026-05-22T05:43:12Z",
     "last_save_at": "2026-05-22T07:57:58.000Z",
     "save_lineage": "graph_only",

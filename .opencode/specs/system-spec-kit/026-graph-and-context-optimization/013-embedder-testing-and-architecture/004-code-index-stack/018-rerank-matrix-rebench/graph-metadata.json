@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The 011 deep-research originally concluded: \"jina-reranker-v3 looks best (+38 NDCG@10 in public benchmarks)\". But:",
     "created_at": "2026-05-19T15:29:56.011Z",
-    "last_save_at": "2026-05-19T20:42:43.969Z",
+    "last_save_at": "2026-05-23T11:55:15.527Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

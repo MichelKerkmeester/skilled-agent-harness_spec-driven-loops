@@ -27,9 +27,9 @@ After the agent finishes, the loop does not treat the strategy, dashboard, or fi
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/commands/spec_kit/deep-research.md` | Command | Describes the iterate phase, state-summary injection, and reducer sync boundary. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Workflow | Dispatches the LEAF agent, checks the pause sentinel, and runs the reducer after each iteration. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Workflow | Mirrors dispatch flow with confirm-mode pause and review gates. |
+| `.opencode/commands/deep/start-research-loop.md` | Command | Describes the iterate phase, state-summary injection, and reducer sync boundary. |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Workflow | Dispatches the LEAF agent, checks the pause sentinel, and runs the reducer after each iteration. |
+| `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Workflow | Mirrors dispatch flow with confirm-mode pause and review gates. |
 | `.opencode/agents/deep-research.md` | Agent | Defines the single-iteration read, research, write, and progressive-synthesis rules. |
 | `.opencode/skills/deep-research/scripts/reduce-state.cjs` | Reducer | Synchronizes strategy, findings registry, and dashboard from iteration artifacts and events. |
 

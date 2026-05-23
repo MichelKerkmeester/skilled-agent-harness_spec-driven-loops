@@ -4,10 +4,10 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/029-local-llm-feature-test-suite-completion",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/028-local-llm-feature-test-suite"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
@@ -19,19 +19,193 @@
     ],
     "key_topics": [
       "local-llm",
-      "vitest",
-      "perf-benchmarks",
-      "hf-local",
-      "llama-cpp"
+      "feature",
+      "test",
+      "suite",
+      "completion",
+      "028",
+      "missing",
+      "groups",
+      "local",
+      "llm",
+      "perf",
+      "benches"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/default-model-selection.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/prefix-system.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/health-reporting.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/profile-db-filename.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/offline-degradation.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/performance/embedding-latency.bench.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/performance/throughput.bench.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/performance/cold-start.bench.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/README.md",
+      "shared/embeddings/factory.ts",
+      "shared/embeddings/profile.ts"
     ],
-    "last_indexed_at": "2026-05-21T10:16:26Z"
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "default-model-selection.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/default-model-selection.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "prefix-system.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/prefix-system.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "health-reporting.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/health-reporting.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "profile-db-filename.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/profile-db-filename.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "offline-degradation.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/offline-degradation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedding-latency.bench.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/performance/embedding-latency.bench.ts",
+        "source": "derived"
+      },
+      {
+        "name": "throughput.bench.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/performance/throughput.bench.ts",
+        "source": "derived"
+      },
+      {
+        "name": "cold-start.bench.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/performance/cold-start.bench.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": "shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "profile.ts",
+        "kind": "code",
+        "path": "shared/embeddings/profile.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Arc",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Create",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "deterministic",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "command",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "blocker",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 028 promised a comprehensive local-LLM feature suite, but the cleanup decision keeps 028 as historical/rescoped documentation and moves the missing implementation into this action packet. The promised coverage spans 10 functional groups and 4 deterministic performance benchmarks.",
+    "created_at": "2026-05-23T11:55:15.369Z",
+    "last_save_at": "2026-05-23T11:55:15.369Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ]
   }
 }

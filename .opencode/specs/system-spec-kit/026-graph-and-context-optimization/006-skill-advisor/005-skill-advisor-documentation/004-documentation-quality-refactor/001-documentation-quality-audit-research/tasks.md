@@ -56,7 +56,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Invoke `/spec_kit:deep-research:auto` with the 20-iter topic and flags (max=20, convergence=0.0, executor=cli-devin, model=swe-1.6)
+- [ ] T003 Invoke `/deep:start-research-loop:auto` with the 20-iter topic and flags (max=20, convergence=0.0, executor=cli-devin, model=swe-1.6)
 - [ ] T004 Monitor first iter for successful dispatch (state.jsonl row appears, iteration-001.md ships)
 - [ ] T005 Verify iter 10 (gap-05) and iter 14 (gap-09) produce conclusive findings
 - [ ] T006 Loop completes with stopReason=`maxIterationsReached`

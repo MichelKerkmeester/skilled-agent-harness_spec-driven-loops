@@ -49,7 +49,7 @@ You MAY read any file. You may NOT touch paired YAML assets (`assets/spec_kit_*_
 
 1. **Shared contract** — `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md` — your template authority. §1 three-tier flow, §2 PRE-BOUND ANSWERS grammar, §3 Default Resolution Table format, §4 Tier-3 error template, §5 `:confirm` invariance, §6 verification protocol, §7 adoption checklist, §8 OOS.
 
-2. **Reference example (what the post-migration shape looks like)** — `.opencode/commands/spec_kit/deep-review.md` §0 lines 44-130. This is the canonical example: brief citation + Tier-1/2/3 summary + PRE-BOUND ANSWERS Schema + Default Resolution Table + UNTOUCHED `:confirm` consolidated Q-block below.
+2. **Reference example (what the post-migration shape looks like)** — `.opencode/commands/deep/start-review-loop.md` §0 lines 44-130. This is the canonical example: brief citation + Tier-1/2/3 summary + PRE-BOUND ANSWERS Schema + Default Resolution Table + UNTOUCHED `:confirm` consolidated Q-block below.
 
 3. **Phase 2 spec** — `.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/spec.md` — §3 SCOPE, §4 REQUIREMENTS, §5 SUCCESS CRITERIA.
 
@@ -346,7 +346,7 @@ For each command adopting this contract, the §0 of the command markdown:
 
 Commands that have adopted this contract:
 
-- `/spec_kit:deep-review` (prototype) — see `.../103/001-deep-review-three-tier-setup/`
+- `/deep:start-review-loop` (prototype) — see `.../103/001-deep-review-three-tier-setup/`
 - (to be appended as `.../103/002-...` rolls out)
 
 ---
@@ -359,7 +359,7 @@ Commands that have adopted this contract:
 - Cross-command `:auto` integration (e.g. `/spec_kit:plan:auto` chained into `/spec_kit:implement:auto`) — separate contract concern.
 
 exec
-/bin/zsh -lc "sed -n '1,180p' .opencode/commands/spec_kit/deep-review.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,180p' .opencode/commands/deep/start-review-loop.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 description: Autonomous deep-review loop: iterative code audit with convergence detection. Modes :auto, :confirm.
@@ -382,8 +382,8 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory
 >    - `maxIterations`
 >    - `convergenceThreshold`
 > 2. Load the corresponding YAML file from `assets/` only after all setup values are resolved:
->    - Auto: `spec_kit_deep-review_auto.yaml`
->    - Confirm: `spec_kit_deep-review_confirm.yaml`
+>    - Auto: `deep_start-review-loop_auto.yaml`
+>    - Confirm: `deep_start-review-loop_confirm.yaml`
 > 3. Execute the YAML workflow step by step using those resolved values
 >
 > All content below is reference context for the YAML workflow. Do not treat reference sections as direct instructions to execute.
@@ -396,7 +396,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory
 - **YAML START CONDITION**: do not load YAML until ALL required inputs are bound:
   - `review_target`, `review_target_type`, `review_dimensions`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`
 
-> **Canonical mode syntax:** use attached command suffixes (`/spec_kit:deep-review:auto`, `/spec_kit:deep-review:confirm`) and keep AGENTS, skills, and quick references synchronized to this entrypoint.
+> **Canonical mode syntax:** use attached command suffixes (`/deep:start-review-loop:auto`, `/deep:start-review-loop:confirm`) and keep AGENTS, skills, and quick references synchronized to this entrypoint.
 
 # SINGLE CONSOLIDATED SETUP PROMPT
 
@@ -416,11 +416,11 @@ Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_
 
 Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 
-1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/review/deep-review-config.json` (shape: `reviewTarget`, `reviewTargetType`, `reviewDimensions`, `specFolder`, `maxIterations`, `convergenceThreshold`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`. End §0.
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/review/deep-review-config.json` (shape: `reviewTarget`, `reviewTargetType`, `reviewDimensions`, `specFolder`, `maxIterations`, `convergenceThreshold`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`. End §0.
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `review_target_type`, `spec_folder`. **Ordering rule**: if `review_target_type` is ambiguous, ask only for `review_target_type` first — the answer may make `spec_folder` self-evident on the next Tier 1 pass. Missing `review_target` is absence, not ambiguity — go to Tier 3.
 
-3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/spec_kit:deep-review:auto` as the command name. Exit non-zero. Do not load YAML.
+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/deep:start-review-loop:auto` as the command name. Exit non-zero. Do not load YAML.
 
 `:confirm` path stays unchanged — see the Consolidated Setup Prompt section below.
 
@@ -547,7 +547,7 @@ exec
  succeeded in 0ms:
 ---
 title: "Feature Specification: auto-mode-contract generalization to all commands"
-description: "Lift the three-tier :auto contract from /spec_kit:deep-review (Phase 1) into a shared reference and migrate 11 remaining /spec_kit/, /create/, /improve/ commands to cite it; full live :auto dispatch verification per command."
+description: "Lift the three-tier :auto contract from /deep:start-review-loop (Phase 1) into a shared reference and migrate 11 remaining /spec_kit/, /create/, /improve/ commands to cite it; full live :auto dispatch verification per command."
 trigger_phrases:
   - "auto mode contract generalization"
   - "spec-kit :auto rollout"
@@ -599,7 +599,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Phase 1 introduced the three-tier `:auto` contract for `/spec_kit:deep-review`. The same architecture and same stdin-hang gap affect 11 other commands across `/spec_kit/`, `/create/`, and `/improve/`. Inlining the three-tier flow into every command duplicates ~300 LOC and risks drift; lifting it into a shared reference doc preserves a single source of truth and keeps each command lean.
+Phase 1 introduced the three-tier `:auto` contract for `/deep:start-review-loop`. The same architecture and same stdin-hang gap affect 11 other commands across `/spec_kit/`, `/create/`, and `/improve/`. Inlining the three-tier flow into every command duplicates ~300 LOC and risks drift; lifting it into a shared reference doc preserves a single source of truth and keeps each command lean.
 
 ### Purpose
 Author the shared `auto_mode_contract.md` reference, refactor Phase-1's deep-review to cite it, migrate 11 remaining commands to the same pattern, and verify each one via a live non-interactive `:auto` dispatch.
@@ -612,7 +612,7 @@ Author the shared `auto_mode_contract.md` reference, refactor Phase-1's deep-rev
 
 ### In Scope
 - Author `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md` (Level 2 sk-doc reference; §1-8 — three-tier flow, PRE-BOUND ANSWERS grammar, default-resolution-table format, Tier-3 error template, `:confirm` invariance, verification protocol, adoption checklist, out-of-scope).
-- Refactor `/spec_kit:deep-review` §0 to cite the shared contract (replacing the inline three-tier sections from 001).
+- Refactor `/deep:start-review-loop` §0 to cite the shared contract (replacing the inline three-tier sections from 001).
 - Migrate 11 commands' §0 to cite the shared contract + provide their own per-field default table + PRE-BOUND ANSWERS field list:
   - `/spec_kit:` — deep-research, complete, implement, plan, resume (5)
   - `/create:` — sk-skill, agent, changelog, feature-catalog, testing-playbook, folder_readme (6)
@@ -632,7 +632,7 @@ Author the shared `auto_mode_contract.md` reference, refactor Phase-1's deep-rev
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md` | Create | Shared three-tier `:auto` contract reference |
-| `.opencode/commands/spec_kit/deep-review.md` | Modify | Refactor §0 to cite shared contract |
+| `.opencode/commands/deep/start-review-loop.md` | Modify | Refactor §0 to cite shared contract |
 | `.opencode/commands/spec_kit/{deep-research,complete,implement,plan,resume}.md` | Modify | Migrate §0 to shared contract pattern |
 | `.opencode/commands/create/{sk-skill,agent,changelog,feature-catalog,testing-playbook,folder_readme}.md` | Modify | Same |
 | `.opencode/commands/improve/agent.md` | Modify | Same |
@@ -811,7 +811,7 @@ Status: ✅ This requirement applies immediately once file edits are requested.
 
 ### Distributed Governance Rule
 
-Any agent writing authored spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, `decision-record.md`, `handover.md`, `review-report.md`, `debug-delegation.md`, `resource-map.md` (optional)) MUST use contract-backed templates through `create.sh` or the inline renderer. This is a workflow-required gate, not a runtime hook: run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` after authored spec-doc writes and before completion claims, then route continuity updates through /memory:save. Deep-research workflow-owned packet markdown (`research/iterations/*.md`, `research/deep-research-*.md`, and progressive `research/research.md` loop updates) is exempt from that generic per-write rule; `/spec_kit:deep-research` must instead run targeted strict validation after every `spec.md` mutation it performs. @deep-research retains exclusive write access for `research/research.md`; @debug retains exclusive write access for `debug-delegation.md`.
+Any agent writing authored spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, `decision-record.md`, `handover.md`, `review-report.md`, `debug-delegation.md`, `resource-map.md` (optional)) MUST use contract-backed templates through `create.sh` or the inline renderer. This is a workflow-required gate, not a runtime hook: run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` after authored spec-doc writes and before completion claims, then route continuity updates through /memory:save. Deep-research workflow-owned packet markdown (`research/iterations/*.md`, `research/deep-research-*.md`, and progressive `research/research.md` loop updates) is exempt from that generic per-write rule; `/deep:start-research-loop` must instead run targeted strict validation after every `spec.md` mutation it performs. @deep-research retains exclusive write access for `research/research.md`; @debug retains exclusive write access for `debug-delegation.md`.
 
 - `handover.md` stays in the canonical recovery ladder and is maintained through `/memory:save` handover_state routing using the handover template for initial creation.
 - `review-report.md` remains owned by `@deep-review` when deep review workflows synthesize findings.
@@ -875,7 +875,7 @@ CLI exit codes:
 | CONDITIONAL | If intent signals match   | Intent-mapped references     |
 | ON_DEMAND   | Only on explicit request   | Deep-dive quality standards  |
 
-`references/workflows/quick_reference.md` is the primary first-touch command surface. Keep the compact `spec_kit` and `memory` command map there, including `/spec_kit:plan --intake-only` as the standalone intake entry, `/spec_kit:plan` and `/spec_kit:complete` smart delegation notes, and the pointer from `/spec_kit:deep-research` to `../deep-research/references/spec_check_protocol.md`, and use this file only to point readers to it rather than duplicating the full matrix.
+`references/workflows/quick_reference.md` is the primary first-touch command surface. Keep the compact `spec_kit` and `memory` command map there, including `/spec_kit:plan --intake-only` as the standalone intake entry, `/spec_kit:plan` and `/spec_kit:complete` smart delegation notes, and the pointer from `/deep:start-research-loop` to `../deep-research/references/spec_check_protocol.md`, and use this file only to point readers to it rather than duplicating the full matrix.
 
 ### Smart Router Pseudocode
 
@@ -2982,7 +2982,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Shared `auto_mode_contract.md` authored (Stage B).
-- [x] T002 `/spec_kit:deep-review.md` §0 refactored to cite shared contract (Stage B).
+- [x] T002 `/deep:start-review-loop.md` §0 refactored to cite shared contract (Stage B).
 - [ ] T003 Confirm 001's dry-run traces still conceptually pass after refactor (read-back).
 <!-- /ANCHOR:phase-1 -->
 
@@ -3002,8 +3002,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T020 Live `:auto` dispatch — `/spec_kit:deep-review` (re-verify post-refactor).
-- [ ] T021 Live `:auto` dispatch — `/spec_kit:deep-research`.
+- [ ] T020 Live `:auto` dispatch — `/deep:start-review-loop` (re-verify post-refactor).
+- [ ] T021 Live `:auto` dispatch — `/deep:start-research-loop`.
 - [ ] T022 Live `:auto` dispatch — `/spec_kit:resume`.
 - [ ] T023 Live `:auto` dispatch — `/spec_kit:implement`.
 - [ ] T024 Live `:auto` dispatch — `/spec_kit:complete`.
@@ -8954,7 +8954,7 @@ exec
 .opencode/commands/create/sk-skill.md
 .opencode/commands/create/testing-playbook.md
 .opencode/commands/spec_kit/complete.md
-.opencode/commands/spec_kit/deep-research.md
+.opencode/commands/deep/start-research-loop.md
 .opencode/commands/spec_kit/implement.md
 .opencode/commands/spec_kit/plan.md
 .opencode/commands/spec_kit/resume.md
@@ -9820,7 +9820,7 @@ exec
  M .opencode/commands/create/sk-skill.md
  M .opencode/commands/create/testing-playbook.md
  M .opencode/commands/spec_kit/complete.md
- M .opencode/commands/spec_kit/deep-research.md
+ M .opencode/commands/deep/start-research-loop.md
  M .opencode/commands/spec_kit/implement.md
  M .opencode/commands/spec_kit/plan.md
  M .opencode/commands/spec_kit/resume.md

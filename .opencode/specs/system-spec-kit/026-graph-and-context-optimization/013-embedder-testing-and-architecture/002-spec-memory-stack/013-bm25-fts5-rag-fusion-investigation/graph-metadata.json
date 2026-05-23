@@ -12,73 +12,206 @@
   "derived": {
     "trigger_phrases": [
       "bm25 fts5 rag fusion investigation",
-      "sqlite fts5 default bm25 engine",
+      "sqlite fts5 bm25 swap",
       "hybrid search lexical lane",
-      "rrf keyword fusion",
-      "bm25 fts5 parity",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/013-bm25-fts5-rag-fusion-investigation",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "013-embedder-testing-and-architecture",
-      "002-spec-memory-stack",
-      "013-bm25-fts5-rag-fusion-investigation",
-      "feature"
+      "deep research 013",
+      "bm25 fts5 research plan",
+      "rag fusion lexical lane plan",
+      "deep research 013 plan",
+      "bm25 fts5 investigation tasks",
+      "deep research 013 tasks",
+      "bm25 fts5 verification checklist",
+      "deep research 013 validation",
+      "bm25 fts5 decision record"
     ],
     "key_topics": [
       "bm25",
       "fts5",
+      "rag",
+      "fusion",
+      "investigation",
       "sqlite",
-      "rag-fusion",
-      "rrf",
-      "synonyms",
-      "stemming",
-      "tokenization",
-      "golden-queries",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "013-embedder-testing-and-architecture"
+      "swap",
+      "hybrid",
+      "search",
+      "lexical",
+      "lane",
+      "deep"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "complete",
     "key_files": [
+      "research/research.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "decision-record.md",
+      "research/iterations/iteration-001.md",
+      "research/deep-research-state.jsonl",
+      "research/iterations/iteration-002.md",
+      "research/iterations/iteration-003.md",
+      "research/iterations/iteration-004.md",
+      "research/iterations/iteration-005.md",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "implementation-summary.md",
-      "research/research.md"
+      ".opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts"
     ],
     "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-002.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-002.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-003.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-003.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-004.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-004.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-005.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-005.md",
+        "source": "derived"
+      },
       {
         "name": "bm25-index.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts",
-        "source": "manual"
+        "source": "derived"
       },
       {
         "name": "sqlite-fts.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts",
-        "source": "manual"
+        "source": "derived"
       },
       {
         "name": "hybrid-search.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
-        "source": "manual"
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-schema.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "bm25-index.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "sqlite-fts.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hybrid-search.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fusion Investigation",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Initialized Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Read-only Level 3 research packet evaluating whether replacing the in-memory JS BM25 lane with SQLite FTS5 degrades hybrid RAG fusion quality.",
+    "causal_summary": "This packet investigates whether the memory-saving recommendation from deep-research-005, \"make SQLite FTS5 the default BM25 engine and stop warming the JS BM25 index\", risks degrading the current RAG-fusion retrieval design. The answer is calibrated: SQLite FTS5 preserves the lexical BM25 lane, but the current JS path contributes synonym expansion, lightweight custom stemming, stop-word filtering, underscore and hyphen preservation, and markdown normalization that are only partially matched by the production FTS5 schema.",
     "created_at": "2026-05-19T19:25:52.542Z",
-    "last_save_at": "2026-05-19T19:44:28.899Z",
+    "last_save_at": "2026-05-23T11:55:15.443Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

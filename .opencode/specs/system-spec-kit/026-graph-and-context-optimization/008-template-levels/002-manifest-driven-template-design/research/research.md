@@ -171,14 +171,14 @@ Example v1 manifest:
     { "path": "graph-metadata.json", "owner": "runtime", "creationTrigger": "create.sh", "absenceBehavior": "hard-error" },
     { "path": "handover.md", "templateFile": "templates/handover.md.tmpl", "owner": "command", "creationTrigger": "/memory:save", "absenceBehavior": "silent-skip" },
     { "path": "debug-delegation.md", "templateFile": "templates/debug-delegation.md.tmpl", "owner": "agent", "creationTrigger": "debug delegation threshold", "absenceBehavior": "silent-skip" },
-    { "path": "research/research.md", "templateFile": "templates/research.md.tmpl", "owner": "workflow", "creationTrigger": "/spec_kit:deep-research", "absenceBehavior": "silent-skip" },
+    { "path": "research/research.md", "templateFile": "templates/research.md.tmpl", "owner": "workflow", "creationTrigger": "/deep:start-research-loop", "absenceBehavior": "silent-skip" },
     { "path": "resource-map.md", "templateFile": "templates/resource-map.md.tmpl", "owner": "author", "creationTrigger": "explicit resource-map option", "absenceBehavior": "warn" },
     { "path": "context-index.md", "templateFile": "templates/context-index.md.tmpl", "owner": "author", "creationTrigger": "phase migration bridge", "absenceBehavior": "warn" }
   ],
   "directories": [
     { "path": "scratch", "owner": "runtime", "creationTrigger": "create.sh", "absenceBehavior": "warn" },
-    { "path": "research/iterations", "owner": "workflow", "creationTrigger": "/spec_kit:deep-research", "absenceBehavior": "silent-skip" },
-    { "path": "research/deltas", "owner": "workflow", "creationTrigger": "/spec_kit:deep-research", "absenceBehavior": "silent-skip" }
+    { "path": "research/iterations", "owner": "workflow", "creationTrigger": "/deep:start-research-loop", "absenceBehavior": "silent-skip" },
+    { "path": "research/deltas", "owner": "workflow", "creationTrigger": "/deep:start-research-loop", "absenceBehavior": "silent-skip" }
   ],
   "sectionProfiles": [
     {
@@ -294,7 +294,7 @@ Validators consume post-gate rendered templates. A stripped inactive section is 
 |---|---|---|---|---|
 | `handover.md` | command | `/memory:save` handover routing | Normally no | silent skip |
 | `debug-delegation.md` | command scaffold, then agent | debug threshold and `@debug` dispatch | Limited pre-dispatch fill-in | silent skip |
-| `research/research.md` | workflow | `/spec_kit:deep-research` synthesis | No | silent skip |
+| `research/research.md` | workflow | `/deep:start-research-loop` synthesis | No | silent skip |
 | `research/resource-map.md` | workflow | deep-research convergence | No | silent skip |
 | `review/resource-map.md` | workflow | deep-review convergence | No | silent skip |
 | root `resource-map.md` | author | explicit path-ledger option | Yes | warn |

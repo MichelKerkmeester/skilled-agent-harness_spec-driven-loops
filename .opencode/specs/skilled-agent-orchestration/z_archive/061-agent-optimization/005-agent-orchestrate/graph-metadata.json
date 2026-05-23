@@ -14,17 +14,7 @@
   "derived": {
     "trigger_phrases": [
       "005-agent-orchestrate",
-      "orchestrate optimization",
-      "skilled-agent-orchestration/z_archive/061-agent-optimization/005-agent-orchestrate",
-      "skilled-agent-orchestration",
-      "z_archive",
-      "061-agent-optimization",
-      "orchestrate",
-      "agent",
-      "optimization",
-      "sub-phase",
-      "under",
-      "applying"
+      "orchestrate optimization"
     ],
     "key_topics": [
       "005-agent-orchestrate",
@@ -40,7 +30,7 @@
       "quality",
       "evaluation"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "complete",
     "key_files": [
       ".opencode/agents/orchestrate.md",
@@ -200,7 +190,7 @@
     ],
     "causal_summary": "Improvement focus: **Multi-agent coordination; sub-agent dispatch authority; quality evaluation; unified delivery synthesis**. Highest-authority agent. Largest LOC in fleet (855) — biggest improvement surface.",
     "created_at": "2026-05-18T07:49:27.105Z",
-    "last_save_at": "2026-05-19T13:51:38.613Z",
+    "last_save_at": "2026-05-23T11:55:14.513Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

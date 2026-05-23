@@ -65,7 +65,7 @@ Catalogued 32 patterns across 6 arcs (117-122) from 18 commits. Survey covered A
 - Arc: 118
 - Type: WORKFLOW-YAML
 - Description: 4 workflow YAMLs updated to invoke .cjs scripts via bash instead of MCP tool dispatch
-- Evidence: commit 107c522599, spec_kit/assets/spec_kit_deep-{review,research}_{auto,confirm}.yaml:20 lines changed
+- Evidence: commit 107c522599, spec_kit/assets/deep_{start-review-loop,research}_{auto,confirm}.yaml:20 lines changed
 - Sibling applicability hint: bilateral
 
 ### P-010 — Collateral updates

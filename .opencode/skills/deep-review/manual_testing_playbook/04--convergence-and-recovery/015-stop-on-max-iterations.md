@@ -45,7 +45,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate the deep-review hard iteration cap and report whether synthesis still runs after maxIterations stops the loop.
 ### Commands
 1. `bash: rg -n 'maxIterations|hard.stop|HARD_STOP|max_iterations|iteration.*cap' .opencode/skills/deep-research/references/convergence.md`
-2. `bash: rg -n 'maxIterations|max_iterations|hard.stop|step_check_convergence|iteration_count' .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+2. `bash: rg -n 'maxIterations|max_iterations|hard.stop|step_check_convergence|iteration_count' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
 3. `bash: rg -n 'maxIterations|max-iterations|default.*7|hard stop' .opencode/skills/deep-review/references/quick_reference.md .opencode/skills/deep-review/SKILL.md .opencode/skills/deep-review/README.md`
 ### Expected
 `maxIterations=7` default, unconditional exit at that count, synthesis phase runs after hard stop, review-report.md is still produced.
@@ -71,8 +71,8 @@ Privilege the convergence reference for exact algorithm and use YAML workflow st
 | File | Role |
 |---|---|
 | `.opencode/skills/deep-research/references/convergence.md` | Canonical convergence math including hard stop rules |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Workflow algorithm; inspect `step_check_convergence` for hard stop enforcement |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Workflow algorithm; inspect `step_check_convergence` for hard stop enforcement |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Workflow algorithm; inspect `step_check_convergence` for hard stop enforcement |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Workflow algorithm; inspect `step_check_convergence` for hard stop enforcement |
 | `.opencode/skills/deep-review/references/quick_reference.md` | User-facing parameter defaults; use `ANCHOR:commands` and `ANCHOR:convergence` |
 | `.opencode/skills/deep-review/SKILL.md` | Skill rules and convergence documentation; use `ANCHOR:rules` |
 | `.opencode/skills/deep-review/README.md` | Feature summary and configuration defaults |

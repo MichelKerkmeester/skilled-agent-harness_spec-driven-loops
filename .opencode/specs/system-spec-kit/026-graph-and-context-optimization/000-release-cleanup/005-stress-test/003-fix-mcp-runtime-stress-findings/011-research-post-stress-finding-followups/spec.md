@@ -17,7 +17,7 @@ _memory:
     last_updated_at: "2026-04-27T18:45:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Scaffolded packet"
-    next_safe_action: "T101 launch /spec_kit:deep-research:auto with cli-codex gpt-5.5 high fast"
+    next_safe_action: "T101 launch /deep:start-research-loop:auto with cli-codex gpt-5.5 high fast"
     blockers: []
     key_files:
       - "spec.md"
@@ -65,7 +65,7 @@ The v1.0.2 stress-test rerun closed with four follow-ups tagged in `../010-stres
 
 ### Purpose
 
-Run a single 10-iteration `/spec_kit:deep-research:auto` loop with cli-codex (gpt-5.5, high reasoning, fast service tier) that converts each of the four follow-ups from "tagged" to "actionable" — and, in light secondary scope, surfaces 1-2 architectural seams in the broader intelligence-system stack that current evidence suggests would pay off in a focused refinement packet. The loop's research.md is the deliverable; per-follow-up remediation packets are downstream work the user authors after reviewing.
+Run a single 10-iteration `/deep:start-research-loop:auto` loop with cli-codex (gpt-5.5, high reasoning, fast service tier) that converts each of the four follow-ups from "tagged" to "actionable" — and, in light secondary scope, surfaces 1-2 architectural seams in the broader intelligence-system stack that current evidence suggests would pay off in a focused refinement packet. The loop's research.md is the deliverable; per-follow-up remediation packets are downstream work the user authors after reviewing.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -107,7 +107,7 @@ Light secondary scope (≤20% of iterations):
 
 | ID | Priority | Requirement |
 |----|----------|-------------|
-| **REQ-001** | P0 | Loop MUST be invoked via `/spec_kit:deep-research:auto` (canonical command surface per Gate 4). Direct dispatch via Task tool or @deep-research agent is forbidden. |
+| **REQ-001** | P0 | Loop MUST be invoked via `/deep:start-research-loop:auto` (canonical command surface per Gate 4). Direct dispatch via Task tool or @deep-research agent is forbidden. |
 | **REQ-002** | P0 | Executor MUST be `cli-codex` with `--model=gpt-5.5 --reasoning-effort=high --service-tier=fast --executor-timeout=900`. `service_tier=fast` MUST be explicit (not config default) per memory rule `feedback_codex_cli_fast_mode`. |
 | **REQ-003** | P0 | Loop MUST run with `--max-iterations=10` (hard cap). Convergence may stop earlier if quality guards pass (source diversity ≥2, focus alignment, no single-weak-source). |
 | **REQ-004** | P0 | research.md synthesis MUST cover all 4 v1.0.2 follow-ups (P0 P1 code-graph fast-fail, P2 file-watcher, opportunity CocoIndex telemetry). Each follow-up gets evidence, root-cause hypothesis, 2-3 fix candidates with trade-offs, recommended approach, falsifiable success criteria, scope estimate, suggested next-packet shape. |

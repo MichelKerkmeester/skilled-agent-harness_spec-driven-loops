@@ -132,7 +132,7 @@ From phase 017 iterations 3, 5, 7:
 
 ## Hardened constraints for phase 018 research
 
-- **Must run via `/spec_kit:deep-research:auto`** — single-shot `codex exec` is rejected (retrofit lesson from phase 017)
+- **Must run via `/deep:start-research-loop:auto`** — single-shot `codex exec` is rejected (retrofit lesson from phase 017)
 - **Preserve all 13 advanced memory features** — retarget, never delete
 - **Option C is fixed** — don't re-litigate against A/B/D/E/F
 - **Migration strategy M4 is fixed** — don't re-evaluate M1/M2/M3

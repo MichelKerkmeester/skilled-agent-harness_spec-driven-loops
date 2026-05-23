@@ -33,8 +33,12 @@
       "checklist"
     ],
     "importance_tier": "critical",
-    "status": "not_started",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts",
+      ".opencode/bin/lib/ensure-rerank-sidecar.cjs",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/sidecar-hardening.vitest.ts",
+      ".opencode/bin/lib/ensure-rerank-sidecar.vitest.ts",
       "spec.md",
       "implementation-summary.md",
       "plan.md",
@@ -42,6 +46,30 @@
       "tasks.md"
     ],
     "entities": [
+      {
+        "name": "sidecar-client.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ensure-rerank-sidecar.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/ensure-rerank-sidecar.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sidecar-hardening.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/sidecar-hardening.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ensure-rerank-sidecar.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/bin/lib/ensure-rerank-sidecar.vitest.ts",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -161,35 +189,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Quality Gates",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Finding Ledger",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "description:",
-        "kind": "quoted",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The sidecar lifecycle selection contains explicit F88 plus the registry P1 fingerprint match F79. Together they leave process reuse and termination semantics under-specified.",
     "created_at": "2026-05-23T03:50:22.751Z",
-    "last_save_at": "2026-05-23T03:50:22.751Z",
+    "last_save_at": "2026-05-23T11:55:15.674Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

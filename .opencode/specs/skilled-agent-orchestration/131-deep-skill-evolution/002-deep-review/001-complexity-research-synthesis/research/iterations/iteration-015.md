@@ -52,7 +52,7 @@ Acceptance criterion: active finding rows must link to rich `findingDetails`; cl
 
 ### F015-004: Rollout needs a warning surface before hard enforcement expands
 
-The current validator result type can only return `{ ok: true }` or `{ ok: false, reason, details }` [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts:60] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts:64]. The workflow likewise treats post-dispatch validation as a list of failure reasons that emit schema conflicts [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:881] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:889].
+The current validator result type can only return `{ ok: true }` or `{ ok: false, reason, details }` [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts:60] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts:64]. The workflow likewise treats post-dispatch validation as a list of failure reasons that emit schema conflicts [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:881] [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:889].
 
 That is too binary for migration. Add `warnings` or typed advisory events first, then use a three-phase rollout:
 
@@ -64,7 +64,7 @@ Acceptance criterion: old packets remain readable with warnings; newly versioned
 
 ### F015-005: Graphless equivalence must be explicit because empty graph currently yields neither proof nor blocker
 
-The live workflow calls graph convergence before the inline vote and says final STOP is legal only when graph convergence returns `STOP_ALLOWED` [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:418] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:461]. The graph handler returns `CONTINUE` when the graph has zero nodes, with no blockers [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:168] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:171]. Separately, graph upsert currently accepts only `DIMENSION`, `FILE`, `FINDING`, `EVIDENCE`, and `REMEDIATION` review nodes [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:23] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:137].
+The live workflow calls graph convergence before the inline vote and says final STOP is legal only when graph convergence returns `STOP_ALLOWED` [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:418] [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:461]. The graph handler returns `CONTINUE` when the graph has zero nodes, with no blockers [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:168] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:171]. Separately, graph upsert currently accepts only `DIMENSION`, `FILE`, `FINDING`, `EVIDENCE`, and `REMEDIATION` review nodes [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:23] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:137].
 
 The follow-up should add `searchCoverage.graphCoverageMode` with values such as `graph`, `graphless_fallback`, and `unavailable_blocked`. `graphless_fallback` is valid only when direct reads, exact searches, semantic-search/code-graph status, producer/consumer traces, and negative-test searches are cited in ledger rows. Otherwise the STOP blocker should be named `graphlessFallbackGate` or `candidateCoverageGate`, not a generic graph `CONTINUE`.
 
@@ -80,7 +80,7 @@ Acceptance criterion: reducer output includes `candidateCoverage`, `searchDebt`,
 
 ### F015-007: Graph vocabulary belongs after ledger semantics, but its acceptance criteria must be exact now
 
-The workflow currently filters review graph events to the existing five node kinds and eight relations, discarding unknown graph events rather than failing the iteration [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:981] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:985]. The graph upsert handler also validates node kind and relation against the loop type allow-lists [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts:53] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts:57].
+The workflow currently filters review graph events to the existing five node kinds and eight relations, discarding unknown graph events rather than failing the iteration [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:981] [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:985]. The graph upsert handler also validates node kind and relation against the loop type allow-lists [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts:53] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts:57].
 
 So graph vocabulary should remain after ledger/reducer/convergence work, as the synthesis says [SOURCE: .opencode/specs/skilled-agent-orchestration/116-deep-review-complexity/research/research.md:127] [SOURCE: .opencode/specs/skilled-agent-orchestration/116-deep-review-complexity/research/research.md:170]. But the acceptance criteria should be decided up front: new `BUG_CLASS`, `INVARIANT`, `PRODUCER`, `CONSUMER`, and `TEST` nodes must survive prompt rendering, workflow transform, MCP upsert validation, convergence signal computation, and tests.
 
@@ -133,7 +133,7 @@ Acceptance criterion: emitting a valid candidate graph event creates persisted n
 - `.opencode/skills/deep-review/references/state_format.md`
 - `.opencode/skills/deep-review/references/convergence.md`
 - `.opencode/skills/deep-review/scripts/reduce-state.cjs`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts`

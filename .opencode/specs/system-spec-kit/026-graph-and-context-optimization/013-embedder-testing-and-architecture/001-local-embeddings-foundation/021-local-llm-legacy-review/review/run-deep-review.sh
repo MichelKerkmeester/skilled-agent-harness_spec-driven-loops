@@ -33,7 +33,7 @@ emit_jsonl "{\"type\":\"event\",\"event\":\"run-resume\",\"ts\":\"$(ts)\",\"exec
 # ─── Static prompt template (quoted heredoc, no expansion) ───
 PROMPT_TEMPLATE_FILE="$PROMPT_DIR/iter-template.txt"
 cat > "$PROMPT_TEMPLATE_FILE" <<'TEMPLATE_EOF'
-You are iteration __ITER__ of __MAX_ITERS__ in a /spec_kit:deep-review hunt for legacy residue from the local-LLM and embedding-default migration shipped in packet 014-local-embeddings-setup-a.
+You are iteration __ITER__ of __MAX_ITERS__ in a /deep:start-review-loop hunt for legacy residue from the local-LLM and embedding-default migration shipped in packet 014-local-embeddings-setup-a.
 
 POST-014 CANONICAL DEFAULTS (treat as ground truth):
 - Memory MCP: provider=hf-local, model=onnx-community/embeddinggemma-300m-ONNX, dtype=q8, dims=768
@@ -224,7 +224,7 @@ done
 log "synthesis: building synth prompt"
 SYNTH_PROMPT_FILE="$PROMPT_DIR/synth.txt"
 cat > "$SYNTH_PROMPT_FILE" <<SYNTH_EOF
-You are the synthesizer for a /spec_kit:deep-review run that just completed 20 iterations of local-LLM legacy hunting.
+You are the synthesizer for a /deep:start-review-loop run that just completed 20 iterations of local-LLM legacy hunting.
 
 Read all iteration files at $ITER_DIR/iteration-*.md. Deduplicate findings (same file:line collapsed). Produce TWO files:
 

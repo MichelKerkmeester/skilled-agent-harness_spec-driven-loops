@@ -17,12 +17,7 @@
       "009 eperm parity",
       "009 plan eperm",
       "009 tasks",
-      "009 implementation summary",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/009-launcher-eperm-parity-fix",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "013-embedder-testing-and-architecture",
-      "006-mcp-launcher-concurrency"
+      "009 implementation summary"
     ],
     "key_topics": [
       "eperm",
@@ -38,7 +33,7 @@
       "implementation",
       "summary"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "useful",
     "status": "complete",
     "key_files": [
       ".opencode/skills/system-code-graph/dist/system-spec-kit/shared/embeddings/factory.js",
@@ -99,12 +94,6 @@
         "source": "derived"
       },
       {
-        "name": "Parity Fix The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Arc",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -129,9 +118,9 @@
         "source": "derived"
       },
       {
-        "name": "Parity Fix Mirror",
-        "kind": "proper_noun",
-        "path": "plan.md",
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -154,6 +143,12 @@
       },
       {
         "name": "Affected surfaces",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
         "kind": "heading",
         "path": "plan.md",
         "source": "derived"
@@ -197,7 +192,7 @@
     ],
     "causal_summary": "The skill-advisor launcher handles `EPERM` from `process.kill(pid, 0)`; the spec-memory + code-index launchers did not. Closing that parity gap fixes the `-32000` MCP reconnect failure.",
     "created_at": "2026-05-18T20:00:10.250Z",
-    "last_save_at": "2026-05-18T20:00:10.250Z",
+    "last_save_at": "2026-05-23T11:55:15.582Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

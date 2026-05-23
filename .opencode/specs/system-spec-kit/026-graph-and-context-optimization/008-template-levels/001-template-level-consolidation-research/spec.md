@@ -19,7 +19,7 @@ _memory:
     last_updated_at: "2026-05-01T07:34:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Scaffolded packet; spec.md authored"
-    next_safe_action: "Let /spec_kit:deep-research:auto loop converge; do not interfere with iteration state"
+    next_safe_action: "Let /deep:start-research-loop:auto loop converge; do not interfere with iteration state"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/templates/core/"
@@ -293,5 +293,5 @@ This packet is investigation-only. The deep-research loop will produce findings 
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
 - **Decision Records**: See `decision-record.md` (ADR-001 stub; finalized post-research)
-- **Research Artifacts**: See `research/research.md` (produced by `/spec_kit:deep-research:auto`)
+- **Research Artifacts**: See `research/research.md` (produced by `/deep:start-research-loop:auto`)
 - **Parent Spec**: `../spec.md` (026-graph-and-context-optimization theme)

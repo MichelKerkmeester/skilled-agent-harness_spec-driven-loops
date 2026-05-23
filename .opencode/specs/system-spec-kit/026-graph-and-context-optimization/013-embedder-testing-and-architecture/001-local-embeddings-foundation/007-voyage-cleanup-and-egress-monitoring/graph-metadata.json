@@ -1,51 +1,207 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/007-voyage-cleanup-and-egress-monitoring",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/007-voyage-cleanup-and-egress-monitoring",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/007-voyage-cleanup-and-egress-monitoring",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/007-voyage-cleanup-and-egress-monitoring",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/003-mcp-config-rollout",
-      "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/004-vec-store-rebuild"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "007 voyage cleanup",
+      "delete voyage sqlite",
       "voyage egress monitor",
-      "factory egress guard",
-      "context-index sqlite delete"
+      "VOYAGE_API_KEY runtime guard",
+      "007 plan voyage cleanup",
+      "factory.ts egress guard",
+      "voyage sqlite deletion plan",
+      "007 tasks voyage cleanup",
+      "factory egress guard tasks",
+      "014/007 voyage cleanup done",
+      "voyage egress guard shipped",
+      "factory voyage drift warn"
     ],
     "key_topics": [
-      "warnIfVoyageDriftDetected",
-      "voyageDriftWarned flag",
-      "context-index sqlite cleanup",
-      "tcpdump 24h capture",
-      "VOYAGE_API_KEY runtime guard",
-      "factory.ts provider resolution"
+      "007",
+      "voyage",
+      "cleanup",
+      "delete",
+      "sqlite",
+      "egress",
+      "monitor",
+      "runtime",
+      "guard",
+      "plan",
+      "factory",
+      "deletion"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
+      "scratch/tcpdump-verify.sh",
+      ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
+      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
       "spec.md",
+      "shared/embeddings/factory.ts",
+      "mcp_server/database/context-index.sqlite",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "scratch/tcpdump-verify.sh"
+      "implementation-summary.md"
     ],
     "entities": [
-      "warnIfVoyageDriftDetected",
-      "voyageDriftWarned",
-      "getProviderInfoForResolution",
-      "context-index__voyage__voyage-4__1024.sqlite",
-      "tcpdump-verify.sh"
+      {
+        "name": "tcpdump-verify.sh",
+        "kind": "script",
+        "path": "scratch/tcpdump-verify.sh",
+        "source": "derived"
+      },
+      {
+        "name": "context-index.sqlite",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Voyage Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Egress Monitoring",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Idempotent",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
     ],
-    "causal_summary": "Deleted 463MB stale sqlite (Voyage + legacy generic). Added one-shot factory.ts egress guard. Documented 24h tcpdump verification for user post-merge.",
+    "causal_summary": "After 003 purged `VOYAGE_API_KEY` from every shell-propagating source and 004 rebuilt the memory vec store under hf-local, three sqlite files at `.opencode/skills/system-spec-kit/mcp_server/database/` were stale: `context-index__voyage__voyage-4__1024.sqlite` (318MB main + 32K shm + 4MB wal) and the older generic-name `context-index.sqlite` (141MB) from before filename-keying. Disk space aside, the leftover files make \"is Voyage still in use?\" a slower question to answer.",
     "created_at": "2026-05-12T16:27:51Z",
-    "last_save_at": "2026-05-12T22:00:00Z",
+    "last_save_at": "2026-05-23T11:55:15.336Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-12T22:00:00Z",
     "source_docs": [

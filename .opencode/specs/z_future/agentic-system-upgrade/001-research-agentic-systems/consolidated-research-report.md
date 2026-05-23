@@ -502,7 +502,7 @@ contextType: "research"
 - **Blast radius**: large
 - **Dependencies**: `B-001`, `B-003`
 - **Estimated complexity**: Level 3
-- **First-step suggestion**: `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+- **First-step suggestion**: `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
 
 ### Bundle B-005 — Validation As Runtime Truth
 - **Proposed packet name**: `006-runtime-truth-validation`
@@ -526,7 +526,7 @@ contextType: "research"
 - **Blast radius**: medium-large
 - **Dependencies**: `B-004`, `B-006`
 - **Estimated complexity**: Level 2-3
-- **First-step suggestion**: `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+- **First-step suggestion**: `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
 
 ### Bundle B-008 — Tactical Safety And Operator Observability
 - **Proposed packet name**: `009-tactical-safety-and-observability`

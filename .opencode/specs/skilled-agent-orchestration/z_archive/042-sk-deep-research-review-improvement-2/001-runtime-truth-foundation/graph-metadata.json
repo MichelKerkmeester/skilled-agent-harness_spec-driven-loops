@@ -42,12 +42,6 @@
     "status": "complete",
     "key_files": [
       "scratch/codex-gpt54-deep-research.md",
-      ".opencode/commands/spec_kit/deep-research.md",
-      ".opencode/commands/spec_kit/deep-review.md",
-      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
-      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
-      ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
-      ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
       ".opencode/agents/deep-research.md",
       ".opencode/agents/deep-review.md",
       ".claude/agents/deep-research.md",
@@ -60,7 +54,12 @@
       ".opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md"
     ],
     "entities": [
       {
@@ -72,37 +71,13 @@
       {
         "name": "deep-research.md",
         "kind": "doc",
-        "path": ".opencode/commands/spec_kit/deep-research.md",
+        "path": ".opencode/agents/deep-research.md",
         "source": "derived"
       },
       {
         "name": "deep-review.md",
         "kind": "doc",
-        "path": ".opencode/commands/spec_kit/deep-review.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec_kit_deep-research_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "spec_kit_deep-research_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "spec_kit_deep-review_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "spec_kit_deep-review_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
+        "path": ".opencode/agents/deep-review.md",
         "source": "derived"
       },
       {
@@ -145,6 +120,36 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -200,17 +205,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview This",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This packet converts the consolidated agentic-systems research into one implementation plan for the two autonomous deep-loop products: `sk-deep-research` and `sk-deep-review`. The work is centered on runtime truth, not feature sprawl: real stop reasons, legal completion gates, resume-from-run semantics, auditability, claim verification, behavior-first tests, and richer dashboards that make loop state easier to trust and resume.",
     "created_at": "2026-04-12T09:02:50.192Z",
-    "last_save_at": "2026-05-19T13:51:38.533Z",
+    "last_save_at": "2026-05-23T11:55:14.444Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

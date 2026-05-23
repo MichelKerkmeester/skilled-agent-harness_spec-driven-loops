@@ -170,7 +170,7 @@ For each command adopting this contract, the §0 of the command markdown:
 
 Commands that have adopted this contract:
 
-- `/spec_kit:deep-review` (prototype) — see `.../103/001-deep-review-three-tier-setup/`
+- `/deep:start-review-loop` (prototype) — see `.../103/001-deep-review-three-tier-setup/`
 - (to be appended as `.../103/002-...` rolls out)
 
 ---

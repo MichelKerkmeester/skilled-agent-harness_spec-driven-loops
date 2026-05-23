@@ -14,6 +14,8 @@
     "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc",
     "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation"
   ],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -25,7 +27,7 @@
       "embedder umbrella program",
       "embedder adapter interface",
       "any embedder zero migration",
-      "jina-v3 production embedder"
+      "nomic CodeRankEmbed and Qwen reranker defaults"
     ],
     "key_topics": [
       "013",
@@ -38,15 +40,14 @@
       "interface",
       "zero",
       "migration",
-      "jina-v3",
-      "production",
-      "memory-leak",
-      "process-lifecycle"
+      "nomic",
+      "coderankembed"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "planned",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "research/research.md"
     ],
     "entities": [
       {
@@ -56,46 +57,92 @@
         "source": "derived"
       },
       {
-        "name": "a",
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Status",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "sidecar",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "hasAdvisories",
+        "name": "the",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "1. METADATA",
-        "kind": "heading",
+        "name": "former",
+        "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "2. ROOT PURPOSE",
-        "kind": "heading",
+        "name": "deferred",
+        "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "3. SUB-PHASE LIST",
-        "kind": "heading",
-        "path": "spec.md",
+        "name": "Research Synthesis",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Needs Done",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Arc Patterns Metadata",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Recommended Priority",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope This",
+        "kind": "proper_noun",
+        "path": "research/research.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Make mk-spec-memory **embedder-agnostic** so end users can swap models with a single MCP call — no code changes, no schema migration, no GGUF wrangling. Build the abstraction once; reuse it forever.",
+    "causal_summary": "Track the end-to-end embedder and reranker program across the 013 umbrella. The current production posture is no longer the original Jina/mxbai scaffold: mk-spec-memory defaults to the Nomic/CodeRankEmbed local bi-encoder path through the Ollama -> hf-local Nomic cascade, CocoIndex defaults to `sbert/nomic-ai/CodeRankEmbed` for code embeddings, and CocoIndex reranks through `Qwen/Qwen3-Reranker-0.6B` via the shared sidecar by default.",
     "created_at": "2026-05-17T06:35:11.664Z",
-    "last_save_at": "2026-05-18T20:39:58.777Z",
-    "save_lineage": "same_pass",
+    "last_save_at": "2026-05-23T11:55:15.323Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
-    ],
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation",
-    "last_active_at": "2026-05-22T16:19:13Z",
-    "last_indexed_at": "2026-05-22T16:19:13Z"
+      "spec.md",
+      "research/research.md"
+    ]
   }
 }

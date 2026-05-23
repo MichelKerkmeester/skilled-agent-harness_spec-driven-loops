@@ -53,8 +53,8 @@ Make deep-research, deep-review, ai-council, and embedded deep-loop flows share 
 The current owner surfaces are:
 - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-audit.ts`: writes executor provenance, `iteration_start`, `dispatch_failure`, and last-record executor audit updates.
 - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts`: reads state logs, validates the last iteration record, and appends `verification_degraded` events.
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`: declares `.deep-research.lock` and calls the shared TypeScript audit/validation helpers.
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`: has no advisory lock today and writes the same class of deep-loop state.
+- `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`: declares `.deep-research.lock` and calls the shared TypeScript audit/validation helpers.
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`: has no advisory lock today and writes the same class of deep-loop state.
 - `.opencode/skills/sk-ai-council/scripts/lib/persist-artifacts.js` and `.opencode/skills/sk-ai-council/scripts/lib/audit-trail.js`: own ai-council JSONL persistence and rotation outside the TypeScript deep-loop helper set.
 
 This phase will add shared helpers in `mcp_server/lib/deep-loop/`, wire the existing TypeScript state-log writers through them, and document the remaining non-TypeScript consumers if they cannot be safely reached without broad workflow rewrites.

@@ -33,12 +33,12 @@ Authored or workflow-owned markdown documents governed by the manifest.
 
 Command surfaces and workflow entry points that create or consume docs.
 
-- `.opencode/commands/spec_kit/deep-research.md` - owns deep-research synthesis workflow.
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` - owns automatic deep-research state flow.
+- `.opencode/commands/deep/start-research-loop.md` - owns deep-research synthesis workflow.
+- `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` - owns automatic deep-research state flow.
 - `.opencode/commands/spec_kit/complete.md` - references canonical save and completion behavior.
 - `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml` - debug delegation trigger context.
-- `/spec_kit:deep-research` - workflow trigger for `research/research.md`.
-- `/spec_kit:deep-review` - workflow trigger for review packet outputs.
+- `/deep:start-research-loop` - workflow trigger for `research/research.md`.
+- `/deep:start-review-loop` - workflow trigger for review packet outputs.
 - `/memory:save` - command trigger for `handover.md`.
 
 ## Agents

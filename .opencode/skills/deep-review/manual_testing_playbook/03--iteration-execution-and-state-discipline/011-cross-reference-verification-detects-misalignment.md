@@ -44,8 +44,8 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-review traceability cross-reference checks and confirm the configured protocols dispatch correctly.
 ### Commands
-1. `bash: rg -n 'crossReference|cross_reference|spec_code|checklist_evidence|skill_agent|agent_cross_runtime|feature_catalog_code|playbook_capability' .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-2. `bash: rg -n 'traceability|cross.reference|TRACEABILITY PROTOCOLS' .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+1. `bash: rg -n 'crossReference|cross_reference|spec_code|checklist_evidence|skill_agent|agent_cross_runtime|feature_catalog_code|playbook_capability' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
+2. `bash: rg -n 'traceability|cross.reference|TRACEABILITY PROTOCOLS' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
 3. `bash: rg -n 'cross.reference|traceability|spec_code|checklist_evidence' .opencode/skills/deep-review/references/quick_reference.md .opencode/skills/deep-review/assets/review_mode_contract.yaml`
 ### Expected
 The config includes crossReference with core and overlay protocols; the dispatch prompt includes traceability constraints; the quality guards require cross-reference checks before convergence.
@@ -70,7 +70,7 @@ Check the review_mode_contract.yaml for the full cross-reference protocol defini
 
 | File | Role |
 |---|---|
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Config creation and dispatch; inspect `step_create_config` crossReference block and dispatch traceability constraints |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Config creation and dispatch; inspect `step_create_config` crossReference block and dispatch traceability constraints |
 | `.opencode/skills/deep-review/assets/review_mode_contract.yaml` | Cross-reference protocol definitions; inspect `cross_reference_protocols` |
 | `.opencode/skills/deep-review/references/quick_reference.md` | Quality guards; use `ANCHOR:quality-guards` and `ANCHOR:review-dimensions` |
 | `.opencode/skills/deep-review/SKILL.md` | Traceability dimension documentation |

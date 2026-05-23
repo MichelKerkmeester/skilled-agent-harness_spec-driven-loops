@@ -58,7 +58,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Sibling packet 021 produced a 10-iter `/spec_kit:deep-review:auto` finding tray with verdict FAIL; hasAdvisories=true (P0=2 P1=83 P2=31). The user clarified after the run that the 2 P0s and ~25 of the P1s actually describe **intended behavior** that 014's narrative misrepresented, not real bugs. The remaining ~90 findings ARE legitimate residue: stale model identifiers, stale dimension references, hardcoded legacy sqlite paths, rejected-ONNX cleanup, and generated assets that haven't been regenerated since the actual ship state landed.
+Sibling packet 021 produced a 10-iter `/deep:start-review-loop:auto` finding tray with verdict FAIL; hasAdvisories=true (P0=2 P1=83 P2=31). The user clarified after the run that the 2 P0s and ~25 of the P1s actually describe **intended behavior** that 014's narrative misrepresented, not real bugs. The remaining ~90 findings ARE legitimate residue: stale model identifiers, stale dimension references, hardcoded legacy sqlite paths, rejected-ONNX cleanup, and generated assets that haven't been regenerated since the actual ship state landed.
 
 ### Purpose
 Bring the repo's docs, configs, scripts, fixtures, and generated assets into alignment with the **actual** post-014 ship state — which is `EMBEDDINGS_PROVIDER=auto` cascading through `VOYAGE_API_KEY → OPENAI_API_KEY → llama-cpp (when GGUF installed) → hf-local` with EmbeddingGemma-300m 768d as the canonical local profile.
@@ -122,7 +122,7 @@ Bring the repo's docs, configs, scripts, fixtures, and generated assets into ali
 |----|-------------|---------------------|
 | REQ-006 | Feature catalogs + playbooks regenerated post-batches-1-4 | Re-run the catalog-regen pipeline; diff shows EmbeddingGemma 768d as default, no MiniLM/Nomic strings remain |
 | REQ-007 | Vitest fixtures asserting old model names updated | All test assertions on `MODEL_NAME` / `embeddingModel` reference `onnx-community/embeddinggemma-300m-ONNX` or `google/embeddinggemma-300m` |
-| REQ-008 | Confirmatory re-review post-batch-5 | Run `/spec_kit:deep-review:auto` with same scope as 021; verdict flips FAIL → PASS |
+| REQ-008 | Confirmatory re-review post-batch-5 | Run `/deep:start-review-loop:auto` with same scope as 021; verdict flips FAIL → PASS |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -131,7 +131,7 @@ Bring the repo's docs, configs, scripts, fixtures, and generated assets into ali
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: All 5 batches landed; per-batch git diff confined to declared file scope
-- **SC-002**: Confirmatory `/spec_kit:deep-review:auto` re-run produces verdict PASS (or PASS-with-advisories, no P0/P1)
+- **SC-002**: Confirmatory `/deep:start-review-loop:auto` re-run produces verdict PASS (or PASS-with-advisories, no P0/P1)
 - **SC-003**: Zero out-of-scope mutations vs recovery anchor `5e7095d3336510b5756ba5cac383a8e08d1d79db`
 - **SC-004**: Total walltime ≤ 3h (5 batches × ~30 min cli-codex dispatch each)
 <!-- /ANCHOR:success-criteria -->

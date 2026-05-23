@@ -37,7 +37,7 @@ Three sub-tasks:
 ## CARRY-OVER FACTS
 
 From iter 1: irreducible runtime core = spec.md + description.json + graph-metadata.json
-From iter 2: addon lifecycle table — handover (command-owned-lazy via /memory:save), debug-delegation (agent-exclusive via @debug + scaffold-debug-delegation.sh), research (workflow-owned by /spec_kit:deep-research), resource-map (mixed), context-index (author-scaffolded rare)
+From iter 2: addon lifecycle table — handover (command-owned-lazy via /memory:save), debug-delegation (agent-exclusive via @debug + scaffold-debug-delegation.sh), research (workflow-owned by /deep:start-research-loop), resource-map (mixed), context-index (author-scaffolded rare)
 From iter 3: WINNER C+F hybrid, 15 source files
 From iter 4: manifest schema + 6 sample scaffolds + golden test design
 
@@ -57,7 +57,7 @@ templates/manifest/
 ├── context-index.md.tmpl                           # author-scaffolded rare
 ├── handover.md.tmpl                                # owner=/memory:save (lazy)
 ├── debug-delegation.md.tmpl                        # owner=@debug (lazy)
-└── research.md.tmpl                                # owner=/spec_kit:deep-research (lazy, lives in research/)
+└── research.md.tmpl                                # owner=/deep:start-research-loop (lazy, lives in research/)
 scripts/lib/template-utils.sh                       # scaffold_from_manifest() shell entry
 mcp_server/lib/templates/manifest-loader.ts         # TS entry
 ```

@@ -43,7 +43,6 @@
       "plan.md",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/local-reranker.ts",
-      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py",
       "tasks.md",
       "implementation-summary.md"
     ],
@@ -76,12 +75,6 @@
         "name": "local-reranker.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/local-reranker.ts",
-        "source": "derived"
-      },
-      {
-        "name": "query.py",
-        "kind": "file",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py",
         "source": "derived"
       },
       {
@@ -191,11 +184,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This packet is part of §3 structural improvements identified in the 018/003 follow-up discussion. Research converged on `Alibaba-NLP/gte-multilingual-reranker-base`, K=20, opt-in rollout, score replacement, and default-on only after fixture and latency gates.",
     "created_at": "2026-05-18T05:13:45.663Z",
-    "last_save_at": "2026-05-19T20:42:43.950Z",
+    "last_save_at": "2026-05-23T11:55:15.493Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

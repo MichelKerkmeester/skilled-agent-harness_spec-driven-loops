@@ -82,7 +82,7 @@ This phase decomposition mines smallcode-master systematically (20 deep-research
 - Read the entire `external/smallcode-master/` corpus (MIT-licensed, included verbatim under `external/`)
 - Run a preflight SWE-1.6 context-gathering dispatch producing `preflight/context-card.md` — a structured pattern map cited by every research iteration
 - Author 001-research-smallcode as a Level 3 deep-research target with 5 locked research questions (see 001/spec.md §2)
-- Drive 20 `/spec_kit:deep-research` iterations (or fewer on convergence) producing `001/research/research.md` with per-RQ candidate deltas, citations, and acceptance criteria
+- Drive 20 `/deep:start-research-loop` iterations (or fewer on convergence) producing `001/research/research.md` with per-RQ candidate deltas, citations, and acceptance criteria
 - Defer all implementation of recommended deltas to post-synthesis follow-on packets (no 002+ stubs pre-created)
 
 ### Out of Scope
@@ -106,7 +106,7 @@ This phase decomposition mines smallcode-master systematically (20 deep-research
 | `114/001-research-smallcode/decision-record.md` | Create | 001 | ADR-001..005 |
 | `114/001-research-smallcode/description.json` | Create | 001 | Child metadata (generated) |
 | `114/001-research-smallcode/graph-metadata.json` | Create | 001 | Child edges (generated) |
-| `114/001-research-smallcode/research/**` | Create | 001 (deferred to user-triggered loop) | Populated by `/spec_kit:deep-research:auto` |
+| `114/001-research-smallcode/research/**` | Create | 001 (deferred to user-triggered loop) | Populated by `/deep:start-research-loop:auto` |
 <!-- /ANCHOR:scope -->
 
 ---

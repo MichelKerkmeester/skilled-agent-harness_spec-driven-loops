@@ -56,7 +56,7 @@ _memory:
 - [x] T002 Author `spec.md` with research framing (problem, scope, requirements, risks)
 - [x] T003 [P] Author `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md` skeletons
 - [x] T004 Run `validate.sh --strict` on the scaffolded packet
-- [x] T005 Dispatch `/spec_kit:deep-research:auto` with 10 iterations, cli-codex gpt-5.5 high fast
+- [x] T005 Dispatch `/deep:start-research-loop:auto` with 10 iterations, cli-codex gpt-5.5 high fast
 <!-- /ANCHOR:phase-1 -->
 
 ---

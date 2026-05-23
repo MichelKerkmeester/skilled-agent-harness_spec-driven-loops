@@ -50,7 +50,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T005 Dispatch /spec_kit:deep-review via cli-devin SWE 1.6 (background) — evidence: `review/deep-review-state.jsonl` has `iter_complete` entries 1-20.
+- [x] T005 Dispatch /deep:start-review-loop via cli-devin SWE 1.6 (background) — evidence: `review/deep-review-state.jsonl` has `iter_complete` entries 1-20.
 - [x] T006 Monitor task notification on completion — evidence: `review/review-report.md` §1 records `Iterations completed | 20 of 20`.
 - [x] T007 Apply 3-check bundle gate per iteration output — evidence: `review/deep-review-state.jsonl` gate fields include `PASS_WITH_FALSE_POSITIVE`, `PASS_WITH_DOWNGRADE`, and `PASS_CLEAN`; synthesis adjudicates false positives in `review/review-report.md` §2.
 - [x] T008 Convergence detection (3-consecutive-no-new-findings short-circuit) — evidence: `review/review-report.md` §6 records convergence threshold analysis and final MAX_ITER stop.
@@ -79,5 +79,5 @@ All 13 tasks marked `[x]`. Review evidence is under `review/`, remediation re-re
 - Plan: `plan.md`
 - Scope packets: `../013-embedder-testing-and-architecture/`, `../018-code-embedder-coderank/`, `../019-cocoindex-embedder-registry/`
 - Memory notes: feedback_cli_devin_bundle_verification, feedback_bundle_gate_smoke_run, feedback_cli_dispatch_unreliability
-- Skill: `/spec_kit:deep-review`
+- Skill: `/deep:start-review-loop`
 <!-- /ANCHOR:cross-refs -->

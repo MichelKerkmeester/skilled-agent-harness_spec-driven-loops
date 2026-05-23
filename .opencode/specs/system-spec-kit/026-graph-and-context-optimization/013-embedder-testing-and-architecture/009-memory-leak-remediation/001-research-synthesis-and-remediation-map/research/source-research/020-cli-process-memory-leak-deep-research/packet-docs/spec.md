@@ -44,11 +44,11 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-This packet defines a broad 10-iteration `/spec_kit:deep-research` investigation against `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit` to find memory leaks, orphan process buildup, and unsafe nested CLI orchestration paths. The research is intentionally evidence-only: it must map leak classes, collect process and memory telemetry, and produce a prioritized fix backlog before any implementation changes are made.
+This packet defines a broad 10-iteration `/deep:start-research-loop` investigation against `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit` to find memory leaks, orphan process buildup, and unsafe nested CLI orchestration paths. The research is intentionally evidence-only: it must map leak classes, collect process and memory telemetry, and produce a prioritized fix backlog before any implementation changes are made.
 
 **Key Decisions**: run one CLI dispatch at a time, kill and verify process cleanup between iterations, split research across Claude Opus and Codex GPT-5.5 perspectives.
 
-**Critical Dependencies**: `/spec_kit:deep-research` executor routing, `cli-claude-code`, `cli-codex`, Apple Silicon memory telemetry commands, and local authentication for both CLI providers.
+**Critical Dependencies**: `/deep:start-research-loop` executor routing, `cli-claude-code`, `cli-codex`, Apple Silicon memory telemetry commands, and local authentication for both CLI providers.
 
 ---
 <!-- ANCHOR:metadata -->
@@ -85,7 +85,7 @@ Run a telemetry-gated deep-research campaign that proves where system-spec-kit a
 
 ### In Scope
 
-- Ten `/spec_kit:deep-research` iterations targeting `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit`.
+- Ten `/deep:start-research-loop` iterations targeting `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit`.
 - Five iterations routed through `cli-claude-code` using the user-requested Opus 4.7 model route, subject to the cli-claude-code self-invocation guard and auth preflight.
 - Five iterations routed through `cli-codex` using `gpt-5.5`, `model_reasoning_effort="xhigh"`, and `service_tier="fast"`.
 - Process-tree and memory-pressure investigation for deep research, deep review, AI council, CLI skills, sidecars, `ccc search`, `gtimeout`, rerank servers, Node/TypeScript processes, Python processes, and Ollama or embedding helpers if they are spawned by the workflow.

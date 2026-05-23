@@ -18,7 +18,7 @@ I read Agent Lightning's packaging, CLI entrypoint, contributor guidance, and do
 - The external contributor guide keeps the verification surface short and standard: `uv sync`, `pytest`, `pyright`, `pre-commit`, and strict MkDocs build. [SOURCE: external/AGENTS.md:11-16]
 - `system-spec-kit` exposes many top-level workflow families in its operator guidance: `spec_kit:*`, `memory:*`, analysis commands, shared-memory commands, deep research/review, and multiple recovery flows. [SOURCE: AGENTS.md:132-155]
 - The memory system alone documents 43 MCP tools under one server surface. [SOURCE: .opencode/skills/system-spec-kit/references/memory/memory_system.md:95-140]
-- `/spec_kit:deep-research` adds mode suffixes, flags, setup-state rules, and YAML indirection before the actual research loop starts. [SOURCE: .opencode/commands/spec_kit/deep-research.md:7-21] [SOURCE: .opencode/commands/spec_kit/deep-research.md:39-63]
+- `/deep:start-research-loop` adds mode suffixes, flags, setup-state rules, and YAML indirection before the actual research loop starts. [SOURCE: .opencode/commands/deep/start-research-loop.md:7-21] [SOURCE: .opencode/commands/deep/start-research-loop.md:39-63]
 
 ## Analysis
 Agent Lightning's public surface is not small because the system itself is simple. It is small because the repo draws a clear line between what maintainers need internally and what operators need at the front door. The user-facing surface is compressed into one CLI plus audience-based docs, while internal modules and optional capability groups stay behind that abstraction.

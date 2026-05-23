@@ -16,6 +16,7 @@
       "arc 010 parity plan",
       "arc 010 parity tasks",
       "arc 010 parity checklist",
+      "arc 010 parity decision record",
       "arc 010 parity implementation summary"
     ],
     "key_topics": [
@@ -33,19 +34,63 @@
       "remediation"
     ],
     "importance_tier": "critical",
-    "status": "not_started",
+    "status": "complete",
     "key_files": [
-      "spec.md",
+      ".opencode/bin/lib/ensure-rerank-sidecar.cjs",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/types.ts",
+      ".opencode/skills/system-rerank-sidecar/scripts/ensure_rerank_sidecar.py",
+      ".opencode/skills/system-rerank-sidecar/scripts/sidecar_ledger.py",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/sidecar-hardening.vitest.ts",
+      ".opencode/skills/system-rerank-sidecar/tests/test_sidecar_ledger.py",
       "checklist.md",
       "implementation-summary.md",
+      "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "decision-record.md"
     ],
     "entities": [
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "name": "ensure-rerank-sidecar.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/ensure-rerank-sidecar.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sidecar-client.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ensure_rerank_sidecar.py",
+        "kind": "file",
+        "path": ".opencode/skills/system-rerank-sidecar/scripts/ensure_rerank_sidecar.py",
+        "source": "derived"
+      },
+      {
+        "name": "sidecar_ledger.py",
+        "kind": "file",
+        "path": ".opencode/skills/system-rerank-sidecar/scripts/sidecar_ledger.py",
+        "source": "derived"
+      },
+      {
+        "name": "sidecar-hardening.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/sidecar-hardening.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "test_sidecar_ledger.py",
+        "kind": "file",
+        "path": ".opencode/skills/system-rerank-sidecar/tests/test_sidecar_ledger.py",
         "source": "derived"
       },
       {
@@ -61,6 +106,12 @@
         "source": "derived"
       },
       {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
@@ -70,6 +121,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -137,59 +194,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "final",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Quality Gates",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Finding Ledger",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "description:",
-        "kind": "quoted",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The registry's P1 `drift|python|cjs|parity` selection contains nine findings where TypeScript, CJS, and Python sidecar contracts disagree or their canonical source is unclear.",
     "created_at": "2026-05-23T03:50:22.752Z",
-    "last_save_at": "2026-05-23T03:50:22.752Z",
+    "last_save_at": "2026-05-23T11:55:15.675Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,6 +206,7 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
+      "decision-record.md",
       "implementation-summary.md"
     ]
   }

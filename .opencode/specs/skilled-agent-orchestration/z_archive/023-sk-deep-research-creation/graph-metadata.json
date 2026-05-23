@@ -44,9 +44,6 @@
       "checklist.md",
       "decision-record.md",
       ".claude/agents/deep-research.md",
-      ".opencode/commands/spec_kit/deep-research.md",
-      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
-      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -54,7 +51,6 @@
       "scratch/improvement-proposals.md",
       ".claude/agents/orchestrate.md",
       ".opencode/skills/README.md",
-      ".opencode/specs/descriptions.json",
       "research/research.md",
       "research/deep-research-strategy.md",
       ".opencode/skills/sk-git/SKILL.md"
@@ -76,18 +72,6 @@
         "name": "deep-research.md",
         "kind": "doc",
         "path": ".claude/agents/deep-research.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec_kit_deep-research_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "spec_kit_deep-research_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
         "source": "derived"
       },
       {
@@ -130,12 +114,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "descriptions.json",
-        "kind": "config",
-        "path": ".opencode/specs/descriptions.json",
         "source": "derived"
       },
       {
@@ -203,11 +181,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Primary Runtime Surface",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "State Model",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Basis",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Create a 3-layer autonomous deep research system: `@deep-research` agent (single iteration executor), `/spec_kit:deep-research` command (loop lifecycle manager via YAML workflows), and `sk-deep-research` skill (protocol documentation and templates). The system uses externalized JSONL + strategy file state with fresh agent context per iteration, solving context degradation in long research sessions.",
     "created_at": "2026-04-12T09:02:50.172Z",
-    "last_save_at": "2026-05-19T13:51:38.454Z",
+    "last_save_at": "2026-05-23T11:55:14.359Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

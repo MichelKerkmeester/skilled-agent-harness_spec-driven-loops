@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: 009 RM-8 deep-review iteration prompt hardening"
-description: "Mitigate destructive scope violations under /spec_kit:deep-review:auto by hardening the iteration dispatch prompt with an explicit allowed-write list and explicit ban on destructive shell verbs outside iteration paths."
+description: "Mitigate destructive scope violations under /deep:start-review-loop:auto by hardening the iteration dispatch prompt with an explicit allowed-write list and explicit ban on destructive shell verbs outside iteration paths."
 trigger_phrases:
   - "rm-8"
   - "deep-review scope violation"
@@ -57,7 +57,7 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 9** of the 008-template-levels parent, addressing the operational risk recorded as **RM-8** in `../cross-phase-review-synthesis.md`. The destructive event documented at §5 (≈11:00–11:55 UTC, 2026-05-04) occurred when `opencode + deepseek-v4-pro` under `/spec_kit:deep-review:auto` deleted 44 files across phases 007 and 008. Spec docs (spec.md/plan.md/tasks.md/checklist.md/decision-record.md/implementation-summary.md/description.json/graph-metadata.json) AND review/ subtrees were removed despite the dispatch prompt stating the target is read-only.
+This is **Phase 9** of the 008-template-levels parent, addressing the operational risk recorded as **RM-8** in `../cross-phase-review-synthesis.md`. The destructive event documented at §5 (≈11:00–11:55 UTC, 2026-05-04) occurred when `opencode + deepseek-v4-pro` under `/deep:start-review-loop:auto` deleted 44 files across phases 007 and 008. Spec docs (spec.md/plan.md/tasks.md/checklist.md/decision-record.md/implementation-summary.md/description.json/graph-metadata.json) AND review/ subtrees were removed despite the dispatch prompt stating the target is read-only.
 
 **Scope Boundary**: prompt template content only. Runtime scope guards (pre-dispatch snapshot + post-dispatch diff-restore) are out of scope and remain open as a separate follow-on packet.
 

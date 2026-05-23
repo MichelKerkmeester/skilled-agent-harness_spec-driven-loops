@@ -112,7 +112,7 @@ None. No exploit, auth bypass, destructive data loss, or runtime corruption. The
 
 ## Deferred Items
 
-- A real implementation-vs-spec deep-review of 008 is deferred until the spec is authored. When that happens, re-run `/spec_kit:deep-review:auto` (5 iterations on copilot/gpt-5.5 with `--reasoning-effort high`) against the populated packet.
+- A real implementation-vs-spec deep-review of 008 is deferred until the spec is authored. When that happens, re-run `/deep:start-review-loop:auto` (5 iterations on copilot/gpt-5.5 with `--reasoning-effort high`) against the populated packet.
 
 ---
 

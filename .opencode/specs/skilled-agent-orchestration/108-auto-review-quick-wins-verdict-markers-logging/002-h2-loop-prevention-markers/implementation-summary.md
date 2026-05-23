@@ -18,8 +18,8 @@ _memory:
     key_files:
       - ".opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl"
       - ".opencode/skills/deep-research/assets/prompt_pack_iteration.md.tmpl"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml"
+      - ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml"
+      - ".opencode/commands/deep/assets/deep_start-research-loop_auto.yaml"
       - ".opencode/skills/sk-code-review/SKILL.md"
       - ".opencode/skills/deep-review/SKILL.md"
       - ".opencode/skills/deep-research/SKILL.md"
@@ -70,12 +70,12 @@ _memory:
 - Added note to Phase Detection Step 0: "The dispatcher / agent assembling the sk-code-review prompt MUST prepend `CODE-REVIEW\n\n` as the first two lines of the rendered prompt before the reviewer LLM sees it. Reference resources stay unchanged."
 - Reference resources (code_quality_checklist.md, security_checklist.md) have YAML frontmatter that prepending would break; the code-injection note stays in the skill body.
 
-**File 4: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:620-630`**
+**File 4: `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:620-630`**
 - Added `step_marker_scan` between `step_generate_state_summary` and `step_dispatch_iteration`
 - Guard logic: reads first line of previous iteration's rendered prompt, matches against `^(DEEP-REVIEW|DEEP-RESEARCH|CODE-REVIEW)$`, halts with exit 2 on match
 - False-positive prevention: first-line anchor `^` and exact string match — comments/body text ignored
 
-**File 5: `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:523-537`**
+**File 5: `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:523-537`**
 - Mirror of deep-review marker scan — same guard logic, halt on match
 
 ### H-4: Anti-Repetition Rule

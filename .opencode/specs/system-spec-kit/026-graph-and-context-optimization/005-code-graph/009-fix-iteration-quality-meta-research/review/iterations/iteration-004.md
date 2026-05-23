@@ -14,8 +14,8 @@
 - `.opencode/skills/sk-deep-review/references/state_format.md:197` - State-format example carries `affectedSurfaceHints`.
 - `.opencode/skills/sk-deep-review/references/state_format.md:219` - State-format required-field table names `affectedSurfaceHints`.
 - `.opencode/skills/sk-deep-review/references/state_format.md:452` - State-format validation note requires each active item to include `affectedSurfaceHints`.
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1050-1055` - Auto deep-review synthesis builds Planning Packet findings with `affectedSurfaceHints`.
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:1072-1077` - Confirm deep-review synthesis builds Planning Packet findings with `affectedSurfaceHints`.
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1050-1055` - Auto deep-review synthesis builds Planning Packet findings with `affectedSurfaceHints`.
+- `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:1072-1077` - Confirm deep-review synthesis builds Planning Packet findings with `affectedSurfaceHints`.
 - `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:218-220` - Auto plan imports `activeFindings[].affectedSurfaceHints` and treats imported values as inert review data.
 - `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:576` - Auto plan writing rule maps `activeFindings[].affectedSurfaceHints` into the FIX ADDENDUM.
 - `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:224-226` - Confirm plan imports `activeFindings[].affectedSurfaceHints` and treats imported values as inert review data.

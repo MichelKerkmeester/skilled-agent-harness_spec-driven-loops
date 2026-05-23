@@ -159,7 +159,7 @@
     ],
     "causal_summary": "Packets 031-036 shipped a wave of remediation work (5 packets implementing 013's research findings + 035's CONDITIONAL verdict + 036's CLI matrix adapters). That work touched ~30+ docs, added ~10 new code files, and implemented multiple new MCP tools and runtime behaviors.",
     "created_at": "2026-04-29T16:30:00.000Z",
-    "last_save_at": "2026-05-19T13:51:38.896Z",
+    "last_save_at": "2026-05-23T11:55:14.826Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

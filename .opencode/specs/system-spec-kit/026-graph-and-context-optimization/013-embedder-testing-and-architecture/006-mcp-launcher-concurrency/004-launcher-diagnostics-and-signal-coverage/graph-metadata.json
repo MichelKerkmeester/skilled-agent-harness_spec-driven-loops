@@ -2,25 +2,218 @@
   "schema_version": 1,
   "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/004-launcher-diagnostics-and-signal-coverage",
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/004-launcher-diagnostics-and-signal-coverage",
-  "parent_id": null,
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 1: p2-cleanup-from-review",
+  "derived": {
+    "trigger_phrases": [
+      "008/009 p2 cleanup",
+      "review remediation all p2",
+      "close all deferred findings",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core",
+      "verification",
+      "checklist"
+    ],
+    "key_topics": [
+      "008",
+      "009",
+      "cleanup",
+      "review",
+      "remediation",
+      "close",
+      "deferred",
+      "findings",
+      "implementation",
+      "plan",
+      "name",
+      "template"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/bin/mk-skill-advisor-launcher.cjs",
+      ".opencode/bin/mk-code-index-launcher.cjs",
+      ".opencode/bin/mk-spec-memory-launcher.cjs",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lease.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/freshness/sqlite-integrity.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
+      ".opencode/skills/system-skill-advisor/references/daemon-lease-contract.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/launcher-lease.vitest.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/launcher-lease.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-lease.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "mk-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-index-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-code-index-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-memory-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "lease.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lease.ts",
+        "source": "derived"
+      },
+      {
+        "name": "sqlite-integrity.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/freshness/sqlite-integrity.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph-db.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
+        "source": "derived"
+      },
+      {
+        "name": "daemon-lease-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/references/daemon-lease-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-lease.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/launcher-lease.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cleanup From Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Close All",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deferred Findings",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 3-reviewer audit of packets 006+007 surfaced 14 P2 findings — none blockers, each a hardening opportunity. Operator directive: close all of them. Themes: PID-reuse triage needs `startedAt` in stdout, atypical exit signals (SIGQUIT, uncaughtException) leak lease files, `isLeaseHeld()` probe path opens+mutates+closes the SQLite lease DB on every call (overhead + lock-thrash risk), DELETE-mode fallback log doesn't communicate the concurrency tradeoff, `checkSqliteIntegrity` still runs with 0ms `busy_timeout` so the auto-quarantine path can still false-positive, code-index has a vestigial `stateFile` write that briefly collides with the lease file, `MK_*_DB_DIR` override can disconnect lease check from DB write (must be documented), and 6 test-hygiene gaps (loose substring assert, PID range scan, missing clean-exit assertion, hardcoded path constants, terminate zombie path, tight CI timing).",
     "created_at": "2026-05-18T06:42:51Z",
-    "last_save_at": "2026-05-18T06:42:51Z",
+    "last_save_at": "2026-05-23T11:55:15.574Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
   }
 }

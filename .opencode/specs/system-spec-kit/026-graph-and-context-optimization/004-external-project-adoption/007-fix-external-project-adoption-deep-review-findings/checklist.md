@@ -75,7 +75,7 @@ _memory:
 - [x] All 10 deferred P2 items have `Deferred to: <packet|never>` annotation
 
 ## Phase Hand-off
-- [x] R-007-X1 /spec_kit:deep-review:auto verify pass: P0=0, P1≤2
+- [x] R-007-X1 /deep:start-review-loop:auto verify pass: P0=0, P1≤2
 - [x] R-007-X2 phase-review-summary.md updated with post-remediation counts
 - [x] R-007-X3 commits pushed to main
 - [x] `validate.sh --strict` passes on this sub-phase

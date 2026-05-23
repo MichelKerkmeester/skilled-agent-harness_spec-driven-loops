@@ -17,9 +17,9 @@ Use this quick reference when you need the command shape, artifact names, conver
 
 | Command | Description |
 |---------|-------------|
-| `/spec_kit:deep-review:auto "target"` | Run autonomous review (no approval gates) |
-| `/spec_kit:deep-review:confirm "target"` | Run review with approval gates at each iteration |
-| `/spec_kit:deep-review "target"` | Ask which mode to use |
+| `/deep:start-review-loop:auto "target"` | Run autonomous review (no approval gates) |
+| `/deep:start-review-loop:confirm "target"` | Run review with approval gates at each iteration |
+| `/deep:start-review-loop "target"` | Ask which mode to use |
 
 ### Parameters
 
@@ -36,18 +36,18 @@ Use this quick reference when you need the command shape, artifact names, conver
 
 | Scenario | Use |
 |----------|-----|
-| Multi-pass code quality audit | `/spec_kit:deep-review` |
+| Multi-pass code quality audit | `/deep:start-review-loop` |
 | Simple single-pass code review | `sk-code-review` |
-| Pre-release readiness check | `/spec_kit:deep-review:auto "spec folder"` |
-| Spec/implementation alignment check | `/spec_kit:deep-review:auto "skill sk-name"` |
-| Deep technical investigation | `/spec_kit:deep-research` (different skill) |
+| Pre-release readiness check | `/deep:start-review-loop:auto "spec folder"` |
+| Spec/implementation alignment check | `/deep:start-review-loop:auto "skill sk-name"` |
+| Deep technical investigation | `/deep:start-research-loop` (different skill) |
 
 ---
 
 ## 3. ARCHITECTURE
 
 ```
-/spec_kit:deep-review  -->  YAML workflow  -->  @deep-review agent (LEAF)
+/deep:start-review-loop  -->  YAML workflow  -->  @deep-review agent (LEAF)
     |                    |                      |
     |                    |                      +-- Read state
     |                    |                      +-- Review (3-5 actions)

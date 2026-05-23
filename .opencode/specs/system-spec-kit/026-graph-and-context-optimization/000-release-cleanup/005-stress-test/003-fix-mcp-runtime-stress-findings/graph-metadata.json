@@ -85,7 +85,6 @@
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates/description.json",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/004-memory-save-rewrite/description.json",
       ".opencode/skills/mcp-coco-index/README.md",
-      ".opencode/specs/descriptions.json",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/spec.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/description.json",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/graph-metadata.json",
@@ -132,12 +131,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/mcp-coco-index/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "descriptions.json",
-        "kind": "config",
-        "path": ".opencode/specs/descriptions.json",
         "source": "derived"
       },
       {
@@ -221,7 +214,7 @@
     ],
     "causal_summary": "The MCP runtime serves four high-traffic surfaces — `memory_context`, `memory_search`, `code_graph_query`, `memory_causal_stats` — that AI assistants depend on for retrieval and grounding. Under realistic CLI load these surfaces had subtle contract gaps: token-budget envelopes that under-reported truncation, code-graph blocked reads with no machine-readable fallback hint, causal-graph relation balance with no per-window cap or skew detection, intent telemetry that could not be aggregated across runtimes, and a `memory_search` weak-quality path that lacked a server-side refusal contract. The combined effect was ungrounded responses, runtime hallucinations, and silent CLI thrashing that the operator could not trace.",
     "created_at": "2026-04-27T00:00:00Z",
-    "last_save_at": "2026-05-19T13:51:38.910Z",
+    "last_save_at": "2026-05-23T11:55:14.846Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

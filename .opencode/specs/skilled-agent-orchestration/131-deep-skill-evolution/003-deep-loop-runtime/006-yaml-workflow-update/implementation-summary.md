@@ -53,10 +53,10 @@ Rewrote the four deep-loop workflow YAML files so graph convergence/upsert call 
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modified | Review convergence and upsert now call `convergence.cjs` / `upsert.cjs`. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modified | Confirm-mode review graph calls now use scripts. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modified | Research convergence and conditional upsert now use scripts. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modified | Confirm-mode research graph calls now use scripts. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Modified | Review convergence and upsert now call `convergence.cjs` / `upsert.cjs`. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Modified | Confirm-mode review graph calls now use scripts. |
+| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Modified | Research convergence and conditional upsert now use scripts. |
+| `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Modified | Confirm-mode research graph calls now use scripts. |
 
 All output variable blocks, JSONL append templates, and skip/conditional guards were preserved. Note text that referenced direct MCP tool invocation was updated to script invocation.
 <!-- /ANCHOR:what-built -->
@@ -102,10 +102,10 @@ All output variable blocks, JSONL append templates, and skip/conditional guards 
 
 | File | MCP grep count (pre) | MCP grep count (post) |
 |------|---------------------|----------------------|
-| `spec_kit_deep-review_auto.yaml` | 2 tool IDs + 1 description | 0 |
-| `spec_kit_deep-review_confirm.yaml` | 2 tool IDs + 1 description | 0 |
-| `spec_kit_deep-research_auto.yaml` | 2 tool IDs | 0 |
-| `spec_kit_deep-research_confirm.yaml` | 2 tool IDs | 0 |
+| `deep_start-review-loop_auto.yaml` | 2 tool IDs + 1 description | 0 |
+| `deep_start-review-loop_confirm.yaml` | 2 tool IDs + 1 description | 0 |
+| `deep_start-research-loop_auto.yaml` | 2 tool IDs | 0 |
+| `deep_start-research-loop_confirm.yaml` | 2 tool IDs | 0 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -125,7 +125,7 @@ All output variable blocks, JSONL append templates, and skip/conditional guards 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. A full end-to-end `/spec_kit:deep-review` workflow smoke was not run in this shell; direct script and YAML parse gates were run.
+1. A full end-to-end `/deep:start-review-loop` workflow smoke was not run in this shell; direct script and YAML parse gates were run.
 2. Inline JSON argv may need file-backed payloads for very large graph batches.
 <!-- /ANCHOR:limitations -->
 
@@ -165,10 +165,10 @@ Co-Authored-By: GPT-5.5 via cli-codex (Bundled 118/002-005 dispatch)
 Files (explicit paths for `git add`):
 
 ```text
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml
-.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
-.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml
+.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml
+.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml
+.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml
 .opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts
 .opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-query.ts
 .opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts

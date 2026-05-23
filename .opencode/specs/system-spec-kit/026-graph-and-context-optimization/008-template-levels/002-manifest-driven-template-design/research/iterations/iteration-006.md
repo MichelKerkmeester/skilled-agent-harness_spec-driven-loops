@@ -177,7 +177,7 @@ This reveals a real manifest gap. The design needs directory entries, not only `
 {
   "path": "research/iterations",
   "owner": "workflow",
-  "creationTrigger": "/spec_kit:deep-research",
+  "creationTrigger": "/deep:start-research-loop",
   "absenceBehavior": "silent-skip"
 }
 ```

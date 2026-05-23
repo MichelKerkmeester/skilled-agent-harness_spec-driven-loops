@@ -43,7 +43,7 @@ _memory:
 - [x] **REQ-005 — Override resistance**: vitest "recovered context cannot override approved authority" describe block (2 cases) verifies preamble appears BEFORE any competing folder mention in the prompt body and the explicit "cannot override" line is present. [EVIDENCE: see retained verification text in this checklist item.]
 
 ### YAML wiring
-- [x] **REQ-006 — `_auto.yaml` files import `buildCopilotPromptArg`**: `grep -c "buildCopilotPromptArg" .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` ≥ 2; same for `spec_kit_deep-review_auto.yaml`. [EVIDENCE: see retained verification text in this checklist item.]
+- [x] **REQ-006 — `_auto.yaml` files import `buildCopilotPromptArg`**: `grep -c "buildCopilotPromptArg" .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` ≥ 2; same for `deep_start-review-loop_auto.yaml`. [EVIDENCE: see retained verification text in this checklist item.]
 - [x] **REQ-007 — `targetAuthority` resolved from `{spec_folder}`**: YAML inline source contains the ternary `specFolder ? { kind: 'approved', specFolder } : { kind: 'missing', writeIntent: true }` (or equivalent shape) in both `_auto.yaml` files. [EVIDENCE: see retained verification text in this checklist item.]
 
 ### Tests
@@ -72,7 +72,7 @@ _memory:
 ## P2 — Refinements (nice-to-have)
 
 - [ ] **Live cli-copilot dispatch verification**: next deep-research or deep-review run that exercises cli-copilot confirms the `## TARGET AUTHORITY` preamble appears in the rendered iteration prompt and zero unauthorized folder mutations occur. Tracked as T303 in tasks.md.
-- [ ] **`_confirm.yaml` symmetry follow-up**: separate packet (out of scope here) ports the helper to `spec_kit_deep-research_confirm.yaml` and `spec_kit_deep-review_confirm.yaml` if operator wants symmetry.
+- [ ] **`_confirm.yaml` symmetry follow-up**: separate packet (out of scope here) ports the helper to `deep_start-research-loop_confirm.yaml` and `deep_start-review-loop_confirm.yaml` if operator wants symmetry.
 - [ ] **MCP daemon rebuild attestation**: if any consumer of `executor-config` ships from `dist/`, run `tsc -b` and confirm rebuild parity. (Helper is loaded via `--experimental-strip-types` at dispatch time, so a fresh `dist/` is not strictly required — but symmetry is operator preference.)
 <!-- /ANCHOR:p2-gates -->
 

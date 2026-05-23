@@ -45,7 +45,7 @@ Cite file:line. P1 for actual breakage; P2 for stylistic gaps.
 **Step 3: Cross-skill consistency audit (ACCEPTANCE: each consumer surface checked).**
 Verify the consumers update correctly post-118:
 - `.opencode/skills/deep-review/SKILL.md` — version 1.4.0.0 frontmatter? changelog/v1.4.0.0.md references the 118 arc?
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_{auto,confirm}.yaml` + same for deep-research — every `mcp__mk_spec_memory__deep_loop_graph_*` reference replaced with `node .opencode/skills/deep-loop-runtime/scripts/<name>.cjs ...`?
+- `.opencode/commands/deep/assets/deep_start-review-loop_{auto,confirm}.yaml` + same for deep-research — every `mcp__mk_spec_memory__deep_loop_graph_*` reference replaced with `node .opencode/skills/deep-loop-runtime/scripts/<name>.cjs ...`?
 - `.opencode/commands/doctor/*` — references new script paths?
 - `.opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/009-deep-loop-graph-convergence-yaml-fire.md` — points at new script paths?
 - `.opencode/skills/system-code-graph/feature_catalog/feature_catalog.md` — has the "arc 118" supersession note for the 4 deep_loop_graph_* features?
