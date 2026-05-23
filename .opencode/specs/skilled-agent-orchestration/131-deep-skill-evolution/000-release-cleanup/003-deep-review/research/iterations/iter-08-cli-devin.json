@@ -1,0 +1,27 @@
+{
+  "iteration": 8,
+  "executor": "cli-devin",
+  "model": "swe-1.6",
+  "prompt_framework": "RCAF",
+  "started_at": "2026-05-23T17:40:50Z",
+  "ended_at": "2026-05-23T17:43:30Z",
+  "wall_clock_seconds": 160,
+  "logic_gaps": [],
+  "novel_findings": [
+    "Severity weights (P0=10.0, P1=5.0, P2=1.0) verified IDENTICAL across state_format.md + convergence.md + review_mode_contract.yaml + feature_catalog/04--severity-system/01-severity-classification.md.",
+    "Verdict derivation rules (FAIL/CONDITIONAL/PASS conditions) verified IDENTICAL across state_format.md + SKILL.md + review_mode_contract.yaml + feature_catalog/04--severity-system/04-verdicts.md.",
+    "Adversarial self-check requirement IDENTICAL across SKILL.md + feature_catalog/04--severity-system/02-adversarial-self-check.md.",
+    "Claim-adjudication packet shape IDENTICAL across state_format.md + feature_catalog/04--severity-system/03-claim-adjudication.md.",
+    "Quality-gates documentation IDENTICAL across review_mode_contract.yaml + feature_catalog/04--severity-system/05-quality-gates.md.",
+    "**First 'no new gaps' iter** \u2014 strong convergence signal. The severity model is the most well-aligned dimension of the skill (all surfaces describe the same model with the same numeric weights, the same logic, the same packet shapes). Phase 2 audit + Phase 3 README rewrite did not touch severity semantics, and they remained consistent because they were already consistent before this packet started."
+  ],
+  "delta_vs_prev_iter": "no new gaps",
+  "convergence_signals": {
+    "unique_gaps_so_far": 30,
+    "p0_count": 2,
+    "p1_count": 14,
+    "p2_count": 14,
+    "duplicates_with_prior_iters": 0
+  },
+  "notes": "Iter 8 RQ: severity model cross-surface consistency. Wall-clock 160s. ZERO drift found, ZERO novel gaps. First 'no new gaps' delta of phase 5. Convergence-strong signal: severity model is the most internally-consistent dimension of the skill. Per ADR-001 all 10 iters run regardless; iters 9-10 continue per locked toolchain."
+}
