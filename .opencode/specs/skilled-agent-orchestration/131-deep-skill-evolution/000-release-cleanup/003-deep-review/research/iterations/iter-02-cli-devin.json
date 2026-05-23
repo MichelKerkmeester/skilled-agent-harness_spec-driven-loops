@@ -1,0 +1,122 @@
+{
+  "iteration": 2,
+  "executor": "cli-devin",
+  "model": "swe-1.6",
+  "prompt_framework": "RCAF",
+  "started_at": "2026-05-23T17:20:14Z",
+  "ended_at": "2026-05-23T17:21:42Z",
+  "wall_clock_seconds": 88,
+  "logic_gaps": [
+    {
+      "gap_id": "LG-0009",
+      "description": "Resource Map Coverage Gate behavior (documented in SKILL.md \u00a73 lines 265-277, loop_protocol.md step 3b lines 315-328, state_format.md lines 118 + 745-772) has zero coverage in feature_catalog/ \u2014 grep returns 0 matches for 'Resource Map Coverage'",
+      "evidence": [
+        ".opencode/skills/deep-review/SKILL.md:265-277",
+        ".opencode/skills/deep-review/references/loop_protocol.md:315-328",
+        ".opencode/skills/deep-review/references/state_format.md:118",
+        ".opencode/skills/deep-review/references/state_format.md:745-772"
+      ],
+      "severity": "P1",
+      "in_scope_check": {
+        "already_in_spec": false,
+        "already_in_audit_findings": false
+      }
+    },
+    {
+      "gap_id": "LG-0010",
+      "description": "Semantic convergence signals semanticNovelty (lines 260-280) and findingStability (lines 282-307) plus legal-stop gate integration (310-319) documented in convergence.md but zero coverage in feature_catalog/",
+      "evidence": [
+        ".opencode/skills/deep-review/references/convergence.md:260-280",
+        ".opencode/skills/deep-review/references/convergence.md:282-307",
+        ".opencode/skills/deep-review/references/convergence.md:310-319"
+      ],
+      "severity": "P1",
+      "in_scope_check": {
+        "already_in_spec": false,
+        "already_in_audit_findings": false
+      }
+    },
+    {
+      "gap_id": "LG-0011",
+      "description": "Security-Sensitive Fix Overrides section in convergence.md lines 66-76 (minStabilizationPasses, requiredClosedFindingReplay, requiredFixCompletenessGate) has zero coverage in feature_catalog/",
+      "evidence": [
+        ".opencode/skills/deep-review/references/convergence.md:66-76"
+      ],
+      "severity": "P1",
+      "in_scope_check": {
+        "already_in_spec": false,
+        "already_in_audit_findings": false
+      }
+    },
+    {
+      "gap_id": "LG-0012",
+      "description": "Executor selection contract (parseExecutorConfig + per-kind dispatch branches for native/cli-codex/cli-gemini/cli-claude-code + flag compatibility enforcement) documented in loop_protocol.md lines 268-284 has zero coverage in feature_catalog/",
+      "evidence": [
+        ".opencode/skills/deep-review/references/loop_protocol.md:268-284"
+      ],
+      "severity": "P2",
+      "in_scope_check": {
+        "already_in_spec": false,
+        "already_in_audit_findings": false
+      }
+    },
+    {
+      "gap_id": "LG-0013",
+      "description": "Extended quality gates (evidenceDensityGate, hotspotSaturationGate, graphBlockerDetail, fixCompletenessReplayGate) only mentioned in passing at feature_catalog/04--severity-system/05-quality-gates.md line 16; full contracts in state_format.md lines 328-329 + convergence.md lines 113-130 not surfaced",
+      "evidence": [
+        ".opencode/skills/deep-review/feature_catalog/04--severity-system/05-quality-gates.md:16",
+        ".opencode/skills/deep-review/references/state_format.md:328-329",
+        ".opencode/skills/deep-review/references/convergence.md:113-130"
+      ],
+      "severity": "P1",
+      "in_scope_check": {
+        "already_in_spec": false,
+        "already_in_audit_findings": false
+      }
+    },
+    {
+      "gap_id": "LG-0014",
+      "description": "graph_convergence event (state_format.md lines 342-369 including STOP_ALLOWED/STOP_BLOCKED/CONTINUE decision enum) only mentioned in passing in feature_catalog/02--state-management/01-jsonl-state-log.md line 18 as one of several event types; no dedicated feature entry",
+      "evidence": [
+        ".opencode/skills/deep-review/feature_catalog/02--state-management/01-jsonl-state-log.md:18",
+        ".opencode/skills/deep-review/references/state_format.md:342-369"
+      ],
+      "severity": "P1",
+      "in_scope_check": {
+        "already_in_spec": false,
+        "already_in_audit_findings": false
+      }
+    },
+    {
+      "gap_id": "LG-0015",
+      "description": "Pause sentinel mechanism (.deep-review-pause file, userPaused stop reason, pause/resume flow) only mentioned in passing in feature_catalog/01--loop-lifecycle/03-convergence-check.md line 12 as 'pause handling'; full contract in loop_protocol.md lines 202-219, state_format.md lines 23/34/90, convergence.md line 88 has no dedicated entry",
+      "evidence": [
+        ".opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/03-convergence-check.md:12",
+        ".opencode/skills/deep-review/references/loop_protocol.md:202-219",
+        ".opencode/skills/deep-review/references/state_format.md:23",
+        ".opencode/skills/deep-review/references/state_format.md:34",
+        ".opencode/skills/deep-review/references/state_format.md:90",
+        ".opencode/skills/deep-review/references/convergence.md:88"
+      ],
+      "severity": "P2",
+      "in_scope_check": {
+        "already_in_spec": false,
+        "already_in_audit_findings": false
+      }
+    }
+  ],
+  "novel_findings": [
+    "All 21 existing feature_catalog entries map cleanly to runtime docs (zero Direction-B drift). Asymmetry: catalog under-covers runtime, never over-covers.",
+    "Pattern: catalog entries are 'first 21 features ever shipped'; new behaviors added in later releases (resource-map gate, semantic convergence, security overrides) did not get catalog updates. Suggests a process gap where catalog updates are not part of feature-release workflow.",
+    "Quality-gate documentation in catalog (04--severity-system/05-quality-gates.md) is the most under-described entry relative to the gate model that actually exists in code/docs \u2014 it stops at 'evidence density, hotspot saturation' without naming the gate identifiers."
+  ],
+  "delta_vs_prev_iter": "new gaps surfaced",
+  "convergence_signals": {
+    "unique_gaps_so_far": 15,
+    "p0_count": 0,
+    "p1_count": 11,
+    "p2_count": 4,
+    "duplicates_with_prior_iters": 0
+  },
+  "notes": "Iter 2 RQ: feature_catalog vs runtime-docs drift. SWE-1.6 + RCAF + sequential_thinking enforced. Wall-clock 88s. All 7 gaps novel; none overlap with iter 1's reducer-internal gaps (LG-0001..LG-0008). Direction-B (catalog claims behavior not in docs) was clean."
+}
