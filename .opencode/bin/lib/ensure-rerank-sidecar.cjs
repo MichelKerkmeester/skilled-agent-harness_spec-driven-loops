@@ -8,7 +8,6 @@ const crypto = require('crypto');
 const { spawn } = require('child_process');
 
 const SIDECAR_SKILL_PATH = path.resolve(__dirname, '..', '..', 'skills', 'system-rerank-sidecar');
-const START_SCRIPT_PATH = path.join(SIDECAR_SKILL_PATH, 'scripts', 'start.sh');
 const DEFAULT_PORT = 8765;
 const DEFAULT_HEALTH_TIMEOUT_MS = 20000;
 const LEDGER_FILE_NAME = '.sidecar-ledger.json';
@@ -31,9 +30,17 @@ function log(message) {
   process.stderr.write(`[ensure-rerank-sidecar] ${message}\n`);
 }
 
-function resolvePort(value, fallback = DEFAULT_PORT) {
+function resolvePositiveInteger(value, fallback) {
   const parsed = Number(value);
   return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+}
+
+function resolvePort(value) {
+  return resolvePositiveInteger(value, DEFAULT_PORT);
+}
+
+function resolveTimeoutMs(value) {
+  return resolvePositiveInteger(value, DEFAULT_HEALTH_TIMEOUT_MS);
 }
 
 function ownerTokenDigest(ownerToken) {
@@ -351,7 +358,7 @@ async function ensureRerankSidecar(options = {}) {
   const processObj = deps.process ?? process;
   const logger = deps.log ?? log;
   const port = resolvePort(options.port ?? processObj.env.RERANK_SIDECAR_PORT);
-  const timeoutMs = resolvePort(options.healthTimeoutMs ?? DEFAULT_HEALTH_TIMEOUT_MS, DEFAULT_HEALTH_TIMEOUT_MS);
+  const timeoutMs = resolveTimeoutMs(options.healthTimeoutMs ?? DEFAULT_HEALTH_TIMEOUT_MS);
   const skipIfDisabled = options.skipIfDisabled !== false;
   const crossEncoderEnabled = String(processObj.env.SPECKIT_CROSS_ENCODER || '').toLowerCase() === 'true';
   const sidecarSkillPath = options.sidecarSkillPath
@@ -421,16 +428,10 @@ async function ensureRerankSidecar(options = {}) {
 }
 
 module.exports = {
-  DEFAULT_HEALTH_TIMEOUT_MS,
-  DEFAULT_PORT,
-  START_SCRIPT_PATH,
   ensureRerankSidecar,
   healthPayload,
-  isHealthy,
-  waitForHealthy,
   canonicalConfigHash,
   loadOrCreateOwnerToken,
   writeLedger,
-  readLedger,
   processLiveness,
 };

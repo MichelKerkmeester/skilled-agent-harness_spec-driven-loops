@@ -8,20 +8,15 @@ import type { IEmbeddingProvider } from '@spec-kit/shared/types';
 
 import type { EmbedderAdapter } from './adapter.js';
 import { getAdapter } from './registry.js';
-import { SidecarClient, toBackendKind, type SidecarClientOptions, type SidecarWorkerInfo } from './sidecar-client.js';
+import { SidecarClient, toBackendKind, type EmbedOptions, type SidecarClientOptions, type SidecarWorkerInfo } from './sidecar-client.js';
 import type { BackendKind } from './types.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. TYPE DEFINITIONS
 // ───────────────────────────────────────────────────────────────
 
-export type EmbedderExecutionPolicy = 'auto' | 'direct' | 'sidecar';
-export type EmbedderExecutionInputType = 'document' | 'query';
+type EmbedderExecutionPolicy = 'auto' | 'direct' | 'sidecar';
 export type ExecutionRouterAdapter = Omit<EmbedderAdapter, 'ready'>;
-
-interface EmbedOptions {
-  readonly inputType?: EmbedderExecutionInputType;
-}
 
 // ───────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -39,10 +34,6 @@ let shutdownHooksRegistered = false;
 
 function normalizeProvider(provider: string): string {
   return provider.trim().toLowerCase();
-}
-
-function cacheKey(provider: string, model: string): string {
-  return `${normalizeProvider(provider)}:${model}`;
 }
 
 function readExecutionPolicyEnv(): string | undefined {
@@ -95,14 +86,6 @@ export function resolveDimensions(provider: string, model: string, dimensions?: 
   return profile.dim;
 }
 
-function normalizeProviderForFactory(provider: string): string {
-  const normalized = normalizeProvider(provider);
-  if (normalized === 'api') {
-    return 'openai';
-  }
-  return normalized;
-}
-
 export function registerShutdownHooks(): void {
   if (shutdownHooksRegistered) {
     return;
@@ -139,8 +122,8 @@ class DirectProviderAdapter {
   ) {
     this.name = model;
     this.dim = dimensions;
-    this.backend = toBackendKind(normalizeProvider(provider));
-    this.registryAdapter = normalizeProvider(provider) === 'ollama' ? getAdapter(model) : undefined;
+    this.backend = toBackendKind(provider);
+    this.registryAdapter = provider === 'ollama' ? getAdapter(model) : undefined;
   }
 
   async embed(texts: ReadonlyArray<string>, options: EmbedOptions = {}): Promise<Float32Array[]> {
@@ -172,7 +155,7 @@ class DirectProviderAdapter {
   private getProvider(): Promise<IEmbeddingProvider> {
     if (!this.providerPromise) {
       this.providerPromise = createEmbeddingsProvider({
-        provider: normalizeProviderForFactory(this.provider),
+        provider: this.provider === 'api' ? 'openai' : this.provider,
         model: this.name,
         dim: this.dim,
         warmup: false,
@@ -187,17 +170,18 @@ class DirectProviderAdapter {
 // ───────────────────────────────────────────────────────────────
 
 export function getEmbedderAdapter(provider: string, model: string, dimensionsOverride?: number): ExecutionRouterAdapter {
-  const key = cacheKey(provider, model);
-  const dimensions = resolveDimensions(provider, model, dimensionsOverride);
+  const normalizedProvider = normalizeProvider(provider);
+  const key = `${normalizedProvider}:${model}`;
+  const dimensions = resolveDimensions(normalizedProvider, model, dimensionsOverride);
 
-  if (shouldUseSidecar(provider)) {
+  if (shouldUseSidecar(normalizedProvider)) {
     let client = sidecarClients.get(key);
     if (!client) {
       const options: SidecarClientOptions = {
-        provider: normalizeProvider(provider),
+        provider: normalizedProvider,
         model,
         dimensions,
-        backend: toBackendKind(normalizeProvider(provider)),
+        backend: toBackendKind(normalizedProvider),
       };
       client = new SidecarClient(options);
       sidecarClients.set(key, client);
@@ -208,7 +192,7 @@ export function getEmbedderAdapter(provider: string, model: string, dimensionsOv
 
   let adapter = directAdapters.get(key);
   if (!adapter) {
-    adapter = new DirectProviderAdapter(normalizeProvider(provider), model, dimensions);
+    adapter = new DirectProviderAdapter(normalizedProvider, model, dimensions);
     directAdapters.set(key, adapter);
   }
   return adapter;

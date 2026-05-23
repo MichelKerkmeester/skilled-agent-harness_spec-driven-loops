@@ -1,6 +1,6 @@
-// -------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 // MODULE: Embedder Reindex Orchestrator
-// -------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 
 import { randomUUID } from 'node:crypto';
 import * as path from 'node:path';
@@ -23,9 +23,9 @@ import { getManifest } from './registry.js';
 import { parseBoundedEnv } from '../util/env.js';
 import { createLogger } from '../utils/logger.js';
 
-// -------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 // 1. TYPE DEFINITIONS
-// -------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 
 export type ReindexJobStatus = 'queued' | 'running' | 'completed' | 'failed' | 'cancelled';
 
@@ -51,18 +51,9 @@ interface ReindexRuntimeOptions {
   readonly autoStart?: boolean;
 }
 
-interface JobRow {
-  readonly id: string;
-  readonly from_name: string;
-  readonly to_name: string;
-  readonly to_dim: number;
-  readonly total: number;
-  readonly processed: number;
-  readonly status: ReindexJobStatus;
-  readonly started_at: string;
-  readonly updated_at: string;
+type JobRow = Omit<ReindexJob, 'error'> & {
   readonly error: string | null;
-}
+};
 
 interface MemoryRow {
   readonly id: number;
@@ -71,9 +62,9 @@ interface MemoryRow {
   readonly file_path: string | null;
 }
 
-// -------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 // 2. CONSTANTS
-// -------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 
 const DEFAULT_BATCH_SIZE = 50;
 const MIN_BATCH_SIZE = 1;
@@ -94,13 +85,24 @@ const JOB_TABLE_SQL = `
   )
 `;
 
-const ACTIVE_JOB_STATUSES: readonly ReindexJobStatus[] = ['queued', 'running'];
+const JOB_SELECT_COLUMNS = `
+  id,
+  from_name AS fromName,
+  to_name AS toName,
+  to_dim AS toDim,
+  total,
+  processed,
+  status,
+  started_at AS startedAt,
+  updated_at AS updatedAt,
+  error
+`;
 
 const runningJobs = new Set<string>();
 
-// -------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 // 3. HELPERS
-// -------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 
 function resolveDb(db?: Database.Database): Database.Database {
   return db ?? initializeDb();
@@ -114,25 +116,9 @@ function getBatchSize(): number {
   return parseBoundedEnv('EMBEDDER_REINDEX_BATCH_SIZE', DEFAULT_BATCH_SIZE, MIN_BATCH_SIZE, MAX_BATCH_SIZE);
 }
 
-function yieldToEventLoop(): Promise<void> {
-  return new Promise((resolve) => {
-    setImmediate(resolve);
-  });
-}
-
-function normalizeJob(row: JobRow): ReindexJob {
-  return {
-    id: row.id,
-    fromName: row.from_name,
-    toName: row.to_name,
-    toDim: row.to_dim,
-    total: row.total,
-    processed: row.processed,
-    status: row.status,
-    startedAt: row.started_at,
-    updatedAt: row.updated_at,
-    ...(row.error ? { error: row.error } : {}),
-  };
+function jobFromRow(row: JobRow): ReindexJob {
+  const { error, ...job } = row;
+  return error ? { ...job, error } : job;
 }
 
 function ensureJobTable(db: Database.Database): void {
@@ -142,25 +128,25 @@ function ensureJobTable(db: Database.Database): void {
 function selectJob(db: Database.Database, jobId: string): ReindexJob | null {
   ensureJobTable(db);
   const row = db.prepare(`
-    SELECT id, from_name, to_name, to_dim, total, processed, status, started_at, updated_at, error
+    SELECT ${JOB_SELECT_COLUMNS}
     FROM embedder_jobs
     WHERE id = ?
   `).get(jobId) as JobRow | undefined;
 
-  return row ? normalizeJob(row) : null;
+  return row ? jobFromRow(row) : null;
 }
 
 function selectActiveJob(db: Database.Database): ReindexJob | null {
   ensureJobTable(db);
   const row = db.prepare(`
-    SELECT id, from_name, to_name, to_dim, total, processed, status, started_at, updated_at, error
+    SELECT ${JOB_SELECT_COLUMNS}
     FROM embedder_jobs
     WHERE status IN ('queued', 'running')
     ORDER BY started_at DESC, id DESC
     LIMIT 1
   `).get() as JobRow | undefined;
 
-  return row ? normalizeJob(row) : null;
+  return row ? jobFromRow(row) : null;
 }
 
 function setJobStatus(
@@ -170,22 +156,54 @@ function setJobStatus(
   processed?: number,
   error?: string,
 ): void {
-  const processedSql = typeof processed === 'number' ? ', processed = @processed' : '';
-  const errorSql = typeof error === 'string' ? ', error = @error' : '';
-  db.prepare(`
-    UPDATE embedder_jobs
-    SET status = @status,
-        updated_at = @updatedAt
-        ${processedSql}
-        ${errorSql}
-    WHERE id = @jobId
-  `).run({
+  const params = {
     jobId,
     status,
     updatedAt: nowIso(),
     processed,
     error,
-  });
+  };
+
+  if (typeof processed === 'number' && typeof error === 'string') {
+    db.prepare(`
+      UPDATE embedder_jobs
+      SET status = @status,
+          updated_at = @updatedAt,
+          processed = @processed,
+          error = @error
+      WHERE id = @jobId
+    `).run(params);
+    return;
+  }
+
+  if (typeof processed === 'number') {
+    db.prepare(`
+      UPDATE embedder_jobs
+      SET status = @status,
+          updated_at = @updatedAt,
+          processed = @processed
+      WHERE id = @jobId
+    `).run(params);
+    return;
+  }
+
+  if (typeof error === 'string') {
+    db.prepare(`
+      UPDATE embedder_jobs
+      SET status = @status,
+          updated_at = @updatedAt,
+          error = @error
+      WHERE id = @jobId
+    `).run(params);
+    return;
+  }
+
+  db.prepare(`
+    UPDATE embedder_jobs
+    SET status = @status,
+        updated_at = @updatedAt
+    WHERE id = @jobId
+  `).run(params);
 }
 
 function selectMemoryBatch(db: Database.Database, offset: number, limit: number): MemoryRow[] {
@@ -207,6 +225,19 @@ function memoryText(row: MemoryRow): string {
   return row.file_path ?? '';
 }
 
+function getBatchPair(
+  rows: MemoryRow[],
+  embeddings: Float32Array[],
+  index: number,
+): { readonly row: MemoryRow; readonly embedding: Float32Array } {
+  const row = rows[index];
+  const embedding = embeddings[index];
+  if (!row || !embedding) {
+    throw new Error('Embedding batch cardinality mismatch');
+  }
+  return { row, embedding };
+}
+
 function writeVectors(
   db: Database.Database,
   tableName: string,
@@ -220,11 +251,7 @@ function writeVectors(
     `);
 
     for (let i = 0; i < rows.length; i += 1) {
-      const row = rows[i];
-      const embedding = embeddings[i];
-      if (!row || !embedding) {
-        throw new Error('Embedding batch cardinality mismatch');
-      }
+      const { row, embedding } = getBatchPair(rows, embeddings, i);
       stmt.run(row.id, to_embedding_buffer(embedding));
     }
   });
@@ -250,17 +277,36 @@ function writeVectorsToKnn(
     const del = db.prepare('DELETE FROM vec_memories WHERE rowid = ?');
     const ins = db.prepare('INSERT INTO vec_memories (rowid, embedding) VALUES (?, ?)');
     for (let i = 0; i < rows.length; i += 1) {
-      const row = rows[i];
-      const embedding = embeddings[i];
-      if (!row || !embedding) {
-        throw new Error('Embedding batch cardinality mismatch');
-      }
+      const { row, embedding } = getBatchPair(rows, embeddings, i);
       del.run(BigInt(row.id));
       ins.run(BigInt(row.id), to_embedding_buffer(embedding));
     }
   });
 
   writeBatch();
+}
+
+function ensureShardSchema(shard: Database.Database, profile: EmbeddingProfile, tableName: string): void {
+  shard.exec(`
+    CREATE TABLE IF NOT EXISTS vec_metadata (
+      key TEXT PRIMARY KEY,
+      value TEXT NOT NULL,
+      created_at TEXT DEFAULT (datetime('now'))
+    );
+    CREATE TABLE IF NOT EXISTS ${tableName} (
+      id INTEGER PRIMARY KEY,
+      vec BLOB NOT NULL
+    );
+  `);
+
+  const writeMetadata = shard.transaction(() => {
+    const stmt = shard.prepare('INSERT OR REPLACE INTO vec_metadata (key, value) VALUES (?, ?)');
+    stmt.run('provider', profile.provider);
+    stmt.run('model', profile.model);
+    stmt.run('dim', String(profile.dim));
+    stmt.run('embedding_dim', String(profile.dim));
+  });
+  writeMetadata();
 }
 
 function writeVectorsToShard(
@@ -290,22 +336,7 @@ function writeVectorsToShard(
       vecAvailable = false;
     }
 
-    shard.exec(`
-      CREATE TABLE IF NOT EXISTS vec_metadata (
-        key TEXT PRIMARY KEY,
-        value TEXT NOT NULL,
-        created_at TEXT DEFAULT (datetime('now'))
-      );
-      INSERT OR REPLACE INTO vec_metadata (key, value) VALUES
-        ('provider', '${profile.provider.replace(/'/g, "''")}'),
-        ('model', '${profile.model.replace(/'/g, "''")}'),
-        ('dim', '${String(profile.dim)}'),
-        ('embedding_dim', '${String(profile.dim)}');
-      CREATE TABLE IF NOT EXISTS ${tableName} (
-        id INTEGER PRIMARY KEY,
-        vec BLOB NOT NULL
-      );
-    `);
+    ensureShardSchema(shard, profile, tableName);
 
     if (vecAvailable) {
       shard.exec(`
@@ -378,7 +409,9 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
       writeVectorsToShard(db, targetProfile, tableName, rows, embeddings);
       processed += rows.length;
       setJobStatus(db, jobId, 'running', processed);
-      await yieldToEventLoop();
+      await new Promise<void>((resolve) => {
+        setImmediate(resolve);
+      });
     }
 
     const complete = db.transaction(() => {
@@ -403,9 +436,9 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
   }
 }
 
-// -------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 // 4. CORE LOGIC
-// -------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 
 export function startReindex(
   options: StartReindexOptions,
@@ -469,13 +502,13 @@ export function resumeReindexJobs(db?: Database.Database): ReindexJob[] {
   const resolvedDb = resolveDb(db);
   ensureJobTable(resolvedDb);
   const rows = resolvedDb.prepare(`
-    SELECT id, from_name, to_name, to_dim, total, processed, status, started_at, updated_at, error
+    SELECT ${JOB_SELECT_COLUMNS}
     FROM embedder_jobs
     WHERE status IN ('queued', 'running')
     ORDER BY started_at ASC, id ASC
   `).all() as JobRow[];
 
-  const jobs = rows.map(normalizeJob);
+  const jobs = rows.map(jobFromRow);
   for (const job of jobs) {
     enqueueJob(resolvedDb, job.id);
   }
@@ -502,5 +535,3 @@ export function estimateEta(job: ReindexJob | null): number | null {
 
   return Math.ceil((job.total - job.processed) / ratePerMs / 1000);
 }
-
-export const ACTIVE_REINDEX_STATUSES = ACTIVE_JOB_STATUSES;

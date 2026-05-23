@@ -7,18 +7,16 @@ import readline from 'node:readline';
 import { createEmbeddingsProvider } from '@spec-kit/shared/embeddings/factory';
 import type { IEmbeddingProvider } from '@spec-kit/shared/types';
 
+import type { EmbedOptions } from './sidecar-client.js';
+
 // ───────────────────────────────────────────────────────────────
 // 1. TYPE DEFINITIONS
 // ───────────────────────────────────────────────────────────────
 
-type WorkerInputType = 'document' | 'query';
+type WorkerInputType = NonNullable<EmbedOptions['inputType']>;
 
-interface BaseRequest {
+interface EmbedRequest {
   readonly id: number;
-  readonly type: string;
-}
-
-interface EmbedRequest extends BaseRequest {
   readonly type: 'embed';
   readonly input: string[];
   readonly model: string;
@@ -26,11 +24,13 @@ interface EmbedRequest extends BaseRequest {
   readonly inputType?: WorkerInputType;
 }
 
-interface PingRequest extends BaseRequest {
+interface PingRequest {
+  readonly id: number;
   readonly type: 'ping';
 }
 
-interface ShutdownRequest extends BaseRequest {
+interface ShutdownRequest {
+  readonly id: number;
   readonly type: 'shutdown';
 }
 
@@ -174,9 +174,16 @@ function isStringArray(value: unknown): value is string[] {
   return Array.isArray(value) && value.every((item) => typeof item === 'string');
 }
 
+function isRequestEnvelope(value: unknown): value is { readonly id: number; readonly type: string } {
+  return Boolean(value)
+    && typeof value === 'object'
+    && typeof (value as { readonly id?: unknown }).id === 'number'
+    && typeof (value as { readonly type?: unknown }).type === 'string';
+}
+
 function parseRequest(line: string): WorkerRequest {
-  const parsed = JSON.parse(line) as Partial<WorkerRequest>;
-  if (!parsed || typeof parsed !== 'object' || typeof parsed.id !== 'number' || typeof parsed.type !== 'string') {
+  const parsed = JSON.parse(line) as unknown;
+  if (!isRequestEnvelope(parsed)) {
     throw new Error('Invalid sidecar request envelope');
   }
 
@@ -261,11 +268,10 @@ async function getProvider(request: EmbedRequest): Promise<IEmbeddingProvider> {
 
 async function handleEmbed(request: EmbedRequest): Promise<void> {
   const provider = await getProvider(request);
-  const inputType = request.inputType ?? 'document';
   const vectors: number[][] = [];
 
   for (const input of request.input) {
-    const embedding = inputType === 'query'
+    const embedding = request.inputType === 'query'
       ? await provider.embedQuery(input)
       : await provider.embedDocument(input);
     if (!embedding) {

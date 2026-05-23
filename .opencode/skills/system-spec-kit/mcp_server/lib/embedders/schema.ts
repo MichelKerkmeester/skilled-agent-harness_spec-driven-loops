@@ -29,6 +29,13 @@ interface MetadataRow {
   readonly value: string;
 }
 
+const ACTIVE_EMBEDDER_PROVIDERS = new Set<AutoSelectedEmbedderProvider>([
+  'voyage',
+  'openai',
+  'ollama',
+  'hf-local',
+]);
+
 // ───────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ───────────────────────────────────────────────────────────────
@@ -67,9 +74,9 @@ function ensureVecMetadataTable(db: Database.Database): void {
   `);
 }
 
-function readActivePointerRows(db: Database.Database): Map<string, string> {
+function readActiveEmbedderIfValid(db: Database.Database): ActiveEmbedder | null {
   ensureVecMetadataTable(db);
-  const rows = db.prepare(`
+  const rows = new Map((db.prepare(`
     SELECT key, value
     FROM vec_metadata
     WHERE key IN (?, ?, ?)
@@ -77,25 +84,8 @@ function readActivePointerRows(db: Database.Database): Map<string, string> {
     ACTIVE_EMBEDDER_NAME_KEY,
     ACTIVE_EMBEDDER_DIM_KEY,
     ACTIVE_EMBEDDER_PROVIDER_KEY,
-  ) as MetadataRow[];
+  ) as MetadataRow[]).map((row) => [row.key, row.value]));
 
-  return new Map(rows.map((row) => [row.key, row.value]));
-}
-
-function normalizeProvider(value: string | undefined): AutoSelectedEmbedderProvider | undefined {
-  if (
-    value === 'voyage'
-    || value === 'openai'
-    || value === 'ollama'
-    || value === 'hf-local'
-  ) {
-    return value;
-  }
-  return undefined;
-}
-
-function readActiveEmbedderIfValid(db: Database.Database): ActiveEmbedder | null {
-  const rows = readActivePointerRows(db);
   const name = rows.get(ACTIVE_EMBEDDER_NAME_KEY);
   const dimRaw = rows.get(ACTIVE_EMBEDDER_DIM_KEY);
   const dim = typeof dimRaw === 'string' ? Number.parseInt(dimRaw, 10) : NaN;
@@ -104,17 +94,16 @@ function readActiveEmbedderIfValid(db: Database.Database): ActiveEmbedder | null
     return null;
   }
 
-  const provider = normalizeProvider(rows.get(ACTIVE_EMBEDDER_PROVIDER_KEY));
+  const providerRaw = rows.get(ACTIVE_EMBEDDER_PROVIDER_KEY);
+  const provider = ACTIVE_EMBEDDER_PROVIDERS.has(providerRaw as AutoSelectedEmbedderProvider)
+    ? providerRaw as AutoSelectedEmbedderProvider
+    : undefined;
   return provider ? { name, dim, provider } : { name, dim };
 }
 
-function getDatabaseName(db: Database.Database): string {
-  const candidate = (db as Database.Database & { name?: unknown }).name;
-  return typeof candidate === 'string' && candidate.length > 0 ? candidate : ':memory:';
-}
-
 function resolveAutoSelectLockPath(db: Database.Database): string {
-  const dbName = getDatabaseName(db);
+  const candidate = (db as Database.Database & { name?: unknown }).name;
+  const dbName = typeof candidate === 'string' && candidate.length > 0 ? candidate : ':memory:';
   const digest = createHash('sha256').update(dbName).digest('hex').slice(0, 16);
   const lockDir = dbName === ':memory:' ? os.tmpdir() : path.dirname(dbName);
   return path.join(lockDir, `.active-embedder-auto-select-${digest}.lock`);

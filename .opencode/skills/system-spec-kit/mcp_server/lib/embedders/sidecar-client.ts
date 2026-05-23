@@ -16,7 +16,7 @@ import { clearRegisteredTimer, registerTimeout } from '../runtime/timer-registry
 // 1. TYPE DEFINITIONS
 // ───────────────────────────────────────────────────────────────
 
-export type EmbedderSidecarInputType = 'document' | 'query';
+type EmbedderSidecarInputType = 'document' | 'query';
 
 /**
  * Production-only options for SidecarClient.
@@ -51,6 +51,7 @@ export interface SidecarWorkerInfo {
   readonly request_count: number;
 }
 
+/** Options accepted by embed requests sent through the sidecar worker. */
 export interface EmbedOptions {
   readonly inputType?: EmbedderSidecarInputType;
 }
@@ -259,6 +260,13 @@ function isAllowedEnvKey(key: string, explicitAllowlist: readonly string[] = [])
     || explicitAllowlist.includes(key);
 }
 
+/**
+ * Build the environment passed to the forked embedder sidecar worker.
+ *
+ * Only a small base allowlist, explicit test allowlist entries, and recognized
+ * sidecar prefixes are forwarded so unrelated parent-process variables do not
+ * leak into the worker process.
+ */
 export function buildSidecarEnv(
   parentEnv: NodeJS.ProcessEnv,
   explicitAllowlist: readonly string[] = [],
@@ -293,6 +301,7 @@ function validateEmbedInput(texts: ReadonlyArray<string>, options: EmbedOptions 
 // 4. CORE LOGIC
 // ───────────────────────────────────────────────────────────────
 
+/** Lifecycle-managed adapter that dispatches embedding requests to a forked worker process. */
 export class SidecarClient implements SidecarAdapter {
   readonly name: string;
   readonly dim: number;
@@ -337,6 +346,7 @@ export class SidecarClient implements SidecarAdapter {
     this.env = 'env' in options && options.env !== undefined ? options.env : process.env;
   }
 
+  /** Embed a batch of texts through the sidecar worker. */
   async embed(texts: ReadonlyArray<string>, options: EmbedOptions = {}): Promise<Float32Array[]> {
     const validation = validateEmbedInput(texts, options);
     if (!validation.valid) {
@@ -376,6 +386,7 @@ export class SidecarClient implements SidecarAdapter {
     });
   }
 
+  /** Return a snapshot of the active worker process, or null when no worker is running. */
   getWorkerInfo(now: number = Date.now()): SidecarWorkerInfo | null {
     if (!this.child?.pid) {
       return null;
@@ -390,6 +401,7 @@ export class SidecarClient implements SidecarAdapter {
     };
   }
 
+  /** Gracefully stop the worker and clear client-owned timers/listeners. */
   async shutdown(): Promise<void> {
     const child = this.child;
     if (!child) {
