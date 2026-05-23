@@ -85,7 +85,7 @@ Make `:auto` smartly autonomous via a **three-tier setup-resolution contract** (
 ### Out of Scope
 - The YAML workflow itself (`deep_start-review-loop_auto.yaml`) — its iteration loop already runs non-interactively once loaded.
 - The `:confirm` mode — keeps its existing interactive setup behavior.
-- Equivalent gaps in `/deep:start-research-loop:auto` or `/spec_kit:complete:auto` — those have similar architectures but are separate fix packets.
+- Equivalent gaps in `/deep:start-research-loop:auto` or `/speckit:complete:auto` — those have similar architectures but are separate fix packets.
 - Changing the SPAWN-AGENT path in cli-codex (different bug, resolved in 102/005 via inline-contract workaround).
 
 ### Files to Change
@@ -204,5 +204,5 @@ Make `:auto` smartly autonomous via a **three-tier setup-resolution contract** (
 ## 7. OPEN QUESTIONS
 
 - Pre-binding marker spelling: `PRE-BOUND SETUP ANSWERS:` (matches workaround used in 102/004 Stage E) or `SETUP_RESOLVED:` (tighter machine-parseable form) — decide during implementation based on parser readability.
-- Should the non-interactive setup-bypass also apply to `/deep:start-research-loop:auto`, `/spec_kit:complete:auto`, and `/spec_kit:implement:auto`? Out of scope here but worth tracking as follow-on packets if the bypass pattern works.
+- Should the non-interactive setup-bypass also apply to `/deep:start-research-loop:auto`, `/speckit:complete:auto`, and `/speckit:implement:auto`? Out of scope here but worth tracking as follow-on packets if the bypass pattern works.
 <!-- /ANCHOR:questions -->

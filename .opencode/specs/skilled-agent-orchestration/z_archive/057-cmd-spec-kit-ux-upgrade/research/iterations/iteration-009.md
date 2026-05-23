@@ -18,7 +18,7 @@ Follow-on: `058-gate-copy-and-question-budget`
 
 External evidence is strong. SPAR's planning retrospective recommends a hard question cap, separates `Key Follow-Up Questions` from `Optional Follow-Ups`, and says optional questions should only appear when the budget allows. SPAR Plan also already distinguishes material blockers from refinements in its follow-up behavior.
 
-Internal evidence is also strong. `AGENTS.md` already requires consolidated questions, `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml` already caps clarification to high-impact items, and command setup flows already gather required inputs before dispatch. This is copy and intake ergonomics, not command semantics.
+Internal evidence is also strong. `AGENTS.md` already requires consolidated questions, `.opencode/commands/speckit/assets/speckit_complete_auto.yaml` already caps clarification to high-impact items, and command setup flows already gather required inputs before dispatch. This is copy and intake ergonomics, not command semantics.
 
 Risk: low. The only constraint is preserving machine-readable Gate 3 answer options when the copy changes.
 
@@ -29,7 +29,7 @@ Follow-on: `059-phase-boundary-copy-pass`
 
 External evidence is strong. SPAR's README and four phase skills make Specify, Plan, Act, and Retain legible as boundaries: Specify clarifies intent without implementation, Plan stabilizes execution, Act implements against the plan, and Retain closes out durable memory.
 
-Internal evidence supports a copy pass but rejects behavioral collapse. `.opencode/commands/spec_kit/README.txt` lists plan, implement, deep-research, deep-review, resume, intake-only plan, and complete; the command docs and YAML assets encode mode, feature flags, executor settings, validation rules, and lifecycle behavior that SPAR's four verbs do not represent.
+Internal evidence supports a copy pass but rejects behavioral collapse. `.opencode/commands/speckit/README.txt` lists plan, implement, deep-research, deep-review, resume, intake-only plan, and complete; the command docs and YAML assets encode mode, feature flags, executor settings, validation rules, and lifecycle behavior that SPAR's four verbs do not represent.
 
 Risk: low for boundary language; medium if a later packet tries to remove existing command distinctions.
 

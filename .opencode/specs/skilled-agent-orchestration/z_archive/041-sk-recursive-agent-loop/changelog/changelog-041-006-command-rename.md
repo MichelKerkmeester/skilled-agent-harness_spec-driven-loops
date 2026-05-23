@@ -6,7 +6,7 @@
 
 ## 006-command-rename — 2026-04-04
 
-Renamed the command entrypoint to `/spec_kit:recursive-agent` (later renamed again in Phase 008 to `/improve:agent`). Updated canonical command markdown, YAML workflow assets, wrapper TOMLs, and runtime docs to the new command path.
+Renamed the command entrypoint to `/speckit:recursive-agent` (later renamed again in Phase 008 to `/improve:agent`). Updated canonical command markdown, YAML workflow assets, wrapper TOMLs, and runtime docs to the new command path.
 
 > Spec folder: `.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/006-sk-recursive-agent-command-rename/`
 
@@ -18,7 +18,7 @@ Renamed the command entrypoint to `/spec_kit:recursive-agent` (later renamed aga
 
 **Problem:** The command path did not follow the emerging convention for skill-specific namespaces.
 
-**Fix:** Renamed the command entrypoint to `/spec_kit:recursive-agent`, updating canonical markdown, YAML workflow assets, wrapper TOMLs, and runtime documentation to the new path.
+**Fix:** Renamed the command entrypoint to `/speckit:recursive-agent`, updating canonical markdown, YAML workflow assets, wrapper TOMLs, and runtime documentation to the new path.
 
 ---
 
@@ -27,8 +27,8 @@ Renamed the command entrypoint to `/spec_kit:recursive-agent` (later renamed aga
 
 | File | What changed |
 | --- | --- |
-| `.opencode/commands/spec_kit/recursive-agent.md` | Canonical command markdown moved to new path. |
-| `.opencode/commands/spec_kit/assets/*.yaml` | YAML workflows renamed to match new command. |
+| `.opencode/commands/speckit/recursive-agent.md` | Canonical command markdown moved to new path. |
+| `.opencode/commands/speckit/assets/*.yaml` | YAML workflows renamed to match new command. |
 | `.codex/agents/*.toml` | Wrapper TOMLs updated with new command reference. |
 | Packet docs | Runtime docs and history updated to new command path. |
 

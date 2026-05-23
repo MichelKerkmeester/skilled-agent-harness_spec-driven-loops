@@ -15,9 +15,9 @@ I isolated the external check runners and join behavior, then compared them with
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/workflow.yaml:165-181] Lint, test, and build are separate optional run nodes, followed by a `join_checks` barrier.
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/docs/loop-explained.md:22-33] The external check stage is intentionally parallel, optional by command presence, and logged to dedicated files.
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/docs/when-to-use.md:110-131] The workflow expects projects to configure only the checks they need, which makes the pattern portable across stacks.
-- [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:449-472] Internal completion already expects validation and test evidence, but the checks are described as end-of-phase activities rather than a reusable per-attempt matrix.
+- [SOURCE: .opencode/commands/speckit/assets/speckit_implement_auto.yaml:449-472] Internal completion already expects validation and test evidence, but the checks are described as end-of-phase activities rather than a reusable per-attempt matrix.
 - [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:83-99] `validate.sh` exposes a stable CLI surface and exit codes that could participate in the same kind of objective gate as lint/test/build.
-- [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:419-431] The internal implementation workflow already reasons about confidence and validation before significant changes, so parallel objective checks would complement, not contradict, current doctrine.
+- [SOURCE: .opencode/commands/speckit/assets/speckit_implement_auto.yaml:419-431] The internal implementation workflow already reasons about confidence and validation before significant changes, so parallel objective checks would complement, not contradict, current doctrine.
 
 ## Analysis
 This pattern is especially attractive because it is stack-agnostic and already aligned with internal habits. `validate.sh --strict` can act as a packet-quality check, while repo-native lint/test/build commands can supply code-quality checks. The external repo's real contribution is packaging those checks into a reusable pre-review matrix instead of leaving them as informal expectations. That can be adopted without importing any other controversial part of the loop.
@@ -27,7 +27,7 @@ confidence: high
 finding: A configurable, parallel verification matrix is one of the safest and most immediately useful adoptions from Get It Right. `system-spec-kit` already has the underlying commands; it lacks the reusable orchestration pattern that groups them into a pre-review gate.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`
+- **Target file or module:** `.opencode/commands/speckit/assets/speckit_implement_auto.yaml`
 - **Change type:** added option
 - **Blast radius:** medium
 - **Prerequisites:** define a standard field set for optional per-attempt commands, including packet validation and repo-native lint/test/build hooks

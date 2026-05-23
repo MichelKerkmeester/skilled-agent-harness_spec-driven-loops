@@ -168,7 +168,7 @@ I’m verifying Lane 3 against the live lifecycle surfaces, not just the packet 
 
 ● Search (grep)
   │ "completed-continue|fork|resumed|restarted|continuedFromRun" in spec_kit_deep-*confirm.yaml
-  │ (.opencode/commands/spec_kit/assets)
+  │ (.opencode/commands/speckit/assets)
   └ 12 lines found
 
 ● Search (grep)

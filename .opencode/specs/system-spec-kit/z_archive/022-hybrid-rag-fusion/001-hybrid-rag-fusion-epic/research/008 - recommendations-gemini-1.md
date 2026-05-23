@@ -1,6 +1,6 @@
-# Document 2 - Actionable Recommendations for system-speckit
+# Document 2 - Actionable Recommendations for system-spec-kit
 
-This section outlines how to integrate the insights from Cognee, ArtemXTech, and QMD into the `system-speckit` ecosystem and its Memory MCP server.
+This section outlines how to integrate the insights from Cognee, ArtemXTech, and QMD into the `system-spec-kit` ecosystem and its Memory MCP server.
 
 ## 1. Implement "Context Trees" for Spec Folders (High Impact, Low Effort)
 
@@ -92,7 +92,7 @@ function getSpecStatus(specPath) {
 ## 5. Lightweight Graph Edges for System-Spec-Kit (Medium Impact, Medium Effort)
 
 **Concept:**
-Cognee's Triple-Store is too heavy, but its Graph concept is highly relevant to `system-speckit`, which already has implicit relationships (Parents, Children, Phases).
+Cognee's Triple-Store is too heavy, but its Graph concept is highly relevant to `system-spec-kit`, which already has implicit relationships (Parents, Children, Phases).
 
 **Implementation Strategy:**
 Instead of a full Neo4j database, encode graph relationships directly into the memory JSON index or SQLite DB using explicit standard edges:

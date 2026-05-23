@@ -15,7 +15,7 @@ Read Relay architecture notes, workspace env injection in the spawner, workspace
 - Relaycast is explicitly workspace-based and provides workspace isolation, presence, channels, DMs, threads, and history. [SOURCE: external/ARCHITECTURE.md:274-283]
 - The spawner forwards workspace configuration into worker environments via `RELAY_WORKSPACES_JSON`, `RELAY_DEFAULT_WORKSPACE`, and `RELAY_WORKSPACE_ID`. [SOURCE: external/src/spawner.rs:60-90] [SOURCE: external/src/spawner.rs:226-256]
 - Routing only delivers to workers whose `workspace_id` matches the inbound event, while legacy workers with no workspace remain permissive. [SOURCE: external/src/routing.rs:58-65] [SOURCE: external/src/routing.rs:74-89] [SOURCE: external/src/routing.rs:441-500]
-- Public's resume command already treats spec/session detection as a bounded recovery problem with ordered detection and context-loading rules. [SOURCE: .opencode/commands/spec_kit/resume.md:250-260]
+- Public's resume command already treats spec/session detection as a bounded recovery problem with ordered detection and context-loading rules. [SOURCE: .opencode/commands/speckit/resume.md:250-260]
 - Public's `context-prime` output format already centers on spec folder, blockers, health, and structural context, which is a plausible identity packet for transport scoping later. [SOURCE: .opencode/agents/context-prime.md:118-145]
 - Public's parallel guidance already says campaign-style workstreams must stay anchored to one explicit phase or shared-space boundary. [SOURCE: .opencode/skills/system-spec-kit/assets/parallel_dispatch_config.md:17-28]
 
@@ -27,7 +27,7 @@ confidence: medium
 finding: Public should prototype workspace-style scoping, but as a spec/session boundary layer rather than a clone of Relaycast workspaces. The safety value is real; the exact transport substrate is not yet necessary.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/commands/spec_kit/resume.md`, `.opencode/agents/context-prime.md`, and a future coordination/session module under `.opencode/skills/system-spec-kit/mcp_server/`
+- **Target file or module:** `.opencode/commands/speckit/resume.md`, `.opencode/agents/context-prime.md`, and a future coordination/session module under `.opencode/skills/system-spec-kit/mcp_server/`
 - **Change type:** architectural shift
 - **Blast radius:** large
 - **Prerequisites:** decide the canonical identity key for live coordination (`spec_folder`, `sessionId`, shared space, or a new transport scope id)

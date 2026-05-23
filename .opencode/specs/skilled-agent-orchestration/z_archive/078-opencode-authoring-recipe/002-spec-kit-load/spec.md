@@ -1,6 +1,6 @@
 ---
-title: "Feature Specification: 078/002 /spec_kit:complete Authoring-Time sk-code Load"
-description: "Add authoring-time sk-code load to /spec_kit:complete:auto and :confirm YAMLs so the workflow loads sk-code authoring resources BEFORE code writes (currently only loads at review time, post-write). Document the cross-skill load contract in system-spec-kit/SKILL.md and sk-code/SKILL.md."
+title: "Feature Specification: 078/002 /speckit:complete Authoring-Time sk-code Load"
+description: "Add authoring-time sk-code load to /speckit:complete:auto and :confirm YAMLs so the workflow loads sk-code authoring resources BEFORE code writes (currently only loads at review time, post-write). Document the cross-skill load contract in system-spec-kit/SKILL.md and sk-code/SKILL.md."
 trigger_phrases: ["078/002", "spec-kit-load", "authoring-time sk-code", "cross-skill load contract"]
 importance_tier: "important"
 contextType: "implementation"
@@ -13,8 +13,8 @@ _memory:
     next_safe_action: "Dispatch cli-codex for YAML + SKILL.md updates"
     blockers: []
     key_files:
-      - .opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml
-      - .opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml
+      - .opencode/commands/speckit/assets/speckit_complete_auto.yaml
+      - .opencode/commands/speckit/assets/speckit_complete_confirm.yaml
       - .opencode/skills/system-spec-kit/SKILL.md
       - .opencode/skills/sk-code/SKILL.md
     session_dedup:
@@ -26,7 +26,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: 078/002 /spec_kit:complete Authoring-Time sk-code Load
+# Feature Specification: 078/002 /speckit:complete Authoring-Time sk-code Load
 
 <!-- SPECKIT_LEVEL: 1 -->
 
@@ -54,10 +54,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-077 finding F-009-001: `/spec_kit:complete` workflow loads sk-code only at REVIEW TIME (Phase A "Pre-Commit code review", auto YAML lines 311-318), not at AUTHORING TIME (Step 10 development). When the implementation target is under `.opencode/skills/`, `.opencode/agents/`, `.opencode/commands/`, or `.opencode/specs/`, the orchestrator writes code WITHOUT having loaded sk-code's authoring checklists or the spec_folder_write recipe (just shipped in 078/001 v3.2.0.0). The pattern means errors that the authoring checklists would have prevented have to be caught (and re-fixed) at review time, slowing iteration. F-009-002 + F-008-004 + F-006-004 are corollaries: sk-code has spec-folder invariants but no first-class SPEC_FOLDER load path; the integration is named in path-safety language only.
+077 finding F-009-001: `/speckit:complete` workflow loads sk-code only at REVIEW TIME (Phase A "Pre-Commit code review", auto YAML lines 311-318), not at AUTHORING TIME (Step 10 development). When the implementation target is under `.opencode/skills/`, `.opencode/agents/`, `.opencode/commands/`, or `.opencode/specs/`, the orchestrator writes code WITHOUT having loaded sk-code's authoring checklists or the spec_folder_write recipe (just shipped in 078/001 v3.2.0.0). The pattern means errors that the authoring checklists would have prevented have to be caught (and re-fixed) at review time, slowing iteration. F-009-002 + F-008-004 + F-006-004 are corollaries: sk-code has spec-folder invariants but no first-class SPEC_FOLDER load path; the integration is named in path-safety language only.
 
 ### Purpose
-Add authoring-time sk-code load to both `/spec_kit:complete:auto` and `:confirm` YAMLs. Add a paragraph to system-spec-kit/SKILL.md documenting the cross-skill load contract (pull-style: the workflow tells the orchestrator WHEN to consult sk-code). Add a complementary paragraph to sk-code/SKILL.md declaring the contract from its side (push-style: the resources sk-code will surface when called from `/spec_kit:complete` with an `.opencode/` target). Closes 4 P1 findings: F-009-001, F-009-002, F-008-004, F-006-004.
+Add authoring-time sk-code load to both `/speckit:complete:auto` and `:confirm` YAMLs. Add a paragraph to system-spec-kit/SKILL.md documenting the cross-skill load contract (pull-style: the workflow tells the orchestrator WHEN to consult sk-code). Add a complementary paragraph to sk-code/SKILL.md declaring the contract from its side (push-style: the resources sk-code will surface when called from `/speckit:complete` with an `.opencode/` target). Closes 4 P1 findings: F-009-001, F-009-002, F-008-004, F-006-004.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -66,11 +66,11 @@ Add authoring-time sk-code load to both `/spec_kit:complete:auto` and `:confirm`
 ## 3. SCOPE
 
 ### In Scope
-- Add an activity in `step_10_development.activities` of `spec_kit_complete_auto.yaml` instructing the orchestrator to load sk-code authoring resources BEFORE writes when the implementation target is under `.opencode/skills/`, `.opencode/agents/`, `.opencode/commands/`, or `.opencode/specs/`
-- Mirror the same activity in `spec_kit_complete_confirm.yaml`
+- Add an activity in `step_10_development.activities` of `speckit_complete_auto.yaml` instructing the orchestrator to load sk-code authoring resources BEFORE writes when the implementation target is under `.opencode/skills/`, `.opencode/agents/`, `.opencode/commands/`, or `.opencode/specs/`
+- Mirror the same activity in `speckit_complete_confirm.yaml`
 - Add a `cross_skill_authoring_load` block (or similar named anchor) above the existing `sk-code-review` overlay block to make the authoring-time intent explicit
 - Update `system-spec-kit/SKILL.md` §16-18 area (cross-skill routing) to add a paragraph documenting the authoring-time vs review-time load split
-- Update `sk-code/SKILL.md` to add a one-paragraph "Cross-skill consumption" block declaring the recipes/checklists surfaced when called from `/spec_kit:complete` with an `.opencode/` target
+- Update `sk-code/SKILL.md` to add a one-paragraph "Cross-skill consumption" block declaring the recipes/checklists surfaced when called from `/speckit:complete` with an `.opencode/` target
 - Bump sk-code SKILL.md frontmatter version 3.2.0.0 → 3.2.1.0 (patch bump: doc-only declaration of contract)
 - Bump description.json version 3.2.0.0 → 3.2.1.0
 - Author changelog/v3.2.1.0.md (compact format)
@@ -87,8 +87,8 @@ Add authoring-time sk-code load to both `/spec_kit:complete:auto` and `:confirm`
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml` | Modify | Add authoring-time sk-code load activity in step_10_development; add cross_skill_authoring_load block near agent_dispatch.review |
-| `.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml` | Modify | Mirror the same changes |
+| `.opencode/commands/speckit/assets/speckit_complete_auto.yaml` | Modify | Add authoring-time sk-code load activity in step_10_development; add cross_skill_authoring_load block near agent_dispatch.review |
+| `.opencode/commands/speckit/assets/speckit_complete_confirm.yaml` | Modify | Mirror the same changes |
 | `.opencode/skills/system-spec-kit/SKILL.md` | Modify | Add cross-skill authoring-time load contract paragraph in §16-18 area |
 | `.opencode/skills/sk-code/SKILL.md` | Modify | Add Cross-Skill Consumption block; bump version 3.2.0.0 → 3.2.1.0 |
 | `.opencode/skills/sk-code/description.json` | Modify | Bump version 3.2.0.0 → 3.2.1.0 |
@@ -104,8 +104,8 @@ Add authoring-time sk-code load to both `/spec_kit:complete:auto` and `:confirm`
 
 | ID | Requirement | Acceptance Criteria | 077 Finding |
 |----|-------------|---------------------|-------------|
-| REQ-001 | spec_kit_complete_auto.yaml step_10_development.activities mentions sk-code authoring-time load for `.opencode/` targets | `grep -c "sk-code authoring" auto.yaml` ≥ 1; activity reference includes target detection clause | F-009-001 |
-| REQ-002 | spec_kit_complete_confirm.yaml mirrors REQ-001 | grep matches in confirm.yaml | F-009-001 |
+| REQ-001 | speckit_complete_auto.yaml step_10_development.activities mentions sk-code authoring-time load for `.opencode/` targets | `grep -c "sk-code authoring" auto.yaml` ≥ 1; activity reference includes target detection clause | F-009-001 |
+| REQ-002 | speckit_complete_confirm.yaml mirrors REQ-001 | grep matches in confirm.yaml | F-009-001 |
 | REQ-003 | Both YAMLs add a `cross_skill_authoring_load` block (or equivalent named structure) | grep `cross_skill_authoring_load\|authoring_time_load` ≥ 1 hit per file | F-009-002 |
 | REQ-004 | system-spec-kit/SKILL.md adds an authoring-time vs review-time cross-skill load paragraph | grep `authoring-time\|authoring time` in SKILL.md returns ≥ 1 hit in §16-18 region | F-006-004 |
 | REQ-005 | sk-code/SKILL.md adds a Cross-Skill Consumption block declaring resources surfaced for `.opencode/` targets | grep `Cross-Skill Consumption\|cross-skill consumption` ≥ 1 hit in sk-code SKILL.md | F-008-004 |
@@ -129,18 +129,18 @@ Add authoring-time sk-code load to both `/spec_kit:complete:auto` and `:confirm`
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: An AI orchestrator reading `/spec_kit:complete:auto` step 10 sees explicit authoring-time sk-code load instructions and follows them BEFORE the first write to `.opencode/`.
+- **SC-001**: An AI orchestrator reading `/speckit:complete:auto` step 10 sees explicit authoring-time sk-code load instructions and follows them BEFORE the first write to `.opencode/`.
 - **SC-002**: A maintainer reading either system-spec-kit/SKILL.md or sk-code/SKILL.md can find the cross-skill authoring-time load contract documented from both sides.
 
 ### Given/When/Then Verification Scenarios
 
-**Given** spec_kit_complete_auto.yaml has the new authoring-time load activity, **When** an orchestrator runs `/spec_kit:complete:auto` against a spec folder with `.opencode/skills/` writes, **Then** sk-code authoring resources are loaded before the first write.
+**Given** speckit_complete_auto.yaml has the new authoring-time load activity, **When** an orchestrator runs `/speckit:complete:auto` against a spec folder with `.opencode/skills/` writes, **Then** sk-code authoring resources are loaded before the first write.
 
 **Given** the cross_skill_authoring_load block is present, **When** a maintainer reads the YAML, **Then** they see authoring-time and review-time as distinct named blocks (not both labeled "review").
 
 **Given** system-spec-kit SKILL.md has the cross-skill paragraph, **When** an AI agent loads it, **Then** it sees the explicit authoring-time vs review-time distinction.
 
-**Given** sk-code SKILL.md has the Cross-Skill Consumption block, **When** loaded, **Then** it declares which resources surface for `/spec_kit:complete` with `.opencode/` targets.
+**Given** sk-code SKILL.md has the Cross-Skill Consumption block, **When** loaded, **Then** it declares which resources surface for `/speckit:complete` with `.opencode/` targets.
 
 **Given** both YAMLs are modified, **When** running `python3 -c "import yaml; yaml.safe_load(...)"`, **Then** parsing succeeds with no syntax errors.
 

@@ -10,7 +10,7 @@
 
 ## 1. Summary
 
-Six CP-XXX command-flow stress scenarios (CP-046..051) authored against `/spec_kit:deep-research` + `@deep-research`, all PASS on first round. The 060/004 methodology generalized cleanly from `@improve-agent` to `@deep-research` — same architecture (LEAF agent dispatched only by command orchestrator), same stress pattern (sandboxed isolation, per-CP signal contracts, grep-only verdicts), same successful outcome.
+Six CP-XXX command-flow stress scenarios (CP-046..051) authored against `/speckit:deep-research` + `@deep-research`, all PASS on first round. The 060/004 methodology generalized cleanly from `@improve-agent` to `@deep-research` — same architecture (LEAF agent dispatched only by command orchestrator), same stress pattern (sandboxed isolation, per-CP signal contracts, grep-only verdicts), same successful outcome.
 
 This sub-phase confirms that the 060/004 substrate (CP scenario structure, sandbox helper, per-CP signal contracts, layer partition, R1/R2/R3 iteration discipline) is reusable across same-architecture LEAF agents without modification.
 
@@ -33,7 +33,7 @@ This sub-phase confirms that the 060/004 substrate (CP scenario structure, sandb
 
 ## 3. Layer Partition
 
-- **Command-flow CPs (5):** CP-046, CP-047, CP-048, CP-049, CP-051 — test the full `/spec_kit:deep-research` pipeline (Markdown setup → YAML workflow → @deep-research dispatch → state writeback → reducer).
+- **Command-flow CPs (5):** CP-046, CP-047, CP-048, CP-049, CP-051 — test the full `/speckit:deep-research` pipeline (Markdown setup → YAML workflow → @deep-research dispatch → state writeback → reducer).
 - **Body-level CPs (1):** CP-050 — tests citation discipline in the agent body's iteration write.
 
 All CPs pass on first round, indicating per-CP layer partition was correctly chosen at authoring time (per 060/004 ADR-4 score-progression discipline).

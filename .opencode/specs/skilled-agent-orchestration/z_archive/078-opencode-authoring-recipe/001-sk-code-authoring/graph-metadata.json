@@ -199,7 +199,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Add 5 authoring checklists + 1 recipe asset + 1 SKILL.md surface refresh + 1 stale-link fix so that sk-code's OpenCode side ships first-class authoring assets matching the declared scope. Subsequent phases (2-4) depend on Phase 1 shipping first because `/spec_kit:complete` Phase 2 integration loads these assets, CocoIndex Phase 3 canonical-priority needs concrete canonical resources to prefer, and Phase 4 validator drift cleanup checks shape against the new authoring artifacts.",
+    "causal_summary": "Add 5 authoring checklists + 1 recipe asset + 1 SKILL.md surface refresh + 1 stale-link fix so that sk-code's OpenCode side ships first-class authoring assets matching the declared scope. Subsequent phases (2-4) depend on Phase 1 shipping first because `/speckit:complete` Phase 2 integration loads these assets, CocoIndex Phase 3 canonical-priority needs concrete canonical resources to prefer, and Phase 4 validator drift cleanup checks shape against the new authoring artifacts.",
     "created_at": "2026-05-05T17:36:52Z",
     "last_save_at": "2026-05-23T11:55:14.604Z",
     "save_lineage": "graph_only",

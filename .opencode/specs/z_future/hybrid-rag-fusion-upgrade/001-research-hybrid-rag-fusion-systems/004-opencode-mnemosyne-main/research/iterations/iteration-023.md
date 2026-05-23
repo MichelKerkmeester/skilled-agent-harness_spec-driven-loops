@@ -604,9 +604,9 @@ Use this skill when:
 
 ### When NOT to Use
 
-- Simple, single-question research (use direct codebase search or `/spec_kit:plan`)
-- Known-solution documentation (use `/spec_kit:plan`)
-- Implementation tasks (use `/spec_kit:implement`)
+- Simple, single-question research (use direct codebase search or `/speckit:plan`)
+- Known-solution documentation (use `/speckit:plan`)
+- Implementation tasks (use `/speckit:implement`)
 - Quick codebase searches (use `@context` or direct Grep/Glob)
 - Fewer than 3 sources needed (single-pass research suffices)
 
@@ -4200,7 +4200,7 @@ exec
 .opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:61:    sharedSpaceId: normalizeScopeMatchValue(scope.sharedSpaceId),
 .opencode/skills/system-spec-kit/mcp_server/README.md:47:Spec Kit Memory is a Model Context Protocol (MCP) server that gives AI assistants persistent memory. It stores decisions, code context and project history in a local SQLite database, then finds exactly what is relevant when you need it. Think of it like a personal librarian that keeps notes on every conversation, files them by topic and hands you the right ones when you start a new task.
 .opencode/skills/system-spec-kit/mcp_server/README.md:91:| `/memory:manage` | Database maintenance, checkpoints, bulk ingestion, shared-memory spaces and memberships | 19 primary tools + 1 helper |
-.opencode/skills/system-spec-kit/mcp_server/README.md:93:| `/spec_kit:resume` | Continue or recover an interrupted spec-folder session through the broader memory/session recovery stack | Broad helper surface; primary chain uses 3 shared memory tools |
+.opencode/skills/system-spec-kit/mcp_server/README.md:93:| `/speckit:resume` | Continue or recover an interrupted spec-folder session through the broader memory/session recovery stack | Broad helper surface; primary chain uses 3 shared memory tools |
 .opencode/skills/system-spec-kit/mcp_server/README.md:402:**Reconsolidation-on-save** -- handles near-duplicates intelligently. Nearly identical content gets merged. Contradictions retire the old version. Different content keeps both. Like a filing clerk who reads the new document, checks the cabinet and makes an informed decision instead of just stuffing it in.
 .opencode/skills/system-spec-kit/mcp_server/README.md:410:**Auto-entity extraction** -- spots tool names, project names and concept names when you save and adds them to a shared catalog. Connects memories mentioning the same things even when surrounding text differs completely.
 .opencode/skills/system-spec-kit/mcp_server/README.md:422:The system keeps track of what happened during your current conversation so it does not repeat itself or lose context mid-session.

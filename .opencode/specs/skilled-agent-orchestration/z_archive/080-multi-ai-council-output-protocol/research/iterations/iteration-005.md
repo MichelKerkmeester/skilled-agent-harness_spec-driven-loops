@@ -22,7 +22,7 @@ That means `multi-ai-council` is outside the normal advisor corpus because it is
 
 ### 2. The explicit scorer has no council lane today, and adding one would target the wrong kind of entity
 
-The explicit scorer's hard-coded token boosts are skill IDs such as `sk-code-review`, `sk-git`, `system-spec-kit`, and `mcp-chrome-devtools` at `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts:8`. Its phrase boosts similarly map command or domain phrases to skills or skill commands, including `/spec_kit:deep-research`, `/spec_kit:deep-review`, and `/memory:save` at `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts:90`.
+The explicit scorer's hard-coded token boosts are skill IDs such as `sk-code-review`, `sk-git`, `system-spec-kit`, and `mcp-chrome-devtools` at `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts:8`. Its phrase boosts similarly map command or domain phrases to skills or skill commands, including `/speckit:deep-research`, `/speckit:deep-review`, and `/memory:save` at `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts:90`.
 
 There is no existing phrase or token boost for `multi-ai-council`, `council`, or `planning council`. A direct `rg` over the advisor graph, scorer fixtures, and routing corpus found no `multi-ai-council` or `council` entries. The live advisor invocation for a clear council prompt returned no recommendation, which is consistent with the current architecture.
 

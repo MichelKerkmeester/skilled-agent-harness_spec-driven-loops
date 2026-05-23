@@ -16,7 +16,7 @@ I compared Agent Lightning's packaged CLI and docs/exploration model with Public
 - That CLI stays narrow at the top level: `agl` exposes `vllm`, `store`, `prometheus`, and `agentops`, rather than a large menu of workflow verbs. [SOURCE: external/docs/reference/cli.md:1-26]
 - The external docs then carry the discovery burden through audience-oriented reading paths: installation, how-to recipes, algorithm zoo, deep dive, and API references. [SOURCE: external/docs/index.md:14-19]
 - The examples catalog is a first-class navigation layer, with concrete examples like `claude_code`, `tinker`, `spider`, and `apo`. [SOURCE: external/examples/README.md:1-18]
-- Public currently exposes separate slash-command entrypoints for `plan`, `implement`, `complete`, `deep-research`, and `resume`, each with its own prompt protocol and setup contract. [SOURCE: .opencode/commands/spec_kit/plan.md:2-4] [SOURCE: .opencode/commands/spec_kit/implement.md:2-4] [SOURCE: .opencode/commands/spec_kit/complete.md:2-4] [SOURCE: .opencode/commands/spec_kit/deep-research.md:2-4] [SOURCE: .opencode/commands/spec_kit/resume.md:2-4]
+- Public currently exposes separate slash-command entrypoints for `plan`, `implement`, `complete`, `deep-research`, and `resume`, each with its own prompt protocol and setup contract. [SOURCE: .opencode/commands/speckit/plan.md:2-4] [SOURCE: .opencode/commands/speckit/implement.md:2-4] [SOURCE: .opencode/commands/speckit/complete.md:2-4] [SOURCE: .opencode/commands/speckit/deep-research.md:2-4] [SOURCE: .opencode/commands/speckit/resume.md:2-4]
 - Public also exposes a parallel `memory` family for `save`, `search`, `manage`, and `learn`. [SOURCE: .opencode/commands/memory/save.md:2-4] [SOURCE: .opencode/commands/memory/search.md:2-4] [SOURCE: .opencode/commands/memory/manage.md:2-4] [SOURCE: .opencode/commands/memory/learn.md:2-4]
 
 ## Analysis
@@ -51,4 +51,4 @@ I looked for evidence that the external repo's smaller feel comes primarily from
 ## Follow-up questions for next iteration
 - If slash commands remain, which ones should be considered primary versus advanced?
 - Can Public shrink perceived command count without deleting admin-only capabilities?
-- Should quickstart guidance live in one root page, `/spec_kit:complete`, or `/spec_kit:resume`?
+- Should quickstart guidance live in one root page, `/speckit:complete`, or `/speckit:resume`?

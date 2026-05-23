@@ -26,7 +26,7 @@ This pass revisited the remaining session-isolation and graph namespace surfaces
 |----------|--------|------|----------|-------|
 | req_024_closure | partial | hard | `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md:59` | Phase 008 reports REQ-024 as validated, but the cited suite only demonstrates disjoint-ID read scoping. |
 | isolation_regression | partial | hard | `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:61` | The dedicated isolation suite still omits a shared-ID collision fixture, so it cannot falsify the bare-ID overwrite path. |
-| graph_write_path | pass | soft | `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:463` | The visible path does persist `graphEvents` into the graph store, but it preserves incoming IDs rather than adding a late namespace layer. |
+| graph_write_path | pass | soft | `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:463` | The visible path does persist `graphEvents` into the graph store, but it preserves incoming IDs rather than adding a late namespace layer. |
 
 ## Assessment
 - New findings ratio: 0.08
@@ -34,7 +34,7 @@ This pass revisited the remaining session-isolation and graph namespace surfaces
 - Novelty justification: F013 is new because earlier active findings already captured the runtime collision defect (F004) and the regression blind spot (F005), but no prior iteration isolated phase 008's implementation summary as overstating REQ-024 closure on top of that incomplete evidence.
 
 ## Ruled Out
-- Late phase 008 write-path namespacing: No hidden downgrade evidence surfaced — `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:463-475` and `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:655-660` both preserve incoming graph-event IDs when mapping the upsert payloads, so the visible write path still relies on the existing bare-ID store semantics.
+- Late phase 008 write-path namespacing: No hidden downgrade evidence surfaced — `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:463-475` and `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:655-660` both preserve incoming graph-event IDs when mapping the upsert payloads, so the visible write path still relies on the existing bare-ID store semantics.
 - `graph-aware-stop.vitest.ts` as isolation proof: Not applicable — `.opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:194-260` exercises reducer ingestion of `graph_convergence` events and never probes storage collisions or cross-session ID reuse.
 
 ## Dead Ends

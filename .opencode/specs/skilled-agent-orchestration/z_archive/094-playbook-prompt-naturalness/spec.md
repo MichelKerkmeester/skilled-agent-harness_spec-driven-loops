@@ -186,7 +186,7 @@ Naturalize the canonical Prompt: field across all 16 playbooks. Apply RCAF only 
 
 ### State Transitions
 - Partial completion: per-playbook checkpoint via spec packet continuity entries (which playbooks done, which pending).
-- Session expiry: resumable via `/spec_kit:resume specs/skilled-agent-orchestration/094-playbook-prompt-naturalness/`.
+- Session expiry: resumable via `/speckit:resume specs/skilled-agent-orchestration/094-playbook-prompt-naturalness/`.
 <!-- /ANCHOR:edge-cases -->
 
 ---

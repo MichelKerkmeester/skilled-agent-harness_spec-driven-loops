@@ -10,7 +10,7 @@
 
 This catalog identifies **truly innovative patterns** from three AI-powered development tools that go beyond standard implementations. Each innovation is evaluated for:
 - Why it is valuable
-- How it could adapt to system-speckit
+- How it could adapt to system-spec-kit
 - Implementation approach
 
 **Key Finding:** The most valuable innovations cluster around three themes:
@@ -58,7 +58,7 @@ confidence = (
 - Frequently validated knowledge strengthens
 - No manual memory pruning needed
 
-**Adaptation for system-speckit:**
+**Adaptation for system-spec-kit:**
 
 ```javascript
 // Enhanced memory scoring with decay
@@ -113,7 +113,7 @@ Memory Creation: Tribal knowledge with severity "critical"
 - Builds organizational "tribal knowledge" automatically
 - Reduces repeated mistakes across contexts
 
-**Adaptation for system-speckit:**
+**Adaptation for system-spec-kit:**
 
 ```javascript
 // Causal learning integration
@@ -177,7 +177,7 @@ MCP tools organized in layers by token budget and specificity:
 - Progressive detail retrieval (start coarse, drill down)
 - Predictable context consumption
 
-**Adaptation for system-speckit:**
+**Adaptation for system-spec-kit:**
 
 ```javascript
 // Tool layer metadata
@@ -217,7 +217,7 @@ Memory retrieval tracks what has been retrieved in the current session and avoid
 - Natural conversation progression
 - Better use of limited context window
 
-**Adaptation for system-speckit:**
+**Adaptation for system-spec-kit:**
 
 ```javascript
 // Session-aware retrieval
@@ -269,7 +269,7 @@ Four levels of memory compression, selectable per query:
 - Multi-pass retrieval strategies
 - Budget-aware context building
 
-**Adaptation for system-speckit:**
+**Adaptation for system-spec-kit:**
 
 ```javascript
 // Add compression option to memory_search
@@ -314,7 +314,7 @@ drift similar --intent api_endpoint --description "POST endpoint for user regist
 - Separates "what" from "for what purpose"
 - Enables intent-specific ranking
 
-**Adaptation for system-speckit:**
+**Adaptation for system-spec-kit:**
 
 ```javascript
 // Intent-aware memory search
@@ -388,7 +388,7 @@ def fuse_results(ranked_lists, k=60, weights=None):
 - k=60 dampens top-ranked dominance
 - Works even when adding new engines
 
-**Adaptation for system-speckit:**
+**Adaptation for system-spec-kit:**
 
 ```javascript
 // RRF for memory search fusion
@@ -442,7 +442,7 @@ Maintains a stack of parent headings when chunking markdown, prepending path to 
 - Better retrieval for "find the X under Y" queries
 - Aids result presentation with breadcrumb paths
 
-**Adaptation for system-speckit:**
+**Adaptation for system-spec-kit:**
 
 ```javascript
 // Add heading path to memory chunks
@@ -519,7 +519,7 @@ def extract_best_snippet(text, query, length=300):
 - Helps user/AI quickly assess relevance
 - Works across document types
 
-**Adaptation for system-speckit:**
+**Adaptation for system-spec-kit:**
 
 ```javascript
 // Add to memory search result formatting
@@ -587,9 +587,9 @@ class SemanticSearchEngine:
 - Models loaded only when needed
 - Single instance across requests
 
-**Adaptation for system-speckit:**
+**Adaptation for system-spec-kit:**
 
-Already partially implemented in system-speckit. Verify singleton pattern is used consistently.
+Already partially implemented in system-spec-kit. Verify singleton pattern is used consistently.
 
 **Implementation Effort:** 0.5 day (verification and consistency)
 **Impact:** Low - likely already implemented
@@ -619,7 +619,7 @@ class VectorStoreProtocol(Protocol):
 - Better testing (mock implementations)
 - Future-proof against vendor lock-in
 
-**Adaptation for system-speckit:**
+**Adaptation for system-spec-kit:**
 
 ```javascript
 // Define interfaces for swappable backends
@@ -671,7 +671,7 @@ CREATE TABLE tasks (
 - No lost work from interruptions
 - Auditable execution history
 
-**Adaptation for system-speckit:**
+**Adaptation for system-spec-kit:**
 
 ```javascript
 // Add task persistence to spec folder operations
@@ -737,7 +737,7 @@ async getToolOutput(taskId: string, toolName: string) {
 - Consistent results within a task
 - Reduced API/compute costs
 
-**Adaptation for system-speckit:**
+**Adaptation for system-spec-kit:**
 
 ```javascript
 // Add to generate-context.js or checkpoint system
@@ -799,12 +799,12 @@ const typeMap = {
 - Better embeddings (full context)
 - Type-aware search and filtering
 
-**Adaptation for system-speckit:**
+**Adaptation for system-spec-kit:**
 
 Less relevant for markdown memories, but useful for code examples in memories.
 
 **Implementation Effort:** N/A (not directly applicable)
-**Impact:** Low for system-speckit
+**Impact:** Low for system-spec-kit
 
 ---
 
@@ -834,7 +834,7 @@ async runTDDCycle(testCode: string, implementation: string): Promise<TDDResult>
 - Clear failure diagnostics
 - Prevents untested deployments
 
-**Adaptation for system-speckit:**
+**Adaptation for system-spec-kit:**
 
 Could adapt for validation workflows:
 
@@ -883,7 +883,7 @@ interface RankingWeights {
 - Important files boosted
 - Configurable weight tuning
 
-**Adaptation for system-speckit:**
+**Adaptation for system-spec-kit:**
 
 ```javascript
 // Enhanced memory ranking
@@ -932,7 +932,7 @@ interface QueryRecord {
 - Identify optimization opportunities
 - Budget management
 
-**Adaptation for system-speckit:**
+**Adaptation for system-spec-kit:**
 
 ```javascript
 // Add token tracking to memory_search
@@ -983,7 +983,7 @@ All three projects implement hybrid search combining multiple retrieval methods:
 
 **Pattern:** Never rely on single retrieval method. Combine complementary approaches.
 
-**Recommendation for system-speckit:**
+**Recommendation for system-spec-kit:**
 1. Add BM25 for exact term matching
 2. Use RRF for fusion (no weight tuning needed)
 3. Keep trigger matching as third signal
@@ -1002,7 +1002,7 @@ All three projects prioritize local execution:
 
 **Pattern:** Avoid network dependencies for core functionality.
 
-**Current status:** system-speckit already local-first.
+**Current status:** system-spec-kit already local-first.
 
 ---
 
@@ -1018,7 +1018,7 @@ All three expose functionality through MCP:
 
 **Pattern:** MCP enables tool-use by AI without custom integrations.
 
-**Current status:** system-speckit already MCP-based.
+**Current status:** system-spec-kit already MCP-based.
 
 ---
 
@@ -1035,7 +1035,7 @@ if not self._index_path.exists():
 
 **Pattern:** Log warnings, return empty results, continue operation.
 
-**Recommendation:** Audit system-speckit error handling for graceful degradation.
+**Recommendation:** Audit system-spec-kit error handling for graceful degradation.
 
 ---
 

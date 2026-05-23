@@ -12,7 +12,7 @@ This iteration investigated D1 runtime gaps in `sk-deep-research` v1.5.0.0, with
 
 ## Ruled Out
 - No evidence that prior iteration findings would make these observations redundant; `research/iterations/` was empty before this run and `deep-research-state.jsonl` only contained the config row (.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:1).
-- No evidence that YAML workflow outputs bypass the reducer-owned packet surfaces; both auto and confirm flows still target `findings-registry.json` and `deep-research-dashboard.md` as synchronized outputs (.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:83-84; .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:197; .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:83-84; .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:196-217).
+- No evidence that YAML workflow outputs bypass the reducer-owned packet surfaces; both auto and confirm flows still target `findings-registry.json` and `deep-research-dashboard.md` as synchronized outputs (.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:83-84; .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:197; .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:83-84; .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:196-217).
 
 ## Dead Ends
 

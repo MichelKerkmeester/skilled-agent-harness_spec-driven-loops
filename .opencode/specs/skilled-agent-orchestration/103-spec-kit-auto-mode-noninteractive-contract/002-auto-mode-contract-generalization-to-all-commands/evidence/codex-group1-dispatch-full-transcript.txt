@@ -15,14 +15,14 @@ reasoning summaries: none
 session id: 019e16ea-b580-7260-965b-9c0380909cb5
 --------
 user
-You are migrating the `/spec_kit:*` command Group 1 (5 commands) to cite the shared `auto_mode_contract.md` reference and adopt the three-tier `:auto` setup contract.
+You are migrating the `/speckit:*` command Group 1 (5 commands) to cite the shared `auto_mode_contract.md` reference and adopt the three-tier `:auto` setup contract.
 
 # RUNTIME RULES (read first)
 
 - Run as inline Codex execution. Do NOT call SpawnAgent, collab: SpawnAgent, Task, or any sub-agent. If you would dispatch, stop and work inline.
 - Gate 3 (spec-folder) answer for this run: the spec folder is `.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/`. Use it. specFolder=103-002. Do NOT ask interactive questions; stdin is closed.
 - Strict scope: edit ONLY the 5 command files below + 002's tasks.md (mark T010 done) + 002's evidence/codex-group1-dispatch.txt (write summary). Anything else is a rollback trigger.
-- Do NOT run any /spec_kit:*:auto YAML loop. Markdown edits only.
+- Do NOT run any /speckit:*:auto YAML loop. Markdown edits only.
 - Final output: ONE summary message at the end listing every file modified, per-command status, decisions, concerns.
 
 # REPO ROOT
@@ -34,10 +34,10 @@ All paths below relative to this root.
 
 ```
 .opencode/commands/deep/start-research-loop.md
-.opencode/commands/spec_kit/complete.md
-.opencode/commands/spec_kit/implement.md
-.opencode/commands/spec_kit/plan.md
-.opencode/commands/spec_kit/resume.md
+.opencode/commands/speckit/complete.md
+.opencode/commands/speckit/implement.md
+.opencode/commands/speckit/plan.md
+.opencode/commands/speckit/resume.md
 .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/tasks.md
 .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group1-dispatch.txt
 ```
@@ -61,7 +61,7 @@ Identify:
 - Every Q-block field name (Q0, Q1, Q1_type, Q_dims, Q-Exec, etc.)
 - Each field's current resolution: flag (from $ARGUMENTS), default, requires-ask, auto-detect from another field
 - The full consolidated Q-block content (under the `STATUS: BLOCKED` header in `:confirm` mode)
-- Whether the file has a paired YAML asset (it does — under `.opencode/commands/spec_kit/assets/`)
+- Whether the file has a paired YAML asset (it does — under `.opencode/commands/speckit/assets/`)
 
 ## Step B — Build the per-command Default Resolution Table
 
@@ -90,7 +90,7 @@ Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `<FIELD-A>`, `<FIELD-B>`. **Ordering rule**: <COMMAND-SPECIFIC-ORDERING-OR-"none-needed">. Missing required fields (absence, not ambiguity) → go to Tier 3.
 
-3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/spec_kit:<COMMAND-NAME>:auto` as the command name. Exit non-zero. Do not load YAML.
+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/speckit:<COMMAND-NAME>:auto` as the command name. Exit non-zero. Do not load YAML.
 
 `:confirm` path stays unchanged — see the consolidated setup prompt section below.
 ```
@@ -368,7 +368,7 @@ description: Canonical three-tier `:auto` setup-resolution contract shared by ev
 
 # Auto Mode Contract Reference
 
-This reference module defines the single canonical `:auto` setup-resolution contract used by every user-invokable `/command:*:auto` surface in spec-kit (`/spec_kit:*`, `/create:*`, `/improve:*`). Each command's §0 cites this contract and supplies only its own per-field Default Resolution Table + `PRE-BOUND SETUP ANSWERS:` field list. The contract semantics, marker grammar, error format, and verification protocol live here.
+This reference module defines the single canonical `:auto` setup-resolution contract used by every user-invokable `/command:*:auto` surface in spec-kit (`/speckit:*`, `/create:*`, `/improve:*`). Each command's §0 cites this contract and supplies only its own per-field Default Resolution Table + `PRE-BOUND SETUP ANSWERS:` field list. The contract semantics, marker grammar, error format, and verification protocol live here.
 
 Origin: shipped in `.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup/` (deep-review prototype) and generalized in `.../002-auto-mode-contract-generalization-to-all-commands/` (12-command rollout).
 
@@ -543,7 +543,7 @@ Commands that have adopted this contract:
 - Commands without paired YAML workflows (`/improve:prompt`, `agent_router`, etc.) — they have no setup-phase surface where the contract applies.
 - Skill-internal `:auto` flows (sk-doc, sk-code routing, etc.) — those are skill SKILL.md surfaces, not `/command:*` surfaces.
 - YAML workflow internal interaction gates (e.g. mid-loop approval gates) — handled by each YAML's own non-interactivity rules, not this contract.
-- Cross-command `:auto` integration (e.g. `/spec_kit:plan:auto` chained into `/spec_kit:implement:auto`) — separate contract concern.
+- Cross-command `:auto` integration (e.g. `/speckit:plan:auto` chained into `/speckit:implement:auto`) — separate contract concern.
 
  succeeded in 0ms:
 ---
@@ -670,7 +670,7 @@ CLI exit codes:
 | CONDITIONAL | If intent signals match   | Intent-mapped references     |
 | ON_DEMAND   | Only on explicit request   | Deep-dive quality standards  |
 
-`references/workflows/quick_reference.md` is the primary first-touch command surface. Keep the compact `spec_kit` and `memory` command map there, including `/spec_kit:plan --intake-only` as the standalone intake entry, `/spec_kit:plan` and `/spec_kit:complete` smart delegation notes, and the pointer from `/deep:start-research-loop` to `../deep-research/references/spec_check_protocol.md`, and use this file only to point readers to it rather than duplicating the full matrix.
+`references/workflows/quick_reference.md` is the primary first-touch command surface. Keep the compact `spec_kit` and `memory` command map there, including `/speckit:plan --intake-only` as the standalone intake entry, `/speckit:plan` and `/speckit:complete` smart delegation notes, and the pointer from `/deep:start-research-loop` to `../deep-research/references/spec_check_protocol.md`, and use this file only to point readers to it rather than duplicating the full matrix.
 
 ### Smart Router Pseudocode
 
@@ -762,10 +762,10 @@ RESOURCE_MAP = {
 }
 
 COMMAND_BOOSTS = {
-    "/spec_kit:plan": "PLAN",
-    "/spec_kit:implement": "IMPLEMENT",
-    "/spec_kit:complete": "COMPLETE",
-    "/spec_kit:plan :with-phases": "PHASE",
+    "/speckit:plan": "PLAN",
+    "/speckit:implement": "IMPLEMENT",
+    "/speckit:complete": "COMPLETE",
+    "/speckit:plan :with-phases": "PHASE",
 
  succeeded in 0ms:
 ---
@@ -837,7 +837,7 @@ Author the shared `auto_mode_contract.md` reference, refactor Phase-1's deep-rev
 - Author `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md` (Level 2 sk-doc reference; §1-8 — three-tier flow, PRE-BOUND ANSWERS grammar, default-resolution-table format, Tier-3 error template, `:confirm` invariance, verification protocol, adoption checklist, out-of-scope).
 - Refactor `/deep:start-review-loop` §0 to cite the shared contract (replacing the inline three-tier sections from 001).
 - Migrate 11 commands' §0 to cite the shared contract + provide their own per-field default table + PRE-BOUND ANSWERS field list:
-  - `/spec_kit:` — deep-research, complete, implement, plan, resume (5)
+  - `/speckit:` — deep-research, complete, implement, plan, resume (5)
   - `/create:` — sk-skill, agent, changelog, feature-catalog, testing-playbook, folder_readme (6)
   - `/improve:` — agent (1)
 - Update each migrated command's frontmatter `argument-hint` to reference the new bypass capability.
@@ -856,7 +856,7 @@ Author the shared `auto_mode_contract.md` reference, refactor Phase-1's deep-rev
 |-----------|-------------|-------------|
 | `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md` | Create | Shared three-tier `:auto` contract reference |
 | `.opencode/commands/deep/start-review-loop.md` | Modify | Refactor §0 to cite shared contract |
-| `.opencode/commands/spec_kit/{deep-research,complete,implement,plan,resume}.md` | Modify | Migrate §0 to shared contract pattern |
+| `.opencode/commands/speckit/{deep-research,complete,implement,plan,resume}.md` | Modify | Migrate §0 to shared contract pattern |
 | `.opencode/commands/create/{sk-skill,agent,changelog,feature-catalog,testing-playbook,folder_readme}.md` | Modify | Same |
 | `.opencode/commands/improve/agent.md` | Modify | Same |
 | `002/evidence/` | Create dir + 12 files | Live dispatch transcripts |
@@ -1198,7 +1198,7 @@ The YAML contains the full loop workflow: initialization, iteration dispatch, co
 Deep research complete.
 Iterations: [N] | Stop reason: [converged|max_iterations|all_answered]
 Artifacts: research/research.md, research/resource-map.md (unless `--no-resource-map`), [N] iteration files, continuity update in canonical spec docs refreshed
-Ready for: /spec_kit:plan [feature-description]
+Ready for: /speckit:plan [feature-description]
 STATUS=OK PATH=[spec-folder-path]
 ```
 
@@ -1236,7 +1236,7 @@ Full protocol documentation: `.opencode/skills/deep-research/SKILL.md`
 
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/commands/spec_kit/complete.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/commands/speckit/complete.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 description: End-to-end SpecKit workflow (14+ steps). Modes: :auto, :confirm, :with-research, :with-phases.
@@ -1254,8 +1254,8 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, spec_k
 > 1. Determine execution mode from user input (`:auto` or `:confirm`)
 >    Note: :with-research and :with-phases are feature flags, not execution modes. They modify the :auto or :confirm workflow but do not change the base execution mode.
 > 2. Load the corresponding YAML file from `assets/`:
->    - Auto mode → `spec_kit_complete_auto.yaml`
->    - Confirm mode → `spec_kit_complete_confirm.yaml`
+>    - Auto mode → `speckit_complete_auto.yaml`
+>    - Confirm mode → `speckit_complete_confirm.yaml`
 > 3. Execute the YAML workflow step by step
 >
 > All content below is reference context for the YAML workflow. Do not treat reference sections, routing tables, or dispatch templates as direct instructions to execute.
@@ -1314,7 +1314,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 4. Search for prior work (background):
    - memory_context({ input: feature_description OR "complete", mode: "focused", includeContent: true })
    > Gate 1 trigger matching handled at agent level (AGENTS.md).
-   > Gate 3 spec-folder trigger classification is typed: `.opencode/skills/system-spec-kit/shared/gate-3-classifier.ts` (`classifyPrompt()`). Invocations of `/spec_kit:complete` are already inside a write flow, so Gate 3 is pre-answered by command dispatch — no extra inference needed here.
+   > Gate 3 spec-folder trigger classification is typed: `.opencode/skills/system-spec-kit/shared/gate-3-classifier.ts` (`classifyPrompt()`). Invocations of `/speckit:complete` are already inside a write flow, so Gate 3 is pre-answered by command dispatch — no extra inference needed here.
    - Store: prior_work_found = [yes/no], prior_work_count = [N]
 
 5. Prior-work loading question needed ONLY if user selects A or C for spec folder AND prior continuity records exist for this spec.
@@ -1475,18 +1475,18 @@ When `--phase-folder=<path>` is provided or spec folder selection includes a pha
 ### Packet Graph Metadata
 
 - Completion relies on canonical save to refresh the packet's root `graph-metadata.json`.
-- `/spec_kit:complete` is responsible for final packet-facing derived state such as `status` and `last_save_at`.
+- `/speckit:complete` is responsible for final packet-facing derived state such as `status` and `last_save_at`.
 - Manual packet relationships remain untouched during completion; only the derived section is refreshed.
 
 ### Execution Modes
 
 | Mode | Invocation | Behavior |
 |------|-----------|----------|
-| `:auto` | `/spec_kit:complete :auto "feature"` | Execute all steps without approval gates |
-| `:confirm` | `/spec_kit:complete :confirm "feature"` | Pause at each step for approval |
-| `:with-research` | `/spec_kit:complete :with-research "feature"` | Insert research phase after Step 2 (before specification) |
-| `:with-phases` | `/spec_kit:complete :with-phases "feature"` | Insert phase decomposition before Step 1, then complete first child. The parent scaffolds from `phase-parent Level template contract` (lean trio only — `spec.md` + `description.json` + `graph-metadata.json` at parent); plan/tasks/checklist/decisions live in each child. |
-| (default) | `/spec_kit:complete "feature"` | Ask user to choose mode during setup |
+| `:auto` | `/speckit:complete :auto "feature"` | Execute all steps without approval gates |
+| `:confirm` | `/speckit:complete :confirm "feature"` | Pause at each step for approval |
+| `:with-research` | `/speckit:complete :with-research "feature"` | Insert research phase after Step 2 (before specification) |
+| `:with-phases` | `/speckit:complete :with-phases "feature"` | Insert phase decomposition before Step 1, then complete first child. The parent scaffolds from `phase-parent Level template contract` (lean trio only — `spec.md` + `description.json` + `graph-metadata.json` at parent); plan/tasks/checklist/decisions live in each child. |
+| (default) | `/speckit:complete "feature"` | Ask user to choose mode during setup |
 
 ---
 
@@ -1500,7 +1500,7 @@ When `--phase-folder=<path>` is provided or spec folder selection includes a pha
 | 4 | Clarification | updated `spec.md` | Ambiguities resolved |
 
 exec
-/bin/zsh -lc "sed -n '1,280p' .opencode/commands/spec_kit/implement.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,280p' .opencode/commands/speckit/implement.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 description: Implementation workflow (9 steps): execute pre-planned work. Requires plan.md. Modes :auto, :confirm.
@@ -1515,8 +1515,8 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory
 > **YOUR FIRST ACTION:**
 > 1. Determine execution mode from user input (`:auto` or `:confirm`)
 > 2. Load the corresponding YAML file from `assets/`:
->    - Auto mode → `spec_kit_implement_auto.yaml`
->    - Confirm mode → `spec_kit_implement_confirm.yaml`
+>    - Auto mode → `speckit_implement_auto.yaml`
+>    - Confirm mode → `speckit_implement_confirm.yaml`
 > 3. Execute the YAML workflow step by step
 >
 > All content below is reference context for the YAML workflow. Do not treat reference sections, routing tables, or dispatch templates as direct instructions to execute.
@@ -1609,7 +1609,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
 10. Handle redirects:
     - confirm_choice == B -> Re-prompt folder selection
-    - confirm_choice == C -> Redirect to /spec_kit:plan
+    - confirm_choice == C -> Redirect to /speckit:plan
 
 11. Execute background operations:
     - memory_choice A: load most recent | B: load up to 3 | multi_*: note parallel dispatch
@@ -1631,9 +1631,9 @@ NEVER split into multiple prompts
 
 # SpecKit Implement
 
-Execute implementation of a pre-planned feature. Requires existing spec.md and plan.md from a prior `/spec_kit:plan` workflow.
+Execute implementation of a pre-planned feature. Requires existing spec.md and plan.md from a prior `/speckit:plan` workflow.
 
-> Standalone workflow (9 steps) that assumes spec.md and plan.md exist. Run `/spec_kit:plan` first if needed.
+> Standalone workflow (9 steps) that assumes spec.md and plan.md exist. Run `/speckit:plan` first if needed.
 
 ```yaml
 role: Expert Developer using Smart SpecKit for Implementation Phase
@@ -1653,7 +1653,7 @@ operating_mode:
 
 ## 1. PURPOSE
 
-Run the 9-step implementation workflow: plan review, task breakdown, quality validation, development, completion summary, and workflow closeout. Picks up where `/spec_kit:plan` left off.
+Run the 9-step implementation workflow: plan review, task breakdown, quality validation, development, completion summary, and workflow closeout. Picks up where `/speckit:plan` left off.
 
 ---
 
@@ -1667,7 +1667,7 @@ Run the 9-step implementation workflow: plan review, task breakdown, quality val
 **REQUIRED (all levels):** spec.md, plan.md, tasks.md (created if missing)
 **REQUIRED Level 2+:** checklist.md
 
-Missing prerequisites -> guide user to `/spec_kit:plan` first.
+Missing prerequisites -> guide user to `/speckit:plan` first.
 
 ### Completion Validation
 
@@ -1717,8 +1717,8 @@ Use `memory_context()` (L1 unified entry) as primary retrieval. Use `memory_sear
 
 After all phases pass, load and execute the appropriate YAML prompt:
 
-- **AUTONOMOUS**: `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`
-- **INTERACTIVE**: `.opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml`
+- **AUTONOMOUS**: `.opencode/commands/speckit/assets/speckit_implement_auto.yaml`
+- **INTERACTIVE**: `.opencode/commands/speckit/assets/speckit_implement_confirm.yaml`
 
 The YAML contains detailed step-by-step workflow, field extraction rules, completion report format, and all configuration.
 
@@ -1784,7 +1784,7 @@ Supports parallel agent dispatch for complex phases (configured in YAML prompts)
 | Mid-Implementation  | After Step 6.5  | 70        | No (warning only) |
 
 exec
-/bin/zsh -lc "sed -n '1,300p' .opencode/commands/spec_kit/plan.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,300p' .opencode/commands/speckit/plan.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 description: Planning workflow (8 steps): spec through plan only. Modes :auto, :confirm, :with-phases.
@@ -1802,8 +1802,8 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory
 > 1. Determine execution mode from user input (`:auto` or `:confirm`)
 >    Note: `:with-phases` is a feature flag, not an execution mode. It modifies the workflow but does not change the base execution mode.
 > 2. Load the corresponding YAML file from `assets/`:
->    - Auto mode → `spec_kit_plan_auto.yaml`
->    - Confirm mode → `spec_kit_plan_confirm.yaml`
+>    - Auto mode → `speckit_plan_auto.yaml`
+>    - Confirm mode → `speckit_plan_confirm.yaml`
 > 3. Execute the YAML workflow step by step
 >
 > All content below is reference context for the YAML workflow. Do not treat reference sections, routing tables, or dispatch templates as direct instructions to execute.
@@ -1874,7 +1874,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 4. Search for prior work (background):
    - memory_context({ input: feature_description OR "planning", mode: "focused", includeContent: true })
    > Gate 1 trigger matching handled at agent level (AGENTS.md).
-   > Gate 3 spec-folder trigger classification is typed: `.opencode/skills/system-spec-kit/shared/gate-3-classifier.ts` (`classifyPrompt()`). Invocations of `/spec_kit:plan` are already inside a write flow, so Gate 3 is pre-answered by command dispatch — no extra inference needed here.
+   > Gate 3 spec-folder trigger classification is typed: `.opencode/skills/system-spec-kit/shared/gate-3-classifier.ts` (`classifyPrompt()`). Invocations of `/speckit:plan` are already inside a write flow, so Gate 3 is pre-answered by command dispatch — no extra inference needed here.
    - Store: prior_work_found = [yes/no], prior_work_count = [N]
 
 5. Prior-work loading question needed ONLY if user selects A or C for spec folder AND prior continuity records exist for this spec.
@@ -1970,9 +1970,9 @@ STOP HERE - Wait for user answers before continuing.
 
 # SpecKit Plan
 
-Execute the SpecKit planning lifecycle from specification through planning. Terminates after plan.md — use `/spec_kit:implement` for implementation.
+Execute the SpecKit planning lifecycle from specification through planning. Terminates after plan.md — use `/speckit:implement` for implementation.
 
-> **ENFORCEMENT:** If the user requests implementation via free text (e.g., "implement this plan", "go ahead and build it") instead of `/spec_kit:implement`, you MUST route through the implement command. Do NOT begin implementing directly. Plan and implementation are **separate gate-checked phases** — gate answers from planning do NOT carry over.
+> **ENFORCEMENT:** If the user requests implementation via free text (e.g., "implement this plan", "go ahead and build it") instead of `/speckit:implement`, you MUST route through the implement command. Do NOT begin implementing directly. Plan and implementation are **separate gate-checked phases** — gate answers from planning do NOT carry over.
 
 ```yaml
 role: Expert Developer using Smart SpecKit for Planning Phase
@@ -2001,7 +2001,7 @@ Run the planning workflow: specification, clarification, and technical planning.
 **Inputs:** `$ARGUMENTS` — Feature description with optional parameters (branch, scope, context)
 **Outputs:** Spec folder with: spec.md, plan.md, tasks.md, checklist.md (Level 2+), a scaffolded root `graph-metadata.json` packet contract, plus a refreshed continuity update in canonical spec docs generated via structured `generate-context.js` input
 
-> **Level 1 Note:** /spec_kit:plan creates spec.md, plan.md, and tasks.md. For complete Level 1 baseline implementation execution, run /spec_kit:implement after planning or use /spec_kit:complete instead.
+> **Level 1 Note:** /speckit:plan creates spec.md, plan.md, and tasks.md. For complete Level 1 baseline implementation execution, run /speckit:implement after planning or use /speckit:complete instead.
 
 ```text
 $ARGUMENTS
@@ -2034,8 +2034,8 @@ $ARGUMENTS
 
 After all phases pass, load and execute the appropriate YAML prompt:
 
-- **AUTONOMOUS**: `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml`
-- **INTERACTIVE**: `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml`
+- **AUTONOMOUS**: `.opencode/commands/speckit/assets/speckit_plan_auto.yaml`
+- **INTERACTIVE**: `.opencode/commands/speckit/assets/speckit_plan_confirm.yaml`
 
 The YAML contains detailed step-by-step workflow, field extraction rules, completion report format, and all configuration.
 
@@ -2047,7 +2047,7 @@ The YAML contains detailed step-by-step workflow, field extraction rules, comple
 ```
 ✅ SpecKit Planning Complete — All 8 steps executed.
 Artifacts: spec.md, plan.md, tasks.md, checklist.md (L2+), graph-metadata.json scaffolded, continuity update in canonical spec docs refreshed
-Ready for: /spec_kit:implement [spec-folder-path]
+Ready for: /speckit:implement [spec-folder-path]
 STATUS=OK PATH=[spec-folder-path]
 ```
 
@@ -2088,7 +2088,7 @@ Supports smart parallel sub-agent dispatch using 5-dimension complexity scoring.
 
 
 exec
-/bin/zsh -lc "sed -n '1,300p' .opencode/commands/spec_kit/resume.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,300p' .opencode/commands/speckit/resume.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 description: Resume or recover work on a spec folder: canonical continuity recovery with one next step.
@@ -2103,8 +2103,8 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory
 > **YOUR FIRST ACTION:**
 > 1. Determine execution mode from user input (`:auto` or `:confirm`)
 > 2. Load the corresponding YAML file from `assets/`:
->    - Auto mode → `spec_kit_resume_auto.yaml`
->    - Confirm mode → `spec_kit_resume_confirm.yaml`
+>    - Auto mode → `speckit_resume_auto.yaml`
+>    - Confirm mode → `speckit_resume_confirm.yaml`
 > 3. Execute the YAML workflow step by step
 >
 > All content below defines workflow context for the YAML runner. Treat it as executable only when running this command workflow; otherwise use it as reference.
@@ -2115,8 +2115,8 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory
 - **ALL** agent dispatching is handled by the YAML workflow steps — this document is setup + reference only
 - **FIRST ACTION** is always: load the YAML file, then execute it step by step
 
-> **Format:** `/spec_kit:resume [spec-folder-path] [:auto|:confirm]`
-> Examples: `/spec_kit:resume specs/007-feature/` | `/spec_kit:resume:auto specs/007-feature/`
+> **Format:** `/speckit:resume [spec-folder-path] [:auto|:confirm]`
+> Examples: `/speckit:resume specs/007-feature/` | `/speckit:resume:auto specs/007-feature/`
 
 # SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
 
@@ -2191,7 +2191,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
    Q0. Spec Folder (if not detected/provided):
      No active session detected. Available spec folders: [list]
-     A) List and select  B) Start new with /spec_kit:complete  C) Cancel
+     A) List and select  B) Start new with /speckit:complete  C) Cancel
      E) Phase folder — resume a specific phase child (e.g., specs/NNN-name/001-phase/)
 
    Q1. Confirm Detected Session (if auto-detected):
@@ -2204,7 +2204,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
    Q3. Missing Artifacts (if artifacts_valid != yes):
      Missing: [list]
-     A) Run /spec_kit:plan  B) Select different folder  C) Continue anyway
+     A) Run /speckit:plan  B) Select different folder  C) Continue anyway
 
    Q4. Recovery Depth (when the canonical resume packet is still thin):
      A) Fast resume - just enough context to continue safely
@@ -2343,8 +2343,8 @@ $ARGUMENTS
 
 After all phases pass, load and execute the appropriate YAML prompt:
 
-- **AUTONOMOUS**: `.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml`
-- **INTERACTIVE**: `.opencode/commands/spec_kit/assets/spec_kit_resume_confirm.yaml`
+- **AUTONOMOUS**: `.opencode/commands/speckit/assets/speckit_resume_auto.yaml`
+- **INTERACTIVE**: `.opencode/commands/speckit/assets/speckit_resume_confirm.yaml`
 
 The YAML contains detailed step-by-step workflow, output formats, and all configuration.
 
@@ -2357,7 +2357,7 @@ The YAML contains detailed step-by-step workflow, output formats, and all config
 2. `memory_match_triggers()` — fast phrase matching (<50ms)
 3. `memory_context()` — L1 unified retrieval (score > 0.6)
 4. Deterministic filtered ranking (session-learning + alias-normalized spec roots)
-5. No session found → offer: /spec_kit:complete or specify path
+5. No session found → offer: /speckit:complete or specify path
 
 **Context loading priority (after spec_path confirmed):**
 1. handover.md (exists & <24h) → use handover context
@@ -2466,10 +2466,10 @@ _memory:
 
 - [ ] T020 Live `:auto` dispatch — `/deep:start-review-loop` (re-verify post-refactor).
 - [ ] T021 Live `:auto` dispatch — `/deep:start-research-loop`.
-- [ ] T022 Live `:auto` dispatch — `/spec_kit:resume`.
-- [ ] T023 Live `:auto` dispatch — `/spec_kit:implement`.
-- [ ] T024 Live `:auto` dispatch — `/spec_kit:complete`.
-- [ ] T025 Live `:auto` dispatch — `/spec_kit:plan`.
+- [ ] T022 Live `:auto` dispatch — `/speckit:resume`.
+- [ ] T023 Live `:auto` dispatch — `/speckit:implement`.
+- [ ] T024 Live `:auto` dispatch — `/speckit:complete`.
+- [ ] T025 Live `:auto` dispatch — `/speckit:plan`.
 - [ ] T026 Live `:auto` dispatch — `/create:changelog`.
 - [ ] T027 Live `:auto` dispatch — `/create:sk-skill`.
 - [ ] T028 Live `:auto` dispatch — `/create:agent`.
@@ -2511,48 +2511,48 @@ exec
 /bin/zsh -lc 'ls -l .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group1-dispatch.txt 2>/dev/null || true' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 exec
-/bin/zsh -lc 'rg -n "''^### `:auto` Setup Resolution|''^### PRE-BOUND|''^### Default Resolution Table|''^### Consolidated Setup Prompt|''^'"\\*\\*STATUS: BLOCKED\\*\\*|"'^argument-hint:" .opencode/commands/spec_kit/{deep-research,complete,implement,plan,resume}.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "''^### `:auto` Setup Resolution|''^### PRE-BOUND|''^### Default Resolution Table|''^### Consolidated Setup Prompt|''^'"\\*\\*STATUS: BLOCKED\\*\\*|"'^argument-hint:" .opencode/commands/speckit/{deep-research,complete,implement,plan,resume}.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 zsh:1: command not found: :auto
-.opencode/commands/spec_kit/resume.md:3:argument-hint: "[spec-folder-path] [:auto|:confirm] [--phase-folder=<path>]"
-.opencode/commands/spec_kit/resume.md:41:**STATUS: BLOCKED**
+.opencode/commands/speckit/resume.md:3:argument-hint: "[spec-folder-path] [:auto|:confirm] [--phase-folder=<path>]"
+.opencode/commands/speckit/resume.md:41:**STATUS: BLOCKED**
 .opencode/commands/deep/start-research-loop.md:3:argument-hint: "<topic> [:auto|:confirm] [--max-iterations=N] [--convergence=N]"
 .opencode/commands/deep/start-research-loop.md:50:**STATUS: BLOCKED**
-.opencode/commands/spec_kit/plan.md:3:argument-hint: "<feature-description> [:auto|:confirm] [:with-phases] [--intake-only] [--phases N] [--phase-names list] [--phase-folder=<path>] [--spec-folder=PATH] [--level=1|2|3|3+] [--start-state=STATE] [--repair-mode=MODE] [--record-relationships=yes|no] [--depends-on=IDs] [--related-to=IDs] [--supersedes=IDs]"
-.opencode/commands/spec_kit/plan.md:42:**STATUS: BLOCKED**
-.opencode/commands/spec_kit/implement.md:3:argument-hint: "<spec-folder> [:auto|:confirm] [--phase-folder=<path>]"
-.opencode/commands/spec_kit/implement.md:38:**STATUS: BLOCKED**
-.opencode/commands/spec_kit/complete.md:3:argument-hint: "<feature-description> [:auto|:confirm] [:with-research] [:with-phases] [--phases N] [--phase-names list] [--phase-folder=<path>]"
-.opencode/commands/spec_kit/complete.md:43:**STATUS: BLOCKED**
+.opencode/commands/speckit/plan.md:3:argument-hint: "<feature-description> [:auto|:confirm] [:with-phases] [--intake-only] [--phases N] [--phase-names list] [--phase-folder=<path>] [--spec-folder=PATH] [--level=1|2|3|3+] [--start-state=STATE] [--repair-mode=MODE] [--record-relationships=yes|no] [--depends-on=IDs] [--related-to=IDs] [--supersedes=IDs]"
+.opencode/commands/speckit/plan.md:42:**STATUS: BLOCKED**
+.opencode/commands/speckit/implement.md:3:argument-hint: "<spec-folder> [:auto|:confirm] [--phase-folder=<path>]"
+.opencode/commands/speckit/implement.md:38:**STATUS: BLOCKED**
+.opencode/commands/speckit/complete.md:3:argument-hint: "<feature-description> [:auto|:confirm] [:with-research] [:with-phases] [--phases N] [--phase-names list] [--phase-folder=<path>]"
+.opencode/commands/speckit/complete.md:43:**STATUS: BLOCKED**
 
 codex
 The five setup blocks all have the legacy full prompt immediately under `STATUS: BLOCKED`, with no existing `:auto` branch except the reference command. I’m checking the YAML/config naming now so the new Tier 1 text points at the right files instead of inventing names.
 exec
-/bin/zsh -lc "rg -n \"config\\.json|deep-research-config|complete-config|implement-config|plan-config|resume-config|CONFIG|config\" .opencode/commands/spec_kit/assets/spec_kit_{deep-research,complete,implement,plan,resume}_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_{deep-research,complete,implement,plan,resume}_confirm.yaml" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"config\\.json|deep-research-config|complete-config|implement-config|plan-config|resume-config|CONFIG|config\" .opencode/commands/speckit/assets/speckit_{deep-research,complete,implement,plan,resume}_auto.yaml .opencode/commands/speckit/assets/speckit_{deep-research,complete,implement,plan,resume}_confirm.yaml" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml:153:# PARALLEL DISPATCH CONFIGURATION
-.opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml:155:parallel_dispatch_config:
-.opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml:167:# MULTI-AGENT DISPATCH CONFIGURATION
-.opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml:169:multi_agent_config:
-.opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml:453:    - Setup first (structure, dependencies, config)
-.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:240:# PARALLEL DISPATCH CONFIGURATION
-.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:242:parallel_dispatch_config:
-.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:254:# MULTI-AGENT DISPATCH CONFIGURATION
-.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:256:multi_agent_config:
-.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml:267:# PARALLEL DISPATCH CONFIGURATION
-.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml:269:parallel_dispatch_config:
-.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml:281:# MULTI-AGENT DISPATCH CONFIGURATION
-.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml:283:multi_agent_config:
-.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml:943:    - Setup first (structure, dependencies, config)
-.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:234:# PARALLEL DISPATCH CONFIGURATION
-.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:236:parallel_dispatch_config:
-.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:248:# MULTI-AGENT DISPATCH CONFIGURATION
-.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:250:multi_agent_config:
-.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:189:# PARALLEL DISPATCH CONFIGURATION
-.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:191:parallel_dispatch_config:
-.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:203:# MULTI-AGENT DISPATCH CONFIGURATION
-.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:205:multi_agent_config:
-.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:444:    - Setup first (structure, dependencies, config)
+.opencode/commands/speckit/assets/speckit_implement_confirm.yaml:153:# PARALLEL DISPATCH CONFIGURATION
+.opencode/commands/speckit/assets/speckit_implement_confirm.yaml:155:parallel_dispatch_config:
+.opencode/commands/speckit/assets/speckit_implement_confirm.yaml:167:# MULTI-AGENT DISPATCH CONFIGURATION
+.opencode/commands/speckit/assets/speckit_implement_confirm.yaml:169:multi_agent_config:
+.opencode/commands/speckit/assets/speckit_implement_confirm.yaml:453:    - Setup first (structure, dependencies, config)
+.opencode/commands/speckit/assets/speckit_plan_confirm.yaml:240:# PARALLEL DISPATCH CONFIGURATION
+.opencode/commands/speckit/assets/speckit_plan_confirm.yaml:242:parallel_dispatch_config:
+.opencode/commands/speckit/assets/speckit_plan_confirm.yaml:254:# MULTI-AGENT DISPATCH CONFIGURATION
+.opencode/commands/speckit/assets/speckit_plan_confirm.yaml:256:multi_agent_config:
+.opencode/commands/speckit/assets/speckit_complete_confirm.yaml:267:# PARALLEL DISPATCH CONFIGURATION
+.opencode/commands/speckit/assets/speckit_complete_confirm.yaml:269:parallel_dispatch_config:
+.opencode/commands/speckit/assets/speckit_complete_confirm.yaml:281:# MULTI-AGENT DISPATCH CONFIGURATION
+.opencode/commands/speckit/assets/speckit_complete_confirm.yaml:283:multi_agent_config:
+.opencode/commands/speckit/assets/speckit_complete_confirm.yaml:943:    - Setup first (structure, dependencies, config)
+.opencode/commands/speckit/assets/speckit_plan_auto.yaml:234:# PARALLEL DISPATCH CONFIGURATION
+.opencode/commands/speckit/assets/speckit_plan_auto.yaml:236:parallel_dispatch_config:
+.opencode/commands/speckit/assets/speckit_plan_auto.yaml:248:# MULTI-AGENT DISPATCH CONFIGURATION
+.opencode/commands/speckit/assets/speckit_plan_auto.yaml:250:multi_agent_config:
+.opencode/commands/speckit/assets/speckit_implement_auto.yaml:189:# PARALLEL DISPATCH CONFIGURATION
+.opencode/commands/speckit/assets/speckit_implement_auto.yaml:191:parallel_dispatch_config:
+.opencode/commands/speckit/assets/speckit_implement_auto.yaml:203:# MULTI-AGENT DISPATCH CONFIGURATION
+.opencode/commands/speckit/assets/speckit_implement_auto.yaml:205:multi_agent_config:
+.opencode/commands/speckit/assets/speckit_implement_auto.yaml:444:    - Setup first (structure, dependencies, config)
 .opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:61:    config: .opencode/skills/deep-research/assets/deep_research_config.json
 .opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:65:# AGENT CONFIGURATION
 .opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml:67:agent_config:
@@ -2691,17 +2691,17 @@ exec
 .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:948:        edit: "{state_paths.config}"
 .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:997:        - State files: config.json, state.jsonl, strategy.md, findings-registry.json, dashboard.md
 .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:1030:    - modify_config_after_initialization
-.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml:258:# PARALLEL DISPATCH CONFIGURATION
-.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml:260:parallel_dispatch_config:
-.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml:272:# MULTI-AGENT DISPATCH CONFIGURATION
-.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml:274:multi_agent_config:
-.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml:884:    - Setup first (project structure, dependencies, configuration)
+.opencode/commands/speckit/assets/speckit_complete_auto.yaml:258:# PARALLEL DISPATCH CONFIGURATION
+.opencode/commands/speckit/assets/speckit_complete_auto.yaml:260:parallel_dispatch_config:
+.opencode/commands/speckit/assets/speckit_complete_auto.yaml:272:# MULTI-AGENT DISPATCH CONFIGURATION
+.opencode/commands/speckit/assets/speckit_complete_auto.yaml:274:multi_agent_config:
+.opencode/commands/speckit/assets/speckit_complete_auto.yaml:884:    - Setup first (project structure, dependencies, configuration)
 
 exec
 /bin/zsh -lc "node - <<'NODE'
 const fs=require('fs'); const crypto=require('crypto');
 for (const f of ['deep-research','complete','implement','plan','resume']) {
- const p="'`.opencode/commands/spec_kit/${f}.md`;
+ const p="'`.opencode/commands/speckit/${f}.md`;
  const s=fs.readFileSync(p,'"'utf8');
  const start=s.indexOf('**STATUS: BLOCKED**');
  const fence=s.indexOf('"'```'"', start);
@@ -2726,10 +2726,10 @@ const root = '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public'
 const suffix = ' (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)';
 const files = {
   'deep-research': '.opencode/commands/deep/start-research-loop.md',
-  complete: '.opencode/commands/spec_kit/complete.md',
-  implement: '.opencode/commands/spec_kit/implement.md',
-  plan: '.opencode/commands/spec_kit/plan.md',
-  resume: '.opencode/commands/spec_kit/resume.md',
+  complete: '.opencode/commands/speckit/complete.md',
+  implement: '.opencode/commands/speckit/implement.md',
+  plan: '.opencode/commands/speckit/plan.md',
+  resume: '.opencode/commands/speckit/resume.md',
 };
 function block(lines) { return lines.join('\\n') + '\\n'; }
 function updateHint(s) {
@@ -2808,11 +2808,11 @@ sections.complete = block([
 '',
 'Under "'`execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:'"',
 '',
-'1. **Tier 1 — Resolve confidently** (contract §1): parse "'`$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/complete-config.json` (shape: `featureDescription`, `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `researchIntent`, `researchIntegration`, `phaseDecomposition`, `phaseCount`, `phaseNames`, `intake.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml`. End §0.'"',
+'1. **Tier 1 — Resolve confidently** (contract §1): parse "'`$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/complete-config.json` (shape: `featureDescription`, `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `researchIntent`, `researchIntegration`, `phaseDecomposition`, `phaseCount`, `phaseNames`, `intake.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/speckit/assets/speckit_complete_auto.yaml`. End §0.'"',
 '',
 '2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): "'`spec_folder`, `research_intent`. **Ordering rule**: none needed. Missing `feature_description` is absence, not ambiguity — go to Tier 3.'"',
 '',
-'3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with "'`/spec_kit:complete:auto` as the command name. Exit non-zero. Do not load YAML.'"',
+'3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with "'`/speckit:complete:auto` as the command name. Exit non-zero. Do not load YAML.'"',
 '',
 '"'`:confirm` path stays unchanged — see the consolidated setup prompt section below.'"',
 '',
@@ -2876,11 +2876,11 @@ sections.implement = block([
 '',
 'Under "'`execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:'"',
 '',
-'1. **Tier 1 — Resolve confidently** (contract §1): parse "'`$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/implement-config.json` (shape: `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `confirmChoice`, `resumeChoice`, `prerequisitesValid`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`. End §0.'"',
+'1. **Tier 1 — Resolve confidently** (contract §1): parse "'`$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/implement-config.json` (shape: `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `confirmChoice`, `resumeChoice`, `prerequisitesValid`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/speckit/assets/speckit_implement_auto.yaml`. End §0.'"',
 '',
 '2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): "'`spec_folder`, `resume_choice`. **Ordering rule**: ask only for `spec_folder` first when folder detection is ambiguous — prerequisite and resume-session checks depend on it. Missing `spec_folder` with no viable candidates is absence, not ambiguity — go to Tier 3.'"',
 '',
-'3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with "'`/spec_kit:implement:auto` as the command name. Exit non-zero. Do not load YAML.'"',
+'3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with "'`/speckit:implement:auto` as the command name. Exit non-zero. Do not load YAML.'"',
 '',
 '"'`:confirm` path stays unchanged — see the consolidated setup prompt section below.'"',
 '',
@@ -2924,11 +2924,11 @@ sections.plan = block([
 '',
 'Under "'`execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:'"',
 '',
-'1. **Tier 1 — Resolve confidently** (contract §1): parse "'`$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/plan-config.json` (shape: `featureDescription`, `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `researchIntent`, `phaseDecomposition`, `phaseCount`, `phaseNames`, `intakeOnly`, `intake.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml`. End §0.'"',
+'1. **Tier 1 — Resolve confidently** (contract §1): parse "'`$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/plan-config.json` (shape: `featureDescription`, `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `researchIntent`, `phaseDecomposition`, `phaseCount`, `phaseNames`, `intakeOnly`, `intake.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/speckit/assets/speckit_plan_auto.yaml`. End §0.'"',
 '',
 '2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): "'`spec_folder`, `research_intent`. **Ordering rule**: none needed. Missing `feature_description` is absence, not ambiguity — go to Tier 3.'"',
 '',
-'3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with "'`/spec_kit:plan:auto` as the command name. Exit non-zero. Do not load YAML.'"',
+'3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with "'`/speckit:plan:auto` as the command name. Exit non-zero. Do not load YAML.'"',
 '',
 '"'`:confirm` path stays unchanged — see the consolidated setup prompt section below.'"',
 '',
@@ -2992,11 +2992,11 @@ sections.resume = block([
 '',
 'Under "'`execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:'"',
 '',
-'1. **Tier 1 — Resolve confidently** (contract §1): parse "'`$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/resume-config.json` (shape: `specPath`, `detectionMethod`, `executionMode: "auto"`, `continuationChoice`, `artifactRecoveryChoice`, `memoryChoice`, `artifactsValid`, `continuitySourcesAvailable`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml`. End §0.'"',
+'1. **Tier 1 — Resolve confidently** (contract §1): parse "'`$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/resume-config.json` (shape: `specPath`, `detectionMethod`, `executionMode: "auto"`, `continuationChoice`, `artifactRecoveryChoice`, `memoryChoice`, `artifactsValid`, `continuitySourcesAvailable`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/speckit/assets/speckit_resume_auto.yaml`. End §0.'"',
 '',
 '2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): "'`spec_folder`, `continuation_choice`. **Ordering rule**: ask only for `spec_folder` first when detection is ambiguous — continuation validation depends on it. Missing `spec_folder` with no viable candidates is absence, not ambiguity — go to Tier 3.'"',
 '',
-'3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with "'`/spec_kit:resume:auto` as the command name. Exit non-zero. Do not load YAML.'"',
+'3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with "'`/speckit:resume:auto` as the command name. Exit non-zero. Do not load YAML.'"',
 '',
 '"'`:confirm` path stays unchanged — see the consolidated setup prompt section below.'"',
 '',
@@ -3054,44 +3054,44 @@ NODE' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 codex
 The command files now have the shared-contract sections inserted ahead of the legacy prompt. I’m doing a read-back pass before touching the task/evidence files, especially checking that the `STATUS: BLOCKED` fenced blocks hash exactly the same as before.
 exec
-/bin/zsh -lc 'rg -n "argument-hint:|auto_mode_contract|PRE-BOUND SETUP ANSWERS|Default Resolution Table|Tier 2 — Targeted ask" .opencode/commands/spec_kit/{deep-research,complete,implement,plan,resume}.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "argument-hint:|auto_mode_contract|PRE-BOUND SETUP ANSWERS|Default Resolution Table|Tier 2 — Targeted ask" .opencode/commands/speckit/{deep-research,complete,implement,plan,resume}.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/commands/spec_kit/complete.md:3:argument-hint: "<feature-description> [:auto|:confirm] [:with-research] [:with-phases] [--phases N] [--phase-names list] [--phase-folder=<path>] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
-.opencode/commands/spec_kit/complete.md:47:Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md`.
-.opencode/commands/spec_kit/complete.md:51:1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/complete-config.json` (shape: `featureDescription`, `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `researchIntent`, `researchIntegration`, `phaseDecomposition`, `phaseCount`, `phaseNames`, `intake.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml`. End §0.
-.opencode/commands/spec_kit/complete.md:53:2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`, `research_intent`. **Ordering rule**: none needed. Missing `feature_description` is absence, not ambiguity — go to Tier 3.
-.opencode/commands/spec_kit/complete.md:59:### PRE-BOUND SETUP ANSWERS Schema (for `:auto` non-interactive dispatch)
-.opencode/commands/spec_kit/complete.md:61:The dispatched prompt body may contain one structured marker block. Parse it before applying defaults. Grammar: see `auto_mode_contract.md` §2.
-.opencode/commands/spec_kit/complete.md:64:PRE-BOUND SETUP ANSWERS:
-.opencode/commands/spec_kit/complete.md:85:Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default; marker fields take precedence over `$ARGUMENTS` flags; unknown fields warn; malformed lines parse-error).
-.opencode/commands/spec_kit/complete.md:87:### Default Resolution Table
-.opencode/commands/spec_kit/resume.md:3:argument-hint: "[spec-folder-path] [:auto|:confirm] [--phase-folder=<path>] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
-.opencode/commands/spec_kit/resume.md:45:Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md`.
-.opencode/commands/spec_kit/resume.md:49:1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/resume-config.json` (shape: `specPath`, `detectionMethod`, `executionMode: "auto"`, `continuationChoice`, `artifactRecoveryChoice`, `memoryChoice`, `artifactsValid`, `continuitySourcesAvailable`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml`. End §0.
-.opencode/commands/spec_kit/resume.md:51:2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`, `continuation_choice`. **Ordering rule**: ask only for `spec_folder` first when detection is ambiguous — continuation validation depends on it. Missing `spec_folder` with no viable candidates is absence, not ambiguity — go to Tier 3.
-.opencode/commands/spec_kit/resume.md:57:### PRE-BOUND SETUP ANSWERS Schema (for `:auto` non-interactive dispatch)
-.opencode/commands/spec_kit/resume.md:59:The dispatched prompt body may contain one structured marker block. Parse it before applying defaults. Grammar: see `auto_mode_contract.md` §2.
-.opencode/commands/spec_kit/resume.md:62:PRE-BOUND SETUP ANSWERS:
-.opencode/commands/spec_kit/resume.md:75:Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default; marker fields take precedence over `$ARGUMENTS` flags; unknown fields warn; malformed lines parse-error).
-.opencode/commands/spec_kit/resume.md:77:### Default Resolution Table
-.opencode/commands/spec_kit/implement.md:3:argument-hint: "<spec-folder> [:auto|:confirm] [--phase-folder=<path>] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
-.opencode/commands/spec_kit/implement.md:42:Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md`.
-.opencode/commands/spec_kit/implement.md:46:1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/implement-config.json` (shape: `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `confirmChoice`, `resumeChoice`, `prerequisitesValid`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`. End §0.
-.opencode/commands/spec_kit/implement.md:48:2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`, `resume_choice`. **Ordering rule**: ask only for `spec_folder` first when folder detection is ambiguous — prerequisite and resume-session checks depend on it. Missing `spec_folder` with no viable candidates is absence, not ambiguity — go to Tier 3.
-.opencode/commands/spec_kit/implement.md:54:### PRE-BOUND SETUP ANSWERS Schema (for `:auto` non-interactive dispatch)
-.opencode/commands/spec_kit/implement.md:56:The dispatched prompt body may contain one structured marker block. Parse it before applying defaults. Grammar: see `auto_mode_contract.md` §2.
-.opencode/commands/spec_kit/implement.md:59:PRE-BOUND SETUP ANSWERS:
-.opencode/commands/spec_kit/implement.md:70:Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default; marker fields take precedence over `$ARGUMENTS` flags; unknown fields warn; malformed lines parse-error).
-.opencode/commands/spec_kit/implement.md:72:### Default Resolution Table
-.opencode/commands/spec_kit/plan.md:3:argument-hint: "<feature-description> [:auto|:confirm] [:with-phases] [--intake-only] [--phases N] [--phase-names list] [--phase-folder=<path>] [--spec-folder=PATH] [--level=1|2|3|3+] [--start-state=STATE] [--repair-mode=MODE] [--record-relationships=yes|no] [--depends-on=IDs] [--related-to=IDs] [--supersedes=IDs] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
-.opencode/commands/spec_kit/plan.md:46:Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md`.
-.opencode/commands/spec_kit/plan.md:50:1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/plan-config.json` (shape: `featureDescription`, `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `researchIntent`, `phaseDecomposition`, `phaseCount`, `phaseNames`, `intakeOnly`, `intake.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml`. End §0.
-.opencode/commands/spec_kit/plan.md:52:2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`, `research_intent`. **Ordering rule**: none needed. Missing `feature_description` is absence, not ambiguity — go to Tier 3.
-.opencode/commands/spec_kit/plan.md:58:### PRE-BOUND SETUP ANSWERS Schema (for `:auto` non-interactive dispatch)
-.opencode/commands/spec_kit/plan.md:60:The dispatched prompt body may contain one structured marker block. Parse it before applying defaults. Grammar: see `auto_mode_contract.md` §2.
-.opencode/commands/spec_kit/plan.md:63:PRE-BOUND SETUP ANSWERS:
-.opencode/commands/spec_kit/plan.md:84:Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default; marker fields take precedence over `$ARGUMENTS` flags; unknown fields warn; malformed lines parse-error).
-.opencode/commands/spec_kit/plan.md:86:### Default Resolution Table
+.opencode/commands/speckit/complete.md:3:argument-hint: "<feature-description> [:auto|:confirm] [:with-research] [:with-phases] [--phases N] [--phase-names list] [--phase-folder=<path>] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
+.opencode/commands/speckit/complete.md:47:Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md`.
+.opencode/commands/speckit/complete.md:51:1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/complete-config.json` (shape: `featureDescription`, `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `researchIntent`, `researchIntegration`, `phaseDecomposition`, `phaseCount`, `phaseNames`, `intake.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/speckit/assets/speckit_complete_auto.yaml`. End §0.
+.opencode/commands/speckit/complete.md:53:2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`, `research_intent`. **Ordering rule**: none needed. Missing `feature_description` is absence, not ambiguity — go to Tier 3.
+.opencode/commands/speckit/complete.md:59:### PRE-BOUND SETUP ANSWERS Schema (for `:auto` non-interactive dispatch)
+.opencode/commands/speckit/complete.md:61:The dispatched prompt body may contain one structured marker block. Parse it before applying defaults. Grammar: see `auto_mode_contract.md` §2.
+.opencode/commands/speckit/complete.md:64:PRE-BOUND SETUP ANSWERS:
+.opencode/commands/speckit/complete.md:85:Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default; marker fields take precedence over `$ARGUMENTS` flags; unknown fields warn; malformed lines parse-error).
+.opencode/commands/speckit/complete.md:87:### Default Resolution Table
+.opencode/commands/speckit/resume.md:3:argument-hint: "[spec-folder-path] [:auto|:confirm] [--phase-folder=<path>] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
+.opencode/commands/speckit/resume.md:45:Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md`.
+.opencode/commands/speckit/resume.md:49:1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/resume-config.json` (shape: `specPath`, `detectionMethod`, `executionMode: "auto"`, `continuationChoice`, `artifactRecoveryChoice`, `memoryChoice`, `artifactsValid`, `continuitySourcesAvailable`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/speckit/assets/speckit_resume_auto.yaml`. End §0.
+.opencode/commands/speckit/resume.md:51:2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`, `continuation_choice`. **Ordering rule**: ask only for `spec_folder` first when detection is ambiguous — continuation validation depends on it. Missing `spec_folder` with no viable candidates is absence, not ambiguity — go to Tier 3.
+.opencode/commands/speckit/resume.md:57:### PRE-BOUND SETUP ANSWERS Schema (for `:auto` non-interactive dispatch)
+.opencode/commands/speckit/resume.md:59:The dispatched prompt body may contain one structured marker block. Parse it before applying defaults. Grammar: see `auto_mode_contract.md` §2.
+.opencode/commands/speckit/resume.md:62:PRE-BOUND SETUP ANSWERS:
+.opencode/commands/speckit/resume.md:75:Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default; marker fields take precedence over `$ARGUMENTS` flags; unknown fields warn; malformed lines parse-error).
+.opencode/commands/speckit/resume.md:77:### Default Resolution Table
+.opencode/commands/speckit/implement.md:3:argument-hint: "<spec-folder> [:auto|:confirm] [--phase-folder=<path>] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
+.opencode/commands/speckit/implement.md:42:Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md`.
+.opencode/commands/speckit/implement.md:46:1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/implement-config.json` (shape: `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `confirmChoice`, `resumeChoice`, `prerequisitesValid`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/speckit/assets/speckit_implement_auto.yaml`. End §0.
+.opencode/commands/speckit/implement.md:48:2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`, `resume_choice`. **Ordering rule**: ask only for `spec_folder` first when folder detection is ambiguous — prerequisite and resume-session checks depend on it. Missing `spec_folder` with no viable candidates is absence, not ambiguity — go to Tier 3.
+.opencode/commands/speckit/implement.md:54:### PRE-BOUND SETUP ANSWERS Schema (for `:auto` non-interactive dispatch)
+.opencode/commands/speckit/implement.md:56:The dispatched prompt body may contain one structured marker block. Parse it before applying defaults. Grammar: see `auto_mode_contract.md` §2.
+.opencode/commands/speckit/implement.md:59:PRE-BOUND SETUP ANSWERS:
+.opencode/commands/speckit/implement.md:70:Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default; marker fields take precedence over `$ARGUMENTS` flags; unknown fields warn; malformed lines parse-error).
+.opencode/commands/speckit/implement.md:72:### Default Resolution Table
+.opencode/commands/speckit/plan.md:3:argument-hint: "<feature-description> [:auto|:confirm] [:with-phases] [--intake-only] [--phases N] [--phase-names list] [--phase-folder=<path>] [--spec-folder=PATH] [--level=1|2|3|3+] [--start-state=STATE] [--repair-mode=MODE] [--record-relationships=yes|no] [--depends-on=IDs] [--related-to=IDs] [--supersedes=IDs] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
+.opencode/commands/speckit/plan.md:46:Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md`.
+.opencode/commands/speckit/plan.md:50:1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/plan-config.json` (shape: `featureDescription`, `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `researchIntent`, `phaseDecomposition`, `phaseCount`, `phaseNames`, `intakeOnly`, `intake.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/speckit/assets/speckit_plan_auto.yaml`. End §0.
+.opencode/commands/speckit/plan.md:52:2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`, `research_intent`. **Ordering rule**: none needed. Missing `feature_description` is absence, not ambiguity — go to Tier 3.
+.opencode/commands/speckit/plan.md:58:### PRE-BOUND SETUP ANSWERS Schema (for `:auto` non-interactive dispatch)
+.opencode/commands/speckit/plan.md:60:The dispatched prompt body may contain one structured marker block. Parse it before applying defaults. Grammar: see `auto_mode_contract.md` §2.
+.opencode/commands/speckit/plan.md:63:PRE-BOUND SETUP ANSWERS:
+.opencode/commands/speckit/plan.md:84:Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default; marker fields take precedence over `$ARGUMENTS` flags; unknown fields warn; malformed lines parse-error).
+.opencode/commands/speckit/plan.md:86:### Default Resolution Table
 .opencode/commands/deep/start-research-loop.md:3:argument-hint: "<topic> [:auto|:confirm] [--max-iterations=N] [--convergence=N] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
 .opencode/commands/deep/start-research-loop.md:54:Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md`.
 .opencode/commands/deep/start-research-loop.md:58:1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{artifact_dir}/deep-research-config.json` (shape: `researchTopic`, `specFolder`, `maxIterations`, `convergenceThreshold`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`. End §0.
@@ -3103,12 +3103,12 @@ exec
 .opencode/commands/deep/start-research-loop.md:87:### Default Resolution Table
 
 exec
-/bin/zsh -lc "git diff -- .opencode/commands/deep/start-research-loop.md .opencode/commands/spec_kit/complete.md .opencode/commands/spec_kit/implement.md .opencode/commands/spec_kit/plan.md .opencode/commands/spec_kit/resume.md | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "git diff -- .opencode/commands/deep/start-research-loop.md .opencode/commands/speckit/complete.md .opencode/commands/speckit/implement.md .opencode/commands/speckit/plan.md .opencode/commands/speckit/resume.md | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-diff --git a/.opencode/commands/spec_kit/complete.md b/.opencode/commands/spec_kit/complete.md
+diff --git a/.opencode/commands/speckit/complete.md b/.opencode/commands/speckit/complete.md
 index 1f9373c1dc..f984189f40 100644
---- a/.opencode/commands/spec_kit/complete.md
-+++ b/.opencode/commands/spec_kit/complete.md
+--- a/.opencode/commands/speckit/complete.md
++++ b/.opencode/commands/speckit/complete.md
 @@ -1,6 +1,6 @@
  ---
  description: End-to-end SpecKit workflow (14+ steps). Modes: :auto, :confirm, :with-research, :with-phases.
@@ -3134,11 +3134,11 @@ index 1f9373c1dc..f984189f40 100644
 +
 +Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 +
-+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/complete-config.json` (shape: `featureDescription`, `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `researchIntent`, `researchIntegration`, `phaseDecomposition`, `phaseCount`, `phaseNames`, `intake.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml`. End §0.
++1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/complete-config.json` (shape: `featureDescription`, `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `researchIntent`, `researchIntegration`, `phaseDecomposition`, `phaseCount`, `phaseNames`, `intake.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/speckit/assets/speckit_complete_auto.yaml`. End §0.
 +
 +2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`, `research_intent`. **Ordering rule**: none needed. Missing `feature_description` is absence, not ambiguity — go to Tier 3.
 +
-+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/spec_kit:complete:auto` as the command name. Exit non-zero. Do not load YAML.
++3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/speckit:complete:auto` as the command name. Exit non-zero. Do not load YAML.
 +
 +`:confirm` path stays unchanged — see the consolidated setup prompt section below.
 +
@@ -3270,10 +3270,10 @@ index 88f709fa4e..2a54a33edb 100644
  
  **STATUS: BLOCKED**
  
-diff --git a/.opencode/commands/spec_kit/implement.md b/.opencode/commands/spec_kit/implement.md
+diff --git a/.opencode/commands/speckit/implement.md b/.opencode/commands/speckit/implement.md
 index 55c76b6dea..e7a8ceb38b 100644
---- a/.opencode/commands/spec_kit/implement.md
-+++ b/.opencode/commands/spec_kit/implement.md
+--- a/.opencode/commands/speckit/implement.md
++++ b/.opencode/commands/speckit/implement.md
 @@ -1,6 +1,6 @@
  ---
  description: Implementation workflow (9 steps): execute pre-planned work. Requires plan.md. Modes :auto, :confirm.
@@ -3297,11 +3297,11 @@ index 55c76b6dea..e7a8ceb38b 100644
 +
 +Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 +
-+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/implement-config.json` (shape: `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `confirmChoice`, `resumeChoice`, `prerequisitesValid`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`. End §0.
++1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/implement-config.json` (shape: `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `confirmChoice`, `resumeChoice`, `prerequisitesValid`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/speckit/assets/speckit_implement_auto.yaml`. End §0.
 +
 +2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`, `resume_choice`. **Ordering rule**: ask only for `spec_folder` first when folder detection is ambiguous — prerequisite and resume-session checks depend on it. Missing `spec_folder` with no viable candidates is absence, not ambiguity — go to Tier 3.
 +
-+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/spec_kit:implement:auto` as the command name. Exit non-zero. Do not load YAML.
++3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/speckit:implement:auto` as the command name. Exit non-zero. Do not load YAML.
 +
 +`:confirm` path stays unchanged — see the consolidated setup prompt section below.
 +
@@ -3338,10 +3338,10 @@ index 55c76b6dea..e7a8ceb38b 100644
  
  **STATUS: BLOCKED**
  
-diff --git a/.opencode/commands/spec_kit/plan.md b/.opencode/commands/spec_kit/plan.md
+diff --git a/.opencode/commands/speckit/plan.md b/.opencode/commands/speckit/plan.md
 index 7e5580e47d..d3220dd845 100644
---- a/.opencode/commands/spec_kit/plan.md
-+++ b/.opencode/commands/spec_kit/plan.md
+--- a/.opencode/commands/speckit/plan.md
++++ b/.opencode/commands/speckit/plan.md
 @@ -1,6 +1,6 @@
  ---
  description: Planning workflow (8 steps): spec through plan only. Modes :auto, :confirm, :with-phases.
@@ -3377,7 +3377,7 @@ const before={
  resume:'2123ab4b502a1592f19fd580923a29258c56b1ee09d94331bd58af87fd30a3c1',
 };
 for (const f of Object.keys(before)) {
- const p="'`.opencode/commands/spec_kit/${f}.md`;
+ const p="'`.opencode/commands/speckit/${f}.md`;
  const s=fs.readFileSync(p,'"'utf8');
  const start=s.indexOf('**STATUS: BLOCKED**');
  const fence=s.indexOf('"'```'"', start);
@@ -3413,22 +3413,22 @@ index 0000000000000000000000000000000000000000..3b0e4380f4031f08e12b15887ab0a806
 +- Tier-2 candidates identified: spec_folder
 +- Concerns: `spec_folder` is treated as a targeted-ask candidate only when the research topic is present but folder choice is ambiguous; missing `research_topic` goes straight to Tier 3.
 +
-+## /spec_kit:complete
++## /speckit:complete
 +- Fields migrated count: 18
 +- Tier-2 candidates identified: spec_folder, research_intent
 +- Concerns: Chose `{spec_path}/complete-config.json` as the command-specific setup config path because no existing complete config file was present in the YAML assets.
 +
-+## /spec_kit:implement
++## /speckit:implement
 +- Fields migrated count: 8
 +- Tier-2 candidates identified: spec_folder, resume_choice
 +- Concerns: `confirm_choice` defaults to yes only after prerequisite validation passes; invalid or absent prerequisites still fail setup rather than silently continuing.
 +
-+## /spec_kit:plan
++## /speckit:plan
 +- Fields migrated count: 18
 +- Tier-2 candidates identified: spec_folder, research_intent
 +- Concerns: Chose `{spec_path}/plan-config.json` as the command-specific setup config path because no existing plan config file was present in the YAML assets.
 +
-+## /spec_kit:resume
++## /speckit:resume
 +- Fields migrated count: 10
 +- Tier-2 candidates identified: spec_folder, continuation_choice
 +- Concerns: `artifact_recovery_choice` defaults to `continue_anyway` under resume auto mode so missing artifacts do not consume a Tier-2 slot; hard path absence still fails fast.
@@ -3472,22 +3472,22 @@ index 0000000000000000000000000000000000000000..3b0e4380f4031f08e12b15887ab0a806
 +- Tier-2 candidates identified: spec_folder
 +- Concerns: `spec_folder` is treated as a targeted-ask candidate only when the research topic is present but folder choice is ambiguous; missing `research_topic` goes straight to Tier 3.
 +
-+## /spec_kit:complete
++## /speckit:complete
 +- Fields migrated count: 18
 +- Tier-2 candidates identified: spec_folder, research_intent
 +- Concerns: Chose `{spec_path}/complete-config.json` as the command-specific setup config path because no existing complete config file was present in the YAML assets.
 +
-+## /spec_kit:implement
++## /speckit:implement
 +- Fields migrated count: 8
 +- Tier-2 candidates identified: spec_folder, resume_choice
 +- Concerns: `confirm_choice` defaults to yes only after prerequisite validation passes; invalid or absent prerequisites still fail setup rather than silently continuing.
 +
-+## /spec_kit:plan
++## /speckit:plan
 +- Fields migrated count: 18
 +- Tier-2 candidates identified: spec_folder, research_intent
 +- Concerns: Chose `{spec_path}/plan-config.json` as the command-specific setup config path because no existing plan config file was present in the YAML assets.
 +
-+## /spec_kit:resume
++## /speckit:resume
 +- Fields migrated count: 10
 +- Tier-2 candidates identified: spec_folder, continuation_choice
 +- Concerns: `artifact_recovery_choice` defaults to `continue_anyway` under resume auto mode so missing artifacts do not consume a Tier-2 slot; hard path absence still fails fast.
@@ -3523,11 +3523,11 @@ The scoped task and evidence file are in place. I’m doing the final verificati
 exec
 /bin/zsh -lc 'git diff --name-only' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/commands/spec_kit/complete.md
+.opencode/commands/speckit/complete.md
 .opencode/commands/deep/start-research-loop.md
-.opencode/commands/spec_kit/implement.md
-.opencode/commands/spec_kit/plan.md
-.opencode/commands/spec_kit/resume.md
+.opencode/commands/speckit/implement.md
+.opencode/commands/speckit/plan.md
+.opencode/commands/speckit/resume.md
 .opencode/skills/deep-ai-council/README.md
 .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/tasks.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/graph-metadata.json
@@ -3544,7 +3544,7 @@ const before={
 };
 let ok=true;
 for (const f of Object.keys(before)) {
- const p="'`.opencode/commands/spec_kit/${f}.md`;
+ const p="'`.opencode/commands/speckit/${f}.md`;
  const s=fs.readFileSync(p,'"'utf8');
  const start=s.indexOf('**STATUS: BLOCKED**');
  const fence=s.indexOf('"'```'"', start);
@@ -3563,7 +3563,7 @@ plan: :confirm preserved
 resume: :confirm preserved
 
 exec
-/bin/zsh -lc 'for f in deep-research complete implement plan resume; do p=.opencode/commands/spec_kit/$f.md; printf '"'%s ' \""'$f"; rg -q "auto_mode_contract.md" "$p" && rg -q "PRE-BOUND SETUP ANSWERS" "$p" && rg -q "Default Resolution Table" "$p" && rg -q "argument-hint: .*PRE-BOUND SETUP ANSWERS" "$p" && echo OK || echo FAIL; done' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'for f in deep-research complete implement plan resume; do p=.opencode/commands/speckit/$f.md; printf '"'%s ' \""'$f"; rg -q "auto_mode_contract.md" "$p" && rg -q "PRE-BOUND SETUP ANSWERS" "$p" && rg -q "Default Resolution Table" "$p" && rg -q "argument-hint: .*PRE-BOUND SETUP ANSWERS" "$p" && echo OK || echo FAIL; done' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 deep-research OK
 complete OK
@@ -3584,22 +3584,22 @@ index 0000000000000000000000000000000000000000..3b0e4380f4031f08e12b15887ab0a806
 +- Tier-2 candidates identified: spec_folder
 +- Concerns: `spec_folder` is treated as a targeted-ask candidate only when the research topic is present but folder choice is ambiguous; missing `research_topic` goes straight to Tier 3.
 +
-+## /spec_kit:complete
++## /speckit:complete
 +- Fields migrated count: 18
 +- Tier-2 candidates identified: spec_folder, research_intent
 +- Concerns: Chose `{spec_path}/complete-config.json` as the command-specific setup config path because no existing complete config file was present in the YAML assets.
 +
-+## /spec_kit:implement
++## /speckit:implement
 +- Fields migrated count: 8
 +- Tier-2 candidates identified: spec_folder, resume_choice
 +- Concerns: `confirm_choice` defaults to yes only after prerequisite validation passes; invalid or absent prerequisites still fail setup rather than silently continuing.
 +
-+## /spec_kit:plan
++## /speckit:plan
 +- Fields migrated count: 18
 +- Tier-2 candidates identified: spec_folder, research_intent
 +- Concerns: Chose `{spec_path}/plan-config.json` as the command-specific setup config path because no existing plan config file was present in the YAML assets.
 +
-+## /spec_kit:resume
++## /speckit:resume
 +- Fields migrated count: 10
 +- Tier-2 candidates identified: spec_folder, continuation_choice
 +- Concerns: `artifact_recovery_choice` defaults to `continue_anyway` under resume auto mode so missing artifacts do not consume a Tier-2 slot; hard path absence still fails fast.
@@ -3635,11 +3635,11 @@ exec
 exec
 /bin/zsh -lc 'git status --short' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
- M .opencode/commands/spec_kit/complete.md
+ M .opencode/commands/speckit/complete.md
  M .opencode/commands/deep/start-research-loop.md
- M .opencode/commands/spec_kit/implement.md
- M .opencode/commands/spec_kit/plan.md
- M .opencode/commands/spec_kit/resume.md
+ M .opencode/commands/speckit/implement.md
+ M .opencode/commands/speckit/plan.md
+ M .opencode/commands/speckit/resume.md
  M .opencode/skills/deep-ai-council/README.md
  M .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/tasks.md
  M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/graph-metadata.json
@@ -3658,22 +3658,22 @@ index 0000000000000000000000000000000000000000..3b0e4380f4031f08e12b15887ab0a806
 +- Tier-2 candidates identified: spec_folder
 +- Concerns: `spec_folder` is treated as a targeted-ask candidate only when the research topic is present but folder choice is ambiguous; missing `research_topic` goes straight to Tier 3.
 +
-+## /spec_kit:complete
++## /speckit:complete
 +- Fields migrated count: 18
 +- Tier-2 candidates identified: spec_folder, research_intent
 +- Concerns: Chose `{spec_path}/complete-config.json` as the command-specific setup config path because no existing complete config file was present in the YAML assets.
 +
-+## /spec_kit:implement
++## /speckit:implement
 +- Fields migrated count: 8
 +- Tier-2 candidates identified: spec_folder, resume_choice
 +- Concerns: `confirm_choice` defaults to yes only after prerequisite validation passes; invalid or absent prerequisites still fail setup rather than silently continuing.
 +
-+## /spec_kit:plan
++## /speckit:plan
 +- Fields migrated count: 18
 +- Tier-2 candidates identified: spec_folder, research_intent
 +- Concerns: Chose `{spec_path}/plan-config.json` as the command-specific setup config path because no existing plan config file was present in the YAML assets.
 +
-+## /spec_kit:resume
++## /speckit:resume
 +- Fields migrated count: 10
 +- Tier-2 candidates identified: spec_folder, continuation_choice
 +- Concerns: `artifact_recovery_choice` defaults to `continue_anyway` under resume auto mode so missing artifacts do not consume a Tier-2 slot; hard path absence still fails fast.
@@ -3740,22 +3740,22 @@ index 0000000000000000000000000000000000000000..3b0e4380f4031f08e12b15887ab0a806
 +- Tier-2 candidates identified: spec_folder
 +- Concerns: `spec_folder` is treated as a targeted-ask candidate only when the research topic is present but folder choice is ambiguous; missing `research_topic` goes straight to Tier 3.
 +
-+## /spec_kit:complete
++## /speckit:complete
 +- Fields migrated count: 18
 +- Tier-2 candidates identified: spec_folder, research_intent
 +- Concerns: Chose `{spec_path}/complete-config.json` as the command-specific setup config path because no existing complete config file was present in the YAML assets.
 +
-+## /spec_kit:implement
++## /speckit:implement
 +- Fields migrated count: 8
 +- Tier-2 candidates identified: spec_folder, resume_choice
 +- Concerns: `confirm_choice` defaults to yes only after prerequisite validation passes; invalid or absent prerequisites still fail setup rather than silently continuing.
 +
-+## /spec_kit:plan
++## /speckit:plan
 +- Fields migrated count: 18
 +- Tier-2 candidates identified: spec_folder, research_intent
 +- Concerns: Chose `{spec_path}/plan-config.json` as the command-specific setup config path because no existing plan config file was present in the YAML assets.
 +
-+## /spec_kit:resume
++## /speckit:resume
 +- Fields migrated count: 10
 +- Tier-2 candidates identified: spec_folder, continuation_choice
 +- Concerns: `artifact_recovery_choice` defaults to `continue_anyway` under resume auto mode so missing artifacts do not consume a Tier-2 slot; hard path absence still fails fast.
@@ -3802,22 +3802,22 @@ exec
 - Tier-2 candidates identified: spec_folder
 - Concerns: `spec_folder` is treated as a targeted-ask candidate only when the research topic is present but folder choice is ambiguous; missing `research_topic` goes straight to Tier 3.
 
-## /spec_kit:complete
+## /speckit:complete
 - Fields migrated count: 18
 - Tier-2 candidates identified: spec_folder, research_intent
 - Concerns: Chose `{spec_path}/complete-config.json` as the command-specific setup config path because no existing complete config file was present in the YAML assets.
 
-## /spec_kit:implement
+## /speckit:implement
 - Fields migrated count: 8
 - Tier-2 candidates identified: spec_folder, resume_choice
 - Concerns: `confirm_choice` defaults to yes only after prerequisite validation passes; invalid or absent prerequisites still fail setup rather than silently continuing.
 
-## /spec_kit:plan
+## /speckit:plan
 - Fields migrated count: 18
 - Tier-2 candidates identified: spec_folder, research_intent
 - Concerns: Chose `{spec_path}/plan-config.json` as the command-specific setup config path because no existing plan config file was present in the YAML assets.
 
-## /spec_kit:resume
+## /speckit:resume
 - Fields migrated count: 10
 - Tier-2 candidates identified: spec_folder, continuation_choice
 - Concerns: `artifact_recovery_choice` defaults to `continue_anyway` under resume auto mode so missing artifacts do not consume a Tier-2 slot; hard path absence still fails fast.
@@ -3911,22 +3911,22 @@ index 0000000000000000000000000000000000000000..3b0e4380f4031f08e12b15887ab0a806
 +- Tier-2 candidates identified: spec_folder
 +- Concerns: `spec_folder` is treated as a targeted-ask candidate only when the research topic is present but folder choice is ambiguous; missing `research_topic` goes straight to Tier 3.
 +
-+## /spec_kit:complete
++## /speckit:complete
 +- Fields migrated count: 18
 +- Tier-2 candidates identified: spec_folder, research_intent
 +- Concerns: Chose `{spec_path}/complete-config.json` as the command-specific setup config path because no existing complete config file was present in the YAML assets.
 +
-+## /spec_kit:implement
++## /speckit:implement
 +- Fields migrated count: 8
 +- Tier-2 candidates identified: spec_folder, resume_choice
 +- Concerns: `confirm_choice` defaults to yes only after prerequisite validation passes; invalid or absent prerequisites still fail setup rather than silently continuing.
 +
-+## /spec_kit:plan
++## /speckit:plan
 +- Fields migrated count: 18
 +- Tier-2 candidates identified: spec_folder, research_intent
 +- Concerns: Chose `{spec_path}/plan-config.json` as the command-specific setup config path because no existing plan config file was present in the YAML assets.
 +
-+## /spec_kit:resume
++## /speckit:resume
 +- Fields migrated count: 10
 +- Tier-2 candidates identified: spec_folder, continuation_choice
 +- Concerns: `artifact_recovery_choice` defaults to `continue_anyway` under resume auto mode so missing artifacts do not consume a Tier-2 slot; hard path absence still fails fast.
@@ -3960,11 +3960,11 @@ index b3c4d71f116fd6fe21e8b192db56019f72adb9f2..c463f8dee17721abef4433ca88d004ba
 exec
 /bin/zsh -lc 'git status --short --untracked-files=all' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
- M .opencode/commands/spec_kit/complete.md
+ M .opencode/commands/speckit/complete.md
  M .opencode/commands/deep/start-research-loop.md
- M .opencode/commands/spec_kit/implement.md
- M .opencode/commands/spec_kit/plan.md
- M .opencode/commands/spec_kit/resume.md
+ M .opencode/commands/speckit/implement.md
+ M .opencode/commands/speckit/plan.md
+ M .opencode/commands/speckit/resume.md
  M .opencode/skills/deep-ai-council/README.md
  M .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/tasks.md
  M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/graph-metadata.json
@@ -3984,22 +3984,22 @@ index 0000000000000000000000000000000000000000..3b0e4380f4031f08e12b15887ab0a806
 +- Tier-2 candidates identified: spec_folder
 +- Concerns: `spec_folder` is treated as a targeted-ask candidate only when the research topic is present but folder choice is ambiguous; missing `research_topic` goes straight to Tier 3.
 +
-+## /spec_kit:complete
++## /speckit:complete
 +- Fields migrated count: 18
 +- Tier-2 candidates identified: spec_folder, research_intent
 +- Concerns: Chose `{spec_path}/complete-config.json` as the command-specific setup config path because no existing complete config file was present in the YAML assets.
 +
-+## /spec_kit:implement
++## /speckit:implement
 +- Fields migrated count: 8
 +- Tier-2 candidates identified: spec_folder, resume_choice
 +- Concerns: `confirm_choice` defaults to yes only after prerequisite validation passes; invalid or absent prerequisites still fail setup rather than silently continuing.
 +
-+## /spec_kit:plan
++## /speckit:plan
 +- Fields migrated count: 18
 +- Tier-2 candidates identified: spec_folder, research_intent
 +- Concerns: Chose `{spec_path}/plan-config.json` as the command-specific setup config path because no existing plan config file was present in the YAML assets.
 +
-+## /spec_kit:resume
++## /speckit:resume
 +- Fields migrated count: 10
 +- Tier-2 candidates identified: spec_folder, continuation_choice
 +- Concerns: `artifact_recovery_choice` defaults to `continue_anyway` under resume auto mode so missing artifacts do not consume a Tier-2 slot; hard path absence still fails fast.
@@ -4049,22 +4049,22 @@ index 0000000000000000000000000000000000000000..3b0e4380f4031f08e12b15887ab0a806
 +- Tier-2 candidates identified: spec_folder
 +- Concerns: `spec_folder` is treated as a targeted-ask candidate only when the research topic is present but folder choice is ambiguous; missing `research_topic` goes straight to Tier 3.
 +
-+## /spec_kit:complete
++## /speckit:complete
 +- Fields migrated count: 18
 +- Tier-2 candidates identified: spec_folder, research_intent
 +- Concerns: Chose `{spec_path}/complete-config.json` as the command-specific setup config path because no existing complete config file was present in the YAML assets.
 +
-+## /spec_kit:implement
++## /speckit:implement
 +- Fields migrated count: 8
 +- Tier-2 candidates identified: spec_folder, resume_choice
 +- Concerns: `confirm_choice` defaults to yes only after prerequisite validation passes; invalid or absent prerequisites still fail setup rather than silently continuing.
 +
-+## /spec_kit:plan
++## /speckit:plan
 +- Fields migrated count: 18
 +- Tier-2 candidates identified: spec_folder, research_intent
 +- Concerns: Chose `{spec_path}/plan-config.json` as the command-specific setup config path because no existing plan config file was present in the YAML assets.
 +
-+## /spec_kit:resume
++## /speckit:resume
 +- Fields migrated count: 10
 +- Tier-2 candidates identified: spec_folder, continuation_choice
 +- Concerns: `artifact_recovery_choice` defaults to `continue_anyway` under resume auto mode so missing artifacts do not consume a Tier-2 slot; hard path absence still fails fast.
@@ -4096,7 +4096,7 @@ index b3c4d71f116fd6fe21e8b192db56019f72adb9f2..c463f8dee17721abef4433ca88d004ba
  - [ ] T013 Per-command read-back: confirm `:confirm` block untouched in all 11 migrated commands.
 
 exec
-/bin/zsh -lc 'git diff --check -- .opencode/commands/deep/start-research-loop.md .opencode/commands/spec_kit/complete.md .opencode/commands/spec_kit/implement.md .opencode/commands/spec_kit/plan.md .opencode/commands/spec_kit/resume.md .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/tasks.md .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group1-dispatch.txt' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'git diff --check -- .opencode/commands/deep/start-research-loop.md .opencode/commands/speckit/complete.md .opencode/commands/speckit/implement.md .opencode/commands/speckit/plan.md .opencode/commands/speckit/resume.md .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/tasks.md .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group1-dispatch.txt' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 diff --git a/.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group1-dispatch.txt b/.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group1-dispatch.txt
 new file mode 100644
@@ -4111,22 +4111,22 @@ index 0000000000000000000000000000000000000000..3b0e4380f4031f08e12b15887ab0a806
 +- Tier-2 candidates identified: spec_folder
 +- Concerns: `spec_folder` is treated as a targeted-ask candidate only when the research topic is present but folder choice is ambiguous; missing `research_topic` goes straight to Tier 3.
 +
-+## /spec_kit:complete
++## /speckit:complete
 +- Fields migrated count: 18
 +- Tier-2 candidates identified: spec_folder, research_intent
 +- Concerns: Chose `{spec_path}/complete-config.json` as the command-specific setup config path because no existing complete config file was present in the YAML assets.
 +
-+## /spec_kit:implement
++## /speckit:implement
 +- Fields migrated count: 8
 +- Tier-2 candidates identified: spec_folder, resume_choice
 +- Concerns: `confirm_choice` defaults to yes only after prerequisite validation passes; invalid or absent prerequisites still fail setup rather than silently continuing.
 +
-+## /spec_kit:plan
++## /speckit:plan
 +- Fields migrated count: 18
 +- Tier-2 candidates identified: spec_folder, research_intent
 +- Concerns: Chose `{spec_path}/plan-config.json` as the command-specific setup config path because no existing plan config file was present in the YAML assets.
 +
-+## /spec_kit:resume
++## /speckit:resume
 +- Fields migrated count: 10
 +- Tier-2 candidates identified: spec_folder, continuation_choice
 +- Concerns: `artifact_recovery_choice` defaults to `continue_anyway` under resume auto mode so missing artifacts do not consume a Tier-2 slot; hard path absence still fails fast.
@@ -4160,19 +4160,19 @@ index b3c4d71f116fd6fe21e8b192db56019f72adb9f2..c463f8dee17721abef4433ca88d004ba
 codex
 **Files Modified**
 - `.opencode/commands/deep/start-research-loop.md`
-- `.opencode/commands/spec_kit/complete.md`
-- `.opencode/commands/spec_kit/implement.md`
-- `.opencode/commands/spec_kit/plan.md`
-- `.opencode/commands/spec_kit/resume.md`
+- `.opencode/commands/speckit/complete.md`
+- `.opencode/commands/speckit/implement.md`
+- `.opencode/commands/speckit/plan.md`
+- `.opencode/commands/speckit/resume.md`
 - `.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/tasks.md`
 - `.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group1-dispatch.txt`
 
 **Per-Command Status**
 - `/deep:start-research-loop`: 11 fields migrated | Tier-2 candidates: `spec_folder` | `:confirm` preserved: yes | argument-hint updated: yes
-- `/spec_kit:complete`: 18 fields migrated | Tier-2 candidates: `spec_folder`, `research_intent` | `:confirm` preserved: yes | argument-hint updated: yes
-- `/spec_kit:implement`: 8 fields migrated | Tier-2 candidates: `spec_folder`, `resume_choice` | `:confirm` preserved: yes | argument-hint updated: yes
-- `/spec_kit:plan`: 18 fields migrated | Tier-2 candidates: `spec_folder`, `research_intent` | `:confirm` preserved: yes | argument-hint updated: yes
-- `/spec_kit:resume`: 10 fields migrated | Tier-2 candidates: `spec_folder`, `continuation_choice` | `:confirm` preserved: yes | argument-hint updated: yes
+- `/speckit:complete`: 18 fields migrated | Tier-2 candidates: `spec_folder`, `research_intent` | `:confirm` preserved: yes | argument-hint updated: yes
+- `/speckit:implement`: 8 fields migrated | Tier-2 candidates: `spec_folder`, `resume_choice` | `:confirm` preserved: yes | argument-hint updated: yes
+- `/speckit:plan`: 18 fields migrated | Tier-2 candidates: `spec_folder`, `research_intent` | `:confirm` preserved: yes | argument-hint updated: yes
+- `/speckit:resume`: 10 fields migrated | Tier-2 candidates: `spec_folder`, `continuation_choice` | `:confirm` preserved: yes | argument-hint updated: yes
 
 **Decisions**
 - Used `{spec_path}/complete-config.json`, `{spec_path}/implement-config.json`, `{spec_path}/plan-config.json`, and `{spec_path}/resume-config.json` for commands without an existing setup config path.
@@ -4197,22 +4197,22 @@ index 0000000000000000000000000000000000000000..3b0e4380f4031f08e12b15887ab0a806
 +- Tier-2 candidates identified: spec_folder
 +- Concerns: `spec_folder` is treated as a targeted-ask candidate only when the research topic is present but folder choice is ambiguous; missing `research_topic` goes straight to Tier 3.
 +
-+## /spec_kit:complete
++## /speckit:complete
 +- Fields migrated count: 18
 +- Tier-2 candidates identified: spec_folder, research_intent
 +- Concerns: Chose `{spec_path}/complete-config.json` as the command-specific setup config path because no existing complete config file was present in the YAML assets.
 +
-+## /spec_kit:implement
++## /speckit:implement
 +- Fields migrated count: 8
 +- Tier-2 candidates identified: spec_folder, resume_choice
 +- Concerns: `confirm_choice` defaults to yes only after prerequisite validation passes; invalid or absent prerequisites still fail setup rather than silently continuing.
 +
-+## /spec_kit:plan
++## /speckit:plan
 +- Fields migrated count: 18
 +- Tier-2 candidates identified: spec_folder, research_intent
 +- Concerns: Chose `{spec_path}/plan-config.json` as the command-specific setup config path because no existing plan config file was present in the YAML assets.
 +
-+## /spec_kit:resume
++## /speckit:resume
 +- Fields migrated count: 10
 +- Tier-2 candidates identified: spec_folder, continuation_choice
 +- Concerns: `artifact_recovery_choice` defaults to `continue_anyway` under resume auto mode so missing artifacts do not consume a Tier-2 slot; hard path absence still fails fast.
@@ -4249,19 +4249,19 @@ tokens used
 123,398
 **Files Modified**
 - `.opencode/commands/deep/start-research-loop.md`
-- `.opencode/commands/spec_kit/complete.md`
-- `.opencode/commands/spec_kit/implement.md`
-- `.opencode/commands/spec_kit/plan.md`
-- `.opencode/commands/spec_kit/resume.md`
+- `.opencode/commands/speckit/complete.md`
+- `.opencode/commands/speckit/implement.md`
+- `.opencode/commands/speckit/plan.md`
+- `.opencode/commands/speckit/resume.md`
 - `.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/tasks.md`
 - `.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group1-dispatch.txt`
 
 **Per-Command Status**
 - `/deep:start-research-loop`: 11 fields migrated | Tier-2 candidates: `spec_folder` | `:confirm` preserved: yes | argument-hint updated: yes
-- `/spec_kit:complete`: 18 fields migrated | Tier-2 candidates: `spec_folder`, `research_intent` | `:confirm` preserved: yes | argument-hint updated: yes
-- `/spec_kit:implement`: 8 fields migrated | Tier-2 candidates: `spec_folder`, `resume_choice` | `:confirm` preserved: yes | argument-hint updated: yes
-- `/spec_kit:plan`: 18 fields migrated | Tier-2 candidates: `spec_folder`, `research_intent` | `:confirm` preserved: yes | argument-hint updated: yes
-- `/spec_kit:resume`: 10 fields migrated | Tier-2 candidates: `spec_folder`, `continuation_choice` | `:confirm` preserved: yes | argument-hint updated: yes
+- `/speckit:complete`: 18 fields migrated | Tier-2 candidates: `spec_folder`, `research_intent` | `:confirm` preserved: yes | argument-hint updated: yes
+- `/speckit:implement`: 8 fields migrated | Tier-2 candidates: `spec_folder`, `resume_choice` | `:confirm` preserved: yes | argument-hint updated: yes
+- `/speckit:plan`: 18 fields migrated | Tier-2 candidates: `spec_folder`, `research_intent` | `:confirm` preserved: yes | argument-hint updated: yes
+- `/speckit:resume`: 10 fields migrated | Tier-2 candidates: `spec_folder`, `continuation_choice` | `:confirm` preserved: yes | argument-hint updated: yes
 
 **Decisions**
 - Used `{spec_path}/complete-config.json`, `{spec_path}/implement-config.json`, `{spec_path}/plan-config.json`, and `{spec_path}/resume-config.json` for commands without an existing setup config path.

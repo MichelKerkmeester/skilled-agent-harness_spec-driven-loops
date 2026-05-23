@@ -31,7 +31,7 @@ _memory:
 This synthesis completes the 10-iteration deep-research loop for packet `057-cmd-spec-kit-ux-upgrade`.
 
 - **External surface**: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/`
-- **Internal surface**: `system-spec-kit`, `.opencode/commands/spec_kit/`, `.opencode/commands/memory/`, `.opencode/commands/create/`, `.opencode/agents/`, root instruction files
+- **Internal surface**: `system-spec-kit`, `.opencode/commands/speckit/`, `.opencode/commands/memory/`, `.opencode/commands/create/`, `.opencode/agents/`, root instruction files
 - **Run**: 10 cli-codex / gpt-5.5 / high / fast iterations
 - **Outcome**: converged ranked backlog, packets `058-*` through `069-*`
 
@@ -51,7 +51,7 @@ This synthesis completes the 10-iteration deep-research loop for packet `057-cmd
 
 1. Installer and multi-target distribution: SPAR `@spar-kit/install` target configs vs internal manual/runtime installation.
 2. Instruction-file management: SPAR managed blocks and 60-line warning vs internal hand-edited `AGENTS.md` / `CLAUDE.md` surfaces.
-3. Command/skill granularity: SPAR Specify / Plan / Act / Retain vs internal `/spec_kit:*`, `/memory:*`, `/create:*`, suffixes, and command YAMLs.
+3. Command/skill granularity: SPAR Specify / Plan / Act / Retain vs internal `/speckit:*`, `/memory:*`, `/create:*`, suffixes, and command YAMLs.
 4. Template architecture: SPAR two-template and asset-policy model vs internal CORE + ADDENDUM + level template tree.
 5. Tool-discovery UX: SPAR `.spar-kit/.local/tools.yaml` vs internal skill-advisor, MCP routing, Code Mode, and native tool schemas.
 6. Personas and UX tone: SPAR persona research and follow-up budgeting vs internal senior-engineer voice, consolidated-question protocol, and role-based agents.
@@ -120,8 +120,8 @@ Internal system-spec-kit already has the harder discipline underneath: consolida
 - External: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/install-root/skills/spar-plan/SKILL.md`
 - External: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/Research/research/personasRetrospective/spar.plan.recommendations.md`
 - Internal: `AGENTS.md`
-- Internal: `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml`
-- Internal: `.opencode/commands/spec_kit/plan.md`
+- Internal: `.opencode/commands/speckit/assets/speckit_complete_auto.yaml`
+- Internal: `.opencode/commands/speckit/plan.md`
 
 **Adoption Risk**: Low. The main constraint is preserving machine-readable Gate 3 options while improving the surrounding copy.
 
@@ -135,7 +135,7 @@ Internal system-spec-kit already has the harder discipline underneath: consolida
 
 SPAR's phase-boundary language is portable as a copy pattern: each phase states what it does, what it does not do, and when it hands off. This does not require changing internal behavior. It only requires giving users the same first-glance orientation before they encounter the heavier system-spec-kit machinery.
 
-The internal command surface is stronger and more granular than SPAR's, but its first page often leads with command mechanics and YAML ownership rather than the phase contract. A short phase-boundary block at the top of major `/spec_kit:*` commands would reduce first-use ambiguity while leaving execution semantics intact.
+The internal command surface is stronger and more granular than SPAR's, but its first page often leads with command mechanics and YAML ownership rather than the phase contract. A short phase-boundary block at the top of major `/speckit:*` commands would reduce first-use ambiguity while leaving execution semantics intact.
 
 **Evidence**:
 
@@ -144,9 +144,9 @@ The internal command surface is stronger and more granular than SPAR's, but its 
 - External: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/install-root/skills/spar-plan/SKILL.md`
 - External: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/install-root/skills/spar-act/SKILL.md`
 - External: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/install-root/skills/spar-retain/SKILL.md`
-- Internal: `.opencode/commands/spec_kit/plan.md`
-- Internal: `.opencode/commands/spec_kit/implement.md`
-- Internal: `.opencode/commands/spec_kit/complete.md`
+- Internal: `.opencode/commands/speckit/plan.md`
+- Internal: `.opencode/commands/speckit/implement.md`
+- Internal: `.opencode/commands/speckit/complete.md`
 - Internal: `.opencode/skills/system-spec-kit/SKILL.md`
 
 **Adoption Risk**: Low. The risk is only accidental contradiction with existing gates; keep the copy descriptive and phase-local.
@@ -168,9 +168,9 @@ The right adaptation is a compatibility matrix that preserves existing semantics
 - External: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/README.md`
 - External: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/install-root/skills/spar-specify/SKILL.md`
 - External: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/install-root/skills/spar-plan/SKILL.md`
-- Internal: `.opencode/commands/spec_kit/README.txt`
-- Internal: `.opencode/commands/spec_kit/deep-research.md`
-- Internal: `.opencode/commands/spec_kit/deep-review.md`
+- Internal: `.opencode/commands/speckit/README.txt`
+- Internal: `.opencode/commands/speckit/deep-research.md`
+- Internal: `.opencode/commands/speckit/deep-review.md`
 - Internal: `.opencode/commands/create/agent.md`
 - Internal: `.opencode/commands/memory/README.txt`
 - Internal: `.opencode/skills/sk-deep-research/SKILL.md`
@@ -198,7 +198,7 @@ Internal system-spec-kit needs this vocabulary more than it needs a public insta
 - Internal: `AGENTS.md`
 - Internal: `.codex/AGENTS.md`
 - Internal: `.opencode/skills/system-spec-kit/templates/`
-- Internal: `.opencode/commands/spec_kit/`
+- Internal: `.opencode/commands/speckit/`
 - Internal: `.opencode/agents/`
 
 **Adoption Risk**: Medium-high. A manifest that mutates instruction files too early can damage hard-gate text; begin with read-only inventory, lint, and tiny generated-block rules.
@@ -354,7 +354,7 @@ The portable pattern is a generated-block budget, not a full-file cap. A future 
 
 **Axis**: 6
 
-SPAR's named personas are useful product-design material. They should not become runtime identities inside `/spec_kit:*` prompts. Internal behavior depends on a calibrated senior-engineer voice, hard gates, and explicit role contracts for agents. Adding Vera/Pete/Tess/Maya/Max/Cass to execution prompts would introduce competing priorities and tone drift.
+SPAR's named personas are useful product-design material. They should not become runtime identities inside `/speckit:*` prompts. Internal behavior depends on a calibrated senior-engineer voice, hard gates, and explicit role contracts for agents. Adding Vera/Pete/Tess/Maya/Max/Cass to execution prompts would introduce competing priorities and tone drift.
 
 Keep personas as external evaluators of the UX, not as identities the assistant is asked to inhabit while executing gated workflows.
 
@@ -446,7 +446,7 @@ Remaining implementation questions:
 
 ## 13. Negative Knowledge / Ruled-out Directions
 
-- Do not replace internal `/spec_kit:*`, `/memory:*`, and `/create:*` surfaces with four SPAR commands.
+- Do not replace internal `/speckit:*`, `/memory:*`, and `/create:*` surfaces with four SPAR commands.
 - Do not treat SPAR's `tools.yaml` as an authoritative MCP registry.
 - Do not impose a global 60-line cap on `AGENTS.md` or `.codex/AGENTS.md`.
 - Do not inject Vera/Pete/Tess/Maya/Max/Cass into runtime execution prompts.
@@ -547,15 +547,15 @@ For template packets, add a sampled strict-validation baseline before editing te
 - `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
 - `.opencode/skills/sk-deep-research/SKILL.md`
 - `.opencode/skills/mcp-code-mode/SKILL.md`
-- `.opencode/commands/spec_kit/README.txt`
-- `.opencode/commands/spec_kit/plan.md`
-- `.opencode/commands/spec_kit/implement.md`
-- `.opencode/commands/spec_kit/complete.md`
-- `.opencode/commands/spec_kit/resume.md`
-- `.opencode/commands/spec_kit/deep-research.md`
-- `.opencode/commands/spec_kit/deep-review.md`
-- `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`
+- `.opencode/commands/speckit/README.txt`
+- `.opencode/commands/speckit/plan.md`
+- `.opencode/commands/speckit/implement.md`
+- `.opencode/commands/speckit/complete.md`
+- `.opencode/commands/speckit/resume.md`
+- `.opencode/commands/speckit/deep-research.md`
+- `.opencode/commands/speckit/deep-review.md`
+- `.opencode/commands/speckit/assets/speckit_complete_auto.yaml`
+- `.opencode/commands/speckit/assets/speckit_implement_auto.yaml`
 - `.opencode/commands/memory/README.txt`
 - `.opencode/commands/create/agent.md`
 - `.opencode/commands/create/assets/create_feature_catalog_confirm.yaml`

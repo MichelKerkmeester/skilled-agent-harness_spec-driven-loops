@@ -38,7 +38,7 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml",
+      ".opencode/commands/speckit/assets/speckit_implement_auto.yaml",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       ".opencode/skills/sk-git/references/finish_workflows.md",
       ".opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts",
@@ -49,9 +49,9 @@
     ],
     "entities": [
       {
-        "name": "spec_kit_implement_auto.yaml",
+        "name": "speckit_implement_auto.yaml",
         "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_implement_auto.yaml",
         "source": "derived"
       },
       {

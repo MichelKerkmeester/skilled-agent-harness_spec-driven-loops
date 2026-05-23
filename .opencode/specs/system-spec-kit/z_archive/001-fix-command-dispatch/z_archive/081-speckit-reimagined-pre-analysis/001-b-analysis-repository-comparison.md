@@ -4,9 +4,9 @@
 
 ---
 
-# Technical Analysis: Repository Comparison for system-speckit Enhancement
+# Technical Analysis: Repository Comparison for system-spec-kit Enhancement
 
-> **Executive Summary:** Analysis of three AI-focused repositories (dotmd, seu-claude, drift) to identify architectural patterns, memory systems, and integration mechanisms that could enhance system-speckit's capabilities.
+> **Executive Summary:** Analysis of three AI-focused repositories (dotmd, seu-claude, drift) to identify architectural patterns, memory systems, and integration mechanisms that could enhance system-spec-kit's capabilities.
 
 ---
 
@@ -19,7 +19,7 @@
 | **dotmd** | Markdown knowledgebase search | Python 3.12 | Hybrid search (semantic + BM25 + graph) with RRF fusion |
 | **seu-claude** | Autonomous developer framework | TypeScript | Hexagonal architecture with task DAG and tool output caching |
 | **drift** | Codebase pattern detection | TypeScript + Rust | Cortex V2 memory with 9 types, causal graphs, and consolidation |
-| **system-speckit** (current) | Semantic memory for AI assistants | JavaScript | FSRS decay, 5-state model, prediction error gating |
+| **system-spec-kit** (current) | Semantic memory for AI assistants | JavaScript | FSRS decay, 5-state model, prediction error gating |
 
 ### 1.2 Architectural Paradigms
 
@@ -64,7 +64,7 @@ TypeScript Packages (ai, cli, core, cortex, detectors, lsp, mcp, vscode)
 | **dotmd** | Chunks only | None (static) | LanceDB vectors + LadybugDB graph + SQLite metadata |
 | **seu-claude** | Tasks + Tool outputs | None (persistent) | SQLite with hierarchical DAG |
 | **drift** | 9 types (core→episodic) | Half-life decay per type | SQLite + sqlite-vss vectors |
-| **system-speckit** | 6 tiers (constitutional→deprecated) | FSRS power-law decay | SQLite + sqlite-vec vectors |
+| **system-spec-kit** | 6 tiers (constitutional→deprecated) | FSRS power-law decay | SQLite + sqlite-vec vectors |
 
 ### 2.2 Drift's 9 Memory Types
 
@@ -84,11 +84,11 @@ Drift introduces a sophisticated categorization that maps memory longevity to kn
 
 [SOURCE: drift/wiki/Cortex-V2-Overview.md]
 
-**Comparison with system-speckit:** The current 6-tier importance system (`constitutional`, `critical`, `important`, `normal`, `temporary`, `deprecated`) focuses on **importance** rather than **knowledge type**. Drift's model could inform content-type-specific decay rates.
+**Comparison with system-spec-kit:** The current 6-tier importance system (`constitutional`, `critical`, `important`, `normal`, `temporary`, `deprecated`) focuses on **importance** rather than **knowledge type**. Drift's model could inform content-type-specific decay rates.
 
 ### 2.3 Decay Algorithms
 
-**FSRS (system-speckit):**
+**FSRS (system-spec-kit):**
 ```
 R(t, S) = (1 + 0.235 × t/S)^(-0.5)
 where: t = elapsed days, S = stability (days)
@@ -101,11 +101,11 @@ confidence × e^(-t × ln(2) / half_life)
 ```
 [SOURCE: drift/wiki/Cortex-V2-Overview.md]
 
-**Key Difference:** FSRS is research-validated against 100M+ Anki flashcard reviews, while drift's model is inspired by biological memory. system-speckit's choice is more scientifically grounded.
+**Key Difference:** FSRS is research-validated against 100M+ Anki flashcard reviews, while drift's model is inspired by biological memory. system-spec-kit's choice is more scientifically grounded.
 
 ### 2.4 State Classification
 
-**system-speckit's 5-State Model:**
+**system-spec-kit's 5-State Model:**
 | State | Retrievability | Content Returned |
 |-------|----------------|------------------|
 | HOT | ≥ 0.80 | Full content |
@@ -126,7 +126,7 @@ confidence × e^(-t × ln(2) / half_life)
 
 [SOURCE: drift/wiki/Cortex-Token-Efficiency.md]
 
-**Observation:** Drift's compression is user-selectable, while system-speckit's is retrievability-driven. Both approaches have merit; combining them could offer both automatic and manual control.
+**Observation:** Drift's compression is user-selectable, while system-spec-kit's is retrievability-driven. Both approaches have merit; combining them could offer both automatic and manual control.
 
 ---
 
@@ -139,7 +139,7 @@ confidence × e^(-t × ln(2) / half_life)
 | **dotmd** | LanceDB (bge-small) | BM25 (rank-bm25) | RRF (k=60) + cross-encoder reranking |
 | **seu-claude** | LanceDB (bge/nomic) | BM25 | 70% vector + 30% BM25 or RRF |
 | **drift** | sqlite-vss | Not specified | Intent-based weighting |
-| **system-speckit** | sqlite-vec | FTS5 | RRF (k=60) |
+| **system-spec-kit** | sqlite-vec | FTS5 | RRF (k=60) |
 
 ### 3.2 dotmd's Hybrid Search Pipeline
 
@@ -171,7 +171,7 @@ where k = 60 (standard constant)
 
 **Drift's Convergence Bonus:** 10% boost for results found by both vector and keyword search.
 
-**system-speckit's Implementation:** Already uses RRF in `lib/search/rrf-fusion.js` with O(1) Map lookups (HIGH-005 fix).
+**system-spec-kit's Implementation:** Already uses RRF in `lib/search/rrf-fusion.js` with O(1) Map lookups (HIGH-005 fix).
 
 ### 3.4 Intent-Aware Retrieval (drift)
 
@@ -186,7 +186,7 @@ Drift adjusts memory ranking weights based on declared task intent:
 
 [SOURCE: drift/wiki/Cortex-V2-Overview.md]
 
-**[Assumes: system-speckit could benefit from similar intent-based weight adjustments]**
+**[Assumes: system-spec-kit could benefit from similar intent-based weight adjustments]**
 
 ---
 
@@ -230,7 +230,7 @@ Security Audit (Jan 2024) → caused → bcrypt Adoption → derived_from → Pa
 
 [SOURCE: drift/wiki/Cortex-Causal-Graphs.md]
 
-**[Assumes: system-speckit's memories are currently isolated; adding causal links would enable "why" queries and decision traceability]**
+**[Assumes: system-spec-kit's memories are currently isolated; adding causal links would enable "why" queries and decision traceability]**
 
 ---
 
@@ -274,7 +274,7 @@ async resetRunningTasks(): Promise<number> {
 ```
 [SOURCE: seu-claude/src/core/usecases/TaskManager.ts]
 
-**[Assumes: system-speckit could benefit from similar recovery patterns for interrupted operations]**
+**[Assumes: system-spec-kit could benefit from similar recovery patterns for interrupted operations]**
 
 ---
 
@@ -287,7 +287,7 @@ async resetRunningTasks(): Promise<number> {
 | **dotmd** | 3 | Flat (search, index, status) |
 | **seu-claude** | 6 | Grouped (analyze, validate, execute, manage, run_tdd, find) |
 | **drift** | 45+ | 7-layer hierarchy |
-| **system-speckit** | 17 | Flat (search, CRUD, checkpoints, learning, system) |
+| **system-spec-kit** | 17 | Flat (search, CRUD, checkpoints, learning, system) |
 
 ### 6.2 Drift's 7-Layer MCP Architecture
 
@@ -337,7 +337,7 @@ Every response includes:
 }
 ```
 
-**[Assumes: system-speckit's varied response structures could be standardized for consistency]**
+**[Assumes: system-spec-kit's varied response structures could be standardized for consistency]**
 
 ---
 
@@ -359,7 +359,7 @@ class SemanticSearchEngine:
 ```
 [SOURCE: dotmd/backend/src/dotmd/search/semantic.py]
 
-**system-speckit:** Already implements lazy loading for embeddings with 60s warmup timeout.
+**system-spec-kit:** Already implements lazy loading for embeddings with 60s warmup timeout.
 
 ### 7.2 Incremental Indexing (seu-claude)
 
@@ -447,7 +447,7 @@ section_text = " > ".join(current_hierarchy) + "\n\n" + body
 
 ## 9. Summary of Findings
 
-| Area | dotmd | seu-claude | drift | system-speckit |
+| Area | dotmd | seu-claude | drift | system-spec-kit |
 |------|-------|------------|-------|----------------|
 | **Search** | Hybrid + graph + reranking | Hybrid + RRF | Intent-weighted | Hybrid + RRF |
 | **Memory Types** | Single (chunks) | Tasks + outputs | 9 types | 6 tiers |
@@ -469,5 +469,5 @@ section_text = " > ".join(current_hierarchy) + "\n\n" + body
 
 **Document Metadata:**
 - **Created:** 2026-02-01
-- **Sources:** dotmd, seu-claude, drift repositories; system-speckit codebase
+- **Sources:** dotmd, seu-claude, drift repositories; system-spec-kit codebase
 - **Word Count:** ~2,800

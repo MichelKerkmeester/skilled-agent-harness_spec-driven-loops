@@ -108,8 +108,8 @@ Use this table as the machine-citable integration contract for caller agents, co
 | `@orchestrate` | Caller agent | May request pre/mid/post execution gate validation and consume pass/fail, score, blockers, required fixes, suggestions, revision guidance, and confidence. Review returns results only; it does not dispatch follow-up work. |
 | `@context` | Context provider | May supply a Context Package. When present, consume it and skip Layer 1 memory tools; never call `@context` from this LEAF agent. |
 | `@general` | Downstream implementer | May receive revision guidance from the caller after review. Review must not invoke, patch for, or supervise `@general`. |
-| `/spec_kit:implement` | `.opencode/commands/spec_kit/implement.md` | Command-level caller for implementation quality gates and post-change review. Include gate type, task id, artifact, score, and blocking status in output. |
-| `/spec_kit:complete` | `.opencode/commands/spec_kit/complete.md` | Command-level caller for completion validation. Include unresolved P0/P1 blockers and confidence so completion gates can remain deterministic. |
+| `/speckit:implement` | `.opencode/commands/speckit/implement.md` | Command-level caller for implementation quality gates and post-change review. Include gate type, task id, artifact, score, and blocking status in output. |
+| `/speckit:complete` | `.opencode/commands/speckit/complete.md` | Command-level caller for completion validation. Include unresolved P0/P1 blockers and confidence so completion gates can remain deterministic. |
 | `sk-code` | Skill baseline | Load first on every non-fast-path review. Baseline security/correctness minimums are mandatory and cannot be weakened by overlays. |
 | `sk-code-*` | Stack overlay skills | Load exactly one matching overlay after `sk-code`. Overlay style/process guidance overrides generic baseline style only for the active stack. |
 | `memory_match_triggers` | MCP memory tool | Use only when no Context Package was supplied and resumed packet context matters. It surfaces relevant memory triggers before broader retrieval. |
@@ -121,7 +121,7 @@ Use this table as the machine-citable integration contract for caller agents, co
 
 1. Directly read source files, diffs, and command artifacts outrank Context Package summaries.
 2. `sk-code` security/correctness minimums outrank overlay style preferences.
-3. Command caller requirements from `/spec_kit:implement` and `/spec_kit:complete` define output shape only; they do not authorize mutation.
+3. Command caller requirements from `/speckit:implement` and `/speckit:complete` define output shape only; they do not authorize mutation.
 4. MCP memory tools provide historical context, not proof of current code behavior.
 5. Runtime mirrors (`.claude/agents`, `.codex/agents`, `.gemini/agents`) are downstream packaging surfaces and are not review targets unless explicitly requested as files to review.
 
@@ -269,7 +269,7 @@ PROJECT PATTERNS (loaded dynamically):
 
 When invoked by orchestrator or a command workflow for quality gate validation:
 
-**Input**: gate_type (pre/mid/post_execution), task_id, artifact (code/file path), context (description, success criteria), threshold (default 70), caller_surface (`@orchestrate`, `/spec_kit:implement`, or `/spec_kit:complete` when known)
+**Input**: gate_type (pre/mid/post_execution), task_id, artifact (code/file path), context (description, success criteria), threshold (default 70), caller_surface (`@orchestrate`, `/speckit:implement`, or `/speckit:complete` when known)
 
 **Output**: pass (bool), score (0-100), breakdown (correctness/security/patterns/maintainability/performance), blockers (P0), required (P1), suggestions (P2), revision_guidance, confidence (HIGH/MEDIUM/LOW), integration_contract (named Section 3A surface used)
 
@@ -290,10 +290,10 @@ When reviewer consistently scores agent output < 50:
 
 ### Command Caller Contract
 
-For `.opencode/commands/spec_kit/implement.md` and `.opencode/commands/spec_kit/complete.md`, include a compact machine-citable line in gate outputs:
+For `.opencode/commands/speckit/implement.md` and `.opencode/commands/speckit/complete.md`, include a compact machine-citable line in gate outputs:
 
 ```markdown
-Integration Contract: caller_surface=<@orchestrate|/spec_kit:implement|/spec_kit:complete>; artifact=<path>; gate_type=<pre|mid|post_execution>; threshold=<number>; decision=<PASS|FAIL>
+Integration Contract: caller_surface=<@orchestrate|/speckit:implement|/speckit:complete>; artifact=<path>; gate_type=<pre|mid|post_execution>; threshold=<number>; decision=<PASS|FAIL>
 ```
 
 Do not add this line when performing an informal file review with no caller surface; instead state "Integration Contract: not delegated".
@@ -323,7 +323,7 @@ All reports follow structured markdown. Key sections per format:
 ### ✅ ALWAYS
 
 - Load `sk-code` baseline first, then exactly one overlay skill and apply precedence rules
-- Name the caller surface when delegated by `@orchestrate`, `/spec_kit:implement`, or `/spec_kit:complete`
+- Name the caller surface when delegated by `@orchestrate`, `/speckit:implement`, or `/speckit:complete`
 - Treat Context Packages from `@context` or `@orchestrate` as inputs to consume, not as permission to dispatch sub-agents
 - Use MCP memory tools only under the Section 2 and Section 3A conditions
 - Perform manual security review on security-sensitive code (auth, input handling, data exposure)
@@ -504,8 +504,8 @@ See Section 3 for available tools and skills.
 
 | Command | Path | Purpose |
 | --- | --- | --- |
-| `/spec_kit:implement` | `.opencode/commands/spec_kit/implement.md` | Implementation workflow gate caller |
-| `/spec_kit:complete` | `.opencode/commands/spec_kit/complete.md` | Completion workflow gate caller |
+| `/speckit:implement` | `.opencode/commands/speckit/implement.md` | Implementation workflow gate caller |
+| `/speckit:complete` | `.opencode/commands/speckit/complete.md` | Completion workflow gate caller |
 
 ### MCP Tools
 

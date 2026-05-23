@@ -1,5 +1,5 @@
 ---
-title: "Rewrite System Spec Kit README [system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/spec]"
+title: "Rewrite System Spec Kit README [system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme/spec]"
 description: "Complete rewrite of the system-spec-kit README to document the full skill surface: documentation levels 1-3+, memory system, 33 MCP tools, 14 commands, templates, scripts, and validation."
 trigger_phrases:
   - "speckit readme rewrite"
@@ -11,7 +11,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme"
+    packet_pointer: "system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
@@ -19,7 +19,7 @@ _memory:
     key_files: ["spec.md"]
 ---
 <!-- SPECKIT_LEVEL: 1 -->
-# Specification: 018-rewrite-system-speckit-readme
+# Specification: 018-rewrite-system-spec-kit-readme
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
@@ -149,7 +149,7 @@ Produce a complete rewrite that documents the Spec Kit skill holistically — co
 ---
 
 <!--
-SPEC: 018-rewrite-system-speckit-readme
+SPEC: 018-rewrite-system-spec-kit-readme
 Level 1 — Complete (2026-03-25)
 Target: Complete rewrite of Spec Kit README covering all components
 -->

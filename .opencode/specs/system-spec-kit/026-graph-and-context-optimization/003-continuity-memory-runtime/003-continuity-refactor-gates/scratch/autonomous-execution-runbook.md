@@ -114,7 +114,7 @@ cat /tmp/execute-<gate>.prompt | codex exec \
 
 5. **Gate handover**:
    - Git commit with `feat(026.018.00N-gate-X): ...` prefix
-   - Git push to `system-speckit/026-graph-and-context-optimization`
+   - Git push to `system-spec-kit/026-graph-and-context-optimization`
    - Log final status + next gate entry criteria
    - Exit Codex session; orchestrator launches next gate
 
@@ -477,7 +477,7 @@ The outer orchestrator (Claude Code, or a shell script) does this:
 #!/bin/bash
 set -euo pipefail
 PACKET=006-canonical-continuity-refactor
-BRANCH=system-speckit/026-graph-and-context-optimization
+BRANCH=system-spec-kit/026-graph-and-context-optimization
 
 # Preflight
 git fetch origin
@@ -584,7 +584,7 @@ The orchestrator must honor these thresholds and stop autonomous execution on tr
 
 ### Preflight checklist (MUST pass before Session 1 kickoff)
 
-1. **HEAD check**: verify the current commit on `system-speckit/026-graph-and-context-optimization` contains all 6 gate packets populated + reviewed + fixed + the parent coordination spec (runbook v2 expects commit `96e0f66ce` or later).
+1. **HEAD check**: verify the current commit on `system-spec-kit/026-graph-and-context-optimization` contains all 6 gate packets populated + reviewed + fixed + the parent coordination spec (runbook v2 expects commit `96e0f66ce` or later).
 
 2. **Parent packet validation**: run `validate.sh --strict` on `006-canonical-continuity-refactor/` (parent packet itself). Expected state at runbook-v2 time: 62 `SPEC_DOC_INTEGRITY` errors + 13 `PHASE_LINKS` warnings. These come from:
    - Parent `implementation-design.md` and `phase-017-rerun-seed.md` referencing the now-removed `findings/` folder (deleted earlier in session — cleanup deferred)

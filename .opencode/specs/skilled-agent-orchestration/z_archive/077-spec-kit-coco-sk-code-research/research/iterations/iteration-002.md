@@ -45,7 +45,7 @@ The shell graph rule only type-checks optional `last_active_child_id` / `last_ac
 - Q4: Still open for live CocoIndex query/rank checks against `sk-code` resources.
 - Q5: Still open for detailed sk-code OpenCode reference/assets gaps.
 - Q6: Still open for `STACK_FOLDERS` and resource_map drift.
-- Q7: Still open for cross-skill loading during `/spec_kit:complete`-style writes.
+- Q7: Still open for cross-skill loading during `/speckit:complete`-style writes.
 
 ## Next Focus (for iteration 3)
 Audit system-spec-kit MCP tool surface vs docs drift. Start with `mcp_server/tool-schemas.ts`, handler registration in `context-server.ts`, API exports under `mcp_server/api/`, and the workflow docs that name MCP tools. Prioritize tools whose docs imply validator, graph metadata, memory save, resume, or indexing behavior that the exposed schema/handler does not actually support.

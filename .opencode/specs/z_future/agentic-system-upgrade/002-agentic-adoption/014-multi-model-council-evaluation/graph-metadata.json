@@ -38,7 +38,7 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/commands/spec_kit/deep-research.md",
+      ".opencode/commands/speckit/deep-research.md",
       ".opencode/agents/orchestrate.md",
       ".opencode/skills/sk-deep-research/assets/deep_research_config.json",
       "spec.md",
@@ -50,7 +50,7 @@
       {
         "name": "deep-research.md",
         "kind": "doc",
-        "path": ".opencode/commands/spec_kit/deep-research.md",
+        "path": ".opencode/commands/speckit/deep-research.md",
         "source": "derived"
       },
       {

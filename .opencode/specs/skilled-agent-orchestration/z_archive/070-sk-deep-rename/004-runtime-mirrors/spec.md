@@ -74,7 +74,7 @@ Phase 004 performs a scoped text-only rename in runtime mirror trees. The change
 - Author Phase 004 Level 2 artifacts.
 - Replace the old deep review skill ID with `deep-review` in Phase 004-owned `.claude`, `.codex`, and `.gemini` files.
 - Replace the old deep research skill ID with `deep-research` in Phase 004-owned `.claude`, `.codex`, and `.gemini` files.
-- Include the `.gemini/commands/spec_kit/deep-research.toml` row tagged `phase=004` in Phase 001 inventory.
+- Include the `.gemini/commands/speckit/deep-research.toml` row tagged `phase=004` in Phase 001 inventory.
 - Preserve file formats for Markdown and TOML runtime mirror definitions.
 - Run residual grep and strict spec validation.
 
@@ -103,7 +103,7 @@ Phase 004 performs a scoped text-only rename in runtime mirror trees. The change
 | `.gemini/agents/deep-research.md` | Update | Replace old research skill path reference |
 | `.gemini/agents/deep-review.md` | Update | Replace old review skill description and path references |
 | `.gemini/agents/orchestrate.md` | Update | Replace old research skill dependency reference |
-| `.gemini/commands/spec_kit/deep-research.toml` | Update | Replace old research and review skill references in Gemini command mirror |
+| `.gemini/commands/speckit/deep-research.toml` | Update | Replace old research and review skill references in Gemini command mirror |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -152,7 +152,7 @@ Phase 004 performs a scoped text-only rename in runtime mirror trees. The change
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-The `.gemini/commands/spec_kit/deep-research.toml` file is included because it is explicitly tagged `phase=004` in Phase 001 inventory and lives under the `.gemini` runtime mirror tree.
+The `.gemini/commands/speckit/deep-research.toml` file is included because it is explicitly tagged `phase=004` in Phase 001 inventory and lives under the `.gemini` runtime mirror tree.
 
 Open blocker: `.codex/agents` and `.codex/config.toml` are readable but write-blocked in this sandbox (`touch .codex/agents/.codex_write_test` returns `Operation not permitted`). Four residual `.codex` files still contain old names.
 <!-- /ANCHOR:questions -->

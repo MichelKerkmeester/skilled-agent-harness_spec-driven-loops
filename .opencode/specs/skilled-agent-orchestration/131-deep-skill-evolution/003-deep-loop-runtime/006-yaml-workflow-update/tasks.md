@@ -56,7 +56,7 @@ _memory:
 
 - [ ] T001 Confirm phase 003 implementation-summary marks `.cjs` shims as complete (`../003-script-shim-and-db-relocation/implementation-summary.md`) [5m]
 - [ ] T002 Confirm phase 004 implementation-summary marks MCP-tool deletion as complete (`../004-mcp-tool-surface-removal/implementation-summary.md`) [5m]
-- [ ] T003 Re-run `grep -n "mcp__mk_spec_memory__deep_loop_graph\|deep_loop_graph_" .opencode/commands/spec_kit/assets/spec_kit_deep-*.yaml` and record current line numbers in `implementation-summary.md` (scaffold-time line refs may drift) [5m]
+- [ ] T003 Re-run `grep -n "mcp__mk_spec_memory__deep_loop_graph\|deep_loop_graph_" .opencode/commands/speckit/assets/speckit_deep-*.yaml` and record current line numbers in `implementation-summary.md` (scaffold-time line refs may drift) [5m]
 - [ ] T004 Smoke-test the bash shims: `node .opencode/skills/deep-loop-runtime/scripts/convergence.cjs --spec-folder <sandbox> --loop-type review --session-id smoke-test` returns valid JSON [5m]
 <!-- /ANCHOR:phase-1 -->
 

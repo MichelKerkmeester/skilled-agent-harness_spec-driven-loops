@@ -54,8 +54,8 @@
       "external/packages/sdk/src/cli-registry.ts",
       "external/tests/continuity.rs",
       ".opencode/agents/orchestrate.md",
-      ".opencode/commands/spec_kit/deep-research.md",
-      ".opencode/commands/spec_kit/deep-review.md",
+      ".opencode/commands/speckit/deep-research.md",
+      ".opencode/commands/speckit/deep-review.md",
       "research/iterations/iteration-001.md",
       "research/deep-research-state.jsonl",
       "implementation-summary.md",
@@ -144,13 +144,13 @@
       {
         "name": "deep-research.md",
         "kind": "doc",
-        "path": ".opencode/commands/spec_kit/deep-research.md",
+        "path": ".opencode/commands/speckit/deep-research.md",
         "source": "derived"
       },
       {
         "name": "deep-review.md",
         "kind": "doc",
-        "path": ".opencode/commands/spec_kit/deep-review.md",
+        "path": ".opencode/commands/speckit/deep-review.md",
         "source": "derived"
       },
       {

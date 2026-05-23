@@ -8,23 +8,23 @@
 
 ## Executive Summary
 
-This analysis examines four AI memory systems: dotmd (hybrid search pioneer), seu-claude (task orchestration focus), drift Cortex V2 (sophisticated decay modeling), and the current system-speckit (production MCP server). Each system addresses the fundamental challenge of maintaining relevant context across AI sessions while managing token budgets.
+This analysis examines four AI memory systems: dotmd (hybrid search pioneer), seu-claude (task orchestration focus), drift Cortex V2 (sophisticated decay modeling), and the current system-spec-kit (production MCP server). Each system addresses the fundamental challenge of maintaining relevant context across AI sessions while managing token budgets.
 
 **Key findings:**
 
 1. **Hybrid search is universal** - All systems combine semantic and keyword search, with dotmd adding graph traversal as a third dimension.
-2. **Decay modeling varies dramatically** - From simple FSRS in system-speckit to drift's multi-factor confidence decay with 5 configurable half-lives.
+2. **Decay modeling varies dramatically** - From simple FSRS in system-spec-kit to drift's multi-factor confidence decay with 5 configurable half-lives.
 3. **Token efficiency is critical** - Drift's 7-layer architecture and speckit's ANCHOR format both achieve ~90%+ token savings through hierarchical compression.
 4. **Crash recovery matters** - seu-claude's immediate SQLite saves and drift's session deduplication prevent context loss.
 5. **Learning systems are emerging** - Drift's correction capture and principle extraction represent the next evolution beyond static retrieval.
 
-The analysis reveals opportunities to enhance system-speckit with multi-factor decay, causal memory graphs, and automated learning extraction while maintaining its production-proven MCP architecture.
+The analysis reveals opportunities to enhance system-spec-kit with multi-factor decay, causal memory graphs, and automated learning extraction while maintaining its production-proven MCP architecture.
 
 ---
 
 ## 1. Architecture Comparison Matrix
 
-| Dimension | dotmd | seu-claude | drift (Cortex V2) | system-speckit |
+| Dimension | dotmd | seu-claude | drift (Cortex V2) | system-spec-kit |
 |-----------|-------|------------|-------------------|----------------|
 | **Primary Focus** | Hybrid search | Task orchestration | Memory decay/learning | Context preservation |
 | **Search Engines** | 3 (semantic, keyword, graph) | 2 (semantic, BM25) | Semantic + graph | 2 (vector, FTS5) |
@@ -155,9 +155,9 @@ Each layer has token budgets, enabling progressive detail disclosure from "IDs O
 
 **Strengths:** Multi-factor decay models real-world memory behavior. Causal graph enables reasoning about why memories matter. Learning system improves over time.
 
-### 2.4 Current system-speckit Architecture
+### 2.4 Current system-spec-kit Architecture
 
-system-speckit is a **production MCP server** with 17 tools across 4 categories.
+system-spec-kit is a **production MCP server** with 17 tools across 4 categories.
 
 **Tool Categories:**
 1. **Search** - `memory_search`, `memory_match_triggers`
@@ -223,7 +223,7 @@ The drift system models memory decay as a product of independent factors:
 4. **Importance anchor** - Critical memories resist decay
 5. **Pattern alignment** - Memories linked to active patterns get boosted
 
-This is more sophisticated than system-speckit's FSRS model, which treats decay as a single-dimension state machine.
+This is more sophisticated than system-spec-kit's FSRS model, which treats decay as a single-dimension state machine.
 
 ### 3.2 Hybrid Search Strategies
 
@@ -236,7 +236,7 @@ All four systems implement hybrid search, but with different architectures:
 | drift | Embeddings | None explicit | Causal graph | Multi-factor |
 | speckit | sqlite-vec | FTS5 | None | RRF |
 
-**Key Insight:** dotmd's three-engine approach with graph traversal finds relationships that pure vector+keyword search misses. system-speckit could benefit from adding a relationship layer.
+**Key Insight:** dotmd's three-engine approach with graph traversal finds relationships that pure vector+keyword search misses. system-spec-kit could benefit from adding a relationship layer.
 
 ### 3.3 Storage Abstractions
 
@@ -351,7 +351,7 @@ Prevents duplicate processing when sessions restart.
 - **71 curated implementation skills** - Domain expertise library
 - **9 memory types** - Fine-grained categorization
 
-### From system-speckit:
+### From system-spec-kit:
 - **ANCHOR format** - Section-level retrieval with ~93% token savings
 - **6-tier importance** - Constitutional memories never decay
 - **Prediction error gating** - Prevents duplicate memories
@@ -392,7 +392,7 @@ Prevents duplicate processing when sessions restart.
 - Custom storage may limit integrations
 - Learning system requires training data
 
-### system-speckit Limitations:
+### system-spec-kit Limitations:
 - No causal relationship graph
 - Single-dimension decay (FSRS states)
 - No automated learning extraction
@@ -402,7 +402,7 @@ Prevents duplicate processing when sessions restart.
 
 ## 8. Key Learnings
 
-### Immediate Adoption Candidates for system-speckit:
+### Immediate Adoption Candidates for system-spec-kit:
 
 1. **Multi-factor decay** (from drift)
    - Add usage boost: `log10(accessCount + 1) * 0.2`
@@ -453,7 +453,7 @@ Prevents duplicate processing when sessions restart.
 - dotmd: Hybrid search implementation, RRF fusion, protocol abstractions
 - seu-claude: Hexagonal architecture, Task DAG, tree-sitter strategies
 - drift: Cortex V2 decay model, causal graph, learning system
-- system-speckit: `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/`
+- system-spec-kit: `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/`
   - MCP server: `mcp_server/` (17 tools, 32+ lib modules)
   - Scripts: `scripts/` (48 JS scripts)
   - FSRS implementation: `mcp_server/lib/cognitive/attention-decay.js`

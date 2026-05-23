@@ -72,7 +72,7 @@ Packet 092 closes the packet-089 Multi-AI Council deferrals without expanding co
 
 ### Runtime and Reference Documentation
 
-The OpenCode, Claude, and Gemini agent bodies document the v1.1 optional metadata and memory-save payload routing in §14 and §16. `state-format.md` now defines the additive schema policy and v1.1 examples, while `command-wiring.md` gives future `/spec_kit:*` commands and CLI playbooks the copy-paste persistence pattern.
+The OpenCode, Claude, and Gemini agent bodies document the v1.1 optional metadata and memory-save payload routing in §14 and §16. `state-format.md` now defines the additive schema policy and v1.1 examples, while `command-wiring.md` gives future `/speckit:*` commands and CLI playbooks the copy-paste persistence pattern.
 <!-- /ANCHOR:what-built -->
 
 ---

@@ -384,7 +384,7 @@ The current README has 15 sections. The template prescribes 9. The current appro
 ### D3: Spec Kit README
 
 - **Path**: `.opencode/skills/system-spec-kit/README.md`
-- **Spec**: `022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/`
+- **Spec**: `022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme/`
 - **Relationship**: D4 should link to D3 for spec folder workflow depth. Avoid duplicating template architecture, validation rules, or memory pipeline details. Summary-only in root README with "See [Spec Kit Documentation](...) for complete reference."
 
 ### Linking Strategy

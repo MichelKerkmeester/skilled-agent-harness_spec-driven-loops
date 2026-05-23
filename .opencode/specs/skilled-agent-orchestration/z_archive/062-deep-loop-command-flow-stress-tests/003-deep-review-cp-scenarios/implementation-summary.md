@@ -37,7 +37,7 @@ _memory:
 | Field | Value |
 |---|---|
 | **Sub-phase** | 062/003 |
-| **Target** | `/spec_kit:deep-review` + `@deep-review` |
+| **Target** | `/speckit:deep-review` + `@deep-review` |
 | **Status** | Planned |
 | **Completion** | 0% |
 <!-- /ANCHOR:metadata -->

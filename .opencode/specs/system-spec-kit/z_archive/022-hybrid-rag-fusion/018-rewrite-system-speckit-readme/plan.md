@@ -1,5 +1,5 @@
 ---
-title: "Plan: Rewrite System Spec Kit README [system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/plan]"
+title: "Plan: Rewrite System Spec Kit README [system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme/plan]"
 description: "Implementation plan for a complete rewrite of the system-spec-kit README."
 trigger_phrases:
   - "plan"
@@ -13,7 +13,7 @@ contextType: "planning"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme"
+    packet_pointer: "system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
@@ -21,7 +21,7 @@ _memory:
     key_files: ["plan.md"]
 ---
 <!-- SPECKIT_LEVEL: 1 -->
-# Plan: 018-rewrite-system-speckit-readme
+# Plan: 018-rewrite-system-spec-kit-readme
 
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 
@@ -156,7 +156,7 @@ SKILL.md + feature_catalog + commands + templates → research brief → draft �
 ---
 
 <!--
-PLAN: 018-rewrite-system-speckit-readme
+PLAN: 018-rewrite-system-spec-kit-readme
 Complete (2026-03-25)
 4-phase: Research → Draft → Review → Assembly
 -->

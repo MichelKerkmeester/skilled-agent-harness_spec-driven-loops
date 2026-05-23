@@ -45,7 +45,7 @@ The skill follows a script-assisted AI analysis model. Python scripts handle det
 
 All documentation output produced through this skill must follow Human Voice Rules (HVR): no em dashes, no semicolons, no Oxford commas, no banned words (leverage, robust, seamless, utilize, delve, and others), and active voice throughout. HVR violations count against the Style component of the DQI score. The full ruleset lives in `references/global/hvr_rules.md`.
 
-For Spec Kit packet recovery, this skill treats `/spec_kit:resume` as the canonical surface. Continuity should come from `handover.md`, then `_memory.continuity`, then the remaining spec docs, while generated memory artifacts remain supporting only.
+For Spec Kit packet recovery, this skill treats `/speckit:resume` as the canonical surface. Continuity should come from `handover.md`, then `_memory.continuity`, then the remaining spec docs, while generated memory artifacts remain supporting only.
 
 ### Key Statistics
 

@@ -85,7 +85,7 @@ _memory:
 
 | Task ID | Status | Parent REQ | Files |
 |---------|--------|------------|-------|
-| T-WE-NEW-1 | Completed | REQ-000, REQ-002 | `.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs`; `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`; `.opencode/commands/spec_kit/deep-research.md`; `.opencode/commands/spec_kit/deep-review.md` |
+| T-WE-NEW-1 | Completed | REQ-000, REQ-002 | `.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs`; `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml`; `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`; `.opencode/commands/speckit/deep-research.md`; `.opencode/commands/speckit/deep-review.md` |
 
 - [x] T-WE-NEW-1 Prototype or implement workflow fan-out/join capability so wave execution has a proven orchestration path before any wave-mode runtime build proceeds.
 <!-- /ANCHOR:phase-1 -->
@@ -105,7 +105,7 @@ _memory:
 | T-WE-NEW-2 | Completed | REQ-007 | `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs`; `.opencode/skills/sk-deep-review/references/state_format.md`; `.opencode/skills/sk-deep-review/references/loop_protocol.md` |
 | T-WE-NEW-3 | Completed | REQ-007 | `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs`; `.opencode/skills/sk-deep-research/references/state_format.md`; `.opencode/skills/sk-deep-research/references/loop_protocol.md` |
 | T-WE-NEW-4 | Completed | REQ-004 | `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs`; `.opencode/skills/sk-deep-research/references/state_format.md`; `.opencode/skills/sk-deep-review/references/state_format.md` |
-| T-WE-NEW-5 | Completed | REQ-006 | `.opencode/skills/sk-deep-research/assets/deep_research_config.json`; `.opencode/skills/sk-deep-review/assets/deep_review_config.json`; `.opencode/commands/spec_kit/deep-research.md`; `.opencode/commands/spec_kit/deep-review.md` |
+| T-WE-NEW-5 | Completed | REQ-006 | `.opencode/skills/sk-deep-research/assets/deep_research_config.json`; `.opencode/skills/sk-deep-review/assets/deep_review_config.json`; `.opencode/commands/speckit/deep-research.md`; `.opencode/commands/speckit/deep-review.md` |
 
 - [x] T001 Define v1 deterministic heuristic segmentation for review files and research domains, keeping segment identity and ordering reproducible.
 - [x] T002 Add segment-plan versioning, activation-gate configuration, and strategy surfaces for research and review.
@@ -125,11 +125,11 @@ _memory:
 
 | Task ID | Status | Parent REQ | Files |
 |---------|--------|------------|-------|
-| T004 | Completed | REQ-002 | `.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs`; `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` |
-| T005 | Completed | REQ-005 | `.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs`; `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs`; `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` |
+| T004 | Completed | REQ-002 | `.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs`; `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml`; `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml` |
+| T005 | Completed | REQ-005 | `.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs`; `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs`; `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml`; `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml` |
 | T006 | Completed | REQ-003, REQ-008 | `.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs`; `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md`; `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md` |
-| T007 | Completed | REQ-006 | `.opencode/commands/spec_kit/deep-research.md`; `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`; `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`; `.opencode/skills/sk-deep-research/assets/deep_research_config.json` |
-| T008 | Completed | REQ-006 | `.opencode/commands/spec_kit/deep-review.md`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`; `.opencode/skills/sk-deep-review/assets/deep_review_config.json`; `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml` |
+| T007 | Completed | REQ-006 | `.opencode/commands/speckit/deep-research.md`; `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml`; `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml`; `.opencode/skills/sk-deep-research/assets/deep_research_config.json` |
+| T008 | Completed | REQ-006 | `.opencode/commands/speckit/deep-review.md`; `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`; `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`; `.opencode/skills/sk-deep-review/assets/deep_review_config.json`; `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml` |
 | T009 | Completed | REQ-004, REQ-008 | `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs`; `.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs`; `.opencode/skills/sk-deep-research/references/state_format.md`; `.opencode/skills/sk-deep-review/references/state_format.md` |
 
 - [x] T004 Implement the shared wave lifecycle manager for fan-out, join, prune, promote, and merge transitions once T-WE-NEW-1 is proven.
@@ -150,7 +150,7 @@ _memory:
 |---------|--------|------------|-------|
 | T010 | Completed | REQ-009 | `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts` |
 | T011 | Completed | REQ-004, REQ-008, REQ-009 | `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs`; `.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs` |
-| T012 | Completed | REQ-006, REQ-009 | `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts`; `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` |
+| T012 | Completed | REQ-006, REQ-009 | `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts`; `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml`; `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml` |
 
 - [x] T010 Create planner and lifecycle tests for fan-out/join proof, deterministic v1 segmentation, and gated wave transitions.
 - [x] T011 Create merge tests that prove explicit-key provenance, dedupe, and conflict metadata survive repeated merges without trusting append order.

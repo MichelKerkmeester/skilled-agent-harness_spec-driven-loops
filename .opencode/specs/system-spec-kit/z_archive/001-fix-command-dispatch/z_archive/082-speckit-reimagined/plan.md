@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/082-speckit-reimagined/plan]"
-description: "This plan implements a comprehensive enhancement to SpecKit's memory system based on consolidated analysis of dotmd, seu-claude, drift, and system-speckit architectures. The imp..."
+description: "This plan implements a comprehensive enhancement to SpecKit's memory system based on consolidated analysis of dotmd, seu-claude, drift, and system-spec-kit architectures. The imp..."
 trigger_phrases:
   - "implementation"
   - "plan"
@@ -31,7 +31,7 @@ contextType: "planning"
 
 ### Overview
 
-This plan implements a comprehensive enhancement to SpecKit's memory system based on consolidated analysis of dotmd, seu-claude, drift, and system-speckit architectures. The implementation follows a 4-phase approach across 6-7 weeks, introducing session deduplication for 25-35% token savings, multi-factor decay with type-specific half-lives, RRF search fusion for 40-50% relevance improvement, and a causal memory graph for decision lineage.
+This plan implements a comprehensive enhancement to SpecKit's memory system based on consolidated analysis of dotmd, seu-claude, drift, and system-spec-kit architectures. The implementation follows a 4-phase approach across 6-7 weeks, introducing session deduplication for 25-35% token savings, multi-factor decay with type-specific half-lives, RRF search fusion for 40-50% relevance improvement, and a causal memory graph for decision lineage.
 
 > **[AUDIT 2026-02-01]:** Timeline corrected from 11 weeks to 6-7 weeks. Original estimate included parallel workstreams counted sequentially and overestimated phase dependencies. Phases 1-2 can overlap significantly; Phase 3 consolidation work is largely independent.
 

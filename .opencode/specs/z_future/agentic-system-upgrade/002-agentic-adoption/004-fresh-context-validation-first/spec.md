@@ -67,10 +67,10 @@ Turn the research synthesis for 004 fresh context validation first into one foll
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/commands/spec_kit/implement.md` | Modify | Primary affected surface for the adoption work |
+| `.opencode/commands/speckit/implement.md` | Modify | Primary affected surface for the adoption work |
 | `.opencode/skills/system-spec-kit/references/memory/save_workflow.md` | Modify | Primary affected surface for the adoption work |
 | `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | Modify | Primary affected surface for the adoption work |
-| `.opencode/commands/spec_kit/deep-research.md` | Modify | Primary affected surface for the adoption work |
+| `.opencode/commands/speckit/deep-research.md` | Modify | Primary affected surface for the adoption work |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -82,7 +82,7 @@ Turn the research synthesis for 004 fresh context validation first into one foll
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Keep the current Public authorities authoritative | The packet does not recommend replacing `/spec_kit:*`, the current agent stack, Spec Kit Memory, CocoIndex, or code-graph |
+| REQ-001 | Keep the current Public authorities authoritative | The packet does not recommend replacing `/speckit:*`, the current agent stack, Spec Kit Memory, CocoIndex, or code-graph |
 | REQ-002 | Define the adoption as a wrapper or refactor over current surfaces | The packet maps the work to current repo files and avoids backend transplant language |
 
 ### P1 - Required (complete OR user-approved deferral)

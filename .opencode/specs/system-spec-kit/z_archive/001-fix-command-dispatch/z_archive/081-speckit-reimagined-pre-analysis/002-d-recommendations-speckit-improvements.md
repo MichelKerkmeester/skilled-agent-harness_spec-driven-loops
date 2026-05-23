@@ -8,7 +8,7 @@
 
 ## Executive Summary
 
-Analysis of three production memory systems (dotmd, seu-claude, drift Cortex V2) reveals actionable patterns for enhancing system-speckit. Key opportunities include: (1) adopting multi-factor decay with type-specific half-lives from drift Cortex, (2) implementing causal memory graphs from drift for relationship tracking, (3) adding cross-encoder reranking from dotmd for precision, and (4) integrating tool output caching from seu-claude for efficiency. Current system-speckit has solid foundations (FSRS v4, composite scoring, RRF) but lacks memory relationships, adaptive decay rates, and learning from corrections.
+Analysis of three production memory systems (dotmd, seu-claude, drift Cortex V2) reveals actionable patterns for enhancing system-spec-kit. Key opportunities include: (1) adopting multi-factor decay with type-specific half-lives from drift Cortex, (2) implementing causal memory graphs from drift for relationship tracking, (3) adding cross-encoder reranking from dotmd for precision, and (4) integrating tool output caching from seu-claude for efficiency. Current system-spec-kit has solid foundations (FSRS v4, composite scoring, RRF) but lacks memory relationships, adaptive decay rates, and learning from corrections.
 
 ---
 
@@ -487,4 +487,4 @@ async function enhanced_search(query, session_id, options = {}) {
 
 *Document generated: 2025-02-01*
 *Research sources: dotmd, seu-claude, drift Cortex V2*
-*Applies to: system-speckit v1.x*
+*Applies to: system-spec-kit v1.x*

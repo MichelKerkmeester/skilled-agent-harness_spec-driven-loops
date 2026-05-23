@@ -138,10 +138,10 @@ Summary of aggregate file scope. Per-phase detail lives in each child plan.
 - Phase 006 depends on Phase 005 completion; it automates the 6 value scenarios as fixture-driven vitest with measured baseline vs graph metrics.
 - Phase 007 depends on Phase 006 completion; it closes 6 residual infrastructure gaps surfaced across 101/001..006 (test gate, feature catalog, anchor integrity, replay helper, Codex parity, fixture provenance).
 - Phase 008 depends on Phase 007 completion; it surfaces the new artifacts via SKILL.md, publishes the 101 series changelog, and adds smoke coverage for the three new helper scripts.
-- Use `/spec_kit:resume skilled-agent-orchestration/101-deep-multi-ai-council-skill/001-deep-ai-council-skill-creation` to resume initial skill extraction.
-- Use `/spec_kit:resume skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support` to resume graph-support planning.
-- Use `/spec_kit:resume skilled-agent-orchestration/101-deep-multi-ai-council-skill/004-deep-ai-council-playbook-graph-coverage` to resume playbook coverage work.
-- Use `/spec_kit:resume skilled-agent-orchestration/101-deep-multi-ai-council-skill/005-deep-ai-council-fixups-and-graph-value-scenarios` to resume fix-ups and value-scenarios work.
+- Use `/speckit:resume skilled-agent-orchestration/101-deep-multi-ai-council-skill/001-deep-ai-council-skill-creation` to resume initial skill extraction.
+- Use `/speckit:resume skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support` to resume graph-support planning.
+- Use `/speckit:resume skilled-agent-orchestration/101-deep-multi-ai-council-skill/004-deep-ai-council-playbook-graph-coverage` to resume playbook coverage work.
+- Use `/speckit:resume skilled-agent-orchestration/101-deep-multi-ai-council-skill/005-deep-ai-council-fixups-and-graph-value-scenarios` to resume fix-ups and value-scenarios work.
 
 ### Phase Handoff Criteria
 

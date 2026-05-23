@@ -35,7 +35,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify |
 | **Priority** | P0 |
 | **Status** | Review |
 | **Created** | 2026-03-31 |
-| **Branch** | `system-speckit/024-compact-code-graph` |
+| **Branch** | `system-spec-kit/024-compact-code-graph` |
 | **Parent Spec** | ../spec.md |
 | **Predecessor** | 008-spec-memory-compliance-audit |
 | **Successor** | 010-search-retrieval-quality-fixes |

@@ -8,8 +8,8 @@ Canonical lineage schema proposal grounded in observed gaps.
 
 ## Evidence
 - `.opencode/skills/sk-deep-research/references/state_format.md:219-231`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:119-129`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:124-132`
+- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:119-129`
+- `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:124-132`
 
 ## Analysis
 Current schema supports operational continuity but not lineage genealogy. A minimal extension can preserve backward compatibility while enabling explicit branch semantics.

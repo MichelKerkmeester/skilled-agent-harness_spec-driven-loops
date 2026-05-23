@@ -93,7 +93,7 @@ Follow these steps in order and keep the analysis evidence-first.
 3. Start with the external `CLAUDE.md`. Extract how it structures rules, quick references, project structure, command scope, and team-memory feedback loops.
 4. Compare that external `CLAUDE.md` side-by-side with this repo's `CLAUDE.md` and `.claude/CLAUDE.md`. Highlight differences in gate style, recovery model, enforcement style, rule specificity, and update discipline.
 5. Inventory the external `.claude/commands/` directory. Confirm the command count, identify the highest-value commands, and note how `scope: project` versus `scope: starter-kit` changes distribution behavior.
-6. Compare the starter kit command surface against this repo's `.opencode/commands/README.txt`, `.opencode/commands/spec_kit/README.txt`, and relevant command entrypoints such as `.opencode/commands/improve/prompt.md`. Focus on workflow ergonomics, discoverability, distribution model, and execution-mode design.
+6. Compare the starter kit command surface against this repo's `.opencode/commands/README.txt`, `.opencode/commands/speckit/README.txt`, and relevant command entrypoints such as `.opencode/commands/improve/prompt.md`. Focus on workflow ergonomics, discoverability, distribution model, and execution-mode design.
 7. Read the external `.claude/commands/mdd.md` in detail. Use it as the main reference for MDD mechanics, audit flow, test-skeleton generation, plan approval, and incremental notes-to-disk behavior.
 8. Inventory the external hook system using `.claude/settings.json` plus the hook scripts in `.claude/hooks/`. Confirm all `9` hooks and map them to trigger points such as `PreToolUse`, `PostToolUse`, and `Stop`.
 9. Compare that hook architecture against this repo's `.claude/settings.local.json`. Be explicit about the difference between enforcement hooks in the starter kit and recovery/context hooks in this repo.
@@ -155,7 +155,7 @@ Use findings in this style.
 - **What it does:** The starter kit compresses feature context into a single structured `.mdd/docs/*.md` file, then writes audit notes to disk every two features so context compaction does not erase progress.
 - **Why it matters here:** This repo already has spec folders, memory saves, handover, and deep-research artifacts, but it does not yet offer a simple Claude-first "write notes to disk while auditing" convention.
 - **Recommendation:** `prototype later`
-- **Affected area:** `CLAUDE.md`, `.opencode/commands/spec_kit/`, handover or research workflows
+- **Affected area:** `CLAUDE.md`, `.opencode/commands/speckit/`, handover or research workflows
 - **Risk / cost:** Medium. The concept is useful, but `.mdd/` must not undercut Spec Kit governance.
 
 ### Example B - hook-based enforcement

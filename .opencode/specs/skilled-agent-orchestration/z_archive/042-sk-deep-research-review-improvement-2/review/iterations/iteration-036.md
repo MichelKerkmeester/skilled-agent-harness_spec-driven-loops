@@ -55,19 +55,19 @@ I found the review bundle and I’m now reading the spec summary plus the exact 
 The next pass is the actual trust boundary check: I’m reading the six workflow assets in full and then I’ll inspect the code paths they invoke where session IDs, graph blocker data, and review dimensions cross from YAML into runtime code.
 
 ● Read spec_kit_deep-research_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml
   └ L1:400 (304 lines read)
 
 ● Read spec_kit_deep-review_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
   └ L1:400 (274 lines read)
 
 ● Read spec_kit_deep-review_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
   └ L1:400 (274 lines read)
 
 ● Read spec_kit_deep-research_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml
   └ L1:400 (312 lines read)
 
 ● Read improve_improve-agent_confirm.yaml
@@ -90,19 +90,19 @@ The next pass is the actual trust boundary check: I’m reading the six workflow
 I’ve confirmed the intended branches exist in the YAMLs. I’m now reading the exact convergence/blocked-stop sections and the session-boundary gate implementation details to see whether any of the fixes accidentally weakened a trust boundary or reintroduced unsafe routing.
 
 ● Read spec_kit_deep-research_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml
   └ L300:430 (131 lines read)
 
 ● Read spec_kit_deep-review_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
   └ L275:520 (246 lines read)
 
 ● Read spec_kit_deep-review_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
   └ L275:560 (278 lines read)
 
 ● Read spec_kit_deep-research_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml
   └ L300:440 (141 lines read)
 
 ● Search (grep)
@@ -155,7 +155,7 @@ I’ve got one concrete candidate finding. I’m doing a quick independent cross
 
 ● Search (grep)
   │ "append_to_jsonl|command: "mkdir -p \{spec_folder\}|archive: "\{spec_folder\}/review|archive:
-  │ "\{spec_folder\}/research" in **/*.{yaml,yml} (.opencode/commands/spec_kit/assets)
+  │ "\{spec_folder\}/research" in **/*.{yaml,yml} (.opencode/commands/speckit/assets)
   └ 20 lines found
 
 ● Search (grep)
@@ -165,22 +165,22 @@ I’ve got one concrete candidate finding. I’m doing a quick independent cross
 
 ● Search (grep)
   │ "NNN-name|must match.*NNN|slug|^[A-Za-z0-9_-]+$|metachar|shell"
-  │ (.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml)
+  │ (.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml)
   └ 2 lines found
 
 ● Search (grep)
   │ "NNN-name|must match.*NNN|slug|^[A-Za-z0-9_-]+$|metachar|shell"
-  │ (.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml)
+  │ (.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml)
   └ 2 lines found
 
 ● Search (grep)
   │ "NNN-name|must match.*NNN|slug|^[A-Za-z0-9_-]+$|metachar|shell"
-  │ (.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml)
+  │ (.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml)
   └ 2 lines found
 
 ● Search (grep)
   │ "NNN-name|must match.*NNN|slug|^[A-Za-z0-9_-]+$|metachar|shell"
-  │ (.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml)
+  │ (.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml)
   └ 2 lines found
 
 I’ve converged on two actual security findings. I’m pulling the exact line ranges I need for a clean findings-first report, and the rest of the targeted fixes look intact.
@@ -198,23 +198,23 @@ I’ve converged on two actual security findings. I’m pulling the exact line r
   └ L126:182 (57 lines read)
 
 ● Read spec_kit_deep-review_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
   └ L234:245 (11 lines read)
 
 ● Read spec_kit_deep-review_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
   └ L242:253 (11 lines read)
 
 ● Read spec_kit_deep-review_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
   └ L452:493 (42 lines read)
 
 ● Read spec_kit_deep-research_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml
   └ L154:159 (6 lines read)
 
 ● Read spec_kit_deep-research_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml
   └ L163:166 (4 lines read)
 
 **F-036-001**  
@@ -237,7 +237,7 @@ I’ve converged on two actual security findings. I’m pulling the exact line r
 
 **ITERATION SUMMARY:** 2 findings total: **0 P0, 1 P1, 1 P2**. The named round-3 YAML fixes themselves look correct: deep-review now normalizes `reviewDimensions` once and preserves `graphBlockerDetail` in `blocked_stop`; deep-research no longer routes completed sessions directly to synthesis and now halts instead.
 
-**COVERAGE ASSESSMENT:** Reviewed the parent 042 packet summary plus all six workflow assets named in the focus area. Verified the targeted deep-review fix points in `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:234-244,452-492` and `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:242-252,479-525`; verified the deep-research completed-session halt in `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:154-158` and `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:163-166`; traced the improve-agent workflow into the referenced `sk-improve-agent` scripts for path/regex handling.
+**COVERAGE ASSESSMENT:** Reviewed the parent 042 packet summary plus all six workflow assets named in the focus area. Verified the targeted deep-review fix points in `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:234-244,452-492` and `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:242-252,479-525`; verified the deep-research completed-session halt in `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:154-158` and `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:163-166`; traced the improve-agent workflow into the referenced `sk-improve-agent` scripts for path/regex handling.
 
 **CONFIDENCE:** High.
 

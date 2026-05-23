@@ -42,7 +42,7 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Workflow** | `/spec_kit:deep-review:auto` (skill-owned YAML) |
+| **Workflow** | `/speckit:deep-review:auto` (skill-owned YAML) |
 | **Executor** | cli-codex (`codex exec`) |
 | **Model** | gpt-5.5 |
 | **Reasoning effort** | high |
@@ -54,7 +54,7 @@ _memory:
 Run an autonomous deep-review loop over the recent burst (093, 094, 095, 096) with all 4 dimensions
 enabled. Strategy is `arch` — focus on cross-phase consistency, naming/conventions, structural
 integrity, and hidden regressions in the bulk-sed of 096. Synthesize findings into review-report.md
-with a Planning Packet that downstream `/spec_kit:plan` can consume.
+with a Planning Packet that downstream `/speckit:plan` can consume.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -108,7 +108,7 @@ reducer-owned findings registry, severity-weighted convergence detection.
 ## FIX ADDENDUM: AFFECTED SURFACES
 
 Not applicable at planning time — this is a review-only packet. If review yields FAIL/CONDITIONAL,
-the Plan Seed in `review-report.md` populates this section for the follow-up `/spec_kit:plan` packet.
+the Plan Seed in `review-report.md` populates this section for the follow-up `/speckit:plan` packet.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|

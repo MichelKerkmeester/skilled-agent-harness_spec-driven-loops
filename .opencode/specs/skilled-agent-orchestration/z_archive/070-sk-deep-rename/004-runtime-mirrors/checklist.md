@@ -86,7 +86,7 @@ _memory:
 - [x] CHK-FIX-001 [P0] Claude runtime mirror references use new skill names (evidence: `.claude` residual grep clean)
 - [ ] CHK-FIX-002 [P0] Codex runtime mirror references use new skill names (evidence: `.codex` residual count 4)
 - [x] CHK-FIX-003 [P0] Gemini runtime mirror references use new skill names (evidence: `.gemini` residual grep clean)
-- [x] CHK-FIX-004 [P1] Phase 004-owned `.gemini/commands` references use new skill names (evidence: `.gemini/commands/spec_kit/deep-research.toml` patched and TOML parse passed)
+- [x] CHK-FIX-004 [P1] Phase 004-owned `.gemini/commands` references use new skill names (evidence: `.gemini/commands/speckit/deep-research.toml` patched and TOML parse passed)
 <!-- /ANCHOR:fix-completeness -->
 
 ---

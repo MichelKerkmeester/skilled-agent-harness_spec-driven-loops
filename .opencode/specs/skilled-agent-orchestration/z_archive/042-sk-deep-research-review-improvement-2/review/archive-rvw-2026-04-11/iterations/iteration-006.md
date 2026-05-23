@@ -25,7 +25,7 @@ This pass targeted the remaining lifecycle mirror on the improvement side, with 
 | Protocol | Status | Gate | Evidence | Notes |
 |----------|--------|------|----------|-------|
 | spec_code | fail | hard | `.opencode/skills/sk-improve-agent/SKILL.md:292-294`, `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:36-42` | Improvement docs promise lineage modes and replay semantics that are absent from the shipped workflow inputs and branches. |
-| snapshot_lineage | partial | soft | `.opencode/skills/sk-deep-review/references/quick_reference.md:90`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:167-170` | Re-check found no new delta beyond the already-active review/research lineage finding F010; snapshot/reopen claims remain the same known gap. |
+| snapshot_lineage | partial | soft | `.opencode/skills/sk-deep-review/references/quick_reference.md:90`, `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:167-170` | Re-check found no new delta beyond the already-active review/research lineage finding F010; snapshot/reopen claims remain the same known gap. |
 
 ## Assessment
 - New findings ratio: 0.08
@@ -34,7 +34,7 @@ This pass targeted the remaining lifecycle mirror on the improvement side, with 
 
 ## Ruled Out
 - Improvement replay consumers missing entirely: Ruled out because the reducer does read the journal, candidate-lineage, and mutation-coverage artifacts on every refresh — `.opencode/skills/sk-improve-agent/SKILL.md:364-378`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:841-845`.
-- Review/research completed-continue snapshotting as a separate new defect: Ruled out for this iteration because the current evidence still collapses into the already-active lineage-transition gap rather than a second independently shipped break — `.opencode/skills/sk-deep-review/references/quick_reference.md:90`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:167-170`.
+- Review/research completed-continue snapshotting as a separate new defect: Ruled out for this iteration because the current evidence still collapses into the already-active lineage-transition gap rather than a second independently shipped break — `.opencode/skills/sk-deep-review/references/quick_reference.md:90`, `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:167-170`.
 
 ## Dead Ends
 - Candidate-lineage depth as proof of session lifecycle support: `candidate-lineage.json` only summarizes candidate ancestry within a run, so it cannot substantiate resume/restart/fork/completed-continue session semantics — `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:227-267`.

@@ -20,8 +20,8 @@ _memory:
     key_files:
       - ".opencode/agents/debug.md"
       - ".opencode/agents/orchestrate.md"
-      - ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml"
+      - ".opencode/commands/speckit/assets/speckit_implement_auto.yaml"
+      - ".opencode/commands/speckit/assets/speckit_complete_auto.yaml"
       - ".claude/agents/debug.md"
       - ".codex/agents/debug.toml"
       - ".gemini/agents/debug.md"
@@ -60,7 +60,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-A repo-wide audit of the `@debug` agent (`.opencode/agents/debug.md` plus three sibling runtime definitions in `.claude/`, `.codex/`, `.gemini/`) confirmed the agent is shelfware. Its description and the orchestrator routing both promise auto-dispatch on `failure_count >= 3`, but no executable code increments that counter or invokes the Task tool. Zero `debug-delegation.md` instances exist across all spec folders despite a fully formed template, and in the one place where a workflow does prompt the user (`spec_kit_implement_auto.yaml:413` / `spec_kit_complete_auto.yaml:898-910`), the prompt is a buried A/B/C/D menu that operators consistently skip.
+A repo-wide audit of the `@debug` agent (`.opencode/agents/debug.md` plus three sibling runtime definitions in `.claude/`, `.codex/`, `.gemini/`) confirmed the agent is shelfware. Its description and the orchestrator routing both promise auto-dispatch on `failure_count >= 3`, but no executable code increments that counter or invokes the Task tool. Zero `debug-delegation.md` instances exist across all spec folders despite a fully formed template, and in the one place where a workflow does prompt the user (`speckit_implement_auto.yaml:413` / `speckit_complete_auto.yaml:898-910`), the prompt is a buried A/B/C/D menu that operators consistently skip.
 
 ### Purpose
 Make `@debug` honest and reachable: replace every "auto-dispatch" claim with the actual user-invoked / prompted-offer semantics, and upgrade the existing failure-threshold prompt so operators can opt in with a single keystroke and a pre-filled `debug-delegation.md` scaffold.
@@ -74,8 +74,8 @@ Make `@debug` honest and reachable: replace every "auto-dispatch" claim with the
 ### In Scope
 - Rewrite "auto-dispatch" / "Task tool dispatches" wording in the four runtime debug agent definitions (OpenCode, Claude, Codex, Gemini) so the description matches reality (user-invoked, optionally prompted at failure threshold).
 - Rewrite the matching routing prose in `.opencode/agents/orchestrate.md` (Priority Routing Table row, REASSIGN step, Debug Delegation Trigger section).
-- Rewrite the `failure_tracking` metadata wording in `spec_kit_implement_auto.yaml` and `spec_kit_complete_auto.yaml` so it reads as a *prompt threshold*, not an *auto-route trigger*.
-- Replace the buried A/B/C/D failure-threshold menu (`spec_kit_implement_auto.yaml` ~L411-413 and `spec_kit_complete_auto.yaml` ~L898-910) with a single direct yes/no/skip prompt, plus a one-line summary of what `@debug` would do.
+- Rewrite the `failure_tracking` metadata wording in `speckit_implement_auto.yaml` and `speckit_complete_auto.yaml` so it reads as a *prompt threshold*, not an *auto-route trigger*.
+- Replace the buried A/B/C/D failure-threshold menu (`speckit_implement_auto.yaml` ~L411-413 and `speckit_complete_auto.yaml` ~L898-910) with a single direct yes/no/skip prompt, plus a one-line summary of what `@debug` would do.
 - On opt-in, generate a pre-filled `debug-delegation.md` scaffold inside the active spec folder using the Debug Context Handoff schema at `.opencode/agents/debug.md:60-89`.
 - Drift check + sync across the four runtime debug definitions (per AGENTS.md sync rule).
 
@@ -92,8 +92,8 @@ Make `@debug` honest and reachable: replace every "auto-dispatch" claim with the
 |-----------|-------------|-------------|
 | `.opencode/agents/debug.md` | Modify | Rewrite description (line 3) and lead paragraph (line 24) to user-invoked semantics; update Related Resources table (line 461) so "orchestrate dispatches debug after 3 failures" becomes "orchestrate prompts user to dispatch debug after 3 failures." |
 | `.opencode/agents/orchestrate.md` | Modify | Rewrite Priority Routing Table row L99, REASSIGN step L492, Debug Delegation Trigger L537-539, and routing lookup row L595 to describe a prompted offer instead of automatic dispatch. |
-| `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml` | Modify | Rename / annotate `failure_tracking` metadata (L212-216) to read as prompt threshold; rewrite `debug_delegation.action` (L413) from buried "user may dispatch" inside diagnostic dump into a clear `prompt_user_with_y_n_skip` block. |
-| `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml` | Modify | Mirror changes from implement_auto.yaml at L321-328 and L898-910 (`debug_escalation` block — the actual A/B/C/D menu lives here). |
+| `.opencode/commands/speckit/assets/speckit_implement_auto.yaml` | Modify | Rename / annotate `failure_tracking` metadata (L212-216) to read as prompt threshold; rewrite `debug_delegation.action` (L413) from buried "user may dispatch" inside diagnostic dump into a clear `prompt_user_with_y_n_skip` block. |
+| `.opencode/commands/speckit/assets/speckit_complete_auto.yaml` | Modify | Mirror changes from implement_auto.yaml at L321-328 and L898-910 (`debug_escalation` block — the actual A/B/C/D menu lives here). |
 | `.claude/agents/debug.md` | Modify | Mirror description rewrite from `.opencode/agents/debug.md` (drift check first to confirm parity baseline). |
 | `.codex/agents/debug.toml` | Modify | Mirror description rewrite (line 11 is the inline description string inside the TOML body). |
 | `.gemini/agents/debug.md` | Modify | Mirror description rewrite. |
@@ -112,7 +112,7 @@ Make `@debug` honest and reachable: replace every "auto-dispatch" claim with the
 |----|-------------|---------------------|
 | REQ-001 | The four runtime debug agent definitions (OpenCode, Claude, Codex, Gemini) describe `@debug` as user-invoked / prompted-offer at threshold, with NO "auto-dispatch" or "Task tool dispatches" language. | `grep -n "auto-dispatch\|Task tool dispatches a focused" .opencode/agents/debug.md .claude/agents/debug.md .codex/agents/debug.toml .gemini/agents/debug.md` returns zero matches. The four descriptions are mutually consistent (semantic parity, not byte-identical). |
 | REQ-002 | `.opencode/agents/orchestrate.md` no longer claims that the orchestrator auto-dispatches `@debug` on failure_count threshold. The routing table, REASSIGN step, and Debug Delegation Trigger all describe a prompted offer that the user opts into. | Grep `orchestrate.md` for "Task tool dispatches a focused\|auto-dispatch\|automatically routes" returns zero matches. The Debug Delegation Trigger explicitly says "prepare a diagnostic summary AND prompt the user." |
-| REQ-003 | `spec_kit_implement_auto.yaml` and `spec_kit_complete_auto.yaml` `failure_tracking` metadata reads as a prompt threshold (e.g., `prompt_threshold: 3`) and the failure-handling step contains a single direct yes/no/skip prompt — not a buried A/B/C/D menu. | Both YAML files use a renamed/annotated metadata block. Grep for the `prompt_threshold` keyword returns hits in both files. The pre-existing menu format is removed. |
+| REQ-003 | `speckit_implement_auto.yaml` and `speckit_complete_auto.yaml` `failure_tracking` metadata reads as a prompt threshold (e.g., `prompt_threshold: 3`) and the failure-handling step contains a single direct yes/no/skip prompt — not a buried A/B/C/D menu. | Both YAML files use a renamed/annotated metadata block. Grep for the `prompt_threshold` keyword returns hits in both files. The pre-existing menu format is removed. |
 | REQ-004 | When the user answers `y` to the failure-threshold prompt, the workflow generates `specs/<folder>/debug-delegation.md` populated with the failure trail in the Debug Context Handoff schema (Error Description, Files Involved, Reproduction Steps, Prior Attempts table, Environment). | A synthetic 3-failure rehearsal in a throwaway spec folder produces a `debug-delegation.md` whose sections match the schema in `.opencode/agents/debug.md:60-89`. No fields contain placeholder TODO text. |
 | REQ-005 | No code path automatically invokes `@debug` via the Task tool without an explicit `y` from the user. | Grep across `.opencode/commands/`, `.opencode/skills/system-spec-kit/scripts/`, and runtime hook configs for new `Task tool` / `subagent_type: "debug"` invocations introduced by this packet returns zero matches. Existing user-gated invocations are preserved. |
 

@@ -33,7 +33,7 @@ The agent reads code using Read and Grep only. It never modifies, creates, or de
 
 All continuity across iterations comes from disk, not agent memory. The orchestrating command reads JSONL state, checks convergence, and dispatches the next agent with the current strategy file as its only context. This approach eliminates context window exhaustion for long review sessions and makes state fully inspectable, resumable, and recoverable.
 
-When the review hands control back to general packet work, `/spec_kit:resume` stays canonical. Recovery should rebuild from `handover.md`, then `_memory.continuity`, then the remaining spec docs, while generated memory artifacts stay secondary.
+When the review hands control back to general packet work, `/speckit:resume` stays canonical. Recovery should rebuild from `handover.md`, then `_memory.continuity`, then the remaining spec docs, while generated memory artifacts stay secondary.
 
 ### Key Statistics
 
@@ -324,7 +324,7 @@ Expected progression:
 - User approves each iteration before dispatch
 - Each iteration focuses on one dimension, updating strategy and JSONL state on completion
 - User reviews dashboard before approving synthesis step
-- Synthesis produces report; user approves or triggers remediation via `/spec_kit:plan`
+- Synthesis produces report; user approves or triggers remediation via `/speckit:plan`
 
 ### Example 3: Track-Wide Review
 
@@ -372,10 +372,10 @@ A: Any new P0 finding within an iteration sets `newFindingsRatio >= 0.50` regard
 A: No. The `@deep-review` agent is strictly read-only with respect to the review target. It writes only to the dedicated `{spec_folder}/review/` packet: strategy, JSONL state, dashboard, iteration files, and the final report.
 
 **Q: What happens after review finds P0 issues?**
-A: The verdict is FAIL and release is blocked. Run `/spec_kit:plan` to create a remediation plan from the findings in `{spec_folder}/review/review-report.md`, implement the fixes, then re-run `deep-review` to confirm resolution.
+A: The verdict is FAIL and release is blocked. Run `/speckit:plan` to create a remediation plan from the findings in `{spec_folder}/review/review-report.md`, implement the fixes, then re-run `deep-review` to confirm resolution.
 
 **Q: What does CONDITIONAL mean?**
-A: CONDITIONAL means active P0 is zero but active P1 findings remain. The code can proceed to planning and remediation but should not be released until P1 findings are resolved. Run `/spec_kit:plan` with the review report as input.
+A: CONDITIONAL means active P0 is zero but active P1 findings remain. The code can proceed to planning and remediation but should not be released until P1 findings are resolved. Run `/speckit:plan` with the review report as input.
 
 **Q: Can I pause a running autonomous review?**
 A: Yes. Create a file at `{spec_folder}/review/.deep-review-pause` during the loop. The orchestrator checks for this sentinel between iterations and halts cleanly. Delete the file to continue.
@@ -422,7 +422,7 @@ A: Raise `--max-iterations` above the number of completed iterations and re-invo
 | Command                 | Purpose                                                            |
 | ----------------------- | ------------------------------------------------------------------ |
 | `/deep:start-review-loop` | Primary invocation point for review-only mode                      |
-| `/spec_kit:plan`        | Next step when review verdict is FAIL or CONDITIONAL; if the remediation packet still needs intake, planning can run the shared intake contract from [`../system-spec-kit/references/intake-contract.md`](../system-spec-kit/references/intake-contract.md) first |
+| `/speckit:plan`        | Next step when review verdict is FAIL or CONDITIONAL; if the remediation packet still needs intake, planning can run the shared intake contract from [`../system-spec-kit/references/intake-contract.md`](../system-spec-kit/references/intake-contract.md) first |
 | `/memory:save`          | Manual context preservation (deep review auto-saves on completion) |
 
 ### Related Skills

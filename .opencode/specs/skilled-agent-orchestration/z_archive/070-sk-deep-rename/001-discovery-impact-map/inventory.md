@@ -98,12 +98,12 @@ Generated on 2026-05-05 by cli-codex. Scope includes active text files under `.o
 
 | File | Matches | Review | Research | Phase |
 | --- | --- | --- | --- | --- |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | 17 | 0 | 17 | 003 |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | 17 | 0 | 17 | 003 |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | 15 | 15 | 0 | 003 |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | 15 | 15 | 0 | 003 |
-| `.opencode/commands/spec_kit/deep-research.md` | 10 | 2 | 8 | 003 |
-| `.opencode/commands/spec_kit/deep-review.md` | 9 | 6 | 3 | 003 |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | 17 | 0 | 17 | 003 |
+| `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml` | 17 | 0 | 17 | 003 |
+| `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml` | 15 | 15 | 0 | 003 |
+| `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml` | 15 | 15 | 0 | 003 |
+| `.opencode/commands/speckit/deep-research.md` | 10 | 2 | 8 | 003 |
+| `.opencode/commands/speckit/deep-review.md` | 9 | 6 | 3 | 003 |
 ### mcp-server
 
 | File | Matches | Review | Research | Phase |
@@ -171,7 +171,7 @@ Generated on 2026-05-05 by cli-codex. Scope includes active text files under `.o
 
 | File | Matches | Review | Research | Phase |
 | --- | --- | --- | --- | --- |
-| `.gemini/commands/spec_kit/deep-research.toml` | 10 | 2 | 8 | 004 |
+| `.gemini/commands/speckit/deep-research.toml` | 10 | 2 | 8 | 004 |
 | `.gemini/agents/deep-review.md` | 3 | 3 | 0 | 004 |
 | `.gemini/agents/deep-research.md` | 1 | 0 | 1 | 004 |
 | `.gemini/agents/orchestrate.md` | 1 | 0 | 1 | 004 |

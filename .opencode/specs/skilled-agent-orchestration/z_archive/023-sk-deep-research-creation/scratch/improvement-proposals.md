@@ -2,7 +2,7 @@
 
 > **Status**: v2 -- refined with code-level analysis and community validation (14 iterations, 2 rounds)
 > **Date**: 2026-03-18 (v2 updated same day)
-> **Scope**: Improvements to the `/spec_kit:deep-research` command, `@deep-research` agent, and `sk-deep-research` skill
+> **Scope**: Improvements to the `/speckit:deep-research` command, `@deep-research` agent, and `sk-deep-research` skill
 > **Source repos analyzed**: karpathy/autoresearch (original, 41K stars), JoaquinMulet/Artificial-General-Research (AGR), davebcn87/pi-autoresearch, dabiggm0e/autoresearch-opencode
 > **v2 changes**: 3 effort reductions, 3 priority elevations, 2 new proposals, CUSUM dropped from composite convergence
 

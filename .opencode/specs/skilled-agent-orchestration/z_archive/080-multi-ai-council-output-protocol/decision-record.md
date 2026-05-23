@@ -61,7 +61,7 @@ The multi-ai-council convention will NOT have a dedicated skill folder. All logi
 ### Alternatives
 
 - **Build a full `.opencode/skills/multi-ai-council/`** mirroring deep-research's structure. Rejected: feature creep; non-goal N1 in spec.md §3.
-- **Create a `/spec_kit:council` slash command**. Rejected: non-goal N2; council remains user-invoked via the agent.
+- **Create a `/speckit:council` slash command**. Rejected: non-goal N2; council remains user-invoked via the agent.
 - **Hybrid (skill folder without YAML workflow)**. Rejected: still cargo-cult overhead; the lightweight bound is a design value, not a side effect.
 <!-- /ANCHOR:adr-001-alternatives -->
 

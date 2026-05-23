@@ -3,7 +3,7 @@
 Date: 2026-04-10
 
 ## Research question
-Does the external repo's orchestration surface show that `system-spec-kit` should stop exposing separate `/spec_kit:plan`, `/spec_kit:implement`, and `/spec_kit:complete` commands as the primary lifecycle model?
+Does the external repo's orchestration surface show that `system-spec-kit` should stop exposing separate `/speckit:plan`, `/speckit:implement`, and `/speckit:complete` commands as the primary lifecycle model?
 
 ## Hypothesis
 Yes. The local lifecycle split is internally coherent, but it leaks too much workflow machinery into the operator experience. A single primary command with explicit profiles would better match the external repo's lower-friction entry surface.
@@ -12,12 +12,12 @@ Yes. The local lifecycle split is internally coherent, but it leaks too much wor
 I compared the local lifecycle command prompts and their setup blocks against the external repo's orchestration entry points. I focused on how many operator-visible modes, questions, and workflow concepts each system asks a human to carry.
 
 ## Evidence
-- `[SOURCE: .opencode/commands/spec_kit/plan.md:7-21]` The planning command starts by teaching a markdown-versus-YAML ownership split before any task work begins.
-- `[SOURCE: .opencode/commands/spec_kit/plan.md:31-138]` The planning flow exposes a large consolidated-question protocol with up to nine setup questions and multiple feature flags.
-- `[SOURCE: .opencode/commands/spec_kit/implement.md:7-18]` The implementation command repeats the YAML-first setup model as a separate entry surface.
-- `[SOURCE: .opencode/commands/spec_kit/implement.md:77-120]` The implementation command asks its own consolidated setup block even after planning has already happened.
-- `[SOURCE: .opencode/commands/spec_kit/complete.md:7-21]` The completion command repeats the same execution-protocol framing yet again.
-- `[SOURCE: .opencode/commands/spec_kit/complete.md:198-229]` The full lifecycle command then adds still more mode flags, including `:with-research`, `:with-phases`, and `:auto-debug`.
+- `[SOURCE: .opencode/commands/speckit/plan.md:7-21]` The planning command starts by teaching a markdown-versus-YAML ownership split before any task work begins.
+- `[SOURCE: .opencode/commands/speckit/plan.md:31-138]` The planning flow exposes a large consolidated-question protocol with up to nine setup questions and multiple feature flags.
+- `[SOURCE: .opencode/commands/speckit/implement.md:7-18]` The implementation command repeats the YAML-first setup model as a separate entry surface.
+- `[SOURCE: .opencode/commands/speckit/implement.md:77-120]` The implementation command asks its own consolidated setup block even after planning has already happened.
+- `[SOURCE: .opencode/commands/speckit/complete.md:7-21]` The completion command repeats the same execution-protocol framing yet again.
+- `[SOURCE: .opencode/commands/speckit/complete.md:198-229]` The full lifecycle command then adds still more mode flags, including `:with-research`, `:with-phases`, and `:auto-debug`.
 - `[SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/005-intellegix-code-agent-toolkit-master/external/commands/orchestrator.md:1-18]` The external repo presents one main single-loop execution entry point with a crisp role boundary and a smaller public concept count.
 - `[SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/005-intellegix-code-agent-toolkit-master/external/commands/orchestrator-new.md:1-16]` The external repo handles greenfield variation with a second specialized entry point rather than splitting the whole lifecycle into three public phases.
 
@@ -32,7 +32,7 @@ confidence: high
 finding: `system-spec-kit` should merge the public `plan` / `implement` / `complete` lifecycle into one profile-driven entry surface, while keeping the current internal workflow separation behind that surface.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/commands/spec_kit/plan.md`, `.opencode/commands/spec_kit/implement.md`, `.opencode/commands/spec_kit/complete.md`
+- **Target file or module:** `.opencode/commands/speckit/plan.md`, `.opencode/commands/speckit/implement.md`, `.opencode/commands/speckit/complete.md`
 - **Change type:** should-have
 - **Blast radius:** operator-surface
 - **Prerequisites:** define profile vocabulary and a compatibility path for existing slash commands
@@ -51,6 +51,6 @@ finding: `system-spec-kit` should merge the public `plan` / `implement` / `compl
 I looked for evidence that the external repo needs three separate user-facing lifecycle commands to achieve its orchestration goals. I did not find an equivalent split.
 
 ## Follow-up questions for next iteration
-- Should `/spec_kit:resume` become the default continuation profile of the merged lifecycle surface?
+- Should `/speckit:resume` become the default continuation profile of the merged lifecycle surface?
 - Which existing lifecycle flags can stay internal-only once profiles exist?
 - How much backward-compatibility aliasing is worth keeping for old slash commands?

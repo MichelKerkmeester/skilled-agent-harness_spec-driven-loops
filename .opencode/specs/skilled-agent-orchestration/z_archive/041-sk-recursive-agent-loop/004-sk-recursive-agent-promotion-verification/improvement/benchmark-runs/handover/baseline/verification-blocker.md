@@ -32,7 +32,7 @@
 - **Context:** finish benchmark evidence before marking packet done
 
 ### 3.2 Priority Tasks Remaining
-1. Run `/spec_kit:resume` for the packet if the session changes.
+1. Run `/speckit:resume` for the packet if the session changes.
 2. Confirm `checklist.md` and `implementation-summary.md` match the new benchmark logs.
 3. Re-run strict validation and save final memory context.
 

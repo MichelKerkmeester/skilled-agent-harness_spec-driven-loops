@@ -43,7 +43,7 @@ Tentatively recommend **option (a)** on architectural-symmetry grounds. If sibli
 
 ## Alternative Challenged
 
-**Option (b) — orchestrator-mediated writes — challenged**: Forces every dispatching command to know about persistence. Distributed friction. BUT: callers are concentrated (`/spec_kit:*` commands), so a shared helper neutralizes friction. Challenge weakened; (b) defended by Pragmatic seat.
+**Option (b) — orchestrator-mediated writes — challenged**: Forces every dispatching command to know about persistence. Distributed friction. BUT: callers are concentrated (`/speckit:*` commands), so a shared helper neutralizes friction. Challenge weakened; (b) defended by Pragmatic seat.
 
 ## Confidence
 

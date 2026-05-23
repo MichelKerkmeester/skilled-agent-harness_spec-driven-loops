@@ -38,7 +38,7 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/commands/spec_kit/deep-research.md",
+      ".opencode/commands/speckit/deep-research.md",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts",
       ".opencode/skills/sk-deep-research/references/state_format.md",
@@ -51,7 +51,7 @@
       {
         "name": "deep-research.md",
         "kind": "doc",
-        "path": ".opencode/commands/spec_kit/deep-research.md",
+        "path": ".opencode/commands/speckit/deep-research.md",
         "source": "derived"
       },
       {

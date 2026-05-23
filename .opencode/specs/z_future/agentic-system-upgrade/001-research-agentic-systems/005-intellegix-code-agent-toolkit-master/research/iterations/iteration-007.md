@@ -18,7 +18,7 @@ I examined the external council query stack, its synthesis prompt, and semaphore
 - `[SOURCE: external/council-automation/council_config.py:18-28]` The council is configured around three analysis models plus a fallback, showing that model diversity is a first-class design choice.
 - `[SOURCE: external/council-automation/synthesis_prompt.md:12-21]` Final synthesis is constrained to a structured JSON object with agreements, disagreements, unique insights, actions, confidence, risks, and narrative.
 - `[SOURCE: external/council-automation/test_session_semaphore.py:29-39]` The browser session pool is tested as a shared resource rather than an ad hoc side effect.
-- `[SOURCE: .opencode/commands/spec_kit/deep-research.md:136-143]` `system-spec-kit` today frames deep research as an iterative single-agent loop that produces `research/research.md`.
+- `[SOURCE: .opencode/commands/speckit/deep-research.md:136-143]` `system-spec-kit` today frames deep research as an iterative single-agent loop that produces `research/research.md`.
 - `[SOURCE: .opencode/skills/cli-copilot/SKILL.md:189-220]` The broader codebase already documents multi-model access and per-model reasoning characteristics, but as operator guidance rather than a deep-research mode.
 
 ## Analysis
@@ -30,7 +30,7 @@ confidence: medium
 finding: The council pattern is worth adopting only as an optional advanced research mode. The best borrowable piece is the structured "agreements / disagreements / unique insights / recommended actions" synthesis shape, not the full dependency stack.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/commands/spec_kit/deep-research.md`, `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md`, `.opencode/skills/system-spec-kit/templates/research.md`
+- **Target file or module:** `.opencode/commands/speckit/deep-research.md`, `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md`, `.opencode/skills/system-spec-kit/templates/research.md`
 - **Change type:** added option
 - **Blast radius:** medium
 - **Prerequisites:** runtime-capability matrix must expose whether a council-style multi-model round is available

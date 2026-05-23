@@ -96,7 +96,7 @@ target_dimension: contract-surface
 ### F47 — Command-mode suffixes are :auto, :confirm, and :deep (PROPOSED)
 **Fingerprint:** `contract-surface:deep-council:command-modes-auto-confirm-deep`
 **Severity:** info
-**Evidence:** Packet 129 spec.md line 82 proposes "New /deep:ask-ai-council command (or extended /spec_kit:ai-council :deep mode) wiring with auto/confirm setup parity." Packet 129 spec.md line 91 notes "Migration path: how operators on single-round sk-ai-council move to deep mode (mode suffix :deep, default still single-round)." This adds a third mode suffix (:deep) not present in deep-review or deep-research (which only have :auto and :confirm). [SOURCE: .opencode/specs/skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/spec.md:82, 91]
+**Evidence:** Packet 129 spec.md line 82 proposes "New /deep:ask-ai-council command (or extended /speckit:ai-council :deep mode) wiring with auto/confirm setup parity." Packet 129 spec.md line 91 notes "Migration path: how operators on single-round sk-ai-council move to deep mode (mode suffix :deep, default still single-round)." This adds a third mode suffix (:deep) not present in deep-review or deep-research (which only have :auto and :confirm). [SOURCE: .opencode/specs/skilled-agent-orchestration/129-deep-ai-council-iterative-multi-topic/spec.md:82, 91]
 
 ### F48 — Convergence-distinctive value is multi-seat opinion synthesis with cross-topic priors (PROPOSED)
 **Fingerprint:** `contract-surface:deep-council:unique-multi-seat-opinion`

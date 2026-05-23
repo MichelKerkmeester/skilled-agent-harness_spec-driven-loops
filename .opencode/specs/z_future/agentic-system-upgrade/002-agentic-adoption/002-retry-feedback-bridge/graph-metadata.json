@@ -38,8 +38,8 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/commands/spec_kit/implement.md",
-      ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml",
+      ".opencode/commands/speckit/implement.md",
+      ".opencode/commands/speckit/assets/speckit_implement_auto.yaml",
       ".opencode/agents/review.md",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       "spec.md",
@@ -51,13 +51,13 @@
       {
         "name": "implement.md",
         "kind": "doc",
-        "path": ".opencode/commands/spec_kit/implement.md",
+        "path": ".opencode/commands/speckit/implement.md",
         "source": "derived"
       },
       {
-        "name": "spec_kit_implement_auto.yaml",
+        "name": "speckit_implement_auto.yaml",
         "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_implement_auto.yaml",
         "source": "derived"
       },
       {

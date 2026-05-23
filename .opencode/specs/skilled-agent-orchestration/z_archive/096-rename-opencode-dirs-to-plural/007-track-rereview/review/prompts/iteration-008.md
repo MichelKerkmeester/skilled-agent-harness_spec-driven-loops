@@ -26,7 +26,7 @@ Sandbox: workspace-write. ONLY write under `.opencode/specs/skilled-agent-orches
 
 | ID | Severity | Title | File:Line |
 |----|----------|-------|-----------|
-| P1-027 | P1 | if_cli_opencode YAML branches do not pass --pure | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:783` (and 3 sibling YAMLs) |
+| P1-027 | P1 | if_cli_opencode YAML branches do not pass --pure | `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:783` (and 3 sibling YAMLs) |
 | P1-028 | P1 | cli-opencode sandboxMode declared but ignored by all 4 if_cli_opencode YAML branches | `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:37-40` |
 | P2-027 | P2 | cli-opencode advisor alias claim in 101 strategy not reflected in aliases.ts | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/aliases.ts:5-27` |
 | P2-027r | P2 | REFRAMED: actual defect is missing scoring lane entry, not missing alias | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts:11,39` |

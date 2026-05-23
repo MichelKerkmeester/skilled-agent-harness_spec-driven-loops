@@ -55,7 +55,7 @@ _memory:
 - [x] T005 Align `.opencode/skills/sk-improve-agent/README.md` with `sk-doc` README rules
 - [x] T006 Align all markdown files under `.opencode/skills/sk-improve-agent/references/`
 - [x] T007 Align markdown assets under `.opencode/skills/sk-improve-agent/assets/`
-- [x] T008 Align `.opencode/commands/spec_kit/agent-improver.md` with `sk-doc`
+- [x] T008 Align `.opencode/commands/speckit/agent-improver.md` with `sk-doc`
 - [x] T009 Align `.opencode/agents/agent-improver.md` with `sk-doc`
 - [x] T010 Update packet-linked usage examples and metadata to the new phase path
 <!-- /ANCHOR:phase-2 -->

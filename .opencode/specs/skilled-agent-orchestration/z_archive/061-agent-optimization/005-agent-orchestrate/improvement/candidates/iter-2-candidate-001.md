@@ -527,9 +527,9 @@ When context pressure fires: pause, announce the need to save context, wait for 
 | --- | --- | --- |
 | Sub-agent stuck 3+ times | Prompt user to dispatch `@debug` via Task tool | Fresh-perspective debugging |
 | Session ending or stopping | `/memory:save` | Preserve continuity |
-| Formal research needed | `/spec_kit:deep-research` | Autonomous iterative research |
-| Claiming completion | `/spec_kit:complete` | Verification workflow |
-| Resume known or unknown work | `/spec_kit:resume` | Recover via handover, continuity, and spec docs |
+| Formal research needed | `/speckit:deep-research` | Autonomous iterative research |
+| Claiming completion | `/speckit:complete` | Verification workflow |
+| Resume known or unknown work | `/speckit:resume` | Recover via handover, continuity, and spec docs |
 | Retrieval, analysis, or eval | `/memory:search` | Unified knowledge retrieval |
 | Memory maintenance | `/memory:manage` | Stats, health, cleanup, ingest |
 | Constitutional memory rules | `/memory:learn` | Manage always-surface rules |
@@ -663,7 +663,7 @@ Reject these patterns:
 
 | Skill | Domain | Use When | Key Commands/Tools |
 | --- | --- | --- | --- |
-| `system-spec-kit` | Documentation | Spec folders, memory, validation, context preservation | `/spec_kit:*`, `/memory:*` |
+| `system-spec-kit` | Documentation | Spec folders, memory, validation, context preservation | `/speckit:*`, `/memory:*` |
 | `sk-code` | Review baseline | Findings-first review floor, mandatory security/correctness minimums | - |
 | `sk-code-*` | Implementation/overlay | Code changes, debugging, stack-specific standards and verification | - |
 | `sk-git` | Version Control | See skill for details | - |
@@ -675,10 +675,10 @@ Reject these patterns:
 
 | Resource | Purpose | Path |
 | --- | --- | --- |
-| `/spec_kit:complete` | Verification workflow | `.opencode/commands/spec_kit/complete.md` |
-| `/spec_kit:deep-research` | Autonomous iterative research loop | `.opencode/commands/spec_kit/deep-research.md` |
+| `/speckit:complete` | Verification workflow | `.opencode/commands/speckit/complete.md` |
+| `/speckit:deep-research` | Autonomous iterative research loop | `.opencode/commands/speckit/deep-research.md` |
 | `/memory:save` | Context preservation | `.opencode/commands/memory/save.md` |
-| `/spec_kit:resume` | Resume or recover interrupted work | `.opencode/commands/spec_kit/resume.md` |
+| `/speckit:resume` | Resume or recover interrupted work | `.opencode/commands/speckit/resume.md` |
 | `/memory:search` | Unified retrieval, analysis, eval | `.opencode/commands/memory/search.md` |
 | `/memory:manage` | Stats, health, cleanup, ingest | `.opencode/commands/memory/manage.md` |
 | `/memory:learn` | Constitutional memory manager | `.opencode/commands/memory/learn.md` |
@@ -700,7 +700,7 @@ If hook-injected context is present at session start, use it as the baseline. Do
 
 If hook context is unavailable:
 
-1. Follow `/spec_kit:resume` semantics: `handover.md` -> `_memory.continuity` -> packet spec docs.
+1. Follow `/speckit:resume` semantics: `handover.md` -> `_memory.continuity` -> packet spec docs.
 2. Use `memory_context({ mode: "resume", profile: "resume" })` only when packet location or continuity remains unclear.
 3. Use `memory_match_triggers()` for constitutional or triggered context.
 

@@ -40,8 +40,8 @@ Cross-cutting closure across correctness, security, traceability, and maintainab
 - `.opencode/specs/skilled-agent-orchestration/094-playbook-prompt-naturalness/checklist.md:37`
 - `.opencode/specs/skilled-agent-orchestration/094-playbook-prompt-naturalness/implementation-summary.md:13`
 - `.codex/agents/review.toml:400`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:56`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:56`
+- `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:56`
+- `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:56`
 - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts:12`
 - `.opencode/agents/deep-review.md:318`
 - `.opencode/agents/orchestrate.md:96`
@@ -89,7 +89,7 @@ No new or changed P2 findings.
 
 ### P1 Adversarial Classification Notes
 
-- P1-002 remains P1: auto command YAML uses non-existent `sk-deep-review` paths at `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:56-64`; this is command-owned workflow input, not commentary.
+- P1-002 remains P1: auto command YAML uses non-existent `sk-deep-review` paths at `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:56-64`; this is command-owned workflow input, not commentary.
 - P1-003 remains P1: source writes advisor generation state to `.opencode/skill/.advisor-state` at `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts:12`; this conflicts with the plural `.gitignore` state path at `.gitignore:44`.
 - P1-004 remains P1: packet 096 validation is a required gate failure for the largest rename packet.
 - P1-006 remains P1: the Claude Stop hook includes `SPECKIT_GENERATE_CONTEXT_SCRIPT` before canonical candidate resolution at `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:38-46`; the hook fires on a live runtime path.
@@ -98,7 +98,7 @@ No new or changed P2 findings.
 - P1-009 remains P1: `.codex/agents/review.toml:400-404` says not to block without P0 evidence and treats P1 as not immediate blockers, while shared doctrine says P1 is "Fix before merge" (`review_core.md:23`) and deep-review quick reference says active P1s produce `CONDITIONAL`, not `PASS` (`quick_reference.md:103`). This is active runtime instruction text, not a passive note.
 - P1-010 remains P1: the plural-to-plural rewrite corrupts active packet requirements and resource-map audit evidence (`spec.md:70`, `001-skills/spec.md:57`, `resource-map.md:20`). It does not directly break runtime automation, but it breaks the authoritative spec/traceability contract for the rename packet.
 - P1-011 remains P1: `.opencode/agents/orchestrate.md:96` is an active routing table that names retired `sk-deep-research`.
-- P1-012 remains P1: confirm-mode YAML mirrors the same live workflow defect as auto mode at `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:56-64`.
+- P1-012 remains P1: confirm-mode YAML mirrors the same live workflow defect as auto mode at `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:56-64`.
 
 ## Verdict
 

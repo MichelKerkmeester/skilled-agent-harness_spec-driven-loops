@@ -17,7 +17,7 @@ I reviewed the external browser-bridge MCP server and frontend E2E command, then
 - `[SOURCE: external/commands/frontend-e2e.md:1-8]` The external repo positions browser-bridge as a dedicated live-testing workflow, not just incidental web fetch.
 - `[SOURCE: external/commands/frontend-e2e.md:34-45]` Setup logic includes production safety checks, connectivity verification, navigation, fallback waits, and screenshots before deeper actions.
 - `[SOURCE: external/commands/frontend-e2e.md:99-145]` The command treats screenshots, per-page isolation, and DOM evaluation as core evidence artifacts.
-- `[SOURCE: .opencode/commands/spec_kit/deep-research.md:196-209]` Current deep research integrates memory context, CocoIndex bootstrap, and post-run memory save, but it does not define browser-backed evidence gathering as part of the standard protocol.
+- `[SOURCE: .opencode/commands/speckit/deep-research.md:196-209]` Current deep research integrates memory context, CocoIndex bootstrap, and post-run memory save, but it does not define browser-backed evidence gathering as part of the standard protocol.
 - `[SOURCE: .opencode/skills/sk-deep-research/references/loop_protocol.md:159-175]` The dispatch contract is generic about tools and runtime context, not opinionated about browser automation.
 
 ## Analysis
@@ -29,7 +29,7 @@ confidence: medium
 finding: `system-spec-kit` should reject browser-backed exploration as a default deep-research dependency, but it may want to document it as an optional runtime capability for specialized research packets.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/commands/spec_kit/deep-research.md`, `.opencode/skills/sk-deep-research/references/capability_matrix.md`
+- **Target file or module:** `.opencode/commands/speckit/deep-research.md`, `.opencode/skills/sk-deep-research/references/capability_matrix.md`
 - **Change type:** rejected
 - **Blast radius:** medium
 - **Prerequisites:** none

@@ -118,7 +118,7 @@ _memory:
 
 | Task ID | Status | Parent REQ | Files |
 |---------|--------|------------|-------|
-| T007 | Completed | REQ-006, REQ-008 | `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`; `.opencode/commands/spec_kit/deep-research.md`; `.opencode/commands/spec_kit/deep-review.md` |
+| T007 | Completed | REQ-006, REQ-008 | `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`; `.opencode/commands/speckit/deep-research.md`; `.opencode/commands/speckit/deep-review.md` |
 
 - [x] T007 Implement the advisory-only promotion gate that refuses production mutation until replay fixtures and behavioral suites exist.
 
@@ -130,7 +130,7 @@ _memory:
 |---------|--------|------------|-------|
 | T008 | Blocked | REQ-010 | `.opencode/skills/system-spec-kit/scripts/optimizer/prompt-pack-generator.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-prompt-pack.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/prompt-packs/` |
 | T009 | Blocked | REQ-011 | `.opencode/skills/system-spec-kit/scripts/optimizer/task-shape-model.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-task-shape-model.vitest.ts` |
-| T010 | Blocked | REQ-006, REQ-010 | `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`; `.opencode/commands/spec_kit/deep-research.md`; `.opencode/commands/spec_kit/deep-review.md` |
+| T010 | Blocked | REQ-006, REQ-010 | `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`; `.opencode/commands/speckit/deep-research.md`; `.opencode/commands/speckit/deep-review.md` |
 
 - [ ] [B] T008 DEFERRED: build the prompt-pack generation system for replayable and rollback-safe prompt candidates. Prerequisite: behavioral test suite + 2+ corpus families.
 - [ ] [B] T009 DEFERRED: build the cross-packet meta-learning data model for task-shape-aware learning. Prerequisite: behavioral test suite + 2+ corpus families.

@@ -35,7 +35,7 @@
 
 ## Round 2 — Cross-Critique
 
-- **Analytical attacked Pragmatic's "already working" claim** as sample-size-1. Pragmatic defended: callers are concentrated (`/spec_kit:*` commands), helper is one-line. Attack partially landed; did not flip the score.
+- **Analytical attacked Pragmatic's "already working" claim** as sample-size-1. Pragmatic defended: callers are concentrated (`/speckit:*` commands), helper is one-line. Attack partially landed; did not flip the score.
 - **Critical attacked Analytical's symmetry argument**: opencode path-scoping is unverified. Granting `write: allow` without path-scoping = invariant erosion. Attack landed; Seat 1 lost 3 points.
 - **Pragmatic attacked Critical's "5+ section impact" framing** as overstated. Counter held but is dependent on path-scoping verification. Critical's failure-mode enumeration remained intact.
 

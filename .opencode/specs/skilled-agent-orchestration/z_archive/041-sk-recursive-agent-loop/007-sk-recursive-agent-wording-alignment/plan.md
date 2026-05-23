@@ -65,8 +65,8 @@ Wording-only cleanup across current source, mirror, and packet surfaces
 
 ### Key Components
 - **Source package**: `.opencode/skills/sk-improve-agent/`
-- **Canonical command**: `.opencode/commands/spec_kit/agent-improver.md`
-- **Wrapper prompts**: `.agents/commands/spec_kit/agent-improver.toml` and `.gemini/commands/spec_kit/agent-improver.toml`
+- **Canonical command**: `.opencode/commands/speckit/agent-improver.md`
+- **Wrapper prompts**: `.agents/commands/speckit/agent-improver.toml` and `.gemini/commands/speckit/agent-improver.toml`
 - **Runtime mirrors**: agent-improver files under OpenCode, Claude, Gemini, `.agents`, and Codex
 - **Packet docs**: phase `007` plus root packet `041`
 

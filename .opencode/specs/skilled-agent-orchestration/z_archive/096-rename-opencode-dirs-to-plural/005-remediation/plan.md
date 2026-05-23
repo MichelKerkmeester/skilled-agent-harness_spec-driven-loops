@@ -108,7 +108,7 @@ See implementation-summary.md §Files Changed for the canonical list.
 - [x] T020 `validate.sh --strict` recursive on 098 + 096 + 100 + adjacent
 - [x] T021 Smart-router smoke test
 - [x] T022 audit_descriptions.py zero-inventory smoke test
-- [x] T023 Native advisor `/spec_kit:deep-review` smoke test
+- [x] T023 Native advisor `/speckit:deep-review` smoke test
 - [x] T024 resolveArtifactRoot adversarial smoke test
 - [x] T025 Author implementation-summary.md
 - [x] T026 Update graph-metadata.json (status complete)

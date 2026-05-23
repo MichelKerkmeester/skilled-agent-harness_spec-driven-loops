@@ -7,7 +7,7 @@ description: End-to-end fixture for the deep-review blocked_stop reducer path.
 
 This fixture demonstrates the full `blocked_stop -> registry -> dashboard` reducer path for a review packet.
 
-For Gate E continuity, this fixture stays supporting evidence only. Broader packet recovery still routes through `/spec_kit:resume`, then `handover.md`, `_memory.continuity`, and the remaining spec docs.
+For Gate E continuity, this fixture stays supporting evidence only. Broader packet recovery still routes through `/speckit:resume`, then `handover.md`, `_memory.continuity`, and the remaining spec docs.
 
 It includes:
 - A complete `blocked_stop` bundle with all required `gateResults`

@@ -100,7 +100,7 @@ Per-command markdown migration via cli-codex `gpt-5.5 high fast` inline-contract
 |---------|--------------|--------|--------------|
 | `auto_mode_contract.md` | New shared reference | Author with §1-8 | grep section count + dry-run trace re-run on 001 |
 | `deep-review.md` §0 | Inline three-tier from 001 | Refactor to citation + retained per-field table | grep citation count + behavior re-verification |
-| `/spec_kit:*.md` (5) | Each has consolidated Q-block under `:auto` | Replace with citation + per-field table; preserve `:confirm` | per-command grep + read-back diff |
+| `/speckit:*.md` (5) | Each has consolidated Q-block under `:auto` | Replace with citation + per-field table; preserve `:confirm` | per-command grep + read-back diff |
 | `/create:*.md` (6) | Each has consolidated Q-block under `:auto` | Same | Same |
 | `/improve:agent.md` (1) | Consolidated Q-block under `:auto` | Same | Same |
 | Per-command paired YAML | Consumer of resolved config.json | Verify no consumer-side change needed; if forced, document | live dispatch passes |
@@ -117,7 +117,7 @@ Per-command markdown migration via cli-codex `gpt-5.5 high fast` inline-contract
 - [ ] Confirm 001's dry-run traces still conceptually pass after refactor.
 
 ### Phase 2: Core Implementation
-- [ ] Codex group dispatch 1 — `/spec_kit:` 5 commands.
+- [ ] Codex group dispatch 1 — `/speckit:` 5 commands.
 - [ ] Codex group dispatch 2 — `/create:` 6 commands.
 - [ ] Codex group dispatch 3 — `/improve:agent` (1 command).
 

@@ -88,9 +88,9 @@ Operator surface
 
 #### Finding F-004 — Scope Future Live Coordination to the Active Spec/Session
 - Origin iteration: `iteration-004.md`
-- system-spec-kit target: `.opencode/commands/spec_kit/resume.md`, `.opencode/agents/context-prime.md`, and a future coordination/session module under `.opencode/skills/system-spec-kit/mcp_server/`
+- system-spec-kit target: `.opencode/commands/speckit/resume.md`, `.opencode/agents/context-prime.md`, and a future coordination/session module under `.opencode/skills/system-spec-kit/mcp_server/`
 - Priority: nice-to-have | prototype later
-- Description: Relay's workspace-aware routing suggests a safety principle worth borrowing: future live coordination in Public should default to the active spec/session scope and only widen deliberately. [SOURCE: external/ARCHITECTURE.md:274-283] [SOURCE: external/src/spawner.rs:226-256] [SOURCE: external/src/routing.rs:58-89] [SOURCE: .opencode/commands/spec_kit/resume.md:250-260] [SOURCE: .opencode/agents/context-prime.md:118-145]
+- Description: Relay's workspace-aware routing suggests a safety principle worth borrowing: future live coordination in Public should default to the active spec/session scope and only widen deliberately. [SOURCE: external/ARCHITECTURE.md:274-283] [SOURCE: external/src/spawner.rs:226-256] [SOURCE: external/src/routing.rs:58-89] [SOURCE: .opencode/commands/speckit/resume.md:250-260] [SOURCE: .opencode/agents/context-prime.md:118-145]
 
 #### Finding F-005 — Normalize Provider Capability and Transport Docs
 - Origin iteration: `iteration-005.md`

@@ -421,7 +421,7 @@
       "fingerprint": "contract-surface:deep-council:command-modes-auto-confirm-deep",
       "severity": "info",
       "title": "Command-mode suffixes are :auto, :confirm, and :deep (PROPOSED)",
-      "evidence": "Packet 129 spec.md line 82 proposes New /deep:ask-ai-council command (or extended /spec_kit:ai-council :deep mode) wiring with auto/confirm setup parity. Packet 129 spec.md line 91 notes Migration path: how operators on single-round sk-ai-council move to deep mode (mode suffix :deep, default still single-round). This adds a third mode suffix (:deep) not present in deep-review or deep-research (which only have :auto and :confirm).",
+      "evidence": "Packet 129 spec.md line 82 proposes New /deep:ask-ai-council command (or extended /speckit:ai-council :deep mode) wiring with auto/confirm setup parity. Packet 129 spec.md line 91 notes Migration path: how operators on single-round sk-ai-council move to deep mode (mode suffix :deep, default still single-round). This adds a third mode suffix (:deep) not present in deep-review or deep-research (which only have :auto and :confirm).",
       "source": ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/spec.md:82, 91"
     },
     {
@@ -673,7 +673,7 @@
       "fingerprint": "strategy:unify-mode-suffix-cost-medium-risk-medium",
       "severity": "info",
       "title": "Strategy C (unify-with-mode-suffix) has medium cost (command entrypoint unification) and medium risk (operator-facing mode suffix migration)",
-      "evidence": "Strategy C unifies command surface to /spec_kit:deep with mode suffixes (:review, :research, :council). Advisor rules simplify to mode recommendation. Cost is medium (rename existing commands to mode suffixes, documentation updates). Risk is medium because mode suffix is operator-facing and requires migration — operators familiar with /deep:start-review-loop may be confused by /spec_kit:deep :review syntax. However, risk is lower than Strategy B because no runtime changes required.",
+      "evidence": "Strategy C unifies command surface to /speckit:deep with mode suffixes (:review, :research, :council). Advisor rules simplify to mode recommendation. Cost is medium (rename existing commands to mode suffixes, documentation updates). Risk is medium because mode suffix is operator-facing and requires migration — operators familiar with /deep:start-review-loop may be confused by /speckit:deep :review syntax. However, risk is lower than Strategy B because no runtime changes required.",
       "source": "iter-006"
     },
     {

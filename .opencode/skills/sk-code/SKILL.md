@@ -50,7 +50,7 @@ Documentation-only edits to skill markdown route to `sk-doc`, even when the file
 
 ### Cross-Skill Consumption
 
-When called from `/spec_kit:complete` with an `.opencode/` implementation target (`step_10_development` activity), `sk-code` surfaces the matching authoring checklist plus the `spec_folder_write` recipe AT WRITE-TIME (before the orchestrator's first write), not just at review-time.
+When called from `/speckit:complete` with an `.opencode/` implementation target (`step_10_development` activity), `sk-code` surfaces the matching authoring checklist plus the `spec_folder_write` recipe AT WRITE-TIME (before the orchestrator's first write), not just at review-time.
 
 | Target Path | Authoring Checklist Surfaced | Recipe |
 |---|---|---|
@@ -60,7 +60,7 @@ When called from `/spec_kit:complete` with an `.opencode/` implementation target
 | `.opencode/specs/` | `assets/opencode/checklists/spec_folder_authoring.md` | `assets/opencode/recipes/spec_folder_write.md` |
 | MCP server source | `assets/opencode/checklists/mcp_server_authoring.md` | — |
 
-Authoring-time load is the contract documented in `system-spec-kit/SKILL.md §16-17 cross-skill routing` and the `cross_skill_authoring_load` block in `/spec_kit:complete` YAMLs. Review-time `sk-code-review` baseline + `sk-code` router-selected evidence overlay remains unchanged.
+Authoring-time load is the contract documented in `system-spec-kit/SKILL.md §16-17 cross-skill routing` and the `cross_skill_authoring_load` block in `/speckit:complete` YAMLs. Review-time `sk-code-review` baseline + `sk-code` router-selected evidence overlay remains unchanged.
 
 ---
 

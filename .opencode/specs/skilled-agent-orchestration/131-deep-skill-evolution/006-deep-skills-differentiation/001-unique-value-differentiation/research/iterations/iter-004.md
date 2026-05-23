@@ -16,8 +16,8 @@ target_dimension: use-case-overlap
 3. `.opencode/specs/skilled-agent-orchestration/130-deep-skills-unique-value-differentiation/research/iterations/iter-003.md` — deep-council contract characterization (proposed)
 4. `.opencode/specs/skilled-agent-orchestration/130-deep-skills-unique-value-differentiation/research/findings-registry.json` — current registry for fingerprint dedup
 5. `.opencode/skills/system-skill-advisor/SKILL.md` — skill advisor routing rules and overlap-detection guidance
-6. `.opencode/commands/spec_kit/deep-review.md` — deep-review command entrypoint with keyword triggers
-7. `.opencode/commands/spec_kit/deep-research.md` — deep-research command entrypoint with keyword triggers
+6. `.opencode/commands/speckit/deep-review.md` — deep-review command entrypoint with keyword triggers
+7. `.opencode/commands/speckit/deep-research.md` — deep-research command entrypoint with keyword triggers
 8. `.opencode/skills/sk-ai-council/SKILL.md` — sk-ai-council skill with keyword triggers
 9. `.opencode/skills/deep-review/SKILL.md` — deep-review skill with keyword triggers section
 10. `.opencode/skills/deep-research/SKILL.md` — deep-research skill with keyword triggers section
@@ -52,12 +52,12 @@ target_dimension: use-case-overlap
 ### F56 — Convergence-threshold default divergence
 **Fingerprint:** `use-case-overlap:convergence:threshold-default-divergence`
 **Severity:** DANGEROUS
-**Evidence:** Deep-review default convergenceThreshold is 0.10 [SOURCE: .opencode/commands/spec_kit/deep-review.md:106]. Deep-research default convergenceThreshold is 0.05 [SOURCE: .opencode/commands/spec_kit/deep-research.md:97]. Deep-council proposes saturation_threshold default of 0.20 [SOURCE: iter-003 F43]. This divergence is DANGEROUS because operators familiar with one skill's default may incorrectly assume the same default applies to other skills. The semantics also differ (weighted P0/P1/P2 ratio for deep-review, newInfoRatio for deep-research, adjudicator-verdict stability for deep-council). An operator requesting "run with default convergence" could get significantly different iteration counts and stop conditions across skills without realizing it.
+**Evidence:** Deep-review default convergenceThreshold is 0.10 [SOURCE: .opencode/commands/speckit/deep-review.md:106]. Deep-research default convergenceThreshold is 0.05 [SOURCE: .opencode/commands/speckit/deep-research.md:97]. Deep-council proposes saturation_threshold default of 0.20 [SOURCE: iter-003 F43]. This divergence is DANGEROUS because operators familiar with one skill's default may incorrectly assume the same default applies to other skills. The semantics also differ (weighted P0/P1/P2 ratio for deep-review, newInfoRatio for deep-research, adjudicator-verdict stability for deep-council). An operator requesting "run with default convergence" could get significantly different iteration counts and stop conditions across skills without realizing it.
 
 ### F57 — Executor-config flag set overlap
 **Fingerprint:** `use-case-overlap:executor-config:flag-set-overlap`
 **Severity:** HELPFUL
-**Evidence:** All three skills accept the same executor configuration flags: `--executor`, `--model`, `--reasoning-effort`, `--service-tier`, `--executor-timeout` [SOURCE: .opencode/commands/spec_kit/deep-review.md:137-142; .opencode/commands/spec_kit/deep-research.md:124-129; iter-003 F36]. All three support the same 6 executor kinds: native, cli-codex, cli-gemini, cli-claude-code, cli-opencode, cli-devin [SOURCE: iter-001 F4, iter-002 F20, iter-003 F36]. This overlap is HELPFUL because it provides a consistent executor configuration surface across the deep-* family, reducing operator cognitive load. The overlap is not confusing because the executor contract is shared via deep-loop-runtime's executor-config.ts [SOURCE: .opencode/commands/spec_kit/deep-review.md:157].
+**Evidence:** All three skills accept the same executor configuration flags: `--executor`, `--model`, `--reasoning-effort`, `--service-tier`, `--executor-timeout` [SOURCE: .opencode/commands/speckit/deep-review.md:137-142; .opencode/commands/speckit/deep-research.md:124-129; iter-003 F36]. All three support the same 6 executor kinds: native, cli-codex, cli-gemini, cli-claude-code, cli-opencode, cli-devin [SOURCE: iter-001 F4, iter-002 F20, iter-003 F36]. This overlap is HELPFUL because it provides a consistent executor configuration surface across the deep-* family, reducing operator cognitive load. The overlap is not confusing because the executor contract is shared via deep-loop-runtime's executor-config.ts [SOURCE: .opencode/commands/speckit/deep-review.md:157].
 
 ### F58 — Operator-intent overlap on "audit the deep-research packet drift"
 **Fingerprint:** `use-case-overlap:operator-intent:audit-research-packet`

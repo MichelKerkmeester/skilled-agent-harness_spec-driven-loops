@@ -97,12 +97,12 @@ rg -n "sk-code-review|baseline\+overlay|overlay" \
 
 ### Phase 3: Command sweep
 
-- [x] T010 Update `spec_kit_complete_auto.yaml` review dispatch block
-- [x] T011 Update `spec_kit_complete_confirm.yaml` review dispatch block
-- [x] T012 Update `spec_kit_implement_auto.yaml` review dispatch block
-- [x] T013 Update `spec_kit_implement_confirm.yaml` review dispatch block
-- [x] T014 Update `spec_kit_debug_auto.yaml` review dispatch block
-- [x] T015 Update `spec_kit_debug_confirm.yaml` review dispatch block
+- [x] T010 Update `speckit_complete_auto.yaml` review dispatch block
+- [x] T011 Update `speckit_complete_confirm.yaml` review dispatch block
+- [x] T012 Update `speckit_implement_auto.yaml` review dispatch block
+- [x] T013 Update `speckit_implement_confirm.yaml` review dispatch block
+- [x] T014 Update `speckit_debug_auto.yaml` review dispatch block
+- [x] T015 Update `speckit_debug_confirm.yaml` review dispatch block
 - [x] T016 Update `create_agent_auto.yaml` review dispatch block
 - [x] T017 Update `create_agent_confirm.yaml` review dispatch block
 - [x] T018 Update `create_folder_readme_auto.yaml` review dispatch block
@@ -120,12 +120,12 @@ Verification commands:
 
 ```bash
 rg -n "standards_contract|baseline: \"sk-code-review\"" \
-  .opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml \
-  .opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml \
-  .opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml \
-  .opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml \
-  .opencode/commands/spec_kit/assets/spec_kit_debug_auto.yaml \
-  .opencode/commands/spec_kit/assets/spec_kit_debug_confirm.yaml \
+  .opencode/commands/speckit/assets/speckit_complete_auto.yaml \
+  .opencode/commands/speckit/assets/speckit_complete_confirm.yaml \
+  .opencode/commands/speckit/assets/speckit_implement_auto.yaml \
+  .opencode/commands/speckit/assets/speckit_implement_confirm.yaml \
+  .opencode/commands/speckit/assets/speckit_debug_auto.yaml \
+  .opencode/commands/speckit/assets/speckit_debug_confirm.yaml \
   .opencode/commands/create/assets/create_agent_auto.yaml \
   .opencode/commands/create/assets/create_agent_confirm.yaml \
   .opencode/commands/create/assets/create_folder_readme_auto.yaml \

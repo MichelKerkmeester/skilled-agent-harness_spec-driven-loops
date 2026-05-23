@@ -98,8 +98,8 @@ Research at natural convergence point. All 8 RQs at 90%+ (average 95.6%). 15 v3 
 - `.opencode/skills/sk-deep-research/references/convergence.md` — Convergence algorithm
 - `.opencode/skills/sk-deep-research/references/loop_protocol.md` — Loop lifecycle
 - `.opencode/skills/sk-deep-research/references/state_format.md` — State schema
-- `.opencode/commands/spec_kit/deep-research.md` — Command setup
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` — Auto YAML
+- `.opencode/commands/speckit/deep-research.md` — Command setup
+- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` — Auto YAML
 - `.claude/agents/deep-research.md` — Claude agent definition
 - `.codex/agents/deep-research.toml` — Codex agent definition
 - `.opencode/agents/deep-research.md` — OpenCode agent definition (canonical)

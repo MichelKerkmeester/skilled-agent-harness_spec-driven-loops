@@ -45,4 +45,4 @@ The parent strict validator passes, and most hook coverage is clean. The packet 
 
 ## Next Focus (for iteration 6)
 
-Adversarial resume-readiness check: verify whether a fresh `/spec_kit:resume` user would land on the correct current truth from parent `graph-metadata.json`, phase `_memory.continuity`, implementation summaries, and review strategy despite the stale Phase 2/Phase 3 formal docs.
+Adversarial resume-readiness check: verify whether a fresh `/speckit:resume` user would land on the correct current truth from parent `graph-metadata.json`, phase `_memory.continuity`, implementation summaries, and review strategy despite the stale Phase 2/Phase 3 formal docs.

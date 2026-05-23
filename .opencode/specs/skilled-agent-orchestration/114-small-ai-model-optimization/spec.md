@@ -138,12 +138,13 @@ This phase decomposition mines smallcode-master systematically (20 deep-research
 
 **Phase F (007-hardening-ci) was deleted 2026-05-18** per user direction — CI staleness checks and over-broad-glob lints will be handled manually or deferred to a future packet if/when needed. The 007 slot was reused 2026-05-21 by the `sk-ai-small-model` rename packet (Phase 7 row above) — a different scope from the original hardening-CI plan.
 
+| 8 | 008-sk-prompt-small-model-rename/ | [Phase 8 scope] | Pending |
 ### Phase Transition Rules
 
 - 001 MUST pass `validate.sh --strict` independently before any 002+ packet is created
 - Convergence of the deep-research loop (`newInfoRatio < 0.15` × 3 consecutive iters, or iteration cap 20) is the gate for synthesis
 - Synthesis (`research/research.md`) MUST surface per-RQ candidate deltas with file paths + acceptance criteria before follow-on packets are spec'd
-- Use `/spec_kit:resume 114-small-ai-model-optimization/001-smallcode-deep-research` to resume the research loop
+- Use `/speckit:resume 114-small-ai-model-optimization/001-smallcode-deep-research` to resume the research loop
 
 ### Phase Handoff Criteria
 
@@ -152,6 +153,7 @@ This phase decomposition mines smallcode-master systematically (20 deep-research
 | Parent (114) | 001-research-smallcode | Phase-parent lean trio validates; preflight context-card present; 5 RQs locked in 001/spec.md | `validate.sh --strict 114` exit 0; `ls 114/preflight/context-card.md`; `grep -c '^### RQ' 001/spec.md` = 5 |
 | 001-research-smallcode | 002+ remediation packets | `research/research.md` exists; per-RQ deltas listed with file paths + acceptance criteria; convergence event in `deep-research-state.jsonl` | `jq '.type' research/deep-research-state.jsonl \| grep converged`; review-report or human read of research.md |
 | 006-cross-skill-propagation | 007-rename-sk-ai-small-model | [Criteria TBD] | [Verification TBD] |
+| 007-sk-ai-small-model-rename | 008-sk-prompt-small-model-rename | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

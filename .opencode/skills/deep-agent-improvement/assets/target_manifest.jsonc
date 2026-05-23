@@ -29,18 +29,18 @@
   // belong to LIVE spec-kit surfaces (commands + templates) outside this
   // skill; they are protections, not static profiles for the handover agent.
   "fixed": [
-    ".opencode/commands/spec_kit/handover.md",
-    ".agents/commands/spec_kit/handover.toml",
-    ".gemini/commands/spec_kit/handover.toml",
+    ".opencode/commands/speckit/handover.md",
+    ".agents/commands/speckit/handover.toml",
+    ".gemini/commands/speckit/handover.toml",
     ".opencode/skills/system-spec-kit/templates/handover.md"
   ],
 
   // `forbidden` declares files deep-agent-improvement MUST NEVER write to even
   // when a candidate superficially matches. Same rationale as `fixed`.
   "forbidden": [
-    ".opencode/commands/spec_kit/handover.md",
-    ".agents/commands/spec_kit/handover.toml",
-    ".gemini/commands/spec_kit/handover.toml",
+    ".opencode/commands/speckit/handover.md",
+    ".agents/commands/speckit/handover.toml",
+    ".gemini/commands/speckit/handover.toml",
     ".opencode/skills/system-spec-kit/templates/handover.md"
   ],
   "packaging": {

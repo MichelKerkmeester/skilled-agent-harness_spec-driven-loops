@@ -1,6 +1,6 @@
 ## Dispatcher
 
-- Workflow: `/spec_kit:deep-review:auto`
+- Workflow: `/speckit:deep-review:auto`
 - Iteration: 2 of 5
 - Focus dimension: security
 - Focus area: path-resolution, sandbox, authorization, proposal-only boundaries, untrusted interpolation, and stale-path security impact after the `@deep-agent-improvement` rename.

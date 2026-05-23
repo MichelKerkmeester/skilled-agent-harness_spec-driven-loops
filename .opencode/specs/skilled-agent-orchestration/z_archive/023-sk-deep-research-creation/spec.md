@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Autonomous Deep Research Loop [skilled-agent-orchestration/023-sk-deep-research-creation/spec]"
-description: "No built-in iterative research capability exists. Current /spec_kit:research is single-pass only, unable to deepen findings across multiple cycles or detect convergence."
+description: "No built-in iterative research capability exists. Current /speckit:research is single-pass only, unable to deepen findings across multiple cycles or detect convergence."
 trigger_phrases:
   - "autoresearch"
   - "deep research"
@@ -28,7 +28,7 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-Create a 3-layer autonomous deep research system: `@deep-research` agent (single iteration executor), `/spec_kit:deep-research` command (loop lifecycle manager via YAML workflows), and `sk-deep-research` skill (protocol documentation and templates). The system uses externalized JSONL + strategy file state with fresh agent context per iteration, solving context degradation in long research sessions.
+Create a 3-layer autonomous deep research system: `@deep-research` agent (single iteration executor), `/speckit:deep-research` command (loop lifecycle manager via YAML workflows), and `sk-deep-research` skill (protocol documentation and templates). The system uses externalized JSONL + strategy file state with fresh agent context per iteration, solving context degradation in long research sessions.
 
 **Key Decisions**: YAML manages the loop (not orchestrator directly), @deep-research is LEAF-only (NDP compliant), dual state format (JSONL + strategy.md)
 
@@ -54,7 +54,7 @@ Create a 3-layer autonomous deep research system: `@deep-research` agent (single
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The current `/spec_kit:research` workflow is single-pass only. It investigates a topic once and documents findings. For deep, unknown topics requiring multiple rounds of discovery, there is no iterative deepening, progressive refinement, or autonomous loop execution. Research quality plateaus at whatever can be found in one pass.
+The current `/speckit:research` workflow is single-pass only. It investigates a topic once and documents findings. For deep, unknown topics requiring multiple rounds of discovery, there is no iterative deepening, progressive refinement, or autonomous loop execution. Research quality plateaus at whatever can be found in one pass.
 
 ### Purpose
 Enable autonomous multi-iteration deep research where each cycle builds on prior findings, with convergence detection to stop when diminishing returns are reached, producing comprehensive research documentation.
@@ -67,7 +67,7 @@ Enable autonomous multi-iteration deep research where each cycle builds on prior
 
 ### In Scope
 - `@deep-research` LEAF agent for single-iteration execution
-- `/spec_kit:deep-research` command with auto and confirm YAML workflows
+- `/speckit:deep-research` command with auto and confirm YAML workflows
 - `sk-deep-research` skill with SKILL.md, references, and templates
 - JSONL + strategy.md externalized state system
 - Convergence detection algorithm (diminishing returns + stuck detection)
@@ -77,7 +77,7 @@ Enable autonomous multi-iteration deep research where each cycle builds on prior
 - Parallel sub-query waves within a single iteration (v1.1 enhancement)
 - Web search integration via MCP (v2.0)
 - Self-improving prompts (v3.0)
-- Legacy `@research` agent and `/spec_kit:research` command — deleted in Phase 5.5
+- Legacy `@research` agent and `/speckit:research` command — deleted in Phase 5.5
 
 ### v2 Scope: Research-Validated Improvements (18 Proposals)
 
@@ -114,9 +114,9 @@ Derived from 14-iteration deep research across 4 autoresearch repos (karpathy, A
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.claude/agents/deep-research.md` | Create | LEAF agent definition (~400 LOC) |
-| `.opencode/commands/spec_kit/deep-research.md` | Create | Command spec with setup phase (~310 LOC) |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Create | Autonomous mode YAML workflow (~400 LOC) |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Create | Interactive mode YAML workflow (~470 LOC) |
+| `.opencode/commands/speckit/deep-research.md` | Create | Command spec with setup phase (~310 LOC) |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | Create | Autonomous mode YAML workflow (~400 LOC) |
+| `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml` | Create | Interactive mode YAML workflow (~470 LOC) |
 | `.opencode/skills/sk-deep-research/SKILL.md` | Create | 8-section skill protocol (~430 LOC) |
 | `.opencode/skills/sk-deep-research/README.md` | Create | Skill overview (~160 LOC) |
 | `.opencode/skills/sk-deep-research/references/loop_protocol.md` | Create | Loop lifecycle spec (~180 LOC) |
@@ -130,7 +130,7 @@ Derived from 14-iteration deep research across 4 autoresearch repos (karpathy, A
 | `.opencode/skills/README.md` | Modify | Add sk-deep-research to catalog (16 to 17) |
 | `.opencode/skills/skill-advisor/scripts/skill_advisor.py` | Modify | Add deep-research keyword mappings |
 | `.opencode/specs/descriptions.json` | Modify | Add 023-sk-deep-research-creation entry |
-| `.agents/commands/spec_kit/deep-research.toml` | Create | TOML registration for command |
+| `.agents/commands/speckit/deep-research.toml` | Create | TOML registration for command |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -143,7 +143,7 @@ Derived from 14-iteration deep research across 4 autoresearch repos (karpathy, A
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | @deep-research agent executes single research iteration | Agent reads state, performs research, writes findings, updates state files |
-| REQ-002 | /spec_kit:deep-research command manages loop lifecycle | YAML workflow initializes state, dispatches iterations, checks convergence, synthesizes |
+| REQ-002 | /speckit:deep-research command manages loop lifecycle | YAML workflow initializes state, dispatches iterations, checks convergence, synthesizes |
 | REQ-003 | Externalized state persists across iterations | JSONL + strategy.md files readable by fresh agent context |
 | REQ-004 | Convergence detection stops loop appropriately | Loop stops on max iterations, diminishing returns, or all questions answered |
 | REQ-005 | Agent is LEAF-only (NDP compliant) | No sub-agent dispatch from @deep-research |
@@ -186,7 +186,7 @@ Derived from 14-iteration deep research across 4 autoresearch repos (karpathy, A
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `/spec_kit:deep-research:auto "What is markdown?"` with maxIterations=3 produces config.json, 3 JSONL entries, populated strategy.md, and research/research.md
+- **SC-001**: `/speckit:deep-research:auto "What is markdown?"` with maxIterations=3 produces config.json, 3 JSONL entries, populated strategy.md, and research/research.md
 - **SC-002**: Convergence test on narrow topic stops before max iterations
 - **SC-003**: `skill_advisor.py "deep research"` routes to sk-deep-research with confidence >= 0.8
 - **SC-004**: All 13 new files pass syntax validation
@@ -277,7 +277,7 @@ Derived from 14-iteration deep research across 4 autoresearch repos (karpathy, A
 **As a** developer, **I want** to run autonomous iterative research on an unfamiliar topic, **so that** I get comprehensive findings without manually re-prompting.
 
 **Acceptance Criteria**:
-1. Given a research topic, When I run `/spec_kit:deep-research:auto "topic"`, Then the system iterates until convergence and produces research/research.md
+1. Given a research topic, When I run `/speckit:deep-research:auto "topic"`, Then the system iterates until convergence and produces research/research.md
 
 ### US-002: Interactive Research with Approval Gates (Priority: P1)
 

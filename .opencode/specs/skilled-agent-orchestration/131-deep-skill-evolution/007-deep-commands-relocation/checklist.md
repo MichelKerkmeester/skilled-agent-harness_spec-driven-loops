@@ -54,7 +54,7 @@ _memory:
 ## Code Quality
 
 - [ ] CHK-010 [P0] WAVE 1 asset paths resolve: `mv` operations successful, old paths empty.
-  - **Evidence**: `ls commands/deep/assets/` shows 6 `deep_*.yaml`; `ls commands/spec_kit/assets/spec_kit_deep-*` returns 0 hits.
+  - **Evidence**: `ls commands/deep/assets/` shows 6 `deep_*.yaml`; `ls commands/speckit/assets/speckit_deep-*` returns 0 hits.
 - [ ] CHK-011 [P0] WAVE 1 command MDs load from new asset paths.
   - **Evidence**: `rg "spec_kit/assets/" .opencode/commands/deep/` returns 0 hits.
 - [ ] CHK-012 [P1] WAVE 1 Gemini TOMLs structurally valid.
@@ -69,7 +69,7 @@ _memory:
 ## Testing
 
 - [ ] CHK-020 [P0] WAVE 2 reference cleanliness: 0 old-path refs on live operator surfaces.
-  - **Evidence**: `rg "/spec_kit:deep-(review|research|council|ai-council)" .opencode/agents/ .claude/agents/ .codex/agents/ .gemini/agents/ CLAUDE.md AGENTS.md README.md` returns 0 hits.
+  - **Evidence**: `rg "/speckit:deep-(review|research|council|ai-council)" .opencode/agents/ .claude/agents/ .codex/agents/ .gemini/agents/ CLAUDE.md AGENTS.md README.md` returns 0 hits.
 - [ ] CHK-021 [P0] WAVE 2 asset-path cleanliness: 0 old asset paths in commands or skills.
   - **Evidence**: `rg "spec_kit/assets/spec_kit_deep-" .opencode/commands/deep/ .opencode/skills/deep-*/SKILL.md` returns 0 hits.
 - [ ] CHK-022 [P0] WAVE 3 skill-graph compiles clean.
@@ -81,7 +81,7 @@ _memory:
 - [ ] CHK-025 [P1] WAVE 3 no test imports reference old paths.
   - **Evidence**: `rg "spec_kit_deep-"` on test files returns 0 hits.
 - [ ] CHK-026 [P1] WAVE 4 residual historical refs ≤ 10.
-  - **Evidence**: `rg "/spec_kit:deep-(review|research|council)|spec_kit_deep-" .opencode/ --type-add 'docs:*.md' --type docs | grep -v "z_archive\|changelog/v[01]" | wc -l` returns ≤ 10.
+  - **Evidence**: `rg "/speckit:deep-(review|research|council)|spec_kit_deep-" .opencode/ --type-add 'docs:*.md' --type docs | grep -v "z_archive\|changelog/v[01]" | wc -l` returns ≤ 10.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -92,7 +92,7 @@ _memory:
 - [ ] CHK-030 [P0] All 6 waves complete with verification gates passing.
   - **Evidence**: Each wave's gate task marked `[x]` with captured output.
 - [ ] CHK-031 [P0] No files left at old `spec_kit/assets/spec_kit_deep-*` paths.
-  - **Evidence**: `find .opencode/commands/spec_kit/assets/ -name "spec_kit_deep-*"` returns 0 results.
+  - **Evidence**: `find .opencode/commands/speckit/assets/ -name "spec_kit_deep-*"` returns 0 results.
 - [ ] CHK-032 [P1] New `gemini/commands/deep/ai-council.toml` exists and is valid.
   - **Evidence**: File exists and parses as valid TOML; content mirrors other deep-* TOMLs.
 - [ ] CHK-033 [P1] All 9 `graph-metadata.json` files updated with new asset paths.
@@ -192,8 +192,8 @@ _memory:
   - **Evidence**: `git diff --stat` shows only `007-deep-commands-relocation/`, `131/spec.md`, `131/graph-metadata.json`.
 - [ ] CHK-131 [P1] No deep-* skill source code modified.
   - **Evidence**: `git diff --stat` shows no changes to `.opencode/skills/deep-*/` beyond `SKILL.md` reference updates (WAVE 2) and `graph-metadata.json` (WAVE 2).
-- [ ] CHK-132 [P1] No non-deep `commands/spec_kit/` workflows touched.
-  - **Evidence**: `git diff --stat` shows no changes to `commands/spec_kit/` files except the 6 YAML removals.
+- [ ] CHK-132 [P1] No non-deep `commands/speckit/` workflows touched.
+  - **Evidence**: `git diff --stat` shows no changes to `commands/speckit/` files except the 6 YAML removals.
 <!-- /ANCHOR:compliance-verify -->
 
 ---

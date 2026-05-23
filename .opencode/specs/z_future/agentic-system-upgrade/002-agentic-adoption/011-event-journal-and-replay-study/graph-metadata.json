@@ -38,7 +38,7 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/commands/spec_kit/resume.md",
+      ".opencode/commands/speckit/resume.md",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts",
       ".opencode/skills/sk-deep-research/references/state_format.md",
       "spec.md",
@@ -50,7 +50,7 @@
       {
         "name": "resume.md",
         "kind": "doc",
-        "path": ".opencode/commands/spec_kit/resume.md",
+        "path": ".opencode/commands/speckit/resume.md",
         "source": "derived"
       },
       {

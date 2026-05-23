@@ -99,9 +99,9 @@ Any single confirmed P0 blocks PASS. This review has multiple independent P0s ac
 
 | If goal | Recommended command |
 |---|---|
-| Plan remediation | `/spec_kit:plan` against this report |
-| Implement P0 fixes | `/spec_kit:implement` after plan |
-| Re-review after fixes | `/spec_kit:deep-review:auto` (same target) to verify P0 closures |
+| Plan remediation | `/speckit:plan` against this report |
+| Implement P0 fixes | `/speckit:implement` after plan |
+| Re-review after fixes | `/speckit:deep-review:auto` (same target) to verify P0 closures |
 
 This review is READ-ONLY — no fixes were applied during the loop. The deliverable remains in its post-rename state. Remediation is a separate work stream.
 

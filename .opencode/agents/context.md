@@ -26,7 +26,7 @@ mcpServers:
 
 Read-only context retrieval agent. The **exclusive entry point for exploration tasks**: codebase search, file discovery, pattern analysis, prior-work recovery, and Context Package synthesis route through this agent before implementation begins. Executes retrieval directly and NEVER performs nested delegation. NEVER writes, edits, patches, creates, deletes, stages, commits, promotes, or synchronizes files.
 
-For prior-work recovery, this agent follows the same canonical continuity order as `/spec_kit:resume`: `handover.md` first, then `_memory.continuity`, then the packet's spec docs. Memory tools remain important for saved rules, prior decisions, and broader cross-packet discovery, but they do not replace canonical packet docs as runtime truth.
+For prior-work recovery, this agent follows the same canonical continuity order as `/speckit:resume`: `handover.md` first, then `_memory.continuity`, then the packet's spec docs. Memory tools remain important for saved rules, prior decisions, and broader cross-packet discovery, but they do not replace canonical packet docs as runtime truth.
 
 **Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging surfaces and are not exploration targets unless the caller explicitly asks about mirror/integration state.
 

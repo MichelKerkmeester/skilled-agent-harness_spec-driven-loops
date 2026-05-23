@@ -263,7 +263,7 @@ exec
 558:applies_to: cwd=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public; reuse_rule=reuse for changelog workflow changes in this checkout, keeping packet-local changelog outputs and shared command mirrors in sync
 570:## Task 2: Rewrite shared changelog docs/templates to short-heading style and sync runtime mirrors, outcome success
 574:- rollout_summaries/2026-04-03T11-38-20-Mg7F-changelog_update_and_runtime_sync.md (cwd=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public, rollout_path=/Users/michelkerkmeester/.codex/sessions/2026/04/03/rollout-2026-04-03T13-38-20-019d5323-1305-7d91-a2bc-5d3cb2983d3b.jsonl, updated_at=2026-04-03T12:24:53+00:00, thread_id=019d5323-1305-7d91-a2bc-5d3cb2983d3b)
-589:- keep `/create:changelog`, `/spec_kit:implement`, and `/spec_kit:complete` docs and YAML assets in sync when changelog contract changes; runtime `.agents`/`.gemini` mirrors should be regenerated from shared command source [Task 2]
+589:- keep `/create:changelog`, `/speckit:implement`, and `/speckit:complete` docs and YAML assets in sync when changelog contract changes; runtime `.agents`/`.gemini` mirrors should be regenerated from shared command source [Task 2]
 630:- packet-local changelog maintenance pattern: update changelog after remediation deltas and keep verification counts current when tests expand/change [Task 2]
 685:- symptom: deep-review reducer-schema tests fail during closeout; cause: config metadata drift (`metrics` missing, `.deep-review-pause` mutability mismatch); fix: align config/docs with test schema before rerunning suites [Task 3]
 686:- symptom: recommendation docs drift from requested basis; cause: docs written from partial wave context; fix: verify ledger count/`synthesis_complete` and explicitly tie recommendations to the full 90-iteration synthesis [Task 1]
@@ -275,8 +275,8 @@ exec
 837:- when git-context-sensitive tests fail, the proven steering pattern is environmental first (set `TMPDIR` outside repo) before touching runtime logic [Task 1]
 896:- conversion pattern here: mirror existing TOML metadata keys (`name`, `description`, `sandbox_mode`, `model`, `model_reasoning_effort`, `developer_instructions`) and preserve instruction text [Task 1]
 909:applies_to: cwd=/Users/michelkerkmeester/MEGA/Development and /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.vscode; reuse_rule=reuse for local VS Code MCP sync work, but preserve wrapper shape exactly
-935:scope: restoring `/spec_kit:*`, `/memory:*`, and `/create:*` command discovery when prompt links drift between workspace and global Codex prompt directories
-977:## Task 2: Consolidate `/memory:continue` into `/spec_kit:resume` and sync Gemini wrappers
+935:scope: restoring `/speckit:*`, `/memory:*`, and `/create:*` command discovery when prompt links drift between workspace and global Codex prompt directories
+977:## Task 2: Consolidate `/memory:continue` into `/speckit:resume` and sync Gemini wrappers
 1028:## Task 3: Fix startup DB path/provider drift and auto-repair temp-root cleanup for `spec_kit_memory`
 1092:- Warn-only pattern: Gates 1-3 should log and continue for warn-only spec docs; enforce mode must preserve rejection payloads [Task 1]
 1160:- rollout_summaries/2026-03-28T08-23-42-BSOO-om_2026_03_28_023_esm_sync.md (cwd=/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public, rollout_path=/Users/michelkerkmeester/.codex/sessions/2026/03/28/rollout-2026-03-28T09-23-42-019d338a-b98a-7992-bc8b-4f62cbfd1b6e.jsonl, updated_at=2026-03-28T10:57:23+00:00, thread_id=019d338a-b98a-7992-bc8b-4f62cbfd1b6e)
@@ -398,9 +398,9 @@ Use this skill when:
 
 ### When NOT to Use
 
-- Simple, single-question research (use direct codebase search or `/spec_kit:plan`)
-- Known-solution documentation (use `/spec_kit:plan`)
-- Implementation tasks (use `/spec_kit:implement`)
+- Simple, single-question research (use direct codebase search or `/speckit:plan`)
+- Known-solution documentation (use `/speckit:plan`)
+- Implementation tasks (use `/speckit:implement`)
 - Quick codebase searches (use `@context` or direct Grep/Glob)
 - Fewer than 3 sources needed (single-pass research suffices)
 

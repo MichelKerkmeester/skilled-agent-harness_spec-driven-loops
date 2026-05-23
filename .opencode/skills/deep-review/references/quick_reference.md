@@ -103,8 +103,8 @@ Review mode stores its packet under the resolved local review path rooted at `{s
 
 | Verdict | Condition | Meaning | Next Command |
 |---------|-----------|---------|--------------|
-| FAIL | Active P0 findings remain OR any binary gate fails | Does not meet quality standards | `/spec_kit:plan` for remediation |
-| CONDITIONAL | No P0, but active P1 findings remain | Meets threshold but has required fixes | `/spec_kit:plan` for fixes |
+| FAIL | Active P0 findings remain OR any binary gate fails | Does not meet quality standards | `/speckit:plan` for remediation |
+| CONDITIONAL | No P0, but active P1 findings remain | Meets threshold but has required fixes | `/speckit:plan` for fixes |
 | PASS | No active P0/P1 findings | Shippable; set `hasAdvisories=true` when P2 findings remain | `/create:changelog` |
 
 ### Release Readiness

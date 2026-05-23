@@ -30,7 +30,7 @@ _memory:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-This packet has two execution phases. **Phase 1** is scaffolding: write the 8 markdown files, bootstrap the 2 JSON metadata files, and pass strict-validate. **Phase 2** is the actual research: dispatch `/spec_kit:deep-research:auto` and let it run to convergence or 10 iterations. **Phase 3** is explicitly *not* part of 060 — it is the implementation work that becomes packet 061.
+This packet has two execution phases. **Phase 1** is scaffolding: write the 8 markdown files, bootstrap the 2 JSON metadata files, and pass strict-validate. **Phase 2** is the actual research: dispatch `/speckit:deep-research:auto` and let it run to convergence or 10 iterations. **Phase 3** is explicitly *not* part of 060 — it is the implementation work that becomes packet 061.
 
 Total wall time estimate: **15-25 minutes** (Phase 1 ≈ 2 min, Phase 2 ≈ 8-15 min, plus monitoring + post-synthesis update).
 <!-- /ANCHOR:overview -->
@@ -89,7 +89,7 @@ Total wall time estimate: **15-25 minutes** (Phase 1 ≈ 2 min, Phase 2 ≈ 8-15
 
 2. **Dispatch the deep-research workflow**:
    ```bash
-   /spec_kit:deep-research:auto \
+   /speckit:deep-research:auto \
      --spec-folder=specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment \
      --executor=cli-copilot \
      --model=gpt-5.5 \

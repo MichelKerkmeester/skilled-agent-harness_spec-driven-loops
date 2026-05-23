@@ -65,12 +65,12 @@ _memory:
 - [x] T-020: Create .claude/agents/deep-research.md
 <!-- /ANCHOR:phase-3 -->
 
-### Phase 4: Command (/spec_kit:deep-research)
+### Phase 4: Command (/speckit:deep-research)
 
-- [x] T-030: Create .agents/commands/spec_kit/deep-research.toml
-- [x] T-031: Create .opencode/commands/spec_kit/deep-research.md
-- [x] T-032: Create .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml
-- [x] T-033: Create .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml
+- [x] T-030: Create .agents/commands/speckit/deep-research.toml
+- [x] T-031: Create .opencode/commands/speckit/deep-research.md
+- [x] T-032: Create .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml
+- [x] T-033: Create .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml
 
 ### Phase 5: Registration Updates
 
@@ -83,8 +83,8 @@ _memory:
 ### Phase 5.5: Legacy @research Removal
 
 - [x] T-050: Delete 6 agent definitions (research.md/toml across all runtimes)
-- [x] T-051: Delete command definition (.opencode/commands/spec_kit/research/research/research.md + .agents/commands/spec_kit/research.toml)
-- [x] T-052: Delete 2 YAML workflows (spec_kit_research_auto.yaml + spec_kit_research_confirm.yaml)
+- [x] T-051: Delete command definition (.opencode/commands/speckit/research/research/research.md + .agents/commands/speckit/research.toml)
+- [x] T-052: Delete 2 YAML workflows (speckit_research_auto.yaml + speckit_research_confirm.yaml)
 - [x] T-053: Update spec_kit YAML workflows (plan/complete, auto/confirm) — agent_availability references
 - [x] T-054: Update orchestrate agents (all 5 runtimes) — routing tables, dispatch templates
 - [x] T-055: Update speckit agents (all 5 runtimes) — permission exceptions, cross-agent tables
@@ -94,8 +94,8 @@ _memory:
 - [x] T-059: Update skill docs (system-spec-kit, sk-deep-research, sk-doc, cli-gemini, cli-codex, cli-claude-code)
 - [x] T-060: Update install guides (SET-UP Opencode Agents, SET-UP AGENTS, install_guides README)
 - [x] T-061: Update .codex/config.toml — remove research agent registration
-- [x] T-062: Verification — grep confirms zero stale @research / /spec_kit:research references outside changelog/specs
-- [x] T-063: Update spec_kit command README.txt — replace all @research / /spec_kit:research references with @deep-research / /spec_kit:deep-research (7 locations: trigger phrase, command table, dependencies table, file listing, workflow diagram, agent delegation table, usage example)
+- [x] T-062: Verification — grep confirms zero stale @research / /speckit:research references outside changelog/specs
+- [x] T-063: Update spec_kit command README.txt — replace all @research / /speckit:research references with @deep-research / /speckit:deep-research (7 locations: trigger phrase, command table, dependencies table, file listing, workflow diagram, agent delegation table, usage example)
 
 ---
 

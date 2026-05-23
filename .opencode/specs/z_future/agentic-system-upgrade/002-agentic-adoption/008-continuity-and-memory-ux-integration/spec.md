@@ -55,7 +55,7 @@ Turn the research synthesis for 008 continuity and memory ux integration into on
 ## 3. SCOPE
 
 ### In Scope
-- Merge bootstrap, resume, and handover-style continuity behavior around `/spec_kit:resume` as the canonical continuation surface.
+- Merge bootstrap, resume, and handover-style continuity behavior around `/speckit:resume` as the canonical continuation surface.
 - Pull everyday save and resume tasks into the lifecycle shell so operators do not model memory as a parallel workflow for normal work.
 - Keep advanced memory search, governance, validation, and maintenance surfaces distinct for power users and system operations.
 
@@ -68,8 +68,8 @@ Turn the research synthesis for 008 continuity and memory ux integration into on
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/commands/spec_kit/resume.md` | Modify | Primary affected surface for the adoption work |
-| `.opencode/commands/spec_kit/handover.md` | Modify | Primary affected surface for the adoption work |
+| `.opencode/commands/speckit/resume.md` | Modify | Primary affected surface for the adoption work |
+| `.opencode/commands/speckit/handover.md` | Modify | Primary affected surface for the adoption work |
 | `.opencode/commands/memory/README.txt` | Modify | Primary affected surface for the adoption work |
 | `.opencode/commands/memory/search.md` | Modify | Primary affected surface for the adoption work |
 | `.opencode/skills/system-spec-kit/references/memory/save_workflow.md` | Modify | Primary affected surface for the adoption work |
@@ -85,7 +85,7 @@ Turn the research synthesis for 008 continuity and memory ux integration into on
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Keep the current Public authorities authoritative | The packet does not recommend replacing `/spec_kit:*`, the current agent stack, Spec Kit Memory, CocoIndex, or code-graph |
+| REQ-001 | Keep the current Public authorities authoritative | The packet does not recommend replacing `/speckit:*`, the current agent stack, Spec Kit Memory, CocoIndex, or code-graph |
 | REQ-002 | Define the adoption as a wrapper or refactor over current surfaces | The packet maps the work to current repo files and avoids backend transplant language |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -103,7 +103,7 @@ Turn the research synthesis for 008 continuity and memory ux integration into on
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: The packet explicitly names which `/memory:*` actions move behind lifecycle UX and which remain public advanced surfaces.
-- **SC-002**: Continuation flows route through `/spec_kit:resume` without reintroducing parallel user-facing concepts.
+- **SC-002**: Continuation flows route through `/speckit:resume` without reintroducing parallel user-facing concepts.
 - **SC-003**: The adoption plan names the command docs, handlers, and save workflow docs affected by the merge.
 
 ### Acceptance Scenarios

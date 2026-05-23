@@ -4,19 +4,19 @@
 
 ---
 
-# Actionable Recommendations: system-speckit Enhancement Roadmap
+# Actionable Recommendations: system-spec-kit Enhancement Roadmap
 
 > **Research Date:** 2026-02-01
 > **Based On:** Analysis of dotmd, seu-claude, drift
-> **Target:** system-speckit MCP server and memory system
+> **Target:** system-spec-kit MCP server and memory system
 
 ---
 
 ## Executive Summary
 
-This document provides prioritized, actionable recommendations for enhancing system-speckit based on analysis of three external AI memory systems. Recommendations are organized by implementation effort and impact, with specific code patterns and migration strategies.
+This document provides prioritized, actionable recommendations for enhancing system-spec-kit based on analysis of three external AI memory systems. Recommendations are organized by implementation effort and impact, with specific code patterns and migration strategies.
 
-**[Assumes: system-speckit already has FSRS decay, 6-tier importance, ANCHOR format, RRF fusion]**
+**[Assumes: system-spec-kit already has FSRS decay, 6-tier importance, ANCHOR format, RRF fusion]**
 
 ---
 
@@ -226,7 +226,7 @@ function invalidateCache(pattern) {
 
 **Pattern from dotmd:** Combine semantic + BM25 + optional graph with RRF.
 
-**Current:** system-speckit uses vector + FTS5 with RRF.
+**Current:** system-spec-kit uses vector + FTS5 with RRF.
 
 **Enhancement:** Add proper BM25 scoring alongside FTS5:
 
@@ -576,7 +576,7 @@ function expandQuery(query) {
 
 ## Conclusion
 
-system-speckit has a strong foundation with FSRS decay, 6-tier importance, and ANCHOR format. The recommended enhancements focus on:
+system-spec-kit has a strong foundation with FSRS decay, 6-tier importance, and ANCHOR format. The recommended enhancements focus on:
 
 1. **Immediate UX improvements** (recovery hints, deduplication)
 2. **Performance optimization** (caching, BM25)
@@ -592,4 +592,4 @@ Start with P0 quick wins to demonstrate value, then proceed through P1/P2 based 
 - dotmd: https://github.com/inventivepotter/dotmd
 - seu-claude: https://github.com/jardhel/seu-claude
 - drift: https://github.com/dadbodgeoff/drift
-- system-speckit: `.opencode/skills/system-spec-kit/`
+- system-spec-kit: `.opencode/skills/system-spec-kit/`

@@ -369,10 +369,10 @@ exec
 836:- when the user selected reuse option “C” for `024-compact-code-graph/002-session-start-hook`, continue within that existing spec scope for follow-up fixes [Task 2]
 838:- when the user said “Do not make code changes ... Be evidence-based and quote exact startup or bootstrap text and exact readiness output,” keep verification read-only and quote observed startup/readiness payload text verbatim [Task 3]
 846:- `session_bootstrap`/`session_resume({ minimal: true })` should still expose freshness-aware graph state and the startup snapshot note; this is a contract-level verification target before deeper debugging [Task 3]
-977:## Task 2: Consolidate `/memory:continue` into `/spec_kit:resume` and sync Gemini wrappers
+977:## Task 2: Consolidate `/memory:continue` into `/speckit:resume` and sync Gemini wrappers
 981:- rollout_summaries/2026-03-27T17-17-45-5IeP-smart_resume_consolidation.md (cwd=/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public, rollout_path=/Users/michelkerkmeester/.codex/sessions/2026/03/27/rollout-2026-03-27T18-17-45-019d304d-4d78-79c1-9197-fc752de12a5f.jsonl, updated_at=2026-03-27T17:42:15+00:00, thread_id=019d304d-4d78-79c1-9197-fc752de12a5f)
-985:- /spec_kit:resume, /memory:continue, Resume Essentials, Sufficiency Rule, recovery-hints.vitest.ts, .gemini/commands/spec_kit/resume.toml
-990:- when the user requested “PLEASE IMPLEMENT THIS PLAN: Remove `/memory:continue` and fold session recovery into `/spec_kit:resume`” -> keep `/spec_kit:resume` as the single recovery entry point [Task 2]
+985:- /speckit:resume, /memory:continue, Resume Essentials, Sufficiency Rule, recovery-hints.vitest.ts, .gemini/commands/speckit/resume.toml
+990:- when the user requested “PLEASE IMPLEMENT THIS PLAN: Remove `/memory:continue` and fold session recovery into `/speckit:resume`” -> keep `/speckit:resume` as the single recovery entry point [Task 2]
 1028:## Task 3: Fix startup DB path/provider drift and auto-repair temp-root cleanup for `spec_kit_memory`
 1039:## Task 4: Keep embeddings provider `auto` compatible while fixing startup dimension mismatches
 1067:- codex features enable memories, codex features enable code_mode, ~/.codex/config.toml, session_meta.dynamic_tools, mcp_startup, handshake timeout
@@ -463,9 +463,9 @@ Use this skill when:
 
 ### When NOT to Use
 
-- Simple, single-question research (use direct codebase search or `/spec_kit:plan`)
-- Known-solution documentation (use `/spec_kit:plan`)
-- Implementation tasks (use `/spec_kit:implement`)
+- Simple, single-question research (use direct codebase search or `/speckit:plan`)
+- Known-solution documentation (use `/speckit:plan`)
+- Implementation tasks (use `/speckit:implement`)
 - Quick codebase searches (use `@context` or direct Grep/Glob)
 - Fewer than 3 sources needed (single-pass research suffices)
 
@@ -706,17 +706,17 @@ Full details: `.opencode/skills/sk-git/`
 | **File modification**     | Gate 3 (ask spec folder) → Gate 1 → Gate 2 → Load memory context → Execute                                                         |
 | **Research/exploration**  | `memory_match_triggers()` → `memory_context()` (unified) OR `memory_search()` (targeted) → Document findings                       |
 | **Code search**           | Semantic/concept → `CocoIndex search` · Structural (callers/imports/deps) → `code_graph_query` · Exact text → `Grep` · File paths → `Glob` · Read contents → `Read` |
-| **Resume prior work**     | `/spec_kit:resume` OR `memory_context({ input: "resume previous work continue session", mode: "resume", profile: "resume", specFolder })` → Review checklist → Continue |
+| **Resume prior work**     | `/speckit:resume` OR `memory_context({ input: "resume previous work continue session", mode: "resume", profile: "resume", specFolder })` → Review checklist → Continue |
 | **Save context**          | `/memory:save` OR compose JSON → `generate-context.js --json '<data>' [spec-folder]` → Auto-indexed |
 | **Claim completion**      | Validation runs automatically → Load `checklist.md` → Verify ALL items → Mark with evidence                                        |
-| **End session**           | `/spec_kit:handover` → Save context → Provide continuation prompt                                                                  |
+| **End session**           | `/speckit:handover` → Save context → Provide continuation prompt                                                                  |
 | **New spec folder**       | Option B (Gate 3) → Research via Task tool → Evidence-based plan → Approval → Implement                                            |
 | **Complex multi-step**    | Task tool → Decompose → Delegate → Synthesize                                                                                      |
 | **Documentation**         | sk-doc skill → Classify → Load template → Fill → Validate (`validate_document.py`) → DQI score → Verify                            |
 | **Web code**              | sk-code-web skill → Webflow/CDN standards, minification, browser testing                                                           |
 | **OpenCode system code**  | sk-code-opencode skill → JS/TS/Python/Shell standards, language detection, quality checklists                                       |
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
-| **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → `create.sh --phase` → Populate → Plan first child  |
+| **Phase workflow**        | `/speckit:plan :with-phases` or `/speckit:complete :with-phases` → Decompose → `create.sh --phase` → Populate → Plan first child  |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
 | **Deep research**         | `/deep:start-research-loop` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
 | **Deep review**           | `/deep:start-review-loop` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |

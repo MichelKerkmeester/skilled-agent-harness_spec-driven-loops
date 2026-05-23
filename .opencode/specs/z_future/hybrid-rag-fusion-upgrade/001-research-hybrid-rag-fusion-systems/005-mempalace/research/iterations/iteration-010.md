@@ -322,9 +322,9 @@ Use this skill when:
 
 ### When NOT to Use
 
-- Simple, single-question research (use direct codebase search or `/spec_kit:plan`)
-- Known-solution documentation (use `/spec_kit:plan`)
-- Implementation tasks (use `/spec_kit:implement`)
+- Simple, single-question research (use direct codebase search or `/speckit:plan`)
+- Known-solution documentation (use `/speckit:plan`)
+- Implementation tasks (use `/speckit:implement`)
 - Quick codebase searches (use `@context` or direct Grep/Glob)
 - Fewer than 3 sources needed (single-pass research suffices)
 
@@ -10424,7 +10424,7 @@ thread_id: 019d6bda-1819-7e43-99e3-158cdec78925
 updated_at: 2026-04-08T06:56:04+00:00
 rollout_path: /Users/michelkerkmeester/.codex/sessions/2026/04/08/rollout-2026-04-08T08-49-08-019d6bda-1819-7e43-99e3-158cdec78925.jsonl
 cwd: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
-git_branch: system-speckit/026-graph-and-context-optimization
+git_branch: system-spec-kit/026-graph-and-context-optimization
 
 # New MemPalace phase prompt aligned with packet governance and evidence boundaries
 
@@ -10752,7 +10752,7 @@ exec
      2	updated_at: 2026-04-08T06:56:04+00:00
      3	rollout_path: /Users/michelkerkmeester/.codex/sessions/2026/04/08/rollout-2026-04-08T08-49-08-019d6bda-1819-7e43-99e3-158cdec78925.jsonl
      4	cwd: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
-     5	git_branch: system-speckit/026-graph-and-context-optimization
+     5	git_branch: system-spec-kit/026-graph-and-context-optimization
      6	
      7	# New MemPalace phase prompt aligned with packet governance and evidence boundaries
      8	

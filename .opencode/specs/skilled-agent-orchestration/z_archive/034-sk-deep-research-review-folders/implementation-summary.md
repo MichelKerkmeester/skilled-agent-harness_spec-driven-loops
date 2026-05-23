@@ -55,23 +55,23 @@ Implemented the full review-folder contract across the planned surfaces:
 Implementation was delivered in three coordinated tracks:
 
 - Main-thread workflow and asset changes:
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml`
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_review_confirm.yaml`
+  - `.opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml`
+  - `.opencode/commands/speckit/assets/speckit_deep-research_review_confirm.yaml`
   - `.opencode/skills/sk-deep-research/assets/review_mode_contract.yaml`
   - `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md`
   - `.opencode/skills/sk-deep-review/assets/deep_review_dashboard.md`
 - Shared command-surface compatibility follow-up:
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
-  - `.opencode/commands/spec_kit/deep-research.md`
-  - `.agents/commands/spec_kit/deep-research.toml`
+  - `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml`
+  - `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml`
+  - `.opencode/commands/speckit/deep-research.md`
+  - `.agents/commands/speckit/deep-research.toml`
 - Parallel runtime parity pass:
   - `.opencode/agents/deep-review.md`
   - `.claude/agents/deep-review.md`
   - `.codex/agents/deep-review.toml`
   - `.gemini/agents/deep-review.md`
 - Parallel documentation and playbook sync:
-  - `.opencode/commands/spec_kit/deep-research.md`
+  - `.opencode/commands/speckit/deep-research.md`
   - `.opencode/skills/sk-deep-research/SKILL.md`
   - `.opencode/skills/sk-deep-research/README.md`
   - review-focused references under `.opencode/skills/sk-deep-research/references/`
@@ -102,7 +102,7 @@ Implementation was delivered in three coordinated tracks:
 | Research-mode storage contract drift | PASS because the research auto and confirm YAMLs changed only in the shared spec-root validation guard; their scratch-based state paths and storage contract were left intact |
 | Runtime parity sweep | PASS via worker verification over `.opencode`, `.claude`, `.codex`, and `.gemini` deep-review files |
 | Doc and playbook sweep | PASS via worker verification over the review-mode docs, references, and playbooks, plus the follow-up recovery-text corrections in the shared loop protocol and README |
-| `.agents` command wrapper parity | PASS via direct inspection of `.agents/commands/spec_kit/deep-research.toml` after updating its description and argument hint to match the shared command entrypoint |
+| `.agents` command wrapper parity | PASS via direct inspection of `.agents/commands/speckit/deep-research.toml` after updating its description and argument hint to match the shared command entrypoint |
 | Review-path contract sweep | PASS for targeted surfaces; remaining review-side `scratch/` references are deliberate legacy-migration inputs |
 | Strict packet validation | PASS via `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh 'specs/03--commands-and-skills/034-sk-deep-research-review-folders' --strict` |
 | Live review-run replay | NOT RUN in this session |

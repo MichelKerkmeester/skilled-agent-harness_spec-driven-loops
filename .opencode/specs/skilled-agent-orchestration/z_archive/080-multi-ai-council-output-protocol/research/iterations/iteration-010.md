@@ -38,7 +38,7 @@ Revisit ADR-001 if two or more of these become true in a real packet, or if one 
 
 - The council needs a command-owned lifecycle with `new`, `resume`, `restart`, generated prompts, logs, dashboards, and stuck-recovery semantics.
 - `ai-council-state.jsonl` stops being convention-only and requires reducer-owned writes, schema migration, corruption detection, or fail-closed parsing.
-- `/spec_kit:*` commands become primary dispatchers rather than optional convenience wiring.
+- `/speckit:*` commands become primary dispatchers rather than optional convenience wiring.
 - Skill Advisor or hook routing must discover and recommend council automatically instead of relying on explicit user/orchestrator dispatch.
 - Validation must enforce internal `ai-council/` layout, not merely tolerate or advise on it.
 - Four-runtime mirror parity becomes impossible to maintain through a shared checker and requires generated agent bodies from templates.

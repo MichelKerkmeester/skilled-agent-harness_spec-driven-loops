@@ -48,7 +48,7 @@ Use this skill when:
 
 - Simple single-pass code review (use `sk-code-review` instead)
 - Known issues that just need fixing (go directly to implementation)
-- Implementation tasks (use `sk-code` or `/spec_kit:implement`)
+- Implementation tasks (use `sk-code` or `/speckit:implement`)
 - Quick one-file checks (use direct Grep/Read)
 - Fewer than 2 review dimensions needed (single-pass suffices)
 
@@ -479,12 +479,12 @@ This skill operates within the behavioral framework defined in the active runtim
 Key integrations:
 - **Gate 2**: Skill routing via `skill_advisor.py` (keywords: deep review, code audit, iterative review)
 - **Gate 3**: File modifications require spec folder question per the root doc Gate 3; the spec folder determines the `{spec_folder}/review/` state packet location
-- **Continuity**: `/spec_kit:resume` is the operator-facing recovery surface; canonical packet continuity is written via `generate-context.js`
+- **Continuity**: `/speckit:resume` is the operator-facing recovery surface; canonical packet continuity is written via `generate-context.js`
 - **Command**: `/deep:start-review-loop` is the primary invocation point
 
 ### Continuity Integration
 
-Recover context via `/spec_kit:resume` in the order `handover.md -> _memory.continuity -> spec docs`. During review, the agent writes iteration, strategy, and JSONL state. After synthesis, run `generate-context.js`.
+Recover context via `/speckit:resume` in the order `handover.md -> _memory.continuity -> spec docs`. During review, the agent writes iteration, strategy, and JSONL state. After synthesis, run `generate-context.js`.
 
 ### CocoIndex Integration
 

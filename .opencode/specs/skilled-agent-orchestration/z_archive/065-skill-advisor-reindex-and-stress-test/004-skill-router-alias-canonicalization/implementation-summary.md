@@ -44,8 +44,8 @@ The new alias surface covers:
 - `create:agent` with `command-create-agent`, `/create:agent`, and `create:agent`.
 - `create:testing-playbook` with its command-shaped aliases.
 - `memory:save` with command and slash-command aliases.
-- `sk-deep-research` with `command-spec-kit-deep-research`, `/spec_kit:deep-research`, and `spec_kit:deep-research`.
-- `sk-deep-review` with `command-spec-kit-deep-review`, `/spec_kit:deep-review`, and `spec_kit:deep-review`.
+- `sk-deep-research` with `command-spec-kit-deep-research`, `/speckit:deep-research`, and `spec_kit:deep-research`.
+- `sk-deep-review` with `command-spec-kit-deep-review`, `/speckit:deep-review`, and `spec_kit:deep-review`.
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->

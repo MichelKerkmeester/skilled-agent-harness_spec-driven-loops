@@ -25,7 +25,7 @@ Use this catalog as the canonical inventory for the live `deep-research` feature
 
 | Category | Coverage | Primary Runtime Surface |
 |---|---:|---|
-| Loop lifecycle | 5 features | `.opencode/commands/spec_kit/deep-research.md`, auto and confirm YAML workflows |
+| Loop lifecycle | 5 features | `.opencode/commands/speckit/deep-research.md`, auto and confirm YAML workflows |
 | State management | 3 features | `research/deep-research-*.json`, `research/findings-registry.json`, reducer-owned strategy surfaces |
 | Convergence | 4 features | `references/convergence.md`, workflow legal-stop gates, graph convergence hooks |
 | Research output | 2 features | `research/research.md`, iteration files, reducer-backed negative knowledge surfaces |

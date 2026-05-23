@@ -207,7 +207,7 @@ Use this skill when:
 
 - Simple single-pass code review (use `sk-code-review` instead)
 - Known issues that just need fixing (go directly to implementation)
-- Implementation tasks (use `sk-code-opencode` or `/spec_kit:implement`)
+- Implementation tasks (use `sk-code-opencode` or `/speckit:implement`)
 - Quick one-file checks (use direct Grep/Read)
 - Fewer than 2 review dimensions needed (single-pass suffices)
 
@@ -327,11 +327,11 @@ Detect the current review phase from dispatch context to load appropriate resour
 ### Architecture: 3-Layer Integration
 
 ```
-User invokes: /spec_kit:deep-review "target"
+User invokes: /speckit:deep-review "target"
                     |
                     v
     ┌─────────────────────────────────┐
-    │  /spec_kit:deep-review command  │  Layer 1: Command
+    │  /speckit:deep-review command  │  Layer 1: Command
     │  (YAML workflow + loop config)    │  Manages loop lifecycle
     └──────────────┬──────────────────┘
                    |
@@ -693,7 +693,7 @@ Routing to `@general`, `@write`, or other agents for spec documentation is a **h
 | Template              | Trigger Keywords                                                                                                              | Action                    |
 | --------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
 | `handover.md`         | "handover", "next session", "continue later", "pass context", "ending session", "save state", "multi-session", "for next AI"  | Suggest creating handover |
-| `debug-delegation.md` | "stuck", "can't fix", "tried everything", "same error", "fresh eyes", "hours on this", "still failing", "need help debugging" | Suggest `/spec_kit:debug` |
+| `debug-delegation.md` | "stuck", "can't fix", "tried everything", "same error", "fresh eyes", "hours on this", "still failing", "need help debugging" | Suggest `/speckit:debug` |
 
 **Rule:** When detected, proactively suggest the appropriate action.
 
@@ -830,17 +830,17 @@ RESOURCE_MAP = {
 }
 
 COMMAND_BOOSTS = {
-    "/spec_kit:plan": "PLAN",
-    "/spec_kit:implement": "IMPLEMENT",
-    "/spec_kit:debug": "DEBUG",
-    "/spec_kit:complete": "COMPLETE",
-    "/spec_kit:handover": "HANDOVER",
-    "/spec_kit:plan :with-phases": "PHASE",
+    "/speckit:plan": "PLAN",
+    "/speckit:implement": "IMPLEMENT",
+    "/speckit:debug": "DEBUG",
+    "/speckit:complete": "COMPLETE",
+    "/speckit:handover": "HANDOVER",
+    "/speckit:plan :with-phases": "PHASE",
     "/memory:search": "MEMORY",
     "/memory:save": "MEMORY",
     "/memory:manage": "MEMORY",
     "/memory:learn": "MEMORY",
-    "/spec_kit:resume": "MEMORY",
+    "/speckit:resume": "MEMORY",
 }
 
 LOADING_LEVELS = {
@@ -1014,8 +1014,8 @@ Define an offline replay optimizer that learns from real packet traces, scores r
 | `.opencode/skills/sk-deep-review/assets/deep_review_config.json` | Modify | Mark optimizer-managed fields and promotion-safe config boundaries. |
 | `.opencode/skills/sk-deep-research/references/convergence.md` | Modify | Clarify which thresholds and recovery policies are optimizer-tunable. |
 | `.opencode/skills/sk-deep-review/references/convergence.md` | Modify | Clarify which thresholds and recovery policies are optimizer-tunable. |
-| `.opencode/commands/spec_kit/deep-research.md` | Modify | Document offline optimization as a governed maintenance surface and future prompt-pack consumer, not a live runtime mode. |
-| `.opencode/commands/spec_kit/deep-review.md` | Modify | Document offline optimization as a governed maintenance surface and future prompt-pack consumer, not a live runtime mode. |
+| `.opencode/commands/speckit/deep-research.md` | Modify | Document offline optimization as a governed maintenance surface and future prompt-pack consumer, not a live runtime mode. |
+| `.opencode/commands/speckit/deep-review.md` | Modify | Document offline optimization as a governed maintenance surface and future prompt-pack consumer, not a live runtime mode. |
 | `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts` | Create | Verify corpus extraction and fixture normalization. |
 | `.opencode/skills/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts` | Create | Verify scoring rules and metric weighting behavior. |
 | `.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts` | Create | Verify search-space handling and candidate bookkeeping. |
@@ -2927,10 +2927,10 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:95:| T005 | Completed | REQ-008 | `.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs`; `.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts` |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:96:| T006 | Completed | REQ-005, REQ-007 | `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json`; `.opencode/skills/sk-deep-research/assets/deep_research_config.json`; `.opencode/skills/sk-deep-review/assets/deep_review_config.json`; `.opencode/skills/sk-deep-research/references/convergence.md`; `.opencode/skills/sk-deep-review/references/convergence.md` |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:99:- [x] T005 Build the audit trail for optimization runs, including rejected candidates and advisory patch outputs.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:112:| T007 | Completed | REQ-006, REQ-008 | `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`; `.opencode/commands/spec_kit/deep-research.md`; `.opencode/commands/spec_kit/deep-review.md` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:112:| T007 | Completed | REQ-006, REQ-008 | `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`; `.opencode/commands/speckit/deep-research.md`; `.opencode/commands/speckit/deep-review.md` |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:114:- [x] T007 Implement the advisory-only promotion gate that refuses production mutation until replay fixtures and behavioral suites exist.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:122:| T008 | Blocked | REQ-010 | `.opencode/skills/system-spec-kit/scripts/optimizer/prompt-pack-generator.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-prompt-pack.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/prompt-packs/` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:124:| T010 | Blocked | REQ-006, REQ-010 | `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`; `.opencode/commands/spec_kit/deep-research.md`; `.opencode/commands/spec_kit/deep-review.md` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:124:| T010 | Blocked | REQ-006, REQ-010 | `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`; `.opencode/commands/speckit/deep-research.md`; `.opencode/commands/speckit/deep-review.md` |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:138:- [x] Promotion remains advisory-only unless baseline improvement and prerequisite replay plus behavioral gates both exist and pass.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/implementation-summary.md:3:description: "Phase 4a: offline replay optimizer with deterministic config tuning, advisory promotion gate, and full audit trail. Phase 4b prompt/meta optimization remains deferred."
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/implementation-summary.md:35:Deep-loop configs can now be tuned offline against real packet traces without experimenting live in production. Phase 4a delivers a complete compile/evaluate loop: harvest traces, score them with a rubric, search bounded deterministic config space, replay candidates, and emit advisory candidate patches with a full audit trail.
@@ -2950,7 +2950,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1120:    89	| T005 | Pending | REQ-003 | `.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1122:    91	| T007 | Pending | REQ-006 | `.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs`; `.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts` |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1139:   108	| T008 | Pending | REQ-004, REQ-006 | `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1141:   110	| T010 | Pending | REQ-004, REQ-007 | `.opencode/commands/spec_kit/deep-research.md`; `.opencode/commands/spec_kit/deep-review.md`; `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1141:   110	| T010 | Pending | REQ-004, REQ-007 | `.opencode/commands/speckit/deep-research.md`; `.opencode/commands/speckit/deep-review.md`; `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs` |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1142:   111	| T011 | Pending | REQ-004, REQ-006, REQ-007 | `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1200:    29	| **Storage** | Replay corpus fixtures, audit records, candidate config snapshots, existing deep-loop config files |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1205:    34	This phase creates the deep-loop equivalent of an offline compiler: harvest real traces, score them with a rubric, search bounded config space, replay candidates deterministically, and only promote candidates that beat baseline without breaking existing safety nets. The sequence is intentionally conservative so governance and replay fidelity arrive before any config is considered promotable.
@@ -5271,22 +5271,22 @@ exec
     24	
     25	## 2. Planning Trigger
     26	
-    27	CONDITIONAL routes to `/spec_kit:plan` for remediation before the 042 bundle can be treated as PASS. The next packet should preserve this closing audit as the baseline, open with the active P1 registry below, and sequence the remediation lanes in implementation dependency order so runtime and persistence fixes land before documentation and packet-root closeout updates.
+    27	CONDITIONAL routes to `/speckit:plan` for remediation before the 042 bundle can be treated as PASS. The next packet should preserve this closing audit as the baseline, open with the active P1 registry below, and sequence the remediation lanes in implementation dependency order so runtime and persistence fixes land before documentation and packet-root closeout updates.
     28	
     29	## 3. Active Finding Registry
     30	
     31	| ID | Sev | Dimension | Title | Origin | Key evidence | First seen | Last seen | Status |
     32	|---|---|---|---|---|---|---:|---:|---|
     33	| F001 | P1 | correctness | Canonical deep-review agent still emits an unparseable iteration schema | `I001` (`iteration-001.md:18`) | `.opencode/agents/deep-review.md:147`; `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:137-206` | 1 | 1 | active |
-    34	| F002 | P1 | correctness | Claim-adjudication is documented as a hard stop gate but never participates in STOP eligibility | `I001` (`iteration-001.md:19`) | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:574`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:388-429` | 1 | 1 | active |
-    35	| F003 | P2 | correctness | Review config JSONL collapses requested dimensions into one string element | `I001` (`iteration-001.md:22`) | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:260`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:259` | 1 | 1 | active |
+    34	| F002 | P1 | correctness | Claim-adjudication is documented as a hard stop gate but never participates in STOP eligibility | `I001` (`iteration-001.md:19`) | `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:574`; `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:388-429` | 1 | 1 | active |
+    35	| F003 | P2 | correctness | Review config JSONL collapses requested dimensions into one string element | `I001` (`iteration-001.md:22`) | `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:260`; `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:259` | 1 | 1 | active |
     36	| F004 | P1 | security | Coverage-graph writes are not session-isolated when IDs collide | `I002` (`iteration-002.md:19`) | `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:154`; `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302` | 2 | 2 | active |
     37	| F005 | P2 | security | Session-isolation regression omits the ID-collision path | `I002` (`iteration-002.md:22`) | `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:62`; `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:370-376` | 2 | 2 | active |
-    38	| F006 | P1 | security | Graph-event namespace contract is still undocumented on the visible path | `I003` (`iteration-003.md:19`) | `.opencode/skills/sk-deep-research/references/state_format.md:145`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:658-665` | 3 | 3 | active |
-    39	| F007 | P1 | traceability | Claim-adjudication state format still documents a prose block instead of the typed packet the workflow enforces | `I004` (`iteration-004.md:18`) | `.opencode/skills/sk-deep-review/references/state_format.md:621`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:619-628` | 4 | 4 | active |
+    38	| F006 | P1 | security | Graph-event namespace contract is still undocumented on the visible path | `I003` (`iteration-003.md:19`) | `.opencode/skills/sk-deep-research/references/state_format.md:145`; `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:658-665` | 3 | 3 | active |
+    39	| F007 | P1 | traceability | Claim-adjudication state format still documents a prose block instead of the typed packet the workflow enforces | `I004` (`iteration-004.md:18`) | `.opencode/skills/sk-deep-review/references/state_format.md:621`; `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:619-628` | 4 | 4 | active |
     40	| F008 | P1 | traceability | Deep-review quick reference teaches the wrong weighted convergence signal set | `I004` (`iteration-004.md:19`) | `.opencode/skills/sk-deep-review/references/quick_reference.md:145`; `.opencode/skills/sk-deep-review/references/convergence.md:165-171` | 4 | 4 | active |
-    41	| F009 | P2 | traceability | Convergence reference still describes a persisted `legalStop` synthesis payload the shipped JSONL schema does not write | `I004` (`iteration-004.md:22`) | `.opencode/skills/sk-deep-review/references/convergence.md:44`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:896` | 4 | 4 | active |
-    42	| F010 | P1 | correctness | Resume/restart/fork/completed-continue are exposed as live lifecycle branches without any matching lineage write path | `I005` (`iteration-005.md:19`) | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:167`; `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:143-146` | 5 | 5 | active |
+    41	| F009 | P2 | traceability | Convergence reference still describes a persisted `legalStop` synthesis payload the shipped JSONL schema does not write | `I004` (`iteration-004.md:22`) | `.opencode/skills/sk-deep-review/references/convergence.md:44`; `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:896` | 4 | 4 | active |
+    42	| F010 | P1 | correctness | Resume/restart/fork/completed-continue are exposed as live lifecycle branches without any matching lineage write path | `I005` (`iteration-005.md:19`) | `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:167`; `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:143-146` | 5 | 5 | active |
     43	| F011 | P2 | traceability | Resume-event examples remain skeletal even where the visible state contract expects lineage metadata | `I005` (`iteration-005.md:22`) | `.opencode/skills/sk-deep-research/references/loop_protocol.md:83`; `.opencode/skills/sk-deep-review/references/state_format.md:240-243` | 5 | 5 | active |
     44	| F012 | P1 | correctness | Improve-agent docs promise resumable lineage modes that the shipped workflow cannot execute or surface | `I006` (`iteration-006.md:19`) | `.opencode/skills/sk-improve-agent/SKILL.md:292`; `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:36-42` | 6 | 6 | active |
     45	| F013 | P2 | traceability | Phase 008 implementation summary overclaims REQ-024 closure | `I008` (`iteration-008.md:19`) | `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md:59`; `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:61-91` | 8 | 8 | active |
@@ -5366,7 +5366,7 @@ exec
    119	
    120	- **Findings**: F002, F007
    121	- **Why first**: the loop can currently synthesize after a failed claim-adjudication packet, so the closing audit cannot trust required-stop behavior until this lane is fixed.
-   122	- **Target surfaces**: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`, `.opencode/skills/sk-deep-review/references/state_format.md`, `.opencode/skills/sk-deep-review/references/loop_protocol.md`
+   122	- **Target surfaces**: `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`, `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`, `.opencode/skills/sk-deep-review/references/state_format.md`, `.opencode/skills/sk-deep-review/references/loop_protocol.md`
    123	- **Required decision**: either wire `claim_adjudication_passed` into the legal-stop gate or explicitly downgrade the documentation so claim adjudication is no longer described as STOP-blocking.
    124	- **Exit condition**: a failed or missing typed adjudication packet demonstrably blocks STOP and the operator-facing schema shows the exact typed fields the workflow enforces.
    125	- **Validation proof**: add or extend static contract tests around STOP gating and packet schema parity, then re-run the targeted parity suite.
@@ -5452,7 +5452,7 @@ exec
    205	## 6. Plan Seed
    206	
    207	1. **T001 [correctness] Wire claim-adjudication into the deep-review legal-stop tree**  
-   208	Target files: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`  
+   208	Target files: `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`, `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`  
    209	Findings: F002  
    210	REQ: REQ-026
    211	
@@ -5477,7 +5477,7 @@ exec
    230	REQ: REQ-029
    231	
    232	6. **T006 [correctness] Implement or retract lifecycle branches on deep-review and deep-research workflows**  
-   233	Target files: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`, any paired auto assets touched by the chosen solution  
+   233	Target files: `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`, `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml`, any paired auto assets touched by the chosen solution  
    234	Findings: F010  
    235	REQ: REQ-030
    236	
@@ -5672,20 +5672,20 @@ Full details: `.opencode/skills/sk-git/`
 | **File modification**     | Gate 3 (ask spec folder) → Gate 1 → Gate 2 → Load memory context → Execute                                                         |
 | **Research/exploration**  | `memory_match_triggers()` → `memory_context()` (unified) OR `memory_search()` (targeted) → Document findings                       |
 | **Code search**           | Semantic/concept → `CocoIndex search` · Structural (callers/imports/deps) → `code_graph_query` · Exact text → `Grep` · File paths → `Glob` · Read contents → `Read` |
-| **Resume prior work**     | `/spec_kit:resume` → Rebuild context from `handover.md` → `_memory.continuity` → canonical spec docs → Review checklist → Continue |
+| **Resume prior work**     | `/speckit:resume` → Rebuild context from `handover.md` → `_memory.continuity` → canonical spec docs → Review checklist → Continue |
 | **Save context**          | Continuity-only `_memory.continuity` updates may be edited directly in canonical spec docs; use `/memory:save` or `generate-context.js --json '<data>' [spec-folder]` for indexed saves |
 | **Claim completion**      | Validation runs automatically → Load `checklist.md` → Verify ALL items → Mark with evidence                                        |
-| **End session**           | `/spec_kit:handover` → Save context → Provide continuation prompt                                                                  |
+| **End session**           | `/speckit:handover` → Save context → Provide continuation prompt                                                                  |
 | **New spec folder**       | Option B (Gate 3) → Research via Task tool → Evidence-based plan → Approval → Implement                                            |
 | **Complex multi-step**    | Task tool → Decompose → Delegate → Synthesize                                                                                      |
 | **Documentation**         | sk-doc skill → Classify → Load template → Fill → Validate (`validate_document.py`) → DQI score → Verify                            |
 | **Web code**              | sk-code-web skill → Webflow/CDN standards, minification, browser testing                                                           |
 | **OpenCode system code**  | sk-code-opencode skill → JS/TS/Python/Shell standards, language detection, quality checklists                                       |
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
-| **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → `create.sh --phase` → Populate → Plan first child  |
+| **Phase workflow**        | `/speckit:plan :with-phases` or `/speckit:complete :with-phases` → Decompose → `create.sh --phase` → Populate → Plan first child  |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
-| **Deep research**         | `/spec_kit:deep-research` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
-| **Deep review**           | `/spec_kit:deep-review` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
+| **Deep research**         | `/speckit:deep-research` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
+| **Deep review**           | `/speckit:deep-review` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
 | **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                            |
 | **Constitutional memory** | `/memory:learn` → Constitutional memory manager: create, list, edit, remove, budget                                               |
 | **Shared memory**         | `/memory:manage shared` → Shared-memory lifecycle: create spaces, manage memberships, inspect rollout                                    |
@@ -5696,7 +5696,7 @@ These recovery steps are universal across Claude Code, OpenCode, Codex CLI, Copi
 
 ### After Context Compaction Or `/clear`
 
-1. **FIRST ACTION** — use `/spec_kit:resume` as the canonical recovery surface
+1. **FIRST ACTION** — use `/speckit:resume` as the canonical recovery surface
 2. Rebuild prior work in this order: `handover.md` → `_memory.continuity` → canonical spec docs (`implementation-summary.md`, `tasks.md`, `plan.md`, `spec.md`)
 3. Use `memory_context()` or `memory_search()` only when those packet-local continuity sources do not answer the question
 4. Re-read the active runtime-specific instructions if they exist (`CODEX.md`, `GEMINI.md`, `.claude/CLAUDE.md`, runtime agent docs)
@@ -5730,8 +5730,8 @@ exec
 .opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:325:  fs.writeFileSync(outputPath, JSON.stringify(report, null, 2), 'utf8');
 .opencode/skills/system-spec-kit/scripts/evals/run-redaction-calibration.ts:83:  const outputPath = path.join(specFolder, 'scratch', 'redaction-calibration.md');
 .opencode/skills/system-spec-kit/scripts/evals/run-redaction-calibration.ts:130:  fs.writeFileSync(outputPath, `${content}\n`, 'utf8');
-.opencode/commands/spec_kit/deep-research.md:293:- Optimizer manifest: `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json`
-.opencode/commands/spec_kit/deep-review.md:350:- Optimizer manifest: `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json`
+.opencode/commands/speckit/deep-research.md:293:- Optimizer manifest: `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json`
+.opencode/commands/speckit/deep-review.md:350:- Optimizer manifest: `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json`
 .opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:235: * @param {string} [options.fixturesDir] - Path to the fixtures directory.
 .opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:272:  } else if (options.fixturesDir) {
 .opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:274:      options.fixturesDir,
@@ -5928,8 +5928,8 @@ exec
    107	| `.opencode/skills/sk-deep-review/assets/deep_review_config.json` | Modify | Mark optimizer-managed fields and promotion-safe config boundaries. |
    108	| `.opencode/skills/sk-deep-research/references/convergence.md` | Modify | Clarify which thresholds and recovery policies are optimizer-tunable. |
    109	| `.opencode/skills/sk-deep-review/references/convergence.md` | Modify | Clarify which thresholds and recovery policies are optimizer-tunable. |
-   110	| `.opencode/commands/spec_kit/deep-research.md` | Modify | Document offline optimization as a governed maintenance surface and future prompt-pack consumer, not a live runtime mode. |
-   111	| `.opencode/commands/spec_kit/deep-review.md` | Modify | Document offline optimization as a governed maintenance surface and future prompt-pack consumer, not a live runtime mode. |
+   110	| `.opencode/commands/speckit/deep-research.md` | Modify | Document offline optimization as a governed maintenance surface and future prompt-pack consumer, not a live runtime mode. |
+   111	| `.opencode/commands/speckit/deep-review.md` | Modify | Document offline optimization as a governed maintenance surface and future prompt-pack consumer, not a live runtime mode. |
    112	| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts` | Create | Verify corpus extraction and fixture normalization. |
    113	| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts` | Create | Verify scoring rules and metric weighting behavior. |
    114	| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts` | Create | Verify search-space handling and candidate bookkeeping. |

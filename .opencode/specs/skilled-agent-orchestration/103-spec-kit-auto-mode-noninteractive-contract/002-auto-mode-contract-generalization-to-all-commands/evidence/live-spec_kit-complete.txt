@@ -1,6 +1,6 @@
-=== Live setup-phase test: /spec_kit:complete:auto ===
+=== Live setup-phase test: /speckit:complete:auto ===
 Started: 2026-05-11T14:28:52+0200
-Command: .opencode/commands/spec_kit/complete.md
+Command: .opencode/commands/speckit/complete.md
 
 Reading additional input from stdin...
 OpenAI Codex v0.130.0
@@ -15,7 +15,7 @@ reasoning summaries: none
 session id: 019e1702-fe2f-7092-b5da-99759c2e053f
 --------
 user
-You are testing the setup-phase contract of the migrated command /spec_kit:complete.
+You are testing the setup-phase contract of the migrated command /speckit:complete.
 
 # RUNTIME RULES
 - Inline Codex execution. Do NOT call SpawnAgent / collab / Task / sub-agent.
@@ -25,9 +25,9 @@ You are testing the setup-phase contract of the migrated command /spec_kit:compl
 
 # YOUR TASK
 
-1. Read .opencode/commands/spec_kit/complete.md section zero (UNIFIED SETUP PHASE or equivalent).
+1. Read .opencode/commands/speckit/complete.md section zero (UNIFIED SETUP PHASE or equivalent).
 2. Verify this command's section zero cites .opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md (the shared three-tier auto contract).
-3. SIMULATE a dispatch of /spec_kit:complete:auto with the following PRE-BOUND SETUP ANSWERS in the prompt body:
+3. SIMULATE a dispatch of /speckit:complete:auto with the following PRE-BOUND SETUP ANSWERS in the prompt body:
 
 ```
 PRE-BOUND SETUP ANSWERS:
@@ -63,7 +63,7 @@ hook: UserPromptSubmit Completed
 codex
 I’ll keep this read-only and stop at section-zero resolution. The user already pre-bound Gate 3 as skip, so I’m only inspecting the command markdown and simulating the setup contract.
 exec
-/bin/zsh -lc 'rg -n "UNIFIED SETUP PHASE|auto_mode_contract|Tier|PRE-BOUND|STATUS|setup" .opencode/commands/spec_kit/complete.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "UNIFIED SETUP PHASE|auto_mode_contract|Tier|PRE-BOUND|STATUS|setup" .opencode/commands/speckit/complete.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 3:argument-hint: "<feature-description> [:auto|:confirm] [:with-research] [:with-phases] [--phases N] [--phase-names list] [--phase-folder=<path>] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
 11:> **Ownership:** Markdown owns setup (resolves all inputs). YAML owns execution (dispatches steps). Setup values resolved here are passed to the YAML workflow.
@@ -73,9 +73,9 @@ exec
 41:Read-only discovery to classify folder state is allowed when `spec_path` is explicit or can be inferred from the setup answers. Healthy folders keep the existing prompt shape; non-healthy folders run the intake contract (`.opencode/skills/system-spec-kit/references/intake-contract.md`) inline inside the same consolidated prompt and MUST NOT open a second visible command flow.
 43:For `:auto`, do not emit the consolidated prompt by default. Resolve setup with the three-tier branch below, then load the auto YAML only after all required values are bound.
 47:Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md`.
-51:1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/complete-config.json` (shape: `featureDescription`, `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `researchIntent`, `researchIntegration`, `phaseDecomposition`, `phaseCount`, `phaseNames`, `intake.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml`. End §0.
+51:1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/complete-config.json` (shape: `featureDescription`, `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `researchIntent`, `researchIntegration`, `phaseDecomposition`, `phaseCount`, `phaseNames`, `intake.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/speckit/assets/speckit_complete_auto.yaml`. End §0.
 53:2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`, `research_intent`. **Ordering rule**: none needed. Missing `feature_description` is absence, not ambiguity — go to Tier 3.
-55:3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/spec_kit:complete:auto` as the command name. Exit non-zero. Do not load YAML.
+55:3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/speckit:complete:auto` as the command name. Exit non-zero. Do not load YAML.
 57:`:confirm` path stays unchanged — see the consolidated setup prompt section below.
 59:### PRE-BOUND SETUP ANSWERS Schema (for `:auto` non-interactive dispatch)
 61:The dispatched prompt body may contain one structured marker block. Parse it before applying defaults. Grammar: see `auto_mode_contract.md` §2.
@@ -85,7 +85,7 @@ exec
 110:**STATUS: BLOCKED**
 218:10. SET STATUS: PASSED
 265:**Outputs:** Complete spec folder with all artifacts, refreshed `graph-metadata.json`, and `STATUS=<OK|FAIL|CANCELLED>`
-316:| (default) | `/spec_kit:complete "feature"` | Ask user to choose mode during setup |
+316:| (default) | `/speckit:complete "feature"` | Ask user to choose mode during setup |
 354:- Execute phase decomposition pre-workflow before Step 1 (after setup):
 418:After setup phase passes, load and execute the appropriate YAML prompt:
 432:STATUS=OK PATH=[spec-folder-path]
@@ -95,7 +95,7 @@ exec
 codex
 Found the setup section and the shared contract reference. I’m reading the relevant lines now so the report can cite exact line numbers and avoid inferring from a grep hit alone.
 exec
-/bin/zsh -lc "sed -n '37,112p' .opencode/commands/spec_kit/complete.md | nl -ba -v37" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '37,112p' .opencode/commands/speckit/complete.md | nl -ba -v37" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
     37	## 0. UNIFIED SETUP PHASE
     38	
@@ -111,11 +111,11 @@ exec
     48	
     49	Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
     50	
-    51	1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/complete-config.json` (shape: `featureDescription`, `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `researchIntent`, `researchIntegration`, `phaseDecomposition`, `phaseCount`, `phaseNames`, `intake.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml`. End §0.
+    51	1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/complete-config.json` (shape: `featureDescription`, `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `researchIntent`, `researchIntegration`, `phaseDecomposition`, `phaseCount`, `phaseNames`, `intake.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/speckit/assets/speckit_complete_auto.yaml`. End §0.
     52	
     53	2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`, `research_intent`. **Ordering rule**: none needed. Missing `feature_description` is absence, not ambiguity — go to Tier 3.
     54	
-    55	3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/spec_kit:complete:auto` as the command name. Exit non-zero. Do not load YAML.
+    55	3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/speckit:complete:auto` as the command name. Exit non-zero. Do not load YAML.
     56	
     57	`:confirm` path stays unchanged — see the consolidated setup prompt section below.
     58	
@@ -175,11 +175,11 @@ exec
    112	```
 
 exec
-/bin/zsh -lc 'rg -n "intent|research_intent|feature" .opencode/commands/spec_kit/complete.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "intent|research_intent|feature" .opencode/commands/speckit/complete.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 3:argument-hint: "<feature-description> [:auto|:confirm] [:with-research] [:with-phases] [--phases N] [--phase-names list] [--phase-folder=<path>] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
 15:>    Note: :with-research and :with-phases are feature flags, not execution modes. They modify the :auto or :confirm workflow but do not change the base execution mode.
-51:1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/complete-config.json` (shape: `featureDescription`, `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `researchIntent`, `researchIntegration`, `phaseDecomposition`, `phaseCount`, `phaseNames`, `intake.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml`. End §0.
+51:1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/complete-config.json` (shape: `featureDescription`, `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `researchIntent`, `researchIntegration`, `phaseDecomposition`, `phaseCount`, `phaseNames`, `intake.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/speckit/assets/speckit_complete_auto.yaml`. End §0.
 53:2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`, `research_intent`. **Ordering rule**: none needed. Missing `feature_description` is absence, not ambiguity — go to Tier 3.
 65:  feature_description: Add passwordless login  # string
 70:  research_intent: add_feature  # add_feature | fix_bug | refactor | understand
@@ -200,25 +200,25 @@ exec
 229:- `feature_description` | `spec_choice` | `spec_path`
 230:- `execution_mode` | `dispatch_mode` | `memory_loaded` | `research_intent`
 287:| 3 | Specification | Create spec.md | spec.md, feature branch |
-312:| `:auto` | `/spec_kit:complete :auto "feature"` | Execute all steps without approval gates |
-313:| `:confirm` | `/spec_kit:complete :confirm "feature"` | Pause at each step for approval |
-314:| `:with-research` | `/spec_kit:complete :with-research "feature"` | Insert research phase after Step 2 (before specification) |
-315:| `:with-phases` | `/spec_kit:complete :with-phases "feature"` | Insert phase decomposition before Step 1, then complete first child. The parent scaffolds from `phase-parent Level template contract` (lean trio only — `spec.md` + `description.json` + `graph-metadata.json` at parent); plan/tasks/checklist/decisions live in each child. |
-316:| (default) | `/spec_kit:complete "feature"` | Ask user to choose mode during setup |
+312:| `:auto` | `/speckit:complete :auto "feature"` | Execute all steps without approval gates |
+313:| `:confirm` | `/speckit:complete :confirm "feature"` | Pause at each step for approval |
+314:| `:with-research` | `/speckit:complete :with-research "feature"` | Insert research phase after Step 2 (before specification) |
+315:| `:with-phases` | `/speckit:complete :with-phases "feature"` | Insert phase decomposition before Step 1, then complete first child. The parent scaffolds from `phase-parent Level template contract` (lean trio only — `spec.md` + `description.json` + `graph-metadata.json` at parent); plan/tasks/checklist/decisions live in each child. |
+316:| (default) | `/speckit:complete "feature"` | Ask user to choose mode during setup |
 481:2. **Feature Explorer** - Similar features, related patterns
 507:| Concept/intent | CocoIndex (`mcp__cocoindex_code__search`) | "authentication middleware" |
 536:**Pre-execution (>= 70):** feature_description not empty (30), spec_path valid (30), execution_mode set (20), memory context loaded (20)
 548:| Missing feature description | Re-prompt user |
-561:- **Standard**: `/spec_kit:complete "feature"` -- 14 steps
-562:- **With Research**: `/spec_kit:complete "feature" :with-research` -- Research + 14 steps
-563:- **With Phases**: `/spec_kit:complete "feature" :with-phases --phases 3` -- Phase decomposition + 14 steps on first child
-564:- **Full Options**: `/spec_kit:complete "feature" :auto :with-research :with-phases`
-577:| Ready for next feature | `/spec_kit:complete [feature-description]` | Start new workflow |
+561:- **Standard**: `/speckit:complete "feature"` -- 14 steps
+562:- **With Research**: `/speckit:complete "feature" :with-research` -- Research + 14 steps
+563:- **With Phases**: `/speckit:complete "feature" :with-phases --phases 3` -- Phase decomposition + 14 steps on first child
+564:- **Full Options**: `/speckit:complete "feature" :auto :with-research :with-phases`
+577:| Ready for next feature | `/speckit:complete [feature-description]` | Start new workflow |
 
 codex
 One subtlety: the pre-bound block uses `intent: feature`, while section zero’s schema names the required field `research_intent`. I’m checking whether section zero defines an alias before deciding Tier 1 versus Tier 2.
 exec
-/bin/zsh -lc "sed -n '112,218p' .opencode/commands/spec_kit/complete.md | nl -ba -v112" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '112,218p' .opencode/commands/speckit/complete.md | nl -ba -v112" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    112	```
    113	EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
@@ -252,7 +252,7 @@ exec
    141	4. Search for prior work (background):
    142	   - memory_context({ input: feature_description OR "complete", mode: "focused", includeContent: true })
    143	   > Gate 1 trigger matching handled at agent level (AGENTS.md).
-   144	   > Gate 3 spec-folder trigger classification is typed: `.opencode/skills/system-spec-kit/shared/gate-3-classifier.ts` (`classifyPrompt()`). Invocations of `/spec_kit:complete` are already inside a write flow, so Gate 3 is pre-answered by command dispatch — no extra inference needed here.
+   144	   > Gate 3 spec-folder trigger classification is typed: `.opencode/skills/system-spec-kit/shared/gate-3-classifier.ts` (`classifyPrompt()`). Invocations of `/speckit:complete` are already inside a write flow, so Gate 3 is pre-answered by command dispatch — no extra inference needed here.
    145	   - Store: prior_work_found = [yes/no], prior_work_count = [N]
    146	
    147	5. Prior-work loading question needed ONLY if user selects A or C for spec folder AND prior continuity records exist for this spec.
@@ -332,7 +332,7 @@ exec
 /bin/zsh -lc 'rg -n "intent|alias|unknown fields|PRE-BOUND|Tier 1|Tier 2|field" .opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 3:description: Canonical three-tier `:auto` setup-resolution contract shared by every user-invokable `/command:*:auto` surface. Defines tier semantics (resolve → targeted ask → fail-fast), `PRE-BOUND SETUP ANSWERS:` marker grammar, default-resolution table format, fail-fast error template, `:confirm` invariance, and verification protocol.
-8:This reference module defines the single canonical `:auto` setup-resolution contract used by every user-invokable `/command:*:auto` surface in spec-kit (`/spec_kit:*`, `/create:*`, `/improve:*`). Each command's §0 cites this contract and supplies only its own per-field Default Resolution Table + `PRE-BOUND SETUP ANSWERS:` field list. The contract semantics, marker grammar, error format, and verification protocol live here.
+8:This reference module defines the single canonical `:auto` setup-resolution contract used by every user-invokable `/command:*:auto` surface in spec-kit (`/speckit:*`, `/create:*`, `/improve:*`). Each command's §0 cites this contract and supplies only its own per-field Default Resolution Table + `PRE-BOUND SETUP ANSWERS:` field list. The contract semantics, marker grammar, error format, and verification protocol live here.
 20:### Tier 1 — Resolve Confidently
 25:2. **`PRE-BOUND SETUP ANSWERS:` block in the prompt body** — see §2 for grammar. Caller's explicit prompt-body binding wins over `$ARGUMENTS` when both are present
 26:3. **Documented per-field defaults** — see the command's own Default Resolution Table (§3) for which fields carry sensible defaults

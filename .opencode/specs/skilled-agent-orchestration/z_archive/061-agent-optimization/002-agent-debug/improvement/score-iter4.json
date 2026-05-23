@@ -178,7 +178,7 @@
         {
           "id": "checklist-13",
           "pass": true,
-          "check": "/spec_kit:complete implications are reported without claiming the outer workflow complete"
+          "check": "/speckit:complete implications are reported without claiming the outer workflow complete"
         },
         {
           "id": "checklist-14",

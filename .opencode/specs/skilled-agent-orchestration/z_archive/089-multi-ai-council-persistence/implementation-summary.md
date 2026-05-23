@@ -102,7 +102,7 @@ Phase 1 spec docs were authored directly by claude-opus-4-7 to canonical Level 3
 
 The .codex/ runtime mirror was patched manually because cli-codex sandbox blocks writes inside `.codex/` directory (sandbox protection on its own state path). Same pattern as packet 080.
 
-Workflow: `/spec_kit:complete:auto` 14-step. Strict validation gate passed at Phase 1 lock-in and again at Phase 3 closeout.
+Workflow: `/speckit:complete:auto` 14-step. Strict validation gate passed at Phase 1 lock-in and again at Phase 3 closeout.
 <!-- /ANCHOR:how-delivered -->
 
 ---

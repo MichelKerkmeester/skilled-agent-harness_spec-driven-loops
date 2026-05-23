@@ -27,7 +27,7 @@ confidence: high
 finding: Public should merge bootstrap, retrieval, and continuation into a smaller operator-facing context surface, even if the implementation still keeps separate internal permissions for bootstrap-only, retrieval-only, and handover-write tasks.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/agents/orchestrate.md`, `.opencode/agents/context-prime.md`, `.opencode/agents/context.md`, `.opencode/agents/handover.md`, `/spec_kit:resume`
+- **Target file or module:** `.opencode/agents/orchestrate.md`, `.opencode/agents/context-prime.md`, `.opencode/agents/context.md`, `.opencode/agents/handover.md`, `/speckit:resume`
 - **Change type:** agent surface merger
 - **Blast radius:** high
 - **Prerequisites:** define which responsibilities stay separate internally and which names disappear from operator-facing docs

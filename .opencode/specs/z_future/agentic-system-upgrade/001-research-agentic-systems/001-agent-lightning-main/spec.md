@@ -71,7 +71,7 @@ Produce a three-wave, 30-iteration evidence-backed research report that classifi
   - `.opencode/skills/system-spec-kit/scripts/`
   - `.opencode/skills/system-spec-kit/mcp_server/`
   - `.opencode/skills/system-spec-kit/constitutional/`
-  - `.opencode/commands/spec_kit/`
+  - `.opencode/commands/speckit/`
   - `.opencode/commands/memory/`
   - `.opencode/agents/`
 - Thirty dated research iteration artifacts under `research/iterations/`

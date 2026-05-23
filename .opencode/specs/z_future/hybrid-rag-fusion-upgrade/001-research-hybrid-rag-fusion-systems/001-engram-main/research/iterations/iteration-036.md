@@ -282,7 +282,7 @@ Engram’s DX story is now clear enough to compare. I’m pulling Public’s cur
   └ L1:220 (220 lines read)
 
 ● Search (grep)
-  │ "generate-context\.js|session_bootstrap|session_resume|memory_context\(|/memory:save|/spec_kit:r
+  │ "generate-context\.js|session_bootstrap|session_resume|memory_context\(|/memory:save|/speckit:r
   │ esume|memory_index_scan|code_graph_query|CocoIndex|code graph" in **/*.{md,ts,js,json,sh}
   │ (.opencode)
   └ 7 lines found
@@ -300,7 +300,7 @@ Engram’s DX story is now clear enough to compare. I’m pulling Public’s cur
   └ L1:260 (260 lines read)
 
 ● Read resume.md
-  │ .opencode/commands/spec_kit/resume.md
+  │ .opencode/commands/speckit/resume.md
   └ L1:260 (260 lines read)
 
 ● Read README.md

@@ -15,7 +15,7 @@ _memory:
     last_updated_at: "2026-04-26T05:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Drafted Level 3 spec from sibling-skill exploration"
-    next_safe_action: "Review the decision-record ADRs, then dispatch /spec_kit:implement when approved"
+    next_safe_action: "Review the decision-record ADRs, then dispatch /speckit:implement when approved"
     blockers: []
     key_files:
       - "spec.md"
@@ -98,7 +98,7 @@ Land the fifth sibling without breaking sibling symmetry, advisor scoring, or th
 - A constitutional/ rule for OpenCode-specific guardrails (sibling skills do not have one; can be added later if a real rule emerges).
 - Hooking cli-opencode into deep-research or deep-review executor configs as a fifth `--executor` choice (separate spec — would touch the loop machinery, not the skill).
 - A test corpus expansion for the advisor regression suite (existing fixtures cover four cli-* skills; adding a fifth is a follow-up packet once real telemetry confirms routing accuracy).
-- Implementation of the cli-opencode skill itself — this packet is plan-only. Implementation runs after approval via `/spec_kit:implement`.
+- Implementation of the cli-opencode skill itself — this packet is plan-only. Implementation runs after approval via `/speckit:implement`.
 <!-- /ANCHOR:scope -->
 
 ---

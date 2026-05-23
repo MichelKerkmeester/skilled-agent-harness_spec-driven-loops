@@ -968,7 +968,7 @@ mcp__mk_code_index__ccc_feedback({
 - `/memory:search`: Intent-aware context retrieval and analysis tools
 - `/memory:save`: Save conversation context
 - `/memory:learn`: Constitutional rules
-- `/spec_kit:resume`: Session recovery and continuation
+- `/speckit:resume`: Session recovery and continuation
 
 ---
 <!-- APPENDIX: Reference material for AI agent implementation -->

@@ -53,7 +53,7 @@ _memory:
 
 | Path | Action | Status | Note |
 |---|---|---|---|
-| `.opencode/commands/spec_kit/deep-review.md` | Checked | OK | Command id side of alias |
+| `.opencode/commands/speckit/deep-review.md` | Checked | OK | Command id side of alias |
 | `.opencode/skills/sk-deep-review/SKILL.md` | Checked | OK | Skill id side of alias |
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | Updated | OK | Python alias parity |
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/aliases.ts` | Created | OK | Canonical alias groups and helpers |

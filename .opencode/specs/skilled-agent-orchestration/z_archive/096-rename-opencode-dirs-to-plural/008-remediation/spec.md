@@ -19,7 +19,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/executor-config.vitest.ts"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml"
+      - ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-opus-4-7-2026-05-08"
@@ -89,7 +89,7 @@ Resolve the 2 P1 regressions + 3 of 4 P2 advisories so the deep-review verdict c
 |------|--------|---------|
 | `mcp_server/lib/deep-loop/executor-config.ts:37-40` | Modified | P1-028 |
 | `mcp_server/dist/**` | Regenerated | P1-028 |
-| 4 `commands/spec_kit/assets/spec_kit_deep-{review,research}_{auto,confirm}.yaml` | Modified | P1-027 |
+| 4 `commands/speckit/assets/speckit_deep-{review,research}_{auto,confirm}.yaml` | Modified | P1-027 |
 | `mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts:241-246` | Modified | P2-027/P2-027r |
 | `mcp_server/tests/deep-loop/executor-config.vitest.ts` | Modified | P2-028 |
 <!-- /ANCHOR:scope -->

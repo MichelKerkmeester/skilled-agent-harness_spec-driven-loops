@@ -54,7 +54,7 @@ _memory:
 
 - [x] T005 Rename the canonical mutator agent to `agent-improver`
 - [x] T006 Rename and align runtime agent mirrors for Claude, Gemini, `.agents`, and Codex
-- [x] T007 Align `.opencode/commands/spec_kit/agent-improver.md` to the command template family
+- [x] T007 Align `.opencode/commands/speckit/agent-improver.md` to the command template family
 - [x] T008 Update YAML workflows to dispatch `@agent-improver`
 - [x] T009 Update command wrapper TOMLs to match the corrected command body
 <!-- /ANCHOR:phase-2 -->

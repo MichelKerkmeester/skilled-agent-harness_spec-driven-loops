@@ -45,7 +45,7 @@ Implementation is organized as one documentation-asset refinement pass. The work
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [x] Target style baseline identified in `.opencode/commands/spec_kit/assets/*.yaml`
+- [x] Target style baseline identified in `.opencode/commands/speckit/assets/*.yaml`
 - [x] The broader create asset suite inspected for structural drift
 - [x] Scope limited to create YAML assets plus this spec packet
 
@@ -65,7 +65,7 @@ Implementation is organized as one documentation-asset refinement pass. The work
 Documentation-asset normalization across one command-family folder.
 
 ### Key Components
-- **Style baseline**: `.opencode/commands/spec_kit/assets/*.yaml`
+- **Style baseline**: `.opencode/commands/speckit/assets/*.yaml`
 - **Primary refinement targets**:
   - `create_feature_catalog_*`
   - `create_testing_playbook_*`
@@ -137,7 +137,7 @@ Inspect `spec_kit` and the existing create assets -> identify missing shared sec
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `.opencode/commands/spec_kit/assets/*.yaml` | Internal | Available | Defines the richer workflow style we are aligning toward |
+| `.opencode/commands/speckit/assets/*.yaml` | Internal | Available | Defines the richer workflow style we are aligning toward |
 | Existing create YAML assets | Internal | Available | Provide the current command-specific behavior that must be preserved |
 | `sk-doc` document validator | Internal | Available | Verifies the command README surfaces still validate after the suite cleanup |
 | Spec validator | Internal | Available | Verifies this packet is no longer template scaffolding |

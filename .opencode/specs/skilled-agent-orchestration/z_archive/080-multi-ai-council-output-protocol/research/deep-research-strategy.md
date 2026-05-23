@@ -22,7 +22,7 @@ How to further improve the multi-ai-council agent (`.opencode/agents/multi-ai-co
 
 Investigate three threads:
 - (1) Concrete improvements landable in follow-on packet 081 / 082+ (helper script shape, §17 caller protocol, §8 shared schema artifact, validator hints, advisor wiring, state.jsonl forward-compat, mirror-sync automation).
-- (2) Whether existing spec-kit integration is solid: agent body §12-§15, 4-runtime mirrors, validator regression test, references/multi-ai-council/, packet-080 ai-council/ smoke-test artifacts. Or whether gaps exist (validator awareness, advisor scoring, /spec_kit:* wiring, hook integration, council-aware /memory:save anchoring).
+- (2) Whether existing spec-kit integration is solid: agent body §12-§15, 4-runtime mirrors, validator regression test, references/multi-ai-council/, packet-080 ai-council/ smoke-test artifacts. Or whether gaps exist (validator awareness, advisor scoring, /speckit:* wiring, hook integration, council-aware /memory:save anchoring).
 - (3) Risks the round-2 amendments (ADD-1..ADD-6) introduce and mitigations.
 
 ---
@@ -44,7 +44,7 @@ Investigate three threads:
 ## 4. NON-GOALS
 
 - Building a dedicated `.opencode/skills/multi-ai-council/` skill folder unless ADR-001 provably fails (per user constraint).
-- Adding a `/spec_kit:council` slash command (per non-goal N2 in spec.md).
+- Adding a `/speckit:council` slash command (per non-goal N2 in spec.md).
 - Auto-dispatch policies (council remains user-invoked).
 - Cross-packet council aggregation.
 - Replacing scratch/ for ad-hoc council notes.
@@ -129,7 +129,7 @@ Synthesis-ready: all 10 key questions are answered. Next pass should synthesize 
 4 dispatch patterns observed via grep evidence:
 - (a) Top-level Task dispatch (Claude Code direct)
 - (b) `@orchestrate` LEAF target at Depth 1 (codified in orchestrate.md line 97, 192, 749)
-- (c) `/spec_kit:*` command YAMLs (zero current dispatchers)
+- (c) `/speckit:*` command YAMLs (zero current dispatchers)
 - (d) CLI-skill manual playbooks (cli-claude-code/cli-codex/cli-opencode/cli-gemini docs reference direct dispatch)
 
 ### Resource map status

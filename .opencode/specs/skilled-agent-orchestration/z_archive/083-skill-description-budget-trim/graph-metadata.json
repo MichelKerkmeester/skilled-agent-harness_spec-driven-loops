@@ -55,8 +55,8 @@
       ".opencode/skills/deep-research/SKILL.md",
       ".opencode/commands/memory/search.md",
       ".opencode/commands/memory/manage.md",
-      ".opencode/commands/spec_kit/complete.md",
-      ".opencode/commands/spec_kit/implement.md"
+      ".opencode/commands/speckit/complete.md",
+      ".opencode/commands/speckit/implement.md"
     ],
     "entities": [
       {
@@ -80,13 +80,13 @@
       {
         "name": "complete.md",
         "kind": "doc",
-        "path": ".opencode/commands/spec_kit/complete.md",
+        "path": ".opencode/commands/speckit/complete.md",
         "source": "derived"
       },
       {
         "name": "implement.md",
         "kind": "doc",
-        "path": ".opencode/commands/spec_kit/implement.md",
+        "path": ".opencode/commands/speckit/implement.md",
         "source": "derived"
       },
       {

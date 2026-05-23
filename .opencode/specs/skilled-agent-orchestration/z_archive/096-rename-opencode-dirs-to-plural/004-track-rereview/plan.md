@@ -42,7 +42,7 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Workflow** | `/spec_kit:deep-review:auto` (skill-owned YAML) |
+| **Workflow** | `/speckit:deep-review:auto` (skill-owned YAML) |
 | **Executor** | cli-codex (`codex exec`) |
 | **Model** | gpt-5.5 |
 | **Reasoning effort** | high |
@@ -55,7 +55,7 @@ Run an autonomous deep-review loop over the recent burst (093, 094, 095, 096, 09
 dimensions enabled. Strategy is `arch` — verdict-flip confirmation NOT line-by-line. Iter-1 builds
 the closed-gate replay table mapping each 097 finding to its 098 fix surface; subsequent
 iterations spot-check at file:line. Synthesize findings into review-report.md with a Planning
-Packet that downstream `/spec_kit:plan` can consume if verdict ≠ PASS.
+Packet that downstream `/speckit:plan` can consume if verdict ≠ PASS.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -110,7 +110,7 @@ reducer-owned findings registry, severity-weighted convergence detection.
 ## FIX ADDENDUM: AFFECTED SURFACES
 
 Not applicable at planning time — this is a review-only packet. If review yields FAIL/CONDITIONAL,
-the Plan Seed in `review-report.md` populates this section for the follow-up `/spec_kit:plan` packet.
+the Plan Seed in `review-report.md` populates this section for the follow-up `/speckit:plan` packet.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|

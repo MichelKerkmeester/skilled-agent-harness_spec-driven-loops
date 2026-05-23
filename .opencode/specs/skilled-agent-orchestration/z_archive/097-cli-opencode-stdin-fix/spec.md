@@ -22,10 +22,10 @@ _memory:
       - "plan.md"
       - "tasks.md"
       - "checklist.md"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml"
+      - ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml"
+      - ".opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml"
+      - ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml"
+      - ".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml"
       - ".opencode/skills/cli-opencode/SKILL.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -118,10 +118,10 @@ Add `</dev/null` to every non-interactive `opencode run` callsite in this repo s
 ### In Scope
 
 - Add `</dev/null \` to the `if_cli_opencode` command block in 4 YAML workflow files:
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` (line ~727)
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` (line ~659)
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` (line ~791)
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` (line ~768)
+  - `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` (line ~727)
+  - `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml` (line ~659)
+  - `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml` (line ~791)
+  - `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml` (line ~768)
 - Update `cli-opencode` SKILL.md ALWAYS rule list to include `</dev/null` requirement.
 - Update `cli-opencode` README.md if it has automation snippets.
 - Update `cli-opencode/references/cli_reference.md` and `cli-opencode/references/integration_patterns.md` (§6 background dispatch pattern) to document `</dev/null` requirement and the `process.stdin.isTTY` Unix gotcha.
@@ -145,10 +145,10 @@ Add `</dev/null` to every non-interactive `opencode run` callsite in this repo s
 
 | Path | Purpose |
 |------|---------|
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Locate `if_cli_opencode` block (line ~727) for patch |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Same |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Same |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Same |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | Locate `if_cli_opencode` block (line ~727) for patch |
+| `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml` | Same |
+| `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml` | Same |
+| `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml` | Same |
 | `.opencode/skills/cli-opencode/SKILL.md` | ALWAYS rule list + §3 Default Invocation example |
 | `.opencode/skills/cli-opencode/README.md` | Front-page snippet check |
 | `.opencode/skills/cli-opencode/references/cli_reference.md` | Flag reference + invocation examples |
@@ -160,10 +160,10 @@ Add `</dev/null` to every non-interactive `opencode run` callsite in this repo s
 
 | Path | Change |
 |------|--------|
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Add `</dev/null \` between prompt arg and trailing-args section in `if_cli_opencode` block |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Same |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Same |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Same |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | Add `</dev/null \` between prompt arg and trailing-args section in `if_cli_opencode` block |
+| `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml` | Same |
+| `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml` | Same |
+| `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml` | Same |
 | `.opencode/skills/cli-opencode/SKILL.md` | Add ALWAYS rule N: "Append `</dev/null` to every non-interactive `opencode run` invocation. ..." |
 | `.opencode/skills/cli-opencode/README.md` | Snippet update if present |
 | `.opencode/skills/cli-opencode/references/cli_reference.md` | Add note in flag reference |
@@ -184,7 +184,7 @@ Add `</dev/null` to every non-interactive `opencode run` callsite in this repo s
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | All 4 YAML workflows include `</dev/null` in `if_cli_opencode` dispatch | `grep -A2 "if_cli_opencode" .opencode/commands/spec_kit/assets/spec_kit_deep-{research,review}_{auto,confirm}.yaml` shows `</dev/null` in each command block |
+| REQ-001 | All 4 YAML workflows include `</dev/null` in `if_cli_opencode` dispatch | `grep -A2 "if_cli_opencode" .opencode/commands/speckit/assets/speckit_deep-{research,review}_{auto,confirm}.yaml` shows `</dev/null` in each command block |
 | REQ-002 | cli-opencode SKILL.md ALWAYS list documents `</dev/null` rule | New ALWAYS rule with rationale, position-in-command guidance, and 1-line failure-mode reminder |
 | REQ-003 | cli-opencode references/integration_patterns.md §6 generalizes the rule | Section retitled or extended to cover ALL non-interactive `opencode run` callsites (not just `while read` loops) |
 | REQ-004 | 2 stress-test `dispatch-cli-opencode.sh` scripts include `</dev/null` | `grep "</dev/null" specs/.../015-.../scripts/dispatch-cli-opencode.sh` returns a hit in each |
@@ -211,7 +211,7 @@ Add `</dev/null` to every non-interactive `opencode run` callsite in this repo s
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: After this packet, every `opencode run` callsite in the repo that redirects stdout and/or stderr also redirects stdin from `/dev/null`. Verified by `grep -L "</dev/null" $(grep -lE "opencode run.*>.*\.log" .opencode/ -r)` returning empty.
-- **SC-002**: Re-running `/spec_kit:deep-research:auto --executor=cli-opencode --model=deepseek/deepseek-v4-pro` no longer hangs at the `+60s snapshot prune cleanup` log line. Each iteration completes within the 12-min per-iter cap.
+- **SC-002**: Re-running `/speckit:deep-research:auto --executor=cli-opencode --model=deepseek/deepseek-v4-pro` no longer hangs at the `+60s snapshot prune cleanup` log line. Each iteration completes within the 12-min per-iter cap.
 - **SC-003**: cli-opencode skill SKILL.md §4 ALWAYS list contains a rule about `</dev/null` discoverable via `grep "/dev/null" .opencode/skills/cli-opencode/SKILL.md`.
 - **SC-004**: A future LLM or human reading the cli-opencode skill encounters the rule before writing automation, preventing regression.
 <!-- /ANCHOR:success-criteria -->

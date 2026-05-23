@@ -125,7 +125,7 @@ CLI exit codes:
 | CONDITIONAL | If intent signals match   | Intent-mapped references     |
 | ON_DEMAND   | Only on explicit request   | Deep-dive quality standards  |
 
-`references/workflows/quick_reference.md` is the primary first-touch command surface. Keep the compact `spec_kit` and `memory` command map there, including `/spec_kit:plan --intake-only` as the standalone intake entry, `/spec_kit:plan` and `/spec_kit:complete` smart delegation notes, and the pointer from `/deep:start-research-loop` to `../deep-research/references/spec_check_protocol.md`, and use this file only to point readers to it rather than duplicating the full matrix.
+`references/workflows/quick_reference.md` is the primary first-touch command surface. Keep the compact `spec_kit` and `memory` command map there, including `/speckit:plan --intake-only` as the standalone intake entry, `/speckit:plan` and `/speckit:complete` smart delegation notes, and the pointer from `/deep:start-research-loop` to `../deep-research/references/spec_check_protocol.md`, and use this file only to point readers to it rather than duplicating the full matrix.
 
 ### Smart Router Pseudocode
 
@@ -218,20 +218,20 @@ RESOURCE_MAP = {
 }
 
 COMMAND_BOOSTS = {
-    "/spec_kit:plan": "PLAN",
-    "/spec_kit:implement": "IMPLEMENT",
-    "/spec_kit:complete": "COMPLETE",
-    "/spec_kit:plan :with-phases": "PHASE",
+    "/speckit:plan": "PLAN",
+    "/speckit:implement": "IMPLEMENT",
+    "/speckit:complete": "COMPLETE",
+    "/speckit:plan :with-phases": "PHASE",
     "/memory:search": "MEMORY",
     "/memory:save": "MEMORY",
     "/memory:manage": "MEMORY",
     "/memory:learn": "MEMORY",
-    "/spec_kit:resume": "MEMORY",
+    "/speckit:resume": "MEMORY",
 }
 
 LOADING_LEVELS = {
     "ALWAYS": [DEFAULT_RESOURCE],
-    "ON_DEMAND_KEYWORDS": ["deep dive", "full validation", "full checklist", "full template", "save context", "/memory:save", "/spec_kit:resume", "implementation-summary", "tasks.md", "spec folder", "phase folder", "description metadata"],
+    "ON_DEMAND_KEYWORDS": ["deep dive", "full validation", "full checklist", "full template", "save context", "/memory:save", "/speckit:resume", "implementation-summary", "tasks.md", "spec folder", "phase folder", "description metadata"],
     "ON_DEMAND": [
         "references/validation/phase_checklists.md",
         "references/templates/template_guide.md",
@@ -372,7 +372,7 @@ def route_speckit_resources(task):
 
 ### Spec Kit Memory
 
-Spec Kit Memory provides context retrieval, search, save, checkpoint, health, and indexing surfaces. Use `memory_context()` or `/spec_kit:resume` for recovery; use `memory_search()` for targeted retrieval; use `generate-context.js` for canonical saves. Detailed behavior, flags, scoring, and MCP tool reference live in `references/memory/memory_system.md`, `references/memory/save_workflow.md`, and `mcp_server/ENV_REFERENCE.md`.
+Spec Kit Memory provides context retrieval, search, save, checkpoint, health, and indexing surfaces. Use `memory_context()` or `/speckit:resume` for recovery; use `memory_search()` for targeted retrieval; use `generate-context.js` for canonical saves. Detailed behavior, flags, scoring, and MCP tool reference live in `references/memory/memory_system.md`, `references/memory/save_workflow.md`, and `mcp_server/ENV_REFERENCE.md`.
 
 ### Reranking (opt-in)
 
@@ -417,9 +417,9 @@ Use CocoIndex for semantic discovery, Code Graph for structural relationships, a
 13. **Create implementation-summary.md at end of implementation phase (Level 1+)** - Document what was built
 14. **Suggest /memory:save when session-end keywords detected OR after extended work (15+ tool calls)** - Proactive context preservation
 15. **Suggest Task-tool debug delegation after 3+ failed fix attempts on same error** - Do not continue without offering a fresh debugging pass
-16. **Suggest /spec_kit:plan :with-phases when task requires multi-phase decomposition** - Complex specs spanning multiple sessions or workstreams
+16. **Suggest /speckit:plan :with-phases when task requires multi-phase decomposition** - Complex specs spanning multiple sessions or workstreams
 17. **Route all code creation/updates through `sk-code`** - Full surface alignment is mandatory before claiming completion
-   - **Authoring-time vs review-time load**: `sk-code` is loaded at TWO distinct points in `/spec_kit:complete`. (a) Authoring-time (Step 10 development): when the implementation target is under `.opencode/skills/`, `.opencode/agents/`, `.opencode/commands/`, or `.opencode/specs/`, load the matching sk-code authoring checklist (`assets/opencode/checklists/{surface}_authoring.md`) and `assets/opencode/recipes/spec_folder_write.md` BEFORE the first write. (b) Review-time (Step 11 review): the existing `sk-code-review` baseline + `sk-code` router-selected evidence overlay runs after writes complete. Authoring-time load surfaces invariants the writer needs to honor; review-time load catches drift the writer didn't honor. See `cross_skill_authoring_load` block in `spec_kit_complete_auto.yaml` and `spec_kit_complete_confirm.yaml` for the YAML contract.
+   - **Authoring-time vs review-time load**: `sk-code` is loaded at TWO distinct points in `/speckit:complete`. (a) Authoring-time (Step 10 development): when the implementation target is under `.opencode/skills/`, `.opencode/agents/`, `.opencode/commands/`, or `.opencode/specs/`, load the matching sk-code authoring checklist (`assets/opencode/checklists/{surface}_authoring.md`) and `assets/opencode/recipes/spec_folder_write.md` BEFORE the first write. (b) Review-time (Step 11 review): the existing `sk-code-review` baseline + `sk-code` router-selected evidence overlay runs after writes complete. Authoring-time load surfaces invariants the writer needs to honor; review-time load catches drift the writer didn't honor. See `cross_skill_authoring_load` block in `speckit_complete_auto.yaml` and `speckit_complete_confirm.yaml` for the YAML contract.
 18. **Route all documentation creation/updates through `sk-doc`** - Full alignment is mandatory before claiming completion
 19. **Enforce ToC policy from validation rules** - Only `research/research.md` may include a Table of Contents section; remove ToC headings from standard spec artifacts
 20. **Literal naming for AI-derived spec folders and phases** - When the AI (not the user) picks a spec-folder or phase slug, the name MUST describe the concrete work being built or fixed. Names must include a specific subject token (the component, behavior, or bug being addressed). Forbidden as standalone slugs: `remediation`, `cleanup`, `fix`, `phase-N`, `review-remediation`, `round-N`. Good remediation-packet examples: `fix-deep-review-p1-p2-findings-for-sk-doc-skill`, `harden-mcp-server-startup-races`, `fix-singleton-leak-in-launcher`. Good phase-decomposition examples: `data-model-design`, `api-implementation`, `ui-integration`. **Remediation-packet source/target rule** - remediation slugs MUST follow `NNN-fix-<source>-for-<target>` where: **Source** = the event or evidence that triggered the packet (e.g. `deep-review-p0-p1-findings`, `verdict-fail`, `audit-finding-NN`); **Target** = the specific component being remediated (e.g. `skill-local-benchmarks-format`, `mk-spec-memory-handler`, `launcher-cache`). The source names WHERE the work comes from; the target names WHAT is being fixed. Do not conflate them: the thing being remediated is the target, not the source. Worked example: `007-fix-deep-review-p0-p1-findings-for-skill-local-benchmarks-format` (source=`deep-review-p0-p1-findings`, target=`skill-local-benchmarks-format`). This rule is documentation-layer guidance; `validate.sh` does not lint slugs today (operator decision; may be lifted in a follow-on packet).
@@ -471,7 +471,7 @@ P0 blocks, P1 requires completion or approved deferral, and P2 is optional. Code
 
 | Command | Usage |
 | --- | --- |
-| Canonical intake | `/spec_kit:plan --intake-only "Description"` |
+| Canonical intake | `/speckit:plan --intake-only "Description"` |
 | Create spec folder | `./scripts/spec/create.sh "Description" --short-name name --level 2` |
 | Validate | `.opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/007-feature/` |
 | Verify code alignment drift | `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit` |
@@ -480,7 +480,7 @@ P0 blocks, P1 requires completion or approved deferral, and P2 is optional. Code
 | Upgrade level | `bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh specs/007-feature/ --to 2` |
 | Completeness | `.opencode/skills/system-spec-kit/scripts/spec/calculate-completeness.sh specs/007-feature/` |
 
-Canonical command lifecycle: `/spec_kit:plan --intake-only` establishes or repairs the packet when standalone intake is needed, `/deep:start-research-loop` follows `../deep-research/references/spec_check_protocol.md` when research needs bounded `spec.md` anchoring, and `/spec_kit:plan` or `/spec_kit:complete` continue from the same folder while reusing the shared intake contract (`.opencode/skills/system-spec-kit/references/intake-contract.md`) only when the local `folder_state` still needs repair. When intake runs, the returned `start_state` is the canonical downstream field.
+Canonical command lifecycle: `/speckit:plan --intake-only` establishes or repairs the packet when standalone intake is needed, `/deep:start-research-loop` follows `../deep-research/references/spec_check_protocol.md` when research needs bounded `spec.md` anchoring, and `/speckit:plan` or `/speckit:complete` continue from the same folder while reusing the shared intake contract (`.opencode/skills/system-spec-kit/references/intake-contract.md`) only when the local `folder_state` still needs repair. When intake runs, the returned `start_state` is the canonical downstream field.
 
 **Remember**: This skill is the foundational documentation orchestrator. It enforces structure, template usage, context preservation, and workflow-required validation for all file modifications. Every conversation that modifies files MUST have a spec folder.
 

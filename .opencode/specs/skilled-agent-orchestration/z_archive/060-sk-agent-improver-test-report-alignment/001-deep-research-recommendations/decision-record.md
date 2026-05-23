@@ -40,7 +40,7 @@ Packet 059 ran a successful 8-scenario stress-test campaign using `cli-copilot -
 
 ### Decision
 
-Dispatch `/spec_kit:deep-research:auto` with `--executor=cli-copilot --model=gpt-5.5`. Reasoning effort `high` is set via `~/.copilot/settings.json:effortLevel` (already configured); the corresponding deep-research flag is omitted because `parseExecutorConfig` rejects `reasoningEffort` for `cli-copilot` per `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:35`.
+Dispatch `/speckit:deep-research:auto` with `--executor=cli-copilot --model=gpt-5.5`. Reasoning effort `high` is set via `~/.copilot/settings.json:effortLevel` (already configured); the corresponding deep-research flag is omitted because `parseExecutorConfig` rejects `reasoningEffort` for `cli-copilot` per `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:35`.
 
 ### Why
 

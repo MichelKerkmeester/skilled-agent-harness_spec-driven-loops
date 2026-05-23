@@ -64,7 +64,7 @@
     "forbiddenBehaviors": [],
     "integrationPoints": {
       "commands": [
-        "/spec_kit:deep-review",
+        "/speckit:deep-review",
         "/memory:save"
       ],
       "skills": [

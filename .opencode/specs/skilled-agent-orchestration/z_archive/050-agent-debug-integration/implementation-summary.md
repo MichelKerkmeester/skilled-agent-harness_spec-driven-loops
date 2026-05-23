@@ -19,8 +19,8 @@ _memory:
     key_files:
       - ".opencode/agents/debug.md"
       - ".opencode/agents/orchestrate.md"
-      - ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml"
+      - ".opencode/commands/speckit/assets/speckit_implement_auto.yaml"
+      - ".opencode/commands/speckit/assets/speckit_complete_auto.yaml"
       - ".claude/agents/debug.md"
       - ".codex/agents/debug.toml"
       - ".gemini/agents/debug.md"
@@ -69,7 +69,7 @@ The four runtime debug definitions, the orchestrator routing prose, and the two 
 
 ### Failure-threshold prompt + scaffold generator (Edit B)
 
-The previous A/B/C/D menu in `spec_kit_implement_auto.yaml` and the autonomous `debug_dispatch` block in `spec_kit_complete_auto.yaml` (which would have wired `subagent_type: "debug"` directly) are both gone. In their place: a single prompt that reads `"3+ task failures observed. Dispatch @debug for fresh-perspective root-cause? (y / continue manually / skip)"`. On `y`, the workflow runs `scaffold-debug-delegation.sh` to generate `<spec_folder>/debug-delegation.md` (versioned to `-002.md`, `-003.md` etc. when prior scaffolds exist), populated with the Debug Context Handoff schema fields. The user dispatches `@debug` themselves via Task tool. The workflow never makes that call.
+The previous A/B/C/D menu in `speckit_implement_auto.yaml` and the autonomous `debug_dispatch` block in `speckit_complete_auto.yaml` (which would have wired `subagent_type: "debug"` directly) are both gone. In their place: a single prompt that reads `"3+ task failures observed. Dispatch @debug for fresh-perspective root-cause? (y / continue manually / skip)"`. On `y`, the workflow runs `scaffold-debug-delegation.sh` to generate `<spec_folder>/debug-delegation.md` (versioned to `-002.md`, `-003.md` etc. when prior scaffolds exist), populated with the Debug Context Handoff schema fields. The user dispatches `@debug` themselves via Task tool. The workflow never makes that call.
 
 ### Files Changed
 
@@ -77,8 +77,8 @@ The previous A/B/C/D menu in `spec_kit_implement_auto.yaml` and the autonomous `
 |------|--------|---------|
 | `.opencode/agents/debug.md` | Modified | Description (L3) + lead paragraph (L24) + Related Resources orchestrate row rewritten to user-invoked semantics (REQ-001) |
 | `.opencode/agents/orchestrate.md` | Modified | Routing table L99, REASSIGN step L492, Debug Delegation Trigger L539, routing lookup L595 — all rewritten to prompted-offer (REQ-002) |
-| `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml` | Modified | `agent_availability.debug` block (L210-217) renamed `failure_tracking` → `prompt_threshold`; `debug_delegation` block (L411-413) replaced with y/n/skip flow + scaffold invocation (REQ-003, REQ-004) |
-| `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml` | Modified | Mirror of implement_auto + removed autonomous `debug_dispatch.subagent_type: "debug"` block (REQ-003, REQ-005) |
+| `.opencode/commands/speckit/assets/speckit_implement_auto.yaml` | Modified | `agent_availability.debug` block (L210-217) renamed `failure_tracking` → `prompt_threshold`; `debug_delegation` block (L411-413) replaced with y/n/skip flow + scaffold invocation (REQ-003, REQ-004) |
+| `.opencode/commands/speckit/assets/speckit_complete_auto.yaml` | Modified | Mirror of implement_auto + removed autonomous `debug_dispatch.subagent_type: "debug"` block (REQ-003, REQ-005) |
 | `.claude/agents/debug.md` | Modified | Description mirror (REQ-001) |
 | `.codex/agents/debug.toml` | Modified | Description mirror inside `developer_instructions` (REQ-001) |
 | `.gemini/agents/debug.md` | Modified | Description mirror (REQ-001) |
@@ -91,8 +91,8 @@ A second-opinion review via `opencode-go/deepseek-v4-pro` `@ultra-think` found t
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml` | Modified | **P0**: Removed the autonomous `debug_dispatch.subagent_type: "debug"` block that survived in the `_confirm.yaml` variant; mirrored the y/n/skip prompt + scaffold pattern from `_auto.yaml` |
-| `.opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml` | Modified | **P0**: Same fix — `agent_availability.debug` block + `debug_delegation` block rewritten to match `_auto.yaml` |
+| `.opencode/commands/speckit/assets/speckit_complete_confirm.yaml` | Modified | **P0**: Removed the autonomous `debug_dispatch.subagent_type: "debug"` block that survived in the `_confirm.yaml` variant; mirrored the y/n/skip prompt + scaffold pattern from `_auto.yaml` |
+| `.opencode/commands/speckit/assets/speckit_implement_confirm.yaml` | Modified | **P0**: Same fix — `agent_availability.debug` block + `debug_delegation` block rewritten to match `_auto.yaml` |
 | `.claude/agents/orchestrate.md` | Modified | **P0**: Mirrored all 4 orchestrator edits (L99 routing table, L492 REASSIGN, L539 trigger, L595 routing lookup) from `.opencode/agents/orchestrate.md` |
 | `.gemini/agents/orchestrate.md` | Modified | **P0**: Same 4 orchestrator edits |
 | `.codex/agents/orchestrate.toml` | Modified | **P0**: Same 4 orchestrator edits at sibling line numbers (L91, L484, L531, L587) |
@@ -100,8 +100,8 @@ A second-opinion review via `opencode-go/deepseek-v4-pro` `@ultra-think` found t
 | `.gemini/agents/debug.md` | Modified | **P1**: Same lead body + table row updates |
 | `.codex/agents/debug.toml` | Modified | **P1**: Commands + Related Resources table rows |
 | `.opencode/agents/debug.md` | Modified | **P1**: Commands table row at L465 (Related Resources orchestrate row was already updated; Commands row wasn't) |
-| `.opencode/commands/spec_kit/implement.md` | Modified | **P1**: Guardrail line 24 rewritten to "DO NOT dispatch @debug autonomously under any condition; the workflow surfaces a prompted offer..." |
-| `.opencode/commands/spec_kit/complete.md` | Modified | **P1**: Same guardrail update at line 27 |
+| `.opencode/commands/speckit/implement.md` | Modified | **P1**: Guardrail line 24 rewritten to "DO NOT dispatch @debug autonomously under any condition; the workflow surfaces a prompted offer..." |
+| `.opencode/commands/speckit/complete.md` | Modified | **P1**: Same guardrail update at line 27 |
 | `.opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh` | Modified | **P1**: Added `_sanitize_for_heredoc()` function that escapes backticks, dollar signs, and backslashes in user-supplied content (ERROR_MESSAGE, attempt fields, HYPOTHESIS) before heredoc interpolation. Injection probe with `` `whoami` `` and `$(id)` confirmed neutralized in test output |
 
 **Not fixed (acknowledged P1):**
@@ -163,7 +163,7 @@ Static-only verification. Manual rehearsal of the full `spec_kit:implement` fail
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **`task_failure_count` is documentation-only.** The deep dive (T006) confirmed no executable code maintains this counter today, and this packet preserves that. The threshold is operator-judgment-driven: when an AI executing the implement YAML observes 3+ failures during Step 6 / Step 10, it surfaces the prompt. There is no runtime counter to read. If a future packet wants to add one, the wiring point is inside the YAML interpreter that runs `spec_kit_implement_auto.yaml`. Out of scope here.
+1. **`task_failure_count` is documentation-only.** The deep dive (T006) confirmed no executable code maintains this counter today, and this packet preserves that. The threshold is operator-judgment-driven: when an AI executing the implement YAML observes 3+ failures during Step 6 / Step 10, it surfaces the prompt. There is no runtime counter to read. If a future packet wants to add one, the wiring point is inside the YAML interpreter that runs `speckit_implement_auto.yaml`. Out of scope here.
 2. **Manual end-to-end rehearsal not run inside this session.** Running `spec_kit:implement` against a synthetic 3-failure spec to exercise the full prompt → scaffold → user-dispatch flow would require a separate sub-workflow invocation. The DBG-SCAF-001 playbook entry documents the rehearsal steps for an operator to run on demand.
 3. **Other underused agents (`@ultra-think`, `@orchestrate`).** The deep dive showed these have similar adoption gaps (94 and 86 mentions respectively, both bottom of the pack). Out of scope for this packet; tracked for a future cleanup pass.
 4. **`AGENTS.md` sibling-sync triad.** Per memory rule `feedback_agents_md_sync_triad.md`, AGENTS.md changes must mirror to `AGENTS_Barter.md` and `AGENTS_example_fs_enterprises.md`. This packet does NOT modify AGENTS.md content; it only edits agent files inside the runtime profiles. The triad sync rule does not apply here, but a future operator updating AGENTS.md to reference the new prompted-offer pattern should sync the siblings.

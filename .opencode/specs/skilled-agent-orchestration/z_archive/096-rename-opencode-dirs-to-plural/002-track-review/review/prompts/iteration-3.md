@@ -46,7 +46,7 @@ Per strategy §12 NEXT FOCUS:
    - Check whether generated dist hook files (e.g., `mcp_server/dist/hooks/...`) are live (this matters because P0-001 already proved `dist/` is on the live runtime path).
    - For each `hooks` entry, dry-run the command resolution: does the binary exist? Are its args sane?
 2. **Sandbox/auth/approval policy** review:
-   - In runtime configs and command workflow YAMLs (`.opencode/commands/spec_kit/assets/spec_kit_*_auto.yaml`), compare default `approval_policy`, `sandbox`, and `--allow-all-tools`/`--no-ask-user` defaults against the iteration's READ-ONLY contract.
+   - In runtime configs and command workflow YAMLs (`.opencode/commands/speckit/assets/speckit_*_auto.yaml`), compare default `approval_policy`, `sandbox`, and `--allow-all-tools`/`--no-ask-user` defaults against the iteration's READ-ONLY contract.
    - Look at `buildCopilotPromptArg` (cli-copilot path in deep-review YAML) — confirm the TARGET AUTHORITY preamble and `validateSpecFolder` actually reject empty/whitespace/template values.
    - For cli-codex (this dispatch path), confirm `-c approval_policy=never` + `-s workspace-write` + 900s timeout do NOT escape the spec_folder.
 3. **Workflow-resolved spec_folder write authority**:

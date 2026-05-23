@@ -537,7 +537,7 @@ Total research time: ~25 minutes wall clock (including retries for Gate 3 blocks
 
 | Condition | Suggested Command |
 |-----------|-------------------|
-| Ready to plan implementation | `/spec_kit:plan sk-deep-research v1.1 upgrade` |
-| Need deeper dive on specific proposal | `/spec_kit:deep-research [specific-proposal-topic]` |
+| Ready to plan implementation | `/speckit:plan sk-deep-research v1.1 upgrade` |
+| Need deeper dive on specific proposal | `/speckit:deep-research [specific-proposal-topic]` |
 | Want to save this context | `/memory:save` (auto-saved below) |
 | Ready to implement Phase 1 | Create spec folder for dashboard + resume decision |

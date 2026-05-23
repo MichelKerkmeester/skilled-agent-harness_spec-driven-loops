@@ -202,6 +202,6 @@ The sections below are filled post-synthesis. Until then they remain empty.
 
 ### Recovery hints (always-valid)
 
-- Resume mid-loop: `/spec_kit:resume skilled-agent-orchestration/114-small-ai-model-optimization/001-smallcode-deep-research`
+- Resume mid-loop: `/speckit:resume skilled-agent-orchestration/114-small-ai-model-optimization/001-smallcode-deep-research`
 - Restart fresh: `/deep:start-research-loop:auto 001-research-smallcode --restart` (archives existing research/ tree)
 - Diagnose stuck: `jq -r 'select(.type=="stuck_recovery")' research/deep-research-state.jsonl`

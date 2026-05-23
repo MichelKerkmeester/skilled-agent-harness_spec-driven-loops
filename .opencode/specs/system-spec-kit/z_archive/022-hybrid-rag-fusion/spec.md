@@ -146,7 +146,7 @@ Provide the minimum parent coordination packet required for recursive validation
 | 15 | `015-manual-testing-per-playbook/` | Manual testing playbook truth-sync | Active |
 | 16 | `016-rewrite-memory-mcp-readme/` | Memory MCP README rewrite | Active |
 | 17 | `017-update-install-guide/` | Install guide update | Active |
-| 18 | `018-rewrite-system-speckit-readme/` | system-spec-kit README rewrite | Active |
+| 18 | `018-rewrite-system-spec-kit-readme/` | system-spec-kit README rewrite | Active |
 | 19 | `019-rewrite-repo-readme/` | Repository README rewrite | Active |
 | 20 | `020-post-release-fixes/` | Post-release fixes | Active |
 | 21 | `021-ground-truth-id-remapping/` | Ground-truth ID remapping | Active |
@@ -183,7 +183,7 @@ Provide the minimum parent coordination packet required for recursive validation
 - `015-manual-testing-per-playbook`
 - `016-rewrite-memory-mcp-readme`
 - `017-update-install-guide`
-- `018-rewrite-system-speckit-readme`
+- `018-rewrite-system-spec-kit-readme`
 - `019-rewrite-repo-readme`
 - `020-post-release-fixes`
 - `021-ground-truth-id-remapping`

@@ -48,7 +48,7 @@ _memory:
 
 - [ ] T001 [B] Await council verdict in `../ai-council/council-report.md`
 - [ ] T002 Verify `sk-code-review` SKILL.md target lines (302-329) present
-- [ ] T003 Verify `deep-review` YAML files at `.opencode/commands/spec_kit/assets/`
+- [ ] T003 Verify `deep-review` YAML files at `.opencode/commands/speckit/assets/`
 <!-- /ANCHOR:phase-1 -->
 
 ---

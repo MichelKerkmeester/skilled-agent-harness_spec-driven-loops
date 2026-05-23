@@ -1,6 +1,6 @@
 ## Dispatcher
 
-- Workflow: `/spec_kit:deep-review:auto`
+- Workflow: `/speckit:deep-review:auto`
 - Iteration: 4 of 5
 - Mode: review
 - Focus dimension: maintainability

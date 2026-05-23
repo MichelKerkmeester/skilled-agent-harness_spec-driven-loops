@@ -23,7 +23,7 @@ Deep research on three intertwined surfaces:
 
 **Cross-cutting questions:**
 
-- How does sk-code's smart router interact with system-spec-kit's spec-folder writes? (e.g., do `/spec_kit:complete` flows correctly load sk-code resources when implementing in `.opencode/`?)
+- How does sk-code's smart router interact with system-spec-kit's spec-folder writes? (e.g., do `/speckit:complete` flows correctly load sk-code resources when implementing in `.opencode/`?)
 - How does mcp-coco-index ingest sk-code assets/references and is its semantic indexing surfacing them effectively?
 - Are there missed integration points where one of these three surfaces could be leveraged from another?
 
@@ -37,7 +37,7 @@ Deep research on three intertwined surfaces:
 - [ ] Q4 — Is mcp-coco-index actually ingesting `.opencode/skills/sk-code/` resources? Are queries surfacing them with usable rank?
 - [ ] Q5 — What concrete OpenCode references/assets are missing from `sk-code/references/opencode/` and `sk-code/assets/opencode/` that the smart router would benefit from?
 - [ ] Q6 — Does the sk-code router's `STACK_FOLDERS` contract match on-disk structure today (post-069 motion_dev integration, post-068 sk-doc reorg)?
-- [ ] Q7 — When `/spec_kit:complete` writes inside `.opencode/`, is sk-code's OpenCode surface correctly loaded (smart-router cross-skill integration)?
+- [ ] Q7 — When `/speckit:complete` writes inside `.opencode/`, is sk-code's OpenCode surface correctly loaded (smart-router cross-skill integration)?
 
 ---
 

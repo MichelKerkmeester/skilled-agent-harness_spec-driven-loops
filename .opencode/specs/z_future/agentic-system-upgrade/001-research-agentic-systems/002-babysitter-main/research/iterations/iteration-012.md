@@ -40,7 +40,7 @@ finding: Babysitter's UX suggests `system-spec-kit` should simplify Gate 1/2/3 i
 - **Migration path:** Introduce an opt-in bootstrap command that writes defaults, teach command workflows to honor it first, and fall back to today's gates only when required policy is missing.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `AGENTS.md`, `.opencode/skills/system-spec-kit/constitutional/gate-enforcement.md`, `.opencode/commands/spec_kit/`
+- **Target file or module:** `AGENTS.md`, `.opencode/skills/system-spec-kit/constitutional/gate-enforcement.md`, `.opencode/commands/speckit/`
 - **Change type:** behavioral simplification
 - **Blast radius:** large
 - **Prerequisites:** define a durable operator-policy format and the fallback behavior when policy is absent or stale

@@ -81,7 +81,7 @@ The work happened in three steps:
 Verification completed:
 - `python3 .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/sk-improve-agent --check`
 - `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-improve-agent/README.md --type readme`
-- `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/commands/spec_kit/agent-improver.md --type command`
+- `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/commands/speckit/agent-improver.md --type command`
 - `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/agents/agent-improver.md --type agent`
 - `python3` batch validation across `.opencode/skills/sk-improve-agent/references/*.md`
 - `python3` batch validation across markdown files under `.opencode/skills/sk-improve-agent/assets/`

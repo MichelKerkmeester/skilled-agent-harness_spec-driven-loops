@@ -181,10 +181,10 @@ Research Mex's markdown scaffold architecture, 8-checker drift detection model, 
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Re-opening the rejected idea of replacing `memory_context`, `memory_search`, CocoIndex, or code graph with a markdown-first scaffold
 
-### Replacing `/spec_kit:resume` or `session_bootstrap` with a markdown-router-first cold-start flow -- BLOCKED (iteration 36, 1 attempts)
-- What was tried: Replacing `/spec_kit:resume` or `session_bootstrap` with a markdown-router-first cold-start flow
+### Replacing `/speckit:resume` or `session_bootstrap` with a markdown-router-first cold-start flow -- BLOCKED (iteration 36, 1 attempts)
+- What was tried: Replacing `/speckit:resume` or `session_bootstrap` with a markdown-router-first cold-start flow
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Replacing `/spec_kit:resume` or `session_bootstrap` with a markdown-router-first cold-start flow
+- Do NOT retry: Replacing `/speckit:resume` or `session_bootstrap` with a markdown-router-first cold-start flow
 
 ### Replacing `memory_context`, `memory_search`, CocoIndex, or code graph with a markdown-first scaffold -- BLOCKED (iteration 37, 1 attempts)
 - What was tried: Replacing `memory_context`, `memory_search`, CocoIndex, or code graph with a markdown-first scaffold
@@ -196,10 +196,10 @@ Research Mex's markdown scaffold architecture, 8-checker drift detection model, 
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Replacing `session_bootstrap` / `memory_context` with a markdown-router-first startup path
 
-### Replacing `session_bootstrap` or `/spec_kit:resume` with a markdown-router-first startup path -- BLOCKED (iteration 37, 1 attempts)
-- What was tried: Replacing `session_bootstrap` or `/spec_kit:resume` with a markdown-router-first startup path
+### Replacing `session_bootstrap` or `/speckit:resume` with a markdown-router-first startup path -- BLOCKED (iteration 37, 1 attempts)
+- What was tried: Replacing `session_bootstrap` or `/speckit:resume` with a markdown-router-first startup path
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Replacing `session_bootstrap` or `/spec_kit:resume` with a markdown-router-first startup path
+- Do NOT retry: Replacing `session_bootstrap` or `/speckit:resume` with a markdown-router-first startup path
 
 ### Replacing Spec Kit hybrid retrieval with Mex-style markdown rescans, because the cold-start savings would come at too high a relevance and repeat-query latency cost -- BLOCKED (iteration 34, 1 attempts)
 - What was tried: Replacing Spec Kit hybrid retrieval with Mex-style markdown rescans, because the cold-start savings would come at too high a relevance and repeat-query latency cost
@@ -291,12 +291,12 @@ Research Mex's markdown scaffold architecture, 8-checker drift detection model, 
 - Running code-graph or CocoIndex maintenance automatically from a post-commit drift hook, because those operations are explicit, potentially expensive maintenance steps in Public rather than cheap lexical checks (iteration 35)
 - Adopting Mex's mandatory "create or update patterns after every task" rule as a default Spec Kit closeout requirement (iteration 36)
 - Auto-running integrity checks inside `session_bootstrap`, `memory_context`, `memory_search`, or `generate-context.js` (iteration 36)
-- Replacing `/spec_kit:resume` or `session_bootstrap` with a markdown-router-first cold-start flow (iteration 36)
+- Replacing `/speckit:resume` or `session_bootstrap` with a markdown-router-first cold-start flow (iteration 36)
 - Reusing the existing `/doctor:*` namespace for spec-memory integrity (iteration 36)
 - Folding integrity findings into `memory_context`, `memory_search`, or `code_graph_query` as if they were retrieval relevance signals (iteration 37)
 - Making the integrity surface a new write authority that bypasses `memory_health` confirmation or `memory_save` dry-run semantics (iteration 37)
 - Replacing `memory_context`, `memory_search`, CocoIndex, or code graph with a markdown-first scaffold (iteration 37)
-- Replacing `session_bootstrap` or `/spec_kit:resume` with a markdown-router-first startup path (iteration 37)
+- Replacing `session_bootstrap` or `/speckit:resume` with a markdown-router-first startup path (iteration 37)
 - Using one Mex-style drift score as the main health contract for Public (iteration 37)
 - Letting a wrapper silently execute repairs, saves, scans, or reindex operations that currently require explicit calls or confirmation (iteration 38)
 - Re-opening the rejected idea of replacing `memory_context`, `memory_search`, CocoIndex, or code graph with a markdown-first scaffold (iteration 38)

@@ -19,7 +19,7 @@
 | Default plugins | **FAIL** | `Error from provider (DeepSeek): Invalid 'tools[23].function.name': string does not match pattern. Expected a string that matches the pattern '^[a-zA-Z0-9_-]+$'.` |
 | `--pure` flag | PASS | Returns "CLI_SMOKE_OK" exactly |
 
-YAML's `if_cli_opencode` branch in `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+YAML's `if_cli_opencode` branch in `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`
 does not pass `--pure`. The dispatch path as shipped is therefore broken when paired with
 DeepSeek-family models. **This is itself a P1 finding for 101 to be surfaced in iter-1 narrative.**
 
@@ -53,10 +53,10 @@ end-to-end (smoke result is the headline finding).
 - `.opencode/specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/005-remediation/` (NEW — phase parent + sub-phases)
 - `.opencode/specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/006-cli-opencode-executor/` (NEW — executor wiring)
 - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts` (101 surface)
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` (101 surface)
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` (101 surface)
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` (101 surface)
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` (101 surface)
+- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` (101 surface)
+- `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml` (101 surface)
+- `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml` (101 surface)
+- `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml` (101 surface)
 - `.opencode/skills/deep-review/scripts/reduce-state.cjs` (100 surface — P1-026 fix)
 - `.opencode/skills/sk-code-review/`, `.opencode/skills/sk-git/` (playbooks under review)
 

@@ -3,7 +3,7 @@
 Date: 2026-04-10
 
 ## Research question
-Is the `/memory:*` command family awkwardly parallel to `/spec_kit:*`, or is that separation actually justified?
+Is the `/memory:*` command family awkwardly parallel to `/speckit:*`, or is that separation actually justified?
 
 ## Hypothesis
 The separation is mostly justified. The real problem is discoverability and cross-linking, not that memory operations exist as a distinct power-user surface.
@@ -12,7 +12,7 @@ The separation is mostly justified. The real problem is discoverability and cros
 I compared the local memory command family, especially how it frames session recovery and management, against Xethryon's memory interaction model where most memory behavior is ambient and only a small explicit memory surface remains visible.
 
 ## Evidence
-- The local memory README positions `/memory:save`, `/memory:search`, `/memory:manage`, and `/memory:learn` as a separate command group, while explicitly telling users to use `/spec_kit:resume` for recovery. [SOURCE: .opencode/commands/memory/README.txt:38-52] [SOURCE: .opencode/commands/memory/README.txt:61-131]
+- The local memory README positions `/memory:save`, `/memory:search`, `/memory:manage`, and `/memory:learn` as a separate command group, while explicitly telling users to use `/speckit:resume` for recovery. [SOURCE: .opencode/commands/memory/README.txt:38-52] [SOURCE: .opencode/commands/memory/README.txt:61-131]
 - `/memory:search` itself is framed as an analysis and retrieval tool, not a lifecycle command. [SOURCE: .opencode/commands/memory/search.md:55-102] [SOURCE: .opencode/commands/memory/search.md:113-162]
 - Xethryon's visible memory surface is much smaller. Its operator-facing command layer leans on `/remember` while most memory behavior is injected through the session system and post-turn hooks. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/XETHRYON_CONTEXT.md:192-225]
 - In Xethryon's runtime, memory prompt loading and relevant-memory retrieval are part of the system prompt assembly instead of a separate user-visible lifecycle. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/session/system.ts:80-115]
@@ -24,21 +24,21 @@ The right fix is not command collapse. It is better signposting: lifecycle comma
 
 ## UX / System Design Analysis
 
-- **Current system-spec-kit surface:** `/spec_kit:*` owns lifecycle work while `/memory:*` owns retrieval, save, analysis, and administration.
+- **Current system-spec-kit surface:** `/speckit:*` owns lifecycle work while `/memory:*` owns retrieval, save, analysis, and administration.
 - **External repo's equivalent surface:** memory is mostly ambient; the user sees a much smaller explicit memory surface.
 - **Friction comparison:** Xethryon has lower menu complexity, but it also exposes less memory control. `system-spec-kit` has more commands because it is offering real operator leverage over a governed subsystem.
 - **What system-spec-kit could DELETE to improve UX:** the feeling that `/memory:*` is an equal alternative lifecycle rather than a specialist side-surface.
-- **What system-spec-kit should ADD for better UX:** tighter cross-links from `/spec_kit:*` to the exact memory verb needed, plus clearer "when to leave the main workflow" guidance.
+- **What system-spec-kit should ADD for better UX:** tighter cross-links from `/speckit:*` to the exact memory verb needed, plus clearer "when to leave the main workflow" guidance.
 - **Net recommendation:** KEEP
 
 ## Conclusion
 confidence: high
 
-finding: do not merge `/memory:*` into `/spec_kit:*`. Keep memory as a distinct specialist surface and improve the guidance that explains when users should cross over into it.
+finding: do not merge `/memory:*` into `/speckit:*`. Keep memory as a distinct specialist surface and improve the guidance that explains when users should cross over into it.
 
 ## Refactor / Pivot Analysis
 
-- **Current system-spec-kit approach:** explicit, separately documented memory commands with strong recovery linkage to `/spec_kit:resume`.
+- **Current system-spec-kit approach:** explicit, separately documented memory commands with strong recovery linkage to `/speckit:resume`.
 - **External repo's approach:** much smaller explicit memory surface backed by hidden ambient memory behaviors.
 - **Why the external approach might be better:** fewer visible commands for casual users.
 - **Why system-spec-kit's approach might still be correct:** richer memory tooling needs a discoverable admin/search surface, especially for governed retrieval and debugging.

@@ -40,7 +40,7 @@ Reducer-generated observability surface for the active research packet.
 | 8 | Keep Retry Feedback Out Of Durable Memory | - | 0.85 | 6 | complete |
 | 9 | Parallel Verification Matrix | - | 0.85 | 6 | complete |
 | 10 | Applicability Boundaries And Phase Separation | - | 0.85 | 6 | complete |
-| 11 | Separate Retry Controller From `/spec_kit:implement` | - | 0.85 | 5 | complete |
+| 11 | Separate Retry Controller From `/speckit:implement` | - | 0.85 | 5 | complete |
 | 12 | Fixed-Shape Retry Packet, Not Level Arbitration | - | 0.85 | 6 | complete |
 | 13 | Simplify Retry UX To Operator Knobs | - | 0.85 | 5 | complete |
 | 14 | Durable Memory Must Leave The Loop-Critical Path | - | 0.85 | 9 | complete |

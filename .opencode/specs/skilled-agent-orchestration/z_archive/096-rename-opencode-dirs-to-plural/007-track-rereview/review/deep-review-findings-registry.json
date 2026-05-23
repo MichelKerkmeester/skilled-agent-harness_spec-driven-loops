@@ -15,7 +15,7 @@
       "findingId": "P1-027",
       "severity": "P1",
       "title": "if_cli_opencode YAML branches do not pass --pure, breaking cli-opencode dispatch under DeepSeek-family models",
-      "file": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
+      "file": ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml",
       "line": null,
       "description": "Add --pure to all 4 opencode run invocations after --dangerously-skip-permissions and before {optional_variant_flag}; document DeepSeek-family --pure requirement in cli-opencode SKILL.md.",
       "findingClass": "cross-consumer",

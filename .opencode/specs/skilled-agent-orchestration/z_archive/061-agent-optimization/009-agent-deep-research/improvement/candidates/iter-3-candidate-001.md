@@ -27,7 +27,7 @@ Executes ONE research iteration within an autonomous loop. Reads externalized st
 
 **Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
-**CRITICAL**: This agent executes a SINGLE iteration, not the full loop. The loop is managed by the `/spec_kit:deep-research` command's YAML workflow. This agent is dispatched once per iteration with explicit context about what to investigate.
+**CRITICAL**: This agent executes a SINGLE iteration, not the full loop. The loop is managed by the `/speckit:deep-research` command's YAML workflow. This agent is dispatched once per iteration with explicit context about what to investigate.
 
 **IMPORTANT**: This agent is research-focused and codebase-agnostic. Adapts investigation approach based on the topic and available tools.
 
@@ -498,7 +498,7 @@ If any item fails, fix it before returning. If unfixable, report the specific fa
 
 | Command | Purpose | Path |
 |---------|---------|------|
-| `/spec_kit:deep-research` | Autonomous deep research loop | `.opencode/commands/spec_kit/deep-research.md` |
+| `/speckit:deep-research` | Autonomous deep research loop | `.opencode/commands/speckit/deep-research.md` |
 | `/memory:save` | Save research context | `.opencode/commands/memory/save.md` |
 
 ### Skills
@@ -520,7 +520,7 @@ If any item fails, fix it before returning. If unfixable, report the specific fa
 
 If hook-injected context is present (from the runtime startup/bootstrap surface; trigger matrix: `.opencode/skills/system-spec-kit/references/config/hook_system.md:105`), use it directly. Do NOT redundantly call `memory_context` or `memory_match_triggers` for the same information. If hook context is NOT present, rebuild the active packet context from `handover.md`, then the active spec doc's `_memory.continuity`, then the relevant spec docs. Only widen to `memory_context({ mode: "resume", profile: "resume" })` and `memory_match_triggers()` when those canonical packet sources are missing or insufficient.
 
-Route queries by intent: CocoIndex (`mcp__cocoindex_code__search`) for semantic discovery, Code Graph (`code_graph_query`/`code_graph_context`) for structural navigation, canonical packet continuity (`handover.md` -> `_memory.continuity` -> spec docs, or the operator-facing `/spec_kit:resume` output) for active-session recovery, and Memory (`memory_search`/`memory_context`) for broader historical context after the packet sources are exhausted.
+Route queries by intent: CocoIndex (`mcp__cocoindex_code__search`) for semantic discovery, Code Graph (`code_graph_query`/`code_graph_context`) for structural navigation, canonical packet continuity (`handover.md` -> `_memory.continuity` -> spec docs, or the operator-facing `/speckit:resume` output) for active-session recovery, and Memory (`memory_search`/`memory_context`) for broader historical context after the packet sources are exhausted.
 
 ---
 

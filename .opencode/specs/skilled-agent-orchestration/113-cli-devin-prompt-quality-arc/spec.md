@@ -152,7 +152,7 @@ Run a bespoke deep-loop that iteratively mutates cli-devin's prompt scaffolding 
 
 - Each phase MUST pass `validate.sh --strict` independently before the next phase begins
 - Parent spec tracks aggregate progress via this map
-- Use `/spec_kit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
+- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
 - Run `validate.sh --recursive` on parent to validate all phases as integrated unit
 - Free-tier and paid-API rate-limit awareness: phases 003 and 007 may pause/resume across days if rate limits hit; do NOT silent-skip fixtures
 

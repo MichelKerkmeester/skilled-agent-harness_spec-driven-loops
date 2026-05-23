@@ -1656,12 +1656,12 @@ export const MEMORY_SAVE_TRIGGERS: readonly TriggerEntry[] = Object.freeze([
 /**
  * Resume / continue triggers.
  *
- * `/spec_kit:resume` and deep-research `resume` produce writes (iteration-NNN.md
+ * `/speckit:resume` and deep-research `resume` produce writes (iteration-NNN.md
  * and JSONL appends), so they require Gate 3 even though the surface name sounds
  * read-only.
  */
 export const RESUME_TRIGGERS: readonly TriggerEntry[] = Object.freeze([
-  { pattern: '/spec_kit:resume',    kind: 'phrase', category: 'resume' },
+  { pattern: '/speckit:resume',    kind: 'phrase', category: 'resume' },
   { pattern: '/deep:start-research-loop', kind: 'phrase', category: 'resume' },
   { pattern: 'spec_kit:deep-research',  kind: 'phrase', category: 'resume' },
   { pattern: '/deep:start-review-loop',   kind: 'phrase', category: 'resume' },
@@ -1727,7 +1727,7 @@ export const GATE_3_VOCABULARY = Object.freeze({
 
 /**
  * Normalize a prompt for matching: lowercase and collapse whitespace, but
- * preserve `/` and `:` so command forms like `/spec_kit:resume` survive.
+ * preserve `/` and `:` so command forms like `/speckit:resume` survive.
  */
 export function normalizePrompt(prompt: string): string {
   return canonicalFold(prompt)

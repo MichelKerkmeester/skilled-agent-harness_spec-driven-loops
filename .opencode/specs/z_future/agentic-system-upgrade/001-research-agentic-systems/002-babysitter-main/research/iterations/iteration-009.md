@@ -28,7 +28,7 @@ confidence: medium
 finding: `system-spec-kit` should prototype a headless internal runner for one or two high-value workflows, especially deep research and strict validation packets. The goal is not general agent orchestration; it is reliable unattended execution of already-defined Spec Kit workflows.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skills/system-spec-kit/scripts/`, `.opencode/commands/spec_kit/`, and related workflow assets
+- **Target file or module:** `.opencode/skills/system-spec-kit/scripts/`, `.opencode/commands/speckit/`, and related workflow assets
 - **Change type:** new module
 - **Blast radius:** medium
 - **Prerequisites:** decide which workflow contracts are safe for unattended execution and how runtime manifests resolve active harness context

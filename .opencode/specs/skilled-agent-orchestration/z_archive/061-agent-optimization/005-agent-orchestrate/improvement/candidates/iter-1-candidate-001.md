@@ -674,11 +674,11 @@ When ANY context pressure signal fires:
 | -------------------------------------- | -------------------- | -------------------------------------- |
 | Sub-agent stuck 3+ times on same error | Surface prompted offer; user dispatches `Task tool → @debug` | Fresh perspective debugging (user-invoked) |
 | Session ending or user says "stopping" | `/memory:save`       | Preserve canonical continuity          |
-| Need formal research before planning   | `/spec_kit:deep-research` | Autonomous iterative research loop  |
-| Claiming task completion               | `/spec_kit:complete` | Verification workflow with checklist   |
+| Need formal research before planning   | `/speckit:deep-research` | Autonomous iterative research loop  |
+| Claiming task completion               | `/speckit:complete` | Verification workflow with checklist   |
 | Need to save important context         | `/memory:save`       | Preserve decisions and findings        |
-| Resuming prior work (known spec)       | `/spec_kit:resume`   | Recover via `handover.md` -> `_memory.continuity` -> spec docs |
-| Resuming interrupted work (unknown)    | `/spec_kit:resume`   | Auto-detect the packet, then follow the same canonical recovery order |
+| Resuming prior work (known spec)       | `/speckit:resume`   | Recover via `handover.md` -> `_memory.continuity` -> spec docs |
+| Resuming interrupted work (unknown)    | `/speckit:resume`   | Auto-detect the packet, then follow the same canonical recovery order |
 | Need retrieval, analysis, or eval      | `/memory:search`     | Unified knowledge retrieval            |
 | Memory maintenance or ingest           | `/memory:manage`     | Stats, health, cleanup, ingest ops     |
 | Constitutional memory rules            | `/memory:learn`      | Create/list/edit/remove always-surface rules |
@@ -849,7 +849,7 @@ The orchestrator's own behavior can cause context overload. Follow these rules:
 
 | Skill                       | Domain          | Use When                                                         | Key Commands/Tools         |
 | --------------------------- | --------------- | ---------------------------------------------------------------- | -------------------------- |
-| `system-spec-kit`           | Documentation   | Spec folders, memory, validation, context preservation           | `/spec_kit:*`, `/memory:*` |
+| `system-spec-kit`           | Documentation   | Spec folders, memory, validation, context preservation           | `/speckit:*`, `/memory:*` |
 | `sk-code`                   | Review baseline | Findings-first review floor, mandatory security/correctness minimums | -                       |
 | `sk-code-*`                 | Implementation/overlay | Code changes, debugging, stack-specific standards and verification | -                    |
 | `sk-git`                    | Version Control | See skill for details                                            | -                          |
@@ -861,10 +861,10 @@ The orchestrator's own behavior can cause context overload. Follow these rules:
 
 | Resource                    | Purpose                                         | Path                                         |
 | --------------------------- | ----------------------------------------------- | -------------------------------------------- |
-| `/spec_kit:complete`        | Verification workflow                           | `.opencode/commands/spec_kit/complete.md`     |
-| `/spec_kit:deep-research`   | Autonomous iterative research loop              | `.opencode/commands/spec_kit/deep-research.md` |
+| `/speckit:complete`        | Verification workflow                           | `.opencode/commands/speckit/complete.md`     |
+| `/speckit:deep-research`   | Autonomous iterative research loop              | `.opencode/commands/speckit/deep-research.md` |
 | `/memory:save`              | Context preservation                            | `.opencode/commands/memory/save.md`           |
-| `/spec_kit:resume`          | Resume work or recover interrupted session      | `.opencode/commands/spec_kit/resume.md`       |
+| `/speckit:resume`          | Resume work or recover interrupted session      | `.opencode/commands/speckit/resume.md`       |
 | `/memory:search`            | Unified retrieval, analysis, eval               | `.opencode/commands/memory/search.md`         |
 | `/memory:manage`            | Stats, health, cleanup, ingest                  | `.opencode/commands/memory/manage.md`         |
 | `/memory:learn`             | Constitutional memory manager                   | `.opencode/commands/memory/learn.md`          |
@@ -885,7 +885,7 @@ The orchestrator's own behavior can cause context overload. Follow these rules:
 If hook-injected context is present at the start of a session (from the runtime startup/bootstrap surface; trigger matrix: `.opencode/skills/system-spec-kit/references/config/hook_system.md:105`), use it directly as the baseline context. Do NOT redundantly call `memory_context` or `memory_match_triggers` for the same information.
 
 If hook context is NOT present (hooks disabled, different runtime, or unavailable), fall back to standard tool-based recovery:
-1. Use `/spec_kit:resume` semantics: recover from `handover.md`, then `_memory.continuity`, then the packet's spec docs
+1. Use `/speckit:resume` semantics: recover from `handover.md`, then `_memory.continuity`, then the packet's spec docs
 2. Use `memory_context({ mode: "resume", profile: "resume" })` only when packet location or continuity state is still unclear
 3. Use `memory_match_triggers()` for constitutional/triggered context
 

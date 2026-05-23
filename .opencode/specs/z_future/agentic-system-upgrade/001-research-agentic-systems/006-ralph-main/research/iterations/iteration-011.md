@@ -27,7 +27,7 @@ finding: `system-spec-kit` should KEEP the Level 1/2/3+ documentation model for 
 - **Target file or module:** `.opencode/skills/system-spec-kit/references/templates/level_specifications.md`
 - **Change type:** modified existing
 - **Blast radius:** medium
-- **Prerequisites:** align wording in `quick_reference.md`, `tasks.md`, and `/spec_kit:implement`
+- **Prerequisites:** align wording in `quick_reference.md`, `tasks.md`, and `/speckit:implement`
 - **Priority:** should-have
 
 ## Refactor / Pivot Analysis

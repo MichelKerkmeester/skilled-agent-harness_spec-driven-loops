@@ -73,7 +73,7 @@ Produce a complete rewrite grounded in the feature catalog that serves both newc
 
 - MCP server runtime code changes
 - The install guide document (owned by sibling spec `017-update-install-guide`)
-- Spec Kit README (owned by `018-rewrite-system-speckit-readme`)
+- Spec Kit README (owned by `018-rewrite-system-spec-kit-readme`)
 - Command documentation (completed by `012-command-alignment`)
 
 ### Files to Change

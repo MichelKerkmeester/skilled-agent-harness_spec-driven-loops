@@ -484,8 +484,8 @@ Apply the verdict contract from `review_mode_contract.yaml`:
 
 | Verdict | Condition | Next Command |
 |---------|-----------|--------------|
-| **FAIL** | Active P0 remains OR any required binary gate fails | `/spec_kit:plan` for remediation |
-| **CONDITIONAL** | No active P0, but active P1 remains | `/spec_kit:plan` for fixes |
+| **FAIL** | Active P0 remains OR any required binary gate fails | `/speckit:plan` for remediation |
+| **CONDITIONAL** | No active P0, but active P1 remains | `/speckit:plan` for fixes |
 | **PASS** | No active P0/P1 | `/create:changelog` |
 
 When `PASS` verdict is issued and active P2 findings remain, set `hasAdvisories = true` in the report metadata.

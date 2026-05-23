@@ -22,7 +22,7 @@ What ships fastest, works reliably, and minimizes the 4-runtime mirroring tax? C
 **Adopt option (b)**. Concrete deliverables for follow-on packet 081:
 1. Helper script at `scripts/multi-ai-council/persist-artifacts.sh` (or `.js` matching existing scripts/ conventions).
 2. Agent body §17 "Caller Persistence Protocol" — copy-paste recipe for the helper.
-3. 1-line YAML wiring in `/spec_kit:complete`, `/spec_kit:deep-research`, `/spec_kit:deep-review` post-dispatch hooks.
+3. 1-line YAML wiring in `/speckit:complete`, `/speckit:deep-research`, `/speckit:deep-review` post-dispatch hooks.
 
 ## Reasoning (Step-by-Step)
 
@@ -46,7 +46,7 @@ This very dispatch demonstrates option (b) functionality: agent stays `write: de
 
 ## Risks & Trade-offs
 
-- **Distributed friction**: Each new caller of `@multi-ai-council` must invoke the helper. Mitigation: callers are concentrated (`/spec_kit:*` commands), so one-line invocation.
+- **Distributed friction**: Each new caller of `@multi-ai-council` must invoke the helper. Mitigation: callers are concentrated (`/speckit:*` commands), so one-line invocation.
 - **Helper as new maintenance surface**: Mitigation: keep it small, fixture-tested, located in shared scripts/ where existing maintenance patterns apply.
 - **Symmetry loss with deep-skills**: Acknowledged but not load-bearing. Deep-skills run multi-step loops; council runs once. Different lifecycle, different ownership.
 

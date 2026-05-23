@@ -48,19 +48,19 @@
     ],
     "commands": [
       {
-        "path": ".opencode/commands/spec_kit/complete.md",
+        "path": ".opencode/commands/speckit/complete.md",
         "references": [
           "@deep-research"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/deep-research.md",
+        "path": ".opencode/commands/speckit/deep-research.md",
         "references": [
           "@deep-research"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/plan.md",
+        "path": ".opencode/commands/speckit/plan.md",
         "references": [
           "@deep-research"
         ]
@@ -68,49 +68,49 @@
     ],
     "yamlWorkflows": [
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_complete_auto.yaml",
         "references": [
           "deep-research"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_complete_confirm.yaml",
         "references": [
           "deep-research"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml",
         "references": [
           "deep-research"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml",
         "references": [
           "deep-research"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml",
         "references": [
           "deep-research"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml",
         "references": [
           "deep-research"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_plan_auto.yaml",
         "references": [
           "deep-research"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_plan_confirm.yaml",
         "references": [
           "deep-research"
         ]

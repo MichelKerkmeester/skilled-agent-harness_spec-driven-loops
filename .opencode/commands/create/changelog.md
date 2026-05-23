@@ -513,7 +513,7 @@ gh release create v{VERSION} --title "v{VERSION} -- {one-line summary}" --notes 
 | ----------------------- | --------------------------------------- | ------------------------------- |
 | After changelog created | Use `--release` flag                    | Publish as GitHub release       |
 | After release published | `/memory:save`                          | Preserve decisions              |
-| Need spec folder first  | `/spec_kit:complete`                    | Create spec with implementation |
+| Need spec folder first  | `/speckit:complete`                    | Create spec with implementation |
 | Umbrella release        | Manual `00--opencode-environment` entry | Aggregates component changelogs |
 
 ---

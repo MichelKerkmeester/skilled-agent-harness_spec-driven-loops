@@ -47,7 +47,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-A 10-iteration deep-research audit of three intertwined OpenCode skill surfaces — system-spec-kit, mcp-coco-index, and sk-code (OpenCode side specifically) — surfaced 22 P1 and 20 P2 findings and synthesized them into a 4-phase remediation roadmap. The audit ran via `/spec_kit:deep-research:auto` with cli-codex (gpt-5.5/high/fast) as executor, taking ~30 minutes wall-clock total. Every iteration produced new P1 findings, so the convergence streak never triggered; the loop ran the full 10 iterations and stopped at maxIterations. No code outside the packet was changed — this is research-only planning input for any subsequent remediation packet (078+).
+A 10-iteration deep-research audit of three intertwined OpenCode skill surfaces — system-spec-kit, mcp-coco-index, and sk-code (OpenCode side specifically) — surfaced 22 P1 and 20 P2 findings and synthesized them into a 4-phase remediation roadmap. The audit ran via `/speckit:deep-research:auto` with cli-codex (gpt-5.5/high/fast) as executor, taking ~30 minutes wall-clock total. Every iteration produced new P1 findings, so the convergence streak never triggered; the loop ran the full 10 iterations and stopped at maxIterations. No code outside the packet was changed — this is research-only planning input for any subsequent remediation packet (078+).
 
 ### 10-iteration loop with cli-codex
 
@@ -59,7 +59,7 @@ The dispatcher (`research/scripts/dispatch-iter.sh`) builds a per-iteration prom
 
 ### Top-level findings
 
-The audit's central insight: all three surfaces are healthy at their cores but share an architectural gap — no first-class authoring-time integration path between them. system-spec-kit, mcp-coco-index, and sk-code work well in isolation, but the workflow that ties them together (spec-folder writes that touch `.opencode/`, expecting sk-code patterns to load AND CocoIndex to index AND spec-kit validators to enforce) has no canonical recipe. The 4-phase remediation roadmap closes this gap starting with sk-code OpenCode authoring assets (foundation), followed by `/spec_kit:complete` integration, CocoIndex canonical-priority semantics, and finally validator/MCP-tool drift cleanup.
+The audit's central insight: all three surfaces are healthy at their cores but share an architectural gap — no first-class authoring-time integration path between them. system-spec-kit, mcp-coco-index, and sk-code work well in isolation, but the workflow that ties them together (spec-folder writes that touch `.opencode/`, expecting sk-code patterns to load AND CocoIndex to index AND spec-kit validators to enforce) has no canonical recipe. The 4-phase remediation roadmap closes this gap starting with sk-code OpenCode authoring assets (foundation), followed by `/speckit:complete` integration, CocoIndex canonical-priority semantics, and finally validator/MCP-tool drift cleanup.
 
 ### Files Changed
 

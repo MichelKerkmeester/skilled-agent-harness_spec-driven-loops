@@ -51,7 +51,7 @@ _memory:
 ### Artifact Completeness
 
 - [x] CHK-010 [P0] @deep-research agent created at .claude/agents/deep-research.md [Evidence: File created with LEAF enforcement, state protocol, iteration workflow]
-- [x] CHK-011 [P0] /spec_kit:deep-research command created with auto + confirm YAML [Evidence: deep-research.md + 2 YAML workflows created]
+- [x] CHK-011 [P0] /speckit:deep-research command created with auto + confirm YAML [Evidence: deep-research.md + 2 YAML workflows created]
 - [x] CHK-012 [P0] sk-deep-research SKILL.md created with 8 sections [Evidence: SKILL.md created following sk-git pattern]
 - [x] CHK-013 [P1] All 4 reference docs created [Evidence: loop_protocol.md, state_format.md, convergence.md, quick_reference.md]
 - [x] CHK-014 [P1] Both assets created [Evidence: deep_research_config.json and the deep-research strategy asset template]
@@ -72,7 +72,7 @@ _memory:
 
 - [x] CHK-030 [P0] YAML manages loop lifecycle -- Evidence: phase_loop with convergence check in both YAML files
 - [x] CHK-031 [P0] Setup phase consolidates all questions -- Evidence: Single consolidated prompt in command spec
-- [x] CHK-032 [P1] TOML registration created -- Evidence: .agents/commands/spec_kit/deep-research.toml exists
+- [x] CHK-032 [P1] TOML registration created -- Evidence: .agents/commands/speckit/deep-research.toml exists
 - [x] CHK-033 [P1] Both execution modes work -- Evidence: spec_kit_deep-research_auto.yaml and spec_kit_deep-research_confirm.yaml
 
 <!-- /ANCHOR:code-quality -->
@@ -109,12 +109,12 @@ _memory:
 - [x] CHK-050 [P0] All 9 legacy @research files deleted (6 agent defs, 1 command, 2 YAMLs) -- Evidence: `git rm` confirmed, `ls` returns "No such file" for all paths
 - [x] CHK-051 [P0] All orchestrate agents updated (5 runtimes) -- Evidence: routing tables, dispatch templates, agent files tables all reference @deep-research
 - [x] CHK-052 [P0] All speckit agents updated (5 runtimes) -- Evidence: permission exceptions reference @deep-research, cross-agent tables updated
-- [x] CHK-053 [P1] All deep-research agents updated (5 runtimes) -- Evidence: legacy /spec_kit:research command rows removed from command tables
-- [x] CHK-054 [P1] Framework docs updated (CLAUDE.md, AGENTS.md, README.md, .opencode/README.md) -- Evidence: @research entry replaced with @deep-research, /spec_kit:research removed from command lists
+- [x] CHK-053 [P1] All deep-research agents updated (5 runtimes) -- Evidence: legacy /speckit:research command rows removed from command tables
+- [x] CHK-054 [P1] Framework docs updated (CLAUDE.md, AGENTS.md, README.md, .opencode/README.md) -- Evidence: @research entry replaced with @deep-research, /speckit:research removed from command lists
 - [x] CHK-055 [P1] Spec_kit YAML workflows updated (plan/complete, auto/confirm) -- Evidence: agent_availability references deep-research.md
 - [x] CHK-056 [P1] Install guides updated (3 files) -- Evidence: research agent removed from registration tables
 - [x] CHK-057 [P1] .codex/config.toml updated -- Evidence: [agents.research] replaced with [agents.deep-research]
-- [x] CHK-058 [P0] Live runtime/docs paths are clean of stale references -- Evidence: active runtime and maintained docs no longer reference `@research` or `/spec_kit:research`; remaining matches are limited to archived `*.bak` files (`README.md.bak`, `.opencode/skills/system-spec-kit/README.md.bak`)
+- [x] CHK-058 [P0] Live runtime/docs paths are clean of stale references -- Evidence: active runtime and maintained docs no longer reference `@research` or `/speckit:research`; remaining matches are limited to archived `*.bak` files (`README.md.bak`, `.opencode/skills/system-spec-kit/README.md.bak`)
 - [x] CHK-059 [P1] spec_kit command README.txt updated -- Evidence: all 7 locations updated (trigger phrase, command table, dependencies table, file listing, workflow diagram, agent delegation table, usage example); independent review scored 100/100
 
 <!-- /ANCHOR:security -->

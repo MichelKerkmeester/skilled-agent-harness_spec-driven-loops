@@ -116,7 +116,7 @@ Keep this sealed phase-parent packet validator-compliant as a lean manifest that
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins.
 - Parent spec tracks aggregate progress via this map plus `graph-metadata.json` child rollup.
-- Use `/spec_kit:resume system-spec-kit/z_future/hybrid-rag-fusion-upgrade/002-hybrid-rag-adoption/[NNN-phase]/` to resume a specific child phase.
+- Use `/speckit:resume system-spec-kit/z_future/hybrid-rag-fusion-upgrade/002-hybrid-rag-adoption/[NNN-phase]/` to resume a specific child phase.
 - Run `validate.sh --recursive` on the parent when validating the integrated phase train.
 
 ### Phase Handoff Criteria

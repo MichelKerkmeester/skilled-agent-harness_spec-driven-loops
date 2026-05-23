@@ -58,7 +58,7 @@ Attack option (a) hard. Enumerate failure modes and attack surface. Find what op
 
 ## Assumptions and Evidence Gaps
 
-- **Assumption**: Orchestrators (`/spec_kit:*` commands) are the primary callers. **Evidence**: workflow YAMLs in `.opencode/commands/spec_kit/assets/` confirm.
+- **Assumption**: Orchestrators (`/speckit:*` commands) are the primary callers. **Evidence**: workflow YAMLs in `.opencode/commands/speckit/assets/` confirm.
 - **Assumption**: Helper script can parse the agent's §-headers reliably. **Evidence**: agent body §8 OUTPUT FORMAT prescribes a stable structure; parsing is straightforward.
 - **Gap**: Helper does not yet exist. Round 1 of THIS dispatch produced the artifacts manually; the helper's first version codifies what the orchestrator did here.
 

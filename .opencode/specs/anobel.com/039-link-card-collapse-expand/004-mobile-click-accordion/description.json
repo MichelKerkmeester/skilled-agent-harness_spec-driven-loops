@@ -1,0 +1,16 @@
+{
+  "specFolder": "004-mobile-click-accordion",
+  "description": "Mobile click accordion",
+  "keywords": [
+    "mobile",
+    "click",
+    "accordion"
+  ],
+  "lastUpdated": "2026-05-23T13:08:27.097Z",
+  "specId": "004",
+  "folderSlug": "mobile-click-accordion",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

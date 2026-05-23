@@ -1040,7 +1040,7 @@ Primary scripts: `scripts/validate_document.py`, `scripts/extract_structure.py`,
 
 ## 7. INTEGRATION POINTS
 
-This skill works with `system-spec-kit` for packet documentation and `sk-git` for commit/PR text quality. Treat spec docs as canonical continuity surfaces and use `/spec_kit:resume` recovery order: `handover.md -> _memory.continuity -> spec docs`.
+This skill works with `system-spec-kit` for packet documentation and `sk-git` for commit/PR text quality. Treat spec docs as canonical continuity surfaces and use `/speckit:resume` recovery order: `handover.md -> _memory.continuity -> spec docs`.
 
 Need fast navigation? See [quick_reference.md](./references/global/quick_reference.md).
 

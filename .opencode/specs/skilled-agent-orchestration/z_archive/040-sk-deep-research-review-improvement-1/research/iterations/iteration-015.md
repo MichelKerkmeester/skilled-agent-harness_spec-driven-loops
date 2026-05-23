@@ -1,8 +1,8 @@
 # Iteration 015
 ## Focus
-Prompt contract alignment for `/spec_kit:deep-research`.
+Prompt contract alignment for `/speckit:deep-research`.
 ## Key Findings
-- Prompt properly positions review on `/spec_kit:deep-review`.
+- Prompt properly positions review on `/speckit:deep-review`.
 - Skill/readme surfaces still leak obsolete review invocation patterns.
 ## Ruled Out
 - Single-source truth already enforced.

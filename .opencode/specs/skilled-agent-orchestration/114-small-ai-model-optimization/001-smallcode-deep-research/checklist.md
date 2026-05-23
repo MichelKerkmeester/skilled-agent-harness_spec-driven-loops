@@ -208,7 +208,7 @@ _memory:
 - [ ] CHK-121 [P0] implementation-summary.md updated post-synthesis with final RQ index
 - [ ] CHK-122 [P0] 001 graph-metadata.json children_ids list any sub-phases (none expected; 001 is a leaf)
 - [ ] CHK-123 [P1] Memory search returns research findings on small-model queries (validate via `memory_search`)
-- [ ] CHK-124 [P1] Continuity ladder is fresh and recovery-ready (`/spec_kit:resume` works cleanly)
+- [ ] CHK-124 [P1] Continuity ladder is fresh and recovery-ready (`/speckit:resume` works cleanly)
 <!-- /ANCHOR:deploy-ready -->
 
 ---

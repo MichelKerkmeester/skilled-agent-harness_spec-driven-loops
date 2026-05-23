@@ -390,7 +390,7 @@ But the RQ5 architecture verdict — new skill vs distributed refs vs hybrid —
 
 **We chose**: No 002+ packets pre-created. After synthesis lands research.md, a separate planning session enumerates follow-on packets per RQ5 verdict.
 
-**How it works**: 001 ships research.md with per-RQ deltas. Main agent or user reads research.md, then invokes `/spec_kit:plan` (or `/spec_kit:complete`) for each delta-bearing packet, choosing IDs sequentially (002, 003, ...) at that time. 114 phase-parent regenerates children_ids when each new child packet is created.
+**How it works**: 001 ships research.md with per-RQ deltas. Main agent or user reads research.md, then invokes `/speckit:plan` (or `/speckit:complete`) for each delta-bearing packet, choosing IDs sequentially (002, 003, ...) at that time. 114 phase-parent regenerates children_ids when each new child packet is created.
 
 ### Alternatives Considered
 

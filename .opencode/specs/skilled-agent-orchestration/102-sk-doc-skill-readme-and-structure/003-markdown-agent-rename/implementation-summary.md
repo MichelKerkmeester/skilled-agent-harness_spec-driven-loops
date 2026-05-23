@@ -17,7 +17,7 @@ _memory:
       - ".opencode/specs/skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/review/review-report.md"
       - ".opencode/specs/skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/review/deep-review-findings-registry.json"
       - ".codex/config.toml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml"
+      - ".opencode/commands/speckit/assets/speckit_implement_auto.yaml"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "102-sk-doc-skill-readme-and-structure"
@@ -59,7 +59,7 @@ Phase 3 renamed the documentation authoring agent identity from `create` to `mar
 - Updated `/create:*` command Phase 0 self-verification and YAML prerequisite text to require `@markdown` while keeping every `/create:*` invocation unchanged.
 - Updated sk-doc's agent template production examples to list `@markdown` as the current documentation executor.
 - Updated the Codex multi-agent registry from `[agents.create]` / `agents/create.toml` to `[agents.markdown]` / `agents/markdown.toml`.
-- Updated the `/spec_kit:implement` auto workflow component-authoring guard to route actual `/create:*` command execution through `@markdown`.
+- Updated the `/speckit:implement` auto workflow component-authoring guard to route actual `/create:*` command execution through `@markdown`.
 
 ### Files Changed
 
@@ -80,7 +80,7 @@ Phase 3 renamed the documentation authoring agent identity from `create` to `mar
 | `.codex/config.toml` | Update | Codex registry for markdown agent config |
 | `.opencode/commands/create/*.md` | Update | Phase 0 agent identity wording |
 | `.opencode/commands/create/assets/*.yaml` | Update | Workflow prerequisite identity wording |
-| `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml` | Update | Component-authoring route guard identity wording |
+| `.opencode/commands/speckit/assets/speckit_implement_auto.yaml` | Update | Component-authoring route guard identity wording |
 | `.opencode/skills/sk-doc/assets/agent_template.md` | Update | Current production agent examples |
 | `AGENTS.md` | Update | Root agent definition list |
 | `AGENTS_Barter` | Update | Alternate root framework agent definition list |
@@ -113,7 +113,7 @@ The implementation used exact-match inventory first, then applied a scoped ident
 
 | Check | Result |
 |-------|--------|
-| Old identity search | `rg -n "@create|create\.md|create\.toml|Create-Doc Agent|name: create|name = \"create\"|\[agents\.create\]|agents/create\.toml" .opencode/agents .claude/agents .codex/agents .codex/config.toml .gemini/agents .opencode/commands/create .opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml AGENTS.md AGENTS_Barter README.md` returned no files. |
+| Old identity search | `rg -n "@create|create\.md|create\.toml|Create-Doc Agent|name: create|name = \"create\"|\[agents\.create\]|agents/create\.toml" .opencode/agents .claude/agents .codex/agents .codex/config.toml .gemini/agents .opencode/commands/create .opencode/commands/speckit/assets/speckit_implement_auto.yaml AGENTS.md AGENTS_Barter README.md` returned no files. |
 | Codex registry | `.codex/config.toml` now declares `[agents.markdown]` with `config_file = "agents/markdown.toml"`. |
 | New file presence | `test -f .opencode/agents/markdown.md && test -f .claude/agents/markdown.md && test -f .gemini/agents/markdown.md && test -f .codex/agents/markdown.toml` passed. |
 | Old file absence | `test ! -e .opencode/agents/create.md && test ! -e .claude/agents/create.md && test ! -e .gemini/agents/create.md && test ! -e .codex/agents/create.toml` passed. |

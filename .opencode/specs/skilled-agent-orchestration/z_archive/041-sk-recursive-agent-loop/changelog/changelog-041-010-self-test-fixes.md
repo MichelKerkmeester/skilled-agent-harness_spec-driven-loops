@@ -16,7 +16,7 @@ Fixed 5 issues discovered during the Phase 009 self-test and promoted 6 candidat
 
 ### Stale command path in agent definition
 
-**Problem:** The agent file referenced `/improve:agent-improver` and `.opencode/commands/spec_kit/agent-improver.md`, both of which were stale paths from before the Phase 008 rename.
+**Problem:** The agent file referenced `/improve:agent-improver` and `.opencode/commands/speckit/agent-improver.md`, both of which were stale paths from before the Phase 008 rename.
 
 **Fix:** Updated to `/improve:agent` and `.opencode/commands/improve/agent.md`.
 

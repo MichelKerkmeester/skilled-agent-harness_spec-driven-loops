@@ -12,9 +12,9 @@ USER WORKFLOW IMPACT: How will adopted patterns change the agent developer exper
 - **Impact**: high
 - **Source strength**: primary
 
-### Finding 2: Session startup and recovery should stay on `session_bootstrap` and `/spec_kit:resume`, with integrity only as advisory context
-- **Source**: `external/AGENTS.md`, `external/ROUTER.md`, `external/README.md`, `README.md`, `.opencode/commands/spec_kit/resume.md`, `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` [SOURCE: external/AGENTS.md:37-42; external/ROUTER.md:20-24,43-69; external/README.md:178-198; README.md:522-547,657-665; .opencode/commands/spec_kit/resume.md:202-223,248-280; .opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:101-124,143-156,163-208]
-- **What it does**: Mex assumes a markdown bootstrap flow: load the anchor file, read the router, then navigate context and patterns manually. Public already has a richer recovery path: `session_bootstrap` merges resume plus health, suggests next actions, and emits structural-routing nudges, while `/spec_kit:resume` owns interrupted-session recovery and context-loading priority.
+### Finding 2: Session startup and recovery should stay on `session_bootstrap` and `/speckit:resume`, with integrity only as advisory context
+- **Source**: `external/AGENTS.md`, `external/ROUTER.md`, `external/README.md`, `README.md`, `.opencode/commands/speckit/resume.md`, `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` [SOURCE: external/AGENTS.md:37-42; external/ROUTER.md:20-24,43-69; external/README.md:178-198; README.md:522-547,657-665; .opencode/commands/speckit/resume.md:202-223,248-280; .opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:101-124,143-156,163-208]
+- **What it does**: Mex assumes a markdown bootstrap flow: load the anchor file, read the router, then navigate context and patterns manually. Public already has a richer recovery path: `session_bootstrap` merges resume plus health, suggests next actions, and emits structural-routing nudges, while `/speckit:resume` owns interrupted-session recovery and context-loading priority.
 - **Why it matters**: Replacing Public's recovery contract with a markdown-router-first cold start would be a UX regression for agents and operators who already depend on structured resume outputs. Adopted integrity work should annotate or advise the existing recovery path, not become the new startup authority.
 - **Recommendation**: adopt now
 - **Impact**: high
@@ -38,7 +38,7 @@ USER WORKFLOW IMPACT: How will adopted patterns change the agent developer exper
 
 ### Finding 5: Shipping an integrity surface without a routing migration guide would create immediate namespace confusion
 - **Source**: `external/README.md`, `README.md`, `.opencode/commands/doctor/mcp_debug.md`, `.opencode/commands/memory/manage.md`, `.opencode/commands/memory/save.md` [SOURCE: external/README.md:92-113; README.md:630-698; .opencode/commands/doctor/mcp_debug.md:18-45,113-119; .opencode/commands/memory/manage.md:59-62,72-140; .opencode/commands/memory/save.md:51-86]
-- **What it does**: Mex presents one CLI family, so "use check/sync/watch" is unambiguous. Public already has distinct namespaces with overlapping "health", "save", "resume", and "doctor" language: `/doctor:mcp_debug` for broken MCP servers, `/memory:manage health` for DB/index health, `/memory:save` for session persistence, and `/spec_kit:resume` for recovery.
+- **What it does**: Mex presents one CLI family, so "use check/sync/watch" is unambiguous. Public already has distinct namespaces with overlapping "health", "save", "resume", and "doctor" language: `/doctor:mcp_debug` for broken MCP servers, `/memory:manage health` for DB/index health, `/memory:save` for session persistence, and `/speckit:resume` for recovery.
 - **Why it matters**: If a new integrity command lands without an explicit routing matrix, operators will guess wrong about which surface owns markdown truthfulness versus runtime failures versus memory persistence. The migration guide is therefore part of the feature, not extra documentation.
 - **Recommendation**: adopt now
 - **Impact**: high
@@ -54,7 +54,7 @@ USER WORKFLOW IMPACT: How will adopted patterns change the agent developer exper
 - `external/src/sync/index.ts:29-210`
 - `external/src/pattern/index.ts:6-68`
 - `README.md:522-547,573-589,630-698`
-- `.opencode/commands/spec_kit/resume.md:202-223,248-280`
+- `.opencode/commands/speckit/resume.md:202-223,248-280`
 - `.opencode/commands/memory/manage.md:33-62,72-140`
 - `.opencode/commands/memory/save.md:51-86`
 - `.opencode/commands/doctor/mcp_debug.md:18-45,113-119`
@@ -66,11 +66,11 @@ USER WORKFLOW IMPACT: How will adopted patterns change the agent developer exper
 ## Assessment
 - **New information ratio**: 0.14
 - **Questions addressed**: what new command is justified; whether session startup and recovery should change; how repair should be surfaced; whether post-task scaffold growth should change; what migration guide is required
-- **Questions answered**: one thin integrity surface is justified; `session_bootstrap` and `/spec_kit:resume` should stay canonical; repair should be planner-first and confirmation-gated; Mex-style mandatory pattern growth should not migrate; command-routing documentation is mandatory
+- **Questions answered**: one thin integrity surface is justified; `session_bootstrap` and `/speckit:resume` should stay canonical; repair should be planner-first and confirmation-gated; Mex-style mandatory pattern growth should not migrate; command-routing documentation is mandatory
 - **Novelty justification**: earlier iterations established the integrity lane and planner direction; this pass adds the missing operator-facing command contract and migration-map constraints for a real rollout
 
 ## Ruled Out
-- Replacing `/spec_kit:resume` or `session_bootstrap` with a markdown-router-first cold-start flow
+- Replacing `/speckit:resume` or `session_bootstrap` with a markdown-router-first cold-start flow
 - Reusing the existing `/doctor:*` namespace for spec-memory integrity
 - Auto-running integrity checks inside `session_bootstrap`, `memory_context`, `memory_search`, or `generate-context.js`
 - Adopting Mex's mandatory "create or update patterns after every task" rule as a default Spec Kit closeout requirement
@@ -84,7 +84,7 @@ USER WORKFLOW IMPACT: How will adopted patterns change the agent developer exper
 Define the implementation-ready operator contract for the first DX slice:
 1. choose the command name (`spec_kit:doctor` vs `memory:manage integrity`);
 2. define modes (`check`, `--json`, `--plan`, and whether `--fix` is deferred);
-3. publish the routing matrix against `/doctor:mcp_debug`, `/memory:manage health`, `/memory:save`, and `/spec_kit:resume`;
+3. publish the routing matrix against `/doctor:mcp_debug`, `/memory:manage health`, `/memory:save`, and `/speckit:resume`;
 4. specify when integrity hints may appear during closeout without changing current recovery or save authority.
 ```
 

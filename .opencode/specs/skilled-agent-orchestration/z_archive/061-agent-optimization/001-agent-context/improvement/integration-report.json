@@ -59,13 +59,13 @@
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/complete.md",
+        "path": ".opencode/commands/speckit/complete.md",
         "references": [
           "@context"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/plan.md",
+        "path": ".opencode/commands/speckit/plan.md",
         "references": [
           "@context"
         ]
@@ -165,77 +165,77 @@
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_complete_auto.yaml",
         "references": [
           "context",
           "@context"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_complete_confirm.yaml",
         "references": [
           "context",
           "@context"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml",
         "references": [
           "context"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml",
         "references": [
           "context"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml",
         "references": [
           "context"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml",
         "references": [
           "context"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_implement_auto.yaml",
         "references": [
           "context"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_implement_confirm.yaml",
         "references": [
           "context"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_plan_auto.yaml",
         "references": [
           "context",
           "@context"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_plan_confirm.yaml",
         "references": [
           "context",
           "@context"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_resume_auto.yaml",
         "references": [
           "context"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_resume_confirm.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_resume_confirm.yaml",
         "references": [
           "context"
         ]

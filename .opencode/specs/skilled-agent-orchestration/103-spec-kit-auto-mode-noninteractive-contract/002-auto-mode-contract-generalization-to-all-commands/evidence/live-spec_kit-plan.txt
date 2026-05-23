@@ -1,6 +1,6 @@
-=== Live setup-phase test: /spec_kit:plan:auto ===
+=== Live setup-phase test: /speckit:plan:auto ===
 Started: 2026-05-11T14:29:41+0200
-Command: .opencode/commands/spec_kit/plan.md
+Command: .opencode/commands/speckit/plan.md
 
 Reading additional input from stdin...
 OpenAI Codex v0.130.0
@@ -15,7 +15,7 @@ reasoning summaries: none
 session id: 019e1703-be4a-79f1-82cb-55b30e9fc6b0
 --------
 user
-You are testing the setup-phase contract of the migrated command /spec_kit:plan.
+You are testing the setup-phase contract of the migrated command /speckit:plan.
 
 # RUNTIME RULES
 - Inline Codex execution. Do NOT call SpawnAgent / collab / Task / sub-agent.
@@ -25,9 +25,9 @@ You are testing the setup-phase contract of the migrated command /spec_kit:plan.
 
 # YOUR TASK
 
-1. Read .opencode/commands/spec_kit/plan.md section zero (UNIFIED SETUP PHASE or equivalent).
+1. Read .opencode/commands/speckit/plan.md section zero (UNIFIED SETUP PHASE or equivalent).
 2. Verify this command's section zero cites .opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md (the shared three-tier auto contract).
-3. SIMULATE a dispatch of /spec_kit:plan:auto with the following PRE-BOUND SETUP ANSWERS in the prompt body:
+3. SIMULATE a dispatch of /speckit:plan:auto with the following PRE-BOUND SETUP ANSWERS in the prompt body:
 
 ```
 PRE-BOUND SETUP ANSWERS:
@@ -61,7 +61,7 @@ hook: UserPromptSubmit Completed
 codex
 I’ll keep this read-only and stop at section-zero setup resolution, as requested. I’m going straight to the command markdown and the shared contract citation check; no agents, no YAML workflow, no writes.
 exec
-/bin/zsh -lc 'rg -n "UNIFIED SETUP PHASE|auto_mode_contract|Tier|PRE-BOUND|setup" .opencode/commands/spec_kit/plan.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "UNIFIED SETUP PHASE|auto_mode_contract|Tier|PRE-BOUND|setup" .opencode/commands/speckit/plan.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 3:argument-hint: "<feature-description> [:auto|:confirm] [:with-phases] [--intake-only] [--phases N] [--phase-names list] [--phase-folder=<path>] [--spec-folder=PATH] [--level=1|2|3|3+] [--start-state=STATE] [--repair-mode=MODE] [--record-relationships=yes|no] [--depends-on=IDs] [--related-to=IDs] [--supersedes=IDs] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
 11:> **Ownership:** Markdown owns setup (resolves all inputs). YAML owns execution (dispatches steps). Setup values resolved here are passed to the YAML workflow.
@@ -71,9 +71,9 @@ exec
 40:Read-only discovery to classify folder state is allowed when `spec_path` is explicit or can be inferred from the setup answers. Healthy folders keep the existing prompt shape; non-healthy folders run the intake contract (`.opencode/skills/system-spec-kit/references/intake-contract.md`) inline inside the same consolidated prompt and MUST NOT open a second visible command flow. When `--intake-only` is present, execution halts after the Emit phase without proceeding to planning Steps 2–8.
 42:For `:auto`, do not emit the consolidated prompt by default. Resolve setup with the three-tier branch below, then load the auto YAML only after all required values are bound.
 46:Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md`.
-50:1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/plan-config.json` (shape: `featureDescription`, `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `researchIntent`, `phaseDecomposition`, `phaseCount`, `phaseNames`, `intakeOnly`, `intake.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml`. End §0.
+50:1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/plan-config.json` (shape: `featureDescription`, `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `researchIntent`, `phaseDecomposition`, `phaseCount`, `phaseNames`, `intakeOnly`, `intake.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/speckit/assets/speckit_plan_auto.yaml`. End §0.
 52:2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`, `research_intent`. **Ordering rule**: none needed. Missing `feature_description` is absence, not ambiguity — go to Tier 3.
-54:3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/spec_kit:plan:auto` as the command name. Exit non-zero. Do not load YAML.
+54:3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/speckit:plan:auto` as the command name. Exit non-zero. Do not load YAML.
 56:`:confirm` path stays unchanged — see the consolidated setup prompt section below.
 58:### PRE-BOUND SETUP ANSWERS Schema (for `:auto` non-interactive dispatch)
 60:The dispatched prompt body may contain one structured marker block. Parse it before applying defaults. Grammar: see `auto_mode_contract.md` §2.
@@ -83,7 +83,7 @@ exec
 485:Runs after setup, before Step 1:
 
 exec
-/bin/zsh -lc "nl -ba .opencode/commands/spec_kit/plan.md | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/commands/speckit/plan.md | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	---
      2	description: Planning workflow (8 steps): spec through plan only. Modes :auto, :confirm, :with-phases.
@@ -101,8 +101,8 @@ exec
     14	> 1. Determine execution mode from user input (`:auto` or `:confirm`)
     15	>    Note: `:with-phases` is a feature flag, not an execution mode. It modifies the workflow but does not change the base execution mode.
     16	> 2. Load the corresponding YAML file from `assets/`:
-    17	>    - Auto mode → `spec_kit_plan_auto.yaml`
-    18	>    - Confirm mode → `spec_kit_plan_confirm.yaml`
+    17	>    - Auto mode → `speckit_plan_auto.yaml`
+    18	>    - Confirm mode → `speckit_plan_confirm.yaml`
     19	> 3. Execute the YAML workflow step by step
     20	>
     21	> All content below is reference context for the YAML workflow. Do not treat reference sections, routing tables, or dispatch templates as direct instructions to execute.
@@ -134,11 +134,11 @@ exec
     47	
     48	Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
     49	
-    50	1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/plan-config.json` (shape: `featureDescription`, `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `researchIntent`, `phaseDecomposition`, `phaseCount`, `phaseNames`, `intakeOnly`, `intake.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml`. End §0.
+    50	1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/plan-config.json` (shape: `featureDescription`, `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `researchIntent`, `phaseDecomposition`, `phaseCount`, `phaseNames`, `intakeOnly`, `intake.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/speckit/assets/speckit_plan_auto.yaml`. End §0.
     51	
     52	2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`, `research_intent`. **Ordering rule**: none needed. Missing `feature_description` is absence, not ambiguity — go to Tier 3.
     53	
-    54	3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/spec_kit:plan:auto` as the command name. Exit non-zero. Do not load YAML.
+    54	3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/speckit:plan:auto` as the command name. Exit non-zero. Do not load YAML.
     55	
     56	`:confirm` path stays unchanged — see the consolidated setup prompt section below.
     57	
@@ -240,7 +240,7 @@ exec
    153	4. Search for prior work (background):
    154	   - memory_context({ input: feature_description OR "planning", mode: "focused", includeContent: true })
    155	   > Gate 1 trigger matching handled at agent level (AGENTS.md).
-   156	   > Gate 3 spec-folder trigger classification is typed: `.opencode/skills/system-spec-kit/shared/gate-3-classifier.ts` (`classifyPrompt()`). Invocations of `/spec_kit:plan` are already inside a write flow, so Gate 3 is pre-answered by command dispatch — no extra inference needed here.
+   156	   > Gate 3 spec-folder trigger classification is typed: `.opencode/skills/system-spec-kit/shared/gate-3-classifier.ts` (`classifyPrompt()`). Invocations of `/speckit:plan` are already inside a write flow, so Gate 3 is pre-answered by command dispatch — no extra inference needed here.
    157	   - Store: prior_work_found = [yes/no], prior_work_count = [N]
    158	
    159	5. Prior-work loading question needed ONLY if user selects A or C for spec folder AND prior continuity records exist for this spec.

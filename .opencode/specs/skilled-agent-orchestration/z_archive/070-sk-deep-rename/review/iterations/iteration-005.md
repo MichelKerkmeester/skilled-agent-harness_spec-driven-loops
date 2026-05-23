@@ -20,7 +20,7 @@ Hunter checks that did not produce new findings:
   - `.opencode/skills/deep-research/scripts/tests/fixtures/interrupted-session/research/iterations/iteration-003.md`
 - Asset filename scan: `find .opencode/skills/deep-review .opencode/skills/deep-research -name "*sk-deep-*"` returned no filenames.
 - Assets/references/scripts scan: 41 files under renamed skills' `assets/`, `references/`, and `scripts/` had no exact `sk-deep-review` / `sk-deep-research` text.
-- Command YAML assets use new skill names: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:56`, `spec_kit_deep-review_confirm.yaml:56`, `spec_kit_deep-research_auto.yaml:67`, and `spec_kit_deep-research_confirm.yaml:53`.
+- Command YAML assets use new skill names: `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:56`, `spec_kit_deep-review_confirm.yaml:56`, `spec_kit_deep-research_auto.yaml:67`, and `spec_kit_deep-research_confirm.yaml:53`.
 - Cross-stack docs: `.opencode/skills/sk-code/references/motion_dev` and `.opencode/skills/sk-code/references/webflow` contain no stale `sk-deep-*` references.
 - Test fixtures: `.opencode/skills/system-spec-kit/scripts/test-fixtures/` contains no stale `sk-deep-*` references.
 

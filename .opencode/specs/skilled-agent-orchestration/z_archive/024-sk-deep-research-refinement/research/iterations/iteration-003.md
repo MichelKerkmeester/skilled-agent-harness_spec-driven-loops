@@ -20,7 +20,7 @@ Cross-referencing the proposals against our actual source files reveals that the
 
 [SOURCE: .opencode/skills/sk-deep-research/references/convergence.md:207-224, 335-388]
 [SOURCE: .opencode/skills/sk-deep-research/references/state_format.md:176-211, 267-306]
-[SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:207-215]
+[SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:207-215]
 [SOURCE: .claude/agents/deep-research.md:73-76 (exhausted pre-check), error-aware execution section]
 
 ### Finding 2: 5 of 18 proposals are PARTIALLY IMPLEMENTED (core concept present, full scope not yet reached)
@@ -34,7 +34,7 @@ Cross-referencing the proposals against our actual source files reveals that the
 | **P3.1 Statistical newInfoRatio Validation** | PARTIALLY IMPLEMENTED | convergence.md Section 6 (lines 390-447) contains full `validateNewInfoRatio()` pseudocode with MAD noise floor computation, advisory event logging (`ratio_within_noise`), and interpretation table. | Same gap as P1.2: the YAML workflow does not invoke this validation or record noise floor diagnostics. The algorithm is specified but the orchestrator does not call it. |
 
 [SOURCE: .opencode/skills/sk-deep-research/references/convergence.md:60-101 (composite), 251-321 (stuck recovery), 390-447 (statistical validation)]
-[SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:186-238 (convergence check), 243-253 (stuck handling)]
+[SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:186-238 (convergence check), 243-253 (stuck handling)]
 [SOURCE: .claude/agents/deep-research.md:59-63 (Step 1 reads research-ideas.md)]
 
 ### Finding 3: 3 of 18 proposals are CONFIRMED but NOT yet implemented
@@ -45,7 +45,7 @@ Cross-referencing the proposals against our actual source files reveals that the
 | **P3.3 Git Commit Per Iteration** | CONFIRMED NOT IMPLEMENTED | The YAML workflow's `reference_only_appendix` (lines 453-458) contains the exact git add/commit commands described in P3.3, but explicitly notes: "Checkpoint commits are intentionally excluded from workflow.steps." This is a deliberate design choice to keep them reference-only. |
 | **P4.1 File Mutability Declarations** | CONFIRMED, PARTIALLY IMPLEMENTED | `state_format.md` Section 2 (lines 63-89) defines a `fileProtection` map in config with 4 protection levels (immutable, append-only, mutable, write-once). The spec says "If no fileProtection map is present, the default protections from the table above apply implicitly." However, the config template does not include this field by default, and the orchestrator does not validate against it. |
 
-[SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:256-284 (state summary), 453-458 (checkpoint commits)]
+[SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:256-284 (state summary), 453-458 (checkpoint commits)]
 [SOURCE: .opencode/skills/sk-deep-research/references/state_format.md:63-89 (file protection)]
 
 ### Finding 4: 4 of 18 proposals remain UNIMPLEMENTED (neither in code nor reference docs)
@@ -57,7 +57,7 @@ Cross-referencing the proposals against our actual source files reveals that the
 | **P4.3 True Context Isolation (claude -p)** | NOT IMPLEMENTED | The YAML workflow dispatches via Task tool (agent dispatch), not via `claude -p` shell command. The reference_only_appendix mentions "alternate claude -p dispatch" in the research boundaries section of strategy.md, but this is informational only. |
 | **P4.4 Research Simplicity Criterion** | IMPLEMENTED | Actually, the agent definition DOES implement this. In Step 6 (Append State), there is a "Simplicity bonus" section: "If this iteration consolidates, simplifies, or resolves contradictions in prior findings -- even without new external information -- apply a +0.10 bonus to newInfoRatio (capped at 1.0)." Three specific triggers are listed: reducing open questions through synthesis, resolving contradictions, providing cleaner models. **REVISED to IMPLEMENTED.** |
 
-[SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:459-465 (wave reference)]
+[SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:459-465 (wave reference)]
 [SOURCE: .opencode/skills/sk-deep-research/references/state_format.md:153-156 (wave events)]
 [SOURCE: .claude/agents/deep-research.md: Step 6 newInfoRatio calculation, simplicity bonus]
 
@@ -101,7 +101,7 @@ This suggests the next implementation phase should focus on **wiring the orchest
 ## Sources Consulted
 - `.opencode/skills/sk-deep-research/references/convergence.md` (local, full file)
 - `.opencode/skills/sk-deep-research/references/state_format.md` (local, full file)
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` (local, full file)
+- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` (local, full file)
 - `.claude/agents/deep-research.md` (local, first 80 lines + system prompt content)
 - `.opencode/specs/03--commands-and-skills/023-sk-deep-research-creation/scratch/improvement-proposals.md` (local, full file)
 - `.opencode/specs/03--commands-and-skills/024-sk-deep-research-refinement/research/iterations/iteration-001.md` (local, for cross-referencing repo findings)

@@ -50,7 +50,7 @@
       "handover.md",
       "plan.md",
       "tasks.md",
-      ".opencode/commands/spec_kit/plan.md",
+      ".opencode/commands/speckit/plan.md",
       ".opencode/agents/deep-review.md",
       ".opencode/agents/review.md",
       "implementation-summary.md"

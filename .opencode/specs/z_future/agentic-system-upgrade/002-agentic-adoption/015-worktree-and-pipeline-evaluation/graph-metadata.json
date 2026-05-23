@@ -40,7 +40,7 @@
     "key_files": [
       ".opencode/skills/sk-git/SKILL.md",
       ".opencode/skills/sk-git/references/finish_workflows.md",
-      ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml",
+      ".opencode/commands/speckit/assets/speckit_implement_auto.yaml",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -60,9 +60,9 @@
         "source": "derived"
       },
       {
-        "name": "spec_kit_implement_auto.yaml",
+        "name": "speckit_implement_auto.yaml",
         "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_implement_auto.yaml",
         "source": "derived"
       },
       {

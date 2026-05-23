@@ -52,4 +52,4 @@
 
 ## 5. Session Notes
 
-Use `/spec_kit:resume` after reviewing `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and the packet memory reference.
+Use `/speckit:resume` after reviewing `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and the packet memory reference.

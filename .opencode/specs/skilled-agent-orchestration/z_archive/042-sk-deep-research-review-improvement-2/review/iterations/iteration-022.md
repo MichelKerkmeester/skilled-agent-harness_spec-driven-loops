@@ -369,7 +369,7 @@ Use this skill when:
 
 - Simple single-pass code review (use `sk-code-review` instead)
 - Known issues that just need fixing (go directly to implementation)
-- Implementation tasks (use `sk-code-opencode` or `/spec_kit:implement`)
+- Implementation tasks (use `sk-code-opencode` or `/speckit:implement`)
 - Quick one-file checks (use direct Grep/Read)
 - Fewer than 2 review dimensions needed (single-pass suffices)
 
@@ -489,11 +489,11 @@ Detect the current review phase from dispatch context to load appropriate resour
 ### Architecture: 3-Layer Integration
 
 ```
-User invokes: /spec_kit:deep-review "target"
+User invokes: /speckit:deep-review "target"
                     |
                     v
     ┌─────────────────────────────────┐
-    │  /spec_kit:deep-review command  │  Layer 1: Command
+    │  /speckit:deep-review command  │  Layer 1: Command
     │  (YAML workflow + loop config)    │  Manages loop lifecycle
     └──────────────┬──────────────────┘
                    |

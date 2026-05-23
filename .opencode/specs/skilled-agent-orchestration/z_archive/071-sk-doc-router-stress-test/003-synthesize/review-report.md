@@ -105,7 +105,7 @@ Score: 1 P0 (methodology bug, already fixed inline), 2 P1 (copilot accuracy gap,
 
 This was a one-shot test (no iteration loop). All scenarios completed. No convergence threshold to satisfy — this was an observational sweep, not a deep-review iteration loop.
 
-For follow-up router work, recommend deep-review iteration of the router pseudocode itself (sk-doc/SKILL.md §2) using `/spec_kit:deep-review:auto` if any P1/P2 findings warrant deeper investigation.
+For follow-up router work, recommend deep-review iteration of the router pseudocode itself (sk-doc/SKILL.md §2) using `/speckit:deep-review:auto` if any P1/P2 findings warrant deeper investigation.
 
 ---
 

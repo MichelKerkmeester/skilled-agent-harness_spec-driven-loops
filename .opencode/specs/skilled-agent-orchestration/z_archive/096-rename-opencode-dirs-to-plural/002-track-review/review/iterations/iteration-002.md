@@ -17,10 +17,10 @@ This pass adjudicated the four active P1 findings from iteration 1, traced wheth
 - `.opencode/skills/system-spec-kit/mcp_server/dist/code_graph/lib/index-scope-policy.js:13`
 - `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/gold-query-verifier.ts:36`
 - `.opencode/skills/system-spec-kit/mcp_server/dist/code_graph/lib/gold-query-verifier.js:27`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:56`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:56`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:67`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:53`
+- `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:56`
+- `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:56`
+- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:67`
+- `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:53`
 - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts:12`
 - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts:276`
 - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lease.ts:45`
@@ -65,7 +65,7 @@ Commands and sweeps executed:
 #### P1-002 [P1] Command-owned deep-review/deep-research YAML reads non-existent `sk-deep-*` skill paths
 
 - Claim: The command workflow assets contain live runtime fields that reference `sk-deep-review` and `sk-deep-research`, while the actual skill folders are `.opencode/skills/deep-review/` and `.opencode/skills/deep-research/`.
-- Evidence refs: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:56`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:56`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:67`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:53`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:655`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:743`.
+- Evidence refs: `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:56`, `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:56`, `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:67`, `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:53`, `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:655`, `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:743`.
 - Evidence: The grep found four live workflow YAML files. The fields are not just prose: `skill_reference.skill_md`, `references`, `templates`, `template_path`, and reducer `command` entries point at `.opencode/skills/sk-deep-*`, and the same YAML later renders prompt packs and runs reducers from these paths.
 - Counterevidence sought: Searched for `sk-deep-(review|research)` excluding vendored roots and archived paths. Hits outside the YAML were doc/live-instruction, fixtures, or spec history; the YAML remains the live workflow path.
 - Alternative explanation: The current prompt pack may have been rendered by a caller that substituted the correct paths manually. That does not make the command-owned YAML safe for fresh runs.
@@ -73,7 +73,7 @@ Commands and sweeps executed:
 - Confidence: 0.93.
 - Downgrade trigger: Downgrade to P2 only if the command runner demonstrably ignores all affected YAML path fields and resolves skill assets exclusively through a separate canonical resolver.
 - Finding class: cross-consumer.
-- Recommendation: Replace `sk-deep-review` and `sk-deep-research` with `deep-review` and `deep-research` in the command YAML and command docs, then dry-run both `/spec_kit:deep-review:auto` and `/spec_kit:deep-research:auto`.
+- Recommendation: Replace `sk-deep-review` and `sk-deep-research` with `deep-review` and `deep-research` in the command YAML and command docs, then dry-run both `/speckit:deep-review:auto` and `/speckit:deep-research:auto`.
 
 #### P1-003 [P1] Skill advisor source still writes `.opencode/skill/.advisor-state`
 

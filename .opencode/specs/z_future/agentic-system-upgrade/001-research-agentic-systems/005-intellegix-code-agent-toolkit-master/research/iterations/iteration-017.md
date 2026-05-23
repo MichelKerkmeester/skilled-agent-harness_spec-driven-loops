@@ -14,8 +14,8 @@ I compared the external repo's operator-facing orchestrator surfaces with the lo
 ## Evidence
 - `[SOURCE: external/README.md:11-17]` The external README presents a compact operator-facing feature surface: loop driver, commands, orchestrator suite, council automation, browser bridge, and portfolio governance.
 - `[SOURCE: external/commands/orchestrator.md:1-24]` The external orchestrator command reads as one user-facing workflow with role boundaries and one-loop rules embedded directly in the command.
-- `[SOURCE: .opencode/commands/spec_kit/deep-research.md:166-173]` The local deep-research command explicitly routes execution through separate YAML assets.
-- `[SOURCE: .opencode/commands/spec_kit/deep-research.md:216-224]` It then sends the operator to multiple skill references for protocol details.
+- `[SOURCE: .opencode/commands/speckit/deep-research.md:166-173]` The local deep-research command explicitly routes execution through separate YAML assets.
+- `[SOURCE: .opencode/commands/speckit/deep-research.md:216-224]` It then sends the operator to multiple skill references for protocol details.
 - `[SOURCE: AGENTS.md:174-179]` Non-trivial tasks also require explicit skill routing via `skill_advisor.py`.
 
 ## Analysis
@@ -29,7 +29,7 @@ confidence: medium
 finding: `system-spec-kit` should simplify its public operator surface by publishing more generated, single-surface workflow views for commands such as deep-research, while keeping the underlying modular internals.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/commands/spec_kit/deep-research.md`, `.opencode/commands/spec_kit/deep-review.md`, command README surfaces, future generated operator docs
+- **Target file or module:** `.opencode/commands/speckit/deep-research.md`, `.opencode/commands/speckit/deep-review.md`, command README surfaces, future generated operator docs
 - **Change type:** modified existing
 - **Blast radius:** medium
 - **Prerequisites:** decide which command internals remain implementation details and which must stay public

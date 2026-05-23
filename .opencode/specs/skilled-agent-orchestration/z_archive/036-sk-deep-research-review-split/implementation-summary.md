@@ -56,7 +56,7 @@ Repository changelog and handover artifacts show that the unified review-mode ha
 
 ### Dedicated review skill and command
 
-`sk-deep-review` was created as a standalone package with its own command entrypoint, references, assets, and testing playbook. That replaced the older `/spec_kit:deep-research:review` path with `/spec_kit:deep-review`.
+`sk-deep-review` was created as a standalone package with its own command entrypoint, references, assets, and testing playbook. That replaced the older `/speckit:deep-research:review` path with `/speckit:deep-review`.
 
 ### Research-only deep-research package
 
@@ -67,9 +67,9 @@ Repository changelog and handover artifacts show that the unified review-mode ha
 | File | Action | Purpose |
 |------|--------|---------|
 | `.opencode/skills/sk-deep-review/` | Created | Introduce the dedicated review skill package |
-| `.opencode/commands/spec_kit/deep-review.md` | Created | Add the new review command |
+| `.opencode/commands/speckit/deep-review.md` | Created | Add the new review command |
 | `.opencode/skills/sk-deep-research/` | Modified | Remove review-mode content and keep research-focused guidance |
-| `.agents/commands/spec_kit/deep-review.toml` | Created | Add runtime wrapper support for the new command |
+| `.agents/commands/speckit/deep-review.toml` | Created | Add runtime wrapper support for the new command |
 | `AGENTS.md`, `CLAUDE.md`, `README.md` | Modified | Update top-level documentation for the split |
 <!-- /ANCHOR:what-built -->
 
@@ -90,7 +90,7 @@ The implementation was delivered as coordinated documentation, wrapper, and rout
 |----------|-----|
 | Create `sk-deep-review` instead of keeping a review suffix under `sk-deep-research` | Review and research are different workflows with different triggers, artifacts, and success criteria |
 | Keep `sk-deep-research` research-only after the split | A narrower skill is easier to route, explain, and maintain |
-| Document the rename as a breaking change | Existing users needed a direct migration path from `/spec_kit:deep-research:review` to `/spec_kit:deep-review` |
+| Document the rename as a breaking change | Existing users needed a direct migration path from `/speckit:deep-research:review` to `/speckit:deep-review` |
 <!-- /ANCHOR:decisions -->
 
 ---

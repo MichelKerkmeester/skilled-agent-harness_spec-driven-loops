@@ -36,7 +36,7 @@ confidence: high
 finding: The external repo does not justify replacing the Level 1/2/3 model, but it does justify simplifying the earliest part of the lifecycle with a sanctioned working-brief stage.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skills/system-spec-kit/templates/`, `.opencode/commands/spec_kit/README.txt`
+- **Target file or module:** `.opencode/skills/system-spec-kit/templates/`, `.opencode/commands/speckit/README.txt`
 - **Change type:** new module
 - **Blast radius:** medium
 - **Prerequisites:** decide when a brief is sufficient and when automatic promotion to a full levelled packet becomes mandatory

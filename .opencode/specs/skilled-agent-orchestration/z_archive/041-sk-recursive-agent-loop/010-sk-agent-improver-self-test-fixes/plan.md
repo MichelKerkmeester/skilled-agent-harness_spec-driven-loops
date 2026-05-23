@@ -32,7 +32,7 @@ _memory:
 
 **What**: The canonical `agent-improver.md` line 156 has:
 ```
-| `/improve:agent-improver` | ... | `.opencode/commands/spec_kit/agent-improver.md` |
+| `/improve:agent-improver` | ... | `.opencode/commands/speckit/agent-improver.md` |
 ```
 
 **Fix to**:

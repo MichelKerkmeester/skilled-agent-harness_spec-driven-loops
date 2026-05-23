@@ -93,7 +93,7 @@ See implementation-summary.md §Files Changed table for the canonical list (~25 
 | REQ-002 | `validate.sh --strict` on 098 + adjacent packets exits 0 | run output |
 | REQ-003 | Smart-router scans 16 plural skills + accepts shared CLI paths | `check-smart-router.sh` PATHS PASS |
 | REQ-004 | audit_descriptions.py exits non-zero on zero-inventory | Stub repo test |
-| REQ-005 | Native advisor returns command-spec-kit at threshold ≥0.8 for `/spec_kit:deep-review` | Smoke test |
+| REQ-005 | Native advisor returns command-spec-kit at threshold ≥0.8 for `/speckit:deep-review` | Smoke test |
 
 ### P1 - Required
 | ID | Requirement | Acceptance |

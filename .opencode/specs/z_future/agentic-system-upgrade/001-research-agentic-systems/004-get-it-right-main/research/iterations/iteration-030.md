@@ -13,9 +13,9 @@ I walked the common internal feature path from spec selection through planning, 
 
 ## Evidence
 - [SOURCE: .opencode/README.md:52-62] The framework currently exposes 12 agents, 20 skills, 21 commands, 83 templates, and 29 YAML assets.
-- [SOURCE: .opencode/commands/spec_kit/plan.md:171-200] Planning alone is a 7-step workflow with spec creation, clarification, planning, save context, and handover check.
-- [SOURCE: .opencode/commands/spec_kit/implement.md:171-205] Implementation is a separate 9-step workflow with preflight, development, postflight, save context, and handover.
-- [SOURCE: .opencode/commands/spec_kit/complete.md:198-229] End-to-end completion expands that into a 14-step lifecycle.
+- [SOURCE: .opencode/commands/speckit/plan.md:171-200] Planning alone is a 7-step workflow with spec creation, clarification, planning, save context, and handover check.
+- [SOURCE: .opencode/commands/speckit/implement.md:171-205] Implementation is a separate 9-step workflow with preflight, development, postflight, save context, and handover.
+- [SOURCE: .opencode/commands/speckit/complete.md:198-229] End-to-end completion expands that into a 14-step lifecycle.
 - [SOURCE: .opencode/skills/system-spec-kit/templates/README.md:66-84] Even the default documentation path implies multiple required files and checklist semantics depending on level.
 - [SOURCE: .opencode/skills/README.md:65-70] Gate 2 skill routing is another default step in non-trivial work.
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/README.md:19-49] The external repo frames its end-to-end journey as one loop with four visible stages.

@@ -4,7 +4,7 @@
 Design the exact canonical review-mode contract manifest, define ownership boundaries for generated vs mixed-authored artifacts, and specify the drift-detection checks that should protect YAML workflows, agent docs, quick reference, README, and playbooks.
 
 ## Findings
-1. The canonical source should be a neutral manifest file owned by `sk-deep-research`, not a workflow YAML or prose doc, because the current contract is split across workflow inputs and appendix constants, agent JSONL instructions, state-format tables, quick-reference tables, README capability bullets, and command docs. A manifest should therefore normalize the contract into four top-level domains: `meta`, `contract`, `render`, and `validation`. This is the closest fit to the repo's existing "source components -> composed outputs -> verify drift" pattern in `system-spec-kit`. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:28-35] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:650-682] [SOURCE: .opencode/agents/deep-review.md:225-258] [SOURCE: .opencode/skills/sk-deep-research/references/state_format.md:536-575] [SOURCE: .opencode/skills/sk-deep-research/references/quick_reference.md:253-296] [SOURCE: .opencode/skills/sk-deep-research/README.md:47-55] [SOURCE: .opencode/skills/system-spec-kit/references/templates/template_guide.md:49-70] [SOURCE: .opencode/skills/system-spec-kit/scripts/templates/compose.sh:6-12] [SOURCE: .opencode/skills/system-spec-kit/scripts/templates/compose.sh:17-20]
+1. The canonical source should be a neutral manifest file owned by `sk-deep-research`, not a workflow YAML or prose doc, because the current contract is split across workflow inputs and appendix constants, agent JSONL instructions, state-format tables, quick-reference tables, README capability bullets, and command docs. A manifest should therefore normalize the contract into four top-level domains: `meta`, `contract`, `render`, and `validation`. This is the closest fit to the repo's existing "source components -> composed outputs -> verify drift" pattern in `system-spec-kit`. [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:28-35] [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:650-682] [SOURCE: .opencode/agents/deep-review.md:225-258] [SOURCE: .opencode/skills/sk-deep-research/references/state_format.md:536-575] [SOURCE: .opencode/skills/sk-deep-research/references/quick_reference.md:253-296] [SOURCE: .opencode/skills/sk-deep-research/README.md:47-55] [SOURCE: .opencode/skills/system-spec-kit/references/templates/template_guide.md:49-70] [SOURCE: .opencode/skills/system-spec-kit/scripts/templates/compose.sh:6-12] [SOURCE: .opencode/skills/system-spec-kit/scripts/templates/compose.sh:17-20]
 
    Proposed manifest path and shape:
 
@@ -33,7 +33,7 @@ Design the exact canonical review-mode contract manifest, define ownership bound
      checks: []
    ```
 
-2. The exact contract payload should use stable IDs and ordered arrays so generators can render both machine-oriented consumers and human tables without hand-written ordering rules. The schema below covers every duplicated review-mode concept visible today: target types, 7 dimensions, P0/P1/P2 severities, 4 verdicts, 5 quality guards, convergence defaults and weights, 6 cross-reference protocols, 11 report sections, strategy/dashboard section mappings, and JSONL field contracts. This is an inference from the currently duplicated runtime and docs surfaces. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:29-35] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:511-559] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:656-682] [SOURCE: .opencode/agents/deep-review.md:228-258] [SOURCE: .opencode/skills/sk-deep-research/references/state_format.md:538-575] [SOURCE: .opencode/skills/sk-deep-research/references/loop_protocol.md:626-687] [SOURCE: .opencode/skills/sk-deep-research/references/quick_reference.md:255-296] [SOURCE: .opencode/skills/sk-deep-research/README.md:48-55]
+2. The exact contract payload should use stable IDs and ordered arrays so generators can render both machine-oriented consumers and human tables without hand-written ordering rules. The schema below covers every duplicated review-mode concept visible today: target types, 7 dimensions, P0/P1/P2 severities, 4 verdicts, 5 quality guards, convergence defaults and weights, 6 cross-reference protocols, 11 report sections, strategy/dashboard section mappings, and JSONL field contracts. This is an inference from the currently duplicated runtime and docs surfaces. [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:29-35] [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:511-559] [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:656-682] [SOURCE: .opencode/agents/deep-review.md:228-258] [SOURCE: .opencode/skills/sk-deep-research/references/state_format.md:538-575] [SOURCE: .opencode/skills/sk-deep-research/references/loop_protocol.md:626-687] [SOURCE: .opencode/skills/sk-deep-research/references/quick_reference.md:255-296] [SOURCE: .opencode/skills/sk-deep-research/README.md:48-55]
 
    Proposed `contract` schema:
 
@@ -118,10 +118,10 @@ Design the exact canonical review-mode contract manifest, define ownership bound
        items:
          - id: FAIL
            when: activeP0 > 0 OR compositeScore < 70
-           nextCommand: /spec_kit:plan
+           nextCommand: /speckit:plan
          - id: CONDITIONAL
            when: activeP0 == 0 AND activeP1 > 0
-           nextCommand: /spec_kit:plan
+           nextCommand: /speckit:plan
          - id: PASS WITH NOTES
            when: activeP0 == 0 AND activeP1 == 0 AND activeP2 > 0
            nextCommand: /create:changelog
@@ -253,7 +253,7 @@ Design the exact canonical review-mode contract manifest, define ownership bound
    | `generated/review-mode-contract.snapshot.yaml` | Fully generated | Expanded canonical snapshot for audits/tests |
    | `generated/review-mode-contract.hash` or `.hashes` entry | Fully generated | Cheap drift sentinel for CI/pre-commit |
 
-   This means the manifest owns all normative enumerations, formulas, rule text, section catalogs, and next-command mappings, while authored files only own narrative, examples, and workflow-specific prose. Historical changelog/version-history text should remain manual and non-canonical, otherwise contract updates would incorrectly rewrite release history. [SOURCE: .opencode/skills/system-spec-kit/templates/context_template.md:15] [SOURCE: .opencode/skills/system-spec-kit/templates/README.md:57] [SOURCE: .opencode/skills/system-spec-kit/scripts/templates/compose.sh:38-49] [SOURCE: .opencode/skills/system-spec-kit/scripts/templates/compose.sh:890-907] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:6-15] [SOURCE: .opencode/agents/deep-review.md:225-258] [SOURCE: .opencode/skills/sk-deep-research/references/quick_reference.md:253-296] [SOURCE: .opencode/skills/sk-deep-research/README.md:47-55] [SOURCE: .opencode/skills/sk-deep-research/README.md:334-342]
+   This means the manifest owns all normative enumerations, formulas, rule text, section catalogs, and next-command mappings, while authored files only own narrative, examples, and workflow-specific prose. Historical changelog/version-history text should remain manual and non-canonical, otherwise contract updates would incorrectly rewrite release history. [SOURCE: .opencode/skills/system-spec-kit/templates/context_template.md:15] [SOURCE: .opencode/skills/system-spec-kit/templates/README.md:57] [SOURCE: .opencode/skills/system-spec-kit/scripts/templates/compose.sh:38-49] [SOURCE: .opencode/skills/system-spec-kit/scripts/templates/compose.sh:890-907] [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:6-15] [SOURCE: .opencode/agents/deep-review.md:225-258] [SOURCE: .opencode/skills/sk-deep-research/references/quick_reference.md:253-296] [SOURCE: .opencode/skills/sk-deep-research/README.md:47-55] [SOURCE: .opencode/skills/sk-deep-research/README.md:334-342]
 
 4. The propagation workflow should mirror `compose.sh`: edit only the canonical manifest, run a single renderer, then verify that every downstream artifact matches the rendered contract. A concrete workflow is:
    1. Edit `review_mode_contract.yaml`.
@@ -269,7 +269,7 @@ Design the exact canonical review-mode contract manifest, define ownership bound
    render:
      artifacts:
        - id: workflow-auto
-         path: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml
+         path: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml
          ownership: mixed
          format: yaml
          markers:
@@ -342,8 +342,8 @@ Design the exact canonical review-mode contract manifest, define ownership bound
 - CocoIndex again added no useful evidence for this markdown-and-config-heavy task; exact line reads and repo-pattern inspection were the productive path.
 
 ## Sources Consulted
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml`
-- `.opencode/commands/spec_kit/deep-research.md`
+- `.opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml`
+- `.opencode/commands/speckit/deep-research.md`
 - `.opencode/agents/deep-review.md`
 - `.opencode/skills/sk-deep-research/references/state_format.md`
 - `.opencode/skills/sk-deep-research/references/loop_protocol.md`

@@ -56,7 +56,7 @@ Edit 4 files (`sk-code-review` SKILL.md, `deep-review` SKILL.md, 2 deep-review Y
 ### Definition of Ready
 - [ ] Council verdict APPROVE on parent packet
 - [ ] sk-code-review SKILL.md target lines (302-329) verified present
-- [ ] deep-review YAML files verified present at `.opencode/commands/spec_kit/assets/`
+- [ ] deep-review YAML files verified present at `.opencode/commands/speckit/assets/`
 
 ### Definition of Done
 - [ ] All 4 files edited with verdict line

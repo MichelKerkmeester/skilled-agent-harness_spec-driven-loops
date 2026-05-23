@@ -50,7 +50,7 @@ finding: `system-spec-kit` should add execution profiles and stored defaults so 
 - **Migration path:** start with opt-in execution profiles for recurring users/projects, then expand once the routing and policy layers are simpler.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `AGENTS.md`, `.opencode/commands/spec_kit/`, `.opencode/skills/system-spec-kit/`, profile/config helpers
+- **Target file or module:** `AGENTS.md`, `.opencode/commands/speckit/`, `.opencode/skills/system-spec-kit/`, profile/config helpers
 - **Change type:** new module + modified existing
 - **Blast radius:** medium
 - **Prerequisites:** first simplify lifecycle, continuity, routing, and operator-policy surfaces

@@ -55,7 +55,7 @@ template_source_header: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 
 - [ ] T001 Inventory review-mode entrypoints in `sk-deep-research`, runtime wrappers, and top-level docs
 - [ ] T002 Create the standalone `sk-deep-review` skill package structure
-- [ ] T003 [P] Create the `/spec_kit:deep-review` command and associated runtime wrapper surfaces
+- [ ] T003 [P] Create the `/speckit:deep-review` command and associated runtime wrapper surfaces
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -78,7 +78,7 @@ template_source_header: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 
 - [ ] T010 Read updated command, skill, wrapper, and top-level docs to confirm no stale review-mode routing remains
 - [ ] T011 Verify research requests still point to `sk-deep-research` and review requests point to `sk-deep-review`
-- [ ] T012 Verify release notes document `/spec_kit:deep-research:review` → `/spec_kit:deep-review`
+- [ ] T012 Verify release notes document `/speckit:deep-research:review` → `/speckit:deep-review`
 - [ ] T013 Update spec-folder documentation and validate the folder structure
 <!-- /ANCHOR:phase-3 -->
 

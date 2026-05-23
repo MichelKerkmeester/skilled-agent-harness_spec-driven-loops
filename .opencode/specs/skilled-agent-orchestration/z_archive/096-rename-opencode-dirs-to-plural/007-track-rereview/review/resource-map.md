@@ -25,7 +25,7 @@ description: "Auto-generated review resource map from convergence evidence."
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=1 |
+| .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=1 |
 
 ---
 

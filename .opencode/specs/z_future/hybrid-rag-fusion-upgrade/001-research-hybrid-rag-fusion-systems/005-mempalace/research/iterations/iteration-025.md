@@ -369,7 +369,7 @@ exec
 578:- v3.2.1.0, short headings, Problem/Fix, create_changelog_auto.yaml, create_changelog_confirm.yaml, .agents/commands/create/changelog.toml, .gemini
 582:- when the user asked to make the changelog “similar to .agents ... and keep headings short,” default to short scan-friendly `###` headings (2-5 words) plus explicit Problem/Fix narrative [Task 2]
 583:- when the user asked to “include files changed,” changelog outputs should carry concrete full-scope files lists, not representative subsets [Task 1]
-589:- keep `/create:changelog`, `/spec_kit:implement`, and `/spec_kit:complete` docs and YAML assets in sync when changelog contract changes; runtime `.agents`/`.gemini` mirrors should be regenerated from shared command source [Task 2]
+589:- keep `/create:changelog`, `/speckit:implement`, and `/speckit:complete` docs and YAML assets in sync when changelog contract changes; runtime `.agents`/`.gemini` mirrors should be regenerated from shared command source [Task 2]
 590:- packet-level changelog docs remain additive to `implementation-summary.md` and should be validated with both strict spec checks and scoped formatting/test commands [Task 1][Task 2]
 598:scope: remediation packet implementation for 024 review findings, context-prime alignment, and deterministic session-stop autosave retargeting
 628:- context-prime alignment in this repo now must include both `.codex/agents/context-prime.md` and `.codex/agents/context-prime.toml` because `orchestrate.toml` points to `.codex/agents` as canonical runtime surface [Task 1]
@@ -403,7 +403,7 @@ exec
 899:- malformed-role warning `Ignoring malformed agent role definition ... must define a description` is resolved by ensuring every `.codex/agents/*.toml` includes top-level `description` [Task 2]
 900:- canonical description strings can be sourced from `.opencode/agents/<role>.md` frontmatter to keep TOML role metadata aligned with documented agent definitions [Task 2]
 908:scope: keep `.vscode/mcp.json` aligned with richer `.mcp.json`/`.claude/mcp.json` surfaces without breaking VS Code schema compatibility
-935:scope: restoring `/spec_kit:*`, `/memory:*`, and `/create:*` command discovery when prompt links drift between workspace and global Codex prompt directories
+935:scope: restoring `/speckit:*`, `/memory:*`, and `/create:*` command discovery when prompt links drift between workspace and global Codex prompt directories
 946:- ~/.codex/prompts, readlink ~/.codex/prompts, .codex/prompts, spec_kit-plan.md, memory-save.md, create-component.md, agent_router.md, .opencode/command
 964:scope: command-surface migrations for memory/spec_kit commands, mirror wrappers, and canonical spec packets after UX or naming shifts
 967:## Task 1: Rename `/memory:analyze` to `/memory:search` and fold `/memory:shared` into `/memory:manage shared`
@@ -607,9 +607,9 @@ Use this skill when:
 
 ### When NOT to Use
 
-- Simple, single-question research (use direct codebase search or `/spec_kit:plan`)
-- Known-solution documentation (use `/spec_kit:plan`)
-- Implementation tasks (use `/spec_kit:implement`)
+- Simple, single-question research (use direct codebase search or `/speckit:plan`)
+- Known-solution documentation (use `/speckit:plan`)
+- Implementation tasks (use `/speckit:implement`)
 - Quick codebase searches (use `@context` or direct Grep/Glob)
 - Fewer than 3 sources needed (single-pass research suffices)
 
@@ -6119,7 +6119,7 @@ exec
 .opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:325:      console.error('[memory_match_triggers] Scope filtering failed, returning empty results (fail-closed):', toErrorMessage(scopeErr));
 .opencode/skills/system-spec-kit/mcp_server/README.md:80:| **Access control** | None | Shared spaces with deny-by-default membership and kill switches |
 .opencode/skills/system-spec-kit/mcp_server/README.md:91:| `/memory:manage` | Database maintenance, checkpoints, bulk ingestion, shared-memory spaces and memberships | 19 primary tools + 1 helper |
-.opencode/skills/system-spec-kit/mcp_server/README.md:93:| `/spec_kit:resume` | Continue or recover an interrupted spec-folder session through the broader memory/session recovery stack | Broad helper surface; primary chain uses 3 shared memory tools |
+.opencode/skills/system-spec-kit/mcp_server/README.md:93:| `/speckit:resume` | Continue or recover an interrupted spec-folder session through the broader memory/session recovery stack | Broad helper surface; primary chain uses 3 shared memory tools |
 .opencode/skills/system-spec-kit/mcp_server/README.md:313:- **LLM query reformulation** -- asks the LLM to rephrase the query more abstractly, grounding in actual knowledge base content. Reformulated hits pass through the same scope, context and quality checks as ordinary results
 .opencode/skills/system-spec-kit/mcp_server/README.md:400:This is session-scoped to prevent cross-session interference.
 .opencode/skills/system-spec-kit/mcp_server/README.md:439:- **Roles** -- `owner` (full control), `editor` (read/write), `viewer` (read-only)

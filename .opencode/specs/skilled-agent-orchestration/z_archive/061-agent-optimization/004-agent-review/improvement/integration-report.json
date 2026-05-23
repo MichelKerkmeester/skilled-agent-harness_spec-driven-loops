@@ -46,13 +46,13 @@
     ],
     "commands": [
       {
-        "path": ".opencode/commands/spec_kit/complete.md",
+        "path": ".opencode/commands/speckit/complete.md",
         "references": [
           "@review"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/implement.md",
+        "path": ".opencode/commands/speckit/implement.md",
         "references": [
           "@review"
         ]
@@ -138,61 +138,61 @@
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_complete_auto.yaml",
         "references": [
           "review"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_complete_confirm.yaml",
         "references": [
           "review"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml",
         "references": [
           "review"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml",
         "references": [
           "review"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml",
         "references": [
           "review"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml",
         "references": [
           "review"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_implement_auto.yaml",
         "references": [
           "review"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_implement_confirm.yaml",
         "references": [
           "review"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_plan_auto.yaml",
         "references": [
           "review"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_plan_confirm.yaml",
         "references": [
           "review"
         ]

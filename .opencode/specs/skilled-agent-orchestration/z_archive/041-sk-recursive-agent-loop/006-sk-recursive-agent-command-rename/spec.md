@@ -57,7 +57,7 @@ Rename the command entrypoint itself to `/improve:agent-improver`, rename the co
 ## 3. SCOPE
 
 ### In Scope
-- renaming the canonical command markdown entrypoint to `.opencode/commands/spec_kit/agent-improver.md`
+- renaming the canonical command markdown entrypoint to `.opencode/commands/speckit/agent-improver.md`
 - renaming the command workflow assets to `improve_agent-improver_*.yaml`
 - renaming the `.agents` and `.gemini` wrapper TOMLs to `agent-improver.toml`
 - updating runtime agent tables, skill docs, README examples, and active packet docs to the new command name and path
@@ -69,11 +69,11 @@ Rename the command entrypoint itself to `/improve:agent-improver`, rename the co
 - reopening deep-research history artifacts that intentionally preserve the original concept naming
 
 ### Files to Change
-- `.opencode/commands/spec_kit/agent-improver.md`
-- `.opencode/commands/spec_kit/assets/improve_agent-improver_auto.yaml`
-- `.opencode/commands/spec_kit/assets/improve_agent-improver_confirm.yaml`
-- `.agents/commands/spec_kit/agent-improver.toml`
-- `.gemini/commands/spec_kit/agent-improver.toml`
+- `.opencode/commands/speckit/agent-improver.md`
+- `.opencode/commands/speckit/assets/improve_agent-improver_auto.yaml`
+- `.opencode/commands/speckit/assets/improve_agent-improver_confirm.yaml`
+- `.agents/commands/speckit/agent-improver.toml`
+- `.gemini/commands/speckit/agent-improver.toml`
 - runtime docs that reference the command surface
 - active packet docs under `041-sk-improve-agent-loop/`
 - `.opencode/specs/descriptions.json`
@@ -88,10 +88,10 @@ Rename the command entrypoint itself to `/improve:agent-improver`, rename the co
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Command entrypoint is renamed | The canonical command markdown file is `.opencode/commands/spec_kit/agent-improver.md` and examples invoke `/improve:agent-improver` |
+| REQ-001 | Command entrypoint is renamed | The canonical command markdown file is `.opencode/commands/speckit/agent-improver.md` and examples invoke `/improve:agent-improver` |
 | REQ-002 | Command workflow assets are renamed | The canonical YAML files use the `improve_agent-improver_*.yaml` naming family |
 | REQ-003 | Runtime wrappers are renamed | `.agents` and `.gemini` command wrapper files use `agent-improver.toml` |
-| REQ-004 | Active runtime docs use the renamed command path | Runtime agent tables and skill docs point at `.opencode/commands/spec_kit/agent-improver.md` and `/improve:agent-improver` |
+| REQ-004 | Active runtime docs use the renamed command path | Runtime agent tables and skill docs point at `.opencode/commands/speckit/agent-improver.md` and `/improve:agent-improver` |
 | REQ-005 | Parent packet records phase `006` | Root `041` docs list phase `006` and report `6 of 6 complete` |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -108,13 +108,13 @@ Rename the command entrypoint itself to `/improve:agent-improver`, rename the co
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: The command entrypoint is now `/improve:agent-improver` and the canonical file path is `.opencode/commands/spec_kit/agent-improver.md`.
+- **SC-001**: The command entrypoint is now `/improve:agent-improver` and the canonical file path is `.opencode/commands/speckit/agent-improver.md`.
 - **SC-002**: YAML assets and wrapper TOMLs use the agent-improver naming family.
 - **SC-003**: Runtime docs, skill docs, and active packet docs all reference the new command name and path.
 - **SC-004**: Root packet `041` clearly shows six completed phases and pushes future work to `007-*`.
 
 ### Acceptance Scenarios
-1. **Given** a maintainer browses the command directory, **when** they inspect the agent-improver surface, **then** they find `.opencode/commands/spec_kit/agent-improver.md` instead of the removed command filename.
+1. **Given** a maintainer browses the command directory, **when** they inspect the agent-improver surface, **then** they find `.opencode/commands/speckit/agent-improver.md` instead of the removed command filename.
 2. **Given** a maintainer inspects runtime wrappers and YAML assets, **when** they compare naming, **then** all command files use the agent-improver family consistently.
 3. **Given** a maintainer reads runtime agent tables and README examples, **when** they look for the command entrypoint, **then** they see `/improve:agent-improver`.
 4. **Given** strict validation is re-run, **when** the packet docs and command references are synchronized, **then** root `041` and phase `006` both pass.

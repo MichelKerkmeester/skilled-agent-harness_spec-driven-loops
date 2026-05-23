@@ -12,7 +12,7 @@ _memory:
     last_updated_at: "2026-05-07T20:30:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "All 13 P1 fixes landed (P1-026 fixed in follow-on pass)"
-    next_safe_action: "Re-run /spec_kit:deep-review:auto for verdict-flip confirmation (now all 13 P1s closed)"
+    next_safe_action: "Re-run /speckit:deep-review:auto for verdict-flip confirmation (now all 13 P1s closed)"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts"
@@ -83,7 +83,7 @@ Repaired 3 anchor mismatches in `096-rename-opencode-dirs-to-plural/004-symlinks
 All 7 098 sub-phase checklists were rewritten with the canonical 8-anchor structure (protocol, pre-impl, code-quality, testing, fix-completeness, security, docs, file-org) plus a verification summary anchor. Tasks.md phase H2 headers renamed to canonical "Phase 1: Setup / Phase 2: Implementation / Phase 3: Verification". Implementation-summary.md got an injected `how-delivered` anchor block. Result: all 7 sub-phases now pass `validate.sh --strict` standalone (was all exit 2 pre-fix).
 
 ### P1-025 — Advisor `deep-review` / `deep-research` aliases
-Updated `mcp_server/skill_advisor/lib/scorer/aliases.ts:5-25`. The canonical group key was `sk-deep-review` / `sk-deep-research` (pre-rename). Renamed canonical keys to `deep-review` / `deep-research` and added the bare token to each group's alias array. Old `sk-deep-*` aliases preserved for backwards compatibility. Native advisor now correctly resolves the `/spec_kit:deep-review` trigger to `command-spec-kit` at confidence 0.82 (was returning `[]`).
+Updated `mcp_server/skill_advisor/lib/scorer/aliases.ts:5-25`. The canonical group key was `sk-deep-review` / `sk-deep-research` (pre-rename). Renamed canonical keys to `deep-review` / `deep-research` and added the bare token to each group's alias array. Old `sk-deep-*` aliases preserved for backwards compatibility. Native advisor now correctly resolves the `/speckit:deep-review` trigger to `command-spec-kit` at confidence 0.82 (was returning `[]`).
 
 ### P1-007 — Bulk-mark unchecked CHK-* in adjacent packets
 Bulk-`[x]` marked all 178 unchecked CHK-* items across 7 checklist files (093/001 + 093/002 + 094 + 096/001..004). Combined with the 098/005 deferral notes, this satisfies the deep-review's permitted alternative resolution (relabel as not-completion-verified OR backfill). Adjacent packets continue to validate strict-clean.
@@ -92,7 +92,7 @@ Bulk-`[x]` marked all 178 unchecked CHK-* items across 7 checklist files (093/00
 Updated `095/implementation-summary.md` Decisions block + Verification table to reflect the final all-PASS state (all 18 scenarios passed, including CR-016/017/018 which were initially SKIP then re-run on user request). Top-level aggregate already said 18/18 PASS; the contradiction was in older sections referencing "SKIP" which I reconciled.
 
 ### P1-023 — Continuity blockers backfill
-Backfilled `_memory.continuity.blockers` array in 5 of the 098 sub-phase implementation-summary.md files (001, 004, 005, 006, 007) where deferred work was documented in narrative §Limitations / §Followups but `blockers: []` was empty. Machine-readable continuity surface (which `/spec_kit:resume` reads first) now matches the human narrative.
+Backfilled `_memory.continuity.blockers` array in 5 of the 098 sub-phase implementation-summary.md files (001, 004, 005, 006, 007) where deferred work was documented in narrative §Limitations / §Followups but `blockers: []` was empty. Machine-readable continuity surface (which `/speckit:resume` reads first) now matches the human narrative.
 
 ### P1-026 — Reducer findings extraction (FIXED)
 The deep-review reducer at `deep-review/scripts/reduce-state.cjs` previously did not extract finding records from `{type:"finding"}` delta records, leaving the registry showing 0 findings while state.jsonl carried the actual count. Initially scoped as deferred-advisory; subsequently fixed.
@@ -181,7 +181,7 @@ All edits used direct Edit/Write tooling per memory rule "prefer direct sed/Edit
 | `check-smart-router.sh` accepts shared CLI paths | Pass | PATHS: PASS (was FAIL with 8 missing) |
 | `audit_descriptions.py` zero-inventory exit | Pass | Stub repo → exit 2 with FAIL message |
 | `audit_descriptions.py` real repo | Pass | Items audited: 51 (skills: 16, commands: 24, agents: 11) |
-| Native advisor `/spec_kit:deep-review` resolution | Pass | Returns command-spec-kit at confidence 0.82 (was `[]`) |
+| Native advisor `/speckit:deep-review` resolution | Pass | Returns command-spec-kit at confidence 0.82 (was `[]`) |
 | `resolveArtifactRoot` shell metacharacter rejection | Pass | Adversarial input BLOCKED with explicit error |
 | Source/dist parity (skill-graph scan) | Pass | Source default plural; dist matches |
 | `scripts/dist/` plural | Pass | `rg '\.opencode/(skill\|agent\|command)/' scripts/dist/` returns 0 |
@@ -209,7 +209,7 @@ All edits used direct Edit/Write tooling per memory rule "prefer direct sed/Edit
 
 1. **P1-026 fully resolved** in this packet via the follow-on reducer fix; see §What Was Built for evidence.
 2. **No adversarial regression tests added for security surfaces**: P1-019 fix verified by smoke test only. A dedicated adversarial test fixture (e.g., `review-research-paths-injection.vitest.ts`) would lock the contract.
-3. **Final deep-review re-run not yet executed**: this packet's success criterion SC-005 calls for one final `/spec_kit:deep-review:auto` to confirm verdict flips to PASS. Defer to user-triggered run; no further code remediation expected.
+3. **Final deep-review re-run not yet executed**: this packet's success criterion SC-005 calls for one final `/speckit:deep-review:auto` to confirm verdict flips to PASS. Defer to user-triggered run; no further code remediation expected.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -243,4 +243,4 @@ non-blocking). Track is release-ready pending optional final deep-review re-run.
 - **P1-026 reducer findings extraction** (advisory): patch `deep-review/scripts/reduce-state.cjs` to extract `{type:"finding"}` delta records and aggregate into registry.
 - **Adversarial regression tests for P1-019**: dedicated test fixture proving spec_folder injection blocked.
 - **6 P2 advisories**: schedule sweep packet (P1-005, P2-002, P2-004, P2-008, P2-009, P2-010).
-- **Final `/spec_kit:deep-review:auto` re-run**: confirm verdict-flip to PASS on the post-100 state.
+- **Final `/speckit:deep-review:auto` re-run**: confirm verdict-flip to PASS on the post-100 state.

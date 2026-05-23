@@ -10,7 +10,7 @@
 - **Status**: complete
 
 ## Files Reviewed
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` (lines 1-120, 650-820)
+- `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml` (lines 1-120, 650-820)
 - `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs` (full, 291 lines)
 - `.claude/settings.local.json` (full, 81 lines)
 - `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts` (lines 1-80)
@@ -88,8 +88,8 @@ None.
 }
 ```
 
-2. **cli-opencode self-invocation guard is convention-only on dispatch path** — `.opencode/skills/cli-opencode/SKILL.md:54-96`; runtime not enforced at `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:781-802`
-   - **Description**: The cli-opencode SKILL.md §Self-Invocation Guard documents a 3-layer detection (env var lookup, process ancestry, state-lock probe) at lines 54-96. YAML branch line 802 acknowledges "the cli-opencode skill SKILL.md §SELF-INVOCATION PROHIBITED contract is the authoritative gate." However, **no runtime check exists on the dispatch path**. The YAML invokes `opencode run ...` directly without any preflight guard against $OPENCODE_CONFIG_DIR / OPENCODE_* env vars or process ancestry. If a maintainer dispatches `/spec_kit:deep-review:auto` from inside an OpenCode session with executor=cli-opencode, the workflow will spawn a child opencode process. The skill-level guard fires only if the calling AI loads cli-opencode SKILL.md (advisor-driven), not at workflow dispatch.
+2. **cli-opencode self-invocation guard is convention-only on dispatch path** — `.opencode/skills/cli-opencode/SKILL.md:54-96`; runtime not enforced at `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:781-802`
+   - **Description**: The cli-opencode SKILL.md §Self-Invocation Guard documents a 3-layer detection (env var lookup, process ancestry, state-lock probe) at lines 54-96. YAML branch line 802 acknowledges "the cli-opencode skill SKILL.md §SELF-INVOCATION PROHIBITED contract is the authoritative gate." However, **no runtime check exists on the dispatch path**. The YAML invokes `opencode run ...` directly without any preflight guard against $OPENCODE_CONFIG_DIR / OPENCODE_* env vars or process ancestry. If a maintainer dispatches `/speckit:deep-review:auto` from inside an OpenCode session with executor=cli-opencode, the workflow will spawn a child opencode process. The skill-level guard fires only if the calling AI loads cli-opencode SKILL.md (advisor-driven), not at workflow dispatch.
    - **Recommendation**: Add a pre-dispatch check inside the `if_cli_opencode` branch: `if [ -n "$OPENCODE_CONFIG_DIR" ] || env | grep -q '^OPENCODE_'; then echo "ERROR: self-invocation refused" >&2; exit 1; fi`. Or equivalently call `runtimeCapabilityResolver` for opencode detection.
    - **Finding class**: cross-consumer
    - **Scope proof**: All 4 deep-* YAML files have `if_cli_opencode` branches (lines 781-802 in deep-review_auto, plus deep-review_confirm:if_cli_opencode, deep-research_auto:if_cli_opencode, deep-research_confirm:if_cli_opencode). None contain runtime self-invocation detection.
@@ -105,7 +105,7 @@ None.
     "spec_kit_deep-review_auto.yaml:781-802 (no preflight env/ancestry check)",
     "spec_kit_deep-review_auto.yaml:802 (note delegating to skill content)"
   ],
-  "counterevidenceSought": "Is there a runtimeCapabilityResolver call that detects opencode? Grep at .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml shows runtimeCapabilityResolver only referenced in config (line not in command surface). No opencode-specific guard found in YAML.",
+  "counterevidenceSought": "Is there a runtimeCapabilityResolver call that detects opencode? Grep at .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml shows runtimeCapabilityResolver only referenced in config (line not in command surface). No opencode-specific guard found in YAML.",
   "alternativeExplanation": "Could be intentional — operator-trusted dispatch surface. Acceptable for P2; P1 would require evidence of actual cycle harm (token burn, runaway loop). No such evidence at this iteration.",
   "finalSeverity": "P2",
   "confidence": "medium",

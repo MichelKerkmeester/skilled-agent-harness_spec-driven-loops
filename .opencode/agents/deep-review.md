@@ -327,8 +327,8 @@ This agent loads shared review doctrine from `.opencode/skills/sk-code-review/re
 
 | Verdict | Condition | Follow-on |
 |---------|-----------|-----------|
-| **FAIL** | Active `P0` exists or any binary gate fails | `/spec_kit:plan` |
-| **CONDITIONAL** | No active `P0`, but active `P1` remains | `/spec_kit:plan` |
+| **FAIL** | Active `P0` exists or any binary gate fails | `/speckit:plan` |
+| **CONDITIONAL** | No active `P0`, but active `P1` remains | `/speckit:plan` |
 | **PASS** | No active `P0` or `P1`; set `hasAdvisories=true` when active `P2` remains | `/create:changelog` |
 
 ### Promotion Gate Logic

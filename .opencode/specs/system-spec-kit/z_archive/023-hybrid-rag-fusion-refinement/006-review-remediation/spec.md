@@ -56,7 +56,7 @@ This is **Phase 6** of the ESM Module Compliance specification.
 | **Priority** | P1 |
 | **Status** | Ready for implementation |
 | **Created** | 2026-03-30 |
-| **Branch** | `system-speckit/023-esm-module-compliance` |
+| **Branch** | `system-spec-kit/023-esm-module-compliance` |
 | **Parent Spec** | 023-hybrid-rag-fusion-refinement |
 | **Source** | `../review/review-report.md` — 10-iteration deep review, GPT-5.4 via codex exec |
 <!-- /ANCHOR:metadata -->

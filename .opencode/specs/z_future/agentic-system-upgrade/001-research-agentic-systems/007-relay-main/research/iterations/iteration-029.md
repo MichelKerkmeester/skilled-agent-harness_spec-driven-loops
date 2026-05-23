@@ -13,10 +13,10 @@ Walked the documented Public feature flow across Gate 3, `plan`, `implement`, `c
 
 ## Evidence
 - The root quick reference still teaches file modification as `Gate 3 -> Gate 1 -> Gate 2 -> Load memory context -> Execute`. [SOURCE: AGENTS.md:132-149]
-- `plan` is a 7-step workflow that produces planning artifacts and tells the operator to continue with `/spec_kit:implement`. [SOURCE: .opencode/commands/spec_kit/plan.md:173-221]
-- `implement` is a 9-step workflow that includes preflight, postflight, save-context, and optional handover checks. [SOURCE: .opencode/commands/spec_kit/implement.md:173-225]
-- `complete` is a 14-step end-to-end workflow that still includes separate planning, implementation, save-context, and handover phases. [SOURCE: .opencode/commands/spec_kit/complete.md:175-228] [SOURCE: .opencode/commands/spec_kit/complete.md:311-315]
-- `resume` then teaches another recovery path with its own session-detection, context-sufficiency, and command-chain logic. [SOURCE: .opencode/commands/spec_kit/resume.md:248-310] [SOURCE: .opencode/commands/spec_kit/resume.md:404-423]
+- `plan` is a 7-step workflow that produces planning artifacts and tells the operator to continue with `/speckit:implement`. [SOURCE: .opencode/commands/speckit/plan.md:173-221]
+- `implement` is a 9-step workflow that includes preflight, postflight, save-context, and optional handover checks. [SOURCE: .opencode/commands/speckit/implement.md:173-225]
+- `complete` is a 14-step end-to-end workflow that still includes separate planning, implementation, save-context, and handover phases. [SOURCE: .opencode/commands/speckit/complete.md:175-228] [SOURCE: .opencode/commands/speckit/complete.md:311-315]
+- `resume` then teaches another recovery path with its own session-detection, context-sufficiency, and command-chain logic. [SOURCE: .opencode/commands/speckit/resume.md:248-310] [SOURCE: .opencode/commands/speckit/resume.md:404-423]
 - Relay's workflow docs pitch a much shorter flow: the app or lead agent handles the user conversation, Relay escalation invokes `runWorkflow()`, and the workflow runner handles retries, verification, and handoffs. [SOURCE: external/packages/sdk/src/workflows/README.md:70-121]
 - Relay's plugin presents the same idea at the operator layer through `/relay-team`, `/relay-fanout`, `/relay-pipeline`, or natural language. [SOURCE: external/docs/plugin-claude-code.md:27-63]
 

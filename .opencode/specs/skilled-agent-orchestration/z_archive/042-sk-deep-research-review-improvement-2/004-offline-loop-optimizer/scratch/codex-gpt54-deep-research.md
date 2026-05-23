@@ -164,9 +164,9 @@ exec
     32	
     33	### When NOT to Use
     34	
-    35	- Simple, single-question research (use direct codebase search or `/spec_kit:plan`)
-    36	- Known-solution documentation (use `/spec_kit:plan`)
-    37	- Implementation tasks (use `/spec_kit:implement`)
+    35	- Simple, single-question research (use direct codebase search or `/speckit:plan`)
+    36	- Known-solution documentation (use `/speckit:plan`)
+    37	- Implementation tasks (use `/speckit:implement`)
     38	- Quick codebase searches (use `@context` or direct Grep/Glob)
     39	- Fewer than 3 sources needed (single-pass research suffices)
     40	
@@ -269,11 +269,11 @@ exec
    137	### Architecture: 3-Layer Integration
    138	
    139	```
-   140	User invokes: /spec_kit:deep-research "topic"
+   140	User invokes: /speckit:deep-research "topic"
    141	                    |
    142	                    v
    143	    ┌─────────────────────────────────┐
-   144	    │  /spec_kit:deep-research command│  Layer 1: Command
+   144	    │  /speckit:deep-research command│  Layer 1: Command
    145	    │  (YAML workflow + loop config)    │  Manages loop lifecycle
    146	    └──────────────┬──────────────────┘
    147	                   |
@@ -433,7 +433,7 @@ exec
     77	| Template              | Trigger Keywords                                                                                                              | Action                    |
     78	| --------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
     79	| `handover.md`         | "handover", "next session", "continue later", "pass context", "ending session", "save state", "multi-session", "for next AI"  | Suggest creating handover |
-    80	| `debug-delegation.md` | "stuck", "can't fix", "tried everything", "same error", "fresh eyes", "hours on this", "still failing", "need help debugging" | Suggest `/spec_kit:debug` |
+    80	| `debug-delegation.md` | "stuck", "can't fix", "tried everything", "same error", "fresh eyes", "hours on this", "still failing", "need help debugging" | Suggest `/speckit:debug` |
     81	
     82	**Rule:** When detected, proactively suggest the appropriate action.
     83	
@@ -570,10 +570,10 @@ exec
    214	}
    215	
    216	COMMAND_BOOSTS = {
-   217	    "/spec_kit:plan": "PLAN",
-   218	    "/spec_kit:implement": "IMPLEMENT",
-   219	    "/spec_kit:debug": "DEBUG",
-   220	    "/spec_kit:complete": "COMPLETE",
+   217	    "/speckit:plan": "PLAN",
+   218	    "/speckit:implement": "IMPLEMENT",
+   219	    "/speckit:debug": "DEBUG",
+   220	    "/speckit:complete": "COMPLETE",
 
 exec
 /bin/zsh -lc 'rg -n "042|offline loop optimizer|sk-deep-research|deep-review|eval framework|replay" /Users/michelkerkmeester/.codex/memories/MEMORY.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -776,11 +776,11 @@ user cancelled MCP tool call
     83	    - id: FAIL
     84	      label: Fail
     85	      condition: "activeP0 > 0 OR any required quality gate fails"
-    86	      nextCommand: /spec_kit:plan
+    86	      nextCommand: /speckit:plan
     87	    - id: CONDITIONAL
     88	      label: Conditional
     89	      condition: "activeP0 == 0 AND activeP1 > 0"
-    90	      nextCommand: /spec_kit:plan
+    90	      nextCommand: /speckit:plan
     91	    - id: PASS
     92	      label: Pass
     93	      condition: "activeP0 == 0 AND activeP1 == 0"
@@ -1138,7 +1138,7 @@ exec
    107	|---------|--------|------------|-------|
    108	| T008 | Pending | REQ-004, REQ-006 | `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts` |
    109	| T009 | Pending | REQ-007 | `.opencode/skills/sk-deep-research/assets/deep_research_config.json`; `.opencode/skills/sk-deep-review/assets/deep_review_config.json` |
-   110	| T010 | Pending | REQ-004, REQ-007 | `.opencode/commands/spec_kit/deep-research.md`; `.opencode/commands/spec_kit/deep-review.md`; `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs` |
+   110	| T010 | Pending | REQ-004, REQ-007 | `.opencode/commands/speckit/deep-research.md`; `.opencode/commands/speckit/deep-review.md`; `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs` |
    111	| T011 | Pending | REQ-004, REQ-006, REQ-007 | `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
    112	
    113	- [ ] T008 Implement the promotion gate that compares candidates to baseline and enforces test success.
@@ -1308,8 +1308,8 @@ exec
    137	- `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`
    138	- `.opencode/skills/sk-deep-research/assets/deep_research_config.json`
    139	- `.opencode/skills/sk-deep-review/assets/deep_review_config.json`
-   140	- `.opencode/commands/spec_kit/deep-research.md`
-   141	- `.opencode/commands/spec_kit/deep-review.md`
+   140	- `.opencode/commands/speckit/deep-research.md`
+   141	- `.opencode/commands/speckit/deep-review.md`
    142	
    143	**Verification strategy**:
    144	- Prove promotion is refused when baseline improvement is unclear or existing tests fail.
@@ -4152,7 +4152,7 @@ Reducer/config/convergence threshold hits
 .opencode/skills/sk-deep-research/references/quick_reference.md:32:| `progressiveSynthesis` | true | Allow incremental `research/research.md` updates before final synthesis |
 .opencode/skills/sk-deep-research/references/quick_reference.md:83:> **Live lifecycle branches:** `resume`, `restart`, `fork`, `completed-continue`. `progressiveSynthesis` defaults to `true`, so `research/research.md` is updated during the loop and finalized at synthesis.
 .opencode/skills/sk-deep-research/references/quick_reference.md:117:stuckThreshold consecutive no-progress?
-.opencode/skills/sk-deep-review/manual_testing_playbook/01--entry-points-and-modes/003-parameterized-invocation-max-iterations-convergence.md:47:| DRV-003 | Parameterized invocation max-iterations and convergence | Verify that `--max-iterations` (default 7) and `--convergence` (default 0.10) parameters are documented consistently and flow through to the review config. | Validate the parameter contract for sk-deep-review. Confirm that `--max-iterations` (default 7) and `--convergence` (default 0.10) appear consistently across the quick reference, command entrypoint, and both YAML workflows, then return a concise user-facing pass/fail verdict. | 1. `bash: rg -n 'max.iterations|convergence.*0\.10|convergence_threshold|maxIterations' .opencode/skills/sk-deep-review/references/quick_reference.md` -> 2. `bash: rg -n 'max.iterations|convergence|argument-hint' .opencode/commands/spec_kit/deep-review.md` -> 3. `bash: rg -n 'max_iterations|convergence_threshold|maxIterations|convergenceThreshold' .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Default values of 7 and 0.10 appear consistently across all sources; the YAML writes these into `deep-review-config.json` during init. | Capture the parameter table from the quick reference, the argument-hint line, and the YAML user_inputs and config-creation steps. | PASS if all sources agree on defaults and the config init step propagates overrides; FAIL if defaults drift or the override path is broken. | Cross-reference the quick reference parameter table with the YAML `step_create_config` to verify the values flow through. |
+.opencode/skills/sk-deep-review/manual_testing_playbook/01--entry-points-and-modes/003-parameterized-invocation-max-iterations-convergence.md:47:| DRV-003 | Parameterized invocation max-iterations and convergence | Verify that `--max-iterations` (default 7) and `--convergence` (default 0.10) parameters are documented consistently and flow through to the review config. | Validate the parameter contract for sk-deep-review. Confirm that `--max-iterations` (default 7) and `--convergence` (default 0.10) appear consistently across the quick reference, command entrypoint, and both YAML workflows, then return a concise user-facing pass/fail verdict. | 1. `bash: rg -n 'max.iterations|convergence.*0\.10|convergence_threshold|maxIterations' .opencode/skills/sk-deep-review/references/quick_reference.md` -> 2. `bash: rg -n 'max.iterations|convergence|argument-hint' .opencode/commands/speckit/deep-review.md` -> 3. `bash: rg -n 'max_iterations|convergence_threshold|maxIterations|convergenceThreshold' .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml` | Default values of 7 and 0.10 appear consistently across all sources; the YAML writes these into `deep-review-config.json` during init. | Capture the parameter table from the quick reference, the argument-hint line, and the YAML user_inputs and config-creation steps. | PASS if all sources agree on defaults and the config init step propagates overrides; FAIL if defaults drift or the override path is broken. | Cross-reference the quick reference parameter table with the YAML `step_create_config` to verify the values flow through. |
 .opencode/skills/sk-deep-research/manual_testing_playbook/manual_testing_playbook.md:223:Verify that `research/research.md` remains workflow-owned while progressive updates are allowed when `progressiveSynthesis` is enabled.
 .opencode/skills/sk-deep-review/assets/review_mode_contract.yaml:123:      maxIterations: 7
 .opencode/skills/sk-deep-review/assets/review_mode_contract.yaml:124:      convergenceThreshold: 0.10
@@ -4244,27 +4244,27 @@ Reducer/config/convergence threshold hits
 .opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/015-stop-on-max-iterations.md:30:- Desired user-facing outcome: The user is told that the review loop always terminates at maxIterations and still produces a review report even if not all dimensions were covered.
 .opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/015-stop-on-max-iterations.md:31:- Expected signals: `maxIterations=7` default, unconditional exit at that count, synthesis phase runs after hard stop, review-report.md is still produced.
 .opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/015-stop-on-max-iterations.md:32:- Pass/fail posture: PASS if the hard cap is enforced unconditionally and synthesis still runs; FAIL if the loop can exceed maxIterations or skips synthesis after a hard stop.
-.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/015-stop-on-max-iterations.md:47:| DRV-015 | Stop on max iterations | Verify review stops at maxIterations (default 7) even if dimensions remain uncovered. | Validate the hard iteration cap contract for sk-deep-review. Confirm that `maxIterations` defaults to 7, that the loop exits unconditionally at that limit regardless of dimension coverage or convergence score, and that synthesis still runs after a hard stop, then return a concise operator-facing verdict. | 1. `bash: rg -n 'maxIterations|hard.stop|HARD_STOP|max_iterations|iteration.*cap' .opencode/skills/sk-deep-research/references/convergence.md` -> 2. `bash: rg -n 'maxIterations|max_iterations|hard.stop|step_check_convergence|iteration_count' .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` -> 3. `bash: rg -n 'maxIterations|max-iterations|default.*7|hard stop' .opencode/skills/sk-deep-review/references/quick_reference.md .opencode/skills/sk-deep-review/SKILL.md .opencode/skills/sk-deep-review/README.md` | `maxIterations=7` default, unconditional exit at that count, synthesis phase runs after hard stop, review-report.md is still produced. | Capture the hard-stop condition from convergence.md, the YAML enforcement step, and the user-facing documentation of the default. | PASS if the hard cap is enforced unconditionally and synthesis still runs; FAIL if the loop can exceed maxIterations or skips synthesis after a hard stop. | Privilege the convergence reference for exact algorithm and use YAML workflow steps as the enforcement authority. |
-.opencode/skills/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/014-stuck-recovery-widens-focus-and-continues.md:47:| DR-014 | Stuck recovery widens focus and continues | Verify that stuck detection triggers a recovery path that widens focus before giving up. | Validate the stuck-recovery contract for sk-deep-research. Confirm that consecutive no-progress iterations trigger recovery, widen focus to a less-explored question, consult deferred ideas, and continue before final synthesis, then return a concise verdict. | 1. `bash: rg -n 'stuckThreshold|STUCK_RECOVERY|least-explored|recovery' .opencode/skills/sk-deep-research/references/convergence.md .opencode/skills/sk-deep-research/references/loop_protocol.md` -> 2. `bash: rg -n 'stuck_count|least_explored|RECOVERY: Widen scope|research-ideas' .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` -> 3. `bash: rg -n 'RECOVERY MODE|research-ideas|Exhausted Approaches' .codex/agents/deep-research.toml` | Stuck threshold is enforced, recovery resets the counter, the next focus widens scope, and the ideas backlog can be consulted during recovery. | Capture the stuck threshold, the widened-focus rule, and the runtime recovery mode behavior together. | PASS if recovery widens focus and continues before exiting to synthesis; FAIL if the contract jumps straight from stuck to termination without a recovery attempt. | Check the convergence reference and loop protocol together because one defines the trigger and the other defines the recovery ladder. |
+.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/015-stop-on-max-iterations.md:47:| DRV-015 | Stop on max iterations | Verify review stops at maxIterations (default 7) even if dimensions remain uncovered. | Validate the hard iteration cap contract for sk-deep-review. Confirm that `maxIterations` defaults to 7, that the loop exits unconditionally at that limit regardless of dimension coverage or convergence score, and that synthesis still runs after a hard stop, then return a concise operator-facing verdict. | 1. `bash: rg -n 'maxIterations|hard.stop|HARD_STOP|max_iterations|iteration.*cap' .opencode/skills/sk-deep-research/references/convergence.md` -> 2. `bash: rg -n 'maxIterations|max_iterations|hard.stop|step_check_convergence|iteration_count' .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml` -> 3. `bash: rg -n 'maxIterations|max-iterations|default.*7|hard stop' .opencode/skills/sk-deep-review/references/quick_reference.md .opencode/skills/sk-deep-review/SKILL.md .opencode/skills/sk-deep-review/README.md` | `maxIterations=7` default, unconditional exit at that count, synthesis phase runs after hard stop, review-report.md is still produced. | Capture the hard-stop condition from convergence.md, the YAML enforcement step, and the user-facing documentation of the default. | PASS if the hard cap is enforced unconditionally and synthesis still runs; FAIL if the loop can exceed maxIterations or skips synthesis after a hard stop. | Privilege the convergence reference for exact algorithm and use YAML workflow steps as the enforcement authority. |
+.opencode/skills/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/014-stuck-recovery-widens-focus-and-continues.md:47:| DR-014 | Stuck recovery widens focus and continues | Verify that stuck detection triggers a recovery path that widens focus before giving up. | Validate the stuck-recovery contract for sk-deep-research. Confirm that consecutive no-progress iterations trigger recovery, widen focus to a less-explored question, consult deferred ideas, and continue before final synthesis, then return a concise verdict. | 1. `bash: rg -n 'stuckThreshold|STUCK_RECOVERY|least-explored|recovery' .opencode/skills/sk-deep-research/references/convergence.md .opencode/skills/sk-deep-research/references/loop_protocol.md` -> 2. `bash: rg -n 'stuck_count|least_explored|RECOVERY: Widen scope|research-ideas' .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml` -> 3. `bash: rg -n 'RECOVERY MODE|research-ideas|Exhausted Approaches' .codex/agents/deep-research.toml` | Stuck threshold is enforced, recovery resets the counter, the next focus widens scope, and the ideas backlog can be consulted during recovery. | Capture the stuck threshold, the widened-focus rule, and the runtime recovery mode behavior together. | PASS if recovery widens focus and continues before exiting to synthesis; FAIL if the contract jumps straight from stuck to termination without a recovery attempt. | Check the convergence reference and loop protocol together because one defines the trigger and the other defines the recovery ladder. |
 .opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/016-composite-review-convergence-stop-behavior.md:31:- Expected signals: Three named signals with weights 0.30/0.25/0.45, severity-weighted newFindingsRatio, rollingStopThreshold of 0.08, a composite stop threshold above 0.60, and dimension coverage requiring all 4 review dimensions.
-.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/016-composite-review-convergence-stop-behavior.md:47:| DRV-016 | Composite review convergence stop behavior | Verify 3-signal composite convergence (rolling avg 0.30, MAD 0.25, dimension coverage 0.45) with threshold 0.60 and severity-weighted newFindingsRatio. | Validate the composite convergence contract for sk-deep-review. Confirm the rolling average signal (weight 0.30, threshold 0.08), MAD noise floor signal (weight 0.25), and dimension coverage signal (weight 0.45, requires all 4 dimensions), their severity-weighted newFindingsRatio calculation, and the >0.60 weighted stop-score threshold, then return a concise operator-facing verdict. | 1. `bash: rg -n 'COMPOSITE CONVERGENCE|rolling average|MAD noise|dimension coverage|0.60|severity.weighted|newFindingsRatio|0\.30|0\.25|0\.45' .opencode/skills/sk-deep-research/references/convergence.md` -> 2. `bash: rg -n 'COMPOSITE|rolling_average|MAD|dimension_coverage|convergence|stop_score|severity.*weight|newFindingsRatio' .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` -> 3. `bash: rg -n 'Convergence|Rolling Average|MAD|Dimension Coverage|0\.30|0\.25|0\.45|severity.weighted|newFindingsRatio' .opencode/skills/sk-deep-review/references/quick_reference.md .opencode/skills/sk-deep-review/SKILL.md .opencode/skills/sk-deep-review/README.md` | Three named signals with weights 0.30/0.25/0.45, severity-weighted newFindingsRatio, rollingStopThreshold of 0.08, a composite stop threshold above 0.60, and dimension coverage requiring all 4 review dimensions. | Capture the full signal table, YAML algorithm excerpt, severity weighting formula, and the user-facing explanation. | PASS if the signals, weights, severity weighting, and threshold align across convergence reference, YAML, and user-facing docs; FAIL if any of those elements drift materially. | Privilege the convergence reference for exact math and use quick reference and SKILL.md only as secondary confirmation. |
+.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/016-composite-review-convergence-stop-behavior.md:47:| DRV-016 | Composite review convergence stop behavior | Verify 3-signal composite convergence (rolling avg 0.30, MAD 0.25, dimension coverage 0.45) with threshold 0.60 and severity-weighted newFindingsRatio. | Validate the composite convergence contract for sk-deep-review. Confirm the rolling average signal (weight 0.30, threshold 0.08), MAD noise floor signal (weight 0.25), and dimension coverage signal (weight 0.45, requires all 4 dimensions), their severity-weighted newFindingsRatio calculation, and the >0.60 weighted stop-score threshold, then return a concise operator-facing verdict. | 1. `bash: rg -n 'COMPOSITE CONVERGENCE|rolling average|MAD noise|dimension coverage|0.60|severity.weighted|newFindingsRatio|0\.30|0\.25|0\.45' .opencode/skills/sk-deep-research/references/convergence.md` -> 2. `bash: rg -n 'COMPOSITE|rolling_average|MAD|dimension_coverage|convergence|stop_score|severity.*weight|newFindingsRatio' .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml` -> 3. `bash: rg -n 'Convergence|Rolling Average|MAD|Dimension Coverage|0\.30|0\.25|0\.45|severity.weighted|newFindingsRatio' .opencode/skills/sk-deep-review/references/quick_reference.md .opencode/skills/sk-deep-review/SKILL.md .opencode/skills/sk-deep-review/README.md` | Three named signals with weights 0.30/0.25/0.45, severity-weighted newFindingsRatio, rollingStopThreshold of 0.08, a composite stop threshold above 0.60, and dimension coverage requiring all 4 review dimensions. | Capture the full signal table, YAML algorithm excerpt, severity weighting formula, and the user-facing explanation. | PASS if the signals, weights, severity weighting, and threshold align across convergence reference, YAML, and user-facing docs; FAIL if any of those elements drift materially. | Privilege the convergence reference for exact math and use quick reference and SKILL.md only as secondary confirmation. |
 .opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/020-dimension-coverage-convergence-signal.md:3:description: "Verify the dimension coverage signal (weight 0.45) requires all 4 dimensions plus minStabilizationPasses >= 1 before contributing to convergence."
 .opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/020-dimension-coverage-convergence-signal.md:18:Dimension coverage is the heaviest-weighted convergence signal at 0.45. If it fires prematurely -- before all dimensions are examined or before findings have stabilized -- the review could stop with an incomplete picture. The `minStabilizationPasses` requirement ensures that coverage is not just claimed but verified through at least one follow-up iteration.
 .opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/020-dimension-coverage-convergence-signal.md:26:- Objective: Verify dimension coverage signal (weight 0.45) requires all 4 dimensions + minStabilizationPasses >= 1.
 .opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/020-dimension-coverage-convergence-signal.md:28:- Orchestrator prompt: Validate the dimension coverage convergence signal for sk-deep-review. Confirm that the signal has weight 0.45, requires all 4 review dimensions (Correctness, Security, Traceability, Maintainability) to be covered in strategy.md, requires `minStabilizationPasses >= 1` (at least one iteration after full coverage where no new dimension-first findings appear), and only then contributes its weight to the composite stop score, then return a concise operator-facing verdict.
 .opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/020-dimension-coverage-convergence-signal.md:31:- Expected signals: Weight 0.45, all 4 dimensions required, `minStabilizationPasses=1`, signal contributes 0 until conditions are met, strategy.md "Covered" list tracks dimension coverage.
-.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/020-dimension-coverage-convergence-signal.md:47:| DRV-020 | Dimension coverage convergence signal | Verify dimension coverage signal (weight 0.45) requires all 4 dimensions + minStabilizationPasses >= 1. | Validate the dimension coverage convergence signal for sk-deep-review. Confirm that the signal has weight 0.45, requires all 4 review dimensions (Correctness, Security, Traceability, Maintainability) to be covered, requires `minStabilizationPasses >= 1`, and only then contributes to the composite stop score, then return a concise operator-facing verdict. | 1. `bash: rg -n 'dimension.coverage|Dimension Coverage|0\.45|minStabilization|stabilization|all.*dimension|4.*dimension' .opencode/skills/sk-deep-research/references/convergence.md` -> 2. `bash: rg -n 'dimension_coverage|0\.45|minStabilization|stabilization|all_dimensions|dimension.*covered' .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` -> 3. `bash: rg -n 'Dimension Coverage|0\.45|minStabilization|stabilization|Covered|D1|D2|D3|D4|Correctness|Security|Traceability|Maintainability' .opencode/skills/sk-deep-review/references/quick_reference.md .opencode/skills/sk-deep-review/SKILL.md .opencode/skills/sk-deep-review/assets/deep_review_strategy.md` | Weight 0.45, all 4 dimensions required, `minStabilizationPasses=1`, signal contributes 0 until conditions are met, strategy.md "Covered" list tracks dimension coverage. | Capture the signal definition from convergence.md, the YAML enforcement, the 4-dimension list, and the strategy template tracking coverage. | PASS if the dimension coverage signal requires all 4 dimensions and stabilization before contributing; FAIL if the signal can fire with incomplete dimension coverage or without stabilization. | Privilege the convergence reference for the signal formula and use the strategy template and YAML for enforcement confirmation. |
+.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/020-dimension-coverage-convergence-signal.md:47:| DRV-020 | Dimension coverage convergence signal | Verify dimension coverage signal (weight 0.45) requires all 4 dimensions + minStabilizationPasses >= 1. | Validate the dimension coverage convergence signal for sk-deep-review. Confirm that the signal has weight 0.45, requires all 4 review dimensions (Correctness, Security, Traceability, Maintainability) to be covered, requires `minStabilizationPasses >= 1`, and only then contributes to the composite stop score, then return a concise operator-facing verdict. | 1. `bash: rg -n 'dimension.coverage|Dimension Coverage|0\.45|minStabilization|stabilization|all.*dimension|4.*dimension' .opencode/skills/sk-deep-research/references/convergence.md` -> 2. `bash: rg -n 'dimension_coverage|0\.45|minStabilization|stabilization|all_dimensions|dimension.*covered' .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml` -> 3. `bash: rg -n 'Dimension Coverage|0\.45|minStabilization|stabilization|Covered|D1|D2|D3|D4|Correctness|Security|Traceability|Maintainability' .opencode/skills/sk-deep-review/references/quick_reference.md .opencode/skills/sk-deep-review/SKILL.md .opencode/skills/sk-deep-review/assets/deep_review_strategy.md` | Weight 0.45, all 4 dimensions required, `minStabilizationPasses=1`, signal contributes 0 until conditions are met, strategy.md "Covered" list tracks dimension coverage. | Capture the signal definition from convergence.md, the YAML enforcement, the 4-dimension list, and the strategy template tracking coverage. | PASS if the dimension coverage signal requires all 4 dimensions and stabilization before contributing; FAIL if the signal can fire with incomplete dimension coverage or without stabilization. | Privilege the convergence reference for the signal formula and use the strategy template and YAML for enforcement confirmation. |
 .opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/020-dimension-coverage-convergence-signal.md:64:| `.opencode/skills/sk-deep-research/references/convergence.md` | Canonical convergence math; dimension coverage signal definition and minStabilizationPasses |
 .opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/019-stuck-recovery-widens-dimension-focus.md:28:- Orchestrator prompt: Validate the stuck recovery contract for sk-deep-review. Confirm that when `stuckThreshold` consecutive iterations produce `newFindingsRatio` below `noProgressThreshold`, the loop switches focus to the least-covered review dimension, that this is reflected in strategy.md "Next Focus", and that the stuck event is logged to the JSONL state, then return a concise operator-facing verdict.
 .opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/019-stuck-recovery-widens-dimension-focus.md:31:- Expected signals: `stuckThreshold=2` consecutive low-progress iterations trigger recovery, `noProgressThreshold=0.05` defines low progress, recovery selects the dimension with the lowest coverage count, strategy.md "Next Focus" is updated, and a stuck event is logged to JSONL.
-.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/019-stuck-recovery-widens-dimension-focus.md:47:| DRV-019 | Stuck recovery widens dimension focus | Verify stuck recovery switches to least-covered dimension when progress stalls. | Validate the stuck recovery contract for sk-deep-review. Confirm that when `stuckThreshold` consecutive iterations produce `newFindingsRatio` below `noProgressThreshold`, the loop switches focus to the least-covered review dimension, that this is reflected in strategy.md "Next Focus", and that the stuck event is logged to the JSONL state, then return a concise operator-facing verdict. | 1. `bash: rg -n 'stuck|STUCK|noProgress|no_progress|stuckThreshold|recovery|widen|least.covered' .opencode/skills/sk-deep-research/references/convergence.md` -> 2. `bash: rg -n 'stuck|STUCK|recovery|widen|least_covered|no_progress|stuckThreshold|RECOVERY' .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` -> 3. `bash: rg -n 'stuck|recovery|dimension.*focus|noProgress|least.covered|Next Focus' .opencode/skills/sk-deep-review/references/quick_reference.md .opencode/skills/sk-deep-review/SKILL.md .opencode/skills/sk-deep-review/assets/deep_review_strategy.md` | `stuckThreshold=2`, `noProgressThreshold=0.05`, recovery selects least-covered dimension, strategy.md "Next Focus" is updated, and stuck event logged to JSONL. | Capture the stuck detection algorithm from convergence.md, the YAML recovery step, and the strategy template showing dimension-focus rotation. | PASS if stuck detection and dimension-widening recovery are enforced and documented; FAIL if stuck iterations do not trigger a focus change or the recovery mechanism is missing. | Privilege the convergence reference for stuck detection math and the YAML workflow for recovery enforcement; use strategy template as secondary evidence. |
+.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/019-stuck-recovery-widens-dimension-focus.md:47:| DRV-019 | Stuck recovery widens dimension focus | Verify stuck recovery switches to least-covered dimension when progress stalls. | Validate the stuck recovery contract for sk-deep-review. Confirm that when `stuckThreshold` consecutive iterations produce `newFindingsRatio` below `noProgressThreshold`, the loop switches focus to the least-covered review dimension, that this is reflected in strategy.md "Next Focus", and that the stuck event is logged to the JSONL state, then return a concise operator-facing verdict. | 1. `bash: rg -n 'stuck|STUCK|noProgress|no_progress|stuckThreshold|recovery|widen|least.covered' .opencode/skills/sk-deep-research/references/convergence.md` -> 2. `bash: rg -n 'stuck|STUCK|recovery|widen|least_covered|no_progress|stuckThreshold|RECOVERY' .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml` -> 3. `bash: rg -n 'stuck|recovery|dimension.*focus|noProgress|least.covered|Next Focus' .opencode/skills/sk-deep-review/references/quick_reference.md .opencode/skills/sk-deep-review/SKILL.md .opencode/skills/sk-deep-review/assets/deep_review_strategy.md` | `stuckThreshold=2`, `noProgressThreshold=0.05`, recovery selects least-covered dimension, strategy.md "Next Focus" is updated, and stuck event logged to JSONL. | Capture the stuck detection algorithm from convergence.md, the YAML recovery step, and the strategy template showing dimension-focus rotation. | PASS if stuck detection and dimension-widening recovery are enforced and documented; FAIL if stuck iterations do not trigger a focus change or the recovery mechanism is missing. | Privilege the convergence reference for stuck detection math and the YAML workflow for recovery enforcement; use strategy template as secondary evidence. |
 .opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/019-stuck-recovery-widens-dimension-focus.md:67:| `.opencode/skills/sk-deep-review/references/quick_reference.md` | Convergence parameters including stuckThreshold; use `ANCHOR:convergence` |
 .opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/010-progressive-synthesis-behavior-for-research-md.md:3:description: "Verify that `research/research.md` remains workflow-owned while progressive updates are allowed when `progressiveSynthesis` is enabled."
 .opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/010-progressive-synthesis-behavior-for-research-md.md:14:This scenario validates progressive synthesis behavior for research/research.md for `DR-010`. The objective is to verify that `research/research.md` remains workflow-owned while progressive updates are allowed when `progressiveSynthesis` is enabled.
 .opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/010-progressive-synthesis-behavior-for-research-md.md:26:- Objective: Verify that `research/research.md` remains workflow-owned while progressive updates are allowed when `progressiveSynthesis` is enabled.
 .opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/010-progressive-synthesis-behavior-for-research-md.md:28:- Orchestrator prompt: Validate the progressive-synthesis contract for sk-deep-research. Confirm that research/research.md is workflow-owned canonical output, that incremental updates are allowed when progressiveSynthesis is true, and that synthesis still finalizes the document, then return a concise verdict.
 .opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/010-progressive-synthesis-behavior-for-research-md.md:31:- Expected signals: The docs describe `research/research.md` as workflow-owned, `progressiveSynthesis` defaults to true, and the final synthesis phase still runs.
-.opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/010-progressive-synthesis-behavior-for-research-md.md:47:| DR-010 | Progressive synthesis behavior for research/research.md | Verify that `research/research.md` remains workflow-owned while progressive updates are allowed when `progressiveSynthesis` is enabled. | Validate the progressive-synthesis contract for sk-deep-research. Confirm that `research/research.md` is workflow-owned canonical output, that incremental updates are allowed when `progressiveSynthesis` is true, and that synthesis still finalizes the document, then return a concise verdict. | 1. `bash: rg -n 'progressiveSynthesis|workflow-owned|research/research.md' .opencode/skills/sk-deep-research/README.md .opencode/skills/sk-deep-research/references/state_format.md .opencode/skills/sk-deep-research/SKILL.md` -> 2. `bash: rg -n 'progressiveSynthesis|Update Research|research/research.md' .codex/agents/deep-research.toml` -> 3. `bash: rg -n 'phase_synthesis|research_output|synthesis_complete' .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | The docs describe `research/research.md` as workflow-owned, `progressiveSynthesis` defaults to true, and the final synthesis phase still runs. | Capture the ownership wording, the progressive update rule, and the synthesis-phase contract together. | PASS if all sources agree that progressive updates may occur but final synthesis still owns canonical completion; FAIL if ownership of `research/research.md` is contradictory. | Use the runtime agent’s Step 7 and the README configuration table to resolve terse wording. |
+.opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/010-progressive-synthesis-behavior-for-research-md.md:47:| DR-010 | Progressive synthesis behavior for research/research.md | Verify that `research/research.md` remains workflow-owned while progressive updates are allowed when `progressiveSynthesis` is enabled. | Validate the progressive-synthesis contract for sk-deep-research. Confirm that `research/research.md` is workflow-owned canonical output, that incremental updates are allowed when `progressiveSynthesis` is true, and that synthesis still finalizes the document, then return a concise verdict. | 1. `bash: rg -n 'progressiveSynthesis|workflow-owned|research/research.md' .opencode/skills/sk-deep-research/README.md .opencode/skills/sk-deep-research/references/state_format.md .opencode/skills/sk-deep-research/SKILL.md` -> 2. `bash: rg -n 'progressiveSynthesis|Update Research|research/research.md' .codex/agents/deep-research.toml` -> 3. `bash: rg -n 'phase_synthesis|research_output|synthesis_complete' .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml` | The docs describe `research/research.md` as workflow-owned, `progressiveSynthesis` defaults to true, and the final synthesis phase still runs. | Capture the ownership wording, the progressive update rule, and the synthesis-phase contract together. | PASS if all sources agree that progressive updates may occur but final synthesis still owns canonical completion; FAIL if ownership of `research/research.md` is contradictory. | Use the runtime agent’s Step 7 and the README configuration table to resolve terse wording. |
 
 exec
 /bin/zsh -lc 'for f in .opencode/skills/sk-deep-review/references/convergence.md .opencode/agents/deep-research.md .opencode/agents/deep-review.md; do if [ -f "$f" ]; then echo "===== $f ====="; nl -ba "$f" | sed -n '"'1,260p'; fi; done" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -4558,7 +4558,7 @@ exec
     25	
     26	**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
     27	
-    28	**CRITICAL**: This agent executes a SINGLE iteration, not the full loop. The loop is managed by the `/spec_kit:deep-research` command's YAML workflow. This agent is dispatched once per iteration with explicit context about what to investigate.
+    28	**CRITICAL**: This agent executes a SINGLE iteration, not the full loop. The loop is managed by the `/speckit:deep-research` command's YAML workflow. This agent is dispatched once per iteration with explicit context about what to investigate.
     29	
     30	**IMPORTANT**: This agent is research-focused and codebase-agnostic. Adapts investigation approach based on the topic and available tools.
     31	
@@ -4818,7 +4818,7 @@ exec
     24	
     25	**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
     26	
-    27	**CRITICAL**: This agent executes a SINGLE review iteration, not the full loop. The loop is managed by the `/spec_kit:deep-review` command's YAML workflow. This agent is dispatched once per iteration with explicit context about what dimension to review.
+    27	**CRITICAL**: This agent executes a SINGLE review iteration, not the full loop. The loop is managed by the `/speckit:deep-review` command's YAML workflow. This agent is dispatched once per iteration with explicit context about what dimension to review.
     28	
     29	**IMPORTANT**: This agent is a hybrid of @review (quality rubric, severity classification, adversarial self-check) and the deep-review loop contract (state protocol, JSONL, lifecycle continuity). It reviews code but does NOT modify it.
     30	
@@ -6300,7 +6300,7 @@ exec
     22	
     23	**Key Decisions**: keep the playbook greenfield and create-first, use the integrated `sk-doc` root-guidance contract, and preserve the approved 19-scenario ordering from entry points through synthesis and guardrails.
     24	
-    25	**Critical Dependencies**: `.opencode/skills/sk-deep-research/`, `.opencode/commands/spec_kit/deep-research.md`, `.codex/agents/deep-research.toml`, and the `sk-doc` testing-playbook creation guide and templates.
+    25	**Critical Dependencies**: `.opencode/skills/sk-deep-research/`, `.opencode/commands/speckit/deep-research.md`, `.codex/agents/deep-research.toml`, and the `sk-doc` testing-playbook creation guide and templates.
     26	
     27	---
     28	
@@ -6614,12 +6614,12 @@ exec
    115	
    116	| File Path | Change Type | Description |
    117	|-----------|-------------|-------------|
-   118	| `.opencode/commands/spec_kit/deep-research.md` | Modify | Update command contract, outputs, and mode descriptions to match the new runtime truths. |
-   119	| `.opencode/commands/spec_kit/deep-review.md` | Modify | Update command contract, outputs, and mode descriptions to match the new runtime truths. |
-   120	| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | Add typed stop-decision events, snapshot-aware replay steps, observability capture, decomposition workflow steps, and resume-from-run handling. |
-   121	| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modify | Keep confirm-mode workflow aligned with the same runtime artifacts, replay surfaces, and optional advanced modes. |
-   122	| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | Add typed stop-decision events, snapshot-aware replay steps, observability capture, inventory/hotspot workflow steps, and resume-from-run handling. |
-   123	| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modify | Keep confirm-mode workflow aligned with the same runtime artifacts, replay surfaces, and optional advanced modes. |
+   118	| `.opencode/commands/speckit/deep-research.md` | Modify | Update command contract, outputs, and mode descriptions to match the new runtime truths. |
+   119	| `.opencode/commands/speckit/deep-review.md` | Modify | Update command contract, outputs, and mode descriptions to match the new runtime truths. |
+   120	| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | Modify | Add typed stop-decision events, snapshot-aware replay steps, observability capture, decomposition workflow steps, and resume-from-run handling. |
+   121	| `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml` | Modify | Keep confirm-mode workflow aligned with the same runtime artifacts, replay surfaces, and optional advanced modes. |
+   122	| `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml` | Modify | Add typed stop-decision events, snapshot-aware replay steps, observability capture, inventory/hotspot workflow steps, and resume-from-run handling. |
+   123	| `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml` | Modify | Keep confirm-mode workflow aligned with the same runtime artifacts, replay surfaces, and optional advanced modes. |
    124	
    125	#### Agents and Runtime Mirrors
    126	
@@ -6792,7 +6792,7 @@ exec
     72	
     73	### Key Components
     74	
-    75	- **Command layer**: `.opencode/commands/spec_kit/deep-research.md` and `.opencode/commands/spec_kit/deep-review.md`
+    75	- **Command layer**: `.opencode/commands/speckit/deep-research.md` and `.opencode/commands/speckit/deep-review.md`
     76	- **Workflow layer**: auto/confirm YAML assets for deep research and deep review
     77	- **Skill layer**: current contracts, references, config/strategy/dashboard assets
     78	- **Agent layer**: canonical `.opencode/agents/` deep-loop workers plus parity mirrors if still hand-authored
@@ -6846,12 +6846,12 @@ exec
    126	- `.opencode/skills/sk-deep-review/references/state_format.md`
    127	- `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml`
    128	- `.opencode/skills/sk-deep-review/assets/deep_review_config.json`
-   129	- `.opencode/commands/spec_kit/deep-research.md`
-   130	- `.opencode/commands/spec_kit/deep-review.md`
-   131	- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-   132	- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
-   133	- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-   134	- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+   129	- `.opencode/commands/speckit/deep-research.md`
+   130	- `.opencode/commands/speckit/deep-review.md`
+   131	- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml`
+   132	- `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml`
+   133	- `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`
+   134	- `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`
    135	- `.opencode/agents/deep-research.md`
    136	- `.opencode/agents/deep-review.md`
    137	
@@ -6881,10 +6881,10 @@ exec
    161	- `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md`
    162	- `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml`
    163	- `.opencode/skills/sk-deep-review/assets/deep_review_config.json`
-   164	- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-   165	- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
-   166	- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-   167	- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+   164	- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml`
+   165	- `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml`
+   166	- `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`
+   167	- `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`
    168	- `.opencode/agents/deep-research.md`
    169	- `.opencode/agents/deep-review.md`
    170	
@@ -6914,10 +6914,10 @@ exec
    194	- `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md`
    195	- `.opencode/skills/sk-deep-review/assets/deep_review_dashboard.md`
    196	- `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml`
-   197	- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-   198	- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
-   199	- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-   200	- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+   197	- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml`
+   198	- `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml`
+   199	- `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`
+   200	- `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`
    201	- `.opencode/agents/deep-research.md`
    202	- `.opencode/agents/deep-review.md`
    203	
@@ -7224,8 +7224,8 @@ exec
     29	### 2.1 Internal Systems Analyzed
     30	- `.opencode/skills/sk-deep-research/**`
     31	- `.opencode/skills/sk-deep-review/**`
-    32	- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_*.yaml`
-    33	- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_*.yaml`
+    32	- `.opencode/commands/speckit/assets/speckit_deep-research_*.yaml`
+    33	- `.opencode/commands/speckit/assets/speckit_deep-review_*.yaml`
     34	- `.codex/prompts/spec_kit-deep-research.md`
     35	- Runtime mirrors in `.codex/agents`, `.opencode/agent`, `.claude/agents`, `.gemini/agents`
     36	
@@ -7398,7 +7398,7 @@ exec
    203	The workflow offers `resume/restart/fork`, but restart/fork are not fully implemented as first-class executable branches.
    204	
    205	Evidence:
-   206	- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:124-128`
+   206	- `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:124-128`
 exec
 /bin/zsh -lc "printf 'Reducer write targets and inputs\\n'; nl -ba .opencode/skills/sk-deep-research/scripts/reduce-state.cjs | sed -n '466,517p'; printf '\\nDeep-review direct strategy-edit contract\\n'; nl -ba .opencode/agents/deep-review.md | sed -n '221,236p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
@@ -7742,8 +7742,8 @@ exec
     29	  ];
     30	
     31	  const commandAssets = [
-    32	    '.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml',
-    33	    '.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml',
+    32	    '.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml',
+    33	    '.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml',
     34	  ];
     35	
     36	  it('keeps primary deep-review docs aligned on canonical artifacts and lifecycle terms', () => {
@@ -7883,8 +7883,8 @@ exec
     62	  });
     63	
     64	  it('wires reducer refresh and machine-owned report guidance into both review workflows', () => {
-    65	    const autoYaml = readWorkspaceFile('.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml');
-    66	    const confirmYaml = readWorkspaceFile('.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml');
+    65	    const autoYaml = readWorkspaceFile('.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml');
+    66	    const confirmYaml = readWorkspaceFile('.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml');
     67	
     68	    for (const [docPath, content] of [
     69	      ['auto', autoYaml],
@@ -8195,8 +8195,8 @@ exec
     41	  ];
     42	
     43	  const commandAssets = [
-    44	    '.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml',
-    45	    '.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml',
+    44	    '.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml',
+    45	    '.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml',
     46	  ];
     47	
     48	  it('keeps primary docs aligned on canonical artifacts and the machine-readable capability source', () => {
@@ -8741,8 +8741,8 @@ exec
     62	  });
     63	
     64	  it('wires reducer refresh and machine-owned report guidance into both review workflows', () => {
-    65	    const autoYaml = readWorkspaceFile('.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml');
-    66	    const confirmYaml = readWorkspaceFile('.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml');
+    65	    const autoYaml = readWorkspaceFile('.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml');
+    66	    const confirmYaml = readWorkspaceFile('.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml');
     67	
     68	    for (const [docPath, content] of [
     69	      ['auto', autoYaml],

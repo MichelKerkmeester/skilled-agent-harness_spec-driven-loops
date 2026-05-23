@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-04-26T05:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Drafted Level 3 plan from sibling-skill exploration"
-    next_safe_action: "Review the decision-record ADRs, then dispatch /spec_kit:implement"
+    next_safe_action: "Review the decision-record ADRs, then dispatch /speckit:implement"
     blockers: []
     key_files:
       - "spec.md"

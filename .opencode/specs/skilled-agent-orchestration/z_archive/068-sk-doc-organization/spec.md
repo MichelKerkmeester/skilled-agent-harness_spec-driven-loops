@@ -123,7 +123,7 @@ Per-phase detail lives in child plans.
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
 - Parent spec tracks aggregate progress via this map
-- Use `/spec_kit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
+- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
 - Run `validate.sh --recursive` on parent to validate all phases as integrated unit
 
 ### Phase Handoff Criteria

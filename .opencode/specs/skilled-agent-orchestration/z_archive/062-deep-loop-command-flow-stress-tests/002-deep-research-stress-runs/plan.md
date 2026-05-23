@@ -32,7 +32,7 @@ _memory:
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-Direct adaptation of `060/004` (improve-agent stress) for `/spec_kit:deep-research`. Re-read 060/004's plan.md as the methodology source.
+Direct adaptation of `060/004` (improve-agent stress) for `/speckit:deep-research`. Re-read 060/004's plan.md as the methodology source.
 
 <!-- /ANCHOR:summary -->
 
@@ -51,7 +51,7 @@ Direct adaptation of `060/004` (improve-agent stress) for `/spec_kit:deep-resear
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-`@deep-research` is dispatched ONLY by `/spec_kit:deep-research`. The command owns iteration state, convergence, journal, gates, stop reasons. Body is a thin LEAF.
+`@deep-research` is dispatched ONLY by `/speckit:deep-research`. The command owns iteration state, convergence, journal, gates, stop reasons. Body is a thin LEAF.
 
 CP scenarios test the FULL FLOW (cmd → agent body → state files → journal → gate evaluation → next iter), not the body in isolation.
 

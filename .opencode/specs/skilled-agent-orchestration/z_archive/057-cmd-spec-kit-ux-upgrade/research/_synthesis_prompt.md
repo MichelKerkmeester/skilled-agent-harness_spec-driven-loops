@@ -1,6 +1,6 @@
 # Deep-Research Synthesis Pass
 
-You are completing a 10-iteration deep-research loop comparing external SPAR-Kit (jed-tech, npm @spar-kit/install Beta1, Specify→Plan→Act→Retain) at `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/` against internal `system-spec-kit` (`.opencode/skills/system-spec-kit/SKILL.md`, templates/, `.opencode/commands/spec_kit/`, `.opencode/commands/memory/`, `.opencode/commands/create/`, `.opencode/agents/`).
+You are completing a 10-iteration deep-research loop comparing external SPAR-Kit (jed-tech, npm @spar-kit/install Beta1, Specify→Plan→Act→Retain) at `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/` against internal `system-spec-kit` (`.opencode/skills/system-spec-kit/SKILL.md`, templates/, `.opencode/commands/speckit/`, `.opencode/commands/memory/`, `.opencode/commands/create/`, `.opencode/agents/`).
 
 ## Read state
 - `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/research/iterations/iteration-001.md` … `iteration-010.md` (whichever exist)

@@ -217,7 +217,7 @@ Run a structured deep-research audit that (a) characterizes each skill's defensi
 ## 12. OPEN QUESTIONS
 
 - Is "deep" the right shared prefix, or do we need a clearer family name?
-- Should one of the three subsume the other two as modes (e.g. `/spec_kit:deep :review`, `:research`, `:council`)?
+- Should one of the three subsume the other two as modes (e.g. `/speckit:deep :review`, `:research`, `:council`)?
 - What's the parity-test contract that guarantees boundaries stay sharp post-merge or post-rename?
 
 ---

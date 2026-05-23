@@ -78,7 +78,7 @@ Rename `.opencode/commands/` → `.opencode/commands/` (69 files across 6 subdir
 | `.opencode/command/**` → `.opencode/commands/**` | Move | 69 files renamed via `git mv .opencode/command .opencode/commands` |
 | `**/*.{md,json,jsonl,ts,js,sh,yaml,yml,jsonc}` | Modify | Bulk sed |
 | `.opencode/commands/doctor/scripts/audit_descriptions.py` | Modify | Command path validators |
-| `.opencode/skills/deep-agent-improvement/assets/target_manifest.jsonc` | Modify | `.opencode/commands/spec_kit/handover.md` |
+| `.opencode/skills/deep-agent-improvement/assets/target_manifest.jsonc` | Modify | `.opencode/commands/speckit/handover.md` |
 | `.opencode/commands/doctor/scripts/mcp-doctor.sh` | Modify | Hardcoded path strings |
 <!-- /ANCHOR:scope -->
 

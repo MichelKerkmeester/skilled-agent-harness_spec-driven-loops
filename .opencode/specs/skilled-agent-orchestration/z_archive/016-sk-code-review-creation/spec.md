@@ -80,7 +80,7 @@ Promote `sk-code-review` as a first-class, stack-agnostic review baseline that:
 |------|-------|
 | Skill package | `.opencode/skills/sk-code-review/SKILL.md`, `.opencode/skills/sk-code-review/README.md`, `.opencode/skills/sk-code-review/references/*.md` |
 | Review agents/orchestrators | `.opencode/agents/review.md`, .opencode/agents/chatgpt/review.md, `.opencode/agents/orchestrate.md`, .opencode/agents/chatgpt/orchestrate.md, `.gemini/agents/review.md`, `.gemini/agents/orchestrate.md`, `.claude/agents/review.md`, `.claude/agents/orchestrate.md`, `.codex/agents/review.toml`, `.codex/agents/orchestrate.toml` |
-| Review dispatch commands | 18 YAMLs under `.opencode/commands/spec_kit/assets/` and `.opencode/commands/create/assets/` (full list in `tasks.md`) |
+| Review dispatch commands | 18 YAMLs under `.opencode/commands/speckit/assets/` and `.opencode/commands/create/assets/` (full list in `tasks.md`) |
 | Routing + catalogs | `.opencode/skills/scripts/skill_advisor.py`, `.opencode/skills/README.md`, `.opencode/README.md` |
 | Spec docs | `.opencode/specs/03--commands-and-skills/016-sk-code-review-creation/spec.md`, `.opencode/specs/03--commands-and-skills/016-sk-code-review-creation/plan.md`, `.opencode/specs/03--commands-and-skills/016-sk-code-review-creation/tasks.md`, `.opencode/specs/03--commands-and-skills/016-sk-code-review-creation/checklist.md`, `.opencode/specs/03--commands-and-skills/016-sk-code-review-creation/implementation-summary.md` |
 <!-- /ANCHOR:scope -->

@@ -28,7 +28,7 @@ confidence: high
 finding: Babysitter's test philosophy suggests `system-spec-kit` should add deterministic workflow simulation tests for command lifecycles, gate transitions, interruption/resume flows, and state repair. The current parity tests are necessary, but not sufficient for the more runtime-driven architecture now under consideration.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skills/system-spec-kit/scripts/tests/`, `.opencode/commands/spec_kit/assets/`
+- **Target file or module:** `.opencode/skills/system-spec-kit/scripts/tests/`, `.opencode/commands/speckit/assets/`
 - **Change type:** new tests
 - **Blast radius:** medium
 - **Prerequisites:** define a minimal fake-run harness for `spec_kit` command workflows and a stable artifact snapshot format

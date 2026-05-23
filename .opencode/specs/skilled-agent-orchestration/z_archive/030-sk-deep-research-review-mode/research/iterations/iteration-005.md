@@ -5,7 +5,7 @@ Define how the current 6 cross-reference protocols should become first-class, ma
 
 ## Current Contract Gaps
 1. Cross-reference handling is currently documented as prose plus a six-row appendix: the loop protocol says the agent applies 6 protocols and writes PASS/FAIL/PARTIAL results with evidence into the iteration file, and synthesis later aggregates those prose results into the review report. That is a reporting convention, not a typed state contract. [SOURCE: .opencode/skills/sk-deep-research/references/loop_protocol.md:624-639]
-2. The review YAML exposes `cross_reference_targets` during scope discovery and requires a Cross-Reference Results table in the final report shape, but it does not define a machine-readable per-iteration result schema or stop-rule interaction for those checks. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:162-169] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:534-536] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:674-682]
+2. The review YAML exposes `cross_reference_targets` during scope discovery and requires a Cross-Reference Results table in the final report shape, but it does not define a machine-readable per-iteration result schema or stop-rule interaction for those checks. [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:162-169] [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:534-536] [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:674-682]
 3. The `@deep-review` agent still treats cross-reference work as a dimension-specific or fallback activity and only mandates generic JSONL metadata like `status`, `focus`, `ruledOut`, and `newFindingsRatio`; there is no structured field for protocol-level results. [SOURCE: .opencode/agents/deep-review.md:83-93] [SOURCE: .opencode/agents/deep-review.md:106-115] [SOURCE: .opencode/agents/deep-review.md:233-247] [SOURCE: .opencode/agents/deep-review.md:417-422]
 4. Q2 already decided that cross-reference protocols should live under `traceability`, not as a separate top-level taxonomy, so the right redesign is a typed traceability-check contract rather than another parallel scoring system. [SOURCE: .opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/research/deep-research-strategy.md:62] [SOURCE: .opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/research/deep-research-strategy.md:141]
 
@@ -68,24 +68,24 @@ Adopt a three-layer model:
 - `not_applicable`: protocol is outside the active target's overlay set
 - `blocked`: protocol should apply, but prerequisite artifacts were missing or unreadable
 
-This format is machine-verifiable because `applicable`, `counts`, `status`, `gateClass`, and `evidence` can be linted for completeness and consistency rather than inferred from prose. [SOURCE: .opencode/skills/sk-deep-research/references/loop_protocol.md:626-639] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:167-169] [SOURCE: .opencode/agents/deep-review.md:240-247]
+This format is machine-verifiable because `applicable`, `counts`, `status`, `gateClass`, and `evidence` can be linted for completeness and consistency rather than inferred from prose. [SOURCE: .opencode/skills/sk-deep-research/references/loop_protocol.md:626-639] [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:167-169] [SOURCE: .opencode/agents/deep-review.md:240-247]
 
 ## Core vs Overlay Mapping
 ### Core contract checks
 1. `spec_code`
-   - Universal whenever the review target includes normative spec or contract claims that can be compared against implementation or generated runtime artifacts. This is already implied by `spec-alignment`, scope discovery, and the first protocol in both loop docs and YAML. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:165-169] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:669] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:677]
+   - Universal whenever the review target includes normative spec or contract claims that can be compared against implementation or generated runtime artifacts. This is already implied by `spec-alignment`, scope discovery, and the first protocol in both loop docs and YAML. [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:165-169] [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:669] [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:677]
 2. `checklist_evidence`
-   - Universal whenever completion claims exist, because review mode already treats checked items and cited evidence as a first-class truth surface. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:670] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:678] [SOURCE: .opencode/skills/sk-deep-research/references/loop_protocol.md:630-633]
+   - Universal whenever completion claims exist, because review mode already treats checked items and cited evidence as a first-class truth surface. [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:670] [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:678] [SOURCE: .opencode/skills/sk-deep-research/references/loop_protocol.md:630-633]
 
 ### Target-specific overlays
 1. `skill_agent`
-   - Overlay for `skill` reviews and any spec-folder review whose implementation hinges on agent behavior generated from `SKILL.md`. [SOURCE: .opencode/skills/sk-deep-research/references/loop_protocol.md:632-634] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:679]
+   - Overlay for `skill` reviews and any spec-folder review whose implementation hinges on agent behavior generated from `SKILL.md`. [SOURCE: .opencode/skills/sk-deep-research/references/loop_protocol.md:632-634] [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:679]
 2. `agent_cross_runtime`
-   - Overlay for `agent` reviews and multi-runtime contract parity checks. This should become a required overlay when the review target type is `agent`; otherwise it is advisory. [SOURCE: .opencode/skills/sk-deep-research/references/loop_protocol.md:633-635] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:680]
+   - Overlay for `agent` reviews and multi-runtime contract parity checks. This should become a required overlay when the review target type is `agent`; otherwise it is advisory. [SOURCE: .opencode/skills/sk-deep-research/references/loop_protocol.md:633-635] [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:680]
 3. `feature_catalog_code`
-   - Overlay only when catalog artifacts exist in scope; otherwise it should cleanly emit `not_applicable` instead of forcing empty noise into every run. [SOURCE: .opencode/skills/sk-deep-research/references/loop_protocol.md:634-636] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:681]
+   - Overlay only when catalog artifacts exist in scope; otherwise it should cleanly emit `not_applicable` instead of forcing empty noise into every run. [SOURCE: .opencode/skills/sk-deep-research/references/loop_protocol.md:634-636] [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:681]
 4. `playbook_capability`
-   - Overlay only when operator playbooks or scenario docs are in scope and executable capability claims can actually be checked. [SOURCE: .opencode/skills/sk-deep-research/references/loop_protocol.md:635-637] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:682]
+   - Overlay only when operator playbooks or scenario docs are in scope and executable capability claims can actually be checked. [SOURCE: .opencode/skills/sk-deep-research/references/loop_protocol.md:635-637] [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:682]
 
 [INFERENCE: Keeping `skill_agent`, `agent_cross_runtime`, `feature_catalog_code`, and `playbook_capability` out of the universal minimum avoids turning absent artifacts into false failures, while still allowing them to become required overlays for the target types that depend on them.]
 
@@ -163,7 +163,7 @@ That keeps the dashboard small and operator-friendly while preserving JSONL as t
 ## Sources Consulted
 - `.opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/research/deep-research-strategy.md`
 - `.opencode/skills/sk-deep-research/references/loop_protocol.md`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml`
+- `.opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml`
 - `.opencode/agents/deep-review.md`
 
 ## Assessment
@@ -178,4 +178,4 @@ That keeps the dashboard small and operator-friendly while preserving JSONL as t
 - Caution: the next implementation step should validate that the proposed `partial` and `blocked` semantics integrate cleanly with the existing STOP/CONTINUE guard path before hard-coding them.
 
 ## Recommended Next Focus
-Q5: redesign `review-report.md` so the richer machine-verifiable traceability state turns into a more actionable remediation packet for downstream `/spec_kit:plan` work rather than just a final narrative.
+Q5: redesign `review-report.md` so the richer machine-verifiable traceability state turns into a more actionable remediation packet for downstream `/speckit:plan` work rather than just a final narrative.

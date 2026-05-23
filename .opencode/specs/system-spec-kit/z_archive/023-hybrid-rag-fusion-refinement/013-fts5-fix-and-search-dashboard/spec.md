@@ -50,7 +50,7 @@ This is **Phase 13** of the ESM Module Compliance specification and captures the
 | **Priority** | P0 (Items 1, 3), P1 (Items 2, 4–8) |
 | **Status** | Completed |
 | **Created** | 2026-04-01 |
-| **Branch** | `system-speckit/024-compact-code-graph` |
+| **Branch** | `system-spec-kit/024-compact-code-graph` |
 <!-- /ANCHOR:metadata -->
 
 ---

@@ -107,7 +107,7 @@ Direct in-place YAML edit per call site. No new files, no helper layer between Y
 ### Phase 1: Setup
 
 - [ ] Confirm phase 003 + 004 are landed (run sibling-phase `validate.sh` for each).
-- [ ] Re-run `grep -n "mcp__mk_spec_memory__deep_loop_graph" .opencode/commands/spec_kit/assets/spec_kit_deep-*.yaml` to capture current line numbers (drift since scaffold is possible).
+- [ ] Re-run `grep -n "mcp__mk_spec_memory__deep_loop_graph" .opencode/commands/speckit/assets/speckit_deep-*.yaml` to capture current line numbers (drift since scaffold is possible).
 - [ ] Verify `.opencode/skills/deep-loop-runtime/scripts/convergence.cjs` and `upsert.cjs` exist and are executable.
 - [ ] Smoke-test `node .../convergence.cjs --spec-folder <sandbox> --loop-type review --session-id smoke-test` returns valid JSON on stdout.
 

@@ -20,14 +20,14 @@ Security. This pass audited hook integrity across Claude, Codex, Gemini, and Ope
 - `.gemini/settings.json:125`
 - `opencode.json:3`
 - `opencode.json:8`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:89`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:118`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:674`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:678`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:690`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:710`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:94`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:743`
+- `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:89`
+- `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:118`
+- `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:674`
+- `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:678`
+- `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:690`
+- `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:710`
+- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:94`
+- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:743`
 - `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs:55`
 - `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs:200`
 - `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs:262`
@@ -70,7 +70,7 @@ Additional checks:
 #### P1-005 [P1] Deep-loop artifact resolver accepts malformed `spec_folder` values that redirect review writes outside the approved packet
 
 - Claim: The deep-review/deep-research workflow says `{spec_folder}` is the write authority, but the shared resolver accepts arbitrary, whitespace, template, absolute, and traversal values and derives `{artifact_dir}` from them without requiring containment under `.opencode/specs`.
-- Evidence refs: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:89`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:118`, `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs:200`, `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs:262`, `.opencode/skills/deep-review/scripts/reduce-state.cjs:1172`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:678`.
+- Evidence refs: `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:89`, `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:118`, `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs:200`, `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs:262`, `.opencode/skills/deep-review/scripts/reduce-state.cjs:1172`, `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:678`.
 - Evidence: `step_resolve_artifact_root` passes raw `{spec_folder}` into `resolveArtifactRoot`. The resolver immediately does `path.resolve(specFolder)`, constructs `rootDir = path.join(resolved, mode)`, and later allocates child packets under that root. A dry-run showed `.` resolves to `<repo>/review`, whitespace resolves to `<repo>/   /review`, `/tmp/dr-escape` resolves to `/tmp/dr-escape/review`, `{spec_folder}` resolves to a literal template directory, and `.opencode/specs/../../..` resolves outside the repo into `.../Code_Environment/review`.
 - Impact: under malformed setup/config, iteration markdown, JSONL deltas, state logs, and reducer outputs can be aimed outside the intended `.opencode/specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/002-track-review/review/` packet. The cli-codex branch uses `approval_policy=never` and `--sandbox workspace-write`, which prevents prompting but does not encode a packet-local write allowlist.
 - Finding class: cross-consumer.
@@ -81,10 +81,10 @@ Additional checks:
 {
   "claim": "Malformed spec_folder values can redirect deep-loop review/research artifacts outside the approved review packet because resolveArtifactRoot trusts raw input.",
   "evidenceRefs": [
-    ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:118",
+    ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:118",
     ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs:200",
     ".opencode/skills/deep-review/scripts/reduce-state.cjs:1172",
-    ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:678"
+    ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:678"
   ],
   "counterevidenceSought": "Dry-ran resolveArtifactRoot with valid, empty/whitespace, template, traversal, repo-root, and /tmp inputs; no rejection occurred.",
   "alternativeExplanation": "The outer command setup may usually provide a valid spec folder, but the resolver and reducer are shared safety boundaries and do not enforce that invariant themselves.",
@@ -125,7 +125,7 @@ Additional checks:
 
 - Status this iteration: Carry-forward, unchanged.
 - Security tie: the same YAML region that points to non-existent `sk-deep-*` paths also owns executor dispatch and prompt-pack rendering. Until corrected, fresh command-owned safety checks can fail before reaching validation.
-- Evidence refs: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:56`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:67`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:639`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:743`.
+- Evidence refs: `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:56`, `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:67`, `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:639`, `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:743`.
 - Recommendation: replace stale skill paths with `.opencode/skills/deep-review` and `.opencode/skills/deep-research`.
 
 #### P1-003 [P1] Skill advisor source still writes `.opencode/skill/.advisor-state`
@@ -147,7 +147,7 @@ Additional checks:
 #### P2-004 [P2] Deep-review YAML documents a Copilot target-authority guard that is not implemented or wired in the executor schema
 
 - Claim: The deep-review auto YAML says `buildCopilotPromptArg` validates `spec_folder`, prepends a TARGET AUTHORITY preamble, and strips `--allow-all-tools` on malformed input, but the imported helper is absent from `executor-config.ts` and `cli-copilot` is not an allowed executor kind.
-- Evidence refs: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:690`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:696`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:710`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:744`, `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:7`.
+- Evidence refs: `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:690`, `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:696`, `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:710`, `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:744`, `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:7`.
 - Impact: today this appears to fail closed because `cli-copilot` is not accepted by `EXECUTOR_KINDS`, but the YAML's security assurance is not backed by code. If the branch is re-enabled by config/schema drift, the guard will fail at import rather than enforce the advertised target authority.
 - Finding class: matrix/evidence.
 - Recommendation: either remove the dead Copilot branch and notes, or implement/export `buildCopilotPromptArg` with tests for empty, whitespace, template, traversal, and valid packet-local `spec_folder` inputs before adding `cli-copilot` to the schema.

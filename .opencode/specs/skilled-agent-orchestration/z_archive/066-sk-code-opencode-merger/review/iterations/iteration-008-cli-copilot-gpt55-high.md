@@ -17,7 +17,7 @@ I’ll perform the read-only adversarial audit, collect line-cited evidence acro
   └ No matches found
 
 ● Search (glob)
-  │ ".opencode/commands/spec_kit/assets/spec_kit_{implement,complete}_{auto,confi
+  │ ".opencode/commands/speckit/assets/speckit_{implement,complete}_{auto,confi
   │ rm}.yaml"
   └ 4 files found
 
@@ -81,7 +81,7 @@ I’ve located the packet, prior review artifacts, the merged `sk-code` surface,
 ● Search (grep)
   │ "standards_contract|baseline:|router|surface|OPENCODE|WEBFLOW|UNKNOWN|review
   │ _agent|sk-code-review" in spec_kit_{implement,complete}_{auto,confirm}.yaml
-  │ (.opencode/commands/spec_kit/assets)
+  │ (.opencode/commands/speckit/assets)
   └ 7 lines found
 
 ● Search (grep)
@@ -95,7 +95,7 @@ I’ve located the packet, prior review artifacts, the merged `sk-code` surface,
   │ skill|baseline.*sk-code|GO|NEXTJS|NextJS|Next\.js|React/Next|react/next|go
   │ route|nextjs" (.opencode/skills/sk-code, .opencode/skills/sk-code-review,
   │ .opencode/agent, .claude/agents, .gemini/agents, .codex/agents,
-  │ .opencode/commands/spec_kit/assets)
+  │ .opencode/commands/speckit/assets)
   └ 7 lines found
 
 ● Search (grep)
@@ -130,8 +130,8 @@ I’ve located the packet, prior review artifacts, the merged `sk-code` surface,
   │ .opencode/skills/sk-code-review/SKILL.md
   └ L180:330 (150 lines read)
 
-● Read spec_kit_implement_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml
+● Read speckit_implement_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_implement_auto.yaml
   └ L190:240 (51 lines read)
 
 A concrete inconsistency is emerging in the new router docs: they claim “first match wins” while also saying `.opencode/` target files force OPENCODE, but Webflow is checked first and the illustrative snippet ends by resetting to UNKNOWN. I’ll keep checking whether this is isolated wording or a broader release contract issue before writing findings.
@@ -210,7 +210,7 @@ A concrete inconsistency is emerging in the new router docs: they claim “first
   │ "TODO|FIXME|TBD|placeholder|populate this
   │ section|UNKNOWN|silent|eval|subprocess|shell=True|os\.system"
   │ (.opencode/skills/sk-code, .opencode/skills/sk-code-review,
-  │ .opencode/commands/spec_kit/assets)
+  │ .opencode/commands/speckit/assets)
   └ 6 lines found
 
 ● Search (glob)
@@ -241,12 +241,12 @@ A concrete inconsistency is emerging in the new router docs: they claim “first
   │ .codex/agents/code.toml
   └ L1:120 (120 lines read)
 
-● Read spec_kit_complete_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml
+● Read speckit_complete_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_complete_auto.yaml
   └ L300:330 (31 lines read)
 
-● Read spec_kit_complete_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml
+● Read speckit_complete_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_complete_confirm.yaml
   └ L310:330 (21 lines read)
 
 ● Read code.md
@@ -391,7 +391,7 @@ Second-opinion verdict is **CONDITIONAL**: the prior four remediations appear ad
 
 ## 4. Adversarial questions considered but ruled out
 
-- **Did the prior F004 baseline remediation regress?** Ruled out: the scoped command YAMLs now show `standards_contract.baseline: "sk-code-review"` with `sk-code` as router-selected evidence, e.g. `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:213`-`.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:216`.
+- **Did the prior F004 baseline remediation regress?** Ruled out: the scoped command YAMLs now show `standards_contract.baseline: "sk-code-review"` with `sk-code` as router-selected evidence, e.g. `.opencode/commands/speckit/assets/speckit_implement_auto.yaml:213`-`.opencode/commands/speckit/assets/speckit_implement_auto.yaml:216`.
 - **Is there a new security issue in the moved alignment verifier?** Ruled out for this pass: the verifier walks caller-provided roots and parses code/config files, but I did not find shell execution, command interpolation, secret handling, or broadened write behavior in the reviewed snippet.
 - **Are old `sk-code-opencode` references automatically blocking?** Ruled out as a blanket claim: several remaining references are in the packet/history itself, so only live routing or misleading audit-ledger references are actionable.
 - **Should unsupported Go/Next.js mention in migration notes be a finding?** Ruled out: current `sk-code` docs explicitly say these placeholder branches were removed and UNKNOWN should be used unless a future route is approved.

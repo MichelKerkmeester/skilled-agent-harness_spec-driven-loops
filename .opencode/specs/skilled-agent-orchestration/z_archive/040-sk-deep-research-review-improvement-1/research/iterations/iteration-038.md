@@ -10,7 +10,7 @@ Deep-review artifact naming drift across SKILL, README, references, and YAML.
 - `.opencode/skills/sk-deep-review/SKILL.md:190-210`
 - `.opencode/skills/sk-deep-review/README.md:155-160`
 - `.opencode/skills/sk-deep-review/references/state_format.md:19-34`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:83-85`
+- `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:83-85`
 
 ## Analysis
 SKILL describes `deep-review-config.json`/`deep-review-state.jsonl`, while README/references/YAML continue using `deep-research-*` names for review packets.

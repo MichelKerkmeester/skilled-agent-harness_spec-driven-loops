@@ -1,6 +1,6 @@
 ---
 title: "Feature Specificat [system-spec-kit/z_future/agentic-system-upgrade/002-agentic-adoption/002-retry-feedback-bridge/spec]"
-description: "Add a packet-local implement-verify-review-retry bridge for /spec_kit:implement that preserves compressed reviewer feedback without turning retries into a second durable memory system."
+description: "Add a packet-local implement-verify-review-retry bridge for /speckit:implement that preserves compressed reviewer feedback without turning retries into a second durable memory system."
 trigger_phrases:
   - "feature"
   - "specification"
@@ -54,7 +54,7 @@ Turn the research synthesis for 002 retry feedback bridge into one follow-on imp
 ## 3. SCOPE
 
 ### In Scope
-- Design the first implementable retry loop as a wrapper around `/spec_kit:implement` and its YAML workflow assets.
+- Design the first implementable retry loop as a wrapper around `/speckit:implement` and its YAML workflow assets.
 - Carry only the minimum reviewer feedback needed between attempts, with fresh execution context on each retry.
 - Gate review behind executable verification so failed build, lint, or test runs stop the loop before review begins.
 
@@ -67,8 +67,8 @@ Turn the research synthesis for 002 retry feedback bridge into one follow-on imp
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/commands/spec_kit/implement.md` | Modify | Primary affected surface for the adoption work |
-| `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml` | Modify | Primary affected surface for the adoption work |
+| `.opencode/commands/speckit/implement.md` | Modify | Primary affected surface for the adoption work |
+| `.opencode/commands/speckit/assets/speckit_implement_auto.yaml` | Modify | Primary affected surface for the adoption work |
 | `.opencode/agents/review.md` | Modify | Primary affected surface for the adoption work |
 | `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | Modify | Primary affected surface for the adoption work |
 <!-- /ANCHOR:scope -->
@@ -82,7 +82,7 @@ Turn the research synthesis for 002 retry feedback bridge into one follow-on imp
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Keep the current Public authorities authoritative | The packet does not recommend replacing `/spec_kit:*`, the current agent stack, Spec Kit Memory, CocoIndex, or code-graph |
+| REQ-001 | Keep the current Public authorities authoritative | The packet does not recommend replacing `/speckit:*`, the current agent stack, Spec Kit Memory, CocoIndex, or code-graph |
 | REQ-002 | Define the adoption as a wrapper or refactor over current surfaces | The packet maps the work to current repo files and avoids backend transplant language |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -99,7 +99,7 @@ Turn the research synthesis for 002 retry feedback bridge into one follow-on imp
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: A concrete wrapper design exists for `/spec_kit:implement` with retry triggers, stop conditions, and review gates.
+- **SC-001**: A concrete wrapper design exists for `/speckit:implement` with retry triggers, stop conditions, and review gates.
 - **SC-002**: The phase names affected runtime files and contract tests before implementation begins.
 - **SC-003**: The design preserves the current agent stack and uses existing review and validation authorities instead of replacing them.
 

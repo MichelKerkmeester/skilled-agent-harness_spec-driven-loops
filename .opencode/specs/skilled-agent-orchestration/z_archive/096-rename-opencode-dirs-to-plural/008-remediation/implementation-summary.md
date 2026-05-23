@@ -53,10 +53,10 @@ _memory:
 ### P1-027 — `--pure` flag added to all 4 if_cli_opencode YAML branches
 
 Inserted `--pure` line into each of:
-- `commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-- `commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
-- `commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-- `commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+- `commands/speckit/assets/speckit_deep-review_auto.yaml`
+- `commands/speckit/assets/speckit_deep-review_confirm.yaml`
+- `commands/speckit/assets/speckit_deep-research_auto.yaml`
+- `commands/speckit/assets/speckit_deep-research_confirm.yaml`
 
 Position: after `--dangerously-skip-permissions`, before `{optional_variant_flag}`. Now opencode runs with plugin tools stripped, so DeepSeek-family models accept the tool list (no more `:` separator violation). The `executor_fallback` to native that occurred during the 102 dispatch is no longer triggered.
 
@@ -102,10 +102,10 @@ Test count: 21 → 25 (all pass).
 
 | File | Change Type | Finding |
 |------|-------------|---------|
-| `commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modified | P1-027 (--pure inserted) |
-| `commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modified | P1-027 |
-| `commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modified | P1-027 |
-| `commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modified | P1-027 |
+| `commands/speckit/assets/speckit_deep-review_auto.yaml` | Modified | P1-027 (--pure inserted) |
+| `commands/speckit/assets/speckit_deep-review_confirm.yaml` | Modified | P1-027 |
+| `commands/speckit/assets/speckit_deep-research_auto.yaml` | Modified | P1-027 |
+| `commands/speckit/assets/speckit_deep-research_confirm.yaml` | Modified | P1-027 |
 | `mcp_server/lib/deep-loop/executor-config.ts:37-41` | Modified | P1-028 (sandboxMode removed) |
 | `mcp_server/dist/**` | Regenerated | P1-028 |
 | `mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts:240-246` | Modified | P2-027/P2-027r |

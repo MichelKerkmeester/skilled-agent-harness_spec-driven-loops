@@ -15,7 +15,7 @@ I read Agent Lightning's reflective config utility and its tests, then compared 
 - Agent Lightning's `config.py` begins with a warning that the file is not carefully reviewed and may contain unintentional bugs. [SOURCE: external/agentlightning/config.py:3-7]
 - The helper infers CLI argument types by reflecting over constructor annotations and building argparse options dynamically. [SOURCE: external/agentlightning/config.py:85-176] [SOURCE: external/agentlightning/config.py:179-216]
 - The associated test file repeats the caveat that it ensures only "somewhat correctness" and should not be used as a reference for expected behavior. [SOURCE: external/tests/test_config.py:5-10]
-- `system-spec-kit`'s deep-research command intentionally defines a very explicit setup contract, with resolved inputs, allowed suffixes, and YAML handoff rules spelled out directly. [SOURCE: .opencode/commands/spec_kit/deep-research.md:7-21] [SOURCE: .opencode/commands/spec_kit/deep-research.md:39-63]
+- `system-spec-kit`'s deep-research command intentionally defines a very explicit setup contract, with resolved inputs, allowed suffixes, and YAML handoff rules spelled out directly. [SOURCE: .opencode/commands/speckit/deep-research.md:7-21] [SOURCE: .opencode/commands/speckit/deep-research.md:39-63]
 - Public's AGENTS contract also makes explicit routing and gate behavior part of the command surface rather than auto-derived behavior. [SOURCE: AGENTS.md:165-186]
 
 ## Analysis

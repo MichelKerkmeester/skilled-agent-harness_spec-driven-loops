@@ -54,7 +54,7 @@
 **Question**: Does the 102-track-rereview-2 registry now contain the 2 findings (P1-027, P2-027) from iter-1's delta payload?
 
 **Evidence** (`deep-review-findings-registry.json:9-53`):
-- `openFindings[0]`: P1-027 with file=`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`, dimension=correctness, status=active
+- `openFindings[0]`: P1-027 with file=`.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`, dimension=correctness, status=active
 - `openFindings[1]`: P2-027 with file=`.opencode/skills/.../aliases.ts`, dimension=correctness (note: delta said traceability but `deriveDimension` on title fall-through assigned correctness — see Probe 3.5)
 - `findingsBySeverity`: {P0:0, P1:1, P2:1} matches iter-1 delta exactly
 - `openFindingsCount`: 2 matches delta count

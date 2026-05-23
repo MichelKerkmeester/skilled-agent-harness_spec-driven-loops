@@ -26,7 +26,7 @@ This iteration investigated D2 by auditing how the new `sk-deep-review` reducer 
 - .opencode/skills/sk-deep-review/references/state_format.md:171-206
 - .opencode/skills/sk-deep-review/references/convergence.md:44-87
 - .opencode/skills/sk-deep-review/references/convergence.md:364-411
-- .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:335-437
+- .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:335-437
 
 ## Reflection
 - What worked and why: A disposable temp review packet made it possible to separate "malformed JSONL is skipped" from the more important registry/dashboard divergence caused by partially written markdown.

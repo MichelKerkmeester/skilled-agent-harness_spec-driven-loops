@@ -1203,7 +1203,7 @@ workflow:
              - Review scope summary
 
           2. **Planning Trigger**
-             - State whether `/spec_kit:plan` is required
+             - State whether `/speckit:plan` is required
              - Include a fenced `json` block labeled `Planning Packet`
              - The packet MUST include: `triggered`, `verdict`, `hasAdvisories`, `activeFindings`, `remediationWorkstreams`, `specSeed`, `planSeed`, `findingClasses`, `affectedSurfacesSeed`, `fixCompletenessRequired`
              - Build `activeFindings`, `findingClasses`, and `affectedSurfacesSeed` from reducer-owned state plus iteration JSONL `findingDetails`; if a field is missing, mark it `UNKNOWN` instead of inferring it from prose
@@ -1219,7 +1219,7 @@ workflow:
              - Concrete seed bullets for follow-on spec updates
 
           6. **Plan Seed**
-             - Concrete starter tasks for `/spec_kit:plan`
+             - Concrete starter tasks for `/speckit:plan`
 
           7. **Traceability Status**
              - Summarize required core protocols first, then applicable overlay protocols
@@ -1273,7 +1273,7 @@ workflow:
 
           Options:
           A) Approve and save to memory
-          B) Generate remediation plan (creates action items for /spec_kit:plan)
+          B) Generate remediation plan (creates action items for /speckit:plan)
           C) Request revisions to review/review-report.md
           D) Skip memory save
         wait_for: "User response"
@@ -1323,9 +1323,9 @@ workflow:
 
       STATUS=OK PATH={spec_folder}
     next_steps:
-      - "/spec_kit:plan [remediation] (if FAIL or CONDITIONAL verdict)"
+      - "/speckit:plan [remediation] (if FAIL or CONDITIONAL verdict)"
       - "/create:changelog (if PASS, including PASS with hasAdvisories=true)"
-      - "/spec_kit:deep-review [target] (for another review)"
+      - "/speckit:deep-review [target] (for another review)"
       - "/memory:save {spec_folder} (refresh canonical continuity before the next session)"
 
 # ─────────────────────────────────────────────────────────────────

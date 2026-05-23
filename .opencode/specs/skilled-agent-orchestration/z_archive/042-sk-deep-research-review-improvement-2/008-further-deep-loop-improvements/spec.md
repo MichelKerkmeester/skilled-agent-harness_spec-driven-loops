@@ -51,7 +51,7 @@ The packet’s final closeout also records the focused closing audit in `scratch
 | **Status** | Complete |
 | **Created** | 2026-04-11 |
 | **Completed** | 2026-04-11 |
-| **Branch** | `system-speckit/026-graph-and-context-optimization` |
+| **Branch** | `system-spec-kit/026-graph-and-context-optimization` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Plan** | `../plan.md` |
 | **Phase** | 8 of 8 |
@@ -93,7 +93,7 @@ Capture the completed remediation as a clean Level 3 child packet that shows wha
 - `.opencode/skills/sk-deep-review/` runtime docs, reducers, fixtures, and playbooks touched by the Phase 008 release.
 - `.opencode/skills/sk-improve-agent/` runtime docs, reducers, fixtures, and playbooks touched by the Phase 008 release.
 - `.opencode/skills/system-spec-kit/` shared coverage-graph helpers, handlers, and tests touched by graph convergence and session isolation work.
-- `.opencode/commands/spec_kit/` and `.opencode/commands/improve/` workflow docs and YAMLs touched by visible-path wiring.
+- `.opencode/commands/speckit/` and `.opencode/commands/improve/` workflow docs and YAMLs touched by visible-path wiring.
 - Phase-local closeout artifacts in `scratch/closing-review.md` and the phase packet documentation itself.
 
 ### Out of Scope

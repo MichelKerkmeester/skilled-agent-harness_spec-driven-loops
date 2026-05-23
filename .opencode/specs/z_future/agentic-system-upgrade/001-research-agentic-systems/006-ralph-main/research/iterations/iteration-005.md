@@ -16,7 +16,7 @@ Read `external/skills/ralph/SKILL.md`, `external/skills/prd/SKILL.md`, and `exte
 - The example `prd.json` shows the resulting state machine clearly: priority-ordered stories, each with explicit acceptance criteria and a `passes` boolean. [SOURCE: external/prd.json.example:1-17] [SOURCE: external/prd.json.example:19-31]
 - `system-spec-kit`'s current level guidance requires tasks and estimated effort, but it does not explicitly say "one context window" or "one autonomous execution unit." [SOURCE: .opencode/skills/system-spec-kit/references/templates/level_specifications.md:91-123]
 - The Level 3 `tasks.md` template is phase-oriented and generic; it lacks story-sizing heuristics and concrete verification clauses per task. [SOURCE: .opencode/skills/system-spec-kit/templates/level_3/tasks.md:20-30] [SOURCE: .opencode/skills/system-spec-kit/templates/level_3/tasks.md:34-71]
-- The implementation workflow assumes an existing plan and tasks breakdown, but its step list does not enforce Ralph-style single-unit sizing before development begins. [SOURCE: .opencode/commands/spec_kit/implement.md:171-201]
+- The implementation workflow assumes an existing plan and tasks breakdown, but its step list does not enforce Ralph-style single-unit sizing before development begins. [SOURCE: .opencode/commands/speckit/implement.md:171-201]
 
 ## Analysis
 Ralph keeps the loop simple because the planning layer does the hard work up front: story size, ordering, and verifiability are all encoded into `prd.json`. `system-spec-kit` has stronger documentation machinery, but its task guidance is still broad enough that one task can secretly hide several context windows of work. That makes autonomous execution harder to recover, harder to validate, and harder to parallelize safely.
@@ -30,7 +30,7 @@ finding: The highest-value Ralph pattern is not the shell loop; it is the planni
 - **Target file or module:** `.opencode/skills/system-spec-kit/references/templates/level_specifications.md`
 - **Change type:** modified existing
 - **Blast radius:** medium
-- **Prerequisites:** align the wording with `tasks.md` templates and `/spec_kit:implement`
+- **Prerequisites:** align the wording with `tasks.md` templates and `/speckit:implement`
 - **Priority:** must-have
 
 ## Counter-evidence sought

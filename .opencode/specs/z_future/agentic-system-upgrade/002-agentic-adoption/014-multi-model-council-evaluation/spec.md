@@ -65,7 +65,7 @@ Answer the remaining uncertainty for 014 multi-model council evaluation with bou
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/commands/spec_kit/deep-research.md` | Investigate | Potential touchpoint for the bounded study |
+| `.opencode/commands/speckit/deep-research.md` | Investigate | Potential touchpoint for the bounded study |
 | `.opencode/agents/orchestrate.md` | Investigate | Potential touchpoint for the bounded study |
 | `.opencode/skills/sk-deep-research/assets/deep_research_config.json` | Investigate | Potential touchpoint for the bounded study |
 <!-- /ANCHOR:scope -->

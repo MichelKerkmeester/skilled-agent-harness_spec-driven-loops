@@ -21,10 +21,10 @@ Cross-cutting re-verification across correctness, security, traceability, and ma
 - `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs:200`
 - `.opencode/skills/deep-review/scripts/reduce-state.cjs:1172`
 - `.opencode/skills/deep-review/scripts/reduce-state.cjs:1244`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:56`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:56`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:67`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:53`
+- `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:56`
+- `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:56`
+- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:67`
+- `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:53`
 - `.opencode/agents/deep-review.md:318`
 - `.opencode/agents/deep-research.md:91`
 - `.opencode/agents/orchestrate.md:96`
@@ -48,11 +48,11 @@ Cross-cutting re-verification across correctness, security, traceability, and ma
 ### P1-012 [P1] Confirm-mode deep-loop command workflows also invoke retired `sk-deep-*` paths
 
 - Status: New.
-- File: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:56`
-- Evidence: The existing P1-002 covers auto-mode command YAML, but the live confirm-mode assets still point at non-existent skill IDs and reducer paths: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:56-64`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:829`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:1050`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:53-62`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:672`, and `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:834`.
-- Impact: `/spec_kit:deep-review:confirm` and `/spec_kit:deep-research:confirm` can fail the same way as the auto workflows if invoked after the skill rename. This is a live workflow surface, not a doc-only citation.
+- File: `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:56`
+- Evidence: The existing P1-002 covers auto-mode command YAML, but the live confirm-mode assets still point at non-existent skill IDs and reducer paths: `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:56-64`, `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:829`, `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:1050`, `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:53-62`, `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:672`, and `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:834`.
+- Impact: `/speckit:deep-review:confirm` and `/speckit:deep-research:confirm` can fail the same way as the auto workflows if invoked after the skill rename. This is a live workflow surface, not a doc-only citation.
 - Finding class: cross-consumer.
-- Scope proof: `rg -n 'sk-deep-(review|research)' .opencode/commands/spec_kit/assets/*deep*_{auto,confirm}.yaml` shows both auto and confirm assets still carry stale paths.
+- Scope proof: `rg -n 'sk-deep-(review|research)' .opencode/commands/speckit/assets/*deep*_{auto,confirm}.yaml` shows both auto and confirm assets still carry stale paths.
 - Recommendation: Patch auto and confirm command assets together, then dry-run both modes for deep-review and deep-research.
 
 ### P1-005 [P2] Deep-loop artifact resolver accepts malformed `spec_folder` values
@@ -74,7 +74,7 @@ Cross-cutting re-verification across correctness, security, traceability, and ma
 
 ### Existing P1 Findings Re-verified
 
-- P1-002 remains open for auto-mode command YAML drift: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:56`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:67`.
+- P1-002 remains open for auto-mode command YAML drift: `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:56`, `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:67`.
 - P1-008 remains open for OpenCode leaf-agent mirrors: `.opencode/agents/deep-review.md:318`, `.opencode/agents/deep-research.md:91`.
 - P1-011 remains open for orchestrator routing: `.opencode/agents/orchestrate.md:96`.
 - P1-010 remains open, but the requested exact tautology sweep found only prior review logs, not additional active canonical surfaces.

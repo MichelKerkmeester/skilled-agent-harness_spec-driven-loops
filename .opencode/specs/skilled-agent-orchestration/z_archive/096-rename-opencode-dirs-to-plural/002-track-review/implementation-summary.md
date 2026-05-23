@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: 097 Track-Review of skilled-agent-orchestration packets 093-096"
-description: "10-iteration deep-review loop converged with verdict FAIL: 1 P0 (live runtime stale dist), 12 P1, 9 P2. Triggers /spec_kit:plan for remediation."
+description: "10-iteration deep-review loop converged with verdict FAIL: 1 P0 (live runtime stale dist), 12 P1, 9 P2. Triggers /speckit:plan for remediation."
 trigger_phrases:
   - "097 track review summary"
   - "093-096 review verdict"
@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-05-07T17:30:00Z"
     last_updated_by: "deep-review-loop-manager"
     recent_action: "Synthesized review-report.md after iter-10"
-    next_safe_action: "Run /spec_kit:plan for remediation"
+    next_safe_action: "Run /speckit:plan for remediation"
     blockers:
       - "P0-001: live runtime imports stale mcp_server/dist code-graph globs (singular .opencode paths) — blocks track release"
     key_files:
@@ -64,7 +64,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The 097 packet is a **review-only deliverable**: a 10-iteration architectural cross-phase deep-review of the four packets shipped in close succession on 2026-05-07 (093 testing playbooks for sk-code-review and sk-git, 094 RCAF naturalization across 16 playbooks, 095 sk-code-review playbook execution via opencode+deepseek, 096 the rename of `.opencode/{skill,agent,command}/` to plural — a single commit touching 11,348 files with ~670k token-occurrence changes). The review surfaced 22 active findings, including 1 P0 that blocks track release, and produced a Planning Packet ready to seed the next `/spec_kit:plan` cycle.
+The 097 packet is a **review-only deliverable**: a 10-iteration architectural cross-phase deep-review of the four packets shipped in close succession on 2026-05-07 (093 testing playbooks for sk-code-review and sk-git, 094 RCAF naturalization across 16 playbooks, 095 sk-code-review playbook execution via opencode+deepseek, 096 the rename of `.opencode/{skill,agent,command}/` to plural — a single commit touching 11,348 files with ~670k token-occurrence changes). The review surfaced 22 active findings, including 1 P0 that blocks track release, and produced a Planning Packet ready to seed the next `/speckit:plan` cycle.
 
 ### Review packet contents
 
@@ -101,7 +101,7 @@ The review packet lives at `review/` and contains the full audit trail:
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The review ran end-to-end as a single autonomous session via `/spec_kit:deep-review:auto` with explicit setup answers (review_dimensions=all, spec_folder=A new, strategy=arch). The loop manager scaffolded the 097 packet under the skilled-agent-orchestration track, populated description.json + graph-metadata.json with the right parent chain, authored Level 2 spec docs, then bootstrapped the canonical review/ state files (config, state.jsonl, findings-registry, strategy with Known Context).
+The review ran end-to-end as a single autonomous session via `/speckit:deep-review:auto` with explicit setup answers (review_dimensions=all, spec_folder=A new, strategy=arch). The loop manager scaffolded the 097 packet under the skilled-agent-orchestration track, populated description.json + graph-metadata.json with the right parent chain, authored Level 2 spec docs, then bootstrapped the canonical review/ state files (config, state.jsonl, findings-registry, strategy with Known Context).
 
 Each of the 10 iterations was dispatched via `codex exec` with `--model gpt-5.5 -c model_reasoning_effort=high -c service_tier=fast -c approval_policy=never -s workspace-write`, reading a pre-rendered prompt pack from `review/prompts/iteration-N.md` over stdin. The loop manager waited for codex completion (background dispatch + completion notification), then ran `node .opencode/skills/deep-review/scripts/reduce-state.cjs` to refresh the registry and dashboard, read the iteration's NEXT FOCUS update from the strategy, and rendered the next iteration's prompt with cumulative state and prior findings.
 
@@ -142,7 +142,7 @@ Convergence detection used the standard severity-weighted ratio (P0=10/P1=5/P2=1
 | resource-map.md emitted | PASS (reducer with `--emit-resource-map` produced the file from converged deltas) |
 | Continuity routed via this implementation-summary update | PASS (this file's `_memory.continuity` block is current) |
 | `bash validate.sh ... 097-track-review` | _Run separately when remediation lands; current focus is reporting._ |
-| p0ResolutionGate at synthesis | FAIL (active P0=1) — verdict-determining; route to /spec_kit:plan |
+| p0ResolutionGate at synthesis | FAIL (active P0=1) — verdict-determining; route to /speckit:plan |
 <!-- /ANCHOR:verification -->
 
 ---

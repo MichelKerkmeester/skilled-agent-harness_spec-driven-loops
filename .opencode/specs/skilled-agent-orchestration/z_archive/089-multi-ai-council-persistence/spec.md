@@ -95,7 +95,7 @@ Land the persistence helper, schema contract, caller protocol documentation, and
 - Adding state.jsonl v1.1 schema versioning fields — deferred to packet 082+
 - Adding skill advisor scoring boosts for multi-ai-council — agent stays an agent, not a skill
 - Adding council-aware `/memory:save` ANCHOR family — deferred to packet 082+
-- Wiring `/spec_kit:*` command YAMLs to invoke the helper — deferred (helper standalone-usable per ADD-6)
+- Wiring `/speckit:*` command YAMLs to invoke the helper — deferred (helper standalone-usable per ADD-6)
 - Retroactive migration of pre-080 council outputs — forward-only per ADD-5
 
 ### Files to Change

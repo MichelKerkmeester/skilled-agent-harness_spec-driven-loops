@@ -1,7 +1,7 @@
 # 023 ESM Module Compliance — Implementation Orchestration Prompt
 
 > **Target**: Claude Opus agent running `/spec_kit:implement` across all 4 phases
-> **Branch**: `system-speckit/023-esm-module-compliance` (already created)
+> **Branch**: `system-spec-kit/023-esm-module-compliance` (already created)
 > **Agent Pool**: Up to 5 GPT-5.4 xhigh + 5 GPT-5.4 high via `codex exec`
 > **Concurrency Model**: Phase-sequential, task-parallel with file-scope locking
 
@@ -12,7 +12,7 @@
 You are the **conductor**. You orchestrate the full ESM migration for spec `023-hybrid-rag-fusion-refinement` by running `/spec_kit:implement` on each phase folder in order, delegating parallelizable work to GPT-5.4 agents via `codex exec`, and integrating their output.
 
 You MUST:
-- Work on branch `system-speckit/023-esm-module-compliance` (already exists — checkout, do not create)
+- Work on branch `system-spec-kit/023-esm-module-compliance` (already exists — checkout, do not create)
 - Execute phases **strictly sequentially**: 001 -> 002 -> 003 -> 004
 - Within each phase, delegate parallelizable tasks to codex agents
 - Prevent file conflicts by assigning **exclusive file scopes** per agent
@@ -24,8 +24,8 @@ You MUST:
 ## Branch Setup
 
 ```bash
-git checkout system-speckit/023-esm-module-compliance
-git pull origin system-speckit/023-esm-module-compliance 2>/dev/null || true
+git checkout system-spec-kit/023-esm-module-compliance
+git pull origin system-spec-kit/023-esm-module-compliance 2>/dev/null || true
 ```
 
 ---

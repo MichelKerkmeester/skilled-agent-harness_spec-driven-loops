@@ -52,7 +52,7 @@ _memory:
 - [x] CHK-010 [P0] Review auto and confirm YAML workflows use `review/` for all durable review artifacts [EVIDENCE: review YAML `state_paths`, pause checks, iteration outputs, synthesis outputs, and completion summaries now point at `{spec_folder}/review/`; `ruby -e 'require \"yaml\"; ... YAML.load_file(...)'` passed for both review YAMLs]
 - [x] CHK-011 [P0] All runtime `deep-review` agent definitions reference `review/` rather than `scratch/` [EVIDENCE: `.opencode/agents/deep-review.md`, `.claude/agents/deep-review.md`, `.codex/agents/deep-review.toml`, and `.gemini/agents/deep-review.md` now read and write `review/` artifacts only; targeted worker `rg` verification reported no remaining live-contract `scratch/` refs]
 - [x] CHK-012 [P1] `review_mode_contract.yaml` and review templates match the runtime path contract [EVIDENCE: `.opencode/skills/sk-deep-research/assets/review_mode_contract.yaml` plus the deep-review strategy and dashboard templates now point at `review/`; YAML parse passed for `review_mode_contract.yaml`]
-- [x] CHK-013 [P1] Research-mode storage behavior remains unchanged aside from the shared spec-root compatibility guard [EVIDENCE: `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` and `spec_kit_deep-research_confirm.yaml` now widen `spec_folder_is_within` to accept both `specs/` and `.opencode/specs/`, while their scratch-based state paths remain unchanged]
+- [x] CHK-013 [P1] Research-mode storage behavior remains unchanged aside from the shared spec-root compatibility guard [EVIDENCE: `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` and `spec_kit_deep-research_confirm.yaml` now widen `spec_folder_is_within` to accept both `specs/` and `.opencode/specs/`, while their scratch-based state paths remain unchanged]
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -82,7 +82,7 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] CHK-040 [P1] Command entrypoint, SKILL, README, and reference docs all describe `review/` [EVIDENCE: `.opencode/commands/spec_kit/deep-research.md`, `.opencode/skills/sk-deep-research/SKILL.md`, `.opencode/skills/sk-deep-research/README.md`, `.opencode/skills/sk-deep-research/references/loop_protocol.md`, and the `.agents/commands/spec_kit/deep-research.toml` wrapper now all align on the review-mode entrypoints and review packet expectations]
+- [x] CHK-040 [P1] Command entrypoint, SKILL, README, and reference docs all describe `review/` [EVIDENCE: `.opencode/commands/speckit/deep-research.md`, `.opencode/skills/sk-deep-research/SKILL.md`, `.opencode/skills/sk-deep-research/README.md`, `.opencode/skills/sk-deep-research/references/loop_protocol.md`, and the `.agents/commands/speckit/deep-research.toml` wrapper now all align on the review-mode entrypoints and review packet expectations]
 - [x] CHK-041 [P1] Manual testing playbook scenarios and expected signals match the new review packet contract [EVIDENCE: review-mode playbooks `039` and `041` plus shared pause-resume playbooks `015` and `016` now reference the review packet and review sentinel location]
 - [x] CHK-042 [P2] README or packet notes explain why `scratch/` remains temporary while `review/` is durable [EVIDENCE: README distinguishes research-mode `scratch/` state from review-mode `review/` packet; `spec.md` and `plan.md` document the durable-vs-temporary rationale]
 <!-- /ANCHOR:docs -->

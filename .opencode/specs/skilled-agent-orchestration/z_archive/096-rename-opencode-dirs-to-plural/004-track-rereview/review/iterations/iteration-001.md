@@ -80,7 +80,7 @@ None reopened in this inventory pass.
 
 #### P2-004 [P2] Copilot target-authority helper remains unresolved
 
-- File: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:690`
+- File: `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:690`
 - Evidence: 098/007 deferred the finding, and the YAML still references `buildCopilotPromptArg` plus the target-authority preamble.
 - Replay status: STILL_ACTIVE.
 

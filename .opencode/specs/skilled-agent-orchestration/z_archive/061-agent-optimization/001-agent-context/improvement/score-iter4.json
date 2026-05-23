@@ -146,7 +146,7 @@
         {
           "id": "always-rule-8",
           "type": "always",
-          "rule": "Name integration evidence sources explicitly when using orchestrator context, `/spec_kit:resume` continuity, `sk-improve-agent` scan reports, CocoIndex MCP, or Code Graph MCP.",
+          "rule": "Name integration evidence sources explicitly when using orchestrator context, `/speckit:resume` continuity, `sk-improve-agent` scan reports, CocoIndex MCP, or Code Graph MCP.",
           "pass": true,
           "matchRatio": 1
         },

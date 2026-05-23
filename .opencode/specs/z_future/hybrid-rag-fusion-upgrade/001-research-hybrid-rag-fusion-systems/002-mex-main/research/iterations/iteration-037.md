@@ -95,8 +95,8 @@ ARCHITECTURE EVOLUTION MAP: Draw the before/after architecture showing exactly w
 - **Source strength**: primary
 
 ### Finding 4: Session startup and recovery stay canonical; integrity only adds advisory context and routing hints
-- **Source**: `README.md`, `.opencode/commands/spec_kit/resume.md`, `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`, `research/iterations/iteration-035.md`, `research/iterations/iteration-036.md` [SOURCE: `README.md:522-547,657-665`; `.opencode/commands/spec_kit/resume.md:202-223,248-280`; `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:739-776`; `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:113-124,143-156,163-209`; `research/iterations/iteration-035.md:15-21`; `research/iterations/iteration-036.md:15-20`]
-- **What it does**: The after-map does **not** move startup authority to a markdown router. `session_bootstrap` and `/spec_kit:resume` still own recovery, structural readiness, and next actions. The new integrity lane can annotate those flows with “docs look stale” or “integrity check recommended” hints, but it does not become the entry point for session continuity.
+- **Source**: `README.md`, `.opencode/commands/speckit/resume.md`, `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`, `research/iterations/iteration-035.md`, `research/iterations/iteration-036.md` [SOURCE: `README.md:522-547,657-665`; `.opencode/commands/speckit/resume.md:202-223,248-280`; `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:739-776`; `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:113-124,143-156,163-209`; `research/iterations/iteration-035.md:15-21`; `research/iterations/iteration-036.md:15-20`]
+- **What it does**: The after-map does **not** move startup authority to a markdown router. `session_bootstrap` and `/speckit:resume` still own recovery, structural readiness, and next actions. The new integrity lane can annotate those flows with “docs look stale” or “integrity check recommended” hints, but it does not become the entry point for session continuity.
 - **Why it matters**: This preserves the strongest existing Public capability that Mex does not have: structured, merged session recovery. The new lane improves observability without regressing the recovery contract agents already depend on.
 - **Recommendation**: adopt now
 - **Impact**: high
@@ -115,7 +115,7 @@ ARCHITECTURE EVOLUTION MAP: Draw the before/after architecture showing exactly w
 ## Sources Consulted
 - `README.md:522-547,657-698`
 - `opencode.json:19-59`
-- `.opencode/commands/spec_kit/resume.md:202-223,248-280`
+- `.opencode/commands/speckit/resume.md:202-223,248-280`
 - `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:41-44,623-706,739-776`
 - `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:700-815,891-927`
 - `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:94-209`
@@ -138,14 +138,14 @@ ARCHITECTURE EVOLUTION MAP: Draw the before/after architecture showing exactly w
 ## Assessment
 - **New information ratio**: 0.12
 - **Questions addressed**: what the current architecture already is; which new lane is actually being added; where the planner surface sits; whether startup/recovery authority moves; which candidate additions are truly part of the final architecture versus sidecars or rejections
-- **Questions answered**: the current system already has distinct retrieval, routing, and maintenance planes; the adopted architecture adds one advisory integrity lane and one thin planner surface; recovery authority stays with `session_bootstrap` and `/spec_kit:resume`; repair authority stays with existing explicit tools; freshness and scaffold-growth remain optional sidecars rather than core memory authority
+- **Questions answered**: the current system already has distinct retrieval, routing, and maintenance planes; the adopted architecture adds one advisory integrity lane and one thin planner surface; recovery authority stays with `session_bootstrap` and `/speckit:resume`; repair authority stays with existing explicit tools; freshness and scaffold-growth remain optional sidecars rather than core memory authority
 - **Novelty justification**: earlier iterations chose individual patterns and rollout constraints; this pass turns those scattered decisions into one before/after ownership map that shows exactly what changes, what stays fixed, and what remains deliberately excluded
 
 ## Ruled Out
 - Replacing `memory_context`, `memory_search`, CocoIndex, or code graph with a markdown-first scaffold
 - Folding integrity findings into `memory_context`, `memory_search`, or `code_graph_query` as if they were retrieval relevance signals
 - Making the integrity surface a new write authority that bypasses `memory_health` confirmation or `memory_save` dry-run semantics
-- Replacing `session_bootstrap` or `/spec_kit:resume` with a markdown-router-first startup path
+- Replacing `session_bootstrap` or `/speckit:resume` with a markdown-router-first startup path
 - Using one Mex-style drift score as the main health contract for Public
 
 ## Reflection

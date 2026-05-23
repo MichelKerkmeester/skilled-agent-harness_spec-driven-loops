@@ -59,7 +59,7 @@ This parent packet coordinates **eight child implementation phases plus a post-p
 | **Priority** | P1 |
 | **Status** | Implemented (phases 1–8) + post-phase-008 closing-audit remediation (Lanes 1–5) closed |
 | **Created** | 2026-04-10 |
-| **Branch** | `system-speckit/026-graph-and-context-optimization` (formerly `042-sk-deep-research-review-improvement-2`) |
+| **Branch** | `system-spec-kit/026-graph-and-context-optimization` (formerly `042-sk-deep-research-review-improvement-2`) |
 | **Dependencies** | Consolidated research packet; child phase folders `001`–`008`; existing deep-loop assets, YAML workflows, reducers, and tests; `review/` closing-audit artifacts |
 | **Predecessor** | Related background packets: `028-auto-deep-research-review-improvement`, `040-sk-auto-deep-research-review-improvement` |
 | **Successor** | All child phases `001`–`008` implemented; Phase 4b (prompt-pack generation + meta-learning) remains explicitly deferred; no new follow-up packet is required for the closing audit because its 16 findings (REQ-026 through REQ-034) were absorbed into Lanes 1–5 inside this same packet |

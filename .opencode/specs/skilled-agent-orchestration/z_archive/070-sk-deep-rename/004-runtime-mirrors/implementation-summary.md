@@ -60,7 +60,7 @@ Phase 004 prepared Level 2 artifacts and updated writable runtime mirror referen
 | `.gemini/agents/deep-research.md` | Modified | Update research skill path reference |
 | `.gemini/agents/deep-review.md` | Modified | Update review skill description and path references |
 | `.gemini/agents/orchestrate.md` | Modified | Update research skill dependency reference |
-| `.gemini/commands/spec_kit/deep-research.toml` | Modified | Update embedded command mirror references |
+| `.gemini/commands/speckit/deep-research.toml` | Modified | Update embedded command mirror references |
 | `004-runtime-mirrors/*` | Created/Modified | Add Level 2 phase artifacts and blocked-state evidence |
 <!-- /ANCHOR:what-built -->
 
@@ -77,7 +77,7 @@ The implementation followed Phase 001 inventory rows, applied exact text replace
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-- Included `.gemini/commands/spec_kit/deep-research.toml` because Phase 001 marks it as `phase=004` and it is inside the `.gemini` runtime mirror tree.
+- Included `.gemini/commands/speckit/deep-research.toml` because Phase 001 marks it as `phase=004` and it is inside the `.gemini` runtime mirror tree.
 - Kept the phase text-only; no runtime behavior, permissions, tools, or model settings are changed.
 - Did not bypass the `.codex` write denial outside the approved sandbox.
 <!-- /ANCHOR:decisions -->

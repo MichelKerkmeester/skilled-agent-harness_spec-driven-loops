@@ -30,7 +30,7 @@ _memory:
 
 ## What Was Built
 
-Transformed the sk-improve-agent evaluation from structural keyword-checking (~15-20% coverage) to a **5-dimension integration-aware scoring framework** that evaluates agents holistically across their full system integration surface. Renamed the skill from `sk-recursive-agent` to `sk-improve-agent` and the command from `/spec_kit:recursive-agent` to `/improve:agent`.
+Transformed the sk-improve-agent evaluation from structural keyword-checking (~15-20% coverage) to a **5-dimension integration-aware scoring framework** that evaluates agents holistically across their full system integration surface. Renamed the skill from `sk-recursive-agent` to `sk-improve-agent` and the command from `/speckit:recursive-agent` to `/improve:agent`.
 
 ### New Scripts
 
@@ -90,7 +90,7 @@ All 8 `.cjs` scripts aligned with sk-code-opencode JavaScript standard: box comm
 | --- | --- |
 | `sk-recursive-agent` | `sk-improve-agent` |
 | `recursive-agent` | `agent-improver` |
-| `/spec_kit:recursive-agent` | `/improve:agent` |
+| `/speckit:recursive-agent` | `/improve:agent` |
 | `@recursive-agent` | `@agent-improver` |
 
 187+ files updated, 1129+ occurrences replaced. Zero stale references remaining (verified by fresh sub-agent audit).

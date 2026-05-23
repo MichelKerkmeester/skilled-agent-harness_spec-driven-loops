@@ -38,8 +38,8 @@ description: "Auto-generated review resource map from convergence evidence."
 | Path | Action | Status | Note |
 |------|--------|--------|------|
 | .opencode/commands/doctor/scripts/audit_descriptions.py | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=1 |
-| .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml | Analyzed | OK | Findings P0=0 P1=1 P2=1; Iterations=2 |
-| .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=1 |
+| .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml | Analyzed | OK | Findings P0=0 P1=1 P2=1; Iterations=2 |
+| .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=1 |
 
 ---
 

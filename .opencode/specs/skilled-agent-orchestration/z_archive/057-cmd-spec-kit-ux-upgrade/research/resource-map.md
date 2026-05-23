@@ -109,15 +109,15 @@ contextType: "research"
 
 | Path | Action | Status | Note |
 | --- | --- | --- | --- |
-| `.opencode/commands/spec_kit/README.txt` | Cited | OK | Command catalog |
-| `.opencode/commands/spec_kit/plan.md` | Cited | OK | Plan/intake surface |
-| `.opencode/commands/spec_kit/implement.md` | Cited | OK | Implement surface |
-| `.opencode/commands/spec_kit/complete.md` | Cited | OK | Complete surface |
-| `.opencode/commands/spec_kit/resume.md` | Cited | OK | Resume surface |
-| `.opencode/commands/spec_kit/deep-research.md` | Cited | OK | Deep-research command |
-| `.opencode/commands/spec_kit/deep-review.md` | Cited | OK | Deep-review command |
-| `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml` | Cited | OK | Clarification cap evidence |
-| `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml` | Cited | OK | Implementation YAML evidence |
+| `.opencode/commands/speckit/README.txt` | Cited | OK | Command catalog |
+| `.opencode/commands/speckit/plan.md` | Cited | OK | Plan/intake surface |
+| `.opencode/commands/speckit/implement.md` | Cited | OK | Implement surface |
+| `.opencode/commands/speckit/complete.md` | Cited | OK | Complete surface |
+| `.opencode/commands/speckit/resume.md` | Cited | OK | Resume surface |
+| `.opencode/commands/speckit/deep-research.md` | Cited | OK | Deep-research command |
+| `.opencode/commands/speckit/deep-review.md` | Cited | OK | Deep-review command |
+| `.opencode/commands/speckit/assets/speckit_complete_auto.yaml` | Cited | OK | Clarification cap evidence |
+| `.opencode/commands/speckit/assets/speckit_implement_auto.yaml` | Cited | OK | Implementation YAML evidence |
 | `.opencode/commands/memory/README.txt` | Cited | OK | Memory command catalog |
 | `.opencode/commands/create/agent.md` | Cited | OK | Create command surface |
 | `.opencode/commands/create/assets/create_feature_catalog_confirm.yaml` | Cited | OK | Create YAML evidence |

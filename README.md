@@ -206,7 +206,7 @@ grep -l 'mk-spec-memory\|mk_skill_advisor\|mk_code_index' \
 Open OpenCode in your project directory. The framework is active. Try:
 
 ```
-/spec_kit:complete Build a user authentication system
+/speckit:complete Build a user authentication system
 ```
 
 This creates a spec folder, runs research, builds a plan and begins implementation - all with memory saved automatically. When you come back tomorrow, the memory engine remembers everything.
@@ -390,7 +390,7 @@ For the full spec folder workflow, Level contract template architecture, gate de
 
 ### 🧠 Memory Engine
 
-The Memory Engine is a local-first cognitive memory system built as an MCP server. `generate-context.js` updates canonical packet continuity and may emit supporting generated context artifacts inside the spec folder. Canonical continuity lives in the spec packet itself: use `/spec_kit:resume` as the recovery surface, then rebuild context in this order: `handover.md` -> `_memory.continuity` -> canonical spec docs. The MCP server indexes those packet-local sources with vector embeddings, BM25 and FTS5 full-text search. `memory_match_triggers()` can still surface relevant prior context automatically when deeper retrieval is needed.
+The Memory Engine is a local-first cognitive memory system built as an MCP server. `generate-context.js` updates canonical packet continuity and may emit supporting generated context artifacts inside the spec folder. Canonical continuity lives in the spec packet itself: use `/speckit:resume` as the recovery surface, then rebuild context in this order: `handover.md` -> `_memory.continuity` -> canonical spec docs. The MCP server indexes those packet-local sources with vector embeddings, BM25 and FTS5 full-text search. `memory_match_triggers()` can still surface relevant prior context automatically when deeper retrieval is needed.
 
 `/memory:save` refreshes packet metadata on every invocation. `session_resume` binds `args.sessionId` to transport caller context by default. Set `MCP_SESSION_RESUME_AUTH_MODE=permissive` for rollout canaries. Copilot, Claude and Gemini all share the same compact-cache provenance path.
 
@@ -678,7 +678,7 @@ The default routing order is: **Code Graph** (structural) -> **CocoIndex** (sema
 
 - Use the **Code Graph** first for structural questions: callers, callees, imports, hierarchy, file outlines and reverse impact.
 - Use **CocoIndex** for semantic and intent-based questions: "find code that validates memory quality", "show similar routing patterns", "where is the logic for X?"
-- Use **session tools** when recovering or checking environment readiness, but treat `/spec_kit:resume` as the canonical operator-facing recovery surface.
+- Use **session tools** when recovering or checking environment readiness, but treat `/speckit:resume` as the canonical operator-facing recovery surface.
 - Rebuild task continuity in this order: `handover.md` -> `_memory.continuity` -> canonical spec docs.
 - Use **Memory** after those packet-local sources when the question is about prior decisions, spec history, handovers or task continuity that still needs deeper retrieval.
 
@@ -1041,18 +1041,18 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 
 **Plan --intake-only**
 - Standalone intake workflow that publishes `spec.md`, `description.json` and `graph-metadata.json`
-- Used directly for new packet setup and paired with `/spec_kit:plan` or `/spec_kit:complete` when `folder_state` is `no-spec`, `partial-folder`, `repair-mode` or `placeholder-upgrade`
+- Used directly for new packet setup and paired with `/speckit:plan` or `/speckit:complete` when `folder_state` is `no-spec`, `partial-folder`, `repair-mode` or `placeholder-upgrade`
 - Modes: `:auto`, `:confirm`
 
 **Complete**
 - End-to-end workflow: intake/delegate → research → plan → implement → verify → save memory
-- Smart-detects missing or unhealthy packet state and reuses the shared intake contract from `/spec_kit:plan --intake-only`. Healthy folders continue without extra setup prompts
+- Smart-detects missing or unhealthy packet state and reuses the shared intake contract from `/speckit:plan --intake-only`. Healthy folders continue without extra setup prompts
 - Modes: `:auto` (fully autonomous), `:confirm` (pause at each step), `:with-research` (adds deep research)
 - After 3 failed implementation attempts, surface diagnostics and let the user dispatch `@debug` via the Task tool
 
 **Plan**
 - Planning-only workflow that authors `spec.md`, `plan.md` and `tasks.md` without implementing
-- Reuses the shared intake contract from `/spec_kit:plan --intake-only` when the packet is `no-spec`, `partial-folder`, `repair-mode` or `placeholder-upgrade`
+- Reuses the shared intake contract from `/speckit:plan --intake-only` when the packet is `no-spec`, `partial-folder`, `repair-mode` or `placeholder-upgrade`
 - Dispatches up to 4 parallel context agents for codebase exploration during planning
 - Use when you need stakeholder review before coding. Modes: `:auto`, `:confirm`
 
@@ -1097,11 +1097,11 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 **Spec-first command chains**
 
 ```text
-/spec_kit:plan --intake-only
-  ├─► /spec_kit:plan -> /spec_kit:implement
-  ├─► /deep:start-research-loop -> /spec_kit:plan
-  └─► /spec_kit:complete
-       └─► reuses the shared intake contract from /spec_kit:plan --intake-only when folder_state still needs intake
+/speckit:plan --intake-only
+  ├─► /speckit:plan -> /speckit:implement
+  ├─► /deep:start-research-loop -> /speckit:plan
+  └─► /speckit:complete
+       └─► reuses the shared intake contract from /speckit:plan --intake-only when folder_state still needs intake
 ```
 
 `/deep:start-research-loop` only enters that chain after a real `spec.md` exists. It follows `spec_check_protocol.md` for advisory-lock handling, `folder_state` classification and bounded generated-fence sync.
@@ -1463,7 +1463,7 @@ A: Gate 3 blocks file modifications until a spec folder answer is provided. You 
 &nbsp;
 **Q: How does the memory system know what is relevant to my current task?**
 
-A: Packet continuity and any supporting generated context artifacts use structured frontmatter and anchored markdown so the memory engine can classify, index and retrieve them reliably. For recovery, start with `/spec_kit:resume` and the packet-local continuity ladder `handover.md` -> `_memory.continuity` -> canonical spec docs. After that, `memory_match_triggers()` runs a fast trigger/cognitive pass, while `memory_context()` and `memory_search()` handle deeper retrieval with intent routing, reranking and filtering.
+A: Packet continuity and any supporting generated context artifacts use structured frontmatter and anchored markdown so the memory engine can classify, index and retrieve them reliably. For recovery, start with `/speckit:resume` and the packet-local continuity ladder `handover.md` -> `_memory.continuity` -> canonical spec docs. After that, `memory_match_triggers()` runs a fast trigger/cognitive pass, while `memory_context()` and `memory_search()` handle deeper retrieval with intent routing, reranking and filtering.
 &nbsp;
 **Q: Can I use this framework without the cognitive memory features?**
 

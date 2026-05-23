@@ -1,6 +1,6 @@
-=== Live setup-phase test v2 (corrected fixtures): /spec_kit:resume:auto ===
+=== Live setup-phase test v2 (corrected fixtures): /speckit:resume:auto ===
 Started: 2026-05-11T14:50:57+0200
-Command: .opencode/commands/spec_kit/resume.md
+Command: .opencode/commands/speckit/resume.md
 Fixture: extracted from command's own §0 PRE-BOUND schema
 
 PRE-BOUND used:
@@ -28,7 +28,7 @@ reasoning summaries: none
 session id: 019e1717-36ae-7a63-8dbc-37b7b1687768
 --------
 user
-You are testing the setup-phase contract of the migrated command /spec_kit:resume.
+You are testing the setup-phase contract of the migrated command /speckit:resume.
 
 # RUNTIME RULES
 - Inline Codex execution. Do NOT call SpawnAgent / collab / Task / sub-agent.
@@ -38,9 +38,9 @@ You are testing the setup-phase contract of the migrated command /spec_kit:resum
 
 # YOUR TASK
 
-1. Read .opencode/commands/spec_kit/resume.md section zero (UNIFIED SETUP PHASE).
+1. Read .opencode/commands/speckit/resume.md section zero (UNIFIED SETUP PHASE).
 2. Verify it cites .opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md.
-3. SIMULATE a dispatch of /spec_kit:resume:auto with the following PRE-BOUND SETUP ANSWERS block in the prompt body (these field names + example values come VERBATIM from this command's own §0 schema — they are guaranteed to match the command's expected keys):
+3. SIMULATE a dispatch of /speckit:resume:auto with the following PRE-BOUND SETUP ANSWERS block in the prompt body (these field names + example values come VERBATIM from this command's own §0 schema — they are guaranteed to match the command's expected keys):
 
 ```
 PRE-BOUND SETUP ANSWERS:
@@ -85,7 +85,7 @@ hook: UserPromptSubmit Completed
 codex
 I’ll keep this to the setup contract only: read the command markdown, check the citation line, and simulate the pre-bound marker path without touching files or loading the paired workflow.
 exec
-/bin/zsh -lc "nl -ba .opencode/commands/spec_kit/resume.md | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/commands/speckit/resume.md | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	---
      2	description: Resume or recover work on a spec folder: canonical continuity recovery with one next step.
@@ -100,8 +100,8 @@ exec
     11	> **YOUR FIRST ACTION:**
     12	> 1. Determine execution mode from user input (`:auto` or `:confirm`)
     13	> 2. Load the corresponding YAML file from `assets/`:
-    14	>    - Auto mode → `spec_kit_resume_auto.yaml`
-    15	>    - Confirm mode → `spec_kit_resume_confirm.yaml`
+    14	>    - Auto mode → `speckit_resume_auto.yaml`
+    15	>    - Confirm mode → `speckit_resume_confirm.yaml`
     16	> 3. Execute the YAML workflow step by step
     17	>
     18	> All content below defines workflow context for the YAML runner. Treat it as executable only when running this command workflow; otherwise use it as reference.
@@ -112,8 +112,8 @@ exec
     23	- **ALL** agent dispatching is handled by the YAML workflow steps — this document is setup + reference only
     24	- **FIRST ACTION** is always: load the YAML file, then execute it step by step
     25	
-    26	> **Format:** `/spec_kit:resume [spec-folder-path] [:auto|:confirm]`
-    27	> Examples: `/spec_kit:resume specs/007-feature/` | `/spec_kit:resume:auto specs/007-feature/`
+    26	> **Format:** `/speckit:resume [spec-folder-path] [:auto|:confirm]`
+    27	> Examples: `/speckit:resume specs/007-feature/` | `/speckit:resume:auto specs/007-feature/`
     28	
     29	# SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
     30	
@@ -135,11 +135,11 @@ exec
     46	
     47	Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
     48	
-    49	1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/resume-config.json` (shape: `specPath`, `detectionMethod`, `executionMode: "auto"`, `continuationChoice`, `artifactRecoveryChoice`, `memoryChoice`, `artifactsValid`, `continuitySourcesAvailable`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml`. End §0.
+    49	1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/resume-config.json` (shape: `specPath`, `detectionMethod`, `executionMode: "auto"`, `continuationChoice`, `artifactRecoveryChoice`, `memoryChoice`, `artifactsValid`, `continuitySourcesAvailable`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/speckit/assets/speckit_resume_auto.yaml`. End §0.
     50	
     51	2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`, `continuation_choice`. **Ordering rule**: ask only for `spec_folder` first when detection is ambiguous — continuation validation depends on it. Missing `spec_folder` with no viable candidates is absence, not ambiguity — go to Tier 3.
     52	
-    53	3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/spec_kit:resume:auto` as the command name. Exit non-zero. Do not load YAML.
+    53	3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/speckit:resume:auto` as the command name. Exit non-zero. Do not load YAML.
     54	
     55	`:confirm` path stays unchanged — see the consolidated setup prompt section below.
     56	
@@ -239,7 +239,7 @@ exec
    150	
    151	   Q0. Spec Folder (if not detected/provided):
    152	     No active session detected. Available spec folders: [list]
-   153	     A) List and select  B) Start new with /spec_kit:complete  C) Cancel
+   153	     A) List and select  B) Start new with /speckit:complete  C) Cancel
    154	     E) Phase folder — resume a specific phase child (e.g., specs/NNN-name/001-phase/)
    155	
    156	   Q1. Confirm Detected Session (if auto-detected):
@@ -252,7 +252,7 @@ exec
    163	
    164	   Q3. Missing Artifacts (if artifacts_valid != yes):
    165	     Missing: [list]
-   166	     A) Run /spec_kit:plan  B) Select different folder  C) Continue anyway
+   166	     A) Run /speckit:plan  B) Select different folder  C) Continue anyway
    167	
    168	   Q4. Recovery Depth (when the canonical resume packet is still thin):
    169	     A) Fast resume - just enough context to continue safely
@@ -309,15 +309,15 @@ exec
    220	| artifacts_valid  | Yes           | Validation check              |
 
 exec
-/bin/zsh -lc 'rg -n "auto_mode_contract|UNIFIED SETUP PHASE|Tier|PRE-BOUND SETUP|STATUS|execution_mode|continuation_choice|artifact_recovery_choice|memory_choice|artifacts_valid|continuity_sources_available" .opencode/commands/spec_kit/resume.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "auto_mode_contract|UNIFIED SETUP PHASE|Tier|PRE-BOUND SETUP|STATUS|execution_mode|continuation_choice|artifact_recovery_choice|memory_choice|artifacts_valid|continuity_sources_available" .opencode/commands/speckit/resume.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 3:argument-hint: "[spec-folder-path] [:auto|:confirm] [--phase-folder=<path>] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
 37:## 0. UNIFIED SETUP PHASE
 45:Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md`.
 47:Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
-49:1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/resume-config.json` (shape: `specPath`, `detectionMethod`, `executionMode: "auto"`, `continuationChoice`, `artifactRecoveryChoice`, `memoryChoice`, `artifactsValid`, `continuitySourcesAvailable`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml`. End §0.
+49:1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/resume-config.json` (shape: `specPath`, `detectionMethod`, `executionMode: "auto"`, `continuationChoice`, `artifactRecoveryChoice`, `memoryChoice`, `artifactsValid`, `continuitySourcesAvailable`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/speckit/assets/speckit_resume_auto.yaml`. End §0.
 51:2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`, `continuation_choice`. **Ordering rule**: ask only for `spec_folder` first when detection is ambiguous — continuation validation depends on it. Missing `spec_folder` with no viable candidates is absence, not ambiguity — go to Tier 3.
-53:3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/spec_kit:resume:auto` as the command name. Exit non-zero. Do not load YAML.
+53:3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/speckit:resume:auto` as the command name. Exit non-zero. Do not load YAML.
 57:### PRE-BOUND SETUP ANSWERS Schema (for `:auto` non-interactive dispatch)
 59:The dispatched prompt body may contain one structured marker block. Parse it before applying defaults. Grammar: see `auto_mode_contract.md` §2.
 62:PRE-BOUND SETUP ANSWERS:

@@ -69,8 +69,8 @@ Produce a 20-iteration evidence-backed research record that preserves Phase 1 tr
   - `external/tests/integration/broker/*.test.ts`
 - Comparison against Public surfaces:
   - `.opencode/agents/orchestrate.md`
-  - `.opencode/commands/spec_kit/deep-research.md`
-  - `.opencode/commands/spec_kit/deep-review.md`
+  - `.opencode/commands/speckit/deep-research.md`
+  - `.opencode/commands/speckit/deep-review.md`
   - `.opencode/skills/sk-deep-research/`
   - `.opencode/skills/sk-deep-review/`
   - `.opencode/skills/system-spec-kit/scripts/memory/`

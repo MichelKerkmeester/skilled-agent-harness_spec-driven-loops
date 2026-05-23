@@ -37,7 +37,7 @@ _memory:
 | Field | Value |
 |---|---|
 | **Sub-phase** | 062/001 |
-| **Target** | `/spec_kit:deep-research` + `@deep-research` |
+| **Target** | `/speckit:deep-research` + `@deep-research` |
 | **Status** | Planned |
 | **Completion** | 0% |
 <!-- /ANCHOR:metadata -->

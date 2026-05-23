@@ -54,7 +54,7 @@ _memory:
 ## Phase 2: Implementation
 
 - [ ] T005 Verify the shared review doctrine paths under `.opencode/skills/sk-code-review/`
-- [ ] T006 Verify the review-mode command entrypoint under `.opencode/commands/spec_kit/deep-research.md`
+- [ ] T006 Verify the review-mode command entrypoint under `.opencode/commands/speckit/deep-research.md`
 - [ ] T007 Verify the review-mode skill docs under `.opencode/skills/sk-deep-research/`
 <!-- /ANCHOR:phase-2 -->
 

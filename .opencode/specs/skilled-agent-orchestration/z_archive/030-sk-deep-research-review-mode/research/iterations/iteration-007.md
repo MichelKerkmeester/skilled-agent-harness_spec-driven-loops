@@ -5,7 +5,7 @@ Determine which architectural changes would make `@deep-review` more effective, 
 
 ## Current Architecture Snapshot
 1. The OpenCode canonical `@deep-review` definition says the agent "does NOT modify" reviewed code and may write only `scratch/` artifacts, but its machine-level permission block still grants broad `write`, `edit`, `bash`, and `external_directory` access. That means the real enforcement boundary is weaker than the prose contract. [SOURCE: .opencode/agents/deep-review.md:6-19] [SOURCE: .opencode/agents/deep-review.md:30-32] [SOURCE: .opencode/agents/deep-review.md:366-370]
-2. The review loop dispatch already sends dimension, scope files, prior severity counts, cross-reference targets, rubric, and a generic 9/12/13 budget contract, then leaves both the iteration-level and final adversarial checks to prose guidance rather than a typed handoff. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:343-373] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:501-508]
+2. The review loop dispatch already sends dimension, scope files, prior severity counts, cross-reference targets, rubric, and a generic 9/12/13 budget contract, then leaves both the iteration-level and final adversarial checks to prose guidance rather than a typed handoff. [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:343-373] [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:501-508]
 3. `@deep-review` is derived from the `@deep-research` loop shell, but the two agents have different operating needs: `@deep-research` is allowed to write `research/research.md` and use `WebFetch`, while `@deep-review` is verification-heavy, scratch-only, and depends on stronger skepticism before findings influence convergence. [SOURCE: .claude/agents/deep-research.md:23-27] [SOURCE: .claude/agents/deep-research.md:93-104] [SOURCE: .opencode/agents/deep-review.md:30-32] [SOURCE: .opencode/agents/deep-review.md:143-146]
 
 ## Findings
@@ -21,7 +21,7 @@ Recommended architecture:
 [INFERENCE: Moving cumulative state mutation one layer up reduces accidental corruption and makes the review agent closer to an evidence-collector than a mini-orchestrator.]
 
 ### 2. A single universal 9-12 tool-call budget is too blunt
-The current review agent says 9-12 target, hard max 13, while the research loop config for this session still carries a 12-call maximum and `@deep-research` itself uses the lighter 8-11 target, hard max 12 pattern. That inconsistency is already a contract smell, and it also hides that review iterations are not all the same cost. Cross-runtime integrity and adversarial re-checks are structurally more expensive than a simple dimension scan. [SOURCE: .opencode/agents/deep-review.md:115-115] [SOURCE: .opencode/agents/deep-review.md:291-298] [SOURCE: .opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/research/deep-research-config.json:3-8] [SOURCE: .claude/agents/deep-research.md:104-104] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:368-369]
+The current review agent says 9-12 target, hard max 13, while the research loop config for this session still carries a 12-call maximum and `@deep-research` itself uses the lighter 8-11 target, hard max 12 pattern. That inconsistency is already a contract smell, and it also hides that review iterations are not all the same cost. Cross-runtime integrity and adversarial re-checks are structurally more expensive than a simple dimension scan. [SOURCE: .opencode/agents/deep-review.md:115-115] [SOURCE: .opencode/agents/deep-review.md:291-298] [SOURCE: .opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/research/deep-research-config.json:3-8] [SOURCE: .claude/agents/deep-research.md:104-104] [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:368-369]
 
 Recommended architecture:
 - Replace the single budget with `budgetProfile`.
@@ -33,7 +33,7 @@ Recommended architecture:
 [INFERENCE: The real problem is not "too many calls"; it is that discovery, verification, and adjudication are currently forced into the same cost envelope.]
 
 ### 3. The dispatch template needs richer state, not just more prose
-The YAML dispatch already sends scope and rubric context, but it does not send the most decision-shaping review metadata: which files were already covered, which open findings are still disputed, which exhausted approaches must be avoided, what runtime capability differences exist, or what schema version the agent should write against. Without that, each iteration has to rediscover too much context from scratch files or infer hidden constraints. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:343-373] [SOURCE: .opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/research/deep-research-strategy.md:99-127]
+The YAML dispatch already sends scope and rubric context, but it does not send the most decision-shaping review metadata: which files were already covered, which open findings are still disputed, which exhausted approaches must be avoided, what runtime capability differences exist, or what schema version the agent should write against. Without that, each iteration has to rediscover too much context from scratch files or infer hidden constraints. [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:343-373] [SOURCE: .opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/research/deep-research-strategy.md:99-127]
 
 Recommended dispatch additions:
 - `reviewContractVersion`
@@ -48,7 +48,7 @@ Recommended dispatch additions:
 - `expectedOutputs` including optional structured finding packet
 
 ### 4. The adversarial self-check should become a typed claim-validation protocol
-The current design improves on raw review by requiring Hunter/Skeptic/Referee for P0, compact skeptic/referee for gate-relevant P1, and a final orchestrator self-check during synthesis. The weakness is timing and structure: the same iteration still records findings before any independent typed adjudication boundary, and the final whole-run self-check happens late, after low-confidence findings may already have influenced strategy and convergence. [SOURCE: .opencode/agents/deep-review.md:143-146] [SOURCE: .opencode/agents/deep-review.md:374-395] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:501-508]
+The current design improves on raw review by requiring Hunter/Skeptic/Referee for P0, compact skeptic/referee for gate-relevant P1, and a final orchestrator self-check during synthesis. The weakness is timing and structure: the same iteration still records findings before any independent typed adjudication boundary, and the final whole-run self-check happens late, after low-confidence findings may already have influenced strategy and convergence. [SOURCE: .opencode/agents/deep-review.md:143-146] [SOURCE: .opencode/agents/deep-review.md:374-395] [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:501-508]
 
 Recommended architecture:
 - Require every new P0/P1 to emit a claim packet with `claim`, `evidenceRefs`, `counterevidenceSought`, `alternativeExplanation`, `finalSeverity`, `confidence`, and `downgradeTrigger`.
@@ -71,7 +71,7 @@ Recommended architecture:
 - Add a cross-runtime parity check that specifically compares writable scope, memory availability, and canonical-source lineage.
 
 ### 6. `@deep-review` should specialize as an evidence packet author, not a mini synthesizer
-`@deep-research` legitimately writes progressive research artifacts and can broaden scope with WebFetch because its job is discovery. Review mode is different: the orchestrator already owns final deduplication, report compilation, and final adversarial self-check. The more `@deep-review` is asked to perform synthesis-like cumulative bookkeeping itself, the more iteration cost and drift risk it accumulates. [SOURCE: .claude/agents/deep-research.md:27-27] [SOURCE: .claude/agents/deep-research.md:93-104] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:481-559]
+`@deep-research` legitimately writes progressive research artifacts and can broaden scope with WebFetch because its job is discovery. Review mode is different: the orchestrator already owns final deduplication, report compilation, and final adversarial self-check. The more `@deep-review` is asked to perform synthesis-like cumulative bookkeeping itself, the more iteration cost and drift risk it accumulates. [SOURCE: .claude/agents/deep-research.md:27-27] [SOURCE: .claude/agents/deep-research.md:93-104] [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:481-559]
 
 Recommended specialization split:
 - Agent: gather evidence, classify findings, emit structured finding packet, suggest next focus.
@@ -103,7 +103,7 @@ Recommended specialization split:
 - `.claude/agents/deep-research.md`
 - `.codex/agents/deep-review.toml`
 - `.gemini/agents/deep-review.md`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml`
+- `.opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml`
 - `.opencode/skills/sk-deep-research/references/loop_protocol.md`
 
 ## Assessment

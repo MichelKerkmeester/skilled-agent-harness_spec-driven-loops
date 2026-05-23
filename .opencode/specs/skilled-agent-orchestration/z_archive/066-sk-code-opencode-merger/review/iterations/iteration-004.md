@@ -29,10 +29,10 @@
 - `.opencode/agents/code.md`
 - `.opencode/agents/review.md`
 - `.opencode/agents/orchestrate.md`
-- `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml`
+- `.opencode/commands/speckit/assets/speckit_implement_auto.yaml`
+- `.opencode/commands/speckit/assets/speckit_implement_confirm.yaml`
+- `.opencode/commands/speckit/assets/speckit_complete_auto.yaml`
+- `.opencode/commands/speckit/assets/speckit_complete_confirm.yaml`
 
 ## Findings - New
 
@@ -42,7 +42,7 @@
 
 ### P1 Findings
 
-- **F004**: Workflow review-agent standards contract names the wrong baseline skill -- `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:213` -- The public workflow `standards_contract` for `review` lists `baseline: "sk-code"` and `overlay: "Load sk-code router-selected evidence"`, but the review agent contract says `sk-code-review` is the review baseline and `sk-code` is loaded afterward only for router-selected standards evidence. The same inverted baseline appears in the implement-confirm and complete workflows, while the adjacent dual-phase labels still describe `sk-code-review baseline + sk-code router-selected evidence`, making the command metadata internally contradictory and harder to maintain safely. [SOURCE: `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:213`] [SOURCE: `.opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml:199`] [SOURCE: `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml:310`] [SOURCE: `.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml:319`] [SOURCE: `.opencode/agents/review.md:76`] [SOURCE: `.opencode/agents/review.md:77`]
+- **F004**: Workflow review-agent standards contract names the wrong baseline skill -- `.opencode/commands/speckit/assets/speckit_implement_auto.yaml:213` -- The public workflow `standards_contract` for `review` lists `baseline: "sk-code"` and `overlay: "Load sk-code router-selected evidence"`, but the review agent contract says `sk-code-review` is the review baseline and `sk-code` is loaded afterward only for router-selected standards evidence. The same inverted baseline appears in the implement-confirm and complete workflows, while the adjacent dual-phase labels still describe `sk-code-review baseline + sk-code router-selected evidence`, making the command metadata internally contradictory and harder to maintain safely. [SOURCE: `.opencode/commands/speckit/assets/speckit_implement_auto.yaml:213`] [SOURCE: `.opencode/commands/speckit/assets/speckit_implement_confirm.yaml:199`] [SOURCE: `.opencode/commands/speckit/assets/speckit_complete_auto.yaml:310`] [SOURCE: `.opencode/commands/speckit/assets/speckit_complete_confirm.yaml:319`] [SOURCE: `.opencode/agents/review.md:76`] [SOURCE: `.opencode/agents/review.md:77`]
   - Finding class: cross-consumer
   - Scope proof: Scoped exact checks found the same `baseline: "sk-code"` / `overlay: "Load sk-code router-selected evidence"` pattern in all four public implement/complete workflow assets, while `.opencode/agents/review.md:76-77` and `.opencode/agents/orchestrate.md:99` define the intended baseline+overlay order.
   - Affected surface hints: [`spec_kit_implement_auto`, `spec_kit_implement_confirm`, `spec_kit_complete_auto`, `spec_kit_complete_confirm`, `@review standards contract`]
@@ -53,10 +53,10 @@
       "type": "compact-skeptic-referee",
       "claim": "The public workflow review-agent standards_contract fields invert the intended review baseline and sk-code overlay, creating a cross-workflow maintainability defect.",
       "evidenceRefs": [
-        ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:213",
-        ".opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml:199",
-        ".opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml:310",
-        ".opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml:319",
+        ".opencode/commands/speckit/assets/speckit_implement_auto.yaml:213",
+        ".opencode/commands/speckit/assets/speckit_implement_confirm.yaml:199",
+        ".opencode/commands/speckit/assets/speckit_complete_auto.yaml:310",
+        ".opencode/commands/speckit/assets/speckit_complete_confirm.yaml:319",
         ".opencode/agents/review.md:76",
         ".opencode/agents/review.md:77",
         ".opencode/agents/orchestrate.md:99"
@@ -88,7 +88,7 @@
 
 - `.opencode/agents/review.md:76-77` defines the intended review standards split: `sk-code-review` baseline, then `sk-code` router-selected standards.
 - `.opencode/agents/orchestrate.md:99` routes code review/security to `@review` with `sk-code-review baseline + sk-code router-selected evidence`.
-- `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:213-216`, `.opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml:199-202`, `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml:310-313`, and `.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml:319-322` carry the contradictory baseline metadata across all checked public workflow variants.
+- `.opencode/commands/speckit/assets/speckit_implement_auto.yaml:213-216`, `.opencode/commands/speckit/assets/speckit_implement_confirm.yaml:199-202`, `.opencode/commands/speckit/assets/speckit_complete_auto.yaml:310-313`, and `.opencode/commands/speckit/assets/speckit_complete_confirm.yaml:319-322` carry the contradictory baseline metadata across all checked public workflow variants.
 
 ## Edge Cases
 

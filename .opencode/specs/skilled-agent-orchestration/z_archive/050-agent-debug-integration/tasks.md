@@ -19,8 +19,8 @@ _memory:
     key_files:
       - ".opencode/agents/debug.md"
       - ".opencode/agents/orchestrate.md"
-      - ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml"
+      - ".opencode/commands/speckit/assets/speckit_implement_auto.yaml"
+      - ".opencode/commands/speckit/assets/speckit_complete_auto.yaml"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "session-2026-04-27-debug-integration"
@@ -59,8 +59,8 @@ _memory:
 - [x] T001 Diff-check the four runtime debug definitions for parity baseline (`diff` across .opencode/agents/debug.md, .claude/agents/debug.md, .codex/agents/debug.toml, .gemini/agents/debug.md)
 - [x] T002 [P] Confirm exact line numbers in `.opencode/agents/debug.md` for: description (~L3), lead paragraph (~L24), Related Resources table (~L461)
 - [x] T003 [P] Confirm exact line numbers in `.opencode/agents/orchestrate.md` for: priority table (~L99), REASSIGN step (~L492), Debug Delegation Trigger (~L537-539), routing lookup row (~L595)
-- [x] T004 [P] Confirm exact line numbers in `spec_kit_implement_auto.yaml` for: agent_availability.debug (~L210-217), debug_delegation block (~L411-413)
-- [x] T005 [P] Confirm exact line numbers in `spec_kit_complete_auto.yaml` for: agent_availability.debug (~L321-328), debug_escalation block (~L898-910)
+- [x] T004 [P] Confirm exact line numbers in `speckit_implement_auto.yaml` for: agent_availability.debug (~L210-217), debug_delegation block (~L411-413)
+- [x] T005 [P] Confirm exact line numbers in `speckit_complete_auto.yaml` for: agent_availability.debug (~L321-328), debug_escalation block (~L898-910)
 - [x] T006 Verify `task_failure_count` counter wiring — does the YAML interpreter actually maintain this counter today, or is the threshold currently inert? Document finding in scratch/.
 - [x] T007 Run baseline `validate.sh --strict` on `.opencode/specs/skilled-agent-orchestration/050-agent-debug-integration/` to confirm spec-doc compliance before edits begin
 <!-- /ANCHOR:phase-1 -->
@@ -79,10 +79,10 @@ _memory:
 - [x] T014 Rewrite `.opencode/agents/orchestrate.md` line 492 REASSIGN step second clause
 - [x] T015 Rewrite `.opencode/agents/orchestrate.md` lines 537-539 Debug Delegation Trigger paragraph
 - [x] T016 Rewrite `.opencode/agents/orchestrate.md` line 595 routing lookup row
-- [x] T017 Rewrite `spec_kit_implement_auto.yaml` lines 212-216: `condition`, `failure_tracking` annotation, `on_threshold` text
-- [x] T018 Rewrite `spec_kit_implement_auto.yaml` lines 411-413: `debug_delegation.action` (sets up Edit B replacement)
-- [x] T019 Rewrite `spec_kit_complete_auto.yaml` lines 321-328: same as T017
-- [x] T020 Rewrite `spec_kit_complete_auto.yaml` lines 898-910: `debug_escalation` block (sets up Edit B replacement)
+- [x] T017 Rewrite `speckit_implement_auto.yaml` lines 212-216: `condition`, `failure_tracking` annotation, `on_threshold` text
+- [x] T018 Rewrite `speckit_implement_auto.yaml` lines 411-413: `debug_delegation.action` (sets up Edit B replacement)
+- [x] T019 Rewrite `speckit_complete_auto.yaml` lines 321-328: same as T017
+- [x] T020 Rewrite `speckit_complete_auto.yaml` lines 898-910: `debug_escalation` block (sets up Edit B replacement)
 - [x] T021 [P] Mirror description rewrite into `.claude/agents/debug.md` line 3
 - [x] T022 [P] Mirror description rewrite into `.codex/agents/debug.toml` line 11 (inside `developer_instructions = '''...'''`)
 - [x] T023 [P] Mirror description rewrite into `.gemini/agents/debug.md` line 3
@@ -91,8 +91,8 @@ _memory:
 
 - [x] T030 Write `.opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh` (new helper script)
 - [x] T031 Make T030 script executable + verify schema parity output against `.opencode/agents/debug.md:60-89`
-- [x] T032 Replace prompt body in `spec_kit_implement_auto.yaml` lines 411-413 with y/n/skip block + scaffold-generator invocation on y
-- [x] T033 Replace prompt body in `spec_kit_complete_auto.yaml` lines 898-910 with same y/n/skip block + scaffold-generator invocation
+- [x] T032 Replace prompt body in `speckit_implement_auto.yaml` lines 411-413 with y/n/skip block + scaffold-generator invocation on y
+- [x] T033 Replace prompt body in `speckit_complete_auto.yaml` lines 898-910 with same y/n/skip block + scaffold-generator invocation
 - [x] T034 Verify `.opencode/skills/system-spec-kit/templates/debug-delegation.md` template field schema matches `.opencode/agents/debug.md:60-89` Debug Context Handoff (modify only on drift)
 <!-- /ANCHOR:phase-2 -->
 

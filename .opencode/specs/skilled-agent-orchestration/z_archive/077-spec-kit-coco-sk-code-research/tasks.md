@@ -101,7 +101,7 @@ _memory:
 ## Cross-References
 
 - Predecessor: `069-sk-code-motion-dev-and-playbook` (just shipped sk-code v3.1.0.0)
-- Workflow command: `/spec_kit:deep-research:auto`
+- Workflow command: `/speckit:deep-research:auto`
 - Skill: `.opencode/skills/deep-research/SKILL.md`
 - Synthesis output: `077/research/research.md`
 - Resource inventory: `077/research/resource-map.md`

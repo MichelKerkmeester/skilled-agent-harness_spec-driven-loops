@@ -47,7 +47,7 @@ describe('resource-map extractor', () => {
         [
           { iteration: 1, event: 'new_finding', finding_id: 'F-README', severity: 'P2', file: 'docs/resource-map/README.md' },
           { iteration: 1, event: 'new_finding', finding_id: 'F-DOC', severity: 'P1', file: 'docs/resource-map-contract.unknownext' },
-          { iteration: 1, event: 'new_finding', finding_id: 'F-CMD', severity: 'P1', file: '.opencode/commands/spec_kit/deep-review.md' },
+          { iteration: 1, event: 'new_finding', finding_id: 'F-CMD', severity: 'P1', file: '.opencode/commands/speckit/deep-review.md' },
           { iteration: 1, event: 'new_finding', finding_id: 'F-AGENT', severity: 'P2', file: '.codex/agents/deep-review.toml' },
           { iteration: 1, event: 'new_finding', finding_id: 'F-SKILL', severity: 'P0', file: '.opencode/skills/sk-deep-review/SKILL.md' },
           { iteration: 1, event: 'new_finding', finding_id: 'F-SPEC', severity: 'P1', file: '.opencode/specs/system-spec-kit/demo/spec.md' },
@@ -104,7 +104,7 @@ describe('resource-map extractor', () => {
             iteration: 1,
             type: 'finding',
             source_paths: [
-              '.opencode/commands/spec_kit/deep-research.md',
+              '.opencode/commands/speckit/deep-research.md',
               '.opencode/skills/sk-deep-research/references/convergence.md',
             ],
             citations: [
@@ -115,7 +115,7 @@ describe('resource-map extractor', () => {
           {
             iteration: 2,
             type: 'finding',
-            source_paths: ['.opencode/commands/spec_kit/deep-research.md'],
+            source_paths: ['.opencode/commands/speckit/deep-research.md'],
             citations: [
               { path: '.opencode/skills/sk-deep-research/SKILL.md' },
               { path: '.opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs' },
@@ -124,7 +124,7 @@ describe('resource-map extractor', () => {
           {
             iteration: 3,
             type: 'finding',
-            source_paths: ['.opencode/commands/spec_kit/deep-research.md'],
+            source_paths: ['.opencode/commands/speckit/deep-research.md'],
             citations: [
               { path: '.opencode/skills/sk-deep-research/SKILL.md' },
               { path: 'notes/research-support.txt' },
@@ -147,7 +147,7 @@ describe('resource-map extractor', () => {
       ]
     `);
     expect(markdown).toContain(
-      '| .opencode/commands/spec_kit/deep-research.md | Cited | OK | Citations=3; Iterations=3 |',
+      '| .opencode/commands/speckit/deep-research.md | Cited | OK | Citations=3; Iterations=3 |',
     );
     expect(markdown).toContain(
       '| .opencode/skills/sk-deep-research/SKILL.md | Cited | OK | Citations=3; Iterations=3 |',
@@ -179,7 +179,7 @@ describe('resource-map extractor', () => {
             event: 'new_finding',
             finding_id: 'F-RANGE',
             severity: 'P2',
-            file: '.opencode/commands/spec_kit/deep-review.md:10-20',
+            file: '.opencode/commands/speckit/deep-review.md:10-20',
           },
         ],
       ],
@@ -187,7 +187,7 @@ describe('resource-map extractor', () => {
 
     // Paths with :line suffixes resolve to real files on disk → status OK, not MISSING.
     expect(markdown).toContain('| .opencode/skills/sk-deep-review/SKILL.md | Analyzed | OK |');
-    expect(markdown).toContain('| .opencode/commands/spec_kit/deep-review.md | Analyzed | OK |');
+    expect(markdown).toContain('| .opencode/commands/speckit/deep-review.md | Analyzed | OK |');
     // The suffix must be stripped — no leaked `:250` or `:10-20` anywhere.
     expect(markdown).not.toContain(':250');
     expect(markdown).not.toContain(':10-20');

@@ -12,9 +12,9 @@ The abstraction is still useful, but the asset surface is too wide. Shared workf
 I revisited how local commands explain their YAML execution model and compared that with Xethryon's smaller command/template registration surface.
 
 ## Evidence
-- `/spec_kit:plan` explicitly says the markdown command is turned into a YAML asset execution flow. [SOURCE: .opencode/commands/spec_kit/plan.md:13-21]
-- `/spec_kit:implement` and `/spec_kit:complete` each restate substantial workflow structure rather than feeling like thin wrappers over a small shared execution core. [SOURCE: .opencode/commands/spec_kit/implement.md:171-201] [SOURCE: .opencode/commands/spec_kit/complete.md:198-217]
-- The current repo layout contains a large asset surface under `.opencode/commands/spec_kit/assets/`, which increases drift risk across similar workflows. This phase review counted fifteen YAML assets in that folder.
+- `/speckit:plan` explicitly says the markdown command is turned into a YAML asset execution flow. [SOURCE: .opencode/commands/speckit/plan.md:13-21]
+- `/speckit:implement` and `/speckit:complete` each restate substantial workflow structure rather than feeling like thin wrappers over a small shared execution core. [SOURCE: .opencode/commands/speckit/implement.md:171-201] [SOURCE: .opencode/commands/speckit/complete.md:198-217]
+- The current repo layout contains a large asset surface under `.opencode/commands/speckit/assets/`, which increases drift risk across similar workflows. This phase review counted fifteen YAML assets in that folder.
 - Xethryon's command system keeps commands, templates, and bundled skills in one registry layer rather than exposing a comparably wide asset family for operators to reason about. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/command/index.ts:96-237]
 
 ## Analysis
@@ -48,7 +48,7 @@ finding: keep the YAML workflow-asset model, but shrink its abstraction boundary
 - **Migration path:** start with the plan/implement/complete family, then expand the shared skeleton model only if it reduces duplication in practice.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`
+- **Target file or module:** `.opencode/commands/speckit/assets/speckit_implement_auto.yaml`
 - **Change type:** modified existing
 - **Blast radius:** medium
 - **Prerequisites:** identify common workflow segments that can be safely shared without hiding command-specific requirements

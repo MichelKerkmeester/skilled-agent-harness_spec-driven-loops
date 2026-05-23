@@ -3,7 +3,7 @@
 Date: 2026-04-10
 
 ## Research question
-Is the `/memory:*` surface too parallel to the `/spec_kit:*` surface, compared to the external repo's more integrated operator workflow?
+Is the `/memory:*` surface too parallel to the `/speckit:*` surface, compared to the external repo's more integrated operator workflow?
 
 ## Hypothesis
 Yes. Public's memory layer is powerful, but too much of it is exposed as an operator decision. Most users should encounter memory behavior through resume, completion, and handover flows rather than through a separate family of commands.
@@ -15,8 +15,8 @@ I compared Public's four primary memory entrypoints with `resume`/`complete` lif
 - Public exposes separate commands for memory save, search, manage, and constitutional learn flows. [SOURCE: .opencode/commands/memory/save.md:2-4] [SOURCE: .opencode/commands/memory/search.md:2-4] [SOURCE: .opencode/commands/memory/manage.md:2-4] [SOURCE: .opencode/commands/memory/learn.md:2-4]
 - `memory:search` is not a small read helper; it is a unified knowledge retrieval and analysis surface with epistemic, causal, and evaluation subcommands. [SOURCE: .opencode/commands/memory/search.md:53-106]
 - `memory:manage` is likewise an administration surface spanning stats, scan, cleanup, bulk delete, checkpoints, ingest, and shared memory operations. [SOURCE: .opencode/commands/memory/manage.md:33-65]
-- `resume` already depends on handover, `session_bootstrap()`, `memory_context()`, `tasks.md`, and `implementation-summary.md` to recover the next safe action. [SOURCE: .opencode/commands/spec_kit/resume.md:258-304] [SOURCE: .opencode/commands/spec_kit/resume.md:359-407]
-- `complete` already links to `memory:save`, `handover`, and `resume` as adjacent lifecycle actions. [SOURCE: .opencode/commands/spec_kit/complete.md:487-491]
+- `resume` already depends on handover, `session_bootstrap()`, `memory_context()`, `tasks.md`, and `implementation-summary.md` to recover the next safe action. [SOURCE: .opencode/commands/speckit/resume.md:258-304] [SOURCE: .opencode/commands/speckit/resume.md:359-407]
+- `complete` already links to `memory:save`, `handover`, and `resume` as adjacent lifecycle actions. [SOURCE: .opencode/commands/speckit/complete.md:487-491]
 - In Agent Lightning, the store is presented as part of the same operating story as the CLI, trainer, and examples, rather than as a separate operator-facing product family. [SOURCE: external/docs/reference/cli.md:59-98] [SOURCE: external/docs/how-to/train-first-agent.md:149-187]
 
 ## Analysis
@@ -30,7 +30,7 @@ confidence: high
 finding: `system-spec-kit` should merge its everyday memory UX into the main lifecycle commands and reserve `/memory:*` entrypoints for advanced retrieval, administration, and governance work.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `/memory:*` versus `/spec_kit:*` operator surface
+- **Target file or module:** `/memory:*` versus `/speckit:*` operator surface
 - **Change type:** UX merge
 - **Blast radius:** medium
 - **Prerequisites:** define primary lifecycle-owned memory actions versus advanced memory admin actions

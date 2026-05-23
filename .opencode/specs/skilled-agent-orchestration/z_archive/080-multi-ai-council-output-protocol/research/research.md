@@ -4,7 +4,7 @@
 
 The 10-iteration research loop converged on a clear answer: preserve ADR-001's lightweight bound for `@multi-ai-council`, and improve the convention through caller-owned persistence, shared schema documentation, fixture-tested helpers, and mirror parity checks.
 
-Go on lightweight-bound preservation. Packet 081 should ship five tightly scoped improvements: helper script, short §17 caller protocol, shared `output-schema.md`, parser/validator fixtures, and four-runtime mirror parity. Packet 082+ should defer lifecycle-heavy work: state schema versioning beyond optional metadata, advisor regression guards, optional `/memory:save` payload anchoring, council-aware advisory checks, and any `/spec_kit:*` command wiring.
+Go on lightweight-bound preservation. Packet 081 should ship five tightly scoped improvements: helper script, short §17 caller protocol, shared `output-schema.md`, parser/validator fixtures, and four-runtime mirror parity. Packet 082+ should defer lifecycle-heavy work: state schema versioning beyond optional metadata, advisor regression guards, optional `/memory:save` payload anchoring, council-aware advisory checks, and any `/speckit:*` command wiring.
 
 - Verdict: **GO** on preserving the lightweight bound.
 - Packet 081 headline recommendation count: **5**.
@@ -18,7 +18,7 @@ How to further improve the multi-ai-council agent (`.opencode/agents/multi-ai-co
 Investigate three threads:
 
 - (1) Concrete improvements landable in follow-on packet 081 / 082+ (helper script shape, §17 caller protocol, §8 shared schema artifact, validator hints, advisor wiring, state.jsonl forward-compat, mirror-sync automation).
-- (2) Whether existing spec-kit integration is solid: agent body §12-§15, 4-runtime mirrors, validator regression test, references/multi-ai-council/, packet-080 ai-council/ smoke-test artifacts. Or whether gaps exist (validator awareness, advisor scoring, /spec_kit:* wiring, hook integration, council-aware /memory:save anchoring).
+- (2) Whether existing spec-kit integration is solid: agent body §12-§15, 4-runtime mirrors, validator regression test, references/multi-ai-council/, packet-080 ai-council/ smoke-test artifacts. Or whether gaps exist (validator awareness, advisor scoring, /speckit:* wiring, hook integration, council-aware /memory:save anchoring).
 - (3) Risks the round-2 amendments (ADD-1..ADD-6) introduce and mitigations.
 
 ## 3. METHODOLOGY
@@ -285,7 +285,7 @@ Triggers:
 | P2 | Add advisor abstention/regression fixture if advisor code changes. | 082+ | Avoid accidental pseudo-skill routing. | Iter 5 §Findings. |
 | P2 | Add council-aware advisory checker with `--expect-complete`. | 082+ | Helpful once helper output exists; unsafe in base strict validator. | Iter 4 §Findings. |
 | P2 | Formalize state v1.1 optional metadata. | 082+ | Good forward compatibility, not required to ship the helper. | Iter 7 §Findings. |
-| P2 | Wire `/spec_kit:*` YAML invocations. | 082+ | Convenience only; manual invocation must work first. | Council ADD-6; iter 9 §Findings. |
+| P2 | Wire `/speckit:*` YAML invocations. | 082+ | Convenience only; manual invocation must work first. | Council ADD-6; iter 9 §Findings. |
 
 ## 7. CONCRETE PACKET 081 SCOPE
 
@@ -326,7 +326,7 @@ Packet 081 should be a helper/schema/protocol/test packet. It should not modify 
      - `.gemini/agents/multi-ai-council.md`
      - `.codex/agents/multi-ai-council.toml`
    - §8 should reference `output-schema.md`.
-   - §17 should enumerate top-level Task dispatch, `@orchestrate` Depth 1 dispatch, future `/spec_kit:*` command YAMLs, and CLI-skill manual dispatch.
+   - §17 should enumerate top-level Task dispatch, `@orchestrate` Depth 1 dispatch, future `/speckit:*` command YAMLs, and CLI-skill manual dispatch.
    - §17 must explicitly say the dispatching parent/caller invokes the helper after the LEAF returns.
    - §17 must state forward-only scope and no retroactive migration.
 
@@ -370,7 +370,7 @@ These are useful but should not block packet 081.
   - Default mode exits 0 with advisory output.
   - `--expect-complete` can fail when `council-report.md` is missing after known completion.
 
-- `/spec_kit:*` command YAML wiring:
+- `/speckit:*` command YAML wiring:
   - Convenience only.
   - Top-level, orchestrator, and CLI manual invocation must remain standalone.
 
@@ -410,7 +410,7 @@ These are useful but should not block packet 081.
 - Automatic memory save on `council_complete`.
 - Retroactive migration/backfill of pre-080 council outputs.
 - Path-scoped self-persistence as a v1.1 default.
-- `/spec_kit:council` command.
+- `/speckit:council` command.
 - Convergence math beyond the existing 2/3 agreement rule.
 
 ## 11. EVIDENCE TRAIL
@@ -434,7 +434,7 @@ These are useful but should not block packet 081.
 
 - Preserve ADR-001's lightweight bound unless it provably fails.
 - Do not create `.opencode/skills/multi-ai-council/` for packet 081.
-- Do not add `/spec_kit:council`.
+- Do not add `/speckit:council`.
 - Do not auto-dispatch the council through advisor or hooks.
 - Do not replace `scratch/` for ad-hoc council notes.
 - Do not aggregate councils across packets.
@@ -456,7 +456,7 @@ Conditions that justify revisiting ADR-001:
 - One trigger becomes blocking enough that callers cannot safely use the council.
 - The helper starts controlling rounds, seats, dispatch, or convergence.
 - `ai-council-state.jsonl` needs fail-closed parsing, migrations, or reducer-owned writes.
-- `/spec_kit:*` commands become the primary lifecycle owner.
+- `/speckit:*` commands become the primary lifecycle owner.
 - Skill Advisor or hooks must discover and recommend council automatically.
 - `validate.sh --strict` must enforce internal `ai-council/` layout.
 - Four-runtime mirrors can no longer be maintained with parity tests and require generated bodies.
@@ -497,7 +497,7 @@ Gaps:
 - P2: no advisor abstention regression.
 - P2: no optional memory-save payload path.
 - P2: no council-aware completion advisory check.
-- P2: `/spec_kit:*` command wiring is not present and should remain convenience work.
+- P2: `/speckit:*` command wiring is not present and should remain convenience work.
 
 Integration verdict: **solid foundation, incomplete operationalization**.
 

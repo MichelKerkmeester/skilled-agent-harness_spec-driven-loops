@@ -20,7 +20,7 @@ The local system already does the hard part of persistence correctly: packet-loc
 
 ## Refactor / Pivot Analysis
 
-- **Current system-spec-kit approach:** persistent disk state plus manual `/spec_kit:resume` or pause-sentinel recovery.
+- **Current system-spec-kit approach:** persistent disk state plus manual `/speckit:resume` or pause-sentinel recovery.
 - **External repo's approach:** explicit continuation checks and timer-aware branching as part of the workflow contract.
 - **Why the external approach might be better:** it treats context pressure and rate limits as expected loop states rather than exceptional operator interruptions.
 - **Why system-spec-kit's approach might still be correct:** OpenCode cannot rely on timer hooks everywhere, so fully automatic continuation cannot be the only path.

@@ -261,7 +261,7 @@ Before canonical continuity files are mutated, `generate-context.js` acquires a 
 ```yaml
 _memory:
   continuity:
-    packet_pointer: "026/.../007-018-sk-system-speckit-revisit"
+    packet_pointer: "026/.../007-018-sk-system-spec-kit-revisit"
     last_updated_at: "2026-04-12T00:00:00Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Aligned save/recovery docs to packet-first continuity"

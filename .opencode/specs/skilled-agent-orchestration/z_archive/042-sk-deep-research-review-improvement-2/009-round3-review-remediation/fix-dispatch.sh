@@ -30,7 +30,7 @@ run_fix() {
 # BATCH 1: Correctness
 run_fix "1-correctness" "Fix 8 correctness bugs in the deep-loop reducers and helpers:
 
-1. .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml + _confirm.yaml: Emit per-finding claim_adjudication events with findingId, finalSeverity, and transitions array before stop checks.
+1. .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml + _confirm.yaml: Emit per-finding claim_adjudication events with findingId, finalSeverity, and transitions array before stop checks.
 
 2. Same YAMLs: Add continuedFromRun with iteration count to restart event payloads.
 
@@ -97,7 +97,7 @@ run_fix "4-traceability-mirrors" "Fix 14 traceability issues in agent mirrors an
 
 2. .gemini/agents/deep-review.md (or .toml): Mirror canonical deep-review agent iteration contract verbatim.
 
-3. .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml + spec_kit_deep-research_confirm.yaml: Add archivedPath:null to confirm-mode resumed event payloads.
+3. .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml + spec_kit_deep-research_confirm.yaml: Add archivedPath:null to confirm-mode resumed event payloads.
 
 4. .claude/agents/deep-research.md: Restore config to Step 1 required reads.
 

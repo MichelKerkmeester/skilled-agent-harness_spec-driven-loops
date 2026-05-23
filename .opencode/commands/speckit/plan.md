@@ -14,8 +14,8 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory
 > 1. Determine execution mode from user input (`:auto` or `:confirm`)
 >    Note: `:with-phases` is a feature flag, not an execution mode. It modifies the workflow but does not change the base execution mode.
 > 2. Load the corresponding YAML file from `assets/`:
->    - Auto mode → `spec_kit_plan_auto.yaml`
->    - Confirm mode → `spec_kit_plan_confirm.yaml`
+>    - Auto mode → `speckit_plan_auto.yaml`
+>    - Confirm mode → `speckit_plan_confirm.yaml`
 > 3. Execute the YAML workflow step by step
 >
 > All content below is reference context for the YAML workflow. Do not treat reference sections, routing tables, or dispatch templates as direct instructions to execute.
@@ -47,11 +47,11 @@ Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_
 
 Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 
-1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/plan-config.json` (shape: `featureDescription`, `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `researchIntent`, `phaseDecomposition`, `phaseCount`, `phaseNames`, `intakeOnly`, `intake.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml`. End §0.
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/plan-config.json` (shape: `featureDescription`, `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `researchIntent`, `phaseDecomposition`, `phaseCount`, `phaseNames`, `intakeOnly`, `intake.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/speckit/assets/speckit_plan_auto.yaml`. End §0.
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`, `research_intent`. **Ordering rule**: none needed. Missing `feature_description` is absence, not ambiguity — go to Tier 3.
 
-3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/spec_kit:plan:auto` as the command name. Exit non-zero. Do not load YAML.
+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/speckit:plan:auto` as the command name. Exit non-zero. Do not load YAML.
 
 `:confirm` path stays unchanged — see the consolidated setup prompt section below.
 
@@ -153,7 +153,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 4. Search for prior work (background):
    - memory_context({ input: feature_description OR "planning", mode: "focused", includeContent: true })
    > Gate 1 trigger matching handled at agent level (AGENTS.md).
-   > Gate 3 spec-folder trigger classification is typed: `.opencode/skills/system-spec-kit/shared/gate-3-classifier.ts` (`classifyPrompt()`). Invocations of `/spec_kit:plan` are already inside a write flow, so Gate 3 is pre-answered by command dispatch — no extra inference needed here.
+   > Gate 3 spec-folder trigger classification is typed: `.opencode/skills/system-spec-kit/shared/gate-3-classifier.ts` (`classifyPrompt()`). Invocations of `/speckit:plan` are already inside a write flow, so Gate 3 is pre-answered by command dispatch — no extra inference needed here.
    - Store: prior_work_found = [yes/no], prior_work_count = [N]
 
 5. Prior-work loading question needed ONLY if user selects A or C for spec folder AND prior continuity records exist for this spec.
@@ -249,9 +249,9 @@ STOP HERE - Wait for user answers before continuing.
 
 # SpecKit Plan
 
-Execute the SpecKit planning lifecycle from specification through planning. Terminates after plan.md — use `/spec_kit:implement` for implementation.
+Execute the SpecKit planning lifecycle from specification through planning. Terminates after plan.md — use `/speckit:implement` for implementation.
 
-> **ENFORCEMENT:** If the user requests implementation via free text (e.g., "implement this plan", "go ahead and build it") instead of `/spec_kit:implement`, you MUST route through the implement command. Do NOT begin implementing directly. Plan and implementation are **separate gate-checked phases** — gate answers from planning do NOT carry over.
+> **ENFORCEMENT:** If the user requests implementation via free text (e.g., "implement this plan", "go ahead and build it") instead of `/speckit:implement`, you MUST route through the implement command. Do NOT begin implementing directly. Plan and implementation are **separate gate-checked phases** — gate answers from planning do NOT carry over.
 
 ```yaml
 role: Expert Developer using Smart SpecKit for Planning Phase
@@ -280,7 +280,7 @@ Run the planning workflow: specification, clarification, and technical planning.
 **Inputs:** `$ARGUMENTS` — Feature description with optional parameters (branch, scope, context)
 **Outputs:** Spec folder with: spec.md, plan.md, tasks.md, checklist.md (Level 2+), a scaffolded root `graph-metadata.json` packet contract, plus a refreshed continuity update in canonical spec docs generated via structured `generate-context.js` input
 
-> **Level 1 Note:** /spec_kit:plan creates spec.md, plan.md, and tasks.md. For complete Level 1 baseline implementation execution, run /spec_kit:implement after planning or use /spec_kit:complete instead.
+> **Level 1 Note:** /speckit:plan creates spec.md, plan.md, and tasks.md. For complete Level 1 baseline implementation execution, run /speckit:implement after planning or use /speckit:complete instead.
 
 ```text
 $ARGUMENTS
@@ -313,8 +313,8 @@ $ARGUMENTS
 
 After all phases pass, load and execute the appropriate YAML prompt:
 
-- **AUTONOMOUS**: `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml`
-- **INTERACTIVE**: `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml`
+- **AUTONOMOUS**: `.opencode/commands/speckit/assets/speckit_plan_auto.yaml`
+- **INTERACTIVE**: `.opencode/commands/speckit/assets/speckit_plan_confirm.yaml`
 
 The YAML contains detailed step-by-step workflow, field extraction rules, completion report format, and all configuration.
 
@@ -326,7 +326,7 @@ The YAML contains detailed step-by-step workflow, field extraction rules, comple
 ```
 ✅ SpecKit Planning Complete — All 8 steps executed.
 Artifacts: spec.md, plan.md, tasks.md, checklist.md (L2+), graph-metadata.json scaffolded, continuity update in canonical spec docs refreshed
-Ready for: /spec_kit:implement [spec-folder-path]
+Ready for: /speckit:implement [spec-folder-path]
 STATUS=OK PATH=[spec-folder-path]
 ```
 
@@ -455,16 +455,16 @@ Record results in decision-record.md for architectural changes.
 
 | Error | Action |
 |-------|--------|
-| Spec folder not found | Verify path exists; offer to create via /spec_kit:plan |
+| Spec folder not found | Verify path exists; offer to create via /speckit:plan |
 | Memory context load failure | Proceed without prior context; note gap |
 | YAML workflow dispatch error | Retry once; if persistent, report error and halt |
 
 ---
 
-## 11. KEY DIFFERENCES FROM /SPEC_KIT:COMPLETE
+## 11. KEY DIFFERENCES FROM /SPECKIT:COMPLETE
 
 - **Terminates after planning** — no task breakdown, analysis, or implementation
-- **Next step guidance** — recommends `/spec_kit:implement` when ready
+- **Next step guidance** — recommends `/speckit:implement` when ready
 - **Use case** — planning phase separation, stakeholder review, feasibility analysis
 
 ---
@@ -495,7 +495,7 @@ Runs after setup, before Step 1:
 
 - `spec_path` automatically updates to first child phase folder
 - Normal Steps 1-8 execute targeting that first child
-- Subsequent children: invoke `/spec_kit:plan --phase-folder=<child-path>` per child
+- Subsequent children: invoke `/speckit:plan --phase-folder=<child-path>` per child
 
 > **Lean parent.** The parent created by `create.sh --phase` scaffolds from `phase-parent Level template contract` (the lean phase-parent template) and contains ONLY the lean trio: `spec.md`, `description.json`, `graph-metadata.json`. Heavy docs (`plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`) live exclusively in the phase children. Each child receives the appropriate Level-N templates as today. The validator's phase-parent branches in `check-files.sh`, `check-level-match.sh`, `check-anchors.sh`, `check-section-counts.sh`, and `check-template-headers.sh` skip Level-N expectations on the parent automatically. Tolerant policy preserves legacy phase parents that retain heavy docs.
 
@@ -519,9 +519,9 @@ Continue planning first child (001-[name]/)? [Y/n/review]
 ### Examples
 
 ```
-/spec_kit:plan:auto "Build hybrid RAG system" :with-phases --phases 3
-/spec_kit:plan:auto "Large platform migration" :with-phases --phase-names "data-layer,api,ui"
-/spec_kit:plan:confirm "OAuth2 implementation" :with-phases
+/speckit:plan:auto "Build hybrid RAG system" :with-phases --phases 3
+/speckit:plan:auto "Large platform migration" :with-phases --phase-names "data-layer,api,ui"
+/speckit:plan:confirm "OAuth2 implementation" :with-phases
 ```
 
 ---
@@ -529,10 +529,10 @@ Continue planning first child (001-[name]/)? [Y/n/review]
 ## 13. COMMAND CHAIN
 
 ```
-[/deep:start-research-loop] → /spec_kit:plan [:with-phases] → [/spec_kit:implement]
+[/deep:start-research-loop] → /speckit:plan [:with-phases] → [/speckit:implement]
 ```
 
-Next step: `/spec_kit:implement [spec-folder-path]`
+Next step: `/speckit:implement [spec-folder-path]`
 
 ---
 
@@ -540,7 +540,7 @@ Next step: `/spec_kit:implement [spec-folder-path]`
 
 | Condition                    | Suggested Command                        | Reason                    |
 | ---------------------------- | ---------------------------------------- | ------------------------- |
-| Ready to implement           | `/spec_kit:implement [spec-folder-path]` | Continue to implementation|
+| Ready to implement           | `/speckit:implement [spec-folder-path]` | Continue to implementation|
 | Need stakeholder review      | Share `plan.md` for review               | Get approval before coding|
 | Technical uncertainty        | `/deep:start-research-loop [topic]`        | Investigate first         |
 | Need to pause                | `/memory:save [spec-folder-path]`        | Refresh the indexed canonical spec document before pausing |

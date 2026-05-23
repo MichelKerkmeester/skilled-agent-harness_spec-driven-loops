@@ -13,7 +13,7 @@ Read BAD's configuration and Phase 1 scheduling rules, then compared them to the
 - BAD exposes `MAX_PARALLEL_STORIES` as an explicit scheduler control and pairs it with model/timer settings at startup. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/skills/bad/SKILL.md:47-68]
 - BAD's coordinator selects at most `MAX_PARALLEL_STORIES` from Phase 0's `ready_stories`, and it refuses to schedule later-epic stories while earlier epics remain incomplete. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/skills/bad/SKILL.md:177-185]
 - BAD's ready-state calculation also blocks stories whose dependency PRs are not merged. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/skills/bad/references/phase0-dependency-graph.md:66-73]
-- Local autonomous implementation checks whether to parallelize `code` and `testing`, but it does not maintain a backlog-wide ready queue or predecessor-aware batch selector. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:392-405]
+- Local autonomous implementation checks whether to parallelize `code` and `testing`, but it does not maintain a backlog-wide ready queue or predecessor-aware batch selector. [SOURCE: .opencode/commands/speckit/assets/speckit_implement_auto.yaml:392-405]
 - Local phase documentation tracks dependencies between phases, but it stops at documentation and validation rather than automated queue selection. [SOURCE: .opencode/skills/system-spec-kit/references/structure/phase_definitions.md:186-233]
 
 ## Analysis
@@ -25,7 +25,7 @@ confidence: high
 finding: The portable insight is the ready-queue abstraction, not the exact BAD backlog format. `system-spec-kit` could eventually benefit from a scheduler that selects phase children based on predecessor completion and explicit concurrency caps, but that belongs in a new orchestration layer rather than in the current implementation step alone.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`
+- **Target file or module:** `.opencode/commands/speckit/assets/speckit_implement_auto.yaml`
 - **Change type:** added option
 - **Blast radius:** large
 - **Prerequisites:** define a machine-readable phase readiness source before adding any queue-based dispatch

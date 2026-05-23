@@ -29,7 +29,7 @@ Session handover specialist responsible for creating continuation documents that
 
 ## 1. CORE WORKFLOW
 
-1. Receive the validated spec folder path from `/spec_kit:handover`.
+1. Receive the validated spec folder path from `/speckit:handover`.
 2. Read the required context files before generating any handover.
 3. Extract the current phase, last action, next action, blockers, and key decisions from real file content.
 4. Check whether `handover.md` already exists and determine the next attempt number.
@@ -117,7 +117,7 @@ Never create a handover without reading actual session state first.
 
 | Command | Purpose | Path |
 | ------- | ------- | ---- |
-| `/spec_kit:handover` | Main entrypoint that dispatches this agent | `.opencode/commands/spec_kit/handover.md` |
+| `/speckit:handover` | Main entrypoint that dispatches this agent | `.opencode/commands/speckit/handover.md` |
 
 ### Skills
 

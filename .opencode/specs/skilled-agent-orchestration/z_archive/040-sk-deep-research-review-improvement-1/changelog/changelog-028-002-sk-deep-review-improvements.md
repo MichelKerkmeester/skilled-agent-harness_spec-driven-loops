@@ -104,8 +104,8 @@ This phase brought `sk-deep-review` to the same lineage-aware, reducer-driven co
 
 | File | What changed |
 |------|--------------|
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Carried migration logic, lifecycle branches, reducer refresh, and synthesis guidance. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Mirrored the same contract for confirm mode. |
+| `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml` | Carried migration logic, lifecycle branches, reducer refresh, and synthesis guidance. |
+| `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml` | Mirrored the same contract for confirm mode. |
 | `.opencode/agents/deep-review.md` | Aligned the OpenCode runtime mirror to the canonical review packet contract. |
 | `.claude/agents/deep-review.md` | Aligned the Claude runtime mirror to the canonical review packet contract. |
 | `.gemini/agents/deep-review.md` | Aligned the Gemini runtime mirror to the canonical review packet contract. |

@@ -244,7 +244,7 @@ The `decision-record.md` provides full ADR rationale for each design choice; con
 
 **Phase 2 done when:**
 - All three `research/stream-NN-*/iterations/` directories contain iteration files
-- Each stream converges per `/spec_kit:deep-research:auto`
+- Each stream converges per `/speckit:deep-research:auto`
 - `research/synthesis.md` authored with finalized D3 diff text + canonical `code.md` skeleton
 
 **Phase 3 done when:**

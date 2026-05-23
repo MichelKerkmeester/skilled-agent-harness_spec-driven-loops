@@ -24,7 +24,7 @@ Inventory + correctness pass over accepted merger decisions, public agent/comman
 - `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/implementation-summary.md`
 - `.opencode/skills/sk-code/SKILL.md`
 - Public agent mirrors under `.opencode/agents/`, `.claude/agents/`, `.gemini/agents/`, `.codex/agents/`
-- `spec_kit` command assets under `.opencode/commands/spec_kit/`
+- `spec_kit` command assets under `.opencode/commands/speckit/`
 - Deleted legacy paths checked by glob: `.opencode/skills/sk-code-opencode/**`, `.opencode/skills/sk-code/references/{go,nextjs}/**`, `.opencode/skills/sk-code/assets/{go,nextjs}/**`
 
 ## Findings - New
@@ -77,7 +77,7 @@ None.
 
 ## Integration Evidence
 
-- Reviewed exact public integration surfaces: `.opencode/agents/*`, `.claude/agents/*`, `.gemini/agents/*`, `.codex/agents/*`, and `.opencode/commands/spec_kit/*`.
+- Reviewed exact public integration surfaces: `.opencode/agents/*`, `.claude/agents/*`, `.gemini/agents/*`, `.codex/agents/*`, and `.opencode/commands/speckit/*`.
 - Reviewed shared severity doctrine from `.opencode/skills/sk-code-review/references/review_core.md` before severity classification.
 - Code graph was not used for evidence because startup context reported stale graph status; direct reads, glob checks, and exact searches were used instead.
 

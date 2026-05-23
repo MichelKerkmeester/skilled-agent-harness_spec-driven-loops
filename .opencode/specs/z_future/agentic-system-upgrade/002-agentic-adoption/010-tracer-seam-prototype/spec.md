@@ -67,7 +67,7 @@ Answer the remaining uncertainty for 010 tracer seam prototype with bounded expe
 |-----------|-------------|-------------|
 | `.opencode/agents/orchestrate.md` | Investigate | Potential touchpoint for the bounded study |
 | `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` | Investigate | Potential touchpoint for the bounded study |
-| `.opencode/commands/spec_kit/deep-research.md` | Investigate | Potential touchpoint for the bounded study |
+| `.opencode/commands/speckit/deep-research.md` | Investigate | Potential touchpoint for the bounded study |
 <!-- /ANCHOR:scope -->
 
 ---

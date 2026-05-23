@@ -4,7 +4,7 @@
 Determine the smallest review taxonomy that still preserves audit rigor, using the current sk-deep-research review-mode contract plus comparison points from established review tools.
 
 ## Findings
-1. The current review taxonomy is carrying the same concern in multiple layers. `spec-alignment`, `completeness`, and `cross-ref-integrity` are all traceability checks about whether claims, required artifacts, and evidence line up; `patterns` and `documentation-quality` both evaluate maintainability and operator clarity; and cross-reference logic appears both as its own dimension and again as a quality guard and a 6-protocol appendix. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:664-682] [SOURCE: .opencode/skills/sk-deep-research/references/quick_reference.md:262-280]
+1. The current review taxonomy is carrying the same concern in multiple layers. `spec-alignment`, `completeness`, and `cross-ref-integrity` are all traceability checks about whether claims, required artifacts, and evidence line up; `patterns` and `documentation-quality` both evaluate maintainability and operator clarity; and cross-reference logic appears both as its own dimension and again as a quality guard and a 6-protocol appendix. [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:664-682] [SOURCE: .opencode/skills/sk-deep-research/references/quick_reference.md:262-280]
 2. The current model is already leaking cognitive overhead into the docs. The runtime/state docs still say review mode evaluates "all 7" dimensions, while the quick reference says the score breakdown is based on "5-dimension scores," which is a concrete sign that the conceptual model is harder to keep synchronized than it should be. [SOURCE: .opencode/skills/sk-deep-research/references/state_format.md:539-542] [SOURCE: .opencode/skills/sk-deep-research/references/quick_reference.md:286-287] [SOURCE: .opencode/skills/sk-deep-research/README.md:47-54]
 3. Mature review tools usually separate a small "issue type" taxonomy from severity and gating rather than making every enforcement concept first-class. SonarQube uses three issue types (Bug, Vulnerability, Code Smell), a severity scale, and a lifecycle/status model; it does not expose a parallel operator taxonomy for evidence rules or protocol catalogs. [SOURCE: https://docs.sonarsource.com/sonarqube-server/10.3/user-guide/issues/:115-165]
 4. Semgrep follows the same pattern: findings are organized around a compact concern model such as security, performance, correctness, and best-practice rulesets, while severity is a separate field with only three levels for Semgrep Code. Qlty similarly keeps issue categories compact (`Duplication`, `Structure`, `Vulnerabilities`) and then layers a simple high/medium/low level system on top. [SOURCE: https://semgrep.dev/docs/running-rules:103-132] [SOURCE: https://dev2.semgrep.dev/docs/kb/rules/understand-severities:49-59] [SOURCE: https://docs.qlty.sh/cloud/maintainability/metrics:93-108]
@@ -14,7 +14,7 @@ Determine the smallest review taxonomy that still preserves audit rigor, using t
    - `traceability`: merges `spec-alignment` + `completeness` + `cross-ref-integrity`
    - `maintainability`: merges `patterns` + `documentation-quality`
 
-   This preserves the repo's two highest-risk lanes as explicit dimensions (`correctness`, `security`) while collapsing the three "does the artifact graph line up?" dimensions into one and the two maintainability/documentation lenses into one. That matches the external-tool pattern of using a few stable concern buckets plus separate severity/gate logic. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:664-682] [SOURCE: .opencode/skills/sk-deep-research/README.md:47-54] [SOURCE: https://docs.sonarsource.com/sonarqube-server/10.3/user-guide/issues/:117-130] [SOURCE: https://docs.qlty.sh/cloud/maintainability/metrics:95-107]
+   This preserves the repo's two highest-risk lanes as explicit dimensions (`correctness`, `security`) while collapsing the three "does the artifact graph line up?" dimensions into one and the two maintainability/documentation lenses into one. That matches the external-tool pattern of using a few stable concern buckets plus separate severity/gate logic. [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:664-682] [SOURCE: .opencode/skills/sk-deep-research/README.md:47-54] [SOURCE: https://docs.sonarsource.com/sonarqube-server/10.3/user-guide/issues/:117-130] [SOURCE: https://docs.qlty.sh/cloud/maintainability/metrics:95-107]
 6. Quality guards should collapse from 5 named concepts to 3 binary gates:
    - `evidence`: combines `evidence-completeness` + `no-inference-only`
    - `scope`: keeps `scope-alignment`
@@ -66,16 +66,16 @@ Determine the smallest review taxonomy that still preserves audit rigor, using t
 | 6 cross-reference protocols | protocol catalog invoked under `traceability` when applicable |
 
 ## Ruled Out
-- Keeping all 7 dimensions as the operator-facing core taxonomy. The overlap is too high, and the doc surface is already showing synchronization strain. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:664-682] [SOURCE: .opencode/skills/sk-deep-research/references/quick_reference.md:286-287]
+- Keeping all 7 dimensions as the operator-facing core taxonomy. The overlap is too high, and the doc surface is already showing synchronization strain. [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:664-682] [SOURCE: .opencode/skills/sk-deep-research/references/quick_reference.md:286-287]
 - Using the numeric composite score as the primary release gate. It creates a second decision system that can conflict with severity-based blocking logic. [SOURCE: .opencode/skills/sk-deep-research/references/quick_reference.md:255-280] [SOURCE: .opencode/skills/sk-deep-research/references/loop_protocol.md:678-687]
-- Treating the 6 cross-reference protocols as a peer taxonomy beside dimensions, guards, and verdicts. They are better modeled as verification methods under `traceability`, with deeper restructuring deferred to Q4. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:674-682] [SOURCE: .opencode/skills/sk-deep-research/references/loop_protocol.md:624-637]
+- Treating the 6 cross-reference protocols as a peer taxonomy beside dimensions, guards, and verdicts. They are better modeled as verification methods under `traceability`, with deeper restructuring deferred to Q4. [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:674-682] [SOURCE: .opencode/skills/sk-deep-research/references/loop_protocol.md:624-637]
 
 ## Dead Ends
 - CocoIndex semantic search again did not help much on this markdown/config-heavy problem; exact reads plus external product docs carried most of the signal this round.
 - Code Climate itself was a weak comparison source because its current documentation surface has largely shifted to Qlty, so Qlty was the more useful current official reference.
 
 ## Sources Consulted
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml`
+- `.opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml`
 - `.opencode/skills/sk-deep-research/references/quick_reference.md`
 - `.opencode/skills/sk-deep-research/references/loop_protocol.md`
 - `.opencode/skills/sk-deep-research/references/state_format.md`

@@ -61,7 +61,7 @@ Add a dedicated phase that brings `sk-improve-agent` and its related command and
 - `.opencode/skills/sk-improve-agent/README.md`
 - Markdown files under `.opencode/skills/sk-improve-agent/references/`
 - Markdown files under `.opencode/skills/sk-improve-agent/assets/`
-- `.opencode/commands/spec_kit/agent-improver.md`
+- `.opencode/commands/speckit/agent-improver.md`
 - `.opencode/agents/agent-improver.md`
 - Parent packet `041` docs and registry metadata needed to record phase `003`
 
@@ -72,7 +72,7 @@ Add a dedicated phase that brings `sk-improve-agent` and its related command and
 
 ### Files to Change
 - `.opencode/skills/sk-improve-agent/`
-- `.opencode/commands/spec_kit/agent-improver.md`
+- `.opencode/commands/speckit/agent-improver.md`
 - `.opencode/agents/agent-improver.md`
 - `.opencode/specs/skilled-agent-orchestration/041-sk-improve-agent-loop/`
 - `.opencode/specs/descriptions.json`
@@ -89,7 +89,7 @@ Add a dedicated phase that brings `sk-improve-agent` and its related command and
 |----|-------------|---------------------|
 | REQ-001 | `sk-improve-agent` packages cleanly | `package_skill.py --check` passes for `.opencode/skills/sk-improve-agent` |
 | REQ-002 | README aligns with `sk-doc` | `validate_document.py --type readme` passes for the skill README |
-| REQ-003 | Canonical loop command aligns with `sk-doc` | `validate_document.py --type command` passes for `.opencode/commands/spec_kit/agent-improver.md` |
+| REQ-003 | Canonical loop command aligns with `sk-doc` | `validate_document.py --type command` passes for `.opencode/commands/speckit/agent-improver.md` |
 | REQ-004 | Canonical loop agent aligns with `sk-doc` | `validate_document.py --type agent` passes for `.opencode/agents/agent-improver.md` |
 | REQ-005 | Skill references and markdown assets align with `sk-doc` | All reference and asset markdown files pass `validate_document.py` |
 

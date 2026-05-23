@@ -67,7 +67,7 @@ Run rigorous autonomous deep-research rounds that investigate improvements to th
 
 ### In Scope
 
-- **Deep research execution** using `/spec_kit:deep-research:auto` against 3 external reference repos
+- **Deep research execution** using `/speckit:deep-research:auto` against 3 external reference repos
 - **Validation of existing 18 v2 proposals** from spec 023 improvement-proposals.md
 - **Discovery of new improvement opportunities** missed in the first research cycle
 - **File-level implementation specifications** for each validated proposal
@@ -76,7 +76,7 @@ Run rigorous autonomous deep-research rounds that investigate improvements to th
 
 ### Out of Scope
 
-- Actual implementation of improvements — that is a separate `/spec_kit:implement` phase
+- Actual implementation of improvements — that is a separate `/speckit:implement` phase
 - Changes to the Spec Kit Memory MCP server or generate-context.js
 - Wave orchestration / parallel agent fan-out (P2.5) — flagged as Large effort, track only
 - True context isolation via `claude -p` (P4.3) — requires architectural change, track only
@@ -89,9 +89,9 @@ Run rigorous autonomous deep-research rounds that investigate improvements to th
 | `.opencode/skills/sk-deep-research/references/convergence.md` | Analyze | Convergence algorithm — validate vs real data |
 | `.opencode/skills/sk-deep-research/references/loop_protocol.md` | Analyze | Loop lifecycle — assess error handling gaps |
 | `.opencode/skills/sk-deep-research/references/state_format.md` | Analyze | State schema — validate fault tolerance |
-| `.opencode/commands/spec_kit/deep-research.md` | Analyze | Command setup — assess UX gaps |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Analyze | Auto YAML — assess loop logic completeness |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Analyze | Confirm YAML — assess gate logic |
+| `.opencode/commands/speckit/deep-research.md` | Analyze | Command setup — assess UX gaps |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | Analyze | Auto YAML — assess loop logic completeness |
+| `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml` | Analyze | Confirm YAML — assess gate logic |
 | `.claude/agents/deep-research.md` | Analyze | Claude agent — cross-runtime consistency |
 | `.codex/agents/deep-research.toml` | Analyze | Codex agent — cross-runtime consistency |
 | `.opencode/agents/deep-research.md` | Analyze | OpenCode agent — primary definition |

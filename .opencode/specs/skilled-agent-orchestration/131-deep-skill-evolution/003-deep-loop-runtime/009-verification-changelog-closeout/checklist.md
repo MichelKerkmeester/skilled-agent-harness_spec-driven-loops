@@ -78,7 +78,7 @@ _memory:
   - **Evidence**: DEFERRED per phase instruction. Exact command started but did not return; process inspection was unavailable in sandbox. Recorded in implementation-summary.md rather than claiming green.
 - [x] CHK-021 [P0] `verify_alignment_drift.py --root .opencode/skills/deep-loop-runtime` PASS
   - **Evidence**: exit 0; scanned 39 files; findings 0, errors 0, warnings 0, violations 0.
-- [x] CHK-022 [P0] `verify_alignment_drift.py --root .opencode/commands/spec_kit/assets` PASS
+- [x] CHK-022 [P0] `verify_alignment_drift.py --root .opencode/commands/speckit/assets` PASS
   - **Evidence**: exit 0; scanned 0 files; findings 0, errors 0, warnings 0, violations 0.
 - [x] CHK-023 [P0] `validate.sh --recursive --strict` PASS against 118 phase parent
   - **Evidence**: exit 0; summary errors 0, warnings 0, result PASSED.

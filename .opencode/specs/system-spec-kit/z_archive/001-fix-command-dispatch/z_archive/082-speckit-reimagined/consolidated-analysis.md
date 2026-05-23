@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-This analysis synthesizes findings from 25 parallel agent analyses of 8 pre-analysis documents examining dotmd, seu-claude, drift, and system-speckit architectures. The synthesis identifies **7 P0 items** requiring immediate attention, **12 P1 items** for core enhancement, and provides a unified 10-week implementation roadmap.
+This analysis synthesizes findings from 25 parallel agent analyses of 8 pre-analysis documents examining dotmd, seu-claude, drift, and system-spec-kit architectures. The synthesis identifies **7 P0 items** requiring immediate attention, **12 P1 items** for core enhancement, and provides a unified 10-week implementation roadmap.
 
 **Top 5 Recommendations:**
 1. **Session Deduplication** (P0) - 25-35% token savings, 3-4 hours effort
@@ -298,7 +298,7 @@ interface IEmbeddingProvider {
 
 ---
 
-## 3. Gap Analysis: system-speckit vs Competitors
+## 3. Gap Analysis: system-spec-kit vs Competitors
 
 | Capability | speckit Current | Best-in-Class | Gap Severity |
 |------------|-----------------|---------------|--------------|

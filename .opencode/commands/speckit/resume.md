@@ -11,8 +11,8 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory
 > **YOUR FIRST ACTION:**
 > 1. Determine execution mode from user input (`:auto` or `:confirm`)
 > 2. Load the corresponding YAML file from `assets/`:
->    - Auto mode → `spec_kit_resume_auto.yaml`
->    - Confirm mode → `spec_kit_resume_confirm.yaml`
+>    - Auto mode → `speckit_resume_auto.yaml`
+>    - Confirm mode → `speckit_resume_confirm.yaml`
 > 3. Execute the YAML workflow step by step
 >
 > All content below defines workflow context for the YAML runner. Treat it as executable only when running this command workflow; otherwise use it as reference.
@@ -23,8 +23,8 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory
 - **ALL** agent dispatching is handled by the YAML workflow steps — this document is setup + reference only
 - **FIRST ACTION** is always: load the YAML file, then execute it step by step
 
-> **Format:** `/spec_kit:resume [spec-folder-path] [:auto|:confirm]`
-> Examples: `/spec_kit:resume specs/007-feature/` | `/spec_kit:resume:auto specs/007-feature/`
+> **Format:** `/speckit:resume [spec-folder-path] [:auto|:confirm]`
+> Examples: `/speckit:resume specs/007-feature/` | `/speckit:resume:auto specs/007-feature/`
 
 # SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
 
@@ -46,11 +46,11 @@ Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_
 
 Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 
-1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/resume-config.json` (shape: `specPath`, `detectionMethod`, `executionMode: "auto"`, `continuationChoice`, `artifactRecoveryChoice`, `memoryChoice`, `artifactsValid`, `continuitySourcesAvailable`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml`. End §0.
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/resume-config.json` (shape: `specPath`, `detectionMethod`, `executionMode: "auto"`, `continuationChoice`, `artifactRecoveryChoice`, `memoryChoice`, `artifactsValid`, `continuitySourcesAvailable`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/speckit/assets/speckit_resume_auto.yaml`. End §0.
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`, `continuation_choice`. **Ordering rule**: ask only for `spec_folder` first when detection is ambiguous — continuation validation depends on it. Missing `spec_folder` with no viable candidates is absence, not ambiguity — go to Tier 3.
 
-3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/spec_kit:resume:auto` as the command name. Exit non-zero. Do not load YAML.
+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/speckit:resume:auto` as the command name. Exit non-zero. Do not load YAML.
 
 `:confirm` path stays unchanged — see the consolidated setup prompt section below.
 
@@ -150,7 +150,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
    Q0. Spec Folder (if not detected/provided):
      No active session detected. Available spec folders: [list]
-     A) List and select  B) Start new with /spec_kit:complete  C) Cancel
+     A) List and select  B) Start new with /speckit:complete  C) Cancel
      E) Phase folder — resume a specific phase child (e.g., specs/NNN-name/001-phase/)
 
    Q1. Confirm Detected Session (if auto-detected):
@@ -163,7 +163,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
    Q3. Missing Artifacts (if artifacts_valid != yes):
      Missing: [list]
-     A) Run /spec_kit:plan  B) Select different folder  C) Continue anyway
+     A) Run /speckit:plan  B) Select different folder  C) Continue anyway
 
    Q4. Recovery Depth (when the canonical resume packet is still thin):
      A) Fast resume - just enough context to continue safely
@@ -302,8 +302,8 @@ $ARGUMENTS
 
 After all phases pass, load and execute the appropriate YAML prompt:
 
-- **AUTONOMOUS**: `.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml`
-- **INTERACTIVE**: `.opencode/commands/spec_kit/assets/spec_kit_resume_confirm.yaml`
+- **AUTONOMOUS**: `.opencode/commands/speckit/assets/speckit_resume_auto.yaml`
+- **INTERACTIVE**: `.opencode/commands/speckit/assets/speckit_resume_confirm.yaml`
 
 The YAML contains detailed step-by-step workflow, output formats, and all configuration.
 
@@ -316,7 +316,7 @@ The YAML contains detailed step-by-step workflow, output formats, and all config
 2. `memory_match_triggers()` — fast phrase matching (<50ms)
 3. `memory_context()` — L1 unified retrieval (score > 0.6)
 4. Deterministic filtered ranking (session-learning + alias-normalized spec roots)
-5. No session found → offer: /spec_kit:complete or specify path
+5. No session found → offer: /speckit:complete or specify path
 
 **Context loading priority (after spec_path confirmed):**
 1. handover.md (exists & <24h) → use handover context
@@ -375,7 +375,7 @@ Progress: [X]% ([done]/[total] tasks)
 Why this is next: [short reason based on tasks/checklist/memory]
 ```
 
-**No Session:** Offer /spec_kit:complete or specify folder path.
+**No Session:** Offer /speckit:complete or specify folder path.
 
 **Stale Session (>7 days):** Warn context may be outdated, offer Resume/Fresh/Review/Cancel.
 
@@ -450,10 +450,10 @@ Resume is a **utility workflow** — no parallel dispatch. All steps sequential.
 ## 15. EXAMPLES
 
 ```
-/spec_kit:resume                                          → Auto-detect via deterministic filtered ranking
-/spec_kit:resume:auto                                     → Auto-detect and recover an interrupted session
-/spec_kit:resume specs/014-context-aware-permission-system/ → Resume specific folder
-/spec_kit:resume:confirm specs/014-*/                      → Interactive with memory options
+/speckit:resume                                          → Auto-detect via deterministic filtered ranking
+/speckit:resume:auto                                     → Auto-detect and recover an interrupted session
+/speckit:resume specs/014-context-aware-permission-system/ → Resume specific folder
+/speckit:resume:confirm specs/014-*/                      → Interactive with memory options
 ```
 
 ---
@@ -462,9 +462,9 @@ Resume is a **utility workflow** — no parallel dispatch. All steps sequential.
 
 | Command               | Relationship                                            |
 | --------------------- | ------------------------------------------------------- |
-| `/spec_kit:complete`  | Start new (resume continues existing)                   |
-| `/spec_kit:plan`      | Create planning artifacts (if missing on resume)        |
-| `/spec_kit:implement` | Execute implementation (call after resume)              |
+| `/speckit:complete`  | Start new (resume continues existing)                   |
+| `/speckit:plan`      | Create planning artifacts (if missing on resume)        |
+| `/speckit:implement` | Execute implementation (call after resume)              |
 | `/memory:save`        | Refresh canonical continuity before pausing or resuming |
 | `/memory:search`     | Broader historical lookup and learning-history review   |
 
@@ -473,7 +473,7 @@ Resume is a **utility workflow** — no parallel dispatch. All steps sequential.
 ## 17. COMMAND CHAIN
 
 ```
-[/memory:save] → /spec_kit:resume → [Continue workflow]
+[/memory:save] → /speckit:resume → [Continue workflow]
 ```
 
 Prerequisite: `/memory:save [spec-folder-path]` (refreshes the canonical continuity packet before a later resume)
@@ -484,8 +484,8 @@ Prerequisite: `/memory:save [spec-folder-path]` (refreshes the canonical continu
 
 | Condition                  | Suggested Command                        | Reason                    |
 | -------------------------- | ---------------------------------------- | ------------------------- |
-| Planning incomplete        | `/spec_kit:plan [feature-description]`   | Complete planning phase   |
-| Ready to implement         | `/spec_kit:implement [spec-folder-path]` | Continue implementation   |
+| Planning incomplete        | `/speckit:plan [feature-description]`   | Complete planning phase   |
+| Ready to implement         | `/speckit:implement [spec-folder-path]` | Continue implementation   |
 | Implementation in progress | Continue from last task                  | Resume where you left off |
 | Found issues               | `Task tool → @debug`                     | Fresh debugging pass after repeated failures |
 | Need broader history       | `/memory:search history [spec-folder]`  | Inspect learning history  |

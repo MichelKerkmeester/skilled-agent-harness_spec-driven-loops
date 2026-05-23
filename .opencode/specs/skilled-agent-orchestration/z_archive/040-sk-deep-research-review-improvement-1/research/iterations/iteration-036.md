@@ -7,7 +7,7 @@ Convergence guard behavior and stop-decision override resilience.
 - Are guard contracts consistently represented between references and YAML?
 
 ## Evidence
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:225-255`
+- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:225-255`
 - `.opencode/skills/sk-deep-research/references/convergence.md:145`
 
 ## Analysis

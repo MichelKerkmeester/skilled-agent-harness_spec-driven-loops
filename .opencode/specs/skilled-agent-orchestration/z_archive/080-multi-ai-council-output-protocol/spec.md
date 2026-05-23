@@ -89,7 +89,7 @@ Define and roll out an `ai-council/` subfolder convention so council outputs are
 
 ### Out of Scope
 - Building a `multi-ai-council` skill folder — non-goal N1 (lightweight bound)
-- Adding a `/spec_kit:council` slash command — non-goal N2
+- Adding a `/speckit:council` slash command — non-goal N2
 - Convergence math beyond 2/3 agreement
 - Auto-dispatch policies — council remains user-invoked
 - Cross-packet council aggregation

@@ -15,7 +15,7 @@ _memory:
     last_updated_at: "2026-05-02T10:50:00Z"
     last_updated_by: "claude-opus-4-7-1m"
     recent_action: "Spec packet scaffolded; awaiting deep-research dispatch"
-    next_safe_action: "Dispatch /spec_kit:deep-research:auto with cli-copilot/gpt-5.5/10-iter"
+    next_safe_action: "Dispatch /speckit:deep-research:auto with cli-copilot/gpt-5.5/10-iter"
     blockers: []
     key_files:
       - .opencode/skills/sk-improve-agent/SKILL.md
@@ -133,7 +133,7 @@ The reflexive nature is deliberate. If `sk-improve-agent` is supposed to improve
 | `.opencode/specs/.../060-.../resource-map.md` | Create | File ledger |
 | `.opencode/specs/.../060-.../description.json` | Create (auto) | via generate-context.js |
 | `.opencode/specs/.../060-.../graph-metadata.json` | Create (auto) | via generate-context.js |
-| `.opencode/specs/.../060-.../research/*` | Create (auto) | via /spec_kit:deep-research:auto |
+| `.opencode/specs/.../060-.../research/*` | Create (auto) | via /speckit:deep-research:auto |
 
 ### Files to Reference (NOT modify in 060)
 
@@ -158,7 +158,7 @@ The reflexive nature is deliberate. If `sk-improve-agent` is supposed to improve
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Spec folder validates strict | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment --strict` exits 0 |
-| REQ-002 | Deep-research dispatch succeeds | `/spec_kit:deep-research:auto` with cli-copilot/gpt-5.5/10-iter runs to completion (convergence or 10 iters) |
+| REQ-002 | Deep-research dispatch succeeds | `/speckit:deep-research:auto` with cli-copilot/gpt-5.5/10-iter runs to completion (convergence or 10 iters) |
 | REQ-003 | research/research.md contains gap analysis | Sections present: gap-analysis, scenario-sketches, diff-sketches, fixture-design |
 | REQ-004 | Each of the 7 research questions has an answer | RQ-1 through RQ-7 (§5 below) addressed in research.md, each with evidence citations |
 | REQ-005 | At least 6 CP-XXX scenarios sketched | research/research.md includes scenario sketches for analogs of CP-027..CP-034 patterns |

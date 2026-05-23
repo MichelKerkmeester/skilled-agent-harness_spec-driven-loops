@@ -169,7 +169,7 @@ Executor: cli-codex (gpt-5.5 high reasoning, fast tier) for spec doc authoring +
 ## 10. Recommended Next Command
 
 ```
-/spec_kit:plan :auto "067-mcp-figma-transfer Phase 4: deep-review remediation — fix child --strict validators, P0 checklist evidence, deep-review-state JSONL backfill, plus 13 P1s + 5 P2s as scoped above"
+/speckit:plan :auto "067-mcp-figma-transfer Phase 4: deep-review remediation — fix child --strict validators, P0 checklist evidence, deep-review-state JSONL backfill, plus 13 P1s + 5 P2s as scoped above"
 ```
 
 OR direct via:

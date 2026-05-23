@@ -44,7 +44,7 @@ This phase addresses structured-input (`--json`/`--stdin`) quality regressions i
 | **Priority** | P0 |
 | **Status** | Review |
 | **Created** | 2026-04-01 |
-| **Branch** | `system-speckit/024-compact-code-graph` |
+| **Branch** | `system-spec-kit/024-compact-code-graph` |
 | **Parent Spec** | ../spec.md |
 | **Predecessor** | 011-indexing-and-adaptive-fusion |
 | **Successor** | 013-fts5-fix-and-search-dashboard |

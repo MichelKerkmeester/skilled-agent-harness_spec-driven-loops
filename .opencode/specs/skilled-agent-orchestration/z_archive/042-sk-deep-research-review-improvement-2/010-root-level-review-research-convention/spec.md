@@ -48,7 +48,7 @@ status: complete
 
 ### Problem Statement
 
-When running `/spec_kit:deep-review` or `/spec_kit:deep-research` on a child phase inside a parent spec tree, both skills create their output folders (`review/`, `research/`) **inside the child phase folder**. In a spec tree with many nested phases (like `026-graph-and-context-optimization` with 14 phases, some 3-4 levels deep), this scatters review and research artifacts across dozens of nested directories. Finding a specific review requires knowing the exact nesting path. Manual consolidation after the fact (as we did for 026 -- moving 42 review + 18 research folders) is tedious and error-prone.
+When running `/speckit:deep-review` or `/speckit:deep-research` on a child phase inside a parent spec tree, both skills create their output folders (`review/`, `research/`) **inside the child phase folder**. In a spec tree with many nested phases (like `026-graph-and-context-optimization` with 14 phases, some 3-4 levels deep), this scatters review and research artifacts across dozens of nested directories. Finding a specific review requires knowing the exact nesting path. Manual consolidation after the fact (as we did for 026 -- moving 42 review + 18 research folders) is tedious and error-prone.
 
 ### Purpose
 
@@ -95,10 +95,10 @@ Make root-level placement the default: review/ and research/ folders are always 
 | `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs` | NEW: shared path resolver |
 | `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` | Use shared resolver (line 1140) |
 | `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | Use shared resolver (line 822) |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Computed artifact root in state_paths |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Same |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Same |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Same |
+| `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml` | Computed artifact root in state_paths |
+| `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml` | Same |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | Same |
+| `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml` | Same |
 | `.opencode/agents/deep-review.md` | Updated dispatch paths |
 | `.opencode/agents/deep-research.md` | Updated dispatch paths |
 | `.claude/agents/deep-review.md` | Mirror of above |
@@ -138,7 +138,7 @@ Make root-level placement the default: review/ and research/ folders are always 
 - Deep-review on a nested phase writes iterations to `{root}/review/{phase}/iterations/`
 - Deep-research on a nested phase writes iterations to `{root}/research/{phase}/iterations/`
 - Reducer reads state from the root-level path, not the child-local path
-- `grep -r '{spec_folder}/review/' .opencode/commands/spec_kit/assets/` returns 0 hits (all replaced with computed paths)
+- `grep -r '{spec_folder}/review/' .opencode/commands/speckit/assets/` returns 0 hits (all replaced with computed paths)
 - All 8 agent definition files (4 runtimes x 2 skills) reference the root-level convention
 <!-- /ANCHOR:success-criteria -->
 

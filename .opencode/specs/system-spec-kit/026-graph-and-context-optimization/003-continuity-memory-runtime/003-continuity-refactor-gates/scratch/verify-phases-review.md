@@ -11,7 +11,7 @@ verdict: SHIP AFTER FIXING 2 P0 BLOCKERS
 
 This report consolidates 6 independent Opus 4.6 read-only reviews of the phase-018 child phase plans. Each reviewer was given a target folder, the full grounding (research iterations, resource map, master plan), and a standardized checklist of 10–15 verification criteria. Each produced findings at P0 (blocker), P1 (required before commit), P2 (nice-to-fix), plus a GREEN areas summary.
 
-**Input state**: all 6 child phase folders populated via cli-codex gpt-5.4 high fast (6 parallel agents) and committed to branch `system-speckit/026-graph-and-context-optimization` (commits `bf626b702` + `52c512ce6`).
+**Input state**: all 6 child phase folders populated via cli-codex gpt-5.4 high fast (6 parallel agents) and committed to branch `system-spec-kit/026-graph-and-context-optimization` (commits `bf626b702` + `52c512ce6`).
 
 ---
 

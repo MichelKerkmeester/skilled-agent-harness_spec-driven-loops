@@ -7,7 +7,7 @@ This iteration traced one `.opencode/` implementation/spec-folder-write flow acr
 ## Actions Taken
 
 - Action 1: Read strategy Section 11 and prior iteration findings to avoid re-reporting the known `STACK_FOLDERS`, OpenCode asset, and resource-map gaps.
-- Action 2: Traced system-spec-kit implementation/complete flow references to `sk-code`, especially `spec_kit_implement_auto.yaml`, `spec_kit_complete_auto.yaml`, and `system-spec-kit/SKILL.md`.
+- Action 2: Traced system-spec-kit implementation/complete flow references to `sk-code`, especially `speckit_implement_auto.yaml`, `speckit_complete_auto.yaml`, and `system-spec-kit/SKILL.md`.
 - Action 3: Read sk-code OpenCode routing and resource-loading docs, including `SKILL.md`, `references/router/resource_loading.md`, and `references/opencode/shared/universal_patterns.md`.
 - Action 4: Inspected mcp-coco-index include/exclude configuration, indexer/query behavior, and local SQLite auxiliary rows to verify whether `.opencode/skills/sk-code/` resources are ingested.
 - Action 5: Attempted a live `ccc status` smoke probe; the daemon could not start inside this sandbox because it tried to write under `~/.cocoindex_code/daemon.log`, so ranking claims below are limited to direct database ingestion evidence.
@@ -18,9 +18,9 @@ This iteration traced one `.opencode/` implementation/spec-folder-write flow acr
 
 ### F-009-001 — system-spec-kit requires sk-code for code updates, but implement/complete load it at review time rather than authoring time [P1]
 
-`system-spec-kit/SKILL.md` says all code creation/updates route through `sk-code` at `.opencode/skills/system-spec-kit/SKILL.md:401` and repeats that "Code updates route through `sk-code`" at `.opencode/skills/system-spec-kit/SKILL.md:440`. The concrete `/spec_kit:implement` auto workflow, however, only names `sk-code` inside the review agent's standards overlay: `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:207-216`. The actual development step at `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:402-423` says to parse tasks, set up, follow TDD, do core development, integrate, and update task checklists, but does not include a sk-code detection/load gate before writing code.
+`system-spec-kit/SKILL.md` says all code creation/updates route through `sk-code` at `.opencode/skills/system-spec-kit/SKILL.md:401` and repeats that "Code updates route through `sk-code`" at `.opencode/skills/system-spec-kit/SKILL.md:440`. The concrete `/speckit:implement` auto workflow, however, only names `sk-code` inside the review agent's standards overlay: `.opencode/commands/speckit/assets/speckit_implement_auto.yaml:207-216`. The actual development step at `.opencode/commands/speckit/assets/speckit_implement_auto.yaml:402-423` says to parse tasks, set up, follow TDD, do core development, integrate, and update task checklists, but does not include a sk-code detection/load gate before writing code.
 
-The same pattern appears in `/spec_kit:complete`: `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml:311-318` and `.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml:320-327` only mention the `sk-code` overlay for pre-commit review. That makes sk-code standards enforceable after development, but not reliably loaded before the authoring decisions are made.
+The same pattern appears in `/speckit:complete`: `.opencode/commands/speckit/assets/speckit_complete_auto.yaml:311-318` and `.opencode/commands/speckit/assets/speckit_complete_confirm.yaml:320-327` only mention the `sk-code` overlay for pre-commit review. That makes sk-code standards enforceable after development, but not reliably loaded before the authoring decisions are made.
 
 Concrete target: add a Step 5/6 pre-development resource gate to implement/complete workflows: detect target files, load `sk-code` OpenCode resources, record the selected language/resources in the checkpoint, then proceed to authoring. Review-time overlay should remain, but it is not a substitute for authoring-time loading.
 
@@ -54,7 +54,7 @@ The iteration-10 remediation list should therefore include retrieval smoke queri
 
 - Q4: Partially answered. Local ingestion of `.opencode/skills/sk-code/` resources is real, but live semantic ranking could not be smoke-tested because `ccc` could not start its daemon in this sandbox.
 - Q5: Partially answered. The missing OpenCode resource is now sharper: a first-class spec-folder-write/implementation recipe, not only language checklists.
-- Q7: Partially answered. `/spec_kit:implement` and `/spec_kit:complete` name sk-code for review evidence, but current YAML evidence does not show an authoring-time sk-code load before Step 6 development.
+- Q7: Partially answered. `/speckit:implement` and `/speckit:complete` name sk-code for review evidence, but current YAML evidence does not show an authoring-time sk-code load before Step 6 development.
 
 ## Questions Remaining
 

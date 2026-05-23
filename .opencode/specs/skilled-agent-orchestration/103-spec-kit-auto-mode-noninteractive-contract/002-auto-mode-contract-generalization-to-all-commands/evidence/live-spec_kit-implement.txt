@@ -1,6 +1,6 @@
-=== Live setup-phase test: /spec_kit:implement:auto ===
+=== Live setup-phase test: /speckit:implement:auto ===
 Started: 2026-05-11T14:27:29+0200
-Command: .opencode/commands/spec_kit/implement.md
+Command: .opencode/commands/speckit/implement.md
 
 Reading additional input from stdin...
 OpenAI Codex v0.130.0
@@ -15,7 +15,7 @@ reasoning summaries: none
 session id: 019e1701-bd99-7421-8a8a-fe96c89f06a3
 --------
 user
-You are testing the setup-phase contract of the migrated command /spec_kit:implement.
+You are testing the setup-phase contract of the migrated command /speckit:implement.
 
 # RUNTIME RULES
 - Inline Codex execution. Do NOT call SpawnAgent / collab / Task / sub-agent.
@@ -25,9 +25,9 @@ You are testing the setup-phase contract of the migrated command /spec_kit:imple
 
 # YOUR TASK
 
-1. Read .opencode/commands/spec_kit/implement.md section zero (UNIFIED SETUP PHASE or equivalent).
+1. Read .opencode/commands/speckit/implement.md section zero (UNIFIED SETUP PHASE or equivalent).
 2. Verify this command's section zero cites .opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md (the shared three-tier auto contract).
-3. SIMULATE a dispatch of /spec_kit:implement:auto with the following PRE-BOUND SETUP ANSWERS in the prompt body:
+3. SIMULATE a dispatch of /speckit:implement:auto with the following PRE-BOUND SETUP ANSWERS in the prompt body:
 
 ```
 PRE-BOUND SETUP ANSWERS:
@@ -62,7 +62,7 @@ hook: UserPromptSubmit Completed
 exec
 /bin/zsh -lc "sed -n '1,180p' .opencode/skills/system-spec-kit/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/commands/spec_kit/implement.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/commands/speckit/implement.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 description: Implementation workflow (9 steps): execute pre-planned work. Requires plan.md. Modes :auto, :confirm.
@@ -77,8 +77,8 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory
 > **YOUR FIRST ACTION:**
 > 1. Determine execution mode from user input (`:auto` or `:confirm`)
 > 2. Load the corresponding YAML file from `assets/`:
->    - Auto mode → `spec_kit_implement_auto.yaml`
->    - Confirm mode → `spec_kit_implement_confirm.yaml`
+>    - Auto mode → `speckit_implement_auto.yaml`
+>    - Confirm mode → `speckit_implement_confirm.yaml`
 > 3. Execute the YAML workflow step by step
 >
 > All content below is reference context for the YAML workflow. Do not treat reference sections, routing tables, or dispatch templates as direct instructions to execute.
@@ -109,11 +109,11 @@ Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_
 
 Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 
-1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/implement-config.json` (shape: `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `confirmChoice`, `resumeChoice`, `prerequisitesValid`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`. End §0.
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/implement-config.json` (shape: `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `confirmChoice`, `resumeChoice`, `prerequisitesValid`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/speckit/assets/speckit_implement_auto.yaml`. End §0.
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`, `resume_choice`. **Ordering rule**: ask only for `spec_folder` first when folder detection is ambiguous — prerequisite and resume-session checks depend on it. Missing `spec_folder` with no viable candidates is absence, not ambiguity — go to Tier 3.
 
-3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/spec_kit:implement:auto` as the command name. Exit non-zero. Do not load YAML.
+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/speckit:implement:auto` as the command name. Exit non-zero. Do not load YAML.
 
 `:confirm` path stays unchanged — see the consolidated setup prompt section below.
 
@@ -218,7 +218,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
 10. Handle redirects:
     - confirm_choice == B -> Re-prompt folder selection
-    - confirm_choice == C -> Redirect to /spec_kit:plan
+    - confirm_choice == C -> Redirect to /speckit:plan
 
 11. Execute background operations:
     - memory_choice A: load most recent | B: load up to 3 | multi_*: note parallel dispatch
@@ -240,9 +240,9 @@ NEVER split into multiple prompts
 
 # SpecKit Implement
 
-Execute implementation of a pre-planned feature. Requires existing spec.md and plan.md from a prior `/spec_kit:plan` workflow.
+Execute implementation of a pre-planned feature. Requires existing spec.md and plan.md from a prior `/speckit:plan` workflow.
 
-> Standalone workflow (9 steps) that assumes spec.md and plan.md exist. Run `/spec_kit:plan` first if needed.
+> Standalone workflow (9 steps) that assumes spec.md and plan.md exist. Run `/speckit:plan` first if needed.
 
 ```yaml
 role: Expert Developer using Smart SpecKit for Implementation Phase
@@ -262,7 +262,7 @@ operating_mode:
 
 ## 1. PURPOSE
 
-Run the 9-step implementation workflow: plan review, task breakdown, quality validation, development, completion summary, and workflow closeout. Picks up where `/spec_kit:plan` left off.
+Run the 9-step implementation workflow: plan review, task breakdown, quality validation, development, completion summary, and workflow closeout. Picks up where `/speckit:plan` left off.
 
 ---
 
@@ -276,7 +276,7 @@ Run the 9-step implementation workflow: plan review, task breakdown, quality val
 **REQUIRED (all levels):** spec.md, plan.md, tasks.md (created if missing)
 **REQUIRED Level 2+:** checklist.md
 
-Missing prerequisites -> guide user to `/spec_kit:plan` first.
+Missing prerequisites -> guide user to `/speckit:plan` first.
 
 ### Completion Validation
 
@@ -410,7 +410,7 @@ CLI exit codes:
 | CONDITIONAL | If intent signals match   | Intent-mapped references     |
 | ON_DEMAND   | Only on explicit request   | Deep-dive quality standards  |
 
-`references/workflows/quick_reference.md` is the primary first-touch command surface. Keep the compact `spec_kit` and `memory` command map there, including `/spec_kit:plan --intake-only` as the standalone intake entry, `/spec_kit:plan` and `/spec_kit:complete` smart delegation notes, and the pointer from `/deep:start-research-loop` to `../deep-research/references/spec_check_protocol.md`, and use this file only to point readers to it rather than duplicating the full matrix.
+`references/workflows/quick_reference.md` is the primary first-touch command surface. Keep the compact `spec_kit` and `memory` command map there, including `/speckit:plan --intake-only` as the standalone intake entry, `/speckit:plan` and `/speckit:complete` smart delegation notes, and the pointer from `/deep:start-research-loop` to `../deep-research/references/spec_check_protocol.md`, and use this file only to point readers to it rather than duplicating the full matrix.
 
 ### Smart Router Pseudocode
 
@@ -468,7 +468,7 @@ RESOURCE_MAP = {
         "references/validation/validation_rules.md",
 
 exec
-/bin/zsh -lc "nl -ba .opencode/commands/spec_kit/implement.md | sed -n '20,115p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/commands/speckit/implement.md | sed -n '20,115p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
 /bin/zsh -lc 'ls -la specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
@@ -498,11 +498,11 @@ exec
     43	
     44	Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
     45	
-    46	1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/implement-config.json` (shape: `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `confirmChoice`, `resumeChoice`, `prerequisitesValid`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`. End §0.
+    46	1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/implement-config.json` (shape: `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `confirmChoice`, `resumeChoice`, `prerequisitesValid`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/speckit/assets/speckit_implement_auto.yaml`. End §0.
     47	
     48	2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`, `resume_choice`. **Ordering rule**: ask only for `spec_folder` first when folder detection is ambiguous — prerequisite and resume-session checks depend on it. Missing `spec_folder` with no viable candidates is absence, not ambiguity — go to Tier 3.
     49	
-    50	3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/spec_kit:implement:auto` as the command name. Exit non-zero. Do not load YAML.
+    50	3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/speckit:implement:auto` as the command name. Exit non-zero. Do not load YAML.
     51	
     52	`:confirm` path stays unchanged — see the consolidated setup prompt section below.
     53	
@@ -587,7 +587,7 @@ exec
      5	
      6	# Auto Mode Contract Reference
      7	
-     8	This reference module defines the single canonical `:auto` setup-resolution contract used by every user-invokable `/command:*:auto` surface in spec-kit (`/spec_kit:*`, `/create:*`, `/improve:*`). Each command's §0 cites this contract and supplies only its own per-field Default Resolution Table + `PRE-BOUND SETUP ANSWERS:` field list. The contract semantics, marker grammar, error format, and verification protocol live here.
+     8	This reference module defines the single canonical `:auto` setup-resolution contract used by every user-invokable `/command:*:auto` surface in spec-kit (`/speckit:*`, `/create:*`, `/improve:*`). Each command's §0 cites this contract and supplies only its own per-field Default Resolution Table + `PRE-BOUND SETUP ANSWERS:` field list. The contract semantics, marker grammar, error format, and verification protocol live here.
      9	
     10	Origin: shipped in `.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup/` (deep-review prototype) and generalized in `.../002-auto-mode-contract-generalization-to-all-commands/` (12-command rollout).
     11	
@@ -808,9 +808,9 @@ exec
 exec
 /bin/zsh -lc "sed -n '1,220p' .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/live-spec_kit-implement.txt" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-=== Live setup-phase test: /spec_kit:implement:auto ===
+=== Live setup-phase test: /speckit:implement:auto ===
 Started: 2026-05-11T14:27:29+0200
-Command: .opencode/commands/spec_kit/implement.md
+Command: .opencode/commands/speckit/implement.md
 
 
 exec
@@ -885,7 +885,7 @@ Author the shared `auto_mode_contract.md` reference, refactor Phase-1's deep-rev
 - Author `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md` (Level 2 sk-doc reference; §1-8 — three-tier flow, PRE-BOUND ANSWERS grammar, default-resolution-table format, Tier-3 error template, `:confirm` invariance, verification protocol, adoption checklist, out-of-scope).
 - Refactor `/deep:start-review-loop` §0 to cite the shared contract (replacing the inline three-tier sections from 001).
 - Migrate 11 commands' §0 to cite the shared contract + provide their own per-field default table + PRE-BOUND ANSWERS field list:
-  - `/spec_kit:` — deep-research, complete, implement, plan, resume (5)
+  - `/speckit:` — deep-research, complete, implement, plan, resume (5)
   - `/create:` — sk-skill, agent, changelog, feature-catalog, testing-playbook, folder_readme (6)
   - `/improve:` — agent (1)
 - Update each migrated command's frontmatter `argument-hint` to reference the new bypass capability.
@@ -904,7 +904,7 @@ Author the shared `auto_mode_contract.md` reference, refactor Phase-1's deep-rev
 |-----------|-------------|-------------|
 | `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md` | Create | Shared three-tier `:auto` contract reference |
 | `.opencode/commands/deep/start-review-loop.md` | Modify | Refactor §0 to cite shared contract |
-| `.opencode/commands/spec_kit/{deep-research,complete,implement,plan,resume}.md` | Modify | Migrate §0 to shared contract pattern |
+| `.opencode/commands/speckit/{deep-research,complete,implement,plan,resume}.md` | Modify | Migrate §0 to shared contract pattern |
 | `.opencode/commands/create/{sk-skill,agent,changelog,feature-catalog,testing-playbook,folder_readme}.md` | Modify | Same |
 | `.opencode/commands/improve/agent.md` | Modify | Same |
 | `002/evidence/` | Create dir + 12 files | Live dispatch transcripts |
@@ -981,7 +981,7 @@ exec
 EXIT_STATUS: complete
 
 exec
-/bin/zsh -lc 'rg -n "dispatch_mode.*native|native" .opencode/commands/spec_kit/implement.md .opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md .opencode/commands/spec_kit/*.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "dispatch_mode.*native|native" .opencode/commands/speckit/implement.md .opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md .opencode/commands/speckit/*.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 .opencode/commands/deep/start-review-loop.md:77:  executor: native  # one of: native | cli-codex | cli-gemini | cli-claude-code
 .opencode/commands/deep/start-review-loop.md:105:| `executor` | N | flag `--executor`, marker `executor`, config file, or default | `native` | N |
@@ -995,8 +995,8 @@ exec
 .opencode/commands/deep/start-research-loop.md:128:   +-- Defaults: maxIterations=10, convergenceThreshold=0.05, config.executor.type=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`
 .opencode/commands/deep/start-research-loop.md:154:   - If Q-Exec is omitted and no executor is otherwise resolved, default to `native`
 .opencode/commands/deep/start-research-loop.md:192:   - executor config = [CLI flags, compact reply, config file, or default `native`; map compact reply fields to `config.executor.type/model/reasoningEffort/serviceTier`, and accept an optional volunteered convergence value before executor fields]
-.opencode/commands/spec_kit/plan.md:445:| 2 | Beyond Local Max?  | >=2 alternatives with trade-offs           |
-.opencode/commands/spec_kit/complete.md:529:| 2 | Beyond Local Max? | Explored alternatives? | >=2 alternatives with trade-offs |
+.opencode/commands/speckit/plan.md:445:| 2 | Beyond Local Max?  | >=2 alternatives with trade-offs           |
+.opencode/commands/speckit/complete.md:529:| 2 | Beyond Local Max? | Explored alternatives? | >=2 alternatives with trade-offs |
 
 exec
 /bin/zsh -lc 'for f in spec.md plan.md tasks.md checklist.md; do test -f ".opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/$f" && echo "$f: yes" || echo "$f: no"; done' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public

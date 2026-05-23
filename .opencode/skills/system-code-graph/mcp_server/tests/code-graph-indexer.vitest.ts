@@ -366,7 +366,7 @@ describe('indexer-types', () => {
       expect(config.excludeGlobs).toContain('**/.opencode/plugins/**');
       expect(shouldIndexForCodeGraph('/root/.opencode/skills/sk-doc/example.ts', config.scopePolicy)).toBe(false);
       expect(shouldIndexForCodeGraph('/root/.opencode/agents/code.md', config.scopePolicy)).toBe(false);
-      expect(shouldIndexForCodeGraph('/root/.opencode/commands/spec_kit/run.yaml', config.scopePolicy)).toBe(false);
+      expect(shouldIndexForCodeGraph('/root/.opencode/commands/speckit/run.yaml', config.scopePolicy)).toBe(false);
       expect(shouldIndexForCodeGraph('/root/.opencode/specs/example/spec.md', config.scopePolicy)).toBe(false);
       expect(shouldIndexForCodeGraph('/root/.opencode/plugins/example/plugin.json', config.scopePolicy)).toBe(false);
     });
@@ -442,7 +442,7 @@ describe('indexer-types', () => {
     // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
     it.each([
       ['agents', CODE_GRAPH_INDEX_AGENTS_ENV, 'includeAgents', '**/.opencode/agents/**', '/root/.opencode/agents/code.md'],
-      ['commands', CODE_GRAPH_INDEX_COMMANDS_ENV, 'includeCommands', '**/.opencode/commands/**', '/root/.opencode/commands/spec_kit/run.yaml'],
+      ['commands', CODE_GRAPH_INDEX_COMMANDS_ENV, 'includeCommands', '**/.opencode/commands/**', '/root/.opencode/commands/speckit/run.yaml'],
     ] as const)(
       'excludes .opencode/%s by default and includes it through env or per-call opt-in',
       (_name, envKey, inputKey, glob, filePath) => {

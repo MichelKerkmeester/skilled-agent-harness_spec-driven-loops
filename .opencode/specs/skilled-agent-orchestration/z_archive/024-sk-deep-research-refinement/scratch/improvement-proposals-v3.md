@@ -76,13 +76,13 @@ Implement first. Highest ROI. Each has real-world evidence from reference repos 
 
 | File | Section/Step | Change |
 |------|-------------|--------|
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_evaluate_results` | Add `convergenceSignals` object (rolling_avg, MAD, entropy values) to iteration JSONL record |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_handle_convergence` | Replace generic "widen scope" fallback with strategy-based selection from convergence.md Section 4 (try opposites / combine findings / audit low-value) |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_dispatch_iteration` | Inject `research/research-ideas.md` contents into dispatch context; initialize file in `step_initialize` if absent |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_check_convergence` | Invoke `validateNewInfoRatio()` logic from convergence.md Section 3; record noise floor in JSONL event |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_read_state` | Validate `fileProtection` constraints on state files; enforce append-only for JSONL, immutable for config |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_initialize` | Create `research/research-ideas.md` if not present (needed for P2.2 wiring) |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | JSONL consumers | Handle out-of-order JSONL from parallel waves (sort by `run` field when computing rolling averages) |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | `step_evaluate_results` | Add `convergenceSignals` object (rolling_avg, MAD, entropy values) to iteration JSONL record |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | `step_handle_convergence` | Replace generic "widen scope" fallback with strategy-based selection from convergence.md Section 4 (try opposites / combine findings / audit low-value) |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | `step_dispatch_iteration` | Inject `research/research-ideas.md` contents into dispatch context; initialize file in `step_initialize` if absent |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | `step_check_convergence` | Invoke `validateNewInfoRatio()` logic from convergence.md Section 3; record noise floor in JSONL event |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | `step_read_state` | Validate `fileProtection` constraints on state files; enforce append-only for JSONL, immutable for config |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | `step_initialize` | Create `research/research-ideas.md` if not present (needed for P2.2 wiring) |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | JSONL consumers | Handle out-of-order JSONL from parallel waves (sort by `run` field when computing rolling averages) |
 | `.opencode/skills/sk-deep-research/assets/deep_research_config.json` | Top-level | Add `fileProtection` default map: `{"config.json":"immutable","state.jsonl":"append-only","strategy.md":"mutable","iteration-*.md":"write-once"}` |
 
 **Dependency**: None. This is the foundation -- all other convergence proposals depend on v3-01 being wired first.
@@ -109,8 +109,8 @@ Implement first. Highest ROI. Each has real-world evidence from reference repos 
 |------|---------|--------|
 | `.opencode/skills/sk-deep-research/references/convergence.md` | Section 2 | Add Section 2.4 "Best-Seen Patience Signal": track `best_ratio` across all iterations, count consecutive iterations where `ratio < best_ratio - noise_floor` |
 | `.opencode/skills/sk-deep-research/references/convergence.md` | Section 2 weights | Rebalance composite weights: rolling_avg=0.25, MAD=0.30, entropy=0.25, best_seen=0.20 |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_check_convergence` | Wire 4th signal into convergence computation; add best-seen tracking to state |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_evaluate_results` | Record `best_seen_ratio` in JSONL convergence signals |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | `step_check_convergence` | Wire 4th signal into convergence computation; add best-seen tracking to state |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | `step_evaluate_results` | Record `best_seen_ratio` in JSONL convergence signals |
 
 **Dependency**: v3-01 (existing 3-signal composite must be wired before adding a 4th signal).
 
@@ -135,7 +135,7 @@ Implement first. Highest ROI. Each has real-world evidence from reference repos 
 | File | Section | Change |
 |------|---------|--------|
 | `.opencode/skills/sk-deep-research/references/convergence.md` | Section 5 (Fault Tolerance) | Add zero-yield fast-path rule: 2 consecutive `newInfoRatio = 0.0` triggers immediate Tier 2 recovery (focus pivot) before normal stuckCount logic |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | New step: `step_check_zero_yield` | Add BEFORE `step_check_convergence`. If triggered: skip normal convergence, force recovery mode dispatch |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | New step: `step_check_zero_yield` | Add BEFORE `step_check_convergence`. If triggered: skip normal convergence, force recovery mode dispatch |
 
 **Dependency**: v3-01 (convergence wiring needed for the gate to integrate with the convergence pipeline).
 
@@ -161,8 +161,8 @@ Implement first. Highest ROI. Each has real-world evidence from reference repos 
 |------|---------|--------|
 | `.opencode/skills/sk-deep-research/references/state_format.md` | Section 1 (Config Schema) | Add `sessionId` field to config record schema (UUID v4) |
 | `.opencode/skills/sk-deep-research/references/state_format.md` | Section 3 (Fault Tolerance) | Add stale session detection rule: warn when `sessionId` in state differs from current session |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_initialize` | Generate UUID v4, write to config record in JSONL |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_read_state` | Compare current sessionId against state file sessionId; emit warning event if mismatch |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | `step_initialize` | Generate UUID v4, write to config record in JSONL |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | `step_read_state` | Compare current sessionId against state file sessionId; emit warning event if mismatch |
 | `.opencode/skills/sk-deep-research/assets/deep_research_config.json` | Top-level | Add `sessionId` placeholder field |
 
 **Dependency**: None (independent, can run in parallel with v3-01).
@@ -185,7 +185,7 @@ Implement after Tier 1. Each has clear value supported by reference repo pattern
 | **Source** | Iteration 5 Finding 4 (pi-autoresearch #10, #12: multi-instance conflict) |
 | **v2 Origin** | NEW -- not in v2. Discovered via GitHub community failure analysis |
 
-**Description**: PID/lock file in `scratch/` preventing concurrent deep-research runs on the same spec folder. Running `/spec_kit:deep-research` twice on the same spec folder simultaneously would cause JSONL corruption (concurrent appends) and strategy.md race conditions.
+**Description**: PID/lock file in `scratch/` preventing concurrent deep-research runs on the same spec folder. Running `/speckit:deep-research` twice on the same spec folder simultaneously would cause JSONL corruption (concurrent appends) and strategy.md race conditions.
 
 **Evidence**: pi-autoresearch Issues #10 and #12 documented multi-instance conflicts. Resolution was subdirectory-based isolation, but our spec-folder scoping already provides directory isolation -- we only lack single-instance enforcement within a spec folder.
 
@@ -193,9 +193,9 @@ Implement after Tier 1. Each has clear value supported by reference repo pattern
 
 | File | Section | Change |
 |------|---------|--------|
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_initialize` | Create `scratch/.deep-research.lock` with PID and timestamp; check for existing lock on entry |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_finalize` (or equivalent) | Remove lock file on normal completion |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_read_state` | If lock exists with stale PID (process no longer running), warn and allow override |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | `step_initialize` | Create `scratch/.deep-research.lock` with PID and timestamp; check for existing lock on entry |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | `step_finalize` (or equivalent) | Remove lock file on normal completion |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | `step_read_state` | If lock exists with stale PID (process no longer running), warn and allow override |
 
 **Dependency**: None (independent).
 
@@ -221,7 +221,7 @@ Implement after Tier 1. Each has clear value supported by reference repo pattern
 |------|---------|--------|
 | `.opencode/skills/sk-deep-research/references/convergence.md` | New Section 2.5 | Add per-question variance tracking algorithm: maintain per-question newInfoRatio history, compute per-question sigma, flag improvements below 2-sigma as noise |
 | `.opencode/skills/sk-deep-research/references/state_format.md` | Iteration record schema | Add optional `perQuestionRatios` map to iteration JSONL records |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_evaluate_results` | Record per-question ratios when available |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | `step_evaluate_results` | Record per-question ratios when available |
 | Agent definitions (all 4 runtimes) | Iteration output template | Add per-question breakdown to assessment section |
 
 **Dependency**: v3-01 (needs convergence wiring to be meaningful).
@@ -247,7 +247,7 @@ Implement after Tier 1. Each has clear value supported by reference repo pattern
 | File | Section | Change |
 |------|---------|--------|
 | Agent definitions (all 4 runtimes) | Write Safety Rules | Add content trust boundary rule: findings from external sources (WebFetch) must be summarized by the agent in its own words, not pasted verbatim into iteration files |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_dispatch_iteration` | Add context preamble warning agent about potential adversarial content in prior findings |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | `step_dispatch_iteration` | Add context preamble warning agent about potential adversarial content in prior findings |
 | `.opencode/skills/sk-deep-research/references/loop_protocol.md` | Safety section | Document the trust boundary: external data -> agent summarization -> iteration file -> future context |
 
 **Dependency**: None (independent, but aligns with v3-04 session tagging for defense-in-depth).
@@ -299,7 +299,7 @@ Implement after Tier 1. Each has clear value supported by reference repo pattern
 | File | Section | Change |
 |------|---------|--------|
 | `.opencode/skills/sk-deep-research/references/convergence.md` | New Section 2.6 | Add comparative stopping algorithm: bootstrap distribution of prior iteration ratios at similar completion %, compare current ratio, flag if below 10th percentile |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_check_convergence` | Wire comparative signal as advisory (not voting) initially; promote to 5th signal after validation data collected |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | `step_check_convergence` | Wire comparative signal as advisory (not voting) initially; promote to 5th signal after validation data collected |
 
 **Dependency**: v3-01 and v3-02 (needs fully wired composite convergence with best-seen patience before adding further signals). Also needs empirical data from Phase 2 runs to calibrate.
 
@@ -327,7 +327,7 @@ Implement opportunistically. Lower immediate value or narrower applicability.
 
 | File | Section | Change |
 |------|---------|--------|
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Before `step_dispatch_iteration` | Add optional `step_pre_check`: if `scratch/.deep-research-checks.sh` exists, run it with 60s timeout; block dispatch on failure |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | Before `step_dispatch_iteration` | Add optional `step_pre_check`: if `scratch/.deep-research-checks.sh` exists, run it with 60s timeout; block dispatch on failure |
 | `.opencode/skills/sk-deep-research/references/loop_protocol.md` | Pre-iteration section | Document the quality gate hook and expected exit codes |
 
 **Dependency**: None.
@@ -396,7 +396,7 @@ Implement opportunistically. Lower immediate value or narrower applicability.
 
 | File | Section | Change |
 |------|---------|--------|
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Error handling | Add resume counter and cooldown logic: max 3 auto-resumes, 5-minute cooldown between attempts |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | Error handling | Add resume counter and cooldown logic: max 3 auto-resumes, 5-minute cooldown between attempts |
 | `.opencode/skills/sk-deep-research/references/loop_protocol.md` | Recovery section | Document auto-resume protocol with backoff parameters |
 | `.opencode/skills/sk-deep-research/references/state_format.md` | Event records | Add `resume_attempt` event type to JSONL schema |
 
@@ -426,7 +426,7 @@ Defer or deprioritize. Low immediate value, large effort, or dependent on extern
 
 | File | Section | Change |
 |------|---------|--------|
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | `step_initialize` | Add dual-gate check: require activation file AND absence of pause file |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | `step_initialize` | Add dual-gate check: require activation file AND absence of pause file |
 
 **Dependency**: None.
 
@@ -448,7 +448,7 @@ Defer or deprioritize. Low immediate value, large effort, or dependent on extern
 
 | File | Section | Change |
 |------|---------|--------|
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Wave dispatch | Add optional `--worktree` mode for parallel wave execution with git branch isolation |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | Wave dispatch | Add optional `--worktree` mode for parallel wave execution with git branch isolation |
 | `.opencode/skills/sk-deep-research/references/loop_protocol.md` | Parallel execution | Document worktree-based parallelism protocol and merge strategy |
 
 **Dependency**: v3-01 (orchestrator wiring must be solid before adding parallel complexity).

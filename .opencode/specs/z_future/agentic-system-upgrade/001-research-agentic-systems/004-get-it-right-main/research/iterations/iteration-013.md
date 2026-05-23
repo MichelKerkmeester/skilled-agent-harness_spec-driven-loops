@@ -14,9 +14,9 @@ I compared Get It Right's runtime inputs with `system-spec-kit`'s implementation
 ## Evidence
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/README.md:80-105] Get It Right exposes a compact config surface: `max_retries`, `mode`, `yield`, check commands, and optional app-start settings.
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/docs/when-to-use.md:89-139] The external docs frame operator control as simple tuning knobs rather than a questionnaire.
-- [SOURCE: .opencode/commands/spec_kit/implement.md:29-125] `/spec_kit:implement` begins with a single consolidated prompt that can ask about folder confirmation, execution mode, dispatch mode, and memory loading.
+- [SOURCE: .opencode/commands/speckit/implement.md:29-125] `/speckit:implement` begins with a single consolidated prompt that can ask about folder confirmation, execution mode, dispatch mode, and memory loading.
 - [SOURCE: .opencode/skills/system-spec-kit/constitutional/gate-enforcement.md:62-68] Gate 3 is intentionally a hard block that overrides other gates before file modification work.
-- [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:22-33] The implementation workflow reinforces Gate 3 compliance and first-message checks at the prompt level.
+- [SOURCE: .opencode/commands/speckit/assets/speckit_implement_auto.yaml:22-33] The implementation workflow reinforces Gate 3 compliance and first-message checks at the prompt level.
 
 ## Analysis
 The internal setup flow is defensible for generic implementation because it has to establish spec folder, execution mode, dispatch policy, and memory loading from scratch. Retry mode is different. By the time a retry controller runs, the packet is already bound and the operator mostly needs to answer: how many attempts, whether to yield between them, what objective checks to run, and whether UX review is in scope. Get It Right's surface is closer to that need. Reusing the full implementation questionnaire for retry-mode would ask users to re-solve problems that were already solved when the packet was created.
@@ -41,7 +41,7 @@ finding: retry-mode UX in `system-spec-kit` should expose a small set of explici
 - **Verdict:** SIMPLIFY
 - **If REFACTOR/PIVOT/SIMPLIFY — concrete proposal:** once Gate 3 has already bound a packet, retry-mode should ask only for `max_retries`, `yield`, `mode`, objective checks, and optional app URL/port hints.
 - **Blast radius of the change:** medium
-- **Migration path:** keep the current setup flow for `/spec_kit:implement`; make retry-mode use flags or a compact post-binding prompt instead.
+- **Migration path:** keep the current setup flow for `/speckit:implement`; make retry-mode use flags or a compact post-binding prompt instead.
 
 ## Counter-evidence sought
 I looked for evidence that retry-mode would still need the same folder/memory/dispatch questionnaire as first-run implementation and found only generic setup requirements, not retry-specific ones.

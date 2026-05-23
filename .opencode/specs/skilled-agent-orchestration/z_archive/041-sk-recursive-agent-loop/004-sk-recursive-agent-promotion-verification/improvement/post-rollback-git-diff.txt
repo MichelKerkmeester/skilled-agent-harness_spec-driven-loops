@@ -15,7 +15,7 @@ index 949d3d772..1cb0c31be 100644
 -
 -**CRITICAL**: Always gather context from spec folder files (spec.md, plan.md, tasks.md, checklist.md, memory/) before creating handover documents. Never create handovers without reading actual session state.
 -
--**IMPORTANT**: This agent is dispatched by the `/spec_kit:handover` command. It handles context gathering and file generation while the main agent handles validation and user interaction.
+-**IMPORTANT**: This agent is dispatched by the `/speckit:handover` command. It handles context gathering and file generation while the main agent handles validation and user interaction.
 -
 ----
 -
@@ -81,7 +81,7 @@ index 949d3d772..1cb0c31be 100644
 -    R6 --> R7[7. RETURN]:::core
 -    R7 --> DONE([JSON Result])
 -```
-+1. Receive the validated spec folder path from `/spec_kit:handover`.
++1. Receive the validated spec folder path from `/speckit:handover`.
 +2. Read the required context files before generating any handover.
 +3. Extract the current phase, last action, next action, blockers, and key decisions from real file content.
 +4. Check whether `handover.md` already exists and determine the next attempt number.
@@ -247,7 +247,7 @@ index 949d3d772..1cb0c31be 100644
 -### ⚠️ ESCALATE IF
 +| Command | Purpose | Path |
 +| ------- | ------- | ---- |
-+| `/spec_kit:handover` | Main entrypoint that dispatches this agent | `.opencode/commands/spec_kit/handover.md` |
++| `/speckit:handover` | Main entrypoint that dispatches this agent | `.opencode/commands/speckit/handover.md` |
  
 -- Spec folder is empty or missing critical files
 -- Memory files are corrupted or unreadable
@@ -362,8 +362,8 @@ index 949d3d772..1cb0c31be 100644
 -
 -| Command              | Relationship                              |
 -| -------------------- | ----------------------------------------- |
--| `/spec_kit:handover` | Parent command that dispatches this agent |
--| `/spec_kit:resume`   | Loads handover.md created by this agent   |
+-| `/speckit:handover` | Parent command that dispatches this agent |
+-| `/speckit:resume`   | Loads handover.md created by this agent   |
 -| `/memory:save`       | Alternative context preservation method   |
 -
 -### Agents

@@ -1,6 +1,6 @@
 ---
 title: "DRV-026 -- Review verdict determines post-review workflow"
-description: "Verify that FAIL routes to /spec_kit:plan, CONDITIONAL routes to /spec_kit:plan, and PASS routes to /create:changelog with hasAdvisories metadata."
+description: "Verify that FAIL routes to /speckit:plan, CONDITIONAL routes to /speckit:plan, and PASS routes to /create:changelog with hasAdvisories metadata."
 ---
 
 # DRV-026 -- Review verdict determines post-review workflow

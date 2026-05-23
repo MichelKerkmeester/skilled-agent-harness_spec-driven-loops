@@ -22,7 +22,7 @@ Review Scope Files (this iteration's focus):
   - .opencode/skills/system-spec-kit/hooks/claude/session-stop.ts (Stop hook env override gating)
   - .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js (dist mirror)
   - .opencode/skills/system-spec-kit/shared/review-research-paths.cjs (resolver containment, P1-005 downgraded)
-  - .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml (workflow-resolved spec_folder write authority + buildCopilotPromptArg, P2-004)
+  - .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml (workflow-resolved spec_folder write authority + buildCopilotPromptArg, P2-004)
   - .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts (parseExecutorConfig)
   - .claude/settings.local.json (hook config schema; nested vs flat)
   - .opencode/skills/system-spec-kit/references/hooks/ (skill-advisor-hook + SessionStart)

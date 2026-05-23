@@ -137,7 +137,7 @@ quality_flags:
 
 **To continue this work, use:**
 ```
-/spec_kit:resume system-spec-kit/024-sqlite-to-turso
+/speckit:resume system-spec-kit/024-sqlite-to-turso
 ```
 
 **Or paste this continuation prompt:**
@@ -675,7 +675,7 @@ User initiated conversation
 
 | Scenario | Symptoms | Recovery Action |
 |----------|----------|-----------------|
-| Context Loss | Agent doesn't remember prior work | Run `/spec_kit:resume system-spec-kit/024-sqlite-to-turso` |
+| Context Loss | Agent doesn't remember prior work | Run `/speckit:resume system-spec-kit/024-sqlite-to-turso` |
 | State Mismatch | Files don't match expected state | Verify with `git status` and `git diff` |
 | Memory Not Found | Search returns no results | Check `memory_search({ specFolder: "system-spec-kit/024-sqlite-to-turso" })` |
 | Stale Context | Information seems outdated | Check `last_accessed_epoch` vs current time |

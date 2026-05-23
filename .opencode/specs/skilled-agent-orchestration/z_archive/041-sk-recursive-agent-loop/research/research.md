@@ -40,7 +40,7 @@ That last point matters most. The loop is not "autonomy" in the abstract. It is 
 Our repo can host the loop, but the mutation surface is more layered than the external harness:
 
 - `.opencode/agents/` is the canonical source layer, while `.claude/agents/`, `.codex/agents/`, and `.gemini/agents/` behave like runtime-specific copies or translations. [SOURCE: .opencode/README.md:330] [SOURCE: .opencode/install_guides/README.md:1421] [SOURCE: .codex/agents/context.toml:1]
-- Some behavior is defined outside the agent files themselves. Codex uses `.codex/config.toml` for `codex exec -p <profile>` routing, Gemini delegation is partly encoded in the CLI skill and delegation reference, and deep-research workflow assets still pin runtime-specific files. [SOURCE: .codex/config.toml:47] [SOURCE: .opencode/skills/cli-gemini/SKILL.md:277] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:66]
+- Some behavior is defined outside the agent files themselves. Codex uses `.codex/config.toml` for `codex exec -p <profile>` routing, Gemini delegation is partly encoded in the CLI skill and delegation reference, and deep-research workflow assets still pin runtime-specific files. [SOURCE: .codex/config.toml:47] [SOURCE: .opencode/skills/cli-gemini/SKILL.md:277] [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:66]
 - Repo safety rules are much stricter than the external snapshot: read-before-edit, spec-folder gating, scope lock, hard verification, evaluator independence, and `@speckit` exclusivity over most spec docs. [SOURCE: AGENTS.md:12] [SOURCE: AGENTS.md:179] [SOURCE: .opencode/skills/system-spec-kit/SKILL.md:63] [SOURCE: .opencode/agents/review.md:24]
 
 That means a direct copy of `autoagent-main` would import the wrong trust boundary.
@@ -90,7 +90,7 @@ The safest first target is a structured artifact-producing agent surface, especi
 
 Why:
 
-- handover has seven required sections, strict pre-validation, a fixed output path, and mandatory follow-up steps [SOURCE: .opencode/commands/spec_kit/handover.md:58] [SOURCE: .opencode/commands/spec_kit/handover.md:195] [SOURCE: .opencode/commands/spec_kit/handover.md:215]
+- handover has seven required sections, strict pre-validation, a fixed output path, and mandatory follow-up steps [SOURCE: .opencode/commands/speckit/handover.md:58] [SOURCE: .opencode/commands/speckit/handover.md:195] [SOURCE: .opencode/commands/speckit/handover.md:215]
 - deep-research is synthesis-heavy and convergence-oriented, which makes scoring much more subjective [SOURCE: .opencode/agents/deep-research.md:28] [SOURCE: .opencode/skills/sk-deep-research/references/convergence.md:25]
 
 So the strongest phase-1 bet is not "improve research agents." It is "improve one tightly templated artifact generator under deterministic checks."

@@ -1,7 +1,7 @@
 {
   "level": "2",
   "completionPct": 100,
-  "lastOutcome": "Deep-review loop converged at iter-10 with verdict FAIL: 1 P0 (live runtime stale dist), 12 P1, 9 P2. Planning Packet ready in review-report.md §2 for /spec_kit:plan.",
+  "lastOutcome": "Deep-review loop converged at iter-10 with verdict FAIL: 1 P0 (live runtime stale dist), 12 P1, 9 P2. Planning Packet ready in review-report.md §2 for /speckit:plan.",
   "specFolder": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/002-track-review",
   "description": "Feature Specification: Track Review of skilled-agent-orchestration packets 093-096",
   "keywords": [

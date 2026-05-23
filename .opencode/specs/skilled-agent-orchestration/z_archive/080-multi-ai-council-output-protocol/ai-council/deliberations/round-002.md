@@ -32,7 +32,7 @@
 
 - **Seat 1 (Critical)**: round-1 convergence is *defensible but not airtight*. Surfaced 3 new failure modes (F8 Depth-1 circular dependency, F9 legacy backward-compat, F10 per-runtime parser dialect).
 - **Seat 2 (Holistic)**: System-fit gaps — §8 must become a shared schema artifact; helper needs graceful degradation contract; orchestrate dispatch case missed by round-1; future-loop forward-compat flag.
-- **Seat 3 (Research)**: Grep-verifiable evidence falsifies round-1's "callers concentrated" central assumption. 4 caller patterns enumerated; zero current `/spec_kit:*` commands actually dispatch the council.
+- **Seat 3 (Research)**: Grep-verifiable evidence falsifies round-1's "callers concentrated" central assumption. 4 caller patterns enumerated; zero current `/speckit:*` commands actually dispatch the council.
 
 ## Round 2 — Cross-Critique
 

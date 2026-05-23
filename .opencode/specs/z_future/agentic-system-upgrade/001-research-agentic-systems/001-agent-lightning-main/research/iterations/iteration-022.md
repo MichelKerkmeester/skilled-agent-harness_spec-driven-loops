@@ -12,8 +12,8 @@ Yes. Public likely over-encodes workflow state in command boundaries and setup s
 I compared Public's command setup contracts and YAML-backed workflow ownership model with Agent Lightning's tutorial flow and example execution modes.
 
 ## Evidence
-- `plan`, `implement`, and `complete` each begin with "YOUR FIRST ACTION" instructions to load a corresponding YAML workflow file. [SOURCE: .opencode/commands/spec_kit/plan.md:13-17] [SOURCE: .opencode/commands/spec_kit/implement.md:11-14] [SOURCE: .opencode/commands/spec_kit/complete.md:13-17]
-- Each of those commands also imposes its own first-message protocol and consolidated prompt block before normal execution starts. [SOURCE: .opencode/commands/spec_kit/plan.md:31-44] [SOURCE: .opencode/commands/spec_kit/implement.md:29-42] [SOURCE: .opencode/commands/spec_kit/complete.md:32-45]
+- `plan`, `implement`, and `complete` each begin with "YOUR FIRST ACTION" instructions to load a corresponding YAML workflow file. [SOURCE: .opencode/commands/speckit/plan.md:13-17] [SOURCE: .opencode/commands/speckit/implement.md:11-14] [SOURCE: .opencode/commands/speckit/complete.md:13-17]
+- Each of those commands also imposes its own first-message protocol and consolidated prompt block before normal execution starts. [SOURCE: .opencode/commands/speckit/plan.md:31-44] [SOURCE: .opencode/commands/speckit/implement.md:29-42] [SOURCE: .opencode/commands/speckit/complete.md:32-45]
 - Deep research follows the same pattern: the markdown command is a setup layer whose first action is to load auto or confirm YAML assets. [SOURCE: .opencode/commands/deep/start-research-loop.md:11-20]
 - The deep-research auto asset owns a sizable state machine with dedicated config, strategy, registry, dashboard, iteration, and synthesis files. [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:79-89]
 - Agent Lightning's first-agent tutorial presents the operator loop more directly: configure `Trainer`, provide the algorithm and initial prompt, then call `trainer.fit()`. [SOURCE: external/docs/how-to/train-first-agent.md:181-187]
@@ -30,7 +30,7 @@ confidence: high
 finding: `system-spec-kit` should redesign its lifecycle front door so one primary command handles the common case, while `plan` and `implement` become advanced or explicit-state variants rather than the default mental model.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/commands/spec_kit/{plan,implement,complete}.md` plus YAML asset strategy
+- **Target file or module:** `.opencode/commands/speckit/{plan,implement,complete}.md` plus YAML asset strategy
 - **Change type:** UX redesign
 - **Blast radius:** large
 - **Prerequisites:** define canonical default flow, preserve advanced phase-specific entrypoints, and hide YAML ownership details from most operators
@@ -49,6 +49,6 @@ finding: `system-spec-kit` should redesign its lifecycle front door so one prima
 I looked for evidence that the YAML split is itself a strong operator feature, but most benefits appear internal: reuse, dispatch control, and workflow maintainability. Those are important, yet they do not need to stay user-visible.
 
 ## Follow-up questions for next iteration
-- Should `/spec_kit:complete` become the only recommended workflow for most operators?
+- Should `/speckit:complete` become the only recommended workflow for most operators?
 - Which current lifecycle questions can be inferred safely from context or defaults?
 - Can YAML assets stay internal while the public command docs shrink dramatically?

@@ -295,7 +295,7 @@ I’ve narrowed it to a handful of exact branches. I’m now checking the real e
 
 ● Search (grep)
   │ "claim_adjudication.*findingId|findingId.*claim_adjudication|finalSeverity"
-  │ (.opencode/commands/spec_kit/assets)
+  │ (.opencode/commands/speckit/assets)
   └ 6 lines found
 
 ● Search (grep)
@@ -1650,19 +1650,19 @@ Tokens    ↑ 8.6m • ↓ 47.3k • 8.2m (cached) • 18.1k (reasoning)
 I’m pulling the current command, agent, and reference surfaces together first so the edits stay aligned and minimal. After that I’ll patch the mismatches in one pass and verify the changed scope.
 
 ● Read spec_kit_deep-review_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
   └ 1 line read
 
 ● Read spec_kit_deep-review_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
   └ 1 line read
 
 ● Read spec_kit_deep-research_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml
   └ 1 line read
 
 ● Read spec_kit_deep-research_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml
   └ 1 line read
 
 ● skill(system-spec-kit)
@@ -1769,22 +1769,22 @@ I’ve narrowed it to a few contract mismatches: lifecycle modes, blocked-stop p
 
 ● Search (grep)
   │ "blocked_stop|graphBlockerDetail|reviewDimensions|step_normalize|phase_init|phase_loop"
-  │ (.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml)
+  │ (.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml)
   └ 12 lines found
 
 ● Search (grep)
   │ "blocked_stop|graphBlockerDetail|reviewDimensions|step_normalize|phase_init|phase_loop"
-  │ (.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml)
+  │ (.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml)
   └ 13 lines found
 
 ● Search (grep)
   │ "completed-session|synthesize|phase_synthesis|step_classify_session|on_completed_session|on_resu
-  │ me|lineageMode" (.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml)
+  │ me|lineageMode" (.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml)
   └ 12 lines found
 
 ● Search (grep)
   │ "completed-session|synthesize|phase_synthesis|step_classify_session|on_completed_session|on_resu
-  │ me|lineageMode" (.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml)
+  │ me|lineageMode" (.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml)
   └ 15 lines found
 
 ● Search (grep)
@@ -1824,43 +1824,43 @@ I’ve narrowed it to a few contract mismatches: lifecycle modes, blocked-stop p
   └ L1:120 (118 lines read)
 
 ● Read spec_kit_deep-review_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
   └ L100:170 (71 lines read)
 
 ● Read spec_kit_deep-review_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
   └ L236:286 (51 lines read)
 
 ● Read spec_kit_deep-review_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
   └ L474:490 (16 lines read)
 
 ● Read spec_kit_deep-review_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
   └ L100:170 (71 lines read)
 
 ● Read spec_kit_deep-review_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
   └ L244:294 (51 lines read)
 
 ● Read spec_kit_deep-review_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
   └ L507:523 (16 lines read)
 
 ● Read spec_kit_deep-research_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml
   └ L124:160 (37 lines read)
 
 ● Read spec_kit_deep-research_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml
   └ L336:356 (21 lines read)
 
 ● Read spec_kit_deep-research_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml
   └ L124:168 (45 lines read)
 
 ● Read spec_kit_deep-research_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml
   └ L404:424 (21 lines read)
 
 ● Read improve_improve-agent_auto.yaml
@@ -1972,12 +1972,12 @@ I’ve narrowed it to a few contract mismatches: lifecycle modes, blocked-stop p
 
 ● Search (grep)
   │ "reviewDimensions\s*:\s*"\{review_dimensions\}"|review_dimensions_json|Normalize
-  │ \{review_dimensions\}" (.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml)
+  │ \{review_dimensions\}" (.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml)
   └ 4 lines found
 
 ● Search (grep)
   │ "reviewDimensions\s*:\s*"\{review_dimensions\}"|review_dimensions_json|Normalize
-  │ \{review_dimensions\}" (.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml)
+  │ \{review_dimensions\}" (.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml)
   └ 4 lines found
 
 ● Read README.md
@@ -1996,12 +1996,12 @@ I’ve narrowed it to a few contract mismatches: lifecycle modes, blocked-stop p
 
 ● Search (grep)
   │ "reviewDimensions":\{|reviewDimensions":\[|reviewDimensions\s*:\s*\["
-  │ (.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml)
+  │ (.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml)
   └ 1 line found
 
 ● Search (grep)
   │ "reviewDimensions":\{|reviewDimensions":\[|reviewDimensions\s*:\s*\["
-  │ (.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml)
+  │ (.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml)
   └ 1 line found
 
 ● Read loop_protocol.md
@@ -2072,13 +2072,13 @@ I’ve got the runtime truth now: improve-agent is single-lineage only, the revi
 ● Search (grep)
   │ "step_create_config|deep-review-config.json|populate:|template:
   │ .opencode/skills/sk-deep-review/assets/deep_review_config.json"
-  │ (.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml)
+  │ (.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml)
   └ 19 lines found
 
 ● Search (grep)
   │ "step_create_config|deep-review-config.json|populate:|template:
   │ .opencode/skills/sk-deep-review/assets/deep_review_config.json"
-  │ (.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml)
+  │ (.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml)
   └ 19 lines found
 
 ● Read mutation-coverage.cjs
@@ -2137,10 +2137,10 @@ I’ve got the runtime truth now: improve-agent is single-lineage only, the revi
 I’ve got the exact deltas and I’m applying them as a narrow contract patch: one blocked-stop field, one shared review-dimension normalization path, one completed-session halt, one improve-agent session-boundary guard plus explicit analysis steps, and the requested doc/config trims.
 
 ✗ Edit
-  │ Edit .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
-  │ Edit .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
-  │ Edit .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml
-  │ Edit .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml
+  │ Edit .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
+  │ Edit .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
+  │ Edit .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml
+  │ Edit .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml
   │ Edit .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
   │ Edit .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml
   │ Edit .opencode/agents/deep-review.md
@@ -2155,11 +2155,11 @@ I’ve got the exact deltas and I’m applying them as a narrow contract patch: 
 The patch hit a context mismatch in the review YAMLs, so I’m re-reading the exact local blocks and then applying the same changes in smaller hunks to avoid touching unrelated text.
 
 ● Read spec_kit_deep-review_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
   └ L282:315 (34 lines read)
 
 ● Read spec_kit_deep-review_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
   └ L290:322 (32 lines read)
 
 ● Read improve_improve-agent_auto.yaml
@@ -2171,18 +2171,18 @@ The patch hit a context mismatch in the review YAMLs, so I’m re-reading the ex
   └ L46:68 (23 lines read)
 
 ● Read spec_kit_deep-review_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
   └ L230:281 (51 lines read)
 
 ● Read spec_kit_deep-review_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
   └ L238:289 (51 lines read)
 
 ● Edit
-  │ Edit .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
-  │ Edit .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
-  │ Edit .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml
-  │ Edit .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml
+  │ Edit .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
+  │ Edit .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
+  │ Edit .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml
+  │ Edit .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml
   │ Edit .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
   │ Edit .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml
   │ Edit .opencode/agents/deep-review.md
@@ -2225,19 +2225,19 @@ The contract edits are in. I’m doing a quick pass over the changed snippets no
   └ L1:110 (110 lines read)
 
 ● Read spec_kit_deep-review_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
   └ L230:279 (50 lines read)
 
 ● Read spec_kit_deep-review_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
   └ L483:488 (5 lines read)
 
 ● Read spec_kit_deep-review_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
   └ L488:494 (7 lines read)
 
 ● Read spec_kit_deep-review_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
   └ L521:527 (7 lines read)
 
 ● Read loop_protocol.md
@@ -2254,10 +2254,10 @@ The edits are in place. I’m running the repo’s scoped alignment check plus a
 
 ● Check diff formatting and stat (shell)
   │ git --no-pager diff --check --
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml …
+  │ .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml …
   └ 38 lines...
 
 ● Run alignment verifier on .opencode (shell)
@@ -2279,7 +2279,7 @@ The broad `.opencode` verifier tripped on existing repo-wide findings, not just 
   │ .opencode/agent && python3 .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py
   │ --root .opencode/commands/improve/assets && python3
   │ .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py --root
-  │ .opencode/commands/spec_kit/assets && python3 …
+  │ .opencode/commands/speckit/assets && python3 …
   └ 59 lines...
 
 The scope-specific checks are clean. I’m doing one last structural parse on the edited YAML/JSON files so the contract changes are validated by actual parsers, not just text diffing.
@@ -2288,10 +2288,10 @@ The scope-specific checks are clean. I’m doing one last structural parse on th
 
 ● Parse YAML JSON and inspect diff (shell)
   │ ruby -e 'require "yaml";
-  │ files=%w[.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml …
+  │ files=%w[.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml …
   └ 28 lines...
 
 The parser pass is still running, most likely stuck behind the long diff output rather than the parsers themselves. I’m reading the remaining output directly and then I’ll wrap this up.
@@ -2306,10 +2306,10 @@ That shell looks hung rather than failing meaningfully, so I’m stopping it and
 
 ● Parse edited YAML and JSON files (shell)
   │ ruby -e 'require "yaml";
-  │ files=%w[.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml …
+  │ files=%w[.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml …
   └ 23 lines...
 
 I found one real issue: `review_mode_contract.yaml` has an invalid YAML scalar around the lifecycle-parity description. I’m fixing that syntax only, then re-running the parse.
@@ -2329,10 +2329,10 @@ The issue was just an unquoted colon in a description field. I’ve patched that
 
 ● Re-parse edited YAML JSON and diff check (shell)
   │ ruby -e 'require "yaml";
-  │ files=%w[.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml …
+  │ files=%w[.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml …
   └ 31 lines...
 
 Everything parses cleanly now. I’m doing one quick diffstat/status pass so the final handoff reflects the exact edited surface.
@@ -2340,10 +2340,10 @@ Everything parses cleanly now. I’m doing one quick diffstat/status pass so the
 ✔ Todo completed verify-scope
 
 ● Show diffstat and status for edited files (shell)
-  │ git --no-pager diff --stat -- .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml
+  │ git --no-pager diff --stat -- .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml
   │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml …
   └ 52 lines...
 

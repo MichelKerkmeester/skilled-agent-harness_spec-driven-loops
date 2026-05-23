@@ -143,8 +143,8 @@ Collect historical traces
 - `.opencode/skills/sk-deep-review/assets/deep_review_config.json`
 - `.opencode/skills/sk-deep-research/references/convergence.md`
 - `.opencode/skills/sk-deep-review/references/convergence.md`
-- `.opencode/commands/spec_kit/deep-research.md`
-- `.opencode/commands/spec_kit/deep-review.md`
+- `.opencode/commands/speckit/deep-research.md`
+- `.opencode/commands/speckit/deep-review.md`
 - `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts`
 - `.opencode/skills/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts`
 - `.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts`

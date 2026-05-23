@@ -89,7 +89,7 @@ Rewrite all 23 READMEs from scratch to match the quality demonstrated by `.openc
 | 20 | Command root | `.opencode/commands/README.txt` | Convert the committed text README into the markdown command reference |
 | 21 | create | `.opencode/commands/create/README.txt` | Convert the committed text README into the markdown command reference |
 | 22 | memory | `.opencode/commands/memory/README.txt` | Convert the committed text README into the markdown command reference |
-| 23 | spec_kit | `.opencode/commands/spec_kit/README.txt` | Convert the committed text README into the markdown command reference |
+| 23 | spec_kit | `.opencode/commands/speckit/README.txt` | Convert the committed text README into the markdown command reference |
 
 ### Out of Scope
 

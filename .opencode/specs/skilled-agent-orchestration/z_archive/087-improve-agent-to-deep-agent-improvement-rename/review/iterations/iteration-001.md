@@ -1,6 +1,6 @@
 ## Dispatcher
 
-- Command: `/spec_kit:deep-review:auto`
+- Command: `/speckit:deep-review:auto`
 - Agent: `@deep-review` LEAF iteration only; no sub-agent dispatch used.
 - Iteration: 1 of 5
 - Focus: correctness

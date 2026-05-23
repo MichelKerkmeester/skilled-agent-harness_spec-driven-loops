@@ -84,7 +84,7 @@ _memory:
 
 ### YAML Asset Moves
 - [ ] T020 Create `commands/deep/assets/` directory
-- [ ] T021 `mv` 6 YAMLs: `commands/spec_kit/assets/spec_kit_deep-{review,research,council}_{auto,confirm}.yaml` → `commands/deep/assets/deep_{review,research,ai-council}_{auto,confirm}.yaml`
+- [ ] T021 `mv` 6 YAMLs: `commands/speckit/assets/speckit_deep-{review,research,council}_{auto,confirm}.yaml` → `commands/deep/assets/deep_{review,research,ai-council}_{auto,confirm}.yaml`
 - [ ] T022 Rename: `spec_kit_deep-council_*` filenames → `deep_ai-council_*`
 
 ### Command MD Internal Updates
@@ -93,12 +93,12 @@ _memory:
 - [ ] T025 Update `commands/deep/ask-ai-council.md` asset-path block → `deep/assets/deep_ask-ai-council_*`
 
 ### Gemini TOML Migrations
-- [ ] T026 [P] `mv` `.gemini/commands/spec_kit/deep-review.toml` → `.gemini/commands/deep/review.toml`
-- [ ] T027 [P] `mv` `.gemini/commands/spec_kit/deep-research.toml` → `.gemini/commands/deep/research.toml`
+- [ ] T026 [P] `mv` `.gemini/commands/speckit/deep-review.toml` → `.gemini/commands/deep/review.toml`
+- [ ] T027 [P] `mv` `.gemini/commands/speckit/deep-research.toml` → `.gemini/commands/deep/research.toml`
 - [ ] T028 Author `.gemini/commands/deep/ai-council.toml` (use `review.toml` as template)
 
 ### Verification Gate
-- [ ] T029 Gate: `ls commands/deep/assets/` shows 6 `deep_*.yaml`; `ls commands/spec_kit/assets/spec_kit_deep-*` returns 0 hits
+- [ ] T029 Gate: `ls commands/deep/assets/` shows 6 `deep_*.yaml`; `ls commands/speckit/assets/speckit_deep-*` returns 0 hits
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -115,7 +115,7 @@ _memory:
 
 ### skill_advisor.py (Semantic Review — NOT bulk sed)
 - [ ] T033 Update routing tables (lines 250-265) — edit deep-* dispatch references
-- [ ] T034 Update trigger-phrase scoring (lines 1313-1657) — replace `/spec_kit:deep-*` → `/deep:*`
+- [ ] T034 Update trigger-phrase scoring (lines 1313-1657) — replace `/speckit:deep-*` → `/deep:*`
 
 ### Agent Definitions (4 Runtimes × 3 Skills)
 - [ ] T035 [P] Update `.opencode/agents/{ai-council,deep-research,deep-review}.md`
@@ -131,7 +131,7 @@ _memory:
 - [ ] T041 Update 9 `graph-metadata.json` files — skill edges + asset_path arrays in `deep-review`, `deep-research`, `deep-ai-council`, `deep-loop-runtime`, `deep-agent-improvement`, `system-skill-advisor`, `system-spec-kit`, `cli-opencode`, `sk-code-review`
 
 ### Verification Gate
-- [ ] T042 Gate: `rg "/spec_kit:deep-(review|research|council|ai-council)" .opencode/agents/ .claude/agents/ .codex/agents/ .gemini/agents/ CLAUDE.md AGENTS.md README.md` returns 0 hits
+- [ ] T042 Gate: `rg "/speckit:deep-(review|research|council|ai-council)" .opencode/agents/ .claude/agents/ .codex/agents/ .gemini/agents/ CLAUDE.md AGENTS.md README.md` returns 0 hits
 - [ ] T043 Gate: `rg "spec_kit/assets/spec_kit_deep-" .opencode/commands/deep/ .opencode/skills/deep-*/SKILL.md` returns 0 hits
 <!-- /ANCHOR:phase-3 -->
 
@@ -165,9 +165,9 @@ _memory:
 - [ ] T061 `spec_kit_deep-review_` → `deep_review_`
 - [ ] T062 `spec_kit_deep-research_` → `deep_research_`
 - [ ] T063 `spec_kit/assets/spec_kit_deep-` → `deep/assets/deep_` (path refs)
-- [ ] T064 `/spec_kit:deep-review` → `/deep:start-review-loop`
-- [ ] T065 `/spec_kit:deep-research` → `/deep:start-research-loop`
-- [ ] T066 `/spec_kit:deep-council` → `/deep:ask-ai-council`
+- [ ] T064 `/speckit:deep-review` → `/deep:start-review-loop`
+- [ ] T065 `/speckit:deep-research` → `/deep:start-research-loop`
+- [ ] T066 `/speckit:deep-council` → `/deep:ask-ai-council`
 
 ### Scope Control
 - [ ] T067 Include: `.opencode/specs/**/*.md`, `.opencode/specs/**/*.json`, `.opencode/skills/**/*.md` (changelog + feature_catalog + playbook)

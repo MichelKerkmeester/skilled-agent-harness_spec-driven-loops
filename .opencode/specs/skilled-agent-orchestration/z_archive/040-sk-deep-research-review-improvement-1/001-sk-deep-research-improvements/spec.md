@@ -88,8 +88,8 @@ Make Phase 1 the durable contract for research lineage, reducer-owned state, and
 | `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md` | Modify | Mark machine-owned sections and reducer boundaries |
 | `.opencode/skills/sk-deep-research/scripts/runtime-capabilities.cjs` | Create | Resolve runtime capability records from the machine-readable matrix |
 | `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | Create | Reduce JSONL and iteration artifacts into registry, strategy, and dashboard outputs |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | Carry lineage, migration, registry, reducer, and completed-continue contract details |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modify | Mirror the same contract for confirm mode |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | Modify | Carry lineage, migration, registry, reducer, and completed-continue contract details |
+| `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml` | Modify | Mirror the same contract for confirm mode |
 | `.opencode/agents/deep-research.md` | Modify | Keep OpenCode mirror aligned to reducer-owned state and registry inputs |
 | `.claude/agents/deep-research.md` | Modify | Keep Claude mirror aligned to the same contract |
 | `.gemini/agents/deep-research.md` | Modify | Keep Gemini mirror aligned to the same contract |

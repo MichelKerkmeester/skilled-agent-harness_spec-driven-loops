@@ -160,7 +160,7 @@ Land the 5 approved UX adoptions as 5 sequential phases inside a single Level 2 
 
 ## 4A. ACCEPTANCE SCENARIOS
 
-1. **Given** a user invokes `/spec_kit:plan` after Phase 1, when the consolidated prompt renders, then they see two clearly labelled sections: Required to proceed and Optional refinements.
+1. **Given** a user invokes `/speckit:plan` after Phase 1, when the consolidated prompt renders, then they see two clearly labelled sections: Required to proceed and Optional refinements.
 2. **Given** a user opens `command/spec_kit/README.txt` after Phase 2, when they scan the file, then four section headers (Specify, Plan, Act, Retain) appear above the existing command list with every command preserved.
 3. **Given** Phase 3 is complete, when a contributor reads `command-taxonomy.md`, then they can identify a command's execution mode, feature flags, lifecycle intent, and executor/provenance from the matrix without consulting other files.
 4. **Given** Phase 4 is complete, when `INVENTORY.md` is opened, then every file under `system-spec-kit/templates/` has exactly one role label, and `source-manifest.yaml` lists only the source-layer files.

@@ -27,7 +27,7 @@ confidence: high
 finding: `system-spec-kit` should import the control pattern, not the platform surface. Reliant is implementation detail; the reusable value is the separation between leaf-attempt execution and workflow-owned retry decisions.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/commands/spec_kit/implement.md`
+- **Target file or module:** `.opencode/commands/speckit/implement.md`
 - **Change type:** architectural shift
 - **Blast radius:** medium
 - **Prerequisites:** document the retry controller as an internal workflow pattern rather than a direct translation of external YAML semantics

@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-04-26T05:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Drafted 28-task tasks.md across 3 phases"
-    next_safe_action: "Review checklist + decision-record, dispatch /spec_kit:implement when approved"
+    next_safe_action: "Review checklist + decision-record, dispatch /speckit:implement when approved"
     blockers: []
     key_files:
       - "spec.md"

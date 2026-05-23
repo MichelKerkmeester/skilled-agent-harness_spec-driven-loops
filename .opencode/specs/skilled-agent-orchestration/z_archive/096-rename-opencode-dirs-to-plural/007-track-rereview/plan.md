@@ -42,7 +42,7 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Workflow** | `/spec_kit:deep-review:auto` (skill-owned YAML) |
+| **Workflow** | `/speckit:deep-review:auto` (skill-owned YAML) |
 | **Requested executor** | cli-opencode (`opencode run --variant high`) |
 | **Requested model** | opencode-go/deepseek-v4-pro |
 | **Reasoning effort / variant** | high |
@@ -57,7 +57,7 @@ Run an autonomous deep-review loop over the recent burst (100, 101) plus the bro
 re-audited under verdict-flip framing. All 4 dimensions enabled. Strategy is `arch` — verdict-flip
 confirmation NOT line-by-line. Iter-1 builds the closed-gate replay table mapping each 099 finding
 to its 100 fix surface and audits 101 executor wiring; subsequent iterations spot-check at file:line.
-Synthesize findings into review-report.md with a Planning Packet that downstream `/spec_kit:plan`
+Synthesize findings into review-report.md with a Planning Packet that downstream `/speckit:plan`
 can consume if verdict ≠ PASS.
 <!-- /ANCHOR:summary -->
 
@@ -116,7 +116,7 @@ reducer-owned findings registry, severity-weighted convergence detection.
 ## FIX ADDENDUM: AFFECTED SURFACES
 
 Not applicable at planning time — this is a review-only packet. If review yields FAIL/CONDITIONAL,
-the Plan Seed in `review-report.md` populates this section for the follow-up `/spec_kit:plan` packet.
+the Plan Seed in `review-report.md` populates this section for the follow-up `/speckit:plan` packet.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|

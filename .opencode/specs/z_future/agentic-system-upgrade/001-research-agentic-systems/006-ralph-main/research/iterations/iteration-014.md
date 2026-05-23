@@ -13,7 +13,7 @@ Compared Ralph's acceptance-criteria and commit gate model in prompts, skills, a
 - Ralph's unit of truth is the story acceptance criteria: each story must be verifiable, include `Typecheck passes`, often `Tests pass`, and browser verification for UI work. [SOURCE: external/skills/ralph/SKILL.md:83-116] [SOURCE: external/skills/prd/SKILL.md:69-92]
 - The runtime loop only commits after project quality checks pass and the story can be marked `passes: true`. [SOURCE: external/prompt.md:10-16] [SOURCE: external/README.md:122-130] [SOURCE: external/README.md:194-207]
 - `system-spec-kit`'s level model escalates into large verification payloads, including Level 3+ extended checklists with 100-150 items, sign-offs, and AI execution protocol sections. [SOURCE: .opencode/skills/system-spec-kit/references/templates/level_specifications.md:385-403] [SOURCE: .opencode/skills/system-spec-kit/references/templates/level_specifications.md:407-410]
-- The validator orchestrates many rule classes and recursive phase validation, while `/spec_kit:implement` adds separate quality-checklist, preflight, postflight, and evidence-verification phases around development. [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:80-100] [SOURCE: .opencode/commands/spec_kit/implement.md:171-187] [SOURCE: .opencode/commands/spec_kit/implement.md:272-316]
+- The validator orchestrates many rule classes and recursive phase validation, while `/speckit:implement` adds separate quality-checklist, preflight, postflight, and evidence-verification phases around development. [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:80-100] [SOURCE: .opencode/commands/speckit/implement.md:171-187] [SOURCE: .opencode/commands/speckit/implement.md:272-316]
 
 ## Analysis
 Ralph is not anti-validation; it is radically specific about what counts as proof. The main difference is that its proof is attached directly to the story being executed. `system-spec-kit` has stronger packet integrity guarantees, but those guarantees can become the center of gravity, especially when tasks are still broad. That creates a bad loop: weakly-sized tasks force larger checklists, and larger checklists encourage process-heavy completion rather than sharp evidence about one verified change. The better architecture is two-tier validation: lightweight packet integrity checks plus first-class executable acceptance criteria on each task.
@@ -27,12 +27,12 @@ finding: `system-spec-kit` should SIMPLIFY validation by making per-task executa
 - **Target file or module:** `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - **Change type:** modified existing
 - **Blast radius:** architectural
-- **Prerequisites:** update `tasks.md` templates and `/spec_kit:implement` to require executable acceptance criteria per task
+- **Prerequisites:** update `tasks.md` templates and `/speckit:implement` to require executable acceptance criteria per task
 - **Priority:** must-have
 
 ## Refactor / Pivot Analysis
 
-- **Current system-spec-kit approach:** Validation spans documentation presence, placeholder checks, anchors, checklist structure, pre/postflight learning capture, and evidence verification. [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:80-100] [SOURCE: .opencode/commands/spec_kit/implement.md:171-187]
+- **Current system-spec-kit approach:** Validation spans documentation presence, placeholder checks, anchors, checklist structure, pre/postflight learning capture, and evidence verification. [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:80-100] [SOURCE: .opencode/commands/speckit/implement.md:171-187]
 - **External repo's approach:** Validation is centered on task-local acceptance criteria and project checks, with completion recorded directly in `prd.json`. [SOURCE: external/prompt.md:10-16] [SOURCE: external/skills/ralph/SKILL.md:83-116] [SOURCE: external/prd.json.example:5-17]
 - **Why the external approach might be better:** It keeps proof attached to the unit of work, making autonomous continuation and retry much clearer. [SOURCE: external/README.md:122-130]
 - **Why system-spec-kit's approach might still be correct:** Packet-level integrity and governance matter in workflows that need traceability, multi-phase documentation, and reviewable decisions. [SOURCE: .opencode/skills/system-spec-kit/references/templates/level_specifications.md:385-403]

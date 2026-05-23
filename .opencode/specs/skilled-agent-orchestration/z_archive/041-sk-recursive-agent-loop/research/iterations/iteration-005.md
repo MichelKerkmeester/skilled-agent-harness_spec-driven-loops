@@ -6,7 +6,7 @@ Determine which repo-side runtime surfaces should be considered primary mutation
 ## Findings
 1. `.opencode/agents/` is the cleanest primary mutation surface. The repo documentation describes it as the base agent source layer, with runtime copies under `.claude/agents/`, `.codex/agents/`, and `.gemini/agents/`, and Codex agent files explicitly record conversion from `.opencode/agents/*`. [SOURCE: .opencode/README.md:330] [SOURCE: .opencode/install_guides/README.md:1421] [SOURCE: .codex/agents/context.toml:1]
 2. Cross-runtime parity is semantic, not literal. The same `@context` role differs by runtime in path convention, tool inventory, and workflow shape, which means "one change everywhere" is not a safe assumption. [SOURCE: .opencode/agents/context.md:1] [SOURCE: .claude/agents/context.md:1] [SOURCE: .gemini/agents/context.md:1] [SOURCE: .codex/agents/context.toml:88]
-3. Some command assets pin specific runtime agent files directly. The deep-research workflow still shows `.claude/agents/deep-research.md` as the concrete `agent_file`, even while describing runtime-agnostic resolution. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:66]
+3. Some command assets pin specific runtime agent files directly. The deep-research workflow still shows `.claude/agents/deep-research.md` as the concrete `agent_file`, even while describing runtime-agnostic resolution. [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:66]
 4. Codex has a split control plane: `.codex/config.toml` governs `codex exec -p <profile>` delegation, while `.codex/agents/*.toml` supports the interactive multi-agent TUI. Editing agent TOMLs alone would miss an important runtime path. [SOURCE: .opencode/skills/cli-codex/SKILL.md:314] [SOURCE: .codex/config.toml:47]
 5. Gemini is likewise shaped by adjacent orchestration docs. The CLI skill and delegation reference hardcode the `As @agent` invocation style and routing table, so runtime behavior is partly defined outside `.gemini/agents/`. [SOURCE: .opencode/skills/cli-gemini/SKILL.md:277] [SOURCE: .opencode/skills/cli-gemini/references/agent_delegation.md:19] [SOURCE: .opencode/skills/cli-gemini/references/agent_delegation.md:60]
 
@@ -20,7 +20,7 @@ Determine which repo-side runtime surfaces should be considered primary mutation
 - .opencode/README.md:330
 - .opencode/install_guides/README.md:1421
 - .codex/agents/context.toml:1
-- .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:66
+- .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:66
 
 ## Assessment
 - New information ratio: 0.82

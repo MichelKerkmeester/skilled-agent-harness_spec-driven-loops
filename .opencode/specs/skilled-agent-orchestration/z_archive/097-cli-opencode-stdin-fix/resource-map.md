@@ -44,10 +44,10 @@ Path ledger for every file the 097 packet touched, read, or referenced. Use this
 
 | Path | Why read |
 |------|----------|
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` (lines ~717–739) | Located `if_cli_opencode` block — the canonical dispatch shape |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` (lines ~649–671) | Same |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` (lines ~781–803) | Same |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` (lines ~758–780) | Same |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` (lines ~717–739) | Located `if_cli_opencode` block — the canonical dispatch shape |
+| `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml` (lines ~649–671) | Same |
+| `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml` (lines ~781–803) | Same |
+| `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml` (lines ~758–780) | Same |
 | `.opencode/skills/cli-opencode/SKILL.md` (§4 ALWAYS list, lines 277–293) | Located rule 5 — narrow scope to generalize |
 | `.opencode/skills/cli-opencode/references/integration_patterns.md` (§6, lines 261–286) | Located while-read narrow scope to broaden |
 | `.opencode/skills/cli-opencode/references/cli_reference.md` (§4 flag reference) | Located insertion point for new "Stdin handling" subsection |
@@ -79,10 +79,10 @@ Path ledger for every file the 097 packet touched, read, or referenced. Use this
 
 | Path | Lines changed |
 |------|--------------:|
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | +2 (line 728: `</dev/null`) +1 note (line 741) |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | +2 (line 660) +1 note (line 673) |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | +2 (line 792) +1 note (line 805) |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | +2 (line 769) +1 note (line 782) |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | +2 (line 728: `</dev/null`) +1 note (line 741) |
+| `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml` | +2 (line 660) +1 note (line 673) |
+| `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml` | +2 (line 792) +1 note (line 805) |
+| `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml` | +2 (line 769) +1 note (line 782) |
 
 ### cli-opencode skill updates (main repo)
 
@@ -158,11 +158,11 @@ If a future packet adds new automation that calls `opencode run`, the SKILL.md �
 
 ```bash
 # Verify all 4 YAMLs have </dev/null in their if_cli_opencode block
-$ grep -c "</dev/null" .opencode/commands/spec_kit/assets/spec_kit_deep-{research,review}_{auto,confirm}.yaml
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:2
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:2
-.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:2
-.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:2
+$ grep -c "</dev/null" .opencode/commands/speckit/assets/speckit_deep-{research,review}_{auto,confirm}.yaml
+.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:2
+.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:2
+.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:2
+.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:2
 
 # Verify cli-opencode skill rule 5 documents the requirement
 $ grep -c "non-interactive.*opencode run" .opencode/skills/cli-opencode/SKILL.md

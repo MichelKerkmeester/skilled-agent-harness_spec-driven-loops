@@ -47,7 +47,7 @@
     ],
     "commands": [
       {
-        "path": ".opencode/commands/spec_kit/deep-review.md",
+        "path": ".opencode/commands/speckit/deep-review.md",
         "references": [
           "@deep-review"
         ]
@@ -55,14 +55,14 @@
     ],
     "yamlWorkflows": [
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml",
         "references": [
           "deep-review",
           "@deep-review"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml",
         "references": [
           "deep-review",
           "@deep-review"

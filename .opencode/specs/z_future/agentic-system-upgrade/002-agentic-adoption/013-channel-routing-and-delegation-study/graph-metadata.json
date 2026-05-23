@@ -40,7 +40,7 @@
     "key_files": [
       ".opencode/agents/orchestrate.md",
       ".opencode/skills/system-spec-kit/assets/parallel_dispatch_config.md",
-      ".opencode/commands/spec_kit/deep-research.md",
+      ".opencode/commands/speckit/deep-research.md",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -62,7 +62,7 @@
       {
         "name": "deep-research.md",
         "kind": "doc",
-        "path": ".opencode/commands/spec_kit/deep-research.md",
+        "path": ".opencode/commands/speckit/deep-research.md",
         "source": "derived"
       },
       {

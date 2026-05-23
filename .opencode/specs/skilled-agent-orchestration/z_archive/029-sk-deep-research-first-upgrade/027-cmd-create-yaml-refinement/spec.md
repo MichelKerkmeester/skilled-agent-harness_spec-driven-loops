@@ -30,7 +30,7 @@ This packet defines the refinement pass for `.opencode/commands/create/assets/*.
 
 **Key Decisions**: Standardize on one shared top-level section family across all create YAML assets; keep `create_folder_readme` as a unified asset for now, but give it the same top-level contract as the rest of the suite.
 
-**Critical Dependencies**: `.opencode/commands/spec_kit/assets/*.yaml`, the live `create/*` asset suite, and the previously shipped `025` and `026` command packets.
+**Critical Dependencies**: `.opencode/commands/speckit/assets/*.yaml`, the live `create/*` asset suite, and the previously shipped `025` and `026` command packets.
 
 ---
 
@@ -153,7 +153,7 @@ Refine the create-command YAML suite so it reads like one family of workflows: s
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | `.opencode/commands/spec_kit/assets/*.yaml` | Wrong target style if ignored | Use `spec_kit` YAMLs as the style baseline for richer workflow scaffolding |
+| Dependency | `.opencode/commands/speckit/assets/*.yaml` | Wrong target style if ignored | Use `spec_kit` YAMLs as the style baseline for richer workflow scaffolding |
 | Dependency | Existing create-command semantics | Regression risk if structural cleanup changes behavior | Limit the pass to structural clarity and naming consistency, not command behavior changes |
 | Risk | Over-normalization breaks specialized assets | Medium | Keep command-specific operational content and normalize only the shared top-level contract |
 | Risk | `create_folder_readme` still feels unusually large | Medium | Record it as an intentional short-term exception while still adding shared top-level sections |

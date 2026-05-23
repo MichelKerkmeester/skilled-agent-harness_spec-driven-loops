@@ -27,7 +27,7 @@ How to further improve the review logic in sk-deep-research and related commands
 - [x] Q2: What is the minimum viable set of review dimensions and scoring concepts that preserves audit rigor while reducing cognitive load from the current 7+5+4+5+6 taxonomy?
 - [x] Q3: What empirical data or simulation approach can validate the convergence thresholds (newFindingsRatio, P0 override, dimension coverage) proposed in iteration-002 of the prior research?
 - [x] Q4: How should cross-reference verification protocols be elevated from appendix-level documentation to first-class, machine-verifiable checks in the review loop?
-- [x] Q5: What specific improvements to review-report.md structure and content would make findings more actionable for downstream /spec_kit:plan remediation?
+- [x] Q5: What specific improvements to review-report.md structure and content would make findings more actionable for downstream /speckit:plan remediation?
 - [x] Q6: What architectural changes to @deep-review would improve its effectiveness — scope of read-only vs writable boundaries, tool budget, dispatch template, adversarial self-check design?
 - [x] Q7: How should @deep-review integrate with the existing @review agent and sk-code-review skill to avoid duplication while leveraging complementary strengths?
 
@@ -62,7 +62,7 @@ How to further improve the review logic in sk-deep-research and related commands
 - Q2 (answered): The minimum viable operator model is 4 review dimensions (`correctness`, `security`, `traceability`, `maintainability`), 3 binary gates (`evidence`, `scope`, `coverage`), 3 verdicts (`FAIL`, `CONDITIONAL`, `PASS`), unchanged `P0/P1/P2` severities, and cross-reference protocols demoted from top-level taxonomy to tagged checks under traceability. `PASS WITH NOTES` should become PASS plus advisory metadata, and numeric composite score should become reporting-only telemetry rather than the release gate.
 - Q3 (answered): The right validation method is deterministic replay over completed review JSONL traces, not threshold guessing in the abstract. Replaying specs `012` and `013` shows the 7 -> 4 dimension collapse causes an early STOP regression unless coverage only votes stop after one post-coverage stabilization pass and stuck/no-progress is decoupled from rolling convergence. Recommended calibration: keep `rollingStopThreshold = 0.08`, add `noProgressThreshold = 0.05`, and require `coverageAge >= 1` before the coverage signal can vote STOP.
 - Q4 (answered): Cross-reference verification should become a typed `traceabilityChecks` contract with stable protocol IDs, applicability rules, pass/partial/fail/blocked semantics, and per-iteration JSONL results. `spec_code` and `checklist_evidence` should be default required protocols, while `skill_agent`, `agent_cross_runtime`, `feature_catalog_code`, and `playbook_capability` should be overlays that can become gating only for matching target types.
-- Q5 (answered): `review-report.md` should be reorganized as a planner-facing remediation packet, not only an audit summary. Keep a concise decision layer, move a normalized finding registry and remediation workstreams near the top, add `Spec Seed` and `Plan Seed` sections that mirror the existing system-spec-kit templates, and embed one canonical `Planning Packet` JSON block so `/spec_kit:plan` can consume a stable machine-readable handoff instead of scraping prose.
+- Q5 (answered): `review-report.md` should be reorganized as a planner-facing remediation packet, not only an audit summary. Keep a concise decision layer, move a normalized finding registry and remediation workstreams near the top, add `Spec Seed` and `Plan Seed` sections that mirror the existing system-spec-kit templates, and embed one canonical `Planning Packet` JSON block so `/speckit:plan` can consume a stable machine-readable handoff instead of scraping prose.
 - Q6 (answered): `@deep-review` should keep review targets read-only but tighten machine-enforced writes to a scratch-only allowlist, shift cumulative JSONL/strategy mutation and P0/P1 adjudication toward the orchestrator, replace the universal 9-12 budget with explicit `scan | verify | adjudicate` profiles, and enrich dispatch with contested findings, reviewed-file coverage, runtime capability metadata, and output-schema versioning. Cross-runtime body text is already closely aligned, but capability metadata still drifts (notably Codex lineage and Gemini memory-tool declaration), so parity checks need to validate front matter as well as prose.
 - Q7 (answered): `@review` and `@deep-review` should remain separate execution profiles, but they should share one baseline `review-core` contract owned by `sk-code-review` (or a generated derivative of the canonical manifest from Q1). Reuse must happen through shared doctrine plus orchestrator-mediated seed/calibration packets, not direct nested agent invocation. `@review` should keep standalone UX and gate adapters, while `@deep-review` should own iterative state, convergence, and traceability/adjudication extensions.
 
@@ -97,7 +97,7 @@ How to further improve the review logic in sk-deep-research and related commands
 - Code Climate itself was not a great current comparison source because its docs surface has shifted toward Qlty, so Qlty provided more usable current reference material.
 - Threshold-only tuning was a dead end for Q3; once the simplified model hits 4/4 coverage, the unchanged coverage vote dominates too early.
 - CocoIndex remained low-yield for the Q4 cross-reference redesign as well because the relevant logic is still concentrated in markdown/YAML contract docs rather than code paths.
-- The current 11-section scorecard layout is a dead end for remediation handoff because it forces `/spec_kit:plan` to infer problem framing, workstreams, and verification from prose.
+- The current 11-section scorecard layout is a dead end for remediation handoff because it forces `/speckit:plan` to infer problem framing, workstreams, and verification from prose.
 - Body-only diffs between runtime agent files were less useful than expected for Q6 because they hide the real drift in tool declarations, permission surfaces, and generation lineage.
 - Reading only agent docs would have missed the baseline-skill drift; the integration problem is split across agents and the skill's always-loaded quick reference.
 - Treating all guidance inside `sk-code-review` as reusable doctrine is a dead end because some of it is intentionally interactive single-pass UX, not loop-safe autonomous behavior.
@@ -125,7 +125,7 @@ How to further improve the review logic in sk-deep-research and related commands
 - Keeping cross-reference verification as markdown-only prose without structured JSONL state.
 - Introducing a separate top-level cross-reference score outside the `traceability` dimension.
 - Keeping `review-report.md` as a scorecard plus prose-only remediation section.
-- Making `/spec_kit:plan` scrape narrative text instead of consuming a single canonical planner packet.
+- Making `/speckit:plan` scrape narrative text instead of consuming a single canonical planner packet.
 - Preserving `PASS WITH NOTES` as a first-class planner verdict after Q2 reduced verdicts to `FAIL | CONDITIONAL | PASS` plus advisory metadata.
 - Granting `@deep-review` broader write access to reviewed files instead of tightening the scratch boundary.
 - Keeping one universal 9-12 review budget regardless of whether the iteration is doing scan, verification, or adjudication work.
@@ -153,7 +153,7 @@ Prior research (v1, archived) established:
 - 5 target types, 7 review dimensions, 6 cross-reference protocols
 - @deep-review agent (separate from @review) with read-only/write-only boundary
 - 11-section review-report.md with 4 verdicts (PASS, CONDITIONAL, PASS WITH NOTES, FAIL)
-- Implementation used :review suffixes on /spec_kit:deep-research (not separate /spec_kit:deep-review)
+- Implementation used :review suffixes on /speckit:deep-research (not separate /speckit:deep-review)
 - Recurring documentation drift between YAML runtime definitions and docs
 - Conceptual complexity flagged as cognitive overhead risk
 
@@ -185,7 +185,7 @@ Iteration 5 added:
 Iteration 6 added:
 - `review-report.md` should be reorganized around a decision layer plus planner-facing remediation packet, with audit material moved later instead of dominating the top half
 - The missing handoff is a normalized `Planning Packet`, not more remediation prose: the report should expose `problemStatement`, `purpose`, scope, active findings, workstreams, verification, dependencies, and open questions
-- `Spec Seed` and `Plan Seed` sections should mirror the existing `spec-core` and `plan` templates so `/spec_kit:plan` can translate findings into spec/plan artifacts with less inference
+- `Spec Seed` and `Plan Seed` sections should mirror the existing `spec-core` and `plan` templates so `/speckit:plan` can translate findings into spec/plan artifacts with less inference
 - One canonical machine-readable JSON block is the simplest parse target; relying on narrative remediation sections or score tables would keep the planner contract fragile
 
 Iteration 7 added:

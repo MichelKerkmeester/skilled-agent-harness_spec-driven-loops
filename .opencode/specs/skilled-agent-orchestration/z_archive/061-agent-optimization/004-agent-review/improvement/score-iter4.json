@@ -97,7 +97,7 @@
         {
           "id": "always-rule-1",
           "type": "always",
-          "rule": "Name the caller surface when delegated by `@orchestrate`, `/spec_kit:implement`, or `/spec_kit:complete`",
+          "rule": "Name the caller surface when delegated by `@orchestrate`, `/speckit:implement`, or `/speckit:complete`",
           "pass": true,
           "matchRatio": 1
         },

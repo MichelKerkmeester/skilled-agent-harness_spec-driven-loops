@@ -45,7 +45,7 @@ This is **Phase 10** of the ESM Module Compliance specification. It addresses si
 | **Priority** | P0 |
 | **Status** | Review |
 | **Created** | 2026-03-31 |
-| **Branch** | `system-speckit/024-compact-code-graph` |
+| **Branch** | `system-spec-kit/024-compact-code-graph` |
 <!-- /ANCHOR:metadata -->
 
 ---

@@ -17,7 +17,7 @@ I traced where cross-attempt state is saved in the external workflow and compare
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/agents/reviewer.md:41-53] The reviewer prompt treats `feedback` as the essential bridge artifact and requires it to encode what failed, what should be preserved, and what approach should change.
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/docs/thread-architecture.md:7-29] The main thread is deliberately lean: original request plus saved review messages, with implementation and refactor narratives left in throwaway forks.
 - [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:328-343] `system-spec-kit` already uses a reducer model in deep research where iteration files feed synchronized state artifacts, showing the repo is comfortable with compressed, workflow-owned state rather than raw chat accumulation.
-- [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:501-518] Durable memory is reserved for post-work session preservation through `generate-context.js`, not for noisy per-attempt telemetry.
+- [SOURCE: .opencode/commands/speckit/assets/speckit_implement_auto.yaml:501-518] Durable memory is reserved for post-work session preservation through `generate-context.js`, not for noisy per-attempt telemetry.
 
 ## Analysis
 The external design is not merely "small context is better." It is a deliberate split between ephemeral attempt detail and durable inter-attempt guidance. That maps cleanly onto `system-spec-kit`'s existing distinction between packet artifacts and memory saves. The important portability lesson is not to persist every attempt transcript, but to define one concise reviewer-authored artifact that the next attempt can trust. This also avoids contaminating the durable memory system with half-right implementation detours.
@@ -27,7 +27,7 @@ confidence: high
 finding: `system-spec-kit` should adopt the compression pattern, not the raw conversation carry-over. A reviewer-authored attempt summary is the right state boundary for retries; full attempt logs should remain disposable or packet-local.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`
+- **Target file or module:** `.opencode/commands/speckit/assets/speckit_implement_auto.yaml`
 - **Change type:** added option
 - **Blast radius:** medium
 - **Prerequisites:** define a task-local storage convention, ideally under a retry subfolder in `scratch/` or `research/`, and explicitly exclude it from durable memory save flows

@@ -315,7 +315,7 @@ The write agent hit the repo’s doc-ownership rule for spec folders, so I’m h
 
 I couldn’t persist the final packet: creating `iteration-040.md`, `implementation-summary.md`, and `checklist.md`, plus rerunning `validate.sh` and `generate-context.js`, were all blocked by repo write/exec permissions in this session. The final synthesis is below.
 
-**Executive summary:** Mex should **not** replace Spec Kit Memory. The durable import from 40 iterations is a **separate advisory markdown integrity lane** plus, later, a **thin planner surface** over existing maintenance tools. Keep `session_bootstrap`/`/spec_kit:resume`, hybrid retrieval, CocoIndex, code graph, causal links, and explicit repair/save authority exactly where they already live. Treat freshness only as advisory metadata. Reject score-first health and any design that mixes integrity into retrieval/ranking.
+**Executive summary:** Mex should **not** replace Spec Kit Memory. The durable import from 40 iterations is a **separate advisory markdown integrity lane** plus, later, a **thin planner surface** over existing maintenance tools. Keep `session_bootstrap`/`/speckit:resume`, hybrid retrieval, CocoIndex, code graph, causal links, and explicit repair/save authority exactly where they already live. Treat freshness only as advisory metadata. Reject score-first health and any design that mixes integrity into retrieval/ranking.
 
 | Rank | Recommendation | Decision | Impact | Feasibility |
 |---|---|---|---|---|
@@ -323,7 +323,7 @@ I couldn’t persist the final packet: creating `iteration-040.md`, `implementat
 | 2 | Ship the advisory checker trio: `path`, `edges`, `index-sync` | **Adopt now** | High | High |
 | 3 | Add fixture-driven integrity tests and false-positive guards | **Adopt now** | High | High |
 | 4 | Add one thin integrity entry point plus routing guide | **New feature** | High | High |
-| 5 | Keep recovery on `session_bootstrap` and `/spec_kit:resume`; integrity only annotates | **Adopt now** | High | High |
+| 5 | Keep recovery on `session_bootstrap` and `/speckit:resume`; integrity only annotates | **Adopt now** | High | High |
 | 6 | Add contract-integration and retrieval-regression gates | **Adopt now** | High | Medium |
 | 7 | Set latency, observability, and rollback thresholds before rollout | **Adopt now** | High | Medium |
 | 8 | Design planner-only `spec-kit doctor` handoff payloads | **New feature** | High | Medium |

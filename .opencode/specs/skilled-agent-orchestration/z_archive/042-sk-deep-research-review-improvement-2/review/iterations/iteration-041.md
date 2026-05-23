@@ -48,7 +48,7 @@ I’m pulling the review surface together first: spec packet, agent definitions,
   └ 72 lines read
 
 ● Search (glob)
-  │ ".opencode/commands/spec_kit/assets/*deep*{yaml,yml}"
+  │ ".opencode/commands/speckit/assets/*deep*{yaml,yml}"
   └ 4 files found
 
 ● Search (glob)
@@ -76,7 +76,7 @@ I’ve got the packet context; now I’m checking whether the shipped agent/runt
 ● Search (grep)
   │ "review_dimensions_json|research_dimensions_json|lifecycleMode|fork|completed-continue|resumed|r
   │ estarted|claimAdjudicationGate|blocked_stop|legalStop" in *deep-*.yaml
-  │ (.opencode/commands/spec_kit/assets)
+  │ (.opencode/commands/speckit/assets)
   └ 6 lines found
 
 ● Read deep-research.md
@@ -144,7 +144,7 @@ I’ve got the packet context; now I’m checking whether the shipped agent/runt
   └ L68:95 (27 lines read)
 
 ● Read spec_kit_deep-review_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
   └ L120:240 (121 lines read)
 
 I’ve already got one likely drift point in the Gemini review agent: its iteration template language doesn’t match the reducer’s exact section parser. I’m now checking whether the same kind of drift exists around lifecycle field names and deep-research state.
@@ -168,11 +168,11 @@ I’ve already got one likely drift point in the Gemini review agent: its iterat
   └ L150:175 (26 lines read)
 
 ● Read spec_kit_deep-research_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml
   └ L135:210 (76 lines read)
 
 ● Read spec_kit_deep-review_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
   └ L1:260 (260 lines read)
 
 ● Read loop_protocol.md
@@ -182,16 +182,16 @@ I’ve already got one likely drift point in the Gemini review agent: its iterat
 ● Search (grep)
   │ "append_jsonl: '\{"type":"event","event":"resumed"|archivedPath|review_dimensions_json|reviewDim
   │ ensions|step_normalize_review_dimensions"
-  │ (.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml)
+  │ (.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml)
   └ 9 lines found
 
 ✗ Search (grep)
   │ "append_jsonl: '\{"type":"event","event":"resumed"|archivedPath|research_dimensions_json|lineage
   │ Mode|continuedFromRun|legalStop|stopReason"
-  │ (.opencode/commands/spec_kit/assets/spec_kit_deep-research_{auto,confirm}.yaml)
+  │ (.opencode/commands/speckit/assets/speckit_deep-research_{auto,confirm}.yaml)
   └ rg: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/spec_kit
     /assets/spec_kit_deep-research_{auto,confirm}.yaml: IO error for operation on
-    /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/spec_kit/ass
+    /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/speckit/ass
     ets/spec_kit_deep-research_{auto,confirm}.yaml: No such file or directory (os error 2)
 
 ● Search (grep)
@@ -212,13 +212,13 @@ I’ve already got one likely drift point in the Gemini review agent: its iterat
 ● Search (grep)
   │ "append_jsonl: '\{"type":"event","event":"resumed"|append_jsonl:
   │ '\{"type":"event","event":"restarted""
-  │ (.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml)
+  │ (.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml)
   └ 2 lines found
 
 ● Search (grep)
   │ "append_jsonl: '\{"type":"event","event":"resumed"|append_jsonl:
   │ '\{"type":"event","event":"restarted""
-  │ (.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml)
+  │ (.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml)
   └ 2 lines found
 
 ● Search (grep)
@@ -422,21 +422,21 @@ I found a cleaner improve-agent issue than the prose omission alone: the Gemini 
 3. **Finding ID:** F-041-003  
    **Severity:** P2  
    **Dimension:** traceability  
-   **File:** `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`  
+   **File:** `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`  
    **Line:** 173  
    **Title:** Confirm-mode review resume events still omit required `archivedPath`  
    **Description:** The confirm workflow appends a `resumed` lifecycle event without `archivedPath`, even though the current review lifecycle contract requires every persisted lifecycle event to carry that field and to set it to `null` on resume. Auto mode already emits the full shape, so confirm mode now produces a structurally different lineage record for the same runtime concept.  
-   **Evidence:** `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:173`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:166-168`; `.opencode/skills/sk-deep-review/references/loop_protocol.md:540-557`  
+   **Evidence:** `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:173`; `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:166-168`; `.opencode/skills/sk-deep-review/references/loop_protocol.md:540-557`  
    **Recommendation:** Add `"archivedPath":null` to the confirm-mode `resumed` event so confirm and auto mode persist the same lifecycle schema.
 
 4. **Finding ID:** F-041-004  
    **Severity:** P2  
    **Dimension:** traceability  
-   **File:** `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`  
+   **File:** `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml`  
    **Line:** 149  
    **Title:** Confirm-mode research resume events still omit required `archivedPath`  
    **Description:** The same lifecycle drift exists on the research side: confirm mode writes a `resumed` event without `archivedPath`, while the canonical lifecycle contract says the field is mandatory and must be `null` on resume. Auto mode already matches the contract, so confirm-mode lineage is the outlier.  
-   **Evidence:** `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:149`; `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:143`; `.opencode/skills/sk-deep-research/references/loop_protocol.md:101-118`  
+   **Evidence:** `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:149`; `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:143`; `.opencode/skills/sk-deep-research/references/loop_protocol.md:101-118`  
    **Recommendation:** Add `"archivedPath":null` to the confirm-mode `resumed` event.
 
 5. **Finding ID:** F-041-005  

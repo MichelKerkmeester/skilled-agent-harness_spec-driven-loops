@@ -32,10 +32,10 @@ _memory:
 
 ### Added
 - **`</dev/null` stdin redirect** to the `if_cli_opencode` block in 4 deep-research/deep-review YAML workflow files:
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` line 728
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` line 660
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` line 792
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` line 769
+  - `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` line 728
+  - `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml` line 660
+  - `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml` line 792
+  - `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml` line 769
   Each YAML also gets a new entry in the `notes:` block referencing the fix rationale + cli-opencode SKILL.md §4 rule 5 + memory `feedback_opencode_run_requires_dev_null_stdin.md`.
 - **New "Stdin handling" subsection in cli-opencode `references/cli_reference.md` §4** documenting the position rule and the canonical example.
 - **Top-of-file warning** in `.opencode/skills/cli-opencode/assets/prompt_templates.md` flagging the rule for any template adapted into automation.

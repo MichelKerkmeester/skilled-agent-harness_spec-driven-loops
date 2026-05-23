@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Rewrite System Spec Kit [system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/tasks]"
+title: "Tasks: Rewrite System Spec Kit [system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme/tasks]"
 description: "Task breakdown for complete rewrite of the system-spec-kit README."
 trigger_phrases:
   - "tasks"
@@ -13,7 +13,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme"
+    packet_pointer: "system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
@@ -21,7 +21,7 @@ _memory:
     key_files: ["tasks.md"]
 ---
 <!-- SPECKIT_LEVEL: 1 -->
-# Tasks: 018-rewrite-system-speckit-readme
+# Tasks: 018-rewrite-system-spec-kit-readme
 
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 
@@ -108,6 +108,6 @@ _memory:
 ---
 
 <!--
-TASKS: 018-rewrite-system-speckit-readme
+TASKS: 018-rewrite-system-spec-kit-readme
 22/22 tasks complete — Done (2026-03-25)
 -->

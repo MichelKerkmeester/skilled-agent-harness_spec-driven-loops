@@ -52,7 +52,7 @@ Research 4 autoresearch repositories (karpathy's original + 3 forks) to extract 
 
 ### Current Behavior
 
-Our system has `/spec_kit:research` which runs a 9-step single-pass research workflow. It supports parallel agent dispatch for steps 3-5 and produces a `research/research.md` with 17 sections. However, it does NOT support iterative deepening, progressive refinement, or autonomous loop execution. Research is one-shot: the agent investigates once and documents findings.
+Our system has `/speckit:research` which runs a 9-step single-pass research workflow. It supports parallel agent dispatch for steps 3-5 and produces a `research/research.md` with 17 sections. However, it does NOT support iterative deepening, progressive refinement, or autonomous loop execution. Research is one-shot: the agent investigates once and documents findings.
 
 ### Key Findings
 
@@ -64,17 +64,17 @@ Our system has `/spec_kit:research` which runs a 9-step single-pass research wor
 
 4. **Our architecture supports this via orchestrator-driven waves**: The existing NDP (single-hop delegation) constraint maps naturally to the "fresh context per iteration" pattern -- each orchestrator dispatch IS a fresh context. The orchestrator manages the loop state.
 
-5. **A hybrid agent+command+skill approach is optimal**: An `@deep-research` agent for execution, `/spec_kit:deep-research` command for user invocation, and `sk-deep-research` skill for protocol documentation creates the cleanest integration.
+5. **A hybrid agent+command+skill approach is optimal**: An `@deep-research` agent for execution, `/speckit:deep-research` command for user invocation, and `sk-deep-research` skill for protocol documentation creates the cleanest integration.
 
 ### Recommendations
 
 **Primary Recommendation**: Create a 3-layer integration:
 1. **`@deep-research` agent** (`.claude/agents/deep-research.md`) -- LEAF agent with loop-aware instructions, full tool access (Read, Write, Edit, Bash, Grep, Glob, WebFetch, spec_kit_memory)
-2. **`/spec_kit:deep-research` command** (`.opencode/commands/spec_kit/deep-research.md`) -- YAML workflow defining the loop protocol, dispatch modes, and convergence criteria
+2. **`/speckit:deep-research` command** (`.opencode/commands/speckit/deep-research.md`) -- YAML workflow defining the loop protocol, dispatch modes, and convergence criteria
 3. **`sk-deep-research` skill** (`.opencode/skills/sk-deep-research/`) -- Reference documentation for the protocol, templates, and configuration
 
 **Alternative Approaches**:
-- **Enhance `/spec_kit:research`**: Add loop mode to existing 9-step workflow. Rejected: conflates two distinct use cases and bloats an already complex workflow.
+- **Enhance `/speckit:research`**: Add loop mode to existing 9-step workflow. Rejected: conflates two distinct use cases and bloats an already complex workflow.
 - **Standalone script**: Build a shell script (like AGR's `run_agr.sh`) that invokes Claude Code CLI in headless mode. Viable but bypasses our orchestration layer.
 
 ---
@@ -87,16 +87,16 @@ Andrej Karpathy's autoresearch (40.9k stars) introduced a paradigm where an LLM 
 
 Our system can integrate the best of each by leveraging the existing orchestrator-driven dispatch model. Each loop iteration becomes a fresh agent dispatch at depth 1, with file-based state (JSONL + strategy file + results log) persisted between iterations. The orchestrator manages convergence detection, stuck-detection, and termination. This approach naturally solves the context degradation problem (each dispatch is fresh) while fitting within our NDP constraint (no agent nesting beyond depth 1).
 
-The recommended implementation creates three artifacts: an `@deep-research` agent, a `/spec_kit:deep-research` command, and an `sk-deep-research` skill -- following established patterns in our codebase.
+The recommended implementation creates three artifacts: an `@deep-research` agent, a `/speckit:deep-research` command, and an `sk-deep-research` skill -- following established patterns in our codebase.
 
 ### Architecture Diagram
 
 ```
-User invokes: /spec_kit:deep-research "optimize API response time"
+User invokes: /speckit:deep-research "optimize API response time"
                     |
                     v
     ┌─────────────────────────────────┐
-    │   /spec_kit:deep-research command│
+    │   /speckit:deep-research command│
     │  (YAML workflow + loop config)  │
     └──────────────┬──────────────────┘
                    |
@@ -144,9 +144,9 @@ User invokes: /spec_kit:deep-research "optimize API response time"
 - Topics spanning 3+ technical domains
 
 **When NOT to use this approach**:
-- Simple, single-question research (use `/spec_kit:research` instead)
-- Implementation tasks (use `/spec_kit:implement`)
-- Known-solution documentation (use `/spec_kit:plan`)
+- Simple, single-question research (use `/speckit:research` instead)
+- Implementation tasks (use `/speckit:implement`)
+- Known-solution documentation (use `/speckit:plan`)
 
 **Key considerations**:
 - Each iteration costs ~1 agent dispatch worth of API tokens
@@ -243,7 +243,7 @@ User invokes: /spec_kit:deep-research "optimize API response time"
 ### Data Flow
 
 ```
-/spec_kit:deep-research "topic"
+/speckit:deep-research "topic"
        |
        v
 [Init] Create config, strategy file, empty JSONL
@@ -277,7 +277,7 @@ User invokes: /spec_kit:deep-research "optimize API response time"
 
 **Internal Modules**:
 - **Orchestrator agent**: Loop management and dispatch
-- **Skill routing (Gate 2)**: Routes `/spec_kit:deep-research` to correct skill
+- **Skill routing (Gate 2)**: Routes `/speckit:deep-research` to correct skill
 - **Spec folder system**: Documentation output path
 - **Memory system**: Post-research context preservation
 
@@ -359,7 +359,7 @@ mcpServers:
 ### Command Configuration
 
 ```yaml
-# /spec_kit:deep-research command config
+# /speckit:deep-research command config
 loop:
   max_iterations: 10
   convergence_threshold: 0.05  # stop when newInfoRatio < 5%
@@ -444,19 +444,19 @@ output:
 #### Pattern 1: Standalone Deep Research
 
 ```
-User: /spec_kit:deep-research "How do WebSocket reconnection strategies work across browsers?"
+User: /speckit:deep-research "How do WebSocket reconnection strategies work across browsers?"
   --> Creates spec folder, initializes state
   --> Runs 5-8 iterations autonomously
   --> Produces research/research.md + memory save
-  --> Suggests: /spec_kit:plan to continue
+  --> Suggests: /speckit:plan to continue
 ```
 
-#### Pattern 2: Research Phase of /spec_kit:complete
+#### Pattern 2: Research Phase of /speckit:complete
 
 ```
-User: /spec_kit:complete:auto "Add WebSocket support"
+User: /speckit:complete:auto "Add WebSocket support"
   --> Step 3 (codebase investigation) detects high complexity
-  --> Dispatches /spec_kit:deep-research as sub-workflow for deep investigation
+  --> Dispatches /speckit:deep-research as sub-workflow for deep investigation
   --> Autoresearch loop runs 3-5 iterations
   --> Findings feed back into spec_kit workflow at Step 4
 ```
@@ -512,7 +512,7 @@ memory_index_scan({ specFolder: "023-sk-deep-research-creation" })
 
 ```
 .claude/agents/deep-research.md           # Agent definition
-.opencode/commands/spec_kit/              # Command definition
+.opencode/commands/speckit/              # Command definition
   deep-research.md                       # Command spec
   assets/
     spec_kit_deep-research_auto.yaml    # Autonomous mode workflow
@@ -725,7 +725,7 @@ Start each iteration with `memory_context()` to check if the question has been p
 
 ### Benchmarks
 
-| Metric | Single-Pass (/spec_kit:research) | Autoresearch Loop (est.) | Improvement |
+| Metric | Single-Pass (/speckit:research) | Autoresearch Loop (est.) | Improvement |
 |--------|----------------------------------|--------------------------|-------------|
 | Depth of findings | 1 pass | 5-10 iterations | 3-5x deeper |
 | Source diversity | 3-5 sources | 15-30 sources | 4-6x broader |
@@ -773,10 +773,10 @@ Start each iteration with `memory_context()` to check if the question has been p
 ### Decision Trees
 
 ```
-Should I use /spec_kit:deep-research or /spec_kit:research?
-├── Known topic, 1-2 sources needed --> /spec_kit:research (single pass)
-├── Unknown topic, need deep investigation --> /spec_kit:deep-research (loop)
-├── Multiple independent sub-topics --> /spec_kit:deep-research with parallel waves
+Should I use /speckit:deep-research or /speckit:research?
+├── Known topic, 1-2 sources needed --> /speckit:research (single pass)
+├── Unknown topic, need deep investigation --> /speckit:deep-research (loop)
+├── Multiple independent sub-topics --> /speckit:deep-research with parallel waves
 └── Just need to check prior work --> memory_context() directly
 ```
 
@@ -794,7 +794,7 @@ How many iterations to configure?
 
 ### Command API
 
-#### `/spec_kit:deep-research "topic"`
+#### `/speckit:deep-research "topic"`
 Start a new autoresearch session.
 
 **Parameters**:
@@ -806,13 +806,13 @@ Start a new autoresearch session.
 | --spec-folder | string | No | auto | Target spec folder path |
 | --mode | enum | No | auto | auto, confirm, or parallel |
 
-#### `/spec_kit:deep-research resume`
+#### `/speckit:deep-research resume`
 Resume an interrupted research session from JSONL state.
 
-#### `/spec_kit:deep-research status`
+#### `/speckit:deep-research status`
 Show current loop progress (iteration count, convergence trend, key questions status).
 
-#### `/spec_kit:deep-research stop`
+#### `/speckit:deep-research stop`
 Gracefully stop the loop and trigger synthesis.
 
 ### State JSONL Schema
@@ -897,7 +897,7 @@ Gracefully stop the loop and trigger synthesis.
 | Quality gates (checks.sh) | pi-autoresearch | Convergence evaluation |
 | Domain-agnostic metrics | pi-autoresearch + autoresearch-opencode | Configurable research parameters |
 | Context injection plugin | autoresearch-opencode | Strategy file as context for fresh agents |
-| Pause/resume sentinel | autoresearch-opencode | /spec_kit:deep-research stop + resume commands |
+| Pause/resume sentinel | autoresearch-opencode | /speckit:deep-research stop + resume commands |
 | Backup/restore | autoresearch-opencode | Git-based state recovery |
 
 ---

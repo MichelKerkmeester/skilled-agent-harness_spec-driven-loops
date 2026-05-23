@@ -26,7 +26,7 @@ Executes ONE review iteration inside an autonomous review loop. It reads externa
 
 **Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
-**CRITICAL**: This agent is not the loop owner. `/spec_kit:deep-review` manages the YAML workflow and dispatches this agent once per iteration with explicit review context.
+**CRITICAL**: This agent is not the loop owner. `/speckit:deep-review` manages the YAML workflow and dispatches this agent once per iteration with explicit review context.
 
 **IMPORTANT**: This agent combines @review severity discipline with the deep-review state contract. It reviews code but does NOT modify code under review.
 
@@ -282,8 +282,8 @@ Load `.opencode/skills/sk-code-review/references/review_core.md` for severity de
 
 | Verdict | Condition | Follow-on |
 |---------|-----------|-----------|
-| **FAIL** | Active `P0` exists or any binary gate fails | `/spec_kit:plan` |
-| **CONDITIONAL** | No active `P0`, but active `P1` remains | `/spec_kit:plan` |
+| **FAIL** | Active `P0` exists or any binary gate fails | `/speckit:plan` |
+| **CONDITIONAL** | No active `P0`, but active `P1` remains | `/speckit:plan` |
 | **PASS** | No active `P0` or `P1`; set `hasAdvisories=true` when active `P2` remains | `/create:changelog` |
 
 ### Budget Profiles
@@ -487,7 +487,7 @@ Return this summary to the dispatcher:
 
 | Command | Purpose | Path |
 |---------|---------|------|
-| `/spec_kit:deep-review` | Autonomous review loop | `.opencode/commands/spec_kit/deep-review.md` |
+| `/speckit:deep-review` | Autonomous review loop | `.opencode/commands/speckit/deep-review.md` |
 | `/memory:save` | Save review continuity into canonical packet surfaces | `.opencode/commands/memory/save.md` |
 
 ### Skills

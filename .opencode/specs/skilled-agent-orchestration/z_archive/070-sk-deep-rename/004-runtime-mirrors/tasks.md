@@ -20,7 +20,7 @@ _memory:
       - ".claude/agents"
       - ".codex/agents"
       - ".gemini/agents"
-      - ".gemini/commands/spec_kit/deep-research.toml"
+      - ".gemini/commands/speckit/deep-research.toml"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "codex-2026-05-05-phase-004"
@@ -71,8 +71,8 @@ _memory:
 - [x] T008 Replace old research skill references in Claude runtime mirrors (`.claude/agents/deep-research.md`, `.claude/agents/orchestrate.md`)
 - [B] T009 Replace old review skill references in Codex runtime mirrors (`.codex/agents/deep-review.toml`; evidence: `.codex` writes return `Operation not permitted`)
 - [B] T010 Replace old research skill references in Codex runtime mirrors (`.codex/agents/deep-research.toml`, `.codex/agents/orchestrate.toml`; evidence: `.codex` writes return `Operation not permitted`)
-- [x] T011 Replace old review skill references in Gemini runtime mirrors (`.gemini/agents/deep-review.md`, `.gemini/commands/spec_kit/deep-research.toml`)
-- [x] T012 Replace old research skill references in Gemini runtime mirrors (`.gemini/agents/deep-research.md`, `.gemini/agents/orchestrate.md`, `.gemini/commands/spec_kit/deep-research.toml`)
+- [x] T011 Replace old review skill references in Gemini runtime mirrors (`.gemini/agents/deep-review.md`, `.gemini/commands/speckit/deep-research.toml`)
+- [x] T012 Replace old research skill references in Gemini runtime mirrors (`.gemini/agents/deep-research.md`, `.gemini/agents/orchestrate.md`, `.gemini/commands/speckit/deep-research.toml`)
 - [x] T013 Remove replacement backup files if present (`.claude`, `.codex`, `.gemini`; evidence: backup-file find returned no rows)
 <!-- /ANCHOR:phase-2 -->
 

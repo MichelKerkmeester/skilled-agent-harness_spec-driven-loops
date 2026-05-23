@@ -44,7 +44,7 @@ The workflow also anchors every run to a real `spec.md`. During late INIT it fol
 
 During SYNTHESIS the same contract replaces exactly one `<!-- BEGIN GENERATED: deep-research/spec-findings -->` ... `<!-- END GENERATED: deep-research/spec-findings -->` block under the chosen host anchor while keeping `research/research.md` canonical.
 
-Outside the research loop itself, `/spec_kit:resume` remains the canonical recovery surface for packet work. Continuity still rebuilds from `handover.md`, then `_memory.continuity`, then the remaining spec docs, while generated memory artifacts stay supporting only.
+Outside the research loop itself, `/speckit:resume` remains the canonical recovery surface for packet work. Continuity still rebuilds from `handover.md`, then `_memory.continuity`, then the remaining spec docs, while generated memory artifacts stay supporting only.
 
 For iterative code review, use `deep-review`.
 <!-- /ANCHOR:overview -->

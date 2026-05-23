@@ -49,9 +49,9 @@ Use this skill when:
 
 ### When NOT to Use
 
-- Simple, single-question research (use direct codebase search or `/spec_kit:plan`)
-- Known-solution documentation (use `/spec_kit:plan`)
-- Implementation tasks (use `/spec_kit:implement`)
+- Simple, single-question research (use direct codebase search or `/speckit:plan`)
+- Known-solution documentation (use `/speckit:plan`)
+- Implementation tasks (use `/speckit:implement`)
 - Quick codebase searches (use `@context` or direct Grep/Glob)
 - Fewer than 3 sources needed (single-pass research suffices)
 
@@ -385,20 +385,20 @@ This skill operates within the behavioral framework defined in the active runtim
 Key integrations:
 - **Gate 2**: Skill routing via `skill_advisor.py` (keywords: autoresearch, deep research)
 - **Gate 3**: File modifications require spec folder question per the root doc Gate 3
-- **Continuity**: `/spec_kit:resume` is the operator-facing recovery surface; canonical packet continuity is written via `generate-context.js`
+- **Continuity**: `/speckit:resume` is the operator-facing recovery surface; canonical packet continuity is written via `generate-context.js`
 - **Orchestrator**: @orchestrate dispatches @deep-research as LEAF agent
 
 ### Continuity Integration
 
-Before research, recover context with `/spec_kit:resume` using `handover.md -> _memory.continuity -> spec docs`. During each iteration, write `iterations/iteration-NNN.md`, append JSONL, and let the reducer refresh strategy/registry/dashboard. After research, save continuity through `generate-context.js`.
+Before research, recover context with `/speckit:resume` using `handover.md -> _memory.continuity -> spec docs`. During each iteration, write `iterations/iteration-NNN.md`, append JSONL, and let the reducer refresh strategy/registry/dashboard. After research, save continuity through `generate-context.js`.
 
 ### Command Integration
 
 | Command | Relationship |
 |---------|-------------|
 | `/deep:start-research-loop` | Primary invocation point |
-| `/spec_kit:resume` | Canonical recovery surface before resuming or extending an active packet |
-| `/spec_kit:plan` | Next step after deep research completes |
+| `/speckit:resume` | Canonical recovery surface before resuming or extending an active packet |
+| `/speckit:plan` | Next step after deep research completes |
 | `/memory:save` | Manual memory save (deep research auto-saves) |
 
 ---

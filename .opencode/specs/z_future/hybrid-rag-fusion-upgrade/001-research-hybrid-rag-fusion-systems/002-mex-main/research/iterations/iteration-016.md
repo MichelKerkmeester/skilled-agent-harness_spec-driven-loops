@@ -295,7 +295,7 @@ exec
 558:applies_to: cwd=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public; reuse_rule=reuse for changelog workflow changes in this checkout, keeping packet-local changelog outputs and shared command mirrors in sync
 570:## Task 2: Rewrite shared changelog docs/templates to short-heading style and sync runtime mirrors, outcome success
 574:- rollout_summaries/2026-04-03T11-38-20-Mg7F-changelog_update_and_runtime_sync.md (cwd=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public, rollout_path=/Users/michelkerkmeester/.codex/sessions/2026/04/03/rollout-2026-04-03T13-38-20-019d5323-1305-7d91-a2bc-5d3cb2983d3b.jsonl, updated_at=2026-04-03T12:24:53+00:00, thread_id=019d5323-1305-7d91-a2bc-5d3cb2983d3b)
-589:- keep `/create:changelog`, `/spec_kit:implement`, and `/spec_kit:complete` docs and YAML assets in sync when changelog contract changes; runtime `.agents`/`.gemini` mirrors should be regenerated from shared command source [Task 2]
+589:- keep `/create:changelog`, `/speckit:implement`, and `/speckit:complete` docs and YAML assets in sync when changelog contract changes; runtime `.agents`/`.gemini` mirrors should be regenerated from shared command source [Task 2]
 685:- symptom: deep-review reducer-schema tests fail during closeout; cause: config metadata drift (`metrics` missing, `.deep-review-pause` mutability mismatch); fix: align config/docs with test schema before rerunning suites [Task 3]
 686:- symptom: recommendation docs drift from requested basis; cause: docs written from partial wave context; fix: verify ledger count/`synthesis_complete` and explicitly tie recommendations to the full 90-iteration synthesis [Task 1]
 690:scope: deep-review closure, strict-validation remediation, changelog truth-sync, and README/recovery-contract doc parity for packet 023/024 work
@@ -304,8 +304,8 @@ exec
 767:- rollout_summaries/2026-04-03T11-57-51-M8RC-code_graph_documentation_and_changelog_sync.md (cwd=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public, rollout_path=/Users/michelkerkmeester/.codex/sessions/2026/04/03/rollout-2026-04-03T13-57-51-019d5334-f0f1-7730-8c5e-9ab6db1b631c.jsonl, updated_at=2026-04-04T15:43:31+00:00, thread_id=019d5334-f0f1-7730-8c5e-9ab6db1b631c)
 788:- changelog truth-sync for 023 needed root + per-phase consistency: add missing phase 013 entry and avoid overstating rerun verification for 010/011/012 while strict validation remains green [Task 5]
 909:applies_to: cwd=/Users/michelkerkmeester/MEGA/Development and /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.vscode; reuse_rule=reuse for local VS Code MCP sync work, but preserve wrapper shape exactly
-935:scope: restoring `/spec_kit:*`, `/memory:*`, and `/create:*` command discovery when prompt links drift between workspace and global Codex prompt directories
-977:## Task 2: Consolidate `/memory:continue` into `/spec_kit:resume` and sync Gemini wrappers
+935:scope: restoring `/speckit:*`, `/memory:*`, and `/create:*` command discovery when prompt links drift between workspace and global Codex prompt directories
+977:## Task 2: Consolidate `/memory:continue` into `/speckit:resume` and sync Gemini wrappers
 1028:## Task 3: Fix startup DB path/provider drift and auto-repair temp-root cleanup for `spec_kit_memory`
 1113:scope: packet identity rewrites, slug/path sweeps, and follow-on phase packet creation in 022-hybrid-rag-fusion remediation work
 1114:applies_to: cwd=/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion; reuse_rule=reuse for this epic’s packet lifecycle work only, and verify current live folder names before edits
@@ -739,9 +739,9 @@ Use this skill when:
 
 ### When NOT to Use
 
-- Simple, single-question research (use direct codebase search or `/spec_kit:plan`)
-- Known-solution documentation (use `/spec_kit:plan`)
-- Implementation tasks (use `/spec_kit:implement`)
+- Simple, single-question research (use direct codebase search or `/speckit:plan`)
+- Known-solution documentation (use `/speckit:plan`)
+- Implementation tasks (use `/speckit:implement`)
 - Quick codebase searches (use `@context` or direct Grep/Glob)
 - Fewer than 3 sources needed (single-pass research suffices)
 

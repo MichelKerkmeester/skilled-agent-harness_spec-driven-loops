@@ -5,16 +5,16 @@ Investigate the actual first-touch surfaces Codex receives when `system-spec-kit
 
 ## Findings
 1. The always-loaded first-touch surface is `references/workflows/quick_reference.md`, because `system-spec-kit` sets it as `DEFAULT_RESOURCE`, includes it in `LOADING_LEVELS["ALWAYS"]`, and loads ALWAYS resources before any intent-specific docs. [SOURCE: `.opencode/skills/system-spec-kit/SKILL.md:135`, `.opencode/skills/system-spec-kit/SKILL.md:226-233`, `.opencode/skills/system-spec-kit/SKILL.md:306-323`]
-2. The current quick reference does not behave like a compact command index for the highest-value entrypoints. In its command-oriented sections it prominently exposes manual memory save, handover, and phased planning, but not the baseline commands a Codex user most likely needs first such as `/spec_kit:resume`, `/spec_kit:plan`, `/memory:search`, `/memory:manage`, or `/memory:learn`. [SOURCE: `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md:109-166`, `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md:468-527`]
-3. The high-value command docs already exist and are strongly action-oriented: `/spec_kit:resume` is the session recovery entrypoint, `/spec_kit:plan` is the planning entrypoint, and `/memory:save` documents the canonical save workflow. This means the repo does not primarily have a missing-docs problem. [SOURCE: `.opencode/commands/spec_kit/resume.md:1-33`, `.opencode/commands/spec_kit/plan.md:1-40`, `.opencode/commands/memory/save.md:1-76`]
-4. The current gap is mostly bad placement plus noise: the always-loaded quick reference spends its early, most visible space on spec levels, template copy commands, naming, and manual script usage, while the actual command entrypoints live elsewhere in detailed command docs. The smallest likely fix is therefore a small, front-loaded command shortlist in the quick reference rather than a new registry or major routing redesign. [SOURCE: `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md:13-188`, `.opencode/commands/spec_kit:directory`, `.opencode/commands/memory:directory`] [INFERENCE: based on the always-loaded quick reference being first-touch and the command docs already existing]
+2. The current quick reference does not behave like a compact command index for the highest-value entrypoints. In its command-oriented sections it prominently exposes manual memory save, handover, and phased planning, but not the baseline commands a Codex user most likely needs first such as `/speckit:resume`, `/speckit:plan`, `/memory:search`, `/memory:manage`, or `/memory:learn`. [SOURCE: `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md:109-166`, `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md:468-527`]
+3. The high-value command docs already exist and are strongly action-oriented: `/speckit:resume` is the session recovery entrypoint, `/speckit:plan` is the planning entrypoint, and `/memory:save` documents the canonical save workflow. This means the repo does not primarily have a missing-docs problem. [SOURCE: `.opencode/commands/speckit/resume.md:1-33`, `.opencode/commands/speckit/plan.md:1-40`, `.opencode/commands/memory/save.md:1-76`]
+4. The current gap is mostly bad placement plus noise: the always-loaded quick reference spends its early, most visible space on spec levels, template copy commands, naming, and manual script usage, while the actual command entrypoints live elsewhere in detailed command docs. The smallest likely fix is therefore a small, front-loaded command shortlist in the quick reference rather than a new registry or major routing redesign. [SOURCE: `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md:13-188`, `.opencode/commands/speckit:directory`, `.opencode/commands/memory:directory`] [INFERENCE: based on the always-loaded quick reference being first-touch and the command docs already existing]
 
 ## Ruled Out
 - Treating the current quick reference as already sufficient command discovery: it exposes too few of the actual high-value entrypoints. [SOURCE: `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md:468-527`]
-- Solving this by creating brand-new command docs: the relevant `spec_kit` and `memory` docs already exist. [SOURCE: `.opencode/commands/spec_kit/resume.md:1-33`, `.opencode/commands/spec_kit/plan.md:1-40`, `.opencode/commands/memory/save.md:1-76`]
+- Solving this by creating brand-new command docs: the relevant `spec_kit` and `memory` docs already exist. [SOURCE: `.opencode/commands/speckit/resume.md:1-33`, `.opencode/commands/speckit/plan.md:1-40`, `.opencode/commands/memory/save.md:1-76`]
 
 ## Dead Ends
-- Directory listing alone was not enough to determine what Codex would see first; it only confirmed doc existence, not discovery priority. [SOURCE: `.opencode/commands/spec_kit:directory`, `.opencode/commands/memory:directory`]
+- Directory listing alone was not enough to determine what Codex would see first; it only confirmed doc existence, not discovery priority. [SOURCE: `.opencode/commands/speckit:directory`, `.opencode/commands/memory:directory`]
 
 ## Sources Consulted
 - `.opencode/skills/system-spec-kit/SKILL.md:135`
@@ -22,8 +22,8 @@ Investigate the actual first-touch surfaces Codex receives when `system-spec-kit
 - `.opencode/skills/system-spec-kit/SKILL.md:306-323`
 - `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md:109-166`
 - `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md:468-527`
-- `.opencode/commands/spec_kit/resume.md:1-33`
-- `.opencode/commands/spec_kit/plan.md:1-40`
+- `.opencode/commands/speckit/resume.md:1-33`
+- `.opencode/commands/speckit/plan.md:1-40`
 - `.opencode/commands/memory/save.md:1-76`
 
 ## Assessment

@@ -15,7 +15,7 @@ Read BAD's configuration table and per-step model assignments, then compared the
 - BAD's later steps keep the same split, including review on `MODEL_QUALITY` and merge/cleanup on `MODEL_STANDARD`. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/skills/bad/SKILL.md:255-352]
 - Local deep-research auto config uses a single `opus` model for the agent loop. [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:66-75]
 - Local deep-review confirm config also uses a single `opus` model. [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml:69-78]
-- Local autonomous implementation uses `opus` for single-agent and orchestrator/worker multi-agent modes instead of differentiating routine vs quality-sensitive stages. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:167-186]
+- Local autonomous implementation uses `opus` for single-agent and orchestrator/worker multi-agent modes instead of differentiating routine vs quality-sensitive stages. [SOURCE: .opencode/commands/speckit/assets/speckit_implement_auto.yaml:167-186]
 
 ## Analysis
 BAD's model split is pragmatic rather than fancy: spend more where judgement quality matters most, and keep routine coordination, setup, and PR mechanics on a cheaper/faster tier. Local automation assets already isolate model configuration in a way that makes this easy to adopt incrementally. The main missing piece is a concept of "quality-critical stage" in the YAML contracts. This is lower risk than adopting BAD's scheduler or worktree policy because it mostly changes configuration structure, not workflow ownership.

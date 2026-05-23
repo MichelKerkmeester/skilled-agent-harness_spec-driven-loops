@@ -68,7 +68,7 @@ Answer the remaining uncertainty for 015 worktree and pipeline evaluation with b
 |-----------|-------------|-------------|
 | `.opencode/skills/sk-git/SKILL.md` | Investigate | Potential touchpoint for the bounded study |
 | `.opencode/skills/sk-git/references/finish_workflows.md` | Investigate | Potential touchpoint for the bounded study |
-| `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml` | Investigate | Potential touchpoint for the bounded study |
+| `.opencode/commands/speckit/assets/speckit_implement_auto.yaml` | Investigate | Potential touchpoint for the bounded study |
 <!-- /ANCHOR:scope -->
 
 ---

@@ -56,19 +56,19 @@ I’ve got the workflow set; now I’m pulling the spec references and runtime f
   └ L1:260 (129 lines read)
 
 ● Read spec_kit_deep-research_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml
   └ L1:260 (260 lines read)
 
 ● Read spec_kit_deep-research_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml
   └ L1:260 (260 lines read)
 
 ● Read spec_kit_deep-review_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
   └ L1:260 (260 lines read)
 
 ● Read spec_kit_deep-review_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
   └ L1:260 (260 lines read)
 
 ● Read improve_improve-agent_auto.yaml
@@ -146,7 +146,7 @@ I’ve confirmed the YAML contracts. Now I’m tracing where those contracts lan
 
 ● Search (grep)
   │ "deep_loop_graph_convergence|sessionId|session_id|persistSnapshot|blocked_stop|claimAdjudication
-  │ Gate|graphDecision" in spec_kit_deep-*.yaml (.opencode/commands/spec_kit/assets)
+  │ Gate|graphDecision" in spec_kit_deep-*.yaml (.opencode/commands/speckit/assets)
   └ 6 lines found
 
 ● Search (grep)
@@ -168,19 +168,19 @@ The review agent finished; I’m pulling its result now and cross-checking it ag
   └ Completed
 
 ● Read spec_kit_deep-review_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
   └ L145:240 (96 lines read)
 
 ● Read spec_kit_deep-review_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
   └ L145:260 (116 lines read)
 
 ● Read spec_kit_deep-research_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml
   └ L135:250 (116 lines read)
 
 ● Read spec_kit_deep-research_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml
   └ L140:250 (111 lines read)
 
 ● Read improve_improve-agent_auto.yaml
@@ -225,22 +225,22 @@ The review agent finished; I’m pulling its result now and cross-checking it ag
 
 ● Search (grep)
   │ "blocked_stop|claim_adjudication|graph_convergence|sessionId|parentSessionId|lineageMode|generat
-  │ ion" (.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml)
+  │ ion" (.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml)
   └ 46 lines found
 
 ● Search (grep)
   │ "blocked_stop|claim_adjudication|graph_convergence|sessionId|parentSessionId|lineageMode|generat
-  │ ion" (.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml)
+  │ ion" (.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml)
   └ 44 lines found
 
 ● Search (grep)
   │ "blocked_stop|graph_convergence|sessionId|parentSessionId|lineageMode|generation"
-  │ (.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml)
+  │ (.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml)
   └ 26 lines found
 
 ● Search (grep)
   │ "blocked_stop|graph_convergence|sessionId|parentSessionId|lineageMode|generation"
-  │ (.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml)
+  │ (.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml)
   └ 24 lines found
 
 ● Search (grep)
@@ -249,7 +249,7 @@ The review agent finished; I’m pulling its result now and cross-checking it ag
   └ 12 lines found
 
 ● Read spec_kit_deep-research_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml
   └ L108:118 (11 lines read)
 
 ● Read promote-candidate.cjs
@@ -262,15 +262,15 @@ The review agent finished; I’m pulling its result now and cross-checking it ag
   └ 27 lines found
 
 ● Read spec_kit_deep-research_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml
   └ L108:118 (11 lines read)
 
 ● Read spec_kit_deep-review_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
   └ L112:118 (7 lines read)
 
 ● Read spec_kit_deep-review_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
   └ L112:118 (7 lines read)
 
 ● skill(sk-code-opencode)
@@ -299,7 +299,7 @@ The review agent finished; I’m pulling its result now and cross-checking it ag
 - **Severity**: P1
 - **Dimension**: security
 - **File**: multiple
-- **Line**: `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:114`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:114`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:115,149`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:115,149`
+- **Line**: `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:114`, `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:114`, `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:115,149`, `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:115,149`
 - **Title**: Raw `spec_folder` interpolation reaches shell execution in all four research/review workflows
 - **Description**: The four spec-kit workflows embed `{spec_folder}` directly into shell commands (`mkdir`, `mv`, `find`, `printf >> ...`) without quoting or argv separation. Because `spec_folder` is a runtime input, any shell metacharacter or whitespace that survives prompt-time validation can escape the intended path boundary and execute arbitrary commands or redirect writes outside the packet.
 - **Evidence**: The deep-research workflows create directories via raw shell at `...deep-research_auto.yaml:114` and `...deep-research_confirm.yaml:114`. The deep-review workflows do the same at `...deep-review_auto.yaml:115` / `...deep-review_confirm.yaml:115`, then run a long migration one-liner with repeated unquoted `{spec_folder}` expansions at `...deep-review_auto.yaml:149` and `...deep-review_confirm.yaml:149`.

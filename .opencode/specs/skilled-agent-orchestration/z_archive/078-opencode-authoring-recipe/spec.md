@@ -1,6 +1,6 @@
 ---
-title: "Feature Specification: Remediation per 077 research: 4-phase OpenCode authoring recipe, /spec_kit:complete authoring-time load, CocoIndex canonical-priority, validator/MCP-tool drift cleanup"
-description: "Phase parent for Remediation per 077 research: 4-phase OpenCode authoring recipe, /spec_kit:complete authoring-time load, CocoIndex canonical-priority, validator/MCP-tool drift cleanup"
+title: "Feature Specification: Remediation per 077 research: 4-phase OpenCode authoring recipe, /speckit:complete authoring-time load, CocoIndex canonical-priority, validator/MCP-tool drift cleanup"
+description: "Phase parent for Remediation per 077 research: 4-phase OpenCode authoring recipe, /speckit:complete authoring-time load, CocoIndex canonical-priority, validator/MCP-tool drift cleanup"
 trigger_phrases:
   - "078-opencode-authoring-recipe"
   - "phase parent"
@@ -37,7 +37,7 @@ _memory:
     - What needs done: the high-level outcome the phases work toward
 -->
 
-# Feature Specification: Remediation per 077 research: 4-phase OpenCode authoring recipe, /spec_kit:complete authoring-time load, CocoIndex canonical-priority, validator/MCP-tool drift cleanup
+# Feature Specification: Remediation per 077 research: 4-phase OpenCode authoring recipe, /speckit:complete authoring-time load, CocoIndex canonical-priority, validator/MCP-tool drift cleanup
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -62,7 +62,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The 077 deep-research audit surfaced 22 P1 + 20 P2 findings across system-spec-kit, mcp-coco-index, and sk-code OpenCode side. The findings cluster into 4 dependent stages: sk-code OpenCode authoring assets are missing (Phase 1 = foundation), `/spec_kit:complete` loads sk-code at review-time not authoring-time (Phase 2 = integration), CocoIndex canonical-priority semantics are missing (Phase 3 = indexing), and system-spec-kit validator + MCP tool registry drift remains (Phase 4 = cleanup). Bundling them loses the dependency signal; splitting them into 4 child phases preserves the sequence.
+The 077 deep-research audit surfaced 22 P1 + 20 P2 findings across system-spec-kit, mcp-coco-index, and sk-code OpenCode side. The findings cluster into 4 dependent stages: sk-code OpenCode authoring assets are missing (Phase 1 = foundation), `/speckit:complete` loads sk-code at review-time not authoring-time (Phase 2 = integration), CocoIndex canonical-priority semantics are missing (Phase 3 = indexing), and system-spec-kit validator + MCP tool registry drift remains (Phase 4 = cleanup). Bundling them loses the dependency signal; splitting them into 4 child phases preserves the sequence.
 
 ### Purpose
 Ship a 4-phase remediation that closes 22 P1 + 20 P2 findings from 077, with each phase shippable independently. Phase 1 is the foundation; Phases 2-4 build on it sequentially. Optional Phase 5 covers P2 polish if appetite remains after Phases 1-4 ship.
@@ -76,7 +76,7 @@ Ship a 4-phase remediation that closes 22 P1 + 20 P2 findings from 077, with eac
 ## 3. SCOPE
 
 ### In Scope
-- Root purpose and child phase manifest for Remediation per 077 research: 4-phase OpenCode authoring recipe, /spec_kit:complete authoring-time load, CocoIndex canonical-priority, validator/MCP-tool drift cleanup
+- Root purpose and child phase manifest for Remediation per 077 research: 4-phase OpenCode authoring recipe, /speckit:complete authoring-time load, CocoIndex canonical-priority, validator/MCP-tool drift cleanup
 - Per-phase implementation details in child folders
 
 ### Out of Scope
@@ -100,7 +100,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | 001-sk-code-authoring/ | sk-code OpenCode authoring recipe foundation: 5 new authoring checklists (skill, agent, command, mcp-server, spec-folder), spec_folder_write recipe asset, machine-readable STACK_FOLDERS contract restored, SKILL.md OpenCode resource map updated, F-001-005 stale link fixed | Pending |
-| 2 | 002-spec-kit-load/ | `/spec_kit:complete` authoring-time sk-code load: modify auto/confirm YAMLs to load sk-code BEFORE code writes (not just review); detect `.opencode/` implementation targets and pre-load authoring recipe; document cross-skill load contract | Pending |
+| 2 | 002-spec-kit-load/ | `/speckit:complete` authoring-time sk-code load: modify auto/confirm YAMLs to load sk-code BEFORE code writes (not just review); detect `.opencode/` implementation targets and pre-load authoring recipe; document cross-skill load contract | Pending |
 | 3 | 003-coco-priority/ | CocoIndex canonical-priority + portability: add CANONICAL_RESOURCE_PATHS setting that outranks regular search; smoke test asserting `.opencode/skills/sk-code/assets/opencode/` is ingested on a fresh clone; explicit opt-in for canonical paths under `**/.*` defaults | Pending |
 | 4 | 004-validator-cleanup/ | system-spec-kit validator + MCP drift cleanup: graph-metadata JSON-schema validator + description.json shape check in `validate.sh --strict`; ROLLOUT_FLAGS audit; MCP tool registry sync with SKILL.md docs; refresh telemetry doc to match runtime fields | Pending |
 
@@ -108,7 +108,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
 - Parent spec tracks aggregate progress via this map
-- Use `/spec_kit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
+- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
 - Run `validate.sh --recursive` on parent to validate all phases as integrated unit
 
 ### Phase Handoff Criteria

@@ -68,7 +68,7 @@ Answer the remaining uncertainty for 013 channel routing and delegation study wi
 |-----------|-------------|-------------|
 | `.opencode/agents/orchestrate.md` | Investigate | Potential touchpoint for the bounded study |
 | `.opencode/skills/system-spec-kit/assets/parallel_dispatch_config.md` | Investigate | Potential touchpoint for the bounded study |
-| `.opencode/commands/spec_kit/deep-research.md` | Investigate | Potential touchpoint for the bounded study |
+| `.opencode/commands/speckit/deep-research.md` | Investigate | Potential touchpoint for the bounded study |
 <!-- /ANCHOR:scope -->
 
 ---

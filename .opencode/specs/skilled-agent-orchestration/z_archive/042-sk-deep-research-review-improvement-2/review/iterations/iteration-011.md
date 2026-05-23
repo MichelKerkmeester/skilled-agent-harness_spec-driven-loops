@@ -146,7 +146,7 @@ Use this skill when:
 
 - Simple single-pass code review (use `sk-code-review` instead)
 - Known issues that just need fixing (go directly to implementation)
-- Implementation tasks (use `sk-code-opencode` or `/spec_kit:implement`)
+- Implementation tasks (use `sk-code-opencode` or `/speckit:implement`)
 - Quick one-file checks (use direct Grep/Read)
 - Fewer than 2 review dimensions needed (single-pass suffices)
 
@@ -266,11 +266,11 @@ Detect the current review phase from dispatch context to load appropriate resour
 ### Architecture: 3-Layer Integration
 
 ```
-User invokes: /spec_kit:deep-review "target"
+User invokes: /speckit:deep-review "target"
                     |
                     v
     ┌─────────────────────────────────┐
-    │  /spec_kit:deep-review command  │  Layer 1: Command
+    │  /speckit:deep-review command  │  Layer 1: Command
     │  (YAML workflow + loop config)    │  Manages loop lifecycle
     └──────────────┬──────────────────┘
                    |
@@ -773,20 +773,20 @@ Full details: `.opencode/skills/sk-git/`
 | **File modification**     | Gate 3 (ask spec folder) → Gate 1 → Gate 2 → Load memory context → Execute                                                         |
 | **Research/exploration**  | `memory_match_triggers()` → `memory_context()` (unified) OR `memory_search()` (targeted) → Document findings                       |
 | **Code search**           | Semantic/concept → `CocoIndex search` · Structural (callers/imports/deps) → `code_graph_query` · Exact text → `Grep` · File paths → `Glob` · Read contents → `Read` |
-| **Resume prior work**     | `/spec_kit:resume` → Rebuild context from `handover.md` → `_memory.continuity` → canonical spec docs → Review checklist → Continue |
+| **Resume prior work**     | `/speckit:resume` → Rebuild context from `handover.md` → `_memory.continuity` → canonical spec docs → Review checklist → Continue |
 | **Save context**          | Continuity-only `_memory.continuity` updates may be edited directly in canonical spec docs; use `/memory:save` or `generate-context.js --json '<data>' [spec-folder]` for indexed saves |
 | **Claim completion**      | Validation runs automatically → Load `checklist.md` → Verify ALL items → Mark with evidence                                        |
-| **End session**           | `/spec_kit:handover` → Save context → Provide continuation prompt                                                                  |
+| **End session**           | `/speckit:handover` → Save context → Provide continuation prompt                                                                  |
 | **New spec folder**       | Option B (Gate 3) → Research via Task tool → Evidence-based plan → Approval → Implement                                            |
 | **Complex multi-step**    | Task tool → Decompose → Delegate → Synthesize                                                                                      |
 | **Documentation**         | sk-doc skill → Classify → Load template → Fill → Validate (`validate_document.py`) → DQI score → Verify                            |
 | **Web code**              | sk-code-web skill → Webflow/CDN standards, minification, browser testing                                                           |
 | **OpenCode system code**  | sk-code-opencode skill → JS/TS/Python/Shell standards, language detection, quality checklists                                       |
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
-| **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → `create.sh --phase` → Populate → Plan first child  |
+| **Phase workflow**        | `/speckit:plan :with-phases` or `/speckit:complete :with-phases` → Decompose → `create.sh --phase` → Populate → Plan first child  |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
-| **Deep research**         | `/spec_kit:deep-research` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
-| **Deep review**           | `/spec_kit:deep-review` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
+| **Deep research**         | `/speckit:deep-research` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
+| **Deep review**           | `/speckit:deep-review` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
 | **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                            |
 | **Constitutional memory** | `/memory:learn` → Constitutional memory manager: create, list, edit, remove, budget                                               |
 | **Shared memory**         | `/memory:manage shared` → Shared-memory lifecycle: create spaces, manage memberships, inspect rollout                                    |
@@ -797,7 +797,7 @@ These recovery steps are universal across Claude Code, OpenCode, Codex CLI, Copi
 
 ### After Context Compaction Or `/clear`
 
-1. **FIRST ACTION** — use `/spec_kit:resume` as the canonical recovery surface
+1. **FIRST ACTION** — use `/speckit:resume` as the canonical recovery surface
 2. Rebuild prior work in this order: `handover.md` → `_memory.continuity` → canonical spec docs (`implementation-summary.md`, `tasks.md`, `plan.md`, `spec.md`)
 3. Use `memory_context()` or `memory_search()` only when those packet-local continuity sources do not answer the question
 4. Re-read the active runtime-specific instructions if they exist (`CODEX.md`, `GEMINI.md`, `.claude/CLAUDE.md`, runtime agent docs)
@@ -1257,7 +1257,7 @@ exec
     96	
     97	## Skill Rename (Phase 008)
     98	
-    99	Renamed from `sk-recursive-agent` to `sk-improve-agent` across 187+ files and 1129+ occurrences. Command moved from `/spec_kit:recursive-agent` to `/improve:agent`. Agent renamed from `@recursive-agent` to `@agent-improver`. Zero stale references remaining (verified by fresh sub-agent audit).
+    99	Renamed from `sk-recursive-agent` to `sk-improve-agent` across 187+ files and 1129+ occurrences. Command moved from `/speckit:recursive-agent` to `/improve:agent`. Agent renamed from `@recursive-agent` to `@agent-improver`. Zero stale references remaining (verified by fresh sub-agent audit).
    100	
    101	---
    102	
@@ -1327,7 +1327,7 @@ exec
     42	| `.opencode/skills/README.md` | Modified | Version bump to 1.0.0.0 |
     43	| `README.md` | Modified | Added Context-Prime and Agent-Improver agents, rewrote Improve commands |
     44	| `.opencode/commands/README.txt` | Modified | Added improve group, fixed command counts |
-    45	| `.opencode/commands/spec_kit/README.txt` | Modified | Added deep-review command |
+    45	| `.opencode/commands/speckit/README.txt` | Modified | Added deep-review command |
     46	| `.opencode/commands/create/README.txt` | Modified | Removed prompt (moved to improve), added changelog |
     47	
     48	---
@@ -1605,7 +1605,7 @@ exec
     26	| **Priority** | P1 |
     27	| **Status** | Complete |
     28	| **Created** | 2026-04-10 |
-    29	| **Branch** | `system-speckit/026-graph-and-context-optimization` |
+    29	| **Branch** | `system-spec-kit/026-graph-and-context-optimization` |
     30	| **Parent Spec** | `../spec.md` |
     31	| **Parent Plan** | `../plan.md` |
     32	| **Phase** | 6 of 8 |
@@ -1810,7 +1810,7 @@ exec
     36	| **Status** | Complete |
     37	| **Created** | 2026-04-10 |
     38	| **Completed** | 2026-04-11 |
-    39	| **Branch** | `system-speckit/026-graph-and-context-optimization` |
+    39	| **Branch** | `system-spec-kit/026-graph-and-context-optimization` |
     40	| **Parent Spec** | `../spec.md` |
     41	| **Parent Plan** | `../plan.md` |
     42	| **Phase** | 5 of 8 |

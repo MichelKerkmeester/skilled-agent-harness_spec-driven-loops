@@ -195,7 +195,7 @@ I’ve got the reducer body now. I’m checking its contract against the 042 rem
 
 ● Search (grep)
   │ "resumed|restarted|lineageMode|continuedFromRun|generation|claim_adjudication|synthesis_complete
-  │ " in **/*deep-review*.y{a,}ml (.opencode/commands/spec_kit/assets)
+  │ " in **/*deep-review*.y{a,}ml (.opencode/commands/speckit/assets)
   └ 5 lines found
 
 ● Read state_format.md
@@ -203,23 +203,23 @@ I’ve got the reducer body now. I’m checking its contract against the 042 rem
   └ L660:740 (81 lines read)
 
 ● Read spec_kit_deep-review_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
   └ L1:260 (260 lines read)
 
 ● Read spec_kit_deep-review_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
   └ L1:280 (274 lines read)
 
 ● Search (grep)
   │ "claim_adjudication|finalSeverity|missingPackets|activeP0P1|blockedBy|claimAdjudicationGate|synt
   │ hesis_complete|continuedFromRun|restarted|resumed"
-  │ (.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml)
+  │ (.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml)
   └ 30 lines found
 
 ● Search (grep)
   │ "claim_adjudication|finalSeverity|missingPackets|activeP0P1|blockedBy|claimAdjudicationGate|synt
   │ hesis_complete|continuedFromRun|restarted|resumed"
-  │ (.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml)
+  │ (.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml)
   └ 30 lines found
 
 ● Search (grep)
@@ -235,11 +235,11 @@ I’ve found one likely end-to-end mismatch already: the reducer now understands
   └ L520:560 (40 lines read)
 
 ● Read spec_kit_deep-review_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
   └ L600:700 (100 lines read)
 
 ● Read spec_kit_deep-review_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
   └ L655:690 (36 lines read)
 
 I’ve got two code-level concerns that are worth proving with a fixture pass rather than just inferring from the source: stale blocked-stop surfacing after later progress, and restart lineage losing `continuedFromRun`.
@@ -295,19 +295,19 @@ I’ve got two code-level concerns that are worth proving with a fixture pass ra
   └ L1050:1088 (39 lines read)
 
 ● Read spec_kit_deep-review_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
   └ L164:177 (14 lines read)
 
 ● Read spec_kit_deep-review_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
   └ L611:626 (16 lines read)
 
 ● Read spec_kit_deep-review_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
   └ L169:181 (13 lines read)
 
 ● Read spec_kit_deep-review_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
   └ L665:680 (16 lines read)
 
 ● Read loop_protocol.md
@@ -330,11 +330,11 @@ I found another potential stale-veto path in the workflow itself: the gate reads
   └ L713:719 (7 lines read)
 
 ● Read spec_kit_deep-review_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
   └ L340:430 (91 lines read)
 
 ● Read spec_kit_deep-review_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
   └ L373:463 (91 lines read)
 
 ● Read reduce-state.cjs
@@ -342,11 +342,11 @@ I found another potential stale-veto path in the workflow itself: the gate reads
   └ L855:879 (25 lines read)
 
 ● Read spec_kit_deep-review_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
   └ L840:846 (7 lines read)
 
 ● Read spec_kit_deep-review_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
   └ L947:953 (7 lines read)
 
 ● Read reduce-state.cjs
@@ -372,8 +372,8 @@ Found **4 P1 correctness issues** in the updated deep-review workflow; I did **n
 ### F-031-001
 - **Severity:** P1
 - **Dimension:** correctness
-- **File:** `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-- **Line:** `611-626` *(same defect in `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:665-680`)*
+- **File:** `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`
+- **Line:** `611-626` *(same defect in `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:665-680`)*
 - **Title:** Claim-adjudication severity transitions never reach the reducer
 - **Description:** The reducer now supports per-finding adjudication overrides, but the workflows still persist only a session-level pass/fail `claim_adjudication` event. That means typed packets can change `finalSeverity`, yet the findings registry never sees the `findingId`, `finalSeverity`, or `transitions` needed to apply the change.
 - **Evidence:** `buildClaimAdjudicationByFinding()` only consumes `claim_adjudication` events that contain both `findingId` and `finalSeverity` (`.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:313-334`). The state contract also says `finalSeverity` is authoritative and transitions must be mirrored into the registry (`.opencode/skills/sk-deep-review/references/state_format.md:703-726`). But both workflows append only `passed`, `activeP0P1`, `missingPackets`, and timestamps, with no per-finding fields (`...auto.yaml:617-626`, `...confirm.yaml:671-680`).
@@ -382,8 +382,8 @@ Found **4 P1 correctness issues** in the updated deep-review workflow; I did **n
 ### F-031-002
 - **Severity:** P1
 - **Dimension:** correctness
-- **File:** `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-- **Line:** `169-176` *(same defect in `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:175-181`)*
+- **File:** `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`
+- **Line:** `169-176` *(same defect in `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:175-181`)*
 - **Title:** Restart lineage still drops `continuedFromRun`
 - **Description:** Resume events persist `continuedFromRun`, but restart events do not. Because the reducer only derives restart ancestry from the lifecycle event or config fallback, restarted sessions lose the exact iteration boundary they continued from.
 - **Evidence:** The lifecycle contract requires every persisted `resumed`/`restarted` event to include `continuedFromRun` (`.opencode/skills/sk-deep-review/references/loop_protocol.md:540-557`). The reducer reads that field directly and otherwise falls back to `config.continuedFromRun` (`.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:340-366`). The restart branches append `restarted` events without `continuedFromRun` (`...auto.yaml:169-176`, `...confirm.yaml:175-181`), so the reducer can only produce `null`.
@@ -392,11 +392,11 @@ Found **4 P1 correctness issues** in the updated deep-review workflow; I did **n
 ### F-031-003
 - **Severity:** P1
 - **Dimension:** correctness
-- **File:** `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+- **File:** `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`
 - **Line:** `346-347`
 - **Title:** Failed claim-adjudication veto can become permanent for carried-forward findings
 - **Description:** The stop gate reads only the latest persisted `claim_adjudication` verdict, but the post-iteration validator only emits new adjudication events for **new** P0/P1 findings. If an earlier adjudication failed and a later iteration fixes the packet for a carried-forward finding, there is no guaranteed path to write a clearing pass event, so STOP can remain vetoed indefinitely.
-- **Evidence:** The convergence pre-check uses the most recent `claim_adjudication` event as a universal STOP veto (`...auto.yaml:346-347,387-395`; same logic in `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:379-380,420-428`). The validator step only checks “every **new** P0/P1 finding” and emits pass/fail events from that scope (`...auto.yaml:611-626`; `...confirm.yaml:665-680`). The contract text explicitly says carried-forward findings reuse prior packets unless severity transitioned (`.opencode/skills/sk-deep-review/references/state_format.md:715-719`), so a stale failed event is not necessarily superseded.
+- **Evidence:** The convergence pre-check uses the most recent `claim_adjudication` event as a universal STOP veto (`...auto.yaml:346-347,387-395`; same logic in `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:379-380,420-428`). The validator step only checks “every **new** P0/P1 finding” and emits pass/fail events from that scope (`...auto.yaml:611-626`; `...confirm.yaml:665-680`). The contract text explicitly says carried-forward findings reuse prior packets unless severity transitioned (`.opencode/skills/sk-deep-review/references/state_format.md:715-719`), so a stale failed event is not necessarily superseded.
 - **Recommendation:** When the latest adjudication event is `passed:false`, re-validate all active P0/P1 findings (not just newly introduced ones), or always emit a fresh summary event reflecting the current active adjudication state.
 
 ### F-031-004

@@ -29,7 +29,7 @@ The epic contains 19 numbered folders on disk (18 unique phase numbers, with `01
 | 014 | `015-manual-testing-per-playbook` | Draft | 1 |
 | 015 | `016-rewrite-memory-mcp-readme` | In Progress | 1 |
 | 016 | `017-update-install-guide` | In Progress | 1 |
-| 017a | `018-rewrite-system-speckit-readme` | In Progress | 1 |
+| 017a | `018-rewrite-system-spec-kit-readme` | In Progress | 1 |
 | 017b | `017-spec-folder-alignment-audit` | Empty (no spec.md) | - |
 | 018 | `019-rewrite-repo-readme` | In Progress | 1 |
 
@@ -175,12 +175,12 @@ graph TD
  |
  +-- 016-rewrite-memory-mcp-readme [In Progress]
  |    |     depends on: 006, 011
- |    +---> 017a-rewrite-system-speckit-readme
+ |    +---> 017a-rewrite-system-spec-kit-readme
  |    +---> 019-rewrite-repo-readme
  |
  +-- 017-update-install-guide [In Progress] (standalone)
  |
- +-- 017a-rewrite-system-speckit-readme [In Progress]
+ +-- 017a-rewrite-system-spec-kit-readme [In Progress]
  |    |     depends on: 015
  |    +---> 019-rewrite-repo-readme
  |
@@ -219,8 +219,8 @@ One notable reverse-numbering dependency exists: phase 010 (skill-alignment) dep
 
 - **Severity**: CRITICAL
 - **Category**: architecture
-- **Location**: `022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/` and `022-hybrid-rag-fusion/017-spec-folder-alignment-audit/`
-- **Description**: Two distinct spec folders share phase number 017. `018-rewrite-system-speckit-readme` has a complete spec.md (Level 1, In Progress). `017-spec-folder-alignment-audit` contains only an empty `scratch/` directory with no spec.md, plan.md, or tasks.md.
+- **Location**: `022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme/` and `022-hybrid-rag-fusion/017-spec-folder-alignment-audit/`
+- **Description**: Two distinct spec folders share phase number 017. `018-rewrite-system-spec-kit-readme` has a complete spec.md (Level 1, In Progress). `017-spec-folder-alignment-audit` contains only an empty `scratch/` directory with no spec.md, plan.md, or tasks.md.
 - **Evidence**: `ls` of both folders confirms the collision. The epic dashboard in 001/spec.md does not list either `017` folder.
 - **Impact**: Phase numbering collision breaks the 1:1 phase-to-number contract. References to "phase 017" are ambiguous. Recursive validation may skip or misidentify phases.
 - **Recommended Fix**: Either delete the empty `017-spec-folder-alignment-audit` (if its work was absorbed elsewhere) or renumber one of the two folders. Since `017b` is empty, deletion is the safest option.
@@ -270,7 +270,7 @@ One notable reverse-numbering dependency exists: phase 010 (skill-alignment) dep
 - **Location**: `022-hybrid-rag-fusion/017-spec-folder-alignment-audit/`
 - **Description**: This folder contains only an empty `scratch/` subdirectory. No spec.md, plan.md, tasks.md, or any other documentation file exists. The folder is not listed in the epic dashboard and appears to be an abandoned or accidentally created placeholder.
 - **Evidence**: `ls -la` shows only a `scratch/` directory with no files. No spec.md exists.
-- **Impact**: Occupies a phase number (017) that collides with `018-rewrite-system-speckit-readme`. Pollutes the spec tree with a non-functional folder.
+- **Impact**: Occupies a phase number (017) that collides with `018-rewrite-system-spec-kit-readme`. Pollutes the spec tree with a non-functional folder.
 - **Recommended Fix**: Delete the empty folder entirely, or if the work was intended, create proper spec documentation and assign a unique phase number (e.g., 019).
 
 ---

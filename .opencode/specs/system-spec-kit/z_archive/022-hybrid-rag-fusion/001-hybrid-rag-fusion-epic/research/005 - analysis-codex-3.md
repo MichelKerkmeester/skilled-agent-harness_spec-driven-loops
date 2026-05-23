@@ -7,10 +7,10 @@ Across the three inputs, a clear architecture pattern emerges:
 2. **`cognee` optimizes persistence and semantic structure** through graph-plus-vector memory, modular ECL pipelines, and MCP exposure for multi-client use.  
 3. **Artem’s post highlights the operator pain point**: agents lose continuity across sessions; memory must be instant, context-efficient, and semantically rich enough to recover old but relevant intent.
 
-For **system-speckit memory MCP**, the strongest transferable pattern is:  
+For **system-spec-kit memory MCP**, the strongest transferable pattern is:  
 **fast lexical retrieval path + deeper semantic path + explicit memory lifecycle tools + transport flexibility + operator-first ergonomics (speed, traceability, and continuity).**
 
-[Assumes: Your current system-speckit memory MCP already stores spec/session artifacts but does not yet implement full hybrid retrieval fusion with explicit staged query modes.]
+[Assumes: Your current system-spec-kit memory MCP already stores spec/session artifacts but does not yet implement full hybrid retrieval fusion with explicit staged query modes.]
 
 ---
 

@@ -92,8 +92,8 @@ All output variable blocks, JSONL append templates, and skip/conditional guards 
 
 | Test Type | Status | Coverage | Notes |
 |-----------|--------|----------|-------|
-| Static grep | PASS | 4/4 files | `grep -c "mcp__mk_spec_memory__deep_loop_graph_" .opencode/commands/spec_kit/assets/spec_kit_deep-*.yaml` returned 0 for each file. |
-| Static grep | PASS | 4/4 files | `grep -c "deep_loop_graph_" .opencode/commands/spec_kit/assets/spec_kit_deep-*.yaml` returned 0 for each file. |
+| Static grep | PASS | 4/4 files | `grep -c "mcp__mk_spec_memory__deep_loop_graph_" .opencode/commands/speckit/assets/speckit_deep-*.yaml` returned 0 for each file. |
+| Static grep | PASS | 4/4 files | `grep -c "deep_loop_graph_" .opencode/commands/speckit/assets/speckit_deep-*.yaml` returned 0 for each file. |
 | YAML parse | PASS | 4/4 files | `yaml.safe_load` succeeded for every modified YAML file. |
 | Script smoke | PASS | convergence/status/upsert/query | Direct script invocations returned JSON and exit 0. |
 | Strict validate | Pending final run | 4 phase folders | Run after this summary update. |

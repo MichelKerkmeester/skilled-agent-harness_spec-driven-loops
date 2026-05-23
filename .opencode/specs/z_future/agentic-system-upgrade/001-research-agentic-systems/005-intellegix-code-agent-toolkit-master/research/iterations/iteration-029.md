@@ -13,10 +13,10 @@ I walked the documented local lifecycle for new work and continuation, then comp
 
 ## Evidence
 - `[SOURCE: AGENTS.md:132-155]` The local quick-reference workflow spans explicit steps for spec foldering, planning, implementation, completion verification, memory save, and handover.
-- `[SOURCE: .opencode/commands/spec_kit/plan.md:37-45]` `/spec_kit:plan` begins with a blocked unified setup phase before any planning work happens.
-- `[SOURCE: .opencode/commands/spec_kit/implement.md:35-45]` `/spec_kit:implement` starts with its own blocked unified setup phase and confirmation logic.
-- `[SOURCE: .opencode/commands/spec_kit/complete.md:38-45]` `/spec_kit:complete` does the same for the full lifecycle path.
-- `[SOURCE: .opencode/commands/spec_kit/implement.md:171-185]` Even once implementation begins, the lifecycle still includes preflight, postflight, save-context, and handover stages.
+- `[SOURCE: .opencode/commands/speckit/plan.md:37-45]` `/speckit:plan` begins with a blocked unified setup phase before any planning work happens.
+- `[SOURCE: .opencode/commands/speckit/implement.md:35-45]` `/speckit:implement` starts with its own blocked unified setup phase and confirmation logic.
+- `[SOURCE: .opencode/commands/speckit/complete.md:38-45]` `/speckit:complete` does the same for the full lifecycle path.
+- `[SOURCE: .opencode/commands/speckit/implement.md:171-185]` Even once implementation begins, the lifecycle still includes preflight, postflight, save-context, and handover stages.
 - `[SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/005-intellegix-code-agent-toolkit-master/external/commands/orchestrator.md:47-55]` The external repo routes a task through one argument pattern that activates a persistent mode or status/off behavior.
 - `[SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/005-intellegix-code-agent-toolkit-master/external/commands/orchestrator-new.md:25-41]` The external greenfield path asks for only one clarifying question when the prompt is too vague.
 
@@ -31,7 +31,7 @@ confidence: high
 finding: `system-spec-kit` should add a dedicated fast-path workflow profile for bound continuation and small scoped changes, reducing repeated setup and artifact expectations while preserving safety-critical checks.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `AGENTS.md`, `.opencode/commands/spec_kit/implement.md`, `.opencode/commands/spec_kit/resume.md`
+- **Target file or module:** `AGENTS.md`, `.opencode/commands/speckit/implement.md`, `.opencode/commands/speckit/resume.md`
 - **Change type:** should-have
 - **Blast radius:** operator-surface
 - **Prerequisites:** define eligibility rules for the fast path so it cannot silently under-document high-risk work
@@ -52,4 +52,4 @@ I looked for evidence that bound continuation work benefits from paying the full
 ## Follow-up questions for next iteration
 - What is the minimum state needed to safely enter fast-path mode?
 - Should fast-path work still create every artifact, or should some become optional/generated?
-- Can `/spec_kit:resume` become the natural on-ramp for this mode?
+- Can `/speckit:resume` become the natural on-ramp for this mode?

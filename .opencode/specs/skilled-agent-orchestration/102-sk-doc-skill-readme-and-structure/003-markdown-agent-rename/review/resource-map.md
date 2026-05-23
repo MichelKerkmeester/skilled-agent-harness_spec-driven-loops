@@ -15,7 +15,7 @@
 ## Entries Not Covered By Original Resource Map
 
 - `.codex/config.toml` is a Codex registry consumer for `.codex/agents/*.toml`; post-review remediation updates it to `[agents.markdown]` and `agents/markdown.toml`.
-- `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml` is a command workflow consumer; post-review remediation updates its component-authoring guard from `@create` to `@markdown`.
+- `.opencode/commands/speckit/assets/speckit_implement_auto.yaml` is a command workflow consumer; post-review remediation updates its component-authoring guard from `@create` to `@markdown`.
 
 ## Coverage Gate Result
 

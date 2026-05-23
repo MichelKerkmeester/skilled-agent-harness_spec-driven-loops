@@ -50,7 +50,7 @@ across 10 iterations and **does not confirm the verdict flip from FAIL to PASS**
 
 ## 2. Planning Trigger
 
-`/spec_kit:plan` is **REQUIRED** before the next release window. The remediation gap is too wide for ad-hoc fixes — it needs structured P1 workstreams.
+`/speckit:plan` is **REQUIRED** before the next release window. The remediation gap is too wide for ad-hoc fixes — it needs structured P1 workstreams.
 
 ### Planning Packet
 
@@ -109,8 +109,8 @@ across 10 iterations and **does not confirm the verdict flip from FAIL to PASS**
     ".opencode/specs/skilled-agent-orchestration/095-sk-code-review-playbook-execution/",
     ".opencode/specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/",
     ".opencode/specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/003-remediation/",
-    ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
-    ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
+    ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml",
+    ".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml",
     ".opencode/commands/doctor/scripts/audit_descriptions.py",
     ".opencode/skills/system-spec-kit/mcp_server/handlers/",
     ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/",
@@ -146,7 +146,7 @@ and `mcp_server/dist/code_graph/lib/index-scope-policy.js:13-15`.
 | P1-016 | `scripts/dist` observability outputs are stale | `.opencode/skills/system-spec-kit/scripts/dist/observability/smart-router-measurement.js:14-17` | cross-consumer | CONFIRM_P1 | Source/dist parity broken on a runnable surface. 098/001 only rebuilt `mcp_server/dist/`. |
 | P1-017 | 095 reports impossible execution results — internally contradictory | `.opencode/specs/skilled-agent-orchestration/095-sk-code-review-playbook-execution/implementation-summary.md:57-58, :112, :123-126` | matrix-evidence | CONFIRM_P1 | Aggregate says 18/18 PASS, decisions table says 3 SKIP; CR-016/018 transcripts missing. Verification packet fails its own evidence test. |
 | P1-018 | 093 playbooks not reachable from owning skill files | `.opencode/skills/sk-code-review/SKILL.md:66-68, :361-366`; `.opencode/skills/sk-git/SKILL.md:78-82, :436-440` | cross-consumer | CONFIRM_P1 | The shipped manual_testing_playbook directories are not linked from their owning skills. 093's purpose was unfulfilled. |
-| P1-019 | `spec_folder` interpolated into executable workflow before containment | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:118`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:118` | cross-consumer | CONFIRM_P1 | Raw `{spec_folder}` interpolation into a `node -e` resolver command before path containment. Workflow write-authority gate. |
+| P1-019 | `spec_folder` interpolated into executable workflow before containment | `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:118`; `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:118` | cross-consumer | CONFIRM_P1 | Raw `{spec_folder}` interpolation into a `node -e` resolver command before path containment. Workflow write-authority gate. |
 | P1-020 | `audit_descriptions.py` zero-inventory still passes | `.opencode/commands/doctor/scripts/audit_descriptions.py:421-427` | structural | CONFIRM_P1 | The audit exits 0 on zero scanned items. Validator can pass while scanning nothing. |
 | P1-021 | Smart-router validation false-fails valid shared CLI router refs | `.opencode/skills/system-spec-kit/scripts/spec/check-smart-router.sh:260-263` | structural | CONFIRM_P1 | Validator only checks `skill_dir / resource`, rejecting valid `../system-spec-kit/references/cli/...` shared paths. |
 | P1-022 | 096/004 spec anchor mismatch + strict-validate fail | `.opencode/specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/001-rename-opencode-dirs/004-symlinks/spec.md:136-152, :189` | structural | CONFIRM_P1 | `validate.sh --strict` exits 2 (ANCHORS_VALID, SPEC_DOC_SUFFICIENCY). |
@@ -161,7 +161,7 @@ and `mcp_server/dist/code_graph/lib/index-scope-policy.js:13-15`.
 |----|-------|-----------|-------|--------|
 | P1-005 | Resolver containment remains deferred (downgraded from P1) | `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs:200` | instance-only | Subsumed by P1-019 |
 | P2-002 | Generated test fixture title still says singular `.opencode/skill` | `.opencode/skills/system-spec-kit/mcp_server/dist/code_graph/tests/code-graph-indexer.vitest.js:409` | test-isolation | Wording drift only — fixture path uses plural. |
-| P2-004 | Copilot target-authority helper / preamble unresolved | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:690, :744` | cross-consumer | Optional executor-branch followup. |
+| P2-004 | Copilot target-authority helper / preamble unresolved | `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:690, :744` | cross-consumer | Optional executor-branch followup. |
 | P2-008 | Singular schema/default text in tool-schemas | `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:578-581, :700` | instance-only | Schema documentation drift; behavior is plural via P1-015 fix. |
 | P2-009 | 098/003 cites stale smart-router line range | `.opencode/specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/003-remediation/003-narrative-validation-repair/implementation-summary.md` (cited line range) | matrix-evidence | Evidence drift only. |
 | P2-010 | 096 resource-map carries sed-induced tautological rename headings | `.opencode/specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/resource-map.md` | structural | Cosmetic narrative; not a behavior issue. |
@@ -219,7 +219,7 @@ For the follow-on remediation packet (suggested name: `100-099-remediation`):
 
 ## 6. Plan Seed
 
-Starter tasks for `/spec_kit:plan` consumption:
+Starter tasks for `/speckit:plan` consumption:
 
 1. **T001** Inventory all 13 active P1s into a tracking table; assign owner surface per fix
 2. **T002** Patch `mcp_server/handlers/skill-graph/scan.ts:40` source default to `.opencode/skills` (Workstream B/P1-015)

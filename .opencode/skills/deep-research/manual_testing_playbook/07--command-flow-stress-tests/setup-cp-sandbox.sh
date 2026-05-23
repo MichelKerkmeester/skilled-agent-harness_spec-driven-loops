@@ -80,8 +80,8 @@ copy_file "${REPO_ROOT}/.claude/agents/deep-research.md" "${SANDBOX_DIR}/.claude
 copy_file "${REPO_ROOT}/.gemini/agents/deep-research.md" "${SANDBOX_DIR}/.gemini/agents/deep-research.md"
 copy_file "${REPO_ROOT}/.codex/agents/deep-research.toml" "${SANDBOX_DIR}/.codex/agents/deep-research.toml"
 
-if [[ -e "${REPO_ROOT}/.gemini/commands/spec_kit/deep-research.toml" ]]; then
-  copy_file "${REPO_ROOT}/.gemini/commands/spec_kit/deep-research.toml" "${SANDBOX_DIR}/.gemini/commands/spec_kit/deep-research.toml"
+if [[ -e "${REPO_ROOT}/.gemini/commands/speckit/deep-research.toml" ]]; then
+  copy_file "${REPO_ROOT}/.gemini/commands/speckit/deep-research.toml" "${SANDBOX_DIR}/.gemini/commands/speckit/deep-research.toml"
 fi
 
 echo "Created deep-research command sandbox at ${SANDBOX_DIR}"

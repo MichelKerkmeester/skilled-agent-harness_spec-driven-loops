@@ -16,7 +16,7 @@ I followed the external check gate from the workflow edges into the explanatory 
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/workflow.yaml:310-317] The edge from `join_checks` routes to no next node when any check exits non-zero, which skips both review and refactor for that attempt.
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/docs/loop-explained.md:34-44] The documentation states plainly that there is no point reviewing code that does not compile or pass tests.
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/docs/loop-explained.md:126-145] The fallback strategy is explicit, which prevents "review skipped" from becoming an undefined branch.
-- [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:449-472] `system-spec-kit` currently runs strict validation and checklist verification as part of completion, after implementation is largely done, not as an early branch that decides whether human-style review is worth spending.
+- [SOURCE: .opencode/commands/speckit/assets/speckit_implement_auto.yaml:449-472] `system-spec-kit` currently runs strict validation and checklist verification as part of completion, after implementation is largely done, not as an early branch that decides whether human-style review is worth spending.
 - [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:80-100] The validator already provides deterministic exit codes and a strict mode, which makes it usable as a retry-loop gate rather than just an end-of-phase report.
 
 ## Analysis
@@ -27,7 +27,7 @@ confidence: high
 finding: `system-spec-kit` should adopt a pre-review validation gate in any future retry workflow. The repo already has the deterministic validators needed to make that gate practical, and the external workflow shows how to keep the control flow defined even when review is skipped.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`
+- **Target file or module:** `.opencode/commands/speckit/assets/speckit_implement_auto.yaml`
 - **Change type:** modified existing
 - **Blast radius:** medium
 - **Prerequisites:** standardize which commands count as the attempt gate, likely `validate.sh --strict` plus optional repo lint/test/build hooks

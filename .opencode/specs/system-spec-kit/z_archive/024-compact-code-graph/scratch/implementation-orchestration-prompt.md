@@ -3,7 +3,7 @@
 > **Target:** Claude Opus agent running `/spec_kit:implement` across all 7 phases
 > **Delegation:** Up to 10 GPT-5.4 agents via `codex exec` (all `high` reasoning)
 > **Constraint:** No concurrent file conflicts — strict file ownership per agent
-> **Branch:** `system-speckit/024-compact-code-graph` (already created — checkout before starting)
+> **Branch:** `system-spec-kit/024-compact-code-graph` (already created — checkout before starting)
 
 ---
 
@@ -269,7 +269,7 @@ git diff --stat  # review every changed file
 
 ## GIT WORKFLOW
 
-**Branch:** `system-speckit/024-compact-code-graph`
+**Branch:** `system-spec-kit/024-compact-code-graph`
 
 Commit after each wave:
 ```bash
@@ -290,7 +290,7 @@ git add .opencode/skills/system-spec-kit/mcp_server/tests/
 git commit -m "test(hooks): Phase 7 — automated tests for hook system"
 
 # Push all
-git push -u origin system-speckit/024-compact-code-graph
+git push -u origin system-spec-kit/024-compact-code-graph
 ```
 
 ## ROLLBACK PLAN

@@ -63,7 +63,7 @@ System Code Graph resolves symbols exactly through tree-sitter AST parsing. Call
 
 System Code Graph owns the structural index. It deliberately leaves four surfaces to siblings:
 
-- **Spec folders, memory, resume, hooks**. Owned by the spec-kit runtime. The `/spec_kit:resume` flow, `_memory.continuity` blocks, and lifecycle hooks live there.
+- **Spec folders, memory, resume, hooks**. Owned by the spec-kit runtime. The `/speckit:resume` flow, `_memory.continuity` blocks, and lifecycle hooks live there.
 - **Semantic code search**. Owned by a separate semantic-index runtime. `code_graph_context` can accept its seeds to mix semantic and structural lookups, exposed here as `ccc_*` bridge tools.
 - **Skill routing**. Owned by a separate routing runtime that picks the right skill for a prompt.
 - **Deep-loop research and review tools**. Owned by the spec-kit runtime where the iteration state machine lives, not by this skill.

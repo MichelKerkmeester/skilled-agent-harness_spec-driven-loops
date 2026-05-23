@@ -11,7 +11,7 @@ Workflow-owned canonical synthesis output for packet `specs/skilled-agent-orches
 
 This stream investigated the existing internal `.opencode/agents/*` ecosystem, root `AGENTS.md` governance, the skill-advisor hook, deep-research command-owned dispatch wiring, and `sk-code` stack-routing. After 5 iterations driven by `cli-codex` (gpt-5.5, reasoning=high, service_tier=fast), all 5 key questions are answered with cited evidence. Convergence reached the explicit "0 remaining questions" stop signal at iteration 5; the rolling-average newInfoRatio descended from 0.86 → 0.52 (rolling avg(3) at stop = 0.587, which would extend the loop on that metric alone, but the question-coverage signal dominates).
 
-**The headline result for the D3 blocker:** the harness has NO machine-readable caller-restriction frontmatter field and NO local dispatch validator that gates "callable only by orchestrator". Caller restriction in the current codebase is a four-layer convention: (1) prose in the agent description/body, (2) workflow ownership in command YAML (e.g. `/spec_kit:deep-research` is the only legal dispatcher of `@deep-research`), (3) tool permissions on the callee (`permission.task: deny` blocks the callee from re-dispatching, but does not restrict the caller), and (4) prompt-level NDP (Nesting/Depth/Proximity) instructions injected by `@orchestrate` at dispatch time. ADR D3 should be finalized as **convention-floor**, with the agent body's §0 dispatch gate being the strongest available enforcement. A future harness extension (a frontmatter `dispatch.allowedCallers` field plus a loader-side validator) is feasible but out of scope for packet 059.
+**The headline result for the D3 blocker:** the harness has NO machine-readable caller-restriction frontmatter field and NO local dispatch validator that gates "callable only by orchestrator". Caller restriction in the current codebase is a four-layer convention: (1) prose in the agent description/body, (2) workflow ownership in command YAML (e.g. `/speckit:deep-research` is the only legal dispatcher of `@deep-research`), (3) tool permissions on the callee (`permission.task: deny` blocks the callee from re-dispatching, but does not restrict the caller), and (4) prompt-level NDP (Nesting/Depth/Proximity) instructions injected by `@orchestrate` at dispatch time. ADR D3 should be finalized as **convention-floor**, with the agent body's §0 dispatch gate being the strongest available enforcement. A future harness extension (a frontmatter `dispatch.allowedCallers` field plus a loader-side validator) is feasible but out of scope for packet 059.
 
 ## 2. Topic
 
@@ -66,7 +66,7 @@ Cited findings consolidated across iterations 1-5 (selecting the load-bearing it
 
 9. **F-iter2-005**: `validate.sh` is structural (folder/template/anchor/source-header validation), not a scope-lock or path-allowlist enforcer. Its `--strict` mode upgrades warnings to errors but does not check filesystem boundaries. (`.opencode/skills/system-spec-kit/scripts/spec/validate.sh:3,5,95,99,101,104,155,157`)
 
-10. **F-iter3-001**: `agent_config.leaf_only: true` is declared in deep-research YAML but `executor-config.ts:21` does NOT parse it. It is informational; the actual LEAF instruction reaches the executor via the prompt pack template. (`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:81,86,523,527,536,563`; `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:21`; `.opencode/skills/sk-deep-research/assets/prompt_pack_iteration.md.tmpl:3,28`)
+10. **F-iter3-001**: `agent_config.leaf_only: true` is declared in deep-research YAML but `executor-config.ts:21` does NOT parse it. It is informational; the actual LEAF instruction reaches the executor via the prompt pack template. (`.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:81,86,523,527,536,563`; `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:21`; `.opencode/skills/sk-deep-research/assets/prompt_pack_iteration.md.tmpl:3,28`)
 
 11. **F-iter3-002**: `post-dispatch-validate.ts` validates artifact/schema completion (state-log growth, iteration markdown existence, canonical `"type":"iteration"`, executor provenance, delta-file existence) — NOT sub-agent dispatch, depth, leaf_only, or Task-tool use. (`.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts:23,37,103,136,146,164`)
 
@@ -275,8 +275,8 @@ Skills / advisor:
 
 Plugins / commands:
 - `.opencode/plugins/spec-kit-skill-advisor.js:567,579,638,673`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:81,86,356,357,359,360,523,527,536,563`
-- `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:144,145,214,354,355`
+- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:81,86,356,357,359,360,523,527,536,563`
+- `.opencode/commands/speckit/assets/speckit_implement_auto.yaml:144,145,214,354,355`
 - `.opencode/commands/improve/agent.md:188,195,197`
 - `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:150,153,154,158,164`
 

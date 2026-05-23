@@ -6,7 +6,7 @@ Verdict: **CONDITIONAL**
 
 hasAdvisories: `false`
 
-Scope: `/spec_kit:deep-review:auto specs/skilled-agent-orchestration/087-improve-agent-to-deep-agent-improvement-rename --max-iterations=5`
+Scope: `/speckit:deep-review:auto specs/skilled-agent-orchestration/087-improve-agent-to-deep-agent-improvement-rename --max-iterations=5`
 
 Iterations completed: 4 of 5 allowed. Stop reason: all configured dimensions covered with active P1 findings; synthesis chosen instead of a fifth discovery pass.
 
@@ -16,7 +16,7 @@ Dimension coverage: correctness, security, traceability, and maintainability all
 
 ## 2. Planning Trigger
 
-`/spec_kit:plan` is required before this packet can be treated as PASS. The review found no P0 blockers, but six active P1 findings contradict the packet's COMPLETE claims and active rename coverage.
+`/speckit:plan` is required before this packet can be treated as PASS. The review found no P0 blockers, but six active P1 findings contradict the packet's COMPLETE claims and active rename coverage.
 
 Planning Packet:
 

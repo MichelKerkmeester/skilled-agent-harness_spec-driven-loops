@@ -600,24 +600,24 @@ Commands are slash-prefixed shortcuts for common workflows.
 
 | Command               | Description                           | Output                      |
 | --------------------- | ------------------------------------- | --------------------------- |
-| `/spec_kit:complete`  | Full spec workflow (plan + implement) | Complete implementation     |
+| `/speckit:complete`  | Full spec workflow (plan + implement) | Complete implementation     |
 | `/deep:start-research-loop` | Iterative deep research workflow | Research findings and state |
-| `/spec_kit:implement` | Execute pre-planned work              | Implementation from plan    |
-| `/spec_kit:plan :with-phases` | Phase decomposition (integrated into plan/complete) | Parent and child spec packs |
-| `/spec_kit:plan`      | Planning phase only                   | Plan without implementation |
-| `/spec_kit:resume`    | Resume previous session               | Continued work              |
+| `/speckit:implement` | Execute pre-planned work              | Implementation from plan    |
+| `/speckit:plan :with-phases` | Phase decomposition (integrated into plan/complete) | Parent and child spec packs |
+| `/speckit:plan`      | Planning phase only                   | Plan without implementation |
+| `/speckit:resume`    | Resume previous session               | Continued work              |
 
 #### Customizing Commands for Project Type
 
 **Front-end projects - essential commands:**
 - `/memory:save` - Preserve design decisions
-- `/spec_kit:*` - Documentation workflow
+- `/speckit:*` - Documentation workflow
 - `/create:*` - Asset creation
 
 **Backend projects - essential commands:**
 - `/memory:*` - All memory commands for research
 - `/search:*` - Code discovery
-- `/spec_kit:*` - Full workflow
+- `/speckit:*` - Full workflow
 
 Remove commands by not referencing them in your AGENTS.md. Commands are defined in `.opencode/commands/`.
 
@@ -907,10 +907,10 @@ User Message
 /memory:search auth implementation
 
 # Start a new feature with full workflow
-/spec_kit:complete
+/speckit:complete
 
 # Resume work from yesterday
-/spec_kit:resume
+/speckit:resume
 
 # Find code related to payments
 /search:code payment processing
@@ -975,7 +975,7 @@ User Message
 |                       | Yes    | code_mode             | External tool access        |
 | **MCP - Remove**      | No     | sequential_thinking   | Overkill for frontend       |
 | **Commands - Keep**   | Yes    | /memory:*             | Context preservation        |
-|                       | Yes    | /spec_kit:*           | Documentation workflow      |
+|                       | Yes    | /speckit:*           | Documentation workflow      |
 | **Commands - Remove** | No     | /search:*             | Using simple grep instead   |
 
 ---
@@ -1202,7 +1202,7 @@ Update AGENTS.md to reference only the commands that exist in your `.opencode/co
 | ----------------- | ------ | --------------------------------------------------------------------------------------------------------------------------- |
 | **Skills**        | 15     | mcp-chrome-devtools, mcp-coco-index, mcp-code-mode, system-spec-kit, cli-codex, cli-claude-code, cli-gemini, sk-code, sk-code-review, deep-research, sk-doc, sk-git, sk-prompt |
 | **MCP Servers**   | 3      | sequential-thinking, mk-spec-memory, code-mode                                                                             |
-| **Commands**      | 22     | /create:* (7), /memory:* (6), /spec_kit:* (8), agent_router (1)                                                             |
+| **Commands**      | 22     | /create:* (7), /memory:* (6), /speckit:* (8), agent_router (1)                                                             |
 | **Gates + Rules** | 3 + 3  | Gate 1-3 (Understanding, Skill Routing, Spec Folder) + Behavioral Rules (Memory Context Loading, Memory Save Rule, Completion Verification) |
 
 ### File Size Guidelines

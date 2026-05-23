@@ -151,7 +151,7 @@ The loop reached max-iterations rather than early convergence because the user e
 ## 10. Next Steps
 
 ```
-/spec_kit:plan "Remediate 116 P0 V2EnforcementMode type/set drift + P1 dead failure code"
+/speckit:plan "Remediate 116 P0 V2EnforcementMode type/set drift + P1 dead failure code"
 ```
 
 OR direct micro-fix without packet ceremony:

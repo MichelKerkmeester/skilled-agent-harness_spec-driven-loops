@@ -43,7 +43,7 @@ confidence: high
 finding: The standard local feature workflow has too many visible boundaries. `system-spec-kit` should add a bundled end-to-end entrypoint for the common path instead of requiring operators to compose it manually from gates, templates, and separate lifecycle commands.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/commands/spec_kit/README.txt`
+- **Target file or module:** `.opencode/commands/speckit/README.txt`
 - **Change type:** added capability
 - **Blast radius:** high
 - **Prerequisites:** define the default lifecycle contract and identify where advanced users can still break out into manual control

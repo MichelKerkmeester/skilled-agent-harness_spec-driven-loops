@@ -46,19 +46,19 @@
     ],
     "commands": [
       {
-        "path": ".opencode/commands/spec_kit/complete.md",
+        "path": ".opencode/commands/speckit/complete.md",
         "references": [
           "@debug"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/implement.md",
+        "path": ".opencode/commands/speckit/implement.md",
         "references": [
           "@debug"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/resume.md",
+        "path": ".opencode/commands/speckit/resume.md",
         "references": [
           "@debug"
         ]
@@ -66,28 +66,28 @@
     ],
     "yamlWorkflows": [
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_complete_auto.yaml",
         "references": [
           "debug",
           "@debug"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_complete_confirm.yaml",
         "references": [
           "debug",
           "@debug"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_implement_auto.yaml",
         "references": [
           "debug",
           "@debug"
         ]
       },
       {
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_implement_confirm.yaml",
         "references": [
           "debug",
           "@debug"

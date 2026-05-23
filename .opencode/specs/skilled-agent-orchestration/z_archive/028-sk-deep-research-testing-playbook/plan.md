@@ -70,7 +70,7 @@ Reference-driven documentation package with integrated root guidance and one-fil
 
 ### Key Components
 - **Source truth set**:
-  - `.opencode/commands/spec_kit/deep-research.md`
+  - `.opencode/commands/speckit/deep-research.md`
   - `.opencode/skills/sk-deep-research/SKILL.md`
   - `.opencode/skills/sk-deep-research/README.md`
   - `.opencode/skills/sk-deep-research/references/*.md`
@@ -164,7 +164,7 @@ Live deep-research docs are audited for shipped behavior and guardrails -> stabl
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `.opencode/commands/spec_kit/deep-research.md` | Internal | Available | Missing command truth would block entry-point scenarios |
+| `.opencode/commands/speckit/deep-research.md` | Internal | Available | Missing command truth would block entry-point scenarios |
 | `.opencode/skills/sk-deep-research/` docs and assets | Internal | Available | Missing source anchors would block most scenarios |
 | `.codex/agents/deep-research.toml` | Internal | Available | Canonical runtime-agent reference would be incomplete |
 | `sk-doc` playbook creation guide and template bundle | Internal | Available | Package could drift from the shipped contract |

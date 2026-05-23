@@ -18,7 +18,7 @@ I compared Get It Right's check gate with `system-spec-kit`'s validator and impl
 - [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:94-99] The internal spec validator is oriented around rules such as `FILE_EXISTS`, `ANCHORS_VALID`, `PHASE_LINKS`, and `SPEC_DOC_INTEGRITY`.
 - [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:315-319] Several of those validator rules are explicitly classified as doc-structure errors or warnings.
 - [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:531-616] Validation can recurse through child phases and aggregate phase results, which is valuable for packet health but orthogonal to whether one code attempt is correct.
-- [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:447-477] Internal completion already uses validation as an end-of-workflow requirement alongside `implementation-summary.md` and checklist evidence.
+- [SOURCE: .opencode/commands/speckit/assets/speckit_implement_auto.yaml:447-477] Internal completion already uses validation as an end-of-workflow requirement alongside `implementation-summary.md` and checklist evidence.
 
 ## Analysis
 The current validator is useful, but it validates documentation contracts, template integrity, and packet structure. Those are not the main questions a retry controller needs to answer between attempts. Between attempts, the highest-value signals are objective code outcomes: did the change compile, pass tests, and satisfy stack-specific checks? The external repo is much stricter about that separation than `system-spec-kit` currently is. The result is a cleaner loop: attempt control reacts to code truth, while packet validation remains a durable completion concern.

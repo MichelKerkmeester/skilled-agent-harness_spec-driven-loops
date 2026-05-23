@@ -62,7 +62,7 @@ This is **Phase 3** of the adaptive-ranking packet.
 | **Priority** | P1 |
 | **Status** | Complete |
 | **Created** | 2026-03-31 |
-| **Branch** | `system-speckit/023-esm-module-compliance` |
+| **Branch** | `system-spec-kit/023-esm-module-compliance` |
 <!-- /ANCHOR:metadata -->
 
 ---

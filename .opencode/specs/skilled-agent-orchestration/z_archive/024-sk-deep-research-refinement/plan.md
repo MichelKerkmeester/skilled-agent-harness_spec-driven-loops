@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: sk-deep-research Refinement [skilled-agent-orchestration/024-sk-deep-research-refinement/plan]"
-description: "This plan uses the existing /spec_kit:deep-research:auto system to run autonomous research rounds that investigate improvements to itself. The research targets 3 external refere..."
+description: "This plan uses the existing /speckit:deep-research:auto system to run autonomous research rounds that investigate improvements to itself. The research targets 3 external refere..."
 trigger_phrases:
   - "implementation"
   - "plan"
@@ -41,7 +41,7 @@ _memory:
 
 ### Overview
 
-This plan uses the existing `/spec_kit:deep-research:auto` system to run autonomous research rounds that investigate improvements to itself. The research targets 3 external reference repos (Artificial-General-Research, pi-autoresearch, autoresearch-opencode), validates 18 existing v2 proposals from spec 023, discovers new improvements, and produces implementation-ready v3 proposals with file-level specificity. The output is a refined improvement document, NOT code changes.
+This plan uses the existing `/speckit:deep-research:auto` system to run autonomous research rounds that investigate improvements to itself. The research targets 3 external reference repos (Artificial-General-Research, pi-autoresearch, autoresearch-opencode), validates 18 existing v2 proposals from spec 023, discovers new improvements, and produces implementation-ready v3 proposals with file-level specificity. The output is a refined improvement document, NOT code changes.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -74,7 +74,7 @@ This plan uses the existing `/spec_kit:deep-research:auto` system to run autonom
 Meta-research loop: the deep-research system investigates itself using its own protocols.
 
 ### Key Components
-- **Orchestrator**: `/spec_kit:deep-research:auto` command + auto YAML workflow
+- **Orchestrator**: `/speckit:deep-research:auto` command + auto YAML workflow
 - **Research Agent**: `@deep-research` LEAF agent (dispatched per iteration)
 - **State Files**: config.json, state.jsonl, strategy.md (in `scratch/`)
 - **External Sources**: 3 GitHub repos accessed via WebFetch
@@ -82,7 +82,7 @@ Meta-research loop: the deep-research system investigates itself using its own p
 
 ### Data Flow
 ```
-/spec_kit:deep-research:auto
+/speckit:deep-research:auto
   → Init: Create config.json + state.jsonl + strategy.md
   → Loop: Dispatch @deep-research per iteration
     → Agent reads state → focuses on research question
@@ -101,7 +101,7 @@ Meta-research loop: the deep-research system investigates itself using its own p
 
 ### Phase 1: Research Preparation (Pre-dispatch setup)
 
-Before invoking `/spec_kit:deep-research:auto`, prepare the research context:
+Before invoking `/speckit:deep-research:auto`, prepare the research context:
 
 - [ ] **1.1** Define research questions (see §4.1 below)
 - [ ] **1.2** Create research-ideas.md with seeded directions from spec 023 proposals
@@ -110,9 +110,9 @@ Before invoking `/spec_kit:deep-research:auto`, prepare the research context:
 
 ### Phase 2: Deep Research Execution (Autonomous)
 
-Invoke `/spec_kit:deep-research:auto` with the prepared context:
+Invoke `/speckit:deep-research:auto` with the prepared context:
 
-- [ ] **2.1** Launch: `/spec_kit:deep-research:auto "Investigate improvements to sk-deep-research system"` targeting this spec folder
+- [ ] **2.1** Launch: `/speckit:deep-research:auto "Investigate improvements to sk-deep-research system"` targeting this spec folder
 - [ ] **2.2** Monitor convergence (expected 8-15 iterations)
 - [ ] **2.3** Verify research/research.md produced with synthesized findings
 

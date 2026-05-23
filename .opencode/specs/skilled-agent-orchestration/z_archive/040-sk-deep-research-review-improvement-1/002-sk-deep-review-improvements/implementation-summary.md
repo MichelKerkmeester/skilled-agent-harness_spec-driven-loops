@@ -68,8 +68,8 @@ This phase folder now follows the active Level 1 Spec Kit template and records c
 | `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md` | Modified | Mark reducer-owned sections and review boundaries |
 | `.opencode/skills/sk-deep-review/assets/deep_review_dashboard.md` | Modified | Carry machine-owned metrics and readiness data |
 | `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml` | Modified | Establish the canonical review-mode contract and output paths |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modified | Carry migration logic, lifecycle branches, reducer refresh, and synthesis guidance |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modified | Mirror the same contract for confirm mode |
+| `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml` | Modified | Carry migration logic, lifecycle branches, reducer refresh, and synthesis guidance |
+| `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml` | Modified | Mirror the same contract for confirm mode |
 | `.opencode/agents/deep-review.md` | Modified | Align the OpenCode runtime mirror to the canonical review packet contract |
 | `.claude/agents/deep-review.md` | Modified | Align the Claude runtime mirror to the canonical review packet contract |
 | `.gemini/agents/deep-review.md` | Modified | Align the Gemini runtime mirror to the canonical review packet contract |
@@ -109,8 +109,8 @@ The delivery stayed inside the phase's named review-contract surfaces. First the
 |-------|--------|
 | `npx vitest run --config ../mcp_server/vitest.config.ts tests/deep-review-contract-parity.vitest.ts tests/deep-review-reducer-schema.vitest.ts` | PASS |
 | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/002-sk-deep-review-improvements --strict` | PASS |
-| `rg -n "deep-research-config.json|deep-research-state.jsonl|\\.deep-research-pause|review/deep-research" .opencode/skills/sk-deep-review .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | PASS with expected hits limited to the intentional scratch migration path in the two workflow YAML assets |
-| `git diff --check -- .opencode/skills/sk-deep-review .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml .opencode/agents/deep-review.md .claude/agents/deep-review.md .gemini/agents/deep-review.md .codex/agents/deep-review.toml .opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts .opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts .opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/002-sk-deep-review-improvements` | PASS |
+| `rg -n "deep-research-config.json|deep-research-state.jsonl|\\.deep-research-pause|review/deep-research" .opencode/skills/sk-deep-review .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml` | PASS with expected hits limited to the intentional scratch migration path in the two workflow YAML assets |
+| `git diff --check -- .opencode/skills/sk-deep-review .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml .opencode/agents/deep-review.md .claude/agents/deep-review.md .gemini/agents/deep-review.md .codex/agents/deep-review.toml .opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts .opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts .opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/002-sk-deep-review-improvements` | PASS |
 <!-- /ANCHOR:verification -->
 
 ---

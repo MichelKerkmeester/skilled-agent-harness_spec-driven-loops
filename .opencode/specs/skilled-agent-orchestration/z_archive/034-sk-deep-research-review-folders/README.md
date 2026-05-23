@@ -26,7 +26,7 @@ This packet now records the implemented review-mode folder migration for `sk-dee
 - Review-mode assets, references, command docs, SKILL docs, and playbooks were synchronized to the same packet layout.
 - Legacy scratch-based review sessions now have an explicit scratch-to-review migration path for approved review artifacts.
 - Shared deep-research command workflows now accept both `specs/` and `.opencode/specs/` alias roots for spec-folder validation without changing research-mode scratch storage.
-- The `.agents/commands/spec_kit/deep-research.toml` wrapper now exposes the review-mode suffixes as part of its public metadata.
+- The `.agents/commands/speckit/deep-research.toml` wrapper now exposes the review-mode suffixes as part of its public metadata.
 
 ## Implementation Boundary
 

@@ -16,7 +16,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml"
+      - ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-opus-4-7-2026-05-07"
@@ -63,10 +63,10 @@ Extended the deep-loop executor system to recognize `cli-opencode` as a 5th supp
 | `mcp_server/lib/deep-loop/executor-config.ts:7` | Modified | Append cli-opencode to EXECUTOR_KINDS |
 | `mcp_server/lib/deep-loop/executor-config.ts:32-41` | Modified | Add cli-opencode allowed-fields entry |
 | `mcp_server/dist/lib/deep-loop/executor-config.js` | Regenerated | dist counterpart |
-| `commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modified | Insert if_cli_opencode |
-| `commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modified | Insert if_cli_opencode |
-| `commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modified | Insert if_cli_opencode |
-| `commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modified | Insert if_cli_opencode |
+| `commands/speckit/assets/speckit_deep-review_auto.yaml` | Modified | Insert if_cli_opencode |
+| `commands/speckit/assets/speckit_deep-review_confirm.yaml` | Modified | Insert if_cli_opencode |
+| `commands/speckit/assets/speckit_deep-research_auto.yaml` | Modified | Insert if_cli_opencode |
+| `commands/speckit/assets/speckit_deep-research_confirm.yaml` | Modified | Insert if_cli_opencode |
 <!-- /ANCHOR:what-built -->
 
 ---

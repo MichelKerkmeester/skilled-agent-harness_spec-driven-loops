@@ -41,7 +41,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Audit `.opencode/commands/spec_kit/assets/*.yaml` as the style baseline
+- [x] T001 Audit `.opencode/commands/speckit/assets/*.yaml` as the style baseline
 - [x] T002 Inspect the create asset suite for missing shared top-level sections
 - [x] T003 Create the new `027-cmd-create-yaml-refinement` spec folder
 <!-- /ANCHOR:phase-1 -->

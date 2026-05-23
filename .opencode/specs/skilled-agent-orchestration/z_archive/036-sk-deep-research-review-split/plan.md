@@ -89,7 +89,7 @@ Documentation and runtime-wrapper split. One conceptual capability becomes two e
 
 User asks for iterative review
 → skill advisor matches review keywords
-→ runtime wrapper resolves `/spec_kit:deep-review`
+→ runtime wrapper resolves `/speckit:deep-review`
 → `sk-deep-review` references and assets load
 
 User asks for research

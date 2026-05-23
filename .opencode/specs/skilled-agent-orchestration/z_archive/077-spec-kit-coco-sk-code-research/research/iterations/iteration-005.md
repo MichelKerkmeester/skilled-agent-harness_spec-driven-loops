@@ -52,7 +52,7 @@ Concrete target: decide whether `manual_testing_playbook/**` should be indexed b
 - Q4: Still open for MCP `search` parity on the same sk-code queries and for a regression test around root-anchored directory ignores.
 - Q5: Still open for detailed sk-code OpenCode reference/assets staleness and coverage gaps.
 - Q6: Still open for `STACK_FOLDERS` and resource_map drift.
-- Q7: Still open for live `/spec_kit:complete` or spec-folder write routing behavior across sk-code and system-spec-kit.
+- Q7: Still open for live `/speckit:complete` or spec-folder write routing behavior across sk-code and system-spec-kit.
 
 ## Next Focus (for iteration 6)
 Audit `sk-code` OpenCode references for staleness and coverage gaps. Start with the on-disk inventory under `references/opencode/`, compare it to `SKILL.md` language sub-detection claims and the manual testing playbook, then check whether skills/agents/commands authoring guidance is canonical or scattered across scenario files.

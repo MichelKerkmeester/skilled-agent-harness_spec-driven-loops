@@ -16,10 +16,10 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml"
+      - ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml"
+      - ".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml"
+      - ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml"
+      - ".opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-opus-4-7-2026-05-07"

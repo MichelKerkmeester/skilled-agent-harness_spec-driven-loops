@@ -131,8 +131,8 @@ Use this table as the machine-citable integration contract for caller agents, co
 | `@orchestrate` | Caller agent | May request pre/mid/post execution gate validation and consume pass/fail, score, blockers, required fixes, suggestions, revision guidance, and confidence. Review returns results only; it does not dispatch follow-up work. |
 | `@context` | Context provider | May supply a Context Package. When present, consume it and skip Layer 1 memory tools; never call `@context` from this LEAF agent. |
 | `@general` | Downstream implementer | May receive revision guidance from the caller after review. Review must not invoke, patch for, or supervise `@general`. |
-| `/spec_kit:implement` | `.opencode/commands/spec_kit/implement.md` | Command-level caller for implementation quality gates and post-change review. Include gate type, task id, artifact, score, blocking status, and confidence in output. |
-| `/spec_kit:complete` | `.opencode/commands/spec_kit/complete.md` | Command-level caller for completion validation. Include unresolved P0/P1 blockers and confidence so completion gates remain deterministic. |
+| `/speckit:implement` | `.opencode/commands/speckit/implement.md` | Command-level caller for implementation quality gates and post-change review. Include gate type, task id, artifact, score, blocking status, and confidence in output. |
+| `/speckit:complete` | `.opencode/commands/speckit/complete.md` | Command-level caller for completion validation. Include unresolved P0/P1 blockers and confidence so completion gates remain deterministic. |
 | `sk-code` | Skill baseline | Load first on every non-fast-path review. Baseline security/correctness minimums are mandatory and cannot be weakened by overlays. |
 | `sk-code-*` | Stack overlay skills | Load exactly one matching overlay after `sk-code`. Overlay style/process guidance overrides generic baseline style only for the active stack. |
 | `gh pr view` | GitHub CLI via `Bash` | Read-only PR metadata and diff context retrieval. Do not use `gh` to edit PRs, labels, branches, comments, or files from this agent. |
@@ -309,10 +309,10 @@ When invoked by orchestrator or a command workflow for quality gate validation:
 
 ### Command Caller Contract
 
-For `.opencode/commands/spec_kit/implement.md` and `.opencode/commands/spec_kit/complete.md`, include a compact machine-citable line in gate outputs:
+For `.opencode/commands/speckit/implement.md` and `.opencode/commands/speckit/complete.md`, include a compact machine-citable line in gate outputs:
 
 ```markdown
-Integration Contract: caller_surface=<@orchestrate|/spec_kit:implement|/spec_kit:complete|not delegated>; artifact=<path>; gate_type=<pre_execution|mid_execution|post_execution>; threshold=<number>; decision=<PASS|FAIL|PARTIAL|BLOCKED>
+Integration Contract: caller_surface=<@orchestrate|/speckit:implement|/speckit:complete|not delegated>; artifact=<path>; gate_type=<pre_execution|mid_execution|post_execution>; threshold=<number>; decision=<PASS|FAIL|PARTIAL|BLOCKED>
 ```
 
 ### Circuit Breaker Interaction
@@ -379,7 +379,7 @@ If any footer item cannot be completed, do not emit an approval. Emit a PARTIAL 
 - Establish and state the scope lock before evaluating findings.
 - Load `sk-code` baseline first, then exactly one overlay skill and apply precedence rules.
 - Read every file you claim to review before scoring it.
-- Name the caller surface when delegated by `@orchestrate`, `/spec_kit:implement`, or `/spec_kit:complete`.
+- Name the caller surface when delegated by `@orchestrate`, `/speckit:implement`, or `/speckit:complete`.
 - Treat Context Packages from `@context` or `@orchestrate` as inputs to consume, not as permission to dispatch sub-agents.
 - Use MCP memory tools only under the Section 2 and Section 3 conditions.
 - Perform manual security review on security-sensitive code (auth, input handling, data exposure).
@@ -581,8 +581,8 @@ See Section 3 for available tools and skills.
 
 | Command | Path | Purpose |
 | --- | --- | --- |
-| `/spec_kit:implement` | `.opencode/commands/spec_kit/implement.md` | Implementation workflow gate caller |
-| `/spec_kit:complete` | `.opencode/commands/spec_kit/complete.md` | Completion workflow gate caller |
+| `/speckit:implement` | `.opencode/commands/speckit/implement.md` | Implementation workflow gate caller |
+| `/speckit:complete` | `.opencode/commands/speckit/complete.md` | Completion workflow gate caller |
 
 ### MCP Tools
 

@@ -103,11 +103,11 @@ Make minimal targeted changes."
 # BATCH 4: Workflow YAMLs + agent definitions + config/reference docs
 run_fix "4-workflows-and-docs" "Fix workflow YAML issues, agent definitions, and reference doc accuracy:
 
-1. .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml and _confirm.yaml:
+1. .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml and _confirm.yaml:
    - Add graphBlockerDetail to emitted blocked_stop payload
    - Normalize reviewDimensions once during init
 
-2. .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml and _confirm.yaml:
+2. .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml and _confirm.yaml:
    - Remove direct completed-session to synthesize routing
 
 3. .opencode/commands/improve/assets/improve_improve-agent_auto.yaml and _confirm.yaml:

@@ -120,7 +120,7 @@ Template compliance shim anchor for questions.
 | **Priority** | P0 |
 | **Status** | Draft |
 | **Created** | 2026-04-01 |
-| **Branch** | `system-speckit/024-compact-code-graph` |
+| **Branch** | `system-spec-kit/024-compact-code-graph` |
 
 ---
 

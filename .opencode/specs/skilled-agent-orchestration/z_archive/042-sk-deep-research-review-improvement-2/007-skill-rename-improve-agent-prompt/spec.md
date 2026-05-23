@@ -45,7 +45,7 @@ This phase closes the documentation gap around a skill-folder rename that had al
 | **Priority** | P1 |
 | **Status** | Complete |
 | **Created** | 2026-04-11 |
-| **Branch** | `system-speckit/026-graph-and-context-optimization` |
+| **Branch** | `system-spec-kit/026-graph-and-context-optimization` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Plan** | `../plan.md` |
 | **Phase** | 7 of 8 |

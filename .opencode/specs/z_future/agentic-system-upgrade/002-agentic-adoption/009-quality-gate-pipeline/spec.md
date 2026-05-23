@@ -67,7 +67,7 @@ Turn the research synthesis for 009 quality gate pipeline into one follow-on imp
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml` | Modify | Primary affected surface for the adoption work |
+| `.opencode/commands/speckit/assets/speckit_implement_auto.yaml` | Modify | Primary affected surface for the adoption work |
 | `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | Modify | Primary affected surface for the adoption work |
 | `.opencode/skills/sk-git/references/finish_workflows.md` | Modify | Primary affected surface for the adoption work |
 | `.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts` | Modify | Primary affected surface for the adoption work |
@@ -82,7 +82,7 @@ Turn the research synthesis for 009 quality gate pipeline into one follow-on imp
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Keep the current Public authorities authoritative | The packet does not recommend replacing `/spec_kit:*`, the current agent stack, Spec Kit Memory, CocoIndex, or code-graph |
+| REQ-001 | Keep the current Public authorities authoritative | The packet does not recommend replacing `/speckit:*`, the current agent stack, Spec Kit Memory, CocoIndex, or code-graph |
 | REQ-002 | Define the adoption as a wrapper or refactor over current surfaces | The packet maps the work to current repo files and avoids backend transplant language |
 
 ### P1 - Required (complete OR user-approved deferral)

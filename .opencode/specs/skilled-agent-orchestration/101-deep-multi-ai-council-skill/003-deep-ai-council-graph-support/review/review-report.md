@@ -10,7 +10,7 @@
 
 ## Planning Trigger
 
-`/spec_kit:plan` is required before PASS if the packet is intended to ship as complete, because active P1 findings remain.
+`/speckit:plan` is required before PASS if the packet is intended to ship as complete, because active P1 findings remain.
 
 ```json
 {

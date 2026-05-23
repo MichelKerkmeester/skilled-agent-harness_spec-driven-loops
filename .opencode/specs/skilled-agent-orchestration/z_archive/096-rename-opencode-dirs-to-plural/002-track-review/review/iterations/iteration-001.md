@@ -21,12 +21,12 @@ Correctness. Inventory pass over packets 093, 094, 095, and 096 with emphasis on
 - `.codex/config.toml:11`
 - `.gemini/settings.json:29`
 - `.claude/settings.local.json:37`
-- `.opencode/commands/spec_kit/deep-review.md:290`
-- `.opencode/commands/spec_kit/deep-research.md:36`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:56`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:56`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:67`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:62`
+- `.opencode/commands/speckit/deep-review.md:290`
+- `.opencode/commands/speckit/deep-research.md:36`
+- `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:56`
+- `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:56`
+- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:67`
+- `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:62`
 - `.opencode/skill/.advisor-state/skill-graph-generation.json:1`
 - `.opencode/install_guides/SET-UP - Opencode Agents.md:6`
 - `.opencode/install_guides/SET-UP - AGENTS.md:622`
@@ -89,23 +89,23 @@ No confirmed P0 in this inventory pass.
 #### P1-002 [P1] Canonical deep-review/deep-research command workflows point to non-existent `sk-deep-*` skill paths
 
 - Dimension: correctness
-- Evidence: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:56-64` and `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:56-64` reference `sk-deep-review` and `.opencode/skills/sk-deep-review/...`; `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:67-76` and `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:62` do the same for `sk-deep-research`.
-- Corroboration: `.opencode/commands/spec_kit/deep-review.md:290-296` and `.opencode/commands/spec_kit/deep-research.md:36` also cite `.opencode/skills/sk-deep-review` / `.opencode/skills/sk-deep-research`, while the actual loaded skill folders are `.opencode/skills/deep-review/` and `.opencode/skills/deep-research/`.
+- Evidence: `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:56-64` and `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:56-64` reference `sk-deep-review` and `.opencode/skills/sk-deep-review/...`; `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:67-76` and `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:62` do the same for `sk-deep-research`.
+- Corroboration: `.opencode/commands/speckit/deep-review.md:290-296` and `.opencode/commands/speckit/deep-research.md:36` also cite `.opencode/skills/sk-deep-review` / `.opencode/skills/sk-deep-research`, while the actual loaded skill folders are `.opencode/skills/deep-review/` and `.opencode/skills/deep-research/`.
 - Impact: fresh command-owned deep-review/deep-research runs can fail to load templates, reducers, references, or skill metadata from the canonical YAML route. This review iteration is running from a rendered prompt pack, but the command source still contains broken path bindings.
 - Finding class: cross-consumer
 - Scope proof: both auto and confirm YAMLs for review and research contain the same stale family of paths, including template and reducer command paths.
-- Recommendation: replace `sk-deep-review` with `deep-review` and `sk-deep-research` with `deep-research` across command markdown and YAML assets, then run a dry-run init for both `/spec_kit:deep-review:auto` and `/spec_kit:deep-research:auto`.
+- Recommendation: replace `sk-deep-review` with `deep-review` and `sk-deep-research` with `deep-research` across command markdown and YAML assets, then run a dry-run init for both `/speckit:deep-review:auto` and `/speckit:deep-research:auto`.
 
 ```json
 {
   "claim": "The command-owned deep-review and deep-research workflows still reference old `sk-deep-*` skill folders that do not exist under the pluralized skill tree.",
   "evidenceRefs": [
-    ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:56",
-    ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:56",
-    ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:67",
-    ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:62",
-    ".opencode/commands/spec_kit/deep-review.md:290",
-    ".opencode/commands/spec_kit/deep-research.md:36"
+    ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:56",
+    ".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:56",
+    ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:67",
+    ".opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:62",
+    ".opencode/commands/speckit/deep-review.md:290",
+    ".opencode/commands/speckit/deep-research.md:36"
   ],
   "counterevidenceSought": "Loaded the actual skill path for this iteration and confirmed the present folder is `.opencode/skills/deep-review/`, not `.opencode/skills/sk-deep-review/`; the same naming applies to deep-research.",
   "alternativeExplanation": "A higher-level dispatcher could patch these paths before execution, but the YAML command assets themselves remain stale and are documented as the command-owned source of truth.",

@@ -3173,7 +3173,7 @@ exec
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/026-memory-database-refinement/implementation-summary.md
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/026-memory-database-refinement/graph-metadata.json
 .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/079-speckit-cognitive-memory/research/research.md
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/scratch/research-brief.md
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme/scratch/research-brief.md
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/011-skill-alignment/002-skill-review-post-022/research/deep-research-state.jsonl
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/011-skill-alignment/002-skill-review-post-022/research/deep-research-config.json
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/010-template-compliance-enforcement/research/deep-research-strategy.md

@@ -19,7 +19,7 @@ Mechanical edit packet. ~13 files touched. No new code logic, no schema changes,
 
 ### Phase 1: Patch 4 YAML workflow files (REQ-001)
 
-For each of the 4 files in `.opencode/commands/spec_kit/assets/`:
+For each of the 4 files in `.opencode/commands/speckit/assets/`:
 - `spec_kit_deep-research_auto.yaml` (line ~727)
 - `spec_kit_deep-research_confirm.yaml` (line ~659)
 - `spec_kit_deep-review_auto.yaml` (line ~791)

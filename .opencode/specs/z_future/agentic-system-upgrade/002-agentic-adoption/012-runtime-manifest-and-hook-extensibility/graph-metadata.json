@@ -40,7 +40,7 @@
     "key_files": [
       ".opencode/skills/system-spec-kit/constitutional/gate-enforcement.md",
       ".opencode/skills/system-spec-kit/references/config/hook_system.md",
-      ".opencode/commands/spec_kit/README.txt",
+      ".opencode/commands/speckit/README.txt",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -62,7 +62,7 @@
       {
         "name": "README.txt",
         "kind": "file",
-        "path": ".opencode/commands/spec_kit/README.txt",
+        "path": ".opencode/commands/speckit/README.txt",
         "source": "derived"
       },
       {

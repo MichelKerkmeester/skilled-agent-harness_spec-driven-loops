@@ -331,9 +331,9 @@ Use this skill when:
 
 ### When NOT to Use
 
-- Simple, single-question research (use direct codebase search or `/spec_kit:plan`)
-- Known-solution documentation (use `/spec_kit:plan`)
-- Implementation tasks (use `/spec_kit:implement`)
+- Simple, single-question research (use direct codebase search or `/speckit:plan`)
+- Known-solution documentation (use `/speckit:plan`)
+- Implementation tasks (use `/speckit:implement`)
 - Quick codebase searches (use `@context` or direct Grep/Glob)
 - Fewer than 3 sources needed (single-pass research suffices)
 
@@ -10460,7 +10460,7 @@ exec
 .opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:345:function createRecoveryDb(rootDir: string, fileName: string = 'context-index.sqlite'): string {
 .opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:401:      expect(database.execStatements.some((sql) => sql.includes('CREATE TABLE IF NOT EXISTS session_state'))).toBe(true);
 .opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:505:        specFolder: 'specs/022-hybrid-rag-fusion',
-.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:518:      expect(content).toContain('/spec_kit:resume specs/022-hybrid-rag-fusion');
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:518:      expect(content).toContain('/speckit:resume specs/022-hybrid-rag-fusion');
 .opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:593:      const createTableSql = database.execStatements.find((sql) => sql.includes('CREATE TABLE IF NOT EXISTS session_state'));
 .opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:885:  it('initDb creates WAL mode database', () => {
 .opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:956:    const dbPath = path.join(tempDir, 'code-graph.sqlite');

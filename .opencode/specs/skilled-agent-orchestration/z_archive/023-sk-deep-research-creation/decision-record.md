@@ -64,7 +64,7 @@ We needed a loop engine for iterative research. Two candidates: the orchestrator
 
 **What improves**:
 - Loop parameters (max iterations, thresholds) configurable in YAML without code changes
-- Consistent with existing `/spec_kit:research` command structure
+- Consistent with existing `/speckit:research` command structure
 
 **What it costs**:
 - Two YAML files (~870 LOC total). Mitigation: Follow established spec_kit_research YAML pattern
@@ -204,7 +204,7 @@ The existing @research agent includes code_mode MCP for external tool access. We
 ---
 
 <!-- ANCHOR:adr-005 -->
-## ADR-005: Separate from /spec_kit:research
+## ADR-005: Separate from /speckit:research
 
 ### Metadata
 
@@ -216,20 +216,20 @@ The existing @research agent includes code_mode MCP for external tool access. We
 
 ### Context
 
-We could either add loop mode to the existing `/spec_kit:research` command or create a separate `/spec_kit:deep-research` command.
+We could either add loop mode to the existing `/speckit:research` command or create a separate `/speckit:deep-research` command.
 
 ### Decision
 
-**We chose**: Create a separate `/spec_kit:deep-research` namespace.
+**We chose**: Create a separate `/speckit:deep-research` namespace.
 
-**How it works**: `/spec_kit:deep-research` is a new command with its own YAML workflows, independent from `/spec_kit:research`. They serve different use cases (iterative vs single-pass).
+**How it works**: `/speckit:deep-research` is a new command with its own YAML workflows, independent from `/speckit:research`. They serve different use cases (iterative vs single-pass).
 
 ### Alternatives Considered
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
 | **Separate namespace** | Clean separation, no risk to existing workflow | New command to learn | 8/10 |
-| Enhance /spec_kit:research | Single entry point | Conflates two distinct use cases, bloats existing YAML | 4/10 |
+| Enhance /speckit:research | Single entry point | Conflates two distinct use cases, bloats existing YAML | 4/10 |
 
 **Why this one**: Single-pass and iterative research have fundamentally different state management, convergence detection, and loop lifecycle needs. Merging them would complicate both.
 <!-- /ANCHOR:adr-005 -->

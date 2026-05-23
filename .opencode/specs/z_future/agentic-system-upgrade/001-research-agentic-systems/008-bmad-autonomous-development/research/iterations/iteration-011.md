@@ -12,7 +12,7 @@ Re-read BAD's setup, config, and runtime override surfaces, then compared them t
 ## Evidence
 - BAD effectively exposes one setup action (`/bad setup`), one reconfiguration action (`/bad configure`), and one runtime surface (`/bad ...KEY=VALUE...`). Its docs keep install-time configuration and runtime overrides in the same mental model. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/README.md:41-78] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/docs/index.md:29-46]
 - BAD setup collects universal settings once, then branches into harness-specific settings based on detected runtime directories. It also echoes the resolved config back to the user before execution starts. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/skills/bad/assets/module-setup.md:21-38] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/skills/bad/assets/module-setup.md:51-93] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/skills/bad/assets/module-setup.md:145-149]
-- `system-spec-kit` currently exposes 8 `spec_kit` commands, 4 `memory` commands, per-command YAML workflow assets, and a large environment-variable surface for retrieval/runtime tuning. [SOURCE: .opencode/commands/spec_kit/README.txt:43-111] [SOURCE: .opencode/commands/memory/README.txt:38-131] [SOURCE: .opencode/skills/system-spec-kit/references/config/environment_variables.md:21-39] [SOURCE: .opencode/skills/system-spec-kit/references/config/environment_variables.md:164-219]
+- `system-spec-kit` currently exposes 8 `spec_kit` commands, 4 `memory` commands, per-command YAML workflow assets, and a large environment-variable surface for retrieval/runtime tuning. [SOURCE: .opencode/commands/speckit/README.txt:43-111] [SOURCE: .opencode/commands/memory/README.txt:38-131] [SOURCE: .opencode/skills/system-spec-kit/references/config/environment_variables.md:21-39] [SOURCE: .opencode/skills/system-spec-kit/references/config/environment_variables.md:164-219]
 
 ## Analysis
 BAD is narrower in scope, so some of its simplicity comes from doing less. Even so, its operator experience is cleaner: users learn one setup verb, one runtime verb, and one override mechanism. `system-spec-kit` currently asks users to understand command families, YAML-backed workflow modes, and a separate env-flag layer. That power is valuable, but the entry cost is high for long autonomous runs.
@@ -34,7 +34,7 @@ confidence: high
 finding: BAD's strongest UX lesson is not "fewer capabilities"; it is "one obvious setup path." `system-spec-kit` should keep its richer command set, but it would benefit from a thinner operator-facing configuration/profile layer for autonomous workflows.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/commands/spec_kit/README.txt`
+- **Target file or module:** `.opencode/commands/speckit/README.txt`
 - **Change type:** modified existing
 - **Blast radius:** large
 - **Prerequisites:** define what counts as a shared autonomous-workflow profile versus command-specific override

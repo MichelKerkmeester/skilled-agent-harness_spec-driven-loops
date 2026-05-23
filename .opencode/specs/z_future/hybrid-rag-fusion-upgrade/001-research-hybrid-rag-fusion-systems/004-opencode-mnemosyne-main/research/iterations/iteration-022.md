@@ -410,9 +410,9 @@ Use this skill when:
 
 ### When NOT to Use
 
-- Simple, single-question research (use direct codebase search or `/spec_kit:plan`)
-- Known-solution documentation (use `/spec_kit:plan`)
-- Implementation tasks (use `/spec_kit:implement`)
+- Simple, single-question research (use direct codebase search or `/speckit:plan`)
+- Known-solution documentation (use `/speckit:plan`)
+- Implementation tasks (use `/speckit:implement`)
 - Quick codebase searches (use `@context` or direct Grep/Glob)
 - Fewer than 3 sources needed (single-pass research suffices)
 
@@ -7581,9 +7581,9 @@ exec
     32	
     33	### When NOT to Use
     34	
-    35	- Simple, single-question research (use direct codebase search or `/spec_kit:plan`)
-    36	- Known-solution documentation (use `/spec_kit:plan`)
-    37	- Implementation tasks (use `/spec_kit:implement`)
+    35	- Simple, single-question research (use direct codebase search or `/speckit:plan`)
+    36	- Known-solution documentation (use `/speckit:plan`)
+    37	- Implementation tasks (use `/speckit:implement`)
     38	- Quick codebase searches (use `@context` or direct Grep/Glob)
     39	- Fewer than 3 sources needed (single-pass research suffices)
     40	

@@ -26,7 +26,7 @@ contextType: "research"
 - Replace level-first operator classification with workflow profiles and starter-packet scaffolding that attach artifacts to actual workflow intent. [SOURCE: external/library/methodologies/spec-kit/spec-kit-orchestrator.js:114-170] [SOURCE: .opencode/skills/system-spec-kit/references/templates/level_specifications.md:48-73]
 - Normalize multi-runtime resolution through a runtime manifest and reduce mirror drift across agent/runtime surfaces. [SOURCE: external/plugins/babysitter-opencode/plugin.json:2-14] [SOURCE: AGENTS.md:277-288] [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:66-74]
 - Collapse deep research and deep review onto one iteration engine before adding more lifecycle features. [SOURCE: external/library/methodologies/state-machine-orchestration.js:159-235] [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:212-380] [SOURCE: .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:294-390]
-- Merge public lifecycle, continuity, and skill surfaces so operators navigate fewer top-level concepts. [SOURCE: AGENTS.md:138-155] [SOURCE: .opencode/commands/spec_kit/resume.md:29-41] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/docs/user-guide/reference/slash-commands.md:11-31]
+- Merge public lifecycle, continuity, and skill surfaces so operators navigate fewer top-level concepts. [SOURCE: AGENTS.md:138-155] [SOURCE: .opencode/commands/speckit/resume.md:29-41] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/docs/user-guide/reference/slash-commands.md:11-31]
 - Keep the deep-loop evidence layer, but generate more operator guidance from runtime-owned policy instead of hand-maintained instruction sprawl. [SOURCE: .opencode/agents/deep-research.md:50-60] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/CLAUDE.md:237-242]
 
 ## 2. External Repo Map
@@ -108,13 +108,13 @@ Babysitter
 
 ### Finding F-008 — Prototype A Headless Internal Runner
 - Origin iteration: `iteration-009.md`
-- system-spec-kit target: `.opencode/skills/system-spec-kit/scripts/`, `.opencode/commands/spec_kit/`
+- system-spec-kit target: `.opencode/skills/system-spec-kit/scripts/`, `.opencode/commands/speckit/`
 - Priority: should-have
 - Description: Babysitter treats unattended execution as a native runtime capability. `system-spec-kit` should consider a small internal runner for deep research and packet validation so overnight or CI-style flows share the same workflow contract as interactive runs. [SOURCE: external/README.md:148-164] [SOURCE: external/packages/sdk/src/harness/discovery.ts:209-237] [SOURCE: .opencode/skills/system-spec-kit/scripts/README.md:90-118]
 
 ### Finding F-009 — Expand To Lifecycle Hooks, Not Just Response/Mutation Hooks
 - Origin iteration: `iteration-010.md`
-- system-spec-kit target: `.opencode/skills/system-spec-kit/mcp_server/hooks/`, `.opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts`, `.opencode/commands/spec_kit/assets/*.yaml`
+- system-spec-kit target: `.opencode/skills/system-spec-kit/mcp_server/hooks/`, `.opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts`, `.opencode/commands/speckit/assets/*.yaml`
 - Priority: should-have
 - Description: Babysitter emits first-class lifecycle hooks from runtime execution. If `system-spec-kit` leans further into deterministic workflow control, it should expose lifecycle hooks for init, iteration, approval, convergence, synthesis, and save, not only memory and mutation cleanup hooks. [SOURCE: external/packages/sdk/src/runtime/createRun.ts:73-94] [SOURCE: external/packages/sdk/src/runtime/orchestrateIteration.ts:57-68] [SOURCE: external/packages/sdk/src/hooks/types.ts:7-22] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/index.ts:4-25]
 
@@ -128,7 +128,7 @@ Babysitter
 
 ### Finding F-011 — Turn Gates Into Persistent Runtime Policy
 - Origin iteration: `iteration-012.md`
-- system-spec-kit target: `AGENTS.md`, `.opencode/skills/system-spec-kit/constitutional/gate-enforcement.md`, `.opencode/commands/spec_kit/`
+- system-spec-kit target: `AGENTS.md`, `.opencode/skills/system-spec-kit/constitutional/gate-enforcement.md`, `.opencode/commands/speckit/`
 - Priority: must-have
 - Description: Babysitter's UX suggests `system-spec-kit` should simplify Gate 1/2/3 into project-scoped policy plus runtime checkpoints. Capture defaults once, then enforce approvals and stop conditions during execution instead of making turn-zero questioning the primary control plane. [SOURCE: external/README.md:182-239] [SOURCE: external/README.md:319-376] [SOURCE: AGENTS.md:165-229]
 
@@ -146,7 +146,7 @@ Babysitter
 
 ### Finding F-014 — Shrink Universal Validation Into Workflow-Owned Checks
 - Origin iteration: `iteration-015.md`
-- system-spec-kit target: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`, `.opencode/skills/system-spec-kit/scripts/spec/create.sh`, `.opencode/commands/spec_kit/assets/`
+- system-spec-kit target: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`, `.opencode/skills/system-spec-kit/scripts/spec/create.sh`, `.opencode/commands/speckit/assets/`
 - Priority: should-have
 - Description: Babysitter's processes validate readiness inside the workflow phase that knows what "ready" means. `system-spec-kit` should keep a thin global structural validator, then move workflow-specific quality rules into command-owned gate logic. [SOURCE: external/library/methodologies/spec-kit/spec-kit-orchestrator.js:98-108] [SOURCE: external/library/methodologies/state-machine-orchestration.js:134-156] [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:87-96] [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/create.sh:200-244]
 
@@ -164,7 +164,7 @@ Babysitter
 
 ### Finding F-017 — Add Deterministic Workflow Simulation Tests
 - Origin iteration: `iteration-018.md`
-- system-spec-kit target: `.opencode/skills/system-spec-kit/scripts/tests/`, `.opencode/commands/spec_kit/assets/`
+- system-spec-kit target: `.opencode/skills/system-spec-kit/scripts/tests/`, `.opencode/commands/speckit/assets/`
 - Priority: should-have
 - Description: Babysitter's tests show that deterministic replay, interruption/resume, and state-repair behavior deserve first-class runtime tests. `system-spec-kit` should add seeded workflow simulation tests alongside its existing schema and parity coverage. [SOURCE: external/packages/sdk/src/runtime/__tests__/deterministicHarness.test.ts:26-82] [SOURCE: external/packages/sdk/src/runtime/replay/__tests__/stateCache.test.ts:35-156] [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts:225-258]
 
@@ -178,13 +178,13 @@ Babysitter
 
 ### Finding F-019 — Merge Lifecycle Entry Commands Into One Canonical Surface
 - Origin iteration: `iteration-021.md`
-- system-spec-kit target: `.opencode/commands/spec_kit/plan.md`, `.opencode/commands/spec_kit/implement.md`, `.opencode/commands/spec_kit/complete.md`, `.opencode/commands/spec_kit/assets/`
+- system-spec-kit target: `.opencode/commands/speckit/plan.md`, `.opencode/commands/speckit/implement.md`, `.opencode/commands/speckit/complete.md`, `.opencode/commands/speckit/assets/`
 - Priority: must-have
-- Description: `system-spec-kit` should merge its public planning, implementation, and completion entry points into one canonical lifecycle surface with internal phase controls. The current three-command split duplicates setup and increases operator friction. [SOURCE: .opencode/commands/spec_kit/plan.md:31-45] [SOURCE: .opencode/commands/spec_kit/implement.md:77-125] [SOURCE: .opencode/commands/spec_kit/complete.md:81-150] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/packages/sdk/src/cli/commands/harnessCreateRun.ts:113-141]
+- Description: `system-spec-kit` should merge its public planning, implementation, and completion entry points into one canonical lifecycle surface with internal phase controls. The current three-command split duplicates setup and increases operator friction. [SOURCE: .opencode/commands/speckit/plan.md:31-45] [SOURCE: .opencode/commands/speckit/implement.md:77-125] [SOURCE: .opencode/commands/speckit/complete.md:81-150] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/packages/sdk/src/cli/commands/harnessCreateRun.ts:113-141]
 
 ### Finding F-020 — Fold Routine Memory Behavior Into The Lifecycle Surface
 - Origin iteration: `iteration-022.md`
-- system-spec-kit target: `.opencode/commands/spec_kit/`, `.opencode/commands/memory/`, `.opencode/skills/system-spec-kit/`
+- system-spec-kit target: `.opencode/commands/speckit/`, `.opencode/commands/memory/`, `.opencode/skills/system-spec-kit/`
 - Priority: should-have
 - Description: ordinary memory capture and recall should feel like part of the main workflow, not like a parallel command family. Keep explicit `/memory:*` surfaces for advanced admin and inspection work, but integrate routine memory behavior into lifecycle flows. [SOURCE: .opencode/commands/memory/save.md:1-29] [SOURCE: .opencode/commands/memory/search.md:1-34] [SOURCE: AGENTS.md:138-155]
 
@@ -196,19 +196,19 @@ Babysitter
 
 ### Finding F-022 — Merge `@context-prime` Into The Continuity Stack
 - Origin iteration: `iteration-024.md`
-- system-spec-kit target: `.opencode/agents/context-prime.md`, `.opencode/agents/context.md`, `.opencode/commands/spec_kit/resume.md`
+- system-spec-kit target: `.opencode/agents/context-prime.md`, `.opencode/agents/context.md`, `.opencode/commands/speckit/resume.md`
 - Priority: should-have
-- Description: bootstrap and deep retrieval should be modes of one continuity system instead of separate public concepts. Keep the lightweight fast path, but stop presenting `@context-prime` as its own operator-facing product. [SOURCE: .opencode/agents/context-prime.md:22-45] [SOURCE: .opencode/agents/context.md:25-53] [SOURCE: .opencode/commands/spec_kit/resume.md:29-41]
+- Description: bootstrap and deep retrieval should be modes of one continuity system instead of separate public concepts. Keep the lightweight fast path, but stop presenting `@context-prime` as its own operator-facing product. [SOURCE: .opencode/agents/context-prime.md:22-45] [SOURCE: .opencode/agents/context.md:25-53] [SOURCE: .opencode/commands/speckit/resume.md:29-41]
 
 ### Finding F-023 — Merge Handover Into The Same Continuity Surface
 - Origin iteration: `iteration-026.md`
-- system-spec-kit target: `.opencode/commands/spec_kit/resume.md`, `.opencode/commands/spec_kit/handover.md`, `.opencode/agents/context-prime.md`, `.opencode/agents/handover.md`
+- system-spec-kit target: `.opencode/commands/speckit/resume.md`, `.opencode/commands/speckit/handover.md`, `.opencode/agents/context-prime.md`, `.opencode/agents/handover.md`
 - Priority: should-have
-- Description: handover artifacts should remain available, but they should be emitted from the continuity stack rather than from a separate top-level command and agent family. [SOURCE: .opencode/commands/spec_kit/resume.md:73-141] [SOURCE: .opencode/commands/spec_kit/handover.md:34-48] [SOURCE: .opencode/agents/handover.md:40-47] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/plugins/babysitter-opencode/commands/resume.md:2-8]
+- Description: handover artifacts should remain available, but they should be emitted from the continuity stack rather than from a separate top-level command and agent family. [SOURCE: .opencode/commands/speckit/resume.md:73-141] [SOURCE: .opencode/commands/speckit/handover.md:34-48] [SOURCE: .opencode/agents/handover.md:40-47] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/plugins/babysitter-opencode/commands/resume.md:2-8]
 
 ### Finding F-024 — Consolidate The Public Skill Surface
 - Origin iteration: `iteration-027.md`
-- system-spec-kit target: `.opencode/skills/`, `AGENTS.md`, `.opencode/commands/spec_kit/`, `.opencode/skills/scripts/skill_advisor.py`
+- system-spec-kit target: `.opencode/skills/`, `AGENTS.md`, `.opencode/commands/speckit/`, `.opencode/skills/scripts/skill_advisor.py`
 - Priority: must-have
 - Description: `system-spec-kit` should expose fewer first-class public skills. Keep the existing specialized guidance as internal overlays or packaging units, but present a smaller canonical set to operators. [SOURCE: .opencode/skills/system-spec-kit/SKILL.md:10-13] [SOURCE: .opencode/skills/sk-code-opencode/SKILL.md:21-48] [SOURCE: .opencode/skills/sk-code-web/SKILL.md:21-59] [SOURCE: .opencode/skills/sk-code-full-stack/SKILL.md:21-60] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/CLAUDE.md:3-4]
 
@@ -220,13 +220,13 @@ Babysitter
 
 ### Finding F-026 — Generate Operator Guidance From Machine-Readable Policy
 - Origin iteration: `iteration-029.md`
-- system-spec-kit target: `AGENTS.md`, `.opencode/commands/spec_kit/`, `.opencode/skills/system-spec-kit/constitutional/`, YAML workflow assets, generated-instructions layer
+- system-spec-kit target: `AGENTS.md`, `.opencode/commands/speckit/`, `.opencode/skills/system-spec-kit/constitutional/`, YAML workflow assets, generated-instructions layer
 - Priority: must-have
 - Description: the system should stop hand-maintaining so much duplicated behavior prose. Define one machine-readable policy/runtime source, then generate harness-facing guidance from it. [SOURCE: AGENTS.md:159-252] [SOURCE: .opencode/skills/system-spec-kit/SKILL.md:10-13] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/CLAUDE.md:3-10] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/CLAUDE.md:237-242]
 
 ### Finding F-027 — Add Execution Profiles For Recurring Work
 - Origin iteration: `iteration-030.md`
-- system-spec-kit target: `AGENTS.md`, `.opencode/commands/spec_kit/`, `.opencode/skills/system-spec-kit/`, profile/config helpers
+- system-spec-kit target: `AGENTS.md`, `.opencode/commands/speckit/`, `.opencode/skills/system-spec-kit/`, profile/config helpers
 - Priority: nice-to-have
 - Description: after the front door is simplified, add execution profiles and stored user/project defaults so recurring work does not repeatedly pay the same gate and setup cost. [SOURCE: AGENTS.md:159-229] [SOURCE: .opencode/skills/system-spec-kit/SKILL.md:32-59] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/docs/user-guide/reference/slash-commands.md:160-201]
 
@@ -243,7 +243,7 @@ Phase 3 confirmed that `system-spec-kit`'s UX problem is mostly one of front-doo
 
 ### What to delete first
 - Separate lifecycle entry points for planning, implementation, and completion. [SOURCE: AGENTS.md:138-155]
-- Separate public continuity products for bootstrap, resume, and handover. [SOURCE: .opencode/commands/spec_kit/resume.md:29-41] [SOURCE: .opencode/commands/spec_kit/handover.md:34-48]
+- Separate public continuity products for bootstrap, resume, and handover. [SOURCE: .opencode/commands/speckit/resume.md:29-41] [SOURCE: .opencode/commands/speckit/handover.md:34-48]
 - Mandatory skill-advisor ceremony on obvious routes. [SOURCE: AGENTS.md:174-179]
 - Excessive public skill fragmentation that exposes internal taxonomy to operators. [SOURCE: .opencode/skills/sk-code-opencode/SKILL.md:21-48] [SOURCE: .opencode/skills/sk-code-web/SKILL.md:21-59] [SOURCE: .opencode/skills/sk-code-full-stack/SKILL.md:21-60]
 - Hand-maintained policy duplication across AGENTS, command prose, and supporting rule surfaces. [SOURCE: AGENTS.md:159-252]

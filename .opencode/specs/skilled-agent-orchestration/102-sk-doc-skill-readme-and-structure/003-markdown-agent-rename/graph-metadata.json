@@ -43,7 +43,7 @@
       ".codex/agents/orchestrate.toml",
       ".codex/agents/code.toml",
       ".codex/config.toml",
-      ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml",
+      ".opencode/commands/speckit/assets/speckit_implement_auto.yaml",
       ".opencode/skills/sk-doc/assets/agent_template.md",
       "resource-map.md",
       "spec.md",
@@ -95,9 +95,9 @@
         "source": "derived"
       },
       {
-        "name": "spec_kit_implement_auto.yaml",
+        "name": "speckit_implement_auto.yaml",
         "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_implement_auto.yaml",
         "source": "derived"
       },
       {

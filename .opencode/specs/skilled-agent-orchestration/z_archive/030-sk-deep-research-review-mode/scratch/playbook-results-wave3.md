@@ -88,9 +88,9 @@ The YAML (lines 553-558) defines 4 verdict levels in section 11 (Release Readine
 | PASS | No active findings |
 
 The YAML `completion.next_steps` (lines 609-612) also documents post-review workflow:
-- `"/spec_kit:plan [remediation] (if FAIL or CONDITIONAL verdict)"`
+- `"/speckit:plan [remediation] (if FAIL or CONDITIONAL verdict)"`
 - `"/create:changelog (if PASS or PASS WITH NOTES)"`
-- `"/spec_kit:deep-research:review [target] (for another review)"`
+- `"/speckit:deep-research:review [target] (for another review)"`
 - `"/memory:save {spec_folder} (manual memory save)"`
 
 ### Source 2: `quick_reference.md` — Review Verdicts table
@@ -118,7 +118,7 @@ Same issue as quick reference: CONDITIONAL includes "active P0/P1 exist" which c
 
 The README (lines 54, 296-297, 341-342) mentions:
 - Line 54: "11-section review-report.md with release readiness verdict (PASS/CONDITIONAL/FAIL)" -- only 3 verdicts listed, no PASS WITH NOTES
-- Line 296: "The verdict is FAIL and release is blocked. Run `/spec_kit:plan` to create a remediation plan"
+- Line 296: "The verdict is FAIL and release is blocked. Run `/speckit:plan` to create a remediation plan"
 - Line 342: "Post-review workflow: 4 verdicts with next-command recommendations" -- claims 4 verdicts but only (PASS/CONDITIONAL/FAIL) are explicitly named in the same README
 
 ### Source 5: `state_format.md` — Review section

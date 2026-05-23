@@ -17,10 +17,10 @@ _memory:
     next_safe_action: "Execute or verify phase work according to tasks.md"
     blockers: []
     key_files:
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml"
+      - ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml"
+      - ".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml"
+      - ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml"
+      - ".opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-opus-4-7-2026-05-07"

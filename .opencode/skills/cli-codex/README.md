@@ -143,7 +143,7 @@ The sandbox model is the second differentiator. Most CLIs offer binary permissio
 
 Session management rounds out the picture. Codex tracks conversation history and lets you resume where you left off or fork from any prior session. Forking is particularly useful when you want to explore two different implementation approaches from the same starting point without losing either thread.
 
-When Codex work feeds back into a Spec Kit packet, `/spec_kit:resume` is still the canonical recovery surface. Packet continuity rebuilds from `handover.md`, then `_memory.continuity`, then the remaining spec docs, while generated memory artifacts remain support only.
+When Codex work feeds back into a Spec Kit packet, `/speckit:resume` is still the canonical recovery surface. Packet continuity rebuilds from `handover.md`, then `_memory.continuity`, then the remaining spec docs, while generated memory artifacts remain support only.
 
 The reasoning effort system adds another dimension. GPT-5.5 supports six effort levels from `none` (fastest, cheapest) through `xhigh` (maximum depth). This means you can run quick formatting tasks at `low` effort and deep architecture reviews at `high` effort, paying only for the reasoning depth each task actually needs. The skill dispatches `medium` by default and honors explicit user phrasing like "Use gpt 5.5 high fast" as an override.
 
@@ -201,7 +201,7 @@ The reasoning effort system adds another dimension. GPT-5.5 supports six effort 
 | **Sandbox control** | Permission modes | `--yolo` flag | `--allow-all-tools` | 3 sandbox modes + approval policies |
 | **Image input** | No | No | No | `--image` flag for visual context |
 | **Session management** | Continue/resume | Memory tool | Repo memory | Resume, fork, session history |
-| **Spec Kit handoff** | Packet docs via `/spec_kit:resume` | Canonical packet continuity | Supporting artifacts only | `handover.md -> _memory.continuity -> spec docs` |
+| **Spec Kit handoff** | Packet docs via `/speckit:resume` | Canonical packet continuity | Supporting artifacts only | `handover.md -> _memory.continuity -> spec docs` |
 | **Cloud execution** | No | No | Cloud delegation | `codex cloud` subcommand |
 
 <!-- /ANCHOR:features -->

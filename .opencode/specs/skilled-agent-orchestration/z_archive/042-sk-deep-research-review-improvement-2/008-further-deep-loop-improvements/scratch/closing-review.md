@@ -47,7 +47,7 @@ None found.
 - Severity: P1
 - Dimension: contract self-compliance
 - Evidence:
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:417-450`
+  - `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:417-450`
   - `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:40-45`
   - `.opencode/skills/sk-deep-review/references/state_format.md:237-262`
   - `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:436-458`
@@ -95,20 +95,20 @@ None found.
 
 | REQ | Status | Evidence / Notes |
 |-----|--------|------------------|
-| REQ-001 | Pass | Research auto/confirm add first-class `blocked_stop` emission: `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:330-338`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:350-358`. |
-| REQ-002 | Pass | Research pause/recovery normalization is present: `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:353-361`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:373-381`. |
-| REQ-003 | Pass | Review auto/confirm add blocked-stop and normalized pause/recovery flow: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:471-518`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:471-518`. |
+| REQ-001 | Pass | Research auto/confirm add first-class `blocked_stop` emission: `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:330-338`, `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:350-358`. |
+| REQ-002 | Pass | Research pause/recovery normalization is present: `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:353-361`, `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:373-381`. |
+| REQ-003 | Pass | Review auto/confirm add blocked-stop and normalized pause/recovery flow: `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:471-518`, `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:471-518`. |
 | REQ-004 | Pass | Improve-agent auto/confirm wire journal events at start, iteration boundaries, and end: `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:132-183`, `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml` mirrors. |
 | REQ-005 | Pass | CLI example corrected in `.opencode/commands/improve/agent.md` and implementation summary documents the fix: `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md:48-50`. |
 | REQ-006 | Pass | `trade-off-detector.cjs` min data gate shipped and reducer surfaces `insufficientData`: see implementation summary `.opencode/specs/.../implementation-summary.md:49-50`, reducer `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:127-142,443-476`. |
 | REQ-007 | Pass | `benchmark-stability.cjs` min replay gate shipped and reducer surfaces `insufficientSample`: `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:144-159,443-476`. |
 | REQ-008 | Pass | ADR-001 chooses MCP handler canonical: `.opencode/specs/.../decision-record.md:36-77`. |
-| REQ-009 | Pass | Live YAML path genuinely calls graph convergence before stop vote and graph upsert after reduction in both loop families: research `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:250-266,415-433`; review `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:339-360,600-619`. |
+| REQ-009 | Pass | Live YAML path genuinely calls graph convergence before stop vote and graph upsert after reduction in both loop families: research `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:250-266,415-433`; review `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:339-360,600-619`. |
 | REQ-010 | Pass | CJS/TS parity work landed and is guarded by parity tests: `.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:1-3`, `.opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:210-252`. |
 | REQ-011 | Pass | Decision record and implementation summary both say the structural tools were provisioned on the live path: `.opencode/specs/.../decision-record.md:125-159`, `.opencode/specs/.../implementation-summary.md:59-60`. |
 | REQ-012 | **Gap** | Session scoping is still optional and incomplete. Handlers intentionally allow `all_sessions_default`, and provenance helpers only filter by `sessionId`: `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:196-199`, `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:67-73`, `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:226-273`. |
 | REQ-013 | **Gap** | Reducers expose `graphConvergenceScore`, but not as the real handler output. Research falls back to `0`; review averages raw signal values: `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:217-237`, `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:392-413`, handler output `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:188-205`. |
-| REQ-014 | **Gap** | Blocked-stop promotion exists, but review live-path graph blockers can violate the `blockedBy: string[]` contract and the strategy can keep stale blocked-stop guidance: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:417-450`, `.opencode/skills/sk-deep-review/references/state_format.md:237-262`, `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:604-623,737-753`. |
+| REQ-014 | **Gap** | Blocked-stop promotion exists, but review live-path graph blockers can violate the `blockedBy: string[]` contract and the strategy can keep stale blocked-stop guidance: `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:417-450`, `.opencode/skills/sk-deep-review/references/state_format.md:237-262`, `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:604-623,737-753`. |
 | REQ-015 | Pass | Review reducer now records `corruptionWarnings` and exits non-zero unless `--lenient`: `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:74-106,827-857,911-914`. |
 | REQ-016 | Pass | Missing anchors now throw unless `--create-missing-anchors` is supplied: `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:548-569,880-888`. |
 | REQ-017 | Pass | ADR-002 chose replay consumers and reducer now reads journal/lineage/coverage artifacts: `.opencode/specs/.../decision-record.md:80-121`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:178-281,841-849`. |
@@ -123,7 +123,7 @@ None found.
 
 ## Graph Integration Quality Check
 
-`deep_loop_graph_upsert` and `deep_loop_graph_convergence` are genuinely on the live YAML path, so the graph is not just emitted on paper. Research calls convergence before the inline stop vote and upsert after reducer refresh at `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:250-266,415-433`; review mirrors that at `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:339-360,600-619`. On the "actively and smartly utilized" criterion, the answer is therefore **yes for live stop gating**.
+`deep_loop_graph_upsert` and `deep_loop_graph_convergence` are genuinely on the live YAML path, so the graph is not just emitted on paper. Research calls convergence before the inline stop vote and upsert after reducer refresh at `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:250-266,415-433`; review mirrors that at `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:339-360,600-619`. On the "actively and smartly utilized" criterion, the answer is therefore **yes for live stop gating**.
 
 The surfacing half is not honest enough yet. `graphConvergenceScore` is exposed in both reducers, but it is not the canonical convergence output:
 

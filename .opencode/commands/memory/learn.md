@@ -501,7 +501,7 @@ STATUS=OK ACTION=budget
 - `/memory:search`: Intent-aware context retrieval and analysis tools
 - `/memory:save`: Save conversation context
 - `/memory:manage`: Database management, checkpoints, ingest
-- `/spec_kit:resume`: Session recovery and continuation
+- `/speckit:resume`: Session recovery and continuation
 
 **Constitutional directory:** `.opencode/skills/system-spec-kit/constitutional/`
 **Full documentation:** `.opencode/skills/system-spec-kit/constitutional/README.md`

@@ -32,7 +32,7 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Markdown, YAML, JSON/JSONC, Node.js scripts, packet-local experiment evidence |
-| **Primary Runtime Surface** | `.opencode/skills/sk-improve-agent/`, `.opencode/commands/spec_kit/`, `.opencode/agents/` |
+| **Primary Runtime Surface** | `.opencode/skills/sk-improve-agent/`, `.opencode/commands/speckit/`, `.opencode/agents/` |
 | **Baseline Packet** | `041-sk-improve-agent-loop` |
 | **Primary Upgrade Goal** | Add benchmark-backed evaluation and reusable multi-target runtime structure |
 | **Verification Basis** | Strict spec validation, fixture runs, target-profile runs, manifest guard checks, reducer outputs |

@@ -83,11 +83,11 @@ contract:
     - id: FAIL
       label: Fail
       condition: "activeP0 > 0 OR any required quality gate fails"
-      nextCommand: /spec_kit:plan
+      nextCommand: /speckit:plan
     - id: CONDITIONAL
       label: Conditional
       condition: "activeP0 == 0 AND activeP1 > 0"
-      nextCommand: /spec_kit:plan
+      nextCommand: /speckit:plan
     - id: PASS
       label: Pass
       condition: "activeP0 == 0 AND activeP1 == 0"

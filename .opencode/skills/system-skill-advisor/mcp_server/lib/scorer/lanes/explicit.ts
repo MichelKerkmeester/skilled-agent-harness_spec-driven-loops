@@ -95,7 +95,7 @@ const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   '/memory:save': [['memory:save', 1.6], ['command-memory-save', 1], ['system-spec-kit', 0.45]],
   '/deep:start-research-loop': [['deep-research', 1.6], ['command-spec-kit', 0.45]],
   '/deep:start-review-loop': [['deep-review', 1.6], ['command-spec-kit', 0.45]],
-  '/spec_kit:resume': [['system-spec-kit', 0.9], ['command-spec-kit', 0.75]],
+  '/speckit:resume': [['system-spec-kit', 0.9], ['command-spec-kit', 0.75]],
   'auto review release readiness': [['deep-review', 1]],
   'chrome devtools': [['mcp-chrome-devtools', 1]],
   'staging url': [['mcp-chrome-devtools', 0.65]],

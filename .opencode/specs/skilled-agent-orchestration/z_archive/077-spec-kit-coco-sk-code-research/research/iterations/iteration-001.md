@@ -38,7 +38,7 @@ The MCP server exposes `refresh_index` with `default=True` at `.opencode/skills/
 - Q3: Partially answered. MCP exposes only `search` while CLI has init/index/search/status/reset/mcp/daemon commands; freshness behavior is documented but still risky.
 - Q4: Partially answered. Defaults strongly suggest `.opencode/skills/sk-code/` is not ingested unless hidden-dir exclusion is overridden; live query/rank testing remains.
 - Q5: Partially answered. sk-code has language checklists but lacks skills/agents/commands authoring checklists despite claiming that scope.
-- Q7: Partially answered. sk-code OPENCODE detection is path-first and should trigger for `.opencode/` spec-kit work, but this needs validation in a `/spec_kit:complete`-style flow.
+- Q7: Partially answered. sk-code OPENCODE detection is path-first and should trigger for `.opencode/` spec-kit work, but this needs validation in a `/speckit:complete`-style flow.
 
 ## Questions Remaining
 - Q1: Need full system-spec-kit doc/code drift review across validator scripts, template manifests, and MCP tool docs.

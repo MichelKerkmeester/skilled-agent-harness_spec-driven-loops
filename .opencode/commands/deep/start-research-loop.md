@@ -32,7 +32,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch, memory_conte
 - **YAML START CONDITION**: do not load YAML until ALL required inputs are bound:
   - `research_topic`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`
 
-> **Canonical mode syntax:** use attached command suffixes (`/spec_kit:deep-research:auto`, `/spec_kit:deep-research:confirm`) and keep AGENTS, skills, and quick references synchronized to this entrypoint.
+> **Canonical mode syntax:** use attached command suffixes (`/speckit:deep-research:auto`, `/speckit:deep-research:confirm`) and keep AGENTS, skills, and quick references synchronized to this entrypoint.
 
 > **Note:** Late-INIT `spec.md` detection and bounded `spec.md` mutations follow
 > `.opencode/skills/deep-research/references/spec_check_protocol.md`.
@@ -61,7 +61,7 @@ Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed. Missing `research_topic` is absence, not ambiguity — go to Tier 3.
 
-3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/spec_kit:deep-research:auto` as the command name. Exit non-zero. Do not load YAML.
+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/speckit:deep-research:auto` as the command name. Exit non-zero. Do not load YAML.
 
 `:confirm` path stays unchanged — see the consolidated setup prompt section below.
 
@@ -214,7 +214,7 @@ NEVER split questions into multiple prompts
 
 Conduct autonomous iterative deep research with convergence detection. Each iteration dispatches a fresh LEAF agent (`@deep-research`) that reads externalized state, performs focused investigation, and writes findings to files.
 
-For code review and quality auditing, see `/spec_kit:deep-review`.
+For code review and quality auditing, see `/speckit:deep-review`.
 
 ## Convergence Threshold Semantics
 
@@ -267,9 +267,9 @@ Run an iterative loop for deep research: Initialize state under `{artifact_dir}`
 
 | Mode | Invocation | Behavior |
 |------|-----------|----------|
-| `:auto` | `/spec_kit:deep-research:auto "topic"` | All iterations without approval |
-| `:confirm` | `/spec_kit:deep-research:confirm "topic"` | Multi-gate review at setup, iteration, and synthesis |
-| (default) | `/spec_kit:deep-research "topic"` | Ask user to choose mode during setup |
+| `:auto` | `/speckit:deep-research:auto "topic"` | All iterations without approval |
+| `:confirm` | `/speckit:deep-research:confirm "topic"` | Multi-gate review at setup, iteration, and synthesis |
+| (default) | `/speckit:deep-research "topic"` | Ask user to choose mode during setup |
 
 ---
 
@@ -291,7 +291,7 @@ The YAML contains the full loop workflow: initialization, iteration dispatch, co
 Deep research complete.
 Iterations: [N] | Stop reason: [converged|max_iterations|all_answered]
 Artifacts: research/research.md, research/resource-map.md (unless `--no-resource-map`), [N] iteration files, continuity update in canonical spec docs refreshed
-Ready for: /spec_kit:plan [feature-description]
+Ready for: /speckit:plan [feature-description]
 STATUS=OK PATH=[spec-folder-path]
 ```
 
@@ -341,9 +341,9 @@ For code review, see `deep-review` skill (`.opencode/skills/deep-review/SKILL.md
 ## 8. EXAMPLES
 
 ```
-/spec_kit:deep-research:auto "WebSocket reconnection strategies across browsers"
-/spec_kit:deep-research:confirm "distributed caching patterns for microservices"
-/spec_kit:deep-research:auto "API rate limiting approaches" --max-iterations 5 --convergence 0.10
+/speckit:deep-research:auto "WebSocket reconnection strategies across browsers"
+/speckit:deep-research:confirm "distributed caching patterns for microservices"
+/speckit:deep-research:auto "API rate limiting approaches" --max-iterations 5 --convergence 0.10
 ```
 
 ---
@@ -354,9 +354,9 @@ For code review, see `deep-review` skill (`.opencode/skills/deep-review/SKILL.md
 
 | Condition | Suggested Command | Reason |
 |-----------|-------------------|--------|
-| Research complete, ready to plan | `/spec_kit:plan [feature]` | Use findings for spec/plan |
-| Need more investigation | `/spec_kit:deep-research [new-topic]` | Another deep research session |
-| Need code/spec audit | `/spec_kit:deep-review [target]` | Iterative code review |
+| Research complete, ready to plan | `/speckit:plan [feature]` | Use findings for spec/plan |
+| Need more investigation | `/speckit:deep-research [new-topic]` | Another deep research session |
+| Need code/spec audit | `/speckit:deep-review [target]` | Iterative code review |
 | Want to refresh search support | `/memory:save [spec-folder]` | Refresh the indexed canonical spec document while canonical continuity stays in spec docs |
 
 ---
@@ -387,8 +387,8 @@ For code review, see `deep-review` skill (`.opencode/skills/deep-review/SKILL.md
 
 ## 12. COMMAND CHAIN
 
-**Research path:** `/spec_kit:deep-research` → `/spec_kit:plan` → `/spec_kit:implement`
-**Review:** `/spec_kit:deep-review` → (if issues) `/spec_kit:plan` → `/spec_kit:implement`
+**Research path:** `/speckit:deep-research` → `/speckit:plan` → `/speckit:implement`
+**Review:** `/speckit:deep-review` → (if issues) `/speckit:plan` → `/speckit:implement`
 
 ---
 

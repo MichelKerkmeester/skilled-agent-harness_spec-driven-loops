@@ -10,7 +10,7 @@ This iteration focused on Q5: how sub-agent dispatch contracts, LEAF rules, and 
 - Inventoried every `permission.task` declaration in `.opencode/agents/*.md`.
 - Read `@orchestrate` depth/nesting contract and dispatch protocol sections.
 - Read representative LEAF agents: `@context`, `@deep-research`, and `@ultra-think`.
-- Inspected `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` for `agent_config.leaf_only`, native dispatch, executor dispatch, and post-dispatch validation.
+- Inspected `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` for `agent_config.leaf_only`, native dispatch, executor dispatch, and post-dispatch validation.
 - Searched `.opencode/skills/system-spec-kit/`, `.opencode/skills/sk-code/`, `.opencode/skills/sk-deep-research/`, command YAML, and test surfaces for `permission.task`, `agent.permission`, `denyTask`, `leaf_only`, `leafOnly`, and LEAF enforcement terms.
 - Checked the local `opencode` command presence and version; the installed binary is available as `opencode 1.3.17`, but its implementation source is not present in this repository.
 
@@ -41,7 +41,7 @@ This iteration focused on Q5: how sub-agent dispatch contracts, LEAF rules, and 
 
 6. `@ultra-think` is the special case proving LEAF is depth-sensitive, not just a static label. It has `task: allow` in frontmatter and dispatches strategies at Depth 0, but when dispatched by orchestrator or another agent at Depth 1, it must use `sequential_thinking` inline without sub-dispatch. Evidence: `.opencode/agents/ultra-think.md:16`, `.opencode/agents/ultra-think.md:37`, `.opencode/agents/ultra-think.md:40`, `.opencode/agents/ultra-think.md:42`, `.opencode/agents/ultra-think.md:55`, `.opencode/agents/ultra-think.md:77`, `.opencode/agents/ultra-think.md:89`.
 
-7. Deep-research YAML declares `agent_config.leaf_only: true`, but the executable dispatch step does not appear to read that field as a guard. The YAML's dispatch step resolves the executor from `config.executor`, renders a prompt pack, then either dispatches native `agent: deep-research` or shells out to CLI executors. `agent_config.leaf_only` appears in the static config block, while `step_dispatch_iteration.resolve_executor` points to `executor-config.ts#parseExecutorConfig`, whose schema covers executor kind/model/reasoning/service/sandbox/timeout, not `leaf_only`. Evidence: `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:81`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:86`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:523`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:527`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:536`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:563`, `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:21`.
+7. Deep-research YAML declares `agent_config.leaf_only: true`, but the executable dispatch step does not appear to read that field as a guard. The YAML's dispatch step resolves the executor from `config.executor`, renders a prompt pack, then either dispatches native `agent: deep-research` or shells out to CLI executors. `agent_config.leaf_only` appears in the static config block, while `step_dispatch_iteration.resolve_executor` points to `executor-config.ts#parseExecutorConfig`, whose schema covers executor kind/model/reasoning/service/sandbox/timeout, not `leaf_only`. Evidence: `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:81`, `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:86`, `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:523`, `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:527`, `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:536`, `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:563`, `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:21`.
 
 8. The deep-research prompt pack carries the live LEAF instruction into both native and CLI executor contexts. It says the prompt is for the `@deep-research` LEAF agent or CLI executor, then states "You are a LEAF agent. Do NOT dispatch sub-agents." This is a prompt contract, not a code-level validator. Evidence: `.opencode/skills/sk-deep-research/assets/prompt_pack_iteration.md.tmpl:3`, `.opencode/skills/sk-deep-research/assets/prompt_pack_iteration.md.tmpl:28`.
 
@@ -113,12 +113,12 @@ This iteration focused on Q5: how sub-agent dispatch contracts, LEAF rules, and 
 - `.opencode/agents/ultra-think.md:89`
 - `.opencode/agents/write.md:16`
 - `.opencode/agents/write.md:36`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:81`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:86`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:523`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:527`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:536`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:563`
+- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:81`
+- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:86`
+- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:523`
+- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:527`
+- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:536`
+- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:563`
 - `.opencode/skills/sk-deep-research/assets/prompt_pack_iteration.md.tmpl:3`
 - `.opencode/skills/sk-deep-research/assets/prompt_pack_iteration.md.tmpl:28`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:21`

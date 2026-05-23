@@ -253,7 +253,7 @@ REVIEW CODE          → @review (with --permission-mode plan)
 PLAN ARCHITECTURE    → @ai-council (with --model claude-opus-4-6)
 RESEARCH A TOPIC     → @deep-research
 COORDINATE AGENTS    → @orchestrate (with --permission-mode plan)
-SPEC PACKET WORK     → Main agent + `/spec_kit:plan --intake-only` or `/spec_kit:plan`
+SPEC PACKET WORK     → Main agent + `/speckit:plan --intake-only` or `/speckit:plan`
 SAVE CONTINUITY      → `/memory:save`
 ```
 

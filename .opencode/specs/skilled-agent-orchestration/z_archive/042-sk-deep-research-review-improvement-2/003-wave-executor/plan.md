@@ -117,12 +117,12 @@ Inventory target
 
 **Files to change**:
 - `.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
-- `.opencode/commands/spec_kit/deep-research.md`
-- `.opencode/commands/spec_kit/deep-review.md`
+- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml`
+- `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml`
+- `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`
+- `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`
+- `.opencode/commands/speckit/deep-research.md`
+- `.opencode/commands/speckit/deep-review.md`
 
 **Verification strategy**:
 - Prove the current YAML path cannot natively fan out or join safely.
@@ -186,12 +186,12 @@ Inventory target
 - `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md`
 - `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md`
 - `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
-- `.opencode/commands/spec_kit/deep-research.md`
-- `.opencode/commands/spec_kit/deep-review.md`
+- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml`
+- `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml`
+- `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`
+- `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`
+- `.opencode/commands/speckit/deep-research.md`
+- `.opencode/commands/speckit/deep-review.md`
 - `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts`
 - `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts`
 - `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts`

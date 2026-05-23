@@ -80,7 +80,7 @@ contextType: "research"
 ### CF-002 — One Guided Lifecycle Front Door
 - **Origin phase(s)**: `001/iteration-022`, `002/iteration-021`, `003/iteration-021`, `003/iteration-029`, `004/iteration-021`, `004/iteration-029`, `005/iteration-021`, `006/iteration-022`, `006/iteration-030`, `007/iteration-021`, `007/iteration-029`, `008/iteration-022`, `008/iteration-029`, `009/iteration-021`
 - **External source**: `[SOURCE: 001-agent-lightning-main/research/research.md:193-199]` `[SOURCE: 002-babysitter-main/research/research.md:174-179]` `[SOURCE: 004-get-it-right-main/research/research.md:164-169]` `[SOURCE: 004-get-it-right-main/research/research.md:212-244]` `[SOURCE: 007-relay-main/research/research.md:173-178]` `[SOURCE: 007-relay-main/research/research.md:215-220]` `[SOURCE: 008-bmad-autonomous-development/research/research.md:171-177]` `[SOURCE: 008-bmad-autonomous-development/research/research.md:213-221]` `[SOURCE: 009-xethryon/research/research.md:77-78]`
-- **system-spec-kit target**: `.opencode/commands/spec_kit/README.txt`, `plan.md`, `implement.md`, `complete.md`, shared lifecycle assets
+- **system-spec-kit target**: `.opencode/commands/speckit/README.txt`, `plan.md`, `implement.md`, `complete.md`, shared lifecycle assets
 - **Change type**: architectural shift
 - **Blast radius**: large
 - **Cross-phase convergence**: all `9` phases
@@ -478,7 +478,7 @@ contextType: "research"
 - **Blast radius**: large
 - **Dependencies**: none; this is the top-level UX anchor
 - **Estimated complexity**: Level 3
-- **First-step suggestion**: `.opencode/commands/spec_kit/README.txt`
+- **First-step suggestion**: `.opencode/commands/speckit/README.txt`
 
 ### Bundle B-002 — Guided Profiles And Spec Bootstrap
 - **Proposed packet name**: `003-profile-driven-bootstrap`
@@ -561,4 +561,4 @@ contextType: "research"
 
 ## 11. Recommended Next Step
 
-The first implementation packet should be `002-operator-shell-compression`, anchored on `CF-001`, `CF-002`, `CF-008`, and `CF-009`. It has the clearest target files, the strongest cross-phase convergence, and the highest leverage because it removes visible friction without forcing immediate deep runtime migration. The concrete starting point is `.opencode/commands/spec_kit/README.txt`, followed immediately by the policy-source decision across `AGENTS.md`, `CLAUDE.md`, and the constitutional gate surfaces.
+The first implementation packet should be `002-operator-shell-compression`, anchored on `CF-001`, `CF-002`, `CF-008`, and `CF-009`. It has the clearest target files, the strongest cross-phase convergence, and the highest leverage because it removes visible friction without forcing immediate deep runtime migration. The concrete starting point is `.opencode/commands/speckit/README.txt`, followed immediately by the policy-source decision across `AGENTS.md`, `CLAUDE.md`, and the constitutional gate surfaces.

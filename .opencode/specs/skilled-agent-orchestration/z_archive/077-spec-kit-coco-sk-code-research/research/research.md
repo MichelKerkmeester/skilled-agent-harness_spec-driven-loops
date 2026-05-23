@@ -24,7 +24,7 @@ Source iterations: `iteration-001` through `iteration-010` under `077/research/i
 
 3. **sk-code OpenCode side has the largest surface gap**: claims to cover skills/agents/commands authoring but ships only language-level checklists. No spec-folder writing recipe, no skills/agents/commands authoring checklists, no canonical OpenCode-side resource manifest, no machine-readable STACK_FOLDERS contract. The references are present but the assets directory is language-checklist-only.
 
-4. **Cross-cutting**: spec-kit `/spec_kit:complete` flows load sk-code at review time (after code is written), not at authoring time (before). A single canonical authoring recipe — loaded by `/spec_kit:complete` when the implementation target is `.opencode/` — would close the loop and let CocoIndex prefer canonical resources over manual_testing_playbook scenarios.
+4. **Cross-cutting**: spec-kit `/speckit:complete` flows load sk-code at review time (after code is written), not at authoring time (before). A single canonical authoring recipe — loaded by `/speckit:complete` when the implementation target is `.opencode/` — would close the loop and let CocoIndex prefer canonical resources over manual_testing_playbook scenarios.
 
 **Recommendation: SHIP_REMEDIATION_AS_PHASES.** The remediation sequence is well-defined (see §5) and should be 4-5 dedicated phase children under a new packet, not a single bundled commit.
 <!-- /ANCHOR:summary -->
@@ -94,7 +94,7 @@ Source iterations: `iteration-001` through `iteration-010` under `077/research/i
 
 | ID | Severity | Theme | Summary |
 |---|---|---|---|
-| F-009-001 | P1 | timing | system-spec-kit requires sk-code for code updates but `/spec_kit:complete` loads it at review time (after writes), not authoring time (before). |
+| F-009-001 | P1 | timing | system-spec-kit requires sk-code for code updates but `/speckit:complete` loads it at review time (after writes), not authoring time (before). |
 | F-009-002 | P1 | contract | sk-code has spec-folder invariants but no first-class SPEC_FOLDER or IMPLEMENTATION OpenCode load path. |
 | F-009-003 | P2 | indexing | CocoIndex ingests sk-code resources locally but excludes spec packets by design — fine, but no smoke test confirms this on fresh clones. |
 | F-009-004 | P2 | testing | The missing cross-surface smoke test is a rank test, not another path-existence test (we have plenty of those). |
@@ -105,7 +105,7 @@ Source iterations: `iteration-001` through `iteration-010` under `077/research/i
 
 **Pattern**: the three surfaces collectively need ONE canonical "OpenCode authoring recipe" that:
 1. Lives in `sk-code/assets/opencode/` (canonical home)
-2. Is loaded by `/spec_kit:complete` when the implementation target is `.opencode/`
+2. Is loaded by `/speckit:complete` when the implementation target is `.opencode/`
 3. Is preferentially indexed by CocoIndex
 4. Is checked by `validate.sh --strict` for shape compliance
 
@@ -121,7 +121,7 @@ Source iterations: `iteration-001` through `iteration-010` under `077/research/i
 | Q4 | Is CocoIndex ingesting sk-code resources? | Answered: locally yes (override), defaults exclude `**/.*`; portable behavior unclear without smoke test. |
 | Q5 | What OpenCode references/assets are missing? | Answered: skills/agents/commands authoring checklists, spec-folder write recipe, machine-readable STACK_FOLDERS contract, sub-detection scenarios for JS. |
 | Q6 | Does STACK_FOLDERS match on-disk? | Answered: STACK_FOLDERS regressed to inline strings; no machine-readable contract. |
-| Q7 | Is sk-code loaded during `/spec_kit:complete` writes inside `.opencode/`? | Answered: at review time, not authoring time — gap motivates F-009-001. |
+| Q7 | Is sk-code loaded during `/speckit:complete` writes inside `.opencode/`? | Answered: at review time, not authoring time — gap motivates F-009-001. |
 
 All 7 key questions resolved.
 
@@ -141,11 +141,11 @@ The findings sequence into **4 dependent remediation phases**, each appropriate 
 - Update SKILL.md OpenCode resource map to point to new authoring assets
 - Fix F-001-005 stale relative link in `references/opencode/shared/universal_patterns.md`
 
-### Phase 2 — `/spec_kit:complete` authoring-time sk-code load (integration)
+### Phase 2 — `/speckit:complete` authoring-time sk-code load (integration)
 
 **Closes**: F-009-001, F-009-002, F-008-004, F-006-004
 
-- Modify `/spec_kit:complete:auto` YAML to load sk-code at Phase 1 (before code writes), not just review
+- Modify `/speckit:complete:auto` YAML to load sk-code at Phase 1 (before code writes), not just review
 - Add OpenCode-target detection: when implementation target is under `.opencode/`, dispatch with sk-code authoring recipe pre-loaded
 - Update `system-spec-kit/SKILL.md` to document the cross-skill load contract
 

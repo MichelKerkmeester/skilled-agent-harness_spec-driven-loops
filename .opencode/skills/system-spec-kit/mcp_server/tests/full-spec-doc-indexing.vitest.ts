@@ -99,7 +99,7 @@ describe('Spec 126 Phase 2: Type Configuration', () => {
 
     it('Returns "memory" for README files', () => {
       expect(inferDocumentTypeFromPath('/project/.opencode/skills/system-spec-kit/README.md')).toBe('memory');
-      expect(inferDocumentTypeFromPath('/project/.opencode/commands/spec_kit/README.txt')).toBe('memory');
+      expect(inferDocumentTypeFromPath('/project/.opencode/commands/speckit/README.txt')).toBe('memory');
     });
 
   });
@@ -307,7 +307,7 @@ describe('Spec 126 Phase 4: Parser Enhancements', () => {
     });
 
     it('Rejects README.txt files', () => {
-      expect(isMemoryFile('/p/.opencode/commands/spec_kit/README.txt')).toBe(false);
+      expect(isMemoryFile('/p/.opencode/commands/speckit/README.txt')).toBe(false);
     });
   });
 
@@ -340,7 +340,7 @@ describe('Spec 126 Phase 4: Parser Enhancements', () => {
 
     // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
     it('Returns folder category for command README path', () => {
-      const result = extractSpecFolder('/p/.opencode/commands/spec_kit/README.txt');
+      const result = extractSpecFolder('/p/.opencode/commands/speckit/README.txt');
       expect(result).toBe('commands');
     });
   });

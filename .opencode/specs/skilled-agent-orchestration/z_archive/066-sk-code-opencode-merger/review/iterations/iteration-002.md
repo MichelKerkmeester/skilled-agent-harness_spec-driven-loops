@@ -26,7 +26,7 @@ description: Security and trust-boundary pass for the sk-code opencode merger pa
 - `.opencode/skills/sk-code-review/references/review_core.md`
 - `.opencode/skills/sk-code/` exact security-token and unsafe-command search results
 - `.opencode/agents/` public-agent exact search results
-- `.opencode/commands/spec_kit/` command/workflow exact search results
+- `.opencode/commands/speckit/` command/workflow exact search results
 - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/` generated advisor artifact exact search results
 - `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/` packet exact search results
 
@@ -53,7 +53,7 @@ description: Security and trust-boundary pass for the sk-code opencode merger pa
 
 ## Integration Evidence
 
-- Public command/agent wording search reviewed `.opencode/agents/` and `.opencode/commands/spec_kit/` for old skill names, stack-specific public claims, secrets vocabulary, and unsafe shell examples. Matches were either generic review/security guidance or false positives such as ordinary words containing `go`; no new public-disclosure or command-injection finding was supported.
+- Public command/agent wording search reviewed `.opencode/agents/` and `.opencode/commands/speckit/` for old skill names, stack-specific public claims, secrets vocabulary, and unsafe shell examples. Matches were either generic review/security guidance or false positives such as ordinary words containing `go`; no new public-disclosure or command-injection finding was supported.
 - Advisor artifact search reviewed `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` and routing accuracy prompts. The skill graph lists `sk-code` and `sk-code-review`, not a live `sk-code-opencode` dependency, and no stale old-skill execution hook was supported by the checked matches. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json:1`]
 - Verifier relocation references in the packet point to `.opencode/skills/sk-code/scripts/verify_alignment_drift.py`, including the implementation-summary verification command; no stale execution hook was elevated as a security issue. [SOURCE: `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/implementation-summary.md:131`]
 

@@ -24,7 +24,7 @@
 | 020 | 2 | Which differences should stay fundamental? | high | should-have | keep core architecture, simplify edges | product direction |
 | 021 | 3 | Replace slash commands with a single `agl`-style front door? | high | rejected | keep slash commands, fix discovery | operator entrypoint strategy |
 | 022 | 3 | Is `plan -> implement -> complete` plus YAML indirection too heavy? | high | must-have | redesign | `spec_kit` lifecycle front door |
-| 023 | 3 | Is the `/memory:*` surface too parallel to `/spec_kit:*`? | high | should-have | merge | everyday memory UX |
+| 023 | 3 | Is the `/memory:*` surface too parallel to `/speckit:*`? | high | should-have | merge | everyday memory UX |
 | 024 | 3 | Are levels/templates/strict validation too internal-facing for operators? | high | nice-to-have | simplify | template and validator UX |
 | 025 | 3 | Should named agents collapse into capability bundles? | high | must-have | merge | agent taxonomy |
 | 026 | 3 | Should deep loops keep externalized JSONL state? | high | should-have | keep | deep-loop architecture |

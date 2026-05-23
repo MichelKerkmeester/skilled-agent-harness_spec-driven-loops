@@ -352,7 +352,7 @@ workflow_enforcement:
     location: "After Step 5"
     requirements: ["spec.md exists, no [NEEDS CLARIFICATION] markers", "plan.md exists with technical approach"]
     action_if_failed: "STOP and return to incomplete step"
-  step_completion_rule: "Execute ALL activities -> Verify ALL outputs -> Present checkpoint for approval -> Mark step complete after approval -> ONLY THEN proceed. NEVER skip steps. NEVER proceed without user approval. NEVER implement without /spec_kit:implement."
+  step_completion_rule: "Execute ALL activities -> Verify ALL outputs -> Present checkpoint for approval -> Mark step complete after approval -> ONLY THEN proceed. NEVER skip steps. NEVER proceed without user approval. NEVER implement without /speckit:implement."
   critical_steps:
     step_3_specification: { enforcement: "MUST create spec.md with all sections", verification: "File exists with acceptance criteria" }
     step_5_planning: { enforcement: "MUST create plan.md with technical approach", verification: "File exists with implementation phases" }
@@ -467,7 +467,7 @@ workflow:
         - start_state
         - published_trio: ["spec.md", "description.json", "graph-metadata.json"]
         - intake_emit_complete: true
-      message: "Intake-only mode complete. Published trio at {spec_path}: spec.md, description.json, graph-metadata.json. Planning Steps 1-7 bypassed. Run /spec_kit:plan (without --intake-only) to resume planning."
+      message: "Intake-only mode complete. Published trio at {spec_path}: spec.md, description.json, graph-metadata.json. Planning Steps 1-7 bypassed. Run /speckit:plan (without --intake-only) to resume planning."
       exit_status: OK
     continue_condition:
       # Typed predicate (T-YML-PLN-02 / M11 BooleanExpr); legacy string literal preserved for backwards compatibility.
@@ -715,11 +715,11 @@ workflow:
 termination:
   after_step: 7
   message: "Planning phase completed. Workflow terminated after step 7."
-  next_steps: [Review planning docs, Validate technical approach, "Use /spec_kit:implement:auto or /spec_kit:implement:confirm"]
+  next_steps: [Review planning docs, Validate technical approach, "Use /speckit:implement:auto or /speckit:implement:confirm"]
   enforcement: |
     CRITICAL: If user requests implementation via free text (e.g., "implement this plan",
     "go ahead and build it", "start coding"), you MUST:
-    1. Route through /spec_kit:implement command (do NOT implement directly)
+    1. Route through /speckit:implement command (do NOT implement directly)
     2. Re-evaluate Gate 3 (spec folder confirmation for implementation phase)
     3. NEVER skip gates because they were passed during the plan phase
     Plan and implementation are SEPARATE gate-checked workflows.

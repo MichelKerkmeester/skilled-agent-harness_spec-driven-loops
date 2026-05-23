@@ -62,7 +62,7 @@ This is **Phase 27** under the Compact Code Graph packet.
 | **Priority** | P1 |
 | **Status** | Complete |
 | **Created** | 2026-04-02 |
-| **Branch** | `system-speckit/024-compact-code-graph` |
+| **Branch** | `system-spec-kit/024-compact-code-graph` |
 <!-- /ANCHOR:metadata -->
 
 ---

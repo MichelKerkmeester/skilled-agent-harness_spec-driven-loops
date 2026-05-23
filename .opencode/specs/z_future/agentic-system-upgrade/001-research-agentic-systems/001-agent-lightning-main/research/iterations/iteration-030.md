@@ -12,9 +12,9 @@ Public's end-to-end workflow creates too many up-front decisions and artifacts f
 I walked the common Public feature path implied by `plan`, `complete`, template levels, `resume`, and memory save, then compared that to Agent Lightning's install -> docs -> example/tutorial -> `Trainer` or `oneclick` flow.
 
 ## Evidence
-- Public's planning and complete workflows both start with consolidated prompt blocks that can ask about spec folder choice, execution mode, dispatch mode, memory context, research intent, and phase decomposition. [SOURCE: .opencode/commands/spec_kit/plan.md:31-44] [SOURCE: .opencode/commands/spec_kit/complete.md:32-45]
+- Public's planning and complete workflows both start with consolidated prompt blocks that can ask about spec folder choice, execution mode, dispatch mode, memory context, research intent, and phase decomposition. [SOURCE: .opencode/commands/speckit/plan.md:31-44] [SOURCE: .opencode/commands/speckit/complete.md:32-45]
 - The template model expands required artifacts from baseline docs through checklist, decision record, optional research output, and later completion artifacts. [SOURCE: .opencode/skills/system-spec-kit/references/templates/template_guide.md:18-24] [SOURCE: .opencode/skills/system-spec-kit/references/templates/template_guide.md:131-170]
-- Resume and memory-save flows add more continuation-specific surfaces around handover, `session_bootstrap()`, and explicit memory preservation. [SOURCE: .opencode/commands/spec_kit/resume.md:258-304] [SOURCE: .opencode/commands/memory/save.md:57-75]
+- Resume and memory-save flows add more continuation-specific surfaces around handover, `session_bootstrap()`, and explicit memory preservation. [SOURCE: .opencode/commands/speckit/resume.md:258-304] [SOURCE: .opencode/commands/memory/save.md:57-75]
 - Agent Lightning starts with `pip install agentlightning`, then points users to installation docs and examples. [SOURCE: external/README.md:31-45]
 - The docs then direct readers into tutorials and how-to recipes rather than asking them to choose among many control surfaces. [SOURCE: external/docs/index.md:14-19]
 - The `tinker` example explicitly offers a `oneclick` path that spawns the necessary pieces automatically, while still documenting the advanced distributed path. [SOURCE: external/examples/tinker/hello.py:22-29] [SOURCE: external/examples/tinker/hello.py:154-185]
@@ -52,4 +52,4 @@ I looked for evidence that preset-driven starts would be unsafe for Public, but 
 ## Follow-up questions for next iteration
 - Which presets cover most real usage: new feature, fix existing packet, resume, and deep research?
 - How much of the current setup questionnaire can be inferred from a preset plus context?
-- Should preset choice happen inside `/spec_kit:complete`, or should Public expose dedicated quickstart aliases?
+- Should preset choice happen inside `/speckit:complete`, or should Public expose dedicated quickstart aliases?

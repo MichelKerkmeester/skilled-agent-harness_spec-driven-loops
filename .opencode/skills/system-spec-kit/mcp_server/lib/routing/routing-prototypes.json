@@ -271,7 +271,7 @@
         "sourceShape": "legacy-memory",
         "tags": ["telemetry", "file-count", "tool-executions", "repo-state"],
         "negativeHints": ["metadata_only", "task_update"],
-        "chunk": "Captured file count 8. Files modified memory-context.ts, stage1-candidate-gen.ts, stage2-fusion.ts, types.ts. Tool executions zero. Repository state clean. Channel system-speckit 026-graph-and-context-optimization. On its own this is operational telemetry rather than canonical content."
+        "chunk": "Captured file count 8. Files modified memory-context.ts, stage1-candidate-gen.ts, stage2-fusion.ts, types.ts. Tool executions zero. Repository state clean. Channel system-spec-kit 026-graph-and-context-optimization. On its own this is operational telemetry rather than canonical content."
       }
     ]
   }

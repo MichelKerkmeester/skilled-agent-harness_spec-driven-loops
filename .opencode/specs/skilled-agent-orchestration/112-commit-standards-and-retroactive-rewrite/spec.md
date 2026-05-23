@@ -104,7 +104,7 @@ The rewrite stays **local-only** (no force-push to GitHub origin) and **HEAD-onl
 ### Out of Scope
 
 - Force-pushing rewritten history to GitHub origin (user choice, 2026-05-16).
-- Rewriting commits on 5 unmerged remote branches (`system-speckit/023…027`, `opencode-env`) — defer to future packets when those branches integrate.
+- Rewriting commits on 5 unmerged remote branches (`system-spec-kit/023…027`, `opencode-env`) — defer to future packets when those branches integrate.
 - Rewriting annotated tag messages (129 tags) — accept hash drift on annotated tags; lightweight tag refs are repointed automatically by filter-repo.
 - Enabling GPG signing (not currently configured on this Mac).
 - AGENTS_Barter sibling sync — separate repo, only sync if standards apply there (deferred decision).
@@ -145,7 +145,7 @@ Aggregate scope only. Per-phase detail lives in child plans.
 - Each phase MUST pass `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <phase-folder> --strict` independently before the next phase begins.
 - Phase 002 acceptance criterion: 20 randomly-sampled HEAD commits rewrite **deterministically** under the locked standard. If any sample is underspecified, Phase 002 reopens (Phase 003 does NOT churn).
 - Parent spec tracks aggregate progress via this map. Update `Status` column inline as phases ship.
-- Use `/spec_kit:resume .opencode/specs/skilled-agent-orchestration/112-…/00X-…/` to resume a specific phase.
+- Use `/speckit:resume .opencode/specs/skilled-agent-orchestration/112-…/00X-…/` to resume a specific phase.
 - `derived.last_active_child_id` in `graph-metadata.json` should point at the phase under active execution (currently `002-commit-standards-definition`).
 
 ### Phase Handoff Criteria

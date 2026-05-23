@@ -15,7 +15,7 @@ This phase converts the accumulated review packet into a final deliverable. It c
 
 Synthesis reads all iteration files, groups duplicate findings by file and root cause, keeps the highest adjudicated severity, and preserves the audit trail back to contributing iterations. It then replays convergence from `deep-review-state.jsonl`, including the coverage vote, traceability status, and gate outcomes, before building `review-report.md`.
 
-The final report follows a fixed nine-section contract covering the executive summary, planning trigger, active finding registry, remediation workstreams, spec seed, plan seed, traceability status, deferred items, and audit appendix. Verdict routing is fixed as FAIL or CONDITIONAL to `/spec_kit:plan`, or PASS to `/create:changelog`, with `hasAdvisories=true` when only P2 remains.
+The final report follows a fixed nine-section contract covering the executive summary, planning trigger, active finding registry, remediation workstreams, spec seed, plan seed, traceability status, deferred items, and audit appendix. Verdict routing is fixed as FAIL or CONDITIONAL to `/speckit:plan`, or PASS to `/create:changelog`, with `hasAdvisories=true` when only P2 remains.
 
 ---
 

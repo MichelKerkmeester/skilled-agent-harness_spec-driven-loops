@@ -79,7 +79,7 @@ The four CLI orchestration skills currently build dispatch prompts ad hoc from t
 | **Priority** | P1 |
 | **Status** | Implemented |
 | **Created** | 2026-04-11 |
-| **Branch** | `system-speckit/026-graph-and-context-optimization` |
+| **Branch** | `system-spec-kit/026-graph-and-context-optimization` |
 | **Spec Folder** | `.opencode/specs/skilled-agent-orchestration/043-cli-skill-improved-prompting/` |
 | **Primary Runtime Surface** | `.opencode/skills/cli-*`, `.opencode/skills/sk-improve-prompt/`, `.opencode/commands/improve/prompt.md`, runtime agent mirrors |
 <!-- /ANCHOR:metadata -->

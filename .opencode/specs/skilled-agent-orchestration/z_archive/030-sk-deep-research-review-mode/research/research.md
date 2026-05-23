@@ -42,7 +42,7 @@ This research investigated 7 key questions about improving the review logic in `
 
 **Topic**: How to further improve the review logic in sk-deep-research and related commands/agents.
 
-**Prior work**: Review mode v1.2.0 was implemented with `:review` suffixes on `/spec_kit:deep-research`. A prior research session (archived in `scratch/archive-research-v1/`) designed the original review mode architecture. A GPT-5.4 review of this spec folder identified 5 key improvement areas: canonical source-of-truth drift, conceptual complexity, unvalidated convergence thresholds, incomplete packet structure, and command naming decisions.
+**Prior work**: Review mode v1.2.0 was implemented with `:review` suffixes on `/speckit:deep-research`. A prior research session (archived in `scratch/archive-research-v1/`) designed the original review mode architecture. A GPT-5.4 review of this spec folder identified 5 key improvement areas: canonical source-of-truth drift, conceptual complexity, unvalidated convergence thresholds, incomplete packet structure, and command naming decisions.
 
 **Scope**: Research-only. Implementation belongs in separate spec folders.
 
@@ -131,12 +131,12 @@ This research investigated 7 key questions about improving the review logic in `
 
 ### Q5: Review Report Actionability (Iteration 6)
 
-**Problem**: Current 11-section report is audit-focused, not planner-friendly. `/spec_kit:plan` needs structured inputs (problem statement, scope, files, requirements), but the report buries actionable content in the last section.
+**Problem**: Current 11-section report is audit-focused, not planner-friendly. `/speckit:plan` needs structured inputs (problem statement, scope, files, requirements), but the report buries actionable content in the last section.
 
 **Answer**: Two-layer report architecture:
 
 1. **Decision layer**: verdict, active blockers, stop reason
-2. **Planning layer**: normalized remediation packet seeding `/spec_kit:plan`
+2. **Planning layer**: normalized remediation packet seeding `/speckit:plan`
 
 **New section order**: Executive Summary → Planning Trigger → Active Finding Registry → Remediation Workstreams → Spec Seed → Plan Seed → Traceability Status → Deferred Items → Audit Appendix
 
@@ -282,10 +282,10 @@ This research investigated 7 key questions about improving the review logic in `
 ## 8. Sources
 
 ### Internal (Codebase)
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_review_confirm.yaml`
-- `.opencode/commands/spec_kit/deep-research.md`
-- `.opencode/commands/spec_kit/plan.md`
+- `.opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml`
+- `.opencode/commands/speckit/assets/speckit_deep-research_review_confirm.yaml`
+- `.opencode/commands/speckit/deep-research.md`
+- `.opencode/commands/speckit/plan.md`
 - `.opencode/agents/deep-review.md` (+ `.claude/`, `.codex/`, `.gemini/`, `.opencode/agents/chatgpt/` variants)
 - `.opencode/agents/review.md`
 - `.opencode/skills/sk-deep-research/SKILL.md` and references (loop_protocol.md, state_format.md, convergence.md, quick_reference.md)
@@ -316,4 +316,4 @@ This research investigated 7 key questions about improving the review logic in `
 - **Convergence threshold**: 0.05
 - **Quality guards**: All passed (multi-source citations, aligned focus, no single-weak-source answers)
 
-**All research questions answered. Ready for implementation via `/spec_kit:plan`.**
+**All research questions answered. Ready for implementation via `/speckit:plan`.**

@@ -21,7 +21,7 @@ This sub-phase investigates which Mex-style drift checker families should eventu
 
 ## 3. Architecture Constraints
 - Drift detection remains a separate advisory integrity lane and never becomes a retrieval ranker.
-- Recovery stays on `session_bootstrap` and `/spec_kit:resume`; integrity annotates but does not replace those surfaces.
+- Recovery stays on `session_bootstrap` and `/speckit:resume`; integrity annotates but does not replace those surfaces.
 - Any future doctor surface remains planner-only over existing tools unless a later packet proves otherwise.
 
 ## 4. Investigation Questions

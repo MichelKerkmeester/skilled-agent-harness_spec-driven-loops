@@ -460,9 +460,9 @@ STATUS=OK ITERATIONS=3 BEST_SCORE=97 REASON="converged"
 
 | Command | Purpose |
 | --- | --- |
-| `/spec_kit:complete` | Full spec-driven development workflow |
+| `/speckit:complete` | Full spec-driven development workflow |
 | `/improve:prompt` | Improve AI prompts with DEPTH + CLEAR scoring |
-| `/spec_kit:deep-review` | Iterative code review with convergence detection |
+| `/speckit:deep-review` | Iterative code review with convergence detection |
 
 ---
 

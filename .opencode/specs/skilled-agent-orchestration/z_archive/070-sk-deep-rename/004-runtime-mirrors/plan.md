@@ -20,7 +20,7 @@ _memory:
       - ".claude/agents"
       - ".codex/agents"
       - ".gemini/agents"
-      - ".gemini/commands/spec_kit/deep-research.toml"
+      - ".gemini/commands/speckit/deep-research.toml"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "codex-2026-05-05-phase-004"
@@ -133,7 +133,7 @@ for path in [
     ".codex/agents/deep-research.toml",
     ".codex/agents/deep-review.toml",
     ".codex/agents/orchestrate.toml",
-    ".gemini/commands/spec_kit/deep-research.toml",
+    ".gemini/commands/speckit/deep-research.toml",
 ]:
     with open(path, "rb") as f:
         tomllib.load(f)

@@ -9,7 +9,7 @@ Priority direction:
 4. **Adopt daemon/shared transport + warm caches** for predictable latency.  
 5. **Stage rollout with measurable SLOs** (latency, relevance, token efficiency, continuity success).
 
-[Assumes: system-speckit memory MCP currently supports basic save/search but not full hybrid ranking, explicit lifecycle APIs, or persistent daemonized retrieval serving.]
+[Assumes: system-spec-kit memory MCP currently supports basic save/search but not full hybrid ranking, explicit lifecycle APIs, or persistent daemonized retrieval serving.]
 
 ---
 

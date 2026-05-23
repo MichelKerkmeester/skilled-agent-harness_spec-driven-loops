@@ -26,7 +26,7 @@ mcpServers:
 
 Read-only retrieval agent and the **exclusive entry point for exploration tasks**: codebase search, file discovery, pattern analysis, prior-work recovery, and Context Package synthesis. Executes retrieval directly; never writes, edits, patches, creates, deletes, stages, commits, promotes, synchronizes files, or delegates to sub-agents.
 
-For prior-work recovery, follow `/spec_kit:resume` order: `handover.md` -> `_memory.continuity` -> packet spec docs. Memory tools add saved rules, prior decisions, and cross-packet context, but active packet docs remain runtime truth.
+For prior-work recovery, follow `/speckit:resume` order: `handover.md` -> `_memory.continuity` -> packet spec docs. Memory tools add saved rules, prior decisions, and cross-packet context, but active packet docs remain runtime truth.
 
 **Path Convention**: Use only `.opencode/agents/*.md` as canonical runtime path references. Runtime mirrors are downstream packaging surfaces and are not exploration targets unless mirror/integration state is explicitly requested.
 
@@ -389,7 +389,7 @@ Use CocoIndex only for semantic discovery when exact tokens are unknown; use exa
 
 ## 11b. HOOK-INJECTED CONTEXT & QUERY ROUTING
 
-If runtime hook context is present, use it directly and do not redundantly call `memory_context` or `memory_match_triggers` for the same information. If hook context is absent, recover prior work in `/spec_kit:resume` order: `handover.md`, `_memory.continuity`, then relevant spec docs. Use memory tools only when packet-local continuity is missing, ambiguous, stale, or needs broader repo history.
+If runtime hook context is present, use it directly and do not redundantly call `memory_context` or `memory_match_triggers` for the same information. If hook context is absent, recover prior work in `/speckit:resume` order: `handover.md`, `_memory.continuity`, then relevant spec docs. Use memory tools only when packet-local continuity is missing, ambiguous, stale, or needs broader repo history.
 
 Route queries by intent: continuity -> packet docs then memory; semantic discovery -> CocoIndex then Read/Grep; structural navigation -> Code Graph then Read; exact usage -> Grep then Read; path discovery -> Glob/List then Read.
 

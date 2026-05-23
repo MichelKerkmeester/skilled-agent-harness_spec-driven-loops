@@ -5,22 +5,22 @@
 - Tier-2 candidates identified: spec_folder
 - Concerns: `spec_folder` is treated as a targeted-ask candidate only when the research topic is present but folder choice is ambiguous; missing `research_topic` goes straight to Tier 3.
 
-## /spec_kit:complete
+## /speckit:complete
 - Fields migrated count: 18
 - Tier-2 candidates identified: spec_folder, research_intent
 - Concerns: Chose `{spec_path}/complete-config.json` as the command-specific setup config path because no existing complete config file was present in the YAML assets.
 
-## /spec_kit:implement
+## /speckit:implement
 - Fields migrated count: 8
 - Tier-2 candidates identified: spec_folder, resume_choice
 - Concerns: `confirm_choice` defaults to yes only after prerequisite validation passes; invalid or absent prerequisites still fail setup rather than silently continuing.
 
-## /spec_kit:plan
+## /speckit:plan
 - Fields migrated count: 18
 - Tier-2 candidates identified: spec_folder, research_intent
 - Concerns: Chose `{spec_path}/plan-config.json` as the command-specific setup config path because no existing plan config file was present in the YAML assets.
 
-## /spec_kit:resume
+## /speckit:resume
 - Fields migrated count: 10
 - Tier-2 candidates identified: spec_folder, continuation_choice
 - Concerns: `artifact_recovery_choice` defaults to `continue_anyway` under resume auto mode so missing artifacts do not consume a Tier-2 slot; hard path absence still fails fast.

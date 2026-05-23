@@ -13,7 +13,7 @@ I compared Get It Right's small repository and state surface with `system-spec-k
 
 ## Evidence
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/README.md:162-177] The external repo ships a fixed artifact set: one workflow, three agent docs, three explanation docs, and no documentation-level branching.
-- [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:73-100] `system-spec-kit`'s implementation workflow is parameterized around Level 1/2/3 required files.
+- [SOURCE: .opencode/commands/speckit/assets/speckit_implement_auto.yaml:73-100] `system-spec-kit`'s implementation workflow is parameterized around Level 1/2/3 required files.
 - [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/create.sh:225-244] Spec creation advertises four documentation levels with different addendums and file expectations.
 - [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/create.sh:590-880] Phase mode injects parent maps, handoff tables, child folders, `memory/`, `scratch/`, and description generation for each phase child.
 - [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:80-99] Validation rules and level detection are designed around durable spec docs such as `checklist.md` and `decision-record.md`.

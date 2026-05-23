@@ -179,7 +179,7 @@ No unit/integration tests — this is documentation work. The validate.sh strict
 | system-spec-kit templates | Internal | Green | Level 2 spec template source |
 | system-spec-kit validate.sh | Internal | Green | Verification gate; if validator misbehaves on the new spec folder, debug via `--verbose --quiet` cross-run |
 | Devin CLI documentation (cli.devin.ai/docs) | External | Green | Reference content source; URLs verified 2026-05-15 |
-| generate-context.js | Internal | Green | Step 13 of /spec_kit:complete; refreshes graph-metadata and indexed doc |
+| generate-context.js | Internal | Green | Step 13 of /speckit:complete; refreshes graph-metadata and indexed doc |
 <!-- /ANCHOR:dependencies -->
 
 ---

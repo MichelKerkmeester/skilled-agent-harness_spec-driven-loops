@@ -52,11 +52,11 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T005 Update research auto workflow paths to the `research/` packet root and research iteration folder (`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`)
-- [x] T006 Update research confirm workflow paths to the `research/` packet root and research iteration folder (`.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`)
-- [x] T007 Update review auto workflow logic so review iterations always land in `review/iterations/` (`.opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml`)
-- [x] T008 Update review confirm workflow logic so review iterations always land in `review/iterations/` (`.opencode/commands/spec_kit/assets/spec_kit_deep-research_review_confirm.yaml`)
-- [x] T009 [P] Update the command entrypoint packet explanations (`.opencode/commands/spec_kit/deep-research.md`)
+- [x] T005 Update research auto workflow paths to the `research/` packet root and research iteration folder (`.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml`)
+- [x] T006 Update research confirm workflow paths to the `research/` packet root and research iteration folder (`.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml`)
+- [x] T007 Update review auto workflow logic so review iterations always land in `review/iterations/` (`.opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml`)
+- [x] T008 Update review confirm workflow logic so review iterations always land in `review/iterations/` (`.opencode/commands/speckit/assets/speckit_deep-research_review_confirm.yaml`)
+- [x] T009 [P] Update the command entrypoint packet explanations (`.opencode/commands/speckit/deep-research.md`)
 - [x] T010 [P] Update canonical runtime packet guidance and parity surfaces touched in this migration
 - [x] T011 [P] Update mirrored runtime agent guidance in the touched `.opencode` and `.claude` surfaces
 - [x] T012 [P] Update `sk-deep-research` docs, references, assets, diagrams, and playbooks (`.opencode/skills/sk-deep-research/`)

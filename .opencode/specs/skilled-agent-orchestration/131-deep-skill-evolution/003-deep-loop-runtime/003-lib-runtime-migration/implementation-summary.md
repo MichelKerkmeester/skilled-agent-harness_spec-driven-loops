@@ -116,7 +116,7 @@ The temporary MCP-handler compile breakage described in the scaffold did not rem
 | Old source `.ts` files absent | `find .../mcp_server/lib/{deep-loop,coverage-graph} -name '*.ts'` | PASS: no output. |
 | Runtime lib count | `find .opencode/skills/deep-loop-runtime/lib -type f` | PASS: 13 `.ts` runtime files present. |
 | MCP server compile | `(cd .opencode/skills/system-spec-kit/mcp_server && pnpm exec tsc --noEmit -p tsconfig.json --ignoreDeprecations 6.0)` | PASS: exit 0, no output. |
-| YAML cutover grep | `grep -c "mcp__mk_spec_memory__deep_loop_graph_" .opencode/commands/spec_kit/assets/spec_kit_deep-*.yaml` | PASS: 0 for all 4 files. |
+| YAML cutover grep | `grep -c "mcp__mk_spec_memory__deep_loop_graph_" .opencode/commands/speckit/assets/speckit_deep-*.yaml` | PASS: 0 for all 4 files. |
 | Script smoke | `node .opencode/skills/deep-loop-runtime/scripts/{status,convergence}.cjs --spec-folder smoke-spec --loop-type review --session-id smoke-session` | PASS: JSON stdout and exit 0. |
 <!-- /ANCHOR:verification -->
 

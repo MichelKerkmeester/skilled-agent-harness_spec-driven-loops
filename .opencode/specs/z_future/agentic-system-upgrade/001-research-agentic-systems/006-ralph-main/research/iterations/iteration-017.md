@@ -12,7 +12,7 @@ Re-read Ralph's runtime control flow around tool execution and stop conditions, 
 ## Evidence
 - Ralph validates the tool choice, runs the tool, ignores tool-process failure with `|| true`, checks only for the completion sentinel, then either continues or exits at max iterations. [SOURCE: external/ralph.sh:31-35] [SOURCE: external/ralph.sh:90-113]
 - The README's debugging guidance is intentionally manual: inspect `prd.json`, `progress.txt`, and `git log`. [SOURCE: external/README.md:209-221]
-- `system-spec-kit`'s deep-research agent distinguishes `complete`, `timeout`, `error`, `stuck`, `insight`, and `thought`, and the command defines explicit actions for dispatch timeout, missing state files, repeated failures, and memory-save failures. [SOURCE: .opencode/agents/deep-research.md:167-199] [SOURCE: .opencode/commands/spec_kit/deep-research.md:252-260]
+- `system-spec-kit`'s deep-research agent distinguishes `complete`, `timeout`, `error`, `stuck`, `insight`, and `thought`, and the command defines explicit actions for dispatch timeout, missing state files, repeated failures, and memory-save failures. [SOURCE: .opencode/agents/deep-research.md:167-199] [SOURCE: .opencode/commands/speckit/deep-research.md:252-260]
 
 ## Analysis
 Ralph's model works because the loop is small and the operator is expected to inspect artifacts manually when something goes wrong. That does not scale well to `system-spec-kit`, where research, recovery, memory, and multi-phase packet behavior all depend on more structured failure states. The transparency of Ralph's loop is worth admiring, but the actual failure taxonomy should not be copied downward.
@@ -23,7 +23,7 @@ confidence: high
 finding: `system-spec-kit` should reject simplification toward Ralph's thin failure model. Its richer loop status and recovery handling are solving real problems that Ralph simply leaves to manual inspection.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/commands/spec_kit/deep-research.md`
+- **Target file or module:** `.opencode/commands/speckit/deep-research.md`
 - **Change type:** rejected
 - **Blast radius:** large
 - **Prerequisites:** none

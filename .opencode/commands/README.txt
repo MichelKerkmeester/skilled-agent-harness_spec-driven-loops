@@ -35,7 +35,7 @@ trigger_phrases:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-Commands are invoked as slash commands (e.g., `/create:feature-catalog`, `/memory:save`, `/spec_kit:plan`). Each command is a markdown file with YAML frontmatter that defines its description, argument hints, and allowed tools.
+Commands are invoked as slash commands (e.g., `/create:feature-catalog`, `/memory:save`, `/speckit:plan`). Each command is a markdown file with YAML frontmatter that defines its description, argument hints, and allowed tools.
 
 Commands are organized into five groups:
 
@@ -158,13 +158,13 @@ Structured workflows for the spec folder development lifecycle.
 
 | Command | Invocation | Purpose |
 |---------|------------|---------|
-| Complete | `/spec_kit:complete <description>` | Full end-to-end workflow (14+ steps) |
-| Deep Research | `/spec_kit:deep-research <topic> [:auto\|:confirm]` | Iterative technical investigation with convergence |
-| Deep Review | `/spec_kit:deep-review <target> [:auto\|:confirm]` | Iterative code review with severity-weighted findings |
-| Plan (intake-only) | `/spec_kit:plan --intake-only [description] [:auto\|:confirm]` | Standalone intake that publishes `spec.md`, `description.json`, and `graph-metadata.json` |
-| Implement | `/spec_kit:implement <spec-folder>` | Execute pre-planned work (requires plan.md) |
-| Plan | `/spec_kit:plan <description> [:with-phases]` | Planning workflow (spec through plan only; `:with-phases` adds phase decomposition) |
-| Resume | `/spec_kit:resume [spec-folder]` | Resume work on existing spec folder |
+| Complete | `/speckit:complete <description>` | Full end-to-end workflow (14+ steps) |
+| Deep Research | `/speckit:deep-research <topic> [:auto\|:confirm]` | Iterative technical investigation with convergence |
+| Deep Review | `/speckit:deep-review <target> [:auto\|:confirm]` | Iterative code review with severity-weighted findings |
+| Plan (intake-only) | `/speckit:plan --intake-only [description] [:auto\|:confirm]` | Standalone intake that publishes `spec.md`, `description.json`, and `graph-metadata.json` |
+| Implement | `/speckit:implement <spec-folder>` | Execute pre-planned work (requires plan.md) |
+| Plan | `/speckit:plan <description> [:with-phases]` | Planning workflow (spec through plan only; `:with-phases` adds phase decomposition) |
+| Resume | `/speckit:resume [spec-folder]` | Resume work on existing spec folder |
 
 <!-- /ANCHOR:command-groups -->
 
@@ -193,20 +193,20 @@ Structured workflows for the spec folder development lifecycle.
 /create:testing-playbook system-spec-kit update :auto
 /create:skill my-new-skill full-create :auto
 /memory:save specs/007-feature
-/spec_kit:plan "Add user authentication" :auto
+/speckit:plan "Add user authentication" :auto
 ```
 
 ### With Execution Modes
 
 ```
 # Auto mode: execute without approval prompts
-/spec_kit:complete "Add dark mode" :auto
+/speckit:complete "Add dark mode" :auto
 
 # Confirm mode: pause at each step for approval
 /create:agent my-agent :confirm
 
 # With research phase
-/spec_kit:complete "New feature" :with-research
+/speckit:complete "New feature" :with-research
 
 # With automatic debug recovery notes
 ```
@@ -255,13 +255,13 @@ A: `:auto` runs all steps in sequence without pausing. `:confirm` stops at each 
 
 A: Yes. Most commands fall back to `:confirm` behavior when no mode suffix is given. Check the command's frontmatter for its default if the behavior is unclear.
 
-**Q: When should I use `/spec_kit:plan` instead of `/spec_kit:complete`?**
+**Q: When should I use `/speckit:plan` instead of `/speckit:complete`?**
 
-A: Use `/spec_kit:plan` when you want to produce a spec and plan document for review before any implementation begins. Use `/spec_kit:complete` when you are ready to run the full workflow end-to-end, including implementation.
+A: Use `/speckit:plan` when you want to produce a spec and plan document for review before any implementation begins. Use `/speckit:complete` when you are ready to run the full workflow end-to-end, including implementation.
 
 **Q: How do I recover a session that was interrupted?**
 
-A: Run `/spec_kit:resume`. This is the canonical recovery surface for packet work. It rebuilds context from `handover.md`, then `_memory.continuity`, then the packet's canonical spec docs before deeper MCP retrieval surfaces kick in.
+A: Run `/speckit:resume`. This is the canonical recovery surface for packet work. It rebuilds context from `handover.md`, then `_memory.continuity`, then the packet's canonical spec docs before deeper MCP retrieval surfaces kick in.
 
 <!-- /ANCHOR:faq -->
 

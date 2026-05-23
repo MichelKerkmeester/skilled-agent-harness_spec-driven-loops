@@ -38,8 +38,8 @@ _memory:
 
 Three deep-* slash commands (`deep:review`, `deep:research`, `deep:ai-council`) moved their command MD files to `.opencode/commands/deep/` and registered as live skill names in the registry. However, their workflow asset YAMLs, Gemini TOML wrappers, and ~25 live operator-facing references still use the old `spec_kit/` namespace:
 
-1. **6 workflow YAMLs** at `.opencode/commands/spec_kit/assets/spec_kit_deep-{review,research,council}_{auto,confirm}.yaml` — loaded by the command MD files via `assets/spec_kit/` path references.
-2. **2 Gemini TOMLs** at `.gemini/commands/spec_kit/deep-{review,research}.toml` — no `ai-council.toml` exists at either location.
+1. **6 workflow YAMLs** at `.opencode/commands/speckit/assets/speckit_deep-{review,research,council}_{auto,confirm}.yaml` — loaded by the command MD files via `assets/spec_kit/` path references.
+2. **2 Gemini TOMLs** at `.gemini/commands/speckit/deep-{review,research}.toml` — no `ai-council.toml` exists at either location.
 3. **~25 live references** across SKILL.md files, `skill_advisor.py` routing tables (~340 lines of trigger-phrase scoring), agent definitions (4 runtimes × 3 skills), root docs (CLAUDE.md, AGENTS.md, README.md), install guides, and 9 `graph-metadata.json` files.
 4. **~5,267 historical spec-doc references** in `.opencode/specs/` and `.opencode/skills/` changelogs/playbooks that reference old paths/syntax.
 
@@ -55,7 +55,7 @@ Rationale: Keeping workflow YAMLs in `spec_kit/assets/` while commands live in `
 
 Path mapping:
 ```
-OLD: .opencode/commands/spec_kit/assets/spec_kit_deep-{skill}_{auto,confirm}.yaml
+OLD: .opencode/commands/speckit/assets/speckit_deep-{skill}_{auto,confirm}.yaml
 NEW: .opencode/commands/deep/assets/deep_{skill}_{auto,confirm}.yaml
 ```
 

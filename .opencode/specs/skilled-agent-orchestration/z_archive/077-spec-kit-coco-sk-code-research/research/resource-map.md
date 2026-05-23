@@ -31,9 +31,9 @@ Inventory of every file/path the 077 research touched or recommended, grouped by
 
 | Path | Note |
 |---|---|
-| `.opencode/commands/spec_kit/complete.md` | F-009-001 review-time-only sk-code load (not authoring-time) |
-| `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml` | Workflow integration target for Phase 2 remediation |
-| `.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml` | Same |
+| `.opencode/commands/speckit/complete.md` | F-009-001 review-time-only sk-code load (not authoring-time) |
+| `.opencode/commands/speckit/assets/speckit_complete_auto.yaml` | Workflow integration target for Phase 2 remediation |
+| `.opencode/commands/speckit/assets/speckit_complete_confirm.yaml` | Same |
 
 ## Agents
 

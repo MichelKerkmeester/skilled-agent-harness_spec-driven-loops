@@ -64,9 +64,9 @@ This phase closes the last naming mismatch in the agent-improver program by rena
 Command-surface rename with wrapper and packet-history synchronization
 
 ### Key Components
-- **Canonical command**: `.opencode/commands/spec_kit/agent-improver.md`
+- **Canonical command**: `.opencode/commands/speckit/agent-improver.md`
 - **Workflow assets**: `improve_agent-improver_auto.yaml` and `improve_agent-improver_confirm.yaml`
-- **Runtime wrappers**: `.agents/commands/spec_kit/agent-improver.toml` and `.gemini/commands/spec_kit/agent-improver.toml`
+- **Runtime wrappers**: `.agents/commands/speckit/agent-improver.toml` and `.gemini/commands/speckit/agent-improver.toml`
 - **Reference surfaces**: runtime agent docs, skill docs, README examples, and active packet docs
 - **Packet docs**: phase `006` plus parent packet updates
 

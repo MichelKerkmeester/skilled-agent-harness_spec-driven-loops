@@ -1570,7 +1570,7 @@ FALLBACK behavior:
 - Dispatch multiple sub-agents simultaneously (token waste)
 - Use sub-agents for simple, obvious bugs
 
-**See also:** `.opencode/commands/spec_kit/debug.md` for debug delegation command
+**See also:** `.opencode/commands/speckit/debug.md` for debug delegation command
 
 ---
 

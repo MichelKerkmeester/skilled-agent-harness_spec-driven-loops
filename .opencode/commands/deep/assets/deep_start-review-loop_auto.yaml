@@ -804,7 +804,7 @@ workflow:
             - "copilot has no stdin support; prompt is positional"
             - "Size check uses 16KB threshold; above that uses @PROMPT_PATH wrapper prompt"
             - "Large-prompt path relies on copilot honoring @path references within its prompt string"
-            - "buildCopilotPromptArg attaches a TARGET AUTHORITY preamble bound to the workflow-approved spec folder; recovered context cannot override it (authority guard source: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml)"
+            - "buildCopilotPromptArg attaches a TARGET AUTHORITY preamble bound to the workflow-approved spec folder; recovered context cannot override it (authority guard source: .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml)"
             - "If spec_folder is missing/malformed/unresolved on a write-intent dispatch, the helper enforces plan-only by replacing the prompt with a Gate-3 question and stripping --allow-all-tools"
             - "Large-prompt wrapper mode rewrites the prompt file at promptPath to include the TARGET AUTHORITY preamble (prefix + divider + original body); the argv becomes a bare @promptPath reference"
         if_cli_gemini:
@@ -1232,7 +1232,7 @@ workflow:
              - Review scope summary
 
           2. **Planning Trigger**
-             - State whether `/spec_kit:plan` is required
+             - State whether `/speckit:plan` is required
              - Include a fenced `json` block labeled `Planning Packet`
              - The packet MUST include: `triggered`, `verdict`, `hasAdvisories`, `activeFindings`, `remediationWorkstreams`, `specSeed`, `planSeed`, `findingClasses`, `affectedSurfacesSeed`, `fixCompletenessRequired`
              - Build `activeFindings`, `findingClasses`, and `affectedSurfacesSeed` from reducer-owned state plus iteration JSONL `findingDetails`; if a field is missing, mark it `UNKNOWN` instead of inferring it from prose
@@ -1248,7 +1248,7 @@ workflow:
              - Concrete seed bullets for follow-on spec updates
 
           6. **Plan Seed**
-             - Concrete starter tasks for `/spec_kit:plan`
+             - Concrete starter tasks for `/speckit:plan`
 
           7. **Traceability Status**
              - Summarize required core protocols first, then applicable overlay protocols
@@ -1332,9 +1332,9 @@ workflow:
 
       STATUS=OK PATH={spec_folder}
     next_steps:
-      - "/spec_kit:plan [remediation] (if FAIL or CONDITIONAL verdict)"
+      - "/speckit:plan [remediation] (if FAIL or CONDITIONAL verdict)"
       - "/create:changelog (if PASS, including PASS with hasAdvisories=true)"
-      - "/spec_kit:deep-review [target] (for another review)"
+      - "/speckit:deep-review [target] (for another review)"
       - "/memory:save {spec_folder} (refresh canonical continuity before the next session)"
 
 # ─────────────────────────────────────────────────────────────────

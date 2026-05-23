@@ -45,7 +45,7 @@ This is **Phase 8** of the ESM Module Compliance specification. It is the final 
 | **Priority** | P1 |
 | **Status** | Draft |
 | **Created** | 2026-03-31 |
-| **Branch** | `system-speckit/024-compact-code-graph` |
+| **Branch** | `system-spec-kit/024-compact-code-graph` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -192,7 +192,7 @@ Bring the entire spec and memory ecosystem to 100% template compliance, remove b
 15. `022-hybrid-rag-fusion/015-manual-testing-per-playbook`
 16. `022-hybrid-rag-fusion/016-rewrite-memory-mcp-readme`
 17. `022-hybrid-rag-fusion/017-update-install-guide`
-18. `022-hybrid-rag-fusion/018-rewrite-system-speckit-readme`
+18. `022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme`
 19. `022-hybrid-rag-fusion/019-rewrite-repo-readme`
 20. `022-hybrid-rag-fusion/020-post-release-fixes`
 21. `022-hybrid-rag-fusion/021-ground-truth-id-remapping`

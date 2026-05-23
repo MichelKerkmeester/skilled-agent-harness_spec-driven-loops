@@ -84,8 +84,8 @@ All scrubbed of cli-copilot from current-state peer lists, JSON edges, related-s
 
 **B4 — Agent + command files (7 files, with mirror sync):**
 - `multi-ai-council` × 4 runtimes: `.opencode/agents/multi-ai-council.md`, `.claude/agents/multi-ai-council.md`, `.gemini/agents/multi-ai-council.md`, `.codex/agents/multi-ai-council.toml` — vantage tables, vantage lists in flowchart, ASCII diagram, principle bullets all updated
-- `.opencode/commands/spec_kit/deep-research.md`, `deep-review.md`: option `C) cli-copilot` deleted; `D` → `C`, `E` → `D`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`: entire `if_cli_copilot:` block (lines 614-690, ~77 lines including dispatch script + 6 notes) deleted
+- `.opencode/commands/speckit/deep-research.md`, `deep-review.md`: option `C) cli-copilot` deleted; `D` → `C`, `E` → `D`
+- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml`: entire `if_cli_copilot:` block (lines 614-690, ~77 lines including dispatch script + 6 notes) deleted
 
 **B5 — Routing docs (7 files):**
 - `CLAUDE.md` (symlink to `AGENTS.md`)

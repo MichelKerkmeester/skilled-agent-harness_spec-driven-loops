@@ -481,9 +481,9 @@ function determineVerdict(state, gateResult):
   activeP2 = countActiveFindings(state, ["P2"])
 
   if activeP0 > 0 or not gateResult.passed:
-    return { verdict: "FAIL", nextCommand: "/spec_kit:plan" }
+    return { verdict: "FAIL", nextCommand: "/speckit:plan" }
   if activeP1 > 0:
-    return { verdict: "CONDITIONAL", nextCommand: "/spec_kit:plan" }
+    return { verdict: "CONDITIONAL", nextCommand: "/speckit:plan" }
 
   hasAdvisories = activeP2 > 0
   return { verdict: "PASS", hasAdvisories, nextCommand: "/create:changelog" }
@@ -493,8 +493,8 @@ function determineVerdict(state, gateResult):
 
 | Verdict | Next Step |
 |---------|-----------|
-| FAIL | `/spec_kit:plan` -- create remediation plan from findings |
-| CONDITIONAL | `/spec_kit:plan` -- create fix plan for P1 findings |
+| FAIL | `/speckit:plan` -- create remediation plan from findings |
+| CONDITIONAL | `/speckit:plan` -- create fix plan for P1 findings |
 | PASS | `/create:changelog` -- record the clean audit |
 
 ---

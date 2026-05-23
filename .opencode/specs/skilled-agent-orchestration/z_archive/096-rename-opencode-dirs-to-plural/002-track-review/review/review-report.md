@@ -47,7 +47,7 @@ Loop ran 10 iterations across all 4 dimensions with strategy `arch`. The ratio s
 <!-- ANCHOR:planning-trigger -->
 ## 2. Planning Trigger
 
-`/spec_kit:plan` is REQUIRED. Verdict FAIL with active P0 means the track cannot be released without a remediation packet.
+`/speckit:plan` is REQUIRED. Verdict FAIL with active P0 means the track cannot be released without a remediation packet.
 
 ### Planning Packet
 
@@ -76,7 +76,7 @@ Loop ran 10 iterations across all 4 dimensions with strategy `arch`. The ratio s
       "title": "sk-deep-* dead-reference closure",
       "priority": "P1",
       "findings": ["P1-002", "P1-008", "P1-009", "P1-011", "P1-012"],
-      "summary": "Replace sk-deep-review/sk-deep-research with deep-review/deep-research across command YAMLs (auto + confirm), agent definitions in .opencode/agents/, .codex/agents/, .gemini/agents/, .claude/agents/, orchestrator routing tables, and command markdown citations. Then dry-run init for both /spec_kit:deep-review:auto and /spec_kit:deep-research:auto in both modes.",
+      "summary": "Replace sk-deep-review/sk-deep-research with deep-review/deep-research across command YAMLs (auto + confirm), agent definitions in .opencode/agents/, .codex/agents/, .gemini/agents/, .claude/agents/, orchestrator routing tables, and command markdown citations. Then dry-run init for both /speckit:deep-review:auto and /speckit:deep-research:auto in both modes.",
       "estLOC": "20-40 file edits, no LOC churn beyond tokens",
       "blocksRelease": false
     },
@@ -135,12 +135,12 @@ Loop ran 10 iterations across all 4 dimensions with strategy `arch`. The ratio s
   ],
   "planSeed": [
     "Phase 1 (P0): Rebuild dist + add CI guard. Owner: maintainer. Blocks: release.",
-    "Phase 2 (P1 cluster A — sk-deep-*): Token replacement across 5 surfaces (command YAMLs, agent mirrors, orchestrator tables, command markdown citations, install guides). Verification: dry-run /spec_kit:deep-review:auto and /spec_kit:deep-research:auto in both auto and confirm modes.",
+    "Phase 2 (P1 cluster A — sk-deep-*): Token replacement across 5 surfaces (command YAMLs, agent mirrors, orchestrator tables, command markdown citations, install guides). Verification: dry-run /speckit:deep-review:auto and /speckit:deep-research:auto in both auto and confirm modes.",
     "Phase 3 (P1 cluster B — 096 doc/validation): Fix 096 spec narratives, parent+004-symlinks doc sufficiency, smart-router script. Verification: validate.sh --strict + check-smart-router.sh exit 0.",
     "Phase 4 (P1 cluster C — hooks/resolver): Remove env override; add realpath containment. Verification: malformed spec_folder attack-matrix tests.",
     "Phase 5 (P1 cluster D — checklist + Python): Backfill evidence; patch advisor scripts. Verification: zero-coverage smoke guard fires on stub repo.",
     "Phase 6 (P2 sweep): Doc drift updates. Verification: case-insensitive rg sweep returns only allowlisted hits.",
-    "Final: re-run /spec_kit:deep-review:auto on the same scope to confirm verdict flips PASS (or PASS hasAdvisories=true if P2 deferred)."
+    "Final: re-run /speckit:deep-review:auto on the same scope to confirm verdict flips PASS (or PASS hasAdvisories=true if P2 deferred)."
   ],
   "findingClasses": {
     "cross-consumer": ["P0-001", "P1-002", "P1-003", "P1-005", "P1-008", "P1-009", "P1-011", "P1-012", "P1-013", "P1-014"],
@@ -156,8 +156,8 @@ Loop ran 10 iterations across all 4 dimensions with strategy `arch`. The ratio s
       "verification": "rg \\.opencode/skill on dist/ returns 0 hits; runtime smoke test"
     },
     {
-      "surface": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_*.yaml + spec_kit_deep-research_*.yaml",
-      "currentRole": "command-owned workflow YAML for /spec_kit:deep-review and /spec_kit:deep-research",
+      "surface": ".opencode/commands/speckit/assets/speckit_deep-review_*.yaml + spec_kit_deep-research_*.yaml",
+      "currentRole": "command-owned workflow YAML for /speckit:deep-review and /speckit:deep-research",
       "action": "replace sk-deep-review/sk-deep-research with deep-review/deep-research throughout skill_reference, references, templates, and inline command paths",
       "verification": "rg sk-deep-(review|research) on assets/ returns 0 hits; dry-run init for both commands and modes"
     },
@@ -242,13 +242,13 @@ Loop ran 10 iterations across all 4 dimensions with strategy `arch`. The ratio s
 |-------|-------|
 | **Severity** | P1 |
 | **Dimension** | correctness/traceability |
-| **File:line** | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:56` |
+| **File:line** | `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:56` |
 | **Finding class** | cross-consumer |
 | **Disposition** | Open |
 
 **Evidence**: `spec_kit_deep-review_auto.yaml:56-64` and `spec_kit_deep-review_confirm.yaml:56-64` reference `sk-deep-review` and `.opencode/skills/sk-deep-review/...`; `spec_kit_deep-research_auto.yaml:67-76` and `spec_kit_deep-research_confirm.yaml:62` do the same for `sk-deep-research`. Plus `deep-review.md:290-296` and `deep-research.md:36`. Actual loaded skill folders are `.opencode/skills/deep-review/` and `.opencode/skills/deep-research/` — the cited paths do not exist.
 
-**Impact**: Fresh `/spec_kit:deep-review:auto` or `/spec_kit:deep-research:auto` runs can fail to load templates, reducers, references, or skill metadata from the canonical YAML route. (This review iteration succeeded only because the loop manager substituted the correct path manually each dispatch.)
+**Impact**: Fresh `/speckit:deep-review:auto` or `/speckit:deep-research:auto` runs can fail to load templates, reducers, references, or skill metadata from the canonical YAML route. (This review iteration succeeded only because the loop manager substituted the correct path manually each dispatch.)
 
 **Fix recommendation**: Replace `sk-deep-review`/`sk-deep-research` with `deep-review`/`deep-research` across command markdown and YAML assets. Then dry-run init for both commands in both modes.
 
@@ -422,7 +422,7 @@ Loop ran 10 iterations across all 4 dimensions with strategy `arch`. The ratio s
 |-------|-------|
 | **Severity** | P1 |
 | **Dimension** | traceability/maintainability |
-| **File:line** | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:56` |
+| **File:line** | `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:56` |
 | **Finding class** | cross-consumer |
 | **Disposition** | Open (sibling of P1-002) |
 
@@ -504,7 +504,7 @@ Ordered by severity → P0 first, then P1, with P2 advisories separated.
 <!-- ANCHOR:spec-seed -->
 ## 5. Spec Seed
 
-For the follow-on `/spec_kit:plan` packet:
+For the follow-on `/speckit:plan` packet:
 
 - **Title**: "Remediation: 097 track-review findings — dist rebuild + sk-deep-* dead refs + 096 narrative/validation + hooks/resolver + checklist backfill"
 - **Level**: 2 or 3 (22 findings; touches multiple subsystems)
@@ -531,7 +531,7 @@ For the follow-on `/spec_kit:plan` packet:
   - `validate.sh --strict` exits 0 recursively across 093/094/095/096
   - `check-smart-router.sh` fails on a stub repo with zero plural-path skills
   - Case-insensitive `rg '\.opencode/(skill|agent|command)/'` returns only allowlisted hits
-  - Re-running `/spec_kit:deep-review:auto` on the same scope returns PASS (with hasAdvisories=true if P2 deferred)
+  - Re-running `/speckit:deep-review:auto` on the same scope returns PASS (with hasAdvisories=true if P2 deferred)
 
 <!-- /ANCHOR:spec-seed -->
 
@@ -540,17 +540,17 @@ For the follow-on `/spec_kit:plan` packet:
 <!-- ANCHOR:plan-seed -->
 ## 6. Plan Seed
 
-Concrete starter tasks for `/spec_kit:plan`:
+Concrete starter tasks for `/speckit:plan`:
 
 | Phase | Task | Verification |
 |-------|------|--------------|
 | 1 | Rebuild `mcp_server/dist` from current TypeScript | `rg '\.opencode/skill' mcp_server/dist` returns 0 hits |
 | 1 | Add CI guard: fail on singular root literals in dist | CI step exits non-zero on a planted singular literal |
-| 2 | Token replace sk-deep-* in command YAMLs (auto+confirm) | `rg sk-deep-` on `.opencode/commands/spec_kit/assets/` returns 0 |
+| 2 | Token replace sk-deep-* in command YAMLs (auto+confirm) | `rg sk-deep-` on `.opencode/commands/speckit/assets/` returns 0 |
 | 2 | Token replace sk-deep-* in agent mirrors (.opencode/.codex/.gemini/.claude) | `rg sk-deep-` on `*/agents/` returns 0 |
 | 2 | Token replace sk-deep-* in orchestrate.md routing table | `rg sk-deep-` on `agents/orchestrate.md` returns 0 |
-| 2 | Token replace sk-deep-* in command markdown citations | `rg sk-deep-` on `commands/spec_kit/*.md` returns 0 |
-| 2 | Dry-run `/spec_kit:deep-review:auto` and `:confirm` | Both modes load templates without path errors |
+| 2 | Token replace sk-deep-* in command markdown citations | `rg sk-deep-` on `commands/speckit/*.md` returns 0 |
+| 2 | Dry-run `/speckit:deep-review:auto` and `:confirm` | Both modes load templates without path errors |
 | 3 | Fix 096 parent + 004-symlinks doc sufficiency | `validate.sh --strict 096-rename-opencode-dirs-to-plural` exits 0 |
 | 3 | Restore source-state literals in 096 narrative | Tautology grep returns 0 narrative hits |
 | 3 | Fix `check-smart-router.sh` SKILL_ROOT + zero-coverage failure | Stub repo without skills makes script exit non-zero |
@@ -562,7 +562,7 @@ Concrete starter tasks for `/spec_kit:plan`:
 | 6 | Patch `audit_descriptions.py` to plural defaults | Stub repo with empty plural dirs makes script exit non-zero |
 | 6 | Patch `skill_advisor.py` native bridge constants | `--force-native` smoke test passes |
 | 7 | P2 doc drift sweep (install guides, Barter root, cli-opencode prompts) | Final case-insensitive rg returns only allowlisted hits |
-| 8 | Re-run `/spec_kit:deep-review:auto` on same 093-096 scope | Verdict PASS (hasAdvisories=true if P2 deferred) |
+| 8 | Re-run `/speckit:deep-review:auto` on same 093-096 scope | Verdict PASS (hasAdvisories=true if P2 deferred) |
 
 <!-- /ANCHOR:plan-seed -->
 
@@ -690,4 +690,4 @@ The review touched 80+ files across the four packets and the wider canonical wor
 
 **Generated**: 2026-05-07T17:30:00Z (synthesis after iter-10 completion)
 **Loop Manager**: cli-codex (gpt-5.5, high reasoning, fast service tier) dispatched per-iteration; loop manager (this layer) handled init, convergence, and synthesis.
-**Next Action**: User runs `/spec_kit:plan` against the Planning Packet above to scaffold the 098 (or next available number) remediation packet under `.opencode/specs/skilled-agent-orchestration/`.
+**Next Action**: User runs `/speckit:plan` against the Planning Packet above to scaffold the 098 (or next available number) remediation packet under `.opencode/specs/skilled-agent-orchestration/`.

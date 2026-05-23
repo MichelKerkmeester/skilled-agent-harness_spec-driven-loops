@@ -54,9 +54,9 @@ _memory:
 <!-- ANCHOR:problem -->
 ## 2. ROOT PURPOSE
 
-Packet 097 (`/spec_kit:deep-review:auto`, 10 iterations, gpt-5.5 high fast) ran an architectural cross-phase review of recently-shipped packets 093-096 and converged with a FAIL verdict driven by **1 P0** plus **12 P1** plus **9 P2** active findings. The single P0 (P0-001) blocks release; the P1 cluster captures dead-reference drift (`sk-deep-*` legacy tokens), 096 self-validation failures, narrative tautologies introduced by bulk sed, hook precedence weaknesses, unchecked checklist evidence, advisor state path drift, and Python support-tool singular-default residue. The P2 cluster captures install guide drift, Barter root README drift, and a dead Copilot guard branch.
+Packet 097 (`/speckit:deep-review:auto`, 10 iterations, gpt-5.5 high fast) ran an architectural cross-phase review of recently-shipped packets 093-096 and converged with a FAIL verdict driven by **1 P0** plus **12 P1** plus **9 P2** active findings. The single P0 (P0-001) blocks release; the P1 cluster captures dead-reference drift (`sk-deep-*` legacy tokens), 096 self-validation failures, narrative tautologies introduced by bulk sed, hook precedence weaknesses, unchecked checklist evidence, advisor state path drift, and Python support-tool singular-default residue. The P2 cluster captures install guide drift, Barter root README drift, and a dead Copilot guard branch.
 
-Packet 098 is the remediation umbrella that converts each finding into a spec-governed change with file:line evidence, then re-runs `/spec_kit:deep-review:auto` on the same scope to confirm the verdict flips PASS.
+Packet 098 is the remediation umbrella that converts each finding into a spec-governed change with file:line evidence, then re-runs `/speckit:deep-review:auto` on the same scope to confirm the verdict flips PASS.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -90,7 +90,7 @@ Out of scope: re-running 094 RCAF naturalization or 096 directory rename (both b
 | REQ-002 | `validate.sh --strict 098-097-remediation` exits 0 (recursive) | run output |
 | REQ-003 | `validate.sh --strict 096-rename-opencode-dirs-to-plural` exits 0 (was 2) | run output |
 | REQ-004 | `mcp_server/dist/` rebuilt; no singular runtime globs | `rg '\.opencode/(skill\|agent\|command)/' dist/code_graph/` returns 0 |
-| REQ-005 | Re-dispatched `/spec_kit:deep-review:auto` on 093-096 + 098 returns verdict PASS (or PASS hasAdvisories=true if P2 deferred) | new review-report.md |
+| REQ-005 | Re-dispatched `/speckit:deep-review:auto` on 093-096 + 098 returns verdict PASS (or PASS hasAdvisories=true if P2 deferred) | new review-report.md |
 <!-- /ANCHOR:requirements -->
 
 ---

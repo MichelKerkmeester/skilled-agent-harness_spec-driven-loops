@@ -26,8 +26,8 @@ _memory:
 This research examined how Codex can most reliably discover `spec_kit` and `memory` commands after `system-spec-kit` is selected by skill advisor, especially in runtimes where command or prompt surfaces are not prominent. Across two iterations, the result converged quickly: the repository already has the needed command docs, but the main discoverability surface Codex sees first is the always-loaded `references/workflows/quick_reference.md`, and that surface currently spends its prime space on levels, templates, shell snippets, and save/handover details instead of a compact command shortlist.
 
 The smallest-correct recommendation is to add a four-command "Start Here" shortlist near the top of `quick_reference.md` and keep the deeper command docs as the canonical detail source. The four commands are:
-- `/spec_kit:resume`
-- `/spec_kit:plan`
+- `/speckit:resume`
+- `/speckit:plan`
 - `/memory:search`
 - `/memory:save`
 
@@ -51,7 +51,7 @@ Decision update after research: the user explicitly overrode the minimal shortli
 
 ### Q1. What command surfaces already exist?
 
-The repository already contains the core command surfaces under `.opencode/commands/spec_kit/` and `.opencode/commands/memory/`. This is not primarily a missing-docs problem. [SOURCE: `.opencode/commands/spec_kit/resume.md:1-33`, `.opencode/commands/spec_kit/plan.md:1-40`, `.opencode/commands/memory/save.md:1-76`, `.opencode/commands/memory/search.md:1-80`]
+The repository already contains the core command surfaces under `.opencode/commands/speckit/` and `.opencode/commands/memory/`. This is not primarily a missing-docs problem. [SOURCE: `.opencode/commands/speckit/resume.md:1-33`, `.opencode/commands/speckit/plan.md:1-40`, `.opencode/commands/memory/save.md:1-76`, `.opencode/commands/memory/search.md:1-80`]
 
 ### Q2. What surface does Codex most likely see first?
 
@@ -60,12 +60,12 @@ The first-touch surface is `references/workflows/quick_reference.md` because `sy
 ### Q3. What is the smallest high-signal change?
 
 The smallest high-signal change is a narrow four-command shortlist, not a generated index or broad command catalog. The four commands cover the main user branches with the least duplication risk:
-- `/spec_kit:resume` for recovering/resuming work
-- `/spec_kit:plan` for starting planning or spec workflow
+- `/speckit:resume` for recovering/resuming work
+- `/speckit:plan` for starting planning or spec workflow
 - `/memory:search` for retrieving prior context and analysis
 - `/memory:save` for preserving session context
 
-[SOURCE: `.opencode/commands/spec_kit/resume.md:1-33`, `.opencode/commands/spec_kit/plan.md:1-40`, `.opencode/commands/memory/search.md:1-80`, `.opencode/commands/memory/save.md:1-76`]
+[SOURCE: `.opencode/commands/speckit/resume.md:1-33`, `.opencode/commands/speckit/plan.md:1-40`, `.opencode/commands/memory/search.md:1-80`, `.opencode/commands/memory/save.md:1-76`]
 
 ### Q4. Where should the fix live?
 
@@ -79,14 +79,14 @@ Insert a concise "Start Here" command shortlist immediately under `## 4. ESSENTI
 
 The implementation direction changed, not the research conclusion. The packet should keep the four-command shortlist as the minimal recommendation, but the approved downstream docs change now uses an expanded all-commands short list covering these commands:
 
-- `/spec_kit:resume`
-- `/spec_kit:plan`
-- `/spec_kit:implement`
-- `/spec_kit:complete`
-- `/spec_kit:debug`
-- `/spec_kit:handover`
-- `/spec_kit:deep-research`
-- `/spec_kit:deep-review`
+- `/speckit:resume`
+- `/speckit:plan`
+- `/speckit:implement`
+- `/speckit:complete`
+- `/speckit:debug`
+- `/speckit:handover`
+- `/speckit:deep-research`
+- `/speckit:deep-review`
 - `/memory:save`
 - `/memory:search`
 - `/memory:manage`
@@ -127,8 +127,8 @@ Update `.opencode/skills/system-spec-kit/SKILL.md`:
 
 | Command | Why it belongs first |
 |---------|----------------------|
-| `/spec_kit:resume` | Recover or continue existing spec-folder work |
-| `/spec_kit:plan` | Start or refine a planned workflow/spec packet |
+| `/speckit:resume` | Recover or continue existing spec-folder work |
+| `/speckit:plan` | Start or refine a planned workflow/spec packet |
 | `/memory:search` | Retrieve prior context, decisions, or analysis |
 | `/memory:save` | Preserve session context for future recovery |
 
@@ -136,14 +136,14 @@ Update `.opencode/skills/system-spec-kit/SKILL.md`:
 
 | Command | Why it belongs in the short list |
 |---------|----------------------------------|
-| `/spec_kit:resume` | Resume or recover spec-folder work |
-| `/spec_kit:plan` | Start planning and level selection work |
-| `/spec_kit:implement` | Move from plan into execution workflow |
-| `/spec_kit:complete` | Drive completion and verification workflow |
-| `/spec_kit:debug` | Route stuck work into debug delegation |
-| `/spec_kit:handover` | Preserve continuation context for the next session |
-| `/spec_kit:deep-research` | Start the autonomous research loop |
-| `/spec_kit:deep-review` | Start the autonomous review loop |
+| `/speckit:resume` | Resume or recover spec-folder work |
+| `/speckit:plan` | Start planning and level selection work |
+| `/speckit:implement` | Move from plan into execution workflow |
+| `/speckit:complete` | Drive completion and verification workflow |
+| `/speckit:debug` | Route stuck work into debug delegation |
+| `/speckit:handover` | Preserve continuation context for the next session |
+| `/speckit:deep-research` | Start the autonomous research loop |
+| `/speckit:deep-review` | Start the autonomous review loop |
 | `/memory:save` | Save session context for later recovery |
 | `/memory:search` | Retrieve prior context, decisions, and analysis |
 | `/memory:manage` | Handle memory operations and maintenance |
@@ -153,10 +153,10 @@ Update `.opencode/skills/system-spec-kit/SKILL.md`:
 
 ## 6. Ruled Out Directions
 
-- Creating brand-new command docs as the primary fix. The docs already exist. [SOURCE: `.opencode/commands/spec_kit/resume.md:1-33`, `.opencode/commands/spec_kit/plan.md:1-40`, `.opencode/commands/memory/save.md:1-76`]
+- Creating brand-new command docs as the primary fix. The docs already exist. [SOURCE: `.opencode/commands/speckit/resume.md:1-33`, `.opencode/commands/speckit/plan.md:1-40`, `.opencode/commands/memory/save.md:1-76`]
 - Building a generated command index as the primary solution. The existing always-loaded quick reference is a lower-drift surface. [SOURCE: `.opencode/skills/system-spec-kit/SKILL.md:135-180`, `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md:109-166`]
 - Promoting every `memory` or `spec_kit` command into the first-touch set. That recreates noise and drift risk. [SOURCE: `.opencode/skills/system-spec-kit/SKILL.md:561-612`]
-- Treating `/spec_kit:handover` as a first-touch command. It is end-of-session oriented rather than initial navigation. [SOURCE: `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md:499-513`]
+- Treating `/speckit:handover` as a first-touch command. It is end-of-session oriented rather than initial navigation. [SOURCE: `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md:499-513`]
 
 ---
 
@@ -186,8 +186,8 @@ Update `.opencode/skills/system-spec-kit/SKILL.md`:
 - `.opencode/skills/system-spec-kit/SKILL.md:561-612`
 - `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md:13-188`
 - `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md:468-527`
-- `.opencode/commands/spec_kit/resume.md:1-33`
-- `.opencode/commands/spec_kit/plan.md:1-40`
+- `.opencode/commands/speckit/resume.md:1-33`
+- `.opencode/commands/speckit/plan.md:1-40`
 - `.opencode/commands/memory/search.md:1-80`
 - `.opencode/commands/memory/save.md:1-76`
 - `specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/064-bug-analysis-and-fix/tasks.md:350-379`

@@ -47,7 +47,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Read and understand current `phase` command, `plan` command, `complete` command, and all YAML assets
-- [x] T002 Read `:with-research` pattern in `spec_kit_complete_auto.yaml` to use as blueprint
+- [x] T002 Read `:with-research` pattern in `speckit_complete_auto.yaml` to use as blueprint
 - [x] T003 Identify all cross-references to `spec_kit:phase` in primary docs
 <!-- /ANCHOR:phase-1 -->
 
@@ -56,14 +56,14 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Add `:with-phases` flag to `plan` command frontmatter argument-hint and execution protocol (`.opencode/commands/spec_kit/plan.md`)
-- [x] T005 Add phase decomposition section to `plan` command with workflow description, flag parsing, and examples (`.opencode/commands/spec_kit/plan.md`)
+- [x] T004 Add `:with-phases` flag to `plan` command frontmatter argument-hint and execution protocol (`.opencode/commands/speckit/plan.md`)
+- [x] T005 Add phase decomposition section to `plan` command with workflow description, flag parsing, and examples (`.opencode/commands/speckit/plan.md`)
 - [x] T006 [P] Add `:with-phases` flag to spec_kit:complete frontmatter argument-hint and execution protocol
 - [x] T007 [P] Add phase decomposition section to spec_kit:complete with workflow description, flag parsing, and examples
-- [x] T008 Add `phase_decomposition` optional workflow to `spec_kit_plan_auto.yaml` (`.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml`)
-- [x] T009 [P] Add `phase_decomposition` optional workflow to `spec_kit_plan_confirm.yaml` (`.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml`)
-- [x] T010 [P] Add `phase_decomposition` optional workflow to `spec_kit_complete_auto.yaml` (`.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml`)
-- [x] T011 [P] Add `phase_decomposition` optional workflow to `spec_kit_complete_confirm.yaml` (`.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml`)
+- [x] T008 Add `phase_decomposition` optional workflow to `speckit_plan_auto.yaml` (`.opencode/commands/speckit/assets/speckit_plan_auto.yaml`)
+- [x] T009 [P] Add `phase_decomposition` optional workflow to `speckit_plan_confirm.yaml` (`.opencode/commands/speckit/assets/speckit_plan_confirm.yaml`)
+- [x] T010 [P] Add `phase_decomposition` optional workflow to `speckit_complete_auto.yaml` (`.opencode/commands/speckit/assets/speckit_complete_auto.yaml`)
+- [x] T011 [P] Add `phase_decomposition` optional workflow to `speckit_complete_confirm.yaml` (`.opencode/commands/speckit/assets/speckit_complete_confirm.yaml`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -72,11 +72,11 @@ _memory:
 ## Phase 3: Verification
 
 - [x] T012 Delete standalone spec_kit:phase command file
-- [x] T013 [P] Delete `spec_kit_phase_auto.yaml` (`.opencode/commands/spec_kit/assets/spec_kit_phase_auto.yaml`)
-- [x] T014 [P] Delete `spec_kit_phase_confirm.yaml` (`.opencode/commands/spec_kit/assets/spec_kit_phase_confirm.yaml`)
-- [x] T015 Update `README.txt` to remove phase entry and document `:with-phases` (`.opencode/commands/spec_kit/README.txt`)
-- [x] T016 Update `CLAUDE.md` quick reference table to replace `/spec_kit:phase` with `:with-phases` note
-- [ ] T017 Verify `/spec_kit:plan` without `:with-phases` works unchanged (manual test)
+- [x] T013 [P] Delete `speckit_phase_auto.yaml` (`.opencode/commands/speckit/assets/speckit_phase_auto.yaml`)
+- [x] T014 [P] Delete `speckit_phase_confirm.yaml` (`.opencode/commands/speckit/assets/speckit_phase_confirm.yaml`)
+- [x] T015 Update `README.txt` to remove phase entry and document `:with-phases` (`.opencode/commands/speckit/README.txt`)
+- [x] T016 Update `CLAUDE.md` quick reference table to replace `/speckit:phase` with `:with-phases` note
+- [ ] T017 Verify `/speckit:plan` without `:with-phases` works unchanged (manual test)
 <!-- /ANCHOR:phase-3 -->
 
 ---

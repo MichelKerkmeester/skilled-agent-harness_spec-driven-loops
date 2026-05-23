@@ -8137,7 +8137,7 @@ exec
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-cleanup-playbooks/review/008-cleanup-and-audit-pt-01/deep-review-state.jsonl
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-cleanup-playbooks/review/008-cleanup-and-audit-pt-01/deep-review-dashboard.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/004-skill-advisor-affordance-evidence/prompts/agent-brief.md
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-cleanup-playbooks/review/006-continuity-refactor-gates-pt-01/007-sk-system-speckit-revisit/deep-review-config.json
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-cleanup-playbooks/review/006-continuity-refactor-gates-pt-01/007-sk-system-spec-kit-revisit/deep-review-config.json
 ./.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/022-implement-and-remove-deprecated-features/spec.md
 ./.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/022-implement-and-remove-deprecated-features/plan.md
 ./.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/022-implement-and-remove-deprecated-features/checklist.md
@@ -8212,14 +8212,14 @@ exec
 ./.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/017-governance/implementation-summary.md
 ./.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/017-governance/graph-metadata.json
 ./.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/checklist.md
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-cleanup-playbooks/review/006-continuity-refactor-gates-pt-01/007-sk-system-speckit-revisit/iterations/iteration-001.md
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-cleanup-playbooks/review/006-continuity-refactor-gates-pt-01/007-sk-system-speckit-revisit/iterations/iteration-011.md
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-cleanup-playbooks/review/006-continuity-refactor-gates-pt-01/007-sk-system-speckit-revisit/iterations/iteration-002.md
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-cleanup-playbooks/review/006-continuity-refactor-gates-pt-01/007-sk-system-speckit-revisit/deep-review-state.jsonl
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-cleanup-playbooks/review/006-continuity-refactor-gates-pt-01/007-sk-system-speckit-revisit/deep-review-dashboard.md
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-cleanup-playbooks/review/006-continuity-refactor-gates-pt-01/007-sk-system-speckit-revisit/deep-review-findings-registry.json
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-cleanup-playbooks/review/006-continuity-refactor-gates-pt-01/007-sk-system-speckit-revisit/deep-review-strategy.md
-./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-cleanup-playbooks/review/006-continuity-refactor-gates-pt-01/007-sk-system-speckit-revisit/review-report.md
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-cleanup-playbooks/review/006-continuity-refactor-gates-pt-01/007-sk-system-spec-kit-revisit/iterations/iteration-001.md
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-cleanup-playbooks/review/006-continuity-refactor-gates-pt-01/007-sk-system-spec-kit-revisit/iterations/iteration-011.md
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-cleanup-playbooks/review/006-continuity-refactor-gates-pt-01/007-sk-system-spec-kit-revisit/iterations/iteration-002.md
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-cleanup-playbooks/review/006-continuity-refactor-gates-pt-01/007-sk-system-spec-kit-revisit/deep-review-state.jsonl
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-cleanup-playbooks/review/006-continuity-refactor-gates-pt-01/007-sk-system-spec-kit-revisit/deep-review-dashboard.md
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-cleanup-playbooks/review/006-continuity-refactor-gates-pt-01/007-sk-system-spec-kit-revisit/deep-review-findings-registry.json
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-cleanup-playbooks/review/006-continuity-refactor-gates-pt-01/007-sk-system-spec-kit-revisit/deep-review-strategy.md
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-cleanup-playbooks/review/006-continuity-refactor-gates-pt-01/007-sk-system-spec-kit-revisit/review-report.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-cleanup-playbooks/review/006-continuity-refactor-gates-pt-01/deep-review-findings-registry.json
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-cleanup-playbooks/review/006-continuity-refactor-gates-pt-01/deep-review-strategy.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-manual-testing-playbook-coverage-and-run/scratch/cli-playbook-results/cli-codex/evidence/CX-005/step-2-stdout.txt
@@ -8429,8 +8429,8 @@ exec
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-cleanup-playbooks/review/006-continuity-refactor-gates-pt-01/009-readme-alignment-revisit/deep-review-config.json
 ./.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/deep-research-strategy.md
 ./.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/analysis-summary.md
-./.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/spec.md
-./.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/plan.md
+./.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme/spec.md
+./.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme/plan.md
 ./.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/specs-wide-memory-remediation-cleanup-pass/manifest.json
 ./.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/specs-wide-memory-remediation-cleanup-pass/summary.md
 ./.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/agent-10-hygiene.md
@@ -8479,14 +8479,14 @@ exec
 ./.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/agent-output-iter-007-codex-A2.md
 ./.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/agent-output-iter-002-codex-A3.md
 ./.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/agent-05-phases-013-016.md
-./.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/scratch/research-brief.md
+./.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme/scratch/research-brief.md
 ./.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/009-evaluation-and-measurement/spec.md
 ./.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/009-evaluation-and-measurement/plan.md
 ./.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/009-evaluation-and-measurement/checklist.md
-./.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/tasks.md
-./.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/description.json
-./.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/implementation-summary.md
-./.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/graph-metadata.json
+./.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme/tasks.md
+./.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme/description.json
+./.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme/implementation-summary.md
+./.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme/graph-metadata.json
 ./.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/deep-research-state.jsonl
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-cleanup-playbooks/review/006-continuity-refactor-gates-pt-01/009-readme-alignment-revisit/iterations/iteration-005.md
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-cleanup-playbooks/review/006-continuity-refactor-gates-pt-01/009-readme-alignment-revisit/iterations/iteration-006.md
@@ -9740,7 +9740,7 @@ exec
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/004-graphify/scratch/phase-research-prompt.md:108:- Don't propose replacing Code Graph MCP or CocoIndex unless the graph-based alternative clearly solves something they cannot.
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/004-graphify/scratch/phase-research-prompt.md:161:- A comparison section that maps graphify capabilities against Public's existing Code Graph MCP and CocoIndex surfaces.
 ./.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/043-post-merge-refinement-final/spec.md:123:| FR-014 | Checkpoint restore preserves embeddings | P1 |
-./.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/082-speckit-reimagined/spec.md:24:SpecKit Reimagined synthesizes findings from 25 parallel agent analyses of 8 pre-analysis documents examining dotmd, seu-claude, drift, and system-speckit architectures. This specification defines 15 P0 blockers (10 original + 5 embedding resilience), 18 P1 requirements, and establishes a unified 6-7 week implementation roadmap to transform SpecKit into a best-in-class memory system with hybrid search, causal graphs, embedding resilience, and self-improvement capabilities.
+./.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/082-speckit-reimagined/spec.md:24:SpecKit Reimagined synthesizes findings from 25 parallel agent analyses of 8 pre-analysis documents examining dotmd, seu-claude, drift, and system-spec-kit architectures. This specification defines 15 P0 blockers (10 original + 5 embedding resilience), 18 P1 requirements, and establishes a unified 6-7 week implementation roadmap to transform SpecKit into a best-in-class memory system with hybrid search, causal graphs, embedding resilience, and self-improvement capabilities.
 ./.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/082-speckit-reimagined/spec.md:28:**Key Decisions**: Adopt drift's session deduplication + type-specific half-lives, enhance dotmd's RRF fusion with convergence bonus, maintain SpecKit's ANCHOR format for token efficiency, and implement defense-in-depth embedding resilience (ADR-009).
 ./.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/082-speckit-reimagined/spec.md:30:**Critical Dependencies**: Session deduplication (blocks token savings), causal graph (prerequisite for "why" queries), embedding fallback chain (blocks memory save reliability). Note: Lazy loading and RRF fusion foundations already exist in codebase.
 ./.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/082-speckit-reimagined/spec.md:55:- Lazy embedding provider EXISTS (`shared/embeddings.js` singleton pattern), but uses eager warmup
@@ -10529,7 +10529,7 @@ exec
 ./.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/082-speckit-reimagined/graph-metadata.json:88:        "path": "shared/embeddings.js",
 ./.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/082-speckit-reimagined/graph-metadata.json:130:        "path": "shared/embeddings/factory.js",
 ./.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/082-speckit-reimagined/graph-metadata.json:142:        "path": "shared/embeddings/providers/voyage.js",
-./.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/082-speckit-reimagined/graph-metadata.json:206:    "causal_summary": "SpecKit Reimagined synthesizes findings from 25 parallel agent analyses of 8 pre-analysis documents examining dotmd, seu-claude, drift, and system-speckit architectures. This specification defines 15 P0 blockers (10 original + 5 embedding resilience), 18 P1 requirements, and establishes a unified 6-7 week implementation roadmap to transform SpecKit into a best-in-class memory system with hybrid search, causal graphs, embedding resilience, and self-improvement capabilities.",
+./.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/082-speckit-reimagined/graph-metadata.json:206:    "causal_summary": "SpecKit Reimagined synthesizes findings from 25 parallel agent analyses of 8 pre-analysis documents examining dotmd, seu-claude, drift, and system-spec-kit architectures. This specification defines 15 P0 blockers (10 original + 5 embedding resilience), 18 P1 requirements, and establishes a unified 6-7 week implementation roadmap to transform SpecKit into a best-in-class memory system with hybrid search, causal graphs, embedding resilience, and self-improvement capabilities.",
 ./.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/049-system-analysis-bugs/checklist.md:29:- [x] `vector-index.js` validation uses profile dimension instead of hardcoded 768
 ./.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/049-system-analysis-bugs/checklist.md:55:- [x] `memory_search()` returns relevant results
 ./.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/049-system-analysis-bugs/checklist.md:56:- **Evidence:** Verified 2024-12-31: memory_index_scan completed (147 files). memory_search fix: context-server.js:676 changed `profile?.dimension` to `profile?.dim` (profile object uses `dim` property). Fix applied 2024-12-31 Attempt 2. MCP restart required to verify.

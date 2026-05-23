@@ -26,7 +26,7 @@ contextType: "research"
 | **Priority** | P1 |
 | **Status** | Complete |
 | **Created** | 2026-04-10 |
-| **Branch** | `system-speckit/026-graph-and-context-optimization` |
+| **Branch** | `system-spec-kit/026-graph-and-context-optimization` |
 <!-- /ANCHOR:metadata -->
 
 ---

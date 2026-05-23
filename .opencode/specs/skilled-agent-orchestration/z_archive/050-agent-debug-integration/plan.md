@@ -19,8 +19,8 @@ _memory:
     key_files:
       - ".opencode/agents/debug.md"
       - ".opencode/agents/orchestrate.md"
-      - ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml"
+      - ".opencode/commands/speckit/assets/speckit_implement_auto.yaml"
+      - ".opencode/commands/speckit/assets/speckit_complete_auto.yaml"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "session-2026-04-27-debug-integration"
@@ -49,7 +49,7 @@ _memory:
 | **Testing** | Manual rehearsal via synthetic 3-failure throwaway spec; static greps for forbidden phrases; `validate.sh --strict` for spec folder docs. |
 
 ### Overview
-This is a documentation-truthing pass plus a small UX upgrade to an existing prompt. **Edit A** rewrites every "auto-dispatch" / "Task tool dispatches" claim across four runtime agent definitions (`.opencode/agents/debug.md`, `.claude/agents/debug.md`, `.codex/agents/debug.toml`, `.gemini/agents/debug.md`), the orchestrator (`.opencode/agents/orchestrate.md`), and the two implementation YAML configs (`spec_kit_implement_auto.yaml`, `spec_kit_complete_auto.yaml`) so the descriptions match the real (user-invoked, prompted-offer) behavior. **Edit B** replaces the buried A/B/C/D failure-threshold menu with a single `y / continue manually / skip` prompt, and on `y` writes a pre-filled `debug-delegation.md` scaffold using the Debug Context Handoff schema. No autonomous routing is introduced.
+This is a documentation-truthing pass plus a small UX upgrade to an existing prompt. **Edit A** rewrites every "auto-dispatch" / "Task tool dispatches" claim across four runtime agent definitions (`.opencode/agents/debug.md`, `.claude/agents/debug.md`, `.codex/agents/debug.toml`, `.gemini/agents/debug.md`), the orchestrator (`.opencode/agents/orchestrate.md`), and the two implementation YAML configs (`speckit_implement_auto.yaml`, `speckit_complete_auto.yaml`) so the descriptions match the real (user-invoked, prompted-offer) behavior. **Edit B** replaces the buried A/B/C/D failure-threshold menu with a single `y / continue manually / skip` prompt, and on `y` writes a pre-filled `debug-delegation.md` scaffold using the Debug Context Handoff schema. No autonomous routing is introduced.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -83,7 +83,7 @@ This is a documentation-truthing pass plus a small UX upgrade to an existing pro
 ### Key Components
 - **Runtime agent definitions (×4)**: `.opencode/agents/debug.md`, `.claude/agents/debug.md`, `.codex/agents/debug.toml`, `.gemini/agents/debug.md` — same content, three formats. Edits mirrored across all four.
 - **Orchestrator**: `.opencode/agents/orchestrate.md` — single source of truth for routing prose. Affected lines: 99 (priority routing table), 492 (REASSIGN step), 537-539 (Debug Delegation Trigger), 595 (debug delegation row in routing lookup), 461 (debug.md Related Resources table — actually inside debug.md, not orchestrate.md).
-- **Workflow YAML configs (×2)**: `spec_kit_implement_auto.yaml`, `spec_kit_complete_auto.yaml` — the prompt and `failure_tracking` metadata that operators see at the threshold.
+- **Workflow YAML configs (×2)**: `speckit_implement_auto.yaml`, `speckit_complete_auto.yaml` — the prompt and `failure_tracking` metadata that operators see at the threshold.
 - **Scaffold generator**: New small helper. Inputs: spec folder path, last 3 failure entries (error message, file, attempt summary). Output: `<spec-folder>/debug-delegation.md` populated with handoff fields. Versioned filename if a prior scaffold exists.
 
 ### Data Flow
@@ -119,13 +119,13 @@ This is a documentation-truthing pass plus a small UX upgrade to an existing pro
 - L537-539 Debug Delegation Trigger: insert "and prompt the user" after "prepare a diagnostic summary." Drop the `"and dispatch"` language.
 - L595 routing-lookup row: same wording change as L99.
 
-**A.3 — `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`** (lines 210-217, 411-413)
+**A.3 — `.opencode/commands/speckit/assets/speckit_implement_auto.yaml`** (lines 210-217, 411-413)
 - L212 condition: from `"ONLY dispatch when failure_count >= 3..."` to `"ONLY surface a prompted offer when failure_count >= 3..."`.
 - L215 metadata: rename `failure_tracking` → `prompt_threshold` (or annotate inline as `"prompt threshold; never auto-routes"`).
 - L216 on_threshold: rewrite from the buried A/B/C/D suggestion to `"Surface a single y/n/skip prompt; on y, generate debug-delegation.md scaffold and instruct user to dispatch @debug via Task tool."`
 - L411-413 `debug_delegation.action`: replace with the new prompt block (see Edit B below).
 
-**A.4 — `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml`** (lines 321-328, 898-910)
+**A.4 — `.opencode/commands/speckit/assets/speckit_complete_auto.yaml`** (lines 321-328, 898-910)
 - Mirror A.3 changes at L321-328.
 - L898-910 `debug_escalation` block (the actual A/B/C/D menu in this file): replace with the same y/n/skip prompt format from Edit B.
 
@@ -136,7 +136,7 @@ This is a documentation-truthing pass plus a small UX upgrade to an existing pro
 
 ### Phase 3: Edit B — Prompt Visibility & Scaffold Generation
 
-**B.1 — Prompt rewrite** (`spec_kit_implement_auto.yaml:411-413` and `spec_kit_complete_auto.yaml:898-910`)
+**B.1 — Prompt rewrite** (`speckit_implement_auto.yaml:411-413` and `speckit_complete_auto.yaml:898-910`)
 - New prompt body:
   ```
   ⚠️  3 task failures on <packet>. The @debug agent runs a 5-phase fresh-perspective root-cause pass with no prior context — it costs one Task-tool dispatch and writes findings to a structured report.

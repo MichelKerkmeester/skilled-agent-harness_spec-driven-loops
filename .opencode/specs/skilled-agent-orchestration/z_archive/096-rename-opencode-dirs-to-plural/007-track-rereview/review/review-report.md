@@ -44,7 +44,7 @@ contextType: "general"
 <!-- ANCHOR:planning-trigger -->
 ## 2. Planning Trigger
 
-**`/spec_kit:plan` REQUIRED** — verdict `CONDITIONAL` blocks release. The 2 active P1 regressions plus 4 P2 advisories should be folded into a remediation packet (e.g. `103-101-remediation`) before the next release window opens.
+**`/speckit:plan` REQUIRED** — verdict `CONDITIONAL` blocks release. The 2 active P1 regressions plus 4 P2 advisories should be folded into a remediation packet (e.g. `103-101-remediation`) before the next release window opens.
 
 ```json Planning Packet
 {
@@ -63,10 +63,10 @@ contextType: "general"
       "title": "Add --pure to all 4 if_cli_opencode YAML branches and document DeepSeek-family requirement",
       "findingsAddressed": ["P1-027"],
       "affectedSurfaces": [
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml",
+        ".opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml",
+        ".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml",
         ".opencode/skills/cli-opencode/SKILL.md"
       ]
     },
@@ -77,10 +77,10 @@ contextType: "general"
       "findingsAddressed": ["P1-028"],
       "affectedSurfaces": [
         ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml"
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml",
+        ".opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml",
+        ".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml"
       ]
     },
     {
@@ -126,7 +126,7 @@ contextType: "general"
     "Phase 1 (P1 fixes): Add --pure to all 4 YAML branches; decide sandboxMode disposition (reject vs. branch)",
     "Phase 2 (P2 cleanup): Add advisor scoring lane entry; add 4 vitest cases; reconcile doc surface inventory",
     "Phase 3 (verification): Re-run cli-opencode + DeepSeek-family smoke test; vitest green; doctor:skill-advisor PASS",
-    "Phase 4 (release): /create:changelog + /spec_kit:deep-review:auto track:skilled-agent-orchestration on the remediation packet to confirm the verdict-flip back to PASS"
+    "Phase 4 (release): /create:changelog + /speckit:deep-review:auto track:skilled-agent-orchestration on the remediation packet to confirm the verdict-flip back to PASS"
   ],
   "findingClasses": {
     "cross-consumer": ["P1-027", "P1-028"],
@@ -134,10 +134,10 @@ contextType: "general"
     "narrative-drift": ["P2-027r", "P2-032"]
   },
   "affectedSurfacesSeed": [
-    ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
-    ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
-    ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
-    ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
+    ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml",
+    ".opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml",
+    ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml",
+    ".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml",
     ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts",
     ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/aliases.ts",
     ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts",
@@ -166,7 +166,7 @@ contextType: "general"
 | **First seen** | iter-1 (inventory pass) |
 | **Last verified** | iter-8 (adversarial second-lens) |
 | **Disposition** | active |
-| **File:line evidence** | `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:717-726`, `_research_confirm.yaml:649-658`, `_review_auto.yaml:781-790`, `_review_confirm.yaml:758-767` |
+| **File:line evidence** | `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:717-726`, `_research_confirm.yaml:649-658`, `_review_auto.yaml:781-790`, `_review_confirm.yaml:758-767` |
 | **scopeProof** | grep across 4 deep-* YAML files: 0 hits for `--pure` inside `if_cli_opencode` blocks (confirmed iter-1 and iter-8) |
 | **Hunter** | All 4 branches invoke `opencode run` with `--model`, `--agent general`, `--format json`, `--dangerously-skip-permissions`, `--dir`, optional `--variant`. None include `--pure`. |
 | **Skeptic** | Could downgrade if `--pure` were optional for the supported model set OR if DeepSeek-family models were excluded by policy. Neither holds: 101 spec.md cites OpenCode model/tool-name compatibility as known limitation; cli-opencode SKILL.md:226-234 frames `--pure` as the canonical fix. |
@@ -179,10 +179,10 @@ contextType: "general"
 ```yaml
 claim: "All 4 if_cli_opencode YAML branches lack --pure, breaking cli-opencode dispatch under DeepSeek-family models"
 evidenceRefs:
-  - ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:717"
-  - ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:649"
-  - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:781"
-  - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:758"
+  - ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:717"
+  - ".opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:649"
+  - ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:781"
+  - ".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:758"
   - ".opencode/skills/cli-opencode/SKILL.md:226-234,273,299"
   - "review/deep-review-state.jsonl:2 (executor_fallback event documenting the smoke failure)"
 counterevidenceSought: "Searched for --pure literal across 4 YAMLs (0 hits inside if_cli_opencode blocks); searched for alternative DeepSeek-compat flags (--no-tool-prefix, model-specific exclusion list); none exist. Verified opencode run --help to confirm --pure is the canonical mitigation."
@@ -217,7 +217,7 @@ claim: "cli-opencode sandboxMode is declared supported by parseExecutorConfig bu
 evidenceRefs:
   - ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:37-40"
   - ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:116-140"
-  - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:783"
+  - ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:783"
   - "node parser probe: { kind: 'cli-opencode', sandboxMode: 'read-only' } accepted"
 counterevidenceSought: "Grepped for sandboxMode usage downstream of parseExecutorConfig within YAML branches (0 hits inside if_cli_opencode). Grepped for resolveOpencodeSandboxMode helper (none exists). Verified that parser rejects unsupported fields (e.g., serviceTier for cli-opencode) — ruling out the no-op-pass-through interpretation."
 alternativeExplanation: "Could be intentional placeholder for future implementation; ruled out because the comment at executor-config.ts:37-40 frames it as currently-honored, not deferred."
@@ -248,7 +248,7 @@ Ordered P1 first, then P2; P1 fixes block PASS, P2s are advisory.
 ### WS-1 — cli-opencode YAML --pure fix (P1-027) — **HIGHEST PRIORITY**
 
 - **Action:** Add `--pure` flag to all 4 `if_cli_opencode` `opencode run` invocations after `--dangerously-skip-permissions` and before `{optional_variant_flag}`.
-- **Surfaces:** 4 YAML files in `.opencode/commands/spec_kit/assets/`.
+- **Surfaces:** 4 YAML files in `.opencode/commands/speckit/assets/`.
 - **Doc surface:** Update `cli-opencode/SKILL.md` to mark `--pure` as required-for-DeepSeek-family (not just plugin-crash-only) and document the YAML wiring.
 - **Validation:** Re-run cli-opencode + DeepSeek smoke test under default plugins; expect PASS.
 
@@ -277,7 +277,7 @@ Ordered P1 first, then P2; P1 fixes block PASS, P2s are advisory.
 
 1. **WS-1** + **WS-2** in one phase (both P1, both same surface family).
 2. **WS-3** + **WS-4** + **WS-5** in a second phase (P2 cleanup, no blocker on each other).
-3. Re-run `/spec_kit:deep-review:auto track:skilled-agent-orchestration` on the remediation packet to confirm verdict-flip back to PASS.
+3. Re-run `/speckit:deep-review:auto track:skilled-agent-orchestration` on the remediation packet to confirm verdict-flip back to PASS.
 <!-- /ANCHOR:remediation-workstreams -->
 
 ---
@@ -323,7 +323,7 @@ Ordered P1 first, then P2; P1 fixes block PASS, P2s are advisory.
 ### Phase 4: Release
 
 - **T-014:** `/create:changelog` with verdict-flip narrative.
-- **T-015:** `/spec_kit:deep-review:auto track:skilled-agent-orchestration` — expect verdict PASS (clean).
+- **T-015:** `/speckit:deep-review:auto track:skilled-agent-orchestration` — expect verdict PASS (clean).
 <!-- /ANCHOR:plan-seed -->
 
 ---
@@ -452,7 +452,7 @@ The following items were ruled out at severity-granularity OR explicitly deferre
 - `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs`
 - `.opencode/skills/deep-review/scripts/reduce-state.cjs`
 - `.opencode/skills/sk-code-review/SKILL.md` + `.opencode/skills/sk-git/SKILL.md`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`, `_research_confirm.yaml`, `_review_auto.yaml`, `_review_confirm.yaml`
+- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml`, `_research_confirm.yaml`, `_review_auto.yaml`, `_review_confirm.yaml`
 - `.opencode/commands/doctor/scripts/audit_descriptions.py`
 
 ### Lineage

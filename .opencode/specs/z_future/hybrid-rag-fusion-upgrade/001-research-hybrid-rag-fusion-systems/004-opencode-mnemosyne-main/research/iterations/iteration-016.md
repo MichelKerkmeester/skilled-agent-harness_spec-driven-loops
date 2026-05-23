@@ -1,8 +1,8 @@
 ## When NOT to Use
 
-- Simple, single-question research (use direct codebase search or `/spec_kit:plan`)
-- Known-solution documentation (use `/spec_kit:plan`)
-- Implementation tasks (use `/spec_kit:implement`)
+- Simple, single-question research (use direct codebase search or `/speckit:plan`)
+- Known-solution documentation (use `/speckit:plan`)
+- Implementation tasks (use `/speckit:implement`)
 - Quick codebase searches (use `@context` or direct Grep/Glob)
 - Fewer than 3 sources needed (single-pass research suffices)
 
@@ -353,9 +353,9 @@ Use this skill when:
 
 ### When NOT to Use
 
-- Simple, single-question research (use direct codebase search or `/spec_kit:plan`)
-- Known-solution documentation (use `/spec_kit:plan`)
-- Implementation tasks (use `/spec_kit:implement`)
+- Simple, single-question research (use direct codebase search or `/speckit:plan`)
+- Known-solution documentation (use `/speckit:plan`)
+- Implementation tasks (use `/speckit:implement`)
 - Quick codebase searches (use `@context` or direct Grep/Glob)
 - Fewer than 3 sources needed (single-pass research suffices)
 
@@ -3741,9 +3741,9 @@ exec
 .opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:1117:        { findSimilar: errorFn, storeMemory: mockStoreMemory(501) }
 .opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:1119:      // FindSimilarMemories catches errors and returns [], leading to complement
 .opencode/skills/system-spec-kit/mcp_server/README.md:62:| **Retrieval modes** | 5 | auto, quick, deep, focused, resume |
-.opencode/skills/system-spec-kit/mcp_server/README.md:85:The memory system exposes 47 MCP tools through 4 memory slash commands plus the borrowed recovery workflow in `/spec_kit:resume`. Think of commands as doors into the system. Each door opens access only to the tools it needs.
+.opencode/skills/system-spec-kit/mcp_server/README.md:85:The memory system exposes 47 MCP tools through 4 memory slash commands plus the borrowed recovery workflow in `/speckit:resume`. Think of commands as doors into the system. Each door opens access only to the tools it needs.
 .opencode/skills/system-spec-kit/mcp_server/README.md:91:| `/memory:manage` | Database maintenance, checkpoints, bulk ingestion, shared-memory spaces and memberships | 19 primary tools + 1 helper |
-.opencode/skills/system-spec-kit/mcp_server/README.md:93:| `/spec_kit:resume` | Continue or recover an interrupted spec-folder session through the broader memory/session recovery stack | Broad helper surface; primary chain uses 3 shared memory tools |
+.opencode/skills/system-spec-kit/mcp_server/README.md:93:| `/speckit:resume` | Continue or recover an interrupted spec-folder session through the broader memory/session recovery stack | Broad helper surface; primary chain uses 3 shared memory tools |
 .opencode/skills/system-spec-kit/mcp_server/README.md:116:This section covers the minimum steps to get running. For full installation with embedding providers, database migration and environment setup, see [INSTALL_GUIDE.md](./INSTALL_GUIDE.md).
 .opencode/skills/system-spec-kit/mcp_server/README.md:174:After connecting your MCP client, call the health check:
 .opencode/skills/system-spec-kit/mcp_server/README.md:178:  "tool": "memory_health",
@@ -4009,7 +4009,7 @@ exec
 .opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1230:    console.error(`[session-manager] get_interrupted_sessions failed: ${message}`);
 .opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1231:    return { success: false, sessions: [], error: message };
 .opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1260:  const resumeCommand = specFolder
-.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1261:    ? `/spec_kit:resume ${specFolder}`
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1261:    ? `/speckit:resume ${specFolder}`
 .opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1269:> **Purpose:** Enable seamless session recovery after context compaction, crashes, or breaks.
 .opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1304:${resumeCommand}
 .opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1318:*This file is auto-generated on session checkpoint. It provides a human-readable recovery mechanism alongside SQLite persistence.*
@@ -4451,7 +4451,7 @@ exec
 .opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:480:        currentTask: 'resume crash recovery verification',
 .opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:495:      const result = sessionManager.recoverState('missing-session');
 .opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:508:        contextSummary: 'Need to resume from the saved recovery packet.',
-.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:518:      expect(content).toContain('/spec_kit:resume specs/022-hybrid-rag-fusion');
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:518:      expect(content).toContain('/speckit:resume specs/022-hybrid-rag-fusion');
 .opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:550:    it('should checkpoint session (save + generate md)', () => {
 .opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:551:      const specFolderPath = makeTempDir('checkpoint-session');
 .opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:553:      const result = sessionManager.checkpointSession('checkpoint-1', {
@@ -6323,7 +6323,7 @@ exec
 .opencode/skills/system-spec-kit/mcp_server/tests/pipeline-architecture-remediation.vitest.ts:51:      content: 'stale content',
 .opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:46:    const status = determineSessionStatus('Build failing due to missing dependency', [], 5);
 .opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:244:describe('T020: Quick resume command (DB-dependent)', () => {
-.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:246:  it('T020-01: Generates /spec_kit:resume command when specFolder is provided', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:246:  it('T020-01: Generates /speckit:resume command when specFolder is provided', () => {
 .opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:262:  it('T020-05: specFolder takes precedence over sessionId for resume command', () => {
 .opencode/skills/system-spec-kit/mcp_server/lib/feedback/rank-metrics.ts:15:export type RankDirection = 'improved' | 'degraded' | 'unchanged';
 .opencode/skills/system-spec-kit/mcp_server/lib/feedback/rank-metrics.ts:41:  /** Count of results that degraded. */
@@ -6461,7 +6461,7 @@ exec
 .opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:456:      'Delete existing checkpoint first: checkpoint_delete()',
 .opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:457:      'Use checkpoint_list() to see existing names'
 .opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:460:    toolTip: 'checkpoint_list()'
-.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:469:      'Consider using /spec_kit:resume for session recovery'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:469:      'Consider using /speckit:resume for session recovery'
 .opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:487:      'Check memory_health() for recovery options'
 .opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:490:    toolTip: 'memory_health()'
 .opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:510:      'If the response includes INSUFFICIENT_CONTEXT_ABORT, gather at least one concrete file, tool result, decision, blocker, next action, or outcome before retrying'
@@ -6736,7 +6736,7 @@ exec
 .opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:323:      expect(result.error).toContain('different userId');
 .opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:331:      expect(result.error).toContain('does not match a server-managed session');
 .opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:536:      expect(r.error).toContain('different tenantId');
-.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:615:      expect(md).toContain('/spec_kit:resume specs/005');
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:615:      expect(md).toContain('/speckit:resume specs/005');
 .opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:625:      // Without specFolder, should use sessionId-based resume command
 .opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:689:  describe('15. checkpointSession', () => {
 .opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:694:        const r = sm.checkpointSession('cp-1', {

@@ -47,7 +47,7 @@ Code Mode applies to tools configured in `.utcp_config.json`: ClickUp, Figma, My
 
 The core Code Mode surface is four meta-tools: `call_tool_chain` executes arbitrary TypeScript with tool access, `search_tools` finds relevant tools by description, `list_tools` returns registered tool names, and `tool_info` returns the TypeScript interface for a specific tool. Some installations also expose manual-registration helpers, but workflows should discover the live surface at runtime instead of assuming those helpers exist. Together these meta-tools replace what would otherwise be a large external-tool inventory loaded upfront.
 
-When Code Mode work hands back into a Spec Kit packet, `/spec_kit:resume` remains the canonical recovery surface. Continuity still rebuilds from `handover.md`, then `_memory.continuity`, then the remaining spec docs, while generated memory artifacts stay supporting only.
+When Code Mode work hands back into a Spec Kit packet, `/speckit:resume` remains the canonical recovery surface. Continuity still rebuilds from `handover.md`, then `_memory.continuity`, then the remaining spec docs, while generated memory artifacts stay supporting only.
 
 Key features include progressive discovery (tools loaded on demand with zero upfront cost), state persistence (variables flow naturally between tool calls in a single execution), type safety (full TypeScript support with autocomplete via tool_info), built-in observability (console.log output captured automatically and returned), configurable timeouts (30s default, extendable to 120s+ for complex workflows), parallel execution (Promise.all and Promise.allSettled supported natively), and error isolation (try/catch prevents one failing tool from crashing the workflow).
 

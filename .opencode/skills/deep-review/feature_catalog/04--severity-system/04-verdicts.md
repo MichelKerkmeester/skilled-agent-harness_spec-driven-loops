@@ -15,7 +15,7 @@ Verdicts are the final decision surface for the review loop. They tell downstrea
 
 The verdict contract is stable across the skill. FAIL applies when active P0 remains or any required gate fails. CONDITIONAL applies when no P0 remains but at least one active P1 is still open. PASS applies only when active P0 and P1 are both zero, with `hasAdvisories=true` when P2 remains.
 
-Verdicts also carry workflow routing. FAIL and CONDITIONAL both point to `/spec_kit:plan`, while PASS points to `/create:changelog`. The same contract appears in the convergence reference, state-format summary, review-mode contract, quick reference, and final report structure.
+Verdicts also carry workflow routing. FAIL and CONDITIONAL both point to `/speckit:plan`, while PASS points to `/create:changelog`. The same contract appears in the convergence reference, state-format summary, review-mode contract, quick reference, and final report structure.
 
 ---
 

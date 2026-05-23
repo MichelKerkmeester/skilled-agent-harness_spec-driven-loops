@@ -38,7 +38,7 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/commands/spec_kit/resume.md",
+      ".opencode/commands/speckit/resume.md",
       ".opencode/commands/memory/README.txt",
       ".opencode/commands/memory/search.md",
       ".opencode/skills/system-spec-kit/references/memory/save_workflow.md",
@@ -52,7 +52,7 @@
       {
         "name": "resume.md",
         "kind": "doc",
-        "path": ".opencode/commands/spec_kit/resume.md",
+        "path": ".opencode/commands/speckit/resume.md",
         "source": "derived"
       },
       {

@@ -6,7 +6,7 @@
     {"id": "Q4", "text": "Is mcp-coco-index actually ingesting .opencode/skills/sk-code/ resources? Are queries surfacing them with usable rank?"},
     {"id": "Q5", "text": "What concrete OpenCode references/assets are missing from sk-code/references/opencode/ and sk-code/assets/opencode/ that the smart router would benefit from?"},
     {"id": "Q6", "text": "Does the sk-code router's STACK_FOLDERS contract match on-disk structure today (post-069 motion_dev, post-068 sk-doc reorg)?"},
-    {"id": "Q7", "text": "When /spec_kit:complete writes inside .opencode/, is sk-code's OpenCode surface correctly loaded (smart-router cross-skill integration)?"}
+    {"id": "Q7", "text": "When /speckit:complete writes inside .opencode/, is sk-code's OpenCode surface correctly loaded (smart-router cross-skill integration)?"}
   ],
   "resolvedQuestions": [],
   "keyFindings": [],

@@ -12,7 +12,7 @@ Compared BAD's module boundary to the current local command, memory, and orchest
 ## Evidence
 - BAD describes itself as a BMad Method module, not a whole-platform replacement. It assumes planning artifacts, GitHub state, and backlog structure already exist before it begins orchestration. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/README.md:9-20] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/README.md:25-32]
 - BAD's plugin/module packaging keeps the specialization explicit: one module, one skill path, one execution surface. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/.claude-plugin/marketplace.json:1-24]
-- Local core surfaces already cover a broad general-purpose lifecycle: planning, implementation, deep research, deep review, debugging, handover, resume, and a separate memory system with retrieval, governance, and maintenance tools. [SOURCE: .opencode/commands/spec_kit/README.txt:43-76] [SOURCE: .opencode/commands/memory/README.txt:38-66] [SOURCE: .opencode/skills/system-spec-kit/references/memory/memory_system.md:99-145]
+- Local core surfaces already cover a broad general-purpose lifecycle: planning, implementation, deep research, deep review, debugging, handover, resume, and a separate memory system with retrieval, governance, and maintenance tools. [SOURCE: .opencode/commands/speckit/README.txt:43-76] [SOURCE: .opencode/commands/memory/README.txt:38-66] [SOURCE: .opencode/skills/system-spec-kit/references/memory/memory_system.md:99-145]
 
 ## Analysis
 This is the clearest architecture lesson from BAD. Specialized automation is easiest to keep coherent when it is packaged as a specialized layer. If `system-spec-kit` absorbs sprint automation directly into core commands, it risks mixing another domain's assumptions into already broad general-purpose surfaces. If it instead ships sprint automation as an optional extension that consumes phase docs, git/GitHub state, memory, and search primitives, it can keep both layers simpler.
@@ -34,7 +34,7 @@ confidence: high
 finding: BAD's biggest architecture lesson is boundary discipline. If `system-spec-kit` wants BAD-like sprint automation, it should build it as a domain extension on top of current primitives rather than pushing more specialized behavior into the core command and memory systems.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/commands/spec_kit/README.txt`
+- **Target file or module:** `.opencode/commands/speckit/README.txt`
 - **Change type:** architectural shift
 - **Blast radius:** architectural
 - **Prerequisites:** define the minimum stable interfaces that an extension-level sprint runner would need from core

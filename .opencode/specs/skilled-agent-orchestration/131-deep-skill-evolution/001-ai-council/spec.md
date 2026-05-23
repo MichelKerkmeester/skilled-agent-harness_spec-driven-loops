@@ -121,7 +121,7 @@ Cover all sk-ai-council co-evolution work: the rename refactor (deep-ai-council 
 
 - Each phase preserves the strict-validate state it had before consolidation (no per-phase re-validation required unless restructuring introduced drift)
 - Cluster parent tracks aggregate progress via this map
-- Use `/spec_kit:resume skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council/[NNN-phase]/` to resume a specific phase
+- Use `/speckit:resume skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council/[NNN-phase]/` to resume a specific phase
 - Run `validate.sh --recursive` on this cluster parent to validate all its children
 <!-- /ANCHOR:phase-map -->
 

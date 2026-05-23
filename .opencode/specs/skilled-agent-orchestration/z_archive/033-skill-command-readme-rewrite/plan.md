@@ -36,7 +36,7 @@ _memory:
 | **Testing** | HVR review, structural checks, and spec validation |
 
 ### Overview
-This packet records a batch rewrite program across the skill README surfaces under `.opencode/skills/` and the command README surfaces currently stored as `.opencode/commands/README.txt`, `.opencode/commands/create/README.txt`, `.opencode/commands/memory/README.txt`, and `.opencode/commands/spec_kit/README.txt`. The plan uses `.opencode/skills/sk-doc/references/specific/readme_creation.md`, `.opencode/skills/sk-doc/assets/documentation/readme_template.md`, and `.opencode/skills/sk-doc/references/global/hvr_rules.md` as the standards baseline.
+This packet records a batch rewrite program across the skill README surfaces under `.opencode/skills/` and the command README surfaces currently stored as `.opencode/commands/README.txt`, `.opencode/commands/create/README.txt`, `.opencode/commands/memory/README.txt`, and `.opencode/commands/speckit/README.txt`. The plan uses `.opencode/skills/sk-doc/references/specific/readme_creation.md`, `.opencode/skills/sk-doc/assets/documentation/readme_template.md`, and `.opencode/skills/sk-doc/references/global/hvr_rules.md` as the standards baseline.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -67,7 +67,7 @@ Batch-oriented documentation rewrite program driven by shared standards and per-
 ### Key Components
 - **Standards inputs**: `.opencode/skills/sk-doc/references/specific/readme_creation.md`, `.opencode/skills/sk-doc/assets/documentation/readme_template.md`, `.opencode/skills/sk-doc/references/global/hvr_rules.md`
 - **Skill sources**: the committed `README.md` files under `.opencode/skills/` plus their paired skill definitions under the same folders
-- **Command sources**: `.opencode/commands/README.txt`, `.opencode/commands/create/README.txt`, `.opencode/commands/memory/README.txt`, `.opencode/commands/spec_kit/README.txt`
+- **Command sources**: `.opencode/commands/README.txt`, `.opencode/commands/create/README.txt`, `.opencode/commands/memory/README.txt`, `.opencode/commands/speckit/README.txt`
 - **Exemplars**: `.opencode/skills/system-spec-kit/README.md`, `.opencode/skills/system-spec-kit/mcp_server/README.md`, `.opencode/skills/system-spec-kit/SHARED_MEMORY_DATABASE.md`
 
 ### Data Flow
@@ -120,7 +120,7 @@ The standards files define structure and voice, the skill and command sources pr
 | `.opencode/skills/sk-doc/assets/documentation/readme_template.md` | Internal | Green | Structural scaffold becomes unclear |
 | `.opencode/skills/sk-doc/references/global/hvr_rules.md` | Internal | Green | Voice and HVR expectations lose traceability |
 | `.opencode/skills/system-spec-kit/README.md` | Internal | Green | Exemplar quality target weakens |
-| `.opencode/commands/spec_kit/README.txt` | Internal | Green | Command-surface documentation source becomes less explicit |
+| `.opencode/commands/speckit/README.txt` | Internal | Green | Command-surface documentation source becomes less explicit |
 <!-- /ANCHOR:dependencies -->
 
 ---

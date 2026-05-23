@@ -129,7 +129,7 @@ A 7-iteration `/deep:start-review-loop` ran against this packet on 2026-04-08, d
 
 **Review verdict:** `FAIL` — 0 P0, 13 P1, 9 P2 (22 total active findings, no blockers).
 
-**Remediation execution:** All 22 findings landed on branch `system-speckit/026-graph-and-context-optimization-remediation` via 4 targeted codex workstreams (workspace-write sandbox). Phase-4 vitest suite + sibling memory-quality tests remain green after the code fixes.
+**Remediation execution:** All 22 findings landed on branch `system-spec-kit/026-graph-and-context-optimization-remediation` via 4 targeted codex workstreams (workspace-write sandbox). Phase-4 vitest suite + sibling memory-quality tests remain green after the code fixes.
 
 ### Workstream summary
 

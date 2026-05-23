@@ -55,11 +55,11 @@ _memory:
 <!-- ANCHOR:phase-2-tasks -->
 ## Phase 2 — Deep-Research Dispatch + Synthesis
 
-### T-004: Dispatch /spec_kit:deep-research:auto
+### T-004: Dispatch /speckit:deep-research:auto
 
 - **Command:**
   ```
-  /spec_kit:deep-research:auto \
+  /speckit:deep-research:auto \
     --spec-folder=specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment \
     --executor=cli-copilot \
     --model=gpt-5.5 \

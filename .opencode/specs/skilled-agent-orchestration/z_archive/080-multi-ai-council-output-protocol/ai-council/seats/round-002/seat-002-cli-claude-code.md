@@ -41,7 +41,7 @@ If 081 lands while 080 is still being adopted, dispatchers may produce free-form
 - **system-spec-kit**: Hosts validators and templates. Round-1's location for the helper at `.opencode/skills/system-spec-kit/scripts/multi-ai-council/` is correct architecturally (centralizes spec-folder lifecycle scripts). ✓
 - **deep-research / deep-review**: Do NOT dispatch `@multi-ai-council` (verified). Low risk for now. BUT both are autonomous loops with iteration-state writers; a future "deep-council" loop would need a different persistence pattern (multi-iteration, per-iter folders) that the round-1 single-helper does NOT support.
   - **Open**: helper should accept an optional `--iteration NNN` or `--loop-mode` flag for forward compat.
-- **`@orchestrate`**: `orchestrate.md` lists `@multi-ai-council` as LEAF dispatch target (verified line 97 + 749). When `@orchestrate` dispatches at Depth 1, `@orchestrate` itself is responsible for helper invocation. Round-1 did NOT call this out; §17 must document orchestrator-side helper invocation explicitly, not just `/spec_kit:*` command-side.
+- **`@orchestrate`**: `orchestrate.md` lists `@multi-ai-council` as LEAF dispatch target (verified line 97 + 749). When `@orchestrate` dispatches at Depth 1, `@orchestrate` itself is responsible for helper invocation. Round-1 did NOT call this out; §17 must document orchestrator-side helper invocation explicitly, not just `/speckit:*` command-side.
 - **Hooks**: No active hooks dispatch `@multi-ai-council` (verified). ✓ No hook-surface risk currently.
 
 ## Risks & Trade-offs

@@ -26,7 +26,7 @@ Executes ONE review iteration within an autonomous review loop. Reads externaliz
 
 **Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
-**CRITICAL**: This agent executes a SINGLE review iteration, not the full loop. The loop is managed by the `/spec_kit:deep-review` command's YAML workflow. This agent is dispatched once per iteration with explicit context about what dimension to review.
+**CRITICAL**: This agent executes a SINGLE review iteration, not the full loop. The loop is managed by the `/speckit:deep-review` command's YAML workflow. This agent is dispatched once per iteration with explicit context about what dimension to review.
 
 **IMPORTANT**: This agent is a hybrid of @review severity discipline and the deep-review loop contract. It reviews code but does NOT modify code under review.
 
@@ -419,9 +419,9 @@ If verification fails, fix the artifact if safe. If not safe, return `status: "e
 
 | Integration | Canonical Surface | Agent Contract |
 |-------------|-------------------|----------------|
-| Dispatcher command | `.opencode/commands/spec_kit/deep-review.md` (`/spec_kit:deep-review`) | Owns the loop and dispatches this agent once per iteration |
-| Auto workflow | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Owns loop state and reducer refresh |
-| Confirm workflow | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Owns approval pauses and reducer refresh |
+| Dispatcher command | `.opencode/commands/speckit/deep-review.md` (`/speckit:deep-review`) | Owns the loop and dispatches this agent once per iteration |
+| Auto workflow | `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml` | Owns loop state and reducer refresh |
+| Confirm workflow | `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml` | Owns approval pauses and reducer refresh |
 | Orchestrator agent | `@orchestrate` | Caller/coordinator only; this agent must not call it back |
 | Single-pass reviewer | `@review` | Separate non-iterative reviewer; do not delegate to it |
 | Research agent | `@deep-research` | Separate research iteration agent; do not delegate review work to it |
@@ -465,8 +465,8 @@ This agent loads shared review doctrine from `.opencode/skills/sk-code-review/re
 
 | Verdict | Condition | Follow-on |
 |---------|-----------|-----------|
-| **FAIL** | Active `P0` exists or any binary gate fails | `/spec_kit:plan` |
-| **CONDITIONAL** | No active `P0`, but active `P1` remains | `/spec_kit:plan` |
+| **FAIL** | Active `P0` exists or any binary gate fails | `/speckit:plan` |
+| **CONDITIONAL** | No active `P0`, but active `P1` remains | `/speckit:plan` |
 | **PASS** | No active `P0` or `P1`; set `hasAdvisories=true` when active `P2` remains | `/create:changelog` |
 
 ### Budget Profiles
@@ -719,15 +719,15 @@ For non-`complete` statuses, replace the heading with `## Review Iteration [N] P
 
 | Command | Purpose | Path |
 |---------|---------|------|
-| `/spec_kit:deep-review` | Autonomous review loop and dispatcher for this agent | `.opencode/commands/spec_kit/deep-review.md` |
+| `/speckit:deep-review` | Autonomous review loop and dispatcher for this agent | `.opencode/commands/speckit/deep-review.md` |
 | `/memory:save` | Save review continuity into canonical packet surfaces | `.opencode/commands/memory/save.md` |
 
 ### YAML Workflows
 
 | Workflow | Purpose | Path |
 |----------|---------|------|
-| Deep-review auto mode | Dispatches iterative `@deep-review` runs without per-iteration confirmation | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` |
-| Deep-review confirm mode | Dispatches iterative `@deep-review` runs with operator confirmation boundaries | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` |
+| Deep-review auto mode | Dispatches iterative `@deep-review` runs without per-iteration confirmation | `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml` |
+| Deep-review confirm mode | Dispatches iterative `@deep-review` runs with operator confirmation boundaries | `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml` |
 
 ### Skills
 

@@ -468,9 +468,9 @@ Use this skill when:
 
 ### When NOT to Use
 
-- Simple, single-question research (use direct codebase search or `/spec_kit:plan`)
-- Known-solution documentation (use `/spec_kit:plan`)
-- Implementation tasks (use `/spec_kit:implement`)
+- Simple, single-question research (use direct codebase search or `/speckit:plan`)
+- Known-solution documentation (use `/speckit:plan`)
+- Implementation tasks (use `/speckit:implement`)
 - Quick codebase searches (use `@context` or direct Grep/Glob)
 - Fewer than 3 sources needed (single-pass research suffices)
 
@@ -735,7 +735,7 @@ Routing to `@general`, `@write`, or other agents for spec documentation is a **h
 | Template              | Trigger Keywords                                                                                                              | Action                    |
 | --------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
 | `handover.md`         | "handover", "next session", "continue later", "pass context", "ending session", "save state", "multi-session", "for next AI"  | Suggest creating handover |
-| `debug-delegation.md` | "stuck", "can't fix", "tried everything", "same error", "fresh eyes", "hours on this", "still failing", "need help debugging" | Suggest `/spec_kit:debug` |
+| `debug-delegation.md` | "stuck", "can't fix", "tried everything", "same error", "fresh eyes", "hours on this", "still failing", "need help debugging" | Suggest `/speckit:debug` |
 
 **Rule:** When detected, proactively suggest the appropriate action.
 
@@ -872,10 +872,10 @@ RESOURCE_MAP = {
 }
 
 COMMAND_BOOSTS = {
-    "/spec_kit:plan": "PLAN",
-    "/spec_kit:implement": "IMPLEMENT",
-    "/spec_kit:debug": "DEBUG",
-    "/spec_kit:complete": "COMPLETE",
+    "/speckit:plan": "PLAN",
+    "/speckit:implement": "IMPLEMENT",
+    "/speckit:debug": "DEBUG",
+    "/speckit:complete": "COMPLETE",
 
 exec
 /bin/zsh -lc 'rg -n "mnemosyne|hybrid-rag-fusion|compaction|project/global|memory_recall|memory_store" /Users/michelkerkmeester/.codex/memories/MEMORY.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -2557,12 +2557,12 @@ exec
    114	If the runtime does not surface command menus clearly, use this compact command map first.
    115	
    116	**SpecKit workflow commands**
-   117	- `/spec_kit:resume` - continue or recover existing spec-folder work
-   118	- `/spec_kit:plan` - define or refine a scoped spec and plan
-   119	- `/spec_kit:implement` - execute an existing spec and plan packet
-   120	- `/spec_kit:complete` - run the full spec-to-implementation lifecycle
-   121	- `/spec_kit:debug` - delegate a persistent issue to debug workflow
-   122	- `/spec_kit:handover` - write continuation context for the next session
+   117	- `/speckit:resume` - continue or recover existing spec-folder work
+   118	- `/speckit:plan` - define or refine a scoped spec and plan
+   119	- `/speckit:implement` - execute an existing spec and plan packet
+   120	- `/speckit:complete` - run the full spec-to-implementation lifecycle
+   121	- `/speckit:debug` - delegate a persistent issue to debug workflow
+   122	- `/speckit:handover` - write continuation context for the next session
    123	- `/deep:start-research-loop` - run iterative research before planning
    124	- `/deep:start-review-loop` - run iterative review and finding synthesis
    125	
@@ -2967,7 +2967,7 @@ exec
    260	| Component | Format | Example |
 
 exec
-/bin/zsh -lc 'rg -n "/spec_kit:resume|/memory:save|memory_context|memory_match_triggers|memory_search|generate-context" .opencode/skills/system-spec-kit/references .opencode/skills/system-spec-kit/scripts .opencode/skills/system-spec-kit/feature_catalog' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "/speckit:resume|/memory:save|memory_context|memory_match_triggers|memory_search|generate-context" .opencode/skills/system-spec-kit/references .opencode/skills/system-spec-kit/scripts .opencode/skills/system-spec-kit/feature_catalog' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 .opencode/skills/system-spec-kit/references/validation/phase_checklists.md:126:- [ ] Save context if significant progress: `/memory:save` or `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"specFolder":"...","sessionSummary":"..."}' specs/###-folder/`
 .opencode/skills/system-spec-kit/references/validation/phase_checklists.md:159:- [ ] Memory context saved: `/memory:save` or `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"specFolder":"...","sessionSummary":"..."}' specs/###-folder/`
@@ -2988,16 +2988,16 @@ exec
 .opencode/skills/system-spec-kit/references/structure/sub_folder_versioning.md:236:<!-- /ANCHOR:generate-context-js-integration -->
 .opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/11-pipeline-and-mutation-hardening.md:55:| `mcp_server/tool-schemas.ts` | Core | memory_search schema exposes trackAccess/includeArchived/mode |
 .opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/11-pipeline-and-mutation-hardening.md:82:| `mcp_server/tests/tool-input-schema.vitest.ts` | Public/runtime schema validation for memory_search args |
-.opencode/skills/system-spec-kit/feature_catalog/feature_catalog_in_simple_terms.md:55:The memory system exposes **43 tools** overall, while the day-to-day command layer uses **4 main memory slash commands**, the `/memory:manage shared` subcommand area, and `/spec_kit:resume` for session recovery. Think of commands as doors into the system: the full MCP server has more rooms than the command layer exposes directly. Each door only opens access to the tools it needs. The source of truth for primary ownership is the coverage matrix in `.opencode/commands/memory/README.txt`, while each command file's `allowed-tools` frontmatter shows the full operational surface. The recovery contract lives in `.opencode/commands/spec_kit/resume.md`.
+.opencode/skills/system-spec-kit/feature_catalog/feature_catalog_in_simple_terms.md:55:The memory system exposes **43 tools** overall, while the day-to-day command layer uses **4 main memory slash commands**, the `/memory:manage shared` subcommand area, and `/speckit:resume` for session recovery. Think of commands as doors into the system: the full MCP server has more rooms than the command layer exposes directly. Each door only opens access to the tools it needs. The source of truth for primary ownership is the coverage matrix in `.opencode/commands/memory/README.txt`, while each command file's `allowed-tools` frontmatter shows the full operational surface. The recovery contract lives in `.opencode/commands/speckit/resume.md`.
 .opencode/skills/system-spec-kit/feature_catalog/feature_catalog_in_simple_terms.md:59:| `/memory:search` | Search, retrieve, and analyze knowledge (13 tools) | `memory_context`, `memory_quick_search`, `memory_search`, `memory_match_triggers`, `task_preflight`, `task_postflight`, `memory_drift_why`, `memory_causal_link`, `memory_causal_stats`, `memory_causal_unlink`, `eval_run_ablation`, `eval_reporting_dashboard`, `memory_get_learning_history` |
 .opencode/skills/system-spec-kit/feature_catalog/feature_catalog_in_simple_terms.md:60:| `/memory:learn` | Create and manage always-surface rules (6 tools, borrowed) | `memory_save`, `memory_search`, `memory_stats`, `memory_list`, `memory_delete`, `memory_index_scan` |
 .opencode/skills/system-spec-kit/feature_catalog/feature_catalog_in_simple_terms.md:61:| `/memory:manage` | Database maintenance, checkpoints, and bulk ingestion (19 primary tools plus `memory_search` helper access) | Primary home: `memory_stats`, `memory_list`, `memory_index_scan`, `memory_validate`, `memory_update`, `memory_delete`, `memory_bulk_delete`, `memory_health`, `checkpoint_create`, `checkpoint_restore`, `checkpoint_list`, `checkpoint_delete`, `memory_ingest_start`, `memory_ingest_status`, `memory_ingest_cancel`; helper access: `memory_search` |
 .opencode/skills/system-spec-kit/feature_catalog/feature_catalog_in_simple_terms.md:62:| `/memory:save` | Save conversation context (4 tools, borrowed) | `memory_save`, `memory_index_scan`, `memory_stats`, `memory_update` |
-.opencode/skills/system-spec-kit/feature_catalog/feature_catalog_in_simple_terms.md:64:| `/spec_kit:resume` | Continue or recover prior work (primary chain uses 3 shared tools, with extra helpers behind the scenes) | `memory_context`, `memory_search`, `memory_list` plus `memory_stats`, `memory_match_triggers`, `memory_delete`, `memory_update`, and health, indexing, validation, checkpoint, and CocoIndex helpers in the wrapper |
+.opencode/skills/system-spec-kit/feature_catalog/feature_catalog_in_simple_terms.md:64:| `/speckit:resume` | Continue or recover prior work (primary chain uses 3 shared tools, with extra helpers behind the scenes) | `memory_context`, `memory_search`, `memory_list` plus `memory_stats`, `memory_match_triggers`, `memory_delete`, `memory_update`, and health, indexing, validation, checkpoint, and CocoIndex helpers in the wrapper |
 .opencode/skills/system-spec-kit/feature_catalog/feature_catalog_in_simple_terms.md:72:### Unified context retrieval (memory_context)
 .opencode/skills/system-spec-kit/feature_catalog/feature_catalog_in_simple_terms.md:76:### Semantic and lexical search (memory_search)
 .opencode/skills/system-spec-kit/feature_catalog/feature_catalog_in_simple_terms.md:86:### Trigger phrase matching (memory_match_triggers)
-.opencode/skills/system-spec-kit/feature_catalog/feature_catalog_in_simple_terms.md:114:### Session recovery (/spec_kit:resume)
+.opencode/skills/system-spec-kit/feature_catalog/feature_catalog_in_simple_terms.md:114:### Session recovery (/speckit:resume)
 .opencode/skills/system-spec-kit/feature_catalog/feature_catalog_in_simple_terms.md:116:When a session is interrupted by a crash, context compaction, timeout, or an ordinary cross-session handoff, this command figures out where you left off and helps you pick up again. It checks fresh handover state first, then the memory system for your most recent work, looks for crash-recovery breadcrumbs, and presents what it found. Think of it like reopening your laptop after it went to sleep and having your browser restore all the tabs you had open. Its primary recovery chain uses 3 borrowed tools: `memory_context`, `memory_search`, and `memory_list`, while the live wrapper also keeps `memory_stats`, `memory_match_triggers`, `memory_delete`, `memory_update`, and extra health, indexing, checkpoint, validation, and CocoIndex helpers available for resume workflows. Two modes are available: auto (resolves the best candidate with minimal prompting) and confirm (presents alternatives when it is not sure which session you want). After recovery, it keeps you inside the same resume workflow for structured work or points you to broader history when needed.
 .opencode/skills/system-spec-kit/feature_catalog/feature_catalog_in_simple_terms.md:972:After the system adds hints and adjusts a response, it recalculates the size count to match what is actually being sent. Without this step, the reported size could be wrong because it was measured before the final changes were made. It is like weighing a package after you have finished packing it, not before you add the last item. The same rule now applies when resume context is attached in `memory_context`: add the extra context first, then enforce the size limit.
 .opencode/skills/system-spec-kit/scripts/README.md:50:- `memory/` - 8 TypeScript/JS CLIs (`generate-context.ts`, `rank-memories.ts`, `cleanup-orphaned-vectors.ts`, `validate-memory-quality.ts`, `reindex-embeddings.ts`, `ast-parser.ts`, `backfill-frontmatter.ts`, `rebuild-auto-entities.ts`)
@@ -3045,7 +3045,7 @@ exec
 .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/03-trigger-phrase-matching-memorymatchtriggers.md:2:title: "Trigger phrase matching (memory_match_triggers)"
 .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/03-trigger-phrase-matching-memorymatchtriggers.md:6:# Trigger phrase matching (memory_match_triggers)
 .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/03-trigger-phrase-matching-memorymatchtriggers.md:69:- Source feature title: Trigger phrase matching (memory_match_triggers)
-.opencode/skills/system-spec-kit/references/workflows/quick_reference.md:117:- `/spec_kit:resume` - continue or recover existing spec-folder work
+.opencode/skills/system-spec-kit/references/workflows/quick_reference.md:117:- `/speckit:resume` - continue or recover existing spec-folder work
 .opencode/skills/system-spec-kit/references/workflows/quick_reference.md:127:- `/memory:save` - preserve the current session context into spec memory
 .opencode/skills/system-spec-kit/references/workflows/quick_reference.md:182:node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json specs/007-feature/
 .opencode/skills/system-spec-kit/references/workflows/quick_reference.md:497:- Command: `/memory:save`
@@ -3056,20 +3056,20 @@ exec
 .opencode/skills/system-spec-kit/references/workflows/execution_methods.md:87:node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"specFolder":"001-feature","sessionSummary":"..."}' specs/001-feature/
 .opencode/skills/system-spec-kit/references/workflows/execution_methods.md:90:echo '{"specFolder":"001-feature","sessionSummary":"..."}' | node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --stdin
 .opencode/skills/system-spec-kit/references/workflows/execution_methods.md:220:The `generate-context.js` script orchestrates a 12-step workflow via `workflow.ts`:
-.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md:2:title: "Session recovery via /spec_kit:resume"
-.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md:6:# Session recovery via /spec_kit:resume
-.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md:10:When a session is interrupted by a crash, context compaction, timeout, or an ordinary handoff between sessions, `/spec_kit:resume` reconstructs the most likely previous state and routes the user to the best next step. Session recovery is no longer a standalone memory command. It now lives under the spec-folder resume workflow, where its primary recovery chain relies on shared memory tools while the wrapper also exposes broader helper access for resume workflows.
-.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md:16:**SHIPPED.** `/spec_kit:resume` owns both standard continuation and interrupted-session recovery. Its primary recovery chain uses 3 shared memory tools, while the live wrapper also allows `memory_stats`, `memory_match_triggers`, `memory_delete`, `memory_update`, plus health, indexing, validation, checkpoint, and CocoIndex helpers:
+.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md:2:title: "Session recovery via /speckit:resume"
+.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md:6:# Session recovery via /speckit:resume
+.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md:10:When a session is interrupted by a crash, context compaction, timeout, or an ordinary handoff between sessions, `/speckit:resume` reconstructs the most likely previous state and routes the user to the best next step. Session recovery is no longer a standalone memory command. It now lives under the spec-folder resume workflow, where its primary recovery chain relies on shared memory tools while the wrapper also exposes broader helper access for resume workflows.
+.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md:16:**SHIPPED.** `/speckit:resume` owns both standard continuation and interrupted-session recovery. Its primary recovery chain uses 3 shared memory tools, while the live wrapper also allows `memory_stats`, `memory_match_triggers`, `memory_delete`, `memory_update`, plus health, indexing, validation, checkpoint, and CocoIndex helpers:
 .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md:18:- **`memory_context`** (from `/memory:search`) -- Called in `resume` mode as the primary interrupted-session recovery path whenever no fresh `handover.md` already provides enough state. In `mcp_server/handlers/memory-context.ts`, resume mode is a dedicated `memory_search`-backed strategy with anchors `["state", "next-steps", "summary", "blockers"]`, default `limit=5`, a 1200-token budget, `minState=WARM`, `includeContent=true`, and both dedup and decay disabled. When auto-resume is enabled and the caller resumes a reusable working-memory session, `systemPromptContext` is injected before token-budget enforcement.
 .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md:19:- **`memory_search`** (from `/memory:search`) -- Fallback for thin summaries when `memory_context` resolves the right folder but does not return enough state detail. Uses the same resume anchors.
 .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md:22:`memory_stats` remains diagnostic/helper access on the wrapper rather than part of the primary recovery chain. Additional helper access includes `memory_match_triggers()` for early session detection, `memory_delete`, `memory_update`, health, indexing, checkpoint, validation, and CocoIndex support surfaces.
 .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md:34:| 2 | `memory_context(mode: "resume")` | Primary interrupted-session recovery path |
 .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md:36:| 4 | `memory_search()` with resume anchors | Fallback when the summary is thin |
-.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md:43:- Structured spec work: continue directly inside `/spec_kit:resume`
-.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md:54:| `.opencode/commands/spec_kit/resume.md` | `/spec_kit:resume` command: standard continuation plus interrupted-session recovery |
-.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md:81:- Source feature title: Session recovery via /spec_kit:resume
-.opencode/skills/system-spec-kit/references/workflows/worked_examples.md:254:User: /spec_kit:resume specs/009-notification-system/
-.opencode/skills/system-spec-kit/references/workflows/worked_examples.md:311:| `/spec_kit:resume` | Continue from previous session |
+.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md:43:- Structured spec work: continue directly inside `/speckit:resume`
+.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md:54:| `.opencode/commands/speckit/resume.md` | `/speckit:resume` command: standard continuation plus interrupted-session recovery |
+.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md:81:- Source feature title: Session recovery via /speckit:resume
+.opencode/skills/system-spec-kit/references/workflows/worked_examples.md:254:User: /speckit:resume specs/009-notification-system/
+.opencode/skills/system-spec-kit/references/workflows/worked_examples.md:311:| `/speckit:resume` | Continue from previous session |
 .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md:2:title: "Unified context retrieval (memory_context)"
 .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md:6:# Unified context retrieval (memory_context)
 .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md:18:You send a query or prompt. The system figures out what you need. That is the core idea behind `memory_context`: an L1 orchestration layer that auto-detects your task intent and routes to the best retrieval strategy without you having to pick one.
@@ -3101,9 +3101,9 @@ exec
 .opencode/skills/system-spec-kit/references/debugging/troubleshooting.md:315:memory_search({ 
 .opencode/skills/system-spec-kit/references/debugging/troubleshooting.md:341:const results = await memory_search({ specFolder: "###-correct-folder", limit: 3 })
 .opencode/skills/system-spec-kit/references/debugging/troubleshooting.md:348:node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js \
-.opencode/skills/system-spec-kit/references/debugging/troubleshooting.md:411:| **Context Loss** | Agent doesn't remember prior work | Run `/spec_kit:resume [spec-folder]` |
+.opencode/skills/system-spec-kit/references/debugging/troubleshooting.md:411:| **Context Loss** | Agent doesn't remember prior work | Run `/speckit:resume [spec-folder]` |
 .opencode/skills/system-spec-kit/references/debugging/troubleshooting.md:413:| **Memory Not Found** | Search returns no results | Check `memory_search({ specFolder: "..." })` |
-.opencode/skills/system-spec-kit/references/debugging/troubleshooting.md:425:// Command: /spec_kit:resume specs/###-feature-name
+.opencode/skills/system-spec-kit/references/debugging/troubleshooting.md:425:// Command: /speckit:resume specs/###-feature-name
 .opencode/skills/system-spec-kit/references/debugging/troubleshooting.md:427:memory_search({
 .opencode/skills/system-spec-kit/references/debugging/troubleshooting.md:471:**Symptom:** `memory_match_triggers()` returns no results even for relevant queries.
 .opencode/skills/system-spec-kit/scripts/ops/heal-session-ambiguity.sh:5:#            the memory-save pipeline (generate-context.js).
@@ -3234,7 +3234,7 @@ exec
 .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/17-json-primary-deprecation-posture.md:87:- `cd .opencode/skills/system-spec-kit/scripts && npm test -- --run tests/generate-context-cli-authority.vitest.ts tests/workflow-e2e.vitest.ts`
 .opencode/skills/system-spec-kit/feature_catalog/02--mutation/11-shared-memory-end-to-end-architecture.md:19:Shared memory is a mutation-plus-retrieval feature, not a standalone folder-based subsystem. The live flow starts with lifecycle tools that enable the feature and administer shared spaces, then continues through governed `memory_save` writes and `memory_search` scope filtering.
 .opencode/skills/system-spec-kit/feature_catalog/02--mutation/11-shared-memory-end-to-end-architecture.md:33:| Query visibility | Shared search visibility is enforced in the retrieval pipeline, not by a dedicated shared-memory query service. `memory_search` accepts tenant/user/agent/session/shared-space scope values and passes them into pipeline config. Stage 1 candidate generation computes `allowedSharedSpaceIds` with `getAllowedSharedSpaceIds()` and filters every candidate set through `filterRowsByScope()`. For shared rows, visibility depends on tenant match plus membership in an allowed space; exact actor/session match is intentionally not required once the row belongs to an allowed shared space. That is what makes collaborator A's shared rows visible to collaborator B inside the same shared space. |
-.opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh:115:            resume_path=$(sed -n 's|^/spec_kit:resume[[:space:]]\+\(.*\)$|\1|p' "$markdown_file" | head -1)
+.opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh:115:            resume_path=$(sed -n 's|^/speckit:resume[[:space:]]\+\(.*\)$|\1|p' "$markdown_file" | head -1)
 .opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/15-dual-level-retrieval.md:3:description: "Adds a retrievalLevel parameter (local|global|auto) to memory_search, where auto mode falls back to community search on weak results, enabling both fine-grained and topic-level retrieval in a single query, gated by the SPECKIT_DUAL_RETRIEVAL flag."
 .opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/15-dual-level-retrieval.md:10:Adds a `retrievalLevel` parameter (`local`|`global`|`auto`) to `memory_search`, where auto mode falls back to community search on weak results. This enables callers to explicitly request fine-grained local retrieval, broad community-level global retrieval, or let the system decide based on result quality.
 .opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/15-dual-level-retrieval.md:18:The `memory_search` handler accepts a `retrievalLevel` parameter with three modes: `local` runs standard retrieval channels only, `global` runs community-level search only, and `auto` (default) runs local retrieval first and falls back to community search when results are weak or empty. The flag and parameter are registered in `search-flags.ts`. Auto mode uses the same confidence thresholds as the empty-result recovery system to determine when fallback is needed.
@@ -3260,25 +3260,25 @@ exec
 .opencode/skills/system-spec-kit/scripts/tests/warm-start-bundle-benchmark.vitest.ts.test.ts:76:      liveBaselineResolution: 'memory_context',
 .opencode/skills/system-spec-kit/scripts/tests/warm-start-bundle-benchmark.vitest.ts.test.ts:107:      liveBaselineResolution: 'memory_context',
 .opencode/skills/system-spec-kit/scripts/tests/warm-start-bundle-benchmark.vitest.ts.test.ts:138:      liveBaselineResolution: 'memory_context_then_grep',
-.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:53:The Spec Kit Memory MCP server exposes **43 tools** overall across the 7-layer MCP surface. The command layer wraps the memory-focused subset under **4 top-level memory slash commands** plus the `/memory:manage shared` subcommand namespace, with session recovery still owned by `/spec_kit:resume` as a spec-folder workflow using the memory/session recovery stack. Each command declares its allowed tools in frontmatter; tools not listed are inaccessible to that command. The canonical source for primary tool ownership is the coverage matrix in `.opencode/commands/memory/README.txt`, while each command file's `allowed-tools` frontmatter shows the full operational surface. Recovery behavior is documented in `.opencode/commands/spec_kit/resume.md`.
+.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:53:The Spec Kit Memory MCP server exposes **43 tools** overall across the 7-layer MCP surface. The command layer wraps the memory-focused subset under **4 top-level memory slash commands** plus the `/memory:manage shared` subcommand namespace, with session recovery still owned by `/speckit:resume` as a spec-folder workflow using the memory/session recovery stack. Each command declares its allowed tools in frontmatter; tools not listed are inaccessible to that command. The canonical source for primary tool ownership is the coverage matrix in `.opencode/commands/memory/README.txt`, while each command file's `allowed-tools` frontmatter shows the full operational surface. Recovery behavior is documented in `.opencode/commands/speckit/resume.md`.
 .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:57:| `/memory:search` | 13 | owns | `memory_context`, `memory_quick_search`, `memory_search`, `memory_match_triggers`, `task_preflight`, `task_postflight`, `memory_drift_why`, `memory_causal_link`, `memory_causal_stats`, `memory_causal_unlink`, `eval_run_ablation`, `eval_reporting_dashboard`, `memory_get_learning_history` |
 .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:58:| `/memory:learn` | 6 | shared | `memory_save`, `memory_search`, `memory_stats`, `memory_list`, `memory_delete`, `memory_index_scan` |
 .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:59:| `/memory:manage` | 19 primary + 1 helper | owns + borrows | Primary home: `memory_stats`, `memory_list`, `memory_index_scan`, `memory_validate`, `memory_update`, `memory_delete`, `memory_bulk_delete`, `memory_health`, `checkpoint_create`, `checkpoint_restore`, `checkpoint_list`, `checkpoint_delete`, `memory_ingest_start`, `memory_ingest_status`, `memory_ingest_cancel`; helper access: `memory_search` |
 .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:60:| `/memory:save` | 4 | shared | `memory_save`, `memory_index_scan`, `memory_stats`, `memory_update` |
-.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:62:| `/spec_kit:resume` | broader helper surface | shared | Primary recovery chain: `memory_context`, `memory_search`, `memory_list`; wrapper also allows `memory_stats`, `memory_match_triggers`, `memory_delete`, `memory_update`, plus health, indexing, validation, checkpoint, and CocoIndex helpers |
+.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:62:| `/speckit:resume` | broader helper surface | shared | Primary recovery chain: `memory_context`, `memory_search`, `memory_list`; wrapper also allows `memory_stats`, `memory_match_triggers`, `memory_delete`, `memory_update`, plus health, indexing, validation, checkpoint, and CocoIndex helpers |
 .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:70:### Unified context retrieval (memory_context)
 .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:78:You send a query or prompt. The system figures out what you need. That is the core idea behind `memory_context`: an L1 orchestration layer that auto-detects your task intent and routes to the best retrieval strategy without you having to pick one.
 .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:96:### Semantic and lexical search (memory_search)
 .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:128:`memory_quick_search` is a live MCP tool, not just a README alias. The dispatcher in `tools/memory-tools.ts` validates the tool's narrowed input schema and forwards the call to `memory_search` with a fixed profile: `autoDetectIntent=true`, `enableDedup=true`, `includeContent=true`, `includeConstitutional=true`, and `rerank=true`. The public arguments are intentionally narrow: `query`, `limit`, `specFolder`, `tenantId`, `userId`, `agentId`, and `sharedSpaceId`. That makes it useful for fast governed retrieval while keeping the heavyweight search configuration surface on `memory_search`.
 .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:136:### Trigger phrase matching (memory_match_triggers)
 .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:146:A governed-scope pass now runs immediately after raw trigger matching. `memory_match_triggers` accepts optional `tenantId`, `userId`, `agentId`, and `sharedSpaceId` boundaries, then looks up each match in `memory_index` and drops out-of-scope rows before cognitive enrichment begins. That closes the trigger-phrase leak where another tenant or actor's memory could surface before normal retrieval filtering kicked in.
-.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:284:### Session recovery via /spec_kit:resume
+.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:284:### Session recovery via /speckit:resume
 .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:288:When a session is interrupted by a crash, context compaction, timeout, or an ordinary cross-session handoff, this command reconstructs the most likely previous session state and routes the user to the best next step. It uses `memory_context` in resume mode as the primary interrupted-session recovery path, with a fallback chain through crash-recovery breadcrumbs, anchored memory search, and recent-candidate discovery.
-.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:292:**SHIPPED.** `/spec_kit:resume` owns session recovery and continuation. Its primary recovery chain relies on 3 shared memory tools: `memory_context`, `memory_search`, and `memory_list`. `memory_stats` remains diagnostic/helper access, and the live wrapper also permits `memory_match_triggers`, `memory_delete`, `memory_update`, health, indexing, validation, checkpoint, and CocoIndex helpers that support the broader recovery workflow.
+.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:292:**SHIPPED.** `/speckit:resume` owns session recovery and continuation. Its primary recovery chain relies on 3 shared memory tools: `memory_context`, `memory_search`, and `memory_list`. `memory_stats` remains diagnostic/helper access, and the live wrapper also permits `memory_match_triggers`, `memory_delete`, `memory_update`, health, indexing, validation, checkpoint, and CocoIndex helpers that support the broader recovery workflow.
 .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:294:The primary recovery path calls `memory_context` in `resume` mode with anchors targeting `state`, `next-steps`, `summary`, and `blockers`. Resume mode uses a 1200-token budget with `minState=WARM`, `includeContent=true`, dedup and decay both disabled.
 .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:298:The recovery chain prioritizes: (1) fresh `handover.md` when present, (2) `memory_context` in resume mode, (3) `CONTINUE_SESSION.md` crash breadcrumb, (4) anchored `memory_search` for thin summaries, (5) `memory_list` for recent-candidate discovery, and (6) user confirmation as final fallback.
-.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:300:After recovery, the command continues directly inside `/spec_kit:resume` for structured spec-folder work or routes to `/memory:search history` for broader historical analysis, depending on user intent.
-.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:306:| `.opencode/commands/spec_kit/resume.md` | `/spec_kit:resume` command definition with continuation and recovery workflows |
+.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:300:After recovery, the command continues directly inside `/speckit:resume` for structured spec-folder work or routes to `/memory:search history` for broader historical analysis, depending on user intent.
+.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:306:| `.opencode/commands/speckit/resume.md` | `/speckit:resume` command definition with continuation and recovery workflows |
 .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:348:Successful insertions now clear the search cache immediately instead of waiting for delete-time invalidation or TTL expiry. `index_memory()` calls `clear_search_cache()` after the transactional insert, active-projection update and optional `vec_memories` write succeed, so a brand-new memory becomes visible to repeated `memory_search` calls right away. The fix closes a stale-results gap where the save path could report success while cached searches still replayed a pre-insert snapshot.
 .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:1211:Logging hooks in the search, context and trigger handlers are best-effort and fail-safe: they run only when `SPECKIT_EVAL_LOGGING=true`, and all write paths are wrapped in non-fatal `try/catch` blocks so query responses continue even if eval logging fails. `memory_search` and `memory_context` emit per-channel rows. `memory_match_triggers` emits query/final-result rows.
 .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:1327:Instrumentation wiring remains present in retrieval handlers (`memory_search`, `memory_context`, `memory_match_triggers`), and the runtime logger is active through `isConsumptionLogEnabled()`, which delegates to rollout policy via `isFeatureEnabled('SPECKIT_CONSUMPTION_LOG')`.
@@ -3322,8 +3322,8 @@ exec
 .opencode/skills/system-spec-kit/scripts/tests/test-integration.vitest.ts:327:    // W1-T3 parity: compiled generate-context must be present for CLI invocation
 .opencode/skills/system-spec-kit/scripts/tests/test-integration.vitest.ts:328:    const generateContextPath = path.join(SCRIPTS_DIR, 'dist', 'memory', 'generate-context.js');
 .opencode/skills/system-spec-kit/scripts/dist/core/workflow.js:805:                '  - If using generate-context.js, ensure extractors/collect-session-data.js exports collectSessionData');
-.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/spec.md:207:- Use `/spec_kit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
-.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/spec.md:256:- Use `/spec_kit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/spec.md:207:- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/spec.md:256:- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
 .opencode/skills/system-spec-kit/scripts/tests/fixtures/memory-quality/F-AC4-importance-tier.json:24:    "Replay the fixture through generate-context.js and confirm tier parity"
 .opencode/skills/system-spec-kit/scripts/dist/spec-folder/folder-detector.js:1012:            console.error('\nUsage: node generate-context.js [spec-folder-name] OR node generate-context.js <data-file> [spec-folder]\n');
 
@@ -3340,7 +3340,7 @@ exec
     52	
     53	### Command-Surface Contract
     54	
-    55	The memory system exposes **43 tools** overall, while the day-to-day command layer uses **4 main memory slash commands**, the `/memory:manage shared` subcommand area, and `/spec_kit:resume` for session recovery. Think of commands as doors into the system: the full MCP server has more rooms than the command layer exposes directly. Each door only opens access to the tools it needs. The source of truth for primary ownership is the coverage matrix in `.opencode/commands/memory/README.txt`, while each command file's `allowed-tools` frontmatter shows the full operational surface. The recovery contract lives in `.opencode/commands/spec_kit/resume.md`.
+    55	The memory system exposes **43 tools** overall, while the day-to-day command layer uses **4 main memory slash commands**, the `/memory:manage shared` subcommand area, and `/speckit:resume` for session recovery. Think of commands as doors into the system: the full MCP server has more rooms than the command layer exposes directly. Each door only opens access to the tools it needs. The source of truth for primary ownership is the coverage matrix in `.opencode/commands/memory/README.txt`, while each command file's `allowed-tools` frontmatter shows the full operational surface. The recovery contract lives in `.opencode/commands/speckit/resume.md`.
     56	
     57	| Command | What It Does | Tools It Can Use |
     58	|---------|-------------|-----------------|
@@ -3349,7 +3349,7 @@ exec
     61	| `/memory:manage` | Database maintenance, checkpoints, and bulk ingestion (19 primary tools plus `memory_search` helper access) | Primary home: `memory_stats`, `memory_list`, `memory_index_scan`, `memory_validate`, `memory_update`, `memory_delete`, `memory_bulk_delete`, `memory_health`, `checkpoint_create`, `checkpoint_restore`, `checkpoint_list`, `checkpoint_delete`, `memory_ingest_start`, `memory_ingest_status`, `memory_ingest_cancel`; helper access: `memory_search` |
     62	| `/memory:save` | Save conversation context (4 tools, borrowed) | `memory_save`, `memory_index_scan`, `memory_stats`, `memory_update` |
     63	| `/memory:manage shared` | Shared-memory subcommand area under `/memory:manage` (4 tools) | `shared_space_upsert`, `shared_space_membership_set`, `shared_memory_status`, `shared_memory_enable` |
-    64	| `/spec_kit:resume` | Continue or recover prior work (primary chain uses 3 shared tools, with extra helpers behind the scenes) | `memory_context`, `memory_search`, `memory_list` plus `memory_stats`, `memory_match_triggers`, `memory_delete`, `memory_update`, and health, indexing, validation, checkpoint, and CocoIndex helpers in the wrapper |
+    64	| `/speckit:resume` | Continue or recover prior work (primary chain uses 3 shared tools, with extra helpers behind the scenes) | `memory_context`, `memory_search`, `memory_list` plus `memory_stats`, `memory_match_triggers`, `memory_delete`, `memory_update`, and health, indexing, validation, checkpoint, and CocoIndex helpers in the wrapper |
     65	
     66	Some commands own their tools (they are the primary home) while others borrow tools from `/memory:search` or `/memory:manage`. A borrowed tool works the same way; it is just administered somewhere else.
     67	
@@ -3399,7 +3399,7 @@ exec
    111	
    112	When the system finds something useful during a search, it keeps a mental note of it for the rest of your session. That way, if you ask a follow-up question a few turns later, the system still remembers what it found earlier. These notes gradually fade over time so the most recent findings stay prominent while older ones quietly step aside.
    113	
-   114	### Session recovery (/spec_kit:resume)
+   114	### Session recovery (/speckit:resume)
    115	
    116	When a session is interrupted by a crash, context compaction, timeout, or an ordinary cross-session handoff, this command figures out where you left off and helps you pick up again. It checks fresh handover state first, then the memory system for your most recent work, looks for crash-recovery breadcrumbs, and presents what it found. Think of it like reopening your laptop after it went to sleep and having your browser restore all the tabs you had open. Its primary recovery chain uses 3 borrowed tools: `memory_context`, `memory_search`, and `memory_list`, while the live wrapper also keeps `memory_stats`, `memory_match_triggers`, `memory_delete`, `memory_update`, and extra health, indexing, checkpoint, validation, and CocoIndex helpers available for resume workflows. Two modes are available: auto (resolves the best candidate with minimal prompting) and confirm (presents alternatives when it is not sure which session you want). After recovery, it keeps you inside the same resume workflow for structured work or points you to broader history when needed.
    117	
@@ -4318,15 +4318,15 @@ exec
 .opencode/commands/README.txt:153:| Learn | `/memory:learn [rule] \| list \| edit \| remove \| budget` | Create and manage constitutional memories |
 .opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:250:      constitutionalCacheCleared: false, toolCacheInvalidated: 0,
 .opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:277:export const find_constitutional_files = lazyFunction(getMemoryIndexModule, 'find_constitutional_files');
-.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:535:      tier_reference: "constitutional > critical > important > normal > temporary > deprecated"
+.opencode/commands/speckit/assets/speckit_implement_auto.yaml:535:      tier_reference: "constitutional > critical > important > normal > temporary > deprecated"
 .opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:54:  let constitutionalCacheCleared = false;
 .opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:57:    constitutionalCacheCleared = true;
 .opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:65:    constitutionalCacheCleared = false;
 .opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:100:    constitutionalCacheCleared,
-.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml:1082:      tier_reference: "constitutional > critical > important > normal > temporary > deprecated"
-.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:509:      tier_reference: "constitutional > critical > important > normal > temporary > deprecated"
-.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml:1006:      tier_reference: "constitutional > critical > important > normal > temporary > deprecated"
-.opencode/commands/spec_kit/complete.md:492:| Record constitutional rule | `/memory:learn [rule]` | Save a durable repo-wide rule |
+.opencode/commands/speckit/assets/speckit_complete_confirm.yaml:1082:      tier_reference: "constitutional > critical > important > normal > temporary > deprecated"
+.opencode/commands/speckit/assets/speckit_plan_auto.yaml:509:      tier_reference: "constitutional > critical > important > normal > temporary > deprecated"
+.opencode/commands/speckit/assets/speckit_complete_auto.yaml:1006:      tier_reference: "constitutional > critical > important > normal > temporary > deprecated"
+.opencode/commands/speckit/complete.md:492:| Record constitutional rule | `/memory:learn [rule]` | Save a durable repo-wide rule |
 .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1129:    throw new Error('File must be a .md or .txt file in: specs/**/memory/, specs/**/ (spec docs), or .opencode/skills/*/constitutional/');
 .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1728:        constitutionalCacheCleared: false, toolCacheInvalidated: 0,
 .opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:99:  constitutional: {
@@ -4346,9 +4346,9 @@ exec
 .opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:641:              constitutionalFiles: constitutionalFiles.length,
 .opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:673:const find_constitutional_files = findConstitutionalFiles;
 .opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:682:  find_constitutional_files,
-.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:555:      tier_reference: "constitutional > critical > important > normal > temporary > deprecated"
-.opencode/commands/spec_kit/debug.md:333:| Record lasting debugging rule | `/memory:learn [rule]`                 | Save a constitutional rule from debugging |
-.opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml:604:      tier_reference: "constitutional > critical > important > normal > temporary > deprecated"
+.opencode/commands/speckit/assets/speckit_plan_confirm.yaml:555:      tier_reference: "constitutional > critical > important > normal > temporary > deprecated"
+.opencode/commands/speckit/debug.md:333:| Record lasting debugging rule | `/memory:learn [rule]`                 | Save a constitutional rule from debugging |
+.opencode/commands/speckit/assets/speckit_implement_confirm.yaml:604:      tier_reference: "constitutional > critical > important > normal > temporary > deprecated"
 .opencode/skills/system-spec-kit/SKILL.md:8:<!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context-preservation, progressive-documentation, validation, spec-kit-memory, vector-search, hybrid-search, bm25, rrf-fusion, fsrs-decay, constitutional-tier, checkpoint, importance-tiers, cognitive-memory, co-activation, tiered-injection -->
 .opencode/skills/system-spec-kit/SKILL.md:73:Routing to `@general`, `@write`, or other agents for spec documentation is a **hard violation**. See constitutional memory: `speckit-exclusivity.md`
 .opencode/skills/system-spec-kit/SKILL.md:623:- **Document-type scoring** — 10 indexed document types with multipliers: spec (1.4x), plan (1.3x), constitutional (2.0x), decision_record (1.4x), tasks (1.1x), implementation_summary (1.1x), scratch (0.6x), checklist (1.0x), handover (1.0x), memory (1.0x). README files and skill-doc trees (`sk-*`, including `references/` and `assets/`) are excluded from memory indexing.
@@ -5400,10 +5400,10 @@ exec
    148	/memory:search "auth flow" --intent:fix_bug
    149	
    150	# Recover from a crashed or interrupted session
-   151	/spec_kit:resume
+   151	/speckit:resume
    152	
    153	# Auto-recovery mode
-   154	/spec_kit:resume :auto
+   154	/speckit:resume :auto
    155	
    156	# Create a constitutional memory (always-surface rule)
    157	/memory:learn "Never commit API keys or secrets to git"
@@ -5432,7 +5432,7 @@ exec
    180	# Capture epistemic baseline before a task
 
 exec
-/bin/zsh -lc 'rg -n "session_bootstrap|session_resume|memory_context|memory_search|memory_match_triggers|CocoIndex|code_graph" .opencode/commands/spec_kit/resume.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "session_bootstrap|session_resume|memory_context|memory_search|memory_match_triggers|CocoIndex|code_graph" .opencode/commands/speckit/resume.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 4:allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search, memory_match_triggers, memory_list, memory_stats, memory_delete, memory_update, memory_validate, memory_index_scan, memory_health, checkpoint_create, checkpoint_list, checkpoint_restore, checkpoint_delete, mcp__cocoindex_code__search
 252:2. `memory_match_triggers()` — fast phrase matching (<50ms)
@@ -5451,7 +5451,7 @@ exec
 359:- handover.md takes priority; if it is absent or thin, use `session_bootstrap()` or `memory_context({ mode: "resume", profile: "resume" })` before checking `CONTINUE_SESSION.md`
 
 exec
-/bin/zsh -lc "nl -ba .opencode/commands/spec_kit/resume.md | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/commands/speckit/resume.md | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	---
      2	description: Resume or recover work on an existing spec folder - smart memory recovery, crash breadcrumbs, and one clear next step
@@ -5466,8 +5466,8 @@ exec
     11	> **YOUR FIRST ACTION:**
     12	> 1. Determine execution mode from user input (`:auto` or `:confirm`)
     13	> 2. Load the corresponding YAML file from `assets/`:
-    14	>    - Auto mode → `spec_kit_resume_auto.yaml`
-    15	>    - Confirm mode → `spec_kit_resume_confirm.yaml`
+    14	>    - Auto mode → `speckit_resume_auto.yaml`
+    15	>    - Confirm mode → `speckit_resume_confirm.yaml`
     16	> 3. Execute the YAML workflow step by step
     17	>
     18	> All content below defines workflow context for the YAML runner. Treat it as executable only when running this command workflow; otherwise use it as reference.
@@ -5478,8 +5478,8 @@ exec
     23	- **ALL** agent dispatching is handled by the YAML workflow steps — this document is setup + reference only
     24	- **FIRST ACTION** is always: load the YAML file, then execute it step by step
     25	
-    26	> **Format:** `/spec_kit:resume [spec-folder-path] [:auto|:confirm]`
-    27	> Examples: `/spec_kit:resume specs/007-feature/` | `/spec_kit:resume:auto specs/007-feature/`
+    26	> **Format:** `/speckit:resume [spec-folder-path] [:auto|:confirm]`
+    27	> Examples: `/speckit:resume specs/007-feature/` | `/speckit:resume:auto specs/007-feature/`
     28	
     29	# SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
     30	
@@ -5545,7 +5545,7 @@ exec
     90	
     91	   Q0. Spec Folder (if not detected/provided):
     92	     No active session detected. Available spec folders: [list]
-    93	     A) List and select  B) Start new with /spec_kit:complete  C) Cancel
+    93	     A) List and select  B) Start new with /speckit:complete  C) Cancel
     94	     E) Phase folder — resume a specific phase child (e.g., specs/NNN-name/001-phase/)
     95	
     96	   Q1. Confirm Detected Session (if auto-detected):
@@ -5558,7 +5558,7 @@ exec
    103	
    104	   Q3. Missing Artifacts (if artifacts_valid != yes):
    105	     Missing: [list]
-   106	     A) Run /spec_kit:plan  B) Select different folder  C) Continue anyway
+   106	     A) Run /speckit:plan  B) Select different folder  C) Continue anyway
    107	
    108	   Q4. Smart Memory Preference (if memory files exist):
    109	     Found [N] file(s) in [spec_path]/memory/
@@ -5688,9 +5688,9 @@ exec
 Error: Failed to connect to daemon: [Errno 1] Operation not permitted: '/Users/michelkerkmeester/.cocoindex_code/daemon.log'
 
 codex
-I’m on the last gap now: the AGENTS/session-start guidance mapping. I want that source in-hand because it’s the clearest place to say whether a Mnemosyne-style “recall at session start” habit should become a new command, a wrapper hint, or just documentation over the existing `/spec_kit:resume` flow.
+I’m on the last gap now: the AGENTS/session-start guidance mapping. I want that source in-hand because it’s the clearest place to say whether a Mnemosyne-style “recall at session start” habit should become a new command, a wrapper hint, or just documentation over the existing `/speckit:resume` flow.
 exec
-/bin/zsh -lc "nl -ba .opencode/commands/spec_kit/resume.md | sed -n '248,362p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/commands/speckit/resume.md | sed -n '248,362p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    248	## 9. SESSION DETECTION FLOW
    249	
@@ -5699,7 +5699,7 @@ exec
    252	2. `memory_match_triggers()` — fast phrase matching (<50ms)
    253	3. `memory_context()` — L1 unified retrieval (score > 0.6)
    254	4. Deterministic filtered ranking (session-learning + alias-normalized spec roots)
-   255	5. No session found → offer: /spec_kit:complete or specify path
+   255	5. No session found → offer: /speckit:complete or specify path
    256	
    257	**Context loading priority (after spec_path confirmed):**
    258	1. handover.md (exists & <24h) → use handover context
@@ -5757,7 +5757,7 @@ exec
    310	Why this is next: [short reason based on tasks/checklist/memory]
    311	```
    312	
-   313	**No Session:** Offer /spec_kit:complete or specify folder path.
+   313	**No Session:** Offer /speckit:complete or specify folder path.
    314	
    315	**Stale Session (>7 days):** Warn context may be outdated, offer Resume/Fresh/Review/Cancel.
    316	
@@ -5817,7 +5817,7 @@ USER WORKFLOW IMPACT: How will adopted patterns change the agent developer exper
 ## Findings
 ### Finding 1: Mnemosyne’s biggest DX gain is a flatter memory surface, not a better retrieval core
 - **Source**: [SOURCE: external/src/index.ts:96](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L96), [SOURCE: external/README.md:37](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L37), [SOURCE: feature_catalog_in_simple_terms.md:55](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/feature_catalog/feature_catalog_in_simple_terms.md#L55), [SOURCE: quick_reference.md:116](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/references/workflows/quick_reference.md#L116)
-- **What it does**: Mnemosyne exposes five direct verbs (`memory_recall`, `memory_recall_global`, `memory_store`, `memory_store_global`, `memory_delete`), while Public exposes a much richer but more distributed command/tool stack across `/memory:search`, `/memory:save`, `/memory:manage`, `/memory:learn`, and `/spec_kit:resume`.
+- **What it does**: Mnemosyne exposes five direct verbs (`memory_recall`, `memory_recall_global`, `memory_store`, `memory_store_global`, `memory_delete`), while Public exposes a much richer but more distributed command/tool stack across `/memory:search`, `/memory:save`, `/memory:manage`, `/memory:learn`, and `/speckit:resume`.
 - **Why it matters**: Adoption here would mostly change how developers think about memory, from “pick the right command family” to “use a small set of memory verbs.” That is a workflow simplification, not a retrieval-engine replacement.
 - **Recommendation**: prototype later
 - **Impact**: high
@@ -5848,8 +5848,8 @@ USER WORKFLOW IMPACT: How will adopted patterns change the agent developer exper
 - **Source strength**: primary
 
 ### Finding 5: Mnemosyne’s AGENTS guidance should become a Public migration guide over existing commands
-- **Source**: [SOURCE: external/README.md:62](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L62), [SOURCE: quick_reference.md:116](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/references/workflows/quick_reference.md#L116), [SOURCE: resume.md:252](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/spec_kit/resume.md#L252), [SOURCE: resume.md:354](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/spec_kit/resume.md#L354), [SOURCE: tool-schemas.ts:755](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L755)
-- **What it does**: Mnemosyne recommends a simple ritual: recall at session start, store after important decisions, delete contradictions, use global for cross-project preferences. Public already has a stronger recovery contract, but it is expressed as `/spec_kit:resume`, `session_bootstrap()`, `memory_context(resume)`, `/memory:save`, and `/memory:learn`.
+- **Source**: [SOURCE: external/README.md:62](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L62), [SOURCE: quick_reference.md:116](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/references/workflows/quick_reference.md#L116), [SOURCE: resume.md:252](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/speckit/resume.md#L252), [SOURCE: resume.md:354](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/speckit/resume.md#L354), [SOURCE: tool-schemas.ts:755](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L755)
+- **What it does**: Mnemosyne recommends a simple ritual: recall at session start, store after important decisions, delete contradictions, use global for cross-project preferences. Public already has a stronger recovery contract, but it is expressed as `/speckit:resume`, `session_bootstrap()`, `memory_context(resume)`, `/memory:save`, and `/memory:learn`.
 - **Why it matters**: The migration win is documentation and prompt guidance, not new backend logic. Developers need a habit map from Mnemosyne verbs to Public’s richer surfaces.
 - **Recommendation**: adopt now
 - **Impact**: high
@@ -5873,7 +5873,7 @@ USER WORKFLOW IMPACT: How will adopted patterns change the agent developer exper
 - [session-resume.ts:400](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts#L400)
 - [spec-kit-compact-code-graph.js:323](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js#L323)
 - [quick_reference.md:126](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/references/workflows/quick_reference.md#L126)
-- [resume.md:257](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/spec_kit/resume.md#L257)
+- [resume.md:257](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/speckit/resume.md#L257)
 
 ## Assessment
 - New information ratio: `0.19`
@@ -5883,7 +5883,7 @@ USER WORKFLOW IMPACT: How will adopted patterns change the agent developer exper
 - Validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED` with `Errors: 0  Warnings: 0`, plus the known read-only warning `cannot create temp file for here document: Operation not permitted`.
 
 ## Ruled Out
-- Replacing Public’s current `/spec_kit:resume` and `session_bootstrap()` recovery contract with direct `memory_recall` semantics.
+- Replacing Public’s current `/speckit:resume` and `session_bootstrap()` recovery contract with direct `memory_recall` semantics.
 - Importing basename-derived `project/global` as Public’s primary scope authority.
 - Adding a general `core=true` flag to routine Public save flows instead of routing durable rules through constitutional memory.
 - Introducing a second local memory backend just to get a simpler tool surface.
@@ -5897,7 +5897,7 @@ USER WORKFLOW IMPACT: How will adopted patterns change the agent developer exper
 Translate this into packet-ready operator deliverables:
 1. a transport-owned compaction memory action card that complements the existing resume payload,
 2. an audited `memory_remember` intake or equivalent thin facade over existing Public save/retrieval authority,
-3. a migration guide that maps `memory_recall`, `memory_store`, `memory_delete`, `global`, and `core` onto `/spec_kit:resume`, `session_bootstrap()`, `/memory:save`, `/memory:learn`, and governed retrieval scope.
+3. a migration guide that maps `memory_recall`, `memory_store`, `memory_delete`, `global`, and `core` onto `/speckit:resume`, `session_bootstrap()`, `/memory:save`, `/memory:learn`, and governed retrieval scope.
 
 Read-only note: I did not update the phase folder artifacts or save memory because this sandbox is read-only.
 
@@ -5914,7 +5914,7 @@ USER WORKFLOW IMPACT: How will adopted patterns change the agent developer exper
 ## Findings
 ### Finding 1: Mnemosyne’s biggest DX gain is a flatter memory surface, not a better retrieval core
 - **Source**: [SOURCE: external/src/index.ts:96](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L96), [SOURCE: external/README.md:37](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L37), [SOURCE: feature_catalog_in_simple_terms.md:55](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/feature_catalog/feature_catalog_in_simple_terms.md#L55), [SOURCE: quick_reference.md:116](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/references/workflows/quick_reference.md#L116)
-- **What it does**: Mnemosyne exposes five direct verbs (`memory_recall`, `memory_recall_global`, `memory_store`, `memory_store_global`, `memory_delete`), while Public exposes a much richer but more distributed command/tool stack across `/memory:search`, `/memory:save`, `/memory:manage`, `/memory:learn`, and `/spec_kit:resume`.
+- **What it does**: Mnemosyne exposes five direct verbs (`memory_recall`, `memory_recall_global`, `memory_store`, `memory_store_global`, `memory_delete`), while Public exposes a much richer but more distributed command/tool stack across `/memory:search`, `/memory:save`, `/memory:manage`, `/memory:learn`, and `/speckit:resume`.
 - **Why it matters**: Adoption here would mostly change how developers think about memory, from “pick the right command family” to “use a small set of memory verbs.” That is a workflow simplification, not a retrieval-engine replacement.
 - **Recommendation**: prototype later
 - **Impact**: high
@@ -5945,8 +5945,8 @@ USER WORKFLOW IMPACT: How will adopted patterns change the agent developer exper
 - **Source strength**: primary
 
 ### Finding 5: Mnemosyne’s AGENTS guidance should become a Public migration guide over existing commands
-- **Source**: [SOURCE: external/README.md:62](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L62), [SOURCE: quick_reference.md:116](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/references/workflows/quick_reference.md#L116), [SOURCE: resume.md:252](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/spec_kit/resume.md#L252), [SOURCE: resume.md:354](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/spec_kit/resume.md#L354), [SOURCE: tool-schemas.ts:755](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L755)
-- **What it does**: Mnemosyne recommends a simple ritual: recall at session start, store after important decisions, delete contradictions, use global for cross-project preferences. Public already has a stronger recovery contract, but it is expressed as `/spec_kit:resume`, `session_bootstrap()`, `memory_context(resume)`, `/memory:save`, and `/memory:learn`.
+- **Source**: [SOURCE: external/README.md:62](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L62), [SOURCE: quick_reference.md:116](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/references/workflows/quick_reference.md#L116), [SOURCE: resume.md:252](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/speckit/resume.md#L252), [SOURCE: resume.md:354](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/speckit/resume.md#L354), [SOURCE: tool-schemas.ts:755](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L755)
+- **What it does**: Mnemosyne recommends a simple ritual: recall at session start, store after important decisions, delete contradictions, use global for cross-project preferences. Public already has a stronger recovery contract, but it is expressed as `/speckit:resume`, `session_bootstrap()`, `memory_context(resume)`, `/memory:save`, and `/memory:learn`.
 - **Why it matters**: The migration win is documentation and prompt guidance, not new backend logic. Developers need a habit map from Mnemosyne verbs to Public’s richer surfaces.
 - **Recommendation**: adopt now
 - **Impact**: high
@@ -5970,7 +5970,7 @@ USER WORKFLOW IMPACT: How will adopted patterns change the agent developer exper
 - [session-resume.ts:400](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts#L400)
 - [spec-kit-compact-code-graph.js:323](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js#L323)
 - [quick_reference.md:126](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/references/workflows/quick_reference.md#L126)
-- [resume.md:257](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/spec_kit/resume.md#L257)
+- [resume.md:257](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/speckit/resume.md#L257)
 
 ## Assessment
 - New information ratio: `0.19`
@@ -5980,7 +5980,7 @@ USER WORKFLOW IMPACT: How will adopted patterns change the agent developer exper
 - Validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED` with `Errors: 0  Warnings: 0`, plus the known read-only warning `cannot create temp file for here document: Operation not permitted`.
 
 ## Ruled Out
-- Replacing Public’s current `/spec_kit:resume` and `session_bootstrap()` recovery contract with direct `memory_recall` semantics.
+- Replacing Public’s current `/speckit:resume` and `session_bootstrap()` recovery contract with direct `memory_recall` semantics.
 - Importing basename-derived `project/global` as Public’s primary scope authority.
 - Adding a general `core=true` flag to routine Public save flows instead of routing durable rules through constitutional memory.
 - Introducing a second local memory backend just to get a simpler tool surface.
@@ -5994,6 +5994,6 @@ USER WORKFLOW IMPACT: How will adopted patterns change the agent developer exper
 Translate this into packet-ready operator deliverables:
 1. a transport-owned compaction memory action card that complements the existing resume payload,
 2. an audited `memory_remember` intake or equivalent thin facade over existing Public save/retrieval authority,
-3. a migration guide that maps `memory_recall`, `memory_store`, `memory_delete`, `global`, and `core` onto `/spec_kit:resume`, `session_bootstrap()`, `/memory:save`, `/memory:learn`, and governed retrieval scope.
+3. a migration guide that maps `memory_recall`, `memory_store`, `memory_delete`, `global`, and `core` onto `/speckit:resume`, `session_bootstrap()`, `/memory:save`, `/memory:learn`, and governed retrieval scope.
 
 Read-only note: I did not update the phase folder artifacts or save memory because this sandbox is read-only.

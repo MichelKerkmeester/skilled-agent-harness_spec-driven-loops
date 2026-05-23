@@ -31,14 +31,14 @@ finding: `system-spec-kit` should PIVOT toward an explicit two-lane architecture
 
 ## Refactor / Pivot Analysis
 
-- **Current system-spec-kit approach:** The operator surface mostly assumes the full governed stack is the normal path, even though some workflows are much narrower. [SOURCE: .opencode/skills/system-spec-kit/references/workflows/quick_reference.md:116-130] [SOURCE: .opencode/commands/spec_kit/resume.md:37-141]
+- **Current system-spec-kit approach:** The operator surface mostly assumes the full governed stack is the normal path, even though some workflows are much narrower. [SOURCE: .opencode/skills/system-spec-kit/references/workflows/quick_reference.md:116-130] [SOURCE: .opencode/commands/speckit/resume.md:37-141]
 - **External repo's approach:** Ralph embraces a minimalist lane: small tasks, tiny state, one obvious runtime entrypoint, and manual escalation when needed. [SOURCE: external/README.md:90-130] [SOURCE: external/README.md:165-168]
 - **Why the external approach might be better:** It prevents narrow workflows from inheriting governance and retrieval machinery they do not need. [SOURCE: external/README.md:170-188]
-- **Why system-spec-kit's approach might still be correct:** High-value workflows still need the governed lane's memory, validation, and lifecycle guarantees. [SOURCE: .opencode/skills/system-spec-kit/references/memory/memory_system.md:17-18] [SOURCE: .opencode/commands/spec_kit/implement.md:171-205]
+- **Why system-spec-kit's approach might still be correct:** High-value workflows still need the governed lane's memory, validation, and lifecycle guarantees. [SOURCE: .opencode/skills/system-spec-kit/references/memory/memory_system.md:17-18] [SOURCE: .opencode/commands/speckit/implement.md:171-205]
 - **Verdict:** PIVOT
 - **If REFACTOR/PIVOT/SIMPLIFY — concrete proposal:** Define two explicit workflow lanes. The lightweight lane uses sharp task sizing, append-only run-state, and project-native checks. The governed lane keeps the current spec-folder, memory, validation, and review stack. Route operators into one lane early, with a clear upgrade path from lightweight to governed when complexity or risk increases.
 - **Blast radius of the change:** architectural
-- **Migration path:** Pilot the lightweight lane in one command family first, document upgrade criteria, and keep `/spec_kit:resume` as the bridge between lanes.
+- **Migration path:** Pilot the lightweight lane in one command family first, document upgrade criteria, and keep `/speckit:resume` as the bridge between lanes.
 
 ## Counter-evidence sought
 I looked for proof that Ralph's narrow model already solves the same governance and continuity scope as `system-spec-kit` and found the opposite: the repo's power comes from omission. That omission is only safe because the workflow class is intentionally narrow. [SOURCE: external/README.md:132-145] [SOURCE: .opencode/skills/system-spec-kit/references/memory/memory_system.md:99-145]

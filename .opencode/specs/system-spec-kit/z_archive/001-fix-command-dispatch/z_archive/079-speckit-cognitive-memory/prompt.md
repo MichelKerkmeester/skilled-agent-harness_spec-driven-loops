@@ -53,7 +53,7 @@ Happy to answer questions about the cognitive architecture or the Rust implement
 ---
 
 **Goal:** 
-Understand their architectures, identify valuable patterns, and extract insights to improve system-speckit and the memory mcp
+Understand their architectures, identify valuable patterns, and extract insights to improve system-spec-kit and the memory mcp
 
 **Action:**
 Conduct comprehensive technical research and deliver two documents:

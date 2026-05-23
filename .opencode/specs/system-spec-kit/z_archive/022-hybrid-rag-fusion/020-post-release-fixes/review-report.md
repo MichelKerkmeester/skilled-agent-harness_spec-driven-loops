@@ -53,7 +53,7 @@ These findings still keep the release state at `FAIL` because they keep the full
 | `R-B07` | `013-agents-alignment` still has one blocking broken ref | Recursive validator reports the packet plan still references a missing legacy ChatGPT write-agent path. | **OPEN** | `012:review-report.md` |
 | `R-B08` | `015-manual-testing-per-playbook` still has broad documentation-integrity drift | Recursive validator reports `35` spec-doc integrity failures in the packet plan and review report. | **OPEN** | `012:review-report.md` |
 | `R-B09` | `016-rewrite-memory-mcp-readme` still has broken cross-doc refs | Recursive validator reports `7` spec-doc integrity failures in the packet plan and implementation summary. | **OPEN** | `012:review-report.md` |
-| `R-B10` | `018-rewrite-system-speckit-readme` still has one blocking broken ref | Recursive validator reports the implementation summary still references a missing MCP server README target. | **OPEN** | `012:review-report.md` |
+| `R-B10` | `018-rewrite-system-spec-kit-readme` still has one blocking broken ref | Recursive validator reports the implementation summary still references a missing MCP server README target. | **OPEN** | `012:review-report.md` |
 
 - `014` adopts these ten packet families as the blocker-first scope for the next remediation wave and requires local packet reruns before the final global sweep. `[Source: 014:spec.md Executive Summary, Scope, Requirements; 014:plan.md Summary, Phases]`
 - `014` also requires the green runtime and non-recursive baselines to remain intact while these blockers are cleared. `[Source: 014:spec.md REQ-002; 014:plan.md Architecture, Phases]`

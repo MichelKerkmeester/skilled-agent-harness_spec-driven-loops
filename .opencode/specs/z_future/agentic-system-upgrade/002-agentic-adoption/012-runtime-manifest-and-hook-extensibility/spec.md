@@ -69,7 +69,7 @@ Answer the remaining uncertainty for 012 runtime manifest and hook extensibility
 | `AGENTS.md` | Investigate | Potential touchpoint for the bounded study |
 | `.opencode/skills/system-spec-kit/constitutional/gate-enforcement.md` | Investigate | Potential touchpoint for the bounded study |
 | `.opencode/skills/system-spec-kit/references/config/hook_system.md` | Investigate | Potential touchpoint for the bounded study |
-| `.opencode/commands/spec_kit/README.txt` | Investigate | Potential touchpoint for the bounded study |
+| `.opencode/commands/speckit/README.txt` | Investigate | Potential touchpoint for the bounded study |
 <!-- /ANCHOR:scope -->
 
 ---

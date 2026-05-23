@@ -19,10 +19,10 @@ description: "Mechanical fix packet: append `</dev/null` to all 4 deep-research/
 
 | File | Lines Changed | Change |
 |------|---------------|--------|
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | +2 +1 note | Added `</dev/null` after prompt arg (line 728); added documentation note in `notes:` block |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | +2 +1 note | Same (line 660) |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | +2 +1 note | Same (line 792) |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | +2 +1 note | Same (line 769) |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | +2 +1 note | Added `</dev/null` after prompt arg (line 728); added documentation note in `notes:` block |
+| `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml` | +2 +1 note | Same (line 660) |
+| `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml` | +2 +1 note | Same (line 792) |
+| `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml` | +2 +1 note | Same (line 769) |
 | `.opencode/skills/cli-opencode/SKILL.md` | rule 5 rewritten | Generalized from `while read` loops to all non-interactive callsites |
 | `.opencode/skills/cli-opencode/references/integration_patterns.md` | §6 rewritten | Section retitled "STDIN HANDLING — `</dev/null` IS REQUIRED FOR ALL NON-INTERACTIVE DISPATCH" with 4 fix patterns + position rule + automation snippet |
 | `.opencode/skills/cli-opencode/references/cli_reference.md` | new subsection | Added "Stdin handling — `</dev/null` is required for non-interactive dispatch" subsection in §4 |
@@ -43,7 +43,7 @@ description: "Mechanical fix packet: append `</dev/null` to all 4 deep-research/
 ### REQ-001 — All 4 YAML workflows include `</dev/null`
 
 ```bash
-$ for f in .opencode/commands/spec_kit/assets/spec_kit_deep-{research,review}_{auto,confirm}.yaml; do
+$ for f in .opencode/commands/speckit/assets/speckit_deep-{research,review}_{auto,confirm}.yaml; do
     grep -c "</dev/null" "$f"
   done
 ```
@@ -91,7 +91,7 @@ Pre-commit lint check that flags `opencode run` invocations missing `</dev/null`
 ### YAML parse check (REQ-001 secondary)
 
 ```bash
-$ for f in .opencode/commands/spec_kit/assets/spec_kit_deep-{research,review}_{auto,confirm}.yaml; do
+$ for f in .opencode/commands/speckit/assets/speckit_deep-{research,review}_{auto,confirm}.yaml; do
     python3 -c "import yaml; yaml.safe_load(open('$f'))" && echo "OK $f"
   done
 OK spec_kit_deep-research_auto.yaml

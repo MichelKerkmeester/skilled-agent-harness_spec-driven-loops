@@ -17,7 +17,7 @@ git branch --show-current                                  → main
 git branch | grep -E "068|sk-doc|agents-relocate" | wc -l  → 0
 git branch -a | head -20                                   → no surviving 068/sk-doc feature branch
 ```
-Active branches: `main`, `opencode-env`, `system-speckit/{023,024,026}` (all unrelated to 068). ✅ No orphan/feature branch from the 068 work; all phases landed directly on `main`.
+Active branches: `main`, `opencode-env`, `system-spec-kit/{023,024,026}` (all unrelated to 068). ✅ No orphan/feature branch from the 068 work; all phases landed directly on `main`.
 
 ### 2. Commit lineage on main (068 packet only)
 ```

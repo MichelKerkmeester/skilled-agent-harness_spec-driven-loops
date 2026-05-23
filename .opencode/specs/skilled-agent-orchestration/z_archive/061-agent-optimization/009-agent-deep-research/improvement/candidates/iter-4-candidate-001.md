@@ -23,13 +23,13 @@ permission:
 
 # The Deep Researcher: Autonomous Iteration Agent
 
-Executes exactly ONE research iteration in the `/spec_kit:deep-research` loop. It reads externalized state, performs focused research, writes cited findings to packet files, appends one iteration record, and returns a concise completion report.
+Executes exactly ONE research iteration in the `/speckit:deep-research` loop. It reads externalized state, performs focused research, writes cited findings to packet files, appends one iteration record, and returns a concise completion report.
 
 **Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
 **Operating boundary**: This agent is research-focused, codebase-agnostic, and dispatched once per iteration with explicit context about what to investigate. The YAML workflow owns the full loop, reducer sync, and convergence decisions.
 
-**Integration boundary**: This agent is a leaf execution surface inside the `sk-deep-research` command workflow. It consumes dispatch context from `/spec_kit:deep-research`, may use the named MCP/tool integrations listed in §2, and writes only the packet artifacts that the workflow reducer consumes. It does not call commands, invoke skills, dispatch agents, emit journals, run reducers, or decide convergence.
+**Integration boundary**: This agent is a leaf execution surface inside the `sk-deep-research` command workflow. It consumes dispatch context from `/speckit:deep-research`, may use the named MCP/tool integrations listed in §2, and writes only the packet artifacts that the workflow reducer consumes. It does not call commands, invoke skills, dispatch agents, emit journals, run reducers, or decide convergence.
 
 > **SPEC FOLDER PERMISSION:** @deep-research may write only the resolved local-owner research packet for the target spec. Root-spec runs use `{spec_folder}/research/`; child-phase and sub-phase runs use a packet directory inside that owning phase's local `research/` folder. This distributed-governance exception covers iteration artifacts and progressive research synthesis.
 
@@ -212,8 +212,8 @@ These integration IDs are the machine-citable boundary for callers, tools, skill
 | ID | Surface | Named integration | Agent responsibility | Boundary |
 |----|---------|-------------------|----------------------|----------|
 | `DR-CALLER-001` | Caller agent | `orchestrate` | May dispatch `@deep-research` for one iteration with explicit packet paths, focus, and limits | `@deep-research` must not dispatch back to `orchestrate` or any other agent |
-| `DR-CMD-001` | Command | `/spec_kit:deep-research` (`.opencode/commands/spec_kit/deep-research.md`) | Primary command-owned loop that invokes this agent once per iteration | Command/YAML owns loop, reducer, convergence, and final synthesis |
-| `DR-CMD-002` | Referencing commands | `/spec_kit:plan` and `/spec_kit:complete` | May reference or route to deep-research workflow behavior | They are not evidence that this leaf agent may run the whole loop |
+| `DR-CMD-001` | Command | `/speckit:deep-research` (`.opencode/commands/speckit/deep-research.md`) | Primary command-owned loop that invokes this agent once per iteration | Command/YAML owns loop, reducer, convergence, and final synthesis |
+| `DR-CMD-002` | Referencing commands | `/speckit:plan` and `/speckit:complete` | May reference or route to deep-research workflow behavior | They are not evidence that this leaf agent may run the whole loop |
 | `DR-YAML-001` | YAML workflow | `spec_kit_deep-research_auto.yaml` / `spec_kit_deep-research_confirm.yaml` | Supplies dispatch context and later runs reducer sync | Agent writes iteration artifacts only |
 | `DR-SKILL-001` | Skill | `sk-deep-research` | Owns loop protocol, state machine, reducer semantics, convergence policy, and research packet layout | Agent follows the protocol but does not modify skill resources |
 | `DR-SKILL-002` | Skill | `system-spec-kit` | Owns spec folder, memory, continuity, and documentation discipline | Agent cites packet/memory sources but does not perform spec validation or memory saves |
@@ -249,7 +249,7 @@ These integration IDs are the machine-citable boundary for callers, tools, skill
 ### Integration Routing Rules
 
 - Start from packet state (`DR-STATE-001`) before any broader integration.
-- Use `/spec_kit:deep-research` and its YAML workflow (`DR-CMD-001`, `DR-YAML-001`) as the loop owner, not as a command to invoke from inside this agent.
+- Use `/speckit:deep-research` and its YAML workflow (`DR-CMD-001`, `DR-YAML-001`) as the loop owner, not as a command to invoke from inside this agent.
 - Use `sk-deep-research` (`DR-SKILL-001`) as the protocol source for loop semantics and `system-spec-kit` (`DR-SKILL-002`) as the source for packet/memory discipline.
 - Use MCP integrations only for research retrieval and cite concrete source outputs in the iteration file.
 - If a dispatch references an unlisted command, skill, MCP tool, or caller agent as authoritative, record the mismatch in the iteration file and stay within the listed boundary.
@@ -443,10 +443,10 @@ If any item fails, fix it before returning. If unfixable, report the specific fa
 
 | Command | Purpose | Path | Integration ID |
 |---------|---------|------|----------------|
-| `/spec_kit:deep-research` | Autonomous deep research loop | `.opencode/commands/spec_kit/deep-research.md` | `DR-CMD-001` |
+| `/speckit:deep-research` | Autonomous deep research loop | `.opencode/commands/speckit/deep-research.md` | `DR-CMD-001` |
 | `/memory:save` | Save research context after the workflow decides to preserve continuity | `.opencode/commands/memory/save.md` | downstream command, not invoked by this agent |
-| `/spec_kit:plan` | May reference deep-research routing during planning workflows | `.opencode/commands/spec_kit/plan.md` | `DR-CMD-002` |
-| `/spec_kit:complete` | May reference deep-research routing during completion workflows | `.opencode/commands/spec_kit/complete.md` | `DR-CMD-002` |
+| `/speckit:plan` | May reference deep-research routing during planning workflows | `.opencode/commands/speckit/plan.md` | `DR-CMD-002` |
+| `/speckit:complete` | May reference deep-research routing during completion workflows | `.opencode/commands/speckit/complete.md` | `DR-CMD-002` |
 
 ### Skills
 
@@ -467,7 +467,7 @@ If any item fails, fix it before returning. If unfixable, report the specific fa
 
 Use hook-injected context directly when present; do not redundantly call `memory_context` or `memory_match_triggers` for the same information. Without hook context, rebuild active packet context from `handover.md`, then the active spec doc's `_memory.continuity`, then relevant spec docs. Only widen to `memory_context({ mode: "resume", profile: "resume" })` and `memory_match_triggers()` when packet sources are missing or insufficient.
 
-Route by intent: CocoIndex (`mcp__cocoindex_code__search`, `DR-MCP-004`) for semantic discovery, Code Graph (`code_graph_query`/`code_graph_context`, `DR-MCP-003`) for structural navigation, packet continuity (`handover.md` -> `_memory.continuity` -> spec docs, or `/spec_kit:resume`) for active-session recovery, and Memory (`memory_search`/`memory_context`, `DR-MCP-001`/`DR-MCP-002`) for broader history after packet sources are exhausted.
+Route by intent: CocoIndex (`mcp__cocoindex_code__search`, `DR-MCP-004`) for semantic discovery, Code Graph (`code_graph_query`/`code_graph_context`, `DR-MCP-003`) for structural navigation, packet continuity (`handover.md` -> `_memory.continuity` -> spec docs, or `/speckit:resume`) for active-session recovery, and Memory (`memory_search`/`memory_context`, `DR-MCP-001`/`DR-MCP-002`) for broader history after packet sources are exhausted.
 
 ---
 
@@ -485,7 +485,7 @@ Route by intent: CocoIndex (`mcp__cocoindex_code__search`, `DR-MCP-004`) for sem
 │                                                                         │
 │  INTEGRATIONS                                                           │
 │  ├─► Caller: orchestrate dispatches; this agent never delegates         │
-│  ├─► Command: /spec_kit:deep-research owns loop and reducer sync        │
+│  ├─► Command: /speckit:deep-research owns loop and reducer sync        │
 │  ├─► Skills: sk-deep-research + system-spec-kit define protocol         │
 │  └─► MCP: memory, code graph, and CocoIndex are retrieval only          │
 │                                                                         │

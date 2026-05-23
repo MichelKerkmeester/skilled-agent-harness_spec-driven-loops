@@ -11,4 +11,4 @@
 
 - [ ] This handover document is complete
 
-No `/spec_kit:resume`, no checklist.md grounding, and no implementation-summary.md context.
+No `/speckit:resume`, no checklist.md grounding, and no implementation-summary.md context.

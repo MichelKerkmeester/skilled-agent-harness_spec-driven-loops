@@ -71,7 +71,7 @@ _memory:
 - [x] CHK-023 [P1] Adjacent packets 093/094/095 continue strict-clean
 - [x] CHK-024 [P1] Smart-router PATHS PASS (was 8 errors pre-fix)
 - [x] CHK-025 [P1] audit_descriptions.py exits 2 on zero-inventory; 51 items on real repo
-- [x] CHK-026 [P1] Native advisor returns command-spec-kit at 0.82 for `/spec_kit:deep-review`
+- [x] CHK-026 [P1] Native advisor returns command-spec-kit at 0.82 for `/speckit:deep-review`
 <!-- /ANCHOR:testing -->
 
 ---

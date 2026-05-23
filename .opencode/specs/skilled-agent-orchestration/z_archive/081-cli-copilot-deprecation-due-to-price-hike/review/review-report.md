@@ -288,7 +288,7 @@ The cli-copilot deprecation is **substantively complete**. All P0 success criter
 
 **Required next:**
 - `/create:changelog` to publish the cli-copilot removal as a global skill-removal changelog entry, OR
-- `/spec_kit:plan` for a follow-on packet that addresses the 2 P1 operational items (test verification + dist rebuild)
+- `/speckit:plan` for a follow-on packet that addresses the 2 P1 operational items (test verification + dist rebuild)
 
 **Authoritative sign-off:** Reviewed by Claude Opus 4.7 (1M context) on 2026-05-06. Live verification commands captured under §6 are reproducible. Methodology limitation (cli-opencode contention with parallel packet 082) is documented in §3.
 

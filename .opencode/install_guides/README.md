@@ -1345,10 +1345,10 @@ You have completed the installation. Here is your roadmap for getting started.
 | -------- | ------------------------------------------------------------------------------------------------------- |
 | Create   | `/create:agent`, `/create:changelog`, `/create:feature-catalog`, `/create:folder_readme`, `/create:prompt`, `/create:skill`, `/create:testing-playbook` |
 | Memory   | `/memory:search`, `/memory:learn`, `/memory:manage`, `/memory:save` |
-| SpecKit  | `/spec_kit:complete`, `/deep:start-research-loop`, `/deep:start-review-loop`, `/spec_kit:implement`, `/spec_kit:plan`, `/spec_kit:plan --intake-only`, `/spec_kit:resume` |
+| SpecKit  | `/speckit:complete`, `/deep:start-research-loop`, `/deep:start-review-loop`, `/speckit:implement`, `/speckit:plan`, `/speckit:plan --intake-only`, `/speckit:resume` |
 | Utility  | `/agent_router` |
 
-For the SpecKit chain, `/spec_kit:plan --intake-only` is the standalone intake entry, `/spec_kit:plan` and `/spec_kit:complete` reuse the shared intake contract in [`../skill/system-spec-kit/references/intake-contract.md`](../skill/system-spec-kit/references/intake-contract.md) when packet state still needs repair, and `/deep:start-research-loop` now anchors each run to `spec.md` through `spec_check_protocol.md`.
+For the SpecKit chain, `/speckit:plan --intake-only` is the standalone intake entry, `/speckit:plan` and `/speckit:complete` reuse the shared intake contract in [`../skill/system-spec-kit/references/intake-contract.md`](../skill/system-spec-kit/references/intake-contract.md) when packet state still needs repair, and `/deep:start-research-loop` now anchors each run to `spec.md` through `spec_check_protocol.md`.
 
 ### 16.4 Learning Resources
 
@@ -1572,7 +1572,7 @@ bash .opencode/commands/doctor/scripts/mcp-doctor.sh --fix
 | ------------------ | ----- | ------------------------------------------------------------------------------------------------------------------------ |
 | Native MCP Servers | 6     | code_mode, mk-spec-memory, mk_skill_advisor, mk_code_index, cocoindex_code, sequential_thinking                          |
 | Skills             | 17    | cli-claude-code, cli-codex, cli-gemini, cli-opencode, mcp-chrome-devtools, mcp-coco-index, mcp-code-mode, sk-code, sk-code-review, deep-research, deep-review, sk-doc, sk-git, deep-agent-improvement, sk-prompt, system-spec-kit |
-| Commands           | 22    | /create:* (7), /memory:* (6), /spec_kit:* (8), agent_router (1)                                                         |
+| Commands           | 22    | /create:* (7), /memory:* (6), /speckit:* (8), agent_router (1)                                                         |
 | CLI Tools          | 1     | Chrome DevTools (bdg)                                                                                                    |
 | Plugins            | 2     | Antigravity Auth, OpenAI Codex Auth                                                                                      |
 

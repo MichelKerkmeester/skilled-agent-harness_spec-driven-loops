@@ -16,8 +16,8 @@ I compared the external loop's runtime state model with `system-spec-kit`'s deep
 - `[SOURCE: external/automated-loop/state_tracker.py:116-125]` Runtime state is saved directly to disk as one canonical state file.
 - `[SOURCE: external/automated-loop/state_tracker.py:137-179]` Each cycle updates state, metrics, and resumable session identity in the same operational boundary.
 - `[SOURCE: external/automated-loop/state_tracker.py:191-209]` Budget enforcement is also evaluated against the same persisted runtime state.
-- `[SOURCE: .opencode/commands/spec_kit/deep-research.md:147-154]` The local workflow overview includes a final `Save` phase after initialization, looping, and synthesis.
-- `[SOURCE: .opencode/commands/spec_kit/deep-research.md:196-209]` The command explicitly couples deep research completion to memory retrieval/bootstrap up front and `generate-context.js` at the end.
+- `[SOURCE: .opencode/commands/speckit/deep-research.md:147-154]` The local workflow overview includes a final `Save` phase after initialization, looping, and synthesis.
+- `[SOURCE: .opencode/commands/speckit/deep-research.md:196-209]` The command explicitly couples deep research completion to memory retrieval/bootstrap up front and `generate-context.js` at the end.
 - `[SOURCE: .opencode/skills/system-spec-kit/references/memory/memory_system.md:17-27]` The memory subsystem is a separate architecture with an MCP server, SQLite/vector database, constitutional rules, and generation scripts.
 - `[SOURCE: .opencode/skills/system-spec-kit/references/memory/memory_system.md:99-145]` The memory layer exposes 43 tools spanning orchestration, mutation, lifecycle, shared spaces, analysis, and maintenance.
 - `[SOURCE: .opencode/skills/system-spec-kit/references/memory/save_workflow.md:17-39]` Memory save is framed as a governed multi-path system rather than a minimal packet export.
@@ -34,7 +34,7 @@ confidence: high
 finding: `system-spec-kit` should refactor deep-research and deep-review so packet-local research artifacts are the canonical completion boundary, while memory save becomes an explicit export step triggered by policy, user intent, or post-closeout automation.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/commands/spec_kit/deep-research.md`, `.opencode/commands/spec_kit/deep-review.md`, `.opencode/skills/system-spec-kit/references/memory/save_workflow.md`, `.opencode/skills/system-spec-kit/references/memory/memory_system.md`
+- **Target file or module:** `.opencode/commands/speckit/deep-research.md`, `.opencode/commands/speckit/deep-review.md`, `.opencode/skills/system-spec-kit/references/memory/save_workflow.md`, `.opencode/skills/system-spec-kit/references/memory/memory_system.md`
 - **Change type:** architectural shift
 - **Blast radius:** medium
 - **Prerequisites:** define when memory export is automatic, optional, or suppressed for research-only packets

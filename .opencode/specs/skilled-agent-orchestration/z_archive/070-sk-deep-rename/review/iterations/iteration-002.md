@@ -24,7 +24,7 @@ None.
   - `deep-review` does have the intended graph signals: `.opencode/skills/deep-review/graph-metadata.json:32` lists `intent_signals`, including `review loop`, `iterative review`, and `spec folder review` at `.opencode/skills/deep-review/graph-metadata.json:33`.
   - `sk-code-review` carries broad overlapping domains and triggers: `.opencode/skills/sk-code-review/graph-metadata.json:31` includes `review`, `audit`, and `security`; `.opencode/skills/sk-code-review/graph-metadata.json:39` includes `code review`, `security review`, `quality gate`, and `findings`.
 - Why this is an advisor integrity issue: the iteration-2 charter says each relevant probe should return the new deep-loop names as top-1. This prompt is explicitly about an iterative review loop for a spec folder audit, but the advisor chooses the single-pass review baseline first.
-- Impact: users asking for a deep review loop with "iterative review loop" language can be routed to `sk-code-review`, bypassing the `/spec_kit:deep-review` state machine and its iteration artifacts.
+- Impact: users asking for a deep review loop with "iterative review loop" language can be routed to `sk-code-review`, bypassing the `/speckit:deep-review` state machine and its iteration artifacts.
 - Concrete fix: add or tune a deep-review routing bridge/boost for combined `iterative` + `review loop` + `spec folder audit` prompts, and add a regression fixture asserting `deep-review` top-1 for this exact prompt family. If needed, add anti-signal handling so `sk-code-review` loses to `deep-review` when loop/state-machine terms are present.
 
 ## P1-003 - Deep-loop family identity still uses old `sk-deep` naming

@@ -59,7 +59,7 @@ _memory:
 - [x] T007 Rewrite the remaining skill READMEs under `.opencode/skills/README.md`, `.opencode/skills/skill-advisor/README.md`, and related skill folders
 
 ### Command and Follow-Up Work
-- [x] T008 Update the command README surfaces under `.opencode/commands/README.txt`, `.opencode/commands/create/README.txt`, `.opencode/commands/memory/README.txt`, and `.opencode/commands/spec_kit/README.txt`
+- [x] T008 Update the command README surfaces under `.opencode/commands/README.txt`, `.opencode/commands/create/README.txt`, `.opencode/commands/memory/README.txt`, and `.opencode/commands/speckit/README.txt`
 - [x] T009 Apply batch review fixes for links, TOC formatting, HVR wording, and anchor or divider cleanup
 - [x] T010 Record the root README follow-up additions from `.opencode/skills/system-spec-kit/mcp_server/README.md`
 <!-- /ANCHOR:phase-2 -->

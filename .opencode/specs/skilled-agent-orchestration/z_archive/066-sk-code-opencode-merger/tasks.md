@@ -76,7 +76,7 @@ _memory:
 - [x] T015 Delete `cross_stack_pairing.md` (`.opencode/skills/sk-code/references/router/cross_stack_pairing.md`)
 - [x] T016 Rewrite router docs for two-axis model (`.opencode/skills/sk-code/references/router/{resource_loading,intent_classification,phase_lifecycle}.md`)
 - [x] T017 Rewrite runtime agent supported-stack and overlay text (`.opencode/agents/**`, `.claude/agents/**`, `.codex/agents/**`, `.gemini/agents/**`)
-- [x] T018 Rewrite `spec_kit` command YAML overlay text (`.opencode/commands/spec_kit/assets/*.yaml`)
+- [x] T018 Rewrite `spec_kit` command YAML overlay text (`.opencode/commands/speckit/assets/*.yaml`)
 - [x] T019 Rewrite `sk-code-review` contract to single-skill model (`.opencode/skills/sk-code-review/**`)
 - [x] T020 Rewrite CLI skill dispatch guidance (`.opencode/skills/cli-*/SKILL.md`)
 - [x] T021 Update skill advisor scorer lanes and fixtures (`.opencode/skills/system-spec-kit/mcp_server/skill_advisor/**`)

@@ -9,16 +9,16 @@ file_path	match_count	area	phase
 .gemini/agents/deep-research.md	1	runtime-gemini	004
 .gemini/agents/deep-review.md	3	runtime-gemini	004
 .gemini/agents/orchestrate.md	1	runtime-gemini	004
-.gemini/commands/spec_kit/deep-research.toml	10	runtime-gemini	004
+.gemini/commands/speckit/deep-research.toml	10	runtime-gemini	004
 .opencode/agents/deep-research.md	1	opencode-agent	003
 .opencode/agents/deep-review.md	3	opencode-agent	003
 .opencode/agents/orchestrate.md	1	opencode-agent	003
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml	17	opencode-command	003
-.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml	17	opencode-command	003
-.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml	15	opencode-command	003
-.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml	15	opencode-command	003
-.opencode/commands/spec_kit/deep-research.md	10	opencode-command	003
-.opencode/commands/spec_kit/deep-review.md	9	opencode-command	003
+.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml	17	opencode-command	003
+.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml	17	opencode-command	003
+.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml	15	opencode-command	003
+.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml	15	opencode-command	003
+.opencode/commands/speckit/deep-research.md	10	opencode-command	003
+.opencode/commands/speckit/deep-review.md	9	opencode-command	003
 .opencode/install_guides/README.md	2	root-doc	005
 .opencode/install_guides/SET-UP - AGENTS.md	3	root-doc	005
 .opencode/skills/README.md	8	opencode-references	003

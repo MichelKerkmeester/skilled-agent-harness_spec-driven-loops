@@ -55,7 +55,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-sk-code-review is the findings-first review baseline used by `@review`, `@deep-review`, and `/spec_kit:deep-review`. It defines P0/P1/P2 severity, mandatory security/correctness minimums, finding-class taxonomy (instance-only / class-of-bug / cross-consumer / algorithmic / matrix/evidence / test-isolation), and evidence-with-file:line discipline. There is no realistic-scenario regression coverage today, so refactors silently break the contract.
+sk-code-review is the findings-first review baseline used by `@review`, `@deep-review`, and `/speckit:deep-review`. It defines P0/P1/P2 severity, mandatory security/correctness minimums, finding-class taxonomy (instance-only / class-of-bug / cross-consumer / algorithmic / matrix/evidence / test-isolation), and evidence-with-file:line discipline. There is no realistic-scenario regression coverage today, so refactors silently break the contract.
 
 ### Purpose
 Author a `manual_testing_playbook/` package for sk-code-review that covers ~17 realistic scenarios across 6 categories, with RCAF-pattern operator prompts mirroring how humans actually invoke code review with an AI assistant - executable both natively (Claude Code / OpenCode) and via external CLIs (cli-codex, cli-opencode, cli-gemini, cli-copilot).

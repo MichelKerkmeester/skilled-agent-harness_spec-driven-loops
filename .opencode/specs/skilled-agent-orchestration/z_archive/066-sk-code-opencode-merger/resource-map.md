@@ -18,7 +18,7 @@ _memory:
     key_files:
       - ".opencode/skills/sk-code/SKILL.md"
       - ".opencode/skills/sk-code/references/opencode/"
-      - ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml"
+      - ".opencode/commands/speckit/assets/speckit_implement_auto.yaml"
     session_dedup:
       fingerprint: "sha256:0660660660660660660660660660660660660660660660660660660660660666"
       session_id: "066-sk-code-opencode-merger-plan"
@@ -87,11 +87,11 @@ Status vocabulary: `OK`, `MISSING`, `PLANNED`.
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml` | Analyzed | OK | Mentions `sk-code-*` overlay phase |
-| `.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml` | Analyzed | OK | Mentions `sk-code-*` overlay phase |
-| `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml` | Analyzed | OK | Mentions `sk-code-*` overlay phase |
-| `.opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml` | Analyzed | OK | Mentions `sk-code-*` overlay phase |
-| `.opencode/commands/spec_kit/deep-review.md` | Analyzed | OK | Mentions code review overlay behavior |
+| `.opencode/commands/speckit/assets/speckit_complete_auto.yaml` | Analyzed | OK | Mentions `sk-code-*` overlay phase |
+| `.opencode/commands/speckit/assets/speckit_complete_confirm.yaml` | Analyzed | OK | Mentions `sk-code-*` overlay phase |
+| `.opencode/commands/speckit/assets/speckit_implement_auto.yaml` | Analyzed | OK | Mentions `sk-code-*` overlay phase |
+| `.opencode/commands/speckit/assets/speckit_implement_confirm.yaml` | Analyzed | OK | Mentions `sk-code-*` overlay phase |
+| `.opencode/commands/speckit/deep-review.md` | Analyzed | OK | Mentions code review overlay behavior |
 <!-- /ANCHOR:commands -->
 
 ---

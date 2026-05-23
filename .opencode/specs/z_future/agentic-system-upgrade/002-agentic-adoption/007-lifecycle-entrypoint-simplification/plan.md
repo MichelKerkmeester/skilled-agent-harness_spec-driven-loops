@@ -1,6 +1,6 @@
 ---
 title: "Impl [system-spec-kit/z_future/agentic-system-upgrade/002-agentic-adoption/007-lifecycle-entrypoint-simplification/plan]"
-description: "Shrink the visible lifecycle front door so routine work starts through a guided wrapper or smaller command family while the existing /spec_kit:* internals remain authoritative."
+description: "Shrink the visible lifecycle front door so routine work starts through a guided wrapper or smaller command family while the existing /speckit:* internals remain authoritative."
 trigger_phrases:
   - "implementation"
   - "plan"
@@ -29,7 +29,7 @@ contextType: "implementation"
 | **Testing** | strict packet validation and source-path verification |
 
 ### Overview
-Shrink the visible lifecycle front door so routine work starts through a guided wrapper or smaller command family while the existing `/spec_kit:*` internals remain authoritative.
+Shrink the visible lifecycle front door so routine work starts through a guided wrapper or smaller command family while the existing `/speckit:*` internals remain authoritative.
 <!-- /ANCHOR:summary -->
 
 ---

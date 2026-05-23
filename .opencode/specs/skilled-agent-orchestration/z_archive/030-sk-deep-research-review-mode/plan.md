@@ -67,7 +67,7 @@ Contract-first extension of the existing deep-research loop.
 ### Key Components
 - **Review packet spec docs**: `spec.md`, `plan.md`, `tasks.md`, `handover.md`
 - **Shared review references**: `.opencode/skills/sk-code-review/` reference files
-- **Review-mode command and skill docs**: `.opencode/commands/spec_kit/deep-research.md` and `.opencode/skills/sk-deep-research/README.md`
+- **Review-mode command and skill docs**: `.opencode/commands/speckit/deep-research.md` and `.opencode/skills/sk-deep-research/README.md`
 
 ### Data Flow
 The packet defines the review-mode intent, shared review references provide the scoring and contract inputs, and the command or skill surfaces carry the runtime-facing behavior.
@@ -112,7 +112,7 @@ The packet defines the review-mode intent, shared review references provide the 
 |------------|------|--------|-------------------|
 | `.opencode/skills/sk-code-review/references/review_core.md` | Internal | Green | Shared review doctrine becomes harder to trace |
 | `.opencode/skills/sk-deep-research/README.md` | Internal | Green | Runtime-facing review guidance loses context |
-| `.opencode/commands/spec_kit/deep-research.md` | Internal | Green | Entry-point behavior becomes ambiguous |
+| `.opencode/commands/speckit/deep-research.md` | Internal | Green | Entry-point behavior becomes ambiguous |
 <!-- /ANCHOR:dependencies -->
 
 ---

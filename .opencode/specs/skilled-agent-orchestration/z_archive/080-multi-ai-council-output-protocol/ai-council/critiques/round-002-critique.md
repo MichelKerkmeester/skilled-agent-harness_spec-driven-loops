@@ -8,7 +8,7 @@
 
 1. Convergence integrity: Was round-1 convergence genuine or premature? Two seats agreed; one (Analytical) flipped under attack. Could a different framing have produced different convergence?
 2. Missed failure modes: What did F1-F7 miss? Look for unexpected interactions, backward-compat, circular dependencies.
-3. Hidden assumptions: Round-1 assumed callers are concentrated (`/spec_kit:*`). Is that empirically true?
+3. Hidden assumptions: Round-1 assumed callers are concentrated (`/speckit:*`). Is that empirically true?
 4. Roadmap risk: Round-1 claimed "purely additive". Are there integration risks with packet 081 sequencing?
 
 ## New findings (severity-rated)
@@ -20,9 +20,9 @@
 | F10 | Per-runtime parser dialect risk if §8 phrasing diverges across `.opencode`/`.claude`/`.gemini`/`.codex` mirrors. | Seat 1 (Critical), challenged by Seat 2 | LOW (downgraded post-critique) | Existing mirror discipline (`feedback_new_agent_mirror_all_runtimes.md`) sufficient |
 | F-GAP-§8 | §8 OUTPUT FORMAT evolution silently breaks helper if no shared schema artifact. | Seat 2 (Holistic) | MEDIUM | ADD-3: promote §8 to `output-schema.md` referenced by both agent body and helper |
 | F-GAP-DEGRAD | Helper round-1 spec ("parse §-headers") too imprecise; needs strict-required vs optional contract. | Seat 2 (Holistic) | MEDIUM | ADD-2: graceful-degradation contract with `--strict-output` flag |
-| F-FALSIFIED-CALLER | Round-1's "callers concentrated to `/spec_kit:*`" assumption FALSE per grep. Actual dispatchers: top-level Task, `@orchestrate`, CLI-skill playbooks (4 runtimes). | Seat 3 (Research) | HIGH (round-1 architecture-level miss) | ADD-1: replace assumption with explicit 4-caller-pattern enumeration in §17 |
+| F-FALSIFIED-CALLER | Round-1's "callers concentrated to `/speckit:*`" assumption FALSE per grep. Actual dispatchers: top-level Task, `@orchestrate`, CLI-skill playbooks (4 runtimes). | Seat 3 (Research) | HIGH (round-1 architecture-level miss) | ADD-1: replace assumption with explicit 4-caller-pattern enumeration in §17 |
 | F-FORWARD-COMPAT | Future "deep-council" loops may need multi-iteration helper modes round-1 doesn't support. | Seat 2 (Holistic) | LOW (speculative) | Optional `--iteration NNN` / `--loop-mode` flag in helper |
-| F-SEQUENCING | If packet 081 lands while `/spec_kit:*` commands are not yet wired, helper must be standalone-usable. | Seat 2 + Seat 3 | LOW | ADD-6: sequence packet 081 so helper is standalone-usable from Step 1, YAML wiring is Step 3 (convenience, not requirement) |
+| F-SEQUENCING | If packet 081 lands while `/speckit:*` commands are not yet wired, helper must be standalone-usable. | Seat 2 + Seat 3 | LOW | ADD-6: sequence packet 081 so helper is standalone-usable from Step 1, YAML wiring is Step 3 (convenience, not requirement) |
 
 ## Severity-weighted impact on round-1 plan
 

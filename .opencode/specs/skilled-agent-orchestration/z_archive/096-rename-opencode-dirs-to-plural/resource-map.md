@@ -79,7 +79,7 @@ Each remediation depends on the immediately-preceding deep-review's findings cat
 | `commands/doctor/scripts/audit_descriptions.py` | 003, 005 | Plural roots + zero-inventory failure |
 | `scripts/spec/check-smart-router.sh` | 005 | SKILL_ROOT plural + sibling fallback (P1-013, P1-021) |
 | `scripts/dist/**` | 005 | Rebuilt for source/dist parity (P1-016) |
-| `commands/spec_kit/assets/spec_kit_deep-{review,research}_{auto,confirm}.yaml` | 005, 006, 008 | Token replace + cli-opencode branch + --pure |
+| `commands/speckit/assets/speckit_deep-{review,research}_{auto,confirm}.yaml` | 005, 006, 008 | Token replace + cli-opencode branch + --pure |
 | `agents/{orchestrate,deep-review,deep-research}.md` | 005 | sk-deep-* token replacement |
 | `agents/review.toml` (codex mirror) | 005 | P1-blocking doctrine alignment (P1-009) |
 | `skills/{sk-code-review,sk-git}/SKILL.md` | 005 | Manual Testing Playbook citations (P1-018) |

@@ -255,7 +255,7 @@ Deliver a safer and faster skill advisor that improves top-ranked routing qualit
 
 **Acceptance Criteria**:
 1. **Given** non-slash prompt "create spec for feature", when analyzed, then `system-spec-kit` appears above `command-spec-kit`.
-2. **Given** explicit `/spec_kit:plan` prompt, when analyzed, then command bridge may rank first.
+2. **Given** explicit `/speckit:plan` prompt, when analyzed, then command bridge may rank first.
 
 ---
 

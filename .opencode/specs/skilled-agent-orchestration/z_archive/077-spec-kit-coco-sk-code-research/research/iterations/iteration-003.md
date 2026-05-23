@@ -54,7 +54,7 @@ No new direct sk-code finding this iteration. Cross-skill interaction remains op
 - Q4: Still open for live CocoIndex query/rank checks against `sk-code` resources.
 - Q5: Still open for detailed sk-code OpenCode reference/assets gaps.
 - Q6: Still open for `STACK_FOLDERS` and resource_map drift.
-- Q7: Still open for cross-skill loading during `/spec_kit:complete`-style writes.
+- Q7: Still open for cross-skill loading during `/speckit:complete`-style writes.
 
 ## Next Focus (for iteration 4)
 Audit `mcp-coco-index` CLI vs MCP parity and decision-tree drift. Start with `mcp-coco-index/SKILL.md`, the CLI command definitions, the MCP server `search` schema/handler, and install/status scripts; explicitly compare them against the now-questionable `system-spec-kit` `ccc_*` maintenance descriptors so ownership of CocoIndex status, reindex, and feedback is clear.

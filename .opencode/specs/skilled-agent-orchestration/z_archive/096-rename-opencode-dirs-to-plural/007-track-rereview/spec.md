@@ -94,7 +94,7 @@ CONDITIONAL/FAIL would block release until follow-on remediation.
 
 ### Out of Scope
 - Re-running each individual deep-review iteration loop already shipped in 093-096 — handled by 095 / 097 / 099
-- Implementation of any remediation fixes — produces Plan Seed for `/spec_kit:plan` only if FAIL/CONDITIONAL
+- Implementation of any remediation fixes — produces Plan Seed for `/speckit:plan` only if FAIL/CONDITIONAL
 - Changes to any reviewed file — review target is READ-ONLY
 - Re-reviewing 100 or 101 sub-phase packets at line-level — only architectural / cross-phase reading
 - Deep dive on cli-opencode binary internals or DeepSeek's tool-name regex — only the wiring surfaces matter
@@ -146,7 +146,7 @@ CONDITIONAL/FAIL would block release until follow-on remediation.
 - **SC-003**: Any new findings introduced by the 100 remediation are surfaced with file:line evidence
 - **SC-004**: Any new findings introduced by the 101 executor wiring are surfaced with file:line evidence
 - **SC-005**: cli-opencode + deepseek-v4-pro dispatch outcome observed and documented (smoke result)
-- **SC-006**: If verdict ≠ PASS, the Plan Seed is concrete enough to start `/spec_kit:plan` without re-discovery
+- **SC-006**: If verdict ≠ PASS, the Plan Seed is concrete enough to start `/speckit:plan` without re-discovery
 <!-- /ANCHOR:success-criteria -->
 
 ---

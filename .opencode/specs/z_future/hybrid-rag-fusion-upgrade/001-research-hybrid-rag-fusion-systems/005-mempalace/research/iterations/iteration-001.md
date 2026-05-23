@@ -674,9 +674,9 @@ Use this skill when:
 
 ### When NOT to Use
 
-- Simple, single-question research (use direct codebase search or `/spec_kit:plan`)
-- Known-solution documentation (use `/spec_kit:plan`)
-- Implementation tasks (use `/spec_kit:implement`)
+- Simple, single-question research (use direct codebase search or `/speckit:plan`)
+- Known-solution documentation (use `/speckit:plan`)
+- Implementation tasks (use `/speckit:implement`)
 - Quick codebase searches (use `@context` or direct Grep/Glob)
 - Fewer than 3 sources needed (single-pass research suffices)
 
@@ -943,7 +943,7 @@ Routing to `@general`, `@write`, or other agents for spec documentation is a **h
 | Template              | Trigger Keywords                                                                                                              | Action                    |
 | --------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
 | `handover.md`         | "handover", "next session", "continue later", "pass context", "ending session", "save state", "multi-session", "for next AI"  | Suggest creating handover |
-| `debug-delegation.md` | "stuck", "can't fix", "tried everything", "same error", "fresh eyes", "hours on this", "still failing", "need help debugging" | Suggest `/spec_kit:debug` |
+| `debug-delegation.md` | "stuck", "can't fix", "tried everything", "same error", "fresh eyes", "hours on this", "still failing", "need help debugging" | Suggest `/speckit:debug` |
 
 **Rule:** When detected, proactively suggest the appropriate action.
 
@@ -1080,10 +1080,10 @@ RESOURCE_MAP = {
 }
 
 COMMAND_BOOSTS = {
-    "/spec_kit:plan": "PLAN",
-    "/spec_kit:implement": "IMPLEMENT",
-    "/spec_kit:debug": "DEBUG",
-    "/spec_kit:complete": "COMPLETE",
+    "/speckit:plan": "PLAN",
+    "/speckit:implement": "IMPLEMENT",
+    "/speckit:debug": "DEBUG",
+    "/speckit:complete": "COMPLETE",
 
 codex
 A key prerequisite is already failing: the `005-mempalace` phase folder is missing every required Level 3 doc, so the strict validator is expected to fail before any workflow-owned deep-research loop could start. I’m still continuing the read-only source analysis you asked for, but I’m going to capture that validation failure explicitly because it changes what can be truthfully claimed about phase readiness.

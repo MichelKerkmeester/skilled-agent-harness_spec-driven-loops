@@ -91,8 +91,8 @@ _memory:
 - [ ] **T-402** [B4] [P] Edit `.claude/agents/multi-ai-council.md` — apply identical edits as T-401 in the Claude runtime variant.
 - [ ] **T-403** [B4] [P] Edit `.gemini/agents/multi-ai-council.md` — apply identical edits as T-401 in the Gemini runtime variant.
 - [ ] **T-404** [B4] [P] Edit `.codex/agents/multi-ai-council.toml` — apply identical edits as T-401 in the Codex TOML format.
-- [ ] **T-405** [B4] [P] Edit `.opencode/commands/spec_kit/{deep-research.md,deep-review.md,assets/spec_kit_deep-research_auto.yaml}` — scrub `cli-copilot` from executor lists in these command bodies and YAML config.
-- [ ] **T-406** [B4] Verify B4: `grep -rln 'cli-copilot' .opencode/agents/ .claude/agents/ .gemini/agents/ .codex/agents/ .opencode/commands/spec_kit/` returns zero hits.
+- [ ] **T-405** [B4] [P] Edit `.opencode/commands/speckit/{deep-research.md,deep-review.md,assets/spec_kit_deep-research_auto.yaml}` — scrub `cli-copilot` from executor lists in these command bodies and YAML config.
+- [ ] **T-406** [B4] Verify B4: `grep -rln 'cli-copilot' .opencode/agents/ .claude/agents/ .gemini/agents/ .codex/agents/ .opencode/commands/speckit/` returns zero hits.
 
 ### Batch B5 — Routing docs (single cli-codex, sequential read-context)
 

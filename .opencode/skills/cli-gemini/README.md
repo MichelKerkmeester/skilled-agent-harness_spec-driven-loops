@@ -46,7 +46,7 @@ Gemini CLI is Google's open-source terminal AI agent powered by one model: `gemi
 
 The CLI runs on Google's free tier (60 requests/minute, 1000 requests/day), making it accessible without paid subscriptions. For higher throughput, API key or Vertex AI authentication options are available.
 
-When Gemini hands work back into a Spec Kit packet, `/spec_kit:resume` remains the canonical recovery surface. Packet continuity still rebuilds from `handover.md`, then `_memory.continuity`, then the remaining spec docs, while generated memory artifacts stay supporting only.
+When Gemini hands work back into a Spec Kit packet, `/speckit:resume` remains the canonical recovery surface. Packet continuity still rebuilds from `handover.md`, then `_memory.continuity`, then the remaining spec docs, while generated memory artifacts stay supporting only.
 
 The skill includes a self-invocation guard: if you are already running inside Gemini CLI, activation is blocked to prevent circular delegation.
 
@@ -62,7 +62,7 @@ Gemini CLI supports one model (gemini-3.1-pro-preview) and provides three built-
 - **1M+ Context**: Process entire codebases without chunking or summarization
 - **Free Tier**: 60 req/min and 1000 req/day with Google OAuth, no API key required
 - **Open Source**: Apache 2.0 licensed, community-extensible
-- **Spec Kit handoff**: Return packet recovery through `/spec_kit:resume` with packet docs as the continuity source
+- **Spec Kit handoff**: Return packet recovery through `/speckit:resume` with packet docs as the continuity source
 
 ### Requirements
 

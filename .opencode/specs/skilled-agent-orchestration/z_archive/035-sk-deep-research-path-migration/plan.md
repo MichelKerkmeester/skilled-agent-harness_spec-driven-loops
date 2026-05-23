@@ -71,11 +71,11 @@ Contract-first path migration with bounded legacy tolerance and one-shot corpus 
 
 ### Key Components
 - **Command contract**:
-  - `.opencode/commands/spec_kit/deep-research.md`
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml`
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_review_confirm.yaml`
+  - `.opencode/commands/speckit/deep-research.md`
+  - `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml`
+  - `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml`
+  - `.opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml`
+  - `.opencode/commands/speckit/assets/speckit_deep-research_review_confirm.yaml`
 - **Canonical runtime contract**:
   - `.codex/agents/deep-research.toml`
   - `.codex/agents/deep-review.toml`

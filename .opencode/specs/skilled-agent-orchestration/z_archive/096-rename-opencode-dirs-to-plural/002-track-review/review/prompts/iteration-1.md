@@ -106,7 +106,7 @@ adjudication packets in deeper iterations.
 
 3. `.opencode/install_guides/SET-UP - AGENTS.md` — multiple `.opencode/command/` singular refs in install/troubleshooting guidance.
 
-4. `.opencode/commands/spec_kit/deep-review.md` (this command itself) and `deep-research.md` — references to `sk-deep-review`/`sk-deep-research` paths that were renamed by packet 070 but never updated. The actual skill folders are `.opencode/skills/deep-review/` and `.opencode/skills/deep-research/`. Same drift inside the bundled YAMLs `spec_kit_deep-review_*.yaml` `skill_reference` and `template_path:` fields.
+4. `.opencode/commands/speckit/deep-review.md` (this command itself) and `deep-research.md` — references to `sk-deep-review`/`sk-deep-research` paths that were renamed by packet 070 but never updated. The actual skill folders are `.opencode/skills/deep-review/` and `.opencode/skills/deep-research/`. Same drift inside the bundled YAMLs `spec_kit_deep-review_*.yaml` `skill_reference` and `template_path:` fields.
 
 5. `barter/README.md:151-152` — singular `.opencode/agent/` and `.opencode/command/` in the architecture diagram. Per project memory `barter/coder/` is a sibling repo, but root `barter/README.md` lives in this canonical repo.
 

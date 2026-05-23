@@ -67,7 +67,7 @@ Run a 10-iteration deep-research loop comparing the external project to our inte
 Comparison along **6 axes**, each producing 2-4 ranked findings:
 1. **Installer & multi-target distribution** — SPAR-Kit's npm `@spar-kit/install` with `--claude/--cursor/--codex` target configs vs our manual skill installation.
 2. **Instruction-file management** — SPAR's managed-block policy (`<!-- spar-kit:start/end -->` boundaries, 60-line cap warning) vs our hand-edited `AGENTS.md`/`CLAUDE.md`/`CLAUDE.md` siblings (Barter + fs-enterprises).
-3. **Command/skill granularity** — SPAR's 4 phases (Specify/Plan/Act/Retain) as independent skills vs our 6 `/spec_kit:*` commands + 4 `/memory:*` + 6 `/create:*` + flag suffixes.
+3. **Command/skill granularity** — SPAR's 4 phases (Specify/Plan/Act/Retain) as independent skills vs our 6 `/speckit:*` commands + 4 `/memory:*` + 6 `/create:*` + flag suffixes.
 4. **Template architecture** — SPAR's two minimal templates (`spec.md`, `plan.md`) with declarative asset policies (`replace`, `seed_if_missing`, `managed_block`, `replace_managed_children`) vs our 99-file core + addendum + level + cross-cutting tree.
 5. **Tool-discovery UX** — SPAR's `.spar-kit/.local/tools.yaml` (seeded once, never overwritten, agent reads to discover commands) vs our skill-advisor + MCP routing + 47-tool surface.
 6. **Personas & UX tone in skill prompts** — SPAR's 5 personas (Vera/Pete/Tess/Maya/Max) and explicit "creative, suggestive, teammate-like" tone in `spar-specify`, "Key Follow-Up vs Optional Follow-up" 7-question split in `spar-plan` vs our skill prompt patterns.
@@ -226,7 +226,7 @@ Comparison along **6 axes**, each producing 2-4 ranked findings:
 - Skill: `.opencode/skills/system-spec-kit/SKILL.md` (991 lines)
 - Templates: `.opencode/skills/system-spec-kit/templates/` (99 files: `core/`, `addendum/{level2-verify, level3-arch, level3-plus-govern, phase}/`, `level_{1,2,3,3+}/`, `examples/`, cross-cutting `handover.md` / `research.md` / `resource-map.md` / `context-index.md` / `debug-delegation.md` / `phase_parent/`)
 - Commands:
-  - `.opencode/commands/spec_kit/{plan, implement, deep-research, deep-review, resume, complete}.md` + `assets/*.yaml` (12 mode-specific YAMLs)
+  - `.opencode/commands/speckit/{plan, implement, deep-research, deep-review, resume, complete}.md` + `assets/*.yaml` (12 mode-specific YAMLs)
   - `.opencode/commands/memory/{search, learn, manage, save}.md` (no `:auto`/`:confirm` modes — inline workflows)
   - `.opencode/commands/create/{agent, sk-skill, folder_readme, feature-catalog, testing-playbook, changelog}.md` + `assets/*.yaml`
 - Agents: `.opencode/agents/{orchestrate, context, deep-research, deep-review, debug, review, improve-agent, improve-prompt, ultra-think, write}.md`

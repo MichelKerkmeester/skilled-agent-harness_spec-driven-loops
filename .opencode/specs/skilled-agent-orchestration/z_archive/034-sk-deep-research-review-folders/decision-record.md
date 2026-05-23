@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-Review mode currently writes durable packet state into `scratch/` even though system-spec-kit defines `scratch/` as temporary, disposable workspace. The review YAML workflows, the canonical `deep-review` agent, the review contract asset, and the review strategy template all encode `scratch/` as the runtime location for resumable state. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:82-120] [SOURCE: .opencode/agents/deep-review.md:31-65] [SOURCE: .opencode/skills/sk-deep-research/assets/review_mode_contract.yaml:202-230] [SOURCE: .opencode/skills/sk-deep-review/assets/deep_review_strategy.md:3-19]
+Review mode currently writes durable packet state into `scratch/` even though system-spec-kit defines `scratch/` as temporary, disposable workspace. The review YAML workflows, the canonical `deep-review` agent, the review contract asset, and the review strategy template all encode `scratch/` as the runtime location for resumable state. [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:82-120] [SOURCE: .opencode/agents/deep-review.md:31-65] [SOURCE: .opencode/skills/sk-deep-research/assets/review_mode_contract.yaml:202-230] [SOURCE: .opencode/skills/sk-deep-review/assets/deep_review_strategy.md:3-19]
 
 ### Constraints
 

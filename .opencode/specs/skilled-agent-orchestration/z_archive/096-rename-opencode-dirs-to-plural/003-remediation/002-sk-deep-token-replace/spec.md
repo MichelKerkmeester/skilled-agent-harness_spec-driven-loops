@@ -17,10 +17,10 @@ _memory:
     next_safe_action: "Execute or verify phase work according to tasks.md"
     blockers: []
     key_files:
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml"
+      - ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml"
+      - ".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml"
+      - ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml"
+      - ".opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-opus-4-7-2026-05-07"
@@ -77,10 +77,10 @@ Historical references in `z_archive/`, iteration logs, packet 070, and packet 08
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | Phase-owned remediation surface |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modify | Phase-owned remediation surface |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | Phase-owned remediation surface |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modify | Phase-owned remediation surface |
+| `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml` | Modify | Phase-owned remediation surface |
+| `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml` | Modify | Phase-owned remediation surface |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | Modify | Phase-owned remediation surface |
+| `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml` | Modify | Phase-owned remediation surface |
 | `.opencode/agents/deep-review.md` | Modify | Phase-owned remediation surface |
 | `.opencode/agents/deep-research.md` | Modify | Phase-owned remediation surface |
 | `.opencode/agents/orchestrate.md:96` | Modify | Phase-owned remediation surface |
@@ -101,7 +101,7 @@ Historical references in `z_archive/`, iteration logs, packet 070, and packet 08
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Actionable-surface `rg 'sk-deep-(review|research)'` returns 0. | Evidence captured in checklist or implementation summary |
-| REQ-002 | Dry-run init succeeds for `/spec_kit:deep-review:auto`, `:confirm`, `/spec_kit:deep-research:auto`, and `:confirm`. | Evidence captured in checklist or implementation summary |
+| REQ-002 | Dry-run init succeeds for `/speckit:deep-review:auto`, `:confirm`, `/speckit:deep-research:auto`, and `:confirm`. | Evidence captured in checklist or implementation summary |
 | REQ-003 | Orchestrator routing dispatch by-name lookup succeeds. | Evidence captured in checklist or implementation summary |
 
 <!-- /ANCHOR:requirements -->
@@ -111,7 +111,7 @@ Historical references in `z_archive/`, iteration logs, packet 070, and packet 08
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: Actionable-surface `rg 'sk-deep-(review|research)'` returns 0.
-- **SC-002**: Dry-run init succeeds for `/spec_kit:deep-review:auto`, `:confirm`, `/spec_kit:deep-research:auto`, and `:confirm`.
+- **SC-002**: Dry-run init succeeds for `/speckit:deep-review:auto`, `:confirm`, `/speckit:deep-research:auto`, and `:confirm`.
 - **SC-003**: Orchestrator routing dispatch by-name lookup succeeds.
 
 <!-- /ANCHOR:success-criteria -->

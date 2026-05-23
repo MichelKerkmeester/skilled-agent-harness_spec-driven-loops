@@ -17,7 +17,7 @@ description: "CLI entry points for deep-loop runtime operations: convergence det
 
 ## 1. OVERVIEW
 
-CLI invocation surface for deep-loop runtime operations. Consumed by `/spec_kit:deep-*` workflows. Each script is a thin CommonJS wrapper around the domain library at `../lib/`.
+CLI invocation surface for deep-loop runtime operations. Consumed by `/speckit:deep-*` workflows. Each script is a thin CommonJS wrapper around the domain library at `../lib/`.
 
 ## 2. SCRIPTS
 

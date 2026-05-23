@@ -59,7 +59,7 @@ This is **Phase 1** of the adaptive-ranking-prerequisites specification.
 | **Priority** | P1 |
 | **Status** | Complete (with review findings) |
 | **Created** | 2026-03-31 |
-| **Branch** | `system-speckit/024-compact-code-graph` |
+| **Branch** | `system-spec-kit/024-compact-code-graph` |
 <!-- /ANCHOR:metadata -->
 
 ---

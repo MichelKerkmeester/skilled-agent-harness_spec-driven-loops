@@ -7,7 +7,7 @@ description: Step-by-step recipe for writing a new spec folder that satisfies va
 
 ## 1. OVERVIEW
 
-When `/spec_kit:complete` or any other workflow needs to write a new spec folder, this recipe is the canonical path. Follow each step in order. Each step has a verification gate.
+When `/speckit:complete` or any other workflow needs to write a new spec folder, this recipe is the canonical path. Follow each step in order. Each step has a verification gate.
 
 ## 2. PRE-CONDITIONS
 

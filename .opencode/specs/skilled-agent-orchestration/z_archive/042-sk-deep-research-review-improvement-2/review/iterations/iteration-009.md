@@ -111,7 +111,7 @@ Use this skill when:
 
 - Simple single-pass code review (use `sk-code-review` instead)
 - Known issues that just need fixing (go directly to implementation)
-- Implementation tasks (use `sk-code-opencode` or `/spec_kit:implement`)
+- Implementation tasks (use `sk-code-opencode` or `/speckit:implement`)
 - Quick one-file checks (use direct Grep/Read)
 - Fewer than 2 review dimensions needed (single-pass suffices)
 
@@ -231,11 +231,11 @@ Detect the current review phase from dispatch context to load appropriate resour
 ### Architecture: 3-Layer Integration
 
 ```
-User invokes: /spec_kit:deep-review "target"
+User invokes: /speckit:deep-review "target"
                     |
                     v
     ┌─────────────────────────────────┐
-    │  /spec_kit:deep-review command  │  Layer 1: Command
+    │  /speckit:deep-review command  │  Layer 1: Command
     │  (YAML workflow + loop config)    │  Manages loop lifecycle
     └──────────────┬──────────────────┘
                    |
@@ -631,7 +631,7 @@ Do not use this skill for:
 - Open-ended prompt rewrites across multiple agent families at once
 - Direct canonical edits without a packet-local candidate and evaluator evidence
 - Broad runtime-mirror synchronization work presented as benchmark truth
-- General packet planning that belongs in `/spec_kit:plan` or implementation that does not need an improvement loop
+- General packet planning that belongs in `/speckit:plan` or implementation that does not need an improvement loop
 
 ---
 
@@ -808,7 +808,7 @@ exec
 337:- when operator requested “extra stability passes,” extend each targeted phase from 5 to 10 iterations before closure and sync batch-level state/report immediately [Task 3][Task 4]
 538:applies_to: cwd=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems; reuse_rule=reuse for follow-up work inside this packet family when user requests prompt parity or extra deep-research iterations on an existing phase lineage
 608:- 031-normalized-analytics-reader, spec status Complete, validate.sh --strict, check-completion.sh, checklist P0/P1 totals, description.json timestamp, memory_delete, memory_index_scan, lineage mismatch
-623:- when the user asked "Run /spec_kit:deep-research ... get tot 20 total iterations so add 7 more," treat it as resume of the active lineage, not a fork [Task 2]
+623:- when the user asked "Run /speckit:deep-research ... get tot 20 total iterations so add 7 more," treat it as resume of the active lineage, not a fork [Task 2]
 636:- deep-research extension runbook: align `maxIterations` in config/state/strategy first, keep lineage/execution mode unchanged, run reducer after each iteration (`node .opencode/skills/sk-deep-research/scripts/reduce-state.cjs {spec_folder}`), then refresh synthesis/registry/dashboard artifacts [Task 2]
 646:- if memory indexing flags lineage/template mismatches during closeout, remove stale rows with `memory_delete`, rerun forced `memory_index_scan` after cooldown, and verify clean reindex before final sign-off [Task 7]
 655:- symptom: closeout validation passes but memory index reports lineage mismatch/stale packet rows; cause: old memory_index entries persisted through packet updates; fix: delete stale row IDs, wait out cooldown, then force `memory_index_scan` and confirm zero failed entries before marking complete [Task 7]
@@ -1131,7 +1131,7 @@ The implementation landed in commit `080cf549e` and shipped in `.opencode/change
 | **Status** | Complete |
 | **Created** | 2026-04-10 |
 | **Completed** | 2026-04-11 |
-| **Branch** | `system-speckit/026-graph-and-context-optimization` |
+| **Branch** | `system-spec-kit/026-graph-and-context-optimization` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Plan** | `../plan.md` |
 | **Phase** | 5 of 8 |

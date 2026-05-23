@@ -61,7 +61,7 @@ That coupling also made it harder to route users correctly. Review requests and 
 
 ### Purpose
 
-Separate the review-mode experience into a dedicated `sk-deep-review` skill and `/spec_kit:deep-review` command while keeping `sk-deep-research` focused on iterative investigation only.
+Separate the review-mode experience into a dedicated `sk-deep-review` skill and `/speckit:deep-review` command while keeping `sk-deep-research` focused on iterative investigation only.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -85,10 +85,10 @@ Separate the review-mode experience into a dedicated `sk-deep-review` skill and 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/sk-deep-review/` | Create | New dedicated review skill package |
-| `.opencode/commands/spec_kit/deep-review.md` | Create | New review command entrypoint |
+| `.opencode/commands/speckit/deep-review.md` | Create | New review command entrypoint |
 | `.opencode/skills/sk-deep-research/` | Modify | Remove review-mode content and keep research-only guidance |
 | `.opencode/skills/skill-advisor/scripts/skill_advisor.py` | Modify | Route review keywords to `sk-deep-review` |
-| `.agents/commands/spec_kit/deep-review.toml` | Create | Add runtime wrapper for the new command |
+| `.agents/commands/speckit/deep-review.toml` | Create | Add runtime wrapper for the new command |
 | `AGENTS.md`, `CLAUDE.md`, `README.md` | Modify | Update top-level references to the split command/skill structure |
 <!-- /ANCHOR:scope -->
 
@@ -102,7 +102,7 @@ Separate the review-mode experience into a dedicated `sk-deep-review` skill and 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Review mode must move into a dedicated `sk-deep-review` skill package | A separate `.opencode/skills/sk-deep-review/` package exists with review-specific docs and assets |
-| REQ-002 | A dedicated `/spec_kit:deep-review` command must replace the old review suffix flow | Users can invoke `/spec_kit:deep-review` instead of `/spec_kit:deep-research:review` |
+| REQ-002 | A dedicated `/speckit:deep-review` command must replace the old review suffix flow | Users can invoke `/speckit:deep-review` instead of `/speckit:deep-research:review` |
 | REQ-003 | `sk-deep-research` must remove review-mode guidance and remain focused on investigation | Review triggers, references, and command suffix guidance are removed from the research skill |
 | REQ-004 | Review routing must point to the new skill in advisor logic and runtime wrappers | Review keywords and runtime command wrappers resolve to `sk-deep-review` |
 | REQ-005 | Documentation must reflect the split across command, skill, and top-level reference docs | Root and skill-level docs mention deep-research and deep-review as separate capabilities |
@@ -113,7 +113,7 @@ Separate the review-mode experience into a dedicated `sk-deep-review` skill and 
 |----|-------------|---------------------|
 | REQ-006 | YAML workflow assets must use the new deep-review naming | Review auto/confirm workflow files are renamed or updated to deep-review naming |
 | REQ-007 | Review-mode references must remain internally consistent after the split | Quick reference, convergence, loop protocol, and state format docs point to the correct skill and contract |
-| REQ-008 | Changelog and upgrade guidance must explain the breaking command rename | Published release notes tell users to replace `/spec_kit:deep-research:review` with `/spec_kit:deep-review` |
+| REQ-008 | Changelog and upgrade guidance must explain the breaking command rename | Published release notes tell users to replace `/speckit:deep-research:review` with `/speckit:deep-review` |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -122,7 +122,7 @@ Separate the review-mode experience into a dedicated `sk-deep-review` skill and 
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: A dedicated `sk-deep-review` skill package exists and is referenced as the review entrypoint
-- **SC-002**: `/spec_kit:deep-review` replaces `/spec_kit:deep-research:review` in command and documentation surfaces
+- **SC-002**: `/speckit:deep-review` replaces `/speckit:deep-research:review` in command and documentation surfaces
 - **SC-003**: `sk-deep-research` no longer describes review-mode behavior as part of its primary workflow
 - **SC-004**: Runtime wrappers and routing docs separate research triggers from review triggers without ambiguity
 - **SC-005**: Release notes document the split and call out the command rename as a breaking change
@@ -131,11 +131,11 @@ Separate the review-mode experience into a dedicated `sk-deep-review` skill and 
 
 **Given** a user asks for iterative code review, **when** the skill advisor evaluates the request, **then** the request routes to `sk-deep-review` instead of `sk-deep-research`.
 
-**Given** a user runs `/spec_kit:deep-review`, **when** the command loads its runtime wrapper and references, **then** it uses the standalone review skill package rather than the research skill.
+**Given** a user runs `/speckit:deep-review`, **when** the command loads its runtime wrapper and references, **then** it uses the standalone review skill package rather than the research skill.
 
 **Given** a user opens `sk-deep-research` documentation after the split, **when** they read the usage guidance, **then** they see research-only workflows and cross-references to `sk-deep-review` for auditing.
 
-**Given** a user previously used `/spec_kit:deep-research:review`, **when** they read the changelog or upgrade guidance, **then** they are told to switch to `/spec_kit:deep-review`.
+**Given** a user previously used `/speckit:deep-research:review`, **when** they read the changelog or upgrade guidance, **then** they are told to switch to `/speckit:deep-review`.
 <!-- /ANCHOR:success-criteria -->
 
 ---

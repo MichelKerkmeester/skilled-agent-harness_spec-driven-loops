@@ -118,9 +118,9 @@ Files (sample, full list captured in `/tmp/cli-copilot-non-skill-hits.txt`):
 
 | Path | Bucket | Batch | Action |
 |------|--------|-------|--------|
-| `.opencode/commands/spec_kit/deep-research.md` | EDIT_LIVE | B4e | Scrub cli-copilot from executor list |
-| `.opencode/commands/spec_kit/deep-review.md` | EDIT_LIVE | B4e | Scrub cli-copilot from executor list |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | EDIT_LIVE | B4e | Drop cli-copilot from YAML config |
+| `.opencode/commands/speckit/deep-research.md` | EDIT_LIVE | B4e | Scrub cli-copilot from executor list |
+| `.opencode/commands/speckit/deep-review.md` | EDIT_LIVE | B4e | Scrub cli-copilot from executor list |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | EDIT_LIVE | B4e | Drop cli-copilot from YAML config |
 
 Note: Commands are NOT mirrored to `.claude/commands/`, `.gemini/commands/`, `.codex/commands/` for cli-copilot routing. The Gemini commands dir does carry a `deep-research.toml` (status: M in current git status), but discovery shows it does NOT contain `cli-copilot` references. No mirror sync needed for commands.
 

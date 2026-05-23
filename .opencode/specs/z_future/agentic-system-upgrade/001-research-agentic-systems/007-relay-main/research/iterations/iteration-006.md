@@ -16,7 +16,7 @@ Read Relay's README and Claude plugin docs, then compared those modes with Publi
 - The plugin docs define those modes precisely: lead-plus-workers for team, parallel identical work for fan-out, and sequential handoff for pipeline. [SOURCE: external/docs/plugin-claude-code.md:27-53]
 - Public's orchestrator documents decomposition, delegation, evaluation, and synthesis, but does not name standard coordination shapes beyond direct vs parallel execution. [SOURCE: .opencode/agents/orchestrate.md:51-60] [SOURCE: .opencode/agents/orchestrate.md:266-268]
 - Public's parallel-dispatch asset chooses whether to parallelize and shows a four-agent exploration pattern, but it does not classify pipeline versus team-lead versus fan-out as reusable modes. [SOURCE: .opencode/skills/system-spec-kit/assets/parallel_dispatch_config.md:21-27] [SOURCE: .opencode/skills/system-spec-kit/assets/parallel_dispatch_config.md:62-72]
-- Public's deep-research command describes an iterative loop with init/loop/synth/save phases, which is already a pipeline shape in practice. [SOURCE: .opencode/commands/spec_kit/deep-research.md:117-154]
+- Public's deep-research command describes an iterative loop with init/loop/synth/save phases, which is already a pipeline shape in practice. [SOURCE: .opencode/commands/speckit/deep-research.md:117-154]
 
 ## Analysis
 Relay makes the coordination shape visible to users and agents before execution begins. Public already performs these shapes implicitly: deep research is pipeline-like, parallel exploration is fan-out-like, and orchestrated remediation often acts like a team model. Naming them would reduce prompt ambiguity and improve spec/document consistency without requiring a transport runtime.
@@ -26,7 +26,7 @@ confidence: high
 finding: Public should adopt Relay's mode taxonomy at the documentation and prompt-contract level. The concepts map cleanly onto existing workflows, and naming them would sharpen both human instructions and future automation.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/agents/orchestrate.md`, `.opencode/skills/system-spec-kit/assets/parallel_dispatch_config.md`, `.opencode/commands/spec_kit/deep-research.md`
+- **Target file or module:** `.opencode/agents/orchestrate.md`, `.opencode/skills/system-spec-kit/assets/parallel_dispatch_config.md`, `.opencode/commands/speckit/deep-research.md`
 - **Change type:** modified existing
 - **Blast radius:** medium
 - **Prerequisites:** define concise, non-overlapping mode names and examples that fit current Public workflows

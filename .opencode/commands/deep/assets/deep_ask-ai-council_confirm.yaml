@@ -13,7 +13,7 @@ operating_mode:
 operating_principles:
   core: "Session -> topic -> round state with registry-backed cross-topic priors"
   approach: "Preview each phase, ask for approval, then persist bounded council artifacts"
-  mandate: "Never activate command surface from this scaffold. F4 wires /spec_kit:deep-council."
+  mandate: "Never activate command surface from this scaffold. F4 wires /speckit:deep-council."
 
 user_inputs:
   deliberation_topic: "[DELIBERATION_TOPIC] - Overall council topic or question set. REQUIRED."

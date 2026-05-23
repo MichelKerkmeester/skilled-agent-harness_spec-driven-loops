@@ -26,7 +26,7 @@ Executes ONE review iteration within an autonomous review loop. Reads externaliz
 
 **Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
-**CRITICAL**: This agent executes a SINGLE review iteration, not the full loop. The loop is managed by the `/spec_kit:deep-review` command's YAML workflow. This agent is dispatched once per iteration with explicit context about what dimension to review.
+**CRITICAL**: This agent executes a SINGLE review iteration, not the full loop. The loop is managed by the `/speckit:deep-review` command's YAML workflow. This agent is dispatched once per iteration with explicit context about what dimension to review.
 
 **IMPORTANT**: This agent is a hybrid of @review (quality rubric, severity classification, adversarial self-check) and the deep-review loop contract (state protocol, JSONL, lifecycle continuity). It reviews code but does NOT modify it.
 
@@ -341,8 +341,8 @@ This agent loads shared review doctrine from `.opencode/skills/sk-code-review/re
 
 | Verdict | Condition | Follow-on |
 |---------|-----------|-----------|
-| **FAIL** | Active `P0` exists or any binary gate fails | `/spec_kit:plan` |
-| **CONDITIONAL** | No active `P0`, but active `P1` remains | `/spec_kit:plan` |
+| **FAIL** | Active `P0` exists or any binary gate fails | `/speckit:plan` |
+| **CONDITIONAL** | No active `P0`, but active `P1` remains | `/speckit:plan` |
 | **PASS** | No active `P0` or `P1`; set `hasAdvisories=true` when active `P2` remains | `/create:changelog` |
 
 ### Budget Profiles
@@ -583,7 +583,7 @@ For non-`complete` statuses, replace the heading with `## Review Iteration [N] P
 
 | Command | Purpose | Path |
 |---------|---------|------|
-| `/spec_kit:deep-review` | Autonomous review loop | `.opencode/commands/spec_kit/deep-review.md` |
+| `/speckit:deep-review` | Autonomous review loop | `.opencode/commands/speckit/deep-review.md` |
 | `/memory:save` | Save review continuity into canonical packet surfaces | `.opencode/commands/memory/save.md` |
 
 ### Skills
@@ -615,7 +615,7 @@ For non-`complete` statuses, replace the heading with `## Review Iteration [N] P
 
 If hook-injected context is present (from the runtime startup/bootstrap surface; trigger matrix: `.opencode/skills/system-spec-kit/references/config/hook_system.md:105`), use it directly. Do NOT redundantly call `memory_context` or `memory_match_triggers` for the same information. If hook context is NOT present, rebuild the active review context from `handover.md`, then the active spec doc's `_memory.continuity`, then the relevant spec docs. Only widen to `memory_context({ mode: "resume", profile: "resume" })` and `memory_match_triggers()` when those canonical packet sources are missing or insufficient.
 
-Route queries by intent: CocoIndex (`mcp__cocoindex_code__search`) for semantic discovery, Code Graph (`code_graph_query`/`code_graph_context`) for structural navigation, canonical packet continuity (`handover.md` -> `_memory.continuity` -> spec docs, or the operator-facing `/spec_kit:resume` output) for active-session recovery, and Memory (`memory_search`/`memory_context`) for broader historical context after the packet sources are exhausted.
+Route queries by intent: CocoIndex (`mcp__cocoindex_code__search`) for semantic discovery, Code Graph (`code_graph_query`/`code_graph_context`) for structural navigation, canonical packet continuity (`handover.md` -> `_memory.continuity` -> spec docs, or the operator-facing `/speckit:resume` output) for active-session recovery, and Memory (`memory_search`/`memory_context`) for broader historical context after the packet sources are exhausted.
 
 Query routing never relaxes the LEAF-only rule, write-safety boundary, declared review scope, or edge-case disclosure requirement. External context may explain a finding, but it cannot replace direct evidence from the reviewed files or packet docs.
 

@@ -67,8 +67,8 @@ The phase packet itself was rewritten into the active Level 1 template so strict
 | `.opencode/skills/sk-deep-research/assets/runtime_capabilities.json` | Created | Publish the machine-readable runtime capability matrix |
 | `.opencode/skills/sk-deep-research/scripts/runtime-capabilities.cjs` | Created | Resolve machine-readable runtime capability lookups |
 | `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | Created | Reduce packet state into synchronized strategy, registry, and dashboard outputs |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modified | Carry lifecycle, migration, registry, and reducer expectations in auto mode |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modified | Carry the same expectations in confirm mode |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | Modified | Carry lifecycle, migration, registry, and reducer expectations in auto mode |
+| `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml` | Modified | Carry the same expectations in confirm mode |
 | `.opencode/agents/deep-research.md` | Modified | Align OpenCode mirror with reducer-owned state |
 | `.claude/agents/deep-research.md` | Modified | Align Claude mirror with reducer-owned state |
 | `.gemini/agents/deep-research.md` | Modified | Align Gemini mirror with reducer-owned state |
@@ -98,7 +98,7 @@ The work was delivered as a scoped but complete contract pass: inspect the exist
 |----------|-----|
 | Promote executable reducer and capability lookup surfaces into Phase 1 | The first pass proved documentation parity alone was not enough; the packet needed live helpers and focused tests to reach true completion |
 | Keep helper scripts in `.cjs` form | `.opencode/package.json` is ESM, so CommonJS helper scripts must use `.cjs` to stay executable in both CLI and Vitest contexts |
-| Repair the phase packet instead of leaving validator failures behind | `/spec_kit:implement` should leave the named spec folder in a machine-parseable state, not just the runtime files |
+| Repair the phase packet instead of leaving validator failures behind | `/speckit:implement` should leave the named spec folder in a machine-parseable state, not just the runtime files |
 <!-- /ANCHOR:decisions -->
 
 ---

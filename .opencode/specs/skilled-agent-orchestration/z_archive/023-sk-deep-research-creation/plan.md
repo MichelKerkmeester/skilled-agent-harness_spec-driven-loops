@@ -31,7 +31,7 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Markdown specs, YAML workflows, and skill references |
-| **Primary Runtime Surface** | `.claude/agents/deep-research.md`, `.opencode/commands/spec_kit/deep-research.md`, `.opencode/skills/sk-deep-research/` |
+| **Primary Runtime Surface** | `.claude/agents/deep-research.md`, `.opencode/commands/speckit/deep-research.md`, `.opencode/skills/sk-deep-research/` |
 | **State Model** | `deep-research-state.jsonl` plus `research/deep-research-strategy.md` |
 | **Verification Basis** | Spec docs, ADRs, research synthesis, and legacy-reference cleanup evidence |
 
@@ -39,7 +39,7 @@ _memory:
 
 Create 3 artifacts that enable autonomous iterative deep research:
 1. **`@deep-research` agent** -- LEAF agent executing single research iterations
-2. **`/spec_kit:deep-research` command** -- YAML workflow managing the loop lifecycle
+2. **`/speckit:deep-research` command** -- YAML workflow managing the loop lifecycle
 3. **`sk-deep-research` skill** -- Protocol documentation, templates, reference docs
 
 **Core insight**: Fresh context per iteration + externalized state solves context degradation. Our existing orchestrator dispatch model maps naturally because each Task dispatch is a fresh context.
@@ -67,7 +67,7 @@ A three-layer architecture: orchestrator-routed LEAF agent, command-managed loop
 
 ### Key Components
 - **Agent layer**: `@deep-research` runs one research iteration per dispatch with fresh context.
-- **Command layer**: `/spec_kit:deep-research` owns loop lifecycle, convergence checks, and synthesis flow.
+- **Command layer**: `/speckit:deep-research` owns loop lifecycle, convergence checks, and synthesis flow.
 - **Skill layer**: `sk-deep-research` documents the state format, loop protocol, and operator-facing guidance.
 
 ### Data Flow
@@ -95,12 +95,12 @@ LEAF agent for single-iteration execution.
 - `.claude/agents/deep-research.md` (~400 LOC)
 - Pattern: `.claude/agents/deep-research.md` with legacy `@research` behavior retained only as archived historical context
 
-### Phase 4: Command (/spec_kit:deep-research)
+### Phase 4: Command (/speckit:deep-research)
 YAML workflows managing the loop.
-- 4.1: TOML registration (`.agents/commands/spec_kit/deep-research.toml`)
-- 4.2: Command spec (`.opencode/commands/spec_kit/deep-research.md`)
+- 4.1: TOML registration (`.agents/commands/speckit/deep-research.toml`)
+- 4.2: Command spec (`.opencode/commands/speckit/deep-research.md`)
 - 4.3: YAML workflows (auto + confirm modes)
-- Pattern: `/spec_kit:research` command structure
+- Pattern: `/speckit:research` command structure
 
 ### Phase 5: Registration Updates
 Wire everything into routing systems.
@@ -111,7 +111,7 @@ Wire everything into routing systems.
 - descriptions.json entry
 
 ### Phase 5.5: Legacy @research Removal (Complete)
-Remove the superseded `@research` agent and `/spec_kit:research` command from the entire codebase.
+Remove the superseded `@research` agent and `/speckit:research` command from the entire codebase.
 - 5.5.1: Delete 9 files (6 agent defs, 1 command, 2 YAMLs)
 - 5.5.2: Update all orchestrate/speckit/deep-research/context/debug/ultra-think agents (all runtimes)
 - 5.5.3: Update spec_kit YAML workflows (plan/complete agent_availability)
@@ -214,7 +214,7 @@ Phase 9 (P4 Track) -- future, no immediate dependencies
 | @deep-research is LEAF-only | No sub-agents | NDP compliance; all research self-contained per iteration |
 | JSONL + strategy.md state | Dual-format | JSONL for structured data (machine), strategy.md for context (agent) |
 | No code_mode MCP | Excluded from agent | Keeps TCB manageable |
-| Separate from /spec_kit:research | New namespace | Different use cases; avoids bloating existing workflow |
+| Separate from /speckit:research | New namespace | Different use cases; avoids bloating existing workflow |
 | Default 10 max iterations | Configurable | Balances depth vs cost; diminishing returns at 15+ |
 
 ---
@@ -243,7 +243,7 @@ Phase 9 (P4 Track) -- future, no immediate dependencies
 | File | Purpose |
 |------|---------|
 | `.claude/agents/deep-research.md` | Active agent definition and pattern reference for the iterative research loop |
-| `.opencode/commands/spec_kit/deep-research.md` | Command workflow reference for the iterative research loop |
+| `.opencode/commands/speckit/deep-research.md` | Command workflow reference for the iterative research loop |
 | `.opencode/skills/sk-git/SKILL.md` | 8-section SKILL.md pattern (478 LOC) |
 | `research/research.md` | Source design and synthesis reference for the shipped state model |
 | `.claude/agents/orchestrate.md` | NDP/CWB/TCB constraints |

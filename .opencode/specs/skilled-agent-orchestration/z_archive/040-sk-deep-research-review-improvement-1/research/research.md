@@ -49,8 +49,8 @@ Bottom line: keep the packet-first architecture, borrow external portability and
 ### 2.1 Internal Systems Analyzed
 - `.opencode/skills/sk-deep-research/**`
 - `.opencode/skills/sk-deep-review/**`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_*.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_*.yaml`
+- `.opencode/commands/speckit/assets/speckit_deep-research_*.yaml`
+- `.opencode/commands/speckit/assets/speckit_deep-review_*.yaml`
 - `.codex/prompts/spec_kit-deep-research.md`
 - Runtime mirrors in `.codex/agents`, `.opencode/agent`, `.claude/agents`, `.gemini/agents`
 
@@ -223,4 +223,4 @@ Wave 3 did not overturn the internal diagnosis from Waves 1 and 2.
 The workflow offers `resume/restart/fork`, but restart/fork are not fully implemented as first-class executable branches.
 
 Evidence:
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:124-128`
+- `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:124-128`

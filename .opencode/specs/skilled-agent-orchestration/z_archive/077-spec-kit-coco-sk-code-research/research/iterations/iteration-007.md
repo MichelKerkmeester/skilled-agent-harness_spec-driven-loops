@@ -26,7 +26,7 @@ Impact: the asset layer has no canonical checklist for authoring or reviewing `.
 
 The OpenCode verification contract says OPENCODE should run alignment checks plus targeted tests "or spec validation" (`.opencode/skills/sk-code/SKILL.md:127-133` and `.opencode/skills/sk-code/references/router/resource_loading.md:144-149`). The universal pre-claim checklist's OPENCODE row only names `verify_alignment_drift.py --root <changed-path>` plus generic package-specific build/typecheck (`assets/universal/checklists/verification_checklist.md:37-45`). The OpenCode universal checklist's "Spec Folder Invariants" stops at allowed roots, archive/restore/create target validation, and checkpoint wording (`assets/opencode/checklists/universal_checklist.md:89-96`); it does not name `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict`, `description.json`, `graph-metadata.json`, or `checklist.md` evidence.
 
-Impact: sk-code and system-spec-kit compose only by prose memory. A `/spec_kit:complete` or OpenCode edit that writes spec docs can load sk-code, satisfy the alignment verifier, and still miss the system-spec-kit validator workflow unless separate instructions intervene.
+Impact: sk-code and system-spec-kit compose only by prose memory. A `/speckit:complete` or OpenCode edit that writes spec docs can load sk-code, satisfy the alignment verifier, and still miss the system-spec-kit validator workflow unless separate instructions intervene.
 
 ### F-007-003 — Alignment automation cannot cover the Markdown-heavy assets that are missing checklists [P2]
 
@@ -57,7 +57,7 @@ Impact: search ranking can over-promote scenario files that are useful test fixt
 ## Questions Remaining
 
 - Q6: Still open. Iteration 8 should compare `STACK_FOLDERS`, `resource_loading.md`, SKILL.md resource domains, and on-disk structure formally.
-- Q7: Still open for live `/spec_kit:complete` or spec-folder write routing behavior. This iteration found asset-level gaps but did not execute a routing flow.
+- Q7: Still open for live `/speckit:complete` or spec-folder write routing behavior. This iteration found asset-level gaps but did not execute a routing flow.
 - Q5: Still open for deciding exact add/refine/remove targets: likely an OpenCode spec-folder validation recipe, authoring checklists for skills/agents/commands, and manual scenarios that assert those resources load.
 
 ## Next Focus (for iteration 8)

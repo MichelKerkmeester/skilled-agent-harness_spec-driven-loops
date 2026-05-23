@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Merge spec_kit:phase into plan [skilled-agent-orchestration/037-cmd-merge-spec-kit-phase/plan]"
-description: "Absorb the standalone /spec_kit:phase command into the plan and complete commands by adding a :with-phases optional workflow flag. This follows the identical pattern used by :wi..."
+description: "Absorb the standalone /speckit:phase command into the plan and complete commands by adding a :with-phases optional workflow flag. This follows the identical pattern used by :wi..."
 trigger_phrases:
   - "implementation"
   - "plan"
@@ -37,11 +37,11 @@ _memory:
 |--------|-------|
 | **Language/Stack** | Markdown (command prompts), YAML (workflow configs) |
 | **Framework** | SpecKit command system |
-| **Storage** | File-based (`.opencode/commands/spec_kit/`) |
-| **Testing** | Manual verification via `/spec_kit:plan:auto :with-phases` |
+| **Storage** | File-based (`.opencode/commands/speckit/`) |
+| **Testing** | Manual verification via `/speckit:plan:auto :with-phases` |
 
 ### Overview
-Absorb the standalone `/spec_kit:phase` command into the plan and complete commands by adding a `:with-phases` optional workflow flag. This follows the identical pattern used by `:with-research` in the complete command: an optional pre-workflow that creates phase folder structure before the normal planning/complete steps begin. The underlying `create.sh --phase` infrastructure and addendum templates remain unchanged.
+Absorb the standalone `/speckit:phase` command into the plan and complete commands by adding a `:with-phases` optional workflow flag. This follows the identical pattern used by `:with-research` in the complete command: an optional pre-workflow that creates phase folder structure before the normal planning/complete steps begin. The underlying `create.sh --phase` infrastructure and addendum templates remain unchanged.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -76,7 +76,7 @@ Optional workflow injection — same pattern as `:with-research` in the spec_kit
 
 ### Data Flow
 ```
-User invokes /spec_kit:plan:auto "feature" :with-phases --phases 3
+User invokes /speckit:plan:auto "feature" :with-phases --phases 3
   -> Setup phase parses :with-phases flag + --phases/--phase-names
   -> Phase decomposition pre-workflow runs (4 steps):
      1. Analyze scope (recommend-level.sh --recommend-phases)
@@ -124,9 +124,9 @@ User invokes /spec_kit:plan:auto "feature" :with-phases --phases 3
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Manual | Invoke `/spec_kit:plan:auto "test" :with-phases --phases 2` and verify folder creation | CLI |
-| Manual | Invoke `/spec_kit:plan:auto "test"` (without `:with-phases`) and verify no regression | CLI |
-| Manual | Verify `/spec_kit:phase` invocation fails gracefully after deletion | CLI |
+| Manual | Invoke `/speckit:plan:auto "test" :with-phases --phases 2` and verify folder creation | CLI |
+| Manual | Invoke `/speckit:plan:auto "test"` (without `:with-phases`) and verify no regression | CLI |
+| Manual | Verify `/speckit:phase` invocation fails gracefully after deletion | CLI |
 | Manual | Verify YAML syntax validity of all 4 modified assets | Read + visual |
 <!-- /ANCHOR:testing -->
 
@@ -194,8 +194,8 @@ Phase 1 (Command files) ──► Phase 2 (YAML assets) ──► Phase 3 (Clean
 
 ### Rollback Procedure
 1. `git revert <commit>` — restores all deleted files and reverts modifications
-2. Verify `/spec_kit:phase` command works again
-3. Verify `/spec_kit:plan` and `/spec_kit:complete` work without `:with-phases` flag
+2. Verify `/speckit:phase` command works again
+3. Verify `/speckit:plan` and `/speckit:complete` work without `:with-phases` flag
 
 ### Data Reversal
 - **Has data migrations?** No

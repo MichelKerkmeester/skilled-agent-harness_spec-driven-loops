@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/078-opencode-authoring-recipe/002-spec-kit-load",
-  "description": "Feature Specification: 078/002 /spec_kit:complete Authoring-Time sk-code Load",
+  "description": "Feature Specification: 078/002 /speckit:complete Authoring-Time sk-code Load",
   "keywords": [
     "feature",
     "specification",

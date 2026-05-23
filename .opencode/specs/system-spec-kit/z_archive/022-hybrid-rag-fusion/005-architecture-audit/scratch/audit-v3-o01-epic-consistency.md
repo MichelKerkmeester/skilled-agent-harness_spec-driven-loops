@@ -219,7 +219,7 @@
 
 - **Severity**: MEDIUM
 - **Category**: alignment
-- **Location**: `012-command-alignment/spec.md`, `016-rewrite-memory-mcp-readme/spec.md`, `017-update-install-guide/spec.md`, `018-rewrite-system-speckit-readme/spec.md`, `019-rewrite-repo-readme/spec.md`
+- **Location**: `012-command-alignment/spec.md`, `016-rewrite-memory-mcp-readme/spec.md`, `017-update-install-guide/spec.md`, `018-rewrite-system-spec-kit-readme/spec.md`, `019-rewrite-repo-readme/spec.md`
 - **Description**: Multiple child specs reference pre-renumbering phase numbers in their `Parent` metadata field. These are remnants from the March 14, 2026 sequential renumbering that was not fully propagated.
 - **Evidence**:
   - 011 says `Parent: 022-hybrid-rag-fusion (Phase 016)` -- should be Phase 011
@@ -251,13 +251,13 @@
 - **Severity**: MEDIUM
 - **Category**: dead-code
 - **Location**: `022-hybrid-rag-fusion/017-spec-folder-alignment-audit/`
-- **Description**: An extra folder `017-spec-folder-alignment-audit` exists on disk, colliding with the number `017` already used by `018-rewrite-system-speckit-readme`. It contains only a `scratch/` directory with one file (`audit-findings-report.md`). It has no spec.md and is not referenced anywhere in the epic.
+- **Description**: An extra folder `017-spec-folder-alignment-audit` exists on disk, colliding with the number `017` already used by `018-rewrite-system-spec-kit-readme`. It contains only a `scratch/` directory with one file (`audit-findings-report.md`). It has no spec.md and is not referenced anywhere in the epic.
 - **Evidence**:
   - `ls 017-spec-folder-alignment-audit/` -> `scratch/`
   - `ls 017-spec-folder-alignment-audit/scratch/` -> `audit-findings-report.md` (16,645 bytes)
   - No spec.md, plan.md, tasks.md, or description.json
   - Not listed in Phase Status Dashboard or Phase Documentation Map
-- **Impact**: Number collision with 018-rewrite-system-speckit-readme. Could confuse filesystem-based navigation and validation scripts.
+- **Impact**: Number collision with 018-rewrite-system-spec-kit-readme. Could confuse filesystem-based navigation and validation scripts.
 - **Recommended Fix**: Either archive this folder (move to scratch/ of the epic root or of 005-architecture-audit), or if it is still relevant, renumber it and add to the epic.
 
 ---

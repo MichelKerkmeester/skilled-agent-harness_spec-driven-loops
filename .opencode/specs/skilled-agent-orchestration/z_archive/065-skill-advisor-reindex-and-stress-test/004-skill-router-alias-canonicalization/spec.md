@@ -41,7 +41,7 @@ _memory:
 
 CP-103 expected `spec_kit:deep-review`, while the advisor returned `sk-deep-review`. The underlying capability was present, but the campaign could only score it as WARN because accepted aliases are not formalized.
 
-Result: narrow alias groups now canonicalize command ids and skill ids for command-backed skills. CP-103 can treat `spec_kit:deep-review`, `/spec_kit:deep-review`, `command-spec-kit-deep-review`, and `sk-deep-review` as the same capability while leaving unrelated skills distinct.
+Result: narrow alias groups now canonicalize command ids and skill ids for command-backed skills. CP-103 can treat `spec_kit:deep-review`, `/speckit:deep-review`, `command-spec-kit-deep-review`, and `sk-deep-review` as the same capability while leaving unrelated skills distinct.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->

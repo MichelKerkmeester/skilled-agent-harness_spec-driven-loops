@@ -41,7 +41,7 @@
       ".opencode/agents/orchestrate.md",
       ".opencode/agents/deep-research.md",
       ".opencode/agents/deep-review.md",
-      ".opencode/commands/spec_kit/README.txt",
+      ".opencode/commands/speckit/README.txt",
       ".opencode/skills/system-spec-kit/README.md",
       "spec.md",
       "plan.md",
@@ -70,7 +70,7 @@
       {
         "name": "README.txt",
         "kind": "file",
-        "path": ".opencode/commands/spec_kit/README.txt",
+        "path": ".opencode/commands/speckit/README.txt",
         "source": "derived"
       },
       {

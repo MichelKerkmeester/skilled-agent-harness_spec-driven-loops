@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Re-review of skilled-agent-orchestration 093-098"
-description: "Deep-review loop completed: 10 iterations, verdict FAIL (verdict-flip refuted), 13 active P1 findings, 6 P2 advisories. Planning Packet ready for /spec_kit:plan."
+description: "Deep-review loop completed: 10 iterations, verdict FAIL (verdict-flip refuted), 13 active P1 findings, 6 P2 advisories. Planning Packet ready for /speckit:plan."
 trigger_phrases:
   - "099 implementation summary"
   - "099 verdict-flip refuted"
@@ -48,7 +48,7 @@ _memory:
 | **Status** | Complete |
 | **Completed** | 2026-05-07T20:10:00Z |
 | **Branch** | `main` |
-| **Workflow** | `/spec_kit:deep-review:auto` |
+| **Workflow** | `/speckit:deep-review:auto` |
 | **Executor** | cli-codex / gpt-5.5 / high reasoning / fast service tier |
 | **Iterations** | 10 of 10 |
 | **Verdict** | FAIL (`hasAdvisories=true`) |

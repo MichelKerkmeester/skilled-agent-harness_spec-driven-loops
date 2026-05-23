@@ -9,7 +9,7 @@ Pause sentinel contract drift for deep-review.
 ## Evidence
 - `.opencode/skills/sk-deep-review/SKILL.md:210`
 - `.opencode/skills/sk-deep-review/references/loop_protocol.md:174-179`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:307-310`
+- `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:307-310`
 - `.opencode/skills/sk-deep-review/README.md:159,219,307`
 
 ## Analysis

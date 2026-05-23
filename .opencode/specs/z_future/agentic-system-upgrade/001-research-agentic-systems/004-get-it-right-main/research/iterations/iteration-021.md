@@ -14,12 +14,12 @@ I compared the external repo's single workflow entry and compact input surface a
 ## Evidence
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/README.md:19-49] Get It Right presents one visible workflow: implement, checks, review, optional refactor.
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/README.md:80-105] The external operator surface is mostly a small knob set: retries, yield, mode, checks, and optional UX review inputs.
-- [SOURCE: .opencode/commands/spec_kit/plan.md:31-145] `/spec_kit:plan` carries a large unified setup prompt with spec choice, execution mode, dispatch mode, memory choice, research intent, and optional phase decomposition.
-- [SOURCE: .opencode/commands/spec_kit/plan.md:149-181] `/spec_kit:plan` also exposes its own standalone 7-step lifecycle and output contract.
-- [SOURCE: .opencode/commands/spec_kit/implement.md:29-125] `/spec_kit:implement` repeats a second large setup prompt with folder confirmation, execution mode, dispatch mode, incomplete-session handling, and memory loading.
-- [SOURCE: .opencode/commands/spec_kit/implement.md:151-205] `/spec_kit:implement` then introduces a separate 9-step contract with its own save-context and handover path.
-- [SOURCE: .opencode/commands/spec_kit/complete.md:32-150] `/spec_kit:complete` duplicates another large setup block and adds feature-flag choices for research, phases, and auto-debug.
-- [SOURCE: .opencode/commands/spec_kit/complete.md:198-229] `/spec_kit:complete` further exposes a 14-step lifecycle that overlaps heavily with the other two commands.
+- [SOURCE: .opencode/commands/speckit/plan.md:31-145] `/speckit:plan` carries a large unified setup prompt with spec choice, execution mode, dispatch mode, memory choice, research intent, and optional phase decomposition.
+- [SOURCE: .opencode/commands/speckit/plan.md:149-181] `/speckit:plan` also exposes its own standalone 7-step lifecycle and output contract.
+- [SOURCE: .opencode/commands/speckit/implement.md:29-125] `/speckit:implement` repeats a second large setup prompt with folder confirmation, execution mode, dispatch mode, incomplete-session handling, and memory loading.
+- [SOURCE: .opencode/commands/speckit/implement.md:151-205] `/speckit:implement` then introduces a separate 9-step contract with its own save-context and handover path.
+- [SOURCE: .opencode/commands/speckit/complete.md:32-150] `/speckit:complete` duplicates another large setup block and adds feature-flag choices for research, phases, and auto-debug.
+- [SOURCE: .opencode/commands/speckit/complete.md:198-229] `/speckit:complete` further exposes a 14-step lifecycle that overlaps heavily with the other two commands.
 
 ## Analysis
 The current split mirrors internal phase boundaries more than operator intent. An experienced maintainer can navigate `plan`, `implement`, and `complete`, but the operator has to know which command owns which boundary, which gates re-run, and when answers carry over. The external repo instead presents one primary entry surface and lets the workflow own the lifecycle internally. That does not mean `system-spec-kit` should become single-file or phase-less; it means the visible command surface should stop forcing users to pre-model the workflow graph in their heads before they can start.
@@ -48,7 +48,7 @@ finding: `system-spec-kit` should keep distinct internal lifecycle phases, but m
 
 ## UX / System Design Analysis
 
-- **Current system-spec-kit surface:** operators must choose between `/spec_kit:plan`, `/spec_kit:implement`, and `/spec_kit:complete`, each with its own setup ritual and lifecycle vocabulary.
+- **Current system-spec-kit surface:** operators must choose between `/speckit:plan`, `/speckit:implement`, and `/speckit:complete`, each with its own setup ritual and lifecycle vocabulary.
 - **External repo's equivalent surface:** one visible workflow with a few explicit knobs, while lifecycle transitions stay inside the workflow definition.
 - **Friction comparison:** `system-spec-kit` has more power, but higher cognitive load because the user must pre-classify the work before execution; the external repo needs fewer decisions and fewer repeated prompts.
 - **What system-spec-kit could DELETE to improve UX:** the idea that three lifecycle commands should all be first-class operator entry points.

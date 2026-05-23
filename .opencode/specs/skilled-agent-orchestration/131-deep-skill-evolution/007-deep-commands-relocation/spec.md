@@ -28,7 +28,7 @@ _memory:
 <!-- ANCHOR:executive-summary -->
 ## EXECUTIVE SUMMARY
 
-The 3 deep-* slash-command MD files (`deep:review`, `deep:research`, `deep:ai-council`) already relocated to `.opencode/commands/deep/` and are live skill names in the registry. However, 6 workflow asset YAMLs, 2 Gemini TOML wrappers, and ~25 live operator-facing references still use the old `/spec_kit:deep-*` slash syntax or `spec_kit/assets/spec_kit_deep-*` asset paths. Additionally, ~5,267 historical spec-doc references need updating.
+The 3 deep-* slash-command MD files (`deep:review`, `deep:research`, `deep:ai-council`) already relocated to `.opencode/commands/deep/` and are live skill names in the registry. However, 6 workflow asset YAMLs, 2 Gemini TOML wrappers, and ~25 live operator-facing references still use the old `/speckit:deep-*` slash syntax or `spec_kit/assets/spec_kit_deep-*` asset paths. Additionally, ~5,267 historical spec-doc references need updating.
 
 This packet documents the 6-wave relocation: scaffold (WAVE 0), asset moves (WAVE 1), live reference updates (WAVE 2), graph/advisor/vitest recompile (WAVE 3), historical bulk-sed (WAVE 4), and closure (WAVE 5).
 
@@ -66,9 +66,9 @@ This packet documents the 6-wave relocation: scaffold (WAVE 0), asset moves (WAV
 
 The 3 deep-* slash-command MD files moved to `.opencode/commands/deep/` and are registered as live skill names (`deep:review`, `deep:research`, `deep:ai-council`). But the asset ecosystem still points to the old `spec_kit/` namespace:
 
-1. **6 workflow YAMLs** still at `.opencode/commands/spec_kit/assets/spec_kit_deep-{review,research,council}_{auto,confirm}.yaml` (~440 KB total). The 3 command MD files still load these from the old path.
-2. **2 Gemini TOMLs** still at `.gemini/commands/spec_kit/deep-{review,research}.toml`. No `ai-council.toml` exists at either location.
-3. **~25 live references** across SKILL.md files, `skill_advisor.py` routing tables, agent definitions (4 runtimes), root docs (CLAUDE.md, AGENTS.md, README.md), install guides, and 9 `graph-metadata.json` files still use `/spec_kit:deep-*` slash syntax or `spec_kit/assets/spec_kit_deep-*` paths.
+1. **6 workflow YAMLs** still at `.opencode/commands/speckit/assets/speckit_deep-{review,research,council}_{auto,confirm}.yaml` (~440 KB total). The 3 command MD files still load these from the old path.
+2. **2 Gemini TOMLs** still at `.gemini/commands/speckit/deep-{review,research}.toml`. No `ai-council.toml` exists at either location.
+3. **~25 live references** across SKILL.md files, `skill_advisor.py` routing tables, agent definitions (4 runtimes), root docs (CLAUDE.md, AGENTS.md, README.md), install guides, and 9 `graph-metadata.json` files still use `/speckit:deep-*` slash syntax or `spec_kit/assets/spec_kit_deep-*` paths.
 4. **~5,267 historical spec-doc references** across `.opencode/specs/` and `.opencode/skills/` changelogs/playbooks carry old paths and slash syntax.
 
 ### Purpose
@@ -94,7 +94,7 @@ Complete the relocation: move workflow assets to co-located `commands/deep/asset
 
 ### Out of Scope
 
-- Touching non-deep `commands/spec_kit/` workflows (`complete`, `plan`, `implement`, `resume`) — they stay.
+- Touching non-deep `commands/speckit/` workflows (`complete`, `plan`, `implement`, `resume`) — they stay.
 - Renaming the `131-deep-skill-evolution` packet itself.
 - Renaming `improve:deep-agent-improvement` (lives at `.opencode/commands/improve/`, unaffected).
 - Modifying deep-* skill source code (code-level logic stays unchanged).
@@ -104,9 +104,9 @@ Complete the relocation: move workflow assets to co-located `commands/deep/asset
 
 | File Path | Wave | Change Type | Description |
 |-----------|------|-------------|-------------|
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-{review,research,council}_{auto,confirm}.yaml` × 6 | 1 | Move + Rename | → `.opencode/commands/deep/assets/deep_{review,research,ai-council}_{auto,confirm}.yaml` |
+| `.opencode/commands/speckit/assets/speckit_deep-{review,research,council}_{auto,confirm}.yaml` × 6 | 1 | Move + Rename | → `.opencode/commands/deep/assets/deep_{review,research,ai-council}_{auto,confirm}.yaml` |
 | `.opencode/commands/deep/{review,research,ai-council}.md` × 3 | 1 | Modify | Update internal asset-path load blocks |
-| `.gemini/commands/spec_kit/deep-{review,research}.toml` × 2 | 1 | Move | → `.gemini/commands/deep/{review,research}.toml` |
+| `.gemini/commands/speckit/deep-{review,research}.toml` × 2 | 1 | Move | → `.gemini/commands/deep/{review,research}.toml` |
 | `.gemini/commands/deep/ai-council.toml` × 1 | 1 | Create | New Gemini TOML for ai-council |
 | `.opencode/skills/deep-{review,research,ai-council}/SKILL.md` × 3 | 2 | Modify | Update asset path + slash syntax refs |
 | `.opencode/skills/system-skill-advisor/.../skill_advisor.py` × 1 | 2 | Modify | Routing tables + trigger-phrase scoring |
@@ -128,12 +128,12 @@ Complete the relocation: move workflow assets to co-located `commands/deep/asset
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | 6 YAML assets co-located with commands at `commands/deep/assets/`, named with `deep_` slug matching skill names | `ls .opencode/commands/deep/assets/` shows exactly 6 `deep_*.yaml` files; `ls .opencode/commands/spec_kit/assets/spec_kit_deep-*` returns 0 hits. |
+| REQ-001 | 6 YAML assets co-located with commands at `commands/deep/assets/`, named with `deep_` slug matching skill names | `ls .opencode/commands/deep/assets/` shows exactly 6 `deep_*.yaml` files; `ls .opencode/commands/speckit/assets/speckit_deep-*` returns 0 hits. |
 | REQ-002 | 3 command MD files reference new asset paths | `rg "spec_kit/assets/" .opencode/commands/deep/` returns 0 hits. |
 | REQ-003 | 2 Gemini TOMLs migrated + 1 authored at `.gemini/commands/deep/` | `ls .gemini/commands/deep/{review,research,ai-council}.toml` all exist. |
-| REQ-004 | ~25 live operator-facing references updated to new paths and `/deep:*` slash syntax | `rg "/spec_kit:deep-(review\|research\|council\|ai-council)" .opencode/agents/ .claude/agents/ .codex/agents/ .gemini/agents/ CLAUDE.md AGENTS.md README.md` returns 0 hits. |
+| REQ-004 | ~25 live operator-facing references updated to new paths and `/deep:*` slash syntax | `rg "/speckit:deep-(review\|research\|council\|ai-council)" .opencode/agents/ .claude/agents/ .codex/agents/ .gemini/agents/ CLAUDE.md AGENTS.md README.md` returns 0 hits. |
 | REQ-005 | Skill-graph recompiles cleanly; advisor surfaces correct skills; vitest sweep 100% PASS | `skill_graph_compiler.py` exits 0; 3 smoke prompts return correct skill; vitest sweep passes all 4 suites. |
-| REQ-006 | Historical spec-doc references bulk-sed'd with ≤ 10 residual edge cases | `rg "/spec_kit:deep-(review\|research\|council)\|spec_kit_deep-" .opencode/ --type-add 'docs:*.md' --type docs \| grep -v "z_archive\|changelog/v[01]" \| wc -l` returns ≤ 10. |
+| REQ-006 | Historical spec-doc references bulk-sed'd with ≤ 10 residual edge cases | `rg "/speckit:deep-(review\|research\|council)\|spec_kit_deep-" .opencode/ --type-add 'docs:*.md' --type docs \| grep -v "z_archive\|changelog/v[01]" \| wc -l` returns ≤ 10. |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -159,7 +159,7 @@ Complete the relocation: move workflow assets to co-located `commands/deep/asset
 |------|------|--------|------------|
 | Risk | DeepSeek-v4-pro context budget on WAVE 2 (25-file edit) | H | Split into 2 sub-batches: skills+advisor first, then agents+root-docs. Sequential per cli-* memory rule. |
 | Risk | `skill_advisor.py` trigger-phrase semantic edit (~340 lines of scoring) | M | Use semantic-review pass via Edit tool, NOT bulk sed. Preserve unrelated trigger phrases. |
-| Risk | Gemini TOML format differs from `.md` command format | M | Use existing `.gemini/commands/spec_kit/deep-review.toml` as template; explicit TOML-preserves-frontmatter reminder in dispatch prompt. |
+| Risk | Gemini TOML format differs from `.md` command format | M | Use existing `.gemini/commands/speckit/deep-review.toml` as template; explicit TOML-preserves-frontmatter reminder in dispatch prompt. |
 | Dependency | WAVE 3 depends on WAVE 1-2 file-system state | H | Gate WAVE 3 on `ls` + `rg` checks passing before dispatch. |
 | Dependency | `.codex/commands/` is symlink to `.opencode/commands/` | L | Edits flow through `.opencode/`; no separate `.codex/` path edits needed. |
 | Dependency | `.claude/commands/deep/` mirrors `.opencode/commands/deep/` via symlinks | L | Verify symlinks auto-resolve after WAVE 1; re-create if broken. |
@@ -226,12 +226,12 @@ Complete the relocation: move workflow assets to co-located `commands/deep/asset
 
 ### US-001: Operator Types `/deep:start-review-loop` Consistently Across Runtimes
 
-**As a** CLI operator, **I want** to invoke deep-* commands using a consistent `/deep:<skill>` slash syntax across all runtimes (opencode, claude, codex, gemini), **so that** I don't need to remember whether a particular runtime uses `/spec_kit:deep-review` vs `/deep:start-review-loop`.
+**As a** CLI operator, **I want** to invoke deep-* commands using a consistent `/deep:<skill>` slash syntax across all runtimes (opencode, claude, codex, gemini), **so that** I don't need to remember whether a particular runtime uses `/speckit:deep-review` vs `/deep:start-review-loop`.
 
 **Acceptance Criteria**:
 1. Given I am in an opencode session, When I type `/deep:start-review-loop`, Then the deep-review workflow executes.
 2. Given I am in a claude session, When I type `/deep:start-research-loop`, Then the deep-research workflow executes.
-3. Given I am in any runtime, When I search for old `/spec_kit:deep-*` references in agent docs, Then I find zero live matches.
+3. Given I am in any runtime, When I search for old `/speckit:deep-*` references in agent docs, Then I find zero live matches.
 4. Given the skill advisor receives "deep review packet", Then `deep-review` surfaces in the top recommendations.
 <!-- /ANCHOR:user-stories -->
 

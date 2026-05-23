@@ -2,7 +2,7 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
 // ║ COMPONENT: Phase Command Workflow Tests                                  ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Verify /spec_kit:phase and --phase-folder command contracts.   ║
+// ║ PURPOSE: Verify /speckit:phase and --phase-folder command contracts.   ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
@@ -14,7 +14,7 @@ const path = require('path');
 const __dirname = path.dirname(__filename);
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..');
-const COMMAND_ROOT = path.join(REPO_ROOT, '.opencode', 'commands', 'spec_kit');
+const COMMAND_ROOT = path.join(REPO_ROOT, '.opencode', 'commands', 'speckit');
 const ASSETS_ROOT = path.join(COMMAND_ROOT, 'assets');
 
 let passed = 0;
@@ -49,18 +49,18 @@ function exists(filePath) {
 function testPhaseCommandContracts() {
   const planDoc = path.join(COMMAND_ROOT, 'plan.md');
   const completeDoc = path.join(COMMAND_ROOT, 'complete.md');
-  const planAutoYaml = path.join(ASSETS_ROOT, 'spec_kit_plan_auto.yaml');
-  const completeAutoYaml = path.join(ASSETS_ROOT, 'spec_kit_complete_auto.yaml');
+  const planAutoYaml = path.join(ASSETS_ROOT, 'speckit_plan_auto.yaml');
+  const completeAutoYaml = path.join(ASSETS_ROOT, 'speckit_complete_auto.yaml');
 
-  assertTrue(exists(planDoc), '/spec_kit:plan doc exists');
-  assertTrue(exists(completeDoc), '/spec_kit:complete doc exists');
-  assertTrue(exists(planAutoYaml), '/spec_kit:plan auto workflow asset exists');
-  assertTrue(exists(completeAutoYaml), '/spec_kit:complete auto workflow asset exists');
+  assertTrue(exists(planDoc), '/speckit:plan doc exists');
+  assertTrue(exists(completeDoc), '/speckit:complete doc exists');
+  assertTrue(exists(planAutoYaml), '/speckit:plan auto workflow asset exists');
+  assertTrue(exists(completeAutoYaml), '/speckit:complete auto workflow asset exists');
 
   const phaseText = `${readFile(planDoc)}\n${readFile(completeDoc)}`;
   assertTrue(
     phaseText.includes(':with-phases') && phaseText.includes('--phase-folder=<path>'),
-    '/spec_kit:plan and /spec_kit:complete document phase flags'
+    '/speckit:plan and /speckit:complete document phase flags'
   );
   assertTrue(
     readFile(planAutoYaml).includes('create.sh "{feature_description}" --phase') &&
@@ -80,7 +80,7 @@ function testPhaseFolderContracts() {
 
   for (const doc of commandDocs) {
     const filePath = path.join(COMMAND_ROOT, doc.file);
-    assertTrue(exists(filePath), `/spec_kit:${doc.name} doc exists`);
+    assertTrue(exists(filePath), `/speckit:${doc.name} doc exists`);
 
     const text = readFile(filePath);
     const hasPhaseFolderContract = doc.name === 'deep-research'
@@ -89,26 +89,26 @@ function testPhaseFolderContracts() {
 
     assertTrue(
       hasPhaseFolderContract,
-      `/spec_kit:${doc.name} documents --phase-folder contract`
+      `/speckit:${doc.name} documents --phase-folder contract`
     );
 
     assertTrue(
       text.includes('Option E') || text.includes('phase child') || text.includes('Phase folder'),
-      `/spec_kit:${doc.name} includes Option E/phase-child behavior`
+      `/speckit:${doc.name} includes Option E/phase-child behavior`
     );
   }
 }
 
 function testAssetPhaseFolderNotes() {
   const yamlAssets = [
-    'spec_kit_plan_auto.yaml',
-    'spec_kit_plan_confirm.yaml',
-    'spec_kit_implement_auto.yaml',
-    'spec_kit_implement_confirm.yaml',
-    'spec_kit_complete_auto.yaml',
-    'spec_kit_complete_confirm.yaml',
-    'spec_kit_resume_auto.yaml',
-    'spec_kit_resume_confirm.yaml',
+    'speckit_plan_auto.yaml',
+    'speckit_plan_confirm.yaml',
+    'speckit_implement_auto.yaml',
+    'speckit_implement_confirm.yaml',
+    'speckit_complete_auto.yaml',
+    'speckit_complete_confirm.yaml',
+    'speckit_resume_auto.yaml',
+    'speckit_resume_confirm.yaml',
   ];
 
   for (const yaml of yamlAssets) {
@@ -131,12 +131,12 @@ function testAssetPhaseFolderNotes() {
 
 function testTemplateCompliancePromptContracts() {
   const planImplementCompleteAssets = [
-    'spec_kit_plan_auto.yaml',
-    'spec_kit_plan_confirm.yaml',
-    'spec_kit_implement_auto.yaml',
-    'spec_kit_implement_confirm.yaml',
-    'spec_kit_complete_auto.yaml',
-    'spec_kit_complete_confirm.yaml',
+    'speckit_plan_auto.yaml',
+    'speckit_plan_confirm.yaml',
+    'speckit_implement_auto.yaml',
+    'speckit_implement_confirm.yaml',
+    'speckit_complete_auto.yaml',
+    'speckit_complete_confirm.yaml',
   ];
 
   for (const yaml of planImplementCompleteAssets) {
@@ -190,12 +190,12 @@ function testTemplateCompliancePromptContracts() {
 
 function testPhaseYamlStructuralContracts() {
   const yamlAssets = [
-    'spec_kit_plan_auto.yaml',
-    'spec_kit_plan_confirm.yaml',
-    'spec_kit_implement_auto.yaml',
-    'spec_kit_implement_confirm.yaml',
-    'spec_kit_complete_auto.yaml',
-    'spec_kit_complete_confirm.yaml',
+    'speckit_plan_auto.yaml',
+    'speckit_plan_confirm.yaml',
+    'speckit_implement_auto.yaml',
+    'speckit_implement_confirm.yaml',
+    'speckit_complete_auto.yaml',
+    'speckit_complete_confirm.yaml',
   ];
 
   for (const yaml of yamlAssets) {
@@ -231,8 +231,8 @@ function testPhaseYamlStructuralContracts() {
 
 function testImplementScopeContracts() {
   const implementAssets = [
-    'spec_kit_implement_auto.yaml',
-    'spec_kit_implement_confirm.yaml',
+    'speckit_implement_auto.yaml',
+    'speckit_implement_confirm.yaml',
   ];
 
   for (const yaml of implementAssets) {
@@ -262,8 +262,8 @@ function testImplementScopeContracts() {
 
 function testCompleteYamlContracts() {
   const completeAssets = [
-    'spec_kit_complete_auto.yaml',
-    'spec_kit_complete_confirm.yaml',
+    'speckit_complete_auto.yaml',
+    'speckit_complete_confirm.yaml',
   ];
 
   for (const yaml of completeAssets) {
@@ -288,9 +288,9 @@ function testCompleteYamlContracts() {
 function testPhaseAssetsMutualConsistency() {
   // T242-MC1: All auto/confirm pairs should have matching step counts
   const pairs = [
-    ['spec_kit_plan_auto.yaml', 'spec_kit_plan_confirm.yaml'],
-    ['spec_kit_implement_auto.yaml', 'spec_kit_implement_confirm.yaml'],
-    ['spec_kit_complete_auto.yaml', 'spec_kit_complete_confirm.yaml'],
+    ['speckit_plan_auto.yaml', 'speckit_plan_confirm.yaml'],
+    ['speckit_implement_auto.yaml', 'speckit_implement_confirm.yaml'],
+    ['speckit_complete_auto.yaml', 'speckit_complete_confirm.yaml'],
   ];
 
   for (const [autoYaml, confirmYaml] of pairs) {

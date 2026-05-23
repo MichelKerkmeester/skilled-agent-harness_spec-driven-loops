@@ -13,7 +13,7 @@ Templates for creating slash commands with proper frontmatter, mandatory gates, 
 
 ### What Are OpenCode Commands?
 
-**OpenCode commands** are slash-triggered instructions (e.g., `/spec_kit:complete`, `/memory:save`) that automate workflows, enforce patterns, and extend AI agent capabilities. They're markdown files that define structured behavior for specific tasks.
+**OpenCode commands** are slash-triggered instructions (e.g., `/speckit:complete`, `/memory:save`) that automate workflows, enforce patterns, and extend AI agent capabilities. They're markdown files that define structured behavior for specific tasks.
 
 **Core Purpose**:
 - **Workflow automation** - Multi-step processes become single invocations
@@ -1150,7 +1150,7 @@ OPUS ORCHESTRATOR → Dispatches → SONNET WORKERS (parallel)
 | `STATUS=OK`                             | Simple success | Basic commands       |
 | `STATUS=OK RESULTS_COUNT=N`             | Search/query   | `/index:search`      |
 | `STATUS=OK ACTION=<action>`             | State change   | `/index:start`       |
-| `STATUS=OK ACTION=<action> PATH=<path>` | File creation  | `/spec_kit:complete` |
+| `STATUS=OK ACTION=<action> PATH=<path>` | File creation  | `/speckit:complete` |
 | `STATUS=FAIL ERROR="<message>"`         | All failures   | Error handling       |
 | `STATUS=CANCELLED ACTION=cancelled`     | User abort     | Interactive commands |
 

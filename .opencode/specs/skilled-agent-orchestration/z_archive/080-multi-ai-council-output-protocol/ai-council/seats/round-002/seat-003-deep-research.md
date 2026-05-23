@@ -23,7 +23,7 @@ Evidence-first. Enumerate ALL real dispatchers of `@multi-ai-council` via grep a
 
 Per grep evidence:
 
-- `.opencode/agents/orchestrate.md` (line 97, 192, 749) — `@orchestrate` LEAF-dispatches `@multi-ai-council`. **Not a `/spec_kit:*` command.**
+- `.opencode/agents/orchestrate.md` (line 97, 192, 749) — `@orchestrate` LEAF-dispatches `@multi-ai-council`. **Not a `/speckit:*` command.**
 - `.opencode/skills/cli-claude-code/SKILL.md` (line 32, 275), `references/agent_delegation.md` (lines 26, 68, 94, 111), `README.md` (line 55, 181), `manual_testing_playbook/04--agent-routing/004-*.md` — direct dispatch via `claude -p "..." --agent multi-ai-council` documented and tested.
 - `.opencode/skills/cli-codex/SKILL.md`, `references/agent_delegation.md`, `manual_testing_playbook/`, `assets/prompt_templates.md` — Codex CLI direct dispatch documented.
 - `.opencode/skills/cli-opencode/SKILL.md`, `references/agent_delegation.md`, `manual_testing_playbook/04--agent-routing/005-*.md`, `changelog/v1.1.0.0.md` — opencode CLI direct dispatch documented.
@@ -32,24 +32,24 @@ Per grep evidence:
 
 ### Falsification of round-1's central assumption
 
-Round-1 stated: *"callers are concentrated (`/spec_kit:*` commands)"* — relied on by all three round-1 seats.
+Round-1 stated: *"callers are concentrated (`/speckit:*` commands)"* — relied on by all three round-1 seats.
 
 **FALSE per grep evidence.** Actual dispatchers include:
 - (a) Top-level user via Task tool (Depth 0 default case)
 - (b) `@orchestrate` agent (Depth 1, codified in agent body)
 - (c) Direct CLI invocations documented in 3+ cli-skill manual_testing_playbooks (4 runtimes × ~1 playbook each)
-- (d) **Zero current `/spec_kit:*` command YAMLs explicitly call `@multi-ai-council`** (grep of `.opencode/commands/` returned no hits)
+- (d) **Zero current `/speckit:*` command YAMLs explicitly call `@multi-ai-council`** (grep of `.opencode/commands/` returned no hits)
 
-The "concentrated to `/spec_kit:*`" assumption is empirically wrong — `/spec_kit:*` commands don't even dispatch the council currently.
+The "concentrated to `/speckit:*`" assumption is empirically wrong — `/speckit:*` commands don't even dispatch the council currently.
 
 ### Implication for round-1 helper plan
 
-Round-1 Step 3 ("wire helper into `/spec_kit:*` commands") is **necessary but insufficient**. The primary callers today are:
+Round-1 Step 3 ("wire helper into `/speckit:*` commands") is **necessary but insufficient**. The primary callers today are:
 - Direct user Task dispatch (no orchestrator wrapper at all — caller is Claude Code itself)
 - `@orchestrate` (no YAML wrapper)
 - Manual CLI invocation in playbooks (no shared shell wrapper)
 
-Helper MUST be invokable as a documented post-dispatch convention by Claude Code (or any AI assistant) directly, not only by `/spec_kit:*` YAMLs.
+Helper MUST be invokable as a documented post-dispatch convention by Claude Code (or any AI assistant) directly, not only by `/speckit:*` YAMLs.
 
 ### Backward-compat / legacy artifacts
 
@@ -73,7 +73,7 @@ Did NOT falsify or confirm in round 2. Defer to packet 081's investigation as ro
 
 ## Alternative Challenged
 
-**"Trust round-1's caller-concentration assumption"** — challenged decisively. grep produced 8+ direct-dispatch references outside `/spec_kit:*`, plus zero current `/spec_kit:*` command YAMLs that actually dispatch the council. Round-1 was empirically wrong about its own central assumption.
+**"Trust round-1's caller-concentration assumption"** — challenged decisively. grep produced 8+ direct-dispatch references outside `/speckit:*`, plus zero current `/speckit:*` command YAMLs that actually dispatch the council. Round-1 was empirically wrong about its own central assumption.
 
 ## Confidence
 

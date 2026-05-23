@@ -125,7 +125,7 @@ Author NEW manual_testing_playbook for sk-doc (15 scenarios, 5 categories) and r
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
 - Parent spec tracks aggregate progress via this map
-- Use `/spec_kit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
+- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
 - Run `validate.sh --recursive` on parent to validate all phases as integrated unit
 
 ### Phase Handoff Criteria

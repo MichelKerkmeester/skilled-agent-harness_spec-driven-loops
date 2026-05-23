@@ -191,8 +191,8 @@
       "sources": [
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:48-52",
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-001.md:7-10",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:326",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:436-437",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:326",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:436-437",
         ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs:103-127",
         ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs:489-502",
         ".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:20-25",
@@ -205,13 +205,13 @@
     },
     {
       "id": "finding-2-2-the-active-loop-workflow-surfaces-i-inspected-only-require-agents-to-emit-graphe",
-      "text": "The active loop workflow surfaces I inspected only require agents to emit `graphEvents`; they do not show any corresponding `deep_loop_graph_upsert`, `deep_loop_graph_query`, or `deep_loop_graph_convergence` invocation in the same runtime path. In the checked YAMLs, graph handling appears as an iteration-record output contract, not a read-back decision step (.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:326; .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:436-437).",
+      "text": "The active loop workflow surfaces I inspected only require agents to emit `graphEvents`; they do not show any corresponding `deep_loop_graph_upsert`, `deep_loop_graph_query`, or `deep_loop_graph_convergence` invocation in the same runtime path. In the checked YAMLs, graph handling appears as an iteration-record output contract, not a read-back decision step (.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:326; .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:436-437).",
       "addedAtIteration": 2,
       "sources": [
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:48-52",
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-001.md:7-10",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:326",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:436-437",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:326",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:436-437",
         ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs:103-127",
         ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs:489-502",
         ".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:20-25",
@@ -229,8 +229,8 @@
       "sources": [
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:48-52",
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-001.md:7-10",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:326",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:436-437",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:326",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:436-437",
         ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs:103-127",
         ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs:489-502",
         ".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:20-25",
@@ -248,8 +248,8 @@
       "sources": [
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:48-52",
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-001.md:7-10",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:326",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:436-437",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:326",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:436-437",
         ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs:103-127",
         ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs:489-502",
         ".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:20-25",
@@ -370,16 +370,16 @@
     },
     {
       "id": "finding-4-2-sk-deep-research-s-persisted-lineage-metadata-stays-wired-to-fresh-session-defau",
-      "text": "`sk-deep-research`'s persisted lineage metadata stays wired to fresh-session defaults in the normal runtime path I inspected. The auto workflow seeds `lineage.lineageMode: \"new\"`, `lineage.parentSessionId: null`, and `lineage.continuedFromRun: null` during config creation (`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:157-180`), then later uses a synthesis fallback of `'completed-continue'` if no stop reason is found (`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:390-409`). The reducer's status view reads lifecycle mode only from `config.lineage.lineageMode`, while its JSONL load drops all non-`iteration` records (`.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:405-414`, `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:489-490`). That means resume/reopen semantics can influence control flow without updating reducer-visible lineage state away from `new`.",
+      "text": "`sk-deep-research`'s persisted lineage metadata stays wired to fresh-session defaults in the normal runtime path I inspected. The auto workflow seeds `lineage.lineageMode: \"new\"`, `lineage.parentSessionId: null`, and `lineage.continuedFromRun: null` during config creation (`.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:157-180`), then later uses a synthesis fallback of `'completed-continue'` if no stop reason is found (`.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:390-409`). The reducer's status view reads lifecycle mode only from `config.lineage.lineageMode`, while its JSONL load drops all non-`iteration` records (`.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:405-414`, `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:489-490`). That means resume/reopen semantics can influence control flow without updating reducer-visible lineage state away from `new`.",
       "addedAtIteration": 4,
       "sources": [
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:44-47",
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-003.md:38-39",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:128-180",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:390-445",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:155-177",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:258-260",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:566-580",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:128-180",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:390-445",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:155-177",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:258-260",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:566-580",
         ".opencode/skills/sk-deep-research/references/loop_protocol.md:46-91",
         ".opencode/skills/sk-deep-research/references/state_format.md:234-246",
         ".opencode/skills/sk-deep-research/references/convergence.md:214-220",
@@ -395,16 +395,16 @@
     },
     {
       "id": "finding-4-3-sk-deep-review-exposes-lifecycle-intent-more-explicitly-but-the-live-path-still-",
-      "text": "`sk-deep-review` exposes lifecycle intent more explicitly, but the live path still does not exercise it. The YAML advertises a `lineage_mode` input (`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:33`), yet the initialization path writes `parentSessionId: null`, `lineageMode: \"new\"`, and `continuedFromRun: null` into both config and the first JSONL row (`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:258-260`), and the reducer status panel reads lifecycle mode from `config.lineageMode || 'new'` while likewise filtering its summaries to `type === 'iteration'` rows (`.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:485-487`, `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:539-548`). I found no active YAML step in the inspected path that consumes the declared `lineage_mode` input to persist `resume`, `restart`, `fork`, or `completed-continue`.",
+      "text": "`sk-deep-review` exposes lifecycle intent more explicitly, but the live path still does not exercise it. The YAML advertises a `lineage_mode` input (`.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:33`), yet the initialization path writes `parentSessionId: null`, `lineageMode: \"new\"`, and `continuedFromRun: null` into both config and the first JSONL row (`.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:258-260`), and the reducer status panel reads lifecycle mode from `config.lineageMode || 'new'` while likewise filtering its summaries to `type === 'iteration'` rows (`.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:485-487`, `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:539-548`). I found no active YAML step in the inspected path that consumes the declared `lineage_mode` input to persist `resume`, `restart`, `fork`, or `completed-continue`.",
       "addedAtIteration": 4,
       "sources": [
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:44-47",
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-003.md:38-39",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:128-180",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:390-445",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:155-177",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:258-260",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:566-580",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:128-180",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:390-445",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:155-177",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:258-260",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:566-580",
         ".opencode/skills/sk-deep-research/references/loop_protocol.md:46-91",
         ".opencode/skills/sk-deep-research/references/state_format.md:234-246",
         ".opencode/skills/sk-deep-research/references/convergence.md:214-220",
@@ -425,11 +425,11 @@
       "sources": [
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:44-47",
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-003.md:38-39",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:128-180",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:390-445",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:155-177",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:258-260",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:566-580",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:128-180",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:390-445",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:155-177",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:258-260",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:566-580",
         ".opencode/skills/sk-deep-research/references/loop_protocol.md:46-91",
         ".opencode/skills/sk-deep-research/references/state_format.md:234-246",
         ".opencode/skills/sk-deep-research/references/convergence.md:214-220",
@@ -445,16 +445,16 @@
     },
     {
       "id": "finding-4-4-the-blocked-stop-contract-is-much-richer-than-the-live-workflow-outputs-deep-res",
-      "text": "The blocked-stop contract is much richer than the live workflow outputs. Deep research requires a replayable legal-stop bundle and says any failed gate must append a `blocked_stop` event carrying `stopReason: \"blockedStop\"`, `legalStop.blockedBy`, full `legalStop.gateResults`, and a `recoveryStrategy` (`.opencode/skills/sk-deep-research/references/convergence.md:214-220`, `.opencode/skills/sk-deep-research/references/convergence.md:305-309`). Deep review documents the same shape, including a full `gateResults` map and replay inputs (`.opencode/skills/sk-deep-review/references/convergence.md:58-85`, `.opencode/skills/sk-deep-review/references/convergence.md:411-411`). But the live auto workflows emit only `decision` plus a human-readable `reason` from convergence (`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:268-286`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:356-372`), so the documented gate bundle never appears in the reducer-facing runtime outputs I inspected.",
+      "text": "The blocked-stop contract is much richer than the live workflow outputs. Deep research requires a replayable legal-stop bundle and says any failed gate must append a `blocked_stop` event carrying `stopReason: \"blockedStop\"`, `legalStop.blockedBy`, full `legalStop.gateResults`, and a `recoveryStrategy` (`.opencode/skills/sk-deep-research/references/convergence.md:214-220`, `.opencode/skills/sk-deep-research/references/convergence.md:305-309`). Deep review documents the same shape, including a full `gateResults` map and replay inputs (`.opencode/skills/sk-deep-review/references/convergence.md:58-85`, `.opencode/skills/sk-deep-review/references/convergence.md:411-411`). But the live auto workflows emit only `decision` plus a human-readable `reason` from convergence (`.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:268-286`, `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:356-372`), so the documented gate bundle never appears in the reducer-facing runtime outputs I inspected.",
       "addedAtIteration": 4,
       "sources": [
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:44-47",
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-003.md:38-39",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:128-180",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:390-445",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:155-177",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:258-260",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:566-580",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:128-180",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:390-445",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:155-177",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:258-260",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:566-580",
         ".opencode/skills/sk-deep-research/references/loop_protocol.md:46-91",
         ".opencode/skills/sk-deep-research/references/state_format.md:234-246",
         ".opencode/skills/sk-deep-research/references/convergence.md:214-220",
@@ -470,16 +470,16 @@
     },
     {
       "id": "finding-4-1-the-live-auto-workflows-classify-resume-restart-fork-and-completed-session-but-t",
-      "text": "The live auto workflows classify `resume`, `restart`, `fork`, and `completed-session`, but the active YAML evidence I inspected does not append first-class `resumed`, `restarted`, `forked`, or `completed_continue` events during those branches. In `sk-deep-research`, the runtime branches only log/skip (`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:128-153`), while the only explicit event appends in the file are `migration`, `paused`, and `synthesis_complete` (`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:126`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:244`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:445`). `sk-deep-review` shows the same pattern: lifecycle branches are classified (`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:155-177`), but the concrete event appends I found are `migration`, `paused`, `stuck_recovery`, and `synthesis_complete` only (`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:149`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:329`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:382`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:661`).",
+      "text": "The live auto workflows classify `resume`, `restart`, `fork`, and `completed-session`, but the active YAML evidence I inspected does not append first-class `resumed`, `restarted`, `forked`, or `completed_continue` events during those branches. In `sk-deep-research`, the runtime branches only log/skip (`.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:128-153`), while the only explicit event appends in the file are `migration`, `paused`, and `synthesis_complete` (`.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:126`, `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:244`, `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:445`). `sk-deep-review` shows the same pattern: lifecycle branches are classified (`.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:155-177`), but the concrete event appends I found are `migration`, `paused`, `stuck_recovery`, and `synthesis_complete` only (`.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:149`, `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:329`, `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:382`, `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:661`).",
       "addedAtIteration": 4,
       "sources": [
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:44-47",
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-003.md:38-39",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:128-180",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:390-445",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:155-177",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:258-260",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:566-580",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:128-180",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:390-445",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:155-177",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:258-260",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:566-580",
         ".opencode/skills/sk-deep-research/references/loop_protocol.md:46-91",
         ".opencode/skills/sk-deep-research/references/state_format.md:234-246",
         ".opencode/skills/sk-deep-research/references/convergence.md:214-220",
@@ -495,17 +495,17 @@
     },
     {
       "id": "finding-5-4-blockedstop-remains-contractual-rather-than-live-in-the-inspected-auto-paths-the",
-      "text": "`blockedStop` remains contractual rather than live in the inspected auto paths. The research and review convergence references require a first-class `blocked_stop` event carrying `stopReason=blockedStop` plus full legal-stop payloads, but the active auto YAMLs emit no `blocked_stop`/`blockedStop` record; their only explicit terminal stop-reason persistence is the later `synthesis_complete.stopReason` field (.opencode/skills/sk-deep-research/references/convergence.md:305-309; .opencode/skills/sk-deep-review/references/convergence.md:411-411; .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:445-445; .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:661-661).",
+      "text": "`blockedStop` remains contractual rather than live in the inspected auto paths. The research and review convergence references require a first-class `blocked_stop` event carrying `stopReason=blockedStop` plus full legal-stop payloads, but the active auto YAMLs emit no `blocked_stop`/`blockedStop` record; their only explicit terminal stop-reason persistence is the later `synthesis_complete.stopReason` field (.opencode/skills/sk-deep-research/references/convergence.md:305-309; .opencode/skills/sk-deep-review/references/convergence.md:411-411; .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:445-445; .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:661-661).",
       "addedAtIteration": 5,
       "sources": [
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:44-47",
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-004.md:45-46",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:240-246",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:282-290",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:409-445",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:325-331",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:375-383",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:580-661",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:240-246",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:282-290",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:409-445",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:325-331",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:375-383",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:580-661",
         ".opencode/skills/sk-deep-research/references/convergence.md:21-31",
         ".opencode/skills/sk-deep-research/references/convergence.md:77-90",
         ".opencode/skills/sk-deep-research/references/convergence.md:305-309",
@@ -521,17 +521,17 @@
     },
     {
       "id": "finding-5-3-stuckrecovery-is-also-not-promoted-consistently-in-live-control-flow-deep-review",
-      "text": "`stuckRecovery` is also not promoted consistently in live control flow. Deep review appends a raw `stuck_recovery` event with `strategy`, `targetDimension`, and `outcome`, but without `stopReason`; deep research's active `if_stuck_recovery` branch only logs, rewrites `next_focus`, and resets `stuck_count` without appending any recovery event at all (.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:375-383; .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:282-290; .opencode/skills/sk-deep-research/references/convergence.md:88-89; .opencode/skills/sk-deep-review/references/convergence.md:157-157; .opencode/skills/sk-deep-review/references/convergence.md:438-439).",
+      "text": "`stuckRecovery` is also not promoted consistently in live control flow. Deep review appends a raw `stuck_recovery` event with `strategy`, `targetDimension`, and `outcome`, but without `stopReason`; deep research's active `if_stuck_recovery` branch only logs, rewrites `next_focus`, and resets `stuck_count` without appending any recovery event at all (.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:375-383; .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:282-290; .opencode/skills/sk-deep-research/references/convergence.md:88-89; .opencode/skills/sk-deep-review/references/convergence.md:157-157; .opencode/skills/sk-deep-review/references/convergence.md:438-439).",
       "addedAtIteration": 5,
       "sources": [
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:44-47",
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-004.md:45-46",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:240-246",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:282-290",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:409-445",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:325-331",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:375-383",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:580-661",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:240-246",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:282-290",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:409-445",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:325-331",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:375-383",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:580-661",
         ".opencode/skills/sk-deep-research/references/convergence.md:21-31",
         ".opencode/skills/sk-deep-research/references/convergence.md:77-90",
         ".opencode/skills/sk-deep-research/references/convergence.md:305-309",
@@ -552,12 +552,12 @@
       "sources": [
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:44-47",
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-004.md:45-46",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:240-246",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:282-290",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:409-445",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:325-331",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:375-383",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:580-661",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:240-246",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:282-290",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:409-445",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:325-331",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:375-383",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:580-661",
         ".opencode/skills/sk-deep-research/references/convergence.md:21-31",
         ".opencode/skills/sk-deep-research/references/convergence.md:77-90",
         ".opencode/skills/sk-deep-research/references/convergence.md:305-309",
@@ -573,17 +573,17 @@
     },
     {
       "id": "finding-5-2-sentinel-pauses-do-not-become-persisted-userpaused-state-in-the-live-auto-workfl",
-      "text": "Sentinel pauses do not become persisted `userPaused` state in the live auto workflows. Both loops only append `{\"type\":\"event\",\"event\":\"paused\",\"reason\":\"sentinel file detected\"}` and halt, with no `stopReason` field on the pause record despite the contract mapping that pair to `userPaused` (.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:240-246; .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:325-331; .opencode/skills/sk-deep-research/references/convergence.md:84-85; .opencode/skills/sk-deep-review/references/convergence.md:434-434).",
+      "text": "Sentinel pauses do not become persisted `userPaused` state in the live auto workflows. Both loops only append `{\"type\":\"event\",\"event\":\"paused\",\"reason\":\"sentinel file detected\"}` and halt, with no `stopReason` field on the pause record despite the contract mapping that pair to `userPaused` (.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:240-246; .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:325-331; .opencode/skills/sk-deep-research/references/convergence.md:84-85; .opencode/skills/sk-deep-review/references/convergence.md:434-434).",
       "addedAtIteration": 5,
       "sources": [
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:44-47",
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-004.md:45-46",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:240-246",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:282-290",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:409-445",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:325-331",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:375-383",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:580-661",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:240-246",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:282-290",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:409-445",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:325-331",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:375-383",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:580-661",
         ".opencode/skills/sk-deep-research/references/convergence.md:21-31",
         ".opencode/skills/sk-deep-research/references/convergence.md:77-90",
         ".opencode/skills/sk-deep-research/references/convergence.md:305-309",
@@ -599,17 +599,17 @@
     },
     {
       "id": "finding-5-5-the-only-persisted-consumer-facing-stop-reason-field-in-the-live-auto-workflows-",
-      "text": "The only persisted consumer-facing stop-reason field in the live auto workflows is a free-form `{reason}` string copied into `synthesis_complete.stopReason`, and both workflows explicitly default that value to `completed-continue` when no later stop reason is found. That fallback is outside the published shared enum, so even the terminal stop-reason field can drift away from `converged|maxIterationsReached|userPaused|blockedStop|stuckRecovery|error|manualStop` (.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:409-445; .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:580-661; .opencode/skills/sk-deep-research/references/convergence.md:890-890; .opencode/skills/sk-deep-review/references/convergence.md:565-565).",
+      "text": "The only persisted consumer-facing stop-reason field in the live auto workflows is a free-form `{reason}` string copied into `synthesis_complete.stopReason`, and both workflows explicitly default that value to `completed-continue` when no later stop reason is found. That fallback is outside the published shared enum, so even the terminal stop-reason field can drift away from `converged|maxIterationsReached|userPaused|blockedStop|stuckRecovery|error|manualStop` (.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:409-445; .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:580-661; .opencode/skills/sk-deep-research/references/convergence.md:890-890; .opencode/skills/sk-deep-review/references/convergence.md:565-565).",
       "addedAtIteration": 5,
       "sources": [
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:44-47",
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-004.md:45-46",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:240-246",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:282-290",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:409-445",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:325-331",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:375-383",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:580-661",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:240-246",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:282-290",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:409-445",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:325-331",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:375-383",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:580-661",
         ".opencode/skills/sk-deep-research/references/convergence.md:21-31",
         ".opencode/skills/sk-deep-research/references/convergence.md:77-90",
         ".opencode/skills/sk-deep-research/references/convergence.md:305-309",
@@ -630,12 +630,12 @@
       "sources": [
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:44-47",
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-004.md:45-46",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:240-246",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:282-290",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:409-445",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:325-331",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:375-383",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:580-661",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:240-246",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:282-290",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:409-445",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:325-331",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:375-383",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:580-661",
         ".opencode/skills/sk-deep-research/references/convergence.md:21-31",
         ".opencode/skills/sk-deep-research/references/convergence.md:77-90",
         ".opencode/skills/sk-deep-research/references/convergence.md:305-309",
@@ -656,8 +656,8 @@
       "sources": [
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:44-49",
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-005.md:31-32",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:250-277",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:343-375",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:250-277",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:343-375",
         ".opencode/skills/sk-deep-research/references/convergence.md:1181-1205",
         ".opencode/skills/sk-deep-review/references/convergence.md:661-683",
         ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs:11-13",
@@ -670,13 +670,13 @@
     },
     {
       "id": "finding-6-1-the-live-deep-research-stop-path-still-uses-an-inline-3-signal-vote-plus-checkqu",
-      "text": "The live deep-research stop path still uses an inline 3-signal vote plus `checkQualityGuards(state, strategy)` and never names any graph or contradiction helper in the active convergence step, even while calling the graph-aware model \"experimental/reference-only\" for live runs (`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:250-277`).",
+      "text": "The live deep-research stop path still uses an inline 3-signal vote plus `checkQualityGuards(state, strategy)` and never names any graph or contradiction helper in the active convergence step, even while calling the graph-aware model \"experimental/reference-only\" for live runs (`.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:250-277`).",
       "addedAtIteration": 6,
       "sources": [
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:44-49",
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-005.md:31-32",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:250-277",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:343-375",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:250-277",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:343-375",
         ".opencode/skills/sk-deep-research/references/convergence.md:1181-1205",
         ".opencode/skills/sk-deep-review/references/convergence.md:661-683",
         ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs:11-13",
@@ -689,13 +689,13 @@
     },
     {
       "id": "finding-6-2-the-live-deep-review-stop-path-is-likewise-inline-rolling-average-mad-dimension-",
-      "text": "The live deep-review stop path is likewise inline: rolling-average, MAD, dimension-coverage, and four binary quality guards determine whether STOP is allowed, but there is no graph-aware or contradiction-specific call before `if_stop` transfers control to synthesis (`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:343-375`).",
+      "text": "The live deep-review stop path is likewise inline: rolling-average, MAD, dimension-coverage, and four binary quality guards determine whether STOP is allowed, but there is no graph-aware or contradiction-specific call before `if_stop` transfers control to synthesis (`.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:343-375`).",
       "addedAtIteration": 6,
       "sources": [
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:44-49",
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-005.md:31-32",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:250-277",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:343-375",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:250-277",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:343-375",
         ".opencode/skills/sk-deep-research/references/convergence.md:1181-1205",
         ".opencode/skills/sk-deep-review/references/convergence.md:661-683",
         ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs:11-13",
@@ -713,8 +713,8 @@
       "sources": [
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:44-49",
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-005.md:31-32",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:250-277",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:343-375",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:250-277",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:343-375",
         ".opencode/skills/sk-deep-research/references/convergence.md:1181-1205",
         ".opencode/skills/sk-deep-review/references/convergence.md:661-683",
         ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs:11-13",
@@ -732,8 +732,8 @@
       "sources": [
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:44-49",
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-005.md:31-32",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:250-277",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:343-375",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:250-277",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:343-375",
         ".opencode/skills/sk-deep-research/references/convergence.md:1181-1205",
         ".opencode/skills/sk-deep-review/references/convergence.md:661-683",
         ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs:11-13",
@@ -751,7 +751,7 @@
       "sources": [
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:36-39",
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-006.md:39-40",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:250-277",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:250-277",
         ".opencode/skills/sk-deep-research/SKILL.md:217-218",
         ".opencode/skills/sk-deep-research/references/convergence.md:214-320",
         ".opencode/skills/sk-deep-research/references/convergence.md:341-457",
@@ -764,12 +764,12 @@
     },
     {
       "id": "finding-7-3-contradictiondensity-is-also-already-part-of-the-published-deep-research-converg",
-      "text": "`contradictionDensity` is also already part of the published deep-research convergence model: the contract says high contradiction density should block STOP and surface as a `qualityGate` semantic sub-check. Because the live workflow's active stop math still stops at the inline 3-signal vote, this is another concrete runtime gap rather than a merely hypothetical graph enhancement (.opencode/skills/sk-deep-research/references/convergence.md:363-386; .opencode/skills/sk-deep-research/references/convergence.md:411-423; .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:250-277).",
+      "text": "`contradictionDensity` is also already part of the published deep-research convergence model: the contract says high contradiction density should block STOP and surface as a `qualityGate` semantic sub-check. Because the live workflow's active stop math still stops at the inline 3-signal vote, this is another concrete runtime gap rather than a merely hypothetical graph enhancement (.opencode/skills/sk-deep-research/references/convergence.md:363-386; .opencode/skills/sk-deep-research/references/convergence.md:411-423; .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:250-277).",
       "addedAtIteration": 7,
       "sources": [
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:36-39",
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-006.md:39-40",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:250-277",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:250-277",
         ".opencode/skills/sk-deep-research/SKILL.md:217-218",
         ".opencode/skills/sk-deep-research/references/convergence.md:214-320",
         ".opencode/skills/sk-deep-research/references/convergence.md:341-457",
@@ -787,7 +787,7 @@
       "sources": [
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:36-39",
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-006.md:39-40",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:250-277",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:250-277",
         ".opencode/skills/sk-deep-research/SKILL.md:217-218",
         ".opencode/skills/sk-deep-research/references/convergence.md:214-320",
         ".opencode/skills/sk-deep-research/references/convergence.md:341-457",
@@ -800,12 +800,12 @@
     },
     {
       "id": "finding-7-1-the-live-deep-research-workflow-still-evaluates-stop-with-a-local-3-signal-vote-",
-      "text": "The live deep-research workflow still evaluates STOP with a local 3-signal vote only: rolling average, MAD noise floor, and question entropy, then falls through a generic `checkQualityGuards(state, strategy)` call. The active convergence step does not name `contradictionDensity`, `sourceDiversity`, `claimVerificationRate`, or `evidenceDepth` anywhere in the runtime algorithm (.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:250-277).",
+      "text": "The live deep-research workflow still evaluates STOP with a local 3-signal vote only: rolling average, MAD noise floor, and question entropy, then falls through a generic `checkQualityGuards(state, strategy)` call. The active convergence step does not name `contradictionDensity`, `sourceDiversity`, `claimVerificationRate`, or `evidenceDepth` anywhere in the runtime algorithm (.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:250-277).",
       "addedAtIteration": 7,
       "sources": [
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:36-39",
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-006.md:39-40",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:250-277",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:250-277",
         ".opencode/skills/sk-deep-research/SKILL.md:217-218",
         ".opencode/skills/sk-deep-research/references/convergence.md:214-320",
         ".opencode/skills/sk-deep-research/references/convergence.md:341-457",
@@ -823,7 +823,7 @@
       "sources": [
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:36-39",
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-006.md:39-40",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:250-277",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:250-277",
         ".opencode/skills/sk-deep-research/SKILL.md:217-218",
         ".opencode/skills/sk-deep-research/references/convergence.md:214-320",
         ".opencode/skills/sk-deep-research/references/convergence.md:341-457",
@@ -841,7 +841,7 @@
       "sources": [
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:36-39",
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-006.md:39-40",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:250-277",
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:250-277",
         ".opencode/skills/sk-deep-research/SKILL.md:217-218",
         ".opencode/skills/sk-deep-research/references/convergence.md:214-320",
         ".opencode/skills/sk-deep-research/references/convergence.md:341-457",
@@ -866,7 +866,7 @@
         ".opencode/skills/sk-deep-review/references/state_format.md:171-206",
         ".opencode/skills/sk-deep-review/references/convergence.md:44-87",
         ".opencode/skills/sk-deep-review/references/convergence.md:364-411",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:335-437"
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:335-437"
       ]
     },
     {
@@ -883,7 +883,7 @@
         ".opencode/skills/sk-deep-review/references/state_format.md:171-206",
         ".opencode/skills/sk-deep-review/references/convergence.md:44-87",
         ".opencode/skills/sk-deep-review/references/convergence.md:364-411",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:335-437"
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:335-437"
       ]
     },
     {
@@ -900,7 +900,7 @@
         ".opencode/skills/sk-deep-review/references/state_format.md:171-206",
         ".opencode/skills/sk-deep-review/references/convergence.md:44-87",
         ".opencode/skills/sk-deep-review/references/convergence.md:364-411",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:335-437"
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:335-437"
       ]
     },
     {
@@ -917,7 +917,7 @@
         ".opencode/skills/sk-deep-review/references/state_format.md:171-206",
         ".opencode/skills/sk-deep-review/references/convergence.md:44-87",
         ".opencode/skills/sk-deep-review/references/convergence.md:364-411",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:335-437"
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:335-437"
       ]
     },
     {
@@ -934,7 +934,7 @@
         ".opencode/skills/sk-deep-review/references/state_format.md:171-206",
         ".opencode/skills/sk-deep-review/references/convergence.md:44-87",
         ".opencode/skills/sk-deep-review/references/convergence.md:364-411",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:335-437"
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:335-437"
       ]
     },
     {
@@ -952,7 +952,7 @@
         "`.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:614-658`",
         "`.opencode/skills/sk-deep-review/references/convergence.md:44-87`",
         "`.opencode/skills/sk-deep-review/references/convergence.md:364-411`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:432-437`"
+        "`.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:432-437`"
       ]
     },
     {
@@ -970,7 +970,7 @@
         "`.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:614-658`",
         "`.opencode/skills/sk-deep-review/references/convergence.md:44-87`",
         "`.opencode/skills/sk-deep-review/references/convergence.md:364-411`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:432-437`"
+        "`.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:432-437`"
       ]
     },
     {
@@ -988,7 +988,7 @@
         "`.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:614-658`",
         "`.opencode/skills/sk-deep-review/references/convergence.md:44-87`",
         "`.opencode/skills/sk-deep-review/references/convergence.md:364-411`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:432-437`"
+        "`.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:432-437`"
       ]
     },
     {
@@ -1006,7 +1006,7 @@
         "`.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:614-658`",
         "`.opencode/skills/sk-deep-review/references/convergence.md:44-87`",
         "`.opencode/skills/sk-deep-review/references/convergence.md:364-411`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:432-437`"
+        "`.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:432-437`"
       ]
     },
     {
@@ -1024,19 +1024,19 @@
         "`.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:614-658`",
         "`.opencode/skills/sk-deep-review/references/convergence.md:44-87`",
         "`.opencode/skills/sk-deep-review/references/convergence.md:364-411`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:432-437`"
+        "`.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:432-437`"
       ]
     },
     {
       "id": "finding-10-3-the-active-auto-workflow-does-not-serialize-that-first-class-blocked-stop-bundle",
-      "text": "The active auto workflow does not serialize that first-class blocked-stop bundle. Its convergence path still reduces stop legality to four binary `QUALITY GUARDS`, and when a guard fails it only logs `\"Quality guard failed: {violations}. Overriding STOP to CONTINUE.\"`, sets `decision = \"CONTINUE\"`, and exposes only `decision` plus a human-readable `reason`; no `blocked_stop`, `blockedBy`, `gateResults`, or `recoveryStrategy` append exists in the live path I inspected (`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:343-369`).",
+      "text": "The active auto workflow does not serialize that first-class blocked-stop bundle. Its convergence path still reduces stop legality to four binary `QUALITY GUARDS`, and when a guard fails it only logs `\"Quality guard failed: {violations}. Overriding STOP to CONTINUE.\"`, sets `decision = \"CONTINUE\"`, and exposes only `decision` plus a human-readable `reason`; no `blocked_stop`, `blockedBy`, `gateResults`, or `recoveryStrategy` append exists in the live path I inspected (`.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:343-369`).",
       "addedAtIteration": 10,
       "sources": [
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:39-40",
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-009.md:37-38",
         ".opencode/skills/sk-deep-review/references/convergence.md:44-98",
         ".opencode/skills/sk-deep-review/references/convergence.md:362-419",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:343-369",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:343-369",
         ".opencode/skills/sk-deep-review/scripts/reduce-state.cjs:236-295",
         ".opencode/skills/sk-deep-review/scripts/reduce-state.cjs:377-390",
         ".opencode/skills/sk-deep-review/scripts/reduce-state.cjs:484-520",
@@ -1053,7 +1053,7 @@
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-009.md:37-38",
         ".opencode/skills/sk-deep-review/references/convergence.md:44-98",
         ".opencode/skills/sk-deep-review/references/convergence.md:362-419",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:343-369",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:343-369",
         ".opencode/skills/sk-deep-review/scripts/reduce-state.cjs:236-295",
         ".opencode/skills/sk-deep-review/scripts/reduce-state.cjs:377-390",
         ".opencode/skills/sk-deep-review/scripts/reduce-state.cjs:484-520",
@@ -1070,7 +1070,7 @@
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-009.md:37-38",
         ".opencode/skills/sk-deep-review/references/convergence.md:44-98",
         ".opencode/skills/sk-deep-review/references/convergence.md:362-419",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:343-369",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:343-369",
         ".opencode/skills/sk-deep-review/scripts/reduce-state.cjs:236-295",
         ".opencode/skills/sk-deep-review/scripts/reduce-state.cjs:377-390",
         ".opencode/skills/sk-deep-review/scripts/reduce-state.cjs:484-520",
@@ -1087,7 +1087,7 @@
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-009.md:37-38",
         ".opencode/skills/sk-deep-review/references/convergence.md:44-98",
         ".opencode/skills/sk-deep-review/references/convergence.md:362-419",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:343-369",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:343-369",
         ".opencode/skills/sk-deep-review/scripts/reduce-state.cjs:236-295",
         ".opencode/skills/sk-deep-review/scripts/reduce-state.cjs:377-390",
         ".opencode/skills/sk-deep-review/scripts/reduce-state.cjs:484-520",
@@ -1104,7 +1104,7 @@
         ".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-009.md:37-38",
         ".opencode/skills/sk-deep-review/references/convergence.md:44-98",
         ".opencode/skills/sk-deep-review/references/convergence.md:362-419",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:343-369",
+        ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:343-369",
         ".opencode/skills/sk-deep-review/scripts/reduce-state.cjs:236-295",
         ".opencode/skills/sk-deep-review/scripts/reduce-state.cjs:377-390",
         ".opencode/skills/sk-deep-review/scripts/reduce-state.cjs:484-520",
@@ -1458,8 +1458,8 @@
         "`.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:579-583`",
         "`.opencode/skills/sk-deep-research/references/convergence.md:1183-1205`",
         "`.opencode/skills/sk-deep-review/references/convergence.md:661-683`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:322-331`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:432-437`"
+        "`.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:322-331`",
+        "`.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:432-437`"
       ]
     },
     {
@@ -1479,13 +1479,13 @@
         "`.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:579-583`",
         "`.opencode/skills/sk-deep-research/references/convergence.md:1183-1205`",
         "`.opencode/skills/sk-deep-review/references/convergence.md:661-683`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:322-331`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:432-437`"
+        "`.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:322-331`",
+        "`.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:432-437`"
       ]
     },
     {
       "id": "finding-14-5-the-published-convergence-docs-currently-overstate-reducer-side-graph-usage-rese",
-      "text": "The published convergence docs currently overstate reducer-side graph usage. Research docs say the reducer builds an in-memory graph from `graphEvents` and adds a `graphCoverage` sub-check to legal-stop evaluation; review docs make the same claim for `graphEvidence` under `findingStability`. But the workflow path I traced tells the LEAF agent to emit optional `graphEvents` and then runs `reduce-state.cjs`, while the inspected reducers themselves do not implement the documented graph rebuild or extra gate expansion (`.opencode/skills/sk-deep-research/references/convergence.md:1183-1205`, `.opencode/skills/sk-deep-review/references/convergence.md:661-683`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:322-331`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:432-437`).",
+      "text": "The published convergence docs currently overstate reducer-side graph usage. Research docs say the reducer builds an in-memory graph from `graphEvents` and adds a `graphCoverage` sub-check to legal-stop evaluation; review docs make the same claim for `graphEvidence` under `findingStability`. But the workflow path I traced tells the LEAF agent to emit optional `graphEvents` and then runs `reduce-state.cjs`, while the inspected reducers themselves do not implement the documented graph rebuild or extra gate expansion (`.opencode/skills/sk-deep-research/references/convergence.md:1183-1205`, `.opencode/skills/sk-deep-review/references/convergence.md:661-683`, `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:322-331`, `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:432-437`).",
       "addedAtIteration": 14,
       "sources": [
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:48-52`",
@@ -1500,8 +1500,8 @@
         "`.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:579-583`",
         "`.opencode/skills/sk-deep-research/references/convergence.md:1183-1205`",
         "`.opencode/skills/sk-deep-review/references/convergence.md:661-683`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:322-331`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:432-437`"
+        "`.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:322-331`",
+        "`.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:432-437`"
       ]
     },
     {
@@ -1521,8 +1521,8 @@
         "`.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:579-583`",
         "`.opencode/skills/sk-deep-research/references/convergence.md:1183-1205`",
         "`.opencode/skills/sk-deep-review/references/convergence.md:661-683`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:322-331`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:432-437`"
+        "`.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:322-331`",
+        "`.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:432-437`"
       ]
     },
     {
@@ -1542,8 +1542,8 @@
         "`.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:579-583`",
         "`.opencode/skills/sk-deep-research/references/convergence.md:1183-1205`",
         "`.opencode/skills/sk-deep-review/references/convergence.md:661-683`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:322-331`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:432-437`"
+        "`.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:322-331`",
+        "`.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:432-437`"
       ]
     },
     {
@@ -1563,8 +1563,8 @@
         "`.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:579-583`",
         "`.opencode/skills/sk-deep-research/references/convergence.md:1183-1205`",
         "`.opencode/skills/sk-deep-review/references/convergence.md:661-683`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:322-331`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:432-437`"
+        "`.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:322-331`",
+        "`.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:432-437`"
       ]
     },
     {
@@ -1584,8 +1584,8 @@
         "`.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:579-583`",
         "`.opencode/skills/sk-deep-research/references/convergence.md:1183-1205`",
         "`.opencode/skills/sk-deep-review/references/convergence.md:661-683`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:322-331`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:432-437`"
+        "`.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:322-331`",
+        "`.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:432-437`"
       ]
     },
     {
@@ -1597,12 +1597,12 @@
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-014.md:1-33`",
         "`.opencode/agents/deep-research.md:437-442`",
         "`.opencode/agents/deep-review.md:567-572`",
-        "`.opencode/commands/spec_kit/deep-research.md:201-203`",
-        "`.opencode/commands/spec_kit/deep-review.md:237-239`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:72`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:326-331`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:76`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:436-473`",
+        "`.opencode/commands/speckit/deep-research.md:201-203`",
+        "`.opencode/commands/speckit/deep-review.md:237-239`",
+        "`.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:72`",
+        "`.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:326-331`",
+        "`.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:76`",
+        "`.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:436-473`",
         "`.opencode/skills/sk-deep-research/SKILL.md:1-4`",
         "`.opencode/skills/sk-deep-review/SKILL.md:1-4`",
         "`.opencode/skills/sk-deep-review/SKILL.md:474-479`"
@@ -1610,19 +1610,19 @@
     },
     {
       "id": "finding-15-2-the-command-docs-do-not-carry-that-structural-routing-contract-forward-their-cod",
-      "text": "The command docs do not carry that structural-routing contract forward. Their \"Code Context Bootstrap\" sections tell operators to use only CocoIndex before starting the loop, at `.opencode/commands/spec_kit/deep-research.md:203` and `.opencode/commands/spec_kit/deep-review.md:239`; neither command doc mentions `code_graph_query`, `code_graph_context`, or `deep_loop_graph_convergence`.",
+      "text": "The command docs do not carry that structural-routing contract forward. Their \"Code Context Bootstrap\" sections tell operators to use only CocoIndex before starting the loop, at `.opencode/commands/speckit/deep-research.md:203` and `.opencode/commands/speckit/deep-review.md:239`; neither command doc mentions `code_graph_query`, `code_graph_context`, or `deep_loop_graph_convergence`.",
       "addedAtIteration": 15,
       "sources": [
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:48-52`",
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-014.md:1-33`",
         "`.opencode/agents/deep-research.md:437-442`",
         "`.opencode/agents/deep-review.md:567-572`",
-        "`.opencode/commands/spec_kit/deep-research.md:201-203`",
-        "`.opencode/commands/spec_kit/deep-review.md:237-239`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:72`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:326-331`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:76`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:436-473`",
+        "`.opencode/commands/speckit/deep-research.md:201-203`",
+        "`.opencode/commands/speckit/deep-review.md:237-239`",
+        "`.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:72`",
+        "`.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:326-331`",
+        "`.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:76`",
+        "`.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:436-473`",
         "`.opencode/skills/sk-deep-research/SKILL.md:1-4`",
         "`.opencode/skills/sk-deep-review/SKILL.md:1-4`",
         "`.opencode/skills/sk-deep-review/SKILL.md:474-479`"
@@ -1630,19 +1630,19 @@
     },
     {
       "id": "finding-15-3-the-executable-auto-yaml-wrappers-also-omit-structural-graph-tools-from-the-live",
-      "text": "The executable auto-YAML wrappers also omit structural graph tools from the live LEAF-tool budget. Deep research exposes `[Read, Write, Edit, Bash, Grep, Glob, WebFetch, mcp__cocoindex_code__search]` at `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:72`, and deep review exposes `[Read, Write, Edit, Bash, Grep, Glob, mcp__cocoindex_code__search]` at `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:76`; neither wrapper provisions `code_graph_query`, `code_graph_context`, or `deep_loop_graph_convergence`.",
+      "text": "The executable auto-YAML wrappers also omit structural graph tools from the live LEAF-tool budget. Deep research exposes `[Read, Write, Edit, Bash, Grep, Glob, WebFetch, mcp__cocoindex_code__search]` at `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:72`, and deep review exposes `[Read, Write, Edit, Bash, Grep, Glob, mcp__cocoindex_code__search]` at `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:76`; neither wrapper provisions `code_graph_query`, `code_graph_context`, or `deep_loop_graph_convergence`.",
       "addedAtIteration": 15,
       "sources": [
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:48-52`",
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-014.md:1-33`",
         "`.opencode/agents/deep-research.md:437-442`",
         "`.opencode/agents/deep-review.md:567-572`",
-        "`.opencode/commands/spec_kit/deep-research.md:201-203`",
-        "`.opencode/commands/spec_kit/deep-review.md:237-239`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:72`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:326-331`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:76`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:436-473`",
+        "`.opencode/commands/speckit/deep-research.md:201-203`",
+        "`.opencode/commands/speckit/deep-review.md:237-239`",
+        "`.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:72`",
+        "`.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:326-331`",
+        "`.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:76`",
+        "`.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:436-473`",
         "`.opencode/skills/sk-deep-research/SKILL.md:1-4`",
         "`.opencode/skills/sk-deep-review/SKILL.md:1-4`",
         "`.opencode/skills/sk-deep-review/SKILL.md:474-479`"
@@ -1650,19 +1650,19 @@
     },
     {
       "id": "finding-15-4-the-live-wrapper-path-after-each-iteration-is-still-emit-optional-graphevents-th",
-      "text": "The live wrapper path after each iteration is still \"emit optional `graphEvents`, then run `reduce-state.cjs`,\" not \"call structural graph tools before convergence.\" The deep-research workflow says to include optional `graphEvents` at `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:326` and then runs `node .opencode/skills/sk-deep-research/scripts/reduce-state.cjs` at `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:331`; deep review mirrors that pattern at `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:436`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:437`, and `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:473`.",
+      "text": "The live wrapper path after each iteration is still \"emit optional `graphEvents`, then run `reduce-state.cjs`,\" not \"call structural graph tools before convergence.\" The deep-research workflow says to include optional `graphEvents` at `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:326` and then runs `node .opencode/skills/sk-deep-research/scripts/reduce-state.cjs` at `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:331`; deep review mirrors that pattern at `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:436`, `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:437`, and `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:473`.",
       "addedAtIteration": 15,
       "sources": [
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:48-52`",
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-014.md:1-33`",
         "`.opencode/agents/deep-research.md:437-442`",
         "`.opencode/agents/deep-review.md:567-572`",
-        "`.opencode/commands/spec_kit/deep-research.md:201-203`",
-        "`.opencode/commands/spec_kit/deep-review.md:237-239`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:72`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:326-331`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:76`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:436-473`",
+        "`.opencode/commands/speckit/deep-research.md:201-203`",
+        "`.opencode/commands/speckit/deep-review.md:237-239`",
+        "`.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:72`",
+        "`.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:326-331`",
+        "`.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:76`",
+        "`.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:436-473`",
         "`.opencode/skills/sk-deep-research/SKILL.md:1-4`",
         "`.opencode/skills/sk-deep-review/SKILL.md:1-4`",
         "`.opencode/skills/sk-deep-review/SKILL.md:474-479`"
@@ -1677,12 +1677,12 @@
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-014.md:1-33`",
         "`.opencode/agents/deep-research.md:437-442`",
         "`.opencode/agents/deep-review.md:567-572`",
-        "`.opencode/commands/spec_kit/deep-research.md:201-203`",
-        "`.opencode/commands/spec_kit/deep-review.md:237-239`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:72`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:326-331`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:76`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:436-473`",
+        "`.opencode/commands/speckit/deep-research.md:201-203`",
+        "`.opencode/commands/speckit/deep-review.md:237-239`",
+        "`.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:72`",
+        "`.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:326-331`",
+        "`.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:76`",
+        "`.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:436-473`",
         "`.opencode/skills/sk-deep-research/SKILL.md:1-4`",
         "`.opencode/skills/sk-deep-review/SKILL.md:1-4`",
         "`.opencode/skills/sk-deep-review/SKILL.md:474-479`"
@@ -1697,12 +1697,12 @@
         "`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-014.md:1-33`",
         "`.opencode/agents/deep-research.md:437-442`",
         "`.opencode/agents/deep-review.md:567-572`",
-        "`.opencode/commands/spec_kit/deep-research.md:201-203`",
-        "`.opencode/commands/spec_kit/deep-review.md:237-239`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:72`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:326-331`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:76`",
-        "`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:436-473`",
+        "`.opencode/commands/speckit/deep-research.md:201-203`",
+        "`.opencode/commands/speckit/deep-review.md:237-239`",
+        "`.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:72`",
+        "`.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:326-331`",
+        "`.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:76`",
+        "`.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:436-473`",
         "`.opencode/skills/sk-deep-research/SKILL.md:1-4`",
         "`.opencode/skills/sk-deep-review/SKILL.md:1-4`",
         "`.opencode/skills/sk-deep-review/SKILL.md:474-479`"
@@ -2270,17 +2270,17 @@
     },
     {
       "id": "ruled-out-1-12-no-evidence-that-yaml-workflow-outputs-bypass-the-reducer-owned-packet-surfaces-",
-      "text": "No evidence that YAML workflow outputs bypass the reducer-owned packet surfaces; both auto and confirm flows still target `findings-registry.json` and `deep-research-dashboard.md` as synchronized outputs (.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:83-84; .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:197; .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:83-84; .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:196-217).",
+      "text": "No evidence that YAML workflow outputs bypass the reducer-owned packet surfaces; both auto and confirm flows still target `findings-registry.json` and `deep-research-dashboard.md` as synchronized outputs (.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:83-84; .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:197; .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:83-84; .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:196-217).",
       "addedAtIteration": 1
     },
     {
       "id": "ruled-out-2-3-opencode-command-spec-kit-assets-spec-kit-deep-research-auto-yaml-326",
-      "text": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:326",
+      "text": ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:326",
       "addedAtIteration": 2
     },
     {
       "id": "ruled-out-2-4-opencode-command-spec-kit-assets-spec-kit-deep-review-auto-yaml-436-437",
-      "text": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:436-437",
+      "text": ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:436-437",
       "addedAtIteration": 2
     },
     {
@@ -2410,7 +2410,7 @@
     },
     {
       "id": "ruled-out-4-3-this-is-not-isolated-to-one-loop-the-research-and-review-auto-yamls-both-classif",
-      "text": "This is not isolated to one loop. The research and review auto YAMLs both classify the same lineage branches while only surfacing a smaller event set in the active runtime path (`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:128-153`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:155-177`).",
+      "text": "This is not isolated to one loop. The research and review auto YAMLs both classify the same lineage branches while only surfacing a smaller event set in the active runtime path (`.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:128-153`, `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:155-177`).",
       "addedAtIteration": 4
     },
     {
@@ -2420,7 +2420,7 @@
     },
     {
       "id": "ruled-out-5-3-stuckrecovery-is-not-entirely-absent-from-runtime-serialization-but-the-only-con",
-      "text": "`stuckRecovery` is not entirely absent from runtime serialization, but the only concrete live record I found is review's raw `stuck_recovery` event; that is weaker than the documented shared enum contract and does not prove consumer-visible normalization (.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:375-383).",
+      "text": "`stuckRecovery` is not entirely absent from runtime serialization, but the only concrete live record I found is review's raw `stuck_recovery` event; that is weaker than the documented shared enum contract and does not prove consumer-visible normalization (.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:375-383).",
       "addedAtIteration": 5
     },
     {
@@ -2445,7 +2445,7 @@
     },
     {
       "id": "ruled-out-6-3-this-is-not-limited-to-one-loop-both-research-and-review-convergence-references-",
-      "text": "This is not limited to one loop. Both research and review convergence references promise graph-aware gate participation, but both active auto workflows keep STOP evaluation inline and local (`.opencode/skills/sk-deep-research/references/convergence.md:1181-1205`, `.opencode/skills/sk-deep-review/references/convergence.md:661-683`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:250-277`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:343-375`).",
+      "text": "This is not limited to one loop. Both research and review convergence references promise graph-aware gate participation, but both active auto workflows keep STOP evaluation inline and local (`.opencode/skills/sk-deep-research/references/convergence.md:1181-1205`, `.opencode/skills/sk-deep-review/references/convergence.md:661-683`, `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:250-277`, `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:343-375`).",
       "addedAtIteration": 6
     },
     {

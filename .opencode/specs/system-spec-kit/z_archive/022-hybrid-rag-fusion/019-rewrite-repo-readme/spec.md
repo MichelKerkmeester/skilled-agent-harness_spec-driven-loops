@@ -37,7 +37,7 @@ _memory:
 | **Branch** | `main` |
 | **Parent** | `022-hybrid-rag-fusion` (Phase 019) |
 | **Parent Spec** | ../spec.md |
-| **Predecessor** | ../018-rewrite-system-speckit-readme/spec.md |
+| **Predecessor** | ../018-rewrite-system-spec-kit-readme/spec.md |
 | **Successor** | ../020-post-release-fixes/spec.md |
 <!-- /ANCHOR:metadata -->
 
@@ -73,7 +73,7 @@ Produce a complete rewrite that serves as the top-level entry point to the OpenC
 
 - MCP server runtime code changes
 - MCP README (owned by `016-rewrite-memory-mcp-readme`)
-- Spec Kit README (owned by `018-rewrite-system-speckit-readme`)
+- Spec Kit README (owned by `018-rewrite-system-spec-kit-readme`)
 - Individual skill or agent documentation updates
 
 ### Files to Change
@@ -163,4 +163,4 @@ Target: Complete rewrite of root README as system overview
 | Field | Value |
 |-------|-------|
 | **Parent Spec** | ../spec.md |
-| **Previous Phase** | ../018-rewrite-system-speckit-readme/spec.md |
+| **Previous Phase** | ../018-rewrite-system-spec-kit-readme/spec.md |

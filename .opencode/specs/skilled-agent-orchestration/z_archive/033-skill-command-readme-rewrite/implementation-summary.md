@@ -73,7 +73,7 @@ The packet repair reused the committed rewrite narrative, recast it into the req
 
 | Decision | Why |
 |----------|-----|
-| Pointed command-surface references at `.opencode/commands/README.txt`, `.opencode/commands/create/README.txt`, `.opencode/commands/memory/README.txt`, and `.opencode/commands/spec_kit/README.txt` | Those are the currently committed command README files in this repo, so they satisfy validator integrity checks |
+| Pointed command-surface references at `.opencode/commands/README.txt`, `.opencode/commands/create/README.txt`, `.opencode/commands/memory/README.txt`, and `.opencode/commands/speckit/README.txt` | Those are the currently committed command README files in this repo, so they satisfy validator integrity checks |
 | Summarized rewrite batches instead of enumerating every single README path in backticks | The original packet content is preserved, but the validator only needs current, resolvable references |
 | Added a checklist with evidence only where the packet repair itself can verify completion | This keeps the packet truthful without inventing historical proof for every underlying README change |
 <!-- /ANCHOR:decisions -->

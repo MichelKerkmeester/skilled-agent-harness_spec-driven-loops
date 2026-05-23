@@ -40,7 +40,7 @@ finding: Babysitter suggests `system-spec-kit` should simplify its validation ar
 - **Migration path:** Start by tagging existing validation rules as `structural` or `workflow-specific`, move one workflow at a time to command-owned checks, and keep `validate.sh --strict` as a compatibility umbrella until coverage is proven.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`, `.opencode/skills/system-spec-kit/scripts/spec/create.sh`, `.opencode/commands/spec_kit/assets/`
+- **Target file or module:** `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`, `.opencode/skills/system-spec-kit/scripts/spec/create.sh`, `.opencode/commands/speckit/assets/`
 - **Change type:** architectural simplification
 - **Blast radius:** large
 - **Prerequisites:** classify existing rules by scope and define a workflow-gate interface

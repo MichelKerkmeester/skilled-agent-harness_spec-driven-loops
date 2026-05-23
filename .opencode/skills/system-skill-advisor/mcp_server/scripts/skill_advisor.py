@@ -1752,7 +1752,7 @@ DEFAULT_UNCERTAINTY_THRESHOLD = NATIVE_DEFAULT_UNCERTAINTY_THRESHOLD
 COMMAND_BRIDGES = {
     # ─────────────────────────────────────────────────────────────────
     # T-SAP-03 (R46-001): per-subcommand bridges for /spec_kit family.
-    # Previously all /spec_kit:* subcommands collapsed to `command-spec-kit`
+    # Previously all /speckit:* subcommands collapsed to `command-spec-kit`
     # at `kind_priority=2`, so `/deep:start-research-loop` lost its owning-skill
     # signal (should route to `deep-research`, not `command-spec-kit`).
     # Dict insertion order IS iteration order in Python 3.7+, so the specific
@@ -1762,18 +1762,18 @@ COMMAND_BRIDGES = {
     # are substring-matched inside each bridge and do NOT need separate entries.
     # ─────────────────────────────────────────────────────────────────
     "command-spec-kit-plan": {
-        "description": "Run the SpecKit 8-step planning workflow using /spec_kit:plan.",
-        "slash_markers": ["/spec_kit:plan", "spec_kit:plan"],
+        "description": "Run the SpecKit 8-step planning workflow using /speckit:plan.",
+        "slash_markers": ["/speckit:plan", "spec_kit:plan"],
         "owning_skill": "system-spec-kit",
     },
     "command-spec-kit-complete": {
-        "description": "Run the full SpecKit 14+ step lifecycle using /spec_kit:complete.",
-        "slash_markers": ["/spec_kit:complete", "spec_kit:complete"],
+        "description": "Run the full SpecKit 14+ step lifecycle using /speckit:complete.",
+        "slash_markers": ["/speckit:complete", "spec_kit:complete"],
         "owning_skill": "system-spec-kit",
     },
     "command-spec-kit-implement": {
-        "description": "Run the SpecKit 9-step implementation workflow using /spec_kit:implement.",
-        "slash_markers": ["/spec_kit:implement", "spec_kit:implement"],
+        "description": "Run the SpecKit 9-step implementation workflow using /speckit:implement.",
+        "slash_markers": ["/speckit:implement", "spec_kit:implement"],
         "owning_skill": "system-spec-kit",
     },
     "command-spec-kit-deep-research": {
@@ -1787,8 +1787,8 @@ COMMAND_BRIDGES = {
         "owning_skill": "deep-review",
     },
     "command-spec-kit-resume": {
-        "description": "Resume an existing spec folder using /spec_kit:resume.",
-        "slash_markers": ["/spec_kit:resume", "spec_kit:resume"],
+        "description": "Resume an existing spec folder using /speckit:resume.",
+        "slash_markers": ["/speckit:resume", "spec_kit:resume"],
         "owning_skill": "system-spec-kit",
     },
     # Legacy bridge retained for 1-release compatibility; deprecated.
@@ -1849,7 +1849,7 @@ COMMAND_BRIDGE_OWNER_NORMALIZATION = {
 }
 
 COMMAND_BRIDGE_EXPLICIT_ALIASES = {
-    # The canonical Python regression contract treats /spec_kit:plan as the
+    # The canonical Python regression contract treats /speckit:plan as the
     # command family bridge. Deep loop/resume subcommands keep their narrower
     # owners because they enforce distinct skill-owned state machines.
     "command-spec-kit-plan": "command-spec-kit",

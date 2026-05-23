@@ -40,7 +40,7 @@ _memory:
 | **Created** | 2026-05-02 |
 | **Branch** | `main` |
 | **Parent** | 062-deep-loop-command-flow-stress-tests |
-| **Target** | `/spec_kit:deep-review` + `@deep-review` |
+| **Target** | `/speckit:deep-review` + `@deep-review` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -66,7 +66,7 @@ The 060/004 methodology proved that LEAF agents with command-orchestrator archit
 
 ### Out of Scope
 - Changes to the deep-review agent body (already promoted in 061/008)
-- Changes to /spec_kit:deep-review command body (out of stress-test scope)
+- Changes to /speckit:deep-review command body (out of stress-test scope)
 - Changes to sk-improve-agent substrate (locked at 060/005)
 
 

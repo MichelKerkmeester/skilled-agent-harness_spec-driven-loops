@@ -231,7 +231,7 @@ Autonomous iterative research loop (deep-research workflow) with externalized st
 
 - Identify which anchor / file failed (use `--verbose`)
 - Patch the file (do not skip validate)
-- Resume loop via `/spec_kit:resume 001-research-smallcode`
+- Resume loop via `/speckit:resume 001-research-smallcode`
 
 ### If smallcode-master Patterns Already Shipped
 
@@ -294,7 +294,7 @@ Phase 4 (hand-off — out of scope for this packet)
 
 - Save current state snapshot: `cp -r research/ research_snapshot_{timestamp}/`
 - Apply mitigation (e.g., adjust strategy.md focus)
-- Resume via `/spec_kit:resume`
+- Resume via `/speckit:resume`
 
 ### Post-Synthesis Rollback
 

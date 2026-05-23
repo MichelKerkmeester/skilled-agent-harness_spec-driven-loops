@@ -135,7 +135,7 @@ Mean newFindings (iters 1-8): 3.75. Last 4 substantive iters averaged ~1.75 find
 ## 6. RISKS (review-identified)
 
 - **Documentation accuracy drift** (state_format.md field name mismatches) — minor risk if future contributors trust the docs over the code; fix via doc-update pass
-- **Phase metadata staleness** (completion_pct=5 in 4 phase tasks.md after shipping) — risk of misleading future `/spec_kit:resume` calls; fix by bumping to 100
+- **Phase metadata staleness** (completion_pct=5 in 4 phase tasks.md after shipping) — risk of misleading future `/speckit:resume` calls; fix by bumping to 100
 - **Missing SIGTERM handlers in scripts** — risk of DB-connection leak on kill; fix via signal-handler registration
 
 ## 7. DROPPED ALTERNATIVES
@@ -167,4 +167,4 @@ Total fix-pack scope: ~27 findings across ~5 logical groups. Estimated: 1-2 cli-
 
 ## 10. NEXT STEPS
 
-`/spec_kit:plan` for a remediation packet OR direct cli-codex fix-pack dispatch (single commit if scope is bundled) to address the 27 confirmed P1 + P2 advisories. The skill is shippable as-is; the fix-pack is quality polish.
+`/speckit:plan` for a remediation packet OR direct cli-codex fix-pack dispatch (single commit if scope is bundled) to address the 27 confirmed P1 + P2 advisories. The skill is shippable as-is; the fix-pack is quality polish.

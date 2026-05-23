@@ -46,10 +46,10 @@ None.
   - `.opencode/skills/sk-code-review/SKILL.md:79` refers to `@deep-review`.
   - `.opencode/skills/system-spec-kit/SKILL.md:125` and `.opencode/skills/system-spec-kit/SKILL.md:455` point to `../deep-research/references/spec_check_protocol.md`, which resolves from `system-spec-kit` to the existing `.opencode/skills/deep-research/references/spec_check_protocol.md`.
 - Command entrypoints and workflow assets use renamed targets:
-  - `.opencode/commands/spec_kit/deep-review.md:21` and `.opencode/commands/spec_kit/deep-review.md:22` load `spec_kit_deep-review_auto.yaml` / `spec_kit_deep-review_confirm.yaml`.
-  - `.opencode/commands/spec_kit/deep-research.md:19` and `.opencode/commands/spec_kit/deep-research.md:20` load `spec_kit_deep-research_auto.yaml` / `spec_kit_deep-research_confirm.yaml`.
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:56` and `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:56` set `skill: deep-review`.
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:67` and `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:53` set `skill: deep-research`.
+  - `.opencode/commands/speckit/deep-review.md:21` and `.opencode/commands/speckit/deep-review.md:22` load `spec_kit_deep-review_auto.yaml` / `spec_kit_deep-review_confirm.yaml`.
+  - `.opencode/commands/speckit/deep-research.md:19` and `.opencode/commands/speckit/deep-research.md:20` load `spec_kit_deep-research_auto.yaml` / `spec_kit_deep-research_confirm.yaml`.
+  - `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:56` and `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:56` set `skill: deep-review`.
+  - `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:67` and `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:53` set `skill: deep-research`.
 - Focused stale-path searches found no active `sk-deep-review`, `sk-deep-research`, or `.opencode/skills/sk-deep-*` references in the command, skill, agent, runtime mirror, root-doc, or active-spec surfaces checked.
 
 # DIMENSION COVERAGE
@@ -70,7 +70,7 @@ Ruled out:
 - No `sk-deep-review` or `sk-deep-research` graph edge targets in active `.opencode/skills/*/graph-metadata.json`.
 - No missing `deep-review` / `deep-research` graph edge targets.
 - No stale `.opencode/skills/sk-deep-review` or `.opencode/skills/sk-deep-research` relative path links in active command/skill/agent/runtime mirror surfaces after excluding historical changelogs, data logs, runs, and pre-promote backups.
-- The requested `ls .opencode/commands/spec_kit/spec_kit_deep-*` pattern does not match command markdown files in this repo because the command docs are `.opencode/commands/spec_kit/deep-review.md` and `.opencode/commands/spec_kit/deep-research.md`; the `spec_kit_deep-*` names are YAML assets under `.opencode/commands/spec_kit/assets/`.
+- The requested `ls .opencode/commands/speckit/spec_kit_deep-*` pattern does not match command markdown files in this repo because the command docs are `.opencode/commands/speckit/deep-review.md` and `.opencode/commands/speckit/deep-research.md`; the `spec_kit_deep-*` names are YAML assets under `.opencode/commands/speckit/assets/`.
 
 # NEXT ITERATION RECOMMENDATIONS
 

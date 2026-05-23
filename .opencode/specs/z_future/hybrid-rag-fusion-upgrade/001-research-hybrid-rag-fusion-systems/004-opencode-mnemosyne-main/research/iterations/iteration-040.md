@@ -115,7 +115,7 @@ Read-only note: I did not update [research/research.md](/Users/michelkerkmeester
 - Validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED` with `Errors: 0  Warnings: 0`, plus the known read-only warning `cannot create temp file for here document: Operation not permitted`.
 
 ## Ruled Out
-- Replacing Public’s current `/spec_kit:resume` and `session_bootstrap()` recovery contract with direct `memory_recall` semantics.
+- Replacing Public’s current `/speckit:resume` and `session_bootstrap()` recovery contract with direct `memory_recall` semantics.
 - Importing basename-derived `project/global` as Public’s primary scope authority.
 - Adding a general `core=true` flag to routine Public save flows instead of routing durable rules through constitutional memory.
 - Introducing a second local memory backend just to get a simpler tool surface.
@@ -129,7 +129,7 @@ Read-only note: I did not update [research/research.md](/Users/michelkerkmeester
 Translate this into packet-ready operator deliverables:
 1. a transport-owned compaction memory action card that complements the existing resume payload,
 2. an audited `memory_remember` intake or equivalent thin facade over existing Public save/retrieval authority,
-3. a migration guide that maps `memory_recall`, `memory_store`, `memory_delete`, `global`, and `core` onto `/spec_kit:resume`, `session_bootstrap()`, `/memory:save`, `/memory:learn`, and governed retrieval scope.
+3. a migration guide that maps `memory_recall`, `memory_store`, `memory_delete`, `global`, and `core` onto `/speckit:resume`, `session_bootstrap()`, `/memory:save`, `/memory:learn`, and governed retrieval scope.
 
 Read-only note: I did not update the phase folder artifacts or save memory because this sandbox is read-only.
 --- Iteration 37 ---
@@ -488,9 +488,9 @@ Use this skill when:
 
 ### When NOT to Use
 
-- Simple, single-question research (use direct codebase search or `/spec_kit:plan`)
-- Known-solution documentation (use `/spec_kit:plan`)
-- Implementation tasks (use `/spec_kit:implement`)
+- Simple, single-question research (use direct codebase search or `/speckit:plan`)
+- Known-solution documentation (use `/speckit:plan`)
+- Implementation tasks (use `/speckit:implement`)
 - Quick codebase searches (use `@context` or direct Grep/Glob)
 - Fewer than 3 sources needed (single-pass research suffices)
 
@@ -3858,7 +3858,7 @@ exec
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/memory-summaries.ts:95: * @param embeddingFn - Async function to compute embedding vector
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/memory-summaries.ts:157: * @param queryEmbedding - Query vector to compare against stored summaries
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:505:        specFolder: 'specs/022-hybrid-rag-fusion',
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:518:      expect(content).toContain('/spec_kit:resume specs/022-hybrid-rag-fusion');
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:518:      expect(content).toContain('/speckit:resume specs/022-hybrid-rag-fusion');
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:141:    const vectorIndex = await import('../lib/search/vector-index');
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:142:    vectorIndex.initializeDb(dbPath);
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:144:    const db = vectorIndex.getDb();

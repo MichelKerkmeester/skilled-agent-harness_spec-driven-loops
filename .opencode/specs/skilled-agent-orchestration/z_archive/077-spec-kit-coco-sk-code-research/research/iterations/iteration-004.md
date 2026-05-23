@@ -56,7 +56,7 @@ No new direct sk-code finding this iteration. The next pass should test whether 
 - Q4: Still open for actual CocoIndex query/rank checks against `sk-code` resources.
 - Q5: Still open for detailed sk-code OpenCode reference/assets gaps.
 - Q6: Still open for `STACK_FOLDERS` and resource_map drift.
-- Q7: Still open for cross-skill loading during `/spec_kit:complete`-style writes.
+- Q7: Still open for cross-skill loading during `/speckit:complete`-style writes.
 
 ## Next Focus (for iteration 5)
 Audit mcp-coco-index ingestion of `sk-code` resources and the embedding-provider abstraction. Start with the default include/exclude settings, the project `.cocoindex_code/settings.yml` if present, and live or fixture searches for `sk-code` OpenCode resource phrases; then check whether model/provider changes are safely represented in config, daemon restart behavior, and docs.

@@ -65,9 +65,9 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] `/spec_kit:plan:auto "test" :with-phases --phases 2` creates parent + 2 child folders
-- [ ] CHK-021 [P0] `/spec_kit:plan:auto "test"` (without `:with-phases`) works unchanged
-- [ ] CHK-022 [P1] `/spec_kit:complete:auto "test" :with-phases --phases 2` creates folders and proceeds to complete
+- [ ] CHK-020 [P0] `/speckit:plan:auto "test" :with-phases --phases 2` creates parent + 2 child folders
+- [ ] CHK-021 [P0] `/speckit:plan:auto "test"` (without `:with-phases`) works unchanged
+- [ ] CHK-022 [P1] `/speckit:complete:auto "test" :with-phases --phases 2` creates folders and proceeds to complete
 - [ ] CHK-023 [P1] Phase decomposition pre-workflow populates parent with Phase Documentation Map
 <!-- /ANCHOR:testing -->
 

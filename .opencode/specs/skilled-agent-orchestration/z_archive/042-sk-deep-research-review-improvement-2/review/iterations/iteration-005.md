@@ -179,20 +179,20 @@ Full details: `.opencode/skills/sk-git/`
 | **File modification**     | Gate 3 (ask spec folder) → Gate 1 → Gate 2 → Load memory context → Execute                                                         |
 | **Research/exploration**  | `memory_match_triggers()` → `memory_context()` (unified) OR `memory_search()` (targeted) → Document findings                       |
 | **Code search**           | Semantic/concept → `CocoIndex search` · Structural (callers/imports/deps) → `code_graph_query` · Exact text → `Grep` · File paths → `Glob` · Read contents → `Read` |
-| **Resume prior work**     | `/spec_kit:resume` → Rebuild context from `handover.md` → `_memory.continuity` → canonical spec docs → Review checklist → Continue |
+| **Resume prior work**     | `/speckit:resume` → Rebuild context from `handover.md` → `_memory.continuity` → canonical spec docs → Review checklist → Continue |
 | **Save context**          | Continuity-only `_memory.continuity` updates may be edited directly in canonical spec docs; use `/memory:save` or `generate-context.js --json '<data>' [spec-folder]` for indexed saves |
 | **Claim completion**      | Validation runs automatically → Load `checklist.md` → Verify ALL items → Mark with evidence                                        |
-| **End session**           | `/spec_kit:handover` → Save context → Provide continuation prompt                                                                  |
+| **End session**           | `/speckit:handover` → Save context → Provide continuation prompt                                                                  |
 | **New spec folder**       | Option B (Gate 3) → Research via Task tool → Evidence-based plan → Approval → Implement                                            |
 | **Complex multi-step**    | Task tool → Decompose → Delegate → Synthesize                                                                                      |
 | **Documentation**         | sk-doc skill → Classify → Load template → Fill → Validate (`validate_document.py`) → DQI score → Verify                            |
 | **Web code**              | sk-code-web skill → Webflow/CDN standards, minification, browser testing                                                           |
 | **OpenCode system code**  | sk-code-opencode skill → JS/TS/Python/Shell standards, language detection, quality checklists                                       |
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
-| **Phase workflow**        | `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` → Decompose → `create.sh --phase` → Populate → Plan first child  |
+| **Phase workflow**        | `/speckit:plan :with-phases` or `/speckit:complete :with-phases` → Decompose → `create.sh --phase` → Populate → Plan first child  |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
-| **Deep research**         | `/spec_kit:deep-research` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
-| **Deep review**           | `/spec_kit:deep-review` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
+| **Deep research**         | `/speckit:deep-research` → Init state → Loop (@deep-research iterations) → Convergence → Synthesize → Memory save                            |
+| **Deep review**           | `/speckit:deep-review` → Init state → Loop (@deep-review iterations) → Convergence → Synthesize → Memory save                                |
 | **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                            |
 | **Constitutional memory** | `/memory:learn` → Constitutional memory manager: create, list, edit, remove, budget                                               |
 | **Shared memory**         | `/memory:manage shared` → Shared-memory lifecycle: create spaces, manage memberships, inspect rollout                                    |
@@ -203,7 +203,7 @@ These recovery steps are universal across Claude Code, OpenCode, Codex CLI, Copi
 
 ### After Context Compaction Or `/clear`
 
-1. **FIRST ACTION** — use `/spec_kit:resume` as the canonical recovery surface
+1. **FIRST ACTION** — use `/speckit:resume` as the canonical recovery surface
 2. Rebuild prior work in this order: `handover.md` → `_memory.continuity` → canonical spec docs (`implementation-summary.md`, `tasks.md`, `plan.md`, `spec.md`)
 3. Use `memory_context()` or `memory_search()` only when those packet-local continuity sources do not answer the question
 4. Re-read the active runtime-specific instructions if they exist (`CODEX.md`, `GEMINI.md`, `.claude/CLAUDE.md`, runtime agent docs)
@@ -613,7 +613,7 @@ Use this skill when:
 
 - Simple single-pass code review (use `sk-code-review` instead)
 - Known issues that just need fixing (go directly to implementation)
-- Implementation tasks (use `sk-code-opencode` or `/spec_kit:implement`)
+- Implementation tasks (use `sk-code-opencode` or `/speckit:implement`)
 - Quick one-file checks (use direct Grep/Read)
 - Fewer than 2 review dimensions needed (single-pass suffices)
 
@@ -733,11 +733,11 @@ Detect the current review phase from dispatch context to load appropriate resour
 ### Architecture: 3-Layer Integration
 
 ```
-User invokes: /spec_kit:deep-review "target"
+User invokes: /speckit:deep-review "target"
                     |
                     v
     ┌─────────────────────────────────┐
-    │  /spec_kit:deep-review command  │  Layer 1: Command
+    │  /speckit:deep-review command  │  Layer 1: Command
     │  (YAML workflow + loop config)    │  Manages loop lifecycle
     └──────────────┬──────────────────┘
                    |
@@ -1323,12 +1323,12 @@ Define an orchestrator-layer wave execution model that segments large review and
 | `.opencode/skills/sk-deep-review/assets/deep_review_config.json` | Modify | Add wave mode, activation gates, segment planner versioning, and board configuration fields. |
 | `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md` | Modify | Add segment queues, conflict tracking, and merge checkpoints while keeping execution-ledger ownership machine-first. |
 | `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml` | Modify | Define wave-aware review outputs and reducer-owned coordination sections. |
-| `.opencode/commands/spec_kit/deep-research.md` | Modify | Document wave-mode legality, activation gates, and the prerequisite fan-out/join proof for research. |
-| `.opencode/commands/spec_kit/deep-review.md` | Modify | Document wave-mode legality, activation gates, and the prerequisite fan-out/join proof for review. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | Add domain-ledger prepass, fan-out/join, prune, promote, and keyed merge steps for research. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modify | Keep confirm-mode research flow aligned with activation-gated wave lifecycle rules. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | Add hotspot-inventory prepass, fan-out/join, prune, promote, and keyed merge steps for review. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modify | Keep confirm-mode review flow aligned with activation-gated wave lifecycle rules. |
+| `.opencode/commands/speckit/deep-research.md` | Modify | Document wave-mode legality, activation gates, and the prerequisite fan-out/join proof for research. |
+| `.opencode/commands/speckit/deep-review.md` | Modify | Document wave-mode legality, activation gates, and the prerequisite fan-out/join proof for review. |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | Modify | Add domain-ledger prepass, fan-out/join, prune, promote, and keyed merge steps for research. |
+| `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml` | Modify | Keep confirm-mode research flow aligned with activation-gated wave lifecycle rules. |
+| `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml` | Modify | Add hotspot-inventory prepass, fan-out/join, prune, promote, and keyed merge steps for review. |
+| `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml` | Modify | Keep confirm-mode review flow aligned with activation-gated wave lifecycle rules. |
 | `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts` | Create | Verify segment planning, ranking, and clustering behavior. |
 | `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts` | Create | Verify lifecycle transitions, prune rules, and promotion rules. |
 | `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts` | Create | Verify segment isolation, deterministic merge, and idempotent replay behavior. |
@@ -1559,22 +1559,22 @@ The second pattern was release-surface optimism outrunning evidence. Phase 008 c
 
 ## 2. Planning Trigger
 
-CONDITIONAL routes to `/spec_kit:plan` for remediation before the 042 bundle can be treated as PASS. The next packet should preserve this closing audit as the baseline, open with the active P1 registry below, and sequence the remediation lanes in implementation dependency order so runtime and persistence fixes land before documentation and packet-root closeout updates.
+CONDITIONAL routes to `/speckit:plan` for remediation before the 042 bundle can be treated as PASS. The next packet should preserve this closing audit as the baseline, open with the active P1 registry below, and sequence the remediation lanes in implementation dependency order so runtime and persistence fixes land before documentation and packet-root closeout updates.
 
 ## 3. Active Finding Registry
 
 | ID | Sev | Dimension | Title | Origin | Key evidence | First seen | Last seen | Status |
 |---|---|---|---|---|---|---:|---:|---|
 | F001 | P1 | correctness | Canonical deep-review agent still emits an unparseable iteration schema | `I001` (`iteration-001.md:18`) | `.opencode/agents/deep-review.md:147`; `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:137-206` | 1 | 1 | active |
-| F002 | P1 | correctness | Claim-adjudication is documented as a hard stop gate but never participates in STOP eligibility | `I001` (`iteration-001.md:19`) | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:574`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:388-429` | 1 | 1 | active |
-| F003 | P2 | correctness | Review config JSONL collapses requested dimensions into one string element | `I001` (`iteration-001.md:22`) | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:260`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:259` | 1 | 1 | active |
+| F002 | P1 | correctness | Claim-adjudication is documented as a hard stop gate but never participates in STOP eligibility | `I001` (`iteration-001.md:19`) | `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:574`; `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:388-429` | 1 | 1 | active |
+| F003 | P2 | correctness | Review config JSONL collapses requested dimensions into one string element | `I001` (`iteration-001.md:22`) | `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:260`; `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:259` | 1 | 1 | active |
 | F004 | P1 | security | Coverage-graph writes are not session-isolated when IDs collide | `I002` (`iteration-002.md:19`) | `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:154`; `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302` | 2 | 2 | active |
 | F005 | P2 | security | Session-isolation regression omits the ID-collision path | `I002` (`iteration-002.md:22`) | `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:62`; `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:370-376` | 2 | 2 | active |
-| F006 | P1 | security | Graph-event namespace contract is still undocumented on the visible path | `I003` (`iteration-003.md:19`) | `.opencode/skills/sk-deep-research/references/state_format.md:145`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:658-665` | 3 | 3 | active |
-| F007 | P1 | traceability | Claim-adjudication state format still documents a prose block instead of the typed packet the workflow enforces | `I004` (`iteration-004.md:18`) | `.opencode/skills/sk-deep-review/references/state_format.md:621`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:619-628` | 4 | 4 | active |
+| F006 | P1 | security | Graph-event namespace contract is still undocumented on the visible path | `I003` (`iteration-003.md:19`) | `.opencode/skills/sk-deep-research/references/state_format.md:145`; `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:658-665` | 3 | 3 | active |
+| F007 | P1 | traceability | Claim-adjudication state format still documents a prose block instead of the typed packet the workflow enforces | `I004` (`iteration-004.md:18`) | `.opencode/skills/sk-deep-review/references/state_format.md:621`; `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:619-628` | 4 | 4 | active |
 | F008 | P1 | traceability | Deep-review quick reference teaches the wrong weighted convergence signal set | `I004` (`iteration-004.md:19`) | `.opencode/skills/sk-deep-review/references/quick_reference.md:145`; `.opencode/skills/sk-deep-review/references/convergence.md:165-171` | 4 | 4 | active |
-| F009 | P2 | traceability | Convergence reference still describes a persisted `legalStop` synthesis payload the shipped JSONL schema does not write | `I004` (`iteration-004.md:22`) | `.opencode/skills/sk-deep-review/references/convergence.md:44`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:896` | 4 | 4 | active |
-| F010 | P1 | correctness | Resume/restart/fork/completed-continue are exposed as live lifecycle branches without any matching lineage write path | `I005` (`iteration-005.md:19`) | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:167`; `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:143-146` | 5 | 5 | active |
+| F009 | P2 | traceability | Convergence reference still describes a persisted `legalStop` synthesis payload the shipped JSONL schema does not write | `I004` (`iteration-004.md:22`) | `.opencode/skills/sk-deep-review/references/convergence.md:44`; `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:896` | 4 | 4 | active |
+| F010 | P1 | correctness | Resume/restart/fork/completed-continue are exposed as live lifecycle branches without any matching lineage write path | `I005` (`iteration-005.md:19`) | `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:167`; `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:143-146` | 5 | 5 | active |
 | F011 | P2 | traceability | Resume-event examples remain skeletal even where the visible state contract expects lineage metadata | `I005` (`iteration-005.md:22`) | `.opencode/skills/sk-deep-research/references/loop_protocol.md:83`; `.opencode/skills/sk-deep-review/references/state_format.md:240-243` | 5 | 5 | active |
 | F012 | P1 | correctness | Improve-agent docs promise resumable lineage modes that the shipped workflow cannot execute or surface | `I006` (`iteration-006.md:19`) | `.opencode/skills/sk-improve-agent/SKILL.md:292`; `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:36-42` | 6 | 6 | active |
 | F013 | P2 | traceability | Phase 008 implementation summary overclaims REQ-024 closure | `I008` (`iteration-008.md:19`) | `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md:59`; `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:61-91` | 8 | 8 | active |
@@ -1654,7 +1654,7 @@ CONDITIONAL routes to `/spec_kit:plan` for remediation before the 042 bundle can
 
 - **Findings**: F002, F007
 - **Why first**: the loop can currently synthesize after a failed claim-adjudication packet, so the closing audit cannot trust required-stop behavior until this lane is fixed.
-- **Target surfaces**: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`, `.opencode/skills/sk-deep-review/references/state_format.md`, `.opencode/skills/sk-deep-review/references/loop_protocol.md`
+- **Target surfaces**: `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`, `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`, `.opencode/skills/sk-deep-review/references/state_format.md`, `.opencode/skills/sk-deep-review/references/loop_protocol.md`
 - **Required decision**: either wire `claim_adjudication_passed` into the legal-stop gate or explicitly downgrade the documentation so claim adjudication is no longer described as STOP-blocking.
 - **Exit condition**: a failed or missing typed adjudication packet demonstrably blocks STOP and the operator-facing schema shows the exact typed fields the workflow enforces.
 - **Validation proof**: add or extend static contract tests around STOP gating and packet schema parity, then re-run the targeted parity suite.
@@ -1740,7 +1740,7 @@ Phase closeout summaries, packet-root completion artifacts, and reducer-owned da
 ## 6. Plan Seed
 
 1. **T001 [correctness] Wire claim-adjudication into the deep-review legal-stop tree**  
-Target files: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`  
+Target files: `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`, `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`  
 Findings: F002  
 REQ: REQ-026
 
@@ -2188,7 +2188,7 @@ Use this skill when:
 
 - Simple single-pass code review (use `sk-code-review` instead)
 - Known issues that just need fixing (go directly to implementation)
-- Implementation tasks (use `sk-code-opencode` or `/spec_kit:implement`)
+- Implementation tasks (use `sk-code-opencode` or `/speckit:implement`)
 - Quick one-file checks (use direct Grep/Read)
 - Fewer than 2 review dimensions needed (single-pass suffices)
 
@@ -5733,7 +5733,7 @@ contextType: "planning"
 
 | Task ID | Status | Parent REQ | Files |
 |---------|--------|------------|-------|
-| T-WE-NEW-1 | Completed | REQ-000, REQ-002 | `.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs`; `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`; `.opencode/commands/spec_kit/deep-research.md`; `.opencode/commands/spec_kit/deep-review.md` |
+| T-WE-NEW-1 | Completed | REQ-000, REQ-002 | `.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs`; `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml`; `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`; `.opencode/commands/speckit/deep-research.md`; `.opencode/commands/speckit/deep-review.md` |
 
 - [x] T-WE-NEW-1 Prototype or implement workflow fan-out/join capability so wave execution has a proven orchestration path before any wave-mode runtime build proceeds.
 <!-- /ANCHOR:phase-1 -->
@@ -5753,7 +5753,7 @@ contextType: "planning"
 | T-WE-NEW-2 | Completed | REQ-007 | `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs`; `.opencode/skills/sk-deep-review/references/state_format.md`; `.opencode/skills/sk-deep-review/references/loop_protocol.md` |
 | T-WE-NEW-3 | Completed | REQ-007 | `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs`; `.opencode/skills/sk-deep-research/references/state_format.md`; `.opencode/skills/sk-deep-research/references/loop_protocol.md` |
 | T-WE-NEW-4 | Completed | REQ-004 | `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs`; `.opencode/skills/sk-deep-research/references/state_format.md`; `.opencode/skills/sk-deep-review/references/state_format.md` |
-| T-WE-NEW-5 | Completed | REQ-006 | `.opencode/skills/sk-deep-research/assets/deep_research_config.json`; `.opencode/skills/sk-deep-review/assets/deep_review_config.json`; `.opencode/commands/spec_kit/deep-research.md`; `.opencode/commands/spec_kit/deep-review.md` |
+| T-WE-NEW-5 | Completed | REQ-006 | `.opencode/skills/sk-deep-research/assets/deep_research_config.json`; `.opencode/skills/sk-deep-review/assets/deep_review_config.json`; `.opencode/commands/speckit/deep-research.md`; `.opencode/commands/speckit/deep-review.md` |
 
 - [x] T001 Define v1 deterministic heuristic segmentation for review files and research domains, keeping segment identity and ordering reproducible.
 - [x] T002 Add segment-plan versioning, activation-gate configuration, and strategy surfaces for research and review.
@@ -5773,11 +5773,11 @@ contextType: "planning"
 
 | Task ID | Status | Parent REQ | Files |
 |---------|--------|------------|-------|
-| T004 | Completed | REQ-002 | `.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs`; `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` |
-| T005 | Completed | REQ-005 | `.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs`; `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs`; `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` |
+| T004 | Completed | REQ-002 | `.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs`; `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml`; `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml` |
+| T005 | Completed | REQ-005 | `.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs`; `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs`; `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml`; `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml` |
 | T006 | Completed | REQ-003, REQ-008 | `.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs`; `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md`; `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md` |
-| T007 | Completed | REQ-006 | `.opencode/commands/spec_kit/deep-research.md`; `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`; `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`; `.opencode/skills/sk-deep-research/assets/deep_research_config.json` |
-| T008 | Completed | REQ-006 | `.opencode/commands/spec_kit/deep-review.md`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`; `.opencode/skills/sk-deep-review/assets/deep_review_config.json`; `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml` |
+| T007 | Completed | REQ-006 | `.opencode/commands/speckit/deep-research.md`; `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml`; `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml`; `.opencode/skills/sk-deep-research/assets/deep_research_config.json` |
+| T008 | Completed | REQ-006 | `.opencode/commands/speckit/deep-review.md`; `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`; `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`; `.opencode/skills/sk-deep-review/assets/deep_review_config.json`; `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml` |
 | T009 | Completed | REQ-004, REQ-008 | `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs`; `.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs`; `.opencode/skills/sk-deep-research/references/state_format.md`; `.opencode/skills/sk-deep-review/references/state_format.md` |
 
 - [x] T004 Implement the shared wave lifecycle manager for fan-out, join, prune, promote, and merge transitions once T-WE-NEW-1 is proven.
@@ -5798,7 +5798,7 @@ contextType: "planning"
 |---------|--------|------------|-------|
 | T010 | Completed | REQ-009 | `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts` |
 | T011 | Completed | REQ-004, REQ-008, REQ-009 | `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs`; `.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs` |
-| T012 | Completed | REQ-006, REQ-009 | `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts`; `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` |
+| T012 | Completed | REQ-006, REQ-009 | `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts`; `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml`; `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml` |
 
 - [x] T010 Create planner and lifecycle tests for fan-out/join proof, deterministic v1 segmentation, and gated wave transitions.
 - [x] T011 Create merge tests that prove explicit-key provenance, dedupe, and conflict metadata survive repeated merges without trusting append order.

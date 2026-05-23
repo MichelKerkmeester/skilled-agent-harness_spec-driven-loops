@@ -101,7 +101,7 @@ Decompose the rename into 6 sequential phases that minimize risk and parallelize
 - Updating ALL references to the old names throughout the repo, including:
   - SKILL.md routing tables, smart router pseudocode
   - Agent definitions across 4 runtimes (.opencode, .claude, .codex, .gemini)
-  - Command files referencing the deep-* skills (e.g., `/spec_kit:deep-review`, `/spec_kit:deep-research`)
+  - Command files referencing the deep-* skills (e.g., `/speckit:deep-review`, `/speckit:deep-research`)
   - MCP server code, scripts, test fixtures
   - skill-graph.json (keys, signals, anti-signals, families, hub_skills, adjacency)
   - graph-metadata.json files for the renamed skills

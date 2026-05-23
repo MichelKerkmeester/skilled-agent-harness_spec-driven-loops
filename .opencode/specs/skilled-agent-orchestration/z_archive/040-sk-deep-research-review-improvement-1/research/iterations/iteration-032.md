@@ -7,8 +7,8 @@ Deep-research auto-mode completed-session behavior and lineage continuation.
 - Are there explicit continuation semantics in phase wiring?
 
 ## Evidence
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:127-129`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:333-355`
+- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:127-129`
+- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:333-355`
 
 ## Analysis
 Completed sessions skip directly to synthesis. The synthesis pre-hydration logic accounts for completed-session metrics but does not re-enter loop execution.

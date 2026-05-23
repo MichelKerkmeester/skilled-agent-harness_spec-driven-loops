@@ -51,7 +51,7 @@ finding: `system-spec-kit` should redesign its operator guidance around a machin
 - **Migration path:** start by generating a compact quick-reference layer from current policy, then gradually replace duplicated AGENTS/command prose with generated material.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `AGENTS.md`, `.opencode/commands/spec_kit/`, `.opencode/skills/system-spec-kit/constitutional/`, YAML workflow assets, new generated-instructions layer
+- **Target file or module:** `AGENTS.md`, `.opencode/commands/speckit/`, `.opencode/skills/system-spec-kit/constitutional/`, YAML workflow assets, new generated-instructions layer
 - **Change type:** new module + modified existing
 - **Blast radius:** large
 - **Prerequisites:** define a machine-readable schema for gates, lifecycle modes, and runtime routing

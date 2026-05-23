@@ -2,7 +2,7 @@
 
 ## Context
 
-Branch `system-speckit/024-compact-code-graph` (6 commits ahead of main). Spec completion: **246/255 (96.5%)**. All P0/P1 code is implemented and passing. 116 tests pass across 14 test files. TypeScript compiles clean (only pre-existing errors in memory-search.ts and shadow-evaluation-runtime.ts).
+Branch `system-spec-kit/024-compact-code-graph` (6 commits ahead of main). Spec completion: **246/255 (96.5%)**. All P0/P1 code is implemented and passing. 116 tests pass across 14 test files. TypeScript compiles clean (only pre-existing errors in memory-search.ts and shadow-evaluation-runtime.ts).
 
 ## Task 1: Resolve 9 Remaining Checklist Items
 
@@ -165,7 +165,7 @@ Fix: Add explicit return type annotations to each exported function.
 6. **Update checklists** — mark all resolved items
 7. **Rebuild dist** — `npx tsc --build`
 8. **Final test run** — `npx vitest run` (all tests)
-9. **Commit + push** to `system-speckit/024-compact-code-graph`
+9. **Commit + push** to `system-spec-kit/024-compact-code-graph`
 
 ## Verification
 
@@ -194,4 +194,4 @@ npx vitest run --coverage
 - TypeScript strict mode
 - All hooks must exit cleanly (exit 0) — never block Claude
 - Follow existing test patterns (vitest, describe/it/expect)
-- Branch: `system-speckit/024-compact-code-graph` — do NOT merge to main
+- Branch: `system-spec-kit/024-compact-code-graph` — do NOT merge to main

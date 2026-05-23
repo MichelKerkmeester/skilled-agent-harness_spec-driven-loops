@@ -78,10 +78,10 @@ Minimal iteration metadata needed in JSONL:
 | Option | Pros | Cons | Impact |
 |---|---|---|---|
 | A. Mode flag on existing command | Maximum engine reuse; one command family; preserves current deep-research mental model | "Research" is a weak user-facing verb for release review; `:review:auto` is syntactically noisy; setup prompt becomes overloaded | Medium: change existing command parser, setup questions, YAML branching, docs |
-| B. Separate command `/spec_kit:deep-review:auto` | Best UX clarity; preserves existing deep-research engine internally; avoids breaking current research behavior; easy docs | Adds one new command entrypoint | Low-medium: add thin wrapper command, reuse existing YAML/skill internals with `mode=review` |
-| C. New top-level `/spec_kit:review` | Short and discoverable | Too ambiguous with one-shot `@review` and existing review/gate workflows; higher naming collision risk | High: larger docs/process ambiguity, more orchestration overlap |
+| B. Separate command `/speckit:deep-review:auto` | Best UX clarity; preserves existing deep-research engine internally; avoids breaking current research behavior; easy docs | Adds one new command entrypoint | Low-medium: add thin wrapper command, reuse existing YAML/skill internals with `mode=review` |
+| C. New top-level `/speckit:review` | Short and discoverable | Too ambiguous with one-shot `@review` and existing review/gate workflows; higher naming collision risk | High: larger docs/process ambiguity, more orchestration overlap |
 
-**Recommendation: Option B.** Public UX should be `/spec_kit:deep-review[:auto|:confirm] "target"`, but internally it should still run the same loop engine with `mode=review`. That gives the clearest user intent while keeping backward compatibility high.
+**Recommendation: Option B.** Public UX should be `/speckit:deep-review[:auto|:confirm] "target"`, but internally it should still run the same loop engine with `mode=review`. That gives the clearest user intent while keeping backward compatibility high.
 
 ### 4. Config Adaptations
 
@@ -172,8 +172,8 @@ Correction to the proposed verdicts: do not allow `PASS` with active `P1` items,
 
 | Result | Action | Next Command |
 |---|---|---|
-| Active `P0` or score `<70` | `FAIL`, block release | `/spec_kit:plan "Remediate blockers from review-report.md"` |
-| No `P0`, active `P1` remain | `CONDITIONAL`, not release-ready yet | `/spec_kit:plan "Remediate required fixes from review-report.md"` |
+| Active `P0` or score `<70` | `FAIL`, block release | `/speckit:plan "Remediate blockers from review-report.md"` |
+| No `P0`, active `P1` remain | `CONDITIONAL`, not release-ready yet | `/speckit:plan "Remediate required fixes from review-report.md"` |
 | Only `P2` remain | `PASS WITH NOTES` | `/create:changelog` or log backlog notes |
 | No active findings | `PASS` | `/create:changelog` |
 
@@ -181,17 +181,17 @@ Workflow recommendations:
 1. Do **not** auto-create a remediation plan by default. Review and implementation should remain separate unless the user opts in.
 2. Do allow an opt-in post-synthesis step in confirm mode: `A) Finish`, `B) Generate remediation plan`, `C) Skip memory save`.
 3. Reuse the same spec folder when the review is for an active feature spec; create a new remediation spec or child phase only when fixes are cross-cutting or outside the current feature scope.
-4. Feed `review-report.md` directly into `/spec_kit:plan`, which should translate `P0/P1` entries into scoped remediation tasks. After fixes, rerun `/spec_kit:deep-review:auto`.
+4. Feed `review-report.md` directly into `/speckit:plan`, which should translate `P0/P1` entries into scoped remediation tasks. After fixes, rerun `/speckit:deep-review:auto`.
 
 ### 8. Ruled Out Approaches
 
 - **Separate state files for review mode**: rejected because it duplicates the proven deep-research loop and hurts backward compatibility.
 - **Final-only synthesis with no progressive report**: rejected because confirm mode and long-running review need observability, just like current deep research.
 - **Score-only convergence**: rejected because a "good score" can still hide untouched files or unchecked dimensions.
-- **Public `/spec_kit:review`**: rejected because it is too easy to confuse with single-pass `@review`.
+- **Public `/speckit:review`**: rejected because it is too easy to confuse with single-pass `@review`.
 - **Silent contradiction dropping**: rejected because it will cause unstable counts and unreliable release verdicts.
 
-**Net recommendation**: expose `/spec_kit:deep-review[:auto|:confirm]` as a thin wrapper over the current deep-research engine, keep the existing scratch/state architecture, add `mode=review`, synthesize to `review-report.md`, and make coverage plus contradiction resolution first-class quality guards before the loop can stop.
+**Net recommendation**: expose `/speckit:deep-review[:auto|:confirm]` as a thin wrapper over the current deep-research engine, keep the existing scratch/state architecture, add `mode=review`, synthesize to `review-report.md`, and make coverage plus contradiction resolution first-class quality guards before the loop can stop.
 
 ## Assessment
 newFindingsRatio: 1.0 (first iteration for this question, all findings new)

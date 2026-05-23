@@ -38,7 +38,7 @@ _memory:
 | **Parent** | `022-hybrid-rag-fusion` (Phase 017) |
 | **Parent Spec** | ../spec.md |
 | **Predecessor** | ../016-rewrite-memory-mcp-readme/spec.md |
-| **Successor** | ../018-rewrite-system-speckit-readme/spec.md |
+| **Successor** | ../018-rewrite-system-spec-kit-readme/spec.md |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -160,4 +160,4 @@ Target: Update (not rewrite) the install guide against current deps
 |-------|-------|
 | **Parent Spec** | ../spec.md |
 | **Previous Phase** | ../016-rewrite-memory-mcp-readme/spec.md |
-| **Next Phase** | ../018-rewrite-system-speckit-readme/spec.md |
+| **Next Phase** | ../018-rewrite-system-spec-kit-readme/spec.md |

@@ -7,10 +7,10 @@ Detailed implementation blueprint - P0 execution units.
 - What ordering minimizes migration risk?
 
 ## Evidence
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml`
+- `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml`
+- `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`
+- `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`
 
 ## Analysis
 Best sequence: parity + naming contract first, then lifecycle branches, then reducer introduction, then strict cleanup/deprecations.

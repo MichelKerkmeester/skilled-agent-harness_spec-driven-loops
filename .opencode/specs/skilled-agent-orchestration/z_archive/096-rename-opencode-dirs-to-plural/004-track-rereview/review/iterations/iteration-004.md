@@ -12,7 +12,7 @@ Verdict: **FAIL**
 - `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js`
 - `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+- `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts`
 - `.opencode/skills/deep-review/scripts/reduce-state.cjs`
 - `.claude/settings.local.json`
@@ -27,14 +27,14 @@ Verdict: **FAIL**
 
 ### P1-019 [P1] `spec_folder` is interpolated into executable workflow commands before containment is enforced
 
-- File: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:118`
+- File: `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:118`
 - Evidence: The workflow declares a containment requirement at line 136, but the executable steps interpolate raw `{spec_folder}` into `node -e` at line 118, into reducer shell commands at lines 856 and 1024, and into a JavaScript string in the Copilot executor at line 702. The shared resolver then accepts `path.resolve(specFolder)` at `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs:201` and derives write roots with `path.join(resolved, mode)` at line 202. The reducer repeats `path.resolve(specFolder)` at `.opencode/skills/deep-review/scripts/reduce-state.cjs:1172` and writes registry, strategy, dashboard, and resource-map files under that resolved directory at lines 1239-1245. A read-only probe confirmed `resolveArtifactRoot('/tmp/speckit-escape','review')` resolves to `/tmp/speckit-escape/review`, and `resolveArtifactRoot('../outside-spec','review')` resolves outside this repo's `Public` root.
 - Finding class: cross-consumer
-- Scope proof: `rg -n "spec_folder_is_within|resolveArtifactRoot\\('|reduce-state\\.cjs \\{spec_folder\\}|\\{spec_folder\\} --emit-resource-map" .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` found the declarative validation and the raw executable interpolations. `rg -n "path\\.resolve\\(specFolder\\)|writeUtf8\\(" .opencode/skills/system-spec-kit/shared/review-research-paths.cjs .opencode/skills/deep-review/scripts/reduce-state.cjs` found no containment check before write paths are derived.
+- Scope proof: `rg -n "spec_folder_is_within|resolveArtifactRoot\\('|reduce-state\\.cjs \\{spec_folder\\}|\\{spec_folder\\} --emit-resource-map" .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml` found the declarative validation and the raw executable interpolations. `rg -n "path\\.resolve\\(specFolder\\)|writeUtf8\\(" .opencode/skills/system-spec-kit/shared/review-research-paths.cjs .opencode/skills/deep-review/scripts/reduce-state.cjs` found no containment check before write paths are derived.
 - Affected surface hints: `["deep-review YAML runner", "review artifact resolver", "reduce-state writer", "cli-copilot executor"]`
 - Recommendation: Move spec-folder validation into a shared code helper that canonicalizes against the repo root and allows only `specs/` or `.opencode/specs/` descendants, then pass the value to shell/Node via argv or environment variables instead of string interpolation. The resolver should reject absolute paths, `..` traversal, unresolved placeholders, and paths outside the approved specs roots before any command or write step uses the value.
 - Claim: A malicious or malformed `spec_folder` can escape the intended review packet boundary and can be embedded into executable workflow commands before the claimed authority guard runs.
-- EvidenceRefs: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:118`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:136`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:702`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:856`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1024`, `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs:201`, `.opencode/skills/deep-review/scripts/reduce-state.cjs:1172`, `.opencode/skills/deep-review/scripts/reduce-state.cjs:1239`
+- EvidenceRefs: `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:118`, `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:136`, `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:702`, `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:856`, `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:1024`, `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs:201`, `.opencode/skills/deep-review/scripts/reduce-state.cjs:1172`, `.opencode/skills/deep-review/scripts/reduce-state.cjs:1239`
 - Counterevidence sought: an actual workflow runner layer that validates and shell-quotes `{spec_folder}` before every command render, a shared resolver containment check not visible in the reviewed files, or tests proving absolute paths, `../`, quotes, and shell metacharacters are rejected before line 118 executes.
 - Alternative explanation: The YAML `step_preflight_contract` may be intended as the enforcement point. The reviewed file only documents that requirement; the executable commands still use the raw placeholder, and the resolver/reducer accept absolute and parent-traversal inputs directly.
 - Final severity: P1
@@ -43,7 +43,7 @@ Verdict: **FAIL**
 
 ### P2-004 [P2] Copilot target-authority guard is still non-functional in the imported module
 
-- File: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:690`
+- File: `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:690`
 - Evidence: The Copilot branch imports `buildCopilotPromptArg` from `executor-config.ts` at line 690 and calls it at line 714. A module export probe of `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts` listed executor config exports only; `buildCopilotPromptArg` and `validateSpecFolder` are absent. `rg` found the helper only in YAML comments/calls and in `mcp_server/lib/deep-loop/README.md:64`, not in source or dist implementation files.
 - Status: Still active; P1-019 covers the broader security failure. This item remains P2 because the current Copilot path fails before spawning `copilot`, so this specific missing helper is a broken control claim rather than the direct write-escape path.
 - Recommendation: Implement and export the helper in source and dist, or remove the Copilot branch's authority-guard claims until the helper exists and is tested.

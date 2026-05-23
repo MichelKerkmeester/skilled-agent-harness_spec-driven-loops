@@ -70,6 +70,6 @@ Fallback: if no parent spec.md found, treat specFolder as root (standalone spec)
 ## Verification
 
 1. Unit test the resolver with standalone, child, grandchild paths
-2. Verify `grep -r '{spec_folder}/review/' .opencode/commands/spec_kit/assets/` returns 0
+2. Verify `grep -r '{spec_folder}/review/' .opencode/commands/speckit/assets/` returns 0
 3. Verify all 8 agent files reference root-level convention
 4. `npx tsc --noEmit` passes

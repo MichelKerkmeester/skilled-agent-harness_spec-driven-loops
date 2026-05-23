@@ -51,7 +51,7 @@ Phase 1 (001, ex-028) introduced and verified the contract for `/deep:start-revi
 In scope:
 - Author the three-tier `:auto` contract for `/deep:start-review-loop` (Phase 1, completed pre-rename as packet 028).
 - Lift the contract into `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md` so 12 commands cite a single source.
-- Migrate `/spec_kit:` (deep-research, complete, implement, plan, resume), `/create:` (sk-skill, agent, changelog, feature-catalog, testing-playbook, folder_readme), and `/improve:agent` to the shared contract.
+- Migrate `/speckit:` (deep-research, complete, implement, plan, resume), `/create:` (sk-skill, agent, changelog, feature-catalog, testing-playbook, folder_readme), and `/improve:agent` to the shared contract.
 - Full live `:auto` dispatch verification across all 12 commands.
 
 Out of scope:

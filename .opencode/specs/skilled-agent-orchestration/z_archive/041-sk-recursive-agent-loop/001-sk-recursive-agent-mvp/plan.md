@@ -32,8 +32,8 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Markdown, YAML workflows, JSON/JSONC state, Node.js reducer/scoring scripts |
-| **Primary Runtime Surface** | `.opencode/agents/`, `.opencode/commands/spec_kit/`, `.opencode/skills/` |
-| **Initial Target Under Test** | `.opencode/agents/handover.md` evaluated through `/spec_kit:handover` artifact expectations |
+| **Primary Runtime Surface** | `.opencode/agents/`, `.opencode/commands/speckit/`, `.opencode/skills/` |
+| **Initial Target Under Test** | `.opencode/agents/handover.md` evaluated through `/speckit:handover` artifact expectations |
 | **State Model** | `improvement-state.jsonl` plus strategy, charter, manifest, config, and reducer-owned dashboard outputs |
 | **Verification Basis** | Spec validation, deterministic artifact scoring, proposal-only dry runs, reducer outputs |
 
@@ -92,7 +92,7 @@ Complete the Level 3 packet before implementation work starts.
 ### Phase 2: Evaluator Contract and First Target
 Lock the MVP around one measurable surface before building the loop.
 - Define the first target as `.opencode/agents/handover.md`
-- Specify the corresponding artifact contract through `/spec_kit:handover`
+- Specify the corresponding artifact contract through `/speckit:handover`
 - Write the evaluator contract, improvement charter, and target manifest
 - Decide acceptance threshold, baseline handling, and simplicity tie-break
 
@@ -182,7 +182,7 @@ Phase 9 (Runtime Parity + Additional Targets)
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `.opencode/agents/handover.md` and `/spec_kit:handover` | Internal target/evaluator dependency | Green | MVP target contract becomes ambiguous |
+| `.opencode/agents/handover.md` and `/speckit:handover` | Internal target/evaluator dependency | Green | MVP target contract becomes ambiguous |
 | `sk-deep-research` loop/state pattern | Internal architecture reference | Green | More design work required for packet state model |
 | Skill routing/catalog surfaces | Internal registration dependency | Green | New skill is not discoverable |
 | Independent scoring harness | Core blocker | Yellow | The feature should not ship without it |

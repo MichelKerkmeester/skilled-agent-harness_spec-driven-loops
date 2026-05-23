@@ -62,7 +62,7 @@ Resolve the target spec folder first, build structured JSON from the session evi
 
 ## 2. PURPOSE
 
-Save the current conversation context, including session summary, key decisions, modified files, and trigger phrases, into the packet's canonical continuity surfaces so `/spec_kit:resume` and `/memory:search` read the same source of truth.
+Save the current conversation context, including session summary, key decisions, modified files, and trigger phrases, into the packet's canonical continuity surfaces so `/speckit:resume` and `/memory:search` read the same source of truth.
 
 **Key difference from `/memory:learn`:**
 - `/memory:save` = Session context routed into canonical packet docs and `_memory.continuity`
@@ -71,7 +71,7 @@ Save the current conversation context, including session summary, key decisions,
 ### Canonical Routing Model
 
 - `handover.md` remains the top recovery document for active-session state and pending work.
-- `_memory.continuity` stores the compact continuity block used by `/spec_kit:resume`.
+- `_memory.continuity` stores the compact continuity block used by `/speckit:resume`.
 - AI may directly edit `_memory.continuity` frontmatter blocks in `implementation-summary.md` when only those doc-local continuity hints need updating.
 - Canonical spec docs such as `implementation-summary.md` and `decision-record.md` receive the durable narrative content when the route applies.
 - `generate-context.js` remains the primary save mechanism when the workflow also needs DB indexing, embedding generation, `description.json` refresh, `graph-metadata.json` refresh, or anchor-managed compatibility output.
@@ -85,7 +85,7 @@ Save the current conversation context, including session summary, key decisions,
 
 ### Handover Document Maintenance
 
-`/memory:save` is the canonical maintainer for `handover.md` through `handover_state` routing. When a packet does not already contain `handover.md`, create it from `.opencode/skills/system-spec-kit/templates/handover.md`, then merge subsequent stop-state updates into `handover.md::session-log` while keeping `_memory.continuity` aligned for `/spec_kit:resume`.
+`/memory:save` is the canonical maintainer for `handover.md` through `handover_state` routing. When a packet does not already contain `handover.md`, create it from `.opencode/skills/system-spec-kit/templates/handover.md`, then merge subsequent stop-state updates into `handover.md::session-log` while keeping `_memory.continuity` aligned for `/speckit:resume`.
 
 ### Routed Save Categories
 
@@ -531,7 +531,7 @@ STATUS=OK ID=<id> TRIGGERS=<count>
 | Context saved, continue work | Return to previous task                    | Memory preserved, continue    |
 | Ending session               | `/memory:save [spec-folder-path]`           | Update `handover.md` through `handover_state` routing |
 | Search indexed continuity    | `/memory:search [query]`                | Find related context          |
-| Start new work               | `/spec_kit:complete [feature-description]` | Begin new feature             |
+| Start new work               | `/speckit:complete [feature-description]` | Begin new feature             |
 
 **ALWAYS** end with: "Context saved. What would you like to do next?"
 
@@ -542,7 +542,7 @@ STATUS=OK ID=<id> TRIGGERS=<count>
 - `/memory:search`: Intent-aware context retrieval and analysis tools
 - `/memory:manage`: Database management, checkpoints, ingest
 - `/memory:learn`: Constitutional rules
-- `/spec_kit:resume`: Session recovery and continuation
+- `/speckit:resume`: Session recovery and continuation
 
 ---
 <!-- APPENDIX: Reference material for AI agent implementation -->

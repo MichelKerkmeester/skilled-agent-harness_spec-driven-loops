@@ -23,7 +23,7 @@ This protocol applies only to deep-research-owned `spec.md` mutations:
 - Anchor-bounded pre-init context updates to an existing `spec.md`
 - One generated findings block written after synthesis
 
-This protocol does not own the shared intake contract in `.opencode/skills/system-spec-kit/references/intake-contract.md`, nor `/spec_kit:plan` or `/spec_kit:complete` delegation behavior.
+This protocol does not own the shared intake contract in `.opencode/skills/system-spec-kit/references/intake-contract.md`, nor `/speckit:plan` or `/speckit:complete` delegation behavior.
 
 ### Relation to the Deep-Research Loop
 The workflow remains four-phase:
@@ -185,7 +185,7 @@ Every audit payload is typed. At minimum, emit:
 ### Marker-Based Placeholder Detection
 - Seed behavior depends on deterministic `<!-- DR-SEED:... -->` markers, not fuzzy prose matching.
 - If the required seed markers already exist, treat the seed path as already satisfied.
-- The shared intake contract used by `/spec_kit:plan --intake-only`, `/spec_kit:plan`, and `/spec_kit:complete` classifies any retained DR seed marker as `placeholder-upgrade` and persists `resume_question_id` plus `reentry_reason` for REQ-011 re-entry.
+- The shared intake contract used by `/speckit:plan --intake-only`, `/speckit:plan`, and `/speckit:complete` classifies any retained DR seed marker as `placeholder-upgrade` and persists `resume_question_id` plus `reentry_reason` for REQ-011 re-entry.
 
 ### Relation-Object Dedupe
 - Manual relationship arrays dedupe by `packet_id` within each relation type (`depends_on`, `related_to`, `supersedes`) before emitting `graph-metadata.json`.

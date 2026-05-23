@@ -24,22 +24,22 @@ The second pattern was release-surface optimism outrunning evidence. Phase 008 c
 
 ## 2. Planning Trigger
 
-CONDITIONAL routes to `/spec_kit:plan` for remediation before the 042 bundle can be treated as PASS. The next packet should preserve this closing audit as the baseline, open with the active P1 registry below, and sequence the remediation lanes in implementation dependency order so runtime and persistence fixes land before documentation and packet-root closeout updates.
+CONDITIONAL routes to `/speckit:plan` for remediation before the 042 bundle can be treated as PASS. The next packet should preserve this closing audit as the baseline, open with the active P1 registry below, and sequence the remediation lanes in implementation dependency order so runtime and persistence fixes land before documentation and packet-root closeout updates.
 
 ## 3. Active Finding Registry
 
 | ID | Sev | Dimension | Title | Origin | Key evidence | First seen | Last seen | Status |
 |---|---|---|---|---|---|---:|---:|---|
 | F001 | P1 | correctness | Canonical deep-review agent still emits an unparseable iteration schema | `I001` (`iteration-001.md:18`) | `.opencode/agents/deep-review.md:147`; `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:137-206` | 1 | 1 | active |
-| F002 | P1 | correctness | Claim-adjudication is documented as a hard stop gate but never participates in STOP eligibility | `I001` (`iteration-001.md:19`) | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:574`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:388-429` | 1 | 1 | active |
-| F003 | P2 | correctness | Review config JSONL collapses requested dimensions into one string element | `I001` (`iteration-001.md:22`) | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:260`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:259` | 1 | 1 | active |
+| F002 | P1 | correctness | Claim-adjudication is documented as a hard stop gate but never participates in STOP eligibility | `I001` (`iteration-001.md:19`) | `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:574`; `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:388-429` | 1 | 1 | active |
+| F003 | P2 | correctness | Review config JSONL collapses requested dimensions into one string element | `I001` (`iteration-001.md:22`) | `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:260`; `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:259` | 1 | 1 | active |
 | F004 | P1 | security | Coverage-graph writes are not session-isolated when IDs collide | `I002` (`iteration-002.md:19`) | `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:154`; `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302` | 2 | 2 | active |
 | F005 | P2 | security | Session-isolation regression omits the ID-collision path | `I002` (`iteration-002.md:22`) | `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:62`; `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:370-376` | 2 | 2 | active |
-| F006 | P1 | security | Graph-event namespace contract is still undocumented on the visible path | `I003` (`iteration-003.md:19`) | `.opencode/skills/sk-deep-research/references/state_format.md:145`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:658-665` | 3 | 3 | active |
-| F007 | P1 | traceability | Claim-adjudication state format still documents a prose block instead of the typed packet the workflow enforces | `I004` (`iteration-004.md:18`) | `.opencode/skills/sk-deep-review/references/state_format.md:621`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:619-628` | 4 | 4 | active |
+| F006 | P1 | security | Graph-event namespace contract is still undocumented on the visible path | `I003` (`iteration-003.md:19`) | `.opencode/skills/sk-deep-research/references/state_format.md:145`; `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:658-665` | 3 | 3 | active |
+| F007 | P1 | traceability | Claim-adjudication state format still documents a prose block instead of the typed packet the workflow enforces | `I004` (`iteration-004.md:18`) | `.opencode/skills/sk-deep-review/references/state_format.md:621`; `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:619-628` | 4 | 4 | active |
 | F008 | P1 | traceability | Deep-review quick reference teaches the wrong weighted convergence signal set | `I004` (`iteration-004.md:19`) | `.opencode/skills/sk-deep-review/references/quick_reference.md:145`; `.opencode/skills/sk-deep-review/references/convergence.md:165-171` | 4 | 4 | active |
-| F009 | P2 | traceability | Convergence reference still describes a persisted `legalStop` synthesis payload the shipped JSONL schema does not write | `I004` (`iteration-004.md:22`) | `.opencode/skills/sk-deep-review/references/convergence.md:44`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:896` | 4 | 4 | active |
-| F010 | P1 | correctness | Resume/restart/fork/completed-continue are exposed as live lifecycle branches without any matching lineage write path | `I005` (`iteration-005.md:19`) | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:167`; `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:143-146` | 5 | 5 | active |
+| F009 | P2 | traceability | Convergence reference still describes a persisted `legalStop` synthesis payload the shipped JSONL schema does not write | `I004` (`iteration-004.md:22`) | `.opencode/skills/sk-deep-review/references/convergence.md:44`; `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:896` | 4 | 4 | active |
+| F010 | P1 | correctness | Resume/restart/fork/completed-continue are exposed as live lifecycle branches without any matching lineage write path | `I005` (`iteration-005.md:19`) | `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:167`; `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:143-146` | 5 | 5 | active |
 | F011 | P2 | traceability | Resume-event examples remain skeletal even where the visible state contract expects lineage metadata | `I005` (`iteration-005.md:22`) | `.opencode/skills/sk-deep-research/references/loop_protocol.md:83`; `.opencode/skills/sk-deep-review/references/state_format.md:240-243` | 5 | 5 | active |
 | F012 | P1 | correctness | Improve-agent docs promise resumable lineage modes that the shipped workflow cannot execute or surface | `I006` (`iteration-006.md:19`) | `.opencode/skills/sk-improve-agent/SKILL.md:292`; `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:36-42` | 6 | 6 | active |
 | F013 | P2 | traceability | Phase 008 implementation summary overclaims REQ-024 closure | `I008` (`iteration-008.md:19`) | `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md:59`; `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:61-91` | 8 | 8 | active |
@@ -119,7 +119,7 @@ CONDITIONAL routes to `/spec_kit:plan` for remediation before the 042 bundle can
 
 - **Findings**: F002, F007
 - **Why first**: the loop can currently synthesize after a failed claim-adjudication packet, so the closing audit cannot trust required-stop behavior until this lane is fixed.
-- **Target surfaces**: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`, `.opencode/skills/sk-deep-review/references/state_format.md`, `.opencode/skills/sk-deep-review/references/loop_protocol.md`
+- **Target surfaces**: `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`, `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`, `.opencode/skills/sk-deep-review/references/state_format.md`, `.opencode/skills/sk-deep-review/references/loop_protocol.md`
 - **Required decision**: either wire `claim_adjudication_passed` into the legal-stop gate or explicitly downgrade the documentation so claim adjudication is no longer described as STOP-blocking.
 - **Exit condition**: a failed or missing typed adjudication packet demonstrably blocks STOP and the operator-facing schema shows the exact typed fields the workflow enforces.
 - **Validation proof**: add or extend static contract tests around STOP gating and packet schema parity, then re-run the targeted parity suite.
@@ -205,7 +205,7 @@ Phase closeout summaries, packet-root completion artifacts, and reducer-owned da
 ## 6. Plan Seed
 
 1. **T001 [correctness] Wire claim-adjudication into the deep-review legal-stop tree**  
-Target files: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`  
+Target files: `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`, `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`  
 Findings: F002  
 REQ: REQ-026
 
@@ -230,7 +230,7 @@ Findings: F006
 REQ: REQ-029
 
 6. **T006 [correctness] Implement or retract lifecycle branches on deep-review and deep-research workflows**  
-Target files: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`, any paired auto assets touched by the chosen solution  
+Target files: `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`, `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml`, any paired auto assets touched by the chosen solution  
 Findings: F010  
 REQ: REQ-030
 
@@ -245,7 +245,7 @@ Findings: F012
 REQ: REQ-030
 
 9. **T009 [correctness] Align the canonical deep-review agent schema with reducer parsing and fix config-array serialization**  
-Target files: `.opencode/agents/deep-review.md`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`  
+Target files: `.opencode/agents/deep-review.md`, `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`, `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`  
 Findings: F001, F003  
 REQ: REQ-032
 
@@ -340,10 +340,10 @@ The matrix below tracks evidence-backed hotspot coverage from the structured `fi
 | File | I1 | I2 | I3 | I4 | I5 | I6 | I7 | I8 | I9 | I10 |
 |---|---|---|---|---|---|---|---|---|---|---|
 | `.opencode/agents/deep-review.md` | X |  |  |  |  |  |  |  |  |  |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | X |  |  | X | X |  | X |  |  |  |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | X | X | X | X | X |  | X | X |  |  |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | X | X |  |  | X |  |  |  |  |  |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` |  |  | X |  | X |  | X | X |  |  |
+| `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml` | X |  |  | X | X |  | X |  |  |  |
+| `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml` | X | X | X | X | X |  | X | X |  |  |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | X | X |  |  | X |  |  |  |  |  |
+| `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml` |  |  | X |  | X |  | X | X |  |  |
 | `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` | X | X |  | X | X |  | X |  | X |  |
 | `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | X | X |  |  | X |  | X |  |  |  |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts` |  | X | X |  |  |  |  | X |  |  |

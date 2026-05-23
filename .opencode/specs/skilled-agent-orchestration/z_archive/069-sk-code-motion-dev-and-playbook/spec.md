@@ -134,7 +134,7 @@ This parent spec lists no files directly. Per-phase blast radius:
 - Each phase MUST pass `validate.sh --strict` independently before the next phase begins.
 - Per the verification rider: each phase's cli-codex implementation pass is followed by an Opus sub-agent review (@review or general-purpose, model=opus). Issues flagged by the reviewer are remediated via cli-codex before the phase is marked complete.
 - Parent spec tracks aggregate progress via this map.
-- Use `/spec_kit:resume specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/[NNN-phase]/` to resume a specific phase.
+- Use `/speckit:resume specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/[NNN-phase]/` to resume a specific phase.
 - Run `validate.sh --recursive` on parent to validate all phases as integrated unit.
 
 ### Phase Handoff Criteria

@@ -14,8 +14,8 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, mcp__m
 > 1. Determine execution mode from user input (`:auto` or `:confirm`)
 >    Note: :with-research and :with-phases are feature flags, not execution modes. They modify the :auto or :confirm workflow but do not change the base execution mode.
 > 2. Load the corresponding YAML file from `assets/`:
->    - Auto mode → `spec_kit_complete_auto.yaml`
->    - Confirm mode → `spec_kit_complete_confirm.yaml`
+>    - Auto mode → `speckit_complete_auto.yaml`
+>    - Confirm mode → `speckit_complete_confirm.yaml`
 > 3. Execute the YAML workflow step by step
 >
 > All content below is reference context for the YAML workflow. Do not treat reference sections, routing tables, or dispatch templates as direct instructions to execute.
@@ -48,11 +48,11 @@ Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_
 
 Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 
-1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/complete-config.json` (shape: `featureDescription`, `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `researchIntent`, `researchIntegration`, `phaseDecomposition`, `phaseCount`, `phaseNames`, `intake.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml`. End §0.
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/complete-config.json` (shape: `featureDescription`, `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `researchIntent`, `researchIntegration`, `phaseDecomposition`, `phaseCount`, `phaseNames`, `intake.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/speckit/assets/speckit_complete_auto.yaml`. End §0.
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`, `research_intent`. **Ordering rule**: none needed. Missing `feature_description` is absence, not ambiguity — go to Tier 3.
 
-3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/spec_kit:complete:auto` as the command name. Exit non-zero. Do not load YAML.
+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/speckit:complete:auto` as the command name. Exit non-zero. Do not load YAML.
 
 `:confirm` path stays unchanged — see the consolidated setup prompt section below.
 
@@ -141,7 +141,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 4. Search for prior work (background):
    - memory_context({ input: feature_description OR "complete", mode: "focused", includeContent: true })
    > Gate 1 trigger matching handled at agent level (AGENTS.md).
-   > Gate 3 spec-folder trigger classification is typed: `.opencode/skills/system-spec-kit/shared/gate-3-classifier.ts` (`classifyPrompt()`). Invocations of `/spec_kit:complete` are already inside a write flow, so Gate 3 is pre-answered by command dispatch — no extra inference needed here.
+   > Gate 3 spec-folder trigger classification is typed: `.opencode/skills/system-spec-kit/shared/gate-3-classifier.ts` (`classifyPrompt()`). Invocations of `/speckit:complete` are already inside a write flow, so Gate 3 is pre-answered by command dispatch — no extra inference needed here.
    - Store: prior_work_found = [yes/no], prior_work_count = [N]
 
 5. Prior-work loading question needed ONLY if user selects A or C for spec folder AND prior continuity records exist for this spec.
@@ -304,18 +304,18 @@ When `--phase-folder=<path>` is provided or spec folder selection includes a pha
 ### Packet Graph Metadata
 
 - Completion relies on canonical save to refresh the packet's root `graph-metadata.json`.
-- `/spec_kit:complete` is responsible for final packet-facing derived state such as `status` and `last_save_at`.
+- `/speckit:complete` is responsible for final packet-facing derived state such as `status` and `last_save_at`.
 - Manual packet relationships remain untouched during completion; only the derived section is refreshed.
 
 ### Execution Modes
 
 | Mode | Invocation | Behavior |
 |------|-----------|----------|
-| `:auto` | `/spec_kit:complete :auto "feature"` | Execute all steps without approval gates |
-| `:confirm` | `/spec_kit:complete :confirm "feature"` | Pause at each step for approval |
-| `:with-research` | `/spec_kit:complete :with-research "feature"` | Insert research phase after Step 2 (before specification) |
-| `:with-phases` | `/spec_kit:complete :with-phases "feature"` | Insert phase decomposition before Step 1, then complete first child. The parent scaffolds from `phase-parent Level template contract` (lean trio only — `spec.md` + `description.json` + `graph-metadata.json` at parent); plan/tasks/checklist/decisions live in each child. |
-| (default) | `/spec_kit:complete "feature"` | Ask user to choose mode during setup |
+| `:auto` | `/speckit:complete :auto "feature"` | Execute all steps without approval gates |
+| `:confirm` | `/speckit:complete :confirm "feature"` | Pause at each step for approval |
+| `:with-research` | `/speckit:complete :with-research "feature"` | Insert research phase after Step 2 (before specification) |
+| `:with-phases` | `/speckit:complete :with-phases "feature"` | Insert phase decomposition before Step 1, then complete first child. The parent scaffolds from `phase-parent Level template contract` (lean trio only — `spec.md` + `description.json` + `graph-metadata.json` at parent); plan/tasks/checklist/decisions live in each child. |
+| (default) | `/speckit:complete "feature"` | Ask user to choose mode during setup |
 
 ---
 
@@ -361,7 +361,7 @@ When `:with-phases` flag present:
 - Display checkpoint: "Phase decomposition complete. Continue with first child? [Y/n/review]"
 - After creation, `spec_path` updates to first child phase folder
 - Normal 14-step workflow executes targeting that first child
-- Subsequent children: invoke `/spec_kit:complete --phase-folder=<child-path>` per child
+- Subsequent children: invoke `/speckit:complete --phase-folder=<child-path>` per child
 - Arguments: `--phases N` (default 3), `--phase-names "a,b,c"` (optional, auto-generated if omitted)
 
 ---
@@ -418,8 +418,8 @@ IF failure_count >= 3:
 ## 7. INSTRUCTIONS
 
 After setup phase passes, load and execute the appropriate YAML prompt:
-- **AUTONOMOUS**: `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml`
-- **INTERACTIVE**: `.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml`
+- **AUTONOMOUS**: `.opencode/commands/speckit/assets/speckit_complete_auto.yaml`
+- **INTERACTIVE**: `.opencode/commands/speckit/assets/speckit_complete_confirm.yaml`
 
 The YAML contains detailed step-by-step workflow, field extraction rules, completion report format, and all configuration.
 
@@ -560,11 +560,11 @@ Required at Planning Gate for Level 3/3+ (optional Level 2). Record in decision-
 
 ## 13. COMMAND CHAIN
 
-- **Standard**: `/spec_kit:complete "feature"` -- 14 steps
-- **With Research**: `/spec_kit:complete "feature" :with-research` -- Research + 14 steps
-- **With Phases**: `/spec_kit:complete "feature" :with-phases --phases 3` -- Phase decomposition + 14 steps on first child
-- **Full Options**: `/spec_kit:complete "feature" :auto :with-research :with-phases`
-- **Split workflows**: `/deep:start-research-loop` -> `/spec_kit:plan [:with-phases]` -> `/spec_kit:implement`
+- **Standard**: `/speckit:complete "feature"` -- 14 steps
+- **With Research**: `/speckit:complete "feature" :with-research` -- Research + 14 steps
+- **With Phases**: `/speckit:complete "feature" :with-phases --phases 3` -- Phase decomposition + 14 steps on first child
+- **Full Options**: `/speckit:complete "feature" :auto :with-research :with-phases`
+- **Split workflows**: `/deep:start-research-loop` -> `/speckit:plan [:with-phases]` -> `/speckit:implement`
 
 ---
 
@@ -576,8 +576,8 @@ Required at Planning Gate for Level 3/3+ (optional Level 2). Record in decision-
 | Need to refresh search support | `/memory:save [spec-folder-path]` | Refresh the indexed canonical spec document while canonical continuity stays in spec docs |
 | Ending session | `/memory:save [spec-folder-path]` | Refresh canonical continuity before pausing |
 | Found bugs | `Task tool → @debug` | User-dispatched fresh-perspective debugging (workflow prompts; user opts in) |
-| Ready for next feature | `/spec_kit:complete [feature-description]` | Start new workflow |
-| Need crash recovery | `/spec_kit:resume` | Session recovery and continuation |
+| Ready for next feature | `/speckit:complete [feature-description]` | Start new workflow |
+| Need crash recovery | `/speckit:resume` | Session recovery and continuation |
 | Record constitutional rule | `/memory:learn [rule]` | Save a durable repo-wide rule |
 
 ---

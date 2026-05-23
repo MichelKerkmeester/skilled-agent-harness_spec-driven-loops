@@ -21,7 +21,7 @@ Prior Active Findings (from iteration 1, awaiting deep adjudication):
   - File: .opencode/skills/system-spec-kit/mcp_server/dist/code_graph/lib/index-scope-policy.js:13
   - Need: Confirm or refute live import path through `dist/`. Inspect `.opencode/skills/system-spec-kit/mcp_server/package.json` "main"/"exports", every config entry that references the MCP/context server, and runtime startup scripts.
 - P1-002: Deep-review/deep-research command workflows point to non-existent sk-deep-* skill paths
-  - File: .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:56
+  - File: .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:56
   - Need: Confirm whether any automation reads these paths directly. Search for `sk-deep-review` and `sk-deep-research` literals across the canonical workspace excluding `barter/coder/`, `z_archive/`, archived specs, and review-research-paths helper code.
 - P1-003: Root .opencode/skill survivor with stale advisor state
   - File: .opencode/skill/.advisor-state/skill-graph-generation.json:1

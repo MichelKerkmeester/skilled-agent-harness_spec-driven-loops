@@ -339,9 +339,9 @@ Use this skill when:
 
 ### When NOT to Use
 
-- Simple, single-question research (use direct codebase search or `/spec_kit:plan`)
-- Known-solution documentation (use `/spec_kit:plan`)
-- Implementation tasks (use `/spec_kit:implement`)
+- Simple, single-question research (use direct codebase search or `/speckit:plan`)
+- Known-solution documentation (use `/speckit:plan`)
+- Implementation tasks (use `/speckit:implement`)
 - Quick codebase searches (use `@context` or direct Grep/Glob)
 - Fewer than 3 sources needed (single-pass research suffices)
 
@@ -3539,7 +3539,7 @@ nl -ba .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js 
     82	
     83	### How You Use It
     84	
-    85	The memory system exposes 47 MCP tools through 4 memory slash commands plus the borrowed recovery workflow in `/spec_kit:resume`. Think of commands as doors into the system. Each door opens access only to the tools it needs.
+    85	The memory system exposes 47 MCP tools through 4 memory slash commands plus the borrowed recovery workflow in `/speckit:resume`. Think of commands as doors into the system. Each door opens access only to the tools it needs.
     86	
     87	| Command | What It Does | Tool Count |
     88	|---------|-------------|------------|
@@ -3547,7 +3547,7 @@ nl -ba .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js 
     90	| `/memory:learn` | Create always-surface rules (constitutional memories) | 6 tools |
     91	| `/memory:manage` | Database maintenance, checkpoints, bulk ingestion, shared-memory spaces and memberships | 19 primary tools + 1 helper |
     92	| `/memory:save` | Save conversation context | 4 tools |
-    93	| `/spec_kit:resume` | Continue or recover an interrupted spec-folder session through the broader memory/session recovery stack | Broad helper surface; primary chain uses 3 shared memory tools |
+    93	| `/speckit:resume` | Continue or recover an interrupted spec-folder session through the broader memory/session recovery stack | Broad helper surface; primary chain uses 3 shared memory tools |
     94	
     95	### Requirements
     96	
@@ -4058,7 +4058,7 @@ exec
     77	| Template              | Trigger Keywords                                                                                                              | Action                    |
     78	| --------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
     79	| `handover.md`         | "handover", "next session", "continue later", "pass context", "ending session", "save state", "multi-session", "for next AI"  | Suggest creating handover |
-    80	| `debug-delegation.md` | "stuck", "can't fix", "tried everything", "same error", "fresh eyes", "hours on this", "still failing", "need help debugging" | Suggest `/spec_kit:debug` |
+    80	| `debug-delegation.md` | "stuck", "can't fix", "tried everything", "same error", "fresh eyes", "hours on this", "still failing", "need help debugging" | Suggest `/speckit:debug` |
     81	
     82	**Rule:** When detected, proactively suggest the appropriate action.
     83	
@@ -4195,17 +4195,17 @@ exec
    214	}
    215	
    216	COMMAND_BOOSTS = {
-   217	    "/spec_kit:plan": "PLAN",
-   218	    "/spec_kit:implement": "IMPLEMENT",
-   219	    "/spec_kit:debug": "DEBUG",
-   220	    "/spec_kit:complete": "COMPLETE",
-   221	    "/spec_kit:handover": "HANDOVER",
-   222	    "/spec_kit:plan :with-phases": "PHASE",
+   217	    "/speckit:plan": "PLAN",
+   218	    "/speckit:implement": "IMPLEMENT",
+   219	    "/speckit:debug": "DEBUG",
+   220	    "/speckit:complete": "COMPLETE",
+   221	    "/speckit:handover": "HANDOVER",
+   222	    "/speckit:plan :with-phases": "PHASE",
    223	    "/memory:search": "MEMORY",
    224	    "/memory:save": "MEMORY",
    225	    "/memory:manage": "MEMORY",
    226	    "/memory:learn": "MEMORY",
-   227	    "/spec_kit:resume": "MEMORY",
+   227	    "/speckit:resume": "MEMORY",
    228	    "/memory:manage shared": "GOVERNANCE",
    229	}
    230	

@@ -75,8 +75,8 @@ This handover documents the end-state of the 2026-04-27 session that completed t
 **Work executed in order:**
 
 1. Deep-dive investigation via 2 parallel Explore agents → confirmed shelfware diagnosis with concrete evidence
-2. `/spec_kit:plan :auto` → populated empty `050-agent-debug-integration/` folder with Level 2 templates (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md` placeholder, `description.json`, `graph-metadata.json`, `scratch/`)
-3. `/spec_kit:implement :auto` → executed Edit A (truth up auto-dispatch wording across 9 files) + Edit B (replace buried A/B/C/D menu with single y/n/skip prompt + add `scaffold-debug-delegation.sh` Bash helper + add DBG-SCAF-001 playbook entry)
+2. `/speckit:plan :auto` → populated empty `050-agent-debug-integration/` folder with Level 2 templates (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md` placeholder, `description.json`, `graph-metadata.json`, `scratch/`)
+3. `/speckit:implement :auto` → executed Edit A (truth up auto-dispatch wording across 9 files) + Edit B (replace buried A/B/C/D menu with single y/n/skip prompt + add `scaffold-debug-delegation.sh` Bash helper + add DBG-SCAF-001 playbook entry)
 4. `cli-opencode` dispatch of `@ultra-think` agent via `opencode-go/deepseek-v4-pro` for second-opinion review → caught 2 P0 ship-blockers and 4 P1 gaps I missed
 5. Follow-up batch: fixed both P0s (autonomous `subagent_type: "debug"` block in `_confirm.yaml` variant + 3 sibling orchestrators not updated) + 5 of 6 P1s (sibling debug agent body line 24, Related Resources tables, command-doc guardrails, Gemini command-prompt TOML mirrors, scaffold heredoc shell-injection sanitization, scaffold versioning TOCTOU race fixed via atomic noclobber pattern)
 6. `git add -A && git commit && git push origin main` → commit `619de83c9` pushed (287 files, +2352 / -11037, dominated by debug-integration packet plus parallel cleanup of old research-iteration archives that were already in the working tree)
@@ -101,8 +101,8 @@ This handover documents the end-state of the 2026-04-27 session that completed t
 | Keep `@debug` agent (don't delete) | The 5-phase methodology is correct in spirit; only the dispatch claim was aspirational. Truthing the description costs less than reauthoring elsewhere. | All 4 runtime debug definitions retained |
 | Prompt-only, never auto-dispatch under any condition | HARD user constraint codified in `feedback_debug_agent_user_invoked_only.md`. Even on opt-in the user dispatches via Task tool themselves. | Workflow YAML configs, orchestrator prose, and command-doc guardrails all updated |
 | Pre-fill `debug-delegation.md` scaffold on opt-in | Removes the schema-friction barrier that was likely killing adoption (zero filled-in instances ever). | New `scaffold-debug-delegation.sh` Bash helper |
-| Single y/n/skip prompt instead of A/B/C/D menu | Audit showed operators consistently skip the buried menu; a direct ask is more legible. | `spec_kit_implement_*.yaml` and `spec_kit_complete_*.yaml` (both `_auto` and `_confirm` variants) |
-| Removed autonomous `debug_dispatch.subagent_type:debug` block | This was the only place the workflow could fire the Task tool itself; per user constraint even on opt-in the user must dispatch. | `spec_kit_complete_auto.yaml` + `spec_kit_complete_confirm.yaml` |
+| Single y/n/skip prompt instead of A/B/C/D menu | Audit showed operators consistently skip the buried menu; a direct ask is more legible. | `speckit_implement_*.yaml` and `speckit_complete_*.yaml` (both `_auto` and `_confirm` variants) |
+| Removed autonomous `debug_dispatch.subagent_type:debug` block | This was the only place the workflow could fire the Task tool itself; per user constraint even on opt-in the user must dispatch. | `speckit_complete_auto.yaml` + `speckit_complete_confirm.yaml` |
 | Renamed YAML metadata `failure_tracking` → `prompt_threshold` | Original key implied auto-routing on hit; new name makes its true role explicit. | All 4 workflow YAML variants |
 | Bash for the scaffold generator (not Node) | Matches existing helpers in `scripts/spec/` (`create.sh`, `validate.sh`). No new toolchain dependency. | New `scaffold-debug-delegation.sh` |
 | Atomic noclobber pattern (`set -C; : > $path`) for collision-safe versioning | Eliminates the TOCTOU race that the reviewer flagged. | `scaffold-debug-delegation.sh` versioning loop |
@@ -124,7 +124,7 @@ See `implementation-summary.md::what-built` for the full table (25 files in the 
 - **Runtime debug agent definitions (4 mirrors):** `.opencode/agents/debug.md`, `.claude/agents/debug.md`, `.codex/agents/debug.toml`, `.gemini/agents/debug.md`
 - **Orchestrator routing prose (4 mirrors):** `.opencode/agents/orchestrate.md`, `.claude/agents/orchestrate.md`, `.codex/agents/orchestrate.toml`, `.gemini/agents/orchestrate.md`
 - **Workflow YAML configs:** `spec_kit_implement_{auto,confirm}.yaml`, `spec_kit_complete_{auto,confirm}.yaml` (4 files)
-- **Command-doc guardrails:** `.opencode/commands/spec_kit/{implement,complete}.md` + `.gemini/commands/spec_kit/{implement,complete}.toml`
+- **Command-doc guardrails:** `.opencode/commands/speckit/{implement,complete}.md` + `.gemini/commands/speckit/{implement,complete}.toml`
 - **New helper:** `.opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh` (executable, ~250 LOC)
 - **New playbook entry:** `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/071-debug-delegation-scaffold-generator.md` (DBG-SCAF-001)
 - **Spec folder:** `.opencode/specs/skilled-agent-orchestration/050-agent-debug-integration/` — full Level 2 doc set
@@ -143,7 +143,7 @@ See `implementation-summary.md::what-built` for the full table (25 files in the 
 
 ### 3.2 Optional Follow-Ups
 
-1. **Run DBG-SCAF-001 manual rehearsal end-to-end** against a synthetic 3-failure spec folder to exercise the y/manually/skip prompt branches in `spec_kit_implement_auto.yaml`. Steps documented in `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/071-debug-delegation-scaffold-generator.md`.
+1. **Run DBG-SCAF-001 manual rehearsal end-to-end** against a synthetic 3-failure spec folder to exercise the y/manually/skip prompt branches in `speckit_implement_auto.yaml`. Steps documented in `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/071-debug-delegation-scaffold-generator.md`.
 2. **Track `debug-delegation.md` creation rate over the next 90 days** to confirm or refute the discoverability premise. The deepseek reviewer's strongest critique: operators may skip `@debug` due to perceived cost / lack of trust, not menu placement. If creation rate stays at zero, this packet won't move the metric and the agent may genuinely deserve deletion.
 3. **Investigate similar adoption gaps for `@ultra-think` and `@orchestrate`.** The deep dive showed both have low reference counts (94 and 86 respectively, bottom of the 9-agent roster). Out of scope for this packet; tracked here for a future cleanup pass.
 
@@ -187,7 +187,7 @@ When editing agent definitions or orchestrator prose, the 4 runtime profile dire
 
 Plus:
 
-- `.gemini/commands/spec_kit/*.toml` (Gemini-side command-prompt mirrors that embed full markdown command text in a single TOML string)
+- `.gemini/commands/speckit/*.toml` (Gemini-side command-prompt mirrors that embed full markdown command text in a single TOML string)
 
 And the workflow YAML configs come in `_auto.yaml` AND `_confirm.yaml` variants — both must be updated with mirrored changes.
 

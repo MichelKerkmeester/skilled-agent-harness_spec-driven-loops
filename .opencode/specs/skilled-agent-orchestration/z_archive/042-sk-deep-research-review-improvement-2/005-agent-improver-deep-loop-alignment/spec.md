@@ -45,7 +45,7 @@ The implementation landed in commit `080cf549e` and shipped in `.opencode/change
 | **Status** | Complete |
 | **Created** | 2026-04-10 |
 | **Completed** | 2026-04-11 |
-| **Branch** | `system-speckit/026-graph-and-context-optimization` |
+| **Branch** | `system-spec-kit/026-graph-and-context-optimization` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Plan** | `../plan.md` |
 | **Phase** | 5 of 8 |

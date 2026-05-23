@@ -67,7 +67,7 @@ Author the shared `auto_mode_contract.md` reference, refactor Phase-1's deep-rev
 - Author `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md` (Level 2 sk-doc reference; §1-8 — three-tier flow, PRE-BOUND ANSWERS grammar, default-resolution-table format, Tier-3 error template, `:confirm` invariance, verification protocol, adoption checklist, out-of-scope).
 - Refactor `/deep:start-review-loop` §0 to cite the shared contract (replacing the inline three-tier sections from 001).
 - Migrate 11 commands' §0 to cite the shared contract + provide their own per-field default table + PRE-BOUND ANSWERS field list:
-  - `/spec_kit:` — deep-research, complete, implement, plan, resume (5)
+  - `/speckit:` — deep-research, complete, implement, plan, resume (5)
   - `/create:` — sk-skill, agent, changelog, feature-catalog, testing-playbook, folder_readme (6)
   - `/improve:` — agent (1)
 - Update each migrated command's frontmatter `argument-hint` to reference the new bypass capability.
@@ -86,7 +86,7 @@ Author the shared `auto_mode_contract.md` reference, refactor Phase-1's deep-rev
 |-----------|-------------|-------------|
 | `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md` | Create | Shared three-tier `:auto` contract reference |
 | `.opencode/commands/deep/start-review-loop.md` | Modify | Refactor §0 to cite shared contract |
-| `.opencode/commands/spec_kit/{deep-research,complete,implement,plan,resume}.md` | Modify | Migrate §0 to shared contract pattern |
+| `.opencode/commands/speckit/{deep-research,complete,implement,plan,resume}.md` | Modify | Migrate §0 to shared contract pattern |
 | `.opencode/commands/create/{sk-skill,agent,changelog,feature-catalog,testing-playbook,folder_readme}.md` | Modify | Same |
 | `.opencode/commands/improve/agent.md` | Modify | Same |
 | `002/evidence/` | Create dir + 12 files | Live dispatch transcripts |

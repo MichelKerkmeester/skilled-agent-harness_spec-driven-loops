@@ -98,7 +98,7 @@ Replace old `sk-deep-review` and `sk-deep-research` skill IDs with `deep-review`
 | `.opencode/skills/sk-code-review/graph-metadata.json` | Modify | Critical broken edge to `deep-review` |
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json` | Modify | Critical broken edges to `deep-review` and `deep-research` |
 | `.opencode/agents/**` | Modify | Agent skill references |
-| `.opencode/commands/spec_kit/**` | Modify | Command markdown/YAML skill references |
+| `.opencode/commands/speckit/**` | Modify | Command markdown/YAML skill references |
 | `.opencode/skills/system-spec-kit/mcp_server/**` | Modify | MCP server code and test references |
 | `.opencode/skills/system-spec-kit/scripts/**` | Modify | Script and fixture references |
 | `.opencode/specs/**` | Modify | Active authored docs, graph metadata, descriptions, research/review artifacts only |

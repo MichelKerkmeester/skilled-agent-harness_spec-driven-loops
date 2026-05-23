@@ -6,7 +6,7 @@
 
 ## 041-sk-recursive-agent-loop — 2026-04-04
 
-This packet delivered the sk-improve-agent skill across 11 phases, starting from a proposal-only evaluator-first MVP and ending with a holistic 5-dimension integration-aware scoring framework, a self-referential test pass, fixes promoted from that test, and full skill advisor routing. The skill can now evaluate any agent across structural integrity, rule coherence, integration consistency, output quality, and system fitness without LLM-as-judge scoring. The work also included a repo-wide rename from `sk-recursive-agent` to `sk-improve-agent` and from `/spec_kit:recursive-agent` to `/improve:agent`, touching 187+ files and 1129+ occurrences.
+This packet delivered the sk-improve-agent skill across 11 phases, starting from a proposal-only evaluator-first MVP and ending with a holistic 5-dimension integration-aware scoring framework, a self-referential test pass, fixes promoted from that test, and full skill advisor routing. The skill can now evaluate any agent across structural integrity, rule coherence, integration consistency, output quality, and system fitness without LLM-as-judge scoring. The work also included a repo-wide rename from `sk-recursive-agent` to `sk-improve-agent` and from `/speckit:recursive-agent` to `/improve:agent`, touching 187+ files and 1129+ occurrences.
 
 > Spec folder: `.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/` (Level 3)
 
@@ -108,7 +108,7 @@ These phases handled template fidelity, command path changes, and wording consis
 
 **Problem:** The command entrypoint needed to move to a more discoverable path.
 
-**Fix:** Phase 006 renamed the command entrypoint to `/spec_kit:recursive-agent`, updating canonical markdown, YAML workflow assets, and wrapper TOMLs across all runtimes.
+**Fix:** Phase 006 renamed the command entrypoint to `/speckit:recursive-agent`, updating canonical markdown, YAML workflow assets, and wrapper TOMLs across all runtimes.
 
 ### Wording alignment
 

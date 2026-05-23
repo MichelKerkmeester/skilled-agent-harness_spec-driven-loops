@@ -31,7 +31,7 @@ Packet `041-sk-improve-agent-loop` shipped the evaluator-first MVP and proved th
 
 **Key Decisions**: keep `.opencode/agents/handover.md` as the benchmark seed target, build fixture-based output evaluation before expanding scope, add one second structured target before considering broader agent families, and keep mirror sync as a downstream packaging phase rather than experiment evidence.
 
-**Critical Dependencies**: packet `041-sk-improve-agent-loop`, `/spec_kit:handover`, the current `sk-improve-agent` runtime and scoring surfaces, spec-kit validation rules, and any second target chosen for expansion.
+**Critical Dependencies**: packet `041-sk-improve-agent-loop`, `/speckit:handover`, the current `sk-improve-agent` runtime and scoring surfaces, spec-kit validation rules, and any second target chosen for expansion.
 
 ---
 
@@ -89,8 +89,8 @@ Define the next implementation packet that upgrades `sk-improve-agent` from a si
 | `.opencode/skills/sk-improve-agent/references/` | Modify | Add target-profile, benchmark, and expansion runbooks |
 | `.opencode/skills/sk-improve-agent/assets/` | Modify | Add reusable profile templates and richer config fields |
 | `.opencode/skills/sk-improve-agent/scripts/` | Modify | Add fixture evaluation, target-profile routing, and richer reporting |
-| `.opencode/commands/spec_kit/agent-improver.md` | Modify | Expand command contract for benchmark mode and second-target support |
-| `.opencode/commands/spec_kit/assets/improve_agent-improver_*.yaml` | Modify | Extend workflow surfaces for benchmark runs and controlled sync |
+| `.opencode/commands/speckit/agent-improver.md` | Modify | Expand command contract for benchmark mode and second-target support |
+| `.opencode/commands/speckit/assets/improve_agent-improver_*.yaml` | Modify | Extend workflow surfaces for benchmark runs and controlled sync |
 | `.opencode/agents/` | Modify | Only if a second approved target or benchmark harness needs canonical support surfaces |
 | `.opencode/specs/skilled-agent-orchestration/041-sk-improve-agent-loop/002-sk-improve-agent-full-skill/` | Create | Phase `002` docs and verification evidence |
 <!-- /ANCHOR:scope -->
@@ -141,7 +141,7 @@ Define the next implementation packet that upgrades `sk-improve-agent` from a si
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | Packet `041-sk-improve-agent-loop` | Defines the working MVP and its hard safety boundary | Treat 041 as the non-negotiable baseline rather than re-opening MVP decisions |
-| Dependency | `/spec_kit:handover` and handover template | Supplies the first benchmarkable artifact family | Build fixture-based evaluation from the existing output contract |
+| Dependency | `/speckit:handover` and handover template | Supplies the first benchmarkable artifact family | Build fixture-based evaluation from the existing output contract |
 | Risk | Benchmark harness becomes brittle or too expensive | High | Start with a small, explicit fixture corpus and grow only after stability is proven |
 | Risk | Second target expands scope too quickly | High | Require one structured, template-backed target only |
 | Risk | Mirror packaging gets mixed into experiment evidence | Medium | Keep sync as a downstream phase with separate evidence |

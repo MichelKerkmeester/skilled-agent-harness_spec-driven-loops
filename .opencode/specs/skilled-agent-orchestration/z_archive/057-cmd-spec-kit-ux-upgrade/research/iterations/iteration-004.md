@@ -54,7 +54,7 @@ SPAR's tool-check flow is unusually operator-friendly: run all checks, continue 
 
 The analogous internal operation is split across advisor status/rebuild, Code Mode `list_tools()`, native MCP health, CocoIndex status, and CLI checks. The `/doctor:skill-advisor` command is mature for advisor graph optimization, but it is not a general "what tools can this repo use right now?" dashboard. It is a five-phase scoring and rebuild workflow, not a lightweight session-discovery affordance.
 
-Recommendation: add a read-mostly `/doctor:tools` or `/spec_kit:tools` diagnostic that writes a local ledger only when asked or during install/init. It should use SPAR's semantics: complete pass, stable ordering, final status, no hard stop for one missing optional tool.
+Recommendation: add a read-mostly `/doctor:tools` or `/speckit:tools` diagnostic that writes a local ledger only when asked or during install/init. It should use SPAR's semantics: complete pass, stable ordering, final status, no hard stop for one missing optional tool.
 
 ## F-010: Tool-discovery UX should separate "agent routing" from "operator inventory"
 
@@ -73,7 +73,7 @@ Recommendation: keep the distinction explicit in future UX copy. "Advisor" route
 
 # Questions Remaining
 
-- Should the future local ledger be command-owned (`/doctor:tools`) or install/init-owned (`/spec_kit:init` style) so it does not create write-on-read behavior?
+- Should the future local ledger be command-owned (`/doctor:tools`) or install/init-owned (`/speckit:init` style) so it does not create write-on-read behavior?
 - Which live statuses belong in the ledger: skill-advisor freshness, native MCP health, Code Mode server list, CocoIndex availability, git/gh/npm/brew/uv CLI checks, or all of them?
 - How should the ledger represent runtime-specific availability differences across `.opencode`, `.codex`, `.claude`, `.gemini`, and Copilot without turning into another long instruction file?
 

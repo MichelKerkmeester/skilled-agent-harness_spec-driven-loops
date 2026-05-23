@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme",
-  "spec_folder": "system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme",
+  "packet_id": "system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme",
+  "spec_folder": "system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme",
   "parent_id": "system-spec-kit/022-hybrid-rag-fusion",
   "children_ids": [],
   "manual": {

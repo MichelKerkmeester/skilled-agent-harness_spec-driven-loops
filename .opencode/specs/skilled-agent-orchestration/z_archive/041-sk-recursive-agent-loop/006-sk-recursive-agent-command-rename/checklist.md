@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P0] The canonical command markdown file is `.opencode/commands/spec_kit/agent-improver.md` (verified)
+- [x] CHK-010 [P0] The canonical command markdown file is `.opencode/commands/speckit/agent-improver.md` (verified)
 - [x] CHK-011 [P0] The renamed command validates as a command document (verified)
 - [x] CHK-012 [P1] Runtime wrappers use the agent-improver filename family (verified)
 - [x] CHK-013 [P1] Runtime agent tables and skill docs point at the renamed command path (verified)

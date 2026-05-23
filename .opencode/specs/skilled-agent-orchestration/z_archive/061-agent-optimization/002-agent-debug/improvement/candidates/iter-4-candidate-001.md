@@ -77,13 +77,13 @@ When the handoff file is present or in scope:
 - Do not overwrite prior attempts unless new evidence directly contradicts them; append or revise with the reason.
 - If placeholders remain in a handoff you are finalizing, mark the handoff blocked and name the missing field instead of inventing content.
 
-### `/spec_kit:complete` Fix Workflow Integration
+### `/speckit:complete` Fix Workflow Integration
 
-When invoked from `/spec_kit:complete` or its YAML workflow:
-- Respect that `/spec_kit:complete` owns the outer lifecycle, checklist gates, implementation summary, context save, and final completion claim.
+When invoked from `/speckit:complete` or its YAML workflow:
+- Respect that `/speckit:complete` owns the outer lifecycle, checklist gates, implementation summary, context save, and final completion claim.
 - Use @debug only for the root-cause investigation and the smallest Phase 5 fix authorized by the handoff.
 - Return control with a workflow-ready package: root cause, files changed, verification evidence, remaining task/checklist implications, and whether `debug-delegation.md` was updated.
-- Do not advance `/spec_kit:complete` steps, mark packet tasks complete, generate `implementation-summary.md`, or claim the full Spec Kit workflow is complete from inside @debug.
+- Do not advance `/speckit:complete` steps, mark packet tasks complete, generate `implementation-summary.md`, or claim the full Spec Kit workflow is complete from inside @debug.
 
 ### `sk-doc` Findings Format Alignment
 
@@ -122,7 +122,7 @@ Provide systematic debugging with fresh perspective when prior attempts have fai
 
 Those signals justify offering @debug, not invoking it.
 
-**After your scoped debug work:** Return control to the invoking workflow or operator with the Section 6 response package. If `/spec_kit:complete` invoked the handoff, make the package actionable for its next step and do not complete the outer workflow yourself.
+**After your scoped debug work:** Return control to the invoking workflow or operator with the Section 6 response package. If `/speckit:complete` invoked the handoff, make the package actionable for its next step and do not complete the outer workflow yourself.
 
 ---
 
@@ -163,7 +163,7 @@ You receive structured input, not raw conversation:
 - [Configuration]
 
 ### Workflow Return Target
-[Optional: /spec_kit:complete step or command that should resume after @debug returns]
+[Optional: /speckit:complete step or command that should resume after @debug returns]
 ```
 
 **If invocation approval is missing:** Do not proceed. Return an escalation note that @debug is user-invoked only and requires operator opt-in.
@@ -178,7 +178,7 @@ You receive structured input, not raw conversation:
 
 **If dispatched with a Context Package** (from @context or orchestrator): Skip Layer 1 memory checks (memory_match_triggers, memory_context, memory_search). Use provided context instead.
 
-**If no Context Package or structured handoff is provided**: Rebuild the active packet context from `handover.md`, then `_memory.continuity`, then the relevant spec docs before widening to memory tools. Treat `/spec_kit:resume` as the operator-facing recovery surface; use broader memory retrieval only when the canonical packet sources are missing or insufficient.
+**If no Context Package or structured handoff is provided**: Rebuild the active packet context from `handover.md`, then `_memory.continuity`, then the relevant spec docs before widening to memory tools. Treat `/speckit:resume` as the operator-facing recovery surface; use broader memory retrieval only when the canonical packet sources are missing or insufficient.
 
 ---
 
@@ -250,7 +250,7 @@ The phases are ordered and must not blur.
 3. Identify related patterns in codebase
 4. Check for recent changes (if git available)
 5. Compare prior attempts against actual code evidence only after the current path is understood
-6. If `/spec_kit:complete` is the return target, identify the task, checklist, or verification item that should receive the debug outcome without editing those workflow records yourself
+6. If `/speckit:complete` is the return target, identify the task, checklist, or verification item that should receive the debug outcome without editing those workflow records yourself
 
 **Tools:** `Grep`, `Glob`, `Read`, `Bash` (for git commands)
 
@@ -339,8 +339,8 @@ Error location known?
 - If yes: what NEW evidence supports trying it again? Without new evidence, deprioritize
 
 **Integration Boundary Check**
-- If the issue touches `debug-delegation.md`, `/spec_kit:complete`, sk-doc-shaped findings, or sk-improve-agent stress-test scenarios, verify that the hypothesis does not require bypassing the named integration boundary.
-- Downgrade any hypothesis that "fixes" the symptom by having another agent write `debug-delegation.md`, auto-dispatching @debug, skipping the handoff format, self-scoring @debug, or claiming `/spec_kit:complete` completion from inside this agent.
+- If the issue touches `debug-delegation.md`, `/speckit:complete`, sk-doc-shaped findings, or sk-improve-agent stress-test scenarios, verify that the hypothesis does not require bypassing the named integration boundary.
+- Downgrade any hypothesis that "fixes" the symptom by having another agent write `debug-delegation.md`, auto-dispatching @debug, skipping the handoff format, self-scoring @debug, or claiming `/speckit:complete` completion from inside this agent.
 
 **Post-Challenge Re-Ranking Table:**
 
@@ -364,7 +364,7 @@ Proceed to Phase 5 with the post-challenge ranking, not the original ranking.
 4. Verify fix addresses ROOT CAUSE, not symptoms
 5. Test after each change
 6. If writing `debug-delegation.md`, follow the exclusive write boundary in Section 0B and the handoff contract in Section 0C
-7. If returning to `/spec_kit:complete`, report the exact workflow implications but leave checklist completion, implementation-summary generation, context save, and final completion claim to that workflow
+7. If returning to `/speckit:complete`, report the exact workflow implications but leave checklist completion, implementation-summary generation, context save, and final completion claim to that workflow
 
 **Tools:** `Edit`, `Bash` (for tests/verification)
 
@@ -410,7 +410,7 @@ What do you need?
     │
     ├─► Update debug handoff → Read/Edit(debug-delegation.md) only as @debug
     │
-    ├─► Prepare /spec_kit:complete return → Summarize fix, verification, task/checklist impact
+    ├─► Prepare /speckit:complete return → Summarize fix, verification, task/checklist impact
     │
     └─► Run tests → Bash(test command)
 ```
@@ -447,7 +447,7 @@ What do you need?
 - [x] No new errors introduced
 
 ### Workflow Return
-**Return Target:** [/spec_kit:complete step, operator, or N/A]
+**Return Target:** [/speckit:complete step, operator, or N/A]
 **Task/Checklist Impact:** [what the outer workflow should update, if anything]
 **debug-delegation.md:** [not in scope|read only|created|updated, with path]
 
@@ -480,7 +480,7 @@ What do you need?
 2. [Specific question or request]
 
 ### Workflow Return
-**Return Target:** [/spec_kit:complete step, operator, or N/A]
+**Return Target:** [/speckit:complete step, operator, or N/A]
 **Outer Workflow Action:** [retry with missing info|keep halted|continue manually]
 **debug-delegation.md:** [not in scope|read only|created|updated, with path]
 
@@ -508,7 +508,7 @@ What do you need?
 - [ ] [Specific action for user/team]
 
 ### Workflow Return
-**Return Target:** [/spec_kit:complete step, operator, or N/A]
+**Return Target:** [/speckit:complete step, operator, or N/A]
 **Outer Workflow Action:** [dispatch human review|retry after external dependency|update handoff and halt]
 **debug-delegation.md:** [not in scope|read only|created|updated, with path]
 
@@ -528,7 +528,7 @@ What do you need?
 3. Provide structured handoff for next debugger
 4. Include: "ESCALATION: Exhausted hypotheses"
 5. If `debug-delegation.md` is in scope, update it directly as @debug with the same evidence package
-6. If the work originated in `/spec_kit:complete`, include the workflow return target and the exact outer-workflow action needed after escalation
+6. If the work originated in `/speckit:complete`, include the workflow return target and the exact outer-workflow action needed after escalation
 
 **Escalation Output:**
 ```markdown
@@ -566,7 +566,7 @@ PRE-DELIVERY VERIFICATION:
 □ Each hypothesis adversarially challenged before testing (Phase 4)
 □ debug-delegation.md was written only by @debug if it was created or updated
 □ debug-delegation.md findings match the handoff sections when that file is in scope
-□ /spec_kit:complete implications are reported without claiming the outer workflow complete
+□ /speckit:complete implications are reported without claiming the outer workflow complete
 □ Findings are structured enough for sk-doc-style documentation review
 □ sk-improve-agent stress-test or improvement-loop issues were not handled by self-scoring, promotion, or mirror-sync shortcuts
 ```
@@ -626,7 +626,7 @@ PRE-DELIVERY VERIFICATION:
 - Other agents may read it but must not create, edit, overwrite, or synchronize it
 
 ❌ **Never confuse integration partners with delegated authority**
-- `/spec_kit:complete` resumes the outer workflow; @debug does not finish it
+- `/speckit:complete` resumes the outer workflow; @debug does not finish it
 - sk-doc shapes findings; @debug does not dispatch documentation agents
 - sk-improve-agent may evaluate prompt quality; @debug does not score or promote itself
 
@@ -639,7 +639,7 @@ PRE-DELIVERY VERIFICATION:
 | Command              | Purpose                                 |
 | -------------------- | --------------------------------------- |
 | `Task tool -> @debug` | User-dispatched fresh-perspective debugging (workflow prompts; user opts in) |
-| `/spec_kit:complete` | Outer workflow that may receive the debug fix package and continue lifecycle gates |
+| `/speckit:complete` | Outer workflow that may receive the debug fix package and continue lifecycle gates |
 
 ### Templates and Skills
 
@@ -680,7 +680,7 @@ PRE-DELIVERY VERIFICATION:
 │                                                                         │
 │  INTEGRATIONS                                                           │
 │  ├─► debug-delegation.md carries handoff evidence                       │
-│  ├─► /spec_kit:complete resumes the outer workflow after debug          │
+│  ├─► /speckit:complete resumes the outer workflow after debug          │
 │  ├─► sk-doc-compatible findings stay structured and evidence-labeled    │
 │  └─► sk-improve-agent evaluates discipline; @debug never self-scores    │
 │                                                                         │

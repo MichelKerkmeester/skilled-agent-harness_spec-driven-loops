@@ -80,7 +80,7 @@ The work was delivered in three passes: correct the source package docs, rename 
 | `package_skill.py --check` | `.opencode/skills/sk-improve-agent/` | PASS |
 | `validate_document.py --type skill` | `.opencode/skills/sk-improve-agent/SKILL.md` | PASS |
 | `validate_document.py --type readme` | `.opencode/skills/sk-improve-agent/README.md` | PASS |
-| `validate_document.py --type command` | `.opencode/commands/spec_kit/agent-improver.md` | PASS |
+| `validate_document.py --type command` | `.opencode/commands/speckit/agent-improver.md` | PASS |
 | `validate_document.py --type agent` | `.opencode/agents/agent-improver.md` | PASS |
 | `validate_document.py --type reference` | all agent-improver references | PASS |
 | `validate_document.py --type asset` | markdown agent-improver assets | PASS |

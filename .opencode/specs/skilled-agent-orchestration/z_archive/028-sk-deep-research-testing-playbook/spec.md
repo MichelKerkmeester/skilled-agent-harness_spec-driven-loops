@@ -31,7 +31,7 @@ Implement the first `manual_testing_playbook/` package for `.opencode/skills/sk-
 
 **Key Decisions**: keep the playbook greenfield and create-first, use the integrated `sk-doc` root-guidance contract, and preserve the approved 19-scenario ordering from entry points through synthesis and guardrails.
 
-**Critical Dependencies**: `.opencode/skills/sk-deep-research/`, `.opencode/commands/spec_kit/deep-research.md`, `.codex/agents/deep-research.toml`, and the `sk-doc` testing-playbook creation guide and templates.
+**Critical Dependencies**: `.opencode/skills/sk-deep-research/`, `.opencode/commands/speckit/deep-research.md`, `.codex/agents/deep-research.toml`, and the `sk-doc` testing-playbook creation guide and templates.
 
 ---
 

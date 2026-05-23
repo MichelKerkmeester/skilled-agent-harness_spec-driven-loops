@@ -73,9 +73,9 @@ Run a wording-only cleanup across the current agent-improver surfaces so the lan
 - `.opencode/skills/sk-improve-agent/README.md`
 - selected markdown files under `.opencode/skills/sk-improve-agent/references/`
 - selected markdown files under `.opencode/skills/sk-improve-agent/assets/`
-- `.opencode/commands/spec_kit/agent-improver.md`
-- `.agents/commands/spec_kit/agent-improver.toml`
-- `.gemini/commands/spec_kit/agent-improver.toml`
+- `.opencode/commands/speckit/agent-improver.md`
+- `.agents/commands/speckit/agent-improver.toml`
+- `.gemini/commands/speckit/agent-improver.toml`
 - `.opencode/agents/agent-improver.md`
 - `.claude/agents/agent-improver.md`
 - `.gemini/agents/agent-improver.md`

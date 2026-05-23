@@ -86,7 +86,7 @@ PASS with `hasAdvisories=true`; CONDITIONAL/FAIL would block release until follo
 
 ### Out of Scope
 - Re-running each individual deep-review iteration loop already shipped in 093-096 — handled by 095 / 097
-- Implementation of any remediation fixes — produces Plan Seed for `/spec_kit:plan` only if FAIL/CONDITIONAL
+- Implementation of any remediation fixes — produces Plan Seed for `/speckit:plan` only if FAIL/CONDITIONAL
 - Changes to any reviewed file — review target is READ-ONLY
 - Re-reviewing 098 sub-phase packets at line-level — only architectural / cross-phase reading
 
@@ -133,7 +133,7 @@ PASS with `hasAdvisories=true`; CONDITIONAL/FAIL would block release until follo
 - **SC-001**: Verdict + planning trigger produced; expected PASS or PASS hasAdvisories=true
 - **SC-002**: Every 097 finding has explicit RESOLVED/STILL_ACTIVE disposition with file:line evidence in §3 or iter-1 inventory
 - **SC-003**: Any new findings introduced by the 098 remediation are surfaced with file:line evidence
-- **SC-004**: If verdict ≠ PASS, the Plan Seed is concrete enough to start `/spec_kit:plan` without re-discovery
+- **SC-004**: If verdict ≠ PASS, the Plan Seed is concrete enough to start `/speckit:plan` without re-discovery
 <!-- /ANCHOR:success-criteria -->
 
 ---

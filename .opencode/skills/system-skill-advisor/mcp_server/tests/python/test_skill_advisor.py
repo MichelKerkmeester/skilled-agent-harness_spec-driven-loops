@@ -759,7 +759,7 @@ description: Fixture helper for routing tests
         failures = []
         expected_routes = [
             ("run /memory:save for this packet", "memory:save"),
-            ("run /spec_kit:resume for the 019 hardening packet", "system-spec-kit"),
+            ("run /speckit:resume for the 019 hardening packet", "system-spec-kit"),
             ("run /deep:start-research-loop :auto on this packet", "deep-research"),
             ("run /deep:start-review-loop :auto on this packet", "deep-review"),
         ]

@@ -82,7 +82,7 @@ Shared loop-runtime hardening with explicit product overlays.
 
 ### Key Components
 
-- **Command layer**: `.opencode/commands/spec_kit/deep-research.md` and `.opencode/commands/spec_kit/deep-review.md`
+- **Command layer**: `.opencode/commands/speckit/deep-research.md` and `.opencode/commands/speckit/deep-review.md`
 - **Workflow layer**: auto/confirm YAML assets for deep research and deep review
 - **Skill layer**: current contracts, references, config/strategy/dashboard assets
 - **Agent layer**: canonical `.opencode/agents/` deep-loop workers plus parity mirrors if still hand-authored
@@ -138,12 +138,12 @@ Phase 5 optional advanced modes
 - `.opencode/skills/sk-deep-review/references/state_format.md`
 - `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml`
 - `.opencode/skills/sk-deep-review/assets/deep_review_config.json`
-- `.opencode/commands/spec_kit/deep-research.md`
-- `.opencode/commands/spec_kit/deep-review.md`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+- `.opencode/commands/speckit/deep-research.md`
+- `.opencode/commands/speckit/deep-review.md`
+- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml`
+- `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml`
+- `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`
+- `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`
 - `.opencode/agents/deep-research.md`
 - `.opencode/agents/deep-review.md`
 
@@ -174,10 +174,10 @@ Phase 5 optional advanced modes
 - `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md`
 - `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml`
 - `.opencode/skills/sk-deep-review/assets/deep_review_config.json`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml`
+- `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml`
+- `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`
+- `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`
 - `.opencode/agents/deep-research.md`
 - `.opencode/agents/deep-review.md`
 
@@ -207,10 +207,10 @@ Phase 5 optional advanced modes
 - `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md`
 - `.opencode/skills/sk-deep-review/assets/deep_review_dashboard.md`
 - `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml`
+- `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml`
+- `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`
+- `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`
 - `.opencode/agents/deep-research.md`
 - `.opencode/agents/deep-review.md`
 
@@ -250,8 +250,8 @@ Phase 5 optional advanced modes
 **Why after early verification**: Once the foundational and trust contracts have replay-backed coverage, parity and mirror alignment can move as one bounded follow-on without guessing at unstable interim surfaces.
 
 **Files to change**:
-- `.opencode/commands/spec_kit/deep-research.md`
-- `.opencode/commands/spec_kit/deep-review.md`
+- `.opencode/commands/speckit/deep-research.md`
+- `.opencode/commands/speckit/deep-review.md`
 - `.opencode/skills/sk-deep-research/references/quick_reference.md`
 - `.opencode/skills/sk-deep-review/references/quick_reference.md`
 - `.claude/agents/deep-research.md`
@@ -283,9 +283,9 @@ Phase 5 optional advanced modes
 - `.opencode/skills/sk-deep-research/references/state_format.md`
 - `.opencode/skills/sk-deep-research/assets/deep_research_config.json`
 - `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md`
-- `.opencode/commands/spec_kit/deep-research.md`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+- `.opencode/commands/speckit/deep-research.md`
+- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml`
+- `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml`
 - `.opencode/agents/deep-research.md`
 - `.opencode/skills/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts`
 - `.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts`

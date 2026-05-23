@@ -4,9 +4,9 @@
 
 ---
 
-# Actionable Recommendations: system-speckit Enhancement
+# Actionable Recommendations: system-spec-kit Enhancement
 
-> **Executive Summary:** Prioritized recommendations for enhancing system-speckit based on analysis of dotmd, seu-claude, and drift repositories. Organized by implementation complexity and expected impact.
+> **Executive Summary:** Prioritized recommendations for enhancing system-spec-kit based on analysis of dotmd, seu-claude, and drift repositories. Organized by implementation complexity and expected impact.
 
 ---
 

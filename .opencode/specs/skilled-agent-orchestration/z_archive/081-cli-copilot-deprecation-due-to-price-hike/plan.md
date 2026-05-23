@@ -172,7 +172,7 @@ Edit (precision required):
 - Agent B4b: `.claude/agents/multi-ai-council.md`
 - Agent B4c: `.gemini/agents/multi-ai-council.md`
 - Agent B4d: `.codex/agents/multi-ai-council.toml`
-- Agent B4e: `.opencode/commands/spec_kit/{deep-research.md,deep-review.md,assets/spec_kit_deep-research_auto.yaml}` (single agent, three files in same skill area)
+- Agent B4e: `.opencode/commands/speckit/{deep-research.md,deep-review.md,assets/spec_kit_deep-research_auto.yaml}` (single agent, three files in same skill area)
 
 Mirror-sync constraint: B4a..B4d edit the SAME multi-ai-council content in 4 runtime variants. The 4 agents run in parallel because they touch DIFFERENT files; each is given identical edit semantics so output stays in sync.
 

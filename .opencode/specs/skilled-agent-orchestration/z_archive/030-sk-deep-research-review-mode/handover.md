@@ -120,7 +120,7 @@ CONTINUATION - Attempt 1 | Spec: .opencode/specs/03--commands-and-skills/030-sk-
 
 ### Resume Command
 ```
-/spec_kit:resume .opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode
+/speckit:resume .opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode
 ```
 
 ### Files to Review First
@@ -147,9 +147,9 @@ CONTINUATION - Attempt 1 | Spec: .opencode/specs/03--commands-and-skills/030-sk-
 | `.opencode/skills/sk-deep-research/references/loop_protocol.md` | Review sections updated (by Phase 2-3 agent) |
 | `.opencode/skills/sk-deep-research/references/state_format.md` | Review JSONL schema updated (by Phase 2-3 agent) |
 | `.opencode/skills/sk-deep-research/README.md` | Review mode stats updated (by Phase 2-3 agent) |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml` | Taxonomy migration (by Phase 4-5 agent) |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_review_confirm.yaml` | Taxonomy migration (by Phase 4-5 agent) |
+| `.opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml` | Taxonomy migration (by Phase 4-5 agent) |
+| `.opencode/commands/speckit/assets/speckit_deep-research_review_confirm.yaml` | Taxonomy migration (by Phase 4-5 agent) |
 | `.opencode/agents/deep-review.md` plus runtime variants | Taxonomy + integration (by Phase 4-5 agent) |
-| `.opencode/commands/spec_kit/deep-research.md` | Updated review mode description (by Phase 4-5 agent) |
+| `.opencode/commands/speckit/deep-research.md` | Updated review mode description (by Phase 4-5 agent) |
 | `.opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/research/research.md` | Rewritten as v2 research |
 | `030-sk-deep-research-review-mode/scratch/*` | 8 new iteration files + archived v1 state |

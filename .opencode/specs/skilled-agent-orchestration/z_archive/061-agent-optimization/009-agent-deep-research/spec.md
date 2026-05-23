@@ -53,7 +53,7 @@ _memory:
 `@deep-research` (476 LOC) has not been through the sk-improve-agent v2 lens. After 060's empirical validation (PASS 6/0/0), the substrate is ready to apply across the fleet.
 
 ### Purpose
-Improvement focus: **LEAF autonomous research loop; iteration state; convergence detection**. LEAF dispatched ONLY by /spec_kit:deep-research. Same architecture as @improve-agent.
+Improvement focus: **LEAF autonomous research loop; iteration state; convergence detection**. LEAF dispatched ONLY by /speckit:deep-research. Same architecture as @improve-agent.
 
 <!-- /ANCHOR:problem -->
 

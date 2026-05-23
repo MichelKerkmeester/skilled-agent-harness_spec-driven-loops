@@ -15,12 +15,12 @@ _memory:
     next_safe_action: "Move to Phase 003 (096 narrative + smart-router validation repair)"
     blockers: []
     key_files:
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml"
-      - ".opencode/commands/spec_kit/deep-review.md"
-      - ".opencode/commands/spec_kit/deep-research.md"
+      - ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml"
+      - ".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml"
+      - ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml"
+      - ".opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml"
+      - ".opencode/commands/speckit/deep-review.md"
+      - ".opencode/commands/speckit/deep-research.md"
       - ".opencode/agents/orchestrate.md"
       - ".opencode/agents/deep-review.md"
       - ".opencode/agents/deep-research.md"
@@ -66,12 +66,12 @@ Separately, repaired P1-009 doctrine drift in `.codex/agents/review.toml:400-404
 
 | File | Hits | Change Type | Purpose |
 |------|-----:|-------------|---------|
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | 15 | sed | command YAML loads correct skill folder |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | 15 | sed | command YAML loads correct skill folder |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | 17 | sed | command YAML loads correct skill folder |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | 17 | sed | command YAML loads correct skill folder |
-| `.opencode/commands/spec_kit/deep-review.md` | 9 | sed | command markdown citations |
-| `.opencode/commands/spec_kit/deep-research.md` | 9 | sed | command markdown citations |
+| `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml` | 15 | sed | command YAML loads correct skill folder |
+| `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml` | 15 | sed | command YAML loads correct skill folder |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | 17 | sed | command YAML loads correct skill folder |
+| `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml` | 17 | sed | command YAML loads correct skill folder |
+| `.opencode/commands/speckit/deep-review.md` | 9 | sed | command markdown citations |
+| `.opencode/commands/speckit/deep-research.md` | 9 | sed | command markdown citations |
 | `.opencode/agents/orchestrate.md` | 1 | sed | orchestrator routing table line 96 |
 | `.opencode/agents/deep-review.md` | 2 | sed | agent body skill citations (line 318, 325) |
 | `.opencode/agents/deep-research.md` | 1 | sed | agent body skill citation (line 91) |
@@ -135,7 +135,7 @@ ran where applicable (see §Verification table).
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Dry-run init for `/spec_kit:deep-review:auto` and `/spec_kit:deep-research:auto` not executed** — The token replacement is correct by static-analysis (paths exist, references match); a runtime smoke test against a freshly-cloned worktree would close the loop more emphatically. Tracked as advisory.
+1. **Dry-run init for `/speckit:deep-review:auto` and `/speckit:deep-research:auto` not executed** — The token replacement is correct by static-analysis (paths exist, references match); a runtime smoke test against a freshly-cloned worktree would close the loop more emphatically. Tracked as advisory.
 2. **Historical references preserved on purpose** — packet 070 rename docs, 081 cli-copilot review report, and all review/research iteration logs continue to cite `sk-deep-*`. Rewriting them would falsify history.
 <!-- /ANCHOR:limitations -->
 
@@ -154,5 +154,5 @@ ran where applicable (see §Verification table).
 
 ## Followups
 
-- **Runtime smoke test** (advisory): dry-run init for both `/spec_kit:deep-review:auto` and `/spec_kit:deep-research:auto` in fresh worktree.
+- **Runtime smoke test** (advisory): dry-run init for both `/speckit:deep-review:auto` and `/speckit:deep-research:auto` in fresh worktree.
 - **Phase 005 (checklist-evidence)** will backfill the strict-validate child anchors (`how-delivered`, `protocol`, `pre-impl`, `code-quality`, etc.) that this draft scaffold is missing.

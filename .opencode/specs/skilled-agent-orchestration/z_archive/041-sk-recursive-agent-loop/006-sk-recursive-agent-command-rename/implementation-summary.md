@@ -41,9 +41,9 @@ _memory:
 
 Phase `006` closed the final naming gap in the agent-improver program by renaming the command entrypoint itself.
 
-- the canonical command markdown is now `.opencode/commands/spec_kit/agent-improver.md`
+- the canonical command markdown is now `.opencode/commands/speckit/agent-improver.md`
 - the workflow assets are now `improve_agent-improver_auto.yaml` and `improve_agent-improver_confirm.yaml`
-- the runtime wrappers are now `.agents/commands/spec_kit/agent-improver.toml` and `.gemini/commands/spec_kit/agent-improver.toml`
+- the runtime wrappers are now `.agents/commands/speckit/agent-improver.toml` and `.gemini/commands/speckit/agent-improver.toml`
 - runtime agent tables, skill docs, README examples, and active packet docs now point at `/improve:agent-improver`
 - parent packet `041` now records this rename explicitly as phase `006`
 <!-- /ANCHOR:what-built -->
@@ -75,9 +75,9 @@ The work was delivered in three passes: rename the canonical command files, rena
 
 | Check | Scope | Result |
 |-------|-------|--------|
-| `validate_document.py --type command` | `.opencode/commands/spec_kit/agent-improver.md` | PASS |
-| `python3.11` TOML parse | `.agents/commands/spec_kit/agent-improver.toml` | PASS |
-| `python3.11` TOML parse | `.gemini/commands/spec_kit/agent-improver.toml` | PASS |
+| `validate_document.py --type command` | `.opencode/commands/speckit/agent-improver.md` | PASS |
+| `python3.11` TOML parse | `.agents/commands/speckit/agent-improver.toml` | PASS |
+| `python3.11` TOML parse | `.gemini/commands/speckit/agent-improver.toml` | PASS |
 | `python3.11` JSON parse | `.opencode/specs/descriptions.json` | PASS |
 | strict packet validation | phase `006` | PASS |
 | strict packet validation | root `041` | PASS |

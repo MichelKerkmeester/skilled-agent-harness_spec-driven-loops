@@ -55,7 +55,7 @@ contextType: "research"
 ### F-002 - Add a guided doc-first front door without replacing Spec Kit
 - Origin: `iteration-002.md`
 - Priority: should-have
-- Target: `.opencode/commands/spec_kit/README.txt`
+- Target: `.opencode/commands/speckit/README.txt`
 - Summary: introduce a memorable guided entry experience inspired by `/mdd`, but route into existing Spec Kit depth.
 
 ### F-003 - Add a lightweight compressed-brief pattern

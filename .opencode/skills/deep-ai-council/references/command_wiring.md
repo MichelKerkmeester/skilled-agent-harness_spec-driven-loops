@@ -20,7 +20,7 @@ This reference defines the canonical post-dispatch wiring for callers that run `
 
 `@deep-ai-council` is planning-only. It returns a council report and cannot write, edit, patch, or run shell commands. The dispatching parent owns persistence by invoking `.opencode/skills/deep-ai-council/scripts/persist-artifacts.cjs` after the report is captured.
 
-Future `/spec_kit:*` consumers and CLI-skill playbooks should use the same helper invocation so council artifacts, state JSONL, and optional memory-save payloads stay consistent.
+Future `/speckit:*` consumers and CLI-skill playbooks should use the same helper invocation so council artifacts, state JSONL, and optional memory-save payloads stay consistent.
 
 ---
 
@@ -38,7 +38,7 @@ Use this when the council is requested directly and the caller can run shell com
 
 Use this when multi-agent planning is part of a larger implementation workflow.
 
-### `/spec_kit:*` YAML Workflow
+### `/speckit:*` YAML Workflow
 
 A command YAML dispatches the council as a planning step and follows it with a persistence step. The command workflow owns the helper invocation, not the council agent.
 
@@ -109,7 +109,7 @@ steps:
       "${packet.spec_folder}"
 ```
 
-This is a documentation-only pattern. Packet 092 does not edit live `/spec_kit:*` YAML assets.
+This is a documentation-only pattern. Packet 092 does not edit live `/speckit:*` YAML assets.
 
 ---
 

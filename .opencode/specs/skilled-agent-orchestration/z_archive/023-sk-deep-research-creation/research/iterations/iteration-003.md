@@ -25,7 +25,7 @@ Despite SKILL.md describing an "atomic write pattern (temp file -> validate -> a
 ### F5: Their error recovery relies on a 3-tier strategy: backup restoration, git history, and manual rebuild
 Recovery from state corruption follows this hierarchy: (1) Check for timestamped backups via backup-state.sh, restore most recent. (2) If no backups, reconstruct from git commit history (since every "keep" result is committed). (3) If neither works, present user with choice: fresh start, context-only restart, or locate a backup manually. Our system has a simpler recovery model: reconstruct from iteration files if JSONL is missing (documented in deep-research.md error handling table). Their approach is more robust because git commits serve as an implicit audit trail -- every kept experiment is a committed state. We lack this because our deep-research iterations are research, not code changes, so there is no natural git checkpoint per iteration.
 [SOURCE: https://raw.githubusercontent.com/dabiggm0e/autoresearch-opencode/master/skills/autoresearch/SKILL.md -- Recovery section from reconnaissance data]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/commands/spec_kit/deep-research.md:237-240]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/commands/speckit/deep-research.md:237-240]
 
 ### F6: Their sentinel-file pause mechanism is simpler but less informative than our convergence detection
 They use a `.autoresearch-off` file as a binary toggle: exists = paused, absent = running. The plugin checks this file on every prompt event. Resumption simply deletes the sentinel. Our system uses convergence detection based on `newInfoRatio` dropping below a threshold (default 0.05) across consecutive iterations, which is analytically richer -- it measures when research is producing diminishing returns rather than relying on manual interruption. However, their approach is more responsive to user intent (instant pause/resume) whereas our convergence detection is about automatic stopping.
@@ -62,7 +62,7 @@ The SKILL.md describes an `autoresearch.ideas.md` file where users can steer fut
 - https://raw.githubusercontent.com/dabiggm0e/autoresearch-opencode/master/scripts/backup-state.sh (backup/recovery)
 - https://raw.githubusercontent.com/dabiggm0e/autoresearch-opencode/master/scripts/install.sh (installation)
 - https://raw.githubusercontent.com/dabiggm0e/autoresearch-opencode/master/docs/BACKUP-USAGE.md (recovery docs)
-- /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/commands/spec_kit/deep-research.md (our system)
+- /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/commands/speckit/deep-research.md (our system)
 - /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.claude/agents/deep-research.md (our agent)
 - /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/03--commands-and-skills/023-sk-deep-research-creation/research/deep-research-strategy.md (our strategy)
 

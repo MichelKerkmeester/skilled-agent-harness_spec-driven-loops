@@ -145,7 +145,7 @@ _memory:
 ## File Organization
 
 - [ ] CHK-050 [P0] Only the 4 listed YAMLs were edited
-  - **Evidence**: `git diff --stat` lists exactly 4 files, all under `.opencode/commands/spec_kit/assets/spec_kit_deep-*.yaml`
+  - **Evidence**: `git diff --stat` lists exactly 4 files, all under `.opencode/commands/speckit/assets/speckit_deep-*.yaml`
 - [ ] CHK-051 [P1] No scratch or temp files left behind
   - **Evidence**: No `.bak`, `.orig`, or scratch artifacts present in the diff or working tree
 <!-- /ANCHOR:file-org -->

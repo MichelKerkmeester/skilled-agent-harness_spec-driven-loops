@@ -210,49 +210,49 @@ The next pass is against implementation, not just prose: I want the workflow/YAM
   └ 7 lines found
 
 ● Read spec_kit_deep-research_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml
   └ L392:435 (44 lines read)
 
 ● Search (grep)
   │ "blocked_stop|legalStop|stopReason|gateResults|blockedBy|candidateStopReason"
-  │ (.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml)
+  │ (.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml)
   └ 8 lines found
 
 ● Search (grep)
   │ "blocked_stop|legalStop|stopReason|gateResults|blockedBy|candidateStopReason"
-  │ (.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml)
+  │ (.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml)
   └ 8 lines found
 
 ● Read spec_kit_deep-review_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
   └ L300:350 (51 lines read)
 
 ● Search (grep)
   │ "fullJSONLHistory|latestJSONLDelta|priorReducedState|newIterationFile|full-history|delta"
-  │ (.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml)
+  │ (.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml)
   └ 3 lines found
 
 ● Search (grep)
   │ "fullJSONLHistory|latestJSONLDelta|priorReducedState|newIterationFile|full-history|delta"
-  │ (.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml)
+  │ (.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml)
   └ 5 lines found
 
 ● Read spec_kit_deep-review_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
   └ L628:646 (19 lines read)
 
 ● Read spec_kit_deep-review_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
   └ L690:708 (19 lines read)
 
 ● Search (grep)
   │ "resumed","fromIteration|event":"resumed""
-  │ (.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml)
+  │ (.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml)
   └ 1 line found
 
 ● Search (grep)
   │ "resumed","fromIteration|event":"resumed""
-  │ (.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml)
+  │ (.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml)
   └ 1 line found
 
 ● Read loop_protocol.md
@@ -272,7 +272,7 @@ The next pass is against implementation, not just prose: I want the workflow/YAM
   └ L40:95 (56 lines read)
 
 ● Read spec_kit_deep-research_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml
   └ L334:345 (12 lines read)
 
 ● Search (grep)
@@ -348,11 +348,11 @@ I found a second possible drift: the reducer *code* replays the full JSONL + ite
   └ L147:154 (7 lines read)
 
 ● Read spec_kit_deep-research_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml
   └ L136:145 (10 lines read)
 
 ● Read spec_kit_deep-review_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
   └ L160:168 (9 lines read)
 
 ● Read deep_research_config.json
@@ -370,7 +370,7 @@ Found **4 traceability findings** in the requested focus area: **0 P0, 3 P1, 1 P
 - **Line:** `33-71, 93, 214-215, 272-291`
 - **Title:** Research convergence docs still describe the retired `legalStop` payload instead of the emitted `blocked_stop` contract
 - **Description:** The research convergence reference still tells readers that the canonical persisted stop contract is a nested `legalStop` object with `convergenceGate/coverageGate/qualityGate`. That no longer matches the shipped runtime shape.
-- **Evidence:** The doc defines a `LegalStop` record and says the replayable bundle is `legalStop.gateResults` (`convergence.md:33-71, 214-215`), then returns that nested object in the stop/continue examples (`convergence.md:272-291`). The live workflow emits a first-class `blocked_stop` event with top-level `blockedBy` and `gateResults`, and the gate names are `convergence`, `keyQuestionCoverage`, `evidenceDensity`, and `hotspotSaturation` in `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:338-345`.
+- **Evidence:** The doc defines a `LegalStop` record and says the replayable bundle is `legalStop.gateResults` (`convergence.md:33-71, 214-215`), then returns that nested object in the stop/continue examples (`convergence.md:272-291`). The live workflow emits a first-class `blocked_stop` event with top-level `blockedBy` and `gateResults`, and the gate names are `convergence`, `keyQuestionCoverage`, `evidenceDensity`, and `hotspotSaturation` in `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:338-345`.
 - **Recommendation:** Rewrite the research `convergence.md` examples and schema language to match the emitted `blocked_stop` payload and actual gate names throughout.
 
 ### F-033-002
@@ -400,7 +400,7 @@ Found **4 traceability findings** in the requested focus area: **0 P0, 3 P1, 1 P
 - **Line:** `168-170`; `196-205`
 - **Title:** Pause/resume examples still show abbreviated lifecycle events
 - **Description:** The pause/resume sections still show shortened JSON events that omit required lineage fields. That contradicts the canonical lifecycle contract documented later in the same references and the live workflow emissions.
-- **Evidence:** Research still shows `{"type":"event","event":"resumed","fromIteration":N}` at `.opencode/skills/sk-deep-research/references/loop_protocol.md:168-170`. Review still shows abbreviated `userPaused`/`resumed` examples at `.opencode/skills/sk-deep-review/references/loop_protocol.md:196-205`. Later in the same files, the canonical lifecycle event contract requires `sessionId`, `parentSessionId`, `lineageMode`, `continuedFromRun`, `generation`, `archivedPath`, and `timestamp` at research `83-118` and review `524-557`; the live workflows emit that full shape at `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:143` and `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:167`.
+- **Evidence:** Research still shows `{"type":"event","event":"resumed","fromIteration":N}` at `.opencode/skills/sk-deep-research/references/loop_protocol.md:168-170`. Review still shows abbreviated `userPaused`/`resumed` examples at `.opencode/skills/sk-deep-review/references/loop_protocol.md:196-205`. Later in the same files, the canonical lifecycle event contract requires `sessionId`, `parentSessionId`, `lineageMode`, `continuedFromRun`, `generation`, `archivedPath`, and `timestamp` at research `83-118` and review `524-557`; the live workflows emit that full shape at `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:143` and `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:167`.
 - **Recommendation:** Replace the abbreviated pause/resume snippets with the canonical event payloads, or point those sections at the later lifecycle contract block instead of duplicating stale JSON.
 
 ## ITERATION SUMMARY

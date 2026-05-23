@@ -302,7 +302,7 @@ exec
 763:## Task 8: Refresh README/changelog language to current code-graph behavior and sync constitutional README file inventory, outcome success
 771:- current reality, no longer wording removal, bounded selective_reindex, full_scan guidance, v3.3.0.0, gate-tool-routing.md, constitutional/README.md
 791:- constitutional README parity check should enumerate both `gate-enforcement.md` and `gate-tool-routing.md` as required files so operators see the full always-surfaced ruleset [Task 8]
-935:scope: restoring `/spec_kit:*`, `/memory:*`, and `/create:*` command discovery when prompt links drift between workspace and global Codex prompt directories
+935:scope: restoring `/speckit:*`, `/memory:*`, and `/create:*` command discovery when prompt links drift between workspace and global Codex prompt directories
 936:applies_to: cwd=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public and ~/.codex; reuse_rule=reuse on this machine when slash-command lists/autocomplete go blank, but always confirm the active workspace path before repointing global symlinks
 960:- symptom: typing `/spec_kit` shows blank command list; cause: `~/.codex/prompts` linked to `/Users/.../.codex` instead of `/Users/.../.codex/prompts`; fix: repoint global symlink to the actual prompts subfolder and re-list prompt files [Task 1]
 1412:scope: utility-layer edits in `Websites/anobel.com/src/1_css/global/attributes.css` for responsive ratio defaults and generated selector blocks

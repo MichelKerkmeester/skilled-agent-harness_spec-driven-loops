@@ -1,0 +1,17 @@
+{
+  "specFolder": "114-small-ai-model-optimization/008-sk-prompt-small-model-rename",
+  "description": "Phase 1: sk-prompt-small-model-rename",
+  "keywords": [
+    "phase",
+    "sk-prompt-small-model-rename"
+  ],
+  "lastUpdated": "2026-05-23T13:10:02.487Z",
+  "specId": "008",
+  "folderSlug": "sk-prompt-small-model-rename",
+  "parentChain": [
+    "114-small-ai-model-optimization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

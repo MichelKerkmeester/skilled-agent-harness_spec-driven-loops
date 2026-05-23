@@ -28,7 +28,7 @@ confidence: high
 finding: `system-spec-kit` should grow from response/mutation hooks into a command-phase lifecycle hook surface for workflow init, iteration dispatch, approval handling, convergence, synthesis, and save. This is a strong fit with the other Babysitter-inspired recommendations because hooks become much more valuable once workflows are more deterministic.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skills/system-spec-kit/mcp_server/hooks/`, `.opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts`, and `.opencode/commands/spec_kit/assets/*.yaml`
+- **Target file or module:** `.opencode/skills/system-spec-kit/mcp_server/hooks/`, `.opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts`, and `.opencode/commands/speckit/assets/*.yaml`
 - **Change type:** modified existing
 - **Blast radius:** medium
 - **Prerequisites:** define a lifecycle event vocabulary and decide which events belong to command workflows versus MCP handlers

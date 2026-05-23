@@ -30,7 +30,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary | v2
 | Field | Value |
 |-------|-------|
 | **Spec** | 009-graph-retrieval-improvements |
-| **Branch** | system-speckit/024-compact-code-graph |
+| **Branch** | system-spec-kit/024-compact-code-graph |
 | **Date** | 2026-04-01 |
 | **LOC Changed** | ~1,500 (new) + ~300 (modified) |
 | **Files Created** | 15 (8 implementation + 7 test) |

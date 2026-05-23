@@ -61,7 +61,7 @@ This is **Phase 5** of the ESM Module Compliance specification.
 | **Priority** | P1 |
 | **Status** | Pending |
 | **Created** | 2026-03-29 |
-| **Branch** | `system-speckit/023-esm-module-compliance` |
+| **Branch** | `system-spec-kit/023-esm-module-compliance` |
 | **Parent Spec** | 023-hybrid-rag-fusion-refinement |
 <!-- /ANCHOR:metadata -->
 

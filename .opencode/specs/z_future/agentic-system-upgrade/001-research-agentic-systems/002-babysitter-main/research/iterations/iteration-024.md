@@ -20,7 +20,7 @@ I compared Spec Kit's orchestrator/context/context-prime routing with Babysitter
 - Its human-facing wrapper surface stays small: create/run, resume, observe, doctor. [SOURCE: external/README.md:218-234]
 
 ## Analysis
-`@context-prime` is not wrong. It captures a real need: fast, bounded startup recovery. But it is probably too granular as a named agent surface. The functionality overlaps heavily with `/spec_kit:resume`, `@context`, and session bootstrap itself, so the dedicated persona feels more like an internal optimization artifact than a concept users need to understand. [SOURCE: .opencode/agents/context-prime.md:22-39] [SOURCE: .opencode/agents/context.md:25-32]
+`@context-prime` is not wrong. It captures a real need: fast, bounded startup recovery. But it is probably too granular as a named agent surface. The functionality overlaps heavily with `/speckit:resume`, `@context`, and session bootstrap itself, so the dedicated persona feels more like an internal optimization artifact than a concept users need to understand. [SOURCE: .opencode/agents/context-prime.md:22-39] [SOURCE: .opencode/agents/context.md:25-32]
 
 Babysitter handles the same class of problem lower in the stack. Prompt composition, hook detection, and harness context are runtime-managed, so the user does not meet a separate "primer" abstraction. That makes the surface easier to learn because there are fewer continuity concepts floating around. [SOURCE: external/packages/sdk/src/cli/commands/instructions.ts:206-223] [SOURCE: external/packages/sdk/src/prompts/templates/critical-rules.md:32-45]
 
@@ -28,11 +28,11 @@ The lesson is to keep bootstrap behavior, but merge it into the broader continui
 
 ## UX / System Design Analysis
 
-- **Current system-spec-kit surface:** First-turn recovery involves a dedicated `@context-prime` agent, a separate `@context` agent, and a separate `/spec_kit:resume` command, each covering part of continuity. [SOURCE: .opencode/agents/orchestrate.md:18-21] [SOURCE: .opencode/agents/context-prime.md:22-39] [SOURCE: .opencode/agents/context.md:25-32]
+- **Current system-spec-kit surface:** First-turn recovery involves a dedicated `@context-prime` agent, a separate `@context` agent, and a separate `/speckit:resume` command, each covering part of continuity. [SOURCE: .opencode/agents/orchestrate.md:18-21] [SOURCE: .opencode/agents/context-prime.md:22-39] [SOURCE: .opencode/agents/context.md:25-32]
 - **External repo's equivalent surface:** Babysitter centralizes context generation and hook-aware behavior in the runtime/instruction layer, not in a separate bootstrap persona. [SOURCE: external/packages/sdk/src/cli/commands/instructions.ts:52-88] [SOURCE: external/packages/sdk/src/cli/commands/instructions.ts:206-223]
 - **Friction comparison:** Spec Kit currently asks framework contributors and advanced operators to reason about three continuity mechanisms; Babysitter mostly presents one runtime surface that adapts itself.
 - **What system-spec-kit could DELETE to improve UX:** Delete `@context-prime` as a separate named agent.
-- **What system-spec-kit should ADD for better UX:** Add a bootstrap mode inside `/spec_kit:resume` or `@context`, so fast-start recovery remains available without a separate user-facing role.
+- **What system-spec-kit should ADD for better UX:** Add a bootstrap mode inside `/speckit:resume` or `@context`, so fast-start recovery remains available without a separate user-facing role.
 - **Net recommendation:** MERGE
 
 ## Conclusion
@@ -47,12 +47,12 @@ finding: `system-spec-kit` should merge `@context-prime` into the broader contin
 - **Why the external approach might be better:** It hides framework machinery and reduces the number of continuity concepts the user has to learn.
 - **Why system-spec-kit's approach might still be correct:** A dedicated primer keeps first-turn work bounded and easy to audit.
 - **Verdict:** MERGE
-- **If REFACTOR/PIVOT/SIMPLIFY — concrete proposal:** Move `@context-prime` logic into `/spec_kit:resume` and let `@context` expose a `bootstrap` mode for orchestrator use.
+- **If REFACTOR/PIVOT/SIMPLIFY — concrete proposal:** Move `@context-prime` logic into `/speckit:resume` and let `@context` expose a `bootstrap` mode for orchestrator use.
 - **Blast radius of the change:** medium
 - **Migration path:** keep the agent as an internal alias first, switch orchestrator routing to the merged surface, then remove the separate public role after parity tests pass.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/agents/orchestrate.md`, `.opencode/agents/context-prime.md`, `.opencode/agents/context.md`, `.opencode/commands/spec_kit/resume.md`
+- **Target file or module:** `.opencode/agents/orchestrate.md`, `.opencode/agents/context-prime.md`, `.opencode/agents/context.md`, `.opencode/commands/speckit/resume.md`
 - **Change type:** modified existing
 - **Blast radius:** medium
 - **Prerequisites:** define the merged bootstrap contract and output format

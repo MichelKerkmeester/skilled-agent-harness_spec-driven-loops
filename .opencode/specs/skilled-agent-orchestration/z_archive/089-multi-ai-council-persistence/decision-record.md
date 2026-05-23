@@ -127,7 +127,7 @@ See `plan.md` Phase 2A T203 + spec.md §3 file-table row for output-schema.md.
 
 ### Context
 
-The Caller Persistence Protocol must be discoverable by every dispatcher (Top-level Task, @orchestrate, /spec_kit:* YAMLs, CLI-skill playbooks). Two placement options: (a) agent body §17 (normative); (b) reference-only doc.
+The Caller Persistence Protocol must be discoverable by every dispatcher (Top-level Task, @orchestrate, /speckit:* YAMLs, CLI-skill playbooks). Two placement options: (a) agent body §17 (normative); (b) reference-only doc.
 
 ### Decision
 

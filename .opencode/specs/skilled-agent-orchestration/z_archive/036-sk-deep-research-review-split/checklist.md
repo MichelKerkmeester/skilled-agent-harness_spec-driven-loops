@@ -60,7 +60,7 @@ template_source_header: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] No stale `/spec_kit:deep-research:review` guidance remains in the updated command/skill documentation set
+- [ ] CHK-010 [P0] No stale `/speckit:deep-research:review` guidance remains in the updated command/skill documentation set
 - [ ] CHK-011 [P0] `sk-deep-review` and `sk-deep-research` references do not contradict each other
 - [ ] CHK-012 [P1] Runtime wrapper names and YAML asset names use the deep-review naming consistently
 - [ ] CHK-013 [P1] Root documentation reflects separate deep-research and deep-review capabilities

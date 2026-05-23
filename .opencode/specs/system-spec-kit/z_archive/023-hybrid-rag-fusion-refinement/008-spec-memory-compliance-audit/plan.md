@@ -209,7 +209,7 @@ Fix each folder's spec documents for: YAML frontmatter, SPECKIT_LEVEL comment, S
 - `015-manual-testing-per-playbook`
 - `016-rewrite-memory-mcp-readme`
 - `017-update-install-guide`
-- `018-rewrite-system-speckit-readme`
+- `018-rewrite-system-spec-kit-readme`
 - `019-rewrite-repo-readme`
 - `020-post-release-fixes`
 - `021-ground-truth-id-remapping`

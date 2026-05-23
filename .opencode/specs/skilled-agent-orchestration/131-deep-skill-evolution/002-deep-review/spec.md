@@ -116,7 +116,7 @@ Take deep-review search-depth hardening from research synthesis through staged r
 
 - Each phase preserves the strict-validate state it had before consolidation (no per-phase re-validation required unless restructuring introduced drift)
 - Cluster parent tracks aggregate progress via this map
-- Use `/spec_kit:resume skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/[NNN-phase]/` to resume a specific phase
+- Use `/speckit:resume skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/[NNN-phase]/` to resume a specific phase
 - Run `validate.sh --recursive` on this cluster parent to validate all its children
 <!-- /ANCHOR:phase-map -->
 

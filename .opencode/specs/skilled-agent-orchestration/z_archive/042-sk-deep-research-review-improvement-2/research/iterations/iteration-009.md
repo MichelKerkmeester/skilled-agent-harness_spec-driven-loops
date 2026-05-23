@@ -27,7 +27,7 @@ This iteration stayed on D2 and stress-tested the live `sk-deep-review` reducer 
 - `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:614-658`
 - `.opencode/skills/sk-deep-review/references/convergence.md:44-87`
 - `.opencode/skills/sk-deep-review/references/convergence.md:364-411`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:432-437`
+- `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:432-437`
 
 ## Reflection
 - What worked and why: The disposable 60-bullet harness turned the scale question into an observed reducer run instead of a code-reading inference, which made the stable merge behavior and missing blocked-stop summaries easy to separate.

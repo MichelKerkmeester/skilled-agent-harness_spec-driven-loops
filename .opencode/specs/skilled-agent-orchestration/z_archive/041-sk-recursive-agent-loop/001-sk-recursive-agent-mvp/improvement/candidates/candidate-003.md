@@ -29,7 +29,7 @@ Session handover specialist responsible for creating continuation documents that
 
 **Template**: Always use `.opencode/skills/system-spec-kit/templates/handover.md`.
 
-**IMPORTANT**: This agent is dispatched by `/spec_kit:handover`. It owns context gathering and handover generation while the main agent owns user interaction and validation.
+**IMPORTANT**: This agent is dispatched by `/speckit:handover`. It owns context gathering and handover generation while the main agent owns user interaction and validation.
 
 ## 0. ILLEGAL NESTING
 

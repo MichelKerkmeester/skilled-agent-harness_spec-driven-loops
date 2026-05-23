@@ -28,7 +28,7 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-`/spec_kit:deep-research:review` still writes durable session state into `scratch/` across the review auto and confirm YAML workflows, the runtime `deep-review` agents, and the review-mode contract assets. That conflicts with system-spec-kit guidance, which defines `scratch/` as disposable temporary workspace rather than a canonical home for resumable review state. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:82-88] [SOURCE: .opencode/agents/deep-review.md:31-31] [SOURCE: .opencode/skills/sk-deep-research/assets/review_mode_contract.yaml:202-230] [SOURCE: .opencode/skills/system-spec-kit/references/templates/template_guide.md:565-589]
+`/speckit:deep-research:review` still writes durable session state into `scratch/` across the review auto and confirm YAML workflows, the runtime `deep-review` agents, and the review-mode contract assets. That conflicts with system-spec-kit guidance, which defines `scratch/` as disposable temporary workspace rather than a canonical home for resumable review state. [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:82-88] [SOURCE: .opencode/agents/deep-review.md:31-31] [SOURCE: .opencode/skills/sk-deep-research/assets/review_mode_contract.yaml:202-230] [SOURCE: .opencode/skills/system-spec-kit/references/templates/template_guide.md:565-589]
 
 This packet plans a dedicated `review/` subfolder inside the target spec so all review-mode outputs live together: config, JSONL state, strategy, dashboard, iteration artifacts, pause sentinel, and final report. The implementation also needs a legacy migration path because existing review sessions already persist their state under `scratch/`.
 
@@ -56,7 +56,7 @@ This packet plans a dedicated `review/` subfolder inside the target spec so all 
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Review mode is currently modeled as a `scratch/` workflow. The review auto YAML writes config, JSONL state, strategy, dashboard, and iteration files into `scratch/`, and the confirm YAML mirrors the same contract. The primary `deep-review` agent says it may write only `scratch/` artifacts inside the active spec folder, and the review-mode contract asset plus the deep-review strategy template both hard-code `scratch/` as the destination for durable review state. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:82-120] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_confirm.yaml:83-120] [SOURCE: .opencode/agents/deep-review.md:31-65] [SOURCE: .opencode/skills/sk-deep-research/assets/review_mode_contract.yaml:202-230] [SOURCE: .opencode/skills/sk-deep-review/assets/deep_review_strategy.md:3-19]
+Review mode is currently modeled as a `scratch/` workflow. The review auto YAML writes config, JSONL state, strategy, dashboard, and iteration files into `scratch/`, and the confirm YAML mirrors the same contract. The primary `deep-review` agent says it may write only `scratch/` artifacts inside the active spec folder, and the review-mode contract asset plus the deep-review strategy template both hard-code `scratch/` as the destination for durable review state. [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:82-120] [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_confirm.yaml:83-120] [SOURCE: .opencode/agents/deep-review.md:31-65] [SOURCE: .opencode/skills/sk-deep-research/assets/review_mode_contract.yaml:202-230] [SOURCE: .opencode/skills/sk-deep-review/assets/deep_review_strategy.md:3-19]
 
 That contract conflicts with the repository's broader spec-folder rules. System-spec-kit defines `scratch/` as a directory for temporary, disposable files that should be cleaned up when work is done, not as the authoritative home for resumable review packets or finalized review artifacts. [SOURCE: .opencode/skills/system-spec-kit/references/templates/template_guide.md:565-589] [SOURCE: .opencode/skills/system-spec-kit/references/structure/folder_structure.md:139-152]
 
@@ -95,11 +95,11 @@ Define the Level 3 implementation plan for moving all `:review` mode outputs int
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml` | Modify | Move review state paths, directory creation, resume, pause, synthesis, and backup logic from `scratch/` to `review/` |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_review_confirm.yaml` | Modify | Mirror the same `review/` contract in confirm mode |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modify | Keep the shared deep-research spec-folder compatibility guard aligned with the alias roots accepted by the entrypoint |
-| `.opencode/commands/spec_kit/deep-research.md` | Modify | Update the review-mode artifact summary, recovery text, and shared spec-root guidance |
-| `.agents/commands/spec_kit/deep-research.toml` | Modify | Keep the parallel wrapper metadata aligned with the shared deep-research command modes |
+| `.opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml` | Modify | Move review state paths, directory creation, resume, pause, synthesis, and backup logic from `scratch/` to `review/` |
+| `.opencode/commands/speckit/assets/speckit_deep-research_review_confirm.yaml` | Modify | Mirror the same `review/` contract in confirm mode |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml`, `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml` | Modify | Keep the shared deep-research spec-folder compatibility guard aligned with the alias roots accepted by the entrypoint |
+| `.opencode/commands/speckit/deep-research.md` | Modify | Update the review-mode artifact summary, recovery text, and shared spec-root guidance |
+| `.agents/commands/speckit/deep-research.toml` | Modify | Keep the parallel wrapper metadata aligned with the shared deep-research command modes |
 | `.opencode/agents/deep-review.md` | Modify | Update the canonical OpenCode deep-review contract to write under `review/` |
 | `.claude/agents/deep-review.md`, `.codex/agents/deep-review.toml`, `.gemini/agents/deep-review.md` | Modify | Keep runtime parity with the canonical deep-review contract |
 | `.opencode/skills/sk-deep-research/assets/review_mode_contract.yaml` | Modify | Change review output path patterns and any render-target expectations that describe them |
@@ -138,7 +138,7 @@ Define the Level 3 implementation plan for moving all `:review` mode outputs int
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: Starting a fresh `/spec_kit:deep-research:review` session creates all durable artifacts under `{spec_folder}/review/`, not `scratch/`.
+- **SC-001**: Starting a fresh `/speckit:deep-research:review` session creates all durable artifacts under `{spec_folder}/review/`, not `scratch/`.
 - **SC-002**: Resuming a legacy scratch-based review session does not lose state and does not require the user to repair paths manually for the happy path.
 - **SC-003**: A repository sweep over the planned review surfaces finds no stale review-mode `scratch/` references after implementation, except for deliberate historical examples or archived artifacts.
 - **SC-004**: The review-mode docs and manual testing playbook explicitly describe the new review packet location and corresponding pause or resume behavior.

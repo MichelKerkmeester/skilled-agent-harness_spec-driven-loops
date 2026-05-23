@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-04-26T05:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Drafted 5 ADRs covering the architectural choices for cli-opencode"
-    next_safe_action: "Operator review and approval before /spec_kit:implement dispatch"
+    next_safe_action: "Operator review and approval before /speckit:implement dispatch"
     blockers: []
     key_files:
       - "spec.md"

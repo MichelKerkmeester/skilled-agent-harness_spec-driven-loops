@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-05-08T00:23:00Z"
     last_updated_by: "deep-review-loop-manager"
     recent_action: "Synthesis complete (8 iter, verdict CONDITIONAL)"
-    next_safe_action: "/spec_kit:plan 103-101-remediation"
+    next_safe_action: "/speckit:plan 103-101-remediation"
     blockers:
       - "P1-027 (--pure missing in 4 if_cli_opencode YAML branches)"
       - "P1-028 (cli-opencode sandboxMode declared but ignored)"
@@ -60,7 +60,7 @@ _memory:
 | **Status** | In Progress |
 | **Completed** | (pending) |
 | **Branch** | `main` |
-| **Workflow** | `/spec_kit:deep-review:auto` |
+| **Workflow** | `/speckit:deep-review:auto` |
 | **Requested executor** | cli-opencode + opencode-go/deepseek-v4-pro + variant=high |
 | **Effective executor** | native opus / @deep-review (fallback per pre-flight smoke) |
 | **Iterations** | 0 of 10 (pending) |
@@ -135,7 +135,7 @@ The deep-review workflow runs in three phases:
   confirmed default plugin loading triggers DeepSeek tool-name regex rejection. Effective dispatch
   uses native opus; this is itself a P1 finding for 101.
 - **Review target is READ-ONLY:** no code changes are performed by this packet. If verdict ≠ PASS,
-  the Planning Packet seeds a downstream `/spec_kit:plan` packet for remediation.
+  the Planning Packet seeds a downstream `/speckit:plan` packet for remediation.
 - **Cross-phase only:** this is an architectural review; line-by-line audits already happened in
   095, 097, 099. Findings here focus on structural drift, hidden regressions, and broken cross-refs.
 <!-- /ANCHOR:limitations -->

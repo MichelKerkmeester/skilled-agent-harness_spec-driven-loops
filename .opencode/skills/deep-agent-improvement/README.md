@@ -35,7 +35,7 @@ Evaluator-first workflow for improving agents across their full integration surf
 
 `deep-agent-improvement` helps operators improve agent surfaces safely by proving improvement before mutation. It treats agent improvement as a measurable optimization problem (not ad-hoc prompt tweaking) by scanning integration surfaces, deriving scoring profiles, and maintaining an append-only evidence trail.
 
-For packet recovery around an improvement run, `/spec_kit:resume` remains the canonical surface. Continuity still comes from `handover.md`, then `_memory.continuity`, then the remaining spec docs, while generated memory artifacts remain supporting only.
+For packet recovery around an improvement run, `/speckit:resume` remains the canonical surface. Continuity still comes from `handover.md`, then `_memory.continuity`, then the remaining spec docs, while generated memory artifacts remain supporting only.
 
 The skill operates in proposal-only mode by default, uses 5-dimension integration-aware scoring, supports any agent in `.opencode/agents/` (dynamic profiling is the only mode), runs in the `{spec_folder}/improvement/` runtime area, and produces append-only JSONL ledger evidence with a reducer dashboard.
 
@@ -321,10 +321,10 @@ The skill runs across all supported runtimes. Path resolution uses the active ru
 
 | Runtime | Agent Path | Command Path |
 | --- | --- | --- |
-| OpenCode/Copilot | `.opencode/agents/` | `.opencode/commands/spec_kit/` |
+| OpenCode/Copilot | `.opencode/agents/` | `.opencode/commands/speckit/` |
 | Claude | `.claude/agents/` | (uses agent mirror) |
 | Codex | `.codex/agents/` | (uses agent mirror) |
-| .agents | `.agents/agents/` | `.agents/commands/spec_kit/` |
+| .agents | `.agents/agents/` | `.agents/commands/speckit/` |
 
 The `@deep-agent-improvement` agent and `/improve:agent` command are mirrored across all runtimes. The integration scanner checks mirror parity automatically.
 

@@ -1,7 +1,7 @@
 # Iteration 023 — Memory UX as a Parallel Surface
 
 ## Research question
-Is the `/memory:*` command family well-integrated with the `/spec_kit:*` lifecycle, or does it create an awkward second operator surface that Ralph largely avoids?
+Is the `/memory:*` command family well-integrated with the `/speckit:*` lifecycle, or does it create an awkward second operator surface that Ralph largely avoids?
 
 ## Hypothesis
 `system-spec-kit`'s memory capabilities are powerful, but the current UX exposes them as a peer surface when most operators need them as background support for spec workflows rather than as a separate command family.
@@ -39,7 +39,7 @@ finding: `system-spec-kit` should merge routine memory actions into the default 
 - **Net recommendation:** MERGE
 
 ## Counter-evidence sought
-I looked for proof that the memory surface is already mostly hidden behind `/spec_kit:resume` or automatic hooks, but the quick-reference and command docs still present the memory family as a first-class parallel surface. [SOURCE: .opencode/skills/system-spec-kit/references/workflows/quick_reference.md:116-187] [SOURCE: .opencode/skills/system-spec-kit/SKILL.md:560-589]
+I looked for proof that the memory surface is already mostly hidden behind `/speckit:resume` or automatic hooks, but the quick-reference and command docs still present the memory family as a first-class parallel surface. [SOURCE: .opencode/skills/system-spec-kit/references/workflows/quick_reference.md:116-187] [SOURCE: .opencode/skills/system-spec-kit/SKILL.md:560-589]
 
 ## Follow-up questions for next iteration
 - If lifecycle and memory UX both simplify, does the current spec-folder template and validation model still feel proportionate, or is that another major friction source?

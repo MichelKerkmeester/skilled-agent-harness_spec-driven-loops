@@ -20,7 +20,7 @@ _memory:
     recent_action: "Reviewed packet docs"
     next_safe_action: "Run strict validation"
     key_files: ["handover.md"]
-branch: system-speckit/026-graph-and-context-optimization
+branch: system-spec-kit/026-graph-and-context-optimization
 directives:
   - DELETE old memories, do not archive — phase 018 makes them irrelevant
   - NO observation windows (D0 2-week, canonical 7-day, F 180-day all dead)

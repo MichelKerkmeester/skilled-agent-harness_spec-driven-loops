@@ -51,7 +51,7 @@ Do not use this skill for:
 - Open-ended prompt rewrites across multiple agent families at once
 - Direct canonical edits without a packet-local candidate and evaluator evidence
 - Broad runtime-mirror synchronization work presented as benchmark truth
-- General packet planning that belongs in `/spec_kit:plan` or implementation that does not need an improvement loop
+- General packet planning that belongs in `/speckit:plan` or implementation that does not need an improvement loop
 
 ---
 

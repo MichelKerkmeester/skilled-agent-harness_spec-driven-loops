@@ -28,7 +28,7 @@ describe('/memory:learn command docs', () => {
       '.opencode/commands/README.txt',
       '.opencode/commands/memory/README.txt',
       '.opencode/commands/memory/search.md',
-      '.opencode/commands/spec_kit/complete.md',
+      '.opencode/commands/speckit/complete.md',
       'README.md',
       '.opencode/README.md',
     ];

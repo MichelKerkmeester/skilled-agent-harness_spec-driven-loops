@@ -7,7 +7,7 @@
 # from .opencode/agents/debug.md.
 #
 # Surfaced ONLY after a user opts in to the failure-threshold prompt
-# in spec_kit_implement_auto.yaml or spec_kit_complete_auto.yaml.
+# in speckit_implement_auto.yaml or speckit_complete_auto.yaml.
 # Never auto-dispatches @debug — the user manually routes to @debug
 # themselves with this scaffold as the structured handoff.
 #
@@ -271,7 +271,7 @@ Pre-filled handoff for the @debug agent after 3+ failed task attempts. The opera
 <!-- ANCHOR:delegation-metadata -->
 **Date:** ${NOW_ISO}
 **Task ID:** ${TASK_ID}
-**Delegated By:** spec_kit_implement_auto.yaml / spec_kit_complete_auto.yaml workflow operator
+**Delegated By:** speckit_implement_auto.yaml / speckit_complete_auto.yaml workflow operator
 **Attempts Before Delegation:** 3
 <!-- /ANCHOR:delegation-metadata -->
 

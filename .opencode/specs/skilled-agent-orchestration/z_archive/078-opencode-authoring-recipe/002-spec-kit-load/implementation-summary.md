@@ -1,6 +1,6 @@
 ---
-title: "Implementation Summary: 078/002 /spec_kit:complete Authoring-Time sk-code Load"
-description: "Phase 2 of 078: cross-skill authoring-time load contract documented in both /spec_kit:complete YAMLs (auto + confirm) and both SKILL.md surfaces (system-spec-kit pull-side + sk-code push-side). sk-code bumps 3.2.0.0 → 3.2.1.0 (patch). Closes 4 P1 findings from 077."
+title: "Implementation Summary: 078/002 /speckit:complete Authoring-Time sk-code Load"
+description: "Phase 2 of 078: cross-skill authoring-time load contract documented in both /speckit:complete YAMLs (auto + confirm) and both SKILL.md surfaces (system-spec-kit pull-side + sk-code push-side). sk-code bumps 3.2.0.0 → 3.2.1.0 (patch). Closes 4 P1 findings from 077."
 trigger_phrases: ["078/002 summary", "sk-code v3.2.1.0", "cross-skill authoring-time"]
 importance_tier: "important"
 contextType: "implementation"
@@ -13,8 +13,8 @@ _memory:
     next_safe_action: "Commit + push + start Phase 3"
     blockers: []
     key_files:
-      - .opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml
-      - .opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml
+      - .opencode/commands/speckit/assets/speckit_complete_auto.yaml
+      - .opencode/commands/speckit/assets/speckit_complete_confirm.yaml
       - .opencode/skills/system-spec-kit/SKILL.md
       - .opencode/skills/sk-code/SKILL.md
       - .opencode/skills/sk-code/changelog/v3.2.1.0.md
@@ -51,11 +51,11 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-`/spec_kit:complete` now loads sk-code at TWO distinct points instead of one. The previous behavior (sk-code loaded only at Step 11 review-time as part of `Pre-Commit code review`) is preserved verbatim. Newly added: when any task in `tasks.md` targets a path under `.opencode/skills/`, `.opencode/agents/`, `.opencode/commands/`, or `.opencode/specs/`, the orchestrator now loads the matching sk-code authoring checklist (`assets/opencode/checklists/{surface}_authoring.md`) plus the `spec_folder_write` recipe (when target is under `.opencode/specs/`) BEFORE the first write. The contract is documented from both sides: pull-side in system-spec-kit/SKILL.md §17 (the consumer documenting WHEN to consult sk-code), push-side in sk-code/SKILL.md (the producer declaring what it surfaces). Implementation dispatched via cli-codex; both YAMLs parse cleanly; validate.sh --strict + alignment-verifier PASS.
+`/speckit:complete` now loads sk-code at TWO distinct points instead of one. The previous behavior (sk-code loaded only at Step 11 review-time as part of `Pre-Commit code review`) is preserved verbatim. Newly added: when any task in `tasks.md` targets a path under `.opencode/skills/`, `.opencode/agents/`, `.opencode/commands/`, or `.opencode/specs/`, the orchestrator now loads the matching sk-code authoring checklist (`assets/opencode/checklists/{surface}_authoring.md`) plus the `spec_folder_write` recipe (when target is under `.opencode/specs/`) BEFORE the first write. The contract is documented from both sides: pull-side in system-spec-kit/SKILL.md §17 (the consumer documenting WHEN to consult sk-code), push-side in sk-code/SKILL.md (the producer declaring what it surfaces). Implementation dispatched via cli-codex; both YAMLs parse cleanly; validate.sh --strict + alignment-verifier PASS.
 
 ### Authoring-time vs review-time split
 
-The `/spec_kit:complete` workflow had a documentation gap that mapped 1:1 to a behavior gap: sk-code's full surface was only consulted post-write, after errors that the authoring checklists would have prevented had already been committed. Phase 2 closes both gaps simultaneously by adding a `cross_skill_authoring_load` block (parallel to the existing `agent_dispatch.review` block) that names available_at_step 10, target detection condition, resource list, precedence, and not_for negative cases. The first activity in `step_10_development.activities` is now an explicit instruction to load these resources before any other Step 10 work.
+The `/speckit:complete` workflow had a documentation gap that mapped 1:1 to a behavior gap: sk-code's full surface was only consulted post-write, after errors that the authoring checklists would have prevented had already been committed. Phase 2 closes both gaps simultaneously by adding a `cross_skill_authoring_load` block (parallel to the existing `agent_dispatch.review` block) that names available_at_step 10, target detection condition, resource list, precedence, and not_for negative cases. The first activity in `step_10_development.activities` is now an explicit instruction to load these resources before any other Step 10 work.
 
 ### Cross-Skill Consumption table (sk-code/SKILL.md)
 
@@ -69,8 +69,8 @@ F-009-001 (review-time vs authoring-time load timing), F-009-002 (no first-class
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml` | Modified | step_10 activity prepend; cross_skill_authoring_load block added |
-| `.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml` | Modified | Mirror of auto edits |
+| `.opencode/commands/speckit/assets/speckit_complete_auto.yaml` | Modified | step_10 activity prepend; cross_skill_authoring_load block added |
+| `.opencode/commands/speckit/assets/speckit_complete_confirm.yaml` | Modified | Mirror of auto edits |
 | `.opencode/skills/system-spec-kit/SKILL.md` | Modified | Authoring-time vs review-time paragraph appended below rule 17 |
 | `.opencode/skills/sk-code/SKILL.md` | Modified | Cross-Skill Consumption block added; version 3.2.0.0 → 3.2.1.0 |
 | `.opencode/skills/sk-code/description.json` | Modified | Version 3.2.0.0 → 3.2.1.0 |
@@ -108,8 +108,8 @@ cli-codex (gpt-5.5/high/fast, sandbox=workspace-write) handled all 5 file modifi
 
 | Check | Result |
 |-------|--------|
-| spec_kit_complete_auto.yaml parseable | PASS (yaml.safe_load exit 0) |
-| spec_kit_complete_confirm.yaml parseable | PASS |
+| speckit_complete_auto.yaml parseable | PASS (yaml.safe_load exit 0) |
+| speckit_complete_confirm.yaml parseable | PASS |
 | step_10 activity references sk-code authoring (auto) | PASS (grep returns 2) |
 | step_10 activity references sk-code authoring (confirm) | PASS (grep returns 2) |
 | cross_skill_authoring_load block (both YAMLs) | PASS (1 hit each) |

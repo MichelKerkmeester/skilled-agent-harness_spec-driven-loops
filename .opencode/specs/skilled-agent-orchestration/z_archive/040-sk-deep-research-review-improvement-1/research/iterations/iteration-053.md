@@ -7,8 +7,8 @@ Executable lifecycle branch model (resume/restart/fork/completed-continue).
 - How can we avoid ad-hoc subfolder creation while preserving history?
 
 ## Evidence
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:124-128`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:127-129`
+- `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:124-128`
+- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:127-129`
 - `.opencode/skills/sk-deep-research/references/loop_protocol.md:509`
 
 ## Analysis

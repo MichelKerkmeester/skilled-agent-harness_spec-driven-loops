@@ -28,7 +28,7 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-The deep-research contract is now split across a former root research document, `research/iterations/iteration-*`, and a newer review packet that still has to normalize legacy `review/iterations/iteration-*` layouts. The migration defined here makes `research/` the canonical research packet, keeps `review/` as the canonical review packet, and standardizes iteration artifacts into dedicated `iterations/` folders with no `output/` folder. [SOURCE: .opencode/commands/spec_kit/deep-research.md:211-242] [SOURCE: .opencode/skills/sk-deep-research/SKILL.md:187-201]
+The deep-research contract is now split across a former root research document, `research/iterations/iteration-*`, and a newer review packet that still has to normalize legacy `review/iterations/iteration-*` layouts. The migration defined here makes `research/` the canonical research packet, keeps `review/` as the canonical review packet, and standardizes iteration artifacts into dedicated `iterations/` folders with no `output/` folder. [SOURCE: .opencode/commands/speckit/deep-research.md:211-242] [SOURCE: .opencode/skills/sk-deep-research/SKILL.md:187-201]
 
 This is a repo-wide contract migration. The implementation must update command workflows, the `sk-deep-research` skill, `system-spec-kit` path-sensitive logic, canonical `.codex/agents/*.toml` runtime definitions plus the mirrored runtime agent files, tests, fixtures, and tracked spec packets so new work stops advertising the old root-plus-scratch layout.
 
@@ -56,7 +56,7 @@ This is a repo-wide contract migration. The implementation must update command w
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Deep research has an inconsistent packet contract. Research mode now centers on a synthesis document under `research/`, but older workflow guidance and supporting documentation still refer to a former root research document, while iteration artifacts historically lived under `research/iterations/iteration-*`. Review mode already centers on a report document at the `review/` packet root, yet compatibility logic still has to rehome legacy `review/iterations/iteration-*` and scratch-based review artifacts into the canonical review packet. [SOURCE: .opencode/commands/spec_kit/deep-research.md:211-242] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:127-146] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_confirm.yaml:127-146]
+Deep research has an inconsistent packet contract. Research mode now centers on a synthesis document under `research/`, but older workflow guidance and supporting documentation still refer to a former root research document, while iteration artifacts historically lived under `research/iterations/iteration-*`. Review mode already centers on a report document at the `review/` packet root, yet compatibility logic still has to rehome legacy `review/iterations/iteration-*` and scratch-based review artifacts into the canonical review packet. [SOURCE: .opencode/commands/speckit/deep-research.md:211-242] [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:127-146] [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_confirm.yaml:127-146]
 
 That mixed layout causes three durable problems. First, operators cannot infer a single packet root for research mode the way they can for review mode. Second, path-sensitive runtime helpers and validators risk classifying iteration artifacts as first-class docs unless the exclusions are explicit. Third, repo docs, fixtures, templates, and tracked spec packets drift whenever some surfaces mention the old root-plus-scratch contract and others describe the newer packet layout. [SOURCE: .opencode/skills/sk-deep-research/SKILL.md:233-247] [SOURCE: .opencode/skills/system-spec-kit/SKILL.md:70-70] [SOURCE: .opencode/skills/system-spec-kit/SKILL.md:751-793]
 
@@ -93,11 +93,11 @@ Define the Level 3 migration packet that makes `research/` the canonical researc
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | Route research outputs and iteration artifacts into `research/` |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modify | Mirror the same research packet contract in confirm mode |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml` | Modify | Normalize legacy review iteration artifacts into `review/iterations/` |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_review_confirm.yaml` | Modify | Mirror the same review iteration contract in confirm mode |
-| `.opencode/commands/spec_kit/deep-research.md` | Modify | Update command-level packet explanations and output summaries |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | Modify | Route research outputs and iteration artifacts into `research/` |
+| `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml` | Modify | Mirror the same research packet contract in confirm mode |
+| `.opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml` | Modify | Normalize legacy review iteration artifacts into `review/iterations/` |
+| `.opencode/commands/speckit/assets/speckit_deep-research_review_confirm.yaml` | Modify | Mirror the same review iteration contract in confirm mode |
+| `.opencode/commands/speckit/deep-research.md` | Modify | Update command-level packet explanations and output summaries |
 | `.opencode/skills/sk-deep-research/` | Modify | Update the skill, references, assets, README, and manual testing playbook to the new packet structure |
 | `.opencode/skills/system-spec-kit/` | Modify | Update path-sensitive runtime logic, shell helpers, docs, fixtures, and tests for the new canonical locations |
 | `.codex/agents/deep-research.toml`, `.codex/agents/deep-review.toml` plus mirrored runtime agent files | Modify | Keep runtime agent contracts aligned across all runtimes |
@@ -148,9 +148,9 @@ Define the Level 3 migration packet that makes `research/` the canonical researc
 
 ### Acceptance Scenarios
 
-1. **Given** a new research session, **when** `/spec_kit:deep-research` initializes the packet, **then** the packet root is `{spec_folder}/research/` and the final synthesis target is the research document kept at that packet root.
+1. **Given** a new research session, **when** `/speckit:deep-research` initializes the packet, **then** the packet root is `{spec_folder}/research/` and the final synthesis target is the research document kept at that packet root.
 2. **Given** a new research iteration, **when** the loop dispatches `@deep-research`, **then** the findings file is written under `{spec_folder}/research/iterations/`.
-3. **Given** a new review session, **when** `/spec_kit:deep-research:review` initializes the packet, **then** iteration files are written under `{spec_folder}/review/iterations/` and the final report stays at the `review/` packet root.
+3. **Given** a new review session, **when** `/speckit:deep-research:review` initializes the packet, **then** iteration files are written under `{spec_folder}/review/iterations/` and the final report stays at the `review/` packet root.
 4. **Given** a spec folder with a legacy root research document and `research/iterations/iteration-*`, **when** the migration utility runs, **then** the canonical files move into `research/` and internal path references are rewritten.
 5. **Given** a spec folder with legacy `review/iterations/iteration-*`, **when** review migration logic or the migration utility runs, **then** the iteration artifacts move into `{spec_folder}/review/iterations/` without creating a second canonical review packet.
 6. **Given** the memory and indexing pipeline scans spec docs, **when** it encounters `research/iterations/` or `review/iterations/`, **then** those files are treated as working artifacts rather than canonical spec documents.

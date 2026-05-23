@@ -99,7 +99,7 @@
     "forbiddenBehaviors": [],
     "integrationPoints": {
       "commands": [
-        "/spec_kit:complete"
+        "/speckit:complete"
       ],
       "skills": [],
       "agents": [

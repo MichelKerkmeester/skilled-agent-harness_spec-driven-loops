@@ -1,6 +1,6 @@
 ---
 title: "Handover — 119/001 Deep-Research Mid-Run"
-description: "Stop-state for the 10-iter deep-research dispatch on deep-review-upgrades-to-deep-research. Resume via /spec_kit:resume or manual per-iter dispatch."
+description: "Stop-state for the 10-iter deep-research dispatch on deep-review-upgrades-to-deep-research. Resume via /speckit:resume or manual per-iter dispatch."
 trigger_phrases:
   - "119 deep-research handover"
   - "deep-research uplift continuation"

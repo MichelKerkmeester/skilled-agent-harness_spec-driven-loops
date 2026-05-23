@@ -51,7 +51,7 @@
       "research/research.md",
       "research/deep-research-dashboard.md",
       "external/workflow.yaml",
-      ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml"
+      ".opencode/commands/speckit/assets/speckit_implement_auto.yaml"
     ],
     "entities": [
       {
@@ -115,9 +115,9 @@
         "source": "derived"
       },
       {
-        "name": "spec_kit_implement_auto.yaml",
+        "name": "speckit_implement_auto.yaml",
         "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_implement_auto.yaml",
         "source": "derived"
       },
       {

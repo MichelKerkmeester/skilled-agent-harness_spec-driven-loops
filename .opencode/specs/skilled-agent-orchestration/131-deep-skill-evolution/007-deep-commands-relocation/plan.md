@@ -75,7 +75,7 @@ Canonical wave plan: `~/.claude/plans/fix-minor-drift-afterwards-twinkly-melody.
 ### Definition of Done (per-wave verification gates)
 - [ ] WAVE 0: `validate.sh --strict` PASS on 131/007
 - [ ] WAVE 1: `ls .opencode/commands/deep/assets/` shows 6 `deep_*.yaml`; old path returns 0 hits
-- [ ] WAVE 2: `rg "/spec_kit:deep-*"` on agent/docs surfaces returns 0 hits
+- [ ] WAVE 2: `rg "/speckit:deep-*"` on agent/docs surfaces returns 0 hits
 - [ ] WAVE 3: skill-graph compiles clean; advisor smoke resolves correctly; vitest 100% PASS
 - [ ] WAVE 4: residual old-path hits ≤ 10
 - [ ] WAVE 5: `validate.sh --strict` re-PASS; `git diff --stat` shows only expected scope
@@ -94,14 +94,14 @@ BEFORE:
     review.md
     research.md
     ai-council.md
-  .opencode/commands/spec_kit/assets/ ← 6 YAMLs still here
+  .opencode/commands/speckit/assets/ ← 6 YAMLs still here
     spec_kit_deep-review_auto.yaml
     spec_kit_deep-review_confirm.yaml
     spec_kit_deep-research_auto.yaml
     spec_kit_deep-research_confirm.yaml
     spec_kit_deep-council_auto.yaml
     spec_kit_deep-council_confirm.yaml
-  .gemini/commands/spec_kit/          ← 2 TOMLs still here
+  .gemini/commands/speckit/          ← 2 TOMLs still here
     deep-review.toml
     deep-research.toml
 
@@ -167,13 +167,13 @@ skill_advisor.py (routing + triggers) ──┐
 
 ### Phase 2: WAVE 1 — Asset Relocation + Command MD Updates
 - [ ] Create `commands/deep/assets/` directory
-- [ ] Move 6 YAMLs: `commands/spec_kit/assets/spec_kit_deep-{review,research,council}_{auto,confirm}.yaml` → `commands/deep/assets/deep_{review,research,ai-council}_{auto,confirm}.yaml`
+- [ ] Move 6 YAMLs: `commands/speckit/assets/speckit_deep-{review,research,council}_{auto,confirm}.yaml` → `commands/deep/assets/deep_{review,research,ai-council}_{auto,confirm}.yaml`
 - [ ] Rename: `spec_kit_deep-council_*` → `deep_ai-council_*`
 - [ ] Update 3 command MD internal asset-path references (replace `spec_kit/assets/spec_kit_deep-*` with `deep/assets/deep_*`)
-- [ ] Move 2 Gemini TOMLs: `.gemini/commands/spec_kit/deep-{review,research}.toml` → `.gemini/commands/deep/{review,research}.toml`
+- [ ] Move 2 Gemini TOMLs: `.gemini/commands/speckit/deep-{review,research}.toml` → `.gemini/commands/deep/{review,research}.toml`
 - [ ] Author `.gemini/commands/deep/ai-council.toml` using `deep-review.toml` as template
 - [ ] Verify symlinks: `.claude/commands/deep/` + `.codex/commands/` resolve correctly
-- [ ] Gate: `ls commands/deep/assets/` shows 6 YAMLs; `ls commands/spec_kit/assets/spec_kit_deep-*` returns 0 hits
+- [ ] Gate: `ls commands/deep/assets/` shows 6 YAMLs; `ls commands/speckit/assets/speckit_deep-*` returns 0 hits
 
 ### Phase 3: WAVE 2 — Live Operator-Facing Reference Updates
 - [ ] Update 3 SKILL.md: `deep-review/SKILL.md`, `deep-research/SKILL.md`, `deep-ai-council/SKILL.md` — asset path + slash syntax refs
@@ -182,7 +182,7 @@ skill_advisor.py (routing + triggers) ──┐
 - [ ] Update 3 root docs: `CLAUDE.md`, `AGENTS.md`, `README.md`
 - [ ] Update 2 install guides: `.opencode/install_guides/`
 - [ ] Update 9 `graph-metadata.json` files (skill edges + asset_path arrays)
-- [ ] Gate: `rg "/spec_kit:deep-(review|research|council|ai-council)"` on agent/docs surfaces returns 0 hits
+- [ ] Gate: `rg "/speckit:deep-(review|research|council|ai-council)"` on agent/docs surfaces returns 0 hits
 
 ### Phase 4: WAVE 3 — Skill-Graph Recompile + Advisor Smoke + Vitest
 - [ ] Recompile skill-graph: `skill_graph_compiler.py --export-json --pretty`
@@ -194,7 +194,7 @@ skill_advisor.py (routing + triggers) ──┐
 - [ ] Apply sed patterns in order: `spec_kit_deep-council_` → `deep_ai-council_` → `spec_kit_deep-review_` → `deep_review_` → `spec_kit_deep-research_` → `deep_research_` → path prefixes → slash syntax
 - [ ] Scope: `.opencode/specs/**/*.md`, `.opencode/specs/**/*.json`, `.opencode/skills/**/*.md`
 - [ ] Exclude: `.git/**`, `z_archive/**`, `changelog/v1.0.0.0.md` and earlier
-- [ ] Gate: `rg "/spec_kit:deep-(review|research|council)|spec_kit_deep-"` on docs excluding exclusions returns ≤ 10
+- [ ] Gate: `rg "/speckit:deep-(review|research|council)|spec_kit_deep-"` on docs excluding exclusions returns ≤ 10
 
 ### Phase 6: WAVE 5 — Closure
 - [ ] Fill `implementation-summary.md` with shipped assets, gate evidence, deviations
@@ -210,8 +210,8 @@ skill_advisor.py (routing + triggers) ──┐
 
 | Test Type | Scope | Command |
 |-----------|-------|---------|
-| File-System | WAVE 1 verification | `ls commands/deep/assets/` + `ls commands/spec_kit/assets/spec_kit_deep-*` |
-| Reference Cleanliness | WAVE 2 verification | `rg "/spec_kit:deep-*"` on agent/docs surfaces |
+| File-System | WAVE 1 verification | `ls commands/deep/assets/` + `ls commands/speckit/assets/speckit_deep-*` |
+| Reference Cleanliness | WAVE 2 verification | `rg "/speckit:deep-*"` on agent/docs surfaces |
 | Skill-Graph | WAVE 3 compilation | `skill_graph_compiler.py --export-json --pretty` |
 | Advisor Smoke | WAVE 3 routing | `skill_advisor.py` with 3 prompts |
 | Vitest | WAVE 3 regression | `vitest run --no-coverage` on 4 suites |

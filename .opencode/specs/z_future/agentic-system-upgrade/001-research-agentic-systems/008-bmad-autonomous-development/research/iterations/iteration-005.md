@@ -14,7 +14,7 @@ Read BAD's Step 1-4 instructions plus pre-continuation checks, then compared the
 - BAD updates shared `sprint-status.yaml` after Step 1 (`ready-for-dev`), after Step 2 (`review`), and after Step 4 (`done`), making state transitions explicit instead of implicit. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/skills/bad/SKILL.md:231-235]
 - BAD reserves a higher-quality model for Step 3 review and requires step-by-step failure reporting so one broken story does not block the rest of the batch. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/skills/bad/SKILL.md:255-336]
 - BAD runs pre-continuation checks between steps to compact context or pause on rate limits before proceeding. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/skills/bad/references/pre-continuation-checks.md:1-88]
-- Local autonomous implementation currently has one broad development phase followed by completion, with optional code/testing parallelism but without explicit stage-transition artifacts between create, build, review, and PR work. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:367-473]
+- Local autonomous implementation currently has one broad development phase followed by completion, with optional code/testing parallelism but without explicit stage-transition artifacts between create, build, review, and PR work. [SOURCE: .opencode/commands/speckit/assets/speckit_implement_auto.yaml:367-473]
 
 ## Analysis
 The local implementation workflow is well structured, but its main execution block is still comparatively coarse-grained. BAD demonstrates the benefit of stage contracts for long unattended runs: each stage has a narrow objective, writes a state transition, and triggers a coordinator-only checkpoint before the next step begins. That is a strong fit for `system-spec-kit`, because the repo already values checklists, completion gates, and resumable state. Unlike BAD's story backlog specifics, staged contracts can transfer without importing the entire BMad method.
@@ -25,7 +25,7 @@ confidence: high
 finding: Explicit stage contracts are the clearest adoption candidate from BAD. `system-spec-kit`'s autonomous implementation flow would become easier to resume, audit, and stop safely if Step 6 were decomposed into named sub-stages with mandatory checkpoint outputs and coordinator checks between them.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`
+- **Target file or module:** `.opencode/commands/speckit/assets/speckit_implement_auto.yaml`
 - **Change type:** modified existing
 - **Blast radius:** medium
 - **Prerequisites:** define a minimal stage-state schema so pauses and resumes know which sub-stage completed

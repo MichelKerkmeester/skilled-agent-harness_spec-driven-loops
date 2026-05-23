@@ -57,7 +57,7 @@ SPECIAL_FILENAMES = {"package.json", "skill.md", "readme.md"}
 PATH_PREFIX_HINTS = (
     "./", "../", ".opencode/", "specs/",
 )
-COMMAND_STYLE_PREFIXES = ("/anchor", "/memory:", "/spec_kit:", "/create:", "/docs:", "/mcp:")
+COMMAND_STYLE_PREFIXES = ("/anchor", "/memory:", "/speckit:", "/create:", "/docs:", "/mcp:")
 TREE_GLYPHS = ("├", "└", "│", "──")
 
 

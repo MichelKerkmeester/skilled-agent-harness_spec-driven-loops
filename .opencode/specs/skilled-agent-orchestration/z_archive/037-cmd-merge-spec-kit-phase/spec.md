@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Merge spec_kit:phase into plan [skilled-agent-orchestration/037-cmd-merge-spec-kit-phase/spec]"
-description: "The /spec_kit:phase command is a standalone 7-step workflow that only creates folder structure (parent + N children) without doing any planning or implementation. Users must the..."
+description: "The /speckit:phase command is a standalone 7-step workflow that only creates folder structure (parent + N children) without doing any planning or implementation. Users must the..."
 trigger_phrases:
   - "feature"
   - "specification"
@@ -46,10 +46,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The `/spec_kit:phase` command is a standalone 7-step workflow that only creates folder structure (parent + N children) without doing any planning or implementation. Users must then separately invoke `/spec_kit:plan` per child phase. This three-command chain (phase -> plan per child -> implement per child) adds friction. The phase decomposition capability should be an integrated option within the existing plan and complete workflows, following the same pattern as the existing `:with-research` flag.
+The `/speckit:phase` command is a standalone 7-step workflow that only creates folder structure (parent + N children) without doing any planning or implementation. Users must then separately invoke `/speckit:plan` per child phase. This three-command chain (phase -> plan per child -> implement per child) adds friction. The phase decomposition capability should be an integrated option within the existing plan and complete workflows, following the same pattern as the existing `:with-research` flag.
 
 ### Purpose
-Eliminate the standalone `/spec_kit:phase` command by absorbing its phase decomposition workflow into the plan and complete commands as an optional `:with-phases` mode, reducing the command surface and simplifying the user experience.
+Eliminate the standalone `/speckit:phase` command by absorbing its phase decomposition workflow into the plan and complete commands as an optional `:with-phases` mode, reducing the command surface and simplifying the user experience.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -78,13 +78,13 @@ Eliminate the standalone `/spec_kit:phase` command by absorbing its phase decomp
 |-----------|-------------|-------------|
 | `spec_kit/plan` | Modify | Add `:with-phases` flag, decomposition sections, argument-hint |
 | `spec_kit/complete` | Modify | Add `:with-phases` flag, decomposition sections, argument-hint |
-| `spec_kit/assets/spec_kit_plan_auto.yaml` | Modify | Add `phase_decomposition` optional workflow config |
-| `spec_kit/assets/spec_kit_plan_confirm.yaml` | Modify | Add `phase_decomposition` optional workflow config |
-| `spec_kit/assets/spec_kit_complete_auto.yaml` | Modify | Add `phase_decomposition` optional workflow config |
-| `spec_kit/assets/spec_kit_complete_confirm.yaml` | Modify | Add `phase_decomposition` optional workflow config |
+| `spec_kit/assets/speckit_plan_auto.yaml` | Modify | Add `phase_decomposition` optional workflow config |
+| `spec_kit/assets/speckit_plan_confirm.yaml` | Modify | Add `phase_decomposition` optional workflow config |
+| `spec_kit/assets/speckit_complete_auto.yaml` | Modify | Add `phase_decomposition` optional workflow config |
+| `spec_kit/assets/speckit_complete_confirm.yaml` | Modify | Add `phase_decomposition` optional workflow config |
 | `spec_kit/phase` | Delete | Standalone command removed |
-| `spec_kit/assets/spec_kit_phase_auto.yaml` | Delete | Phase YAML workflow removed |
-| `spec_kit/assets/spec_kit_phase_confirm.yaml` | Delete | Phase YAML workflow removed |
+| `spec_kit/assets/speckit_phase_auto.yaml` | Delete | Phase YAML workflow removed |
+| `spec_kit/assets/speckit_phase_confirm.yaml` | Delete | Phase YAML workflow removed |
 | `spec_kit/README.txt` | Modify | Remove phase entry, document `:with-phases` |
 | Root `CLAUDE` | Modify | Update quick reference table |
 <!-- /ANCHOR:scope -->
@@ -98,8 +98,8 @@ Eliminate the standalone `/spec_kit:phase` command by absorbing its phase decomp
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | `:with-phases` flag in `plan.md` triggers phase decomposition pre-workflow | Invoking `/spec_kit:plan:auto "feature" :with-phases --phases 3` creates parent + 3 child folders, then plans the first child |
-| REQ-002 | `:with-phases` flag in spec_kit:complete triggers phase decomposition pre-workflow | Invoking `/spec_kit:complete:auto "feature" :with-phases --phases 3` creates parent + 3 child folders, then runs complete on first child |
+| REQ-001 | `:with-phases` flag in `plan.md` triggers phase decomposition pre-workflow | Invoking `/speckit:plan:auto "feature" :with-phases --phases 3` creates parent + 3 child folders, then plans the first child |
+| REQ-002 | `:with-phases` flag in spec_kit:complete triggers phase decomposition pre-workflow | Invoking `/speckit:complete:auto "feature" :with-phases --phases 3` creates parent + 3 child folders, then runs complete on first child |
 | REQ-003 | Phase decomposition uses existing `create.sh --phase` infrastructure | No changes to create.sh; the command is invoked with same flags |
 | REQ-004 | Standalone `spec_kit:phase` command and YAML assets removed | Files deleted, no orphaned references in primary documentation |
 
@@ -118,8 +118,8 @@ Eliminate the standalone `/spec_kit:phase` command by absorbing its phase decomp
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `/spec_kit:phase` command no longer exists; attempting to invoke it fails gracefully
-- **SC-002**: `/spec_kit:plan:auto "feature" :with-phases --phases 3` produces identical folder structure to what `/spec_kit:phase:auto "feature" --phases 3` followed by `/spec_kit:plan` would have produced
+- **SC-001**: `/speckit:phase` command no longer exists; attempting to invoke it fails gracefully
+- **SC-002**: `/speckit:plan:auto "feature" :with-phases --phases 3` produces identical folder structure to what `/speckit:phase:auto "feature" --phases 3` followed by `/speckit:plan` would have produced
 - **SC-003**: All primary docs (CLAUDE, README.txt, plan command, complete command) reference `:with-phases` instead of `spec_kit:phase`
 <!-- /ANCHOR:success-criteria -->
 
@@ -170,7 +170,7 @@ Eliminate the standalone `/spec_kit:phase` command by absorbing its phase decomp
 
 ### State Transitions
 - After phase creation: `spec_path` automatically updates to first child phase folder
-- Subsequent phases: user invokes `/spec_kit:plan --phase-folder=<path>` for each child (existing capability)
+- Subsequent phases: user invokes `/speckit:plan --phase-folder=<path>` for each child (existing capability)
 <!-- /ANCHOR:edge-cases -->
 
 ---

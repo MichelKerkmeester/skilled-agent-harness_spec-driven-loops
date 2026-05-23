@@ -31,7 +31,7 @@ _memory:
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-077 runs the canonical `/spec_kit:deep-research:auto` workflow with a cli-codex (gpt-5.5/high/fast) executor against three intertwined OpenCode skill surfaces. The loop produces 10 iteration narratives, a synthesized research.md with a prioritized 4-phase remediation roadmap, and a resource-map.md covering all 43+ touched paths. No code is changed in this packet; subsequent packets (078+) consume the synthesis as planning input.
+077 runs the canonical `/speckit:deep-research:auto` workflow with a cli-codex (gpt-5.5/high/fast) executor against three intertwined OpenCode skill surfaces. The loop produces 10 iteration narratives, a synthesized research.md with a prioritized 4-phase remediation roadmap, and a resource-map.md covering all 43+ touched paths. No code is changed in this packet; subsequent packets (078+) consume the synthesis as planning input.
 <!-- /ANCHOR:summary -->
 
 ---

@@ -27,8 +27,8 @@
 - `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/resource-map.md`
 - `.opencode/agents/code.md`
 - `.opencode/agents/review.md`
-- `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml`
+- `.opencode/commands/speckit/assets/speckit_implement_auto.yaml`
+- `.opencode/commands/speckit/assets/speckit_complete_auto.yaml`
 - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json`
 - `.opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl`
 
@@ -88,7 +88,7 @@
 
 - `.opencode/agents/code.md` uses the single `sk-code` router contract and points to `.opencode/skills/sk-code/SKILL.md` for route selection.
 - `.opencode/agents/review.md` uses `sk-code-review` baseline plus `sk-code` router-selected standards evidence.
-- `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml` and `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml` reference `sk-code router-selected evidence` rather than the deleted sibling skill.
+- `.opencode/commands/speckit/assets/speckit_implement_auto.yaml` and `.opencode/commands/speckit/assets/speckit_complete_auto.yaml` reference `sk-code router-selected evidence` rather than the deleted sibling skill.
 - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` generated graph excludes the old `sk-code-opencode` skill ID.
 - `.opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl` scoped search found no `sk-code-opencode` measurement label.
 

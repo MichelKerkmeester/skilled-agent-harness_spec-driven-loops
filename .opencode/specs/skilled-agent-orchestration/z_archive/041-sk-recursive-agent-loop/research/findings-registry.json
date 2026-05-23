@@ -211,7 +211,7 @@
         ".opencode/README.md:330",
         ".opencode/install_guides/README.md:1421",
         ".codex/agents/context.toml:1",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:66"
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:66"
       ]
     },
     {
@@ -222,7 +222,7 @@
         ".opencode/README.md:330",
         ".opencode/install_guides/README.md:1421",
         ".codex/agents/context.toml:1",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:66"
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:66"
       ]
     },
     {
@@ -233,7 +233,7 @@
         ".opencode/README.md:330",
         ".opencode/install_guides/README.md:1421",
         ".codex/agents/context.toml:1",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:66"
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:66"
       ]
     },
     {
@@ -244,29 +244,29 @@
         ".opencode/README.md:330",
         ".opencode/install_guides/README.md:1421",
         ".codex/agents/context.toml:1",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:66"
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:66"
       ]
     },
     {
       "id": "finding-5-3-some-command-assets-pin-specific-runtime-agent-files-directly-the-deep-research-",
-      "text": "Some command assets pin specific runtime agent files directly. The deep-research workflow still shows `.claude/agents/deep-research.md` as the concrete `agent_file`, even while describing runtime-agnostic resolution. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:66]",
+      "text": "Some command assets pin specific runtime agent files directly. The deep-research workflow still shows `.claude/agents/deep-research.md` as the concrete `agent_file`, even while describing runtime-agnostic resolution. [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:66]",
       "addedAtIteration": 5,
       "sources": [
         ".opencode/README.md:330",
         ".opencode/install_guides/README.md:1421",
         ".codex/agents/context.toml:1",
-        ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:66"
+        ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:66"
       ]
     },
     {
       "id": "finding-6-4-handover-generation-is-more-measurable-than-open-ended-research-because-the-comm",
-      "text": "Handover generation is more measurable than open-ended research because the command defines strict pre-validation, seven required sections, a fixed output location, and a mandatory memory-save follow-up. That makes handover-style outputs a much better evaluator substrate than freeform prompt quality. [SOURCE: .opencode/commands/spec_kit/handover.md:58] [SOURCE: .opencode/commands/spec_kit/handover.md:195] [SOURCE: .opencode/commands/spec_kit/handover.md:215]",
+      "text": "Handover generation is more measurable than open-ended research because the command defines strict pre-validation, seven required sections, a fixed output location, and a mandatory memory-save follow-up. That makes handover-style outputs a much better evaluator substrate than freeform prompt quality. [SOURCE: .opencode/commands/speckit/handover.md:58] [SOURCE: .opencode/commands/speckit/handover.md:195] [SOURCE: .opencode/commands/speckit/handover.md:215]",
       "addedAtIteration": 6,
       "sources": [
         ".opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh:82",
         ".opencode/skills/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts:49",
         ".opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:567",
-        ".opencode/commands/spec_kit/handover.md:195"
+        ".opencode/commands/speckit/handover.md:195"
       ]
     },
     {
@@ -277,7 +277,7 @@
         ".opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh:82",
         ".opencode/skills/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts:49",
         ".opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:567",
-        ".opencode/commands/spec_kit/handover.md:195"
+        ".opencode/commands/speckit/handover.md:195"
       ]
     },
     {
@@ -288,7 +288,7 @@
         ".opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh:82",
         ".opencode/skills/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts:49",
         ".opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:567",
-        ".opencode/commands/spec_kit/handover.md:195"
+        ".opencode/commands/speckit/handover.md:195"
       ]
     },
     {
@@ -299,18 +299,18 @@
         ".opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh:82",
         ".opencode/skills/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts:49",
         ".opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:567",
-        ".opencode/commands/spec_kit/handover.md:195"
+        ".opencode/commands/speckit/handover.md:195"
       ]
     },
     {
       "id": "finding-6-1-the-repo-already-has-deterministic-document-integrity-validation-check-spec-doc-",
-      "text": "The repo already has deterministic document-integrity validation. `check-spec-doc-integrity.sh` checks markdown references, stale spec metadata, missing handover targets, and non-resolvable `/spec_kit:resume` paths, which makes it a strong structural gate for artifact-oriented agents. [SOURCE: .opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh:82] [SOURCE: .opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh:95] [SOURCE: .opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh:103] [SOURCE: .opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh:126]",
+      "text": "The repo already has deterministic document-integrity validation. `check-spec-doc-integrity.sh` checks markdown references, stale spec metadata, missing handover targets, and non-resolvable `/speckit:resume` paths, which makes it a strong structural gate for artifact-oriented agents. [SOURCE: .opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh:82] [SOURCE: .opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh:95] [SOURCE: .opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh:103] [SOURCE: .opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh:126]",
       "addedAtIteration": 6,
       "sources": [
         ".opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh:82",
         ".opencode/skills/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts:49",
         ".opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:567",
-        ".opencode/commands/spec_kit/handover.md:195"
+        ".opencode/commands/speckit/handover.md:195"
       ]
     },
     {
@@ -502,11 +502,11 @@
     },
     {
       "id": "finding-11-4-because-the-research-loop-is-open-ended-and-convergence-based-it-is-a-poorer-pha",
-      "text": "Because the research loop is open-ended and convergence-based, it is a poorer phase-1 target than handover-style artifact generation. The first mutable target should be something with a narrow template and binary quality gates, not a synthesis-heavy loop. [SOURCE: .opencode/agents/deep-research.md:24] [SOURCE: .opencode/skills/sk-deep-research/references/convergence.md:25] [SOURCE: .opencode/commands/spec_kit/handover.md:195]",
+      "text": "Because the research loop is open-ended and convergence-based, it is a poorer phase-1 target than handover-style artifact generation. The first mutable target should be something with a narrow template and binary quality gates, not a synthesis-heavy loop. [SOURCE: .opencode/agents/deep-research.md:24] [SOURCE: .opencode/skills/sk-deep-research/references/convergence.md:25] [SOURCE: .opencode/commands/speckit/handover.md:195]",
       "addedAtIteration": 11,
       "sources": [
-        ".opencode/commands/spec_kit/handover.md:58",
-        ".opencode/commands/spec_kit/handover.md:195",
+        ".opencode/commands/speckit/handover.md:58",
+        ".opencode/commands/speckit/handover.md:195",
         ".opencode/agents/deep-research.md:28",
         ".opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh:103"
       ]
@@ -516,30 +516,30 @@
       "text": "Deep research is intentionally broader and more subjective. The leaf agent executes one research cycle at a time, writes iteration artifacts, and relies on reducer-managed synthesis plus convergence logic over answered questions and novelty rather than a small fixed template. [SOURCE: .opencode/agents/deep-research.md:28] [SOURCE: .opencode/agents/deep-research.md:159] [SOURCE: .opencode/skills/sk-deep-research/SKILL.md:179]",
       "addedAtIteration": 11,
       "sources": [
-        ".opencode/commands/spec_kit/handover.md:58",
-        ".opencode/commands/spec_kit/handover.md:195",
+        ".opencode/commands/speckit/handover.md:58",
+        ".opencode/commands/speckit/handover.md:195",
         ".opencode/agents/deep-research.md:28",
         ".opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh:103"
       ]
     },
     {
       "id": "finding-11-1-handover-output-is-structurally-constrained-the-command-enforces-pre-handover-va",
-      "text": "Handover output is structurally constrained. The command enforces pre-handover validation, explicit user confirmation flow, seven required sections, a fixed output location, and a mandatory follow-up memory save. [SOURCE: .opencode/commands/spec_kit/handover.md:58] [SOURCE: .opencode/commands/spec_kit/handover.md:78] [SOURCE: .opencode/commands/spec_kit/handover.md:195] [SOURCE: .opencode/commands/spec_kit/handover.md:215]",
+      "text": "Handover output is structurally constrained. The command enforces pre-handover validation, explicit user confirmation flow, seven required sections, a fixed output location, and a mandatory follow-up memory save. [SOURCE: .opencode/commands/speckit/handover.md:58] [SOURCE: .opencode/commands/speckit/handover.md:78] [SOURCE: .opencode/commands/speckit/handover.md:195] [SOURCE: .opencode/commands/speckit/handover.md:215]",
       "addedAtIteration": 11,
       "sources": [
-        ".opencode/commands/spec_kit/handover.md:58",
-        ".opencode/commands/spec_kit/handover.md:195",
+        ".opencode/commands/speckit/handover.md:58",
+        ".opencode/commands/speckit/handover.md:195",
         ".opencode/agents/deep-research.md:28",
         ".opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh:103"
       ]
     },
     {
       "id": "finding-11-3-structured-artifact-surfaces-already-connect-to-deterministic-evaluators-handove",
-      "text": "Structured artifact surfaces already connect to deterministic evaluators: handover can be checked for required sections and resolvable resume paths, while artifact quality can be scored through the existing integrity checks and DQI-style structure metrics. [SOURCE: .opencode/commands/spec_kit/handover.md:195] [SOURCE: .opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh:103] [SOURCE: .opencode/skills/sk-doc/scripts/extract_structure.py:940]",
+      "text": "Structured artifact surfaces already connect to deterministic evaluators: handover can be checked for required sections and resolvable resume paths, while artifact quality can be scored through the existing integrity checks and DQI-style structure metrics. [SOURCE: .opencode/commands/speckit/handover.md:195] [SOURCE: .opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh:103] [SOURCE: .opencode/skills/sk-doc/scripts/extract_structure.py:940]",
       "addedAtIteration": 11,
       "sources": [
-        ".opencode/commands/spec_kit/handover.md:58",
-        ".opencode/commands/spec_kit/handover.md:195",
+        ".opencode/commands/speckit/handover.md:58",
+        ".opencode/commands/speckit/handover.md:195",
         ".opencode/agents/deep-research.md:28",
         ".opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh:103"
       ]

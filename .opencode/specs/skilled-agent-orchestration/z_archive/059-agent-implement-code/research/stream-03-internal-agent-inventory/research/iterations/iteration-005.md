@@ -11,7 +11,7 @@ This iteration focused on Q2: how `sk-code` detects application stacks, where th
 - Listed `.opencode/skills/sk-code/` and `.opencode/skills/sk-code/references/` to identify router docs, scripts, assets, and stack-aware resource folders.
 - Read `.opencode/skills/sk-code/references/router/stack_detection.md` and `.opencode/skills/sk-code/references/router/resource_loading.md`.
 - Searched `sk-code`, agents, commands, and root `AGENTS.md` for `detect_stack`, `route_code_resources`, `stack_detection`, `UNKNOWN_FALLBACK`, and `sk-code` invocation patterns.
-- Read `sk-code` README, `@review`, `@orchestrate`, and `/spec_kit:implement` references for canonical invocation and overlay-selection precedent.
+- Read `sk-code` README, `@review`, `@orchestrate`, and `/speckit:implement` references for canonical invocation and overlay-selection precedent.
 
 ## Findings
 
@@ -95,7 +95,7 @@ This iteration focused on Q2: how `sk-code` detects application stacks, where th
 - `.opencode/agents/orchestrate.md:93`
 - `.opencode/agents/orchestrate.md:100`
 - `.opencode/agents/orchestrate.md:309`
-- `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:214`
+- `.opencode/commands/speckit/assets/speckit_implement_auto.yaml:214`
 - `AGENTS.md:24`
 - `AGENTS.md:174`
 

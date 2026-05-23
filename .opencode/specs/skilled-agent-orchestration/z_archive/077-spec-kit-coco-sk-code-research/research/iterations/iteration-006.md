@@ -40,7 +40,7 @@ Concrete target: add a cross-skill OpenCode recipe for "code changes that create
 ## Questions Remaining
 - Q5: Still open for a deeper asset/checklist pass, especially whether missing authoring guidance belongs in `assets/opencode/` checklists or in `references/opencode/shared/`.
 - Q6: Still open for a formal `STACK_FOLDERS` and resource-map drift comparison.
-- Q7: Still open for live `/spec_kit:complete` or spec-folder-write routing behavior across sk-code and system-spec-kit.
+- Q7: Still open for live `/speckit:complete` or spec-folder-write routing behavior across sk-code and system-spec-kit.
 
 ## Next Focus (for iteration 7)
 Audit `sk-code` OpenCode assets and verification recipes. Start with `assets/opencode/checklists/`, `references/opencode/shared/alignment_verification_automation.md`, and the manual testing playbook's expected loaded assets; then decide whether missing skills/agents/commands authoring checks and the spec-folder validation recipe should be added as checklists, shared references, or cross-skill integration docs.

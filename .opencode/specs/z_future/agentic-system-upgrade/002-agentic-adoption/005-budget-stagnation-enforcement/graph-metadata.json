@@ -41,7 +41,7 @@
       ".opencode/skills/sk-deep-research/assets/deep_research_config.json",
       ".opencode/skills/sk-deep-research/references/convergence.md",
       ".opencode/skills/sk-deep-research/references/state_format.md",
-      ".opencode/commands/spec_kit/deep-research.md",
+      ".opencode/commands/speckit/deep-research.md",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -69,7 +69,7 @@
       {
         "name": "deep-research.md",
         "kind": "doc",
-        "path": ".opencode/commands/spec_kit/deep-research.md",
+        "path": ".opencode/commands/speckit/deep-research.md",
         "source": "derived"
       },
       {

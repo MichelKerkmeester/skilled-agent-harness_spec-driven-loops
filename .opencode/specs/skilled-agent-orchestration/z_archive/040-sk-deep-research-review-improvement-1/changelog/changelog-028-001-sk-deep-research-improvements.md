@@ -108,8 +108,8 @@ This phase took the deep-research packet from a partly aligned documentation pas
 
 | File | What changed |
 |------|--------------|
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Updated reducer step execution, lifecycle handling, and helper-script references for auto mode. |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Mirrored the same reducer and lifecycle contract in confirm mode. |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | Updated reducer step execution, lifecycle handling, and helper-script references for auto mode. |
+| `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml` | Mirrored the same reducer and lifecycle contract in confirm mode. |
 | `.opencode/agents/deep-research.md` | Aligned the OpenCode runtime mirror to the reducer-owned packet model and lifecycle branches. |
 | `.claude/agents/deep-research.md` | Aligned the Claude runtime mirror to the same packet model. |
 | `.gemini/agents/deep-research.md` | Aligned the Gemini runtime mirror to the same packet model and restored the correct runtime-path convention. |

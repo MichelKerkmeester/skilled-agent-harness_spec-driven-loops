@@ -41,7 +41,7 @@ Design of a "review mode" for sk-deep-research — an auto, iterative deep revie
 - [x] Q2 (iteration-002): Severity-weighted newFindingsRatio with P0 override. Rolling avg window=2/threshold=0.08/weight=0.30, MAD weight reduced to 0.25, dimension coverage 100%/weight=0.45. 5 quality guards. Full pseudocode.
 - [x] Q3 (iteration-003): 5 target types, 7 review dimensions, hybrid ordering (inventory → risk-ordered), 6 cross-reference protocols with severity, dedup strategy.
 - [x] Q4 (iteration-004): Recommends new @deep-review agent (Option B). Hybrid of @review rubric + @deep-research state protocol. Tool budget 9-12, max 13. Full dispatch template and permission matrix.
-- [x] Q5 (iteration-005): 11-section review-report.md. /spec_kit:deep-review[:auto|:confirm] command. 7-point progressive synthesis. 4-verdict post-review workflow.
+- [x] Q5 (iteration-005): 11-section review-report.md. /speckit:deep-review[:auto|:confirm] command. 7-point progressive synthesis. 4-verdict post-review workflow.
 
 ---
 
@@ -73,7 +73,7 @@ Design of a "review mode" for sk-deep-research — an auto, iterative deep revie
 - Flat newFindingsRatio without severity weights (rejected: P0 discovery masked)
 - Separate convergence algorithm (rejected: 80%+ maps cleanly)
 - Per-dimension convergence trackers (rejected: excessive complexity)
-- /spec_kit:review as command name (rejected: too ambiguous with single-pass @review)
+- /speckit:review as command name (rejected: too ambiguous with single-pass @review)
 - Auto-creating remediation plans (rejected: review and implementation should stay separate)
 - Score-only convergence (rejected: hides untouched files)
 

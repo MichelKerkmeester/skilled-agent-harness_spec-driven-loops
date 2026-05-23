@@ -18,7 +18,7 @@ Recommended boundary:
 - `@deep-review`-only: dimension queue execution, scratch artifact emission, convergence-facing metadata, and loop-specific traceability/adjudication extensions.
 
 ### 2. Direct agent-to-agent invocation is the wrong coupling point
-Neither agent should invoke the other. Both are explicitly LEAF-only, and wiring reuse through nested dispatch would turn a contract-sharing problem into a runtime orchestration dependency. The correct integration point is a shared review-core contract plus orchestrator-mediated handoff when one mode wants to reuse another mode's output. [SOURCE: .opencode/agents/review.md:36-40] [SOURCE: .opencode/agents/deep-review.md:36-42] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:20-23] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:68-77]
+Neither agent should invoke the other. Both are explicitly LEAF-only, and wiring reuse through nested dispatch would turn a contract-sharing problem into a runtime orchestration dependency. The correct integration point is a shared review-core contract plus orchestrator-mediated handoff when one mode wants to reuse another mode's output. [SOURCE: .opencode/agents/review.md:36-40] [SOURCE: .opencode/agents/deep-review.md:36-42] [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:20-23] [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:68-77]
 
 Recommended flow:
 - Optional preflight: orchestrator may run one `@review` pass before iteration 1 to seed hotspots and candidate findings.
@@ -87,7 +87,7 @@ Data flow recommendation:
 - `.opencode/agents/deep-review.md`
 - `.opencode/skills/sk-code-review/SKILL.md`
 - `.opencode/skills/sk-code-review/references/quick_reference.md`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml`
+- `.opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml`
 
 ## Assessment
 - `newInfoRatio`: `0.34`

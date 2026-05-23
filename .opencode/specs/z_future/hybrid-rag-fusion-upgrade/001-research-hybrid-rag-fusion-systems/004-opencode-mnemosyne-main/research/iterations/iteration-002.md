@@ -4603,7 +4603,7 @@ exec
 .opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:345:function createRecoveryDb(rootDir: string, fileName: string = 'context-index.sqlite'): string {
 .opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:401:      expect(database.execStatements.some((sql) => sql.includes('CREATE TABLE IF NOT EXISTS session_state'))).toBe(true);
 .opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:505:        specFolder: 'specs/022-hybrid-rag-fusion',
-.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:518:      expect(content).toContain('/spec_kit:resume specs/022-hybrid-rag-fusion');
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:518:      expect(content).toContain('/speckit:resume specs/022-hybrid-rag-fusion');
 .opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:593:      const createTableSql = database.execStatements.find((sql) => sql.includes('CREATE TABLE IF NOT EXISTS session_state'));
 .opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:956:    const dbPath = path.join(tempDir, 'code-graph.sqlite');
 .opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:3:import Database from 'better-sqlite3';

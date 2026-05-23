@@ -26,7 +26,7 @@ RFC proposing Median Absolute Deviation (MAD) to distinguish real metric improve
 ### 4. Multi-Instance Conflict (pi-autoresearch #10, #12) -- CONCURRENCY PROBLEM
 Two separate issues raised the problem of running multiple autoresearch loops simultaneously: #10 asked "how to deal with multiple autoresearches?" (answered: use subdirectories) and #12 proposed dedicated subdirectory-based isolation. Both were resolved by recommending separate project directories.
 
-**Relevance to our system**: Our spec-folder-scoped state naturally isolates concurrent deep-research sessions. However, the YAML workflow and orchestrator do not enforce single-instance locks. Running `/spec_kit:deep-research` twice on the same spec folder simultaneously would cause JSONL corruption (concurrent appends) and strategy.md race conditions. **This suggests a new v3 proposal: "instance lock" via a PID/lock file in scratch/ to prevent concurrent deep-research on the same spec folder.**
+**Relevance to our system**: Our spec-folder-scoped state naturally isolates concurrent deep-research sessions. However, the YAML workflow and orchestrator do not enforce single-instance locks. Running `/speckit:deep-research` twice on the same spec folder simultaneously would cause JSONL corruption (concurrent appends) and strategy.md race conditions. **This suggests a new v3 proposal: "instance lock" via a PID/lock file in scratch/ to prevent concurrent deep-research on the same spec folder.**
 [SOURCE: https://github.com/davebcn87/pi-autoresearch/issues/10, #12]
 
 ### 5. Repository Bloat from Experiment Logging (pi-autoresearch #3) -- DATA MANAGEMENT

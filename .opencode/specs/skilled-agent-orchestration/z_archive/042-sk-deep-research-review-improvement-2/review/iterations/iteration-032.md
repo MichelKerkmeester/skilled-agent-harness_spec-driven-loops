@@ -182,7 +182,7 @@ The broad search was noisy, so I’m slicing it down to the actual execution sur
 
 ● Search (grep)
   │ "deep_loop_graph_(upsert|query|status|convergence)|sessionId" in **/*deep-*.{yaml,yml}
-  │ (.opencode/commands/spec_kit/assets)
+  │ (.opencode/commands/speckit/assets)
   └ 6 lines found
 
 ● Search (grep)
@@ -199,20 +199,20 @@ The broad search was noisy, so I’m slicing it down to the actual execution sur
   └ 3 lines found
 
 ● Search (glob)
-  │ "**/*deep-*.{yaml,yml}" in .opencode/commands/spec_kit/assets
+  │ "**/*deep-*.{yaml,yml}" in .opencode/commands/speckit/assets
   └ 4 files found
 
 ● Search (grep)
   │ "deep_loop_graph_(upsert|query|status|convergence)" in **/*deep-*.{yaml,yml}
-  │ (.opencode/commands/spec_kit/assets)
+  │ (.opencode/commands/speckit/assets)
   └ 4 files found
 
 ● Search (grep)
-  │ "sessionId" in **/*deep-review*.{yaml,yml} (.opencode/commands/spec_kit/assets)
+  │ "sessionId" in **/*deep-review*.{yaml,yml} (.opencode/commands/speckit/assets)
   └ 32 lines found
 
 ● Search (grep)
-  │ "sessionId" in **/*deep-research*.{yaml,yml} (.opencode/commands/spec_kit/assets)
+  │ "sessionId" in **/*deep-research*.{yaml,yml} (.opencode/commands/speckit/assets)
   └ 24 lines found
 
 The workflow layer is consistent so far: both deep-review YAMLs and both deep-research YAMLs are threading `sessionId` into the graph-tool calls and persisting it in lineage events. I’m doing one last pass on the tests and the remaining helper paths to make sure there isn’t a latent aggregate-read path that’s still reachable in review mode.
@@ -387,61 +387,61 @@ There’s no standalone graph-tool dispatcher file, so the last missing piece is
 I’m at the point of assembling the verdict. Before I do, I’m pulling the exact workflow-call snippets so the coverage assessment can cite the concrete surfaces that are now session-scoped, not just the library code.
 
 ● Read spec_kit_deep-review_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
   └ L360:390 (31 lines read)
 
 ● Read spec_kit_deep-review_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
   └ L656:670 (14 lines read)
 
 ● Read spec_kit_deep-review_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
   └ L400:414 (15 lines read)
 
 ● Read spec_kit_deep-review_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
   └ L710:724 (14 lines read)
 
 ● Read spec_kit_deep-research_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml
   └ L258:276 (19 lines read)
 
 ● Read spec_kit_deep-research_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml
   └ L432:444 (12 lines read)
 
 ● Read spec_kit_deep-research_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml
   └ L287:305 (19 lines read)
 
 ● Read spec_kit_deep-research_confirm.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml
   └ L484:496 (12 lines read)
 
 I did find one potentially security-relevant failure mode, but it depends on whether the workflow treats graph-tool failure as “absent” and then continues. I’m pulling the exact stop-gate logic now, because if the runtime fails open when the graph tool is unavailable, that’s a control-bypass issue rather than a simple correctness bug.
 
 ● Search (grep)
   │ "graph_decision|STOP_ALLOWED|STOP_BLOCKED|absent|unavailable"
-  │ (.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml)
+  │ (.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml)
   └ 15 lines found
 
 ● Search (grep)
   │ "graph_decision|STOP_ALLOWED|STOP_BLOCKED|absent|unavailable"
-  │ (.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml)
+  │ (.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml)
   └ 15 lines found
 
 ● Search (grep)
   │ "graph_decision|STOP_ALLOWED|STOP_BLOCKED|absent|unavailable"
-  │ (.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml)
+  │ (.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml)
   └ 9 lines found
 
 ● Search (grep)
   │ "graph_decision|STOP_ALLOWED|STOP_BLOCKED|absent|unavailable"
-  │ (.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml)
+  │ (.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml)
   └ 9 lines found
 
 ● Read spec_kit_deep-review_auto.yaml
-  │ .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml
+  │ .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml
   └ L384:470 (87 lines read)
 
 ● Read index.ts
@@ -459,10 +459,10 @@ I did find one potentially security-relevant failure mode, but it depends on whe
 - The four MCP handlers reject missing `sessionId` in `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts:70-79`, `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:47-56`, `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:33-40`, and `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:151-158`.
 - The published tool schemas also require `sessionId` in `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:707-797`.
 - Reviewed workflow call sites pass `sessionId` through to the graph MCP calls in:
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:372-376`, `661-664`
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:405-409`, `715-718`
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:260-266`, `433-441`
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:289-295`, `485-493`
+  - `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:372-376`, `661-664`
+  - `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:405-409`, `715-718`
+  - `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:260-266`, `433-441`
+  - `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:289-295`, `485-493`
 
 **CONFIDENCE** High for the requested security dimension.
 

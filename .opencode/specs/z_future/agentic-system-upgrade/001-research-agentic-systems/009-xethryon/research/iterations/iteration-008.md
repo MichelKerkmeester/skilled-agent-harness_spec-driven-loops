@@ -14,7 +14,7 @@ I examined Xethryon's autonomy prompt and `invoke_skill.ts`, then compared them 
 ## Evidence
 - Xethryon's autonomy prompt says post-task follow-up skills are "not optional" and instructs the agent to invoke `/verify`, `/remember`, `/pr`, or `/debug` on its own after certain kinds of work. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/xethryon/autonomy.ts:50-76]
 - `invoke_skill.ts` loads the selected skill prompt into tool output and explicitly tells the model to execute it immediately without narrating the load step. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/tool/invoke_skill.ts:28-41] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/tool/invoke_skill.ts:70-90]
-- Spec Kit's deep-research command requires setup inputs to be resolved before the YAML workflow loads, and it explicitly blocks progression until the user answers the consolidated setup prompt. [SOURCE: .opencode/commands/spec_kit/deep-research.md:7-22] [SOURCE: .opencode/commands/spec_kit/deep-research.md:39-47] [SOURCE: .opencode/commands/spec_kit/deep-research.md:71-107]
+- Spec Kit's deep-research command requires setup inputs to be resolved before the YAML workflow loads, and it explicitly blocks progression until the user answers the consolidated setup prompt. [SOURCE: .opencode/commands/speckit/deep-research.md:7-22] [SOURCE: .opencode/commands/speckit/deep-research.md:39-47] [SOURCE: .opencode/commands/speckit/deep-research.md:71-107]
 - Spec Kit's README states that every file-modifying conversation gets a spec folder and that Gate 3 asks for that folder before modification begins. [SOURCE: .opencode/skills/system-spec-kit/README.md:227-245]
 - The constitutional routing pack keeps tool choice explicit and centered on semantic, structural, or memory intent rather than letting the model self-escalate into unrelated follow-up workflows. [SOURCE: .opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md:33-40]
 
@@ -27,7 +27,7 @@ confidence: high
 finding: autonomous skill invocation is fundamentally misaligned with `system-spec-kit`'s gate-driven workflow model. The right move is to reject automatic skill execution and, at most, borrow the checklist language as a non-executing reminder inside command assets.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/commands/spec_kit/deep-research.md`
+- **Target file or module:** `.opencode/commands/speckit/deep-research.md`
 - **Change type:** rejected
 - **Blast radius:** small
 - **Prerequisites:** none

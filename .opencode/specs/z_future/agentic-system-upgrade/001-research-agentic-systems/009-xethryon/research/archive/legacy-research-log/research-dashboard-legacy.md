@@ -22,8 +22,8 @@
 | 018 | 2 | If system-spec-kit wants some of Xethryon's ambient project orientation, what is the right architecture: durable repo-global memory, or a lighter read-only orientation surface? | high | should-have | `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` | SIMPLIFY |
 | 019 | 2 | Does Xethryon's lighter documentation posture imply that system-spec-kit should pivot away from Level 1/2/3+ spec folders, `create.sh`, and `validate.sh` toward a simpler documentation lifecycle? | high | rejected | `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | KEEP |
 | 020 | 2 | What is the smallest UX improvement system-spec-kit should borrow from Xethryon after rejecting the bigger architectural pivots? | medium | nice-to-have | `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` | SIMPLIFY |
-| 021 | 3 | Does system-spec-kit expose too much lifecycle branching through separate `/spec_kit:plan`, `/spec_kit:implement`, and `/spec_kit:complete` entry points compared with Xethryon's flatter operator surface? | high | should-have | `.opencode/commands/spec_kit/plan.md` | MERGE |
-| 022 | 3 | Is the `/memory:*` command family awkwardly parallel to `/spec_kit:*`, or is that separation actually justified for a governed memory subsystem? | high | rejected | `.opencode/commands/memory/README.txt` | KEEP |
+| 021 | 3 | Does system-spec-kit expose too much lifecycle branching through separate `/speckit:plan`, `/speckit:implement`, and `/speckit:complete` entry points compared with Xethryon's flatter operator surface? | high | should-have | `.opencode/commands/speckit/plan.md` | MERGE |
+| 022 | 3 | Is the `/memory:*` command family awkwardly parallel to `/speckit:*`, or is that separation actually justified for a governed memory subsystem? | high | rejected | `.opencode/commands/memory/README.txt` | KEEP |
 | 023 | 3 | Is the Level 1/2/3+ plus CORE+ADDENDUM template model intuitive enough, or does system-spec-kit need a more guided spec-folder UX? | high | should-have | `.opencode/agents/speckit.md` | ADD |
 | 024 | 3 | Is system-spec-kit exposing too much agent granularity at the UX layer, especially around `@context` and `@context-prime`? | high | should-have | `.opencode/agents/orchestrate.md` | MERGE |
 | 025 | 3 | Should system-spec-kit replace explicit LEAF deep-research and deep-review agents with a more hidden iteration architecture inspired by Xethryon's runtime reflection and post-turn hooks? | high | rejected | `.opencode/agents/deep-research.md` | KEEP |
@@ -31,7 +31,7 @@
 | 027 | 3 | Is Gate 2's explicit `skill_advisor.py` workflow the right UX for skill routing, or has it become operator-facing ceremony? | high | must-have | `.opencode/skills/scripts/skill_advisor.py` | REDESIGN |
 | 028 | 3 | Does the full Gate 1->2->3 and constitutional/hook machinery expose too much workflow theory to the operator? | high | should-have | `.opencode/skills/system-spec-kit/constitutional/gate-enforcement.md` | SIMPLIFY |
 | 029 | 3 | What single artifact would reduce the most end-to-end workflow friction in system-spec-kit without weakening spec folders, gates, or validation? | medium | nice-to-have | `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` | ADD |
-| 030 | 3 | Is the current YAML workflow-asset pattern still the right abstraction for autonomous execution, or has the asset layer become too broad and repetitive? | medium | should-have | `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml` | SIMPLIFY |
+| 030 | 3 | Is the current YAML workflow-asset pattern still the right abstraction for autonomous execution, or has the asset layer become too broad and repetitive? | medium | should-have | `.opencode/commands/speckit/assets/speckit_implement_auto.yaml` | SIMPLIFY |
 
 ## Convergence Signal
 - Iterations without new signal in Phase 3: 0

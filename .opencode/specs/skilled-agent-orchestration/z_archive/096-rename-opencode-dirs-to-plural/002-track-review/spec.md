@@ -86,7 +86,7 @@ or runtime breakage — and produce a remediation Plan Seed when needed.
 
 ### Out of Scope
 - Re-running each individual deep-review iteration loop already shipped in those packets — handled by 095
-- Implementation of remediation fixes — produces Plan Seed for `/spec_kit:plan` if FAIL/CONDITIONAL
+- Implementation of remediation fixes — produces Plan Seed for `/speckit:plan` if FAIL/CONDITIONAL
 - Test execution beyond what the review agent can perform inline (`bash` invocations of validate.sh, skill_advisor.py)
 
 ### Files to Change
@@ -129,7 +129,7 @@ or runtime breakage — and produce a remediation Plan Seed when needed.
 
 - **SC-001**: Verdict + planning trigger produced (PASS / CONDITIONAL / FAIL); `hasAdvisories` reflects P2 presence
 - **SC-002**: Active P0/P1 finding count surfaced with file:line evidence and adjudicated severity
-- **SC-003**: If verdict ≠ PASS, the Plan Seed is concrete enough to start `/spec_kit:plan` without re-discovery
+- **SC-003**: If verdict ≠ PASS, the Plan Seed is concrete enough to start `/speckit:plan` without re-discovery
 <!-- /ANCHOR:success-criteria -->
 
 ---

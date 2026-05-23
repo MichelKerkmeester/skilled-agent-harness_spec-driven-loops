@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/082-speckit-reimagined/spec]"
-description: "SpecKit Reimagined synthesizes findings from 25 parallel agent analyses of 8 pre-analysis documents examining dotmd, seu-claude, drift, and system-speckit architectures. This sp..."
+description: "SpecKit Reimagined synthesizes findings from 25 parallel agent analyses of 8 pre-analysis documents examining dotmd, seu-claude, drift, and system-spec-kit architectures. This sp..."
 trigger_phrases:
   - "feature"
   - "specification"
@@ -21,7 +21,7 @@ contextType: "planning"
 <!-- ANCHOR:metadata -->
 ## EXECUTIVE SUMMARY
 
-SpecKit Reimagined synthesizes findings from 25 parallel agent analyses of 8 pre-analysis documents examining dotmd, seu-claude, drift, and system-speckit architectures. This specification defines 15 P0 blockers (10 original + 5 embedding resilience), 18 P1 requirements, and establishes a unified 6-7 week implementation roadmap to transform SpecKit into a best-in-class memory system with hybrid search, causal graphs, embedding resilience, and self-improvement capabilities.
+SpecKit Reimagined synthesizes findings from 25 parallel agent analyses of 8 pre-analysis documents examining dotmd, seu-claude, drift, and system-spec-kit architectures. This specification defines 15 P0 blockers (10 original + 5 embedding resilience), 18 P1 requirements, and establishes a unified 6-7 week implementation roadmap to transform SpecKit into a best-in-class memory system with hybrid search, causal graphs, embedding resilience, and self-improvement capabilities.
 
 > **[AUDIT 2026-02-01]:** Timeline corrected from 11 weeks to 6-7 weeks based on critical path analysis. Original estimate included redundant parallel work (Wave 3 could leverage foundations from Waves 1-2) and overestimated dependencies. RRF fusion, composite scoring, and FSRS already exist in codebase, reducing new implementation effort. See tasks.md for detailed breakdown.
 

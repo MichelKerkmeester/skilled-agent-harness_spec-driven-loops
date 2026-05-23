@@ -27,8 +27,8 @@ Traceability. This pass audited the packet 094 prompt-equality contract across a
 - `.claude/agents/deep-research.md:91`
 - `.opencode/agents/review.md:412`
 - `.codex/agents/review.toml:400`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:89`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:118`
+- `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:89`
+- `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:118`
 - `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs:200`
 - `.opencode/skills/deep-review/scripts/reduce-state.cjs:1172`
 
@@ -134,14 +134,14 @@ Additional checks:
 #### P1-005 [P1] Deep-loop artifact resolver accepts malformed `spec_folder` values that redirect review writes outside the approved packet
 
 - Status this iteration: Carry-forward, not escalated. Traceability pass found the YAML claim and resolver still disagree, but did not find a hostile plausible config path that promotes this to P0.
-- Evidence refs: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:89`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:118`, `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs:200`, `.opencode/skills/deep-review/scripts/reduce-state.cjs:1172`.
+- Evidence refs: `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:89`, `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:118`, `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs:200`, `.opencode/skills/deep-review/scripts/reduce-state.cjs:1172`.
 - Adjudication: The resolver remains too trusting, but reachability still depends on malformed workflow setup/config rather than an external attacker-controlled input in normal command use. Severity remains P1.
 - Recommendation: Add a shared spec-folder containment validator before artifact-root resolution and assert all dispatch outputs stay under the approved packet root.
 
 #### P1-002 [P1] Command-owned deep-review/deep-research YAML reads non-existent `sk-deep-*` skill paths
 
 - Status this iteration: Carry-forward, unchanged. P1-008 adds a separate agent-body mirror parity instance; this command YAML finding remains active.
-- Evidence refs: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:56`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:67`.
+- Evidence refs: `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:56`, `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:67`.
 - Recommendation: Replace stale command workflow skill paths and dry-run both deep-loop command routes.
 
 #### P1-003 [P1] Skill advisor source still writes `.opencode/skill/.advisor-state`
@@ -168,7 +168,7 @@ Additional checks:
 
 - Claim: Packet 094's prompt-sync contract is mostly preserved, but two retained-RCAF prompts contain inline backticks inside a backtick-delimited `RCAF Prompt:` field, so the canonical field is not mechanically parseable as one prompt.
 - Evidence refs: `.opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/006-deep-research-agent-iterations.md:30`, `.opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/007-deep-review-agent-audit.md:30`.
-- Evidence: The global prompt sweep checked 690 prompt fields and found only two table-backed mismatches; both are `cli-opencode` retained-RCAF rows where the field starts `RCAF Prompt: \`As an external-AI conductor (or \`/spec_kit:...\`` and closes at the inner command code span.
+- Evidence: The global prompt sweep checked 690 prompt fields and found only two table-backed mismatches; both are `cli-opencode` retained-RCAF rows where the field starts `RCAF Prompt: \`As an external-AI conductor (or \`/speckit:...\`` and closes at the inner command code span.
 - Impact: Operators can infer the intended text, but downstream byte-equality or prompt extraction scripts can read only `As an external-AI conductor (or`.
 - Finding class: matrix/evidence.
 - Recommendation: Escape/remove the inner backticks or use a fenced block/HTML-safe delimiter so the `RCAF Prompt:` field and Exact Prompt cell remain parseable.
@@ -200,7 +200,7 @@ Additional checks:
 #### P2-004 [P2] Deep-review YAML documents a Copilot target-authority guard that is not implemented or wired in the executor schema
 
 - Status this iteration: Carry-forward, unchanged.
-- Evidence refs: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:690`, `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:7`.
+- Evidence refs: `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:690`, `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:7`.
 
 ## Traceability Checks
 

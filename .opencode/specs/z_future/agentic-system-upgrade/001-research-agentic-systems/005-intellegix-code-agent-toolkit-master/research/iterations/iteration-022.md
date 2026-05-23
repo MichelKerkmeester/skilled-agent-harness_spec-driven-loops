@@ -3,7 +3,7 @@
 Date: 2026-04-10
 
 ## Research question
-Is the current `/memory:*` command family and YAML-asset exposure too parallel to `/spec_kit:*`, compared with the external repo's flatter orchestration surface?
+Is the current `/memory:*` command family and YAML-asset exposure too parallel to `/speckit:*`, compared with the external repo's flatter orchestration surface?
 
 ## Hypothesis
 Yes. The local memory surfaces are powerful, but too many everyday context actions are exposed as a sibling command family instead of being absorbed into the main workflow. YAML assets are a reasonable internal abstraction, but they should not be part of the operator mental model.
@@ -12,8 +12,8 @@ Yes. The local memory surfaces are powerful, but too many everyday context actio
 I compared the local `memory` command family and YAML-oriented command setup text with the external repo's orchestration model, where persistence and handoff concerns are mostly embedded in the orchestrator contract rather than surfaced as peer commands.
 
 ## Evidence
-- `[SOURCE: .opencode/commands/spec_kit/plan.md:11-21]` The planning command explicitly teaches the operator that markdown owns setup and YAML owns execution.
-- `[SOURCE: .opencode/commands/spec_kit/complete.md:11-21]` The same markdown-versus-YAML ownership model is repeated in the full lifecycle command.
+- `[SOURCE: .opencode/commands/speckit/plan.md:11-21]` The planning command explicitly teaches the operator that markdown owns setup and YAML owns execution.
+- `[SOURCE: .opencode/commands/speckit/complete.md:11-21]` The same markdown-versus-YAML ownership model is repeated in the full lifecycle command.
 - `[SOURCE: .opencode/commands/memory/save.md:7-25]` `/memory:save` has its own multi-tier folder-resolution ceremony before the actual save workflow starts.
 - `[SOURCE: .opencode/commands/memory/search.md:1-5]` `/memory:search` is not just retrieval; it also exposes preflight, postflight, causal, ablation, and dashboard analysis as one large public command surface.
 - `[SOURCE: .opencode/commands/memory/manage.md:33-62]` `/memory:manage` exposes a broad administration surface for scanning, cleanup, checkpointing, ingest, and shared-memory lifecycle.
@@ -32,7 +32,7 @@ confidence: high
 finding: `system-spec-kit` should keep the memory platform and YAML workflow assets, but simplify the public surface by absorbing common memory actions into the main lifecycle and hiding YAML asset mechanics from operator-facing command docs.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/commands/spec_kit/*.md`, `.opencode/commands/memory/save.md`, `.opencode/commands/memory/search.md`
+- **Target file or module:** `.opencode/commands/speckit/*.md`, `.opencode/commands/memory/save.md`, `.opencode/commands/memory/search.md`
 - **Change type:** should-have
 - **Blast radius:** operator-surface
 - **Prerequisites:** define which memory actions stay advanced and which become implicit lifecycle behavior
@@ -40,7 +40,7 @@ finding: `system-spec-kit` should keep the memory platform and YAML workflow ass
 
 ## UX / System Design Analysis
 
-- **Current system-spec-kit surface:** `/spec_kit:*` and `/memory:*` operate like parallel products, and command docs expose YAML workflow implementation details directly.
+- **Current system-spec-kit surface:** `/speckit:*` and `/memory:*` operate like parallel products, and command docs expose YAML workflow implementation details directly.
 - **External repo's equivalent surface:** Persistence, handoff, and loop-state handling sit behind the orchestrator surface instead of being presented as a second everyday command family.
 - **Friction comparison:** The local system is richer, but the operator has to know too much about internal boundaries. The external repo feels flatter because more of the lifecycle is folded into the orchestrator contract.
 - **What system-spec-kit could DELETE to improve UX:** Delete operator-facing references to YAML asset ownership and demote common memory actions from separate everyday commands to embedded workflow behavior.

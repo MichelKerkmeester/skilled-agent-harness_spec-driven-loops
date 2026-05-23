@@ -28,7 +28,7 @@ Baseline: per `.opencode/skills/system-spec-kit/scripts/observability/smart-rout
 | P7 | OPENCODE | TypeScript | `Add a packet-local helper that formats Gate 3 confusion-matrix rows for the research summary.` (golden set rr-iter3-061) |
 | P8 | OPENCODE | Config | `Generate a replacement gate3-baseline.json fixture for the first 100 prompts.` (golden set rr-iter3-064) |
 | P9 | OPENCODE | TypeScript | `Refactor the corpus scoring helper so it emits stable JSONL keys in sorted order.` (golden set rr-iter3-065) |
-| P10 | OPENCODE | Shell | `Build a tiny script that counts how many prompts mention /spec_kit:resume.` (golden set rr-iter3-070) |
+| P10 | OPENCODE | Shell | `Build a tiny script that counts how many prompts mention /speckit:resume.` (golden set rr-iter3-070) |
 | P11 | OPENCODE | Shell | `Add set -euo pipefail and a trap to .opencode/skills/system-spec-kit/scripts/spec/validate.sh to clean up the temp dir on exit.` |
 | P12 | WEBFLOW | n/a | `Add a Lenis smooth-scroll initializer to src/2_javascript/scroll.js and gate it behind an IntersectionObserver.` |
 | P13 | WEBFLOW | n/a | `Wire up a GSAP timeline that animates the hero section on page load with motion.dev fallback.` |

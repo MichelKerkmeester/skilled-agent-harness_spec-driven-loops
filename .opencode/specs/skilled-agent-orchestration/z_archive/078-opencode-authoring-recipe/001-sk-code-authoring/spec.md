@@ -56,7 +56,7 @@ _memory:
 sk-code's SKILL.md declares OPENCODE scope covering skills, agents, commands, MCP servers, hooks, scripts, tests, and config (lines 20-23), but the on-disk `assets/opencode/checklists/` directory contains only language-level checklists (config, javascript, python, shell, typescript, universal). There are no first-class authoring checklists for skills/agents/commands/mcp-servers (F-001-004, F-006-002, F-007-001), no spec-folder write recipe (F-007-002, F-008-004), no machine-readable STACK_FOLDERS contract (F-008-001 — regressed to inline strings), and `references/opencode/shared/universal_patterns.md:551-554` has a stale relative link to `../../assets/checklists/` (real path: `../../assets/opencode/checklists/`) (F-001-005). This phase is the foundation everything else in 078 builds on.
 
 ### Purpose
-Add 5 authoring checklists + 1 recipe asset + 1 SKILL.md surface refresh + 1 stale-link fix so that sk-code's OpenCode side ships first-class authoring assets matching the declared scope. Subsequent phases (2-4) depend on Phase 1 shipping first because `/spec_kit:complete` Phase 2 integration loads these assets, CocoIndex Phase 3 canonical-priority needs concrete canonical resources to prefer, and Phase 4 validator drift cleanup checks shape against the new authoring artifacts.
+Add 5 authoring checklists + 1 recipe asset + 1 SKILL.md surface refresh + 1 stale-link fix so that sk-code's OpenCode side ships first-class authoring assets matching the declared scope. Subsequent phases (2-4) depend on Phase 1 shipping first because `/speckit:complete` Phase 2 integration loads these assets, CocoIndex Phase 3 canonical-priority needs concrete canonical resources to prefer, and Phase 4 validator drift cleanup checks shape against the new authoring artifacts.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -136,7 +136,7 @@ Add 5 authoring checklists + 1 recipe asset + 1 SKILL.md surface refresh + 1 sta
 
 ### Given/When/Then Verification Scenarios
 
-**Given** sk-code is loaded by `/spec_kit:complete` (after Phase 2 ships), **When** the implementation target is under `.opencode/skills/`, **Then** the relevant authoring checklist is one of the loaded resources.
+**Given** sk-code is loaded by `/speckit:complete` (after Phase 2 ships), **When** the implementation target is under `.opencode/skills/`, **Then** the relevant authoring checklist is one of the loaded resources.
 
 **Given** a maintainer reads SKILL.md OpenCode resource map, **When** they look for "how do I author a new skill", **Then** they see `skill_authoring.md` listed and pointed-to.
 

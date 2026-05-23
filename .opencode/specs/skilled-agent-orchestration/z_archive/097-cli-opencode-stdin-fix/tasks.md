@@ -13,10 +13,10 @@ description: "Per-file task list for applying </dev/null to all 4 YAML workflows
 
 | # | Task | File | Method | Done |
 |---|------|------|--------|------|
-| T1 | Patch deep-research auto YAML | `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Edit: insert `</dev/null` after line 727 (after `"$(cat ...)"` end) | [ ] |
-| T2 | Patch deep-research confirm YAML | `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Edit: insert `</dev/null` after line 659 | [ ] |
-| T3 | Patch deep-review auto YAML | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Edit: insert `</dev/null` after line 791 | [ ] |
-| T4 | Patch deep-review confirm YAML | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Edit: insert `</dev/null` after line 768 | [ ] |
+| T1 | Patch deep-research auto YAML | `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | Edit: insert `</dev/null` after line 727 (after `"$(cat ...)"` end) | [ ] |
+| T2 | Patch deep-research confirm YAML | `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml` | Edit: insert `</dev/null` after line 659 | [ ] |
+| T3 | Patch deep-review auto YAML | `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml` | Edit: insert `</dev/null` after line 791 | [ ] |
+| T4 | Patch deep-review confirm YAML | `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml` | Edit: insert `</dev/null` after line 768 | [ ] |
 | T5 | Add ALWAYS rule to cli-opencode SKILL.md | `.opencode/skills/cli-opencode/SKILL.md` | Edit: append new ALWAYS rule N to §4 list with rationale + position guidance | [ ] |
 | T6 | Update integration_patterns.md §6 | `.opencode/skills/cli-opencode/references/integration_patterns.md` | Edit: generalize §6 from `while read` to all non-interactive callsites | [ ] |
 | T7 | Patch stress script (010) | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/scripts/dispatch-cli-opencode.sh` | Edit: add `</dev/null` to opencode run line | [ ] |

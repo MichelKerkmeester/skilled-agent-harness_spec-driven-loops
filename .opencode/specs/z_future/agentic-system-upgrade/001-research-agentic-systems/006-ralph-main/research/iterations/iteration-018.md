@@ -27,7 +27,7 @@ finding: `system-spec-kit` should adopt runtime-aware task sizing language: ever
 - **Target file or module:** `.opencode/skills/system-spec-kit/references/templates/level_specifications.md`
 - **Change type:** modified existing
 - **Blast radius:** medium
-- **Prerequisites:** align `/spec_kit:implement` and task templates with the refined rule
+- **Prerequisites:** align `/speckit:implement` and task templates with the refined rule
 - **Priority:** should-have
 
 ## Refactor / Pivot Analysis
@@ -35,7 +35,7 @@ finding: `system-spec-kit` should adopt runtime-aware task sizing language: ever
 - **Current system-spec-kit approach:** Task guidance is broad and does not yet state a runtime-aware execution grain rule. [SOURCE: .opencode/skills/system-spec-kit/references/templates/level_specifications.md:117-123]
 - **External repo's approach:** Ralph strongly prefers one-iteration stories, but its README acknowledges runtime-level auto-handoff as a practical exception. [SOURCE: external/skills/ralph/SKILL.md:46-64] [SOURCE: external/README.md:76-86]
 - **Why the external approach might be better:** It keeps the focus on independently verifiable units rather than abstract effort estimates. [SOURCE: external/prd.json.example:5-17]
-- **Why system-spec-kit's approach might still be correct:** A broader workflow system may need flexibility across runtimes and task shapes that Ralph does not document deeply. [SOURCE: .opencode/commands/spec_kit/implement.md:171-187]
+- **Why system-spec-kit's approach might still be correct:** A broader workflow system may need flexibility across runtimes and task shapes that Ralph does not document deeply. [SOURCE: .opencode/commands/speckit/implement.md:171-187]
 - **Verdict:** KEEP
 - **Blast radius of the change:** medium
 - **Migration path:** Replace "one context window" wording with "one independently verifiable unit per autonomous run, sized for the weakest supported runtime."

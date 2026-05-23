@@ -67,7 +67,7 @@ WAVE 0 scaffolded a Level 3 packet at `131-deep-skill-evolution/007-deep-command
 | **Files swept** | 1,046 files across `.opencode/specs/` + `.opencode/skills/` (excluding z_archive, pre-v1.3 changelogs, 007 packet) |
 | **Sed pass 1** | 27 patterns — literal filename/path + slash-syntax replacements |
 | **Sed pass 2** | 21 patterns — brace-expansion (`{review,research}`) + glob-wildcard (`*`) notation in prose |
-| **Old slash-syntax residuals** | 0 (all `/spec_kit:deep-*` replaced with `/deep:start-*-loop` or `/deep:ask-ai-council`) |
+| **Old slash-syntax residuals** | 0 (all `/speckit:deep-*` replaced with `/deep:start-*-loop` or `/deep:ask-ai-council`) |
 | **Total residuals** | 8 (all are glob patterns in shell command examples or pre-existing typos — well within ≤30 threshold) |
 | **JSON sanity** | All 4 touched `description.json` files remain valid JSON |
 <!-- /ANCHOR:what-built -->

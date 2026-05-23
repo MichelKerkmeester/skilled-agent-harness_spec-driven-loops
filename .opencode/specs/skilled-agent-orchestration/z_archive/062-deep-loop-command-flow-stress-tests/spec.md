@@ -1,7 +1,7 @@
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 ---
 title: "Phase Parent Spec: 062 — Deep-Loop Command-Flow Stress Tests"
-description: "Phase-parent root spec. Apply the 060/004 command-flow stress methodology (proven PASS 6/0/0 against @improve-agent) to @deep-research and @deep-review. These are LEAF agents whose discipline lives in their command orchestrators (`/spec_kit:deep-research`, `/spec_kit:deep-review`) — same architecture as @improve-agent, flagged in 060/spec.md as same-architecture follow-on candidates."
+description: "Phase-parent root spec. Apply the 060/004 command-flow stress methodology (proven PASS 6/0/0 against @improve-agent) to @deep-research and @deep-review. These are LEAF agents whose discipline lives in their command orchestrators (`/speckit:deep-research`, `/speckit:deep-review`) — same architecture as @improve-agent, flagged in 060/spec.md as same-architecture follow-on candidates."
 trigger_phrases:
   - "062 root"
   - "062 phase parent"
@@ -40,7 +40,7 @@ _memory:
 In packet 060/004 we proved that `@improve-agent`'s discipline lives in its command orchestrator (`/improve:agent`), not in the agent body. The 060/002 same-task A/B prepend-body stress scored **0/2/4** because we tested the wrong layer. Restructuring to per-CP layer partition (some scenarios test command-flow, some body-level) produced final composite **PASS 6 / PARTIAL 0 / FAIL 0** by R3.
 
 **`@deep-research` and `@deep-review` have the SAME ARCHITECTURE as `@improve-agent`**:
-- Each is a LEAF agent dispatched ONLY by its command (`/spec_kit:deep-research`, `/spec_kit:deep-review`)
+- Each is a LEAF agent dispatched ONLY by its command (`/speckit:deep-research`, `/speckit:deep-review`)
 - The command orchestrator owns iteration state, convergence detection, journal events, gate evaluation, and stop reasons
 - The agent body is intentionally thin — executes one iteration, writes findings, returns
 
@@ -56,9 +56,9 @@ This packet applies the proven 060/004 methodology to both agents. Per 060/spec.
 
 | # | Folder | Target | Purpose | Status |
 |---|---|---|---|---|
-| **001** | `001-deep-research-cp-scenarios/` | `/spec_kit:deep-research` + `@deep-research` | Author 6 CP-XXX scenarios for `@deep-research` command flow + author per-CP signal contracts (per the 13-question authoring preflight from 060/003) | planned |
+| **001** | `001-deep-research-cp-scenarios/` | `/speckit:deep-research` + `@deep-research` | Author 6 CP-XXX scenarios for `@deep-research` command flow + author per-CP signal contracts (per the 13-question authoring preflight from 060/003) | planned |
 | **002** | `002-deep-research-stress-runs/` | Same | Run R1 stress against authored scenarios; iterate to PASS using 060/004's R1→R2→R3 pattern | planned |
-| **003** | `003-deep-review-cp-scenarios/` | `/spec_kit:deep-review` + `@deep-review` | Same as 001 but for `@deep-review` | planned |
+| **003** | `003-deep-review-cp-scenarios/` | `/speckit:deep-review` + `@deep-review` | Same as 001 but for `@deep-review` | planned |
 | **004** | `004-deep-review-stress-runs/` | Same | Same as 002 but for `@deep-review` | planned |
 
 **Reference packets:**

@@ -221,8 +221,8 @@ gemini "As @ai-council agent: Design the caching strategy for this API. Consider
 | Cross-AI code review | @review | @context | Second opinion on quality |
 | Architecture planning | @ai-council | @deep-research | Multi-lens analysis |
 | Bug investigation | @debug | @context | Fresh perspective methodology |
-| Spec folder docs | Main agent + `/spec_kit:plan --intake-only` | `/spec_kit:plan` | Distributed governance for packet docs |
-| Session continuity | `/memory:save` | `/spec_kit:resume` | Refresh continuity before pause |
+| Spec folder docs | Main agent + `/speckit:plan --intake-only` | `/speckit:plan` | Distributed governance for packet docs |
+| Session continuity | `/memory:save` | `/speckit:resume` | Refresh continuity before pause |
 | Complex multi-agent task | @orchestrate | (decompose manually) | Gemini-internal coordination |
 
 ---

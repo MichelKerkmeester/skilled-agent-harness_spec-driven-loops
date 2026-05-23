@@ -35,7 +35,7 @@ trigger_phrases:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-The `memory` command group provides operations for the Spec Kit Memory MCP system. These 4 commands cover context preservation, unified knowledge retrieval and analysis, constitutional memory management, and database maintenance plus async ingest. Session recovery now lives under `/spec_kit:resume`.
+The `memory` command group provides operations for the Spec Kit Memory MCP system. These 4 commands cover context preservation, unified knowledge retrieval and analysis, constitutional memory management, and database maintenance plus async ingest. Session recovery now lives under `/speckit:resume`.
 
 All commands interact with the memory MCP server tools (`mk_spec_memory_*`). They follow a gate-based argument validation pattern: if required arguments are missing, the command prompts the user before proceeding.
 
@@ -137,10 +137,10 @@ No `assets/` folder exists for memory commands. Workflows are defined inline wit
 /memory:search "auth flow" --intent:fix_bug
 
 # Recover from a crashed or interrupted session
-/spec_kit:resume
+/speckit:resume
 
 # Auto-recovery mode
-/spec_kit:resume :auto
+/speckit:resume :auto
 
 # Create a constitutional memory (always-surface rule)
 /memory:learn "Never commit API keys or secrets to git"
@@ -261,9 +261,9 @@ Primary MCP tools mapped to their command home:
 | 27 | `memory_ingest_start` | L7 | `/memory:manage ingest` |
 | 28 | `memory_ingest_status` | L7 | `/memory:manage ingest` |
 | 29 | `memory_ingest_cancel` | L7 | `/memory:manage ingest` |
-| 30 | `session_bootstrap` | L1 | `/spec_kit:resume` |
+| 30 | `session_bootstrap` | L1 | `/speckit:resume` |
 | 31 | `session_health` | L3 | `/memory:manage` |
-| 32 | `session_resume` | L1 | `/spec_kit:resume` |
+| 32 | `session_resume` | L1 | `/speckit:resume` |
 | 33 | `code_graph_query` | L2 | `/memory:search` |
 | 34 | `code_graph_scan` | L7 | `/memory:manage` |
 | 35 | `code_graph_status` | L3 | `/memory:manage` |
@@ -279,7 +279,7 @@ Primary MCP tools mapped to their command home:
 | `/memory:save` | 1 | 3 (index_scan, stats, update) | L2 |
 | `/memory:manage` | 20 | 1 (search) | L3, L4, L5, L7 |
 | `/memory:learn` | 0 | uses manage/save tools | (none) |
-| `/spec_kit:resume` | 3 | uses search/manage tools | L1 |
+| `/speckit:resume` | 3 | uses search/manage tools | L1 |
 | **Total** | **39 listed** | | **L1-L7** |
 
 > **Note:** Commands may include helper tools in their `allowed-tools` frontmatter beyond their primary ownership. Helper tools are borrowed from other command scopes for operational needs (e.g., `/memory:save` uses `memory_index_scan` from `/memory:manage` for post-save indexing). The coverage matrix above shows primary ownership. Each command file's `allowed-tools` shows the full operational set.
@@ -291,9 +291,9 @@ Primary MCP tools mapped to their command home:
 <!-- ANCHOR:faq -->
 ## 7. FAQ
 
-**Q: What is the difference between `/memory:search` and `/spec_kit:resume`?**
+**Q: What is the difference between `/memory:search` and `/speckit:resume`?**
 
-`/memory:search` retrieves and searches indexed knowledge using a query or subcommand. `/spec_kit:resume` handles session continuation and interrupted-session recovery: it reconstructs packet context from `handover.md`, then `_memory.continuity`, then canonical spec docs before deeper memory tools engage. Use `search` for knowledge lookup and `resume` when you need to continue prior work.
+`/memory:search` retrieves and searches indexed knowledge using a query or subcommand. `/speckit:resume` handles session continuation and interrupted-session recovery: it reconstructs packet context from `handover.md`, then `_memory.continuity`, then canonical spec docs before deeper memory tools engage. Use `search` for knowledge lookup and `resume` when you need to continue prior work.
 
 **Q: When should I use `/memory:learn` vs `/memory:save`?**
 
@@ -314,7 +314,7 @@ The scan re-indexes all previously indexed continuity artifacts and canonical sp
 |---------|-------|-----|
 | "No results" from knowledge | Query too narrow or no matching memories | Broaden query or try different intent |
 | Save fails | Spec folder path invalid or missing | Verify path exists under `specs/` |
-| Resume finds no session | No saved context from prior session | Use `/spec_kit:plan` to start fresh or `/memory:search` with a manual query |
+| Resume finds no session | No saved context from prior session | Use `/speckit:plan` to start fresh or `/memory:search` with a manual query |
 | Manage scan finds 0 files | No continuity sources found in expected directories | Check canonical spec docs under `.opencode/specs/` and constitutional rules under `.opencode/skills/*/constitutional/` |
 | Learn file not found | Wrong filename for edit/remove | Run `/memory:learn list` to see available files |
 | Search ablation fails | `SPECKIT_ABLATION=true` not set | Set environment variable and retry |

@@ -11,13 +11,13 @@ Canonical target: `.opencode/agents/handover.md`
 ## Discovered Surfaces
 
 - `.agents/agents/handover.md`
-- `.agents/commands/spec_kit/handover.toml`
+- `.agents/commands/speckit/handover.toml`
 - `.claude/agents/handover.md`
 - `.codex/agents/handover.toml`
 - `.gemini/agents/handover.md`
-- `.gemini/commands/spec_kit/handover.toml`
+- `.gemini/commands/speckit/handover.toml`
 - `.opencode/agents/handover.md`
-- `.opencode/commands/spec_kit/handover.md`
+- `.opencode/commands/speckit/handover.md`
 - `.opencode/skills/system-spec-kit/templates/handover.md`
 
 ## Known Mirrors

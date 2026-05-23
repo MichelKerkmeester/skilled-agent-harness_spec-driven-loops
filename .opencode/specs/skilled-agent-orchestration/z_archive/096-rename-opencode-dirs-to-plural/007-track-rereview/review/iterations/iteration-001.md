@@ -38,15 +38,15 @@
 ### 101 wiring surfaces
 - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:7,32-41` — `EXECUTOR_KINDS` array + `EXECUTOR_KIND_FLAG_SUPPORT['cli-opencode']`
 - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/aliases.ts` — (no `cli-opencode` advisor alias entry; see Wiring Inventory §4)
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:717-738` — `if_cli_opencode` branch
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:649-670` — `if_cli_opencode` branch
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:781-802` — `if_cli_opencode` branch
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:758-779` — `if_cli_opencode` branch
+- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:717-738` — `if_cli_opencode` branch
+- `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:649-670` — `if_cli_opencode` branch
+- `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:781-802` — `if_cli_opencode` branch
+- `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:758-779` — `if_cli_opencode` branch
 
 ### Run-time evidence
 - `bash validate.sh --strict 096-rename-opencode-dirs-to-plural/004-symlinks` → exit 0
 - `bash validate.sh --strict 098-097-remediation` (recursive) → exit 0
-- `python3 skill_advisor.py "/spec_kit:deep-review track:foo" --threshold 0.8` → command-spec-kit @ 0.82
+- `python3 skill_advisor.py "/speckit:deep-review track:foo" --threshold 0.8` → command-spec-kit @ 0.82
 - `rg '\.opencode/(skill|agent|command)\b' scripts/dist/` → 0 hits
 
 ---
@@ -70,7 +70,7 @@ Verdict legend: **RESOLVED** (fix landed + verifiable), **STILL_ACTIVE** (claim 
 | P1-022 | 096/004 anchor mismatch + strict-validate fail | 3 anchor pair fixes in `096/004-symlinks/spec.md` | **RESOLVED** | `validate.sh --strict 096-rename-opencode-dirs-to-plural/004-symlinks` → RESULT: PASSED, Errors: 0 |
 | P1-023 | Deferred required findings absent from continuity blockers | Python backfill across 5 098 sub-phase implementation-summary.md | **RESOLVED** | 098/005/implementation-summary.md `blockers:` is now a non-empty array (sample: "Optional CHK-* line-by-line backfill audit") |
 | P1-024 | 098 sub-phases fail strict-validate | All 7 checklists rewritten + tasks.md phase headers + impl-summary `how-delivered` anchor | **RESOLVED** | `validate.sh --strict 098-097-remediation` (recursive) → RESULT: PASSED, Errors: 0 |
-| P1-025 | Native advisor returns `[]` for `deep-review` trigger | `aliases.ts:13-26` canonical keys renamed `sk-deep-*` → bare `deep-*`, alias arrays include both | **RESOLVED** | Live `skill_advisor.py "/spec_kit:deep-review track:foo" --threshold 0.8` → command-spec-kit @ confidence 0.82 (was `[]`) |
+| P1-025 | Native advisor returns `[]` for `deep-review` trigger | `aliases.ts:13-26` canonical keys renamed `sk-deep-*` → bare `deep-*`, alias arrays include both | **RESOLVED** | Live `skill_advisor.py "/speckit:deep-review track:foo" --threshold 0.8` → command-spec-kit @ confidence 0.82 (was `[]`) |
 | P1-026 | Reducer doesn't extract findings from delta records | `reduce-state.cjs:505-555` `deltaRecordToFinding` helper + 5-arg `buildRegistry` | **RESOLVED** | Live grep confirms `deltaRecordToFinding` at :505 + `deltaRecords` plumbing at :543,553,872 |
 
 **P1 totals**: 13 RESOLVED, 0 STILL_ACTIVE, 0 DOWNGRADED, 0 NEW.
@@ -123,12 +123,12 @@ Verdict legend: **RESOLVED** (fix landed + verifiable), **STILL_ACTIVE** (claim 
 
 - **Severity**: P1 (Required)
 - **File:line**: 4 sites:
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:719-731`
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:651-663`
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:783-795`
-  - `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:760-772`
+  - `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:719-731`
+  - `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:651-663`
+  - `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:783-795`
+  - `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:760-772`
 - **Class**: cross-consumer
-- **Scope proof**: `Grep "if_cli_opencode\|cli-opencode\|opencode run\|--pure" .opencode/commands/spec_kit/assets/spec_kit_deep-*` — all 4 branches present, none contain `--pure`
+- **Scope proof**: `Grep "if_cli_opencode\|cli-opencode\|opencode run\|--pure" .opencode/commands/speckit/assets/speckit_deep-*` — all 4 branches present, none contain `--pure`
 - **Affected surface hints**: ["spec_kit_deep-research_auto.yaml", "spec_kit_deep-research_confirm.yaml", "spec_kit_deep-review_auto.yaml", "spec_kit_deep-review_confirm.yaml", "cli-opencode skill SKILL.md"]
 - **Recommendation**: Add `--pure` to all 4 `opencode run` invocations (after `--dangerously-skip-permissions`, before `{optional_variant_flag}`); document in cli-opencode skill SKILL.md that DeepSeek-family models require `--pure` because default opencode plugin loading injects MCP tool names with `:` characters that DeepSeek's tool-name regex `^[a-zA-Z0-9_-]+$` rejects.
 
@@ -182,7 +182,7 @@ None.
 ### P1 (Required)
 
 #### P1-027 — `if_cli_opencode` YAML branches do not pass `--pure`, breaking cli-opencode dispatch under DeepSeek-family models
-- File: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:783-795` (primary) + 3 sibling YAMLs
+- File: `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:783-795` (primary) + 3 sibling YAMLs
 - Evidence: `Grep "opencode run\|--pure"` across the 4 deep-* YAML files — `opencode run` present, `--pure` absent in all 4
 - Finding class: cross-consumer
 - Scope proof: see §5 claim packet

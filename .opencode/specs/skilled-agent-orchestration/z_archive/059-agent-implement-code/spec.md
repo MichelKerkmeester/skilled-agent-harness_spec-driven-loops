@@ -53,7 +53,7 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-Author a new write-capable code-implementation sub-agent at `.opencode/agents/code.md`, modeled on `review.md` but flipped to `write/edit/patch: allow`. The agent is codebase/repo-agnostic via auto-loading the `sk-code` skill (which owns stack detection internally), dispatchable only by `@orchestrate`, and enforces `task: deny` to keep it LEAF-depth-1. Packet-internal research dispatches three parallel `/spec_kit:deep-research:auto` streams (10 iters each, executed via `cli-copilot` with `gpt-5.5 high`) across two external multi-agent reference implementations (`oh-my-opencode-slim`, `opencode-swarm-main`) and our own `.opencode/agents/` inventory before authoring the agent file.
+Author a new write-capable code-implementation sub-agent at `.opencode/agents/code.md`, modeled on `review.md` but flipped to `write/edit/patch: allow`. The agent is codebase/repo-agnostic via auto-loading the `sk-code` skill (which owns stack detection internally), dispatchable only by `@orchestrate`, and enforces `task: deny` to keep it LEAF-depth-1. Packet-internal research dispatches three parallel `/speckit:deep-research:auto` streams (10 iters each, executed via `cli-copilot` with `gpt-5.5 high`) across two external multi-agent reference implementations (`oh-my-opencode-slim`, `opencode-swarm-main`) and our own `.opencode/agents/` inventory before authoring the agent file.
 
 **Key Decisions**: D1 filename `code.md`; D2 permission profile (`task: deny` enforces LEAF); D3 caller restriction is convention-based with three layers; D5 verify is fail-closed; D6 Level 3.
 
@@ -95,7 +95,7 @@ Provide `@code` — a stack-agnostic, write-capable LEAF sub-agent that auto-loa
 - New file: `.opencode/agents/code.md` (frontmatter per D2; body sections §0–§13 mirroring `review.md` structure)
 - Routing-table update: `.opencode/agents/orchestrate.md` §3 adds `@code` row
 - Sibling-doc sync: `AGENTS.md` (canonical), `AGENTS_Barter.md` (Barter symlink) §5 Agent Routing adds `@code` (per memory: shared-runtime contracts must mirror)
-- Three `/spec_kit:deep-research:auto` streams (10 iters each) via `cli-copilot gpt-5.5 high`, results synthesized in `research/synthesis.md`
+- Three `/speckit:deep-research:auto` streams (10 iters each) via `cli-copilot gpt-5.5 high`, results synthesized in `research/synthesis.md`
 - `decision-record.md` capturing D1–D10 with research-validated D3 caller-restriction mechanism
 
 ### Out of Scope
@@ -166,7 +166,7 @@ Provide `@code` — a stack-agnostic, write-capable LEAF sub-agent that auto-loa
 | Risk | Phase-parent tolerance backfires | If validator strict mode rejects parent's heavy docs alongside child, packet stalls | Re-run `validate.sh --strict` on parent after registering 059. If rejected, fall back to plan option B (move parent's heavy docs into a sibling child `001-cocoindex-install/`) |
 | Risk | Caller-restriction has no harness enforcement | User stated "cant be used in other ways" but harness can't block direct calls | Document limit explicitly in code.md and decision-record.md. Layer (ii) refusal-on-missing-marker is the strongest convention-floor available |
 | Risk | Concurrent cli-copilot dispatches throttled | Memory: cli-copilot caps at 3 concurrent per account | Plan exactly matches cap (3 streams). If throttled, sequence streams instead of parallel |
-| Risk | Research streams diverge → no convergence | 10 iters might not converge if research scope is too broad | Per-stream research questions are scoped tightly (skill auto-loading, caller restriction, write-capable safety). Convergence detection in `/spec_kit:deep-research:auto` allows early termination |
+| Risk | Research streams diverge → no convergence | 10 iters might not converge if research scope is too broad | Per-stream research questions are scoped tightly (skill auto-loading, caller restriction, write-capable safety). Convergence detection in `/speckit:deep-research:auto` allows early termination |
 <!-- /ANCHOR:risks -->
 
 ---

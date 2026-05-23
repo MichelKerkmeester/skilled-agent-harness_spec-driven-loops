@@ -67,7 +67,7 @@ _memory:
 
 - [x] T005 Ran `pnpm vitest run`; deferred because the exact tail command did not return during dispatch (no path written, output recorded in implementation-summary.md) [5m]
 - [x] T006 Ran `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/deep-loop-runtime`; PASS 0 findings (no path written) [3m]
-- [x] T007 Ran `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/commands/spec_kit/assets`; PASS 0 findings (no path written) [3m]
+- [x] T007 Ran `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/commands/speckit/assets`; PASS 0 findings (no path written) [3m]
 - [x] T008 Ran `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution --recursive --strict`; PASS (no path written) [2m]
 - [x] T009 Ran requested residual grep; four historical script comments remain, no live consumer references found (no path written) [2m]
 

@@ -44,7 +44,7 @@ The deep-research path migration is now landed across the repo surfaces touched 
 ### Command, Skill, and Runtime Contract
 
 - Deep-research command and skill docs were updated to the canonical packet contract:
-  - `.opencode/commands/spec_kit/deep-research.md`
+  - `.opencode/commands/speckit/deep-research.md`
   - `.opencode/skills/sk-deep-research/SKILL.md`
   - `.opencode/skills/sk-deep-research/README.md`
   - `.opencode/skills/sk-deep-research/references/loop_protocol.md`
@@ -53,11 +53,11 @@ The deep-research path migration is now landed across the repo surfaces touched 
   - manual playbook files under `.opencode/skills/sk-deep-research/manual_testing_playbook/`
 - Runtime parity fixes landed on the touched agent-guidance surfaces, including `.opencode/agents/speckit.md` and `.claude/agents/speckit.md`.
 - The `.agents` parity follow-up also landed:
-  - `.agents/commands/spec_kit/plan.toml`
-  - `.agents/commands/spec_kit/complete.toml`
-  - `.agents/commands/spec_kit/phase.toml`
+  - `.agents/commands/speckit/plan.toml`
+  - `.agents/commands/speckit/complete.toml`
+  - `.agents/commands/speckit/phase.toml`
   - `.agents/workflows/spec_kit_research.md`
-- Those `.agents` surfaces were aligned away from stale `/spec_kit:research` and `@research` references and now point at `/spec_kit:deep-research`, `@deep-research`, and the canonical OpenCode deep-research command entrypoint.
+- Those `.agents` surfaces were aligned away from stale `/speckit:research` and `@research` references and now point at `/speckit:deep-research`, `@deep-research`, and the canonical OpenCode deep-research command entrypoint.
 - Final release housekeeping also landed for the skill package: `.opencode/skills/sk-deep-research/SKILL.md` is now version `1.2.2.0`, and `.opencode/changelog/12--sk-deep-research/v1.2.2.0.md` was added to record this migration release.
 
 ### Helper Logic and Migration Support
@@ -109,9 +109,9 @@ The migration landed in four coordinated tracks. First, command and skill surfac
 | Treat `review/iterations/` as the canonical review iteration location | This keeps review packets internally consistent while preserving the review report at the `review/` packet root |
 | Keep bounded legacy tolerance in helper logic | The corpus is migrated, but helper logic still intentionally recognizes some legacy shapes to avoid brittle behavior during transition |
 | Narrow migration rewrites to safe packet-relative research references | The representative migrated-packet regression proved that broader same-filename rewriting was too aggressive for same-packet links |
-| Sync `.agents` wrappers and workflow docs after the main migration | Wrapper and workflow parity still matters because stale `/spec_kit:research` and `@research` references would undercut the renamed command surface |
+| Sync `.agents` wrappers and workflow docs after the main migration | Wrapper and workflow parity still matters because stale `/speckit:research` and `@research` references would undercut the renamed command surface |
 | Finish with explicit release housekeeping | The skill version and changelog need to reflect the landed migration so the release record stays coherent |
-| Skip a disposable live smoke in this session | Build, typecheck, test, CLI, workflow, migration, and sweep evidence are strong, but no full live `/spec_kit:deep-research` throwaway run was executed here |
+| Skip a disposable live smoke in this session | Build, typecheck, test, CLI, workflow, migration, and sweep evidence are strong, but no full live `/speckit:deep-research` throwaway run was executed here |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -131,7 +131,7 @@ The migration landed in four coordinated tracks. First, command and skill surfac
 | Post-migration corpus sweeps | PASS with zero residual root research docs outside canonical packet roots, zero legacy `scratch/iteration-*`, and zero direct legacy `review/iteration-*` |
 | Representative migrated-packet strict validation | PASS for `023-esm-module-compliance` with `0` errors and `0` warnings |
 | Strict validation for this packet | PASS via `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict`, including the post-closeout resync |
-| Full disposable live `/spec_kit:deep-research` or review-mode smoke | NOT RUN IN THIS SESSION |
+| Full disposable live `/speckit:deep-research` or review-mode smoke | NOT RUN IN THIS SESSION |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -140,6 +140,6 @@ The migration landed in four coordinated tracks. First, command and skill surfac
 ## Known Limitations
 
 1. **Bounded legacy tolerance remains.** Helper logic and tests still intentionally tolerate some legacy path shapes where that behavior is part of the transition strategy.
-2. **No disposable end-to-end smoke was run.** This session did not execute a full live `/spec_kit:deep-research` or `/spec_kit:deep-research:review` throwaway run after the migration.
+2. **No disposable end-to-end smoke was run.** This session did not execute a full live `/speckit:deep-research` or `/speckit:deep-research:review` throwaway run after the migration.
 3. **Historical or non-live examples beyond the touched surfaces can still remain deferred.** The evidence proves the migrated packet corpus and touched first-party surfaces, but not every historical example outside those surfaces.
 <!-- /ANCHOR:limitations -->

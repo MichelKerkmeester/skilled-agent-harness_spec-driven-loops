@@ -77,7 +77,7 @@ The output JSON includes a `summary` with `totalSurfaces`, `existingCount`, `mis
       { "path": ".codex/agents/{agent-name}.toml", "syncStatus": "aligned" },
       { "path": ".agents/agents/{agent-name}.md", "syncStatus": "aligned" }
     ],
-    "commands": [{ "path": ".opencode/commands/spec_kit/{agent-name}.md", "references": ["@{agent-name}"] }],
+    "commands": [{ "path": ".opencode/commands/speckit/{agent-name}.md", "references": ["@{agent-name}"] }],
     "skills": [{ "path": ".opencode/skills/deep-agent-improvement/SKILL.md", "referenceCount": 2 }]
   },
   "summary": {

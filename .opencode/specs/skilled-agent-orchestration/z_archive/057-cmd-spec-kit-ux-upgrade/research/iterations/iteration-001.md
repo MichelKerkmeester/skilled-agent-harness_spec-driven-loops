@@ -28,12 +28,12 @@ Deferred by design: managed-block depth (Axis 2), template architecture (Axis 4)
    - `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/lib/install-engine.mjs`
 4. Read internal command and runtime surfaces:
    - `.opencode/skills/system-spec-kit/SKILL.md`
-   - `.opencode/commands/spec_kit/plan.md`
-   - `.opencode/commands/spec_kit/implement.md`
-   - `.opencode/commands/spec_kit/complete.md`
-   - `.opencode/commands/spec_kit/resume.md`
-   - `.opencode/commands/spec_kit/deep-research.md`
-   - `.opencode/commands/spec_kit/deep-review.md`
+   - `.opencode/commands/speckit/plan.md`
+   - `.opencode/commands/speckit/implement.md`
+   - `.opencode/commands/speckit/complete.md`
+   - `.opencode/commands/speckit/resume.md`
+   - `.opencode/commands/speckit/deep-research.md`
+   - `.opencode/commands/speckit/deep-review.md`
    - `.opencode/commands/memory/README.txt`
    - `.opencode/commands/create/agent.md`
    - `.opencode/agents/README.txt`
@@ -59,7 +59,7 @@ Verdict: `adapt`
 
 SPAR gives the user an obvious lifecycle: Specify, Plan, Act, Retain. The external root README presents that as the primary workflow, and the phase skills enforce the handoff boundaries in `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/install-root/skills/spar-specify/SKILL.md`, `spar-plan/SKILL.md`, `spar-act/SKILL.md`, and `spar-retain/SKILL.md`.
 
-The internal surface is more capable but harder to scan: six `/spec_kit:*` commands in `.opencode/commands/spec_kit/`, four `/memory:*` commands documented in `.opencode/commands/memory/README.txt`, and six `/create:*` commands under `.opencode/commands/create/`. The comparison points to a UX layer, not a deletion target: `/spec_kit:plan`, `/spec_kit:implement`, `/spec_kit:complete`, `/spec_kit:resume`, `/spec_kit:deep-research`, and `/spec_kit:deep-review` do different jobs than SPAR's compact public phase model.
+The internal surface is more capable but harder to scan: six `/speckit:*` commands in `.opencode/commands/speckit/`, four `/memory:*` commands documented in `.opencode/commands/memory/README.txt`, and six `/create:*` commands under `.opencode/commands/create/`. The comparison points to a UX layer, not a deletion target: `/speckit:plan`, `/speckit:implement`, `/speckit:complete`, `/speckit:resume`, `/speckit:deep-research`, and `/speckit:deep-review` do different jobs than SPAR's compact public phase model.
 
 Adoption risk: medium, because a too-simple phase map could hide important command suffixes like `:auto`, `:confirm`, `:with-phases`, and deep-loop executor choices.
 
@@ -71,22 +71,22 @@ Verdict: `adopt-as-is`
 
 SPAR's individual skills are concise about what not to do in each phase. `spar-specify` forbids implementation planning, `spar-plan` asks before starting implementation, `spar-act` stops before retention, and `spar-retain` reconciles final artifacts before archiving. The relevant external files are `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/install-root/skills/spar-specify/SKILL.md`, `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/install-root/skills/spar-plan/SKILL.md`, `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/install-root/skills/spar-act/SKILL.md`, and `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/install-root/skills/spar-retain/SKILL.md`.
 
-Internal commands already have strong gates and YAML ownership language, but they often lead with execution protocol complexity rather than the phase contract. Relevant internal surfaces are `.opencode/commands/spec_kit/plan.md`, `.opencode/commands/spec_kit/implement.md`, `.opencode/commands/spec_kit/complete.md`, and `.opencode/skills/system-spec-kit/SKILL.md`.
+Internal commands already have strong gates and YAML ownership language, but they often lead with execution protocol complexity rather than the phase contract. Relevant internal surfaces are `.opencode/commands/speckit/plan.md`, `.opencode/commands/speckit/implement.md`, `.opencode/commands/speckit/complete.md`, and `.opencode/skills/system-spec-kit/SKILL.md`.
 
 Adoption risk: low-medium, because this is mostly wording and guardrail placement; the risk is duplicating existing gates or creating contradictions with YAML-owned command steps.
 
-Follow-on packet: `060-phase-boundary-copy-pass` — add compact phase-boundary summaries to the top of the major `/spec_kit:*` command docs, preserving YAML ownership and existing Gate 3 / validation contracts.
+Follow-on packet: `060-phase-boundary-copy-pass` — add compact phase-boundary summaries to the top of the major `/speckit:*` command docs, preserving YAML ownership and existing Gate 3 / validation contracts.
 
 ## Questions Answered
 
 - Partial Q6: SPAR's npm installer pattern is valuable mainly as evidence for a target-config distribution model. Installing our full system-spec-kit through npm is not yet justified by this pass because our runtime hooks and memory subsystems are materially heavier than SPAR's payload.
-- Partial Q2: A lifecycle map is plausible, but collapsing internal suffixes and deep-loop modes is not safe without a command-surface matrix. Existing `/spec_kit:*`, `/memory:*`, and `/create:*` contracts carry too many distinct responsibilities for a flat four-phase replacement.
+- Partial Q2: A lifecycle map is plausible, but collapsing internal suffixes and deep-loop modes is not safe without a command-surface matrix. Existing `/speckit:*`, `/memory:*`, and `/create:*` contracts carry too many distinct responsibilities for a flat four-phase replacement.
 - Q8: Evidence is thin for Axis 2, Axis 4, Axis 5, and Axis 6 because this iteration only skimmed root docs, skill docs, target configs, and command surfaces.
 
 ## Questions Remaining
 
 - Q1 needs a focused managed-block pass over `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/lib/repo-bootstrap.mjs` and the internal AGENTS.md sync triad.
-- Q2 needs a suffix / mode matrix pass over `/spec_kit:*` command YAML assets and skill-advisor routing contracts.
+- Q2 needs a suffix / mode matrix pass over `/speckit:*` command YAML assets and skill-advisor routing contracts.
 - Q3 needs a template architecture pass over external `templates/spec.md`, `templates/plan.md`, and internal `.opencode/skills/system-spec-kit/templates/compose.sh`.
 - Q4 and Q7 need the personas / tone pass over `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/Research/Personas/Personas.md` and SPAR's specify/plan prompt language.
 - Q5 needs the tools.yaml pass over `.spar-kit/.local/tools.yaml` seed behavior and internal skill-advisor + MCP discovery.

@@ -12,7 +12,7 @@ Runtime packet for `specs/skilled-agent-orchestration/059-agent-implement-code/r
 
 ### Purpose
 
-Investigate the existing internal `.opencode/agents/*` ecosystem, AGENTS.md universal governance (canonical + Barter + fs-enterprises siblings), the skill-advisor hook auto-load mechanism, and dispatch wiring (e.g. the `step_dispatch_iteration` step in `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`) to surface harness-level mechanisms relevant to the D3 caller-restriction blocker and to design a concrete `.opencode/agents/code.md` skeleton.
+Investigate the existing internal `.opencode/agents/*` ecosystem, AGENTS.md universal governance (canonical + Barter + fs-enterprises siblings), the skill-advisor hook auto-load mechanism, and dispatch wiring (e.g. the `step_dispatch_iteration` step in `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml`) to surface harness-level mechanisms relevant to the D3 caller-restriction blocker and to design a concrete `.opencode/agents/code.md` skeleton.
 
 ### Usage
 

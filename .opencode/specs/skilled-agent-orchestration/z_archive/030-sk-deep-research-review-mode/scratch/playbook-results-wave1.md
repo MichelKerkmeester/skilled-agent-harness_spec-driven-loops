@@ -12,7 +12,7 @@
 
 **Evidence:**
 
-1. **`:review` suffix detected in command entrypoint** -- The file `.opencode/commands/spec_kit/deep-research.md` (lines 52-58) contains explicit mode-routing logic that checks for `:review` variants FIRST (order matters):
+1. **`:review` suffix detected in command entrypoint** -- The file `.opencode/commands/speckit/deep-research.md` (lines 52-58) contains explicit mode-routing logic that checks for `:review` variants FIRST (order matters):
    - `:review:auto` -> functional_mode = "REVIEW", execution_mode = "AUTONOMOUS"
    - `:review:confirm` -> functional_mode = "REVIEW", execution_mode = "INTERACTIVE"
    - `:review` -> functional_mode = "REVIEW", execution_mode = "AUTONOMOUS"
@@ -26,20 +26,20 @@
 3. **Routes to correct YAML workflows** -- Lines 262-264 confirm:
    - REVIEW + AUTONOMOUS -> `spec_kit_deep-research_review_auto.yaml`
    - REVIEW + INTERACTIVE -> `spec_kit_deep-research_review_confirm.yaml`
-   Both YAML files confirmed to exist at `.opencode/commands/spec_kit/assets/`.
+   Both YAML files confirmed to exist at `.opencode/commands/speckit/assets/`.
 
 4. **README documents the `:review` command** -- The README at `.opencode/skills/sk-deep-research/README.md` has:
    - Quick Start section (ANCHOR:quick-start, lines 57-84) with review examples:
      ```
-     /spec_kit:deep-research:review "skill:sk-deep-research"
-     /spec_kit:deep-research:review:confirm ".opencode/specs/..."
-     /spec_kit:deep-research:review:auto "agent:deep-research" --dimensions security,correctness
+     /speckit:deep-research:review "skill:sk-deep-research"
+     /speckit:deep-research:review:confirm ".opencode/specs/..."
+     /speckit:deep-research:review:auto "agent:deep-research" --dimensions security,correctness
      ```
 
 5. **Quick reference lists review commands** -- `.opencode/skills/sk-deep-research/references/quick_reference.md` (ANCHOR:review-mode, lines 220-281) lists:
-   - `/spec_kit:deep-research:review "target"` -- Ask which review mode to use
-   - `/spec_kit:deep-research:review:auto "target"` -- Autonomous review
-   - `/spec_kit:deep-research:review:confirm "target"` -- Interactive review with gates
+   - `/speckit:deep-research:review "target"` -- Ask which review mode to use
+   - `/speckit:deep-research:review:auto "target"` -- Autonomous review
+   - `/speckit:deep-research:review:confirm "target"` -- Interactive review with gates
 
 **Issues:** Minor documentation discrepancy: the quick reference describes `:review` as "Ask which review mode to use" (line 227), but the command entrypoint routes `:review` to AUTONOMOUS by default (line 55). The command behavior is correct per the routing table; the quick reference description is slightly misleading but not materially wrong since it still routes to review mode. The README Features section (line 154) correctly states `:review` or `:review:auto` maps to autonomous.
 

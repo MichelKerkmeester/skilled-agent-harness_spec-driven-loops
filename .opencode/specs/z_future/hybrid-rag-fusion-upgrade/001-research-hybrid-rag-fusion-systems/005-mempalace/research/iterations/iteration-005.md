@@ -9135,7 +9135,7 @@ exec
 .opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:44:} from '../lib/code-graph/code-graph-db.js';
 .opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:45:import type { CodeNode } from '../lib/code-graph/indexer-types.js';
 .opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:505:        specFolder: 'specs/022-hybrid-rag-fusion',
-.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:518:      expect(content).toContain('/spec_kit:resume specs/022-hybrid-rag-fusion');
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:518:      expect(content).toContain('/speckit:resume specs/022-hybrid-rag-fusion');
 .opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:873:describe('code-graph SQLite recovery', () => {
 .opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:942:  it('stores code graph metadata for git HEAD tracking and creates the file-line index', () => {
 .opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:956:    const dbPath = path.join(tempDir, 'code-graph.sqlite');

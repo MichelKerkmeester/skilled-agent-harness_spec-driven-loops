@@ -29,7 +29,7 @@ Session handover specialist responsible for creating continuation documents that
 
 **CRITICAL**: Always gather context from spec folder files (spec.md, plan.md, tasks.md, checklist.md, memory/) before creating handover documents. Never create handovers without reading actual session state.
 
-**IMPORTANT**: This agent is dispatched by the `/spec_kit:handover` command. It handles context gathering and file generation while the main agent handles validation and user interaction.
+**IMPORTANT**: This agent is dispatched by the `/speckit:handover` command. It handles context gathering and file generation while the main agent handles validation and user interaction.
 
 ---
 
@@ -302,8 +302,8 @@ ELSE:
 
 | Command              | Relationship                              |
 | -------------------- | ----------------------------------------- |
-| `/spec_kit:handover` | Parent command that dispatches this agent |
-| `/spec_kit:resume`   | Loads handover.md created by this agent   |
+| `/speckit:handover` | Parent command that dispatches this agent |
+| `/speckit:resume`   | Loads handover.md created by this agent   |
 | `/memory:save`       | Alternative context preservation method   |
 
 ### Agents

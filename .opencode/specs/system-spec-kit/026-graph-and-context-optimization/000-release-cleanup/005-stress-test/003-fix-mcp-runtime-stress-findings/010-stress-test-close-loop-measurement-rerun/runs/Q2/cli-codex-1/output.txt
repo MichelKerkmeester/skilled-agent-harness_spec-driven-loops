@@ -5435,8 +5435,8 @@ exec
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/008-hydra-db-based-features/004-adaptive-retrieval-loops/README.md
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/008-hydra-db-based-features/004-adaptive-retrieval-loops/implementation-summary.md
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/008-hydra-db-based-features/004-adaptive-retrieval-loops/graph-metadata.json
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/spec.md
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/plan.md
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme/spec.md
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme/plan.md
 .opencode/specs/system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/001-foundation-phases-0-1-1-5/decision-record.md
 .opencode/specs/system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/001-foundation-phases-0-1-1-5/spec.md
 .opencode/specs/system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/001-foundation-phases-0-1-1-5/plan.md
@@ -5475,11 +5475,11 @@ exec
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/002-mutation/graph-metadata.json
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/tasks.md
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/description.json
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/scratch/research-brief.md
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/tasks.md
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/description.json
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/implementation-summary.md
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/graph-metadata.json
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme/scratch/research-brief.md
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme/tasks.md
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme/description.json
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme/implementation-summary.md
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme/graph-metadata.json
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-advisor-hook-surface-integration/review-archive-r02-codex-copilot/deep-review-config.json
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/005-architecture-audit/scratch/z-archive-prior-audit/readme-audit-A16.md
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/005-architecture-audit/scratch/z-archive-prior-audit/agent1-root-tree-readme-config.md
@@ -20103,7 +20103,7 @@ exec
     34	| **Priority** | P0 |
     35	| **Status** | Review |
     36	| **Created** | 2026-03-31 |
-    37	| **Branch** | `system-speckit/024-compact-code-graph` |
+    37	| **Branch** | `system-spec-kit/024-compact-code-graph` |
     38	| **Parent Spec** | `../spec.md` |
     39	| **Parent Packet** | `system-spec-kit/023-hybrid-rag-fusion-refinement` |
     40	| **Predecessor** | 010-search-retrieval-quality-fixes |
@@ -23663,8 +23663,8 @@ exec
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/017-governance/graph-metadata.json
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/checklist.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-graph-impact-and-affordance-uplift/002-code-graph-phase-runner-and-detect-changes/prompts/agent-brief.md
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/spec.md
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/plan.md
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme/spec.md
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme/plan.md
 .opencode/specs/system-spec-kit/z_future/hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/research/deep-research-strategy.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/004-code-graph-advisor-refinement/review/015-code-graph-advisor-refinement-pt-01/deltas/iter-001.jsonl
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/004-code-graph-advisor-refinement/review/015-code-graph-advisor-refinement-pt-01/deltas/iter-003.jsonl
@@ -23687,11 +23687,11 @@ exec
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/020-feature-flag-reference-audit/description.json
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/020-feature-flag-reference-audit/implementation-summary.md
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/020-feature-flag-reference-audit/graph-metadata.json
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/scratch/research-brief.md
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/tasks.md
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/description.json
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/implementation-summary.md
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/graph-metadata.json
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme/scratch/research-brief.md
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme/tasks.md
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme/description.json
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme/implementation-summary.md
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme/graph-metadata.json
 .opencode/specs/system-spec-kit/z_future/hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/research/deep-research-dashboard.md
 .opencode/specs/system-spec-kit/z_future/hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/research/findings-registry.json
 .opencode/specs/system-spec-kit/z_future/hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/research/deep-research-state.jsonl

@@ -17,10 +17,10 @@ _memory:
     next_safe_action: "Execute or verify phase work according to tasks.md"
     blockers: []
     key_files:
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml"
-      - ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml"
+      - ".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml"
+      - ".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml"
+      - ".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml"
+      - ".opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-opus-4-7-2026-05-07"
@@ -98,10 +98,10 @@ Targeted child-phase remediation under a phase-parent control packet.
 
 | Surface | Action | Notes |
 |---------|--------|-------|
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | See phase scope |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modify | See phase scope |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | See phase scope |
-| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modify | See phase scope |
+| `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml` | Modify | See phase scope |
+| `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml` | Modify | See phase scope |
+| `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` | Modify | See phase scope |
+| `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml` | Modify | See phase scope |
 | `.opencode/agents/deep-review.md` | Modify | See phase scope |
 | `.opencode/agents/deep-research.md` | Modify | See phase scope |
 | `.opencode/agents/orchestrate.md:96` | Modify | See phase scope |

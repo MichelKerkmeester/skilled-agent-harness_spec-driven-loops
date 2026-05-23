@@ -9,7 +9,7 @@ Review naming unification and sentinel migration window.
 ## Evidence
 - `.opencode/skills/sk-deep-review/SKILL.md:190-210`
 - `.opencode/skills/sk-deep-review/README.md:155-160`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:83-85,307-310`
+- `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:83-85,307-310`
 
 ## Analysis
 Two viable options exist: converge everything to `deep-research-*` or to `deep-review-*`. Given current command assets, converging to `deep-review-*` offers clearer mental model but requires broader migration.

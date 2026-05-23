@@ -1,5 +1,5 @@
 ---
-title: "Tasks: 078/002 /spec_kit:complete Authoring-Time sk-code Load"
+title: "Tasks: 078/002 /speckit:complete Authoring-Time sk-code Load"
 description: "Task list for Phase 2: scaffold, dispatch cli-codex, validate, commit."
 trigger_phrases: ["078/002 tasks"]
 importance_tier: "important"
@@ -22,7 +22,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: 078/002 /spec_kit:complete Authoring-Time sk-code Load
+# Tasks: 078/002 /speckit:complete Authoring-Time sk-code Load
 
 <!-- SPECKIT_LEVEL: 1 -->
 
@@ -45,7 +45,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Author 078/002 spec.md with 13 REQs mapped to 077 finding IDs
-- [x] T002 Survey existing /spec_kit:complete YAMLs to identify insertion points
+- [x] T002 Survey existing /speckit:complete YAMLs to identify insertion points
 - [x] T003 Build /tmp/078-002-codex-prompt.md with explicit insertion patterns (auto + confirm symmetric)
 <!-- /ANCHOR:phase-1 -->
 
@@ -82,7 +82,7 @@ _memory:
 - [ ] validate.sh --strict on 078/002 exits 0
 - [ ] One commit on main + push origin/main 0/0 sync
 - [ ] sk-code v3.2.1.0 visible in 3 places (SKILL.md, description.json, changelog)
-- [ ] Both /spec_kit:complete YAMLs reference sk-code authoring-time load
+- [ ] Both /speckit:complete YAMLs reference sk-code authoring-time load
 <!-- /ANCHOR:completion -->
 
 ---

@@ -144,5 +144,5 @@ cli-codex (gpt-5.5/high/fast, sandbox=workspace-write) handled the actual file w
 
 3. **F-006-001 JavaScript sub-detection scenarios remain open** — that's a P2 finding deferred to Phase 5 (optional polish).
 
-4. **Phase 1 alone closes 9 of 22 P1 findings.** The remaining 13 P1s are addressed by Phases 2 (`/spec_kit:complete` authoring-time load — 4 closures), 3 (CocoIndex canonical-priority — 5 closures), and 4 (validator/MCP cleanup — 4+ closures).
+4. **Phase 1 alone closes 9 of 22 P1 findings.** The remaining 13 P1s are addressed by Phases 2 (`/speckit:complete` authoring-time load — 4 closures), 3 (CocoIndex canonical-priority — 5 closures), and 4 (validator/MCP cleanup — 4+ closures).
 <!-- /ANCHOR:limitations -->

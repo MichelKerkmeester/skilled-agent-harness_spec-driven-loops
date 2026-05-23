@@ -1,6 +1,6 @@
 ---
 title: "Feat [system-spec-kit/z_future/agentic-system-upgrade/002-agentic-adoption/007-lifecycle-entrypoint-simplification/spec]"
-description: "Shrink the visible lifecycle front door so routine work starts through a guided wrapper or smaller command family while the existing /spec_kit:* internals remain authoritative."
+description: "Shrink the visible lifecycle front door so routine work starts through a guided wrapper or smaller command family while the existing /speckit:* internals remain authoritative."
 trigger_phrases:
   - "feature"
   - "specification"
@@ -60,7 +60,7 @@ Turn the research synthesis for 007 lifecycle entrypoint simplification into one
 - Preserve slash-command authority while reducing up-front lifecycle branching for normal work.
 
 ### Out of Scope
-- Removing the current `/spec_kit:plan`, `/spec_kit:implement`, or `/spec_kit:complete` commands outright.
+- Removing the current `/speckit:plan`, `/speckit:implement`, or `/speckit:complete` commands outright.
 - Collapsing deep research and deep review into the same front door.
 - Redesigning the full YAML asset layer in this phase.
 
@@ -68,11 +68,11 @@ Turn the research synthesis for 007 lifecycle entrypoint simplification into one
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/commands/spec_kit/README.txt` | Modify | Primary affected surface for the adoption work |
-| `.opencode/commands/spec_kit/plan.md` | Modify | Primary affected surface for the adoption work |
-| `.opencode/commands/spec_kit/implement.md` | Modify | Primary affected surface for the adoption work |
-| `.opencode/commands/spec_kit/complete.md` | Modify | Primary affected surface for the adoption work |
-| `.opencode/commands/spec_kit/resume.md` | Modify | Primary affected surface for the adoption work |
+| `.opencode/commands/speckit/README.txt` | Modify | Primary affected surface for the adoption work |
+| `.opencode/commands/speckit/plan.md` | Modify | Primary affected surface for the adoption work |
+| `.opencode/commands/speckit/implement.md` | Modify | Primary affected surface for the adoption work |
+| `.opencode/commands/speckit/complete.md` | Modify | Primary affected surface for the adoption work |
+| `.opencode/commands/speckit/resume.md` | Modify | Primary affected surface for the adoption work |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -84,7 +84,7 @@ Turn the research synthesis for 007 lifecycle entrypoint simplification into one
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Keep the current Public authorities authoritative | The packet does not recommend replacing `/spec_kit:*`, the current agent stack, Spec Kit Memory, CocoIndex, or code-graph |
+| REQ-001 | Keep the current Public authorities authoritative | The packet does not recommend replacing `/speckit:*`, the current agent stack, Spec Kit Memory, CocoIndex, or code-graph |
 | REQ-002 | Define the adoption as a wrapper or refactor over current surfaces | The packet maps the work to current repo files and avoids backend transplant language |
 
 ### P1 - Required (complete OR user-approved deferral)

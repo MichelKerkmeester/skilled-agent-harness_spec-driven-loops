@@ -43,20 +43,20 @@
     "key_files": [
       ".opencode/agents/debug.md",
       ".opencode/agents/orchestrate.md",
-      ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml",
-      ".opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml",
+      ".opencode/commands/speckit/assets/speckit_implement_auto.yaml",
+      ".opencode/commands/speckit/assets/speckit_complete_auto.yaml",
       ".claude/agents/debug.md",
       ".codex/agents/debug.toml",
       ".gemini/agents/debug.md",
       ".opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh",
       ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/071-debug-delegation-scaffold-generator.md",
-      ".opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml",
-      ".opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml",
+      ".opencode/commands/speckit/assets/speckit_complete_confirm.yaml",
+      ".opencode/commands/speckit/assets/speckit_implement_confirm.yaml",
       ".claude/agents/orchestrate.md",
       ".gemini/agents/orchestrate.md",
       ".codex/agents/orchestrate.toml",
-      ".opencode/commands/spec_kit/implement.md",
-      ".opencode/commands/spec_kit/complete.md",
+      ".opencode/commands/speckit/implement.md",
+      ".opencode/commands/speckit/complete.md",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       "implementation-summary.md",
       "spec.md",
@@ -76,15 +76,15 @@
         "source": "derived"
       },
       {
-        "name": "spec_kit_implement_auto.yaml",
+        "name": "speckit_implement_auto.yaml",
         "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_implement_auto.yaml",
         "source": "derived"
       },
       {
-        "name": "spec_kit_complete_auto.yaml",
+        "name": "speckit_complete_auto.yaml",
         "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_complete_auto.yaml",
         "source": "derived"
       },
       {
@@ -106,15 +106,15 @@
         "source": "derived"
       },
       {
-        "name": "spec_kit_complete_confirm.yaml",
+        "name": "speckit_complete_confirm.yaml",
         "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_complete_confirm.yaml",
         "source": "derived"
       },
       {
-        "name": "spec_kit_implement_confirm.yaml",
+        "name": "speckit_implement_confirm.yaml",
         "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_implement_confirm.yaml",
         "source": "derived"
       },
       {
@@ -126,13 +126,13 @@
       {
         "name": "implement.md",
         "kind": "doc",
-        "path": ".opencode/commands/spec_kit/implement.md",
+        "path": ".opencode/commands/speckit/implement.md",
         "source": "derived"
       },
       {
         "name": "complete.md",
         "kind": "doc",
-        "path": ".opencode/commands/spec_kit/complete.md",
+        "path": ".opencode/commands/speckit/complete.md",
         "source": "derived"
       },
       {
@@ -208,7 +208,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "A repo-wide audit of the `@debug` agent (`.opencode/agents/debug.md` plus three sibling runtime definitions in `.claude/`, `.codex/`, `.gemini/`) confirmed the agent is shelfware. Its description and the orchestrator routing both promise auto-dispatch on `failure_count >= 3`, but no executable code increments that counter or invokes the Task tool. Zero `debug-delegation.md` instances exist across all spec folders despite a fully formed template, and in the one place where a workflow does prompt the user (`spec_kit_implement_auto.yaml:413` / `spec_kit_complete_auto.yaml:898-910`), the prompt is a buried A/B/C/D menu that operators consistently skip.",
+    "causal_summary": "A repo-wide audit of the `@debug` agent (`.opencode/agents/debug.md` plus three sibling runtime definitions in `.claude/`, `.codex/`, `.gemini/`) confirmed the agent is shelfware. Its description and the orchestrator routing both promise auto-dispatch on `failure_count >= 3`, but no executable code increments that counter or invokes the Task tool. Zero `debug-delegation.md` instances exist across all spec folders despite a fully formed template, and in the one place where a workflow does prompt the user (`speckit_implement_auto.yaml:413` / `speckit_complete_auto.yaml:898-910`), the prompt is a buried A/B/C/D menu that operators consistently skip.",
     "created_at": "2026-04-27T08:35:00Z",
     "last_save_at": "2026-05-23T11:55:14.476Z",
     "save_lineage": "graph_only",

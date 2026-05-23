@@ -91,15 +91,15 @@
     }
   ],
   "fixed": [
-    ".opencode/commands/spec_kit/handover.md",
-    ".agents/commands/spec_kit/handover.toml",
-    ".gemini/commands/spec_kit/handover.toml",
+    ".opencode/commands/speckit/handover.md",
+    ".agents/commands/speckit/handover.toml",
+    ".gemini/commands/speckit/handover.toml",
     ".opencode/skills/system-spec-kit/templates/handover.md"
   ],
   "forbidden": [
-    ".opencode/commands/spec_kit/handover.md",
-    ".agents/commands/spec_kit/handover.toml",
-    ".gemini/commands/spec_kit/handover.toml",
+    ".opencode/commands/speckit/handover.md",
+    ".agents/commands/speckit/handover.toml",
+    ".gemini/commands/speckit/handover.toml",
     ".opencode/skills/system-spec-kit/templates/handover.md"
   ],
   "packaging": {

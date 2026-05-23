@@ -142,7 +142,7 @@ python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root
 - .opencode/skills/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts:1 [TS-MODULE-HEADER] [WARN] Missing TypeScript module header marker (`MODULE:`) near file top.
 Note: warnings are non-blocking by default. Use --fail-on-warn to make warnings fail.
 
-python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/commands/spec_kit/assets 2>&1 | tail -5
+python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/commands/speckit/assets 2>&1 | tail -5
 Scanned files: 0
 Findings: 0
 Errors: 0

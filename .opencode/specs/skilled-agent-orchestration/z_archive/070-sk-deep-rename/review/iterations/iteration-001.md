@@ -31,7 +31,7 @@ None.
 
 # POSITIVE OBSERVATIONS
 
-- Command entrypoints and YAML workflows use the new names: `.opencode/commands/spec_kit/deep-review.md:35`, `.opencode/commands/spec_kit/deep-research.md:33`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:56`, and `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:67`.
+- Command entrypoints and YAML workflows use the new names: `.opencode/commands/speckit/deep-review.md:35`, `.opencode/commands/speckit/deep-research.md:33`, `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:56`, and `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:67`.
 - Canonical OpenCode agents and runtime mirrors use the new names: `.opencode/agents/deep-review.md:2`, `.opencode/agents/deep-research.md:2`, `.claude/agents/deep-review.md:2`, `.claude/agents/deep-research.md:2`, `.codex/agents/deep-review.toml:9`, `.codex/agents/deep-research.toml:9`, `.gemini/agents/deep-review.md:2`, and `.gemini/agents/deep-research.md:2`.
 - Canonical skills use the new names and paths: `.opencode/skills/deep-review/SKILL.md:2`, `.opencode/skills/deep-research/SKILL.md:2`, `.opencode/skills/deep-review/references/quick_reference.md:14`, and `.opencode/skills/deep-research/references/quick_reference.md:14`.
 - Active `.opencode/specs/` outside Packet 070 and outside `z_archive/` had zero `sk-deep-review` / `sk-deep-research` hits in this pass.
@@ -46,7 +46,7 @@ Sampled files with old/new counts:
 | --- | ---: | --- |
 | `.opencode/skills/` | 10 | 0 old-name hits; sampled deep-loop and related skills use new names where referenced |
 | `.opencode/agents/` | 4 | 0 old-name hits; `deep-review` / `deep-research` canonical agents use new names |
-| `.opencode/commands/spec_kit/` | 6 | 0 old-name hits; command docs and auto/confirm YAML use new names |
+| `.opencode/commands/speckit/` | 6 | 0 old-name hits; command docs and auto/confirm YAML use new names |
 | `.opencode/specs/` active packets | 7 | 0 old-name hits in sampled non-070 active specs |
 | `.claude/agents/` | 3 | 0 old-name hits |
 | `.codex/agents/` | 3 | 0 old-name hits |

@@ -24,10 +24,10 @@
 - `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/resource-map.md`
 - `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/implementation-summary.md`
 - `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/checklist.md`
-- `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml`
+- `.opencode/commands/speckit/assets/speckit_implement_auto.yaml`
+- `.opencode/commands/speckit/assets/speckit_implement_confirm.yaml`
+- `.opencode/commands/speckit/assets/speckit_complete_auto.yaml`
+- `.opencode/commands/speckit/assets/speckit_complete_confirm.yaml`
 - `.opencode/agents/review.md`
 
 ## Findings - New
@@ -56,10 +56,10 @@
    - Scope proof: Conflict spans the packet's primary spec and implementation plan against completed tasks/checklist/implementation-summary evidence; prior iterations did not find a distinct runtime defect.
    - Affected surface hints: [`spec.md`, `plan.md`, `checklist.md`, `implementation-summary.md`, `review-report synthesis`]
 
-3. **F004 remains active P1, not P0/P2/false-positive** -- `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:213` -- Four command workflow assets still set the review `standards_contract.baseline` to `sk-code`, while adjacent phase labels and the review agent contract name `sk-code-review` as the review baseline and `sk-code` as router-selected overlay evidence. This is a must-fix workflow contract mismatch because it can mislead generated workflow metadata and future maintainers. It is not P0 because the YAML still points to the review agent and does not by itself create an exploitable or destructive path. [SOURCE: `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:213`] [SOURCE: `.opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml:199`] [SOURCE: `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml:310`] [SOURCE: `.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml:319`] [SOURCE: `.opencode/agents/review.md:76`] [SOURCE: `.opencode/agents/review.md:77`]
+3. **F004 remains active P1, not P0/P2/false-positive** -- `.opencode/commands/speckit/assets/speckit_implement_auto.yaml:213` -- Four command workflow assets still set the review `standards_contract.baseline` to `sk-code`, while adjacent phase labels and the review agent contract name `sk-code-review` as the review baseline and `sk-code` as router-selected overlay evidence. This is a must-fix workflow contract mismatch because it can mislead generated workflow metadata and future maintainers. It is not P0 because the YAML still points to the review agent and does not by itself create an exploitable or destructive path. [SOURCE: `.opencode/commands/speckit/assets/speckit_implement_auto.yaml:213`] [SOURCE: `.opencode/commands/speckit/assets/speckit_implement_confirm.yaml:199`] [SOURCE: `.opencode/commands/speckit/assets/speckit_complete_auto.yaml:310`] [SOURCE: `.opencode/commands/speckit/assets/speckit_complete_confirm.yaml:319`] [SOURCE: `.opencode/agents/review.md:76`] [SOURCE: `.opencode/agents/review.md:77`]
    - Finding class: cross-consumer
    - Scope proof: The same baseline inversion is evidenced in all four implement/complete workflow variants, while the canonical review agent contract states the opposite baseline/overlay order.
-   - Affected surface hints: [`spec_kit_implement_auto.yaml`, `spec_kit_implement_confirm.yaml`, `spec_kit_complete_auto.yaml`, `spec_kit_complete_confirm.yaml`, `@review` contract]
+   - Affected surface hints: [`speckit_implement_auto.yaml`, `speckit_implement_confirm.yaml`, `speckit_complete_auto.yaml`, `speckit_complete_confirm.yaml`, `@review` contract]
 
 4. **F002 remains active P2 advisory** -- `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/resource-map.md:16` -- The resource-map continuity still says to await implementation approval and lists approval as a blocker, while implementation-summary continuity says the merge is complete and blockers are empty. This remains advisory because the path ledger was still usable as a review coverage map and the stronger release-blocking state drift is already captured by F001/F003. [SOURCE: `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/resource-map.md:16`] [SOURCE: `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/resource-map.md:18`] [SOURCE: `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/implementation-summary.md:14`] [SOURCE: `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/implementation-summary.md:16`]
    - Finding class: instance-only
@@ -76,7 +76,7 @@
 
 ## Integration Evidence
 
-- `/spec_kit:deep-review:auto` final prompt required this iteration to prepare synthesis inputs for active findings F001-F004. [SOURCE: `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/review/prompts/iteration-7.md:28`]
+- `/speckit:deep-review:auto` final prompt required this iteration to prepare synthesis inputs for active findings F001-F004. [SOURCE: `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/review/prompts/iteration-7.md:28`]
 - The reducer-owned findings registry records active findings as P0=0, P1=3, P2=1 before final synthesis. [SOURCE: `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/review/deep-review-findings-registry.json:102`]
 - The configured scope includes public agent mirrors and `spec_kit` workflow assets; iteration 6 already replayed cross-runtime parity and the final pass did not broaden beyond active-finding adjudication. [SOURCE: `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/review/deep-review-config.json:66`] [SOURCE: `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/review/deep-review-strategy.md:41`]
 

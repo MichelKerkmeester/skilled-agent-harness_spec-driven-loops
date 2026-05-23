@@ -1,7 +1,7 @@
 {
   "level": "2",
   "completionPct": 100,
-  "lastOutcome": "Deep-review loop converged at iter-10 with verdict FAIL: 0 P0, 13 P1, 6 P2. Verdict-flip from 097 FAIL to PASS REFUTED — 098 remediation incomplete. Planning Packet ready in review-report.md §2 for /spec_kit:plan.",
+  "lastOutcome": "Deep-review loop converged at iter-10 with verdict FAIL: 0 P0, 13 P1, 6 P2. Verdict-flip from 097 FAIL to PASS REFUTED — 098 remediation incomplete. Planning Packet ready in review-report.md §2 for /speckit:plan.",
   "specFolder": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/004-track-rereview",
   "description": "Feature Specification: Re-review of skilled-agent-orchestration 093-098 (verdict-flip confirmation)",
   "keywords": [

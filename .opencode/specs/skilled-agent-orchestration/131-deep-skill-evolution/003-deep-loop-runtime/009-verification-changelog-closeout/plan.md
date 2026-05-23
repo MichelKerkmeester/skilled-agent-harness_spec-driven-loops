@@ -122,7 +122,7 @@ Verification-first closeout — no new feature code. Three deterministic cluster
 ### Phase 2: Implementation
 - [ ] Run `pnpm vitest run`; capture exit code + failure count
 - [ ] Run `verify_alignment_drift.py --root .opencode/skills/deep-loop-runtime`; capture findings
-- [ ] Run `verify_alignment_drift.py --root .opencode/commands/spec_kit/assets`; capture findings
+- [ ] Run `verify_alignment_drift.py --root .opencode/commands/speckit/assets`; capture findings
 - [ ] Run `validate.sh --recursive --strict` against 118 phase parent; capture exit code
 - [ ] Run consumer grep; verify zero hits outside `specs/`
 - [ ] Bump `deep-review/SKILL.md` frontmatter `version: 1.3.3.0` -> `1.4.0.0`

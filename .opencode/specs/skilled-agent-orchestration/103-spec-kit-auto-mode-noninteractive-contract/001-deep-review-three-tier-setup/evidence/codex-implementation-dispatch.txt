@@ -329,7 +329,7 @@ Make `:auto` smartly autonomous via a **three-tier setup-resolution contract** (
 ### Out of Scope
 - The YAML workflow itself (`deep_start-review-loop_auto.yaml`) — its iteration loop already runs non-interactively once loaded.
 - The `:confirm` mode — keeps its existing interactive setup behavior.
-- Equivalent gaps in `/deep:start-research-loop:auto` or `/spec_kit:complete:auto` — those have similar architectures but are separate fix packets.
+- Equivalent gaps in `/deep:start-research-loop:auto` or `/speckit:complete:auto` — those have similar architectures but are separate fix packets.
 - Changing the SPAWN-AGENT path in cli-codex (different bug, resolved in 102/005 via inline-contract workaround).
 
 ### Files to Change
@@ -448,7 +448,7 @@ Make `:auto` smartly autonomous via a **three-tier setup-resolution contract** (
 ## 7. OPEN QUESTIONS
 
 - Pre-binding marker spelling: `PRE-BOUND SETUP ANSWERS:` (matches workaround used in 102/004 Stage E) or `SETUP_RESOLVED:` (tighter machine-parseable form) — decide during implementation based on parser readability.
-- Should the non-interactive setup-bypass also apply to `/deep:start-research-loop:auto`, `/spec_kit:complete:auto`, and `/spec_kit:implement:auto`? Out of scope here but worth tracking as follow-on packets if the bypass pattern works.
+- Should the non-interactive setup-bypass also apply to `/deep:start-research-loop:auto`, `/speckit:complete:auto`, and `/speckit:implement:auto`? Out of scope here but worth tracking as follow-on packets if the bypass pattern works.
 <!-- /ANCHOR:questions -->
 
 exec
@@ -1038,7 +1038,7 @@ Deep review complete.
 Iterations: [N] | Stop reason: [converged|max_iterations|all_dimensions_clean]
 Findings: P0=[N] P1=[N] P2=[N] | Verdict: [PASS|CONDITIONAL|FAIL] [PASS may include hasAdvisories=true]
 Artifacts: review/review-report.md, review/resource-map.md (unless `--no-resource-map`), [N] iteration files in review/, continuity update in canonical spec docs refreshed
-Ready for: /spec_kit:plan [remediation] (if FAIL/CONDITIONAL)
+Ready for: /speckit:plan [remediation] (if FAIL/CONDITIONAL)
 STATUS=OK PATH=[spec-folder-path]
 ```
 
@@ -1099,9 +1099,9 @@ Key references:
 
 | Condition | Suggested Command | Reason |
 |-----------|-------------------|--------|
-| Review FAIL/CONDITIONAL, need fixes | `/spec_kit:plan [remediation]` | Plan remediation from review findings |
+| Review FAIL/CONDITIONAL, need fixes | `/speckit:plan [remediation]` | Plan remediation from review findings |
 | Review PASS, ready for release | `/create:changelog` | Generate changelog entry |
-| Need to fix specific findings | `/spec_kit:implement [spec-folder]` | Implement fixes from existing plan |
+| Need to fix specific findings | `/speckit:implement [spec-folder]` | Implement fixes from existing plan |
 | Need more investigation | `/deep:start-research-loop [topic]` | Deep research session for unclear areas |
 | Want to refresh search support | `/memory:save [spec-folder]` | Refresh the indexed canonical spec document while canonical continuity stays in spec docs |
 
@@ -1146,13 +1146,13 @@ Key references:
 - Dispatches `@deep-review` LEAF agent per iteration (fresh context each time)
 - Externalized state via JSONL + strategy files (no context degradation)
 - Review target is READ-ONLY (agent never modifies reviewed code)
-- Does NOT proceed to implementation (outputs remediation plan for `/spec_kit:plan`)
+- Does NOT proceed to implementation (outputs remediation plan for `/speckit:plan`)
 
 ---
 
 ## 13. COMMAND CHAIN
 
-**Review path (findings):** `/deep:start-review-loop` -> (if FAIL/CONDITIONAL) `/spec_kit:plan` -> `/spec_kit:implement`
+**Review path (findings):** `/deep:start-review-loop` -> (if FAIL/CONDITIONAL) `/speckit:plan` -> `/speckit:implement`
 **Review path (clean):** `/deep:start-review-loop` -> (if PASS) `/create:changelog`
 
 ---
@@ -2200,7 +2200,7 @@ CLI exit codes:
 | CONDITIONAL | If intent signals match   | Intent-mapped references     |
 | ON_DEMAND   | Only on explicit request   | Deep-dive quality standards  |
 
-`references/workflows/quick_reference.md` is the primary first-touch command surface. Keep the compact `spec_kit` and `memory` command map there, including `/spec_kit:plan --intake-only` as the standalone intake entry, `/spec_kit:plan` and `/spec_kit:complete` smart delegation notes, and the pointer from `/deep:start-research-loop` to `../deep-research/references/spec_check_protocol.md`, and use this file only to point readers to it rather than duplicating the full matrix.
+`references/workflows/quick_reference.md` is the primary first-touch command surface. Keep the compact `spec_kit` and `memory` command map there, including `/speckit:plan --intake-only` as the standalone intake entry, `/speckit:plan` and `/speckit:complete` smart delegation notes, and the pointer from `/deep:start-research-loop` to `../deep-research/references/spec_check_protocol.md`, and use this file only to point readers to it rather than duplicating the full matrix.
 
 ### Smart Router Pseudocode
 
@@ -2292,10 +2292,10 @@ RESOURCE_MAP = {
 }
 
 COMMAND_BOOSTS = {
-    "/spec_kit:plan": "PLAN",
-    "/spec_kit:implement": "IMPLEMENT",
-    "/spec_kit:complete": "COMPLETE",
-    "/spec_kit:plan :with-phases": "PHASE",
+    "/speckit:plan": "PLAN",
+    "/speckit:implement": "IMPLEMENT",
+    "/speckit:complete": "COMPLETE",
+    "/speckit:plan :with-phases": "PHASE",
 
 codex
 I’ve finished the ordered reads. The YAML consumer already expects `review_target`, `review_target_type`, `review_dimensions`, `spec_folder`, iteration/convergence values, and `resource_map_emit`, so the cleanest change is to make the markdown setup branch converge to that shape without touching the YAML asset.

@@ -124,7 +124,7 @@ The unified context tool runs a hybrid retrieval pipeline with **graph-first rou
 
 ### Canonical Retrieval Order
 
-- `/spec_kit:resume` is the recovery surface for session continuation.
+- `/speckit:resume` is the recovery surface for session continuation.
 - Resume-oriented retrieval follows `handover.md -> _memory.continuity -> spec docs`.
 - Packet-oriented retrieval may additionally use indexed `document_type='graph_metadata'` rows for dependency, supersession, related-packet, and key-file signals.
 - `find_spec` and `find_decision` should resolve against canonical spec docs and anchors, not against standalone continuity artifacts.
@@ -835,7 +835,7 @@ STATUS=OK ACTION=dashboard
 - `/memory:save`: Save conversation context
 - `/memory:manage`: Database management, checkpoints, ingest
 - `/memory:learn`: Constitutional rules
-- `/spec_kit:resume`: Session recovery and continuation
+- `/speckit:resume`: Session recovery and continuation
 
 ---
 <!-- APPENDIX: Reference material for AI agent implementation -->

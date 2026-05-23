@@ -10,10 +10,10 @@
 - **Status**: complete
 
 ## Files Reviewed
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` (lines 717-738)
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` (lines 649-670)
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` (lines 781-802)
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` (lines 758-779)
+- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml` (lines 717-738)
+- `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml` (lines 649-670)
+- `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml` (lines 781-802)
+- `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml` (lines 758-779)
 - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/aliases.ts` (full, 49 lines)
 - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts` (lines 1-170)
 - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts` (lines 200-230)

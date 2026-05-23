@@ -7,8 +7,8 @@ Review migration/rehome behavior and conflict semantics.
 - Are conflicting canonical+legacy states handled deterministically?
 
 ## Evidence
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:116-146`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:116-146`
+- `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:116-146`
+- `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:116-146`
 
 ## Analysis
 Migration is pragmatic and non-destructive for common cases, but conflict handling is mostly declarative (`on_conflict`) while shell command execution path is permissive.

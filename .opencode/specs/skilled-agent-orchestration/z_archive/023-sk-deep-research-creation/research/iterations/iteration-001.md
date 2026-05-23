@@ -29,7 +29,7 @@ AGR uses a **disposable-session linear loop** orchestrated by a bash script (`ru
 | Dimension | AGR | Our Deep-Research System |
 |---|---|---|
 | **State format** | results.tsv (append-only TSV) + STRATEGY.md | deep-research-state.jsonl (append-only JSONL) + deep-research-strategy.md |
-| **Orchestration** | Bash shell script (`run_agr.sh`) with `while` loop | Manual-orchestrated or command-driven (`/spec_kit:deep-research`) |
+| **Orchestration** | Bash shell script (`run_agr.sh`) with `while` loop | Manual-orchestrated or command-driven (`/speckit:deep-research`) |
 | **Agent invocation** | `claude -p` headless mode (fresh CLI instance per iteration) | Sub-agent dispatch within active session (Task tool) |
 | **Context isolation** | Complete -- new OS process per iteration | Partial -- sub-agent has own context but shares session |
 | **State files** | 6 files: results.tsv, STRATEGY.md, baseline_checksums.json, benchmark.py, program.md, analysis.py | 3 files: state JSONL, strategy.md, config JSON |

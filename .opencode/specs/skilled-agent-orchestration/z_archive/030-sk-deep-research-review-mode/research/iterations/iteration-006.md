@@ -1,19 +1,19 @@
-# Iteration 6: Q5 Review Report Quality for Downstream `/spec_kit:plan`
+# Iteration 6: Q5 Review Report Quality for Downstream `/speckit:plan`
 
 ## Focus
-Determine how `review-report.md` should change so a `CONDITIONAL` or `FAIL` review becomes a direct remediation handoff for `/spec_kit:plan`, rather than a mostly human-readable audit summary. [SOURCE: .opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/research/deep-research-strategy.md:30-32] [SOURCE: .opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/research/deep-research-strategy.md:119-120]
+Determine how `review-report.md` should change so a `CONDITIONAL` or `FAIL` review becomes a direct remediation handoff for `/speckit:plan`, rather than a mostly human-readable audit summary. [SOURCE: .opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/research/deep-research-strategy.md:30-32] [SOURCE: .opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/research/deep-research-strategy.md:119-120]
 
 ## Current Actionability Gaps
-1. The current synthesis contract is still optimized around audit presentation: 11 sections led by executive summary, score breakdown, findings buckets, coverage, convergence, and release-readiness narrative. Only one section is explicitly remediation-oriented, and it is described as ordered action items grouped by effort/impact rather than as planning inputs. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:510-559]
+1. The current synthesis contract is still optimized around audit presentation: 11 sections led by executive summary, score breakdown, findings buckets, coverage, convergence, and release-readiness narrative. Only one section is explicitly remediation-oriented, and it is described as ordered action items grouped by effort/impact rather than as planning inputs. [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:510-559]
 2. The real report shape follows that contract closely. The example report spends most of its top half on verdict, score math, findings prose, and coverage reporting, while the actual planning guidance is postponed to `## 10. Remediation Priority` and still lacks explicit dependencies, acceptance criteria, or spec/plan-ready problem framing. [SOURCE: .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/012-pre-release-fixes-alignment-preparation/review-report.md:5-34] [SOURCE: .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/012-pre-release-fixes-alignment-preparation/review-report.md:193-208]
-3. `/spec_kit:plan` does not consume a vague "fix these findings" summary. It expects a concrete feature/problem description, then produces `spec.md` and `plan.md` with specific fields: problem statement, purpose, scope, files to change, requirements, success criteria, technical context, phases, testing, dependencies, and rollback. [SOURCE: .opencode/commands/spec_kit/plan.md:149-189] [SOURCE: .opencode/skills/system-spec-kit/templates/core/spec-core.md:35-42] [SOURCE: .opencode/skills/system-spec-kit/templates/core/spec-core.md:47-63] [SOURCE: .opencode/skills/system-spec-kit/templates/core/spec-core.md:67-89] [SOURCE: .opencode/skills/system-spec-kit/templates/level_2/plan.md:20-49] [SOURCE: .opencode/skills/system-spec-kit/templates/level_2/plan.md:54-118]
+3. `/speckit:plan` does not consume a vague "fix these findings" summary. It expects a concrete feature/problem description, then produces `spec.md` and `plan.md` with specific fields: problem statement, purpose, scope, files to change, requirements, success criteria, technical context, phases, testing, dependencies, and rollback. [SOURCE: .opencode/commands/speckit/plan.md:149-189] [SOURCE: .opencode/skills/system-spec-kit/templates/core/spec-core.md:35-42] [SOURCE: .opencode/skills/system-spec-kit/templates/core/spec-core.md:47-63] [SOURCE: .opencode/skills/system-spec-kit/templates/core/spec-core.md:67-89] [SOURCE: .opencode/skills/system-spec-kit/templates/level_2/plan.md:20-49] [SOURCE: .opencode/skills/system-spec-kit/templates/level_2/plan.md:54-118]
 4. Q4 already established that traceability results should become typed `traceabilityChecks` state in JSONL. If the final report stays narrative-only, the loop will gain machine-verifiable state internally but still force the planner to reverse-engineer that state from prose. [SOURCE: .opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/research/deep-research-strategy.md:62-64] [SOURCE: .opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/research/deep-research-strategy.md:156-160]
 
 ## Design Principle
 Treat `review-report.md` as a two-layer artifact:
 
 1. **Decision layer**: concise verdict, active blockers, and why the loop stopped.
-2. **Planning layer**: a normalized remediation packet that can seed `/spec_kit:plan` with minimal reinterpretation.
+2. **Planning layer**: a normalized remediation packet that can seed `/speckit:plan` with minimal reinterpretation.
 
 The audit appendix should remain available, but it should no longer be the only place where the actionable structure lives. [INFERENCE: This is the smallest change that preserves release-review value while making remediation planning first-class.]
 
@@ -36,18 +36,18 @@ Rationale:
 - `Release Readiness Verdict` should collapse into `Executive Summary` instead of remaining a separate near-duplicate conclusion section. The current example repeats the same verdict twice. [SOURCE: .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/012-pre-release-fixes-alignment-preparation/review-report.md:5-20] [SOURCE: .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/012-pre-release-fixes-alignment-preparation/review-report.md:212-223]
 
 ### 2. Add a `Planning Trigger` section with planner-facing framing
-This section should answer the exact questions `/spec_kit:plan` needs before it can generate `spec.md`:
+This section should answer the exact questions `/speckit:plan` needs before it can generate `spec.md`:
 
 | Field | Why it matters |
 |------|----------------|
-| `recommendedCommand` | Makes the next action explicit (`/spec_kit:plan` vs defer vs changelog) |
+| `recommendedCommand` | Makes the next action explicit (`/speckit:plan` vs defer vs changelog) |
 | `planningIntent` | Maps review outcome to `fix_bug`, `refactor`, or `understand` |
 | `problemStatement` | Feeds spec template `## 2. PROBLEM & PURPOSE` |
 | `purpose` | Gives the one-sentence outcome for the spec |
 | `priority` | Maps active highest severity to spec priority |
 | `suggestedSpecScope` | Prevents the planner from having to infer whether this is one remediation spec or multiple |
 
-[SOURCE: .opencode/commands/spec_kit/plan.md:69-102] [SOURCE: .opencode/skills/system-spec-kit/templates/core/spec-core.md:35-42]
+[SOURCE: .opencode/commands/speckit/plan.md:69-102] [SOURCE: .opencode/skills/system-spec-kit/templates/core/spec-core.md:35-42]
 
 ### 3. Convert findings lists into a normalized `Active Finding Registry`
 Current P0/P1/P2 sections are readable, but not planner-friendly because they mix severity, evidence, and suggestion prose without a stable planning shape. Replace or supplement them with one registry table:
@@ -79,7 +79,7 @@ The existing remediation section is useful triage, but it is not yet a plan skel
 This maps directly to `plan.md` implementation phases, testing strategy, dependency tables, and rollback thinking. [SOURCE: .opencode/skills/system-spec-kit/templates/level_2/plan.md:38-49] [SOURCE: .opencode/skills/system-spec-kit/templates/level_2/plan.md:70-118] [SOURCE: .opencode/skills/system-spec-kit/templates/level_2/plan.md:125-140]
 
 ### 5. Add a `Spec Seed` section that mirrors `spec.md` fields
-Instead of forcing `/spec_kit:plan` to synthesize these from scratch, the review report should offer a draft packet:
+Instead of forcing `/speckit:plan` to synthesize these from scratch, the review report should offer a draft packet:
 
 - `Problem Statement`
 - `Purpose`
@@ -111,10 +111,10 @@ Q4's structured `traceabilityChecks` should surface in a section that the planne
 - which workstreams they block
 - whether the remediation can be planned safely without more investigation
 
-This is more actionable than the current generic cross-reference table because it connects evidence integrity to planning readiness. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:534-536] [SOURCE: .opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/research/deep-research-strategy.md:156-160]
+This is more actionable than the current generic cross-reference table because it connects evidence integrity to planning readiness. [SOURCE: .opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml:534-536] [SOURCE: .opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/research/deep-research-strategy.md:156-160]
 
 ### 8. Add an explicit `Deferred / No-Action Items` section
-The current report mixes intentional no-action items into the same remediation flow. Those should be separated so `/spec_kit:plan` can ignore non-work cleanly. The example report already contains "No action recommended" items, but they are buried under Priority 3 prose. [SOURCE: .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/012-pre-release-fixes-alignment-preparation/review-report.md:203-208]
+The current report mixes intentional no-action items into the same remediation flow. Those should be separated so `/speckit:plan` can ignore non-work cleanly. The example report already contains "No action recommended" items, but they are buried under Priority 3 prose. [SOURCE: .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/012-pre-release-fixes-alignment-preparation/review-report.md:203-208]
 
 ## Machine-Readable Planner Packet
 Keep the human-readable report, but embed one stable fenced JSON block near the top:
@@ -122,7 +122,7 @@ Keep the human-readable report, but embed one stable fenced JSON block near the 
 ```json
 {
   "schemaVersion": "review-report/v2",
-  "recommendedCommand": "/spec_kit:plan",
+  "recommendedCommand": "/speckit:plan",
   "planningIntent": "fix_bug",
   "priority": "P1",
   "problemStatement": "Documentation artifacts disagree about validator completion state, so the release package cannot be trusted as a single truth surface.",
@@ -173,7 +173,7 @@ Recommended parsing rule:
 
 [INFERENCE: A single canonical JSON block is simpler and less drift-prone than trying to scrape multiple prose sections or tables.]
 
-## Direct Mapping to `/spec_kit:plan`
+## Direct Mapping to `/speckit:plan`
 | Review-report field | Consumed by |
 |---------------------|-------------|
 | `problemStatement`, `purpose` | `spec.md` Problem & Purpose |
@@ -192,19 +192,19 @@ This is the core answer to Q5: the report should stop being only a release artif
 3. Replace severity-bucket prose as the primary structure with a normalized finding registry and grouped remediation workstreams.
 4. Add `Spec Seed` and `Plan Seed` sections that mirror the existing system-spec-kit templates.
 5. Embed one canonical `Planning Packet` JSON block with schema versioning and stable keys for parser use.
-6. Separate deferred/no-action items from actionable remediation so `/spec_kit:plan` does not ingest noise.
+6. Separate deferred/no-action items from actionable remediation so `/speckit:plan` does not ingest noise.
 7. Surface Q4 `traceabilityChecks` as a planning-readiness gate, not only as an audit appendix table.
 
 ## Ruled Out
 - Keeping `review-report.md` as a scorecard plus prose-only remediation list.
-- Making `/spec_kit:plan` scrape freeform narrative across multiple sections instead of consuming a single canonical packet.
+- Making `/speckit:plan` scrape freeform narrative across multiple sections instead of consuming a single canonical packet.
 - Treating `PASS WITH NOTES` as a planner input category after Q2 already reduced verdicts to `FAIL | CONDITIONAL | PASS` plus advisory metadata.
 
 ## Sources Consulted
 - `.opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/research/deep-research-strategy.md`
 - `.opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/research/deep-research-state.jsonl`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml`
-- `.opencode/commands/spec_kit/plan.md`
+- `.opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml`
+- `.opencode/commands/speckit/plan.md`
 - `.opencode/skills/system-spec-kit/templates/core/spec-core.md`
 - `.opencode/skills/system-spec-kit/templates/level_2/plan.md`
 - `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/012-pre-release-fixes-alignment-preparation/review-report.md`

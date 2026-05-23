@@ -91,9 +91,9 @@ Record the completed research outcome, document the explicit user override, and 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | The spec docs must state that the main issue is discoverability placement, not missing command documentation | `spec.md` names discoverability placement as the root problem and names the quick reference as the primary fix location |
-| REQ-002 | The packet must preserve the original research recommendation honestly | The docs state that the minimal research recommendation was the four-command shortlist: `/spec_kit:resume`, `/spec_kit:plan`, `/memory:search`, and `/memory:save` |
+| REQ-002 | The packet must preserve the original research recommendation honestly | The docs state that the minimal research recommendation was the four-command shortlist: `/speckit:resume`, `/speckit:plan`, `/memory:search`, and `/memory:save` |
 | REQ-003 | The packet must record the approved implementation override | The docs state that the chosen direction is an expanded all-commands short list because the user asked to "add all commands though in short list" |
-| REQ-004 | The packet must include the exact expanded command surface | The docs list all 12 commands: `/spec_kit:resume`, `/spec_kit:plan`, `/spec_kit:implement`, `/spec_kit:complete`, `/spec_kit:debug`, `/spec_kit:handover`, `/spec_kit:deep-research`, `/spec_kit:deep-review`, `/memory:save`, `/memory:search`, `/memory:manage`, and `/memory:learn` |
+| REQ-004 | The packet must include the exact expanded command surface | The docs list all 12 commands: `/speckit:resume`, `/speckit:plan`, `/speckit:implement`, `/speckit:complete`, `/speckit:debug`, `/speckit:handover`, `/speckit:deep-research`, `/speckit:deep-review`, `/memory:save`, `/memory:search`, `/memory:manage`, and `/memory:learn` |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -111,7 +111,7 @@ Record the completed research outcome, document the explicit user override, and 
 
 - **SC-001**: A reader can open this folder and immediately understand both the original research recommendation and the later user override.
 - **SC-002**: The recommended downstream change is unambiguous: the quick reference becomes the primary all-commands short list surface, while `.opencode/skills/system-spec-kit/SKILL.md` stays a pointer only.
-- **SC-003**: The minimal four-command recommendation is still recorded exactly as `/spec_kit:resume`, `/spec_kit:plan`, `/memory:search`, and `/memory:save`.
+- **SC-003**: The minimal four-command recommendation is still recorded exactly as `/speckit:resume`, `/speckit:plan`, `/memory:search`, and `/memory:save`.
 - **SC-004**: The approved expanded command surface is recorded exactly as the eight `spec_kit` commands and four `memory` commands listed in REQ-004.
 - **SC-005**: The folder validates as a complete Level 1 packet.
 

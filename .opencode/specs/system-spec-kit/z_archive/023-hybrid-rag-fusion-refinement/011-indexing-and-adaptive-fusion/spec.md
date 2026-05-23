@@ -43,7 +43,7 @@ _memory:
 | **Priority** | P0 |
 | **Status** | Review |
 | **Created** | 2026-03-31 |
-| **Branch** | `system-speckit/024-compact-code-graph` |
+| **Branch** | `system-spec-kit/024-compact-code-graph` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `system-spec-kit/023-hybrid-rag-fusion-refinement` |
 | **Predecessor** | 010-search-retrieval-quality-fixes |

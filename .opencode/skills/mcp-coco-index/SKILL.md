@@ -432,7 +432,7 @@ When sending multiple searches in sequence (e.g., exploring a codebase):
 
 Attribution: upstream `cocoindex-io/cocoindex-code`, local license/notice/changelog files, and helper scripts under `scripts/`. The router discovers detailed references dynamically.
 
-Companion recovery: use `/spec_kit:resume` first, then use CocoIndex when `handover.md -> _memory.continuity -> spec docs` cannot answer the question.
+Companion recovery: use `/speckit:resume` first, then use CocoIndex when `handover.md -> _memory.continuity -> spec docs` cannot answer the question.
 
 ### Supported Languages
 

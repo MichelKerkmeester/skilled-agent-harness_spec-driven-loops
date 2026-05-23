@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // TEST: YAML intake-event payload vocabulary boundary (T-TEST-NEW-13)
 // ───────────────────────────────────────────────────────────────
-// R47-002 / T-YML-PLN-03: The /spec_kit:plan and /spec_kit:complete
+// R47-002 / T-YML-PLN-03: The /speckit:plan and /speckit:complete
 // assets emit `intake_triggered` / `intake_completed` events that
 // MUST carry BOTH `folderState` (local classifier) and `startState`
 // (canonical intake-contract enum) as distinct fields. If either
@@ -24,13 +24,13 @@ import { describe, expect, it } from 'vitest';
 
 const REPO_ROOT = path.resolve(import.meta.dirname, '..', '..', '..', '..', '..');
 // drift: 026 release
-const ASSETS_ROOT = path.join(REPO_ROOT, '.opencode', 'commands', 'spec_kit', 'assets');
+const ASSETS_ROOT = path.join(REPO_ROOT, '.opencode', 'commands', 'speckit', 'assets');
 
 const ASSETS_WITH_INTAKE_EVENTS = [
-  'spec_kit_plan_auto.yaml',
-  'spec_kit_plan_confirm.yaml',
-  'spec_kit_complete_auto.yaml',
-  'spec_kit_complete_confirm.yaml',
+  'speckit_plan_auto.yaml',
+  'speckit_plan_confirm.yaml',
+  'speckit_complete_auto.yaml',
+  'speckit_complete_confirm.yaml',
 ];
 
 describe('YAML intake-event payloads preserve folderState / startState boundary (T-TEST-NEW-13)', () => {

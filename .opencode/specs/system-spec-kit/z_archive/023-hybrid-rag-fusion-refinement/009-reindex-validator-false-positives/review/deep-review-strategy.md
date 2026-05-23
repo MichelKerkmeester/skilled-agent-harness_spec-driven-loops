@@ -4,7 +4,7 @@
 13 bug fixes for memory indexing pipeline and contextType migration across phases 008-009 of spec 023-hybrid-rag-fusion-refinement.
 
 ## Scope
-14 source files + 41 template files. All changes are on branch `system-speckit/024-compact-code-graph` and cherry-picked to `main`.
+14 source files + 41 template files. All changes are on branch `system-spec-kit/024-compact-code-graph` and cherry-picked to `main`.
 
 ## Files Under Review
 

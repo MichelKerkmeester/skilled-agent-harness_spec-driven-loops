@@ -85,10 +85,10 @@ Escalate to Level 3 for architecture-heavy decisions.
 
 ### Primary Path — Canonical Intake
 
-Use `/spec_kit:plan --intake-only` to run the shared intake contract. It classifies the folder, emits the canonical trio (`spec.md` + `description.json` + `graph-metadata.json`) atomically, and auto-detects the appropriate Level from scope signals. Override detection with `--level=2` when you know the level up front.
+Use `/speckit:plan --intake-only` to run the shared intake contract. It classifies the folder, emits the canonical trio (`spec.md` + `description.json` + `graph-metadata.json`) atomically, and auto-detects the appropriate Level from scope signals. Override detection with `--level=2` when you know the level up front.
 
 ```text
-/spec_kit:plan --intake-only --level=2
+/speckit:plan --intake-only --level=2
 ```
 
 The intake contract ([`../../references/intake-contract.md`](../../references/intake-contract.md)) handles folder classification, trio publication, graph-metadata scaffolding, and continuity initialization — none of which the manual copy path performs.
@@ -111,7 +111,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/###-feature
 - Keep checklist current during implementation.
 - Completion checks run in priority order: P0, then P1, then P2.
 - `implementation-summary.md` is finalized after implementation work.
-- Resume active packet work through `/spec_kit:resume`, which rebuilds continuity from `handover.md -> _memory.continuity -> spec docs`.
+- Resume active packet work through `/speckit:resume`, which rebuilds continuity from `handover.md -> _memory.continuity -> spec docs`.
 - Save continuity with `/memory:save`, which routes updates into canonical packet docs such as `implementation-summary.md`, `decision-record.md`, and `handover.md` when those surfaces apply.
 
 <!-- /ANCHOR:workflow-notes -->
@@ -119,7 +119,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/###-feature
 ## 7. PHASE DECOMPOSITION
 <!-- ANCHOR:phase -->
 
-Consider phase decomposition for multi-sprint Level 2 tasks where work naturally divides into ordered stages. Use Gate 3 Option E to target a specific phase child and `/spec_kit:plan :with-phases` to create the phase structure. If that target phase packet is still `no-spec`, `partial-folder`, `repair-mode`, or `placeholder-upgrade`, `/spec_kit:plan` delegates to the shared intake contract in [`../../references/intake-contract.md`](../../references/intake-contract.md) before phase setup continues.
+Consider phase decomposition for multi-sprint Level 2 tasks where work naturally divides into ordered stages. Use Gate 3 Option E to target a specific phase child and `/speckit:plan :with-phases` to create the phase structure. If that target phase packet is still `no-spec`, `partial-folder`, `repair-mode`, or `placeholder-upgrade`, `/speckit:plan` delegates to the shared intake contract in [`../../references/intake-contract.md`](../../references/intake-contract.md) before phase setup continues.
 
 See the Phase System in the [main templates README](../README.md#phase-system) for full details.
 

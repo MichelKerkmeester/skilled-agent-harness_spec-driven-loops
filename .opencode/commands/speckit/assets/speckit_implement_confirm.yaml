@@ -100,7 +100,7 @@ prerequisites:
   level_3_required: ["[SPEC_FOLDER]/decision-record.md"]
   optional_artifacts: ["[SPEC_FOLDER]/research/research.md"]
   verification: MUST EXIST BEFORE PROCEEDING
-  note: This workflow assumes planning completed via /spec_kit:plan
+  note: This workflow assumes planning completed via /speckit:plan
 
 # ─────────────────────────────────────────────────────────────────
 # AVAILABLE TEMPLATES
@@ -281,7 +281,7 @@ workflow_enforcement:
   prerequisites_gate:
     location: "Before Step 1"
     requirements: ["spec.md exists in SPEC_FOLDER", "plan.md exists in SPEC_FOLDER"]
-    action_if_failed: "STOP - run /spec_kit:plan first"
+    action_if_failed: "STOP - run /speckit:plan first"
   step_completion_rule: "Execute ALL activities → Verify ALL outputs → Present checkpoint for approval → Mark step complete after approval → THEN proceed. NEVER skip steps, NEVER proceed without user approval, NEVER jump to coding before Step 5."
   critical_steps:
     step_6: { enforcement: "MUST mark tasks [x] in tasks.md", verification: "Count [x] vs [ ] — all must be [x]" }
@@ -651,7 +651,7 @@ error_recovery:
   step_validation_fails: "Review requirements, ask clarifying questions, retry"
   user_rejects_approach: "Present alternatives, modify code, document decision"
   tests_fail: "Debug, fix, re-run before marking complete"
-  prerequisites_insufficient: "Return to /spec_kit:plan or ask user"
+  prerequisites_insufficient: "Return to /speckit:plan or ask user"
   environment_unavailable: "Skip browser testing, document limitation"
 
 # ─────────────────────────────────────────────────────────────────

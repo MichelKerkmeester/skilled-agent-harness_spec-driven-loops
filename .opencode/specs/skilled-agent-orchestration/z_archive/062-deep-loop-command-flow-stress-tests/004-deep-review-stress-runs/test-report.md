@@ -9,7 +9,7 @@
 
 ## 1. Summary
 
-Six CP-XXX command-flow stress scenarios (CP-052..057) authored against `/spec_kit:deep-review` + `@deep-review`. R1 hit 5 PARTIAL + 1 TIMEOUT. R2 (sequential, fresh executor) confirmed the failures are NOT parallelism artifacts — composite stayed PASS 0 / PARTIAL 5 / FAIL 1, with per-CP signal patterns largely identical between rounds.
+Six CP-XXX command-flow stress scenarios (CP-052..057) authored against `/speckit:deep-review` + `@deep-review`. R1 hit 5 PARTIAL + 1 TIMEOUT. R2 (sequential, fresh executor) confirmed the failures are NOT parallelism artifacts — composite stayed PASS 0 / PARTIAL 5 / FAIL 1, with per-CP signal patterns largely identical between rounds.
 
 **Honest finding:** unlike @deep-research (PASS 6/0/0 R1 clean), @deep-review's stress surface produced **real signal failures that persist across executors and concurrency models**. Most failing signals fall into 3 categories:
 1. Over-strict CP signal contracts (regex too narrow for real agent output)
@@ -80,7 +80,7 @@ R2's CP-055 hit the 900s timeout despite R1 completing in 428s. opencode call wa
 ### Substrate work (separate packet)
 - **CP-052 SETUP_YAML_HANDOFF gap**: sk-deep-review SKILL.md or @deep-review CORE WORKFLOW should explicitly emit "BINDING: <key>=<value>" for each setup value (target, max-iter, convergence, mode). Then re-author CP-052 signals against that explicit emission.
 - **CP-056 LEAF_ONLY_NESTED_DISPATCH_REFUSAL gap**: sk-deep-review needs canonical refusal wording (e.g., "REFUSE: nested Task tool dispatch is forbidden for LEAF agents"). Then CP-056 signals match against that canonical string.
-- **CP-055 timeout**: investigate /spec_kit:deep-review:auto behavior under SYNTHESIS_SAVE_BOUNDARY scenario. May be unbounded loop or large synthesis.
+- **CP-055 timeout**: investigate /speckit:deep-review:auto behavior under SYNTHESIS_SAVE_BOUNDARY scenario. May be unbounded loop or large synthesis.
 
 ### Honest closure
 This sub-phase reached methodology-application-complete but NOT PASS 6/0/0. The R1+R2 results are documented honestly here. Pursuing PASS 6/0/0 requires either CP-edit work (Category A+B) or substrate work (Category C) that exceeds the scope of 062/004 and warrants its own follow-on packet.

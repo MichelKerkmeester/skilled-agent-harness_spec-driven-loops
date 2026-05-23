@@ -38,10 +38,10 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/commands/spec_kit/implement.md",
+      ".opencode/commands/speckit/implement.md",
       ".opencode/skills/system-spec-kit/references/memory/save_workflow.md",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/commands/spec_kit/deep-research.md",
+      ".opencode/commands/speckit/deep-research.md",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -51,7 +51,7 @@
       {
         "name": "implement.md",
         "kind": "doc",
-        "path": ".opencode/commands/spec_kit/implement.md",
+        "path": ".opencode/commands/speckit/implement.md",
         "source": "derived"
       },
       {
@@ -69,7 +69,7 @@
       {
         "name": "deep-research.md",
         "kind": "doc",
-        "path": ".opencode/commands/spec_kit/deep-research.md",
+        "path": ".opencode/commands/speckit/deep-research.md",
         "source": "derived"
       },
       {

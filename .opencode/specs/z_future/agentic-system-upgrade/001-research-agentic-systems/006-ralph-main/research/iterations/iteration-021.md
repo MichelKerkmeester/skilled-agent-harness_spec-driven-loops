@@ -12,7 +12,7 @@ Compared Ralph's plugin entrypoints and documented workflow against the visible 
 ## Evidence
 - Ralph exposes an intentionally tiny operator surface: `/prd`, `/ralph`, and the shell runner. Its README teaches a three-step workflow instead of a taxonomy. [SOURCE: external/README.md:54-86] [SOURCE: external/README.md:88-145] [SOURCE: external/.claude-plugin/plugin.json:2-9]
 - `system-spec-kit`'s quick reference already shows a much larger visible catalog: eight `spec_kit` commands plus four `memory` commands before the user has even chosen a workflow lane. [SOURCE: .opencode/skills/system-spec-kit/references/workflows/quick_reference.md:110-130]
-- The command docs themselves assume substantial setup branching, flags, and mode selection before execution begins. [SOURCE: .opencode/commands/spec_kit/plan.md:31-145] [SOURCE: .opencode/commands/spec_kit/implement.md:35-120] [SOURCE: .opencode/commands/spec_kit/complete.md:1-4]
+- The command docs themselves assume substantial setup branching, flags, and mode selection before execution begins. [SOURCE: .opencode/commands/speckit/plan.md:31-145] [SOURCE: .opencode/commands/speckit/implement.md:35-120] [SOURCE: .opencode/commands/speckit/complete.md:1-4]
 
 ## Analysis
 The problem is not that the larger command surface is unjustified. The problem is that the full catalog is exposed too early. Ralph wins on UX because a new operator can understand "make a PRD, run Ralph" without learning internal boundaries. `system-spec-kit` currently makes users see the whole machine before they know which part they need. That creates unnecessary branching pressure and makes advanced capabilities look mandatory.
@@ -39,7 +39,7 @@ finding: `system-spec-kit` should simplify its visible command surface so the de
 - **Net recommendation:** SIMPLIFY
 
 ## Counter-evidence sought
-I looked for proof that the wide command catalog is already hidden behind a smaller default operator layer, but the quick reference and primary command docs still foreground the broad surface. [SOURCE: .opencode/skills/system-spec-kit/references/workflows/quick_reference.md:110-130] [SOURCE: .opencode/commands/spec_kit/resume.md:29-141]
+I looked for proof that the wide command catalog is already hidden behind a smaller default operator layer, but the quick reference and primary command docs still foreground the broad surface. [SOURCE: .opencode/skills/system-spec-kit/references/workflows/quick_reference.md:110-130] [SOURCE: .opencode/commands/speckit/resume.md:29-141]
 
 ## Follow-up questions for next iteration
 - If the visible command map shrinks, should `plan`, `implement`, and `complete` remain peer entrypoints or be wrapped behind one guided front door?

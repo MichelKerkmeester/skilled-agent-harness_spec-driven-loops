@@ -21,7 +21,7 @@ Persistent brain for the 10-iteration SPAR-Kit vs system-spec-kit comparison loo
 
 ## 2. TOPIC
 
-Compare external SPAR-Kit project at `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/` (Specify -> Plan -> Act -> Retain workflow kit by jed-tech, npm `@spar-kit/install` Beta1) against the internal `system-spec-kit` surface (`.opencode/skills/system-spec-kit/SKILL.md`, `.opencode/skills/system-spec-kit/templates/`, `.opencode/commands/spec_kit/`, `.opencode/commands/memory/`, `.opencode/commands/create/`, `.opencode/agents/`). Produce 10-20 ranked, evidence-backed UX/orchestration patterns we should adopt-as-is, adapt, take inspiration from, or reject-with-rationale across 6 axes.
+Compare external SPAR-Kit project at `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/` (Specify -> Plan -> Act -> Retain workflow kit by jed-tech, npm `@spar-kit/install` Beta1) against the internal `system-spec-kit` surface (`.opencode/skills/system-spec-kit/SKILL.md`, `.opencode/skills/system-spec-kit/templates/`, `.opencode/commands/speckit/`, `.opencode/commands/memory/`, `.opencode/commands/create/`, `.opencode/agents/`). Produce 10-20 ranked, evidence-backed UX/orchestration patterns we should adopt-as-is, adapt, take inspiration from, or reject-with-rationale across 6 axes.
 
 ---
 

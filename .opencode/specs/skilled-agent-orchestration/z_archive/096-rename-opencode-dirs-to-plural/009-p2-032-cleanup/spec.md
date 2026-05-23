@@ -99,7 +99,7 @@ Remove the three stale `aliases.ts` references (count "6 surfaces" → "5 surfac
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: Strict validate (`bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh 008-remediation --strict` and `… 009-p2-032-cleanup --strict`) exits 0 on both packets.
-- **SC-002**: P2-032 entry no longer surfaces in `/spec_kit:resume` continuity recovery.
+- **SC-002**: P2-032 entry no longer surfaces in `/speckit:resume` continuity recovery.
 <!-- /ANCHOR:success-criteria -->
 
 ---

@@ -94,7 +94,7 @@ For EACH finding:
 - New information ratio: 0.48
 
 ## Recommended Next Focus
-Compare these backend safeguards against the user-facing surface. The next high-value pass is: how should `memory_search`, `memory_context`, and `/spec_kit:resume` expose shared-space conflicts, degraded trust, or `manual_merge` requirements so multi-agent collisions become visible workflow state instead of remaining mostly internal audit data.
+Compare these backend safeguards against the user-facing surface. The next high-value pass is: how should `memory_search`, `memory_context`, and `/speckit:resume` expose shared-space conflicts, degraded trust, or `manual_merge` requirements so multi-agent collisions become visible workflow state instead of remaining mostly internal audit data.
 
 RESEARCH BRIEF:
 # $refine TIDD-EC Prompt: 002-mex-main
@@ -563,9 +563,9 @@ Use this skill when:
 
 ### When NOT to Use
 
-- Simple, single-question research (use direct codebase search or `/spec_kit:plan`)
-- Known-solution documentation (use `/spec_kit:plan`)
-- Implementation tasks (use `/spec_kit:implement`)
+- Simple, single-question research (use direct codebase search or `/speckit:plan`)
+- Known-solution documentation (use `/speckit:plan`)
+- Implementation tasks (use `/speckit:implement`)
 - Quick codebase searches (use `@context` or direct Grep/Glob)
 - Fewer than 3 sources needed (single-pass research suffices)
 

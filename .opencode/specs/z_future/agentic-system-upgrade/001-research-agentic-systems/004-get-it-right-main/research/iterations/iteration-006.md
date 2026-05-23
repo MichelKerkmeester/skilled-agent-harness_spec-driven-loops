@@ -16,7 +16,7 @@ I traced the external refactor path through the workflow and agent prompt, then 
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/agents/refactorer.md:17-30] The refactorer must inspect `git diff` and `git status`, preserve unrelated changes, and avoid writing new implementation code.
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/agents/refactorer.md:40-50] The external rationale is that patching fundamentally wrong code often deepens the mistake; a clean workspace is better than incremental repair.
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/docs/thread-architecture.md:130-145] The refactorer gets reviewer feedback plus explicit instructions to undo, not fix.
-- [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:414-417] Internal failure handling currently stops after repeated errors and suggests `/spec_kit:debug`; it does not auto-revert workspace state.
+- [SOURCE: .opencode/commands/speckit/assets/speckit_implement_auto.yaml:414-417] Internal failure handling currently stops after repeated errors and suggests `/speckit:debug`; it does not auto-revert workspace state.
 - [SOURCE: .opencode/agents/review.md:255-258] The internal reviewer escalates repeated low scores toward circuit-breaker or reassignment logic rather than workspace cleanup.
 
 ## Analysis
@@ -27,7 +27,7 @@ confidence: medium
 finding: The undo-only refactorer is a good pattern in principle, but it should not be adopted as a default `system-spec-kit` behavior in normal shared workspaces. It is better treated as an isolated-worktree extension or later prototype than as a baseline retry step.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`
+- **Target file or module:** `.opencode/commands/speckit/assets/speckit_implement_auto.yaml`
 - **Change type:** rejected
 - **Blast radius:** large
 - **Prerequisites:** if revisited later, require dedicated worktree isolation and a narrowly-scoped cleanup agent

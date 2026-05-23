@@ -149,7 +149,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 - [ ] T078 [P] Fix `022-hybrid-rag-fusion/015-manual-testing-per-playbook`
 - [ ] T079 [P] Fix `022-hybrid-rag-fusion/016-rewrite-memory-mcp-readme`
 - [ ] T080 [P] Fix `022-hybrid-rag-fusion/017-update-install-guide`
-- [ ] T081 [P] Fix `022-hybrid-rag-fusion/018-rewrite-system-speckit-readme`
+- [ ] T081 [P] Fix `022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme`
 - [ ] T082 [P] Fix `022-hybrid-rag-fusion/019-rewrite-repo-readme`
 - [ ] T083 [P] Fix `022-hybrid-rag-fusion/020-post-release-fixes`
 - [ ] T084 [P] Fix `022-hybrid-rag-fusion/021-ground-truth-id-remapping`

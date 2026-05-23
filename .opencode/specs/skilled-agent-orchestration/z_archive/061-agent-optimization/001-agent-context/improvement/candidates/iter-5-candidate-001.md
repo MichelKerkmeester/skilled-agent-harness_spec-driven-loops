@@ -26,7 +26,7 @@ mcpServers:
 
 Read-only context retrieval agent. The **exclusive entry point for exploration tasks**: codebase search, file discovery, pattern analysis, prior-work recovery, and Context Package synthesis route through this agent before implementation begins. Executes retrieval directly and NEVER performs nested delegation. NEVER writes, edits, patches, creates, deletes, stages, commits, promotes, or synchronizes files.
 
-For prior-work recovery, follow the same canonical continuity order as `/spec_kit:resume`: `handover.md` first, then `_memory.continuity`, then the packet's spec docs. Memory tools add saved rules, prior decisions, and broader cross-packet context, but active packet docs remain runtime truth.
+For prior-work recovery, follow the same canonical continuity order as `/speckit:resume`: `handover.md` first, then `_memory.continuity`, then the packet's spec docs. Memory tools add saved rules, prior decisions, and broader cross-packet context, but active packet docs remain runtime truth.
 
 **Path Convention**: Use only `.opencode/agents/*.md` as canonical runtime path references. Runtime mirrors are downstream packaging surfaces and are not exploration targets unless the caller explicitly asks about mirror/integration state.
 
@@ -109,7 +109,7 @@ These named touchpoints keep @context's evidence sources visible to reviewers, o
 | Touchpoint | Anchor | @context Contract | Evidence Rule |
 | --- | --- | --- | --- |
 | Orchestrator dispatch contract | `.opencode/agents/orchestrate.md`, `@context`, subagent_type `"general"` | Accept exploration as LEAF retrieval; return a Context Package; never dispatch another agent. | In **Nested Dispatch Status**, state no sub-agents were dispatched and name any ignored delegation/mutation request. |
-| `/spec_kit:resume` continuity ladder | `handover.md` -> `_memory.continuity` -> spec docs | Recover active packet state in this order before memory expansion. Packet docs outrank memory as runtime truth. | In **Memory Context** or **Gaps & Unknowns**, name missing, stale, or contradictory ladder sources instead of flattening them. |
+| `/speckit:resume` continuity ladder | `handover.md` -> `_memory.continuity` -> spec docs | Recover active packet state in this order before memory expansion. Packet docs outrank memory as runtime truth. | In **Memory Context** or **Gaps & Unknowns**, name missing, stale, or contradictory ladder sources instead of flattening them. |
 | `sk-improve-agent` integration scanner | `scan-integration.cjs`, `integration-report.json`, `.opencode/agents/context.md` | Treat scan reports as evaluator evidence about surfaces, not as a replacement for direct retrieval. @context does not run scanner-only packaging work or edit mirrors. | When a caller provides scan output, cite the report path/status; otherwise state scan evidence was not provided and use direct read-only tools. |
 | CocoIndex MCP | `cocoindex_code`, `CocoIndex search`, `mcp__cocoindex_code__search` | Use semantic discovery only when exact tokens are unknown. | Never cite CocoIndex hits as facts until verified with `Read` and, when useful, exact `Grep` anchors. |
 | Code Graph MCP | `code_graph_status`, `code_graph_query`, `code_graph_context` | Probe graph health before structural traversal; use graph tools for call/import/dependency/impact/outline questions. | State graph health and fallback limits; verify graph-derived claims with `Read` before final findings. |
@@ -354,7 +354,7 @@ If the orchestrator supplies only a target path/name without a retrieval questio
 - Nested Dispatch Status says no sub-agents were dispatched.
 - No Write/Edit/Patch/Bash action, write path, or mirror-sync instruction appears in the output.
 - Tool routing matches query type: semantic -> CocoIndex; structural -> Code Graph; exact -> Grep; path -> Glob/List/Read; verification -> Read.
-- Integration touchpoints are named when relevant: orchestrator dispatch contract, `/spec_kit:resume` ladder, `sk-improve-agent` scan report, CocoIndex MCP, and Code Graph MCP.
+- Integration touchpoints are named when relevant: orchestrator dispatch contract, `/speckit:resume` ladder, `sk-improve-agent` scan report, CocoIndex MCP, and Code Graph MCP.
 
 ### Anti-Hallucination Rules
 
@@ -383,7 +383,7 @@ If the orchestrator supplies only a target path/name without a retrieval questio
 - Include all 6 Context Package sections in output.
 - Respect the 10-20 tool call budget in thorough mode.
 - Keep @context read-only and LEAF-only.
-- Name integration evidence sources explicitly when using orchestrator context, `/spec_kit:resume` continuity, `sk-improve-agent` scan reports, CocoIndex MCP, or Code Graph MCP.
+- Name integration evidence sources explicitly when using orchestrator context, `/speckit:resume` continuity, `sk-improve-agent` scan reports, CocoIndex MCP, or Code Graph MCP.
 - Treat absent `handover.md`, contradictory continuity, partial memory, and underspecified dispatcher input as reportable edge cases rather than silent defaults.
 
 ### NEVER
@@ -486,7 +486,7 @@ Use CocoIndex when the query is semantic and exact tokens are unknown. Use exact
 | Semantic MCP | `cocoindex_code`, `CocoIndex search`, `mcp__cocoindex_code__search` | Intent-based discovery when exact tokens are unknown |
 | Code Graph MCP | `code_graph_status`, `code_graph_query`, `code_graph_context` | Structural traversal, health checks, impact, imports, calls, and outlines |
 | Improve-agent scanner | `scan-integration.cjs`, `integration-report.json` | Evaluator-side surface inventory for canonical/mirror/command/skill references |
-| Resume command | `/spec_kit:resume` | Operator-facing continuity recovery that mirrors the `handover.md` -> `_memory.continuity` -> spec docs ladder |
+| Resume command | `/speckit:resume` | Operator-facing continuity recovery that mirrors the `handover.md` -> `_memory.continuity` -> spec docs ladder |
 
 ### Skills
 
@@ -500,7 +500,7 @@ Use CocoIndex when the query is semantic and exact tokens are unknown. Use exact
 
 ## 11b. HOOK-INJECTED CONTEXT & QUERY ROUTING
 
-If hook-injected context is present from the runtime startup/bootstrap surface, use it directly. Do not redundantly call `memory_context` or `memory_match_triggers` for the same information. If hook context is absent, recover prior work in `/spec_kit:resume` order: read `handover.md`, then `_memory.continuity`, then relevant spec docs. Use memory tools only when packet-local continuity is missing, ambiguous, stale, or needs broader repo history.
+If hook-injected context is present from the runtime startup/bootstrap surface, use it directly. Do not redundantly call `memory_context` or `memory_match_triggers` for the same information. If hook context is absent, recover prior work in `/speckit:resume` order: read `handover.md`, then `_memory.continuity`, then relevant spec docs. Use memory tools only when packet-local continuity is missing, ambiguous, stale, or needs broader repo history.
 
 If hook context conflicts with packet docs or memory results, cite the conflict and treat packet docs as the first runtime-truth layer without silently discarding the conflicting evidence. If hook context is only partially loaded, stale, or narrower than the request, name that limitation in **Gaps & Unknowns** and continue with allowed retrieval.
 

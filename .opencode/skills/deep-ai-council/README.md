@@ -37,7 +37,7 @@ trigger_phrases:
 
 The skill is planning-only. Council writes are scoped to packet-local `ai-council/**` artifacts, including state, seat outputs, deliberations, failed-round forensics, and the final council report. It does not edit application code or authored spec docs.
 
-Recovery outside a council run should use `/spec_kit:resume`, which rebuilds context from the packet continuity ladder before consulting generated memory artifacts. Graph-backed council storage is a derived SQLite projection exposed through the `council_graph_*` MCP tool family (`upsert`, `query`, `status`, `convergence`); packet-local `ai-council/**` artifacts remain authoritative and the graph rebuilds from them.
+Recovery outside a council run should use `/speckit:resume`, which rebuilds context from the packet continuity ladder before consulting generated memory artifacts. Graph-backed council storage is a derived SQLite projection exposed through the `council_graph_*` MCP tool family (`upsert`, `query`, `status`, `convergence`); packet-local `ai-council/**` artifacts remain authoritative and the graph rebuilds from them.
 
 ---
 

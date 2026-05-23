@@ -12,7 +12,7 @@ Compared Ralph's single-loop runtime and two-skill plugin packaging against the 
 ## Evidence
 - Ralph handles execution with one loop contract and a tiny skill surface; it does not ask operators to think in terms of a large role taxonomy. [SOURCE: external/.claude-plugin/plugin.json:2-9] [SOURCE: external/ralph.sh:84-113]
 - `system-spec-kit`'s orchestrator references a broad role map and requires explicit delegation rules, including `@context` as the exploration gateway and several specialized execution roles. [SOURCE: .opencode/agents/orchestrate.md:95-107] [SOURCE: .opencode/agents/orchestrate.md:171-183]
-- `context-prime` handles bootstrap and `handover` handles continuation packaging, but both sit close to `context`, `/spec_kit:resume`, and automatic session hooks in purpose. [SOURCE: .opencode/agents/context-prime.md:22-45] [SOURCE: .opencode/agents/handover.md:176-224] [SOURCE: .opencode/skills/system-spec-kit/references/config/hook_system.md:21-30]
+- `context-prime` handles bootstrap and `handover` handles continuation packaging, but both sit close to `context`, `/speckit:resume`, and automatic session hooks in purpose. [SOURCE: .opencode/agents/context-prime.md:22-45] [SOURCE: .opencode/agents/handover.md:176-224] [SOURCE: .opencode/skills/system-spec-kit/references/config/hook_system.md:21-30]
 
 ## Analysis
 For deep or parallel workflows, specialization is useful. The UX problem appears when bootstrap, retrieval, and continuation are presented as separate conceptual units instead of one continuity capability. Ralph's minimalism highlights that users rarely need to understand those distinctions. A smaller default role model would reduce cognitive load without preventing specialized internal dispatch when complexity demands it.
@@ -39,7 +39,7 @@ finding: `system-spec-kit` should merge bootstrap, retrieval, and continuation i
 - **Net recommendation:** MERGE
 
 ## Counter-evidence sought
-I looked for proof that the current roster is already mostly internal and invisible, but agent docs, command workflows, and recovery instructions still surface several overlapping role concepts. [SOURCE: .opencode/agents/context.md:25-53] [SOURCE: .opencode/agents/context-prime.md:22-45] [SOURCE: .opencode/commands/spec_kit/handover.md:176-224]
+I looked for proof that the current roster is already mostly internal and invisible, but agent docs, command workflows, and recovery instructions still surface several overlapping role concepts. [SOURCE: .opencode/agents/context.md:25-53] [SOURCE: .opencode/agents/context-prime.md:22-45] [SOURCE: .opencode/commands/speckit/handover.md:176-224]
 
 ## Follow-up questions for next iteration
 - If agent specialization is partly over-exposed, does the same problem exist in deep-loop architecture itself, or is the LEAF model one of the places where complexity is actually justified?

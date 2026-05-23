@@ -53,7 +53,7 @@ finding: `system-spec-kit` should consolidate its public skill surface. Keep spe
 - **Migration path:** first define the smaller public family, route old skill names as aliases, then collapse command and gate wording onto the new public surface.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skills/`, `AGENTS.md`, `.opencode/commands/spec_kit/`, `.opencode/skills/scripts/skill_advisor.py`
+- **Target file or module:** `.opencode/skills/`, `AGENTS.md`, `.opencode/commands/speckit/`, `.opencode/skills/scripts/skill_advisor.py`
 - **Change type:** modified existing
 - **Blast radius:** large
 - **Prerequisites:** define which skills remain public entry points versus internal routing overlays

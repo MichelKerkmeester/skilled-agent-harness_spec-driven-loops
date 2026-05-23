@@ -77,7 +77,7 @@ Run the four-command verification sweep, capture the evidence, author the two SK
 
 - Run `pnpm vitest run` and capture exit code + failure count (target: zero failures).
 - Run `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/deep-loop-runtime` (target: PASS, 0 findings).
-- Run `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/commands/spec_kit/assets` (target: PASS).
+- Run `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/commands/speckit/assets` (target: PASS).
 - Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution --recursive --strict` (target: PASS across parent + 8 children).
 - Run `grep -rE "mcp__mk_spec_memory__deep_loop_graph_" .opencode/ | grep -v specs/` and verify zero consumer references remain outside spec docs.
 - Bump `.opencode/skills/deep-review/SKILL.md` frontmatter `version` from `1.3.3.0` to `1.4.0.0` (minor bump — dependency change: deep-review now imports from `deep-loop-runtime/` rather than `system-spec-kit/`).
@@ -123,7 +123,7 @@ Run the four-command verification sweep, capture the evidence, author the two SK
 |----|-------------|---------------------|
 | REQ-001 | `pnpm vitest run` exits 0 with zero failures | Full sweep green; output captured in implementation-summary.md |
 | REQ-002 | `verify_alignment_drift.py --root .opencode/skills/deep-loop-runtime` PASS | Zero findings; exit 0 |
-| REQ-003 | `verify_alignment_drift.py --root .opencode/commands/spec_kit/assets` PASS | Zero findings; exit 0 |
+| REQ-003 | `verify_alignment_drift.py --root .opencode/commands/speckit/assets` PASS | Zero findings; exit 0 |
 | REQ-004 | `validate.sh ... --recursive --strict` PASS | Parent + 8 children all PASS strict; exit 0 |
 | REQ-005 | Zero consumer references to `mcp__mk_spec_memory__deep_loop_graph_` outside `specs/` | `grep -rE "mcp__mk_spec_memory__deep_loop_graph_" .opencode/ \| grep -v specs/` returns zero lines |
 | REQ-006 | `deep-review/SKILL.md` version bumped to 1.4.0.0 | Frontmatter `version: 1.4.0.0`; grep confirms |

@@ -288,7 +288,7 @@ Deliverables: architecture verdict with rationale; if new skill — full frontma
 | R-003 | Convergence false-positive (3 low-newInfo iters by accident) | M | M | Synthesis pass MUST cover all 5 RQs; if convergence fires before RQ5 explored, force extra synthesis iter | YAML workflow |
 | R-004 | RQ5 punts to "further investigation" with no actionable verdict | M | H | SC-003 + CHK-050 enforce explicit verdict; checklist gates block "done" claim | main agent (synthesis review) |
 | R-005 | Deltas overlap with already-shipped 113-arc findings | M | L | Per-iter prompt explicitly excludes the 7 shipped items listed in preflight card | iter prompts |
-| R-006 | Stuck recovery > 3 consecutive iter failures | L | H | Manual intervention via `/spec_kit:resume` with fresh strategy.md focus | user |
+| R-006 | Stuck recovery > 3 consecutive iter failures | L | H | Manual intervention via `/speckit:resume` with fresh strategy.md focus | user |
 | R-007 | Pro-quota burn for follow-on packets (out of scope here) | n/a | n/a | Each follow-on packet plans its own executor | n/a |
 <!-- /ANCHOR:risk-matrix -->
 

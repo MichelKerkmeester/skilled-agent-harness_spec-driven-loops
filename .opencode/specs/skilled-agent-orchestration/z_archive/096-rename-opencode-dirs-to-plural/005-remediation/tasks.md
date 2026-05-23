@@ -78,7 +78,7 @@ _memory:
 - [x] T033 Adjacent packets 093/094/095 still PASS
 - [x] T034 Smart-router smoke: PATHS PASS (was 8 errors pre-fix)
 - [x] T035 audit_descriptions.py zero-inventory smoke: exit 2
-- [x] T036 Native advisor /spec_kit:deep-review smoke: confidence 0.82
+- [x] T036 Native advisor /speckit:deep-review smoke: confidence 0.82
 - [x] T037 resolveArtifactRoot adversarial smoke: BLOCKED on metacharacters
 - [x] T038 Author implementation-summary.md
 - [x] T039 Update graph-metadata.json status: complete

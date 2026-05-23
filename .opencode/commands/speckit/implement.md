@@ -11,8 +11,8 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory
 > **YOUR FIRST ACTION:**
 > 1. Determine execution mode from user input (`:auto` or `:confirm`)
 > 2. Load the corresponding YAML file from `assets/`:
->    - Auto mode → `spec_kit_implement_auto.yaml`
->    - Confirm mode → `spec_kit_implement_confirm.yaml`
+>    - Auto mode → `speckit_implement_auto.yaml`
+>    - Confirm mode → `speckit_implement_confirm.yaml`
 > 3. Execute the YAML workflow step by step
 >
 > All content below is reference context for the YAML workflow. Do not treat reference sections, routing tables, or dispatch templates as direct instructions to execute.
@@ -43,11 +43,11 @@ Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_
 
 Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 
-1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/implement-config.json` (shape: `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `confirmChoice`, `resumeChoice`, `prerequisitesValid`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`. End §0.
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/implement-config.json` (shape: `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `confirmChoice`, `resumeChoice`, `prerequisitesValid`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/speckit/assets/speckit_implement_auto.yaml`. End §0.
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`, `resume_choice`. **Ordering rule**: ask only for `spec_folder` first when folder detection is ambiguous — prerequisite and resume-session checks depend on it. Missing `spec_folder` with no viable candidates is absence, not ambiguity — go to Tier 3.
 
-3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/spec_kit:implement:auto` as the command name. Exit non-zero. Do not load YAML.
+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/speckit:implement:auto` as the command name. Exit non-zero. Do not load YAML.
 
 `:confirm` path stays unchanged — see the consolidated setup prompt section below.
 
@@ -152,7 +152,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
 10. Handle redirects:
     - confirm_choice == B -> Re-prompt folder selection
-    - confirm_choice == C -> Redirect to /spec_kit:plan
+    - confirm_choice == C -> Redirect to /speckit:plan
 
 11. Execute background operations:
     - memory_choice A: load most recent | B: load up to 3 | multi_*: note parallel dispatch
@@ -174,9 +174,9 @@ NEVER split into multiple prompts
 
 # SpecKit Implement
 
-Execute implementation of a pre-planned feature. Requires existing spec.md and plan.md from a prior `/spec_kit:plan` workflow.
+Execute implementation of a pre-planned feature. Requires existing spec.md and plan.md from a prior `/speckit:plan` workflow.
 
-> Standalone workflow (9 steps) that assumes spec.md and plan.md exist. Run `/spec_kit:plan` first if needed.
+> Standalone workflow (9 steps) that assumes spec.md and plan.md exist. Run `/speckit:plan` first if needed.
 
 ```yaml
 role: Expert Developer using Smart SpecKit for Implementation Phase
@@ -196,7 +196,7 @@ operating_mode:
 
 ## 1. PURPOSE
 
-Run the 9-step implementation workflow: plan review, task breakdown, quality validation, development, completion summary, and workflow closeout. Picks up where `/spec_kit:plan` left off.
+Run the 9-step implementation workflow: plan review, task breakdown, quality validation, development, completion summary, and workflow closeout. Picks up where `/speckit:plan` left off.
 
 ---
 
@@ -210,7 +210,7 @@ Run the 9-step implementation workflow: plan review, task breakdown, quality val
 **REQUIRED (all levels):** spec.md, plan.md, tasks.md (created if missing)
 **REQUIRED Level 2+:** checklist.md
 
-Missing prerequisites -> guide user to `/spec_kit:plan` first.
+Missing prerequisites -> guide user to `/speckit:plan` first.
 
 ### Completion Validation
 
@@ -260,8 +260,8 @@ Use `memory_context()` (L1 unified entry) as primary retrieval. Use `memory_sear
 
 After all phases pass, load and execute the appropriate YAML prompt:
 
-- **AUTONOMOUS**: `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`
-- **INTERACTIVE**: `.opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml`
+- **AUTONOMOUS**: `.opencode/commands/speckit/assets/speckit_implement_auto.yaml`
+- **INTERACTIVE**: `.opencode/commands/speckit/assets/speckit_implement_confirm.yaml`
 
 The YAML contains detailed step-by-step workflow, field extraction rules, completion report format, and all configuration.
 
@@ -367,7 +367,7 @@ Reference: `.opencode/skills/system-spec-kit/references/memory/epistemic_vectors
 
 ---
 
-## 11. KEY DIFFERENCES FROM /SPEC_KIT:COMPLETE
+## 11. KEY DIFFERENCES FROM /SPECKIT:COMPLETE
 
 - Requires existing plan (won't create spec.md/plan.md)
 - Starts at implementation (skips specification/planning)
@@ -384,8 +384,8 @@ Runs automatically: **PLACEHOLDER_FILLED** (replace `[PLACEHOLDER]`), **PRIORITY
 ## 13. EXAMPLES
 
 ```
-/spec_kit:implement:auto specs/042-user-auth/       # Autonomous mode
-/spec_kit:implement:confirm specs/042-user-auth/    # Interactive mode
+/speckit:implement:auto specs/042-user-auth/       # Autonomous mode
+/speckit:implement:confirm specs/042-user-auth/    # Interactive mode
 ```
 
 ---
@@ -393,10 +393,10 @@ Runs automatically: **PLACEHOLDER_FILLED** (replace `[PLACEHOLDER]`), **PRIORITY
 ## 14. COMMAND CHAIN
 
 ```
-[/spec_kit:plan] -> /spec_kit:implement -> [/memory:save]
+[/speckit:plan] -> /speckit:implement -> [/memory:save]
 ```
 
-Prerequisite: `/spec_kit:plan [feature-description]` (creates spec.md, plan.md)
+Prerequisite: `/speckit:plan [feature-description]` (creates spec.md, plan.md)
 
 ---
 
@@ -408,7 +408,7 @@ Prerequisite: `/spec_kit:plan [feature-description]` (creates spec.md, plan.md)
 | Need to refresh search support | `/memory:save [spec-folder-path]`     | Refresh the indexed canonical spec document while canonical continuity stays in spec docs |
 | Ending session            | `/memory:save [spec-folder-path]`          | Refresh canonical continuity before pausing |
 | Found bugs during testing | `Task tool → @debug`                       | User-dispatched fresh-perspective debugging (workflow prompts; user opts in) |
-| Ready for next feature    | `/spec_kit:complete [feature-description]` | Start new workflow              |
-| Need crash recovery       | `/spec_kit:resume`                         | Session recovery and continuation |
+| Ready for next feature    | `/speckit:complete [feature-description]` | Start new workflow              |
+| Need crash recovery       | `/speckit:resume`                         | Session recovery and continuation |
 
 **ALWAYS** end with: "What would you like to do next?"

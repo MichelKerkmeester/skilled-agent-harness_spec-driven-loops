@@ -29,7 +29,7 @@ confidence: high
 finding: Fresh context per attempt is portable and already culturally compatible with `system-spec-kit`. The repo does not need to invent a new memory model for retries; it can extend the existing fresh-context plus externalized-state pattern from deep research into implementation retry flows.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`
+- **Target file or module:** `.opencode/commands/speckit/assets/speckit_implement_auto.yaml`
 - **Change type:** modified existing
 - **Blast radius:** medium
 - **Prerequisites:** define attempt-state files and a leaf-agent dispatch contract for implementation retries

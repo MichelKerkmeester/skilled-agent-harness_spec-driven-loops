@@ -13,7 +13,7 @@ Read the progress log instructions in `external/prompt.md` and `external/README.
 - Ralph requires every iteration to append implementation notes, changed files, and "Learnings for future iterations" to `progress.txt`. [SOURCE: external/prompt.md:18-35]
 - Ralph also requires a reusable `## Codebase Patterns` section at the top of `progress.txt` for durable, non-story-specific learnings. [SOURCE: external/prompt.md:37-48]
 - The README names `progress.txt` as a key file, describes it as append-only learnings for future iterations, and ties it directly to the fresh-context model. [SOURCE: external/README.md:129-141] [SOURCE: external/README.md:165-168]
-- `system-spec-kit` handover output is rich but episodic: it captures session summary, current state, decisions, blockers, and continuation instructions for a single handoff event. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_handover_full.yaml:41-53] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_handover_full.yaml:149-166]
+- `system-spec-kit` handover output is rich but episodic: it captures session summary, current state, decisions, blockers, and continuation instructions for a single handoff event. [SOURCE: .opencode/commands/speckit/assets/speckit_handover_full.yaml:41-53] [SOURCE: .opencode/commands/speckit/assets/speckit_handover_full.yaml:149-166]
 - The handover template similarly preserves cross-session context, but it is not append-only and does not maintain a continuously updated "patterns discovered" digest. [SOURCE: .opencode/skills/system-spec-kit/templates/handover.md:42-77]
 
 ## Analysis

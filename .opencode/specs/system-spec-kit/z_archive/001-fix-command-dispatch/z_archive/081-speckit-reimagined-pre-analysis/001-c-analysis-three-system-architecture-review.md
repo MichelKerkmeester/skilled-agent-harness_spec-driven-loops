@@ -4,17 +4,17 @@
 
 ---
 
-# Technical Analysis: Three AI Memory Systems for system-speckit Enhancement
+# Technical Analysis: Three AI Memory Systems for system-spec-kit Enhancement
 
 > **Research Date:** 2026-02-01
 > **Systems Analyzed:** dotmd, seu-claude, drift
-> **Purpose:** Extract actionable patterns for system-speckit improvement
+> **Purpose:** Extract actionable patterns for system-spec-kit improvement
 
 ---
 
 ## Executive Summary
 
-This analysis examines three open-source AI context management systems to identify patterns applicable to system-speckit. Each system solves the fundamental problem of AI context preservation differently:
+This analysis examines three open-source AI context management systems to identify patterns applicable to system-spec-kit. Each system solves the fundamental problem of AI context preservation differently:
 
 | System | Primary Innovation | Architecture | Scale |
 |--------|-------------------|--------------|-------|
@@ -22,7 +22,7 @@ This analysis examines three open-source AI context management systems to identi
 | **seu-claude** | Crash-resilient Task DAG with state recovery | Hexagonal TypeScript | 9 MCP tools |
 | **drift** | Self-correcting Cortex memory with confidence decay | Monorepo with Rust core | 50+ MCP tools |
 
-**Key Finding:** system-speckit already implements state-of-the-art FSRS-based memory decay (validated on 100M+ reviews), but can benefit from patterns in graph relationships, crash recovery, and learning-from-corrections.
+**Key Finding:** system-spec-kit already implements state-of-the-art FSRS-based memory decay (validated on 100M+ reviews), but can benefit from patterns in graph relationships, crash recovery, and learning-from-corrections.
 
 ---
 
@@ -330,7 +330,7 @@ Confidence = (frequency * 0.3) + (feedback_ratio * 0.4) +
 
 ### 4.1 Context Preservation Comparison
 
-| Aspect | dotmd | seu-claude | drift | system-speckit |
+| Aspect | dotmd | seu-claude | drift | system-spec-kit |
 |--------|-------|------------|-------|----------------|
 | **Storage** | LanceDB + SQLite + Graph | SQLite | SQLite + Files | SQLite |
 | **Retrieval** | RRF Fusion | Hybrid search | Intent-aware | Hybrid + RRF |
@@ -346,11 +346,11 @@ Confidence = (frequency * 0.3) + (feedback_ratio * 0.4) +
 | **dotmd** | BGE embeddings | BM25 | LadybugDB | RRF (k=60) |
 | **seu-claude** | HuggingFace | Basic | None | Priority-based |
 | **drift** | Multi-provider | BM25 | None | Intent-weighted |
-| **system-speckit** | Voyage/OpenAI/HF | FTS5 | None | RRF + convergence bonus |
+| **system-spec-kit** | Voyage/OpenAI/HF | FTS5 | None | RRF + convergence bonus |
 
 ### 4.3 MCP Server Pattern Comparison
 
-| Aspect | dotmd | seu-claude | drift | system-speckit |
+| Aspect | dotmd | seu-claude | drift | system-spec-kit |
 |--------|-------|------------|-------|----------------|
 | **Tool Count** | 4 | 9 | 50+ | 17+ |
 | **Init Pattern** | Lazy singleton | Lazy + warmup | Async warmup | Background scan |
@@ -370,7 +370,7 @@ Confidence = (frequency * 0.3) + (feedback_ratio * 0.4) +
 4. **Tool Output Caching (seu-claude)**: Prevents redundant expensive operations
 5. **Learning from Corrections (drift)**: Adaptive memory strength based on feedback
 
-### 5.2 Patterns Already Strong in system-speckit
+### 5.2 Patterns Already Strong in system-spec-kit
 
 1. **FSRS Power-Law Decay**: R(t,S) = (1 + 0.235 × t/S)^(-0.5) - most rigorous model found
 2. **6-Tier Importance System**: constitutional/critical/important/normal/temporary/deprecated
@@ -398,7 +398,7 @@ Confidence = (frequency * 0.3) + (feedback_ratio * 0.4) +
 | Task DAG crash recovery | A | seu-claude documentation + code |
 | Cortex memory types | A | drift/packages/cortex |
 | Layered tool architecture | A | drift/packages/mcp |
-| FSRS decay comparison | A | system-speckit + external validation |
+| FSRS decay comparison | A | system-spec-kit + external validation |
 
 ---
 
@@ -410,7 +410,7 @@ All three systems address AI context preservation with distinct approaches:
 - **seu-claude** excels at resilience through persistent state
 - **drift** excels at adaptability through learning memory
 
-system-speckit already has strong foundations (FSRS decay, 6-tier importance, ANCHOR format). The primary opportunities lie in adopting:
+system-spec-kit already has strong foundations (FSRS decay, 6-tier importance, ANCHOR format). The primary opportunities lie in adopting:
 1. Graph-based relationship tracking from dotmd
 2. Crash recovery patterns from seu-claude
 3. Learning-from-corrections from drift

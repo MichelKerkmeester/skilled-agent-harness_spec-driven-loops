@@ -16,7 +16,7 @@ description: Final deep-review synthesis for the sk-improve-agent to deep-agent-
 
 ## Planning Trigger
 
-`/spec_kit:plan` is required for remediation because three active P1 findings remain. The review did not modify implementation files.
+`/speckit:plan` is required for remediation because three active P1 findings remain. The review did not modify implementation files.
 
 ```json
 {

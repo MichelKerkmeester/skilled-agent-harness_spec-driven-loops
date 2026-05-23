@@ -43,7 +43,7 @@ extended across 16 playbooks in 094.
 ## 4. NON-GOALS
 
 - Re-running each individual deep-review iteration loop already shipped within those packets (095 already executed sk-code-review playbook end-to-end).
-- Implementation of remediation fixes — produces Plan Seed for `/spec_kit:plan` if FAIL/CONDITIONAL.
+- Implementation of remediation fixes — produces Plan Seed for `/speckit:plan` if FAIL/CONDITIONAL.
 - Test execution beyond what cli-codex can reasonably perform inline (`bash` invocations of `validate.sh`, `skill_advisor.py` smoke checks, targeted `vitest`).
 - Per-line code review of every touched file in 096 (~11k files would exceed budget; we sample by category).
 - Auditing barter/coder/ sibling repo content (per memory: only canonical + AGENTS_Barter.md symlink synced).
@@ -131,7 +131,7 @@ Iteration 10 confirmed all active finding classifications and severity dispositi
 
 3. **`.opencode/install_guides/SET-UP - AGENTS.md`** — multiple `.opencode/command/` (singular) references inside install/troubleshooting guidance. **Severity hint: P1 documentation correctness.**
 
-4. **`.opencode/commands/spec_kit/deep-review.md` and `deep-research.md`** — references to `sk-deep-review`/`sk-deep-research` that were renamed in packet 070 but never updated here. Same drift inside `.opencode/commands/spec_kit/assets/spec_kit_deep-review_*.yaml` `skill_reference` and `template_path:` fields. The actual skill folders are `.opencode/skills/deep-review/` and `.opencode/skills/deep-research/`. **Severity hint: P1 — workflow templates point to non-existent paths; loop manager has to substitute the right path manually each dispatch. Could P0 if any automation literally reads those paths.**
+4. **`.opencode/commands/speckit/deep-review.md` and `deep-research.md`** — references to `sk-deep-review`/`sk-deep-research` that were renamed in packet 070 but never updated here. Same drift inside `.opencode/commands/speckit/assets/speckit_deep-review_*.yaml` `skill_reference` and `template_path:` fields. The actual skill folders are `.opencode/skills/deep-review/` and `.opencode/skills/deep-research/`. **Severity hint: P1 — workflow templates point to non-existent paths; loop manager has to substitute the right path manually each dispatch. Could P0 if any automation literally reads those paths.**
 
 5. **`barter/README.md:151-152`** — singular `.opencode/agent/` and `.opencode/command/` in the architecture diagram. Per project memory, `barter/coder/` is a sibling-repo mirror; root `barter/README.md` is shared. **Severity hint: P1 doc sync.**
 
@@ -385,10 +385,10 @@ Iteration 10 confirmed all active finding classifications and severity dispositi
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: No root-summary mismatch was found for parsed per-feature prompt IDs in the 16 direct playbooks.
 
-### P1-002 remains P1: auto command YAML uses non-existent `sk-deep-review` paths at `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:56-64`; this is command-owned workflow input, not commentary. -- BLOCKED (iteration 7, 1 attempts)
-- What was tried: P1-002 remains P1: auto command YAML uses non-existent `sk-deep-review` paths at `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:56-64`; this is command-owned workflow input, not commentary.
+### P1-002 remains P1: auto command YAML uses non-existent `sk-deep-review` paths at `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:56-64`; this is command-owned workflow input, not commentary. -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: P1-002 remains P1: auto command YAML uses non-existent `sk-deep-review` paths at `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:56-64`; this is command-owned workflow input, not commentary.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: P1-002 remains P1: auto command YAML uses non-existent `sk-deep-review` paths at `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:56-64`; this is command-owned workflow input, not commentary.
+- Do NOT retry: P1-002 remains P1: auto command YAML uses non-existent `sk-deep-review` paths at `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:56-64`; this is command-owned workflow input, not commentary.
 
 ### P1-003 remains P1: source writes advisor generation state to `.opencode/skill/.advisor-state` at `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts:12`; this conflicts with the plural `.gitignore` state path at `.gitignore:44`. -- BLOCKED (iteration 7, 1 attempts)
 - What was tried: P1-003 remains P1: source writes advisor generation state to `.opencode/skill/.advisor-state` at `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts:12`; this conflicts with the plural `.gitignore` state path at `.gitignore:44`.
@@ -430,10 +430,10 @@ Iteration 10 confirmed all active finding classifications and severity dispositi
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: P1-011 remains P1: `.opencode/agents/orchestrate.md:96` is an active routing table that names retired `sk-deep-research`.
 
-### P1-012 remains P1: confirm-mode YAML mirrors the same live workflow defect as auto mode at `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:56-64`. -- BLOCKED (iteration 7, 1 attempts)
-- What was tried: P1-012 remains P1: confirm-mode YAML mirrors the same live workflow defect as auto mode at `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:56-64`.
+### P1-012 remains P1: confirm-mode YAML mirrors the same live workflow defect as auto mode at `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:56-64`. -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: P1-012 remains P1: confirm-mode YAML mirrors the same live workflow defect as auto mode at `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:56-64`.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: P1-012 remains P1: confirm-mode YAML mirrors the same live workflow defect as auto mode at `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:56-64`.
+- Do NOT retry: P1-012 remains P1: confirm-mode YAML mirrors the same live workflow defect as auto mode at `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:56-64`.
 
 ### Packet 095 Level 1 packet does not require a checklist; its aggregate 18/18 PASS table matches the sampled `REQ-001..003` execution/result claims. -- BLOCKED (iteration 4, 1 attempts)
 - What was tried: Packet 095 Level 1 packet does not require a checklist; its aggregate 18/18 PASS table matches the sampled `REQ-001..003` execution/result claims.

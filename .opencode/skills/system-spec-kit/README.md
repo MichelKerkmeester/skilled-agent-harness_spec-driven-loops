@@ -68,8 +68,8 @@ Context survives across sessions through persistent semantic memory and session 
 - **Spec Folder Workflow**. Creates mandatory documentation for every file-modifying conversation, scaled to 4 levels based on scope and risk, with packet-local changelog closeout for packet roots and child phases.
 - **Level Contract Templates**. Manifest template architecture where each level resolves the files and sections it needs.
 - **Spec Kit Memory MCP**. 54-tool MCP server providing persistent semantic memory, causal and degree retrieval, and session orchestration across sessions, models and tools.
-- **Startup and Recovery Surfaces**. `/spec_kit:resume` is the canonical operator-facing recovery surface. Under the hood, startup and recovery rebuild active context from `handover.md`, then `_memory.continuity`, then canonical spec docs.
-- **Session Continuity**. `generate-context.js` updates canonical continuity surfaces and refreshes packet metadata on every `/memory:save` invocation so `/spec_kit:resume` can rebuild the next session from packet-local sources.
+- **Startup and Recovery Surfaces**. `/speckit:resume` is the canonical operator-facing recovery surface. Under the hood, startup and recovery rebuild active context from `handover.md`, then `_memory.continuity`, then canonical spec docs.
+- **Session Continuity**. `generate-context.js` updates canonical continuity surfaces and refreshes packet metadata on every `/memory:save` invocation so `/speckit:resume` can rebuild the next session from packet-local sources.
 - **Validation Scripts**. 20-rule validation, continuity freshness checks, and strict EVIDENCE-marker linting for spec folders.
 - **Phase Decomposition**. Parent and child spec folder structure for multi-session, multi-phase work.
 - **Constitutional Memory**. Always-surface rules with a 3.0x boost that never decay, like pinned notes that show up in every search.
@@ -134,7 +134,7 @@ Every canonical save now refreshes `description.json.lastUpdated` and `graph-met
 Start a new session on work you did before:
 
 ```text
-/spec_kit:resume
+/speckit:resume
 ```
 
 The system rebuilds continuation context in a fixed order: `handover.md` first, then `_memory.continuity`, then the packet's canonical spec docs. It presents the current state, prior decisions, touched files, and next steps before you start.
@@ -206,7 +206,7 @@ The LOC ranges are guidance, not hard rules. Risk, complexity and the number of 
 
 **Implementation-summary.md** is required at all levels but created **after** implementation completes, not at spec folder creation time.
 
-Packet-local changelogs are additive, not a replacement for `implementation-summary.md`. When the target is a packet root or direct child phase, `/spec_kit:implement`, `/spec_kit:complete`, and the nested changelog workflow can write packet history into a local `changelog/` directory using the canonical root/phase naming rules.
+Packet-local changelogs are additive, not a replacement for `implementation-summary.md`. When the target is a packet root or direct child phase, `/speckit:implement`, `/speckit:complete`, and the nested changelog workflow can write packet history into a local `changelog/` directory using the canonical root/phase naming rules.
 
 #### Spec Folder Structure
 
@@ -221,15 +221,15 @@ specs/<###-feature-name>/
 ├── checklist.md                 # QA validation gates (Level 2+)
 ├── decision-record.md           # Architecture decisions (Level 3+)
 ├── implementation-summary.md    # Post-implementation summary (all levels)
-├── handover.md                  # Operator-facing session handoff for /spec_kit:resume
+├── handover.md                  # Operator-facing session handoff for /speckit:resume
 ├── resource-map.md              # Optional lean path catalog (any level)
 ├── changelog/                   # Packet-local changelog history for packet roots / phase parents
 └── scratch/                     # Temporary workspace files (gitignored)
 ```
 
-`generate-context.js` updates the packet's continuity state for `/spec_kit:resume`, refreshes `description.json.lastUpdated`, and rewrites `graph-metadata.json` derived fields on every canonical save; recovery then rebuilds context from `handover.md`, `_memory.continuity`, and the packet docs.
+`generate-context.js` updates the packet's continuity state for `/speckit:resume`, refreshes `description.json.lastUpdated`, and rewrites `graph-metadata.json` derived fields on every canonical save; recovery then rebuilds context from `handover.md`, `_memory.continuity`, and the packet docs.
 
-**Phase parents** are an exception. When a folder contains phase children (matching `^[0-9]{3}-[a-z0-9-]+$` with their own `spec.md` or `description.json`), the parent only requires the **lean trio**: `spec.md`, `description.json`, `graph-metadata.json`. Heavy docs (`plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`) live exclusively in the children where they stay accurate to that phase's actual work. The parent's `spec.md` carries a Phase Documentation Map; the parent's `graph-metadata.json` carries `derived.last_active_child_id` + `derived.last_active_at` pointer fields that the generator atomically updates on every save (parent saves write `null`; child saves bubble up the child's `packet_id`). `/spec_kit:resume` reads the pointer first when the target is a phase parent. A fresh pointer (<24h) recurses directly into the active child. A stale or missing pointer falls back to listing children with statuses. Detection is a single source of truth: `is_phase_parent()` (shell) and `isPhaseParent()` (ESM JS) MUST agree.
+**Phase parents** are an exception. When a folder contains phase children (matching `^[0-9]{3}-[a-z0-9-]+$` with their own `spec.md` or `description.json`), the parent only requires the **lean trio**: `spec.md`, `description.json`, `graph-metadata.json`. Heavy docs (`plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`) live exclusively in the children where they stay accurate to that phase's actual work. The parent's `spec.md` carries a Phase Documentation Map; the parent's `graph-metadata.json` carries `derived.last_active_child_id` + `derived.last_active_at` pointer fields that the generator atomically updates on every save (parent saves write `null`; child saves bubble up the child's `packet_id`). `/speckit:resume` reads the pointer first when the target is a phase parent. A fresh pointer (<24h) recurses directly into the active child. A stale or missing pointer falls back to listing children with statuses. Detection is a single source of truth: `is_phase_parent()` (shell) and `isPhaseParent()` (ESM JS) MUST agree.
 
 #### Checklist Priority System (Level 2+)
 
@@ -392,11 +392,11 @@ Spec Kit exposes 13 top-level workflow commands: 9 `spec_kit` + 4 `memory` opera
 
 | Command                 | Steps | Purpose                                                                                                                          |
 | ----------------------- | ----- | -------------------------------------------------------------------------------------------------------------------------------- |
-| `/spec_kit:plan --intake-only` | N/A   | Standalone intake interview that publishes `spec.md`, `description.json`, and `graph-metadata.json`                        |
-| `/spec_kit:complete`    | 14    | Full end-to-end workflow: spec through implementation, verification, and packet-local changelog closeout, with the shared intake contract from [intake-contract.md](./references/intake-contract.md) when intake is still needed |
-| `/spec_kit:plan`        | 7     | Planning only -- spec through plan, no implementation, with the shared intake contract from [intake-contract.md](./references/intake-contract.md) for `no-spec`, `partial-folder`, `repair-mode`, or `placeholder-upgrade` packets |
-| `/spec_kit:implement`   | 9     | Execute pre-planned work. Requires existing `plan.md`; packet-aware targets also generate local changelog output during closeout |
-| `/spec_kit:resume`      | 4     | Resume a previous session on an existing spec folder                                                                             |
+| `/speckit:plan --intake-only` | N/A   | Standalone intake interview that publishes `spec.md`, `description.json`, and `graph-metadata.json`                        |
+| `/speckit:complete`    | 14    | Full end-to-end workflow: spec through implementation, verification, and packet-local changelog closeout, with the shared intake contract from [intake-contract.md](./references/intake-contract.md) when intake is still needed |
+| `/speckit:plan`        | 7     | Planning only -- spec through plan, no implementation, with the shared intake contract from [intake-contract.md](./references/intake-contract.md) for `no-spec`, `partial-folder`, `repair-mode`, or `placeholder-upgrade` packets |
+| `/speckit:implement`   | 9     | Execute pre-planned work. Requires existing `plan.md`; packet-aware targets also generate local changelog output during closeout |
+| `/speckit:resume`      | 4     | Resume a previous session on an existing spec folder                                                                             |
 | `/deep:start-research-loop` | N/A | Autonomous research loop with convergence detection plus bounded `spec.md` anchoring under [spec_check_protocol.md](../deep-research/references/spec_check_protocol.md) |
 | `/deep:start-review-loop` | N/A   | Autonomous code review loop with convergence detection                                                                           |
 
@@ -407,9 +407,9 @@ Spec Kit exposes 13 top-level workflow commands: 9 `spec_kit` + 4 `memory` opera
 | `:auto`          | Execute without approval gates                                                                        |
 | `:confirm`       | Pause at each step for approval                                                                       |
 | `:with-phases`   | Phase decomposition mode on planning / completion flows, not a standalone command                     |
-| `:with-research` | Dispatch deep research before verification (`/spec_kit:complete` only)                               |
+| `:with-research` | Dispatch deep research before verification (`/speckit:complete` only)                               |
 
-**Command source files**: `.opencode/commands/spec_kit/`
+**Command source files**: `.opencode/commands/speckit/`
 
 #### Memory Commands (4)
 
@@ -420,7 +420,7 @@ Spec Kit exposes 13 top-level workflow commands: 9 `spec_kit` + 4 `memory` opera
 | `/memory:manage` | 20         | Database maintenance and lifecycle operations: stats, scan, cleanup, bulk-delete, checkpoints, and ingest |
 | `/memory:learn`  | 6          | Constitutional memory manager: create, list, edit, remove always-surface rules                                                          |
 
-Session recovery lives in `/spec_kit:resume`, which rebuilds packet context in this order: `handover.md`, then `_memory.continuity`, then canonical spec docs before deeper memory retrieval is needed.
+Session recovery lives in `/speckit:resume`, which rebuilds packet context in this order: `handover.md`, then `_memory.continuity`, then canonical spec docs before deeper memory retrieval is needed.
 
 Some commands own their tools (they are the primary home) while others borrow tools from `/memory:search` or `/memory:manage`. A borrowed tool works the same way -- it is just administered somewhere else.
 
@@ -582,11 +582,11 @@ Think of Spec Kit as a filing system with a librarian attached.
 
 The **spec folder workflow** is the filing system. Every time you modify files, it creates a numbered folder with the right paperwork (specification, plan, tasks). Templates make sure every folder follows the same structure. Validation checks that nothing is missing.
 
-The **memory system** is the librarian. When a session ends, `generate-context.js` updates the packet's canonical continuity surfaces so the next session can recover from packet-local sources first. The MCP server indexes those packet docs into vector, FTS5, and BM25 surfaces, while graph and degree signals are computed at retrieval time. When a new session starts, `/spec_kit:resume` rebuilds context from `handover.md`, `_memory.continuity`, and the packet docs. If you need deeper retrieval after that, `session_bootstrap()` bundles resume context, health, and structural readiness into one follow-up recovery call before broader `memory_context` work begins.
+The **memory system** is the librarian. When a session ends, `generate-context.js` updates the packet's canonical continuity surfaces so the next session can recover from packet-local sources first. The MCP server indexes those packet docs into vector, FTS5, and BM25 surfaces, while graph and degree signals are computed at retrieval time. When a new session starts, `/speckit:resume` rebuilds context from `handover.md`, `_memory.continuity`, and the packet docs. If you need deeper retrieval after that, `session_bootstrap()` bundles resume context, health, and structural readiness into one follow-up recovery call before broader `memory_context` work begins.
 
-The **commands** are the doors into the system. Each command opens access to the tools it needs. `/spec_kit:plan --intake-only` owns the standalone intake surface, `/spec_kit:plan` and `/spec_kit:complete` reuse the shared intake contract from [intake-contract.md](./references/intake-contract.md) when the Step 0 local `folder_state` requires delegation, and downstream callers should consume the returned `start_state` as the canonical intake enum. `/deep:start-research-loop` anchors research to `spec.md` through [spec_check_protocol.md](../deep-research/references/spec_check_protocol.md). `/memory:save` updates packet continuity. `/spec_kit:resume` recovers or continues a previous session.
+The **commands** are the doors into the system. Each command opens access to the tools it needs. `/speckit:plan --intake-only` owns the standalone intake surface, `/speckit:plan` and `/speckit:complete` reuse the shared intake contract from [intake-contract.md](./references/intake-contract.md) when the Step 0 local `folder_state` requires delegation, and downstream callers should consume the returned `start_state` as the canonical intake enum. `/deep:start-research-loop` anchors research to `spec.md` through [spec_check_protocol.md](../deep-research/references/spec_check_protocol.md). `/memory:save` updates packet continuity. `/speckit:resume` recovers or continues a previous session.
 
-The common packet lifecycle now uses `/spec_kit:plan --intake-only` for standalone trio creation or repair, `/deep:start-research-loop` can enrich that packet under the bounded `spec_check_protocol.md` rules, and `/spec_kit:plan` or `/spec_kit:complete` continue from the same folder without reopening intake unless the local `folder_state` still requires repair. When intake does run, `start_state` is the canonical downstream field.
+The common packet lifecycle now uses `/speckit:plan --intake-only` for standalone trio creation or repair, `/deep:start-research-loop` can enrich that packet under the bounded `spec_check_protocol.md` rules, and `/speckit:plan` or `/speckit:complete` continue from the same folder without reopening intake unless the local `folder_state` still requires repair. When intake does run, `start_state` is the canonical downstream field.
 
 ```text
 Session starts
@@ -605,7 +605,7 @@ Session starts
             │
             ▼
   Next session starts
-  └─► /spec_kit:resume reads handover.md -> _memory.continuity -> packet docs
+  └─► /speckit:resume reads handover.md -> _memory.continuity -> packet docs
        └─► session_bootstrap() or memory_context() deepen retrieval when needed
        └─► AI resumes with context + health + structural readiness
 ```
@@ -720,7 +720,7 @@ Fill `spec.md`, `plan.md`, `tasks.md` and `checklist.md` by running `create.sh -
 You worked on a feature yesterday and want to pick up where you left off:
 
 ```text
-/spec_kit:resume
+/speckit:resume
 ```
 
 The system searches for your most recent context, presents your prior decisions and file changes, and routes you to the right next command. If it finds multiple candidates, it presents alternatives for you to choose from.
@@ -760,7 +760,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/create.sh \
 # .opencode/specs/[project]/022-big-feature/001-phase/ (first child)
 ```
 
-Use `/spec_kit:plan :with-phases` or `/spec_kit:complete :with-phases` to create phase structures, track progress across children, validate the entire hierarchy, and keep packet-local changelog history in the parent packet as phases close.
+Use `/speckit:plan :with-phases` or `/speckit:complete :with-phases` to create phase structures, track progress across children, validate the entire hierarchy, and keep packet-local changelog history in the parent packet as phases close.
 
 **Result**: A coordinated parent/child folder structure for multi-session work.
 
@@ -793,7 +793,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
 | Architecture change           | `create.sh NNN-name` + Level 3      | 500+ LOC, multiple systems        |
 | Multi-phase work              | `create.sh NNN-name --phase`        | Large features, multiple sessions |
 | Save session progress         | `/memory:save [folder]`             | Before ending any session         |
-| Recover after crash           | `/spec_kit:resume`                  | Session interrupted unexpectedly  |
+| Recover after crash           | `/speckit:resume`                  | Session interrupted unexpectedly  |
 | Check prior decisions         | `/memory:search "query"`            | Starting a related task           |
 | Upgrade documentation level   | `upgrade-level.sh [folder] [level]` | Scope grew beyond original level  |
 | Create always-surface rule    | `/memory:learn`                     | Team standards, workflow rules    |
@@ -905,7 +905,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh \
 | `generate-context.js` not found  | Run `npm run build` in `system-spec-kit/`                                       |
 | Spec folder fails validation     | Run `validate.sh --verbose` and read each failing rule                          |
 | Memory context seems wrong       | Call `memory_stats({})` to check index counts                                   |
-| Session context lost after crash | Use `/spec_kit:resume` to rebuild from `handover.md`, `_memory.continuity`, and packet docs |
+| Session context lost after crash | Use `/speckit:resume` to rebuild from `handover.md`, `_memory.continuity`, and packet docs |
 | Placeholder check fails          | Run `check-placeholders.sh` and replace all `[PLACEHOLDER]` values              |
 | Stale results after save         | Call `memory_index_scan({ specFolder: "..." })` to force re-index               |
 | Too many near-duplicate results  | Check that interference penalty is active in feature flags                      |
@@ -956,13 +956,13 @@ A: Level 3 adds a `decision-record.md` for architecture decision records. Use it
 
 **Q: How do spec folders and memory work together?**
 
-A: Spec folders capture what happened in structured documentation. `generate-context.js` updates the packet's canonical continuity surfaces, and `/spec_kit:resume` rebuilds the next session from `handover.md`, `_memory.continuity`, and the packet docs. The MCP server indexes those packet-local sources so deeper retrieval can still use `session_bootstrap()`, `memory_context()`, or `memory_match_triggers()` after the canonical resume step. One side captures, the recovery surfaces retrieve.
+A: Spec folders capture what happened in structured documentation. `generate-context.js` updates the packet's canonical continuity surfaces, and `/speckit:resume` rebuilds the next session from `handover.md`, `_memory.continuity`, and the packet docs. The MCP server indexes those packet-local sources so deeper retrieval can still use `session_bootstrap()`, `memory_context()`, or `memory_match_triggers()` after the canonical resume step. One side captures, the recovery surfaces retrieve.
 
 ---
 
 **Q: Can I use memory without spec folders?**
 
-A: The indexed-continuity store can index any markdown file, beyond spec folder contents. But for implementation work the canonical continuity path is the spec folder itself: `generate-context.js` updates packet-local continuity surfaces and `/spec_kit:resume` recovers from those packet sources first. You can still save standalone memories with `memory_save`, but Gate 3 will still ask about a spec folder for file modifications.
+A: The indexed-continuity store can index any markdown file, beyond spec folder contents. But for implementation work the canonical continuity path is the spec folder itself: `generate-context.js` updates packet-local continuity surfaces and `/speckit:resume` recovers from those packet sources first. You can still save standalone memories with `memory_save`, but Gate 3 will still ask about a spec folder for file modifications.
 
 ---
 
@@ -1035,7 +1035,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh \
 | ----------------------------- | ---------------------------------------------------------------------------- |
 | `AGENTS.md` (project root)    | Gate definitions, AI behavior framework, mandatory workflow rules            |
 | `.opencode/specs/`            | All spec folders created by Spec Kit                                         |
-| `.opencode/commands/spec_kit/` | Spec Kit command definitions (8 commands)                                    |
+| `.opencode/commands/speckit/` | Spec Kit command definitions (8 commands)                                    |
 | `.opencode/commands/memory/`   | Memory command definitions (4 top-level commands plus subcommand namespaces) |
 
 ### External Resources

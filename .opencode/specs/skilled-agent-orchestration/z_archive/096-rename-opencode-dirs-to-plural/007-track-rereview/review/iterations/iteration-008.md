@@ -20,10 +20,10 @@ This pass was a narrow STOP-veto check after all four review dimensions were cov
 - `.opencode/specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/007-track-rereview/review/prompts/iteration-008.md`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts`
 - `.opencode/skills/cli-opencode/SKILL.md`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml`
+- `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml`
+- `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`
+- `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`
 - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts`
 - `.opencode/skills/deep-review/scripts/reduce-state.cjs`
 - `.opencode/skills/system-spec-kit/scripts/spec/check-smart-router.sh`

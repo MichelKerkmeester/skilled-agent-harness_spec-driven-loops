@@ -56,7 +56,7 @@ Lifted the three-tier `:auto` setup-resolution contract from `/deep:start-review
 
 ### Shared contract doc (Stage B)
 - `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md` — 8 sections (§1 three-tier flow, §2 PRE-BOUND ANSWERS grammar, §3 default-resolution-table format, §4 Tier-3 error template, §5 `:confirm` invariance, §6 verification protocol, §7 adoption checklist, §8 OOS)
-- Precedent followed: `intake-contract.md` (cited by `/spec_kit:complete` + `/spec_kit:plan`)
+- Precedent followed: `intake-contract.md` (cited by `/speckit:complete` + `/speckit:plan`)
 
 ### Reference-example refactor (Stage B)
 - `/deep:start-review-loop.md` §0 — replaced ~100 LOC of inline three-tier sections with a 14-line citation + brief command-specific summary. Schema and Default Resolution Table retained as command-specific. `:confirm` consolidated-Q-block path UNTOUCHED. Net ~95 LOC saved.
@@ -96,10 +96,10 @@ Per-command edits:
 |---|---------|-----|------|---------|----------|
 | 1 | `/deep:start-review-loop:auto` | codex `gpt-5.5/medium/fast` | v1: 24s | **PASS** | `live-spec_kit-deep-review.txt` |
 | 2 | `/deep:start-research-loop:auto` | codex `gpt-5.5/medium/fast` | v2: 37s | **PASS** | `live-spec_kit-deep-research-v2.txt` |
-| 3 | `/spec_kit:resume:auto` | codex `gpt-5.5/medium/fast` | v2: 37s | **PASS** | `live-spec_kit-resume-v2.txt` |
-| 4 | `/spec_kit:implement:auto` | codex `gpt-5.5/medium/fast` | v2: 48s | **PASS** | `live-spec_kit-implement-v2.txt` |
-| 5 | `/spec_kit:complete:auto` | codex `gpt-5.5/medium/fast` | v2: 38s | **PASS** | `live-spec_kit-complete-v2.txt` |
-| 6 | `/spec_kit:plan:auto` | codex `gpt-5.5/medium/fast` | v2: 37s | **PASS** | `live-spec_kit-plan-v2.txt` |
+| 3 | `/speckit:resume:auto` | codex `gpt-5.5/medium/fast` | v2: 37s | **PASS** | `live-spec_kit-resume-v2.txt` |
+| 4 | `/speckit:implement:auto` | codex `gpt-5.5/medium/fast` | v2: 48s | **PASS** | `live-spec_kit-implement-v2.txt` |
+| 5 | `/speckit:complete:auto` | codex `gpt-5.5/medium/fast` | v2: 38s | **PASS** | `live-spec_kit-complete-v2.txt` |
+| 6 | `/speckit:plan:auto` | codex `gpt-5.5/medium/fast` | v2: 37s | **PASS** | `live-spec_kit-plan-v2.txt` |
 | 7 | `/create:changelog:auto` | codex `gpt-5.5/medium/fast` | v2: 22s | **PASS** | `live-create-changelog-v2.txt` |
 | 8 | `/create:sk-skill:auto` | codex `gpt-5.5/medium/fast` | v2: 36s | **PASS** | `live-create-sk-skill-v2.txt` |
 | 9 | `/create:agent:auto` | codex `gpt-5.5/medium/fast` | v2: 32s | **PASS** | `live-create-agent-v2.txt` |
@@ -124,7 +124,7 @@ Per-command edits:
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-1. **Shared-contract pattern, not per-command duplication.** Following the `intake-contract.md` precedent (cited by `/spec_kit:complete` + `/spec_kit:plan`). Saves ~600 LOC across 12 commands versus inlining the three-tier prose in each.
+1. **Shared-contract pattern, not per-command duplication.** Following the `intake-contract.md` precedent (cited by `/speckit:complete` + `/speckit:plan`). Saves ~600 LOC across 12 commands versus inlining the three-tier prose in each.
 
 2. **Per-command Default Resolution Table + PRE-BOUND ANSWERS Schema stay in each command markdown.** Field shapes are command-specific; the shared doc defines the FORMAT and column meanings only. This keeps the contract DRY without forcing per-command-field maintenance into a shared file.
 
@@ -199,6 +199,6 @@ Every command's existing `:confirm` consolidated-Q-block path remains intact. Us
 ### Out of scope (intentional)
 - `/improve:prompt` and `agent_router` — no paired YAML / dispatch-only; no setup-phase surface
 - Skill-internal `:auto` flows (sk-doc, sk-code, etc.) — those are SKILL.md surfaces, not user-invokable `/command:*` surfaces
-- Cross-command `:auto` integration (e.g. `/spec_kit:plan:auto` chained into `/spec_kit:implement:auto`) — separate concern
+- Cross-command `:auto` integration (e.g. `/speckit:plan:auto` chained into `/speckit:implement:auto`) — separate concern
 - YAML workflow internal interaction gates (mid-loop approval gates) — handled by each YAML's own non-interactivity rules
 <!-- /ANCHOR:limitations -->

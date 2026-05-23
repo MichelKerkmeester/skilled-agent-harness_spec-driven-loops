@@ -53,7 +53,7 @@ Adoption tag: `adapt` plus `reject-with-rationale`
 
 Iteration 5 found the clearest immediate UX win: split follow-ups into `Required To Proceed` and `Optional Refinements`. This fits the existing consolidated-question protocol and the internal cap on high-impact clarification, while making gate asks feel less like one undifferentiated wall of questions.
 
-The persona work is useful as evaluation material, not as runtime identity. Terminal Tess, Maintainer Max, and Manager Maya map well to internal priorities; Vibe Vera and Promptwright Pete are useful friction tests; Consultant Cass needs to be included because the source now has six personas, not five. But injecting named personas into `/spec_kit:*` command prompts would compete with the senior-engineer voice, hard gates, and role-based agent contracts.
+The persona work is useful as evaluation material, not as runtime identity. Terminal Tess, Maintainer Max, and Manager Maya map well to internal priorities; Vibe Vera and Promptwright Pete are useful friction tests; Consultant Cass needs to be included because the source now has six personas, not five. But injecting named personas into `/speckit:*` command prompts would compete with the senior-engineer voice, hard gates, and role-based agent contracts.
 
 Risk: low for question budgeting; medium for tone changes around Gate 3 because softened copy must not hide machine-readable reply requirements.
 

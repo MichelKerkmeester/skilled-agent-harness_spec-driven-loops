@@ -53,7 +53,7 @@ Phase 001 produces the canonical exhaustive list with file paths.
 | Other skills' SKILL.md routing tables | `.opencode/skills/system-spec-kit/SKILL.md`, `.opencode/skills/sk-improve-prompt/SKILL.md`, `.opencode/skills/cli-*/SKILL.md` | ~15-20 |
 | Other skills' references/* | `.opencode/skills/system-spec-kit/references/**/*.md` (especially routing/agent-related docs) | ~50-100 |
 | Agent definitions | `.opencode/agents/deep-research.md`, `.opencode/agents/deep-review.md`, `.opencode/agents/orchestrate.md`, etc. | ~10-15 |
-| Command files | `.opencode/commands/spec_kit/spec_kit_deep-review.md`, `.opencode/commands/spec_kit/spec_kit_deep-research.md`, plus their YAML asset files | ~10-15 |
+| Command files | `.opencode/commands/speckit/spec_kit_deep-review.md`, `.opencode/commands/speckit/spec_kit_deep-research.md`, plus their YAML asset files | ~10-15 |
 | MCP server code | `.opencode/skills/system-spec-kit/mcp_server/**/*.ts`, `**/*.js` (deep-loop modules, executor configs, prompt packs) | ~30-60 |
 | Scripts | `.opencode/skills/system-spec-kit/scripts/dist/**/*.js`, `scripts/*.ts`, `scripts/*.py` | ~20-40 |
 | Test fixtures | `.opencode/skills/system-spec-kit/scripts/test-fixtures/**/*.{md,json}` | ~30-50 |
@@ -101,8 +101,8 @@ These are NON-OBVIOUS reference forms that simple text grep may miss:
 2. **URL paths**: any docs linking to `.opencode/skills/sk-deep-research/` (relative or absolute) — the broken-link audit at end.
 3. **Hardcoded skill IDs in MCP server code**: TypeScript constants like `'sk-deep-research'` used as keys for skill metadata lookups.
 4. **Code-graph node IDs**: `.cocoindex_code/` SQLite databases may have indexed node names; require re-indexing post-rename.
-5. **Agent dispatch markers**: `Dispatched by /spec_kit:deep-research` — the COMMAND uses `deep-research` (without `sk-` prefix already in some places; audit consistency).
-6. **Command IDs**: `/spec_kit:deep-research:auto` — the user-facing command ID. Verify this is already the target naming (no change needed) or needs alignment.
+5. **Agent dispatch markers**: `Dispatched by /speckit:deep-research` — the COMMAND uses `deep-research` (without `sk-` prefix already in some places; audit consistency).
+6. **Command IDs**: `/speckit:deep-research:auto` — the user-facing command ID. Verify this is already the target naming (no change needed) or needs alignment.
 7. **Skill graph JSON node names** vs **directory names** — must agree post-rename.
 8. **Memory database**: `.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite` may have indexed entries with old skill names; rebuild post-rename.
 9. **Prompt packs / template strings**: `.opencode/skills/sk-deep-research/assets/prompt_pack_iteration.md.tmpl` (FILENAME has it; CONTENT may have many self-references).

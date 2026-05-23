@@ -59,10 +59,10 @@
       "research/iterations/iteration-001.md",
       "research/iterations/iteration-010.md",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml",
-      ".opencode/commands/spec_kit/plan.md",
-      ".opencode/commands/spec_kit/implement.md",
-      ".opencode/commands/spec_kit/complete.md"
+      ".opencode/commands/speckit/assets/speckit_complete_auto.yaml",
+      ".opencode/commands/speckit/plan.md",
+      ".opencode/commands/speckit/implement.md",
+      ".opencode/commands/speckit/complete.md"
     ],
     "entities": [
       {
@@ -156,21 +156,21 @@
         "source": "derived"
       },
       {
-        "name": "spec_kit_complete_auto.yaml",
+        "name": "speckit_complete_auto.yaml",
         "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml",
+        "path": ".opencode/commands/speckit/assets/speckit_complete_auto.yaml",
         "source": "derived"
       },
       {
         "name": "implement.md",
         "kind": "doc",
-        "path": ".opencode/commands/spec_kit/implement.md",
+        "path": ".opencode/commands/speckit/implement.md",
         "source": "derived"
       },
       {
         "name": "complete.md",
         "kind": "doc",
-        "path": ".opencode/commands/spec_kit/complete.md",
+        "path": ".opencode/commands/speckit/complete.md",
         "source": "derived"
       },
       {

@@ -49,7 +49,7 @@ Concrete target: after adding first-class OpenCode authoring/spec resources, add
 
 ## Questions Remaining
 - Q4: Still open for a fresh post-resource-map CocoIndex run. Prior evidence says sk-code is ingested but ranking is polluted; this iteration identifies the missing canonical targets to test after remediation.
-- Q7: Needs an end-to-end `/spec_kit:complete` or equivalent routing trace to prove whether the skill advisor loads sk-code plus system-spec-kit resources together during actual `.opencode/specs/` writes.
+- Q7: Needs an end-to-end `/speckit:complete` or equivalent routing trace to prove whether the skill advisor loads sk-code plus system-spec-kit resources together during actual `.opencode/specs/` writes.
 
 ## Next Focus (for iteration 9)
 Run the cross-cutting integration pass: trace one `.opencode/` implementation flow that writes a spec folder, identify exactly which sk-code and system-spec-kit resources are loaded, and define CocoIndex smoke queries that should rank canonical OpenCode authoring/spec resources ahead of manual testing scenarios.

@@ -28,7 +28,7 @@ This iteration focused on Q4: how existing write-capable internal agents bound t
 
 7. `@deep-research` has append/write-mode discipline in prose: JSONL is append-only, iteration files are create-new, strategy is not a primary write target, and config/state mutation patterns are forbidden. Evidence: `.opencode/agents/deep-research.md:162`, `.opencode/agents/deep-research.md:167`, `.opencode/agents/deep-research.md:170`, `.opencode/agents/deep-research.md:171`, `.opencode/agents/deep-research.md:308`, `.opencode/agents/deep-research.md:310`, `.opencode/agents/deep-research.md:312`, `.opencode/agents/deep-research.md:329`, `.opencode/agents/deep-research.md:333`, `.opencode/agents/deep-research.md:334`.
 
-8. Deep-research validation exists, but it is targeted at authored `spec.md` mutation, not a general filesystem sandbox. AGENTS.md exempts workflow-owned deep-research packet markdown from the generic authored-doc governance and says `/spec_kit:deep-research` must run targeted strict validation after every `spec.md` mutation. The deep-research YAML implements that with a `SPECKIT_RULES=... validate.sh {spec_folder} --strict` command. Evidence: `AGENTS.md:342`; `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:356`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:357`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:359`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:360`.
+8. Deep-research validation exists, but it is targeted at authored `spec.md` mutation, not a general filesystem sandbox. AGENTS.md exempts workflow-owned deep-research packet markdown from the generic authored-doc governance and says `/speckit:deep-research` must run targeted strict validation after every `spec.md` mutation. The deep-research YAML implements that with a `SPECKIT_RULES=... validate.sh {spec_folder} --strict` command. Evidence: `AGENTS.md:342`; `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:356`, `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:357`, `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:359`, `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:360`.
 
 9. `@improve-agent` is write-capable but bounded as a proposal-only mutator: it must write one candidate under a packet-local candidate/runtime area, never edit the canonical target or runtime mirrors, never score/promote/benchmark, and return structured metadata. Evidence: `.opencode/agents/improve-agent.md:24`, `.opencode/agents/improve-agent.md:26`, `.opencode/agents/improve-agent.md:36`, `.opencode/agents/improve-agent.md:38`, `.opencode/agents/improve-agent.md:40`, `.opencode/agents/improve-agent.md:80`, `.opencode/agents/improve-agent.md:99`, `.opencode/agents/improve-agent.md:106`, `.opencode/agents/improve-agent.md:107`, `.opencode/agents/improve-agent.md:123`, `.opencode/agents/improve-agent.md:137`, `.opencode/agents/improve-agent.md:138`.
 
@@ -133,12 +133,12 @@ This iteration focused on Q4: how existing write-capable internal agents bound t
 - `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:99`
 - `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:104`
 - `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:155`
-- `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:144`
-- `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:145`
-- `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:354`
-- `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:355`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:356`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:359`
+- `.opencode/commands/speckit/assets/speckit_implement_auto.yaml:144`
+- `.opencode/commands/speckit/assets/speckit_implement_auto.yaml:145`
+- `.opencode/commands/speckit/assets/speckit_implement_auto.yaml:354`
+- `.opencode/commands/speckit/assets/speckit_implement_auto.yaml:355`
+- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:356`
+- `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:359`
 - `.opencode/commands/improve/agent.md:188`
 - `.opencode/commands/improve/agent.md:197`
 - `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:150`

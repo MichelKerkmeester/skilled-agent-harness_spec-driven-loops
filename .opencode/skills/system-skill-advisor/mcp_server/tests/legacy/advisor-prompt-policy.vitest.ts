@@ -30,7 +30,7 @@ describe('skill advisor prompt policy', () => {
       fire: true,
       reason: 'explicit_skill_or_governance_marker',
     });
-    expect(shouldFireAdvisor('/spec_kit:resume now').fire).toBe(true);
+    expect(shouldFireAdvisor('/speckit:resume now').fire).toBe(true);
     expect(shouldFireAdvisor('spec kit packet alignment').fire).toBe(true);
   });
 

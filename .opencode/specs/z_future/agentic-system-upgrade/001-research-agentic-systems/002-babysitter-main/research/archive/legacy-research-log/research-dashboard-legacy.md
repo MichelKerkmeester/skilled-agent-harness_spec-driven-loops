@@ -22,7 +22,7 @@
 | 2 | 018 | Does Babysitter's testing approach suggest a better test philosophy for workflow runtime behavior? | high | should-have | Deterministic workflow simulation |
 | 2 | 019 | Does Babysitter surface a lightweight timing safeguard that Spec Kit should add to unattended loops? | medium | nice-to-have | Timing guard |
 | 2 | 020 | Should Spec Kit adopt Babysitter's four-layer compression subsystem as a major architecture move? | medium | rejected | `KEEP` current boundary; reject wholesale import |
-| 3 | 021 | Is the `/spec_kit:plan` -> `/implement` -> `/complete` split the right lifecycle UX? | high | must-have | `MERGE` lifecycle surface |
+| 3 | 021 | Is the `/speckit:plan` -> `/implement` -> `/complete` split the right lifecycle UX? | high | must-have | `MERGE` lifecycle surface |
 | 3 | 022 | Should routine `/memory:*` behavior disappear into the main lifecycle UX? | high | should-have | `MERGE` memory into lifecycle |
 | 3 | 023 | Is the Level 1/2/3+ spec-folder UX intuitive enough, or should artifact creation become lazy? | high | should-have | `REDESIGN` starter packet + lazy expansion |
 | 3 | 024 | Are `@context-prime` and `@context` both necessary public continuity concepts? | high | should-have | `MERGE` bootstrap into continuity |

@@ -405,8 +405,8 @@ Raw `paused` and `stuck_recovery` labels are not legal persisted event names in 
 
 | Verdict | Condition | Next Command |
 |---------|-----------|--------------|
-| FAIL | `activeP0 > 0` OR quality gate failure | `/spec_kit:plan` |
-| CONDITIONAL | `activeP0 == 0` AND `activeP1 > 0` | `/spec_kit:plan` |
+| FAIL | `activeP0 > 0` OR quality gate failure | `/speckit:plan` |
+| CONDITIONAL | `activeP0 == 0` AND `activeP1 > 0` | `/speckit:plan` |
 | PASS | `activeP0 == 0` AND `activeP1 == 0` | `/create:changelog` |
 
 When `activeP2 > 0` on PASS, set `hasAdvisories: true`.

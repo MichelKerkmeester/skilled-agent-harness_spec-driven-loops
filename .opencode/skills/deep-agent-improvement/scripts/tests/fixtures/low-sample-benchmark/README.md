@@ -2,7 +2,7 @@
 
 This fixture demonstrates the insufficient-state path for a short improvement session.
 
-For Gate E continuity, this fixture remains supporting evidence only. Broader packet recovery still routes through `/spec_kit:resume`, then `handover.md`, `_memory.continuity`, and the remaining spec docs.
+For Gate E continuity, this fixture remains supporting evidence only. Broader packet recovery still routes through `/speckit:resume`, then `handover.md`, `_memory.continuity`, and the remaining spec docs.
 
 - `trade-off-trajectory.json` contains only 2 trajectory points, so `trade-off-detector.cjs` should return `{ state: "insufficientData", dataPoints: 2, minRequired: 3 }` when called with `minDataPoints: 3`.
 - `benchmark-results.json` contains only 1 replay, so `benchmark-stability.cjs` should return `{ state: "insufficientSample", replayCount: 1, minRequired: 3 }` when called with `minReplayCount: 3`.

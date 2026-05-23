@@ -123,7 +123,7 @@ None.
 
 #### P2-004 [P2] Copilot target-authority helper remains unresolved
 
-- File: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:690`
+- File: `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:690`
 - Status: Still active from iteration 001.
 - Evidence: 098/007 deferred the finding and did not locate the branch. This pass did not reclassify it.
 

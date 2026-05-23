@@ -75,11 +75,11 @@ Create a package-and-runtime alignment phase that brings the agent-improver skil
 - `.gemini/agents/agent-improver.md`
 - `.agents/agents/agent-improver.md`
 - `.codex/agents/agent-improver.toml`
-- `.opencode/commands/spec_kit/agent-improver.md`
-- `.opencode/commands/spec_kit/assets/improve_agent-improver_auto.yaml`
-- `.opencode/commands/spec_kit/assets/improve_agent-improver_confirm.yaml`
-- `.agents/commands/spec_kit/agent-improver.toml`
-- `.gemini/commands/spec_kit/agent-improver.toml`
+- `.opencode/commands/speckit/agent-improver.md`
+- `.opencode/commands/speckit/assets/improve_agent-improver_auto.yaml`
+- `.opencode/commands/speckit/assets/improve_agent-improver_confirm.yaml`
+- `.agents/commands/speckit/agent-improver.toml`
+- `.gemini/commands/speckit/agent-improver.toml`
 - `.agents/skills/sk-improve-agent/`
 - `.opencode/specs/skilled-agent-orchestration/041-sk-improve-agent-loop/`
 - `.opencode/specs/descriptions.json`

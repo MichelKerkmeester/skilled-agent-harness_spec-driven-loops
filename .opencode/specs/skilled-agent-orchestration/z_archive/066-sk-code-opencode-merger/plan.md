@@ -187,7 +187,7 @@ Required inventories:
 ### Phase 4: Rewrite Downstream Contracts
 
 - [x] Update four runtime `code`, `review`, `deep-review`, `orchestrate`, and `multi-ai-council` agent surfaces where they mention overlays or removed stacks.
-- [x] Update `spec_kit_complete_*` and `spec_kit_implement_*` YAML assets.
+- [x] Update `speckit_complete_*` and `speckit_implement_*` YAML assets.
 - [x] Update CLI skills that teach baseline plus overlay dispatch.
 - [x] Update `sk-code-review` contract and references.
 - [x] Update READMEs and install guides.

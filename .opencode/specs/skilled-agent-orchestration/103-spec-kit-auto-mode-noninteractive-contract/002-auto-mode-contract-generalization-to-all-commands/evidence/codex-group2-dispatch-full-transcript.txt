@@ -22,7 +22,7 @@ You are migrating the `/create:*` command Group 2 (6 commands) to cite the share
 - Run as inline Codex execution. Do NOT call SpawnAgent, collab: SpawnAgent, Task, or any sub-agent. If you would dispatch, stop and work inline.
 - Gate 3 (spec-folder) answer for this run: the spec folder is `.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/`. Use it. specFolder=103-002. Do NOT ask interactive questions; stdin is closed.
 - Strict scope: edit ONLY the 6 command files below + 002's tasks.md (mark T011 done) + 002's evidence/codex-group2-dispatch.txt (write summary). Anything else is a rollback trigger.
-- Do NOT run any /spec_kit:*:auto YAML loop. Markdown edits only.
+- Do NOT run any /speckit:*:auto YAML loop. Markdown edits only.
 - Final output: ONE summary message at the end listing every file modified, per-command status, decisions, concerns.
 
 # REPO ROOT
@@ -62,7 +62,7 @@ Identify:
 - Every Q-block field name (Q0, Q1, Q1_type, Q_dims, Q-Exec, etc.)
 - Each field's current resolution: flag (from $ARGUMENTS), default, requires-ask, auto-detect from another field
 - The full consolidated Q-block content (under the `STATUS: BLOCKED` header in `:confirm` mode)
-- Whether the file has a paired YAML asset (it does — under `.opencode/commands/spec_kit/assets/`)
+- Whether the file has a paired YAML asset (it does — under `.opencode/commands/speckit/assets/`)
 
 ## Step B — Build the per-command Default Resolution Table
 
@@ -181,7 +181,7 @@ description: Canonical three-tier `:auto` setup-resolution contract shared by ev
 
 # Auto Mode Contract Reference
 
-This reference module defines the single canonical `:auto` setup-resolution contract used by every user-invokable `/command:*:auto` surface in spec-kit (`/spec_kit:*`, `/create:*`, `/improve:*`). Each command's §0 cites this contract and supplies only its own per-field Default Resolution Table + `PRE-BOUND SETUP ANSWERS:` field list. The contract semantics, marker grammar, error format, and verification protocol live here.
+This reference module defines the single canonical `:auto` setup-resolution contract used by every user-invokable `/command:*:auto` surface in spec-kit (`/speckit:*`, `/create:*`, `/improve:*`). Each command's §0 cites this contract and supplies only its own per-field Default Resolution Table + `PRE-BOUND SETUP ANSWERS:` field list. The contract semantics, marker grammar, error format, and verification protocol live here.
 
 Origin: shipped in `.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup/` (deep-review prototype) and generalized in `.../002-auto-mode-contract-generalization-to-all-commands/` (12-command rollout).
 
@@ -356,7 +356,7 @@ Commands that have adopted this contract:
 - Commands without paired YAML workflows (`/improve:prompt`, `agent_router`, etc.) — they have no setup-phase surface where the contract applies.
 - Skill-internal `:auto` flows (sk-doc, sk-code routing, etc.) — those are skill SKILL.md surfaces, not `/command:*` surfaces.
 - YAML workflow internal interaction gates (e.g. mid-loop approval gates) — handled by each YAML's own non-interactivity rules, not this contract.
-- Cross-command `:auto` integration (e.g. `/spec_kit:plan:auto` chained into `/spec_kit:implement:auto`) — separate contract concern.
+- Cross-command `:auto` integration (e.g. `/speckit:plan:auto` chained into `/speckit:implement:auto`) — separate contract concern.
 
 exec
 /bin/zsh -lc "sed -n '1,180p' .opencode/commands/deep/start-review-loop.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -614,7 +614,7 @@ Author the shared `auto_mode_contract.md` reference, refactor Phase-1's deep-rev
 - Author `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md` (Level 2 sk-doc reference; §1-8 — three-tier flow, PRE-BOUND ANSWERS grammar, default-resolution-table format, Tier-3 error template, `:confirm` invariance, verification protocol, adoption checklist, out-of-scope).
 - Refactor `/deep:start-review-loop` §0 to cite the shared contract (replacing the inline three-tier sections from 001).
 - Migrate 11 commands' §0 to cite the shared contract + provide their own per-field default table + PRE-BOUND ANSWERS field list:
-  - `/spec_kit:` — deep-research, complete, implement, plan, resume (5)
+  - `/speckit:` — deep-research, complete, implement, plan, resume (5)
   - `/create:` — sk-skill, agent, changelog, feature-catalog, testing-playbook, folder_readme (6)
   - `/improve:` — agent (1)
 - Update each migrated command's frontmatter `argument-hint` to reference the new bypass capability.
@@ -633,7 +633,7 @@ Author the shared `auto_mode_contract.md` reference, refactor Phase-1's deep-rev
 |-----------|-------------|-------------|
 | `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md` | Create | Shared three-tier `:auto` contract reference |
 | `.opencode/commands/deep/start-review-loop.md` | Modify | Refactor §0 to cite shared contract |
-| `.opencode/commands/spec_kit/{deep-research,complete,implement,plan,resume}.md` | Modify | Migrate §0 to shared contract pattern |
+| `.opencode/commands/speckit/{deep-research,complete,implement,plan,resume}.md` | Modify | Migrate §0 to shared contract pattern |
 | `.opencode/commands/create/{sk-skill,agent,changelog,feature-catalog,testing-playbook,folder_readme}.md` | Modify | Same |
 | `.opencode/commands/improve/agent.md` | Modify | Same |
 | `002/evidence/` | Create dir + 12 files | Live dispatch transcripts |
@@ -875,7 +875,7 @@ CLI exit codes:
 | CONDITIONAL | If intent signals match   | Intent-mapped references     |
 | ON_DEMAND   | Only on explicit request   | Deep-dive quality standards  |
 
-`references/workflows/quick_reference.md` is the primary first-touch command surface. Keep the compact `spec_kit` and `memory` command map there, including `/spec_kit:plan --intake-only` as the standalone intake entry, `/spec_kit:plan` and `/spec_kit:complete` smart delegation notes, and the pointer from `/deep:start-research-loop` to `../deep-research/references/spec_check_protocol.md`, and use this file only to point readers to it rather than duplicating the full matrix.
+`references/workflows/quick_reference.md` is the primary first-touch command surface. Keep the compact `spec_kit` and `memory` command map there, including `/speckit:plan --intake-only` as the standalone intake entry, `/speckit:plan` and `/speckit:complete` smart delegation notes, and the pointer from `/deep:start-research-loop` to `../deep-research/references/spec_check_protocol.md`, and use this file only to point readers to it rather than duplicating the full matrix.
 
 ### Smart Router Pseudocode
 
@@ -967,10 +967,10 @@ RESOURCE_MAP = {
 }
 
 COMMAND_BOOSTS = {
-    "/spec_kit:plan": "PLAN",
-    "/spec_kit:implement": "IMPLEMENT",
-    "/spec_kit:complete": "COMPLETE",
-    "/spec_kit:plan :with-phases": "PHASE",
+    "/speckit:plan": "PLAN",
+    "/speckit:implement": "IMPLEMENT",
+    "/speckit:complete": "COMPLETE",
+    "/speckit:plan :with-phases": "PHASE",
 
 exec
 /bin/zsh -lc "sed -n '1,180p' .opencode/skills/sk-doc/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -3004,10 +3004,10 @@ _memory:
 
 - [ ] T020 Live `:auto` dispatch — `/deep:start-review-loop` (re-verify post-refactor).
 - [ ] T021 Live `:auto` dispatch — `/deep:start-research-loop`.
-- [ ] T022 Live `:auto` dispatch — `/spec_kit:resume`.
-- [ ] T023 Live `:auto` dispatch — `/spec_kit:implement`.
-- [ ] T024 Live `:auto` dispatch — `/spec_kit:complete`.
-- [ ] T025 Live `:auto` dispatch — `/spec_kit:plan`.
+- [ ] T022 Live `:auto` dispatch — `/speckit:resume`.
+- [ ] T023 Live `:auto` dispatch — `/speckit:implement`.
+- [ ] T024 Live `:auto` dispatch — `/speckit:complete`.
+- [ ] T025 Live `:auto` dispatch — `/speckit:plan`.
 - [ ] T026 Live `:auto` dispatch — `/create:changelog`.
 - [ ] T027 Live `:auto` dispatch — `/create:sk-skill`.
 - [ ] T028 Live `:auto` dispatch — `/create:agent`.
@@ -3046,13 +3046,13 @@ _memory:
 <!-- /ANCHOR:cross-refs -->
 
 exec
-/bin/zsh -lc "sed -n '50,170p' .opencode/commands/spec_kit/plan.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '50,170p' .opencode/commands/speckit/plan.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/plan-config.json` (shape: `featureDescription`, `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `researchIntent`, `phaseDecomposition`, `phaseCount`, `phaseNames`, `intakeOnly`, `intake.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml`. End §0.
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/plan-config.json` (shape: `featureDescription`, `specPath`, `executionMode: "auto"`, `dispatchMode`, `memoryChoice`, `researchIntent`, `phaseDecomposition`, `phaseCount`, `phaseNames`, `intakeOnly`, `intake.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/speckit/assets/speckit_plan_auto.yaml`. End §0.
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`, `research_intent`. **Ordering rule**: none needed. Missing `feature_description` is absence, not ambiguity — go to Tier 3.
 
-3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/spec_kit:plan:auto` as the command name. Exit non-zero. Do not load YAML.
+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/speckit:plan:auto` as the command name. Exit non-zero. Do not load YAML.
 
 `:confirm` path stays unchanged — see the consolidated setup prompt section below.
 
@@ -3154,7 +3154,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 4. Search for prior work (background):
    - memory_context({ input: feature_description OR "planning", mode: "focused", includeContent: true })
    > Gate 1 trigger matching handled at agent level (AGENTS.md).
-   > Gate 3 spec-folder trigger classification is typed: `.opencode/skills/system-spec-kit/shared/gate-3-classifier.ts` (`classifyPrompt()`). Invocations of `/spec_kit:plan` are already inside a write flow, so Gate 3 is pre-answered by command dispatch — no extra inference needed here.
+   > Gate 3 spec-folder trigger classification is typed: `.opencode/skills/system-spec-kit/shared/gate-3-classifier.ts` (`classifyPrompt()`). Invocations of `/speckit:plan` are already inside a write flow, so Gate 3 is pre-answered by command dispatch — no extra inference needed here.
    - Store: prior_work_found = [yes/no], prior_work_count = [N]
 
 5. Prior-work loading question needed ONLY if user selects A or C for spec folder AND prior continuity records exist for this spec.
@@ -8953,11 +8953,11 @@ exec
 .opencode/commands/create/folder_readme.md
 .opencode/commands/create/sk-skill.md
 .opencode/commands/create/testing-playbook.md
-.opencode/commands/spec_kit/complete.md
+.opencode/commands/speckit/complete.md
 .opencode/commands/deep/start-research-loop.md
-.opencode/commands/spec_kit/implement.md
-.opencode/commands/spec_kit/plan.md
-.opencode/commands/spec_kit/resume.md
+.opencode/commands/speckit/implement.md
+.opencode/commands/speckit/plan.md
+.opencode/commands/speckit/resume.md
 .opencode/skills/deep-ai-council/README.md
 .opencode/skills/sk-doc/README.md
 .opencode/skills/sk-doc/SKILL.md
@@ -9819,11 +9819,11 @@ exec
  M .opencode/commands/create/folder_readme.md
  M .opencode/commands/create/sk-skill.md
  M .opencode/commands/create/testing-playbook.md
- M .opencode/commands/spec_kit/complete.md
+ M .opencode/commands/speckit/complete.md
  M .opencode/commands/deep/start-research-loop.md
- M .opencode/commands/spec_kit/implement.md
- M .opencode/commands/spec_kit/plan.md
- M .opencode/commands/spec_kit/resume.md
+ M .opencode/commands/speckit/implement.md
+ M .opencode/commands/speckit/plan.md
+ M .opencode/commands/speckit/resume.md
  M .opencode/skills/deep-ai-council/README.md
  M .opencode/skills/sk-doc/README.md
  M .opencode/skills/sk-doc/SKILL.md

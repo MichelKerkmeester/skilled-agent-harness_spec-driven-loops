@@ -88,7 +88,7 @@ Spec docs (Phase 1) were authored directly by claude-opus-4-7 to canonical templ
 
 A subsequent reorder pass moved §12-§15 ABOVE the §16 SUMMARY ASCII box (which was originally §12) so the SUMMARY closing diagram stays as the final section across all 4 runtimes. Done via a Python script applied uniformly to all 4 files.
 
-The implementation followed the `/spec_kit:implement` 9-step workflow in autonomous mode:
+The implementation followed the `/speckit:implement` 9-step workflow in autonomous mode:
 
 1. Plan + spec review
 2. Tasks breakdown

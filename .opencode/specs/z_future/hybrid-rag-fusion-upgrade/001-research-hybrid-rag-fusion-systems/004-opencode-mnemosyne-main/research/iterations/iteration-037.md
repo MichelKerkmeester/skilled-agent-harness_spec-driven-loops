@@ -207,7 +207,7 @@ Read-only note: I did not update [research/research.md](/Users/michelkerkmeester
 - Validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED` with `Errors: 0  Warnings: 0`, plus the known read-only warning `cannot create temp file for here document: Operation not permitted`.
 
 ## Ruled Out
-- Replacing Public’s current `/spec_kit:resume` and `session_bootstrap()` recovery contract with direct `memory_recall` semantics.
+- Replacing Public’s current `/speckit:resume` and `session_bootstrap()` recovery contract with direct `memory_recall` semantics.
 - Importing basename-derived `project/global` as Public’s primary scope authority.
 - Adding a general `core=true` flag to routine Public save flows instead of routing durable rules through constitutional memory.
 - Introducing a second local memory backend just to get a simpler tool surface.
@@ -221,7 +221,7 @@ Read-only note: I did not update [research/research.md](/Users/michelkerkmeester
 Translate this into packet-ready operator deliverables:
 1. a transport-owned compaction memory action card that complements the existing resume payload,
 2. an audited `memory_remember` intake or equivalent thin facade over existing Public save/retrieval authority,
-3. a migration guide that maps `memory_recall`, `memory_store`, `memory_delete`, `global`, and `core` onto `/spec_kit:resume`, `session_bootstrap()`, `/memory:save`, `/memory:learn`, and governed retrieval scope.
+3. a migration guide that maps `memory_recall`, `memory_store`, `memory_delete`, `global`, and `core` onto `/speckit:resume`, `session_bootstrap()`, `/memory:save`, `/memory:learn`, and governed retrieval scope.
 
 Read-only note: I did not update the phase folder artifacts or save memory because this sandbox is read-only.
 
@@ -538,9 +538,9 @@ Use this skill when:
 
 ### When NOT to Use
 
-- Simple, single-question research (use direct codebase search or `/spec_kit:plan`)
-- Known-solution documentation (use `/spec_kit:plan`)
-- Implementation tasks (use `/spec_kit:implement`)
+- Simple, single-question research (use direct codebase search or `/speckit:plan`)
+- Known-solution documentation (use `/speckit:plan`)
+- Implementation tasks (use `/speckit:implement`)
 - Quick codebase searches (use `@context` or direct Grep/Glob)
 - Fewer than 3 sources needed (single-pass research suffices)
 
@@ -4282,23 +4282,23 @@ exec
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/003-discovery/description.json
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/003-discovery/implementation-summary.md
 .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/library/specializations/robotics-simulation/agents/manipulation-specialist/README.md
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/spec.md
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/plan.md
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme/spec.md
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme/plan.md
 .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/library/specializations/game-development/skills/procedural-audio/README.md
 .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/001-agent-lightning-main/external/contrib/recipes/envs/README.md
 .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/library/methodologies/gsd/skills/template-scaffolding/README.md
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/012-query-intelligence/spec.md
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/005-architecture-audit/scratch/z-archive-prior-audit/readme-audit-A11.md
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/012-query-intelligence/plan.md
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/scratch/research-brief.md
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme/scratch/research-brief.md
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/005-architecture-audit/scratch/z-archive-prior-audit/readme-audit-A25.md
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/012-query-intelligence/checklist.md
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/012-query-intelligence/tasks.md
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/012-query-intelligence/description.json
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/012-query-intelligence/implementation-summary.md
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/tasks.md
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/description.json
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/implementation-summary.md
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme/tasks.md
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme/description.json
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-spec-kit-readme/implementation-summary.md
 .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/library/specializations/desktop-development/skills/swiftui-view-generator/README.md
 .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/library/specializations/robotics-simulation/agents/fleet-management-agent/README.md
 .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/library/specializations/game-development/skills/unity-animation/README.md

@@ -71,7 +71,7 @@ Define a safe, phased plan for `sk-improve-agent` that starts with one canonical
 - `@agent-improver` as a LEAF execution surface for bounded candidate generation
 - A repo-native control bundle: improvement charter, `target-manifest.jsonc`, `improvement-config.json`, and `improvement-state.jsonl`
 - Reducer-managed experiment outputs: iteration artifacts, dashboard/scoreboard, and accepted-candidate state
-- A proposal-only MVP that evaluates candidates against the handover surface anchored in `.opencode/agents/handover.md` and `/spec_kit:handover`
+- A proposal-only MVP that evaluates candidates against the handover surface anchored in `.opencode/agents/handover.md` and `/speckit:handover`
 - Explicit separation between the mutator and the scorer/reviewer
 
 ### Out of Scope
@@ -89,9 +89,9 @@ Define a safe, phased plan for `sk-improve-agent` that starts with one canonical
 | `.claude/agents/agent-improver` | Create | Claude runtime definition for the loop agent |
 | `.codex/agents/agent-improver.toml` | Create | Codex runtime definition for the loop agent |
 | `.gemini/agents/agent-improver` | Create | Gemini runtime definition for the loop agent |
-| `.opencode/commands/spec_kit/agent-improver` | Create | Command spec for setup, routing, and loop execution |
-| `.opencode/commands/spec_kit/assets/improve_agent-improver_auto.yaml` | Create | Autonomous workflow for proposal-only execution |
-| `.opencode/commands/spec_kit/assets/improve_agent-improver_confirm.yaml` | Create | Interactive workflow with approval checkpoints |
+| `.opencode/commands/speckit/agent-improver` | Create | Command spec for setup, routing, and loop execution |
+| `.opencode/commands/speckit/assets/improve_agent-improver_auto.yaml` | Create | Autonomous workflow for proposal-only execution |
+| `.opencode/commands/speckit/assets/improve_agent-improver_confirm.yaml` | Create | Interactive workflow with approval checkpoints |
 | `.opencode/skills/sk-improve-agent/SKILL` | Create | Skill protocol and routing guidance |
 | `.opencode/skills/sk-improve-agent/README` | Create | Skill overview and usage examples |
 | `.opencode/skills/sk-improve-agent/references/loop_protocol` | Create | Iteration lifecycle and state transitions |
@@ -155,7 +155,7 @@ Define a safe, phased plan for `sk-improve-agent` that starts with one canonical
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | `.opencode/agents/handover.md` plus `/spec_kit:handover` validation surfaces | Defines the first target and its measurable output contract | Keep MVP scoped to handover until the evaluator is proven |
+| Dependency | `.opencode/agents/handover.md` plus `/speckit:handover` validation surfaces | Defines the first target and its measurable output contract | Keep MVP scoped to handover until the evaluator is proven |
 | Dependency | `sk-deep-research` state/reducer pattern | Supplies reusable loop scaffolding | Reuse the packet skeleton but replace convergence semantics with score governance |
 | Risk | Scorer still ends up too subjective | High | Start with structural artifact checks and section-level validation only |
 | Risk | Runtime mirror drift becomes entangled with the MVP | High | Mark mirrors as derived or fixed in the first target manifest and exclude them from mutation |

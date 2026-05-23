@@ -27,7 +27,7 @@ confidence: high
 finding: A Get It Right-style retry loop should enter `system-spec-kit` only as an opt-in mode for high-friction brownfield work. It should not become the default implementation path, and it should not absorb the optimization concerns that belong to phase 001.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/commands/spec_kit/implement.md`
+- **Target file or module:** `.opencode/commands/speckit/implement.md`
 - **Change type:** modified existing
 - **Blast radius:** small
 - **Prerequisites:** write clear fit/non-fit guidance and name the retry mode distinctly so operators know when to reach for it
@@ -37,6 +37,6 @@ finding: A Get It Right-style retry loop should enter `system-spec-kit` only as 
 I looked for evidence that `system-spec-kit` prefers one universal workflow for all task classes. The existing command set already uses dedicated flows for deep research, deep review, resume, handover, and implement, which supports an opt-in retry mode rather than a forced default.
 
 ## Follow-up questions for next iteration
-- Should the retry controller be exposed as a new command or as an advanced mode of `/spec_kit:implement`?
+- Should the retry controller be exposed as a new command or as an advanced mode of `/speckit:implement`?
 - What telemetry should phase 004 preserve so phase 001 can later consume it without coupling the two designs?
 - Which default safety rails should guard against accidental use on trivial tasks?

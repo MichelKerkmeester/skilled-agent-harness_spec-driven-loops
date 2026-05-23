@@ -70,10 +70,10 @@ _memory:
 
 - [x] T020 Live `:auto` dispatch — `/deep:start-review-loop` (re-verify post-refactor).
 - [x] T021 Live `:auto` dispatch — `/deep:start-research-loop`.
-- [x] T022 Live `:auto` dispatch — `/spec_kit:resume`.
-- [x] T023 Live `:auto` dispatch — `/spec_kit:implement`.
-- [x] T024 Live `:auto` dispatch — `/spec_kit:complete`.
-- [x] T025 Live `:auto` dispatch — `/spec_kit:plan`.
+- [x] T022 Live `:auto` dispatch — `/speckit:resume`.
+- [x] T023 Live `:auto` dispatch — `/speckit:implement`.
+- [x] T024 Live `:auto` dispatch — `/speckit:complete`.
+- [x] T025 Live `:auto` dispatch — `/speckit:plan`.
 - [x] T026 Live `:auto` dispatch — `/create:changelog`.
 - [x] T027 Live `:auto` dispatch — `/create:sk-skill`.
 - [x] T028 Live `:auto` dispatch — `/create:agent`.

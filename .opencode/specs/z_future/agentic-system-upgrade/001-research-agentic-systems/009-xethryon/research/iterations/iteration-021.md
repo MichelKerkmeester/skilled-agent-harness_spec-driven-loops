@@ -6,15 +6,15 @@ Date: 2026-04-10
 Does `system-spec-kit` ask the operator to think in too many top-level lifecycle commands compared with Xethryon's more compressed command surface?
 
 ## Hypothesis
-`system-spec-kit` is not suffering from an unusually large raw command count. The bigger UX issue is that one feature workflow is split across three peer entry points: `/spec_kit:plan`, `/spec_kit:implement`, and `/spec_kit:complete`.
+`system-spec-kit` is not suffering from an unusually large raw command count. The bigger UX issue is that one feature workflow is split across three peer entry points: `/speckit:plan`, `/speckit:implement`, and `/speckit:complete`.
 
 ## Method
 I compared the local lifecycle commands and their YAML-driven workflow contracts with Xethryon's command registry and slash-command operator surface.
 
 ## Evidence
-- `/spec_kit:plan` introduces its own setup flow and explicitly translates markdown inputs into a YAML-driven execution workflow. [SOURCE: .opencode/commands/spec_kit/plan.md:13-21] [SOURCE: .opencode/commands/spec_kit/plan.md:37-52]
-- `/spec_kit:implement` has a separate setup block and its own multi-step workflow contract, including explicit context-save behavior. [SOURCE: .opencode/commands/spec_kit/implement.md:35-120] [SOURCE: .opencode/commands/spec_kit/implement.md:171-201]
-- `/spec_kit:complete` is yet another top-level workflow with its own setup questions and closeout sequence. [SOURCE: .opencode/commands/spec_kit/complete.md:38-144] [SOURCE: .opencode/commands/spec_kit/complete.md:198-217]
+- `/speckit:plan` introduces its own setup flow and explicitly translates markdown inputs into a YAML-driven execution workflow. [SOURCE: .opencode/commands/speckit/plan.md:13-21] [SOURCE: .opencode/commands/speckit/plan.md:37-52]
+- `/speckit:implement` has a separate setup block and its own multi-step workflow contract, including explicit context-save behavior. [SOURCE: .opencode/commands/speckit/implement.md:35-120] [SOURCE: .opencode/commands/speckit/implement.md:171-201]
+- `/speckit:complete` is yet another top-level workflow with its own setup questions and closeout sequence. [SOURCE: .opencode/commands/speckit/complete.md:38-144] [SOURCE: .opencode/commands/speckit/complete.md:198-217]
 - Xethryon's README presents a flatter operator surface of slash commands inside one TUI conversation rather than a visible plan-then-implement-then-complete trilogy. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/README.md:165-205]
 - Xethryon's command registry reinforces that model: commands are loaded into a single shared command layer and bundled skills are registered into the same surface. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/command/index.ts:68-76] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/command/index.ts:96-183]
 
@@ -25,7 +25,7 @@ The import lesson is not to delete planning or completion. It is to stop making 
 
 ## UX / System Design Analysis
 
-- **Current system-spec-kit surface:** the operator chooses between `/spec_kit:plan`, `/spec_kit:implement`, and `/spec_kit:complete`, each with its own setup block and workflow language.
+- **Current system-spec-kit surface:** the operator chooses between `/speckit:plan`, `/speckit:implement`, and `/speckit:complete`, each with its own setup block and workflow language.
 - **External repo's equivalent surface:** one persistent chat/TUI surface with a smaller set of optional slash commands layered onto it.
 - **Friction comparison:** `system-spec-kit` creates more cognitive branching before work starts because the user must pick the right lifecycle door up front; Xethryon keeps the user in one lane and lets commands behave more like capability toggles.
 - **What system-spec-kit could DELETE to improve UX:** the requirement that lifecycle stage selection be a first-order operator decision for common flows.
@@ -44,12 +44,12 @@ finding: `system-spec-kit` should merge the operator-facing lifecycle into a sin
 - **Why the external approach might be better:** less branching, fewer premature choices, and better continuity between planning and execution.
 - **Why system-spec-kit's approach might still be correct:** the internal distinction between planning, execution, and closeout is still valuable for governance and verification.
 - **Verdict:** MERGE
-- **If MERGE — concrete proposal:** add a guided `/spec_kit:workflow` or equivalent front door that routes into `plan`, `implement`, or `complete` after inspecting current packet state.
+- **If MERGE — concrete proposal:** add a guided `/speckit:workflow` or equivalent front door that routes into `plan`, `implement`, or `complete` after inspecting current packet state.
 - **Blast radius of the change:** medium
 - **Migration path:** additive first; keep existing commands as advanced entry points and measure whether the guided entry point absorbs most usage.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/commands/spec_kit/plan.md`
+- **Target file or module:** `.opencode/commands/speckit/plan.md`
 - **Change type:** modified existing
 - **Blast radius:** medium
 - **Prerequisites:** define stable routing heuristics for when the guided front door chooses planning, implementation, or completion

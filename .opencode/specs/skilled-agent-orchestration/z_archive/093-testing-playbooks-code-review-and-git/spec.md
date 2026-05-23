@@ -59,7 +59,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-`sk-code-review` (findings-first review baseline used by `@review`, `@deep-review`, `/spec_kit:deep-review`) and `sk-git` (three-phase git lifecycle orchestrator: worktree → commit → finish/PR) are foundational utility skills with no `manual_testing_playbook/` package today. Sibling skills in the same tier (`sk-prompt`, `cli-claude-code`, `system-spec-kit`) all have one. Without realistic-scenario regression coverage, refactors silently break either skill's contract.
+`sk-code-review` (findings-first review baseline used by `@review`, `@deep-review`, `/speckit:deep-review`) and `sk-git` (three-phase git lifecycle orchestrator: worktree → commit → finish/PR) are foundational utility skills with no `manual_testing_playbook/` package today. Sibling skills in the same tier (`sk-prompt`, `cli-claude-code`, `system-spec-kit`) all have one. Without realistic-scenario regression coverage, refactors silently break either skill's contract.
 
 ### Purpose
 Produce two `manual_testing_playbook/` packages — one per skill — following the canonical sk-doc contract, with RCAF-pattern operator prompts that mirror real human-AI conversation, executable both natively and via external CLIs.
@@ -110,7 +110,7 @@ Produce two `manual_testing_playbook/` packages — one per skill — following 
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
 - Children run sequentially (per memory rule: parallel cli-codex dispatch is unreliable)
-- Use `/spec_kit:resume specs/skilled-agent-orchestration/093-.../00X-name/` to resume a specific phase
+- Use `/speckit:resume specs/skilled-agent-orchestration/093-.../00X-name/` to resume a specific phase
 - Run `validate.sh --recursive` on parent to validate all phases as integrated unit
 
 ### Phase Handoff Criteria

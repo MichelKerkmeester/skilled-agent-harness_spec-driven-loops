@@ -68,7 +68,7 @@ Snippet: `L74: - Lifecycle branch from 'config.lineage.lineageMode' ('new', 'res
 
 Snippet: `L3: description: "LEAF review agent for sk-deep-review. Performs single review iteration: reads state, reviews one dimension with P0/P1/P2 findings, updates strategy and JSONL."`
 
-### `.gemini/commands/spec_kit/deep-research.toml`
+### `.gemini/commands/speckit/deep-research.toml`
 
 Snippet: `L2: prompt = "---\ndescription: Autonomous deep research loop - iterative investigation with convergence detection. Supports :auto and :confirm modes\nargument-hint: \"<topic> [:auto|:confirm] [--max-iterations=N] [--converg`
 
@@ -80,27 +80,27 @@ Snippet: `L91: - Lifecycle branch from 'config.lineage.lineageMode' ('new', 'res
 
 Snippet: `L3: description: "LEAF review agent for sk-deep-review. Performs single review iteration: reads state, reviews one dimension with P0/P1/P2 findings, updates strategy and JSONL."`
 
-### `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+### `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml`
 
 Snippet: `L67: skill: sk-deep-research`
 
-### `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+### `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml`
 
 Snippet: `L53: skill: sk-deep-research`
 
-### `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+### `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`
 
 Snippet: `L33: lineage_mode: "[auto|resume|restart] - Session lifecycle intent. Default: auto. The runtime only persists lineage events for 'resume' (same sessionId, no archive) and 'restart' (new sessionId, generation+1, prior review/`
 
-### `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+### `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`
 
 Snippet: `L33: lineage_mode: "[auto|resume|restart] - Session lifecycle intent. Default: auto. The runtime only persists lineage events for 'resume' (same sessionId, no archive) and 'restart' (new sessionId, generation+1, prior review/`
 
-### `.opencode/commands/spec_kit/deep-research.md`
+### `.opencode/commands/speckit/deep-research.md`
 
 Snippet: `L36: > '.opencode/skills/sk-deep-research/references/spec_check_protocol.md'.`
 
-### `.opencode/commands/spec_kit/deep-review.md`
+### `.opencode/commands/speckit/deep-review.md`
 
 Snippet: `L135: - '"skill:sk-deep-research, B, all, A, A"'`
 
@@ -181,7 +181,7 @@ Snippet: `L118: && args.skillId === 'sk-deep-research'`
 
 ### `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts`
 
-Snippet: `L100: '/spec_kit:deep-research': [['sk-deep-research', 1.6], ['command-spec-kit', 0.45]],`
+Snippet: `L100: '/speckit:deep-research': [['sk-deep-research', 1.6], ['command-spec-kit', 0.45]],`
 
 ### `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/lexical.ts`
 

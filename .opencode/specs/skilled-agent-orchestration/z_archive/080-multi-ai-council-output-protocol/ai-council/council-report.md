@@ -83,7 +83,7 @@ Mirror to all 4 runtimes per `feedback_new_agent_mirror_all_runtimes.md`: `.open
 
 ### Step 3 — Wire helper into commands and open path-scoping follow-on
 
-Update `/spec_kit:complete`, `/spec_kit:deep-research`, `/spec_kit:deep-review`, and any other commands that dispatch `@multi-ai-council` to invoke `persist-artifacts.sh` post-dispatch (1-line YAML/shell call).
+Update `/speckit:complete`, `/speckit:deep-research`, `/speckit:deep-review`, and any other commands that dispatch `@multi-ai-council` to invoke `persist-artifacts.sh` post-dispatch (1-line YAML/shell call).
 
 Open follow-on investigation: "Verify opencode `write: allow` path-scoping syntax. If supported and enforceable, draft a v1.2+ optional mode where `@multi-ai-council` may self-persist within `ai-council/` scope. Reword §0 from 'does not write' to 'does not modify production code' ONLY after verification confirms path-scoped writes are enforceable AND user approves the invariant reword."
 
@@ -111,7 +111,7 @@ Do NOT implement option (a) until verification completes.
 
 ## Risks & Mitigations
 
-- **R1**: Orchestrators may bypass the helper, causing artifact-layout drift across packets. **Mitigation**: §17 caller protocol + 1-line YAML in `/spec_kit:*` commands + validator hint flagging post-dispatch packets missing `council-report.md`.
+- **R1**: Orchestrators may bypass the helper, causing artifact-layout drift across packets. **Mitigation**: §17 caller protocol + 1-line YAML in `/speckit:*` commands + validator hint flagging post-dispatch packets missing `council-report.md`.
 - **R2**: Helper script becomes new maintenance surface. **Mitigation**: keep small (~150 LOC), fixture-tested, located in shared scripts/.
 - **R3**: Distributed friction — every new caller must rediscover the helper. **Mitigation**: §17 copy-paste recipe; dispatch examples in agent body and reference docs.
 - **R4 (deferred)**: Path-scoping verification may fail, blocking v1.2+ option (a). **Mitigation**: acceptable. Option (b) is complete on its own.
@@ -128,11 +128,11 @@ Round-2 critique (3 seats: Critical / Holistic / Research) confirmed round-1's d
 
 ### ADD-1 — Caller enumeration (replaces falsified "callers concentrated" assumption)
 
-Round-1's central assumption *"callers are concentrated to `/spec_kit:*` commands"* was falsified by Seat 3's grep evidence. Actual dispatchers include:
+Round-1's central assumption *"callers are concentrated to `/speckit:*` commands"* was falsified by Seat 3's grep evidence. Actual dispatchers include:
 
 - **(a)** Top-level Task dispatch (Claude Code or any AI assistant invoking `@multi-ai-council` directly)
 - **(b)** `@orchestrate` agent at Depth 1 (codified in `.opencode/agents/orchestrate.md` line 97, 192, 749 as LEAF target)
-- **(c)** `/spec_kit:*` command YAMLs (zero current commands actually dispatch the council; future-target)
+- **(c)** `/speckit:*` command YAMLs (zero current commands actually dispatch the council; future-target)
 - **(d)** CLI-skill manual dispatch (cli-claude-code, cli-codex, cli-opencode, cli-gemini playbooks and references)
 
 Section §17 (Caller Persistence Protocol) MUST enumerate ALL four caller patterns. Each gets a copy-paste recipe. The helper MUST be standalone-invokable (not only YAML-wired) so callers (a) and (d) work without command infrastructure.
@@ -162,10 +162,10 @@ Create `.opencode/skills/system-spec-kit/references/multi-ai-council/output-sche
 
 ### ADD-6 — Packet 081 sequencing safeguard
 
-If packet 081 lands while existing `/spec_kit:*` commands have not yet been wired (round-1 Step 3 partial state), the helper MUST work with manual invocation. Recommended packet-081 sequence:
+If packet 081 lands while existing `/speckit:*` commands have not yet been wired (round-1 Step 3 partial state), the helper MUST work with manual invocation. Recommended packet-081 sequence:
 1. Author helper + fixture tests (Step 1) — standalone usable immediately.
 2. Add §17 + output-schema.md (Step 2) — documented for human/AI callers.
-3. Wire YAML invocations into `/spec_kit:*` commands (Step 3) — convenience, not requirement.
+3. Wire YAML invocations into `/speckit:*` commands (Step 3) — convenience, not requirement.
 
 This sequencing means callers (a), (b), (d) get value from Step 2 even if Step 3 lags.
 

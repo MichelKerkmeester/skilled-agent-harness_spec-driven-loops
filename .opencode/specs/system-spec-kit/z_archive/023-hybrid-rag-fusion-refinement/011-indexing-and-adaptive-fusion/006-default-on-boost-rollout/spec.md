@@ -37,7 +37,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 | **Priority** | P0 |
 | **Status** | Draft |
 | **Created** | 2026-04-01 |
-| **Branch** | `system-speckit/024-compact-code-graph` |
+| **Branch** | `system-spec-kit/024-compact-code-graph` |
 | **Parent Spec** | ../spec.md |
 | **Predecessor** | 005-e2e-integration-test |
 | **Successor** | 007-external-graph-memory-research |

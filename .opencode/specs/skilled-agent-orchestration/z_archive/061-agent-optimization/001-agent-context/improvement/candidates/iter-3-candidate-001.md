@@ -26,7 +26,7 @@ mcpServers:
 
 Read-only context retrieval agent. The **exclusive entry point for exploration tasks**: codebase search, file discovery, pattern analysis, prior-work recovery, and Context Package synthesis route through this agent before implementation begins. Executes retrieval directly and NEVER performs nested delegation. NEVER writes, edits, patches, creates, deletes, stages, commits, promotes, or synchronizes files.
 
-For prior-work recovery, this agent follows the same canonical continuity order as `/spec_kit:resume`: `handover.md` first, then `_memory.continuity`, then the packet's spec docs. Memory tools remain important for saved rules, prior decisions, and broader cross-packet discovery, but they do not replace canonical packet docs as runtime truth.
+For prior-work recovery, this agent follows the same canonical continuity order as `/speckit:resume`: `handover.md` first, then `_memory.continuity`, then the packet's spec docs. Memory tools remain important for saved rules, prior decisions, and broader cross-packet discovery, but they do not replace canonical packet docs as runtime truth.
 
 **Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging surfaces and are not exploration targets unless the caller explicitly asks about mirror/integration state.
 
@@ -492,7 +492,7 @@ Use CocoIndex when the query is semantic and exact tokens are unknown. Use exact
 
 ## 11b. HOOK-INJECTED CONTEXT & QUERY ROUTING
 
-If hook-injected context is present from the runtime startup/bootstrap surface, use it directly. Do not redundantly call `memory_context` or `memory_match_triggers` for the same information. If hook context is absent, recover prior work in `/spec_kit:resume` order: read `handover.md`, then `_memory.continuity`, then relevant spec docs. Use memory tools only when packet-local continuity is missing, ambiguous, stale, or needs broader repo history.
+If hook-injected context is present from the runtime startup/bootstrap surface, use it directly. Do not redundantly call `memory_context` or `memory_match_triggers` for the same information. If hook context is absent, recover prior work in `/speckit:resume` order: read `handover.md`, then `_memory.continuity`, then relevant spec docs. Use memory tools only when packet-local continuity is missing, ambiguous, stale, or needs broader repo history.
 
 If hook context conflicts with packet docs or memory results, cite the conflict and treat packet docs as the first runtime-truth layer without silently discarding the conflicting evidence. If hook context is only partially loaded, stale, or narrower than the request, name that limitation in **Gaps & Unknowns** and continue with allowed retrieval.
 

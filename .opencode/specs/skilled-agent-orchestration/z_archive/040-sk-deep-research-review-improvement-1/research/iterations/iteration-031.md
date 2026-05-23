@@ -7,8 +7,8 @@ Deep-research confirm-mode session classification and lifecycle handoff integrit
 - Are `restart` and `fork` modeled as runnable branches or only UI choices?
 
 ## Evidence
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:119-130`
-- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:178-190`
+- `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:119-130`
+- `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:178-190`
 
 ## Analysis
 The session classifier is explicit and strong, but control flow after classification is asymmetric. `fresh` and `invalid-state` map to concrete behavior, while `resume` asks for `resume/restart/fork` yet only a generic path to `gate_init_approval` is defined in the same flow.

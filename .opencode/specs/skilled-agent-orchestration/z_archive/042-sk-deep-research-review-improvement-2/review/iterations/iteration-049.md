@@ -72,11 +72,11 @@ I’ve got the core skill docs loaded. Next I’m cross-checking the exact READM
   └ L906:955 (50 lines read)
 
 ● Read deep-research.md
-  │ .opencode/commands/spec_kit/deep-research.md
+  │ .opencode/commands/speckit/deep-research.md
   └ L1:260 (259 lines read)
 
 ● Read deep-review.md
-  │ .opencode/commands/spec_kit/deep-review.md
+  │ .opencode/commands/speckit/deep-review.md
   └ L1:260 (260 lines read)
 
 ● Search (glob)

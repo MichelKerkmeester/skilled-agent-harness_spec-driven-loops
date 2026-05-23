@@ -16,7 +16,7 @@ Read Relay's workflow README, builder, coordinator, and run helper, then compare
 - Relay's workflow runner documents one shared completion pipeline, one shared swarm-pattern vocabulary, and one shared pause/resume surface for many workflow shapes rather than creating separate command families per use case. [SOURCE: external/packages/sdk/src/workflows/README.md:210-254] [SOURCE: external/packages/sdk/src/workflows/README.md:530-537] [SOURCE: external/packages/sdk/src/workflows/README.md:731-742]
 - The builder exposes common options such as `verification`, `startFrom`, `previousRunId`, `coordination`, `state`, and `trajectories` as reusable workflow primitives. [SOURCE: external/packages/sdk/src/workflows/builder.ts:50-92] [SOURCE: external/packages/sdk/src/workflows/builder.ts:94-129] [SOURCE: external/packages/sdk/src/workflows/builder.ts:218-239] [SOURCE: external/packages/sdk/src/workflows/builder.ts:334-373]
 - The coordinator auto-selects patterns from workflow shape and resolves topology from one common config rather than duplicating separate engines for review and research. [SOURCE: external/packages/sdk/src/workflows/coordinator.ts:47-65] [SOURCE: external/packages/sdk/src/workflows/coordinator.ts:148-164] [SOURCE: external/packages/sdk/src/workflows/coordinator.ts:206-240]
-- Public's `deep-research` and `deep-review` commands each define their own setup phase, lifecycle, output contract, memory save instructions, and loop workflow prose even though the init/iterate/synthesize/save skeleton is nearly identical. [SOURCE: .opencode/commands/spec_kit/deep-research.md:147-186] [SOURCE: .opencode/commands/spec_kit/deep-review.md:162-228]
+- Public's `deep-research` and `deep-review` commands each define their own setup phase, lifecycle, output contract, memory save instructions, and loop workflow prose even though the init/iterate/synthesize/save skeleton is nearly identical. [SOURCE: .opencode/commands/speckit/deep-research.md:147-186] [SOURCE: .opencode/commands/speckit/deep-review.md:162-228]
 - The `sk-deep-research` and `sk-deep-review` skills each describe a separate three-layer architecture with fresh-context iterations, JSONL state, strategy files, synthesis, and memory save, again with domain-specific differences layered on top of the same loop shape. [SOURCE: .opencode/skills/sk-deep-research/SKILL.md:137-176] [SOURCE: .opencode/skills/sk-deep-research/SKILL.md:179-222] [SOURCE: .opencode/skills/sk-deep-review/SKILL.md:155-198] [SOURCE: .opencode/skills/sk-deep-review/SKILL.md:216-285]
 
 ## Analysis
@@ -27,7 +27,7 @@ confidence: high
 finding: Public should refactor deep research and deep review onto one shared deep-loop kernel with pluggable domain contracts. Keep separate user-facing commands and specialist leaf agents, but stop maintaining two near-duplicate orchestration stacks.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/commands/spec_kit/deep-research.md`, `.opencode/commands/spec_kit/deep-review.md`, `.opencode/skills/sk-deep-research/`, `.opencode/skills/sk-deep-review/`
+- **Target file or module:** `.opencode/commands/speckit/deep-research.md`, `.opencode/commands/speckit/deep-review.md`, `.opencode/skills/sk-deep-research/`, `.opencode/skills/sk-deep-review/`
 - **Change type:** architectural refactor
 - **Blast radius:** architectural
 - **Prerequisites:** define a shared loop schema for setup, lifecycle, convergence, state packet naming, and synthesis hooks

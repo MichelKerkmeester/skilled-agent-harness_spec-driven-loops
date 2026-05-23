@@ -1,6 +1,6 @@
 ## Dispatcher
 
-- Workflow: `/spec_kit:deep-review:auto`
+- Workflow: `/speckit:deep-review:auto`
 - Iteration: 3 of 5
 - Run/session: `review-087-2026-05-06T13-43-00Z`
 - Focus dimension: traceability

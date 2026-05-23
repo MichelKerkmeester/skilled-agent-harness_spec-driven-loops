@@ -283,7 +283,7 @@ exec
 399:- symptom: large multi-file memory patch fails to apply cleanly; cause: generated memory snapshots drift from expected formatting; fix: use smaller per-file patches on the latest packet snapshots and revalidate after each batch [Task 5]
 685:- symptom: deep-review reducer-schema tests fail during closeout; cause: config metadata drift (`metrics` missing, `.deep-review-pause` mutability mismatch); fix: align config/docs with test schema before rerunning suites [Task 3]
 686:- symptom: recommendation docs drift from requested basis; cause: docs written from partial wave context; fix: verify ledger count/`synthesis_complete` and explicitly tie recommendations to the full 90-iteration synthesis [Task 1]
-935:scope: restoring `/spec_kit:*`, `/memory:*`, and `/create:*` command discovery when prompt links drift between workspace and global Codex prompt directories
+935:scope: restoring `/speckit:*`, `/memory:*`, and `/create:*` command discovery when prompt links drift between workspace and global Codex prompt directories
 1028:## Task 3: Fix startup DB path/provider drift and auto-repair temp-root cleanup for `spec_kit_memory`
 1169:- when packet identity drifted, user signaled to keep canonical naming and lineage truthful at the same time [Task 2]
 1178:- Use Level-3 scaffold scripts for follow-on packets to reduce template drift [Task 3]
@@ -4374,15 +4374,15 @@ exec
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/api/README.md:60:- `../tests/README.md`
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:98:    it('Returns "memory" for README files', () => {
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:99:      expect(inferDocumentTypeFromPath('/project/.opencode/skills/system-spec-kit/README.md')).toBe('memory');
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:100:      expect(inferDocumentTypeFromPath('/project/.opencode/commands/spec_kit/README.txt')).toBe('memory');
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:100:      expect(inferDocumentTypeFromPath('/project/.opencode/commands/speckit/README.txt')).toBe('memory');
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:228:      expect(extractDocumentType('/p/.opencode/skills/kit/README.md')).toBe('memory');
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:232:      expect(extractDocumentType('/p/.opencode/commands/kit/README.txt')).toBe('memory');
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:290:    it('Rejects README.txt files', () => {
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:291:      expect(isMemoryFile('/p/.opencode/commands/spec_kit/README.txt')).toBe(false);
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:291:      expect(isMemoryFile('/p/.opencode/commands/speckit/README.txt')).toBe(false);
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:316:    it('Returns folder category for skill README path', () => {
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:317:      const result = extractSpecFolder('/p/.opencode/skills/system-spec-kit/README.md');
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:321:    it('Returns folder category for command README path', () => {
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:322:      const result = extractSpecFolder('/p/.opencode/commands/spec_kit/README.txt');
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:322:      const result = extractSpecFolder('/p/.opencode/commands/speckit/README.txt');
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:375:    it('README paths with explicit memory type use baseline memory weight', () => {
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:376:      expect(calculateDocumentWeight('/p/.opencode/skills/kit/README.md', 'memory')).toBe(0.5);
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:377:      expect(calculateDocumentWeight('/p/src/README.md', 'memory')).toBe(0.5);

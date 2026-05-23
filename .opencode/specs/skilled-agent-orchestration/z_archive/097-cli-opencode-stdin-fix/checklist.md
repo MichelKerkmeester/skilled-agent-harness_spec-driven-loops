@@ -13,7 +13,7 @@ Mark each item `[x]` only with file:line evidence after completion.
 
 ## P0 — REQ-001 (4 YAML workflows)
 
-- [ ] **C-001a**: `spec_kit_deep-research_auto.yaml` `if_cli_opencode` block contains `</dev/null` — evidence: `grep -n "</dev/null" .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+- [ ] **C-001a**: `spec_kit_deep-research_auto.yaml` `if_cli_opencode` block contains `</dev/null` — evidence: `grep -n "</dev/null" .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml`
 - [ ] **C-001b**: `spec_kit_deep-research_confirm.yaml` `if_cli_opencode` block contains `</dev/null`
 - [ ] **C-001c**: `spec_kit_deep-review_auto.yaml` `if_cli_opencode` block contains `</dev/null`
 - [ ] **C-001d**: `spec_kit_deep-review_confirm.yaml` `if_cli_opencode` block contains `</dev/null`

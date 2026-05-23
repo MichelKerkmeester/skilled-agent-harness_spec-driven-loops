@@ -71,7 +71,7 @@ FOCUS_AREAS=(
 
   # Round 5: Cross-phase synthesis and coverage gaps
   "Cross-phase reducer consistency: compare reduce-state.cjs across all 3 skills (sk-deep-research, sk-deep-review, sk-improve-agent). Check for shared contract compliance, consistent event emission shapes, convergence signal calculation, and dashboard rendering logic."
-  "Cross-phase command workflow integrity: review all 6 YAML workflow assets in .opencode/commands/spec_kit/assets/ and 2 in .opencode/commands/improve/assets/. Verify step sequences, variable references, conditional branches, and error handling paths match the SKILL.md documented workflows."
+  "Cross-phase command workflow integrity: review all 6 YAML workflow assets in .opencode/commands/speckit/assets/ and 2 in .opencode/commands/improve/assets/. Verify step sequences, variable references, conditional branches, and error handling paths match the SKILL.md documented workflows."
   "Cross-phase reference doc accuracy: verify all references/ docs across sk-deep-research, sk-deep-review, and sk-improve-agent are consistent with current runtime code. Check for stale function names, outdated field names, removed branches, or phantom features documented but not implemented."
   "Overall architecture coherence: evaluate the full 042 bundle for architectural risks — shared library coupling, database schema evolution path, MCP tool surface area growth, test fixture maintainability, and operational documentation completeness. Assess release readiness."
 )

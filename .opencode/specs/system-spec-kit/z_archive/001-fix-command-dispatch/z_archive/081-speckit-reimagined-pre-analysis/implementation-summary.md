@@ -58,7 +58,7 @@ The following pre-analysis documents contain the original recommendations:
 | Document | Focus |
 |----------|-------|
 | `001-a-analysis-cross-repository-architecture.md` | Cross-repository architecture patterns (dotmd, seu-claude, drift) |
-| `001-b-analysis-repository-comparison.md` | Repository comparison for system-speckit enhancement |
+| `001-b-analysis-repository-comparison.md` | Repository comparison for system-spec-kit enhancement |
 | `001-c-analysis-three-system-architecture-review.md` | Three AI memory system analysis |
 | `001-d-analysis-speckit-architecture-comparison.md` | Memory system architecture comparison |
 | `002-a-recommendations-speckit-enhancement.md` | Prioritized enhancement recommendations |

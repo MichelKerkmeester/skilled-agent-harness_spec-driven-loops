@@ -11,9 +11,9 @@ Compared BAD's coordinator phases to local command chaining, memory command boun
 
 ## Evidence
 - BAD runs one domain-shaped pipeline with internal phases for dependency prep, story selection, create/dev/review/PR execution, and continuation checks. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/skills/bad/SKILL.md:72-99] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/skills/bad/SKILL.md:212-336]
-- Local `spec_kit` documents a 3-command lifecycle (`plan`, `implement`, `complete`) plus separate `resume`, `handover`, `debug`, and deep-loop commands. [SOURCE: .opencode/commands/spec_kit/README.txt:43-76] [SOURCE: .opencode/commands/spec_kit/README.txt:121-145]
-- Local memory docs explicitly position `/spec_kit:resume` as the recovery surface while still keeping `/memory:search`, `/memory:manage`, and `/memory:learn` in a separate family. [SOURCE: .opencode/commands/memory/README.txt:38-40] [SOURCE: .opencode/commands/memory/README.txt:308-320]
-- The operator-facing command docs also expose a large workflow-asset matrix, which reinforces that the lifecycle is implemented as many adjacent bundles rather than one cohesive guided path. [SOURCE: .opencode/commands/spec_kit/README.txt:85-111]
+- Local `spec_kit` documents a 3-command lifecycle (`plan`, `implement`, `complete`) plus separate `resume`, `handover`, `debug`, and deep-loop commands. [SOURCE: .opencode/commands/speckit/README.txt:43-76] [SOURCE: .opencode/commands/speckit/README.txt:121-145]
+- Local memory docs explicitly position `/speckit:resume` as the recovery surface while still keeping `/memory:search`, `/memory:manage`, and `/memory:learn` in a separate family. [SOURCE: .opencode/commands/memory/README.txt:38-40] [SOURCE: .opencode/commands/memory/README.txt:308-320]
+- The operator-facing command docs also expose a large workflow-asset matrix, which reinforces that the lifecycle is implemented as many adjacent bundles rather than one cohesive guided path. [SOURCE: .opencode/commands/speckit/README.txt:85-111]
 
 ## Analysis
 This is where command sprawl becomes architectural friction. Local commands are logically separated, but the most common path still crosses multiple surfaces: spec lifecycle, memory recovery, and autonomous workflow assets. BAD shows the value of one visible run-loop, even when its internals are composed of many steps. The local equivalent should be a merged operator path, not necessarily a merged internal implementation.
@@ -44,7 +44,7 @@ confidence: high
 finding: The `plan -> implement -> complete` split is a good internal decomposition, but it is too visible as operator UX. `system-spec-kit` should merge the common lifecycle path into a guided surface that also absorbs the most common memory handoffs.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/commands/spec_kit/README.txt`
+- **Target file or module:** `.opencode/commands/speckit/README.txt`
 - **Change type:** UX and workflow merge
 - **Blast radius:** high
 - **Prerequisites:** define the standard lifecycle contract and decide which memory actions become implicit defaults versus advanced controls

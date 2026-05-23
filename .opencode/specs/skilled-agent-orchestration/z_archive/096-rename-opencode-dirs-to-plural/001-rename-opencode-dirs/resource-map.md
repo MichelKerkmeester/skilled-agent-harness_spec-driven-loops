@@ -151,7 +151,7 @@ Comprehensive file-level inventory for the `.opencode/{skill,agent,command}/` �
 ### Critical patches
 
 1. **`audit_descriptions.py`** — command-half validators (`.opencode/commands/**`)
-2. **`.opencode/skills/deep-agent-improvement/assets/target_manifest.jsonc`** — `.opencode/commands/spec_kit/handover.md`
+2. **`.opencode/skills/deep-agent-improvement/assets/target_manifest.jsonc`** — `.opencode/commands/speckit/handover.md`
 3. **`.opencode/commands/doctor/scripts/mcp-doctor.sh`** — review for hardcoded path strings
 
 ### Cross-cutting
@@ -193,7 +193,7 @@ Comprehensive file-level inventory for the `.opencode/{skill,agent,command}/` �
 | `audit_descriptions.py` | `.opencode/commands/**` + `.opencode/agents/<name>.md` validators | 002 + 003 |
 | `sk-prompt/graph-metadata.json` | `mirrorPath: .opencode/agents/prompt-improver.md` | 002 |
 | `deep-research/runtime_capabilities.json` | `mirrorPath: .opencode/agents/deep-research.md` | 002 |
-| `deep-agent-improvement/target_manifest.jsonc` | `.opencode/commands/spec_kit/handover.md` | 003 |
+| `deep-agent-improvement/target_manifest.jsonc` | `.opencode/commands/speckit/handover.md` | 003 |
 | `mcp-doctor.sh` | review for path strings | 003 |
 | `CLAUDE.md` §5 | Runtime agent directory routing table | 002 |
 
