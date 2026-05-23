@@ -176,68 +176,76 @@ export function registerShutdownHooks(): void {
 // 4. DIRECT ADAPTER
 // ───────────────────────────────────────────────────────────────
 
-class DirectProviderAdapter {
-  readonly name: string;
-  readonly dim: number;
-  readonly backend: BackendKind;
-
-  private providerPromise: Promise<IEmbeddingProvider> | null = null;
-  private readonly registryAdapter: EmbedderAdapter | undefined;
-
-  constructor(
-    private readonly provider: string,
-    model: string,
-    dimensions: number,
-  ) {
-    this.name = model;
-    this.dim = dimensions;
-    this.backend = toBackendKind(provider);
-    this.registryAdapter = provider === 'ollama' ? getAdapter(model) : undefined;
-  }
-
-  async embed(texts: ReadonlyArray<string>, options: EmbedOptions = {}): Promise<Float32Array[]> {
-    if (texts.length === 0) {
-      return [];
-    }
-
-    if (this.registryAdapter) {
-      const adapter = this.registryAdapter as EmbedderAdapter & {
-        embed: (input: ReadonlyArray<string>, opts?: EmbedOptions) => Promise<Float32Array[]>;
-      };
+function createOllamaDelegatingAdapter(adapter: EmbedderAdapter): ExecutionRouterAdapter {
+  return {
+    name: adapter.name,
+    dim: adapter.dim,
+    backend: adapter.backend,
+    embed(texts, options) {
       return adapter.embed(texts, options);
-    }
+    },
+  };
+}
 
-    const provider = await this.getProvider();
-    const vectors: Float32Array[] = [];
-    for (const text of texts) {
-      const embedding = options.inputType === 'query'
-        ? await provider.embedQuery(text)
-        : await provider.embedDocument(text);
-      if (!embedding) {
-        throw new Error(`Embedding provider returned null for ${this.provider}:${this.name}`);
-      }
-      vectors.push(embedding);
-    }
-    return vectors;
-  }
+function toProviderFactoryName(provider: string): string {
+  return provider === 'api' ? 'openai' : provider;
+}
 
-  private getProvider(): Promise<IEmbeddingProvider> {
-    if (!this.providerPromise) {
+function createFactoryBackedAdapter(provider: string, model: string, dimensions: number): ExecutionRouterAdapter {
+  let providerPromise: Promise<IEmbeddingProvider> | null = null;
+
+  const getProvider = (): Promise<IEmbeddingProvider> => {
+    if (!providerPromise) {
       const created = createEmbeddingsProvider({
-        provider: this.provider === 'api' ? 'openai' : this.provider,
-        model: this.name,
-        dim: this.dim,
+        provider: toProviderFactoryName(provider),
+        model,
+        dim: dimensions,
         warmup: false,
       });
-      this.providerPromise = created.catch((error: unknown) => {
-        if (this.providerPromise === created) {
-          this.providerPromise = null;
+      providerPromise = created.catch((error: unknown) => {
+        if (providerPromise === created) {
+          providerPromise = null;
         }
         throw error;
       });
     }
-    return this.providerPromise;
+    return providerPromise;
+  };
+
+  return {
+    name: model,
+    dim: dimensions,
+    backend: toBackendKind(provider),
+    async embed(texts, options = {}) {
+      if (texts.length === 0) {
+        return [];
+      }
+
+      const embeddingProvider = await getProvider();
+      const vectors: Float32Array[] = [];
+      for (const text of texts) {
+        const embedding = options.inputType === 'query'
+          ? await embeddingProvider.embedQuery(text)
+          : await embeddingProvider.embedDocument(text);
+        if (!embedding) {
+          throw new Error(`Embedding provider returned null for ${provider}:${model}`);
+        }
+        vectors.push(embedding);
+      }
+      return vectors;
+    },
+  };
+}
+
+function createDirectProviderAdapter(provider: string, model: string, dimensions: number): ExecutionRouterAdapter {
+  if (provider === 'ollama') {
+    const adapter = getAdapter(model);
+    if (adapter) {
+      return createOllamaDelegatingAdapter(adapter);
+    }
   }
+
+  return createFactoryBackedAdapter(provider, model, dimensions);
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -268,7 +276,7 @@ export function getEmbedderAdapter(provider: string, model: string, dimensionsOv
 
   let adapter = directAdapters.get(key);
   if (!adapter) {
-    adapter = new DirectProviderAdapter(normalizedProvider, model, dimensions);
+    adapter = createDirectProviderAdapter(normalizedProvider, model, dimensions);
     directAdapters.set(key, adapter);
   }
   return adapter;

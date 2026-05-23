@@ -5,6 +5,7 @@
 import readline from 'node:readline';
 
 import { createEmbeddingsProvider } from '@spec-kit/shared/embeddings/factory';
+import { getCanonicalFallback } from '@spec-kit/shared/embeddings/registry';
 import type { IEmbeddingProvider } from '@spec-kit/shared/types';
 
 import type { EmbedOptions } from './sidecar-client.js';
@@ -14,6 +15,7 @@ import type { EmbedOptions } from './sidecar-client.js';
 // ───────────────────────────────────────────────────────────────
 
 type WorkerInputType = NonNullable<EmbedOptions['inputType']>;
+type SidecarWorkerProvider = 'openai' | 'voyage' | 'ollama' | 'hf-local';
 
 interface EmbedRequest {
   readonly id: number;
@@ -65,7 +67,9 @@ let parentPollTimer: NodeJS.Timeout | null = null;
 
 const MAX_LINE_BYTES = 1024 * 1024; // 1MB
 const MAX_INPUT_ITEMS = 500;
-const DEFAULT_MODEL = 'BAAI/bge-base-en-v1.5';
+// Derived from registry MANIFESTS[0] per ADR-013/014 — adding a new top
+// entry to shared/embeddings/registry.ts auto-updates this constant.
+const DEFAULT_MODEL: string = getCanonicalFallback('hf-local');
 
 // ───────────────────────────────────────────────────────────────
 // 4. HELPERS
@@ -93,8 +97,30 @@ function getDimensions(requestDimensions: number): number {
     return requestDimensions;
   }
 
-  const envDimensions = Number.parseInt(process.env.SPECKIT_EMBEDDER_SIDECAR_DIMENSIONS || '', 10);
-  return Number.isInteger(envDimensions) && envDimensions > 0 ? envDimensions : 768;
+  throw new Error(`Sidecar request dimensions must be a positive integer, got ${requestDimensions}`);
+}
+
+function normalizeSidecarProvider(provider: string): SidecarWorkerProvider {
+  const normalized = provider.trim().toLowerCase();
+  if (normalized === 'sentence-transformers') {
+    return 'hf-local';
+  }
+  if (normalized === 'api') {
+    return 'openai';
+  }
+  if (normalized === 'openai' || normalized === 'voyage' || normalized === 'ollama' || normalized === 'hf-local') {
+    return normalized;
+  }
+  throw new Error(`Unsupported sidecar provider: ${provider}`);
+}
+
+function getSidecarProvider(): SidecarWorkerProvider {
+  const rawProvider = process.env.SPECKIT_EMBEDDER_SIDECAR_PROVIDER;
+  if (!rawProvider || rawProvider.trim().length === 0) {
+    throw new Error('SPECKIT_EMBEDDER_SIDECAR_PROVIDER is required');
+  }
+
+  return normalizeSidecarProvider(rawProvider);
 }
 
 function toErrorDetail(error: unknown): string {
@@ -250,7 +276,7 @@ function requestErrorFrom(error: unknown): WorkerErrorDetail {
 async function getProvider(request: EmbedRequest): Promise<IEmbeddingProvider> {
   if (!providerPromise) {
     const created = createEmbeddingsProvider({
-      provider: process.env.SPECKIT_EMBEDDER_SIDECAR_PROVIDER?.trim() || 'hf-local',
+      provider: getSidecarProvider(),
       model: getModelName(request.model),
       dim: getDimensions(request.dimensions),
       warmup: false,

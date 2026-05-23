@@ -185,6 +185,42 @@ describe('execution router', () => {
     }
   });
 
+  it('resolves invalid sidecar dimensions at the router layer before worker dispatch (F10)', async () => {
+    const router = await loadRouter();
+
+    process.env.SPECKIT_EMBEDDER_EXECUTION = 'sidecar';
+    mockState.profile = {
+      provider: 'hf-local',
+      model: 'default-model',
+      dim: 384,
+    };
+
+    const adapter = router.getEmbedderAdapter('hf-local', 'default-model', 0);
+
+    expect((adapter as unknown as { dimensions: number }).dimensions).toBe(384);
+  });
+
+  it('delegates registered Ollama direct adapters without the factory-backed provider path (F64)', async () => {
+    const router = await loadRouter();
+    const registryEmbed = vi.fn(async () => [new Float32Array([1, 2])]);
+    mockState.getAdapter.mockReturnValue({
+      name: 'nomic-embed-text-v1.5',
+      dim: 2,
+      backend: 'ollama',
+      ready: vi.fn(),
+      embed: registryEmbed,
+    });
+
+    process.env.SPECKIT_EMBEDDER_EXECUTION = 'direct';
+    const adapter = router.getEmbedderAdapter('ollama', 'nomic-embed-text-v1.5', 2);
+    const vectors = await adapter.embed(['hello'], { inputType: 'query' });
+
+    expect(vectors).toEqual([new Float32Array([1, 2])]);
+    expect(registryEmbed).toHaveBeenCalledWith(['hello'], { inputType: 'query' });
+    expect(mockState.createEmbeddingsProvider).not.toHaveBeenCalled();
+    expect('ready' in adapter).toBe(false);
+  });
+
   it('does not expose DirectProviderAdapter.ready through direct router adapters (F74)', async () => {
     const router = await loadRouter();
 

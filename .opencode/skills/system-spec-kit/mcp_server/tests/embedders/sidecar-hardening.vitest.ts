@@ -741,6 +741,8 @@ setInterval(() => {}, 1000);
     factoryMockState.createEmbeddingsProvider
       .mockRejectedValueOnce(new Error('transient provider failure'))
       .mockResolvedValueOnce(provider);
+    const originalProvider = process.env.SPECKIT_EMBEDDER_SIDECAR_PROVIDER;
+    process.env.SPECKIT_EMBEDDER_SIDECAR_PROVIDER = 'hf-local';
 
     const request = {
       id: 1,
@@ -750,13 +752,20 @@ setInterval(() => {}, 1000);
       dimensions: 3,
     };
 
-    await expect(getProvider(request)).rejects.toThrow('transient provider failure');
-    expect(factoryMockState.createEmbeddingsProvider).toHaveBeenCalledTimes(1);
+    try {
+      await expect(getProvider(request)).rejects.toThrow('transient provider failure');
+      expect(factoryMockState.createEmbeddingsProvider).toHaveBeenCalledTimes(1);
 
-    await expect(getProvider(request)).resolves.toBe(provider);
-    expect(factoryMockState.createEmbeddingsProvider).toHaveBeenCalledTimes(2);
-
-    resetProviderCacheForTests();
+      await expect(getProvider(request)).resolves.toBe(provider);
+      expect(factoryMockState.createEmbeddingsProvider).toHaveBeenCalledTimes(2);
+    } finally {
+      resetProviderCacheForTests();
+      if (originalProvider === undefined) {
+        delete process.env.SPECKIT_EMBEDDER_SIDECAR_PROVIDER;
+      } else {
+        process.env.SPECKIT_EMBEDDER_SIDECAR_PROVIDER = originalProvider;
+      }
+    }
   });
 
   it('caches provider success after retrying a rejected provider promise (F95)', async () => {
@@ -771,6 +780,8 @@ setInterval(() => {}, 1000);
     factoryMockState.createEmbeddingsProvider
       .mockRejectedValueOnce(new Error('first attempt failed'))
       .mockResolvedValueOnce(provider);
+    const originalProvider = process.env.SPECKIT_EMBEDDER_SIDECAR_PROVIDER;
+    process.env.SPECKIT_EMBEDDER_SIDECAR_PROVIDER = 'hf-local';
 
     const request = {
       id: 1,
@@ -780,12 +791,19 @@ setInterval(() => {}, 1000);
       dimensions: 3,
     };
 
-    await expect(getProvider(request)).rejects.toThrow('first attempt failed');
-    await expect(getProvider(request)).resolves.toBe(provider);
-    await expect(getProvider(request)).resolves.toBe(provider);
+    try {
+      await expect(getProvider(request)).rejects.toThrow('first attempt failed');
+      await expect(getProvider(request)).resolves.toBe(provider);
+      await expect(getProvider(request)).resolves.toBe(provider);
 
-    expect(factoryMockState.createEmbeddingsProvider).toHaveBeenCalledTimes(2);
-
-    resetProviderCacheForTests();
+      expect(factoryMockState.createEmbeddingsProvider).toHaveBeenCalledTimes(2);
+    } finally {
+      resetProviderCacheForTests();
+      if (originalProvider === undefined) {
+        delete process.env.SPECKIT_EMBEDDER_SIDECAR_PROVIDER;
+      } else {
+        process.env.SPECKIT_EMBEDDER_SIDECAR_PROVIDER = originalProvider;
+      }
+    }
   });
 });
