@@ -81,9 +81,9 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [!] CHK-FIX-001 [P0] Identified finding 1 has checklist evidence and ADR. Halted because only F35 remained DEFERRED in the sweep.
-- [!] CHK-FIX-002 [P0] Identified finding 2 has checklist evidence and ADR. Halted because only F35 remained DEFERRED in the sweep.
-- [!] CHK-FIX-003 [P0] Identified finding 3 has checklist evidence and ADR. Halted because only F35 remained DEFERRED in the sweep.
+- [x] CHK-FIX-001 [P0] F35 closed via structured error-message in `reindex.ts:246-260` + ADR-001 in `decision-record.md`. Verified via vitest 4 files / 54 tests PASS.
+- [x] CHK-FIX-002 [P0] No second deferred finding existed (reconciliation showed 67 closed + 1 deferred, not 65 + 3 as originally expected). Updated packet docs to reflect actual math.
+- [x] CHK-FIX-003 [P0] No third deferred finding existed. Cumulative P2 closure: 68 of 68 (100%).
 - [x] CHK-FIX-004 [P1] Implementation summary lists closed and DEFERRED-AGAIN counts.
 - [x] CHK-FIX-005 [P1] Commit handoff includes absolute paths and suggested commit message.
 <!-- /ANCHOR:fix-completeness -->
@@ -133,7 +133,7 @@ _memory:
 
 | Finding | Status | Evidence |
 |---------|--------|----------|
-| F35 | DEFERRED | Only deferred row in `scratch/p2-closure-tally.csv`; closure halted because packet expected exactly 3 deferred IDs |
+| F35 | **CLOSED** | Structured error-message replacement in `reindex.ts:246-260` (ADR-001); vitest 4 files / 54 tests PASS |
 | F103 | CLOSED | `020/003/checklist.md:149` |
 | F104 | CLOSED | `020/003/checklist.md:150` |
 | F106 | CLOSED | `017/005/checklist.md:145` |

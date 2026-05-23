@@ -243,7 +243,13 @@ function getBatchPair(
   const row = rows[index];
   const embedding = embeddings[index];
   if (!row || !embedding) {
-    throw new Error('Embedding batch cardinality mismatch');
+    const missing: string[] = [];
+    if (!row) missing.push('row=undefined');
+    if (!embedding) missing.push('embedding=undefined');
+    throw new Error(
+      `Embedding batch entry missing at index ${index}: ${missing.join(', ')} ` +
+        `(rows.length=${rows.length}, embeddings.length=${embeddings.length})`,
+    );
   }
   return { row, embedding };
 }

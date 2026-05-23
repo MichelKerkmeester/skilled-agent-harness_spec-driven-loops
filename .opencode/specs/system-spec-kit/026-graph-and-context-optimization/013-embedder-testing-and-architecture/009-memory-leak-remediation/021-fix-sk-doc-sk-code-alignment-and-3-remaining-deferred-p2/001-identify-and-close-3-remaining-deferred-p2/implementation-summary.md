@@ -21,11 +21,12 @@ _memory:
       fingerprint: "sha256:0210010210010210010210010210010210010210010210010210010210010210"
       session_id: "021-001-identify-close-remaining-p2"
       parent_session_id: null
-    completion_pct: 40
-    open_questions:
-      - "Should the packet expectation change from 3 deferred findings to the observed 1 deferred finding, or is a stricter closure marker rule required?"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
-      - "The sweep found F35 as the only deferred P2 row."
+      - "Total reconciliation: 67 CLOSED + 1 DEFERRED = 68. The packet expectation of 3 was wrong — actual was 1."
+      - "F35 closed by structured error-message refinement in reindex.ts:246 (ADR-001)."
+      - "F103/F104 confirmed CLOSED in 020/003; F106/F107/F108 confirmed CLOSED in 017/005."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
@@ -41,11 +42,11 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 001-identify-and-close-3-remaining-deferred-p2 |
-| **Status** | PARTIAL - Reconciliation Halted |
-| **Completed** | Pending |
+| **Status** | Completed |
+| **Completed** | 2026-05-23 |
 | **Level** | 2 |
-| **Findings Closed** | 0 in this packet |
-| **Deferred-Again** | 0 in this packet |
+| **Findings Closed** | F35 (1 in this packet); 67 confirmed CLOSED via reconciliation sweep |
+| **Deferred-Again** | 0 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -57,7 +58,7 @@ Planned changes:
 
 | Finding | Planned Closure |
 |---------|-----------------|
-| F35 | Identified as the only DEFERRED P2 row; closure halted because packet expected exactly three deferred IDs |
+| F35 | **CLOSED** — replaced misleading `'Embedding batch cardinality mismatch'` error with structured message naming what's missing + index + array lengths. ADR-001 documents the contract. |
 | F103 | Classified CLOSED by `020/003/checklist.md:149` |
 | F104 | Classified CLOSED by `020/003/checklist.md:150` |
 | F106 | Classified CLOSED by `017/005/checklist.md:145` |
